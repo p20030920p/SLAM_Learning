@@ -1,0 +1,26 @@
+# colcon / ament build artefacts
+build/
+install/
+log/
+
+# catkin (week-style workspaces, kept for compatibility)
+devel/
+.catkin_tools/
+**/build/
+**/devel/
+**/install/
+**/log/
+**/logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Gazebo camera sensor default dump directory (top_camera::link::top_view_*.png)
+__default__/

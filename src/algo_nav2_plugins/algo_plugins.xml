@@ -1,0 +1,15 @@
+<library path="algo_nav2_plugins">
+  <class name="algo_nav2_plugins/GridPlanner"
+         type="algo_nav2_plugins::GridPlannerPlugin"
+         base_class_type="nav2_core::GlobalPlanner">
+    <description>
+      Nav2 global planner adapter backed by the algo_core planner registry.
+      The `algorithm` parameter selects which registered planner runs; this
+      workspace ships exactly one, `astar`.
+
+      Register several named instances of this class in planner_plugins to keep
+      several planners loaded simultaneously and select one per request through
+      the ComputePathToPose planner_id field.
+    </description>
+  </class>
+</library>
