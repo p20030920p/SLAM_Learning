@@ -25,8 +25,8 @@ public:
 
   virtual ~GridPlanner() = default;
 
-  /// Stable identifier, matching the key used in the registry and in
-  /// algo_registry.yaml.
+  /// Stable identifier, matching the key the planner registered itself under
+  /// (see ALGO_CORE_REGISTER) and the `algorithm` parameter in the Nav2 config.
   virtual std::string name() const = 0;
 
   /// Apply parameters. Called once after construction. Implementations should

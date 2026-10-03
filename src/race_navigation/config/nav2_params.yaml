@@ -300,8 +300,9 @@ planner_server:
       # the inflated cells around obstacles.
       cost_scale: 1.0
       # Cell radius searched for the nearest free cell when AMCL reports a pose
-      # a few centimetres inside an inflated cell. Must be a float: the adapter
-      # declares it as a double, and rclcpp rejects an integer override.
+      # a few centimetres inside an inflated cell. An integer here works too:
+      # the adapter declares each forwarded key with the type the YAML gave it,
+      # so both 6 and 6.0 are accepted.
       snap_radius: 6.0
       allow_diagonal: true
       # Drop collinear intermediate poses from the returned path.

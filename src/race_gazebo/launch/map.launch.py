@@ -62,7 +62,12 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'stress',
             default_value='false',
-            description='Enable uneven lighting, rough traction patches and a moving obstacle.',
+            description=(
+                'Use the obstacle-arena world. Its two obstacle joints listen on '
+                '/dynamic_obstacle/cmd_pos and /dynamic_obstacle_2/cmd_pos; this '
+                'repository does not drive them, so without an external publisher '
+                'the obstacles stay still.'
+            ),
         ),
         DeclareLaunchArgument(
             'render_engine',

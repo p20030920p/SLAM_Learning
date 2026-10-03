@@ -1,4 +1,11 @@
-"""Start the race simulation, static-map AMCL localization and Nav2."""
+"""Start the arena simulation, static-map AMCL localization and Nav2.
+
+The spawn_* arguments move the robot in Gazebo only. AMCL's starting pose is
+read from `initial_pose` in config/nav2_params.yaml, so if you spawn somewhere
+other than the default, either edit that block to match or click 2D Pose
+Estimate in RViz once the map appears — the two are deliberately not wired
+together, because re-localizing by hand is the habit worth building.
+"""
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction

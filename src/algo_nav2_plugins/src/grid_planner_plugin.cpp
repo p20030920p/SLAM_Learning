@@ -18,16 +18,14 @@ namespace algo_nav2_plugins
 
 namespace
 {
-/// Parameter keys forwarded to algo_core. Kept as data rather than as a list of
-/// hand-written get_parameter calls so that adding an algorithm parameter does
-/// not require touching the adapter.
+/// Parameter keys forwarded from the YAML to the planner. Kept as data rather
+/// than as a list of hand-written get_parameter calls, so a planner that needs
+/// another knob only has to add its name here.
 constexpr const char * kForwardedParams[] = {
   "cost_scale",
   "snap_radius",
-  "weight",
   "allow_diagonal",
   "remove_collinear",
-  "smooth",
 };
 
 std::string join(const std::vector<std::string> & items, const char * sep)

@@ -64,7 +64,7 @@ inline Heuristic heuristicFromName(const std::string & name)
   if (name == "euclidean") {return Heuristic::Euclidean;}
   if (name == "manhattan") {return Heuristic::Manhattan;}
   if (name == "chebyshev") {return Heuristic::Chebyshev;}
-  if (name == "zero" || name == "dijkstra") {return Heuristic::Zero;}
+  if (name == "zero") {return Heuristic::Zero;}
   return Heuristic::Octile;
 }
 

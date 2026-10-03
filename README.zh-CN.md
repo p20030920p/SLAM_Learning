@@ -94,7 +94,9 @@ ros2 launch race_navigation localization_navigation.launch.py map:=$PWD/src/race
 ```
 
 AMCL 从 `nav2_params.yaml` 里配置的位姿（也就是赛场出生点）起步，粒子云一开始就是收敛的。
-如果车出生在别处，在 RViz 里点 **2D Pose Estimate**，然后发 **Nav2 Goal**。你拿到的路径就是 A\*。
+`spawn_*` 这几个 launch 参数只移动 Gazebo 里的小车，**故意没有**和 AMCL 的 `initial_pose` 联动：
+如果车出生在别处，要么改那段配置，要么在 RViz 里点 **2D Pose Estimate**，然后发 **Nav2 Goal**。
+你拿到的路径就是 A\*。
 
 ### 3. 边建图边导航
 
@@ -108,6 +110,14 @@ ros2 launch race_navigation navigation_slam.launch.py
 | 保存下来的地图 | TF 树 |
 | :---: | :---: |
 | ![保存的地图](docs/images/02_map_saved.png) | ![TF 树](docs/images/06_tf_tree.png) |
+
+### 几点说明
+
+* 两个仿真 launch 加 `stress:=true` 会加载障碍场地。它的两个障碍关节分别听
+  `/dynamic_obstacle/cmd_pos` 和 `/dynamic_obstacle_2/cmd_pos`；本仓库已经没有节点往这两个话题发消息了，
+  所以在你自己写发布者之前障碍是不动的 —— 在那之前它可以当一个静态障碍场地用。
+* 第 3 条工作流里 `map → odom` 归 `slam_toolbox`，第 2 条里归 AMCL。两者不要同时开：
+  同一条 TF 边上有两个发布者，地图就会抖。
 
 ## 规划器
 
@@ -156,7 +166,7 @@ Dijkstra、加权 A\*、GBFS、JPS、Theta\*、D\* Lite，用来在它们之间�
 
 * `colcon build --symlink-install` —— 7 个包，无告警。
 * `algo_core_selftest` —— 全部不变量通过；注册的规划器只有 `astar`。
-* `algo_plan_dump` 跑 `race_map.pgm` —— 找到路径，扩展 24,563 个栅格，耗时 123 ms。
+* `algo_plan_dump` 跑 `race_map.pgm` —— 找到路径，扩展 24,563 个栅格，耗时约 0.1 s（随机器波动）。
 * 用本仓库的 `nav2_params.yaml` 起 Nav2 `planner_server` —— 把 `GridBased` 加载为
   `algo_nav2_plugins/GridPlanner`，日志打印 `algorithm 'astar' ready`，
   在地图上发 `ComputePathToPose` 返回 `SUCCEEDED`，约 6 ms 得到合法路径。

@@ -95,8 +95,9 @@ ros2 launch race_navigation localization_navigation.launch.py map:=$PWD/src/race
 ```
 
 AMCL starts from the pose configured in `nav2_params.yaml` (the arena spawn pose), so the particle
-cloud is already converged. Use **2D Pose Estimate** in RViz if you spawn somewhere else, then send
-a **Nav2 Goal**. The path you get back is A\*.
+cloud is already converged. The `spawn_*` launch arguments move the robot in Gazebo only — they are
+deliberately not wired to AMCL's `initial_pose`, so if you spawn elsewhere either edit that block or
+click **2D Pose Estimate** in RViz, then send a **Nav2 Goal**. The path you get back is A\*.
 
 ### 3. Map and navigate at the same time
 
@@ -111,6 +112,15 @@ saved.
 | Saved map | TF tree |
 | :---: | :---: |
 | ![Saved map](docs/images/02_map_saved.png) | ![TF tree](docs/images/06_tf_tree.png) |
+
+### Notes
+
+* `stress:=true` on either simulation launch loads the obstacle arena. Its two obstacle joints are
+  commanded on `/dynamic_obstacle/cmd_pos` and `/dynamic_obstacle_2/cmd_pos`; nothing in this
+  repository publishes there any more, so the obstacles stand still until you write that publisher.
+  Until then the variant is a usable static-obstacle arena.
+* `slam_toolbox` owns `map → odom` in workflow 3, and AMCL owns it in workflow 2. Never run both —
+  two publishers on one TF edge is the classic way to get a map that jitters.
 
 ## The planner
 
@@ -161,7 +171,7 @@ mapping and localization configuration are the ones the benchmark shipped.
 
 * `colcon build --symlink-install` — 7 packages, no warnings.
 * `algo_core_selftest` — all invariants pass; `astar` is the only registered planner.
-* `algo_plan_dump` over `race_map.pgm` — path found, 24,563 cells expanded in 123 ms.
+* `algo_plan_dump` over `race_map.pgm` — path found, 24,563 cells expanded in about 0.1 s.
 * Nav2 `planner_server` with this `nav2_params.yaml` — loads `GridBased` as
   `algo_nav2_plugins/GridPlanner`, reports `algorithm 'astar' ready`, and a `ComputePathToPose`
   goal over the saved map returns `SUCCEEDED` with a valid path in ~6 ms.
