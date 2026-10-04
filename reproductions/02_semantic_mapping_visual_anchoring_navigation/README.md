@@ -67,8 +67,8 @@ ROI 实例级）、§2 难点 5（算力受限下的稀疏语义表示）、§4.
 3. **可观测性分层 F1** —— 按「充分可见 / 部分可见 / 视场外或被遮挡」分档报告
 4. 若做 OASIS-Map 对比：明确它报的 F1 与我们复现口径的差异
 
-> 指标定义与协议草案见
-> [`Localise/Practice_slam/04_topic_object_change_detection.md`](https://github.com/p20030920p/Localise) §8。
+> 指标定义与协议草案见文献工作区（本机 `Localise/`，未推送到 GitHub）的
+> `Practice_slam/04_topic_object_change_detection.md` §8。
 
 ---
 
