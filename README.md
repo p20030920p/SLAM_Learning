@@ -2,7 +2,7 @@
 
 # SLAM_Learning
 
-**A ROS 2 Jazzy + Gazebo arena for SLAM practice — one omnidirectional robot, one arena, and the three pieces that matter: mapping, localization, planning.**
+**An idea-validation platform for SLAM — one omnidirectional robot, one arena, and the three pieces that matter: mapping, localization, planning. Drop a method in, drive the robot, and see whether the idea works.**
 
 [![ROS 2](https://img.shields.io/badge/ROS%202-Jazzy-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/jazzy/)
 [![Gazebo](https://img.shields.io/badge/Gazebo%20Sim-8-F58113?logo=gazebo&logoColor=white)](https://gazebosim.org/)
@@ -23,6 +23,23 @@
 <p align="center">
   <em>Mapping: slam_toolbox grows the map from the simulated lidar while the arena runs in Gazebo.</em>
 </p>
+
+## What this is — and what it is not
+
+**This is a platform for validating ideas.** A self-contained ROS 2 Jazzy + Gazebo arena in which
+the robot, the sensors, the map and the evaluation are already wired up: put a mapping, localization
+or planning method in, drive the robot, and find out whether it actually works. That is the entire
+job — turning *"does this idea hold up in a scene I control?"* into an answer you get in minutes.
+
+| What it is | What it is **not** |
+| :--- | :--- |
+| A testbed for **one method or idea at a time** | **Not a benchmark**: no leaderboard, no cross-paper metric, no fixed protocol. Reproducing *other people's* papers, against their own numbers, is what [`reproductions/`](reproductions/) is for |
+| A **scene you control**: known geometry, known ground truth, repeatable runs | **Not an autonomy stack**: there is no perception → decision → safety chain here — only mapping, localization and planning |
+| A **simulation of the robot you actually have** (2D lidar + camera) | **Not a real-robot system**: no hardware drivers, no calibration pipeline; and the camera is RGB-only — no depth, no IMU — so VIO/LIO fusion cannot be exercised here yet |
+| A way to compare **two versions of your own method** under identical conditions | **Not a substitute for Sim2Real-AlgoBench**: this is the modelling / mapping / localization / planning base extracted from it, with the algorithm zoo removed on purpose |
+
+> **Rule of thumb.** *"Does my method work here?"* → this repository answers it.
+> *"How does my method compare with the literature?"* → that is [`reproductions/`](reproductions/).
 
 ## The stack
 
