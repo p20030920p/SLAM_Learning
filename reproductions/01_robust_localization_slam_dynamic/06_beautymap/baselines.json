@@ -1,0 +1,41 @@
+{
+  "reproduction": "01-06",
+  "paper": "BeautyMap (RA-L 2024)",
+  "recorded": "2026-10-05T01:06:29+08:00",
+  "recorded_with": "reproduce.py: methods/BeautyMap/main.py (2 local NumPy-2 patches) + export_eval_pcd",
+  "rel_tolerance": 0.02,
+  "note": "Target is the BeautyMap paper's own Table I p.6 row for KITTI 00 (SA/DA/HA). BeautyMap reports the harmonic mean HA; the benchmark and DUFOMap report the geometric mean AA. Both are recorded. Requires the two LOCAL PATCHes to utils/pcdpy3.py for NumPy 2.",
+  "paper_reported": {
+    "SA": 96.76,
+    "DA": 98.38,
+    "HA": 97.56,
+    "source": "BeautyMap Table I p.6, KITTI sequence 00"
+  },
+  "paper_reported_other_methods": {
+    "removert": {
+      "SA": 99.44,
+      "DA": 41.53,
+      "HA": 58.59
+    },
+    "erasor": {
+      "SA": 66.7,
+      "DA": 98.54,
+      "HA": 79.55
+    }
+  },
+  "metrics": {
+    "SA": 96.9529,
+    "DA": 98.3382,
+    "AA": 97.6431,
+    "HA": 97.6407,
+    "map_points": 16558909,
+    "gt_static": 17266247,
+    "gt_dynamic": 95983,
+    "false_removal": 526112,
+    "missed_dynamic": 1595
+  },
+  "checks_expected": [
+    "reproduces_paper_row",
+    "aa_and_ha_agree_only_because_sa_da_are_close"
+  ]
+}

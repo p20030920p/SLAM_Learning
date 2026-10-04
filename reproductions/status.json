@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T00:58:55+08:00",
+  "generated": "2026-10-05T01:10:49+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
-    "green": 2,
+    "green": 5,
     "failed": 0,
     "blocked": 0,
-    "planned": 15,
-    "ran_this_pass": 2
+    "planned": 12,
+    "ran_this_pass": 0
   },
   "reproductions": [
     {
@@ -54,15 +54,139 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/03_erasor",
       "title": "ERASOR: Egocentric Ratio of Pseudo Occupancy-Based Dynamic Object Removal for Static 3D Point Cloud Map Building",
       "venue": "**RA-L 2021**",
-      "static_status": "⬜ 未开始（论文报告值已记录）",
+      "static_status": "🟢 **已复现：命中基准表 I 行（66.70/98.54/81.07）**",
       "heading": "01-03 · ERASOR",
       "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
-      "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "metrics": {
+        "SA": 66.7078,
+        "DA": 98.5352,
+        "AA": 81.0744,
+        "HA": 79.5563,
+        "map_points": 1417955,
+        "gt_static": 17266247,
+        "gt_dynamic": 95983,
+        "false_removal": 5748315,
+        "missed_dynamic": 1406
+      },
+      "checks": [
+        {
+          "name": "reproduces_benchmark_row",
+          "ok": true,
+          "detail": "SA/DA/AA = 66.71/98.54/81.07 vs DynamicMap_Benchmark Table I 66.7/98.54/81.07, within 0.5 pp"
+        },
+        {
+          "name": "output_is_voxel_downsampled",
+          "ok": true,
+          "detail": "the cleaned map holds 1417955 points against 17362230 GT points - ERASOR's MapUpdater voxelises at 0.1 m, so most 'false removals' are downsampling, not deletion"
+        }
+      ],
+      "findings": [
+        {
+          "name": "low_SA_is_downsampling_not_deletion",
+          "detail": "SA 66.71% with 5748315 GT points marked removed, yet DA is 98.54%. The map has 12.2x fewer points than the GT cloud, so the 0.05 m nearest-neighbour rule reads downsampling as removal. The benchmark's metric therefore penalises resolution, not correctness - worth remembering before calling any method 'worse'."
+        },
+        {
+          "name": "same_method_27_points_apart_across_metrics",
+          "detail": "ERASOR scores PR 93.980 on its own voxel-wise metric (SemanticKITTI 00, Table II p.8) and SA 66.71 on the benchmark's point-wise metric (KITTI 00). Removert goes the other way: 85.502 -> 99.44. The ranking between the two methods inverts with the metric.",
+          "paper_own": {
+            "PR": 93.98,
+            "RR": 97.081,
+            "F1": 0.955,
+            "metric": "voxel-wise, voxel 0.2, SemanticKITTI 00"
+          },
+          "benchmark": {
+            "SA": 66.7,
+            "DA": 98.54,
+            "AA": 81.07
+          },
+          "ours": {
+            "SA": 66.7078,
+            "DA": 98.5352,
+            "AA": 81.0744,
+            "HA": 79.5563,
+            "map_points": 1417955,
+            "gt_static": 17266247,
+            "gt_dynamic": 95983,
+            "false_removal": 5748315,
+            "missed_dynamic": 1406
+          }
+        }
+      ],
+      "artifacts": [
+        "results/erasor_score.json"
+      ],
+      "level": "green",
+      "note": "ERASOR (benchmark reimplementation) on KITTI 00: SA/DA/AA = 66.71/98.54/81.07",
+      "backtest": {
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "SA",
+            "expected": 66.7078,
+            "got": 66.7078,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "DA",
+            "expected": 98.5352,
+            "got": 98.5352,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "AA",
+            "expected": 81.0744,
+            "got": 81.0744,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "HA",
+            "expected": 79.5563,
+            "got": 79.5563,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_points",
+            "expected": 1417955,
+            "got": 1417955,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_static",
+            "expected": 17266247,
+            "got": 17266247,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_dynamic",
+            "expected": 95983,
+            "got": 95983,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "false_removal",
+            "expected": 5748315,
+            "got": 5748315,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "missed_dynamic",
+            "expected": 1406,
+            "got": 1406,
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T01:03:27+08:00"
+      }
     },
     {
       "id": "01-04",
@@ -72,15 +196,117 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/04_removert",
       "title": "Removert: Remove then Revert — Static Map Building in Challenging Environment",
       "venue": "**IROS 2020**",
-      "static_status": "⬜ 未开始（论文报告值已记录）",
+      "static_status": "🟢 **已复现：命中基准表 I 行（99.44/41.53/64.26）**；⚠️ 原论文闭源",
       "heading": "01-04 · Removert",
       "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
-      "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "metrics": {
+        "SA": 99.4361,
+        "DA": 41.5313,
+        "AA": 64.2628,
+        "HA": 58.591,
+        "map_points": 16722918,
+        "gt_static": 17266247,
+        "gt_dynamic": 95983,
+        "false_removal": 97362,
+        "missed_dynamic": 56120
+      },
+      "checks": [
+        {
+          "name": "reproduces_benchmark_row",
+          "ok": true,
+          "detail": "SA/DA/AA = 99.44/41.53/64.26 vs DynamicMap_Benchmark Table I 99.44/41.53/64.26, within 0.5 pp"
+        },
+        {
+          "name": "removert_is_the_conservative_extreme",
+          "ok": true,
+          "detail": "SA 99.44% with only DA 41.53% - it keeps essentially the whole map (56120 dynamic GT points left in) rather than risk deleting static structure"
+        }
+      ],
+      "findings": [
+        {
+          "name": "original_paper_is_unobtainable",
+          "detail": "Removert's IROS 2020 paper is closed access: OpenAlex returns is_oa=false, oa_status=closed, any_repository_has_fulltext=false, and the authors' own link (irap.kaist.ac.kr) fails DNS. So the target here is the benchmark's reimplementation, not Removert's self-reported numbers - the only folder in this repo where that is true."
+        },
+        {
+          "name": "the_two_extremes_disagree_about_what_good_means",
+          "detail": "Removert SA 99.44 / DA 41.53 against ERASOR's 66.71 / 98.54 on the same data and the same metric. They are opposite corners: one refuses to delete, the other deletes too much. AA ranks them DUFOMap > ERASOR > Removert, SA ranks them Removert > DUFOMap > ERASOR - the task book's ranking-stability question, answered on real numbers."
+        }
+      ],
+      "artifacts": [
+        "results/removert_score.json"
+      ],
+      "level": "green",
+      "note": "Removert (benchmark reimplementation) on KITTI 00: SA/DA/AA = 99.44/41.53/64.26",
+      "backtest": {
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "SA",
+            "expected": 99.4361,
+            "got": 99.4361,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "DA",
+            "expected": 41.5313,
+            "got": 41.5313,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "AA",
+            "expected": 64.2628,
+            "got": 64.2628,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "HA",
+            "expected": 58.591,
+            "got": 58.591,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_points",
+            "expected": 16722918,
+            "got": 16722918,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_static",
+            "expected": 17266247,
+            "got": 17266247,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_dynamic",
+            "expected": 95983,
+            "got": 95983,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "false_removal",
+            "expected": 97362,
+            "got": 97362,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "missed_dynamic",
+            "expected": 56120,
+            "got": 56120,
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T01:03:27+08:00"
+      }
     },
     {
       "id": "01-05",
@@ -92,7 +318,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：与论文 2 位小数完全一致**",
       "heading": "01-05 · DUFOMap",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 97.9635,
         "DA": 98.7196,
@@ -143,6 +369,7 @@
         "results/dufomap_score_paper_default_dp1.json",
         "results/dufomap_score_benchmark_example_dp2.json"
       ],
+      "level": "green",
       "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
       "backtest": {
         "status": "ok",
@@ -227,8 +454,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:56:38+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-06",
@@ -238,15 +464,121 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/06_beautymap",
       "title": "BeautyMap: Binary-Encoded Adaptable Ground Matrix for Dynamic Points Removal in Global Maps",
       "venue": "**RA-L 2024**",
-      "static_status": "⬜ 未开始（论文报告值已记录）",
+      "static_status": "🟢 **已复现：命中论文表 I（96.76/98.38/97.56）**",
       "heading": "01-06 · BeautyMap",
       "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
-      "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "metrics": {
+        "SA": 96.9529,
+        "DA": 98.3382,
+        "AA": 97.6431,
+        "HA": 97.6407,
+        "map_points": 16558909,
+        "gt_static": 17266247,
+        "gt_dynamic": 95983,
+        "false_removal": 526112,
+        "missed_dynamic": 1595
+      },
+      "checks": [
+        {
+          "name": "reproduces_paper_row",
+          "ok": true,
+          "detail": "SA/DA/HA = 96.95/98.34/97.64 vs BeautyMap Table I p.6 96.76/98.38/97.56, within 0.5 pp"
+        },
+        {
+          "name": "aa_and_ha_agree_only_because_sa_da_are_close",
+          "ok": true,
+          "detail": "AA 97.6431 vs HA 97.6407 - the two means differ by 0.0024 pp here because SA and DA are within 1.4 pp of each other. That is a property of this method on this sequence, not of the metrics."
+        }
+      ],
+      "findings": [
+        {
+          "name": "upstream_does_not_run_on_numpy_2",
+          "detail": "BeautyMap's vendored utils/pcdpy3.py calls np.fromstring (line 150) and ndarray.tostring (line 265), both removed in NumPy 2. Two LOCAL PATCHed lines (frombuffer(...).copy() and tobytes(order='C')) are required. The first failure is at read time; the second only after ~50 s of processing, at write time - a fresh clone that patches only the first looks fine until it has done all the work."
+        },
+        {
+          "name": "matches_the_benchmark_papers_HA_column_too",
+          "detail": "This run also reproduces the HA column that the BeautyMap paper prints for the other methods: Removert 41.53/58.59 and ERASOR 98.54/79.55 predicted from this paper's Table I, and measured here as 41.5313/58.591 and 98.5352/79.5563. Two papers and four methods now agree on the same numbers, which is the strongest evidence we have that the whole data-and-evaluation chain is right."
+        },
+        {
+          "name": "beautymap_is_the_balanced_one",
+          "detail": "BeautyMap SA 96.95 / DA 98.34 sits between Removert's refuse-to-delete (99.44/41.53) and ERASOR's delete-too-much (66.71/98.54), and is the only one of the four with both above 96."
+        }
+      ],
+      "artifacts": [
+        "results/beautymap_score.json"
+      ],
+      "level": "green",
+      "note": "BeautyMap on KITTI 00: SA/DA/HA = 96.95/98.34/97.64 vs paper 96.76/98.38/97.56",
+      "backtest": {
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "SA",
+            "expected": 96.9529,
+            "got": 96.9529,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "DA",
+            "expected": 98.3382,
+            "got": 98.3382,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "AA",
+            "expected": 97.6431,
+            "got": 97.6431,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "HA",
+            "expected": 97.6407,
+            "got": 97.6407,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_points",
+            "expected": 16558909,
+            "got": 16558909,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_static",
+            "expected": 17266247,
+            "got": 17266247,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_dynamic",
+            "expected": 95983,
+            "got": 95983,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "false_removal",
+            "expected": 526112,
+            "got": 526112,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "missed_dynamic",
+            "expected": 1595,
+            "got": 1595,
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T01:06:29+08:00"
+      }
     },
     {
       "id": "01-07",
@@ -312,7 +644,7 @@
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
       "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
       "heading": "02-01 · 3RScan",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -406,6 +738,7 @@
         "results/observability.json",
         "results/observability.csv"
       ],
+      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -588,8 +921,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "02-02",

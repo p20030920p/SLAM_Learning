@@ -126,7 +126,10 @@ def export_gt_official(seq_dir: str, map_path: str, min_dis: float,
             "&& cmake --build code/DynamicMap_Benchmark/scripts/build")
     os.makedirs(os.path.join(seq_dir, "eval"), exist_ok=True)
     staged = os.path.join(seq_dir, os.path.basename(map_path))
-    shutil.copyfile(map_path, staged)
+    # Methods that write straight into the sequence folder (ERASOR, Removert do)
+    # are already where the binary wants them.
+    if os.path.abspath(staged) != os.path.abspath(map_path):
+        shutil.copyfile(map_path, staged)
     r = subprocess.run([eval_bin, seq_dir, os.path.basename(map_path), str(min_dis)],
                        capture_output=True, text=True)
     if r.returncode != 0:

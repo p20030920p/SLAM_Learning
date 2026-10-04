@@ -1,0 +1,29 @@
+{
+  "reproduction": "01-04",
+  "paper": "Removert (IROS 2020, closed access) - as reimplemented inside DynamicMap_Benchmark",
+  "recorded": "2026-10-05T01:03:27+08:00",
+  "recorded_with": "reproduce.py: methods/removert/build/removert_run config/params_kitti.yaml + export_eval_pcd",
+  "rel_tolerance": 0.02,
+  "note": "The original paper could not be obtained (OpenAlex: is_oa false, oa_status closed), so the target is the benchmark's Removert row, which the DUFOMap paper prints identically. If the original PDF is obtained, this target must be revisited.",
+  "paper_reported": {
+    "SA": 99.44,
+    "DA": 41.53,
+    "AA": 64.26,
+    "source": "DynamicMap_Benchmark Table I p.5 and DUFOMap Table I p.5, KITTI 00"
+  },
+  "metrics": {
+    "SA": 99.4361,
+    "DA": 41.5313,
+    "AA": 64.2628,
+    "HA": 58.591,
+    "map_points": 16722918,
+    "gt_static": 17266247,
+    "gt_dynamic": 95983,
+    "false_removal": 97362,
+    "missed_dynamic": 56120
+  },
+  "checks_expected": [
+    "reproduces_benchmark_row",
+    "removert_is_the_conservative_extreme"
+  ]
+}

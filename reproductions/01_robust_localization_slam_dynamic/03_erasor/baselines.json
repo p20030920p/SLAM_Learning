@@ -1,0 +1,35 @@
+{
+  "reproduction": "01-03",
+  "paper": "ERASOR (RA-L 2021) - as reimplemented inside DynamicMap_Benchmark",
+  "recorded": "2026-10-05T01:03:27+08:00",
+  "recorded_with": "reproduce.py: methods/ERASOR/build/erasor_run config/seq_00.yaml + export_eval_pcd",
+  "rel_tolerance": 0.02,
+  "note": "Target is the benchmark's ERASOR row (point-wise SA/DA/AA), NOT the ERASOR paper's own voxel-wise PR/RR/F1 of 93.980/97.081/0.955 on SemanticKITTI 00. The two differ by 27 pp and that gap is the point - see paper_baseline.md.",
+  "paper_reported": {
+    "SA": 66.7,
+    "DA": 98.54,
+    "AA": 81.07,
+    "source": "DynamicMap_Benchmark Table I p.5, KITTI 00"
+  },
+  "paper_own_metric": {
+    "PR": 93.98,
+    "RR": 97.081,
+    "F1": 0.955,
+    "source": "ERASOR Table II p.8, voxel-wise voxel=0.2, SemanticKITTI 00"
+  },
+  "metrics": {
+    "SA": 66.7078,
+    "DA": 98.5352,
+    "AA": 81.0744,
+    "HA": 79.5563,
+    "map_points": 1417955,
+    "gt_static": 17266247,
+    "gt_dynamic": 95983,
+    "false_removal": 5748315,
+    "missed_dynamic": 1406
+  },
+  "checks_expected": [
+    "reproduces_benchmark_row",
+    "output_is_voxel_downsampled"
+  ]
+}

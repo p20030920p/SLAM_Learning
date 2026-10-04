@@ -10,8 +10,7 @@
 | 数据 | KITTI / MulRan（配合 DynamicMap_Benchmark） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4 高变动场景的地图维护 |
-| 复现状态 | ⬜ 未开始（论文报告值已记录） |
-
+| 复现状态 | 🟢 **已复现：命中基准表 I 行（99.44/41.53/64.26）**；⚠️ 原论文闭源 |
 ## 它做了什么 What it does
 
 先从距离图像里删掉「可疑」的点，再用多分辨率距离图像把**被误删的静态点回滚回来**（remove then revert）。
@@ -41,6 +40,47 @@ catkin build removert
 - 依赖重（距离图像相关库），编译失败优先查 README 的依赖清单而不是猜。
 - 它的参数比 ERASOR 多，**但正因为有 revert 步骤，它对参数应当更不敏感**——
   如果实测发现它也很敏感，这本身就是一个值得记录的发现。
+
+## 复现结果 Results（2026-10-05）
+
+### 一、命中基准行
+
+跑法：`methods/removert/build/removert_run <seq> config/params_kitti.yaml`，
+KITTI 00（141 帧），评测用基准自带的 `export_eval_pcd`（`min_dis=0.05`）。
+
+| | SA [%] | DA [%] | AA [%] | HA [%] |
+| :--- | ---: | ---: | ---: | ---: |
+| **DynamicMap_Benchmark 表 I, p.5** | 99.44 | 41.53 | 64.26 | — |
+| **BeautyMap 论文 表 I, p.6（HA 列）** | 99.44 | 41.53 | — | 58.59 |
+| **本次复现** | **99.4361** | **41.5313** | **64.2628** | **58.591** |
+
+### 二、⚠️ 这是唯一一个"论文原文拿不到"的复现
+
+Removert 的 IROS 2020 原文是**闭源**的：
+
+| 尝试 | 结果 |
+| :--- | :--- |
+| 作者 README 给的唯一链接 `irap.kaist.ac.kr` | ❌ DNS 无法解析 |
+| 本仓库的抓取流水线 | ❌ arXiv 覆盖率 0.08，IEEE 返回 202 反爬 |
+| **OpenAlex** | ✅ `is_oa: false` / `oa_status: "closed"` / `any_repository_has_fulltext: false` |
+
+因此**本文件夹的验收目标是基准的重实现值，不是 Removert 作者自报值**——
+17 个复现里只有它是这样。详见 [`paper_baseline.md`](paper_baseline.md)。
+
+### 三、它和 ERASOR 是同一条轴上的两个极端
+
+| 方法 | SA [%] | DA [%] |
+| :--- | ---: | ---: |
+| **Removert** | **99.44** | 41.53 |
+| ERASOR | 66.71 | **98.54** |
+
+一个**几乎不删**（56,120 个动态 GT 点留在图里），一个**删得过多**（5,748,315 个静态点被判为删除）。
+**AA 排名是 DUFOMap > ERASOR > Removert，SA 排名是 Removert > DUFOMap > ERASOR** ——
+任务书 §6 的排序稳定性问题，用真实数字回答了。
+
+```bash
+python3 reproductions/run_all.py --only 01-04
+```
 
 ## 记录 Log
 
