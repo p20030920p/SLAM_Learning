@@ -6,11 +6,11 @@
 
 [![ROS 2](https://img.shields.io/badge/ROS%202-Jazzy-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/jazzy/)
 [![Gazebo](https://img.shields.io/badge/Gazebo%20Sim-8-F58113?logo=gazebo&logoColor=white)](https://gazebosim.org/)
-[![定位](https://img.shields.io/badge/%E5%AE%9A%E4%BD%8D-AMCL-blue)](#技术栈)
-[![规划器](https://img.shields.io/badge/%E8%A7%84%E5%88%92%E5%99%A8-A*-brightgreen)](#规划器)
+[![定位](https://img.shields.io/badge/%E5%AE%9A%E4%BD%8D-AMCL-blue)](#平台)
+[![规划器](https://img.shields.io/badge/%E8%A7%84%E5%88%92%E5%99%A8-A*-brightgreen)](#平台)
 [![License](https://img.shields.io/badge/license-MIT-3DA639)](LICENSE)
 
-[技术栈](#技术栈) &nbsp;•&nbsp; [快速开始](#快速开始) &nbsp;•&nbsp; [三条工作流](#三条工作流) &nbsp;•&nbsp; [规划器](#规划器)
+[复现清单](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [快速开始](#快速开始) &nbsp;•&nbsp; [平台](#平台) &nbsp;•&nbsp; [详细文档](docs/platform.md)
 
 *[English](README.md) &nbsp;|&nbsp; 中文*
 
@@ -28,8 +28,7 @@
 
 **这是一个用于验证想法的平台。** 一个自包含的 ROS 2 Jazzy + Gazebo 赛场，
 机器人、传感器、地图与评测都已经接好：把一个建图 / 定位 / 规划方法丢进来，把车开一圈，
-就能看出这个方法到底行不行。它存在的全部意义，就是把「这个想法在我能控制的场景里站不站得住」
-变成一个几分钟就能拿到的答案。
+就能看出这个方法到底行不行。
 
 | 它是什么 | 它**不是**什么 |
 | :--- | :--- |
@@ -38,10 +37,54 @@
 | 对**你实际那台车**的仿真（2D 雷达 + 相机） | **不是真机系统**：没有硬件驱动、没有标定流程；而且相机只是 RGB——没有深度、没有 IMU，所以 VIO/LIO 融合在这里还跑不了 |
 | 在**完全相同的条件**下比较你自己方法的两个版本 | **不替代 Sim2Real-AlgoBench**：本仓库是从它抽出来的建模 / 建图 / 定位 / 规划底座，算法库是刻意删掉的 |
 
-> **一句话判断**：问「我这个方法在这里行不行」→ 用这个仓库；
-> 问「我这个方法跟文献比怎么样」→ 用 [`reproductions/`](reproductions/)。
+<!-- PROGRESS:START -->
 
-## 技术栈
+## 复现清单 Reproduction checklist
+
+**按「越好复现 + 越能对上原库结果」排序** —— ☑ 6 · ◐ 2 · ☐ 1 · ⛔ 8（共 17） · 更新于 2026-10-05 06:06 CST
+
+| # | ✓ | 复现库 | 对应论文 | 能不能复现（一句话） |
+| :-- | :-- | :-- | :-- | :-- |
+| 01-05 | ☑ | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) | [doi:10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) | ✅ 能，而且最简单：`pip install dufomap` + KITTI 00 免注册数据，官方评测脚本直接出论文表 I。 |
+| 01-06 | ☑ | [MKJia/BeautyMap](https://github.com/MKJia/BeautyMap) | [arXiv:2405.07283](https://arxiv.org/abs/2405.07283) | ✅ 能：官方仓库 `python main.py`，配同一套官方评测，命中论文表 I。 |
+| 01-01 | ☑ | [KTH-RPL/DynamicMap_Benchmark](https://github.com/KTH-RPL/DynamicMap_Benchmark) | [arXiv:2307.07260](https://arxiv.org/abs/2307.07260) | ✅ 能：官方评测脚本 + Zenodo 免注册数据 `00.zip`，出论文里那张方法对比表。 |
+| 01-03 | ☑ | [LimHyungTae/ERASOR](https://github.com/LimHyungTae/ERASOR) | [arXiv:2103.04316](https://arxiv.org/abs/2103.04316) | ✅ 能，但要 ROS 1（本机已用 micromamba 建好）：官方仓库跑通，对上论文表 II 的 PR/RR/F1。 |
+| 01-04 | ☑ | [irapkaist/removert](https://github.com/irapkaist/removert) | [doi:10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856) | ✅ 能，但要 ROS 1：官方仓库跑通；原论文没有数字表，对上的是官方仓库自己的输出。 |
+| 01-08 | ☑ | [yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) | [arXiv:2405.07392](https://arxiv.org/abs/2405.07392) | ✅ 能：官方代码明确「无 GPU」，TUM RGB-D 免注册直链，对上论文的 ATE / RPE 表。 |
+| 01-02 | ☐ | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) | [doi:10.1109/LRA.2023.3236571](https://doi.org/10.1109/LRA.2023.3236571) | 🟡 半能：`pip install kiss-icp` 一行就能跑，但要对上论文 0.50 % 需 KITTI 00–10 全量（约 20 GB，免注册）。 |
+| 01-09 | ◐ | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) | 🟡 半能：要 ROS 1 + MulRan（需注册）+ 先有 SC-LIO-SAM 会话；仓库只有 ltremovert 半边，lt-map 无代码。 |
+| 02-01 | ◐ | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) | 🟡 半能：仓库只有数据集 + 工具（数据要签协议），三个二进制可跑，没有方法代码。 |
+| 02-06 | ⛔ | [MIT-SPARK/Clio](https://github.com/MIT-SPARK/Clio) | [arXiv:2404.13696](https://arxiv.org/abs/2404.13696) | ⛔ 本机不能：要 ROS 1 + GPU 语义推理（TensorRT）；只有离线评测入口能绕开 ROS，但仍要先有图。 |
+| 02-07 | ⛔ | [AnyLoc/AnyLoc](https://github.com/AnyLoc/AnyLoc) | [arXiv:2308.00688](https://arxiv.org/abs/2308.00688) | ⛔ 本机不能：论文表格要 GPU 提特征；官方只提供 HF Space / Colab 的免 GPU 演示。 |
+| 02-08 | ⛔ | [AnyLoc/Revisit-Anything](https://github.com/AnyLoc/Revisit-Anything) | [arXiv:2409.18049](https://arxiv.org/abs/2409.18049) | ⛔ 本机不能：要 GPU（DINOv2 + SAM）；有 17places 小数据集可先跑通流程。 |
+| 02-03 | ⛔ | [concept-graphs/concept-graphs](https://github.com/concept-graphs/concept-graphs) | [arXiv:2309.16650](https://arxiv.org/abs/2309.16650) | ⛔ 本机不能：要 CUDA（PyTorch + PyTorch3D），本机没有 GPU。 |
+| 02-04 | ⛔ | [Eku127/DualMap](https://github.com/Eku127/DualMap) | [arXiv:2506.01950](https://arxiv.org/abs/2506.01950) | ⛔ 本机不能：要 GPU 跑开放词汇分割（GroundingDINO / SAM）。 |
+| 02-05 | ⛔ | [hovsg/HOV-SG](https://github.com/hovsg/HOV-SG) | [arXiv:2403.17846](https://arxiv.org/abs/2403.17846) | ⛔ 本机不能：要 GPU（OpenCLIP + SAM + habitat-sim），HM3DSem 数据也很大。 |
+| 01-07 | ⛔ | [ACFR-RPG/DynoSAM](https://github.com/ACFR-RPG/DynoSAM) | [arXiv:2501.11893](https://arxiv.org/abs/2501.11893) | ⛔ 本机不能：`cmake` configure 阶段就要 CUDA / TensorRT（dynosam_nn），与数据无关。 |
+| 02-02 | ⛔ | — | [arXiv:2607.14899](https://arxiv.org/abs/2607.14899) | ⛔ 不能复现：代码未发布（项目页仍写 Code Soon），没有库可跑。 |
+
+> ✓ 的含义：**☑ 已完成并对上原库/论文的结果 · ◐ 只做了一半 · ☐ 还没做 · ⛔ 本机做不了（无 GPU / 无代码）**。
+> 每一行的三个字段写在对应文件夹的 `README.md` 里（`复现库` / `论文链接` / `能否复现` / `复现顺序` / `复现完成`），
+> 本表由 `python3 reproductions/run_all.py` 从这些字段生成，**块内内容不要手改**；跑完一个就把那个文件夹的 `复现完成` 改成 ☑。
+
+<!-- PROGRESS:END -->
+
+## 快速开始
+
+```bash
+git clone https://github.com/p20030920p/SLAM_Learning.git
+cd SLAM_Learning
+source /opt/ros/jazzy/setup.bash
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --symlink-install
+source install/setup.bash
+```
+
+平台自带三条工作流：**建图**（`mapping.launch.py`）、**用保存的地图定位 + A\* 规划**
+（`localization_navigation.launch.py`）、**边建图边导航**（`navigation_slam.launch.py`）。
+三条工作流、规划器配置与验证记录都在 [`docs/platform.md`](docs/platform.md)。
+
+## 平台
 
 本仓库是从 [Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) 中抽出来的
 建模、建图、定位与规划底座。基准里的算法仓库是刻意删掉的：留下来的，是一个可以从头读到尾的
@@ -58,196 +101,19 @@
 | 规划 | `algo_core` | 8 邻接代价栅格上的 A\* —— 不依赖 ROS 的 C++，可脱离仿真做单元测试 |
 | 规划 | `algo_nav2_plugins` | 让 `algo_core` 在 Nav2 里跑起来的 `GlobalPlanner` 适配器 |
 
-赛场为 14.7 × 14.7 m，栅格 5 cm（294 × 294），保存为
-`src/race_navigation/maps/race_map.{pgm,yaml}`。小车出生点在 `(8.07, 7.53)`，朝向场地内部，
-搭载**单线 360°、12 m 的 2D 激光雷达**（`gpu_lidar` 只配了水平 `<scan>`、没有 `<vertical>`，
-话题 `/scan` —— 正好对上目标硬件的那台雷达）与**前置 RGB 摄像头**（640×480、15 Hz，
-**没有深度、也没有 IMU**），AMCL 使用全向运动模型。
+小车搭载**单线 360°、12 m 的 2D 激光雷达**（话题 `/scan`）与**前置 RGB 摄像头**
+（640×480、15 Hz，没有深度、也没有 IMU），AMCL 使用全向运动模型。赛场、传感器、
+仿真与实物的差距、以及删掉了什么，都在 [`docs/platform.md`](docs/platform.md)。
 
-> **仿真与实物的差距，直说**：目标平台是 Intel RealSense **D435i**（双目 IR + 深度 + Bosch BMI055 IMU）
-> 加一台 2D 雷达。**雷达这一半已经对上，相机这一半没有** —— 本仿真既无深度也无 IMU，
-> 所以在这里还跑不了 VIO/LIO 融合。逐条复现的传感器契合度与两个半边各自可用的公开数据，
-> 见 [`reproductions/README.md`](reproductions/README.md) 的「传感器契合度」一节。
+## 文档
 
-包名保留了上游的 `race_*` 前缀，这样可以和 Sim2Real-AlgoBench 一一对应；你实际打交道的是
-launch 文件和配置。
-
-<p align="center">
-  <img src="docs/images/03_nav2_navigation.png" width="860" alt="AMCL 粒子云与 Nav2 代价地图，小车正在驶向目标点"/>
-</p>
-
-<p align="center">
-  <em>定位与规划：AMCL 粒子云、全局代价地图，A* 正把小车带向 Nav2 目标点。</em>
-</p>
-
-## 快速开始
-
-```bash
-git clone https://github.com/p20030920p/SLAM_Learning.git
-cd SLAM_Learning
-source /opt/ros/jazzy/setup.bash
-rosdep install --from-paths src --ignore-src -r -y
-colcon build --symlink-install
-source install/setup.bash
-```
-
-## 三条工作流
-
-### 1. 建图
-
-```bash
-ros2 launch race_navigation mapping.launch.py
-# 另开一个终端，用键盘遥控小车
-ros2 launch race_navigation keyboard.launch.py
-```
-
-`slam_toolbox` 会边跑边发地图，觉得差不多了就保存：
-
-```bash
-ros2 run nav2_map_server map_saver_cli -f src/race_navigation/maps/my_map
-```
-
-会得到 `my_map.pgm` 和 `my_map.yaml`，下一条工作流用 `map:=...` 指过去即可。
-
-### 2. 用保存的地图定位，用 A\* 规划
-
-```bash
-ros2 launch race_navigation localization_navigation.launch.py
-# 或者换成自己建的地图：
-ros2 launch race_navigation localization_navigation.launch.py map:=$PWD/src/race_navigation/maps/my_map.yaml
-```
-
-AMCL 从 `nav2_params.yaml` 里配置的位姿（也就是赛场出生点）起步，粒子云一开始就是收敛的。
-`spawn_*` 这几个 launch 参数只移动 Gazebo 里的小车，**故意没有**和 AMCL 的 `initial_pose` 联动：
-如果车出生在别处，要么改那段配置，要么在 RViz 里点 **2D Pose Estimate**，然后发 **Nav2 Goal**。
-你拿到的路径就是 A\*。
-
-### 3. 边建图边导航
-
-```bash
-ros2 launch race_navigation navigation_slam.launch.py
-```
-
-这条链路里 `map → odom` 由 `slam_toolbox` 独占，AMCL 是关掉的 —— 两个都开会让同一条 TF 边出现
-两个发布者。想探索未知场地用它；地图存好之后再用第 2 条。
-
-| 保存下来的地图 | TF 树 |
-| :---: | :---: |
-| ![保存的地图](docs/images/02_map_saved.png) | ![TF 树](docs/images/06_tf_tree.png) |
-
-### 几点说明
-
-* 两个仿真 launch 加 `stress:=true` 会加载障碍场地。它的两个障碍关节分别听
-  `/dynamic_obstacle/cmd_pos` 和 `/dynamic_obstacle_2/cmd_pos`；本仓库已经没有节点往这两个话题发消息了，
-  所以在你自己写发布者之前障碍是不动的 —— 在那之前它可以当一个静态障碍场地用。
-* 第 3 条工作流里 `map → odom` 归 `slam_toolbox`，第 2 条里归 AMCL。两者不要同时开：
-  同一条 TF 边上有两个发布者，地图就会抖。
-
-## 规划器
-
-`algo_core` 里的 A\* 用二叉堆、octile 启发式，并且实现了对角切角规则 —— 这样机器人足迹不会
-从两个相接触的障碍之间"挤"过去。它只依赖 C++ 标准库，不依赖 ROS、不依赖代价地图类型，因此
-不用仿真就能测：
-
-```bash
-# 不变量检查：能找到路径、端点连通、路径不落在致命栅格上、上报代价等于返回路径的代价、
-# 8 邻接路径不比 4 邻接更长
-./install/algo_core/lib/algo_core/algo_core_selftest
-
-# 在真实赛场地图上离线跑同一次搜索
-./install/algo_core/lib/algo_core/algo_plan_dump \
-  src/race_navigation/maps/race_map.pgm /tmp/astar_dump.bin \
-  8.0727 7.5312 -2.5 -5.5 -3.700 -6.342 0.050 0.196 0.65
-```
-
-在 Nav2 里，规划器配置在 `src/race_navigation/config/nav2_params.yaml`：
-
-```yaml
-planner_server:
-  ros__parameters:
-    planner_plugins: ["GridBased"]
-    GridBased:
-      plugin: "algo_nav2_plugins/GridPlanner"
-      algorithm: "astar"        # 规划器注册时用的名字
-      cost_scale: 1.0           # 0.0 = 只看致命/空闲，越大越躲开膨胀层
-      snap_radius: 6.0          # 起终点落在膨胀栅格里时，向外找空闲栅格的半径（单位：栅格）
-      allow_diagonal: true
-      remove_collinear: true
-      publish_expanded: true    # 在 GridBased/expanded 上发 MarkerArray，可以在 RViz 里看搜索过程
-```
-
-想把别的规划器加回来只有两步：继承 `algo_core::GridPlanner`，用
-`ALGO_CORE_REGISTER(YourPlanner, "your_name")` 注册，把源文件加进
-`src/algo_core/CMakeLists.txt`，再把上面的 `algorithm` 改成 `"your_name"`。Nav2 适配器不用动。
-
-## 复现区 Reproductions
-
-`reproductions/` 是按**两个研究方向**组织的论文复现区：**D1** 动态环境下的鲁棒定位与 SLAM、
-**D2** 语义建图、视觉定位与导航。每篇论文一个带序号的文件夹，里面有复现方案（目标 / 数据 /
-步骤 / 验收）与 `code/`、`data/`、`work/`、`results/` 四个子目录；上游代码与数据集留在本机，
-不进 git。
-
-| | 方向 | 复现对象 |
-| :--- | :--- | :--- |
-| **01** | 动态环境下的鲁棒定位与 SLAM | DynamicMap_Benchmark · KISS-ICP · ERASOR · Removert · DUFOMap · BeautyMap · DynoSAM · NGD-SLAM · LT-mapper |
-| **02** | 语义建图、视觉定位与导航 | 3RScan · OASIS-Map · ConceptGraphs · DualMap · HOV-SG · Clio · AnyLoc · Revisit Anything |
-
-索引、两个方向与任务书的对应关系、以及建议顺序见
-[`reproductions/README.md`](reproductions/README.md)。
-
-<!-- PROGRESS:START -->
-
-## 复现进度 Reproduction progress
-
-**进度** — 9/17 跑通 · 9 本次实际运行 · 17/17 已自动化 · 更新于 2026-10-05 04:38 CST
-
-| # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
-| :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | ✅ | ✅ 通过 | 19 项指标 · 3 条 finding |
-| 01-02 | D1 | KISS-ICP | 🟢 green | ✅ | ✅ 通过 | 54 项指标 · 7 条 finding |
-| 01-03 | D1 | ERASOR | 🟢 green | ✅ | ✅ 通过 | 21 项指标 · 2 条 finding |
-| 01-04 | D1 | Removert | 🟢 green | ✅ | ✅ 通过 | 20 项指标 · 3 条 finding |
-| 01-05 | D1 | DUFOMap | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
-| 01-06 | D1 | BeautyMap | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 3 条 finding |
-| 01-07 | D1 | DynoSAM | ⛔ blocked | — | — | GPU/CUDA absent, and DynoSAM cannot even `cmake`-configure without it: dynosam_nn/CMakeLists.txt:3 declares… |
-| 01-08 | D1 | NGD-SLAM | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
-| 01-09 | D1 | LT-mapper | 🟢 green | ✅ | ✅ 通过 | 40 项指标 · 8 条 finding |
-| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
-| 02-02 | D2 | OASIS-Map | ⛔ blocked | — | — | no upstream code to run: the OASIS-Map project page (checked 2026-10-05) still says 'Code Soon' and the pap… |
-| 02-03 | D2 | ConceptGraphs | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. ConceptGraph… |
-| 02-04 | D2 | DualMap | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. DualMap (RA-… |
-| 02-05 | D2 | HOV-SG | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. HOV-SG (RSS … |
-| 02-06 | D2 | Clio | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. Clio (RA-L 2… |
-| 02-07 | D2 | AnyLoc | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. AnyLoc (RA-L… |
-| 02-08 | D2 | Revisit Anything | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. Revisit Anyt… |
-
-> 本表由 `python3 reproductions/run_all.py` 自动生成，块内内容请勿手改。
-> 新增复现：建好文件夹与 `README.md`，再放一个实现 `require(ctx)` / `run(ctx)` 的 `reproduce.py`，重跑本命令即可。
-
-<!-- PROGRESS:END -->
-
-## 相比基准删掉了什么
-
-Dijkstra、加权 A\*、GBFS、JPS、Theta\*、D\* Lite，用来在它们之间切换的 `algo_bringup` 注册表，
-绿板视觉包 `race_vision`，比赛自主状态机，以及演示录制工具和媒体文件。其余部分没有改动：小车、
-赛场、控制链路、建图与定位配置，都是基准原来的那一套。
-
-## 验证情况
-
-* `colcon build --symlink-install` —— 7 个包，无告警。
-* `algo_core_selftest` —— 全部不变量通过；注册的规划器只有 `astar`。
-* `algo_plan_dump` 跑 `race_map.pgm` —— 找到路径，扩展 24,563 个栅格，耗时约 0.1 s（随机器波动）。
-* 用本仓库的 `nav2_params.yaml` 起 Nav2 `planner_server` —— 把 `GridBased` 加载为
-  `algo_nav2_plugins/GridPlanner`，日志打印 `algorithm 'astar' ready`，
-  在地图上发 `ComputePathToPose` 返回 `SUCCEEDED`，约 6 ms 得到合法路径。
-* 用本仓库的 `nav2_params.yaml` 起 `localization_launch.py` —— `map_server` 与 `amcl` 都进入
-  `active`，AMCL 正确应用了配置的初始位姿。
-* 九个 launch 文件全部能正常构造 launch description。
-
-<p align="center">
-  <sub>Gazebo 需要可用的 GPU / 渲染环境。如果摄像头传感器无法初始化，Gazebo 会在传感器初始化阶段
-  段错误退出；上游基准在同样的机器上表现一致。其余部分（建图、定位、规划）不依赖渲染也能跑通。</sub>
-</p>
+| 位置 | 内容 |
+| :--- | :--- |
+| [`docs/platform.md`](docs/platform.md) | 三条工作流、规划器配置、赛场与传感器、验证记录 |
+| [`reproductions/`](reproductions/) | 论文复现区：一篇论文一个文件夹，加上上面那张清单 |
+| [`docs/task-book/TASK_BOOK.md`](docs/task-book/TASK_BOOK.md) | 两个研究方向来源的那份任务书 |
+| [`docs/task-book/PAPER_AUDIT.md`](docs/task-book/PAPER_AUDIT.md) | 任务书引用的论文到底有没有能跑的代码 |
+| [`car.md`](car.md) | 八个难点，每个都带一条可否证的假设 |
 
 ## 许可证
 

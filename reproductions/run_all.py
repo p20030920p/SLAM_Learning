@@ -102,20 +102,45 @@ def discover():
     return found
 
 
+def md_link(text):
+    """The first markdown link in a table cell, as (label, url)."""
+    m = re.search(r"\[([^\]]+)\]\((https?://[^)\s]+)\)", text or "")
+    if not m:
+        return ("", "")
+    return (m.group(1).strip(), m.group(2).strip())
+
+
 def read_plan(folder):
-    """Paper name, venue, static status and the task-book anchor from README.md."""
+    """The fields the README of one reproduction declares about itself.
+
+    The checklist in the repo READMEs is generated from these rows, so a
+    reproduction is edited in one place only: its own folder README.
+    """
     readme = os.path.join(folder, "README.md")
-    info = {"title": "", "venue": "", "static_status": "", "heading": ""}
+    info = {"title": "", "venue": "", "static_status": "", "heading": "",
+            "verdict": "", "tick": "", "order": 0,
+            "repo_label": "", "repo_url": "", "paper_label": "", "paper_url": ""}
     if not os.path.exists(readme):
         return info
     text = open(readme, encoding="utf-8").read()
     m = re.search(r"^#\s+(.+)$", text, re.M)
     if m:
         info["heading"] = m.group(1).strip()
-    for key, field in (("论文", "title"), ("Venue", "venue"), ("复现状态", "static_status")):
+    for key, field in (("论文", "title"), ("Venue", "venue"), ("复现状态", "static_status"),
+                       ("能否复现", "verdict"), ("复现完成", "tick"),
+                       ("论文链接", "_paper_cell"), ("代码", "_code_cell")):
         m = re.search(rf"^\|\s*{key}\s*\|\s*(.+?)\s*\|\s*$", text, re.M)
         if m:
             info[field] = m.group(1).strip()
+    m = re.search(r"^\|\s*复现顺序\s*\|\s*(\d+)\s*\|\s*$", text, re.M)
+    if m:
+        info["order"] = int(m.group(1))
+    info["repo_label"], info["repo_url"] = md_link(info.pop("_code_cell", ""))
+    info["paper_label"], info["paper_url"] = md_link(info.pop("_paper_cell", ""))
+    if not info["repo_label"] and info["repo_url"]:
+        info["repo_label"] = info["repo_url"]
+    if not info["paper_label"] and info["paper_url"]:
+        info["paper_label"] = info["paper_url"]
     return info
 
 
@@ -278,53 +303,45 @@ def backtest_one(folder, metrics):
 # progress block
 # --------------------------------------------------------------------------- #
 def render_progress(results):
-    green = sum(1 for r in results if r["level"] == "green")
-    ran = sum(1 for r in results if r["ran"])
-    automated = sum(1 for r in results
-                    if os.path.exists(os.path.join(r["path"], "reproduce.py")))
+    """The checklist: one row per reproduction, easiest first.
+
+    Columns are exactly the three things asked for — where the code is, where
+    the paper is, and whether it can be reproduced here — plus the tick.
+    """
     total = len(results)
     stamp = datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %H:%M %Z")
+
+    def mark(r):
+        return (r.get("tick") or "☐").split()[0] if (r.get("tick") or "").strip() else "☐"
+
+    ordered = sorted(results, key=lambda r: (r.get("order") or 999, r["id"]))
+    counts = {}
+    for r in ordered:
+        counts[mark(r)] = counts.get(mark(r), 0) + 1
+    tally = " · ".join(f"{k} {counts[k]}" for k in ("☑", "◐", "☐", "⛔") if k in counts)
 
     lines = [
         PROGRESS_START,
         "",
-        "## 复现进度 Reproduction progress",
+        "## 复现清单 Reproduction checklist",
         "",
-        f"**进度** — {green}/{total} 跑通 · {ran} 本次实际运行 · "
-        f"{automated}/{total} 已自动化 · 更新于 {stamp}",
+        f"**按「越好复现 + 越能对上原库结果」排序** —— {tally}（共 {total}） · 更新于 {stamp}",
         "",
-        "| # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |",
-        "| :-- | :-- | :-- | :-- | :-- | :-- | :-- |",
+        "| # | ✓ | 复现库 | 对应论文 | 能不能复现（一句话） |",
+        "| :-- | :-- | :-- | :-- | :-- |",
     ]
-    for r in sorted(results, key=lambda x: x["id"]):
-        icon = STATUS_ICON.get(r["level"], "⬜")
-        ran = "✅" if r["ran"] else "—"
-        bt = r.get("backtest", {}).get("status", "—")
-        bt_icon = {"ok": "✅ 通过", "regressed": "❌ 回退", "no-baseline": "—"}.get(bt, bt)
-        if r["metrics"]:
-            bits = []
-            for k in ("objects_total", "unchanged", "moved", "absent_unlabelled"):
-                if k in r["metrics"]:
-                    bits.append(f"{k}={r['metrics'][k]}")
-            detail = ", ".join(bits) if bits else f"{len(r['metrics'])} 项指标"
-            if r.get("findings"):
-                detail += f" · {len(r['findings'])} 条 finding"
-        elif r["level"] == "planned":
-            detail = "待开始（缺 reproduce.py）"
-        else:
-            detail = r.get("note", "") or r.get("static_status", "") or "—"
-        detail = detail.replace("|", "/")
-        if len(detail) > 110:
-            detail = detail[:107] + "…"
-        title = r["heading"] or r["folder"]
-        title = re.sub(r"^\d\d-\d\d\s*·\s*", "", title)
-        lines.append(f"| {r['id']} | {r['direction_code']} | {title} | {icon} "
-                     f"{r['level']} | {ran} | {bt_icon} | {detail} |")
+    for r in ordered:
+        repo = (f"[{r['repo_label']}]({r['repo_url']})" if r["repo_url"]
+                else (r["repo_label"] or "—"))
+        paper = (f"[{r['paper_label']}]({r['paper_url']})" if r["paper_url"]
+                 else (r["paper_label"] or r["venue"] or "—"))
+        verdict = (r.get("verdict") or r.get("static_status") or "—").replace("|", "/")
+        lines.append(f"| {r['id']} | {mark(r)} | {repo} | {paper} | {verdict} |")
     lines += [
         "",
-        "> 本表由 `python3 reproductions/run_all.py` 自动生成，块内内容请勿手改。",
-        "> 新增复现：建好文件夹与 `README.md`，再放一个实现 `require(ctx)` / `run(ctx)` 的 "
-        "`reproduce.py`，重跑本命令即可。",
+        "> ✓ 的含义：**☑ 已完成并对上原库/论文的结果 · ◐ 只做了一半 · ☐ 还没做 · ⛔ 本机做不了（无 GPU / 无代码）**。",
+        "> 每一行的三个字段写在对应文件夹的 `README.md` 里（`复现库` / `论文链接` / `能否复现` / `复现顺序` / `复现完成`），",
+        "> 本表由 `python3 reproductions/run_all.py` 从这些字段生成，**块内内容不要手改**；跑完一个就把那个文件夹的 `复现完成` 改成 ☑。",
         "",
         PROGRESS_END,
     ]

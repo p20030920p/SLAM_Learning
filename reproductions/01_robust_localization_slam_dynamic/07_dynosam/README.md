@@ -12,6 +12,10 @@
 | 任务书对应 | 方向 1 备选（联合相机-物体评测） |
 | 复现状态 | ⛔ **本机不可跑**：上游在 `cmake` configure 阶段就要求 CUDA 工具链（`nvcc`/TensorRT/`cudaoptflow.hpp`），与数据无关 —— 见 [`work/feasibility.md`](work/feasibility.md) |
 
+| 复现顺序 | 16 |
+| 能否复现 | ⛔ 本机不能：`cmake` configure 阶段就要 CUDA / TensorRT（dynosam_nn），与数据无关。 |
+| 复现完成 | ⛔ 本机不可复现（无 GPU） |
+
 ## 它做了什么 What it does
 
 在因子图里**同时估计相机位姿与物体运动**，并开源了配套的评测协议，专门回答「动态 SLAM 到底该怎么评测」。

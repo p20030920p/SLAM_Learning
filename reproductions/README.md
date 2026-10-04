@@ -1,339 +1,101 @@
 # 复现区 Reproductions
 
-按 **方向 → 论文** 两级编号。每个文件夹里的 `README.md` 是**复现方案**（目标 / 数据 / 步骤 / 验收），
-克隆的上游代码、数据集与产物都放进同一个文件夹，目录约定见文末。
+按 **方向 → 论文** 两级编号，一篇论文一个文件夹。**这个页面只有索引、清单和约定**；
+背景分析（两个方向、传感器契合度、与任务书 / `car.md` 的对应、论文报告值、链接核验）
+在 [`NOTES.md`](NOTES.md)。
 
-> 索引里的每条链接都在建目录时实测过 HTTP 状态码；本文档末尾注明了检查结果与修正。
+每个文件夹里：
 
----
-
-## 目录 Index
-
-| 编号 | 方向 | 复现对象 | Venue | 为什么在这 | 状态 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **01-01** | D1 | [DynamicMap_Benchmark](01_robust_localization_slam_dynamic/01_dynamicmap_benchmark/) | ITSC 2023 | 点级变化 GT + 统一指标，全部对比的地基 | ⬜ |
-| **01-02** | D1 | [KISS-ICP](01_robust_localization_slam_dynamic/02_kiss_icp/) | RA-L 2023 | 下游定位器基线，CPU 可跑 | ⬜ |
-| **01-03** | D1 | [ERASOR](01_robust_localization_slam_dynamic/03_erasor/) | RA-L 2021 | 阈值敏感方法的代表 | ⬜ |
-| **01-04** | D1 | [Removert](01_robust_localization_slam_dynamic/04_removert/) | IROS 2020 | 唯一带显式回滚（revert）的方法 | ⬜ |
-| **01-05** | D1 | [DUFOMap](01_robust_localization_slam_dynamic/05_dufomap/) | RA-L 2024 | 用光线投射区分「被遮挡」与「真动态」 | ⬜ |
-| **01-06** | D1 | [BeautyMap](01_robust_localization_slam_dynamic/06_beautymap/) | RA-L 2024 | 二值编码地面矩阵，免调参路线 | ⬜ |
-| **01-07** | D1 | [DynoSAM](01_robust_localization_slam_dynamic/07_dynosam/) | T-RO 2025 | 物体级动态 SLAM，联合相机-物体评测 | ⬜ |
-| **01-08** | D1 | [NGD-SLAM](01_robust_localization_slam_dynamic/08_ngd_slam/) | IROS 2025 | **纯几何**动态检测，不依赖语义先验 | ⬜ |
-| **01-09** | D1 | [LT-mapper](01_robust_localization_slam_dynamic/09_lt_mapper/) | ICRA 2022 | 多会话长期建图 + 变化检测 | ⬜ |
-| **02-01** | D2 | [3RScan](02_semantic_mapping_visual_anchoring_navigation/01_3rscan/) | ICCV 2019 数据 | 多会话物体重排的标准数据集 | ⬜ |
-| **02-02** | D2 | [OASIS-Map](02_semantic_mapping_visual_anchoring_navigation/02_oasis_map/) | arXiv 2026-07 | **直接对手**，几乎同题；代码未发布 | ⬜ |
-| **02-03** | D2 | [ConceptGraphs](02_semantic_mapping_visual_anchoring_navigation/03_concept_graphs/) | ICRA 2024 | 开放词汇场景图底座 | ⬜ |
-| **02-04** | D2 | [DualMap](02_semantic_mapping_visual_anchoring_navigation/04_dualmaps/) | RA-L 2025 | 少数会**自我编辑**的开放词汇地图 | ⬜ |
-| **02-05** | D2 | [HOV-SG](02_semantic_mapping_visual_anchoring_navigation/05_hov_sg/) | RSS 2024 | 分层开放词汇图 + 语言导航 | ⬜ |
-| **02-06** | D2 | [Clio](02_semantic_mapping_visual_anchoring_navigation/06_clio/) | RA-L 2024 | 机载实时分层场景图 | ⬜ |
-| **02-07** | D2 | [AnyLoc](02_semantic_mapping_visual_anchoring_navigation/07_anyloc/) | RA-L 2023 | 视觉锚定 / 场景识别（整图检索） | ⬜ |
-| **02-08** | D2 | [Revisit Anything](02_semantic_mapping_visual_anchoring_navigation/08_revisit_anything/) | ECCV 2024 | 视觉锚定（**分割级检索**） | ⬜ |
-
----
-
-## 这两个方向是什么
-
-老师给的两个方向：
-
-| 代号 | 俄文 | 中文 | 英文 |
-| :--- | :--- | :--- | :--- |
-| **D1** | робастная локализация и SLAM в динамических средах | 动态环境下的鲁棒定位与 SLAM | Robust localization and SLAM in dynamic environments |
-| **D2** | семантическое картирование, визуальная привязка и навигация | 语义建图、视觉定位与导航 | Semantic mapping, visual anchoring and navigation |
-
-D1 的三个关键词是**鲁棒**、**定位**、**动态环境**；D2 的三个关键词是**语义地图**、
-**视觉锚定**（视觉定位 / 位置识别）、**导航**。两个方向共用「地图」这个对象：
-D1 关心地图在变化中还能不能用来定位，D2 关心地图里有什么、怎么用它导航。
-
-### 三个推进方向 S / D / V
-
-老师的两条原题，展开成**三个可独立推进的方向**；任务书 §0.3 给出了它们各自的难点清单。
-文件夹分组仍然照着**老师的原两行**排（01 = D1，02 = D2），三方向与原两行的对应关系如下：
-
-| 代号 | 推进方向 | 难度 | 顺序 | 落在哪个文件夹 |
-| :--- | :--- | :--- | :--- | :--- |
-| **S** | 语义建图 | ★☆☆ 有成熟开源底座 | **第 1 个做** | `02_…/` 的 01–06（3RScan · OASIS-Map · ConceptGraphs · DualMap · HOV-SG · Clio） |
-| **D** | 动态环境下的鲁棒定位与 SLAM | ★★★ | 进阶，与 V 同等重要 | 整个 `01_…/`（01–09） |
-| **V** | 视觉定位与导航 | ★★★ 任务书缺口最大 | 进阶，与 D 同等重要 | `02_…/` 的 07–08（AnyLoc · Revisit Anything）+ 05（HOV-SG 的语言导航部分） |
-
-> **为什么先做 S**：先把**表示层**建起来 —— 开放词汇地图产出的「物体节点 + 身份 + 标签」
-> 正是 D 的地图修订与 V 的语义导航都要用的东西；而且 S 不需要新硬件，
-> 四个底座都有公开代码，是唯一能先出结果的一条线。
-
----
-
-## 传感器契合度：17 个复现 vs 实物「D435i + 2D 雷达」
-
-> **为什么单列一节**：任务书 §0.1 把实物写成了
-> **Intel RealSense D435i（双目 IR + 深度 + Bosch BMI055 IMU）+ 2D 激光雷达（单线水平扫描）**。
-> 而本目录 17 个复现**没有一个消费这套配置**，也**没有一个属于"多传感器融合"**（VIO/LIO/LIV）——
-> 这句话必须写在明面上，否则"我们复现了 D 线"会被误读成"我们复现了你的传感器配置"。
-
-| 编号 | 复现对象 | 它真正吃的传感器 | 与你的配置的关系 |
-| :--- | :--- | :--- | :--- |
-| 01-01 | DynamicMap_Benchmark | KITTI **3D 雷达**（HDL-64） | ❌ 不同模态。它给的是**点级评测口径**，不是传感器方案 |
-| 01-02 | KISS-ICP | **3D 雷达** | ❌ 3D；但"扫描匹配 + 无回环"的思路可直接搬到 2D 扫描匹配 |
-| 01-03 / 01-04 / 01-05 / 01-06 | ERASOR · Removert · DUFOMap · BeautyMap | 全部 **3D 雷达**（KITTI / SemanticKITTI / MulRan） | ❌ **四个清理方法都靠"体素/体积"**，单线 2D 雷达地图没有它们需要的结构 |
-| 01-07 | DynoSAM | 双目 / RGB-D（**无 IMU、无雷达**） | ⚠️ **半个**：视觉动态 SLAM 有，惯性没有。而且它连 configure 都要 CUDA（本机跑不了） |
-| 01-08 | NGD-SLAM | **RGB-D**（TUM，无 IMU、无雷达） | ⚠️ **半个**：深度相机的动态检测可以移植到 D435i；但同样依赖 COCO 语义，未知动态物体漏 |
-| 01-09 | LT-mapper | **3D 雷达** | ❌ 多会话建图的思想可用，"变化检测"的几何判据是 3D 体素的 |
-| 02-01 | 3RScan | RGB-D 多会话 | ⚠️ 数据/协议层：跨会话物体身份，与传感器无关 |
-| 02-02 … 02-06 | OASIS-Map · ConceptGraphs · DualMap · HOV-SG · Clio | RGB-D / 视觉 | ⚠️ 只吃图像，D435i 的 RGB 通道可用；与 2D 雷达无关 |
-| 02-07 / 02-08 | AnyLoc · Revisit Anything | 单目图像 | ⚠️ 图像检索，D435i 的 RGB 可用；与雷达无关 |
-
-**结论（写死，避免以后再混）：**
-
-1. **D 线现在是"3D 雷达上的方法论验证"**，它证明的是**评测口径与清理判据**（比如 H1′ 的排名翻转），
-   不是"D435i + 2D 雷达能跑"。要落到实物，缺的是 **2D 雷达的可观测性**这一层。
-2. **多传感器融合这一块目前是空白**。任务书 §0 定位栏要 VIO + LIO，而实物只有一颗 IMU
-   （D435i 的 BMI055，见 §0.1），两者抢同一个零偏；**没有任何复现在处理这件事**。
-
-### 缺口与候选官方实现（都实测可达、都能纯 CPU 跑）
-
-这套实物可以**拆成两个各自有公开数据的半边**，都不需要等你自采：
-
-| 半边 | 候选官方实现 | 仓库 / 数据（实测） | 本机可行性 |
-| :--- | :--- | :--- | :--- |
-| **相机 + IMU（VIO）** —— D435i 的立体惯性半边 | **VINS-Fusion**（HKUST，双耳惯性 + 回环） | 仓库 HTTP 200 · 数据用 **EuRoC MAV**（ETH 官方页可达） | 🟢 纯 CPU |
-| 同上（另一条对照路线） | **ORB-SLAM3**（UZ-SLAMLab，stereo-inertial） | 仓库 HTTP 200 · **TUM VI** 官方页可达 | 🟢 纯 CPU |
-| **2D 雷达 + IMU** —— 你的雷达半边 | **Google Cartographer**（2D SLAM，官方就吃 2D + IMU） | 仓库 HTTP 200 · **Deutsches Museum** 官方 bag 直链实测 **200 / 493 MB** | 🟢 纯 CPU |
-| **三者合起来**（D435i + 2D 雷达 + 同一颗 IMU） | **RTAB-Map**（官方支持 2D 雷达 + RGB-D + IMU 融合） | 仓库 HTTP 200 | 🟢 纯 CPU；但**没有匹配的公开数据**，只能自采 |
-| 仿真侧 | 本仓库 Gazebo（车已有 **2D 雷达**，见下） | — | 🟡 需补 **深度相机 + IMU** |
-
-> **一个已经对上的地方**：本仓库 Gazebo 的 `omni_car_ros2_control.urdf` 里，
-> `lidar` 只有水平 `<scan>`（720 采样、360°、12 m、10 Hz）**没有 `<vertical>`**，
-> 所以它**本来就是单线 2D 雷达**，话题 `/scan` —— 正好对你实物的雷达。
-> 缺的是 **D435i**：当前 `front_camera` 是普通 RGB（640×480、15 Hz），**无深度、无 IMU**。
-
-**建议的补法**（需要你点头，见任务书 §6 的仿真说明）：
-新增 **01-10（VIO 半边）** 与 **01-11（2D 雷达 + IMU 半边）** 两条复现，
-再把 Gazebo 的传感器补齐成 D435i + 2D 雷达，这样"仿真验证 → 自采确认"才能闭环。
-
----
-
-## 任务书与这两个方向的关联
-
-对照对象：[`docs/task-book/TASK_BOOK.md`](../docs/task-book/TASK_BOOK.md)
-—— **《退化与高变动场景下的鲁棒定位与预判停车》**（§0.3 即三方向难点对照）。
-
-### 与 D1：主体一致，几乎是同一件事
-
-| 任务书位置 | 对应 D1 的哪一部分 |
+| 文件 | 是什么 |
 | :--- | :--- |
-| §1 H8 六类退化场景（白墙 / 暗光 / 运动模糊 / 空旷 / 家具移动 / 门开关） | 「退化 + 动态」的**测试矩阵**，逐条对应 |
-| §2 难点 3 退化场景下的鲁棒定位（X-ICP / LOG-LIO / GenZ-ICP / Switch-SLAM / FAST-LIVO2） | **鲁棒定位**的核心 |
-| §2 难点 4 高变动场景的地图维护（DUFOMap / DynPurge / Ephemerality / Khronos） | **动态环境**的核心 → 就是本目录 01-01…01-06 |
-| §2 难点 7 连续时间轨迹、难点 8 位姿图与鲁棒关联 | 支撑鲁棒性的传统组件 |
-| §5 H1 标定化置信度 | 「知道自己什么时候不知道」，D1 的空白点 |
+| `README.md` | 复现方案（目标 / 数据 / 步骤 / 验收）+ **复现状态**（清单就是从这几行生成的） |
+| `paper_baseline.md` | **原文报告的数字**，即复现的验收标准（表号 + 页码都写清楚） |
+| `reproduce.py` | 可重跑的复现脚本：`require(ctx)` 说清缺什么，`run(ctx)` 产出指标 |
+| `work/` | 我们自己写的脚本、协议、坑的记录（进 git） |
+| `results/` | 产物与图表（小 JSON 进 git，`*.pcd` 不进） |
+| `code/` · `data/` | 克隆的上游仓库与数据集（**不进 git**，留在本机） |
 
-**结论：任务书约有七成落在 D1 上。**
+<!-- PROGRESS:START -->
 
-### 与 D2：只覆盖了「语义建图」一角
+## 复现清单 Reproduction checklist
 
-| 任务书位置 | 与 D2 的关系 |
-| :--- | :--- |
-| §0 地图层「关键帧稀疏语义 + ROI 实例级动态检测」 | ✅ 语义建图的**算力调度**，与 D2 直接相关 |
-| §2 难点 5（Clio / Mobile-Seed / NGD-SLAM） | ✅ 稀疏语义表示 → 本目录 02-06 |
-| §2 难点 6 语义辅助的在线标定 | ⚠️ 语义的**用途**是标定，不是建图 |
-| §3 优化层「语义约束的特征匹配」 | ⚠️ 语义用于数据关联 |
-| §4.1 地图更新策略里的「修订语义」 | ✅ 语义地图的**维护**，与 D2 相关 |
+**按「越好复现 + 越能对上原库结果」排序** —— ☑ 6 · ◐ 2 · ☐ 1 · ⛔ 8（共 17） · 更新于 2026-10-05 06:06 CST
 
-**两个明确缺口：**
+| # | ✓ | 复现库 | 对应论文 | 能不能复现（一句话） |
+| :-- | :-- | :-- | :-- | :-- |
+| 01-05 | ☑ | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) | [doi:10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) | ✅ 能，而且最简单：`pip install dufomap` + KITTI 00 免注册数据，官方评测脚本直接出论文表 I。 |
+| 01-06 | ☑ | [MKJia/BeautyMap](https://github.com/MKJia/BeautyMap) | [arXiv:2405.07283](https://arxiv.org/abs/2405.07283) | ✅ 能：官方仓库 `python main.py`，配同一套官方评测，命中论文表 I。 |
+| 01-01 | ☑ | [KTH-RPL/DynamicMap_Benchmark](https://github.com/KTH-RPL/DynamicMap_Benchmark) | [arXiv:2307.07260](https://arxiv.org/abs/2307.07260) | ✅ 能：官方评测脚本 + Zenodo 免注册数据 `00.zip`，出论文里那张方法对比表。 |
+| 01-03 | ☑ | [LimHyungTae/ERASOR](https://github.com/LimHyungTae/ERASOR) | [arXiv:2103.04316](https://arxiv.org/abs/2103.04316) | ✅ 能，但要 ROS 1（本机已用 micromamba 建好）：官方仓库跑通，对上论文表 II 的 PR/RR/F1。 |
+| 01-04 | ☑ | [irapkaist/removert](https://github.com/irapkaist/removert) | [doi:10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856) | ✅ 能，但要 ROS 1：官方仓库跑通；原论文没有数字表，对上的是官方仓库自己的输出。 |
+| 01-08 | ☑ | [yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) | [arXiv:2405.07392](https://arxiv.org/abs/2405.07392) | ✅ 能：官方代码明确「无 GPU」，TUM RGB-D 免注册直链，对上论文的 ATE / RPE 表。 |
+| 01-02 | ☐ | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) | [doi:10.1109/LRA.2023.3236571](https://doi.org/10.1109/LRA.2023.3236571) | 🟡 半能：`pip install kiss-icp` 一行就能跑，但要对上论文 0.50 % 需 KITTI 00–10 全量（约 20 GB，免注册）。 |
+| 01-09 | ◐ | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) | 🟡 半能：要 ROS 1 + MulRan（需注册）+ 先有 SC-LIO-SAM 会话；仓库只有 ltremovert 半边，lt-map 无代码。 |
+| 02-01 | ◐ | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) | 🟡 半能：仓库只有数据集 + 工具（数据要签协议），三个二进制可跑，没有方法代码。 |
+| 02-06 | ⛔ | [MIT-SPARK/Clio](https://github.com/MIT-SPARK/Clio) | [arXiv:2404.13696](https://arxiv.org/abs/2404.13696) | ⛔ 本机不能：要 ROS 1 + GPU 语义推理（TensorRT）；只有离线评测入口能绕开 ROS，但仍要先有图。 |
+| 02-07 | ⛔ | [AnyLoc/AnyLoc](https://github.com/AnyLoc/AnyLoc) | [arXiv:2308.00688](https://arxiv.org/abs/2308.00688) | ⛔ 本机不能：论文表格要 GPU 提特征；官方只提供 HF Space / Colab 的免 GPU 演示。 |
+| 02-08 | ⛔ | [AnyLoc/Revisit-Anything](https://github.com/AnyLoc/Revisit-Anything) | [arXiv:2409.18049](https://arxiv.org/abs/2409.18049) | ⛔ 本机不能：要 GPU（DINOv2 + SAM）；有 17places 小数据集可先跑通流程。 |
+| 02-03 | ⛔ | [concept-graphs/concept-graphs](https://github.com/concept-graphs/concept-graphs) | [arXiv:2309.16650](https://arxiv.org/abs/2309.16650) | ⛔ 本机不能：要 CUDA（PyTorch + PyTorch3D），本机没有 GPU。 |
+| 02-04 | ⛔ | [Eku127/DualMap](https://github.com/Eku127/DualMap) | [arXiv:2506.01950](https://arxiv.org/abs/2506.01950) | ⛔ 本机不能：要 GPU 跑开放词汇分割（GroundingDINO / SAM）。 |
+| 02-05 | ⛔ | [hovsg/HOV-SG](https://github.com/hovsg/HOV-SG) | [arXiv:2403.17846](https://arxiv.org/abs/2403.17846) | ⛔ 本机不能：要 GPU（OpenCLIP + SAM + habitat-sim），HM3DSem 数据也很大。 |
+| 01-07 | ⛔ | [ACFR-RPG/DynoSAM](https://github.com/ACFR-RPG/DynoSAM) | [arXiv:2501.11893](https://arxiv.org/abs/2501.11893) | ⛔ 本机不能：`cmake` configure 阶段就要 CUDA / TensorRT（dynosam_nn），与数据无关。 |
+| 02-02 | ⛔ | — | [arXiv:2607.14899](https://arxiv.org/abs/2607.14899) | ⛔ 不能复现：代码未发布（项目页仍写 Code Soon），没有库可跑。 |
 
-1. **视觉锚定（визуальная привязка）几乎没有。** 任务书自己在 §0.2 写明：原 T3「内容变化下的
-   VPR」→ **❌ 基本未保留**。也就是说 D2 的中点（视觉定位 / 位置识别）在任务书里是空的。
-2. **导航只有「停」，没有「走」。** §3 决策层是「提前减速 → 功能停车」，
-   没有目标点、没有路径规划、没有语义导航。D2 的第三段（навигация）在任务书里不成立。
+> ✓ 的含义：**☑ 已完成并对上原库/论文的结果 · ◐ 只做了一半 · ☐ 还没做 · ⛔ 本机做不了（无 GPU / 无代码）**。
+> 每一行的三个字段写在对应文件夹的 `README.md` 里（`复现库` / `论文链接` / `能否复现` / `复现顺序` / `复现完成`），
+> 本表由 `python3 reproductions/run_all.py` 从这些字段生成，**块内内容不要手改**；跑完一个就把那个文件夹的 `复现完成` 改成 ☑。
 
-**所以：若老师的两个方向都要覆盖，任务书还差「视觉锚定」和「语义导航」两块。**
-本目录把这两块各留了入口（02-07 AnyLoc 对应视觉锚定；02-05 HOV-SG 自带语言导航）。
-
----
-
-## 与「语义辅助的物体级变化检测」的关联
-
-对象：
-`Semantic-assisted object-level change detection between mapping sessions on a mobile robot`
-
-**首先一个事实澄清**：我没有检索到以此为标题的已发表论文——这句是你自己在
-`Localise/Practice_slam/` 里写的**当前主攻题目**。内容上真正同名的工作是
-[OASIS-Map](https://arxiv.org/abs/2607.14899)（Oxford, 2026-07, under review），
-标题是 *Object-Level Change Detection in Multi-Session Mapping using Semantic
-Correspondence Matching*。两者说的是同一件事。
-
-### 它和任务书：强关联，而且是任务书自己指过去的
-
-| 任务书原文位置 | 说的什么 |
-| :--- | :--- |
-| §4.1 地图更新策略 | 「删除判据必须包含**可观测性**——'没看到' ≠ '不在'……**也是你之前那道题的核心**」 |
-| §5 H3 | 「可观测性感知的地图删除判据，比'未观测即删除'的朴素规则产生更少的地图错误」 |
-| §1 H9 | 任务书承认缺「地图更新策略」一节 |
-| §6 并行实验 H1′ | 「假阳性来自**可观测性低**的区域」——与那道题同一个概念 |
-| §0.2 去向表 | 原 T2 的二次访问协议与修订指标（stale label rate / identity consistency）**已移到** `Practice_slam/04_topic_object_change_detection.md` §8 |
-
-**判定：这不是两个题目，是同一个机制的两个视角。** 任务书的 H3 和并行实验 H1′ 要想成立，
-必须先有那道题定义的指标（跨会话身份一致率、可观测性分层 F1、未观测区分率）。
-反过来说，那道题用的数据（3RScan）和建图底座（ConceptGraphs / DualMap / HOV-SG）
-也正好补上任务书 D2 方向的缺口。
-
-### 它和两个方向：正好落在 D1 × D2 的交点上
-
-```
-                  D1 动态环境鲁棒定位/SLAM          D2 语义建图/视觉锚定/导航
-                  ───────────────────────          ────────────────────────
-物体级变化检测  ←  多会话地图维护、动态物体            语义地图、物体身份、开放词汇
-（本题目）          §难点 4、DynamicMap_Benchmark       §难点 5、Clio / DualMap
-```
-
-它比任务书的并行实验更进一步：并行实验是**点级**（DynamicMap_Benchmark 的 PR/RR/F1），
-那道题是**物体级 + 语义 + 跨会话身份**，落在 D2 一侧更多。
-
-### ⚠️ 一处必须修正的判断
-
-`Practice_slam/04_topic_object_change_detection.md` §5 的核心论证是：
-「OASIS-Map 用的是对应关系，**无法区分'没看到'与'没有'**」。
-
-OASIS-Map 项目页实际写的是：
-
-> "If an object is not seen in one of the sessions, it remains **Unknown**."
-
-也就是说**它有一个 Unknown 类**。它自述的弱点是另一件事：
-"reliable object association across revisits remains a key challenge, especially under
-partial views, occlusion, and imperfect segmentation"——是**关联可靠性**问题，不是缺少弃权类。
-
-这直接影响切入角度的写法：差异点不能是「我加一个不确定类」（它已经有了），
-只能是把**可观测性变成可标定的量**并**分层测量**（可观测性分层 F1 / ECE /
-未观测区分率），并且证明它的 Unknown 判定在低可观测性样本上是否真的可靠。
-这个修正让假设更窄、更难被反驳，也更容易被证伪——是好事。
-
-> 另一条硬信息：项目页写着 **"Code Soon" / "Video Soon"**，
-> 论文状态 under review，**代码尚未发布**。所以 02-02 目前只能按论文复现，
-> 不能 clone 任何东西；若要复现，需要自己实现 semantic correspondence 基线。
-
----
-
-## 与 `car.md` 八个难点的覆盖对照
-
-仓库根目录的 [`car.md`](../car.md) 把两个方向拆成 8 个难点，每个都带可验证假设。
-本目录的 17 个复现与它们的对应关系如下 —— **没有对应格子的难点，就是还没有复现入口的难点**。
-
-| car.md 难点 | 方向 | 对应复现 | 覆盖度 |
-| :--- | :--- | :--- | :--- |
-| **1** 未知动态物体检测（几何运动视差，脱离语义先验） | D1 | 01-08 NGD-SLAM · 01-07 DynoSAM · 01-03…01-06 | 🟡 有基线，缺「未知动态物体」的评测口径 |
-| **2** 神经 SLAM 实时性（3DGS / NeRF） | D1 | 无 | ⬜ **空白** |
-| **3** 灾难性遗忘（终身 SLAM） | D1 | 01-09 LT-mapper · 01-01 DynamicMap_Benchmark | 🟡 有长期建图，缺「遗忘」的实验设计 |
-| **4** 动态 SLAM 评测基准碎片化 | D1 | 01-01 DynamicMap_Benchmark · 01-02 KISS-ICP | 🟢 地基已在，扩到视觉/多模态是新增量 |
-| **5** 开放词汇建图的空间推理缺失 | D2 | 02-03 ConceptGraphs · 02-05 HOV-SG | 🟡 有场景图，缺「关系推理」评测 |
-| **6** 动态场景图的时间一致性 | D2 | 02-01 3RScan · 02-02 OASIS-Map · 02-04 DualMap · 02-06 Clio | 🟢 本目录重点，与变化检测题目重叠 |
-| **7** 动态环境下的 VPR（视觉锚定） | D2 | 02-07 AnyLoc · 02-08 Revisit Anything | 🟢 整图 vs 分割级可直接对比 |
-| **8** 自然语言导航的指令-场景绑定 | D2 | 02-05 HOV-SG（部分） | 🟡 有导航，缺指令解析 |
-
-**car.md 的优先建议是「先做难点 1 和难点 7」**——本目录里它们分别对应
-`01-08 NGD-SLAM` 与 `02-07 / 02-08`，文件夹都已建好，可以直接开工。
-
-> **难点 2（神经 SLAM 实时性）本目录没有入口**：它 GPU 密集，且与当前
-> Gazebo + Nav2 底座没有交集。若要展开，`Localise/02_reproductions/dg_slam/`
-> 里已有 DG-SLAM 的说明可作起点。
-
----
-
-## ⚠️ 引用核查：任务书里的论文哪些能复现
-
-2026-10-05 对任务书 §2 的**全部 33 条引用**做了独立核查（DOI 逐条查 Crossref + 每篇查有没有官方代码 +
-每个 URL 实测 HTTP）：**33/33 是真论文，32/33 的 venue 与年份完全正确**，
-但**7 篇没有官方代码、1 篇有仓库却只有数据集没有方法代码**。
-
-→ 完整结果：[`../docs/task-book/PAPER_AUDIT.md`](../docs/task-book/PAPER_AUDIT.md)
-
-**对本目录的直接影响**：按「没有库的先不复现」，02-02 OASIS-Map 已排除；
-另外要注意 **ROS 1** 是比"没代码"更隐蔽的障碍 —— 有代码的 25 篇里，
-LT-mapper / LOG-LIO / FAST-LIVO2 / Clio / FAST-LIO2 / DLIO / Kalibr 全是 ROS 1，
-而本机是 ROS 2 Jazzy、无 Docker、无 sudo。
-
-## 论文报告值 Paper baselines
-
-> **复现的前提是先知道要复现出什么数。** 在 2026-10-05 之前，这 17 个文件夹里只有"论文标题 + 计划"，
-> 没有一篇记录原论文到底做出了什么数字 —— 于是"复现"没有验收标准，跑通了也只能说"它能跑"。
-
-每个文件夹里现在都有一份 `paper_baseline.md`（含表号、页码、消融、参数、阻塞分析），
-总表见 **[`PAPER_BASELINES.md`](PAPER_BASELINES.md)**。
-
-**原文覆盖：16/17。** 来源是本机文献工作区的 `Localise/01_task_books/materials/papers_pdf/`（134 篇），
-本次另补取 3 篇（RIO/3RScan、原始 ERASOR RA-L 2021、OASIS-Map）。唯一缺的是 **01-04 Removert** ——
-它的 IROS 2020 原文是闭源的（OpenAlex 明确 `is_oa: false`，作者给的镜像站 DNS 不通），原因逐条记在
-[`04_removert/paper_baseline.md`](01_robust_localization_slam_dynamic/04_removert/paper_baseline.md)。
-
-### 这台机器能跑什么
-
-**没有 GPU**（20 核 CPU / 15 GB RAM / 381 GB 空闲）。按"论文报告值 + 可行性"对齐后：
-
-| 类别 | 数量 | 哪些 |
-| :--- | ---: | :--- |
-| ✅ 已复现 | 5 | **01-01 / 01-03 / 01-04 / 01-05 / 01-06**（D 线清理链路，3 个命中两位小数）· **01-08 NGD-SLAM**（ATE / RPE-平移命中） |
-| 🟢 CPU + 数据可得 | 0 | — |
-| 🟡 CPU 但数据要注册 | 2 | 01-02 KISS-ICP · 01-09 LT-mapper（ROS 1） |
-| 🔴 需要 GPU | 7 | 01-07 · 02-03 · 02-04 · 02-05 · 02-06 · 02-07 · 02-08 |
-| ⚫ 其他阻塞 | 2 | 01-04（论文闭源）· 02-02（代码未发布） |
-
-> ⚠️ **任务书 §0.3 把 S（语义建图）排在第 1 位，理由是"不需要新硬件"。但从论文报告值看，
-> S 线的四个底座（ConceptGraphs / DualMap / HOV-SG / Clio）全都要 GPU。**
-> 真正"不需要新硬件"的是 **D 线的 CPU 部分**。只看 README 计划是看不出这一点的。
-
-### 数据：KITTI 注册阻塞已被绕开
-
-01-01 / 01-05 需要的 KITTI 00 + 人工 GT，基准作者自己打包发在 Zenodo 上，**直链、免注册**：
-
-```bash
-wget https://zenodo.org/records/10886629/files/00.zip    # 385 MB，66 秒
-unzip 00.zip -d reproductions/01_robust_localization_slam_dynamic/01_dynamicmap_benchmark/data/raw/
-```
-
-### Python 环境：本机没有 sudo，也没有 `python3-venv`
-
-`ensurepip` 不存在，因此 venv 用 `get-pip.py` 自举（`reproductions/.venvs/` 已 gitignore）：
-
-```bash
-python3 -m venv --without-pip reproductions/.venvs/dmb
-curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
-reproductions/.venvs/dmb/bin/python /tmp/get-pip.py
-reproductions/.venvs/dmb/bin/pip install dufomap kiss-icp scipy
-```
-
-`dufomap` / `kiss-icp` 是 PyPI 包，**纯 CPU、免编译**；`scipy` 只用于评测的第二条独立实现。
-
----
+<!-- PROGRESS:END -->
 
 ## 目录约定 Layout
 
 ```
 reproductions/
-├── README.md                      ← 本文件：索引 + 关联分析
-├── tools/                         ← 跨复现共享的工具
-│   ├── ros1_env.sh                ← 把 ROS 1 Noetic 摆到 ROS 2 Jazzy 前面
-│   └── build_ros1_catkin.sh       ← 编译上游 catkin 仓库到 .ws/<name>_ws
-├── 01_robust_localization_slam_dynamic/          ← D1
-│   ├── README.md                  ← 方向说明 + 本方向复现顺序
-│   └── 01_dynamicmap_benchmark/
-│       ├── README.md              ← 复现方案（提交进 git）
-│       ├── work/                  ← 我们自己写的脚本、协议（进 git）
-│       ├── results/               ← 产物、图表（小 JSON 进 git；*.pcd 被忽略）
-│       ├── code/                  ← 克隆的上游仓库（整个目录被 gitignore）
-│       └── data/                  ← 数据集（不进 git）
+├── README.md      ← 本文件：索引 + 复现清单 + 约定
+├── NOTES.md       ← 分析笔记：方向、传感器契合度、任务书关联、论文报告值
+├── PAPER_BASELINES.md          ← 17 篇论文报告值总表
+├── run_all.py     ← 跑复现 + 回测 + 刷新清单
+├── status.json    ← 上一次运行的机器可读结果
+├── tools/         ← 跨复现共享：ROS 1 环境脚本、catkin 构建脚本
+├── .venvs/ · .ws/ ← 本机环境与构树（gitignore）
+├── 01_robust_localization_slam_dynamic/   ← D1
 └── 02_semantic_mapping_visual_anchoring_navigation/   ← D2
-    └── ...（同上）
 ```
 
-**为什么 code/ 和 data/ 不进 git**：上游仓库有自己的 git 历史，数据集动辄几十 GB。
-本仓库只保留**我们写的**东西——步骤、脚本、配置、结论。
-点云产物也不进 git（`reproductions/**/results/**/*.pcd`）：Removert 一次运行就是 616 MB，
-留在机器上，旁边的小 JSON 才是提交对象。
+**为什么 `code/` 和 `data/` 不进 git**：上游仓库有自己的 git 历史，数据集动辄几十 GB。
+本仓库只保留**我们写的**东西——步骤、脚本、配置、结论；点云产物同理。
 
-> `code/` 被整目录忽略（写的是 `code/` 而不是 `code/*`）：克隆进来的仓库自带 `.git`，
-> 否则 git 会把整个 checkout 记成一个 embedded repository（gitlink）而不是忽略。
-> 这两个目录在你拉取内容时自然出现，不需要 `.gitkeep` 占位。
+## 自动化 Automation
 
-### ROS 1 上游仓库怎么跑（01-03 ERASOR / 01-04 Removert 用这一套）
+```bash
+python3 reproductions/run_all.py             # 跑所有能跑的复现 + 回测 + 刷新清单
+python3 reproductions/run_all.py --only 02-01
+python3 reproductions/run_all.py --check      # 不重跑，只按现有 status.json 重画清单
+python3 reproductions/run_all.py --no-backtest
+```
 
-本机是 **ROS 2 Jazzy、无 sudo、无 Docker**，而这两个方法的官方仓库都是 **ROS 1 catkin** 包。
+每次运行做四件事：**发现**每个文件夹 → **运行**有 `reproduce.py` 的复现（缺数据就标 ⛔ 而不是假装失败）
+→ **回测**本次指标与 `baselines.json`（超出容差判 ❌ regressed）→ **刷新** `status.json` 与 README 里的清单。
+
+### 约定：`checks` 与 `findings` 是两回事
+
+| | 含义 | 失败会怎样 |
+| :--- | :--- | :--- |
+| **`checks`** | **不变量**：协议声称的事实，必须成立 | 判 ❌ failed，说明复现坏了 |
+| **`findings`** | **测量结果**：关于数据的客观事实 | 只记录，**不阻塞**任何东西 |
+
+### 新增一个复现
+
+1. 建文件夹 `reproductions/<方向>/<NN_名称>/`，写好 `README.md`，里面要有这几行：
+   `| 论文 |` `| Venue |` `| 论文链接 |` `| 代码 |` `| 能否复现 |` `| 复现顺序 |` `| 复现完成 |`；
+2. 放一个 `reproduce.py`，实现 `require(ctx) -> None | str` 与
+   `run(ctx) -> {"metrics", "checks", "findings", "artifacts"}`；
+3. 跑一次 `run_all.py`，把 `status.json` 里的指标抄进 `baselines.json` 作为基线；
+4. 复现对上原文之后，把那个文件夹的 `复现完成` 改成 `☑`，重跑 `run_all.py --check`。
+
+## ROS 1 上游仓库怎么跑（01-03 ERASOR / 01-04 Removert 用这一套）
+
+本机是 **ROS 2 Jazzy**，而这两个方法的官方仓库都是 **ROS 1 catkin** 包。
 可复现的做法是 **micromamba + robostack**，不需要 root，也不需要容器：
 
 ```bash
@@ -350,126 +112,7 @@ micromamba run -p reproductions/.venvs/ros1noetic \
        reproductions/.ws/removert_ws removert <复现文件夹>/code/removert
 ```
 
-两个坑已经封装进工具脚本，但值得知道它们存在：
-
-| 坑 | 症状 | 处理 |
-| :--- | :--- | :--- |
-| ROS 1 / ROS 2 有同名库 | 编译通过，运行时 `symbol lookup error`（如 `image_transport::ImageTransport`） | `tools/ros1_env.sh` 把 `/opt/ros/jazzy*` 从 `LD_LIBRARY_PATH`/`PYTHONPATH`/`CMAKE_PREFIX_PATH` 等里剥掉 |
-| conda 的 PCL 不导出 VTK | 链接期 `libvtksys-9.2.so.1: DSO missing from command line` | 构建脚本自动补 `-I$ENV/include/vtk-9.2` 与 `-Wl,--copy-dt-needed-entries` |
-
-上游源码需要的 **API 漂移补丁**（PCL ≥ 1.11 的 `shared_ptr`、OpenCV 4 删掉的 `<opencv/cv.h>` 等）
-逐个记在对应复现的 `work/local_patches.patch`，**算法逻辑不改**。
-
----
-
-## 建议顺序 Suggested order
-
-推进顺序是 **S →（D ∥ V）**，与任务书 §0.3 一致：
-
-**第 1 步 · S 语义建图（先做，不需要新硬件）**
-
-1. **02-01 3RScan**：先把**二次访问协议**写死（会话划分 + 真值类别 + 容差半径）——这是后面所有数字的前提
-2. **02-03 / 02-04 / 02-06**：任选一个底座跑通，产出「物体节点 + 身份 + 标签」的表示层
-3. **02-02 OASIS-Map**：与上面并行做论文精读（代码未发布，只能读）
-
-**第 2 步 · D 与 V 并行（同等重要，进阶）**
-
-4. **D 线**：01-01 评测地基 → 01-02 定位基线 → 01-03…01-06 四个清理方法（纯 CPU，5 天可出数字）
-5. **D 线**：01-08 纯几何动态检测（car.md 难点 1 的首选入口）→ 01-09 长期建图对照
-6. **V 线**：02-07 → 02-08 视觉锚定成对复现（补上任务书 §0.2 承认缺失的那块）→ 02-05 语言导航入口
-
-**第 3 步 · 交汇**
-
-7. 用 X（物体级变化检测）的指标同时回灌 S 与 D：可观测性分层 F1、身份一致率、ECE
-
-> 备选：01-07 DynoSAM。按需要展开，不要在它上面卡住主线。
-
-> **开工前先读一遍 [`docs/task-book/TASK_BOOK.md`](../docs/task-book/TASK_BOOK.md) 与 [`car.md`](../car.md)**：
-> 任务书 §0.3 给出三方向的难点清单，car.md 给出 8 个难点的可验证假设。
-> 复现的目标不是「跑通」，而是**为某个具体假设产出证据**——每个文件夹的「复现目标」一栏
-> 就是这句话的落地。
-
----
-
-## 链接核验 Link check
-
-建目录时逐条实测（`curl -o /dev/null -w '%{http_code}'`，跟随重定向），共 23 条链接：
-
-| 结果 | 说明 |
-| :--- | :--- |
-| ✅ 200 | 21 条代码库 / 论文 / 项目页链接全部可达 |
-| ⚠️ **修正 1 条** | `github.com/KTH-RPL/BeautyMap` **返回 404**。BeautyMap 的正确仓库是 [`MKJia/BeautyMap`](https://github.com/MKJia/BeautyMap)（已实测 200）。上游 `Localise/01_task_books/materials/links.md` 记的 KTH-RPL 地址是错的 |
-| ℹ️ 1 条非资源 | OASIS-Map 项目页可达，但明确标注 **Code Soon**，无代码可 clone |
-
-## 自动化与回测 Automation & backtest
-
-复现不是「跑一次记个数字」，而是**一条可以随时重跑、并且会自己发现回退的流水线**：
-
-```bash
-python3 reproductions/run_all.py             # 跑所有能跑的复现 + 回测 + 刷新本页进度表
-python3 reproductions/run_all.py --only 02-01
-python3 reproductions/run_all.py --check      # 不重跑，只按现有 status.json 重画进度表
-python3 reproductions/run_all.py --no-backtest
-```
-
-每次运行做四件事：
-
-1. **发现**：扫描 `reproductions/<方向>/<NN_名称>/`，从每个 `README.md` 读出论文名与静态状态；
-2. **运行**：有 `reproduce.py` 的就执行 —— 它的 `require(ctx)` 先说清缺什么（数据没下 / 仓库没克隆），
-   缺就标 `⛔ blocked` 而不是假装失败；能跑就 `run(ctx)` 并产出指标；
-3. **回测**：把本次指标与文件夹里的 `baselines.json` 比对，超出容差即判 `❌ regressed`
-   并把该复现标成失败（**回测本身也验证过会失败** —— 注入假回退后确实报了错）；
-4. **刷新**：重写 `status.json`，并把下面这张进度表写进本文件与仓库根的两份 README
-   （块内内容自动生成，不要手改）。
-
-### 约定：`checks` 与 `findings` 是两回事
-
-| | 含义 | 失败会怎样 |
-| :--- | :--- | :--- |
-| **`checks`** | **不变量**：协议声称的事实，必须成立 | 判 `❌ failed`，说明复现坏了 |
-| **`findings`** | **测量结果**：关于数据的客观事实 | 只记录，**不阻塞**任何东西 |
-
-例：02-01 里「几何上能否把移动物体和噪声分开」记的是 **finding** ——
-实测最小真实位移 0.265 m **小于**最大对齐噪声 0.639 m，所以**纯几何方法在这一对上分不开**。
-这是关于数据的结论，不是流水线的缺陷，因此它不该让复现变红。
-
-### 新增一个复现
-
-1. 建文件夹 `reproductions/<方向>/<NN_名称>/`，写好 `README.md`（含 `| 复现状态 | ... |` 一行）；
-2. 放一个 `reproduce.py`，实现 `require(ctx) -> None | str` 与
-   `run(ctx) -> {"metrics", "checks", "findings", "artifacts"}`；
-3. 跑一次 `run_all.py`，把 `status.json` 里的指标抄进 `baselines.json` 作为基线；
-4. 之后再跑，任何数字漂移都会被回测抓住。
-
----
-
-<!-- PROGRESS:START -->
-
-## 复现进度 Reproduction progress
-
-**进度** — 9/17 跑通 · 9 本次实际运行 · 17/17 已自动化 · 更新于 2026-10-05 04:38 CST
-
-| # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
-| :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | ✅ | ✅ 通过 | 19 项指标 · 3 条 finding |
-| 01-02 | D1 | KISS-ICP | 🟢 green | ✅ | ✅ 通过 | 54 项指标 · 7 条 finding |
-| 01-03 | D1 | ERASOR | 🟢 green | ✅ | ✅ 通过 | 21 项指标 · 2 条 finding |
-| 01-04 | D1 | Removert | 🟢 green | ✅ | ✅ 通过 | 20 项指标 · 3 条 finding |
-| 01-05 | D1 | DUFOMap | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
-| 01-06 | D1 | BeautyMap | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 3 条 finding |
-| 01-07 | D1 | DynoSAM | ⛔ blocked | — | — | GPU/CUDA absent, and DynoSAM cannot even `cmake`-configure without it: dynosam_nn/CMakeLists.txt:3 declares… |
-| 01-08 | D1 | NGD-SLAM | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
-| 01-09 | D1 | LT-mapper | 🟢 green | ✅ | ✅ 通过 | 40 项指标 · 8 条 finding |
-| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
-| 02-02 | D2 | OASIS-Map | ⛔ blocked | — | — | no upstream code to run: the OASIS-Map project page (checked 2026-10-05) still says 'Code Soon' and the pap… |
-| 02-03 | D2 | ConceptGraphs | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. ConceptGraph… |
-| 02-04 | D2 | DualMap | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. DualMap (RA-… |
-| 02-05 | D2 | HOV-SG | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. HOV-SG (RSS … |
-| 02-06 | D2 | Clio | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. Clio (RA-L 2… |
-| 02-07 | D2 | AnyLoc | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. AnyLoc (RA-L… |
-| 02-08 | D2 | Revisit Anything | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. Revisit Anyt… |
-
-> 本表由 `python3 reproductions/run_all.py` 自动生成，块内内容请勿手改。
-> 新增复现：建好文件夹与 `README.md`，再放一个实现 `require(ctx)` / `run(ctx)` 的 `reproduce.py`，重跑本命令即可。
-
-<!-- PROGRESS:END -->
+两个坑已经封装进工具脚本：ROS 1 / ROS 2 同名库导致的 `symbol lookup error`
+（`tools/ros1_env.sh` 把 `/opt/ros/jazzy*` 从环境里剥掉）、conda 的 PCL 不导出 VTK
+（构建脚本自动补 VTK include 与 `-Wl,--copy-dt-needed-entries`）。
+上游源码需要的 **API 漂移补丁** 逐个记在对应复现的 `work/local_patches.patch`，**算法逻辑不改**。
