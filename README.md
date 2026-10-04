@@ -176,6 +176,37 @@ subfolders; upstream checkouts and datasets stay local and are gitignored.
 [`reproductions/README.md`](reproductions/README.md) holds the index, how the two directions line up
 with the task book, and the suggested order.
 
+<!-- PROGRESS:START -->
+
+## 复现进度 Reproduction progress
+
+**进度** — 1/17 跑通 · 1 本次实际运行 · 1/17 已自动化 · 更新于 2026-10-04 23:08 CST
+
+| # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| 01-01 | D1 | DynamicMap_Benchmark | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-02 | D1 | KISS-ICP | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-03 | D1 | ERASOR | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-04 | D1 | Removert | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-05 | D1 | DUFOMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-06 | D1 | BeautyMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-07 | D1 | DynoSAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-08 | D1 | NGD-SLAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-09 | D1 | LT-mapper | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 1 条 finding |
+| 02-02 | D2 | OASIS-Map | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 02-03 | D2 | ConceptGraphs | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 02-04 | D2 | DualMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 02-05 | D2 | HOV-SG | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 02-06 | D2 | Clio | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 02-07 | D2 | AnyLoc | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 02-08 | D2 | Revisit Anything | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+
+> 本表由 `python3 reproductions/run_all.py` 自动生成，块内内容请勿手改。
+> 新增复现：建好文件夹与 `README.md`，再放一个实现 `require(ctx)` / `run(ctx)` 的 `reproduce.py`，重跑本命令即可。
+
+<!-- PROGRESS:END -->
+
 ## What was removed from the benchmark
 
 Dijkstra, weighted A\*, GBFS, JPS, Theta\* and D\* Lite, the `algo_bringup` registry that swapped
@@ -206,32 +237,3 @@ mapping and localization configuration are the ones the benchmark shipped.
 
 MIT, see [LICENSE](LICENSE). Derived from
 [Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) by p20030920p and zfyyyyy.
-
-<!-- PROGRESS:START -->
-
-**进度 Progress** — 1/17 跑通 · 1 本次实际运行 · 1/17 已自动化 · 更新于 2026-10-04 23:08 CST
-
-| # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 |
-| :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| 01-01 | D1 | DynamicMap_Benchmark | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 01-02 | D1 | KISS-ICP | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 01-03 | D1 | ERASOR | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 01-04 | D1 | Removert | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 01-05 | D1 | DUFOMap | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 01-06 | D1 | BeautyMap | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 01-07 | D1 | DynoSAM | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 01-08 | D1 | NGD-SLAM | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 01-09 | D1 | LT-mapper | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 |
-| 02-02 | D2 | OASIS-Map | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 02-03 | D2 | ConceptGraphs | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 02-04 | D2 | DualMap | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 02-05 | D2 | HOV-SG | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 02-06 | D2 | Clio | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 02-07 | D2 | AnyLoc | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-| 02-08 | D2 | Revisit Anything | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
-
-> 本表由 `python3 reproductions/run_all.py` 自动生成，块内内容请勿手改。
-> 新增复现：建好文件夹与 `README.md`，再放一个实现 `require(ctx)` / `run(ctx)` 的 `reproduce.py`，重跑本命令即可。
-
-<!-- PROGRESS:END -->

@@ -248,10 +248,12 @@ def render_progress(results):
     lines = [
         PROGRESS_START,
         "",
-        f"**进度 Progress** — {green}/{total} 跑通 · {ran} 本次实际运行 · "
+        "## 复现进度 Reproduction progress",
+        "",
+        f"**进度** — {green}/{total} 跑通 · {ran} 本次实际运行 · "
         f"{automated}/{total} 已自动化 · 更新于 {stamp}",
         "",
-        "| # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 |",
+        "| # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |",
         "| :-- | :-- | :-- | :-- | :-- | :-- | :-- |",
     ]
     for r in sorted(results, key=lambda x: x["id"]):
@@ -264,9 +266,13 @@ def render_progress(results):
             for k in ("objects_total", "unchanged", "moved", "absent_unlabelled"):
                 if k in r["metrics"]:
                     bits.append(f"{k}={r['metrics'][k]}")
-            detail = ", ".join(bits) if bits else f"{len(r['metrics'])} metrics"
+            detail = ", ".join(bits) if bits else f"{len(r['metrics'])} 项指标"
+            if r.get("findings"):
+                detail += f" · {len(r['findings'])} 条 finding"
+        elif r["level"] == "planned":
+            detail = "待开始（缺 reproduce.py）"
         else:
-            detail = r.get("note", "") or r.get("static_status", "")
+            detail = r.get("note", "") or r.get("static_status", "") or "—"
         detail = detail.replace("|", "/")
         if len(detail) > 110:
             detail = detail[:107] + "…"
