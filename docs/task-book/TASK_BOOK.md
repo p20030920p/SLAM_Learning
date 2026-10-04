@@ -326,6 +326,13 @@ git checkout <commit>~1 -- 01_task_books/tasks/                  # 恢复全部�
 
 > 检索范围：**2021–2026**，优先 ICRA / IROS / RA-L / T-RO / RSS / CoRL / CVPR 等。
 > **venue 全部经 Crossref 独立核验**；未能验证到顶刊的，如实标注，不凑数。
+>
+> ✅ **本条已于 2026-10-05 被独立复核**：33 条 DOI 逐条查 Crossref API，**33/33 真实存在**，
+> **32/33 的 venue 与年份完全正确**（唯一一处年份偏差已在上表修正）。
+> 同时核了**每一篇有没有官方代码** —— **7 篇没有，另 1 篇有仓库但没有方法代码**。
+> 完整核查结果见 [`PAPER_AUDIT.md`](PAPER_AUDIT.md)（含逐条证据与 HTTP 实测）。
+> ⚠️ **对选用论文的影响**：按「没有库的先不复现」的规则，下面的**难点 1 与难点 3 损失最大** ——
+> 难点 1 三篇里 TerrainNet、DuLoc 无代码；难点 3 七篇里 X-ICP、Switch-SLAM、Active Illumination 无代码。
 > 每条给出「**他们怎么做的**」。
 
 ### 🔴 **难点 1 · 提前数秒的预判停车（感知视界 vs 制动距离）**
@@ -406,7 +413,7 @@ git checkout <commit>~1 -- 01_task_books/tasks/                  # 恢复全部�
 |---|---|---|
 | [Online LiDAR-Camera Extrinsic Calibration Using Selected Semantic Features](https://doi.org/10.1109/ojits.2025.3555574) | IEEE OJ-ITS 2025 | **用选定的语义特征**（稳定类别）在线估计雷达-相机外参 |
 | [Online Temporal Calibration for Monocular Visual-Inertial Systems](https://doi.org/10.1109/IROS.2018.8593603) | IROS 2018 | 把**时间偏移**作为状态量在线估计（略超 5 年） |
-| [Kalibr](https://github.com/ethz-asl/kalibr) | 库 | 相机-IMU 标定的**事实标准工具**，离线批处理 |
+| [Kalibr](https://github.com/ethz-asl/kalibr) | 库 | 相机-IMU 标定的**事实标准工具**，离线批处理。⚠️ 2026-10-05 核实：**已停更**——master 最后提交 2024-03-08，2025–2026 零提交，仅 ROS 1；"事实标准"是历史地位，不是当前维护状态 |
 
 > **诚实说明**：语义辅助标定在**顶刊上很薄**——5 年内只找到 IEEE OJ-ITS 一篇。
 
@@ -439,7 +446,7 @@ git checkout <commit>~1 -- 01_task_books/tasks/                  # 恢复全部�
 | 论文 | Venue | 他们怎么做的 |
 |---|---|---|
 | [ActLoc](https://proceedings.mlr.press/v305/li25b.html) | **CoRL 2025** | **主动选择视点**来提升定位：学习"移动中的定位"策略，而非被动接受视角 |
-| [Active Neural Topological Mapping](https://doi.org/10.1109/LRA.2023.3331892) | **RA-L 2023** | 主动构建拓扑地图，用不确定性驱动探索决策 |
+| [Active Neural Topological Mapping](https://doi.org/10.1109/LRA.2023.3331892) | **RA-L 2024**（online 2023-11-10） | 主动构建拓扑地图，用不确定性驱动探索决策 |
 
 > **诚实说明**：若 H4 的读法是 (c) 主动感知，这是一个**独立且偏难的方向**，
 > 顶刊上"主动定位"（区别于主动建图/探索）的工作仍然很少。

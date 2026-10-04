@@ -187,6 +187,19 @@ partial views, occlusion, and imperfect segmentation"——是**关联可靠性*
 
 ---
 
+## ⚠️ 引用核查：任务书里的论文哪些能复现
+
+2026-10-05 对任务书 §2 的**全部 33 条引用**做了独立核查（DOI 逐条查 Crossref + 每篇查有没有官方代码 +
+每个 URL 实测 HTTP）：**33/33 是真论文，32/33 的 venue 与年份完全正确**，
+但**7 篇没有官方代码、1 篇有仓库却只有数据集没有方法代码**。
+
+→ 完整结果：[`../docs/task-book/PAPER_AUDIT.md`](../docs/task-book/PAPER_AUDIT.md)
+
+**对本目录的直接影响**：按「没有库的先不复现」，02-02 OASIS-Map 已排除；
+另外要注意 **ROS 1** 是比"没代码"更隐蔽的障碍 —— 有代码的 25 篇里，
+LT-mapper / LOG-LIO / FAST-LIVO2 / Clio / FAST-LIO2 / DLIO / Kalibr 全是 ROS 1，
+而本机是 ROS 2 Jazzy、无 Docker、无 sudo。
+
 ## 论文报告值 Paper baselines
 
 > **复现的前提是先知道要复现出什么数。** 在 2026-10-05 之前，这 17 个文件夹里只有"论文标题 + 计划"，
@@ -351,7 +364,7 @@ python3 reproductions/run_all.py --no-backtest
 
 ## 复现进度 Reproduction progress
 
-**进度** — 7/17 跑通 · 0 本次实际运行 · 7/17 已自动化 · 更新于 2026-10-05 01:49 CST
+**进度** — 7/17 跑通 · 0 本次实际运行 · 7/17 已自动化 · 更新于 2026-10-05 02:01 CST
 
 | # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
