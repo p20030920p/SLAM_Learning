@@ -9,7 +9,7 @@
 | 数据 | 3RScan 本体（需同意条款后下载），约 1.5k 次扫描 / 数百个房间 |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | §4.1 地图更新策略；物体级变化检测题目的评测数据 |
-| 复现状态 | 🟢 协议已跑通（1 对会话），待全量数据 |
+| 复现状态 | 🟢 协议 + 可观测性分层已跑通（1 对会话，51/753 帧），待全量数据 |
 
 ## 它做了什么 What it does
 
@@ -63,9 +63,36 @@ python3 reproductions/run_all.py --only 02-01
 
 | finding | 内容 |
 | :--- | :--- |
+| `vanished_objects_are_not_all_observable` | **1/1 个从 B 中消失的物体，其位置在 B 里根本不可观测** —— 数据集的沉默不能读成「被移除」 |
+| `observability_spreads_even_within_one_gt_class` | 同为 `unchanged` 的 26 个物体：visible 6 / occluded 4 / out_of_view 13 / insufficient 3 |
+| `frame_coverage_is_partial` | 只发了 **51/753** 帧（轨迹前缀），`out_of_view` 是暂定结论 |
 | `geometric_separation` | **最小真实位移 0.265 m < 最大对齐噪声 0.639 m** —— 纯几何质心差分在这一对上**分不开**移动与未动 |
 
-> 这条 finding 本身就是那条假设的第一个证据：几何阈值不可靠，所以「可观测性感知」才有存在空间。
+### 可观测性分层（数据集给不了的那一半）
+
+3RScan 只标注「什么变了」，从不标注「机器人当时能不能看到」。用会话 B 自己的
+相机位姿 + 深度图逐物体逐帧算出来（`work/observability.py`）：
+
+| gt_class \ observability | visible | occluded | out_of_view | insufficient |
+| :--- | ---: | ---: | ---: | ---: |
+| unchanged | 6 | 4 | 13 | 3 |
+| moved | 3 | 0 | 2 | 0 |
+| **absent_unlabelled** | **0** | **0** | **1** | 0 |
+
+**核心结果**：那个「消失了却没被标成 removed」的垫子（id=23），
+它的预期位置在会话 B 的 51 帧里**从未进入视场** → **不能**把它的消失读作「被移除」。
+
+这正是 H1a 预测的失败模式：**未观测 ≠ 不存在**，而且这个混淆在数据集里是隐式的。
+
+**新增的两条回归检查**（都是踩过的坑）：
+
+| 检查 | 拦什么 |
+| :--- | :--- |
+| `depth_scale_plausible` | `m_depthShift` 是**除数**不是乘数 —— 读反了深度大 1000 倍，所有表面变成「实测远在预测之后」，`visible` 类被**静默清空**。这条检查当时确实抓到了这个 bug |
+| `poses_are_rigid` | 位姿必须是正交旋转（51 帧全部通过） |
+
+> ⚠️ **限制**：公开示例包只有整段轨迹的**前 51 帧**（会话 B 声明 753 帧）。
+> `out_of_view` 的含义是「在采样的这些帧里没进视场」，不是「整个会话都看不到」。
 
 **已跑通一对真实会话**（公开示例数据自带的 reference + rescan）：
 

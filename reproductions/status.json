@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-04T23:08:41+08:00",
+  "generated": "2026-10-05T00:14:30+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
@@ -180,7 +180,7 @@
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/01_3rscan",
       "title": "3RScan（数据集）—— 源自 RIO: 3D Object Instance Re-Localization in Changing Indoor Environments",
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
-      "static_status": "🟢 协议已跑通（1 对会话），待全量数据",
+      "static_status": "🟢 协议 + 可观测性分层已跑通（1 对会话，51/753 帧），待全量数据",
       "heading": "02-01 · 3RScan",
       "ran": true,
       "metrics": {
@@ -197,7 +197,13 @@
         "noise_max_m": 0.639,
         "moved_motion_min_m": 0.2648,
         "moved_motion_max_m": 1.0918,
-        "transform_reproduce_centroid_max_m": 0.1117
+        "transform_reproduce_centroid_max_m": 0.1117,
+        "obs_frames_available": 51,
+        "obs_frames_declared": 753,
+        "obs_visible": 9,
+        "obs_occluded": 4,
+        "obs_out_of_view": 16,
+        "obs_insufficient": 3
       },
       "checks": [
         {
@@ -219,9 +225,36 @@
           "name": "tolerance_above_noise",
           "ok": true,
           "detail": "max residual on unchanged objects 0.639 m < tolerance 1.0 m"
+        },
+        {
+          "name": "depth_scale_plausible",
+          "ok": true,
+          "detail": "depth range [0.748, 7.218] m at scale 0.001 m/unit"
+        },
+        {
+          "name": "poses_are_rigid",
+          "ok": true,
+          "detail": "51 frames, 0 with a non-orthonormal rotation"
+        },
+        {
+          "name": "observability_partition",
+          "ok": true,
+          "detail": "32 objects classified over 32 measured (32 in the pair)"
         }
       ],
       "findings": [
+        {
+          "name": "vanished_objects_are_not_all_observable",
+          "detail": "1 of 1 objects missing from B were NOT observable there (out of view or occluded) — for those the dataset's silence cannot be read as 'removed'"
+        },
+        {
+          "name": "observability_spreads_even_within_one_gt_class",
+          "detail": "unchanged objects: visible=6, occluded=4, out_of_view=13, insufficient=3"
+        },
+        {
+          "name": "frame_coverage_is_partial",
+          "detail": "51 of 753 frames shipped, a prefix — `out_of_view` is provisional"
+        },
         {
           "name": "geometric_separation",
           "detail": "smallest real motion 0.265 m vs largest alignment noise 0.639 m — moved objects are NOT separable on geometry alone",
@@ -230,9 +263,11 @@
       ],
       "artifacts": [
         "results/ab_pair.json",
-        "results/ab_pair.csv"
+        "results/ab_pair.csv",
+        "results/observability.json",
+        "results/observability.csv"
       ],
-      "note": "A/B pair on the public example data — 1 instance(s) vanish without a `removed` label",
+      "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
         "diffs": [
@@ -333,10 +368,52 @@
             "got": 0.1117,
             "ok": true,
             "why": ""
+          },
+          {
+            "metric": "obs_frames_available",
+            "expected": 51,
+            "got": 51,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "obs_frames_declared",
+            "expected": 753,
+            "got": 753,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "obs_visible",
+            "expected": 9,
+            "got": 9,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "obs_occluded",
+            "expected": 4,
+            "got": 4,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "obs_out_of_view",
+            "expected": 16,
+            "got": 16,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "obs_insufficient",
+            "expected": 3,
+            "got": 3,
+            "ok": true,
+            "why": ""
           }
         ],
         "new_metrics_not_in_baseline": [],
-        "baseline_recorded": "2026-10-04T23:07:08+08:00"
+        "baseline_recorded": "2026-10-05T00:14:07+08:00"
       },
       "level": "green"
     },

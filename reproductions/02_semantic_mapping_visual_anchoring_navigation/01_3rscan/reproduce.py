@@ -53,6 +53,13 @@ def _builder(ctx):
     return mod
 
 
+def _load(name, path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
 def _column_vector_read(flat, point):
     """The wrong reading: p' = M p, translation in the fourth column."""
     m = [float(v) for v in flat]
@@ -78,6 +85,9 @@ def require(ctx):
 
 def run(ctx):
     mod = _builder(ctx)
+    ov = _load("observability", os.path.join(ctx["work_dir"], "observability.py"))
+    an = _load("analyze_observability", os.path.join(ctx["work_dir"], "analyze_observability.py"))
+
     pair = mod.build(SCENE_REF, RESCAN, ctx["data_root"], TOLERANCE_M)
 
     os.makedirs(ctx["results_dir"], exist_ok=True)
@@ -86,6 +96,13 @@ def run(ctx):
     M = pair["protocol"]["global_alignment_B_to_A"]
     objects = pair["objects"]
     counts = pair["counts"]
+
+    # ---- observability: could session B actually see each object? ---------
+    obs = an.analyze(ctx["data_root"], SCENE_REF, RESCAN, grid=3)
+    obs_json, obs_csv = an.write_outputs(obs, ctx["results_dir"])
+    obs_levels = ["visible", "occluded", "out_of_view", "insufficient"]
+    obs_counts = {f"obs_{lvl}": sum(1 for r in obs["objects"] if r["observability"] == lvl)
+                  for lvl in obs_levels}
 
     # ---- metrics ---------------------------------------------------------
     residuals = sorted(o["alignment_residual_m"] for o in objects
@@ -109,6 +126,9 @@ def run(ctx):
         "moved_motion_min_m": motions[0] if motions else None,
         "moved_motion_max_m": motions[-1] if motions else None,
         "transform_reproduce_centroid_max_m": round(max(tmatch), 4) if tmatch else None,
+        "obs_frames_available": obs["frames_available"],
+        "obs_frames_declared": obs["frames_declared_in_sequence"],
+        **obs_counts,
     }
 
     checks = []
@@ -163,26 +183,80 @@ def run(ctx):
     # On this pair the smallest real motion is smaller than the largest
     # alignment residual, so a pure centroid-difference detector cannot
     # separate moved from unchanged here. That is a result about the data, not
-    # a defect in the pipeline, so it is recorded as a finding and never gates
-    # the run.
+    # a defect in the pipeline, so it is recorded as a finding (below) and
+    # never gates the run.
     separable = bool(motions and residuals) and motions[0] > residuals[-1]
-    findings = [{
-        "name": "geometric_separation",
-        "detail": (f"smallest real motion {motions[0]:.3f} m vs largest alignment "
-                   f"noise {residuals[-1]:.3f} m — moved objects are "
-                   f"{'separable' if separable else 'NOT separable'} on geometry alone"
-                   if motions and residuals else "insufficient data"),
-        "separable": separable,
-    }]
+
+    # ---- 6. the depth really is in millimetres, not metres ---------------
+    # Regression guard: reading m_depthShift as a multiplier instead of a
+    # divisor leaves every depth 1000x too large, which turns every surface
+    # into "measured far behind predicted" and silently empties the `visible`
+    # class. A plausible indoor depth range catches that immediately.
+    depth_lo, depth_hi = obs["depth_range_m"] if obs["depth_range_m"] else (None, None)
+    checks.append({
+        "name": "depth_scale_plausible",
+        "ok": depth_lo is not None and 0.05 < depth_lo < 2.0 and depth_hi < 20.0,
+        "detail": f"depth range {obs['depth_range_m']} m at scale "
+                  f"{obs['depth_scale_m_per_unit']} m/unit",
+    })
+
+    # ---- 6. poses are proper rigid transforms ----------------------------
+    checks.append({
+        "name": "poses_are_rigid",
+        "ok": len(obs["invalid_poses"]) == 0,
+        "detail": f"{obs['frames_available']} frames, "
+                  f"{len(obs['invalid_poses'])} with a non-orthonormal rotation",
+    })
+
+    # ---- 7. observability is a partition ---------------------------------
+    obs_total = sum(obs_counts.values())
+    checks.append({
+        "name": "observability_partition",
+        "ok": obs_total == len(obs["objects"]) == len(objects),
+        "detail": f"{obs_total} objects classified over {len(obs['objects'])} measured "
+                  f"({len(objects)} in the pair)",
+    })
+
+    # ---- findings --------------------------------------------------------
+    vanished = [o for o in obs["objects"]
+                if o["gt_class"] in ("absent_unlabelled", "removed")]
+    covered = sum(1 for v in vanished if v["observability"] == "visible")
+    findings = [
+        {
+            "name": "vanished_objects_are_not_all_observable",
+            "detail": (f"{len(vanished) - covered} of {len(vanished)} objects missing from B "
+                       f"were NOT observable there (out of view or occluded) — for those the "
+                       f"dataset's silence cannot be read as 'removed'"),
+        },
+        {
+            "name": "observability_spreads_even_within_one_gt_class",
+            "detail": ("unchanged objects: " + ", ".join(
+                f"{lvl}={obs['cross_tab']['unchanged'][lvl]}" for lvl in obs_levels)),
+        },
+        {
+            "name": "frame_coverage_is_partial",
+            "detail": (f"{obs['frames_available']} of {obs['frames_declared_in_sequence']} "
+                       f"frames shipped, a prefix — `out_of_view` is provisional"),
+        },
+        {
+            "name": "geometric_separation",
+            "detail": (f"smallest real motion {motions[0]:.3f} m vs largest alignment "
+                       f"noise {residuals[-1]:.3f} m — moved objects are "
+                       f"{'separable' if separable else 'NOT separable'} on geometry alone"
+                       if motions and residuals else "insufficient data"),
+            "separable": separable,
+        },
+    ]
 
     # ---- artifacts -------------------------------------------------------
-    artifacts = [os.path.relpath(json_path, ctx["path"]),
-                 os.path.relpath(csv_path, ctx["path"])]
+    artifacts = [os.path.relpath(p, ctx["path"])
+                 for p in (json_path, csv_path, obs_json, obs_csv)]
     return {
         "metrics": metrics,
         "checks": checks,
         "findings": findings,
         "artifacts": artifacts,
-        "note": (f"A/B pair on the public example data — {counts['absent_unlabelled']} "
-                 f"instance(s) vanish without a `removed` label"),
+        "note": (f"A/B pair + observability — {obs_counts['obs_visible']} visible, "
+                 f"{obs_counts['obs_occluded']} occluded, "
+                 f"{obs_counts['obs_out_of_view']} out of view"),
     }
