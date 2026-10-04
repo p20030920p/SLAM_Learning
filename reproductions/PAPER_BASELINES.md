@@ -18,7 +18,7 @@
 | # | 复现对象 | Venue | 论文自报的头号结果 | 本机可行性 | 详细 |
 | :-- | :--- | :--- | :--- | :--- | :--- |
 | **01-01** | DynamicMap_Benchmark | ITSC 2023 | KITTI 00，Octomap w GF：SA/DA/AA = **93.06 / 98.67 / 95.83** | 🟢 数据已到手（Zenodo 直链） | [→](01_robust_localization_slam_dynamic/01_dynamicmap_benchmark/paper_baseline.md) |
-| **01-02** | KISS-ICP | RA-L 2023 | KITTI 00–10 相对平移误差 **0.50%** | 🟡 CPU 可跑，但 KITTI 需注册 | [→](01_robust_localization_slam_dynamic/02_kiss_icp/paper_baseline.md) |
+| **01-02** | KISS-ICP | RA-L 2023 | KITTI 00–10 相对平移误差 **0.50%** | 🟡 **代码已跑通（0.409 %）但论文数字未复现**——论文四套数据集全部要注册 | [→](01_robust_localization_slam_dynamic/02_kiss_icp/paper_baseline.md) |
 | **01-03** | ERASOR | RA-L 2021 | SemanticKITTI 00，voxel-wise PR/RR/F1 = **93.980 / 97.081 / 0.955** | 🟡 CPU 可跑，数据需注册 | [→](01_robust_localization_slam_dynamic/03_erasor/paper_baseline.md) |
 | **01-04** | Removert | IROS 2020 | ⚠️ **原文已拿到（在作者仓库里），但全文没有数字表** | ✅ 已复现（基准口径） | [→](01_robust_localization_slam_dynamic/04_removert/paper_baseline.md) |
 | **01-05** | DUFOMap | RA-L 2024 | KITTI 00，SA/DA/AA = **97.96 / 98.72 / 98.34** | ✅ **已复现（精确命中）** | [→](01_robust_localization_slam_dynamic/05_dufomap/paper_baseline.md) |
@@ -44,7 +44,7 @@
 | 类别 | 数量 | 哪些 |
 | :--- | ---: | :--- |
 | ✅ **已经复现成功** | 5 | **01-01 / 01-03 / 01-04 / 01-05 / 01-06 的 D 线清理链路**（3 个命中两位小数，1 个在 0.2 pp 内）· **01-08 NGD-SLAM**（ATE 与 RPE-平移命中） |
-| 🟡 **CPU 但数据要注册** | 2 | 01-02 KISS-ICP · 01-09 LT-mapper（要 ROS 1） |
+| 🟡 **CPU 可跑但论文数据集要注册** | 2 | **01-02 KISS-ICP**（代码已跑出 0.409 %，但只有 2 个指标样本，**论文的 0.50 % 未复现**）· 01-09 LT-mapper |
 | 🔴 **需要 GPU** | 7 | 01-07 DynoSAM · 02-03 ConceptGraphs · 02-04 DualMap · 02-05 HOV-SG · 02-06 Clio · 02-07 AnyLoc · 02-08 Revisit Anything |
 | ⚫ **别的阻塞** | 2 | 01-04 Removert（论文闭源，但基准重实现已复现）· 02-02 OASIS-Map（代码未发布） |
 
@@ -66,6 +66,27 @@
 | DUFOMap（01-05） | **97.9635** | **98.7196** | 98.3401 | **98.3408** | 97.96 / 98.72 / — / 98.34 | < 0.01 pp |
 
 **四个方法、两个独立的论文来源（DynamicMap_Benchmark / DUFOMap / BeautyMap），数字全部对上。**
+
+### 01-02 KISS-ICP：论文的四套数据集全都拿不到
+
+KISS-ICP 的论文在 **KITTI odometry / MulRan / Newer College / Boreas** 上评测，**四套全部需要注册或表单**
+（NCD 的官网下载页没有直链，且其下载已被社区记录为失效）。
+
+只用免费数据能做到的：基准的 Zenodo KITTI 00 包（385 MB，免注册）里的 141 帧是**世界系**点云 + 位姿，
+逆变换可以把**原始扫描还原回来**，于是官方的 `--dataloader kitti` 一行不改就能跑：
+
+| | 值 |
+| :--- | ---: |
+| 本次平均相对平移误差 | **0.409 %** |
+| ATE | 0.112 m |
+| 频率 / 单帧耗时 | 50 Hz / 20 ms |
+| 轨迹长度 | 108.3 m |
+| **指标实际样本数** | **2** |
+| 论文（KITTI 00–10） | 0.50 % |
+
+⚠️ **0.409 % 不是论文那个数**：KISS-ICP 用的是 KITTI devkit 指标，段长 **{100…800} m**、起点每 10 帧一个，
+而这条轨迹只有 108.3 m → **只凑得出 2 个样本**；论文是 11 条完整序列上数百个样本的聚合。
+**要复现 0.50 % 必须先注册 KITTI。**
 
 ### 01-08 NGD-SLAM：论文用的不是几何方法
 
@@ -190,4 +211,4 @@ RPE 旋转按 RMSE 是 0.604 而论文 0.470，按**均值**是 0.475——论�
 | 17 篇原文 | ✅ **全部在手** |
 | 01-04 的可对标数字 | ⚠️ **原文没有编号表格**（`TABLE` 命中 0 次），定量结果是图 8/图 9 的曲线。所以只能以第三方复现值为目标 |
 | KITTI / SemanticKITTI / Argoverse 2 原始数据 | 🟡 需注册。**但 01-01/01-05 已用 Zenodo 直链绕过**（KITTI 00 + GT，385 MB，免注册） |
-| 各复现的 `reproduce.py` | **6/17**（02-01 · 01-03 · 01-04 · 01-05 · 01-06 · 01-08），全部带 `baselines.json` 回测 |
+| 各复现的 `reproduce.py` | **7/17**（01-02 · 01-03 · 01-04 · 01-05 · 01-06 · 01-08 · 02-01），全部带 `baselines.json` 回测 |

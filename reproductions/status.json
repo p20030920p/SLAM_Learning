@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T02:01:27+08:00",
+  "generated": "2026-10-05T02:12:14+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
-    "green": 7,
+    "green": 8,
     "failed": 0,
     "blocked": 0,
-    "planned": 10,
-    "ran_this_pass": 0
+    "planned": 9,
+    "ran_this_pass": 8
   },
   "reproductions": [
     {
@@ -20,7 +20,7 @@
       "venue": "**ITSC 2023**（arXiv:2307.07260）",
       "static_status": "🟡 地基已跑通（数据 + 评测器 + 交叉验证）；四个方法的数字待跑",
       "heading": "01-01 · DynamicMap_Benchmark",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "frames": 141,
         "gt_points": 17362230,
@@ -81,7 +81,6 @@
         }
       ],
       "artifacts": [],
-      "level": "green",
       "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements",
       "backtest": {
         "status": "ok",
@@ -208,7 +207,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:12:18+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-02",
@@ -218,15 +218,124 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/02_kiss_icp",
       "title": "KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way",
       "venue": "**RA-L 2023**",
-      "static_status": "⬜ 未开始（论文报告值已记录）",
+      "static_status": "🟡 **代码跑通并出数**（0.409 %）；⚠️ **数字与论文不可直接比**，原因见下",
       "heading": "01-02 · KISS-ICP",
-      "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
-      "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "ran": true,
+      "metrics": {
+        "avg_translation_error_pct": 0.409,
+        "avg_rotational_error_deg_per_m": 0.005,
+        "ATE_m": 0.112,
+        "frames": 141,
+        "trajectory_length_m": 108.3,
+        "metric_samples": 2,
+        "avg_frequency_hz": 50.0,
+        "avg_runtime_ms": 20.0
+      },
+      "checks": [
+        {
+          "name": "official_pipeline_reports_all_metrics",
+          "ok": true,
+          "detail": "ATE 0.112 m, avg translation 0.409 %, avg rotation 0.005 deg/m, 50.0 Hz, 20.0 ms/frame"
+        },
+        {
+          "name": "every_frame_processed",
+          "ok": true,
+          "detail": "141 poses written for 141 input scans"
+        },
+        {
+          "name": "trajectory_matches_the_source_data",
+          "ok": true,
+          "detail": "ground-truth path length 108.3 m against the 108.3 m measured on the benchmark release - a mismatch would mean the pose inversion in make_kitti_seq.py is wrong"
+        }
+      ],
+      "findings": [
+        {
+          "name": "cannot_reproduce_the_published_number_on_free_data",
+          "detail": "KISS-ICP's metric is the KITTI devkit one: segments of {100..800} m starting every 10 frames. This trajectory is 108.3 m, so it yields exactly 2 error sample(s). The paper's 0.5 % averages hundreds of samples over the full KITTI sequences (thousands of metres each). 2 samples is a sanity run, not a reproduction.",
+          "metric_samples": 2,
+          "paper_value_pct": 0.5
+        },
+        {
+          "name": "all_four_paper_datasets_are_gated",
+          "detail": "KITTI odometry needs registration (~80 GB), MulRan needs registration, Boreas needs a form, and Newer College's download page carries no direct links (its download is reported broken upstream). Reproducing the published numbers requires registering for KITTI."
+        },
+        {
+          "name": "kiss_icp_1_3_0_breaks_on_numpy_2",
+          "detail": "pipeline.py:130 calls float() on a shape-(1,) timestamp array, which NumPy 2 no longer allows. The crash is in the TUM-format writer, which runs after _run_evaluation() - so no metric is affected, but without the one-line patch in work/local_patches.patch the run dies before returning them."
+        },
+        {
+          "name": "no_loop_closure_by_design",
+          "detail": "there is no loop closure, no pose graph and no keyframe selection - 141 frames, 50 Hz, 20 ms/frame on CPU. Drift is bounded only by ICP itself, which matters for the H1' experiment in 01-01: a 'cleaned map hurts localization' result could be drift rather than map quality."
+        }
+      ],
+      "artifacts": [
+        "results/kiss_icp_logs/latest/result_metrics.log"
+      ],
+      "note": "KISS-ICP on a reconstructed 141-frame KITTI 00 sub-sequence: ATE 0.112 m, avg translation error 0.409 % over only 2 metric sample(s) - the paper's 0.5 % is NOT reproduced (see findings)",
+      "backtest": {
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "avg_translation_error_pct",
+            "expected": 0.409,
+            "got": 0.409,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "avg_rotational_error_deg_per_m",
+            "expected": 0.005,
+            "got": 0.005,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "ATE_m",
+            "expected": 0.112,
+            "got": 0.112,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "frames",
+            "expected": 141,
+            "got": 141,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "trajectory_length_m",
+            "expected": 108.3,
+            "got": 108.3,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "metric_samples",
+            "expected": 2,
+            "got": 2,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "avg_frequency_hz",
+            "expected": 50.0,
+            "got": 50.0,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "avg_runtime_ms",
+            "expected": 20.0,
+            "got": 20.0,
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T02:06:31+08:00"
+      },
+      "level": "green"
     },
     {
       "id": "01-03",
@@ -238,7 +347,7 @@
       "venue": "**RA-L 2021**",
       "static_status": "🟢 **已复现：命中基准表 I 行（66.70/98.54/81.07）**",
       "heading": "01-03 · ERASOR",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 66.7078,
         "DA": 98.5352,
@@ -297,7 +406,6 @@
       "artifacts": [
         "results/erasor_score.json"
       ],
-      "level": "green",
       "note": "ERASOR (benchmark reimplementation) on KITTI 00: SA/DA/AA = 66.71/98.54/81.07",
       "backtest": {
         "status": "ok",
@@ -368,7 +476,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-04",
@@ -380,7 +489,7 @@
       "venue": "**IROS 2020**",
       "static_status": "🟢 **已复现：命中基准表 I 行（99.44/41.53/64.26）**；⚠️ 原论文闭源",
       "heading": "01-04 · Removert",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 99.4361,
         "DA": 41.5313,
@@ -417,7 +526,6 @@
       "artifacts": [
         "results/removert_score.json"
       ],
-      "level": "green",
       "note": "Removert (benchmark reimplementation) on KITTI 00: SA/DA/AA = 99.44/41.53/64.26",
       "backtest": {
         "status": "ok",
@@ -488,7 +596,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-05",
@@ -500,7 +609,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：与论文 2 位小数完全一致**",
       "heading": "01-05 · DUFOMap",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 97.9635,
         "DA": 98.7196,
@@ -551,7 +660,6 @@
         "results/dufomap_score_paper_default_dp1.json",
         "results/dufomap_score_benchmark_example_dp2.json"
       ],
-      "level": "green",
       "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
       "backtest": {
         "status": "ok",
@@ -636,7 +744,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:56:38+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-06",
@@ -648,7 +757,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：命中论文表 I（96.76/98.38/97.56）**",
       "heading": "01-06 · BeautyMap",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 96.9529,
         "DA": 98.3382,
@@ -689,7 +798,6 @@
       "artifacts": [
         "results/beautymap_score.json"
       ],
-      "level": "green",
       "note": "BeautyMap on KITTI 00: SA/DA/HA = 96.95/98.34/97.64 vs paper 96.76/98.38/97.56",
       "backtest": {
         "status": "ok",
@@ -760,7 +868,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:06:29+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-07",
@@ -790,7 +899,7 @@
       "venue": "**IROS 2025**",
       "static_status": "🟢 **已复现：ATE 与 RPE-平移命中论文**；RPE-旋转有一处未解差异",
       "heading": "01-08 · NGD-SLAM",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "ATE_rigid_m": 0.015709,
         "ATE_scaled_m": 0.013536,
@@ -849,12 +958,108 @@
       "artifacts": [
         "results/ngd_slam_rgbd_dataset_freiburg3_walking_xyz_trial1_CameraTrajectory.txt"
       ],
-      "level": "green",
       "note": "NGD-SLAM on TUM fr3/walking_xyz: ATE 0.0157 m vs paper 0.015 m; RPE trans 0.0201 m/s vs 0.02",
       "backtest": {
-        "status": "no-baseline",
-        "diffs": []
-      }
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "ATE_rigid_m",
+            "expected": 0.015709,
+            "got": 0.015709,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "ATE_scaled_m",
+            "expected": 0.013536,
+            "got": 0.013536,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "scale_fit",
+            "expected": 0.973356,
+            "got": 0.973356,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "RPE_trans_mps",
+            "expected": 0.020093,
+            "got": 0.020093,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "RPE_rot_rmse_dps",
+            "expected": 0.603603,
+            "got": 0.603603,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "RPE_rot_mean_dps",
+            "expected": 0.475287,
+            "got": 0.475287,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "frames",
+            "expected": 827,
+            "got": 827,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "mean_tracking_ms",
+            "expected": 20.758,
+            "got": 20.758,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "trials",
+            "expected": 3,
+            "got": 3,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "ATE_trials",
+            "expected": [
+              0.014969,
+              0.016363,
+              0.015709
+            ],
+            "got": [
+              0.014969,
+              0.016363,
+              0.015709
+            ],
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "RPE_trans_trials",
+            "expected": [
+              0.019811,
+              0.021173,
+              0.020093
+            ],
+            "got": [
+              0.019811,
+              0.021173,
+              0.020093
+            ],
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T01:48:19+08:00"
+      },
+      "level": "green"
     },
     {
       "id": "01-09",
@@ -884,7 +1089,7 @@
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
       "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
       "heading": "02-01 · 3RScan",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -978,7 +1183,6 @@
         "results/observability.json",
         "results/observability.csv"
       ],
-      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -1161,7 +1365,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "02-02",

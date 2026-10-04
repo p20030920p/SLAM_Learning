@@ -1,0 +1,28 @@
+--- a/venv/lib/python3.12/site-packages/kiss_icp/pipeline.py
++++ b/venv/lib/python3.12/site-packages/kiss_icp/pipeline.py
+@@ -127,7 +127,12 @@
+                 for idx in range(len(poses)):
+                     tx, ty, tz = poses[idx, :3, -1].flatten()
+                     qw, qx, qy, qz = Quaternion(matrix=poses[idx], atol=0.01).elements
+-                    tum_data[idx] = np.r_[float(timestamps[idx]), tx, ty, tz, qx, qy, qz, qw]
++                    # LOCAL PATCH (2026-10-05): NumPy 2 removed the implicit
++                    # conversion of a 1-element array to float, and the KITTI loader
++                    # hands us timestamps shaped (N, 1), so float(timestamps[idx])
++                    # raises TypeError. This is in the TUM-format writer only - it
++                    # does not touch the odometry or the metrics.
++                    tum_data[idx] = np.r_[float(np.asarray(timestamps[idx]).reshape(-1)[0]),
++                                          tx, ty, tz, qx, qy, qz, qw]
+                 tum_data.flatten()
+                 return tum_data.astype(np.float64)
+ 
+# WHY THIS IS SAFE TO APPLY AND SAFE TO SKIP
+# -----------------------------------------
+# kiss-icp 1.3.0 calls float() on a shape-(1,) array at pipeline.py:130. NumPy 1.25
+# deprecated that and NumPy 2 removed it, so with NumPy >= 2 the call raises
+# TypeError. The crash is in _write_result_poses(), which pipeline.py:86-94 runs
+# AFTER _run_evaluation() - the four metrics are already computed by then. So the
+# patch changes no number; without it the run simply dies before returning them.
+#
+# Exact command used (the venv is not a git checkout, hence sed rather than patch):
+#   sed -i 's|float(timestamps\[idx\])|float(np.asarray(timestamps[idx]).reshape(-1)[0])|' \
+#       reproductions/.venvs/dmb/lib/python3.12/site-packages/kiss_icp/pipeline.py

@@ -1,0 +1,33 @@
+{
+  "reproduction": "01-02",
+  "paper": "KISS-ICP: In Defense of Point-to-Point ICP (RA-L 2023)",
+  "recorded": "2026-10-05T02:06:31+08:00",
+  "recorded_with": "reproduce.py: official kiss-icp 1.3.0, KITTI dataloader, 141-frame KITTI 00 sub-sequence rebuilt from the benchmark Zenodo release",
+  "rel_tolerance": 0.02,
+  "note": "This is NOT the paper's number and the checks do not compare against it. KISS-ICP's metric is the KITTI devkit one with 100-800 m segments; this trajectory is 108.3 m, so it yields exactly 2 samples against the paper's hundreds over full sequences. The value is tracked so drift in the code path is caught, not as a reproduction claim. Reproducing 0.50 % needs KITTI odometry registration.",
+  "paper_reported": {
+    "KITTI_00_10_avg_translation_error_pct": 0.5,
+    "source": "Table II p.6",
+    "status": "NOT REPRODUCED - evaluation set unavailable"
+  },
+  "metrics": {
+    "avg_translation_error_pct": 0.409,
+    "avg_rotational_error_deg_per_m": 0.005,
+    "ATE_m": 0.112,
+    "frames": 141,
+    "trajectory_length_m": 108.3,
+    "metric_samples": 2,
+    "avg_frequency_hz": 50.0,
+    "avg_runtime_ms": 20.0
+  },
+  "checks_expected": [
+    "official_pipeline_reports_all_metrics",
+    "every_frame_processed",
+    "trajectory_matches_the_source_data"
+  ],
+  "environment": {
+    "package": "kiss-icp 1.3.0 from PyPI (repo commit 1ffa7d7, 2026-05-04)",
+    "patch_required": "pipeline.py:130 float() on a shape-(1,) array - NumPy 2 removed it; see work/local_patches.patch",
+    "data_gap": "KITTI/MulRan/Boreas registration-gated; Newer College download broken upstream"
+  }
+}
