@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T01:16:15+08:00",
+  "generated": "2026-10-05T01:48:54+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
-    "green": 6,
+    "green": 7,
     "failed": 0,
     "blocked": 0,
-    "planned": 11,
-    "ran_this_pass": 6
+    "planned": 10,
+    "ran_this_pass": 0
   },
   "reproductions": [
     {
@@ -20,7 +20,7 @@
       "venue": "**ITSC 2023**（arXiv:2307.07260）",
       "static_status": "🟡 地基已跑通（数据 + 评测器 + 交叉验证）；四个方法的数字待跑",
       "heading": "01-01 · DynamicMap_Benchmark",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "frames": 141,
         "gt_points": 17362230,
@@ -81,6 +81,7 @@
         }
       ],
       "artifacts": [],
+      "level": "green",
       "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements",
       "backtest": {
         "status": "ok",
@@ -207,8 +208,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:12:18+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-02",
@@ -238,7 +238,7 @@
       "venue": "**RA-L 2021**",
       "static_status": "🟢 **已复现：命中基准表 I 行（66.70/98.54/81.07）**",
       "heading": "01-03 · ERASOR",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 66.7078,
         "DA": 98.5352,
@@ -297,6 +297,7 @@
       "artifacts": [
         "results/erasor_score.json"
       ],
+      "level": "green",
       "note": "ERASOR (benchmark reimplementation) on KITTI 00: SA/DA/AA = 66.71/98.54/81.07",
       "backtest": {
         "status": "ok",
@@ -367,8 +368,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-04",
@@ -380,7 +380,7 @@
       "venue": "**IROS 2020**",
       "static_status": "🟢 **已复现：命中基准表 I 行（99.44/41.53/64.26）**；⚠️ 原论文闭源",
       "heading": "01-04 · Removert",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 99.4361,
         "DA": 41.5313,
@@ -417,6 +417,7 @@
       "artifacts": [
         "results/removert_score.json"
       ],
+      "level": "green",
       "note": "Removert (benchmark reimplementation) on KITTI 00: SA/DA/AA = 99.44/41.53/64.26",
       "backtest": {
         "status": "ok",
@@ -487,8 +488,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-05",
@@ -500,7 +500,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：与论文 2 位小数完全一致**",
       "heading": "01-05 · DUFOMap",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 97.9635,
         "DA": 98.7196,
@@ -551,6 +551,7 @@
         "results/dufomap_score_paper_default_dp1.json",
         "results/dufomap_score_benchmark_example_dp2.json"
       ],
+      "level": "green",
       "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
       "backtest": {
         "status": "ok",
@@ -635,8 +636,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:56:38+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-06",
@@ -648,7 +648,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：命中论文表 I（96.76/98.38/97.56）**",
       "heading": "01-06 · BeautyMap",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 96.9529,
         "DA": 98.3382,
@@ -689,6 +689,7 @@
       "artifacts": [
         "results/beautymap_score.json"
       ],
+      "level": "green",
       "note": "BeautyMap on KITTI 00: SA/DA/HA = 96.95/98.34/97.64 vs paper 96.76/98.38/97.56",
       "backtest": {
         "status": "ok",
@@ -759,8 +760,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:06:29+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-07",
@@ -788,15 +788,73 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/08_ngd_slam",
       "title": "NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU",
       "venue": "**IROS 2025**",
-      "static_status": "⬜ 未开始（论文报告值已记录）",
+      "static_status": "🟢 **已复现：ATE 与 RPE-平移命中论文**；RPE-旋转有一处未解差异",
       "heading": "01-08 · NGD-SLAM",
       "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
-      "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "metrics": {
+        "ATE_rigid_m": 0.015709,
+        "ATE_scaled_m": 0.013536,
+        "scale_fit": 0.973356,
+        "RPE_trans_mps": 0.020093,
+        "RPE_rot_rmse_dps": 0.603603,
+        "RPE_rot_mean_dps": 0.475287,
+        "frames": 827,
+        "mean_tracking_ms": 20.758,
+        "trials": 3,
+        "ATE_trials": [
+          0.014969,
+          0.016363,
+          0.015709
+        ],
+        "RPE_trans_trials": [
+          0.019811,
+          0.021173,
+          0.020093
+        ]
+      },
+      "checks": [
+        {
+          "name": "reproduces_paper_ate",
+          "ok": true,
+          "detail": "ATE (rigid, no scale) = 0.0157 m vs paper 0.015 m (Table I p.5, f3/walking_xyz), within 0.003"
+        },
+        {
+          "name": "reproduces_paper_rpe_translation",
+          "ok": true,
+          "detail": "RPE translation = 0.0201 m/s vs paper 0.02 m/s, within 0.003"
+        },
+        {
+          "name": "every_frame_was_processed",
+          "ok": true,
+          "detail": "827 poses written; the paper requires processing all 827 frames, and both mechanisms (mask propagation and optical flow) depend on frame-to-frame continuity"
+        }
+      ],
+      "findings": [
+        {
+          "name": "rotational_rpe_depends_on_an_unspecified_convention",
+          "detail": "our rotational RPE is 0.604 °/s by RMSE but 0.475 °/s by mean, against the paper's 0.47 °/s. The column is headed only 'RPE rotation (°/s)'. The distribution is skewed (median far below the max), which is exactly when the choice matters. Translation shows the same asymmetry but much smaller, so it happens to agree either way.",
+          "rmse": 0.603603,
+          "mean": 0.475287,
+          "paper": 0.47
+        },
+        {
+          "name": "cheap_semantics_is_the_actual_contribution",
+          "detail": "reading the official source, the system DOES use a neural network (YOLO-fastest-xl at 320x320, System.cc:217) - what it removes is the tracker's dependency on waiting for it (Tracking.cc:1592 never blocks, Tracking.cc:4286 propagates the old mask with LK optical flow). So it is a scheduling result, not a geometry-only result, and it inherits COCO's blind spot for unknown dynamic objects."
+        },
+        {
+          "name": "wall_clock_is_the_same_order_as_the_paper",
+          "detail": "mean tracking 20.76 ms/frame vs the paper's 16.72 ms (~60 FPS). Measured headless on different hardware, so this supports 'same order of magnitude on CPU', not an exact match."
+        }
+      ],
+      "artifacts": [
+        "results/ngd_slam_rgbd_dataset_freiburg3_walking_xyz_trial1_CameraTrajectory.txt"
+      ],
+      "level": "green",
+      "note": "NGD-SLAM on TUM fr3/walking_xyz: ATE 0.0157 m vs paper 0.015 m; RPE trans 0.0201 m/s vs 0.02",
+      "backtest": {
+        "status": "no-baseline",
+        "diffs": []
+      }
     },
     {
       "id": "01-09",
@@ -826,7 +884,7 @@
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
       "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
       "heading": "02-01 · 3RScan",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -920,6 +978,7 @@
         "results/observability.json",
         "results/observability.csv"
       ],
+      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -1102,8 +1161,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "02-02",

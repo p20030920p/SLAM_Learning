@@ -1,0 +1,47 @@
+{
+  "reproduction": "01-08",
+  "paper": "NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU (IROS 2025)",
+  "recorded": "2026-10-05T01:48:19+08:00",
+  "recorded_with": "reproduce.py: official repo yuhaozhang7/NGD-SLAM @a93a14c, TUM fr3/walking_xyz, all 827 frames, headless, median of 3 trials",
+  "rel_tolerance": 0.02,
+  "note": "ATE and RPE-translation reproduce the paper. Rotational RPE does not under the RMSE convention (0.604 vs 0.470) but does under the mean (0.475) - the paper's column header does not say which statistic it reports. The system is thread-parallel, so single runs vary more than the gap to the paper; the reported values are medians of 3 trials and the per-trial spread is recorded.",
+  "paper_reported": {
+    "ATE": 0.015,
+    "RPE_trans": 0.02,
+    "RPE_rot": 0.47,
+    "source": "Table I p.5, TUM f3/walking_xyz"
+  },
+  "metrics": {
+    "ATE_rigid_m": 0.015709,
+    "ATE_scaled_m": 0.013536,
+    "scale_fit": 0.973356,
+    "RPE_trans_mps": 0.020093,
+    "RPE_rot_rmse_dps": 0.603603,
+    "RPE_rot_mean_dps": 0.475287,
+    "frames": 827,
+    "mean_tracking_ms": 20.758,
+    "trials": 3,
+    "ATE_trials": [
+      0.014969,
+      0.016363,
+      0.015709
+    ],
+    "RPE_trans_trials": [
+      0.019811,
+      0.021173,
+      0.020093
+    ]
+  },
+  "checks_expected": [
+    "reproduces_paper_ate",
+    "reproduces_paper_rpe_translation",
+    "every_frame_was_processed"
+  ],
+  "environment": {
+    "pangolin": "ros-jazzy-pangolin 0.9.6 unpacked into code/.deps/pangolin (no sudo, no distro package)",
+    "epoxy": "libepoxy 1.5.10 unpacked into the same prefix; PangolinTargets.cmake repointed",
+    "viewer": "disabled in Examples/RGB-D/rgbd_tum.cc (one line) - see work/local_patches.patch",
+    "build": "-j3; -j10 gets OOM-killed on a 15 GB machine",
+    "sophus": "NOT built - the project only uses its headers (CMakeLists.txt:49)"
+  }
+}

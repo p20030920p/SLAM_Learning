@@ -24,7 +24,7 @@
 | **01-05** | DUFOMap | RA-L 2024 | KITTI 00，SA/DA/AA = **97.96 / 98.72 / 98.34** | ✅ **已复现（精确命中）** | [→](01_robust_localization_slam_dynamic/05_dufomap/paper_baseline.md) |
 | **01-06** | BeautyMap | RA-L 2024 | KITTI 01，SA/DA/HA = **99.17 / 92.99 / 95.98** | 🟡 CPU 可跑，数据需注册 | [→](01_robust_localization_slam_dynamic/06_beautymap/paper_baseline.md) |
 | **01-07** | DynoSAM | T-RO 2025 | OMD (S4U) 相机 ATE **0.11 m** | 🔴 需 CUDA + TensorRT | [→](01_robust_localization_slam_dynamic/07_dynosam/paper_baseline.md) |
-| **01-08** | NGD-SLAM | IROS 2025 | TUM f3/w xyz **ATE 0.015 m**，CPU 16.72 ms/帧 | 🟢 **纯 CPU、数据免注册** — 次优入口 | [→](01_robust_localization_slam_dynamic/08_ngd_slam/paper_baseline.md) |
+| **01-08** | NGD-SLAM | IROS 2025 | TUM f3/w xyz **ATE 0.015 m**，CPU 16.72 ms/帧 | ✅ **已复现（ATE / RPE-平移命中）** | [→](01_robust_localization_slam_dynamic/08_ngd_slam/paper_baseline.md) |
 | **01-09** | LT-mapper | ICRA 2022 | delta map **85.7 MB vs 213.6 MB**，**9.8 s vs 87/160 s** | 🟡 ROS 1（EOL），关键序列需联系作者 | [→](01_robust_localization_slam_dynamic/09_lt_mapper/paper_baseline.md) |
 | **02-01** | 3RScan / RIO | ICCV 2019 | 1482 scans / 478 场景 / 1004 rescan；RIO-D Recall@<0.2m,20° = **23.76** | 🟡 本机已有 1 对（32 物体）；全量需申请 | [→](02_semantic_mapping_visual_anchoring_navigation/01_3rscan/paper_baseline.md) |
 | **02-02** | OASIS-Map | arXiv 2026-07 | 3RScan **moved F1 0.353** / static F1 0.663；Car Park Replaced F1 **0.783** | 🔴 代码未发布 | [→](02_semantic_mapping_visual_anchoring_navigation/02_oasis_map/paper_baseline.md) |
@@ -43,8 +43,7 @@
 
 | 类别 | 数量 | 哪些 |
 | :--- | ---: | :--- |
-| ✅ **已经复现成功** | 4 | **01-01 / 01-03 / 01-04 / 01-05 / 01-06 的 D 线清理链路**（3 个命中两位小数，1 个在 0.2 pp 内） |
-| 🟢 **CPU + 数据可得，能直接做** | 1 | 01-08 NGD-SLAM（TUM + BONN，免注册，约 3.5 GB） |
+| ✅ **已经复现成功** | 5 | **01-01 / 01-03 / 01-04 / 01-05 / 01-06 的 D 线清理链路**（3 个命中两位小数，1 个在 0.2 pp 内）· **01-08 NGD-SLAM**（ATE 与 RPE-平移命中） |
 | 🟡 **CPU 但数据要注册** | 2 | 01-02 KISS-ICP · 01-09 LT-mapper（要 ROS 1） |
 | 🔴 **需要 GPU** | 7 | 01-07 DynoSAM · 02-03 ConceptGraphs · 02-04 DualMap · 02-05 HOV-SG · 02-06 Clio · 02-07 AnyLoc · 02-08 Revisit Anything |
 | ⚫ **别的阻塞** | 2 | 01-04 Removert（论文闭源，但基准重实现已复现）· 02-02 OASIS-Map（代码未发布） |
@@ -67,6 +66,25 @@
 | DUFOMap（01-05） | **97.9635** | **98.7196** | 98.3401 | **98.3408** | 97.96 / 98.72 / — / 98.34 | < 0.01 pp |
 
 **四个方法、两个独立的论文来源（DynamicMap_Benchmark / DUFOMap / BeautyMap），数字全部对上。**
+
+### 01-08 NGD-SLAM：论文用的不是几何方法
+
+**这是读代码推翻了计划里的一条判断。** 本目录原来把 NGD-SLAM 描述成「不用神经网络做分割，
+改用光流 + 深度方差」——**错的**。它的官方仓库（论文自己给的地址）里 `System.cc:217` 明确创建了
+YOLO-fastest-xl 语义线程。它真正的贡献是**让追踪不再等网络**：
+
+| 机制 | 代码位置 | 效果 |
+| :--- | :--- | :--- |
+| 掩码传播 | `Tracking.cc:4286`（腐蚀 → 15 px 栅格采样 → LK 光流 → DBSCAN → 画回掩码） | 网络只需要偶尔给一次真值，中间帧用光流推 |
+| 追踪不阻塞 | `Tracking.cc:1592` 的 `else if(mFrameNum > 1) break;` | 除第 1 帧外，追踪从不等待语义线程 |
+| 非关键帧不提 ORB | `Tracking.cc:1602` 建空帧 + `ORBmatcher.cc:2012` 纯光流匹配 | 省掉描述子计算 |
+| 兜底 | `Tracking.cc:3381` 分级规则（内点 <20 立即切，<75 隔 5 帧，<300 隔 30 帧） | 光流不可靠时退回完整 ORB |
+
+复现结果：**ATE 0.0157 m（论文 0.015）、RPE 平移 0.0201 m/s（论文 0.020）都命中**；
+RPE 旋转按 RMSE 是 0.604 而论文 0.470，按**均值**是 0.475——论文表头没写是哪个统计量，**未解差异**。
+
+→ 对计划的影响：**car.md 难点 1 不能拿 NGD-SLAM 当「纯几何运动视差」的证据**，
+它依赖 YOLO 的 COCO 类别，未知动态物体同样漏。
 
 ### 顺带得到的两条结论
 
@@ -146,4 +164,4 @@
 | **01-04 Removert 原文** | 🔴 闭源（OpenAlex: `is_oa: false`），作者镜像站 DNS 不通。需机构订阅 |
 | 其余 16 篇原文 | ✅ 全部在手（15 篇本地 + RIO/ERASOR 原版/OASIS-Map 本次补取） |
 | KITTI / SemanticKITTI / Argoverse 2 原始数据 | 🟡 需注册。**但 01-01/01-05 已用 Zenodo 直链绕过**（KITTI 00 + GT，385 MB，免注册） |
-| 各复现的 `reproduce.py` | **5/17**（02-01 · 01-03 · 01-04 · 01-05 · 01-06），全部带 `baselines.json` 回测 |
+| 各复现的 `reproduce.py` | **6/17**（02-01 · 01-03 · 01-04 · 01-05 · 01-06 · 01-08），全部带 `baselines.json` 回测 |

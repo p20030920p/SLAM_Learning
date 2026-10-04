@@ -206,9 +206,9 @@ partial views, occlusion, and imperfect segmentation"——是**关联可靠性*
 
 | 类别 | 数量 | 哪些 |
 | :--- | ---: | :--- |
-| ✅ 已复现 | 1 | **01-05 DUFOMap**（SA/DA/AA 与论文 2 位小数完全一致） |
-| 🟢 CPU + 数据可得 | 2 | 01-01（数据已在手）· 01-08 NGD-SLAM（TUM/BONN 免注册） |
-| 🟡 CPU 但数据要注册 | 4 | 01-02 · 01-03 · 01-06 · 01-09 |
+| ✅ 已复现 | 5 | **01-01 / 01-03 / 01-04 / 01-05 / 01-06**（D 线清理链路，3 个命中两位小数）· **01-08 NGD-SLAM**（ATE / RPE-平移命中） |
+| 🟢 CPU + 数据可得 | 0 | — |
+| 🟡 CPU 但数据要注册 | 2 | 01-02 KISS-ICP · 01-09 LT-mapper（ROS 1） |
 | 🔴 需要 GPU | 7 | 01-07 · 02-03 · 02-04 · 02-05 · 02-06 · 02-07 · 02-08 |
 | ⚫ 其他阻塞 | 2 | 01-04（论文闭源）· 02-02（代码未发布） |
 
@@ -351,20 +351,20 @@ python3 reproductions/run_all.py --no-backtest
 
 ## 复现进度 Reproduction progress
 
-**进度** — 6/17 跑通 · 6 本次实际运行 · 6/17 已自动化 · 更新于 2026-10-05 01:16 CST
+**进度** — 7/17 跑通 · 0 本次实际运行 · 7/17 已自动化 · 更新于 2026-10-05 01:48 CST
 
 | # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | ✅ | ✅ 通过 | 17 项指标 · 2 条 finding |
+| 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | — | ✅ 通过 | 17 项指标 · 2 条 finding |
 | 01-02 | D1 | KISS-ICP | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 01-03 | D1 | ERASOR | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 2 条 finding |
-| 01-04 | D1 | Removert | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 2 条 finding |
-| 01-05 | D1 | DUFOMap | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
-| 01-06 | D1 | BeautyMap | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 3 条 finding |
+| 01-03 | D1 | ERASOR | 🟢 green | — | ✅ 通过 | 9 项指标 · 2 条 finding |
+| 01-04 | D1 | Removert | 🟢 green | — | ✅ 通过 | 9 项指标 · 2 条 finding |
+| 01-05 | D1 | DUFOMap | 🟢 green | — | ✅ 通过 | 11 项指标 · 3 条 finding |
+| 01-06 | D1 | BeautyMap | 🟢 green | — | ✅ 通过 | 9 项指标 · 3 条 finding |
 | 01-07 | D1 | DynoSAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 01-08 | D1 | NGD-SLAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-08 | D1 | NGD-SLAM | 🟢 green | — | — | 11 项指标 · 3 条 finding |
 | 01-09 | D1 | LT-mapper | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
+| 02-01 | D2 | 3RScan | 🟢 green | — | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
 | 02-02 | D2 | OASIS-Map | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-03 | D2 | ConceptGraphs | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-04 | D2 | DualMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
