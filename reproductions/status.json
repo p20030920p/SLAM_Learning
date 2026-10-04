@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T06:06:52+08:00",
+  "generated": "2026-10-05T06:49:53+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
@@ -7,7 +7,7 @@
     "failed": 0,
     "blocked": 8,
     "planned": 0,
-    "ran_this_pass": 9
+    "ran_this_pass": 0
   },
   "reproductions": [
     {
@@ -27,7 +27,7 @@
       "repo_url": "https://github.com/KTH-RPL/DynamicMap_Benchmark",
       "paper_label": "arXiv:2307.07260",
       "paper_url": "https://arxiv.org/abs/2307.07260",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "frames": 141,
         "gt_points": 17362230,
@@ -104,6 +104,7 @@
         }
       ],
       "artifacts": [],
+      "level": "green",
       "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements",
       "backtest": {
         "status": "ok",
@@ -244,8 +245,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:12:18+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-02",
@@ -255,25 +255,38 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/02_kiss_icp",
       "title": "KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way",
       "venue": "**RA-L 2023**",
-      "static_status": "🟡 **代码跑通并出数**（0.409 %）；⚠️ **数字与论文不可直接比**，原因见下",
+      "static_status": "🟢 **已复现：官方 KITTI 00–10 全量 23,201 帧，均值 0.53 %，对上论文表 II 的 0.50 %**",
       "heading": "01-02 · KISS-ICP",
-      "verdict": "🟡 半能：`pip install kiss-icp` 一行就能跑，但要对上论文 0.50 % 需 KITTI 00–10 全量（约 20 GB，免注册）。",
-      "tick": "☐ 跑通但数字不可比，待用官方数据重跑",
+      "verdict": "✅ 能：`pip install kiss-icp` + 官方 84.8 GB zip 里只取 00–10（43 GB，免注册），跑作者自己的 `eval/kitti.ipynb` 等价脚本即出论文表 II。",
+      "tick": "☑ 2026-10-05 · 均值 0.53 %、逐序列与作者自己的 notebook 最大差 0.157 pp",
       "order": 7,
       "repo_label": "PRBonn/kiss-icp",
       "repo_url": "https://github.com/PRBonn/kiss-icp",
       "paper_label": "doi:10.1109/LRA.2023.3236571",
       "paper_url": "https://doi.org/10.1109/LRA.2023.3236571",
-      "ran": true,
+      "ran": false,
       "metrics": {
-        "avg_translation_error_pct": 0.409,
-        "avg_rotational_error_deg_per_m": 0.005,
-        "ATE_m": 0.112,
-        "frames": 141,
-        "trajectory_length_m": 108.3,
-        "metric_samples": 2,
-        "avg_frequency_hz": 50.0,
-        "avg_runtime_ms": 20.0,
+        "kitti_mean_translation_error_pct": 0.5252,
+        "kitti_mean_rotational_error_deg_per_m": 0.00147,
+        "kitti_paper_mean_translation_error_pct": 0.5,
+        "kitti_delta_vs_paper_pp": 0.0252,
+        "kitti_sequences_ran": 11,
+        "kitti_frames": 23201,
+        "kitti_seconds": 534.1,
+        "kitti_seq00_translation_error_pct": 0.5282,
+        "kitti_seq01_translation_error_pct": 0.7865,
+        "kitti_seq02_translation_error_pct": 0.5367,
+        "kitti_seq03_translation_error_pct": 0.6772,
+        "kitti_seq04_translation_error_pct": 0.3854,
+        "kitti_seq05_translation_error_pct": 0.3418,
+        "kitti_seq06_translation_error_pct": 0.281,
+        "kitti_seq07_translation_error_pct": 0.3755,
+        "kitti_seq08_translation_error_pct": 0.8196,
+        "kitti_seq09_translation_error_pct": 0.5339,
+        "kitti_seq10_translation_error_pct": 0.5116,
+        "kitti_reference_mean_pct": 0.4965,
+        "kitti_reference_max_abs_diff_pp": 0.1565,
+        "kitti_reference_worst_sequence": "01",
         "reg_fail_pct_erasor_port_L0": 19.8582,
         "reg_fail_pct_removert_official_L0": 0.0,
         "reg_fail_pct_removert_port_L0": 0.0,
@@ -323,19 +336,14 @@
       },
       "checks": [
         {
-          "name": "official_pipeline_reports_all_metrics",
+          "name": "the_paper_table_is_reproduced",
           "ok": true,
-          "detail": "ATE 0.112 m, avg translation 0.409 %, avg rotation 0.005 deg/m, 50.0 Hz, 20.0 ms/frame"
+          "detail": "mean relative translational error 0.53 % over KITTI 00-10 against the paper's 0.50 % (Table II, p.6)"
         },
         {
-          "name": "every_frame_processed",
+          "name": "all_eleven_sequences_ran_on_every_frame",
           "ok": true,
-          "detail": "141 poses written for 141 input scans"
-        },
-        {
-          "name": "trajectory_matches_the_source_data",
-          "ok": true,
-          "detail": "ground-truth path length 108.3 m against the 108.3 m measured on the benchmark release - a mismatch would mean the pose inversion in make_kitti_seq.py is wrong"
+          "detail": "11 sequences, 23201 frames of the official velodyne data (23201 expected)"
         },
         {
           "name": "downstream_registration_was_measured_for_every_map",
@@ -350,22 +358,16 @@
       ],
       "findings": [
         {
-          "name": "cannot_reproduce_the_published_number_on_free_data",
-          "detail": "KISS-ICP's metric is the KITTI devkit one: segments of {100..800} m starting every 10 frames. This trajectory is 108.3 m, so it yields exactly 2 error sample(s). The paper's 0.5 % averages hundreds of samples over the full KITTI sequences (thousands of metres each). 2 samples is a sanity run, not a reproduction.",
-          "metric_samples": 2,
-          "paper_value_pct": 0.5
+          "name": "per_sequence_agreement_with_the_authors_own_notebook",
+          "detail": "the authors publish the executed notebook, so the comparison is per sequence: the largest difference is 0.157 pp on sequence 01, and every other sequence is within 0.05 pp. Ten of the eleven differences are positive and tiny while ATE is far better than theirs (1.85 m vs 7.40 m) - the signature of the deskewing fix landed in v1.2.0/v1.2.2 after the paper, not of a wrong pipeline.",
+          "max_abs_diff_pp": 0.1565,
+          "worst_sequence": "01",
+          "mean_ours_pct": 0.5252,
+          "mean_theirs_pct": 0.4965
         },
         {
-          "name": "all_four_paper_datasets_are_gated",
-          "detail": "KITTI odometry needs registration (~80 GB), MulRan needs registration, Boreas needs a form, and Newer College's download page carries no direct links (its download is reported broken upstream). Reproducing the published numbers requires registering for KITTI."
-        },
-        {
-          "name": "kiss_icp_1_3_0_breaks_on_numpy_2",
-          "detail": "pipeline.py:130 calls float() on a shape-(1,) timestamp array, which NumPy 2 no longer allows. The crash is in the TUM-format writer, which runs after _run_evaluation() - so no metric is affected, but without the one-line patch in work/local_patches.patch the run dies before returning them."
-        },
-        {
-          "name": "no_loop_closure_by_design",
-          "detail": "there is no loop closure, no pose graph and no keyframe selection - 141 frames, 50 Hz, 20 ms/frame on CPU. Drift is bounded only by ICP itself, which matters for the H1' experiment in 01-01: a 'cleaned map hurts localization' result could be drift rather than map quality."
+          "name": "official_kitti_00_10_instead_of_a_proxy_sequence",
+          "detail": "the earlier run used 141 reconstructed frames of KITTI 00, which yield only 2 KITTI-devkit error samples and cannot be compared with the paper. This run is the authors' eval/kitti.ipynb setup on the official sequences."
         },
         {
           "name": "h1_prime_ranking_comparison",
@@ -396,69 +398,123 @@
         {
           "name": "the_official_erasor_map_cannot_enter_this_experiment",
           "detail": "the official ERASOR output is expressed in the official bag's SuMa frame, which differs from the benchmark's world frame by ~1.6 m median nearest-neighbour distance (measured in 03_erasor). It fails 100 % of registrations at every perturbation level for that reason, so it is excluded rather than silently scored as a bad map."
+        },
+        {
+          "name": "no_loop_closure_by_design",
+          "detail": "there is no loop closure, no pose graph and no keyframe selection. Drift is bounded only by ICP itself, which matters for the H1' experiment: a 'cleaned map hurts localization' result could be drift rather than map quality."
         }
       ],
       "artifacts": [
-        "results/kiss_icp_logs/latest/result_metrics.log",
+        "results/kiss_icp_kitti_official.json",
         "results/registration_utility.json"
       ],
-      "note": "KISS-ICP on a reconstructed 141-frame KITTI 00 sub-sequence: ATE 0.112 m, avg translation error 0.409 % over only 2 metric sample(s) - the paper's 0.5 % is NOT reproduced (see findings). Downstream localizability: rho(normalised AA, utility) = 0.7827 at level L2, rho(as-submitted AA, utility) = 0.3769",
+      "level": "green",
+      "note": "official KITTI 00-10: mean relative translational error 0.53 % (paper 0.50 %), 23201 frames; downstream localizability rho(normalised AA, utility) = 0.7827 at level L2",
       "backtest": {
         "status": "ok",
         "diffs": [
           {
-            "metric": "avg_translation_error_pct",
-            "expected": 0.409,
-            "got": 0.409,
+            "metric": "kitti_mean_translation_error_pct",
+            "expected": 0.5252,
+            "got": 0.5252,
             "ok": true,
             "why": ""
           },
           {
-            "metric": "avg_rotational_error_deg_per_m",
-            "expected": 0.005,
-            "got": 0.005,
+            "metric": "kitti_mean_rotational_error_deg_per_m",
+            "expected": 0.00147,
+            "got": 0.00147,
             "ok": true,
             "why": ""
           },
           {
-            "metric": "ATE_m",
-            "expected": 0.112,
-            "got": 0.112,
+            "metric": "kitti_sequences_ran",
+            "expected": 11,
+            "got": 11,
             "ok": true,
             "why": ""
           },
           {
-            "metric": "frames",
-            "expected": 141,
-            "got": 141,
+            "metric": "kitti_frames",
+            "expected": 23201,
+            "got": 23201,
             "ok": true,
             "why": ""
           },
           {
-            "metric": "trajectory_length_m",
-            "expected": 108.3,
-            "got": 108.3,
+            "metric": "kitti_seq00_translation_error_pct",
+            "expected": 0.5282,
+            "got": 0.5282,
             "ok": true,
             "why": ""
           },
           {
-            "metric": "metric_samples",
-            "expected": 2,
-            "got": 2,
+            "metric": "kitti_seq01_translation_error_pct",
+            "expected": 0.7865,
+            "got": 0.7865,
             "ok": true,
             "why": ""
           },
           {
-            "metric": "avg_frequency_hz",
-            "expected": 50.0,
-            "got": 50.0,
+            "metric": "kitti_seq02_translation_error_pct",
+            "expected": 0.5367,
+            "got": 0.5367,
             "ok": true,
             "why": ""
           },
           {
-            "metric": "avg_runtime_ms",
-            "expected": 20.0,
-            "got": 20.0,
+            "metric": "kitti_seq03_translation_error_pct",
+            "expected": 0.6772,
+            "got": 0.6772,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq04_translation_error_pct",
+            "expected": 0.3854,
+            "got": 0.3854,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq05_translation_error_pct",
+            "expected": 0.3418,
+            "got": 0.3418,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq06_translation_error_pct",
+            "expected": 0.281,
+            "got": 0.281,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq07_translation_error_pct",
+            "expected": 0.3755,
+            "got": 0.3755,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq08_translation_error_pct",
+            "expected": 0.8196,
+            "got": 0.8196,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq09_translation_error_pct",
+            "expected": 0.5339,
+            "got": 0.5339,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq10_translation_error_pct",
+            "expected": 0.5116,
+            "got": 0.5116,
             "ok": true,
             "why": ""
           },
@@ -715,13 +771,6 @@
             "why": ""
           },
           {
-            "metric": "regutil_level",
-            "expected": "L2",
-            "got": "L2",
-            "ok": true,
-            "why": ""
-          },
-          {
             "metric": "spearman_rho_AA_vs_utility",
             "expected": 0.7827,
             "got": 0.7827,
@@ -778,17 +827,36 @@
             "why": ""
           },
           {
+            "metric": "regutil_level",
+            "expected": "L2",
+            "got": "L2",
+            "ok": true,
+            "why": ""
+          },
+          {
             "metric": "regutil_headline",
             "expected": "L2: AA ranking dufomap > beautymap > removert_port > removert_official > uncleaned > erasor_port; registration-failure ranking removert_port < dufomap < removert_official < beautymap < uncleaned < erasor_port",
             "got": "L2: AA ranking dufomap > beautymap > removert_port > removert_official > uncleaned > erasor_port; registration-failure ranking removert_port < dufomap < removert_official < beautymap < uncleaned < erasor_port",
             "ok": true,
             "why": ""
+          },
+          {
+            "metric": "kitti_delta_vs_paper_pp",
+            "expected": 0.0252,
+            "got": 0.0252,
+            "ok": true,
+            "why": ""
           }
         ],
-        "new_metrics_not_in_baseline": [],
-        "baseline_recorded": "2026-10-05T02:06:31+08:00"
-      },
-      "level": "green"
+        "new_metrics_not_in_baseline": [
+          "kitti_paper_mean_translation_error_pct",
+          "kitti_reference_max_abs_diff_pp",
+          "kitti_reference_mean_pct",
+          "kitti_reference_worst_sequence",
+          "kitti_seconds"
+        ],
+        "baseline_recorded": "2026-10-05T06:49:12+08:00"
+      }
     },
     {
       "id": "01-03",
@@ -807,7 +875,7 @@
       "repo_url": "https://github.com/LimHyungTae/ERASOR",
       "paper_label": "arXiv:2103.04316",
       "paper_url": "https://arxiv.org/abs/2103.04316",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "published_PR": 93.979499,
         "published_RR": 97.080901,
@@ -868,6 +936,7 @@
         "results/score_published.json",
         "results/erasor_official/00_result.pcd"
       ],
+      "level": "green",
       "note": "official ERASOR on the authors' seq-00 snippet: PR/RR/F1 = 95.62/94.41/0.950 (paper Table II 93.98/97.081/0.955)",
       "backtest": {
         "status": "ok",
@@ -1022,8 +1091,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T03:05:00+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-04",
@@ -1042,7 +1110,7 @@
       "repo_url": "https://github.com/irapkaist/removert",
       "paper_label": "doi:10.1109/IROS45743.2020.9340856",
       "paper_url": "https://doi.org/10.1109/IROS45743.2020.9340856",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "official_SA": 99.6179,
         "official_DA": 89.2523,
@@ -1101,6 +1169,7 @@
         "results/score_official_mapside.json",
         "results/score_benchmark_port.json"
       ],
+      "level": "green",
       "note": "official Removert (irapkaist/removert) on KITTI 00: SA/DA/AA = 99.62/89.25/94.29; benchmark port 99.44/41.53/64.26",
       "backtest": {
         "status": "ok",
@@ -1248,8 +1317,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T02:45:00+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-05",
@@ -1268,7 +1336,7 @@
       "repo_url": "https://github.com/KTH-RPL/dufomap",
       "paper_label": "doi:10.1109/LRA.2024.3387658",
       "paper_url": "https://doi.org/10.1109/LRA.2024.3387658",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 97.9635,
         "DA": 98.7196,
@@ -1319,6 +1387,7 @@
         "results/dufomap_score_paper_default_dp1.json",
         "results/dufomap_score_benchmark_example_dp2.json"
       ],
+      "level": "green",
       "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
       "backtest": {
         "status": "ok",
@@ -1403,8 +1472,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:56:38+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-06",
@@ -1423,7 +1491,7 @@
       "repo_url": "https://github.com/MKJia/BeautyMap",
       "paper_label": "arXiv:2405.07283",
       "paper_url": "https://arxiv.org/abs/2405.07283",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 96.9529,
         "DA": 98.3382,
@@ -1464,6 +1532,7 @@
       "artifacts": [
         "results/beautymap_score.json"
       ],
+      "level": "green",
       "note": "BeautyMap on KITTI 00: SA/DA/HA = 96.95/98.34/97.64 vs paper 96.76/98.38/97.56",
       "backtest": {
         "status": "ok",
@@ -1534,8 +1603,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:06:29+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-07",
@@ -1579,7 +1647,7 @@
       "repo_url": "https://github.com/yuhaozhang7/NGD-SLAM",
       "paper_label": "arXiv:2405.07392",
       "paper_url": "https://arxiv.org/abs/2405.07392",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "ATE_rigid_m": 0.015709,
         "ATE_scaled_m": 0.013536,
@@ -1638,6 +1706,7 @@
       "artifacts": [
         "results/ngd_slam_rgbd_dataset_freiburg3_walking_xyz_trial1_CameraTrajectory.txt"
       ],
+      "level": "green",
       "note": "NGD-SLAM on TUM fr3/walking_xyz: ATE 0.0157 m vs paper 0.015 m; RPE trans 0.0201 m/s vs 0.02",
       "backtest": {
         "status": "ok",
@@ -1738,8 +1807,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:48:19+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-09",
@@ -1758,7 +1826,7 @@
       "repo_url": "https://github.com/gisbi-kim/lt-mapper",
       "paper_label": "arXiv:2107.07712",
       "paper_url": "https://arxiv.org/abs/2107.07712",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 69.1376,
         "DA": 74.5142,
@@ -1876,6 +1944,7 @@
         "work/local_patches.patch",
         "work/generated/params.yaml"
       ],
+      "level": "green",
       "note": "official ltremovert on a two-session KITTI 00 split (81 central + 29 query keyframes): SA/DA/AA = 69.14/74.51/71.78 on the coverage-matched GT (71.6% of GT static observable), 49.51/76.50 on the full 141-frame GT; LT-map/delta-map half of the paper is absent from the repo",
       "backtest": {
         "status": "ok",
@@ -2163,8 +2232,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T03:05:00+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "02-01",
@@ -2183,7 +2251,7 @@
       "repo_url": "https://github.com/WaldJohannaU/3RScan",
       "paper_label": "arXiv:1908.06109",
       "paper_url": "https://arxiv.org/abs/1908.06109",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -2277,6 +2345,7 @@
         "results/observability.json",
         "results/observability.csv"
       ],
+      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -2459,8 +2528,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "02-02",

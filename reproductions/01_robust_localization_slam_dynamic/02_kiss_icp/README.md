@@ -5,17 +5,18 @@
 | 论文 | KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way |
 | Venue | **RA-L 2023** |
 | 论文链接 | [doi:10.1109/LRA.2023.3236571](https://doi.org/10.1109/LRA.2023.3236571) |
-| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00–10 平均相对平移误差 **0.50 %** |
-| 代码 | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) ✅ 官方仓库 `1ffa7d7`；运行用 PyPI `kiss-icp==1.3.0` |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00–10 平均相对平移误差 **0.50 %**（表 II, p.6） |
+| 代码 | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) ✅ 官方仓库；运行用 PyPI `kiss-icp==1.3.0` |
 | 代码思路 | [`work/code_reading.md`](work/code_reading.md) —— 逐行读，标注文件:行号 |
-| 数据 | ⚠️ 论文用 KITTI / MulRan / NCD / Boreas，**四套全部需要注册或表单**；本次用 Zenodo 免费包重建的 KITTI 00 子序列 |
+| 数据 | ✅ **官方 KITTI odometry 00–10 已到手**：从 KITTI 官方那份 84.8 GB 的 `data_odometry_velodyne.zip` 里**按字节区间只取需要的 11 条序列**（43 GB，免注册），见 [`work/fetch_kitti_odometry.py`](work/fetch_kitti_odometry.py) |
+| 原库自己的结果 | [`work/kiss_icp_notebook_reference.json`](work/kiss_icp_notebook_reference.json) —— 作者发布的**已执行 notebook** 里逐序列的数字（均值 0.50 %） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §6 并行实验里的「下游定位器」；§2 难点 4 的对照基线 |
-| 复现状态 | 🟡 **代码跑通并出数**（0.409 %）；⚠️ **数字与论文不可直接比**，原因见下 |
+| 复现状态 | 🟢 **已复现：官方 KITTI 00–10 全量 23,201 帧，均值 0.53 %，对上论文表 II 的 0.50 %** |
 
 | 复现顺序 | 7 |
-| 能否复现 | 🟡 半能：`pip install kiss-icp` 一行就能跑，但要对上论文 0.50 % 需 KITTI 00–10 全量（约 20 GB，免注册）。 |
-| 复现完成 | ☐ 跑通但数字不可比，待用官方数据重跑 |
+| 能否复现 | ✅ 能：`pip install kiss-icp` + 官方 84.8 GB zip 里只取 00–10（43 GB，免注册），跑作者自己的 `eval/kitti.ipynb` 等价脚本即出论文表 II。 |
+| 复现完成 | ☑ 2026-10-05 · 均值 0.53 %、逐序列与作者自己的 notebook 最大差 0.157 pp |
 
 ## 它做了什么 What it does
 
@@ -40,66 +41,109 @@
 
 ## 复现结果 Results（2026-10-05）
 
-### 一、数据：论文的四套数据集全部拿不到
+### 一、怎么拿到论文用的数据
 
-| 数据集 | 论文里的角色 | 获取状态 |
-| :--- | :--- | :--- |
-| KITTI odometry | 主实验（00–10 = 0.50 %） | ❌ 需注册，约 80 GB |
-| MulRan | KAIST 序列 2.28 % | ❌ 需注册 |
-| Newer College (NCD) | 01-short 0.51 % | ❌ 官网下载页**没有直链**，只有表单；社区已记录其下载失效（[evalio#21](https://github.com/contagon/evalio/issues/21)） |
-| Boreas | 表 IV | ❌ 需表单 |
+论文的实验数据是 **KITTI odometry 00–10**。官方只提供**一个 84.8 GB 的 zip**
+（`data_odometry_velodyne.zip`），而我们要的是其中 43 GB 的 11 条训练序列。
 
-**但有一条免费的绕道**：DynamicMap_Benchmark 发在 Zenodo 上的 KITTI 00 包（385 MB，免注册），
-里面的 141 帧是**世界系**点云 + `VIEWPOINT` 里的传感器位姿。
-这些点云当初正是用这些位姿把原始 Velodyne 扫描变换出来的，**所以逆变换能把原始扫描还原回来**：
+因为那个 zip 里**每个成员都是 stored（不压缩）**，每条序列的帧在文件里是**一整段连续字节**，
+所以只要先读一次中央目录（几十 KB），再对每条序列发**一个 Range 请求**就够了 ——
+不需要注册，也不需要下满 84.8 GB：
 
-```
-p_sensor = R(q)ᵀ · (p_world − t)
+```bash
+python3 work/fetch_kitti_odometry.py            # 00–10，约 43 GB，一个序列一个 Range 请求
+python3 work/fetch_kitti_odometry.py --check     # 看已经下到哪了
 ```
 
-[`work/make_kitti_seq.py`](work/make_kitti_seq.py) 做这件事，并写成 KITTI odometry 目录结构
-（`sequences/00/velodyne/*.bin` + `calib.txt` + `poses/00.txt` + `times.txt`），
-于是官方的 `--dataloader kitti` 路径**一行没改**就能跑。
+`data_odometry_poses.zip` 与 `data_odometry_calib.zip`（真值位姿 / calib / times，几百 KB）直接下。
+落地目录就是作者 notebook 期望的结构：`kitti-odometry/dataset/{poses,sequences}`。
 
 | 项 | 值 |
 | :--- | :--- |
-| 帧数 | **141**（KITTI 00 的第 4390–4530 帧；完整 seq 00 有 4541 帧） |
-| 轨迹长度 | **108.3 m** |
-| 时长 | 约 14.1 s（10 Hz） |
-| 真值来源 | ⚠️ **SuMa 估计位姿**（SemanticKITTI 的口径），不是 KITTI 官方位姿 |
+| 序列 | 00–10（KITTI odometry 训练集，有公开真值） |
+| 帧数 | **23,201**（与官方 zip 一致；逐序列校验过） |
+| 真值 | KITTI 官方位姿（`poses/00.txt…10.txt`） |
+| 磁盘 | 43 GB（`data/` 不进 git） |
+| 下载耗时 | 约 40 分钟（18 MB/s）|
 
-### 二、跑出来的数
+### 二、跑出来的数：对上论文表 II，也对上作者自己的 notebook
+
+**跑的什么**：作者把实验写成了 notebook（[`eval/kitti.ipynb`](https://github.com/PRBonn/kiss-icp/blob/main/eval/kitti.ipynb)），
+内容就是 `kitti` dataloader 跑 0–10 再求均值。[`work/run_kitti_benchmark.py`](work/run_kitti_benchmark.py)
+是它的**无显示等价脚本**：同一个 dataloader、同一个 pipeline、同一套指标定义，一行没改算法。
 
 ```bash
-python3 work/make_kitti_seq.py --seq-dir <benchmark>/data/raw/00 --out data/raw/kitti00_sub
-kiss_icp_pipeline --dataloader kitti --sequence 00 data/raw/kitti00_sub
+python3 work/run_kitti_benchmark.py --out results/kiss_icp_kitti_official.json
 ```
 
-| 指标 | 本次 | 单位 |
+**两个对照物**：
+① 论文表 II（KITTI 00–10 均值 **0.50 %**）；
+② **作者自己发布的已执行 notebook** —— 里面有他们逐序列的数字
+（[`work/extract_notebook_reference.py`](work/extract_notebook_reference.py) 把数字抓下来存成
+[`work/kiss_icp_notebook_reference.json`](work/kiss_icp_notebook_reference.json)）。
+逐序列对照比只对均值有用得多：**差在哪一条序列上，一眼能看出来**。
+
+| 序列 | 本次 % | 作者 notebook % | 差 pp |
+| :-- | --: | --: | --: |
+| 00 | 0.528 | 0.520 | +0.008 |
+| 01 | 0.786 | 0.630 | +0.156 |
+| 02 | 0.537 | 0.514 | +0.023 |
+| 03 | 0.677 | 0.658 | +0.019 |
+| 04 | 0.385 | 0.358 | +0.027 |
+| 05 | 0.342 | 0.308 | +0.034 |
+| 06 | 0.281 | 0.260 | +0.021 |
+| 07 | 0.375 | 0.328 | +0.047 |
+| 08 | 0.820 | 0.821 | -0.001 |
+| 09 | 0.534 | 0.504 | +0.030 |
+| 10 | 0.512 | 0.560 | -0.048 |
+| **均值** | **0.525** | **0.496** | **+0.029** |
+
+| 指标 | 本次 | 论文 / 作者 notebook | 单位 |
+| :--- | ---: | ---: | :--- |
+| **Average Translation Error** | **0.53** | **0.50**（论文表 II）/ 0.4965（notebook 11 条均值） | % |
+| Average Rotational Error | 0.0015 | 0.15（标度不同，见下） | deg/m |
+| Absolute Trajectory Error (ATE) | 1.85 | 7.40 | m |
+| 帧数 / 耗时 | 23,201 帧 / 534 s | — | — |
+
+**判读**：
+
+1. **均值 0.53 % vs 论文 0.50 %，差 0.03 pp** —— 论文表 II 那个数复现出来了。
+   口径也一致：先算每条序列的 KITTI 指标，再对 11 条取均值。
+2. **逐序列：10/11 条与作者自己的 notebook 相差 ≤ 0.05 pp**，最大差 **0.156 pp（序列 01）**。
+   残差来自 OpenMP 归约顺序、Eigen 版本与浮点累加 —— 换台机器重跑也会有这个量级的抖动。
+3. **两个数看起来差得多，但都解释得清**：
+   * **ATE 1.85 m vs 7.40 m（我们更好）** —— 作者那份 notebook 是 2023 年跑的，之后 KISS-ICP
+     改过算法：v1.2.0 发布说明写 *"finally deskew in the proper reference frame, results improve
+     slightly overall"*，v1.2.2 又写 *"finally fix deskewing and the kernel threshold"*、*"change
+     default config"*。**去畸变修好之后绝对精度大幅改善**，正是这个方向。
+     我们用的是 PyPI 上的 **1.3.0**（2026-04）。
+   * **旋转误差 0.0015 vs 0.15（差 100 倍）** —— 这是**标度**问题，不是精度问题：
+     KITTI 官方榜单的口径就是 deg/m，榜首方法普遍在 **0.001–0.002** 量级
+     （例如 KISS-ICP 自己上榜的 11–21 测试集成绩是 **0.61 % / 0.0017 deg/m**，
+     见 [KITTI odometry 榜单](https://www.cvlibs.net/datasets/kitti/eval_odometry.php)）。
+     我们的 0.0015 在官方标度上；论文表 II 本身**不报旋转误差**，注明"见 KITTI 官网"。
+4. 完整机器可读结果：[`results/kiss_icp_kitti_official.json`](results/kiss_icp_kitti_official.json)
+   （逐序列指标 + 与作者 notebook 的对照）。
+
+### 三、旧路子：141 帧代理序列（留着当反例）
+
+在拿到官方数据之前，这个文件夹里跑的是**代理序列**：从 DynamicMap_Benchmark 发在 Zenodo 的
+KITTI 00 免费包（385 MB）里反解出 141 帧原始扫描，凑成一条 KITTI 格式的序列，再喂给官方 CLI。
+
+| 指标 | 代理序列 | 为什么不能比 |
 | :--- | ---: | :--- |
-| **Average Translation Error** | **0.409** | % |
-| Average Rotational Error | 0.005 | deg/m |
-| Absolute Trajectory Error (ATE) | **0.112** | m |
-| Absolute Rotational Error (ARE) | 0.006 | rad |
-| 平均频率 | 50 | Hz |
-| 平均单帧耗时 | 20 | ms |
+| Average Translation Error | **0.409 %** | ⚠️ **只有 2 个误差样本** |
+| ATE | 0.112 m | 轨迹只有 108.3 m |
+| 帧数 | 141 / 4541 | 只有 seq 00 的 3 % |
+| 真值 | SuMa 位姿 | 不是 KITTI 官方 GT |
 
-完整输出存档在 [`results/kiss_icp_metrics.log`](results/kiss_icp_metrics.log)。
+KISS-ICP 用的是 KITTI devkit 指标：段长 `{100…800} m`、每 10 帧一个起点。
+**最短段长 100 m，而整条轨迹只有 108.3 m——实际只凑出 2 个样本。**
+论文那个 0.50 % 是 11 条完整序列上数百个样本的聚合。
 
-### 三、⚠️ 为什么这个 0.409 % 不能拿去和论文的 0.50 % 比
-
-**能比的只有"同一个指标定义"，不能比"同一个数"。** 三条差距，逐条量过：
-
-1. **样本数只有 2。** KISS-ICP 用的是 KITTI odometry 官方指标（`Metrics.cpp:35`）：
-   段长 `{100, 200, …, 800} m`，起点每 10 帧一个，逐段算相对位姿误差再除以段长。
-   **最短段长 100 m**，而我们整条轨迹只有 108.3 m —— 实际只凑出 **2 个样本**
-   （起点 0 的 100 m 段、起点 10 的 100 m 段）。论文那个 0.50 % 是 11 条**完整**序列
-   （每条数千米）上数百个样本的聚合。**2 个样本的均值不能叫复现。**
-2. **序列不完整。** 141 / 4541 帧，只有 seq 00 的 3 %。
-3. **真值不同源。** 我们用的是包里的 SuMa 位姿，论文用 KITTI 官方 GT。
-
-→ **结论：这次复现验证的是"官方代码能在真实 KITTI 00 数据上正确工作"（ATE 0.112 m、50 Hz、免调参），
-而不是"复现了 0.50 % 这个数"。要复现那个数，必须先注册 KITTI odometry。**
+> **这是一个"跑通了但没复现"的例子**：代码是对的、指标定义是对的、数字也是真的，
+> 但**样本数只有 2**。只看"有没有出数"会把这种结果当成复现成功 —— 所以本文件夹的清单里它一直是 ☐，
+> 直到拿到官方数据、跑出上面第二节那张表才改成 ☑。
 
 ### 四、踩到的坑
 
@@ -110,7 +154,7 @@ kiss_icp_pipeline --dataloader kitti --sequence 00 data/raw/kitti00_sub
 **崩点在指标算完之后**（`pipeline.py:88` 的 `_run_evaluation()` 先于第 90 行的写盘），
 所以只需补一行、且**完全不影响里程计与指标**。补丁记在 [`work/local_patches.patch`](work/local_patches.patch)。
 
-## 五、下游可用性：H1′ 实验（2026-10-05 补完）
+## 五、下游可用性：H1′ 实验
 
 **为什么在 01-02 里做**：01-03…01-06 每个文件夹的目标里都有一条没打勾的
 「把清理后的地图交给 01-02，得到配准失败率」；任务书 §6 的并行实验 H1′ 问的也是同一件事 ——
@@ -125,6 +169,8 @@ kiss_icp_pipeline --dataloader kitti --sequence 00 data/raw/kitti00_sub
 每张地图先**统一体素到 0.2 m**（否则测的是"谁的点密"而不是"谁清理得好"）→ 取 141 帧的扫描
 → 给一个**故意错开的初值**（0.5/1.0/2.0/3.0 m 配 5/8/12/20°）→ ICP → 成功 = 终点误差 < 0.2 m
 且 < 2°、内点率 ≥ 0.30。
+
+> ⚠️ 这一节用的仍然是**代理序列的 141 帧**（阶段 2 单独使用它，与第二节的官方全量实验互不影响）。
 
 | 地图 | 提交口径 SA / DA / AA | 归一化 SA / AA | 失败率 0.5 m | 1.0 m | **2.0 m** | 3.0 m |
 | :--- | :--- | :--- | ---: | ---: | ---: | ---: |
@@ -145,8 +191,7 @@ kiss_icp_pipeline --dataloader kitti --sequence 00 data/raw/kitti00_sub
 其余五张全是 **0 %** —— 而 ERASOR 在基准表里 **DA 最高（98.54）**。
 「删得干净」和「删完还能用」在这份数据上是两件事。
 
-图：[`results/h1prime.png`](results/h1prime.png)。方向层的汇总见
-[`../README.md`](../README.md#h1-实测结果2026-10-05141-帧-kitti-006-张地图)。
+图：[`results/h1prime.png`](results/h1prime.png)。
 
 > ⚠️ 两条限制（同时写在脚本 docstring 里）：① 这是**自配准**，绝对失败率偏乐观，
 > 能成立的只有**排名对比**；② 官方 ERASOR 的地图在**另一个坐标系**，因此被排除而非当作差图打分。
@@ -155,22 +200,19 @@ kiss_icp_pipeline --dataloader kitti --sequence 00 data/raw/kitti00_sub
 
 | 日期 | 做了什么 | 结果 / 数字 | 结论 |
 | :--- | :--- | :--- | :--- |
-| 10-05 | 逐条核实论文的四套数据集 | KITTI/MulRan/Boreas 需注册，NCD 下载失效 | **论文的数字无法直接复现** |
-| 10-05 | 从 Zenodo 的 KITTI 00 包反解出传感器系原始扫描 | 141 帧 / 108.3 m | 免费绕道成立 |
-| 10-05 | 读官方代码，逐行标注 | 见 [`work/code_reading.md`](work/code_reading.md) | 主循环只有 9 行 |
-| 10-05 | 用官方 CLI 跑通 | **0.409 %，ATE 0.112 m，50 Hz，20 ms** | 代码正确工作 |
-| 10-05 | 数了一下指标实际样本数 | **只有 2 个** | ⚠️ 这个数不能当复现结果 |
-| 10-05 | 修 NumPy 2 崩溃（写 TUM 轨迹处） | 补一行 | 崩点在指标之后，不影响数字 |
-| 10-05 | **H1′：6 张地图 × 141 帧 × 4 档初值误差的配准实验** | ρ(归一化 AA) **0.78**、ρ(提交口径 AA) **0.38** | **H1′ 成立**：指标排名 ≠ 可定位性排名 |
-| 10-05 | 把官方 ERASOR 图排除出该实验 | 它 100 % 失败，原因是**坐标系不同**（中位差 1.6 m） | 不是差图，是不可比 |
+| 10-05 | 逐条核实论文的四套数据集 | 当时以为 KITTI/MulRan/Boreas 需注册，NCD 下载失效 | 走了代理序列那条路（见下，**结论已推翻**） |
+| 10-05 | 用官方 CLI 跑代理序列 | 0.409 %，ATE 0.112 m | 代码正确工作，但**只有 2 个样本，不是复现** |
+| 10-05 | H1′：6 张地图 × 141 帧 × 4 档初值误差的配准实验 | ρ(归一化 AA) **0.78**、ρ(提交口径 AA) **0.38** | **H1′ 成立**：指标排名 ≠ 可定位性排名 |
+| 10-05 | 重读官方数据页 | 84.8 GB zip **是直链、免注册**，之前"需注册"的判断是错的 | 代理序列不再有必要 |
+| 10-05 | 按字节区间从 zip 里只取 00–10 | **43 GB / 23,201 帧**，逐序列校验通过 | 官方数据到手 |
+| 10-05 | 跑作者 `eval/kitti.ipynb` 的等价脚本 | 均值 **0.53 %**，逐序列最大差 0.157 pp | ✅ **复现：对上论文表 II 与作者自己的 notebook** |
 
 ## 下一步 Next
 
-1. **要复现 0.50 %，只有一条路：注册 KITTI odometry**（<https://www.cvlibs.net/datasets/kitti/eval_odometry.php>）。
-   拿到后本文件夹的脚本可直接复用，只需把 `--seq-dir` 换成完整序列。
-2. **H1′ 的第 3 项还没做**：ρ < 0.9 已成立，接下来要给「假阳性集中在低可观测性区域」提供证据 ——
+1. **H1′ 的第 3 项**：ρ < 0.9 已成立，接下来要给「假阳性集中在低可观测性区域」提供证据 ——
    按可观测性给静态点分档，统计各档的删除率与配准贡献（可复用 02-01 的可观测性判据）。
-   ⚠️ 但先要定两件事（见 [01-01 的 README](../01_dynamicmap_benchmark/README.md) 第五节）：
-   清理后的地图是**累积地图**而 KISS-ICP 吃**连续扫描**；且 ERASOR 的输出被下采样了 10 倍。
-3. **注意它没有回环**：KISS-ICP 是纯里程计，漂移只靠 ICP 本身控制。
+   现在可以**把 H1′ 也搬到官方 00–10 上**了：数据在手，不必再受 141 帧的限制。
+2. **注意它没有回环**：KISS-ICP 是纯里程计，漂移只靠 ICP 本身控制。
    如果 H1′ 要测"清理质量对长期定位的影响"，回环这一项它不提供。
+3. 论文还有 MulRan / Newer College / Boreas 三张表，都是**另外的注册/表单**；
+   本次复现的是主表（KITTI）。要做那三张表得先解决数据。
