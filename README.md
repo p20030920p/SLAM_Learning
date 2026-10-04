@@ -41,7 +41,7 @@ planning method in, drive the robot, and find out whether it actually works.
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— ☑ 7 · ◐ 2 · ⛔ 8（共 17） · 更新于 2026-10-05 06:49 CST
+**按「越好复现 + 越能对上原库结果」排序** —— ☑ 8 · ◐ 2 · ☐ 3 · ⛔ 8（共 21） · 更新于 2026-10-05 07:58 CST
 
 | # | ✓ | 复现库 | 对应论文 | 能不能复现（一句话） |
 | :-- | :-- | :-- | :-- | :-- |
@@ -52,7 +52,11 @@ planning method in, drive the robot, and find out whether it actually works.
 | 01-04 | ☑ | [irapkaist/removert](https://github.com/irapkaist/removert) | [doi:10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856) | ✅ 能，但要 ROS 1：官方仓库跑通；原论文没有数字表，对上的是官方仓库自己的输出。 |
 | 01-08 | ☑ | [yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) | [arXiv:2405.07392](https://arxiv.org/abs/2405.07392) | ✅ 能：官方代码明确「无 GPU」，TUM RGB-D 免注册直链，对上论文的 ATE / RPE 表。 |
 | 01-02 | ☑ | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) | [doi:10.1109/LRA.2023.3236571](https://doi.org/10.1109/LRA.2023.3236571) | ✅ 能：`pip install kiss-icp` + 官方 84.8 GB zip 里只取 00–10（43 GB，免注册），跑作者自己的 `eval/kitti.ipynb` 等价脚本即出论文表 II。 |
+| 01-10 | ☑ | [cocel-postech/genz-icp](https://github.com/cocel-postech/genz-icp) | [arXiv:2411.06766](https://arxiv.org/abs/2411.06766) | ✅ 能：`pip install genz-icp pyyaml` + 已经在手的 KITTI 00–10，跑 `kitti.yaml` 预调参数即出论文表 III。 |
 | 01-09 | ◐ | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) | 🟡 半能：要 ROS 1 + MulRan（需注册）+ 先有 SC-LIO-SAM 会话；仓库只有 ltremovert 半边，lt-map 无代码。 |
+| 01-11 | ☐ | [dongjae0107/ELite](https://github.com/dongjae0107/ELite) | [arXiv:2502.13452](https://arxiv.org/abs/2502.13452) | 🟡 能（比 LT-mapper 容易）：`conda create -n elite python=3.10` + `gdown` 拉 ParkingLot 示例 → `python3 run_elite.py ./config/parkinglot.yaml`；纯 CPU，CUDA 只用于可选的加速匹配。 |
+| 01-12 | ☐ | [UZ-SLAMLab/ORB_SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) | [arXiv:2007.11898](https://arxiv.org/abs/2007.11898) | 🟡 能，但要先解决 EuRoC 下载镜像：`./build.sh` 自包含编译（Pangolin/OpenCV/Eigen 需另装），跑 `euroc_examples.sh` 出轨迹，再按论文的 ATE 表对照；纯 CPU，慢但不需 GPU。 |
+| 01-13 | ☐ | [MIT-SPARK/Khronos](https://github.com/MIT-SPARK/Khronos) | [arXiv:2402.13817](https://arxiv.org/abs/2402.13817) | 🟡 能，但是本清单里最重的一个：`vcs import` 拉一个 ROS 2 工作区（Hydra/spark_dsg 等一系列依赖）+ `colcon build`，再跑 GDrive 上的 bag；换来的是**官方评测脚本直接产出论文那张表**。 |
 | 02-01 | ◐ | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) | 🟡 半能：仓库只有数据集 + 工具（数据要签协议），三个二进制可跑，没有方法代码。 |
 | 02-06 | ⛔ | [MIT-SPARK/Clio](https://github.com/MIT-SPARK/Clio) | [arXiv:2404.13696](https://arxiv.org/abs/2404.13696) | ⛔ 本机不能：要 ROS 1 + GPU 语义推理（TensorRT）；只有离线评测入口能绕开 ROS，但仍要先有图。 |
 | 02-07 | ⛔ | [AnyLoc/AnyLoc](https://github.com/AnyLoc/AnyLoc) | [arXiv:2308.00688](https://arxiv.org/abs/2308.00688) | ⛔ 本机不能：论文表格要 GPU 提特征；官方只提供 HF Space / Colab 的免 GPU 演示。 |

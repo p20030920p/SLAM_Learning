@@ -81,9 +81,17 @@ D1 关心地图在变化中还能不能用来定位，D2 关心地图里有什�
 > 所以它**本来就是单线 2D 雷达**，话题 `/scan` —— 正好对实物那台雷达。
 > 缺的是 **D435i**：当前 `front_camera` 是普通 RGB（640×480、15 Hz），**无深度、无 IMU**。
 
-**建议的补法**（需要点头，见任务书 §6 的仿真说明）：
-新增 **01-10（VIO 半边）** 与 **01-11（2D 雷达 + IMU 半边）** 两条复现，
-再把 Gazebo 的传感器补齐成 D435i + 2D 雷达，这样"仿真验证 → 自采确认"才能闭环。
+**已经补进去的**：[`01-12 ORB-SLAM3`](01_robust_localization_slam_dynamic/12_orb_slam3/) ——
+双目惯性（相机 + IMU 那半边），而且仓库自带 `Examples/Stereo-Inertial/stereo_inertial_realsense_D435i`
+例子，正好对上实物相机；[`01-10 GenZ-ICP`](01_robust_localization_slam_dynamic/10_genz_icp/)、
+[`01-11 ELite`](01_robust_localization_slam_dynamic/11_elite/)、
+[`01-13 Khronos`](01_robust_localization_slam_dynamic/13_khronos/) 是同一轮检查后加进来的、
+本机能跑的 D1 候选。
+
+**还缺入口的**：**2D 雷达 + IMU 那半边**（候选 **Cartographer** / **RTAB-Map**，两个仓库实测可达、
+纯 CPU，官方数据分别是 Deutsches Museum bag（493 MB 直链）与自采）—— 本机是 ROS 2，
+而 Cartographer 官方是 ROS 1，得走和 ERASOR/Removert 同一套 micromamba 路线。
+再把 Gazebo 的传感器补齐成 **D435i + 2D 雷达**，"仿真验证 → 自采确认"才能闭环。
 
 ---
 
@@ -240,8 +248,8 @@ LT-mapper / LOG-LIO / FAST-LIVO2 / Clio / FAST-LIO2 / DLIO / Kalibr 全是 ROS 1
 
 | 类别 | 数量 | 哪些 |
 | :--- | ---: | :--- |
-| ✅ 已复现（对上原库/论文） | 6 | 01-05 DUFOMap（两位小数一致）· 01-06 BeautyMap · 01-01 DynamicMap_Benchmark · 01-03 ERASOR · 01-04 Removert · 01-08 NGD-SLAM（ATE / RPE-平移命中） |
-| 🟡 一半 | 3 | 01-02 KISS-ICP（跑通但数字不可比）· 01-09 LT-mapper（只有变化检测半边）· 02-01 3RScan（工具跑通，无方法代码） |
+| ✅ 已复现（对上原库/论文） | 7 | 01-05 DUFOMap（两位小数一致）· 01-06 BeautyMap · 01-01 DynamicMap_Benchmark · 01-03 ERASOR · 01-04 Removert · 01-08 NGD-SLAM（ATE / RPE-平移命中）· 01-02 KISS-ICP（官方 KITTI 00–10 全量，0.53 % vs 论文 0.50 %） |
+| 🟡 一半 / 待做 | 6 | 01-09 LT-mapper（只有变化检测半边）· 02-01 3RScan（工具跑通，无方法代码）· 01-10 GenZ-ICP · 01-11 ELite · 01-12 ORB-SLAM3 · 01-13 Khronos（四个新候选，已检查、本机能跑） |
 | ⛔ 本机不可复现 | 8 | 01-07 · 02-02（无代码）· 02-03 · 02-04 · 02-05 · 02-06 · 02-07 · 02-08（全部要 GPU） |
 
 ### 数据：KITTI 注册阻塞已被绕开

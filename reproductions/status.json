@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T06:49:53+08:00",
+  "generated": "2026-10-05T07:58:41+08:00",
   "root": "reproductions",
   "summary": {
-    "total": 17,
-    "green": 9,
+    "total": 21,
+    "green": 10,
     "failed": 0,
     "blocked": 8,
-    "planned": 0,
-    "ran_this_pass": 0
+    "planned": 3,
+    "ran_this_pass": 1
   },
   "reproductions": [
     {
@@ -1617,7 +1617,7 @@
       "heading": "01-07 · DynoSAM",
       "verdict": "⛔ 本机不能：`cmake` configure 阶段就要 CUDA / TensorRT（dynosam_nn），与数据无关。",
       "tick": "⛔ 本机不可复现（无 GPU）",
-      "order": 16,
+      "order": 20,
       "repo_label": "ACFR-RPG/DynoSAM",
       "repo_url": "https://github.com/ACFR-RPG/DynoSAM",
       "paper_label": "arXiv:2501.11893",
@@ -1821,7 +1821,7 @@
       "heading": "01-09 · LT-mapper",
       "verdict": "🟡 半能：要 ROS 1 + MulRan（需注册）+ 先有 SC-LIO-SAM 会话；仓库只有 ltremovert 半边，lt-map 无代码。",
       "tick": "◐ 变化检测半边已跑通，建图半边仓库里没有",
-      "order": 8,
+      "order": 9,
       "repo_label": "gisbi-kim/lt-mapper",
       "repo_url": "https://github.com/gisbi-kim/lt-mapper",
       "paper_label": "arXiv:2107.07712",
@@ -2235,6 +2235,287 @@
       }
     },
     {
+      "id": "01-10",
+      "direction": "01_robust_localization_slam_dynamic",
+      "direction_code": "D1",
+      "folder": "10_genz_icp",
+      "path": "reproductions/01_robust_localization_slam_dynamic/10_genz_icp",
+      "title": "GenZ-ICP: Generalizable and Degeneracy-Robust LiDAR Odometry Using an Adaptive Weighting",
+      "venue": "**RA-L 2025**（arXiv:2411.06766）",
+      "static_status": "🟢 **已复现**：均值 **0.52 %**（论文表 III 0.51 %），23,201 帧；同数据 KISS-ICP 0.53 %",
+      "heading": "01-10 · GenZ-ICP",
+      "verdict": "✅ 能：`pip install genz-icp pyyaml` + 已经在手的 KITTI 00–10，跑 `kitti.yaml` 预调参数即出论文表 III。",
+      "tick": "☑ 2026-10-05 · 均值 0.52 %（论文 0.51 %，差 +0.01 pp）",
+      "order": 8,
+      "repo_label": "cocel-postech/genz-icp",
+      "repo_url": "https://github.com/cocel-postech/genz-icp",
+      "paper_label": "arXiv:2411.06766",
+      "paper_url": "https://arxiv.org/abs/2411.06766",
+      "ran": true,
+      "metrics": {
+        "kitti_mean_translation_error_pct": 0.5193,
+        "kitti_mean_rotational_error_deg_per_m": 0.00124,
+        "kitti_mean_ate_m": 4.9379,
+        "kitti_paper_mean_translation_error_pct": 0.51,
+        "kitti_delta_vs_paper_pp": 0.0093,
+        "kitti_sequences_ran": 11,
+        "kitti_frames": 23201,
+        "kitti_seconds": 1001.2,
+        "kitti_seq00_translation_error_pct": 0.5089,
+        "kitti_seq01_translation_error_pct": 0.917,
+        "kitti_seq02_translation_error_pct": 0.5073,
+        "kitti_seq03_translation_error_pct": 0.7206,
+        "kitti_seq04_translation_error_pct": 0.3965,
+        "kitti_seq05_translation_error_pct": 0.2765,
+        "kitti_seq06_translation_error_pct": 0.2811,
+        "kitti_seq07_translation_error_pct": 0.317,
+        "kitti_seq08_translation_error_pct": 0.8295,
+        "kitti_seq09_translation_error_pct": 0.4997,
+        "kitti_seq10_translation_error_pct": 0.4581,
+        "kiss_icp_same_data_translation_error_pct": 0.5252,
+        "genz_minus_kiss_icp_pp": -0.0059
+      },
+      "checks": [
+        {
+          "name": "the_paper_table_is_reproduced",
+          "ok": true,
+          "detail": "mean relative translational error 0.52 % over KITTI 00-10 against the paper's 0.51 % (Table III, p.5); delta +0.01 pp, tolerance ±0.05 pp"
+        },
+        {
+          "name": "all_eleven_sequences_ran_on_every_frame",
+          "ok": true,
+          "detail": "11 sequences, 23201 frames of the official velodyne data (23201 expected)"
+        }
+      ],
+      "findings": [
+        {
+          "name": "the_parameter_set_is_part_of_the_result",
+          "detail": "genz-icp ships several pre-tuned parameter sets and the KITTI one is not the default. On sequence 04 the generic defaults give 5.23 % / ATE 10.10 m while `kitti.yaml` gives 0.40 % / ATE 0.87 m - a factor of 13. Reproducing this paper without the shipped config reproduces nothing."
+        },
+        {
+          "name": "head_to_head_with_kiss_icp_on_identical_data",
+          "detail": "the paper's Table III puts KISS-ICP at 0.50 % and GenZ-ICP at 0.51 % on these same sequences. On this machine: KISS-ICP 0.53 % (measured in 01-02) and GenZ-ICP 0.52 % - a 0.01 pp gap in the opposite direction, i.e. the two are tied within run-to-run noise. The paper's own claim is a 0.01 pp difference, so 'tied' is the honest reading of both.",
+          "genz_pct": 0.5193,
+          "kiss_icp_pct": 0.5252
+        },
+        {
+          "name": "save_poses_tum_format_breaks_on_numpy_2",
+          "detail": "genz_icp/pipeline.py:134 calls float() on a shape-(1,) KITTI timestamp, which NumPy 2 removed. The crash sits after _run_evaluation(), so metrics are unaffected; work/run_kitti_benchmark.py substitutes an equivalent writer rather than patching site-packages."
+        }
+      ],
+      "artifacts": [
+        "results/genz_icp_kitti.json"
+      ],
+      "note": "official KITTI 00-10: mean relative translational error 0.52 % (paper 0.51 %), 23201 frames; KISS-ICP on the same data 0.53 %",
+      "backtest": {
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "kitti_mean_translation_error_pct",
+            "expected": 0.5193,
+            "got": 0.5193,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_mean_rotational_error_deg_per_m",
+            "expected": 0.00124,
+            "got": 0.00124,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_mean_ate_m",
+            "expected": 4.9379,
+            "got": 4.9379,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_paper_mean_translation_error_pct",
+            "expected": 0.51,
+            "got": 0.51,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_sequences_ran",
+            "expected": 11,
+            "got": 11,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_frames",
+            "expected": 23201,
+            "got": 23201,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq00_translation_error_pct",
+            "expected": 0.5089,
+            "got": 0.5089,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq01_translation_error_pct",
+            "expected": 0.917,
+            "got": 0.917,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq02_translation_error_pct",
+            "expected": 0.5073,
+            "got": 0.5073,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq03_translation_error_pct",
+            "expected": 0.7206,
+            "got": 0.7206,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq04_translation_error_pct",
+            "expected": 0.3965,
+            "got": 0.3965,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq05_translation_error_pct",
+            "expected": 0.2765,
+            "got": 0.2765,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq06_translation_error_pct",
+            "expected": 0.2811,
+            "got": 0.2811,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq07_translation_error_pct",
+            "expected": 0.317,
+            "got": 0.317,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq08_translation_error_pct",
+            "expected": 0.8295,
+            "got": 0.8295,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq09_translation_error_pct",
+            "expected": 0.4997,
+            "got": 0.4997,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "kitti_seq10_translation_error_pct",
+            "expected": 0.4581,
+            "got": 0.4581,
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [
+          "genz_minus_kiss_icp_pp",
+          "kiss_icp_same_data_translation_error_pct",
+          "kitti_delta_vs_paper_pp",
+          "kitti_seconds"
+        ],
+        "baseline_recorded": "2026-10-05T07:58:41+08:00"
+      },
+      "level": "green"
+    },
+    {
+      "id": "01-11",
+      "direction": "01_robust_localization_slam_dynamic",
+      "direction_code": "D1",
+      "folder": "11_elite",
+      "path": "reproductions/01_robust_localization_slam_dynamic/11_elite",
+      "title": "Ephemerality meets LiDAR-based Lifelong Mapping（代码仓库名 ELite）",
+      "venue": "**ICRA 2025**（arXiv:2502.13452）",
+      "static_status": "⬜ 未开始（已检查：代码可达、数据免注册、纯 CPU）",
+      "heading": "01-11 · ELite",
+      "verdict": "🟡 能（比 LT-mapper 容易）：`conda create -n elite python=3.10` + `gdown` 拉 ParkingLot 示例 → `python3 run_elite.py ./config/parkinglot.yaml`；纯 CPU，CUDA 只用于可选的加速匹配。",
+      "tick": "☐ 待做",
+      "order": 10,
+      "repo_label": "dongjae0107/ELite",
+      "repo_url": "https://github.com/dongjae0107/ELite",
+      "paper_label": "arXiv:2502.13452",
+      "paper_url": "https://arxiv.org/abs/2502.13452",
+      "ran": false,
+      "metrics": {},
+      "checks": [],
+      "findings": [],
+      "artifacts": [],
+      "level": "planned",
+      "note": ""
+    },
+    {
+      "id": "01-12",
+      "direction": "01_robust_localization_slam_dynamic",
+      "direction_code": "D1",
+      "folder": "12_orb_slam3",
+      "path": "reproductions/01_robust_localization_slam_dynamic/12_orb_slam3",
+      "title": "ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM",
+      "venue": "**T-RO 2021**（arXiv:2007.11898）",
+      "static_status": "⬜ 未开始（已检查：仓库可达、无 ROS 依赖、数据公开但镜像需确认）",
+      "heading": "01-12 · ORB-SLAM3（双目惯性 / VIO 半边）",
+      "verdict": "🟡 能，但要先解决 EuRoC 下载镜像：`./build.sh` 自包含编译（Pangolin/OpenCV/Eigen 需另装），跑 `euroc_examples.sh` 出轨迹，再按论文的 ATE 表对照；纯 CPU，慢但不需 GPU。",
+      "tick": "☐ 待做",
+      "order": 11,
+      "repo_label": "UZ-SLAMLab/ORB_SLAM3",
+      "repo_url": "https://github.com/UZ-SLAMLab/ORB_SLAM3",
+      "paper_label": "arXiv:2007.11898",
+      "paper_url": "https://arxiv.org/abs/2007.11898",
+      "ran": false,
+      "metrics": {},
+      "checks": [],
+      "findings": [],
+      "artifacts": [],
+      "level": "planned",
+      "note": ""
+    },
+    {
+      "id": "01-13",
+      "direction": "01_robust_localization_slam_dynamic",
+      "direction_code": "D1",
+      "folder": "13_khronos",
+      "path": "reproductions/01_robust_localization_slam_dynamic/13_khronos",
+      "title": "Khronos: A Unified Approach for Spatio-Temporal Metric-Semantic SLAM in Dynamic Environments",
+      "venue": "**RSS 2024**（arXiv:2402.13817）",
+      "static_status": "⬜ 未开始（已检查：仓库/数据可达，依赖明确；**作者自述 ROS 2 版仍在开发、不稳定**）",
+      "heading": "01-13 · Khronos",
+      "verdict": "🟡 能，但是本清单里最重的一个：`vcs import` 拉一个 ROS 2 工作区（Hydra/spark_dsg 等一系列依赖）+ `colcon build`，再跑 GDrive 上的 bag；换来的是**官方评测脚本直接产出论文那张表**。",
+      "tick": "☐ 待做",
+      "order": 12,
+      "repo_label": "MIT-SPARK/Khronos",
+      "repo_url": "https://github.com/MIT-SPARK/Khronos",
+      "paper_label": "arXiv:2402.13817",
+      "paper_url": "https://arxiv.org/abs/2402.13817",
+      "ran": false,
+      "metrics": {},
+      "checks": [],
+      "findings": [],
+      "artifacts": [],
+      "level": "planned",
+      "note": ""
+    },
+    {
       "id": "02-01",
       "direction": "02_semantic_mapping_visual_anchoring_navigation",
       "direction_code": "D2",
@@ -2246,7 +2527,7 @@
       "heading": "02-01 · 3RScan",
       "verdict": "🟡 半能：仓库只有数据集 + 工具（数据要签协议），三个二进制可跑，没有方法代码。",
       "tick": "◐ 工具已按官方说明跑通，待全量数据",
-      "order": 9,
+      "order": 13,
       "repo_label": "WaldJohannaU/3RScan",
       "repo_url": "https://github.com/WaldJohannaU/3RScan",
       "paper_label": "arXiv:1908.06109",
@@ -2542,7 +2823,7 @@
       "heading": "02-02 · OASIS-Map",
       "verdict": "⛔ 不能复现：代码未发布（项目页仍写 Code Soon），没有库可跑。",
       "tick": "⛔ 无库可复现",
-      "order": 17,
+      "order": 21,
       "repo_label": "",
       "repo_url": "",
       "paper_label": "arXiv:2607.14899",
@@ -2567,7 +2848,7 @@
       "heading": "02-03 · ConceptGraphs",
       "verdict": "⛔ 本机不能：要 CUDA（PyTorch + PyTorch3D），本机没有 GPU。",
       "tick": "⛔ 本机不可复现（无 GPU）",
-      "order": 13,
+      "order": 17,
       "repo_label": "concept-graphs/concept-graphs",
       "repo_url": "https://github.com/concept-graphs/concept-graphs",
       "paper_label": "arXiv:2309.16650",
@@ -2592,7 +2873,7 @@
       "heading": "02-04 · DualMap",
       "verdict": "⛔ 本机不能：要 GPU 跑开放词汇分割（GroundingDINO / SAM）。",
       "tick": "⛔ 本机不可复现（无 GPU）",
-      "order": 14,
+      "order": 18,
       "repo_label": "Eku127/DualMap",
       "repo_url": "https://github.com/Eku127/DualMap",
       "paper_label": "arXiv:2506.01950",
@@ -2617,7 +2898,7 @@
       "heading": "02-05 · HOV-SG",
       "verdict": "⛔ 本机不能：要 GPU（OpenCLIP + SAM + habitat-sim），HM3DSem 数据也很大。",
       "tick": "⛔ 本机不可复现（无 GPU）",
-      "order": 15,
+      "order": 19,
       "repo_label": "hovsg/HOV-SG",
       "repo_url": "https://github.com/hovsg/HOV-SG",
       "paper_label": "arXiv:2403.17846",
@@ -2642,7 +2923,7 @@
       "heading": "02-06 · Clio",
       "verdict": "⛔ 本机不能：要 ROS 1 + GPU 语义推理（TensorRT）；只有离线评测入口能绕开 ROS，但仍要先有图。",
       "tick": "⛔ 本机不可复现（无 GPU）",
-      "order": 10,
+      "order": 14,
       "repo_label": "MIT-SPARK/Clio",
       "repo_url": "https://github.com/MIT-SPARK/Clio",
       "paper_label": "arXiv:2404.13696",
@@ -2667,7 +2948,7 @@
       "heading": "02-07 · AnyLoc",
       "verdict": "⛔ 本机不能：论文表格要 GPU 提特征；官方只提供 HF Space / Colab 的免 GPU 演示。",
       "tick": "⛔ 本机不可复现（无 GPU）",
-      "order": 11,
+      "order": 15,
       "repo_label": "AnyLoc/AnyLoc",
       "repo_url": "https://github.com/AnyLoc/AnyLoc",
       "paper_label": "arXiv:2308.00688",
@@ -2692,7 +2973,7 @@
       "heading": "02-08 · Revisit Anything",
       "verdict": "⛔ 本机不能：要 GPU（DINOv2 + SAM）；有 17places 小数据集可先跑通流程。",
       "tick": "⛔ 本机不可复现（无 GPU）",
-      "order": 12,
+      "order": 16,
       "repo_label": "AnyLoc/Revisit-Anything",
       "repo_url": "https://github.com/AnyLoc/Revisit-Anything",
       "paper_label": "arXiv:2409.18049",

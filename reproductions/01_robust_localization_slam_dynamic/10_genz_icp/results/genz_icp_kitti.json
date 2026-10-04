@@ -1,0 +1,334 @@
+{
+  "protocol": "genz_icp python API: dataloader 'kitti', pre-tuned kitti.yaml, sequences 0-10, metrics as printed by genz_icp.pipeline",
+  "paper_table": "GenZ-ICP Table III, p.5: KITTI seq. 00-10, relative translational error 0.51 % (KISS-ICP 0.50 % in the same table)",
+  "config": "kitti.yaml",
+  "data_dir": "/home/qzl/workspace/Practice_SLam/SLAM_Learning/reproductions/01_robust_localization_slam_dynamic/10_genz_icp/data/raw/kitti-odometry/dataset",
+  "sequences": {
+    "00": {
+      "Average Translation Error": {
+        "value": 0.5088927149772644,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0017747144447639585,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 5.6927971839904785,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.018912924453616142,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 26,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 38,
+        "units": "ms"
+      },
+      "_frames": 4541,
+      "_seconds": 192.0
+    },
+    "01": {
+      "Average Translation Error": {
+        "value": 0.9170029163360596,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0008053226047195494,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 18.616437911987305,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.012643641792237759,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 21,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 48,
+        "units": "ms"
+      },
+      "_frames": 1101,
+      "_seconds": 58.0
+    },
+    "02": {
+      "Average Translation Error": {
+        "value": 0.5072575807571411,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0012365301372483373,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 12.980278968811035,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.01911657676100731,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 23,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 44,
+        "units": "ms"
+      },
+      "_frames": 4661,
+      "_seconds": 224.6
+    },
+    "03": {
+      "Average Translation Error": {
+        "value": 0.7205737233161926,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0014922990230843425,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 3.148275375366211,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.009753169491887093,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 27,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 37,
+        "units": "ms"
+      },
+      "_frames": 801,
+      "_seconds": 33.6
+    },
+    "04": {
+      "Average Translation Error": {
+        "value": 0.39647337794303894,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0007006748346611857,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 0.8694769740104675,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.39868736267089844,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 34,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 30,
+        "units": "ms"
+      },
+      "_frames": 271,
+      "_seconds": 9.4
+    },
+    "05": {
+      "Average Translation Error": {
+        "value": 0.2765224575996399,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.00117203826084733,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 1.8473601341247559,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.009640687145292759,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 29,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 34,
+        "units": "ms"
+      },
+      "_frames": 2761,
+      "_seconds": 104.8
+    },
+    "06": {
+      "Average Translation Error": {
+        "value": 0.2811357378959656,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0006962869083508849,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 0.8904003500938416,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.005383807700127363,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 36,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 28,
+        "units": "ms"
+      },
+      "_frames": 1101,
+      "_seconds": 34.8
+    },
+    "07": {
+      "Average Translation Error": {
+        "value": 0.3169984519481659,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0017049663001671433,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 0.775083601474762,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.0070640332996845245,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 33,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 30,
+        "units": "ms"
+      },
+      "_frames": 1101,
+      "_seconds": 37.7
+    },
+    "08": {
+      "Average Translation Error": {
+        "value": 0.8295152187347412,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0017069973982870579,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 4.361656188964844,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.016727890819311142,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 25,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 40,
+        "units": "ms"
+      },
+      "_frames": 4071,
+      "_seconds": 179.9
+    },
+    "09": {
+      "Average Translation Error": {
+        "value": 0.49970799684524536,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0008848280995152891,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 3.271390199661255,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.011273966170847416,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 24,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 41,
+        "units": "ms"
+      },
+      "_frames": 1591,
+      "_seconds": 73.6
+    },
+    "10": {
+      "Average Translation Error": {
+        "value": 0.4581182599067688,
+        "units": "%"
+      },
+      "Average Rotational Error": {
+        "value": 0.0014468035660684109,
+        "units": "deg/m"
+      },
+      "Absolute Trajectory Error (ATE)": {
+        "value": 1.863339900970459,
+        "units": "m"
+      },
+      "Absolute Rotational Error (ARE)": {
+        "value": 0.008414839394390583,
+        "units": "rad"
+      },
+      "Average Frequency": {
+        "value": 25,
+        "units": "Hz"
+      },
+      "Average Runtime": {
+        "value": 40,
+        "units": "ms"
+      },
+      "_frames": 1201,
+      "_seconds": 52.8
+    }
+  },
+  "mean": {
+    "Average Translation Error": 0.5192907669327476,
+    "Average Rotational Error": 0.0012383146888830445,
+    "Absolute Trajectory Error (ATE)": 4.9378633444959465,
+    "Absolute Rotational Error (ARE)": 0.04705626360902732,
+    "Average Frequency": 27.545454545454547,
+    "Average Runtime": 37.27272727272727
+  },
+  "kiss_icp_same_data": {
+    "Average Translation Error": 0.525215438821099,
+    "Average Rotational Error": 0.0014743224760009484,
+    "Absolute Trajectory Error (ATE)": 1.8523836257782849,
+    "Absolute Rotational Error (ARE)": 0.06874092884192412,
+    "Average Frequency": 65.54545454545455,
+    "Average Runtime": 16.181818181818183
+  },
+  "frames_total": 23201,
+  "seconds_total": 1001.2
+}
