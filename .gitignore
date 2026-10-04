@@ -26,9 +26,13 @@ __pycache__/
 __default__/
 
 # Reproductions: upstream checkouts and datasets stay on the machine that runs
-# them. Only what we write (plans, scripts, small results) is committed — the
-# .gitkeep files keep the two folders visible in a fresh clone.
-reproductions/**/code/*
+# them; only what we write (plans, scripts, small results) is committed.
+#
+# `code/` is ignored as a whole directory, not as `code/*`, on purpose: a clone
+# inside it carries its own .git, and git would otherwise record the whole
+# checkout as an embedded repository (a gitlink) rather than as ignored files.
+# Both folders are created when you fetch something, so nothing needs to be
+# tracked to keep them alive.
+reproductions/**/code/
 reproductions/**/data/*
-!reproductions/**/code/.gitkeep
 !reproductions/**/data/.gitkeep

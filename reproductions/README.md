@@ -196,16 +196,20 @@ reproductions/
 │   ├── README.md                  ← 方向说明 + 本方向复现顺序
 │   └── 01_dynamicmap_benchmark/
 │       ├── README.md              ← 复现方案（提交进 git）
-│       ├── code/                  ← 克隆的上游仓库（.gitignore，不进 git）
-│       ├── data/                  ← 数据集（不进 git）
-│       ├── work/                  ← 我们自己写的脚本（进 git）
-│       └── results/               ← 产物、图表（小的进 git）
+│       ├── work/                  ← 我们自己写的脚本、协议（进 git）
+│       ├── results/               ← 产物、图表（小的进 git）
+│       ├── code/                  ← 克隆的上游仓库（整个目录被 gitignore）
+│       └── data/                  ← 数据集（不进 git）
 └── 02_semantic_mapping_visual_anchoring_navigation/   ← D2
     └── ...（同上）
 ```
 
 **为什么 code/ 和 data/ 不进 git**：上游仓库有自己的 git 历史，数据集动辄几十 GB。
 本仓库只保留**我们写的**东西——步骤、脚本、配置、结论。
+
+> `code/` 被整目录忽略（写的是 `code/` 而不是 `code/*`）：克隆进来的仓库自带 `.git`，
+> 否则 git 会把整个 checkout 记成一个 embedded repository（gitlink）而不是忽略。
+> 这两个目录在你拉取内容时自然出现，不需要 `.gitkeep` 占位。
 
 ---
 
