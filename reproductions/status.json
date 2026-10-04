@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T01:10:49+08:00",
+  "generated": "2026-10-05T01:16:15+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
-    "green": 5,
+    "green": 6,
     "failed": 0,
     "blocked": 0,
-    "planned": 12,
-    "ran_this_pass": 0
+    "planned": 11,
+    "ran_this_pass": 6
   },
   "reproductions": [
     {
@@ -20,13 +20,195 @@
       "venue": "**ITSC 2023**（arXiv:2307.07260）",
       "static_status": "🟡 地基已跑通（数据 + 评测器 + 交叉验证）；四个方法的数字待跑",
       "heading": "01-01 · DynamicMap_Benchmark",
-      "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
+      "ran": true,
+      "metrics": {
+        "frames": 141,
+        "gt_points": 17362230,
+        "gt_static": 17266247,
+        "gt_dynamic": 95983,
+        "gt_unlabelled": 0,
+        "dynamic_fraction_pct": 0.5528,
+        "methods_scored": 4,
+        "ERASOR_SA": 66.7078,
+        "Removert_SA": 99.4361,
+        "DUFOMap_SA": 97.9635,
+        "BeautyMap_SA": 96.9529,
+        "ERASOR_AA": 81.0744,
+        "Removert_AA": 64.2628,
+        "DUFOMap_AA": 98.3408,
+        "BeautyMap_AA": 97.6431,
+        "crosscheck_points": 3000000,
+        "crosscheck_disagreements": 0
+      },
+      "checks": [
+        {
+          "name": "ground_truth_is_a_binary_label_set",
+          "ok": true,
+          "detail": "17266247 static + 95983 dynamic + 0 other over 17362230 points"
+        },
+        {
+          "name": "sequence_is_the_published_one",
+          "ok": true,
+          "detail": "141 frames, 17362230 GT points"
+        },
+        {
+          "name": "the_two_eval_implementations_agree",
+          "ok": true,
+          "detail": "official PCL binary vs independent scipy rewrite label 3000000 sampled GT points with 0 disagreements"
+        }
+      ],
+      "findings": [
+        {
+          "name": "ranking_depends_on_the_metric",
+          "detail": "by SA: Removert > DUFOMap > BeautyMap > ERASOR; by AA: DUFOMap > BeautyMap > ERASOR > Removert. The two orders disagree, so any single-metric ranking of these methods is a statement about the metric as much as the method.",
+          "by_SA": [
+            "Removert",
+            "DUFOMap",
+            "BeautyMap",
+            "ERASOR"
+          ],
+          "by_AA": [
+            "DUFOMap",
+            "BeautyMap",
+            "ERASOR",
+            "Removert"
+          ],
+          "rankings_agree": false
+        },
+        {
+          "name": "dynamic_points_are_a_rounding_error_of_the_map",
+          "detail": "95983 of 17362230 GT points are dynamic (0.5528%). A method that deletes nothing scores ~100% SA, which is why SA alone cannot rank these methods."
+        }
+      ],
       "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements",
+      "backtest": {
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "frames",
+            "expected": 141,
+            "got": 141,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_points",
+            "expected": 17362230,
+            "got": 17362230,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_static",
+            "expected": 17266247,
+            "got": 17266247,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_dynamic",
+            "expected": 95983,
+            "got": 95983,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_unlabelled",
+            "expected": 0,
+            "got": 0,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "dynamic_fraction_pct",
+            "expected": 0.5528,
+            "got": 0.5528,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "methods_scored",
+            "expected": 4,
+            "got": 4,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "ERASOR_SA",
+            "expected": 66.7078,
+            "got": 66.7078,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "ERASOR_AA",
+            "expected": 81.0744,
+            "got": 81.0744,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "Removert_SA",
+            "expected": 99.4361,
+            "got": 99.4361,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "Removert_AA",
+            "expected": 64.2628,
+            "got": 64.2628,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "DUFOMap_SA",
+            "expected": 97.9635,
+            "got": 97.9635,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "DUFOMap_AA",
+            "expected": 98.3408,
+            "got": 98.3408,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "BeautyMap_SA",
+            "expected": 96.9529,
+            "got": 96.9529,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "BeautyMap_AA",
+            "expected": 97.6431,
+            "got": 97.6431,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "crosscheck_points",
+            "expected": 3000000,
+            "got": 3000000,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "crosscheck_disagreements",
+            "expected": 0,
+            "got": 0,
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T01:12:18+08:00"
+      },
+      "level": "green"
     },
     {
       "id": "01-02",
@@ -56,7 +238,7 @@
       "venue": "**RA-L 2021**",
       "static_status": "🟢 **已复现：命中基准表 I 行（66.70/98.54/81.07）**",
       "heading": "01-03 · ERASOR",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 66.7078,
         "DA": 98.5352,
@@ -115,7 +297,6 @@
       "artifacts": [
         "results/erasor_score.json"
       ],
-      "level": "green",
       "note": "ERASOR (benchmark reimplementation) on KITTI 00: SA/DA/AA = 66.71/98.54/81.07",
       "backtest": {
         "status": "ok",
@@ -186,7 +367,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-04",
@@ -198,7 +380,7 @@
       "venue": "**IROS 2020**",
       "static_status": "🟢 **已复现：命中基准表 I 行（99.44/41.53/64.26）**；⚠️ 原论文闭源",
       "heading": "01-04 · Removert",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 99.4361,
         "DA": 41.5313,
@@ -235,7 +417,6 @@
       "artifacts": [
         "results/removert_score.json"
       ],
-      "level": "green",
       "note": "Removert (benchmark reimplementation) on KITTI 00: SA/DA/AA = 99.44/41.53/64.26",
       "backtest": {
         "status": "ok",
@@ -306,7 +487,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-05",
@@ -318,7 +500,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：与论文 2 位小数完全一致**",
       "heading": "01-05 · DUFOMap",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 97.9635,
         "DA": 98.7196,
@@ -369,7 +551,6 @@
         "results/dufomap_score_paper_default_dp1.json",
         "results/dufomap_score_benchmark_example_dp2.json"
       ],
-      "level": "green",
       "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
       "backtest": {
         "status": "ok",
@@ -454,7 +635,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:56:38+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-06",
@@ -466,7 +648,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：命中论文表 I（96.76/98.38/97.56）**",
       "heading": "01-06 · BeautyMap",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 96.9529,
         "DA": 98.3382,
@@ -507,7 +689,6 @@
       "artifacts": [
         "results/beautymap_score.json"
       ],
-      "level": "green",
       "note": "BeautyMap on KITTI 00: SA/DA/HA = 96.95/98.34/97.64 vs paper 96.76/98.38/97.56",
       "backtest": {
         "status": "ok",
@@ -578,7 +759,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:06:29+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-07",
@@ -644,7 +826,7 @@
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
       "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
       "heading": "02-01 · 3RScan",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -738,7 +920,6 @@
         "results/observability.json",
         "results/observability.csv"
       ],
-      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -921,7 +1102,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "02-02",

@@ -175,20 +175,20 @@ planner_server:
 
 ## 复现进度 Reproduction progress
 
-**进度** — 5/17 跑通 · 0 本次实际运行 · 5/17 已自动化 · 更新于 2026-10-05 01:10 CST
+**进度** — 6/17 跑通 · 6 本次实际运行 · 6/17 已自动化 · 更新于 2026-10-05 01:16 CST
 
 | # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| 01-01 | D1 | DynamicMap_Benchmark | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | ✅ | ✅ 通过 | 17 项指标 · 2 条 finding |
 | 01-02 | D1 | KISS-ICP | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 01-03 | D1 | ERASOR | 🟢 green | — | ✅ 通过 | 9 项指标 · 2 条 finding |
-| 01-04 | D1 | Removert | 🟢 green | — | ✅ 通过 | 9 项指标 · 2 条 finding |
-| 01-05 | D1 | DUFOMap | 🟢 green | — | ✅ 通过 | 11 项指标 · 3 条 finding |
-| 01-06 | D1 | BeautyMap | 🟢 green | — | ✅ 通过 | 9 项指标 · 3 条 finding |
+| 01-03 | D1 | ERASOR | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 2 条 finding |
+| 01-04 | D1 | Removert | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 2 条 finding |
+| 01-05 | D1 | DUFOMap | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
+| 01-06 | D1 | BeautyMap | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 3 条 finding |
 | 01-07 | D1 | DynoSAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 01-08 | D1 | NGD-SLAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 01-09 | D1 | LT-mapper | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-01 | D2 | 3RScan | 🟢 green | — | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
+| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
 | 02-02 | D2 | OASIS-Map | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-03 | D2 | ConceptGraphs | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-04 | D2 | DualMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
