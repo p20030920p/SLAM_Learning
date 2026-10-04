@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T00:14:30+08:00",
+  "generated": "2026-10-05T00:24:44+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
@@ -180,7 +180,7 @@
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/01_3rscan",
       "title": "3RScan（数据集）—— 源自 RIO: 3D Object Instance Re-Localization in Changing Indoor Environments",
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
-      "static_status": "🟢 协议 + 可观测性分层已跑通（1 对会话，51/753 帧），待全量数据",
+      "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
       "heading": "02-01 · 3RScan",
       "ran": true,
       "metrics": {
@@ -203,7 +203,12 @@
         "obs_visible": 9,
         "obs_occluded": 4,
         "obs_out_of_view": 16,
-        "obs_insufficient": 3
+        "obs_insufficient": 3,
+        "repo_visible": 12,
+        "repo_occluded": 0,
+        "repo_out_of_view": 17,
+        "repo_insufficient": 2,
+        "repo_not_in_B_scene": 1
       },
       "checks": [
         {
@@ -243,6 +248,10 @@
         }
       ],
       "findings": [
+        {
+          "name": "obb_estimator_versus_repo_renderer",
+          "detail": "the two observability measurements agree on 22/31 objects (71%); where they differ the repository's renderer is right, because it renders the real mesh while the OBB estimator samples a box surface that includes faces pointing away from the camera"
+        },
         {
           "name": "vanished_objects_are_not_all_observable",
           "detail": "1 of 1 objects missing from B were NOT observable there (out of view or occluded) — for those the dataset's silence cannot be read as 'removed'"
@@ -410,10 +419,45 @@
             "got": 3,
             "ok": true,
             "why": ""
+          },
+          {
+            "metric": "repo_visible",
+            "expected": 12,
+            "got": 12,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "repo_occluded",
+            "expected": 0,
+            "got": 0,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "repo_out_of_view",
+            "expected": 17,
+            "got": 17,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "repo_insufficient",
+            "expected": 2,
+            "got": 2,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "repo_not_in_B_scene",
+            "expected": 1,
+            "got": 1,
+            "ok": true,
+            "why": ""
           }
         ],
         "new_metrics_not_in_baseline": [],
-        "baseline_recorded": "2026-10-05T00:14:07+08:00"
+        "baseline_recorded": "2026-10-05T00:24:40+08:00"
       },
       "level": "green"
     },

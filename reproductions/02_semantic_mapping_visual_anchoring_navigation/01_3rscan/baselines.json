@@ -1,8 +1,8 @@
 {
   "reproduction": "02-01",
   "paper": "3RScan (RIO, ICCV 2019) — A/B session pair",
-  "recorded": "2026-10-05T00:14:07+08:00",
-  "recorded_with": "reproduce.py: A/B protocol + observability, tolerance 1.0 m, public example data (2 scans, 51 of 753 frames)",
+  "recorded": "2026-10-05T00:24:40+08:00",
+  "recorded_with": "reproduce.py: A/B protocol + OBB observability + repo visibility scores",
   "rel_tolerance": 0.02,
   "note": "Metrics are deterministic. A diff means the protocol, the parsing or the data changed — investigate before updating this file.",
   "metrics": {
@@ -25,7 +25,12 @@
     "obs_visible": 9,
     "obs_occluded": 4,
     "obs_out_of_view": 16,
-    "obs_insufficient": 3
+    "obs_insufficient": 3,
+    "repo_visible": 12,
+    "repo_occluded": 0,
+    "repo_out_of_view": 17,
+    "repo_insufficient": 2,
+    "repo_not_in_B_scene": 1
   },
   "checks_expected": [
     "matrix_layout",

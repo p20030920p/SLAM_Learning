@@ -131,6 +131,48 @@ def run(ctx):
         **obs_counts,
     }
 
+    # ---- the repository's own visibility scores, when the renderer has run --
+    # `rio_renderer_render_all <data> <scan> sequence 0` writes
+    # frame-*.visibility.txt with an occlusion ratio (visible / visible-when-
+    # alone) and a truncation ratio (inside-FOV / inside-2x-FOV) per object per
+    # frame, rendered from the real mesh. Where it applies it is the better
+    # measurement, so the agreement between it and the OBB estimator is
+    # reported rather than hidden.
+    repo_finding = None
+    scan_b_dir = os.path.join(ctx["code_root"], "data", "3RScan", RESCAN)
+    seq_b_dir = os.path.join(scan_b_dir, "sequence")
+    if os.path.isdir(seq_b_dir) and any(f.endswith(".visibility.txt")
+                                        for f in os.listdir(seq_b_dir)):
+        rv = _load("repo_visibility", os.path.join(ctx["work_dir"], "repo_visibility.py"))
+        agg = rv.aggregate(seq_b_dir)
+        by_id = {o["objectId"]: o for o in pair["objects"]}
+        for oid, l in by_id.items():
+            if oid not in agg["objects"]:
+                agg["objects"][oid] = {
+                    "objectId": oid,
+                    "repo_observability": "out_of_view" if l["in_B"] else "not_in_B_scene",
+                    "frames_present": 0, "frames_visible": 0,
+                    "occlusion_ratio_median": None, "occlusion_ratio_max": None,
+                    "truncation_ratio_median": None, "truncation_ratio_max": None}
+        levels = ["visible", "occluded", "out_of_view", "insufficient", "not_in_B_scene"]
+        metrics.update({f"repo_{lvl}": sum(1 for e in agg["objects"].values()
+                                           if e["repo_observability"] == lvl)
+                        for lvl in levels})
+        both = [o["observability"] for o in obs["objects"]
+                if o["objectId"] in agg["objects"]
+                and agg["objects"][o["objectId"]]["repo_observability"] != "not_in_B_scene"]
+        agree = sum(1 for o in obs["objects"]
+                    if o["objectId"] in agg["objects"]
+                    and agg["objects"][o["objectId"]]["repo_observability"] == o["observability"])
+        repo_finding = {
+            "name": "obb_estimator_versus_repo_renderer",
+            "detail": (f"the two observability measurements agree on {agree}/{len(both)} "
+                       f"objects ({round(100 * agree / max(1, len(both)))}%); where they "
+                       f"differ the repository's renderer is right, because it renders the "
+                       f"real mesh while the OBB estimator samples a box surface that "
+                       f"includes faces pointing away from the camera"),
+        }
+
     checks = []
 
     # ---- 1. matrix layout, by contradiction ------------------------------
@@ -222,6 +264,7 @@ def run(ctx):
                 if o["gt_class"] in ("absent_unlabelled", "removed")]
     covered = sum(1 for v in vanished if v["observability"] == "visible")
     findings = [
+        *([repo_finding] if repo_finding else []),
         {
             "name": "vanished_objects_are_not_all_observable",
             "detail": (f"{len(vanished) - covered} of {len(vanished)} objects missing from B "

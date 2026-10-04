@@ -298,7 +298,7 @@ python3 reproductions/run_all.py --no-backtest
 
 ## 复现进度 Reproduction progress
 
-**进度** — 1/17 跑通 · 1 本次实际运行 · 1/17 已自动化 · 更新于 2026-10-05 00:14 CST
+**进度** — 1/17 跑通 · 1 本次实际运行 · 1/17 已自动化 · 更新于 2026-10-05 00:24 CST
 
 | # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
@@ -311,7 +311,7 @@ python3 reproductions/run_all.py --no-backtest
 | 01-07 | D1 | DynoSAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 01-08 | D1 | NGD-SLAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 01-09 | D1 | LT-mapper | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 4 条 finding |
+| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
 | 02-02 | D2 | OASIS-Map | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-03 | D2 | ConceptGraphs | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-04 | D2 | DualMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
