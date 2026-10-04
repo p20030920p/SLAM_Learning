@@ -189,12 +189,12 @@ with the task book, and the suggested order.
 
 ## 复现进度 Reproduction progress
 
-**进度** — 9/17 跑通 · 9 本次实际运行 · 17/17 已自动化 · 更新于 2026-10-05 03:24 CST
+**进度** — 9/17 跑通 · 9 本次实际运行 · 17/17 已自动化 · 更新于 2026-10-05 04:38 CST
 
 | # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 | 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | ✅ | ✅ 通过 | 19 项指标 · 3 条 finding |
-| 01-02 | D1 | KISS-ICP | 🟢 green | ✅ | ✅ 通过 | 8 项指标 · 4 条 finding |
+| 01-02 | D1 | KISS-ICP | 🟢 green | ✅ | ✅ 通过 | 54 项指标 · 7 条 finding |
 | 01-03 | D1 | ERASOR | 🟢 green | ✅ | ✅ 通过 | 21 项指标 · 2 条 finding |
 | 01-04 | D1 | Removert | 🟢 green | ✅ | ✅ 通过 | 20 项指标 · 3 条 finding |
 | 01-05 | D1 | DUFOMap | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |

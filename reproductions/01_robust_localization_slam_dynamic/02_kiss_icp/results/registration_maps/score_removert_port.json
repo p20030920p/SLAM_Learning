@@ -1,0 +1,21 @@
+{
+  "method": "regutil_removert_port",
+  "sequence": "regutil_seq",
+  "min_dis_m": 0.05,
+  "map": "/home/qzl/workspace/Practice_SLam/SLAM_Learning/reproductions/01_robust_localization_slam_dynamic/02_kiss_icp/results/registration_maps/removert_port.pcd",
+  "map_points": 456467,
+  "official": {
+    "gt_static": 17266247,
+    "gt_dynamic": 95983,
+    "out_static": 3369312,
+    "out_dynamic": 13992918,
+    "correct_static": 3357048,
+    "correct_dynamic": 83719,
+    "missed_dynamic": 12264,
+    "false_removal": 13909199,
+    "SA": 19.4428,
+    "DA": 87.2227,
+    "AA": 41.1808,
+    "HA": 31.7977
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T03:24:43+08:00",
+  "generated": "2026-10-05T04:38:35+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
@@ -259,7 +259,53 @@
         "trajectory_length_m": 108.3,
         "metric_samples": 2,
         "avg_frequency_hz": 50.0,
-        "avg_runtime_ms": 20.0
+        "avg_runtime_ms": 20.0,
+        "reg_fail_pct_erasor_port_L0": 19.8582,
+        "reg_fail_pct_removert_official_L0": 0.0,
+        "reg_fail_pct_removert_port_L0": 0.0,
+        "reg_fail_pct_dufomap_L0": 0.0,
+        "reg_fail_pct_beautymap_L0": 0.0,
+        "reg_fail_pct_uncleaned_L0": 0.0,
+        "reg_fail_pct_erasor_port_L1": 19.8582,
+        "reg_fail_pct_removert_official_L1": 0.7092,
+        "reg_fail_pct_removert_port_L1": 0.7092,
+        "reg_fail_pct_dufomap_L1": 0.7092,
+        "reg_fail_pct_beautymap_L1": 0.7092,
+        "reg_fail_pct_uncleaned_L1": 0.7092,
+        "reg_fail_pct_erasor_port_L2": 29.078,
+        "reg_fail_pct_removert_official_L2": 12.0567,
+        "reg_fail_pct_removert_port_L2": 11.3475,
+        "reg_fail_pct_dufomap_L2": 11.3475,
+        "reg_fail_pct_beautymap_L2": 14.8936,
+        "reg_fail_pct_uncleaned_L2": 17.0213,
+        "reg_fail_pct_erasor_port_L3": 57.4468,
+        "reg_fail_pct_removert_official_L3": 43.2624,
+        "reg_fail_pct_removert_port_L3": 43.9716,
+        "reg_fail_pct_dufomap_L3": 43.9716,
+        "reg_fail_pct_beautymap_L3": 46.8085,
+        "reg_fail_pct_uncleaned_L3": 51.0638,
+        "map_SA_erasor_port": 13.9081,
+        "map_AA_erasor_port": 37.2128,
+        "map_SA_removert_official": 16.9258,
+        "map_AA_removert_official": 40.5119,
+        "map_SA_removert_port": 19.4428,
+        "map_AA_removert_port": 41.1808,
+        "map_SA_dufomap": 19.2202,
+        "map_AA_dufomap": 43.781,
+        "map_SA_beautymap": 18.9239,
+        "map_AA_beautymap": 43.3973,
+        "map_SA_uncleaned": 19.3831,
+        "map_AA_uncleaned": 37.9092,
+        "regutil_level": "L2",
+        "spearman_rho_AA_vs_utility": 0.7827,
+        "spearman_rho_SA_vs_utility": 0.5508,
+        "spearman_rho_AA_vs_utility_L0": 0.6547,
+        "spearman_rho_AA_vs_utility_L1": 0.6547,
+        "spearman_rho_AA_vs_utility_L2": 0.7827,
+        "spearman_rho_AA_vs_utility_L3": 0.5508,
+        "spearman_rho_submitted_AA_vs_utility": 0.3769,
+        "spearman_rho_submitted_SA_vs_utility": 0.2319,
+        "regutil_headline": "L2: AA ranking dufomap > beautymap > removert_port > removert_official > uncleaned > erasor_port; registration-failure ranking removert_port < dufomap < removert_official < beautymap < uncleaned < erasor_port"
       },
       "checks": [
         {
@@ -276,6 +322,16 @@
           "name": "trajectory_matches_the_source_data",
           "ok": true,
           "detail": "ground-truth path length 108.3 m against the 108.3 m measured on the benchmark release - a mismatch would mean the pose inversion in make_kitti_seq.py is wrong"
+        },
+        {
+          "name": "downstream_registration_was_measured_for_every_map",
+          "ok": true,
+          "detail": "6 maps x 141 frames at level L2; failure rate is the share of queries that did not land within (0.20 m, 2.0 deg) with inlier ratio >= 0.30"
+        },
+        {
+          "name": "map_quality_is_measured_on_the_registered_point_set",
+          "ok": true,
+          "detail": "SA/DA/AA in this stage come from re-scoring the *normalised* maps the registration actually used, not from the as-submitted tables - so the comparison is between two views of one identical point set"
         }
       ],
       "findings": [
@@ -296,12 +352,43 @@
         {
           "name": "no_loop_closure_by_design",
           "detail": "there is no loop closure, no pose graph and no keyframe selection - 141 frames, 50 Hz, 20 ms/frame on CPU. Drift is bounded only by ICP itself, which matters for the H1' experiment in 01-01: a 'cleaned map hurts localization' result could be drift rather than map quality."
+        },
+        {
+          "name": "h1_prime_ranking_comparison",
+          "detail": "at the most discriminating perturbation level (L2), ranking by AA gives dufomap > beautymap > removert_port > removert_official > uncleaned > erasor_port, while ranking by registration failure gives removert_port < dufomap < removert_official < beautymap < uncleaned < erasor_port. Spearman rho(AA, localization utility) = 0.7827 at that level (utility = 100 - failure rate, so positive means the rankings agree), L0: 0.6547, L1: 0.6547, L2: 0.7827, L3: 0.5508; against the *as-submitted* SA/DA/AA the same comparison gives 0.3769 (SA: 0.2319). The task book's H1' predicts rho < 0.9, i.e. that the two rankings differ - it holds even against the kindest pairing. Spread per level: L0: spread 19.9 pp, L1: spread 19.1 pp, L2: spread 17.7 pp, L3: spread 14.2 pp.",
+          "spearman_rho_AA_vs_regfail": 0.7827,
+          "spearman_rho_SA_vs_regfail": 0.5508,
+          "rank_by_AA": [
+            "dufomap",
+            "beautymap",
+            "removert_port",
+            "removert_official",
+            "uncleaned",
+            "erasor_port"
+          ],
+          "rank_by_failure": [
+            "removert_port",
+            "dufomap",
+            "removert_official",
+            "beautymap",
+            "uncleaned",
+            "erasor_port"
+          ]
+        },
+        {
+          "name": "downstream_numbers_are_self_registration_not_a_revisit",
+          "detail": "the maps were built from these same 141 frames, so every query's own points are in the map it is registered into. The absolute failure rates are therefore optimistic; what the experiment supports is the *ranking* comparison, because every map is treated identically. A true revisit test needs a second session over the same place."
+        },
+        {
+          "name": "the_official_erasor_map_cannot_enter_this_experiment",
+          "detail": "the official ERASOR output is expressed in the official bag's SuMa frame, which differs from the benchmark's world frame by ~1.6 m median nearest-neighbour distance (measured in 03_erasor). It fails 100 % of registrations at every perturbation level for that reason, so it is excluded rather than silently scored as a bad map."
         }
       ],
       "artifacts": [
-        "results/kiss_icp_logs/latest/result_metrics.log"
+        "results/kiss_icp_logs/latest/result_metrics.log",
+        "results/registration_utility.json"
       ],
-      "note": "KISS-ICP on a reconstructed 141-frame KITTI 00 sub-sequence: ATE 0.112 m, avg translation error 0.409 % over only 2 metric sample(s) - the paper's 0.5 % is NOT reproduced (see findings)",
+      "note": "KISS-ICP on a reconstructed 141-frame KITTI 00 sub-sequence: ATE 0.112 m, avg translation error 0.409 % over only 2 metric sample(s) - the paper's 0.5 % is NOT reproduced (see findings). Downstream localizability: rho(normalised AA, utility) = 0.7827 at level L2, rho(as-submitted AA, utility) = 0.3769",
       "backtest": {
         "status": "ok",
         "diffs": [
@@ -358,6 +445,328 @@
             "metric": "avg_runtime_ms",
             "expected": 20.0,
             "got": 20.0,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_erasor_port_L0",
+            "expected": 19.8582,
+            "got": 19.8582,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_removert_official_L0",
+            "expected": 0.0,
+            "got": 0.0,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_removert_port_L0",
+            "expected": 0.0,
+            "got": 0.0,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_dufomap_L0",
+            "expected": 0.0,
+            "got": 0.0,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_beautymap_L0",
+            "expected": 0.0,
+            "got": 0.0,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_uncleaned_L0",
+            "expected": 0.0,
+            "got": 0.0,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_erasor_port_L1",
+            "expected": 19.8582,
+            "got": 19.8582,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_removert_official_L1",
+            "expected": 0.7092,
+            "got": 0.7092,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_removert_port_L1",
+            "expected": 0.7092,
+            "got": 0.7092,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_dufomap_L1",
+            "expected": 0.7092,
+            "got": 0.7092,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_beautymap_L1",
+            "expected": 0.7092,
+            "got": 0.7092,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_uncleaned_L1",
+            "expected": 0.7092,
+            "got": 0.7092,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_erasor_port_L2",
+            "expected": 29.078,
+            "got": 29.078,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_removert_official_L2",
+            "expected": 12.0567,
+            "got": 12.0567,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_removert_port_L2",
+            "expected": 11.3475,
+            "got": 11.3475,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_dufomap_L2",
+            "expected": 11.3475,
+            "got": 11.3475,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_beautymap_L2",
+            "expected": 14.8936,
+            "got": 14.8936,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_uncleaned_L2",
+            "expected": 17.0213,
+            "got": 17.0213,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_erasor_port_L3",
+            "expected": 57.4468,
+            "got": 57.4468,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_removert_official_L3",
+            "expected": 43.2624,
+            "got": 43.2624,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_removert_port_L3",
+            "expected": 43.9716,
+            "got": 43.9716,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_dufomap_L3",
+            "expected": 43.9716,
+            "got": 43.9716,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_beautymap_L3",
+            "expected": 46.8085,
+            "got": 46.8085,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "reg_fail_pct_uncleaned_L3",
+            "expected": 51.0638,
+            "got": 51.0638,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_SA_erasor_port",
+            "expected": 13.9081,
+            "got": 13.9081,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_AA_erasor_port",
+            "expected": 37.2128,
+            "got": 37.2128,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_SA_removert_official",
+            "expected": 16.9258,
+            "got": 16.9258,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_AA_removert_official",
+            "expected": 40.5119,
+            "got": 40.5119,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_SA_removert_port",
+            "expected": 19.4428,
+            "got": 19.4428,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_AA_removert_port",
+            "expected": 41.1808,
+            "got": 41.1808,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_SA_dufomap",
+            "expected": 19.2202,
+            "got": 19.2202,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_AA_dufomap",
+            "expected": 43.781,
+            "got": 43.781,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_SA_beautymap",
+            "expected": 18.9239,
+            "got": 18.9239,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_AA_beautymap",
+            "expected": 43.3973,
+            "got": 43.3973,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_SA_uncleaned",
+            "expected": 19.3831,
+            "got": 19.3831,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_AA_uncleaned",
+            "expected": 37.9092,
+            "got": 37.9092,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "regutil_level",
+            "expected": "L2",
+            "got": "L2",
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "spearman_rho_AA_vs_utility",
+            "expected": 0.7827,
+            "got": 0.7827,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "spearman_rho_SA_vs_utility",
+            "expected": 0.5508,
+            "got": 0.5508,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "spearman_rho_AA_vs_utility_L0",
+            "expected": 0.6547,
+            "got": 0.6547,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "spearman_rho_AA_vs_utility_L1",
+            "expected": 0.6547,
+            "got": 0.6547,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "spearman_rho_AA_vs_utility_L2",
+            "expected": 0.7827,
+            "got": 0.7827,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "spearman_rho_AA_vs_utility_L3",
+            "expected": 0.5508,
+            "got": 0.5508,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "spearman_rho_submitted_AA_vs_utility",
+            "expected": 0.3769,
+            "got": 0.3769,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "spearman_rho_submitted_SA_vs_utility",
+            "expected": 0.2319,
+            "got": 0.2319,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "regutil_headline",
+            "expected": "L2: AA ranking dufomap > beautymap > removert_port > removert_official > uncleaned > erasor_port; registration-failure ranking removert_port < dufomap < removert_official < beautymap < uncleaned < erasor_port",
+            "got": "L2: AA ranking dufomap > beautymap > removert_port > removert_official > uncleaned > erasor_port; registration-failure ranking removert_port < dufomap < removert_official < beautymap < uncleaned < erasor_port",
             "ok": true,
             "why": ""
           }
@@ -1292,21 +1701,21 @@
         "DA": 74.5142,
         "AA": 71.7756,
         "HA": 71.7253,
-        "map_points": 758036,
+        "map_points": 758035,
         "full_gt_SA": 49.5095,
         "full_gt_DA": 76.499,
-        "full_gt_AA": 61.5421,
+        "full_gt_AA": 61.542,
         "full_gt_HA": 60.1138,
         "scanside_SA": 64.0849,
         "scanside_DA": 79.8461,
         "scanside_AA": 71.5327,
         "scanside_HA": 71.1025,
-        "scanside_map_points": 7100331,
+        "scanside_map_points": 7100332,
         "central_gt_SA": 69.7476,
         "central_gt_DA": 79.2179,
-        "central_gt_AA": 74.3321,
+        "central_gt_AA": 74.332,
         "central_gt_HA": 74.1817,
-        "central_gt_map_points": 758036,
+        "central_gt_map_points": 758035,
         "control_SA": 99.4376,
         "control_DA": 1.6533,
         "control_AA": 12.8219,
@@ -1320,10 +1729,10 @@
         "central_gt_dynamic": 49658,
         "central_keyframes": 81,
         "query_roi_keyframes": 29,
-        "updated_map_points": 758036,
-        "updated_map_strong_points": 743149,
+        "updated_map_points": 758035,
+        "updated_map_strong_points": 743148,
         "union_centralside_points": 523626,
-        "union_queryside_points": 377340,
+        "union_queryside_points": 377339,
         "nd_points": 218931,
         "pd_points": 43853,
         "strong_nd_points": 185216,
@@ -1343,7 +1752,7 @@
         {
           "name": "official_pipeline_produced_a_cleaned_map",
           "ok": true,
-          "detail": "updated_map.pcd holds 758036 points after makeGlobalMap + high-dynamic removal + low-dynamic detection over 81 central and 29 query keyframes"
+          "detail": "updated_map.pcd holds 758035 points after makeGlobalMap + high-dynamic removal + low-dynamic detection over 81 central and 29 query keyframes"
         },
         {
           "name": "evaluator_implementations_agree",
@@ -1372,7 +1781,7 @@
         },
         {
           "name": "the_run_has_two_upstream_outputs_and_they_are_close",
-          "detail": "on the identical central-session GT, map-side updated_map.pcd scores SA 69.75 / DA 79.22 (758036 points) and the scan-side merged scans_updated/ SA 64.08 / DA 79.85 (7100331 points) - AA 74.33 vs 71.53. Unlike 01-04, where the two outputs of one Removert run sat at opposite corners of the trade-off, here the choice of output moves AA by 2.8 pp; what moves this score is which GT footprint it is measured on (central GT AA 74.33, both-sessions GT AA 71.78, full 141-frame GT AA 61.54)."
+          "detail": "on the identical central-session GT, map-side updated_map.pcd scores SA 69.75 / DA 79.22 (758035 points) and the scan-side merged scans_updated/ SA 64.08 / DA 79.85 (7100332 points) - AA 74.33 vs 71.53. Unlike 01-04, where the two outputs of one Removert run sat at opposite corners of the trade-off, here the choice of output moves AA by 2.8 pp; what moves this score is which GT footprint it is measured on (central GT AA 74.33, both-sessions GT AA 71.78, full 141-frame GT AA 61.54)."
         },
         {
           "name": "nd_pd_asymmetry_is_the_signature_of_a_partial_overlap",
@@ -1388,7 +1797,7 @@
         },
         {
           "name": "runtime",
-          "detail": "the official node ran over 81 central + 29 query keyframes in 38 s wall clock (it does all the work in its constructor and then spins; the same input took ~32 s on a cold page cache and ~8 s warm, so read this as seconds, not as a benchmark). This is not the paper's 9.8 s figure: that one times the LT-map delta-map update, whose code is absent here, and it is not comparable to a whole change-detection pass."
+          "detail": "the official node ran over 81 central + 29 query keyframes in 57 s wall clock (it does all the work in its constructor and then spins; the same input took ~32 s on a cold page cache and ~8 s warm, so read this as seconds, not as a benchmark). This is not the paper's 9.8 s figure: that one times the LT-map delta-map update, whose code is absent here, and it is not comparable to a whole change-detection pass."
         },
         {
           "name": "roi_rule_recomputed_from_the_poses_matches_the_run",
@@ -1439,7 +1848,7 @@
           {
             "metric": "map_points",
             "expected": 758035,
-            "got": 758036,
+            "got": 758035,
             "ok": true,
             "why": ""
           },
@@ -1460,7 +1869,7 @@
           {
             "metric": "full_gt_AA",
             "expected": 61.542,
-            "got": 61.5421,
+            "got": 61.542,
             "ok": true,
             "why": ""
           },
@@ -1488,7 +1897,7 @@
           {
             "metric": "central_gt_AA",
             "expected": 74.3285,
-            "got": 74.3321,
+            "got": 74.332,
             "ok": true,
             "why": ""
           },
@@ -1502,7 +1911,7 @@
           {
             "metric": "central_gt_map_points",
             "expected": 758035,
-            "got": 758036,
+            "got": 758035,
             "ok": true,
             "why": ""
           },
@@ -1537,7 +1946,7 @@
           {
             "metric": "scanside_map_points",
             "expected": 7100333,
-            "got": 7100331,
+            "got": 7100332,
             "ok": true,
             "why": ""
           },
@@ -1635,14 +2044,14 @@
           {
             "metric": "updated_map_points",
             "expected": 758035,
-            "got": 758036,
+            "got": 758035,
             "ok": true,
             "why": ""
           },
           {
             "metric": "updated_map_strong_points",
             "expected": 743148,
-            "got": 743149,
+            "got": 743148,
             "ok": true,
             "why": ""
           },
@@ -1656,7 +2065,7 @@
           {
             "metric": "union_queryside_points",
             "expected": 377339,
-            "got": 377340,
+            "got": 377339,
             "ok": true,
             "why": ""
           },
