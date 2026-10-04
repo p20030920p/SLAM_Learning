@@ -187,6 +187,59 @@ partial views, occlusion, and imperfect segmentation"——是**关联可靠性*
 
 ---
 
+## 论文报告值 Paper baselines
+
+> **复现的前提是先知道要复现出什么数。** 在 2026-10-05 之前，这 17 个文件夹里只有"论文标题 + 计划"，
+> 没有一篇记录原论文到底做出了什么数字 —— 于是"复现"没有验收标准，跑通了也只能说"它能跑"。
+
+每个文件夹里现在都有一份 `paper_baseline.md`（含表号、页码、消融、参数、阻塞分析），
+总表见 **[`PAPER_BASELINES.md`](PAPER_BASELINES.md)**。
+
+**原文覆盖：16/17。** 来源是本机文献工作区的 `Localise/01_task_books/materials/papers_pdf/`（134 篇），
+本次另补取 3 篇（RIO/3RScan、原始 ERASOR RA-L 2021、OASIS-Map）。唯一缺的是 **01-04 Removert** ——
+它的 IROS 2020 原文是闭源的（OpenAlex 明确 `is_oa: false`，作者给的镜像站 DNS 不通），原因逐条记在
+[`04_removert/paper_baseline.md`](01_robust_localization_slam_dynamic/04_removert/paper_baseline.md)。
+
+### 这台机器能跑什么
+
+**没有 GPU**（20 核 CPU / 15 GB RAM / 381 GB 空闲）。按"论文报告值 + 可行性"对齐后：
+
+| 类别 | 数量 | 哪些 |
+| :--- | ---: | :--- |
+| ✅ 已复现 | 1 | **01-05 DUFOMap**（SA/DA/AA 与论文 2 位小数完全一致） |
+| 🟢 CPU + 数据可得 | 2 | 01-01（数据已在手）· 01-08 NGD-SLAM（TUM/BONN 免注册） |
+| 🟡 CPU 但数据要注册 | 4 | 01-02 · 01-03 · 01-06 · 01-09 |
+| 🔴 需要 GPU | 7 | 01-07 · 02-03 · 02-04 · 02-05 · 02-06 · 02-07 · 02-08 |
+| ⚫ 其他阻塞 | 2 | 01-04（论文闭源）· 02-02（代码未发布） |
+
+> ⚠️ **任务书 §0.3 把 S（语义建图）排在第 1 位，理由是"不需要新硬件"。但从论文报告值看，
+> S 线的四个底座（ConceptGraphs / DualMap / HOV-SG / Clio）全都要 GPU。**
+> 真正"不需要新硬件"的是 **D 线的 CPU 部分**。只看 README 计划是看不出这一点的。
+
+### 数据：KITTI 注册阻塞已被绕开
+
+01-01 / 01-05 需要的 KITTI 00 + 人工 GT，基准作者自己打包发在 Zenodo 上，**直链、免注册**：
+
+```bash
+wget https://zenodo.org/records/10886629/files/00.zip    # 385 MB，66 秒
+unzip 00.zip -d reproductions/01_robust_localization_slam_dynamic/01_dynamicmap_benchmark/data/raw/
+```
+
+### Python 环境：本机没有 sudo，也没有 `python3-venv`
+
+`ensurepip` 不存在，因此 venv 用 `get-pip.py` 自举（`reproductions/.venvs/` 已 gitignore）：
+
+```bash
+python3 -m venv --without-pip reproductions/.venvs/dmb
+curl -sSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
+reproductions/.venvs/dmb/bin/python /tmp/get-pip.py
+reproductions/.venvs/dmb/bin/pip install dufomap kiss-icp scipy
+```
+
+`dufomap` / `kiss-icp` 是 PyPI 包，**纯 CPU、免编译**；`scipy` 只用于评测的第二条独立实现。
+
+---
+
 ## 目录约定 Layout
 
 ```
@@ -298,7 +351,7 @@ python3 reproductions/run_all.py --no-backtest
 
 ## 复现进度 Reproduction progress
 
-**进度** — 1/17 跑通 · 0 本次实际运行 · 1/17 已自动化 · 更新于 2026-10-05 00:35 CST
+**进度** — 2/17 跑通 · 2 本次实际运行 · 2/17 已自动化 · 更新于 2026-10-05 00:58 CST
 
 | # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
@@ -306,12 +359,12 @@ python3 reproductions/run_all.py --no-backtest
 | 01-02 | D1 | KISS-ICP | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 01-03 | D1 | ERASOR | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 01-04 | D1 | Removert | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 01-05 | D1 | DUFOMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 01-05 | D1 | DUFOMap | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
 | 01-06 | D1 | BeautyMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 01-07 | D1 | DynoSAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 01-08 | D1 | NGD-SLAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 01-09 | D1 | LT-mapper | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-01 | D2 | 3RScan | 🟢 green | — | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
+| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
 | 02-02 | D2 | OASIS-Map | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-03 | D2 | ConceptGraphs | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-04 | D2 | DualMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |

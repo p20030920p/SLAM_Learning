@@ -5,6 +5,7 @@
 | 论文 | 3RScan（数据集）—— 源自 RIO: 3D Object Instance Re-Localization in Changing Indoor Environments |
 | Venue | **ICCV 2019**（数据集）；多会话重访标准集 |
 | 论文链接 | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) ✅ 实测 200 |
 | 数据 | 3RScan 本体（需同意条款后下载），约 1.5k 次扫描 / 数百个房间 |
 | 方向 | D2 · 语义建图、视觉定位与导航 |

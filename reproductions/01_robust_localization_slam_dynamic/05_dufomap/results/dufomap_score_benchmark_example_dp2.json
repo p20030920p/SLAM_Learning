@@ -1,0 +1,21 @@
+{
+  "method": "dufomap_benchmark_example_dp2",
+  "sequence": "00",
+  "min_dis_m": 0.05,
+  "map": "/home/qzl/workspace/Practice_SLam/SLAM_Learning/reproductions/01_robust_localization_slam_dynamic/05_dufomap/data/output/dufomap_output_benchmark_example_dp2.pcd",
+  "map_points": 17231330,
+  "official": {
+    "gt_static": 17266247,
+    "gt_dynamic": 95983,
+    "out_static": 17249672,
+    "out_dynamic": 112558,
+    "correct_static": 17246441,
+    "correct_dynamic": 92752,
+    "missed_dynamic": 3231,
+    "false_removal": 19806,
+    "SA": 99.8853,
+    "DA": 96.6338,
+    "AA": 98.2461,
+    "HA": 98.2326
+  }
+}

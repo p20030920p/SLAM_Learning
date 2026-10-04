@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T00:35:04+08:00",
+  "generated": "2026-10-05T00:58:55+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
-    "green": 1,
+    "green": 2,
     "failed": 0,
     "blocked": 0,
-    "planned": 16,
-    "ran_this_pass": 0
+    "planned": 15,
+    "ran_this_pass": 2
   },
   "reproductions": [
     {
@@ -17,8 +17,8 @@
       "folder": "01_dynamicmap_benchmark",
       "path": "reproductions/01_robust_localization_slam_dynamic/01_dynamicmap_benchmark",
       "title": "A Dynamic Points Removal Benchmark in Point Cloud Maps",
-      "venue": "**ITSC 2023**",
-      "static_status": "⬜ 未开始",
+      "venue": "**ITSC 2023**（arXiv:2307.07260）",
+      "static_status": "🟡 地基已跑通（数据 + 评测器 + 交叉验证）；四个方法的数字待跑",
       "heading": "01-01 · DynamicMap_Benchmark",
       "ran": false,
       "metrics": {},
@@ -36,7 +36,7 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/02_kiss_icp",
       "title": "KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way",
       "venue": "**RA-L 2023**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "01-02 · KISS-ICP",
       "ran": false,
       "metrics": {},
@@ -54,7 +54,7 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/03_erasor",
       "title": "ERASOR: Egocentric Ratio of Pseudo Occupancy-Based Dynamic Object Removal for Static 3D Point Cloud Map Building",
       "venue": "**RA-L 2021**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "01-03 · ERASOR",
       "ran": false,
       "metrics": {},
@@ -72,7 +72,7 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/04_removert",
       "title": "Removert: Remove then Revert — Static Map Building in Challenging Environment",
       "venue": "**IROS 2020**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "01-04 · Removert",
       "ran": false,
       "metrics": {},
@@ -90,15 +90,145 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/05_dufomap",
       "title": "DUFOMap: Efficient Dynamic Awareness Mapping",
       "venue": "**RA-L 2024**",
-      "static_status": "⬜ 未开始",
+      "static_status": "🟢 **已复现：与论文 2 位小数完全一致**",
       "heading": "01-05 · DUFOMap",
-      "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
-      "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "ran": true,
+      "metrics": {
+        "SA": 97.9635,
+        "DA": 98.7196,
+        "AA": 98.3408,
+        "HA": 98.3401,
+        "gt_static": 17266247,
+        "gt_dynamic": 95983,
+        "map_points": 15987036,
+        "SA_dp2": 99.8853,
+        "DA_dp2": 96.6338,
+        "AA_dp2": 98.2461,
+        "map_points_dp2": 17231330
+      },
+      "checks": [
+        {
+          "name": "reproduces_paper_headline",
+          "ok": true,
+          "detail": "d_p=1 gives SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34 (Table I p.5), within 0.5 pp"
+        },
+        {
+          "name": "gt_is_binary_and_rare_dynamic",
+          "ok": true,
+          "detail": "GT = 17266247 static + 95983 dynamic points (0.55% dynamic) - a rare-positive problem, so AA is dominated by SA"
+        },
+        {
+          "name": "dp_is_load_bearing",
+          "ok": true,
+          "detail": "d_p=2 keeps +1.92 pp more static and removes -2.09 pp fewer dynamic points than the paper's d_p=1"
+        }
+      ],
+      "findings": [
+        {
+          "name": "upstream_example_contradicts_the_paper",
+          "detail": "DynamicMap_Benchmark's methods/dufomap/main.py passes d_p=2 with the comment 'same with paper', but the DUFOMap paper's default - the one whose Table I row we reproduce - is d_p=1 (Table IV, p.7). Using the example's value reproduces AA only by coincidence; SA and DA are each off by about 2 pp."
+        },
+        {
+          "name": "geometric_mean_hides_the_sa_da_tradeoff",
+          "detail": "d_p=1 -> SA 97.96 / DA 98.72 / AA 98.34; d_p=2 -> SA 99.89 / DA 96.63 / AA 98.25. The two AA values are 0.09 pp apart while SA and DA each move ~2 pp in opposite directions - the geometric mean of a rare-positive problem is almost entirely SA, so it cannot tell a conservative cleaner from an aggressive one.",
+          "AA_dp1": 98.3408,
+          "AA_dp2": 98.2461
+        },
+        {
+          "name": "dynamic_points_are_0_55_percent_of_the_map",
+          "detail": "95983 of 17362230 GT points are dynamic; any metric averaged over points is therefore a static-preservation metric in disguise."
+        }
+      ],
+      "artifacts": [
+        "results/dufomap_score_paper_default_dp1.json",
+        "results/dufomap_score_benchmark_example_dp2.json"
+      ],
+      "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
+      "backtest": {
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "SA",
+            "expected": 97.9635,
+            "got": 97.9635,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "DA",
+            "expected": 98.7196,
+            "got": 98.7196,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "AA",
+            "expected": 98.3408,
+            "got": 98.3408,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "HA",
+            "expected": 98.3401,
+            "got": 98.3401,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_static",
+            "expected": 17266247,
+            "got": 17266247,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_dynamic",
+            "expected": 95983,
+            "got": 95983,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_points",
+            "expected": 15987036,
+            "got": 15987036,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "SA_dp2",
+            "expected": 99.8853,
+            "got": 99.8853,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "DA_dp2",
+            "expected": 96.6338,
+            "got": 96.6338,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "AA_dp2",
+            "expected": 98.2461,
+            "got": 98.2461,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_points_dp2",
+            "expected": 17231330,
+            "got": 17231330,
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T00:56:38+08:00"
+      },
+      "level": "green"
     },
     {
       "id": "01-06",
@@ -108,7 +238,7 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/06_beautymap",
       "title": "BeautyMap: Binary-Encoded Adaptable Ground Matrix for Dynamic Points Removal in Global Maps",
       "venue": "**RA-L 2024**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "01-06 · BeautyMap",
       "ran": false,
       "metrics": {},
@@ -126,7 +256,7 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/07_dynosam",
       "title": "DynoSAM: Open-Source Smoothing and Mapping Framework for Dynamic SLAM",
       "venue": "**T-RO 2025**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "01-07 · DynoSAM",
       "ran": false,
       "metrics": {},
@@ -144,7 +274,7 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/08_ngd_slam",
       "title": "NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU",
       "venue": "**IROS 2025**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "01-08 · NGD-SLAM",
       "ran": false,
       "metrics": {},
@@ -162,7 +292,7 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/09_lt_mapper",
       "title": "LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping",
       "venue": "**ICRA 2022**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "01-09 · LT-mapper",
       "ran": false,
       "metrics": {},
@@ -182,7 +312,7 @@
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
       "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
       "heading": "02-01 · 3RScan",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -276,7 +406,6 @@
         "results/observability.json",
         "results/observability.csv"
       ],
-      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -459,7 +588,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "02-02",
@@ -469,7 +599,7 @@
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/02_oasis_map",
       "title": "OASIS-Map: Object-Level Change Detection in Multi-Session Mapping using Semantic Correspondence Matching",
       "venue": "**arXiv 2026-07，under review**（Oxford, Dynamic Robot Systems Group）",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "02-02 · OASIS-Map",
       "ran": false,
       "metrics": {},
@@ -487,7 +617,7 @@
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/03_concept_graphs",
       "title": "ConceptGraphs: Open-Vocabulary 3D Scene Graphs for Perception and Planning",
       "venue": "**ICRA 2024**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "02-03 · ConceptGraphs",
       "ran": false,
       "metrics": {},
@@ -505,7 +635,7 @@
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/04_dualmaps",
       "title": "DualMap: Online Open-Vocabulary Semantic Mapping for Natural Language Navigation in Dynamic Changing Scenes",
       "venue": "**RA-L 2025**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "02-04 · DualMap",
       "ran": false,
       "metrics": {},
@@ -523,7 +653,7 @@
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/05_hov_sg",
       "title": "Hierarchical Open-Vocabulary 3D Scene Graphs for Language-Grounded Robot Navigation",
       "venue": "**RSS 2024**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "02-05 · HOV-SG",
       "ran": false,
       "metrics": {},
@@ -541,7 +671,7 @@
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/06_clio",
       "title": "Clio: Real-time Task-Driven Open-Set 3D Scene Graphs",
       "venue": "**RA-L 2024**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "02-06 · Clio",
       "ran": false,
       "metrics": {},
@@ -559,7 +689,7 @@
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/07_anyloc",
       "title": "AnyLoc: Towards Universal Visual Place Recognition",
       "venue": "**RA-L 2023**（ICRA 2024 展示）",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "02-07 · AnyLoc",
       "ran": false,
       "metrics": {},
@@ -577,7 +707,7 @@
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/08_revisit_anything",
       "title": "Revisit Anything: Visual Place Recognition via Image Segment Retrieval",
       "venue": "**ECCV 2024**",
-      "static_status": "⬜ 未开始",
+      "static_status": "⬜ 未开始（论文报告值已记录）",
       "heading": "02-08 · Revisit Anything",
       "ran": false,
       "metrics": {},

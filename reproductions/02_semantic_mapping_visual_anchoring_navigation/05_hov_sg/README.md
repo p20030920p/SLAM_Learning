@@ -5,11 +5,12 @@
 | 论文 | Hierarchical Open-Vocabulary 3D Scene Graphs for Language-Grounded Robot Navigation |
 | Venue | **RSS 2024** |
 | 论文链接 | [arXiv:2403.17846](https://arxiv.org/abs/2403.17846) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [hovsg/HOV-SG](https://github.com/hovsg/HOV-SG) ✅ 实测 200 |
 | 数据 | Replica / HM3D-Semantics（公开） |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | §0 地图层；D2 的「导航」那一段 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

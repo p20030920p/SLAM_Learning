@@ -5,11 +5,12 @@
 | 论文 | NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU |
 | Venue | **IROS 2025** |
 | 论文链接 | [arXiv:2405.07392](https://arxiv.org/abs/2405.07392) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) ✅ 实测 200 |
 | 数据 | TUM RGB-D / BONN（公开） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | car.md 方向一 · 难点 1「未知动态物体检测」；难点 4 的 CPU 基线 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

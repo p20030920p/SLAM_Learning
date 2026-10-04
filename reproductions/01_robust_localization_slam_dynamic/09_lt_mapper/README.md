@@ -5,11 +5,12 @@
 | 论文 | LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping |
 | Venue | **ICRA 2022** |
 | 论文链接 | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) ✅ 实测 200 |
 | 数据 | MulRan / KITTI（多会话序列） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4 地图维护；car.md 难点 3「终身 SLAM」与参考库 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

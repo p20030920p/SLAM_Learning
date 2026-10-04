@@ -5,11 +5,12 @@
 | 论文 | OASIS-Map: Object-Level Change Detection in Multi-Session Mapping using Semantic Correspondence Matching |
 | Venue | **arXiv 2026-07，under review**（Oxford, Dynamic Robot Systems Group） |
 | 论文链接 | [arXiv:2607.14899](https://arxiv.org/abs/2607.14899) · [项目页](https://dynamic.robots.ox.ac.uk/projects/oasis-map/) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | ❌ **未发布** —— 项目页标注 *Code Soon*（实测：页面可达，无仓库链接） |
 | 数据 | 3RScan（室内 RGB-D）· 停车场换车（室外 RGB-LiDAR）· 户外市场 |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | §4.1 删除判据「可观测性」；§5 H3；物体级变化检测题目 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

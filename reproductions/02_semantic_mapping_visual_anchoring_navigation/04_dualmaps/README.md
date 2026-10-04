@@ -5,11 +5,12 @@
 | 论文 | DualMap: Online Open-Vocabulary Semantic Mapping for Natural Language Navigation in Dynamic Changing Scenes |
 | Venue | **RA-L 2025** |
 | 论文链接 | [arXiv:2506.01950](https://arxiv.org/abs/2506.01950) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [Eku127/DualMap](https://github.com/Eku127/DualMap) ✅ 实测 200（带 ROS 支持） |
 | 数据 | 公开数据集 + 自采集（见仓库） |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | §4.1「修订语义」；§2 难点 5 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

@@ -5,11 +5,12 @@
 | 论文 | ERASOR: Egocentric Ratio of Pseudo Occupancy-Based Dynamic Object Removal for Static 3D Point Cloud Map Building |
 | Venue | **RA-L 2021** |
 | 论文链接 | [arXiv:2103.04316](https://arxiv.org/abs/2103.04316) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [LimHyungTae/ERASOR](https://github.com/LimHyungTae/ERASOR) ✅ 实测 200 |
 | 数据 | KITTI / MulRan（配合 DynamicMap_Benchmark） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4 高变动场景的地图维护 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

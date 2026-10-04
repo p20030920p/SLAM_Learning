@@ -5,11 +5,12 @@
 | 论文 | AnyLoc: Towards Universal Visual Place Recognition |
 | Venue | **RA-L 2023**（ICRA 2024 展示） |
 | 论文链接 | [arXiv:2308.00688](https://arxiv.org/abs/2308.00688) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [AnyLoc/AnyLoc](https://github.com/AnyLoc/AnyLoc) ✅ 实测 200 |
-| 数据 | 经 `VPR-datasets-downloader` 获取（Pitts250k / Tokyo24-7 等） |
+| 数据 | 经 `VPR-datasets-downloader` 获取（Pitts-**30k** 等；⚠️ 原写 Pitts250k/Tokyo24-7，两者都**不在** AnyLoc 论文的 12 个数据集里） |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | ⚠️ 补任务书缺掉的「视觉锚定」（原 T3 被删） |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

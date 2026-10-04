@@ -5,11 +5,12 @@
 | 论文 | Clio: Real-time Task-Driven Open-Set 3D Scene Graphs |
 | Venue | **RA-L 2024** |
 | 论文链接 | [arXiv:2404.13696](https://arxiv.org/abs/2404.13696) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [MIT-SPARK/Clio](https://github.com/MIT-SPARK/Clio) ✅ 实测 200 |
 | 数据 | 自采集 / 公开数据集（见仓库） |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | §2 难点 5 算力受限下的稀疏表示 + 语义 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

@@ -5,11 +5,12 @@
 | 论文 | ConceptGraphs: Open-Vocabulary 3D Scene Graphs for Perception and Planning |
 | Venue | **ICRA 2024** |
 | 论文链接 | [arXiv:2309.16650](https://arxiv.org/abs/2309.16650) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [concept-graphs/concept-graphs](https://github.com/concept-graphs/concept-graphs) ✅ 实测 200 |
 | 数据 | Replica / ScanNet（仓库含处理脚本） |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | §0 地图层「关键帧稀疏语义」；§2 难点 5 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

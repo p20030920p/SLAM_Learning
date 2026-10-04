@@ -5,11 +5,12 @@
 | 论文 | DynoSAM: Open-Source Smoothing and Mapping Framework for Dynamic SLAM |
 | Venue | **T-RO 2025** |
 | 论文链接 | [arXiv:2501.11893](https://arxiv.org/abs/2501.11893) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [ACFR-RPG/DynoSAM](https://github.com/ACFR-RPG/DynoSAM) ✅ 实测 200 |
 | 数据 | KITTI tracking / OMD / TartanAir / VIODE |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | 方向 1 备选（联合相机-物体评测） |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

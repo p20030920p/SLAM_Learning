@@ -5,11 +5,12 @@
 | 论文 | KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way |
 | Venue | **RA-L 2023** |
 | 论文链接 | [arXiv:2303.04754](https://arxiv.org/abs/2303.04754) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) ✅ 实测 200 |
 | 数据 | KITTI odometry（需注册，免费） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §6 并行实验 —— 下游定位器 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 

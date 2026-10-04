@@ -5,11 +5,12 @@
 | 论文 | Revisit Anything: Visual Place Recognition via Image Segment Retrieval |
 | Venue | **ECCV 2024** |
 | 论文链接 | [arXiv:2409.18049](https://arxiv.org/abs/2409.18049) |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [AnyLoc/Revisit-Anything](https://github.com/AnyLoc/Revisit-Anything) ✅ 实测 200 |
 | 数据 | 经 `VPR-datasets-downloader` 获取（与 AnyLoc 共用） |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | car.md 方向二 · 难点 7「动态环境下的 VPR」的直接对手 |
-| 复现状态 | ⬜ 未开始 |
+| 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 ## 它做了什么 What it does
 
@@ -21,7 +22,8 @@ car.md 难点 7 的假设就是「分割级检索优于整图检索」。这篇�
 
 ## 复现目标（可验收）Goals
 
-- [ ] 跑通，在 Pitts250k 或 Tokyo24-7 上得到 Recall@1 基线
+- [ ] 跑通，在 Pitts-**30k** 上得到 Recall@1 基线（⚠️ 原写 Pitts250k/Tokyo24-7，均不在 AnyLoc 论文的数据集列表中；
+      Revisit Anything 与 AnyLoc 的可比点就是 Baidu Mall：75.2 → 78.5）
 - [ ] 构造「同一地点但物体被移动」的查询对，测 Recall@1 下降幅度
 - [ ] 与 02-07 AnyLoc（整图检索）对比，验证分割级检索的增益到底有多大
 - [ ] 产出：整图 vs 分割级 在「内容变化」条件下的对比表
