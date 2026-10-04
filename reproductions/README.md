@@ -251,3 +251,74 @@ reproductions/
 | ✅ 200 | 21 条代码库 / 论文 / 项目页链接全部可达 |
 | ⚠️ **修正 1 条** | `github.com/KTH-RPL/BeautyMap` **返回 404**。BeautyMap 的正确仓库是 [`MKJia/BeautyMap`](https://github.com/MKJia/BeautyMap)（已实测 200）。上游 `Localise/01_task_books/materials/links.md` 记的 KTH-RPL 地址是错的 |
 | ℹ️ 1 条非资源 | OASIS-Map 项目页可达，但明确标注 **Code Soon**，无代码可 clone |
+
+## 自动化与回测 Automation & backtest
+
+复现不是「跑一次记个数字」，而是**一条可以随时重跑、并且会自己发现回退的流水线**：
+
+```bash
+python3 reproductions/run_all.py             # 跑所有能跑的复现 + 回测 + 刷新本页进度表
+python3 reproductions/run_all.py --only 02-01
+python3 reproductions/run_all.py --check      # 不重跑，只按现有 status.json 重画进度表
+python3 reproductions/run_all.py --no-backtest
+```
+
+每次运行做四件事：
+
+1. **发现**：扫描 `reproductions/<方向>/<NN_名称>/`，从每个 `README.md` 读出论文名与静态状态；
+2. **运行**：有 `reproduce.py` 的就执行 —— 它的 `require(ctx)` 先说清缺什么（数据没下 / 仓库没克隆），
+   缺就标 `⛔ blocked` 而不是假装失败；能跑就 `run(ctx)` 并产出指标；
+3. **回测**：把本次指标与文件夹里的 `baselines.json` 比对，超出容差即判 `❌ regressed`
+   并把该复现标成失败（**回测本身也验证过会失败** —— 注入假回退后确实报了错）；
+4. **刷新**：重写 `status.json`，并把下面这张进度表写进本文件与仓库根的两份 README
+   （块内内容自动生成，不要手改）。
+
+### 约定：`checks` 与 `findings` 是两回事
+
+| | 含义 | 失败会怎样 |
+| :--- | :--- | :--- |
+| **`checks`** | **不变量**：协议声称的事实，必须成立 | 判 `❌ failed`，说明复现坏了 |
+| **`findings`** | **测量结果**：关于数据的客观事实 | 只记录，**不阻塞**任何东西 |
+
+例：02-01 里「几何上能否把移动物体和噪声分开」记的是 **finding** ——
+实测最小真实位移 0.265 m **小于**最大对齐噪声 0.639 m，所以**纯几何方法在这一对上分不开**。
+这是关于数据的结论，不是流水线的缺陷，因此它不该让复现变红。
+
+### 新增一个复现
+
+1. 建文件夹 `reproductions/<方向>/<NN_名称>/`，写好 `README.md`（含 `| 复现状态 | ... |` 一行）；
+2. 放一个 `reproduce.py`，实现 `require(ctx) -> None | str` 与
+   `run(ctx) -> {"metrics", "checks", "findings", "artifacts"}`；
+3. 跑一次 `run_all.py`，把 `status.json` 里的指标抄进 `baselines.json` 作为基线；
+4. 之后再跑，任何数字漂移都会被回测抓住。
+
+---
+
+<!-- PROGRESS:START -->
+
+**进度 Progress** — 1/17 跑通 · 1 本次实际运行 · 1/17 已自动化 · 更新于 2026-10-04 23:08 CST
+
+| # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 |
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+| 01-01 | D1 | DynamicMap_Benchmark | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 01-02 | D1 | KISS-ICP | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 01-03 | D1 | ERASOR | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 01-04 | D1 | Removert | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 01-05 | D1 | DUFOMap | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 01-06 | D1 | BeautyMap | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 01-07 | D1 | DynoSAM | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 01-08 | D1 | NGD-SLAM | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 01-09 | D1 | LT-mapper | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 |
+| 02-02 | D2 | OASIS-Map | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 02-03 | D2 | ConceptGraphs | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 02-04 | D2 | DualMap | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 02-05 | D2 | HOV-SG | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 02-06 | D2 | Clio | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 02-07 | D2 | AnyLoc | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+| 02-08 | D2 | Revisit Anything | ⬜ planned | — | — | no reproduce.py yet — see README.md for the plan |
+
+> 本表由 `python3 reproductions/run_all.py` 自动生成，块内内容请勿手改。
+> 新增复现：建好文件夹与 `README.md`，再放一个实现 `require(ctx)` / `run(ctx)` 的 `reproduce.py`，重跑本命令即可。
+
+<!-- PROGRESS:END -->

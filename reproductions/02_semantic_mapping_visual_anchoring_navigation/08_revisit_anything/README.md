@@ -1,4 +1,4 @@
-# 02-08 · revisit_anything
+# 02-08 · Revisit Anything
 
 | 项 Item | 内容 |
 | :--- | :--- |

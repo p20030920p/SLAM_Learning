@@ -244,6 +244,27 @@ def build(scene_ref, rescan_ref, data_root, tolerance):
     }
 
 
+def write_outputs(pair, out_dir):
+    """Write ab_pair.json and ab_pair.csv; returns the two paths."""
+    os.makedirs(out_dir, exist_ok=True)
+    json_path = os.path.join(out_dir, "ab_pair.json")
+    csv_path = os.path.join(out_dir, "ab_pair.csv")
+    with open(json_path, "w", encoding="utf-8") as fh:
+        json.dump(pair, fh, indent=2, ensure_ascii=False)
+    with open(csv_path, "w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["objectId", "label", "gt_class", "in_A", "in_B",
+                    "motion_in_room_frame_m", "alignment_residual_m",
+                    "transform_reproduces_centroid_m", "symmetry", "source"])
+        for o in pair["objects"]:
+            w.writerow([o["objectId"], o["label"], o["gt_class"], o["in_A"], o["in_B"],
+                        o.get("motion_in_room_frame_m", ""),
+                        o.get("alignment_residual_m", ""),
+                        o.get("transform_reproduces_centroid_m", ""),
+                        o.get("symmetry", ""), o["source"]])
+    return json_path, csv_path
+
+
 def main():
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -260,23 +281,7 @@ def main():
     pair = build(args.scene_ref, args.rescan,
                  os.path.normpath(args.data_root), args.tolerance)
     out_dir = os.path.normpath(args.out_dir)
-    os.makedirs(out_dir, exist_ok=True)
-
-    json_path = os.path.join(out_dir, "ab_pair.json")
-    csv_path = os.path.join(out_dir, "ab_pair.csv")
-    with open(json_path, "w", encoding="utf-8") as fh:
-        json.dump(pair, fh, indent=2, ensure_ascii=False)
-    with open(csv_path, "w", encoding="utf-8", newline="") as fh:
-        w = csv.writer(fh)
-        w.writerow(["objectId", "label", "gt_class", "in_A", "in_B",
-                    "motion_in_room_frame_m", "alignment_residual_m",
-                    "transform_reproduces_centroid_m", "symmetry", "source"])
-        for o in pair["objects"]:
-            w.writerow([o["objectId"], o["label"], o["gt_class"], o["in_A"], o["in_B"],
-                        o.get("motion_in_room_frame_m", ""),
-                        o.get("alignment_residual_m", ""),
-                        o.get("transform_reproduces_centroid_m", ""),
-                        o.get("symmetry", ""), o["source"]])
+    json_path, csv_path = write_outputs(pair, out_dir)
 
     p = pair["protocol"]
     print(f"A = {p['session_A']}")

@@ -1,0 +1,24 @@
+{
+  "reproduction": "02-01",
+  "paper": "3RScan (RIO, ICCV 2019) — A/B session pair",
+  "recorded": "2026-10-04T23:07:08+08:00",
+  "recorded_with": "reproduce.py, tolerance 1.0 m, public example data (2 scans)",
+  "rel_tolerance": 0.02,
+  "note": "Metrics are deterministic. A diff means the protocol, the parsing or the data changed — investigate before updating this file.",
+  "metrics": {
+    "objects_total": 32,
+    "unchanged": 26,
+    "moved": 5,
+    "nonrigid": 0,
+    "removed": 0,
+    "absent_unlabelled": 1,
+    "appeared": 0,
+    "global_alignment_translation_m": 1.6041,
+    "noise_mean_m": 0.1507,
+    "noise_p95_m": 0.5284,
+    "noise_max_m": 0.639,
+    "moved_motion_min_m": 0.2648,
+    "moved_motion_max_m": 1.0918,
+    "transform_reproduce_centroid_max_m": 0.1117
+  }
+}

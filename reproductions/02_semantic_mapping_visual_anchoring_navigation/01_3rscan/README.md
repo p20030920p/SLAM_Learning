@@ -43,6 +43,30 @@
 > 完整协议见 [`work/protocol.md`](work/protocol.md)；脚本 [`work/build_ab_pair.py`](work/build_ab_pair.py)；
 > 产物 [`results/ab_pair.json`](results/ab_pair.json) · [`results/ab_pair.csv`](results/ab_pair.csv)。
 
+**已自动化**：本文件夹有 [`reproduce.py`](reproduce.py)，由 `python3 reproductions/run_all.py` 驱动，
+指标与 [`baselines.json`](baselines.json) 比对做回测。
+
+```bash
+python3 reproductions/run_all.py --only 02-01
+```
+
+### 每次运行自动验的四条不变量（`checks`）
+
+| 检查 | 内容 | 本次结果 |
+| :--- | :--- | :--- |
+| `matrix_layout` | 行向量读法把结构物放在原位，列向量读法甩出几米 —— **用反证法证明约定** | ✅ 行向量误差 ≤ 0.324 m，列向量 ≥ 1.849 m（差 5.7 倍） |
+| `object_transform_alignment` | `rigid[i].transform` 已含会话对齐：`T·c_A` 复现 `c_B` | ✅ 5 个移动物体，最大误差 0.1117 m |
+| `class_partition` | 32 个实例每个恰好落进一个类别 | ✅ 32 / 32 |
+| `tolerance_above_noise` | 容差必须大于未动物体的对齐残差 | ✅ 0.639 m < 1.0 m |
+
+### 记录为 finding 的测量结果（不阻塞运行）
+
+| finding | 内容 |
+| :--- | :--- |
+| `geometric_separation` | **最小真实位移 0.265 m < 最大对齐噪声 0.639 m** —— 纯几何质心差分在这一对上**分不开**移动与未动 |
+
+> 这条 finding 本身就是那条假设的第一个证据：几何阈值不可靠，所以「可观测性感知」才有存在空间。
+
 **已跑通一对真实会话**（公开示例数据自带的 reference + rescan）：
 
 | 项 | 值 |
