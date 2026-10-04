@@ -156,6 +156,21 @@ planner_server:
 `ALGO_CORE_REGISTER(YourPlanner, "your_name")` 注册，把源文件加进
 `src/algo_core/CMakeLists.txt`，再把上面的 `algorithm` 改成 `"your_name"`。Nav2 适配器不用动。
 
+## 复现区 Reproductions
+
+`reproductions/` 是按**两个研究方向**组织的论文复现区：**D1** 动态环境下的鲁棒定位与 SLAM、
+**D2** 语义建图、视觉定位与导航。每篇论文一个带序号的文件夹，里面有复现方案（目标 / 数据 /
+步骤 / 验收）与 `code/`、`data/`、`work/`、`results/` 四个子目录；上游代码与数据集留在本机，
+不进 git。
+
+| | 方向 | 复现对象 |
+| :--- | :--- | :--- |
+| **01** | 动态环境下的鲁棒定位与 SLAM | DynamicMap_Benchmark · KISS-ICP · ERASOR · Removert · DUFOMap · BeautyMap · DynoSAM · NGD-SLAM · LT-mapper |
+| **02** | 语义建图、视觉定位与导航 | 3RScan · OASIS-Map · ConceptGraphs · DualMap · HOV-SG · Clio · AnyLoc · Revisit Anything |
+
+索引、两个方向与任务书的对应关系、以及建议顺序见
+[`reproductions/README.md`](reproductions/README.md)。
+
 ## 相比基准删掉了什么
 
 Dijkstra、加权 A\*、GBFS、JPS、Theta\*、D\* Lite，用来在它们之间切换的 `algo_bringup` 注册表，

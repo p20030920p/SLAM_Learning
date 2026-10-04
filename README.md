@@ -160,6 +160,22 @@ Adding a planner back is two steps: subclass `algo_core::GridPlanner`, register 
 `src/algo_core/CMakeLists.txt`, and set `algorithm: "your_name"` above. The Nav2 adapter does not
 change.
 
+## Reproductions
+
+`reproductions/` is the paper-reproduction area, organised by the two research directions this
+workspace is meant to serve — **D1** robust localization and SLAM in dynamic environments, and
+**D2** semantic mapping, visual anchoring and navigation. Every paper gets a numbered folder with a
+plan (goal, data, steps, acceptance criteria) plus `code/`, `data/`, `work/` and `results/`
+subfolders; upstream checkouts and datasets stay local and are gitignored.
+
+| | Direction | Reproductions |
+| :--- | :--- | :--- |
+| **01** | Robust localization & SLAM in dynamic environments | DynamicMap_Benchmark · KISS-ICP · ERASOR · Removert · DUFOMap · BeautyMap · DynoSAM · NGD-SLAM · LT-mapper |
+| **02** | Semantic mapping, visual anchoring & navigation | 3RScan · OASIS-Map · ConceptGraphs · DualMap · HOV-SG · Clio · AnyLoc · Revisit Anything |
+
+[`reproductions/README.md`](reproductions/README.md) holds the index, how the two directions line up
+with the task book, and the suggested order.
+
 ## What was removed from the benchmark
 
 Dijkstra, weighted A\*, GBFS, JPS, Theta\* and D\* Lite, the `algo_bringup` registry that swapped

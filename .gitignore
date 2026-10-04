@@ -24,3 +24,11 @@ __pycache__/
 
 # Gazebo camera sensor default dump directory (top_camera::link::top_view_*.png)
 __default__/
+
+# Reproductions: upstream checkouts and datasets stay on the machine that runs
+# them. Only what we write (plans, scripts, small results) is committed — the
+# .gitkeep files keep the two folders visible in a fresh clone.
+reproductions/**/code/*
+reproductions/**/data/*
+!reproductions/**/code/.gitkeep
+!reproductions/**/data/.gitkeep
