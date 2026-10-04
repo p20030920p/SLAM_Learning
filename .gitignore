@@ -37,5 +37,15 @@ reproductions/**/code/
 reproductions/**/data/*
 !reproductions/**/data/.gitkeep
 
-# Reproductions: shared virtualenvs for the Python-based methods
+# Reproductions: point-cloud artifacts are hundreds of MB per run (Removert's
+# own output alone is 616 MB). They stay on the machine; the small JSON/text
+# metrics next to them are what gets committed.
+reproductions/**/results/**/*.pcd
+# Generated rosparams embed absolute paths of this machine.
+reproductions/**/work/generated/
+
+# Reproductions: shared virtualenvs for the Python-based methods, plus the ROS 1
+# catkin workspaces used to build the upstream repos that are still catkin-based
+# (ERASOR / Removert / LT-mapper). Both are machine-local toolchains.
 reproductions/.venvs/
+reproductions/.ws/

@@ -258,12 +258,15 @@ reproductions/.venvs/dmb/bin/pip install dufomap kiss-icp scipy
 ```
 reproductions/
 ├── README.md                      ← 本文件：索引 + 关联分析
+├── tools/                         ← 跨复现共享的工具
+│   ├── ros1_env.sh                ← 把 ROS 1 Noetic 摆到 ROS 2 Jazzy 前面
+│   └── build_ros1_catkin.sh       ← 编译上游 catkin 仓库到 .ws/<name>_ws
 ├── 01_robust_localization_slam_dynamic/          ← D1
 │   ├── README.md                  ← 方向说明 + 本方向复现顺序
 │   └── 01_dynamicmap_benchmark/
 │       ├── README.md              ← 复现方案（提交进 git）
 │       ├── work/                  ← 我们自己写的脚本、协议（进 git）
-│       ├── results/               ← 产物、图表（小的进 git）
+│       ├── results/               ← 产物、图表（小 JSON 进 git；*.pcd 被忽略）
 │       ├── code/                  ← 克隆的上游仓库（整个目录被 gitignore）
 │       └── data/                  ← 数据集（不进 git）
 └── 02_semantic_mapping_visual_anchoring_navigation/   ← D2
@@ -272,10 +275,41 @@ reproductions/
 
 **为什么 code/ 和 data/ 不进 git**：上游仓库有自己的 git 历史，数据集动辄几十 GB。
 本仓库只保留**我们写的**东西——步骤、脚本、配置、结论。
+点云产物也不进 git（`reproductions/**/results/**/*.pcd`）：Removert 一次运行就是 616 MB，
+留在机器上，旁边的小 JSON 才是提交对象。
 
 > `code/` 被整目录忽略（写的是 `code/` 而不是 `code/*`）：克隆进来的仓库自带 `.git`，
 > 否则 git 会把整个 checkout 记成一个 embedded repository（gitlink）而不是忽略。
 > 这两个目录在你拉取内容时自然出现，不需要 `.gitkeep` 占位。
+
+### ROS 1 上游仓库怎么跑（01-03 ERASOR / 01-04 Removert 用这一套）
+
+本机是 **ROS 2 Jazzy、无 sudo、无 Docker**，而这两个方法的官方仓库都是 **ROS 1 catkin** 包。
+可复现的做法是 **micromamba + robostack**，不需要 root，也不需要容器：
+
+```bash
+# 一次性：建 ROS 1 Noetic 环境（empy 必须钉 3.3.4，否则消息生成会失败）
+micromamba create -y -p reproductions/.venvs/ros1noetic \
+  -c https://conda.anaconda.org/robostack-staging -c conda-forge \
+  ros-noetic-ros-base ros-noetic-catkin ros-noetic-pcl-ros ros-noetic-cv-bridge \
+  ros-noetic-tf ros-noetic-image-transport ros-noetic-jsk-recognition-msgs \
+  pcl eigen boost-cpp "empy=3.3.4"
+
+# 编译某个上游仓库（例子：Removert）
+micromamba run -p reproductions/.venvs/ros1noetic \
+  bash reproductions/tools/build_ros1_catkin.sh \
+       reproductions/.ws/removert_ws removert <复现文件夹>/code/removert
+```
+
+两个坑已经封装进工具脚本，但值得知道它们存在：
+
+| 坑 | 症状 | 处理 |
+| :--- | :--- | :--- |
+| ROS 1 / ROS 2 有同名库 | 编译通过，运行时 `symbol lookup error`（如 `image_transport::ImageTransport`） | `tools/ros1_env.sh` 把 `/opt/ros/jazzy*` 从 `LD_LIBRARY_PATH`/`PYTHONPATH`/`CMAKE_PREFIX_PATH` 等里剥掉 |
+| conda 的 PCL 不导出 VTK | 链接期 `libvtksys-9.2.so.1: DSO missing from command line` | 构建脚本自动补 `-I$ENV/include/vtk-9.2` 与 `-Wl,--copy-dt-needed-entries` |
+
+上游源码需要的 **API 漂移补丁**（PCL ≥ 1.11 的 `shared_ptr`、OpenCV 4 删掉的 `<opencv/cv.h>` 等）
+逐个记在对应复现的 `work/local_patches.patch`，**算法逻辑不改**。
 
 ---
 
@@ -364,21 +398,21 @@ python3 reproductions/run_all.py --no-backtest
 
 ## 复现进度 Reproduction progress
 
-**进度** — 8/17 跑通 · 8 本次实际运行 · 8/17 已自动化 · 更新于 2026-10-05 02:12 CST
+**进度** — 8/17 跑通 · 0 本次实际运行 · 10/17 已自动化 · 更新于 2026-10-05 02:51 CST
 
 | # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | ✅ | ✅ 通过 | 17 项指标 · 2 条 finding |
-| 01-02 | D1 | KISS-ICP | 🟢 green | ✅ | ✅ 通过 | 8 项指标 · 4 条 finding |
-| 01-03 | D1 | ERASOR | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 2 条 finding |
-| 01-04 | D1 | Removert | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 2 条 finding |
-| 01-05 | D1 | DUFOMap | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
-| 01-06 | D1 | BeautyMap | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 3 条 finding |
-| 01-07 | D1 | DynoSAM | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 01-08 | D1 | NGD-SLAM | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
+| 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | — | ✅ 通过 | 17 项指标 · 2 条 finding |
+| 01-02 | D1 | KISS-ICP | 🟢 green | — | ✅ 通过 | 8 项指标 · 4 条 finding |
+| 01-03 | D1 | ERASOR | 🟢 green | — | ✅ 通过 | 21 项指标 · 2 条 finding |
+| 01-04 | D1 | Removert | 🟢 green | — | ✅ 通过 | 20 项指标 · 3 条 finding |
+| 01-05 | D1 | DUFOMap | 🟢 green | — | ✅ 通过 | 11 项指标 · 3 条 finding |
+| 01-06 | D1 | BeautyMap | 🟢 green | — | ✅ 通过 | 9 项指标 · 3 条 finding |
+| 01-07 | D1 | DynoSAM | ⛔ blocked | — | — | GPU/CUDA absent, and DynoSAM cannot even `cmake`-configure without it: dynosam_nn/CMakeLists.txt:3 declares… |
+| 01-08 | D1 | NGD-SLAM | 🟢 green | — | ✅ 通过 | 11 项指标 · 3 条 finding |
 | 01-09 | D1 | LT-mapper | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
-| 02-02 | D2 | OASIS-Map | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 02-01 | D2 | 3RScan | 🟢 green | — | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
+| 02-02 | D2 | OASIS-Map | ⛔ blocked | — | — | no upstream code to run: the OASIS-Map project page (checked 2026-10-05) still says 'Code Soon' and the pap… |
 | 02-03 | D2 | ConceptGraphs | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-04 | D2 | DualMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
 | 02-05 | D2 | HOV-SG | ⬜ planned | — | — | 待开始（缺 reproduce.py） |

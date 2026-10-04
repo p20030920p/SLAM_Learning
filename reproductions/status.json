@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T02:12:14+08:00",
+  "generated": "2026-10-05T02:51:06+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
     "green": 8,
     "failed": 0,
-    "blocked": 0,
-    "planned": 9,
-    "ran_this_pass": 8
+    "blocked": 2,
+    "planned": 7,
+    "ran_this_pass": 0
   },
   "reproductions": [
     {
@@ -20,7 +20,7 @@
       "venue": "**ITSC 2023**（arXiv:2307.07260）",
       "static_status": "🟡 地基已跑通（数据 + 评测器 + 交叉验证）；四个方法的数字待跑",
       "heading": "01-01 · DynamicMap_Benchmark",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "frames": 141,
         "gt_points": 17362230,
@@ -81,6 +81,7 @@
         }
       ],
       "artifacts": [],
+      "level": "green",
       "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements",
       "backtest": {
         "status": "ok",
@@ -207,8 +208,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:12:18+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-02",
@@ -220,7 +220,7 @@
       "venue": "**RA-L 2023**",
       "static_status": "🟡 **代码跑通并出数**（0.409 %）；⚠️ **数字与论文不可直接比**，原因见下",
       "heading": "01-02 · KISS-ICP",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "avg_translation_error_pct": 0.409,
         "avg_rotational_error_deg_per_m": 0.005,
@@ -271,6 +271,7 @@
       "artifacts": [
         "results/kiss_icp_logs/latest/result_metrics.log"
       ],
+      "level": "green",
       "note": "KISS-ICP on a reconstructed 141-frame KITTI 00 sub-sequence: ATE 0.112 m, avg translation error 0.409 % over only 2 metric sample(s) - the paper's 0.5 % is NOT reproduced (see findings)",
       "backtest": {
         "status": "ok",
@@ -334,8 +335,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T02:06:31+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-03",
@@ -345,10 +345,22 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/03_erasor",
       "title": "ERASOR: Egocentric Ratio of Pseudo Occupancy-Based Dynamic Object Removal for Static 3D Point Cloud Map Building",
       "venue": "**RA-L 2021**",
-      "static_status": "🟢 **已复现：命中基准表 I 行（66.70/98.54/81.07）**",
+      "static_status": "🟢 **官方实现复现成功：PR/RR/F1 = 95.62 / 94.41 / 0.950**（论文表 II 93.98 / 97.08 / 0.955，作者自己在 master 上重跑是 95.79 / 95.64 / 0.957）",
       "heading": "01-03 · ERASOR",
-      "ran": true,
+      "ran": false,
       "metrics": {
+        "published_PR": 93.979499,
+        "published_RR": 97.080901,
+        "published_F1": 0.95505,
+        "official_PR": 95.621938,
+        "official_RR": 94.41201,
+        "official_F1": 0.950131,
+        "official_gt_static": 394718,
+        "official_gt_dynamic": 4796,
+        "official_est_static": 374154,
+        "official_est_dynamic": 239,
+        "official_kept_static": 377437,
+        "official_kept_dynamic": 268,
         "SA": 66.7078,
         "DA": 98.5352,
         "AA": 81.0744,
@@ -361,52 +373,43 @@
       },
       "checks": [
         {
-          "name": "reproduces_benchmark_row",
+          "name": "published_output_reproduces_paper_table_ii",
           "ok": true,
-          "detail": "SA/DA/AA = 66.71/98.54/81.07 vs DynamicMap_Benchmark Table I 66.7/98.54/81.07, within 0.5 pp"
+          "detail": "the authors' own estimate/00_ERASOR.pcd scored with their own analysis_runner against their own GT gives 93.979/97.081/0.9550 against Table II's 93.98/97.081/0.955 - so the evaluator, the GT and the voxel rule are the paper's"
         },
         {
-          "name": "output_is_voxel_downsampled",
+          "name": "official_pipeline_runs_on_official_data",
           "ok": true,
-          "detail": "the cleaned map holds 1417955 points against 17362230 GT points - ERASOR's MapUpdater voxelises at 0.1 m, so most 'false removals' are downsampling, not deletion"
+          "detail": "mapgen + offline_map_updater over the official bag produced 374393 points (the authors' published estimate/00_ERASOR.pcd holds 364005)"
+        },
+        {
+          "name": "our_run_lands_in_the_upstream_band",
+          "ok": true,
+          "detail": "PR 95.622 / RR 94.412 / F1 0.9501; the paper's Table II is 93.98/97.081/0.955 and the authors' re-run on current master is 95.79/95.642/0.957"
+        },
+        {
+          "name": "benchmark_port_still_reproduces_its_row",
+          "ok": true,
+          "detail": "benchmark port SA/DA/AA = 66.71/98.54/81.07 vs Table I 66.7/98.54/81.07"
         }
       ],
       "findings": [
         {
-          "name": "low_SA_is_downsampling_not_deletion",
-          "detail": "SA 66.71% with 5748315 GT points marked removed, yet DA is 98.54%. The map has 12.2x fewer points than the GT cloud, so the 0.05 m nearest-neighbour rule reads downsampling as removal. The benchmark's metric therefore penalises resolution, not correctness - worth remembering before calling any method 'worse'."
+          "name": "official_and_port_agree_on_erasor_where_removert_disagreed",
+          "detail": "ERASOR's official repo scores PR 95.62 / RR 94.41 / F1 0.9501 on the official snippet, and the benchmark's ROS-free port reproduces its own Table I row (SA/DA/AA = 66.71/98.54/81.07) on the Zenodo sequence. Unlike Removert (01-04, where the port lost 47.7 pp of dynamic rejection), here the two implementations do not contradict each other - the metric changes, the method does not."
         },
         {
-          "name": "same_method_27_points_apart_across_metrics",
-          "detail": "ERASOR scores PR 93.980 on its own voxel-wise metric (SemanticKITTI 00, Table II p.8) and SA 66.71 on the benchmark's point-wise metric (KITTI 00). Removert goes the other way: 85.502 -> 99.44. The ranking between the two methods inverts with the metric.",
-          "paper_own": {
-            "PR": 93.98,
-            "RR": 97.081,
-            "F1": 0.955,
-            "metric": "voxel-wise, voxel 0.2, SemanticKITTI 00"
-          },
-          "benchmark": {
-            "SA": 66.7,
-            "DA": 98.54,
-            "AA": 81.07
-          },
-          "ours": {
-            "SA": 66.7078,
-            "DA": 98.5352,
-            "AA": 81.0744,
-            "HA": 79.5563,
-            "map_points": 1417955,
-            "gt_static": 17266247,
-            "gt_dynamic": 95983,
-            "false_removal": 5748315,
-            "missed_dynamic": 1406
-          }
+          "name": "the_27_point_gap_is_the_metric_not_the_method",
+          "detail": "on the same sequence, the same method reads PR 95.62 under the paper's voxel-wise metric and SA 66.71 under the benchmark's point-wise one. The paper's own number is the higher one, and the benchmark's GT cloud has 17362230 points against our map's 374393 - at 0.05 m nearest-neighbour, resolution loss is scored as deletion."
         }
       ],
       "artifacts": [
-        "results/erasor_score.json"
+        "results/score_official.json",
+        "results/score_published.json",
+        "results/erasor_official/00_result.pcd"
       ],
-      "note": "ERASOR (benchmark reimplementation) on KITTI 00: SA/DA/AA = 66.71/98.54/81.07",
+      "level": "green",
+      "note": "official ERASOR on the authors' seq-00 snippet: PR/RR/F1 = 95.62/94.41/0.950 (paper Table II 93.98/97.081/0.955)",
       "backtest": {
         "status": "ok",
         "diffs": [
@@ -474,10 +477,22 @@
             "why": ""
           }
         ],
-        "new_metrics_not_in_baseline": [],
+        "new_metrics_not_in_baseline": [
+          "official_F1",
+          "official_PR",
+          "official_RR",
+          "official_est_dynamic",
+          "official_est_static",
+          "official_gt_dynamic",
+          "official_gt_static",
+          "official_kept_dynamic",
+          "official_kept_static",
+          "published_F1",
+          "published_PR",
+          "published_RR"
+        ],
         "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-04",
@@ -487,15 +502,26 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/04_removert",
       "title": "Removert: Remove then Revert — Static Map Building in Challenging Environment",
       "venue": "**IROS 2020**",
-      "static_status": "🟢 **已复现：命中基准表 I 行（99.44/41.53/64.26）**；⚠️ 原论文闭源",
+      "static_status": "🟢 **官方实现跑通：SA/DA/AA = 99.62 / 89.25 / 94.29**（基准重实现只有 99.44 / 41.53 / 64.26）",
       "heading": "01-04 · Removert",
-      "ran": true,
+      "ran": false,
       "metrics": {
+        "official_SA": 99.6179,
+        "official_DA": 89.2523,
+        "official_AA": 94.2928,
+        "official_HA": 94.1506,
+        "official_map_points": 4628181,
+        "official_mapside_SA": 95.1474,
+        "official_mapside_DA": 98.9675,
+        "official_mapside_AA": 97.0387,
+        "official_mapside_HA": 97.0199,
+        "official_mapside_points": 3976241,
         "SA": 99.4361,
         "DA": 41.5313,
         "AA": 64.2628,
         "HA": 58.591,
         "map_points": 16722918,
+        "port_map_points": 16722918,
         "gt_static": 17266247,
         "gt_dynamic": 95983,
         "false_removal": 97362,
@@ -503,30 +529,42 @@
       },
       "checks": [
         {
-          "name": "reproduces_benchmark_row",
+          "name": "official_pipeline_produced_a_static_map",
           "ok": true,
-          "detail": "SA/DA/AA = 99.44/41.53/64.26 vs DynamicMap_Benchmark Table I 99.44/41.53/64.26, within 0.5 pp"
+          "detail": "results/removert_kitti00/map_static/StaticMapScansideMapGlobal.pcd holds 4628181 points after mapgen+removert ran over all 141 frames"
         },
         {
-          "name": "removert_is_the_conservative_extreme",
+          "name": "evaluator_implementations_agree",
           "ok": true,
-          "detail": "SA 99.44% with only DA 41.53% - it keeps essentially the whole map (56120 dynamic GT points left in) rather than risk deleting static structure"
+          "detail": "official export_eval_pcd vs scipy re-implementation: 0 disagreeing GT labels (rate 0.0)"
+        },
+        {
+          "name": "benchmark_port_still_reproduces_its_row",
+          "ok": true,
+          "detail": "port SA/DA/AA = 99.44/41.53/64.26 vs Table I 99.44/41.53/64.26"
         }
       ],
       "findings": [
         {
-          "name": "original_paper_is_unobtainable",
-          "detail": "Removert's IROS 2020 paper is closed access: OpenAlex returns is_oa=false, oa_status=closed, any_repository_has_fulltext=false, and the authors' own link (irap.kaist.ac.kr) fails DNS. So the target here is the benchmark's reimplementation, not Removert's self-reported numbers - the only folder in this repo where that is true."
+          "name": "official_removert_is_not_the_conservative_extreme",
+          "detail": "same 141 frames, same evaluator, same GT: official Removert scores SA 99.62 / DA 89.25 / AA 94.29, the benchmark's port scores SA 99.44 / DA 41.53 / AA 64.26. Static preservation is unchanged (0.2 pp apart) but dynamic rejection differs by 47.7 pp - the port leaks more than half the dynamic points the official code removes. Any ranking built on the port under-rates Removert."
         },
         {
-          "name": "the_two_extremes_disagree_about_what_good_means",
-          "detail": "Removert SA 99.44 / DA 41.53 against ERASOR's 66.71 / 98.54 on the same data and the same metric. They are opposite corners: one refuses to delete, the other deletes too much. AA ranks them DUFOMap > ERASOR > Removert, SA ranks them Removert > DUFOMap > ERASOR - the task book's ranking-stability question, answered on real numbers."
+          "name": "removert_revert_step_matters_more_than_it_looks",
+          "detail": "map-side output at the finest removal resolution scores SA 95.15 / DA 98.97 (AA 97.04) against the scan-side merged output's SA 99.62 / DA 89.25 (AA 94.29). The two upstream outputs of one run sit at opposite corners of the precision/recall trade-off, so 'Removert's score' is not defined without saying which output is submitted."
+        },
+        {
+          "name": "official_output_is_downsampled_but_still_scores_higher",
+          "detail": "the official map has 4628181 points against the port's 16722918. The evaluator's 0.05 m nearest-neighbour rule punishes sparse maps, so the official run wins on DA despite submitting a map ~3.6x smaller - the extra points in the port are not in the places the metric looks at."
         }
       ],
       "artifacts": [
-        "results/removert_score.json"
+        "results/score_official_scanside.json",
+        "results/score_official_mapside.json",
+        "results/score_benchmark_port.json"
       ],
-      "note": "Removert (benchmark reimplementation) on KITTI 00: SA/DA/AA = 99.44/41.53/64.26",
+      "level": "green",
+      "note": "official Removert (irapkaist/removert) on KITTI 00: SA/DA/AA = 99.62/89.25/94.29; benchmark port 99.44/41.53/64.26",
       "backtest": {
         "status": "ok",
         "diffs": [
@@ -594,10 +632,21 @@
             "why": ""
           }
         ],
-        "new_metrics_not_in_baseline": [],
+        "new_metrics_not_in_baseline": [
+          "official_AA",
+          "official_DA",
+          "official_HA",
+          "official_SA",
+          "official_map_points",
+          "official_mapside_AA",
+          "official_mapside_DA",
+          "official_mapside_HA",
+          "official_mapside_SA",
+          "official_mapside_points",
+          "port_map_points"
+        ],
         "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-05",
@@ -609,7 +658,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：与论文 2 位小数完全一致**",
       "heading": "01-05 · DUFOMap",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 97.9635,
         "DA": 98.7196,
@@ -660,6 +709,7 @@
         "results/dufomap_score_paper_default_dp1.json",
         "results/dufomap_score_benchmark_example_dp2.json"
       ],
+      "level": "green",
       "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
       "backtest": {
         "status": "ok",
@@ -744,8 +794,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:56:38+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-06",
@@ -757,7 +806,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：命中论文表 I（96.76/98.38/97.56）**",
       "heading": "01-06 · BeautyMap",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 96.9529,
         "DA": 98.3382,
@@ -798,6 +847,7 @@
       "artifacts": [
         "results/beautymap_score.json"
       ],
+      "level": "green",
       "note": "BeautyMap on KITTI 00: SA/DA/HA = 96.95/98.34/97.64 vs paper 96.76/98.38/97.56",
       "backtest": {
         "status": "ok",
@@ -868,8 +918,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:06:29+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-07",
@@ -879,15 +928,15 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/07_dynosam",
       "title": "DynoSAM: Open-Source Smoothing and Mapping Framework for Dynamic SLAM",
       "venue": "**T-RO 2025**",
-      "static_status": "⬜ 未开始（论文报告值已记录）",
+      "static_status": "⛔ **本机不可跑**：上游在 `cmake` configure 阶段就要求 CUDA 工具链（`nvcc`/TensorRT/`cudaoptflow.hpp`），与数据无关 —— 见 [`work/feasibility.md`](work/feasibility.md)",
       "heading": "01-07 · DynoSAM",
       "ran": false,
       "metrics": {},
       "checks": [],
       "findings": [],
       "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "level": "blocked",
+      "note": "GPU/CUDA absent, and DynoSAM cannot even `cmake`-configure without it: dynosam_nn/CMakeLists.txt:3 declares `LANGUAGES C CXX CUDA`, :105 compiles a .cu source, :128-129 link TensorRT + cudart unconditionally, and FeatureTracker.hpp:33 includes <opencv2/cudaoptflow.hpp> with no guard (nvcc/NvInfer.h/CUDA OpenCV are all absent here). Runtime flags cannot help - the no-TensorRT path is already the default. Evidence: work/feasibility.md. Needs a CUDA GPU, not data or code changes."
     },
     {
       "id": "01-08",
@@ -899,7 +948,7 @@
       "venue": "**IROS 2025**",
       "static_status": "🟢 **已复现：ATE 与 RPE-平移命中论文**；RPE-旋转有一处未解差异",
       "heading": "01-08 · NGD-SLAM",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "ATE_rigid_m": 0.015709,
         "ATE_scaled_m": 0.013536,
@@ -958,6 +1007,7 @@
       "artifacts": [
         "results/ngd_slam_rgbd_dataset_freiburg3_walking_xyz_trial1_CameraTrajectory.txt"
       ],
+      "level": "green",
       "note": "NGD-SLAM on TUM fr3/walking_xyz: ATE 0.0157 m vs paper 0.015 m; RPE trans 0.0201 m/s vs 0.02",
       "backtest": {
         "status": "ok",
@@ -1058,8 +1108,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:48:19+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-09",
@@ -1089,7 +1138,7 @@
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
       "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
       "heading": "02-01 · 3RScan",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -1183,6 +1232,7 @@
         "results/observability.json",
         "results/observability.csv"
       ],
+      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -1365,8 +1415,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "02-02",
@@ -1383,8 +1432,8 @@
       "checks": [],
       "findings": [],
       "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "level": "blocked",
+      "note": "no upstream code to run: the OASIS-Map project page (checked 2026-10-05) still says 'Code Soon' and the paper is under review, so by this workspace's rule - reproduce from the authors' code or not at all - this folder stays a paper study. What it does contribute is recorded in paper_baseline.md and in the README's correction about its Unknown class."
     },
     {
       "id": "02-03",

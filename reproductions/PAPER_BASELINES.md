@@ -122,7 +122,8 @@ RPE 旋转按 RMSE 是 0.604 而论文 0.470，按**均值**是 0.475——论�
 
 ## 二之三、一个必须澄清的问题：哪些是"按原文复现"，哪些不是
 
-你要求按原文的仓库复现。照这个标准逐条核对，当前 7 个已完成的复现分两类：
+**2026-10-05 更新：这条已经全部解决。** 之前被标为"不符合、待重做"的 01-03 / 01-04，
+现在跑的**都是官方仓库**，用的是官方数据与官方评测器 —— 见下表与每个文件夹的 README。
 
 | 复现 | 跑的是谁的代码 | 目标数字来自 | 判定 |
 | :--- | :--- | :--- | :--- |
@@ -130,20 +131,28 @@ RPE 旋转按 RMSE 是 0.604 而论文 0.470，按**均值**是 0.475——论�
 | **01-06 BeautyMap** | ✅ **官方仓库 MKJia/BeautyMap** | ✅ BeautyMap 论文 表 I | **符合** |
 | **01-08 NGD-SLAM** | ✅ **官方仓库 yuhaozhang7/NGD-SLAM** | ✅ NGD-SLAM 论文 表 I | **符合** |
 | 02-01 3RScan | ✅ 官方工具箱 WaldJohannaU/3RScan | 数据集论文 | **符合** |
-| ⚠️ **01-03 ERASOR** | ❌ 跑的是 **DynamicMap_Benchmark 的无 ROS 重实现**（`Kin-Zhang/ERASOR`） | ❌ 基准表 I，**不是** ERASOR 论文表 II | **不符合，待重做** |
-| ⚠️ **01-04 Removert** | ❌ 同上（`Kin-Zhang/removert`） | ❌ 基准表 I（原文无数字表） | **不符合，待重做** |
+| **01-03 ERASOR** | ✅ **官方仓库 LimHyungTae/ERASOR**（`kitti_mapgen` + `offline_map_updater`） | ✅ **ERASOR 论文表 II**（评测器与 GT 都是作者的） | **✅ 已重做，符合** |
+| **01-04 Removert** | ✅ **官方仓库 irapkaist/removert**（`removert_removert`） | ⚠️ 原文没有编号表格 → 以官方输出 + 基准同口径对比为目标 | **✅ 已重做，符合** |
 | 01-01 基准 | — | 它是基准本身，不是方法 | — |
 
-**01-03 / 01-04 为什么还没重做**：两篇的官方仓库都是 **ROS 1 catkin 包**
-（`find_package(catkin ...)` + `roscpp`/`rospy`），而本机是 **ROS 2 Jazzy、无 Docker、无 sudo**。
-原始代码不能直接编译运行。可选路径有三条，都需要你定：
+**01-03 / 01-04 是怎么重做的**（原先的判断是"ROS 1 + 无 Docker + 无 sudo ⇒ 跑不了原版"，**这条不成立**）：
 
-1. **装 Docker**（需要 sudo）→ 用 ROS 1 Noetic 镜像跑原版，这是最忠实的一条；
-2. **给 ERASOR 原版写一层最小 I/O 外壳**（算法源码不动，只把 rosbag 读取换成 PCD 读取）——
-   代价是"原版"里混进了我们写的代码，必须写清楚哪一部分是我们的；
-3. **接受现状**，明确声明这两个文件夹复现的是"基准里的重实现"，并把目标数改成基准表 I 的值。
+1. **ROS 1 不需要 root**：micromamba + robostack-staging 把 Noetic 装进
+   `reproductions/.venvs/ros1noetic`（不需要 sudo，也不需要 Docker）。
+   empy 必须钉在 3.3.4，否则 Noetic 的消息生成会报 `module 'em' has no attribute 'RAW_OPT'`。
+2. **ROS 2 会污染 ROS 1**：本机 shell 里 source 了 Jazzy，而两代 ROS 有同名库
+   （`libimage_transport.so` 等），ROS 1 二进制会在运行时加载到 ROS 2 的库并崩在
+   `symbol lookup error`。`reproductions/tools/ros1_env.sh` 负责剥掉 `/opt/ros/jazzy*`。
+3. **上游源码要打 API 漂移补丁**（PCL ≥ 1.11 的 `shared_ptr`、`PassThrough::setNegative`、
+   OpenCV 4 删掉的 `<opencv/cv.h>`），逐条记在各自的 `work/local_patches.patch`，
+   **算法本身一行未改**。
+4. **数据**：ERASOR 官方 README 自己提供 seq-00 rosbag 与全部 PCD/GT（直链可下）；
+   Removert 的上游只要求 KITTI 格式的 `.bin` + `poses.txt`，基准的 Zenodo 包可以反变换出来。
 
-> 另外按你的规则「**没有库的先不复现**」：**02-02 OASIS-Map 已排除**（代码未发布，只有项目页写着 Code Soon）。
+> 复现这两条的直接后果见 01-04 的 README：**Removert 在基准重实现下的"最保守"形象是重实现的产物**
+> （官方 DA 89.25 vs 重实现 41.53）。也就是说，**要比较方法排名，先确认每个方法跑的是它自己的代码。**
+
+> 另外按「**没有库的先不复现**」的规则：**02-02 OASIS-Map 仍排除**（代码未发布，只有项目页写着 Code Soon）。
 
 ## 三、三处只有对着原文才会发现的坑
 
