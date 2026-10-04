@@ -1,28 +1,49 @@
 # 01-04 · Removert — 论文报告值 Paper-reported baseline
 
-> ⚠️ **这一份是唯一没有拿到原文的。** 本仓库其余 16 个复现对象都有原文（本地 PDF 或已取回），
-> 只有 Removert 拿不到，原因见下。本文件因此**不含 Removert 自报的数字**，
-> 只记录"别人替它测的数"——那些数**不能当作 Removert 的论文报告值**使用。
+> ⚠️ **原文已经拿到了 —— 在作者自己的代码仓库里。** 我先前判断它"闭源、取不到"，**那个判断是错的**：
+> `irapkaist/removert` 仓库根目录就放着 `gkim-2020-iros.pdf`。已存档为本机
+> `Localise/.../papers_pdf/072b_Removert_IROS2020_from_authors_repo.pdf`。
+>
+> 但拿到之后出现了一个更有意思的结论：**这篇论文没有一张编号表格。**
+> 全文检索 `TABLE` 命中 **0** 次；它的"quantitative analysis"（§IV-B）指的是
+> **图 8 / 图 9 的 TP/FP/FN 随迭代变化的曲线**，不是能直接对标的数字表。
+> 所以**它并没有一个可以拿来当验收标准的具体数** —— 见 §2。
 
 | 项 Item | 内容 |
 | :--- | :--- |
 | 论文 | Remove, then Revert: Static Point Cloud Map Construction using Multiresolution Range Images |
 | Venue / 年 | **IEEE/RSJ IROS 2020**（Giseop Kim, Ayoung Kim；KAIST） |
 | DOI | [10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856) |
-| 本地 PDF | **无** |
+| 本地 PDF | ✅ `Localise/.../papers_pdf/072b_Removert_IROS2020_from_authors_repo.pdf`（**作者仓库自带**，4.76 MB） |
 | 官方代码 | https://github.com/irapkaist/removert （仓库可达，README 里的论文链接指向 `irap.kaist.ac.kr`，见下） |
 
-## 为什么没有原文（可复核的取证过程）
+## 原文获取过程（含一次我自己犯的错）
 
 | 尝试 | 结果 |
 | :--- | :--- |
-| 作者 README 给出的唯一链接 `https://irap.kaist.ac.kr/publications/gskim-2020-iros.pdf` | ❌ **DNS 无法解析**（`Could not resolve host: irap.kaist.ac.kr`），本机与 web_fetch 两条路径均失败 |
-| 本仓库既有的抓取流水线 `Localise/tools/download_papers.py` | ❌ 已记录为"未能下载"之一：arXiv 最佳标题覆盖率仅 **0.08**，IEEE Xplore 返回 HTTP 202 反爬墙 |
-| Semantic Scholar Graph API | ❌ 返回 403 Forbidden |
-| **OpenAlex**（`api.openalex.org/works/doi:10.1109/iros45743.2020.9340856`） | ✅ 明确回答：`is_oa: false`，`oa_status: "closed"`，`oa_url: null`，`any_repository_has_fulltext: false` |
+| 作者 README 给出的链接 `irap.kaist.ac.kr/publications/gskim-2020-iros.pdf` | ❌ DNS 无法解析 |
+| 本仓库既有的抓取流水线 | ❌ arXiv 覆盖率 0.08，IEEE 返回 202 反爬 |
+| Semantic Scholar Graph API | ❌ 403 |
+| **OpenAlex** | ✅ `is_oa: false`、`oa_status: "closed"`、`any_repository_has_fulltext: false` |
+| 我据此下的结论 | ❌ **"取不到"——错了** |
+| **克隆作者自己的仓库** | ✅ **`gkim-2020-iros.pdf` 就在仓库根目录，4.76 MB** |
 
-**结论：这篇论文是闭源的，没有开放获取版本，作者给的镜像站也不通了。**
-要拿原文只能走 IEEE Xplore 订阅（机构账号）或馆际互借——**这不是技术问题，是权限问题**。
+**教训**：OpenAlex 的 `is_oa` 描述的是**出版商侧的开放获取**，它不覆盖
+"作者把 PDF 放进自己 GitHub 仓库"这种分发方式。**先克隆仓库，再下结论。**
+
+## 2 · 原文里到底有什么（这才是关键）
+
+| 项 | 值 |
+| :--- | :--- |
+| 数据集 | KITTI（位姿用 SuMa），真值来自 SemanticKITTI |
+| 评测口径 | TP = 估计为静态的点在 SemanticKITTI 真值图里**最近邻 0.1 m 内**存在；FP = 不存在；FN = 真值静态点在预测图里找不到邻居 |
+| 定量结果的形式 | **图 8 / 图 9**：KITTI **03**（帧 6–199）上 TP/FP/FN 数量随 revert 迭代次数的变化曲线；另有 KAIST 02（MulRan） |
+| **编号表格数量** | **0** |
+| 论文自述 | "qualitatively competes or outperforms the human-labeled data" —— **措辞本身就是定性的** |
+
+→ **结论：Removert 这篇论文没有给出可对标的 PR/RR/F1 数字。**
+本文件夹因此只能以**第三方复现值**为验收目标，这不是因为我们拿不到原文，
+而是因为**原文自己没报**。
 
 ## 我们手上有的替代数字（⚠️ 均为第三方复现，非 Removert 自报）
 
@@ -51,11 +72,15 @@
 
 ## 对我们的复现意味着什么
 
-- **可复现的前提**：代码（`irapkaist/removert`）与数据（SemanticKITTI）都可获得；**只有论文原文取不到**。
-- **目标数字**：**暂时没有 Removert 的自报值**。
+- **可复现的前提**：代码（`irapkaist/removert`）与数据（SemanticKITTI）都可获得。原文也已拿到，
+  但**原文本体不含数字表**，所以验收目标只能取第三方复现值。
+- **目标数字**：**原文没有给出数字表**，因此没有"自报值"可用。
   可选的两条路：(a) 走机构订阅拿到 IROS 2020 原文，补齐自报表格；
   (b) 明确声明"01-04 复现的是 DynamicMap_Benchmark 里的 Removert 重实现"，
   目标数取 **KITTI 00 的 SA/DA/AA = 99.44/41.53/64.26**——这条路现在就能开工，且口径与本目录 01-01/01-05 一致。
 - **建议**：选 (b) 作为主线，把 (a) 记为待补。理由是并行实验 H1′ 需要的是**同一口径下的可比数字**，
   而 Removert 自报的 voxel-wise 数字本来就没法和基准的点级数字比。
-- **阻塞风险**：论文原文闭源（IEEE 订阅墙）；但**不阻塞复现本身**——代码、数据、第三方数字都在手上。
+- **阻塞风险**：**没有**——原文、代码、第三方数字现在都在手上。
+  真正剩下的阻塞是**环境**：作者仓库是 **ROS 1 catkin 包**（`CMakeLists.txt:8` `find_package(catkin ...)`、
+  `package.xml` 依赖 `roscpp`/`rospy`），而本机是 ROS 2 Jazzy、无 Docker、无 sudo。
+  **原始代码不能直接在这台机器上跑**——这是 01-04 与 01-03 共同的、尚未解决的问题。

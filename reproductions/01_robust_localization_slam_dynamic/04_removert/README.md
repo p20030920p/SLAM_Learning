@@ -54,18 +54,34 @@ KITTI 00（141 帧），评测用基准自带的 `export_eval_pcd`（`min_dis=0.
 | **BeautyMap 论文 表 I, p.6（HA 列）** | 99.44 | 41.53 | — | 58.59 |
 | **本次复现** | **99.4361** | **41.5313** | **64.2628** | **58.591** |
 
-### 二、⚠️ 这是唯一一个"论文原文拿不到"的复现
+### 二、⚠️ 原文拿到了 —— 但它没有数字表
 
-Removert 的 IROS 2020 原文是**闭源**的：
+我先前在本文件里写"论文闭源、取不到"。**那个判断是错的**：原文就放在作者自己的代码仓库里
+（`irapkaist/removert` 根目录的 `gkim-2020-iros.pdf`，4.76 MB）。
 
-| 尝试 | 结果 |
+| 尝试过的路径 | 结果 |
 | :--- | :--- |
-| 作者 README 给的唯一链接 `irap.kaist.ac.kr` | ❌ DNS 无法解析 |
-| 本仓库的抓取流水线 | ❌ arXiv 覆盖率 0.08，IEEE 返回 202 反爬 |
-| **OpenAlex** | ✅ `is_oa: false` / `oa_status: "closed"` / `any_repository_has_fulltext: false` |
+| 作者 README 里的 `irapkaist.ac.kr/...` 链接 | ❌ DNS 解析失败 |
+| OpenAlex | ✅ `is_oa: false` / `oa_status: closed` / 无仓库全文 |
+| 我据此下的结论 | ❌ **"取不到"——错** |
+| **克隆作者仓库** | ✅ **PDF 就在里面** |
 
-因此**本文件夹的验收目标是基准的重实现值，不是 Removert 作者自报值**——
-17 个复现里只有它是这样。详见 [`paper_baseline.md`](paper_baseline.md)。
+**教训**：OpenAlex 的 `is_oa` 说的是**出版商侧**的开放获取，它看不到"作者把 PDF 放进自己 GitHub 仓库"。
+**先克隆仓库，再下结论。**
+
+而拿到之后的结果比"拿不到"更值得记：**这篇论文没有一张编号表格**（全文 `TABLE` 命中 0 次）。
+它的 "quantitative analysis" 指的是**图 8 / 图 9**——KITTI 03 上 TP/FP/FN 随 revert 迭代变化的曲线。
+论文自己的措辞也是定性的："qualitatively competes or outperforms"。
+
+→ **所以 Removert 没有可对标的自报数字，原因不是我们拿不到原文，是原文自己没报。**
+本文件夹的验收目标因此只能取基准的重实现值（99.44 / 41.53 / 64.26）。
+
+### 二之二、剩下的阻塞是环境，不是论文
+
+作者仓库是 **ROS 1 catkin 包**（`CMakeLists.txt:8` 的 `find_package(catkin ...)`、`package.xml` 依赖 `roscpp`/`rospy`），
+而本机是 **ROS 2 Jazzy、无 Docker、无 sudo** —— **原始代码不能直接跑**。
+目前跑的是 DynamicMap_Benchmark 的无 ROS 重实现（`Kin-Zhang/removert`）。
+这就是 01-03 与 01-04 共同的、尚未解决的问题，见 [PAPER_BASELINES.md](../PAPER_BASELINES.md)。
 
 ### 三、它和 ERASOR 是同一条轴上的两个极端
 

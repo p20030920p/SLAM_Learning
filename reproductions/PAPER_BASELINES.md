@@ -20,7 +20,7 @@
 | **01-01** | DynamicMap_Benchmark | ITSC 2023 | KITTI 00，Octomap w GF：SA/DA/AA = **93.06 / 98.67 / 95.83** | 🟢 数据已到手（Zenodo 直链） | [→](01_robust_localization_slam_dynamic/01_dynamicmap_benchmark/paper_baseline.md) |
 | **01-02** | KISS-ICP | RA-L 2023 | KITTI 00–10 相对平移误差 **0.50%** | 🟡 CPU 可跑，但 KITTI 需注册 | [→](01_robust_localization_slam_dynamic/02_kiss_icp/paper_baseline.md) |
 | **01-03** | ERASOR | RA-L 2021 | SemanticKITTI 00，voxel-wise PR/RR/F1 = **93.980 / 97.081 / 0.955** | 🟡 CPU 可跑，数据需注册 | [→](01_robust_localization_slam_dynamic/03_erasor/paper_baseline.md) |
-| **01-04** | Removert | IROS 2020 | ⚠️ **论文闭源，取不到原文** — 见下 | 🔴 无自报值 | [→](01_robust_localization_slam_dynamic/04_removert/paper_baseline.md) |
+| **01-04** | Removert | IROS 2020 | ⚠️ **原文已拿到（在作者仓库里），但全文没有数字表** | ✅ 已复现（基准口径） | [→](01_robust_localization_slam_dynamic/04_removert/paper_baseline.md) |
 | **01-05** | DUFOMap | RA-L 2024 | KITTI 00，SA/DA/AA = **97.96 / 98.72 / 98.34** | ✅ **已复现（精确命中）** | [→](01_robust_localization_slam_dynamic/05_dufomap/paper_baseline.md) |
 | **01-06** | BeautyMap | RA-L 2024 | KITTI 01，SA/DA/HA = **99.17 / 92.99 / 95.98** | 🟡 CPU 可跑，数据需注册 | [→](01_robust_localization_slam_dynamic/06_beautymap/paper_baseline.md) |
 | **01-07** | DynoSAM | T-RO 2025 | OMD (S4U) 相机 ATE **0.11 m** | 🔴 需 CUDA + TensorRT | [→](01_robust_localization_slam_dynamic/07_dynosam/paper_baseline.md) |
@@ -99,6 +99,31 @@ RPE 旋转按 RMSE 是 0.604 而论文 0.470，按**均值**是 0.475——论�
 
 ---
 
+## 二之三、一个必须澄清的问题：哪些是"按原文复现"，哪些不是
+
+你要求按原文的仓库复现。照这个标准逐条核对，当前 7 个已完成的复现分两类：
+
+| 复现 | 跑的是谁的代码 | 目标数字来自 | 判定 |
+| :--- | :--- | :--- | :--- |
+| **01-05 DUFOMap** | ✅ **官方 PyPI 包**（KTH-RPL 自己的 `dufomap`） | ✅ DUFOMap 论文 表 I | **符合** |
+| **01-06 BeautyMap** | ✅ **官方仓库 MKJia/BeautyMap** | ✅ BeautyMap 论文 表 I | **符合** |
+| **01-08 NGD-SLAM** | ✅ **官方仓库 yuhaozhang7/NGD-SLAM** | ✅ NGD-SLAM 论文 表 I | **符合** |
+| 02-01 3RScan | ✅ 官方工具箱 WaldJohannaU/3RScan | 数据集论文 | **符合** |
+| ⚠️ **01-03 ERASOR** | ❌ 跑的是 **DynamicMap_Benchmark 的无 ROS 重实现**（`Kin-Zhang/ERASOR`） | ❌ 基准表 I，**不是** ERASOR 论文表 II | **不符合，待重做** |
+| ⚠️ **01-04 Removert** | ❌ 同上（`Kin-Zhang/removert`） | ❌ 基准表 I（原文无数字表） | **不符合，待重做** |
+| 01-01 基准 | — | 它是基准本身，不是方法 | — |
+
+**01-03 / 01-04 为什么还没重做**：两篇的官方仓库都是 **ROS 1 catkin 包**
+（`find_package(catkin ...)` + `roscpp`/`rospy`），而本机是 **ROS 2 Jazzy、无 Docker、无 sudo**。
+原始代码不能直接编译运行。可选路径有三条，都需要你定：
+
+1. **装 Docker**（需要 sudo）→ 用 ROS 1 Noetic 镜像跑原版，这是最忠实的一条；
+2. **给 ERASOR 原版写一层最小 I/O 外壳**（算法源码不动，只把 rosbag 读取换成 PCD 读取）——
+   代价是"原版"里混进了我们写的代码，必须写清楚哪一部分是我们的；
+3. **接受现状**，明确声明这两个文件夹复现的是"基准里的重实现"，并把目标数改成基准表 I 的值。
+
+> 另外按你的规则「**没有库的先不复现**」：**02-02 OASIS-Map 已排除**（代码未发布，只有项目页写着 Code Soon）。
+
 ## 三、三处只有对着原文才会发现的坑
 
 ### 3.1 ⚠️ 同一个方法，换一套口径，结论反过来
@@ -161,7 +186,8 @@ RPE 旋转按 RMSE 是 0.604 而论文 0.470，按**均值**是 0.475——论�
 
 | 缺口 | 状态 |
 | :--- | :--- |
-| **01-04 Removert 原文** | 🔴 闭源（OpenAlex: `is_oa: false`），作者镜像站 DNS 不通。需机构订阅 |
-| 其余 16 篇原文 | ✅ 全部在手（15 篇本地 + RIO/ERASOR 原版/OASIS-Map 本次补取） |
+| ~~01-04 Removert 原文~~ | ✅ **已在作者仓库 `irapkaist/removert` 根目录找到**（`gkim-2020-iros.pdf`）。我先前据 OpenAlex 判它闭源是错的——`is_oa` 只描述出版商侧。**教训：先克隆仓库再下结论** |
+| 17 篇原文 | ✅ **全部在手** |
+| 01-04 的可对标数字 | ⚠️ **原文没有编号表格**（`TABLE` 命中 0 次），定量结果是图 8/图 9 的曲线。所以只能以第三方复现值为目标 |
 | KITTI / SemanticKITTI / Argoverse 2 原始数据 | 🟡 需注册。**但 01-01/01-05 已用 Zenodo 直链绕过**（KITTI 00 + GT，385 MB，免注册） |
 | 各复现的 `reproduce.py` | **6/17**（02-01 · 01-03 · 01-04 · 01-05 · 01-06 · 01-08），全部带 `baselines.json` 回测 |
