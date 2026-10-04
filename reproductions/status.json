@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T02:51:06+08:00",
+  "generated": "2026-10-05T03:24:43+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
-    "green": 8,
+    "green": 9,
     "failed": 0,
-    "blocked": 2,
-    "planned": 7,
-    "ran_this_pass": 0
+    "blocked": 8,
+    "planned": 0,
+    "ran_this_pass": 9
   },
   "reproductions": [
     {
@@ -20,7 +20,7 @@
       "venue": "**ITSC 2023**（arXiv:2307.07260）",
       "static_status": "🟡 地基已跑通（数据 + 评测器 + 交叉验证）；四个方法的数字待跑",
       "heading": "01-01 · DynamicMap_Benchmark",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "frames": 141,
         "gt_points": 17362230,
@@ -37,6 +37,8 @@
         "Removert_AA": 64.2628,
         "DUFOMap_AA": 98.3408,
         "BeautyMap_AA": 97.6431,
+        "Removert_official_SA": 99.6179,
+        "Removert_official_AA": 94.2928,
         "crosscheck_points": 3000000,
         "crosscheck_disagreements": 0
       },
@@ -78,10 +80,23 @@
         {
           "name": "dynamic_points_are_a_rounding_error_of_the_map",
           "detail": "95983 of 17362230 GT points are dynamic (0.5528%). A method that deletes nothing scores ~100% SA, which is why SA alone cannot rank these methods."
+        },
+        {
+          "name": "the_benchmark_row_and_the_official_row_are_not_the_same_measurement",
+          "detail": "On this same KITTI 00 GT, the benchmark's ROS-free port of Removert scores SA 99.44 / AA 64.26, while the authors' own repo scores SA 99.62 / AA 94.29 (official scan-side output; see 01-04). Both are recorded above under separate metric names. ERASOR's port, by contrast, is faithful in its own metric - so 'the port stands in for the method' has to be checked per method, not assumed.",
+          "benchmark_row": {
+            "SA": 99.4361,
+            "DA": 41.5313,
+            "AA": 64.2628
+          },
+          "official_row": {
+            "SA": 99.6179,
+            "DA": 89.2523,
+            "AA": 94.2928
+          }
         }
       ],
       "artifacts": [],
-      "level": "green",
       "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements",
       "backtest": {
         "status": "ok",
@@ -192,6 +207,20 @@
             "why": ""
           },
           {
+            "metric": "Removert_official_SA",
+            "expected": 99.6179,
+            "got": 99.6179,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "Removert_official_AA",
+            "expected": 94.2928,
+            "got": 94.2928,
+            "ok": true,
+            "why": ""
+          },
+          {
             "metric": "crosscheck_points",
             "expected": 3000000,
             "got": 3000000,
@@ -208,7 +237,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:12:18+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-02",
@@ -220,7 +250,7 @@
       "venue": "**RA-L 2023**",
       "static_status": "🟡 **代码跑通并出数**（0.409 %）；⚠️ **数字与论文不可直接比**，原因见下",
       "heading": "01-02 · KISS-ICP",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "avg_translation_error_pct": 0.409,
         "avg_rotational_error_deg_per_m": 0.005,
@@ -271,7 +301,6 @@
       "artifacts": [
         "results/kiss_icp_logs/latest/result_metrics.log"
       ],
-      "level": "green",
       "note": "KISS-ICP on a reconstructed 141-frame KITTI 00 sub-sequence: ATE 0.112 m, avg translation error 0.409 % over only 2 metric sample(s) - the paper's 0.5 % is NOT reproduced (see findings)",
       "backtest": {
         "status": "ok",
@@ -335,7 +364,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T02:06:31+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-03",
@@ -347,7 +377,7 @@
       "venue": "**RA-L 2021**",
       "static_status": "🟢 **官方实现复现成功：PR/RR/F1 = 95.62 / 94.41 / 0.950**（论文表 II 93.98 / 97.08 / 0.955，作者自己在 master 上重跑是 95.79 / 95.64 / 0.957）",
       "heading": "01-03 · ERASOR",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "published_PR": 93.979499,
         "published_RR": 97.080901,
@@ -408,11 +438,94 @@
         "results/score_published.json",
         "results/erasor_official/00_result.pcd"
       ],
-      "level": "green",
       "note": "official ERASOR on the authors' seq-00 snippet: PR/RR/F1 = 95.62/94.41/0.950 (paper Table II 93.98/97.081/0.955)",
       "backtest": {
         "status": "ok",
         "diffs": [
+          {
+            "metric": "official_PR",
+            "expected": 95.6219,
+            "got": 95.621938,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_RR",
+            "expected": 94.412,
+            "got": 94.41201,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_F1",
+            "expected": 0.9501,
+            "got": 0.950131,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_gt_static",
+            "expected": 394718,
+            "got": 394718,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_gt_dynamic",
+            "expected": 4796,
+            "got": 4796,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_est_static",
+            "expected": 374154,
+            "got": 374154,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_est_dynamic",
+            "expected": 239,
+            "got": 239,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_kept_static",
+            "expected": 377437,
+            "got": 377437,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_kept_dynamic",
+            "expected": 268,
+            "got": 268,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "published_PR",
+            "expected": 93.9795,
+            "got": 93.979499,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "published_RR",
+            "expected": 97.0809,
+            "got": 97.080901,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "published_F1",
+            "expected": 0.955,
+            "got": 0.95505,
+            "ok": true,
+            "why": ""
+          },
           {
             "metric": "SA",
             "expected": 66.7078,
@@ -477,22 +590,10 @@
             "why": ""
           }
         ],
-        "new_metrics_not_in_baseline": [
-          "official_F1",
-          "official_PR",
-          "official_RR",
-          "official_est_dynamic",
-          "official_est_static",
-          "official_gt_dynamic",
-          "official_gt_static",
-          "official_kept_dynamic",
-          "official_kept_static",
-          "published_F1",
-          "published_PR",
-          "published_RR"
-        ],
-        "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      }
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T03:05:00+08:00"
+      },
+      "level": "green"
     },
     {
       "id": "01-04",
@@ -504,7 +605,7 @@
       "venue": "**IROS 2020**",
       "static_status": "🟢 **官方实现跑通：SA/DA/AA = 99.62 / 89.25 / 94.29**（基准重实现只有 99.44 / 41.53 / 64.26）",
       "heading": "01-04 · Removert",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "official_SA": 99.6179,
         "official_DA": 89.2523,
@@ -563,11 +664,80 @@
         "results/score_official_mapside.json",
         "results/score_benchmark_port.json"
       ],
-      "level": "green",
       "note": "official Removert (irapkaist/removert) on KITTI 00: SA/DA/AA = 99.62/89.25/94.29; benchmark port 99.44/41.53/64.26",
       "backtest": {
         "status": "ok",
         "diffs": [
+          {
+            "metric": "official_SA",
+            "expected": 99.6179,
+            "got": 99.6179,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_DA",
+            "expected": 89.2523,
+            "got": 89.2523,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_AA",
+            "expected": 94.2928,
+            "got": 94.2928,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_HA",
+            "expected": 94.1506,
+            "got": 94.1506,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_map_points",
+            "expected": 4628181,
+            "got": 4628181,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_mapside_SA",
+            "expected": 95.1474,
+            "got": 95.1474,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_mapside_DA",
+            "expected": 98.9675,
+            "got": 98.9675,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_mapside_AA",
+            "expected": 97.0387,
+            "got": 97.0387,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_mapside_HA",
+            "expected": 97.0199,
+            "got": 97.0199,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "official_mapside_points",
+            "expected": 3976241,
+            "got": 3976241,
+            "ok": true,
+            "why": ""
+          },
           {
             "metric": "SA",
             "expected": 99.4361,
@@ -604,6 +774,13 @@
             "why": ""
           },
           {
+            "metric": "port_map_points",
+            "expected": 16722918,
+            "got": 16722918,
+            "ok": true,
+            "why": ""
+          },
+          {
             "metric": "gt_static",
             "expected": 17266247,
             "got": 17266247,
@@ -632,21 +809,10 @@
             "why": ""
           }
         ],
-        "new_metrics_not_in_baseline": [
-          "official_AA",
-          "official_DA",
-          "official_HA",
-          "official_SA",
-          "official_map_points",
-          "official_mapside_AA",
-          "official_mapside_DA",
-          "official_mapside_HA",
-          "official_mapside_SA",
-          "official_mapside_points",
-          "port_map_points"
-        ],
-        "baseline_recorded": "2026-10-05T01:03:27+08:00"
-      }
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T02:45:00+08:00"
+      },
+      "level": "green"
     },
     {
       "id": "01-05",
@@ -658,7 +824,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：与论文 2 位小数完全一致**",
       "heading": "01-05 · DUFOMap",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 97.9635,
         "DA": 98.7196,
@@ -709,7 +875,6 @@
         "results/dufomap_score_paper_default_dp1.json",
         "results/dufomap_score_benchmark_example_dp2.json"
       ],
-      "level": "green",
       "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
       "backtest": {
         "status": "ok",
@@ -794,7 +959,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:56:38+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-06",
@@ -806,7 +972,7 @@
       "venue": "**RA-L 2024**",
       "static_status": "🟢 **已复现：命中论文表 I（96.76/98.38/97.56）**",
       "heading": "01-06 · BeautyMap",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 96.9529,
         "DA": 98.3382,
@@ -847,7 +1013,6 @@
       "artifacts": [
         "results/beautymap_score.json"
       ],
-      "level": "green",
       "note": "BeautyMap on KITTI 00: SA/DA/HA = 96.95/98.34/97.64 vs paper 96.76/98.38/97.56",
       "backtest": {
         "status": "ok",
@@ -918,7 +1083,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:06:29+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-07",
@@ -948,7 +1114,7 @@
       "venue": "**IROS 2025**",
       "static_status": "🟢 **已复现：ATE 与 RPE-平移命中论文**；RPE-旋转有一处未解差异",
       "heading": "01-08 · NGD-SLAM",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "ATE_rigid_m": 0.015709,
         "ATE_scaled_m": 0.013536,
@@ -1007,7 +1173,6 @@
       "artifacts": [
         "results/ngd_slam_rgbd_dataset_freiburg3_walking_xyz_trial1_CameraTrajectory.txt"
       ],
-      "level": "green",
       "note": "NGD-SLAM on TUM fr3/walking_xyz: ATE 0.0157 m vs paper 0.015 m; RPE trans 0.0201 m/s vs 0.02",
       "backtest": {
         "status": "ok",
@@ -1108,7 +1273,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:48:19+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-09",
@@ -1118,15 +1284,415 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/09_lt_mapper",
       "title": "LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping",
       "venue": "**ICRA 2022**",
-      "static_status": "⬜ 未开始（论文报告值已记录）",
+      "static_status": "🟢 **变化检测半边已跑通**（官方 `ltremovert`，KITTI 00 双会话切分，SA/DA/AA = 69.14/74.51/71.78）；**LT-map / delta-map 半边仓库里没有代码**，论文 85.7 MB / 9.8 s 不可复现；`ltslam` 需 GTSAM（本机未装，未安装任何东西）",
       "heading": "01-09 · LT-mapper",
-      "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
-      "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "ran": true,
+      "metrics": {
+        "SA": 69.1376,
+        "DA": 74.5142,
+        "AA": 71.7756,
+        "HA": 71.7253,
+        "map_points": 758036,
+        "full_gt_SA": 49.5095,
+        "full_gt_DA": 76.499,
+        "full_gt_AA": 61.5421,
+        "full_gt_HA": 60.1138,
+        "scanside_SA": 64.0849,
+        "scanside_DA": 79.8461,
+        "scanside_AA": 71.5327,
+        "scanside_HA": 71.1025,
+        "scanside_map_points": 7100331,
+        "central_gt_SA": 69.7476,
+        "central_gt_DA": 79.2179,
+        "central_gt_AA": 74.3321,
+        "central_gt_HA": 74.1817,
+        "central_gt_map_points": 758036,
+        "control_SA": 99.4376,
+        "control_DA": 1.6533,
+        "control_AA": 12.8219,
+        "control_HA": 3.2525,
+        "control_map_points": 2675552,
+        "gt_static_covered": 12363618,
+        "gt_dynamic_covered": 88508,
+        "static_coverage_pct": 71.6057,
+        "dynamic_coverage_pct": 92.2122,
+        "central_gt_static": 11497294,
+        "central_gt_dynamic": 49658,
+        "central_keyframes": 81,
+        "query_roi_keyframes": 29,
+        "updated_map_points": 758036,
+        "updated_map_strong_points": 743149,
+        "union_centralside_points": 523626,
+        "union_queryside_points": 377340,
+        "nd_points": 218931,
+        "pd_points": 43853,
+        "strong_nd_points": 185216,
+        "weak_nd_points": 12813
+      },
+      "checks": [
+        {
+          "name": "sessions_are_valid_ltremovert_input",
+          "ok": true,
+          "detail": "scans are sensor-frame and 1:1 with their pose lines: applying a scan's pose reproduces the benchmark cloud it came from to <1e-3 m (measured ~4e-6 m, i.e. float32 storage); the 2.5 m pre-clean ball at Session.cpp:506-533 is therefore under the sensor, not under the world origin"
+        },
+        {
+          "name": "query_session_overlaps_the_central_session",
+          "ok": true,
+          "detail": "29 of the 80 query keyframes fall inside the central map's 10 m ROI (Session.cpp:234); the overlap is a ~15 m stretch of trajectory, so the change detector has somewhere to work"
+        },
+        {
+          "name": "official_pipeline_produced_a_cleaned_map",
+          "ok": true,
+          "detail": "updated_map.pcd holds 758036 points after makeGlobalMap + high-dynamic removal + low-dynamic detection over 81 central and 29 query keyframes"
+        },
+        {
+          "name": "evaluator_implementations_agree",
+          "ok": true,
+          "detail": "official export_eval_pcd vs scipy re-implementation: 0 disagreeing GT labels (rate 0.0)"
+        },
+        {
+          "name": "official_run_reached_the_end_of_its_pipeline",
+          "ok": true,
+          "detail": "saveAllTypeOfScans() - the last statement of Removerter::run() - wrote 81 files per directory into scans_nd_strong/ (81), scans_updated/ (81), scans_updated_strong/ (81); the output directory is wiped before the run and the driver removes the completion marker first, so these cannot be a previous run's leftovers"
+        },
+        {
+          "name": "change_detection_found_both_directions",
+          "ok": true,
+          "detail": "nd_map.pcd (central-only) 218931 points, pd_map.pcd (query-only) 43853 points; both empty would mean the two sessions saw identical geometry and nothing was measured"
+        }
+      ],
+      "findings": [
+        {
+          "name": "coverage_caps_the_comparable_score",
+          "detail": "only 71.6% of the benchmark's GT static points (12363618 of 17266247) are observed by the 110 input scans this run consumed (92.2% for dynamic). On the full 141-frame GT the same map scores SA 49.51 / DA 76.50, i.e. the sibling rows (removert 99.44 / erasor 66.71 / dufomap 97.96 SA) are not like-for-like: their maps cover all 141 frames. The coverage-matched GT (SA 69.14 / DA 74.51) is the fair partner."
+        },
+        {
+          "name": "the_sa_loss_is_a_deliberate_trade_for_dynamic_rejection",
+          "detail": "on one identical GT - the central session's own footprint, 11497294 static / 49658 dynamic points, against which all three maps are measured - the no-removal control (the raw central map, 2675552 points) scores SA 99.44 / DA 1.65: it keeps everything and rejects nothing. After the change detection, updated_map.pcd scores SA 69.75 / DA 79.22 and the merged scan-side output SA 64.08 / DA 79.85. So the detector trades 29.7 pp of static preservation for 77.6 pp of dynamic rejection on this pair - aggressive next to 01-04's Removert run on the same kind of data (SA 99.62 / DA 89.25), which is upstream's own configuration difference: 01-04 runs params_kitti.yaml with dist_nn_points_within 0.1, ltremovert's params_ltmapper.yaml asks for 0.01, i.e. a ten times stricter requirement that two sessions agree."
+        },
+        {
+          "name": "the_run_has_two_upstream_outputs_and_they_are_close",
+          "detail": "on the identical central-session GT, map-side updated_map.pcd scores SA 69.75 / DA 79.22 (758036 points) and the scan-side merged scans_updated/ SA 64.08 / DA 79.85 (7100331 points) - AA 74.33 vs 71.53. Unlike 01-04, where the two outputs of one Removert run sat at opposite corners of the trade-off, here the choice of output moves AA by 2.8 pp; what moves this score is which GT footprint it is measured on (central GT AA 74.33, both-sessions GT AA 71.78, full 141-frame GT AA 61.54)."
+        },
+        {
+          "name": "nd_pd_asymmetry_is_the_signature_of_a_partial_overlap",
+          "detail": "central-only points (nd_map) 218931 vs query-only points (pd_map) 43853 - a 5.0x asymmetry. The query session covers a ~15 m stretch of the central session's 40.8 m trajectory, so far more of the central map is unseen by the query than the other way round. A real multi-session pair (the paper's two visits to one car park) would not have this shape."
+        },
+        {
+          "name": "the_paper_headline_is_not_reachable_from_this_checkout",
+          "detail": "LT-mapper's delta-map numbers (85.7 MB vs 213.6 MB, 9.8 s vs 87/160 s) belong to the LT-map module, which is absent from the repository: a whole-checkout grep for delta_map/meta_map returns nothing and Removerter.cpp:1671 mentions it only in a comment. Tab. I/II also need MulRan KAIST 04, an extended sequence obtained by e-mail. No run of this checkout can produce those numbers, in any environment."
+        },
+        {
+          "name": "what_change_means_on_this_input",
+          "detail": "one continuous KITTI 00 pass split at frames 4390..4470 / 4451..4530, not the paper's six sessions over three days. 'Change' here is moving cars plus occlusion and viewpoint differences between two nearby stretches of one drive; the gap between these numbers and the paper's ParkingLot experiment is the experiment, not the implementation."
+        },
+        {
+          "name": "runtime",
+          "detail": "the official node ran over 81 central + 29 query keyframes in 38 s wall clock (it does all the work in its constructor and then spins; the same input took ~32 s on a cold page cache and ~8 s warm, so read this as seconds, not as a benchmark). This is not the paper's 9.8 s figure: that one times the LT-map delta-map update, whose code is absent here, and it is not comparable to a whole change-detection pass."
+        },
+        {
+          "name": "roi_rule_recomputed_from_the_poses_matches_the_run",
+          "detail": "work/make_coverage_matched_gt.py recomputes Session.cpp:234's 10 m ROI rule from the two pose files and gets 29 query keyframes, the same number ltremovert logged - so the fair GT's footprint really is the run's input footprint."
+        }
+      ],
+      "artifacts": [
+        "results/score_updated_map_covered.json",
+        "results/score_updated_map_full.json",
+        "results/score_central_gt_updated_map.json",
+        "results/score_central_gt_scanside_merged.json",
+        "results/score_central_gt_control_raw.json",
+        "work/local_patches.patch",
+        "work/generated/params.yaml"
+      ],
+      "note": "official ltremovert on a two-session KITTI 00 split (81 central + 29 query keyframes): SA/DA/AA = 69.14/74.51/71.78 on the coverage-matched GT (71.6% of GT static observable), 49.51/76.50 on the full 141-frame GT; LT-map/delta-map half of the paper is absent from the repo",
+      "backtest": {
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "SA",
+            "expected": 69.1376,
+            "got": 69.1376,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "DA",
+            "expected": 74.5142,
+            "got": 74.5142,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "AA",
+            "expected": 71.7756,
+            "got": 71.7756,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "HA",
+            "expected": 71.7253,
+            "got": 71.7253,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "map_points",
+            "expected": 758035,
+            "got": 758036,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "full_gt_SA",
+            "expected": 49.5095,
+            "got": 49.5095,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "full_gt_DA",
+            "expected": 76.499,
+            "got": 76.499,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "full_gt_AA",
+            "expected": 61.542,
+            "got": 61.5421,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "full_gt_HA",
+            "expected": 60.1138,
+            "got": 60.1138,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "central_gt_SA",
+            "expected": 69.7517,
+            "got": 69.7476,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "central_gt_DA",
+            "expected": 79.2194,
+            "got": 79.2179,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "central_gt_AA",
+            "expected": 74.3285,
+            "got": 74.3321,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "central_gt_HA",
+            "expected": 74.1758,
+            "got": 74.1817,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "central_gt_map_points",
+            "expected": 758035,
+            "got": 758036,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "scanside_SA",
+            "expected": 64.0794,
+            "got": 64.0849,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "scanside_DA",
+            "expected": 79.8526,
+            "got": 79.8461,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "scanside_AA",
+            "expected": 71.5318,
+            "got": 71.5327,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "scanside_HA",
+            "expected": 71.0999,
+            "got": 71.1025,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "scanside_map_points",
+            "expected": 7100333,
+            "got": 7100331,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "control_SA",
+            "expected": 99.4405,
+            "got": 99.4376,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "control_DA",
+            "expected": 1.6549,
+            "got": 1.6533,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "control_AA",
+            "expected": 12.8245,
+            "got": 12.8219,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "control_HA",
+            "expected": 3.2537,
+            "got": 3.2525,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "control_map_points",
+            "expected": 2675552,
+            "got": 2675552,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_static_covered",
+            "expected": 12363618,
+            "got": 12363618,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "gt_dynamic_covered",
+            "expected": 88508,
+            "got": 88508,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "static_coverage_pct",
+            "expected": 71.6057,
+            "got": 71.6057,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "dynamic_coverage_pct",
+            "expected": 92.2122,
+            "got": 92.2122,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "central_gt_static",
+            "expected": 11497294,
+            "got": 11497294,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "central_gt_dynamic",
+            "expected": 49658,
+            "got": 49658,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "central_keyframes",
+            "expected": 81,
+            "got": 81,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "query_roi_keyframes",
+            "expected": 29,
+            "got": 29,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "updated_map_points",
+            "expected": 758035,
+            "got": 758036,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "updated_map_strong_points",
+            "expected": 743148,
+            "got": 743149,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "union_centralside_points",
+            "expected": 523626,
+            "got": 523626,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "union_queryside_points",
+            "expected": 377339,
+            "got": 377340,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "strong_nd_points",
+            "expected": 185216,
+            "got": 185216,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "weak_nd_points",
+            "expected": 12813,
+            "got": 12813,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "nd_points",
+            "expected": 218931,
+            "got": 218931,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "pd_points",
+            "expected": 43853,
+            "got": 43853,
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-05T03:05:00+08:00"
+      },
+      "level": "green"
     },
     {
       "id": "02-01",
@@ -1138,7 +1704,7 @@
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
       "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
       "heading": "02-01 · 3RScan",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -1232,7 +1798,6 @@
         "results/observability.json",
         "results/observability.csv"
       ],
-      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -1415,7 +1980,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "02-02",
@@ -1450,8 +2016,8 @@
       "checks": [],
       "findings": [],
       "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "level": "blocked",
+      "note": "this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. ConceptGraphs (ICRA 2024) needs a GPU for SAM (ViT-H) + CLIP + LLaVA-7B; the LVLM alone is ~14 GB in fp16, so 16-24 GB of VRAM is the realistic floor, plus a paid GPT-4 (gpt-4-0613) API key for the LLM stage. Data: Replica / HM3D, public. Recorded in paper_baseline.md, which also lists the paper's own headline numbers, so the target is known before the hardware arrives."
     },
     {
       "id": "02-04",
@@ -1468,8 +2034,8 @@
       "checks": [],
       "findings": [],
       "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "level": "blocked",
+      "note": "this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. DualMap (RA-L 2025) needs an NVIDIA RTX 4090 (the paper's main-experiment GPU; RTX 3080 Laptop for the appendix). Data: Replica, public. Recorded in paper_baseline.md, which also lists the paper's own headline numbers, so the target is known before the hardware arrives."
     },
     {
       "id": "02-05",
@@ -1486,8 +2052,8 @@
       "checks": [],
       "findings": [],
       "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "level": "blocked",
+      "note": "this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. HOV-SG (RSS 2024) needs a GPU for SAM masks plus three CLIP ViT-H-14 encodings per segment; this is the heaviest of the four D2 bases. Data: ScanNet, registration-gated. Recorded in paper_baseline.md, which also lists the paper's own headline numbers, so the target is known before the hardware arrives."
     },
     {
       "id": "02-06",
@@ -1504,8 +2070,8 @@
       "checks": [],
       "findings": [],
       "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "level": "blocked",
+      "note": "this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. Clio (RA-L 2024) needs an RTX 3090 (24 GB) for FastSAM + CLIP ViT-L/14, or the Spot onboard RTX 4090 Laptop (16 GB). Data: Replica, public. Recorded in paper_baseline.md, which also lists the paper's own headline numbers, so the target is known before the hardware arrives."
     },
     {
       "id": "02-07",
@@ -1522,8 +2088,8 @@
       "checks": [],
       "findings": [],
       "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "level": "blocked",
+      "note": "this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. AnyLoc (RA-L 2023) needs an RTX 3090-class GPU for the ViT-G14 backbone the headline number uses (1.1B parameters; 10k database + 6.8k query images for Pitts-30k). Data: Baidu Mall / Pitts-30k / other VPR sets; the AnyLoc repo ships a demo and the vocabulary cache is a public OneDrive link. Recorded in paper_baseline.md, which also lists the paper's own headline numbers, so the target is known before the hardware arrives."
     },
     {
       "id": "02-08",
@@ -1540,8 +2106,8 @@
       "checks": [],
       "findings": [],
       "artifacts": [],
-      "level": "planned",
-      "note": "no reproduce.py yet — see README.md for the plan"
+      "level": "blocked",
+      "note": "this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. Revisit Anything (ECCV 2024) needs a GPU for ViT-G (1.1B) + SAM ViT-H segment descriptors, plus the descriptor store the full benchmark needs (6.65 GB for Pitts-30k). Data: Baidu Mall / Pitts-30k, public. Recorded in paper_baseline.md, which also lists the paper's own headline numbers, so the target is known before the hardware arrives."
     }
   ]
 }

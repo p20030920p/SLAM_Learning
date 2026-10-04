@@ -31,6 +31,23 @@ CROSSCHECK_POINTS = 3_000_000
 
 METHOD_IDS = {"01-03": "ERASOR", "01-04": "Removert", "01-05": "DUFOMap", "01-06": "BeautyMap"}
 
+# This ledger is about the benchmark's own row for each method - the ROS-free
+# ports that DynamicMap_Benchmark ships. 01-03 and 01-04 now ALSO score the
+# official upstream implementations, in files that sit in the same results/
+# directory. Picking by directory order (which is how this used to work) then
+# silently swaps the ledger's Removert row for the official implementation's -
+# which is a different measurement, not a regression. Name the file explicitly.
+BENCHMARK_ROW_FILE = {
+    "01-03": "erasor_benchmark_port.json",
+    "01-04": "score_benchmark_port.json",
+}
+
+# Where the official-implementation scores live, so the ledger can carry both
+# numbers instead of conflating them.
+OFFICIAL_SCORE_FILE = {
+    "01-04": os.path.join("04_removert", "results", "score_official_scanside.json"),
+}
+
 
 def _seq_dir(ctx):
     local = os.path.join(ctx["data_root"], "00")
@@ -69,12 +86,12 @@ def run(ctx):
     unlabelled = int(len(gt_labels) - n_static - n_dynamic)
 
     # ---- the four methods that live on this benchmark --------------------
-    scores, missing = {}, []
+    scores, missing, official = {}, [], {}
     for rid, name in METHOD_IDS.items():
         folder = os.path.normpath(os.path.join(ctx["path"], "..",
                                                {"01-03": "03_erasor", "01-04": "04_removert",
                                                 "01-05": "05_dufomap", "01-06": "06_beautymap"}[rid]))
-        found = None
+        payloads = []
         results = os.path.join(folder, "results")
         if os.path.isdir(results):
             # method folders name their scores differently
@@ -84,16 +101,32 @@ def run(ctx):
                     continue
                 with open(os.path.join(results, f), encoding="utf-8") as fh:
                     payload = json.load(fh)
-                if "official" not in payload:
-                    continue
+                if "official" in payload:
+                    payloads.append((f, payload))
+
+        want = BENCHMARK_ROW_FILE.get(rid)
+        found = next((p for f, p in payloads if f == want), None) if want else None
+        if found is None:
+            for _, payload in payloads:
                 # a folder may hold several configs; keep the one that is not an
                 # explicitly-marked variant (d_p=2, benchmark example, ...)
                 if found is None or "dp2" not in payload.get("method", ""):
                     found = payload
-        if found and "official" in found:
+        if found is not None:
             scores[rid] = {"name": name, **{k: found["official"][k] for k in ("SA", "DA", "AA", "HA")}}
         else:
             missing.append(name)
+
+        # the official upstream implementation's score, when the folder has one
+        rel = OFFICIAL_SCORE_FILE.get(rid)
+        if rel:
+            p = os.path.join(ctx["path"], "..", rel)
+            if os.path.exists(p):
+                with open(p, encoding="utf-8") as fh:
+                    payload = json.load(fh)
+                impl = payload.get("official") or payload.get("python")
+                if impl:
+                    official[name] = {k: impl[k] for k in ("SA", "DA", "AA")}
 
     # ---- the evaluation rule, twice -------------------------------------
     # Both implementations must answer the *same* question: given this map,
@@ -128,6 +161,10 @@ def run(ctx):
         "methods_scored": len(scores),
         **{f"{v['name']}_SA": v["SA"] for v in scores.values()},
         **{f"{v['name']}_AA": v["AA"] for v in scores.values()},
+        # kept separate on purpose: the benchmark row above is the port's, these
+        # are the official upstream implementation's, on the same data
+        **{f"{k}_official_SA": v["SA"] for k, v in official.items()},
+        **{f"{k}_official_AA": v["AA"] for k, v in official.items()},
     }
     if disagreements is not None:
         metrics["crosscheck_points"] = min(CROSSCHECK_POINTS, len(gt))
@@ -178,6 +215,21 @@ def run(ctx):
                    f"({metrics['dynamic_fraction_pct']}%). A method that deletes nothing scores "
                    f"~100% SA, which is why SA alone cannot rank these methods."),
     })
+    if official and "01-04" in scores:
+        findings.append({
+            "name": "the_benchmark_row_and_the_official_row_are_not_the_same_measurement",
+            "detail": (
+                "On this same KITTI 00 GT, the benchmark's ROS-free port of Removert scores "
+                f"SA {scores['01-04']['SA']:.2f} / AA {scores['01-04']['AA']:.2f}, while the "
+                f"authors' own repo scores SA {official['Removert']['SA']:.2f} / "
+                f"AA {official['Removert']['AA']:.2f} (official scan-side output; see 01-04). "
+                "Both are recorded above under separate metric names. ERASOR's port, by "
+                "contrast, is faithful in its own metric - so 'the port stands in for the "
+                "method' has to be checked per method, not assumed."),
+            "benchmark_row": {k: scores["01-04"][k] for k in ("SA", "DA", "AA")},
+            "official_row": official["Removert"],
+        })
+
     if missing:
         findings.append({
             "name": "not_all_methods_scored_yet",

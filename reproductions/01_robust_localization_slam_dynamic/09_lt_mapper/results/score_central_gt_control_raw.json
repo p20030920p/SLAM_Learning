@@ -1,0 +1,41 @@
+{
+  "method": "central_gt_control_raw",
+  "sequence": "gt_covered_central",
+  "min_dis_m": 0.05,
+  "map": "/home/qzl/workspace/Practice_SLam/SLAM_Learning/reproductions/01_robust_localization_slam_dynamic/09_lt_mapper/results/ltmapper_kitti00/OriginalNoisyCentralMapGlobal.pcd",
+  "map_points": 2675552,
+  "official": {
+    "gt_static": 11497294,
+    "gt_dynamic": 49658,
+    "out_static": 11481465,
+    "out_dynamic": 65487,
+    "correct_static": 11432628,
+    "correct_dynamic": 821,
+    "missed_dynamic": 48837,
+    "false_removal": 64666,
+    "SA": 99.4376,
+    "DA": 1.6533,
+    "AA": 12.8219,
+    "HA": 3.2525
+  },
+  "python": {
+    "gt_static": 11497294,
+    "gt_dynamic": 49658,
+    "out_static": 11481465,
+    "out_dynamic": 65487,
+    "correct_static": 11432628,
+    "correct_dynamic": 821,
+    "missed_dynamic": 48837,
+    "false_removal": 64666,
+    "SA": 99.4376,
+    "DA": 1.6533,
+    "AA": 12.8219,
+    "HA": 3.2525
+  },
+  "cross_check": {
+    "ok": true,
+    "disagreeing_points": 0,
+    "disagree_rate": 0.0,
+    "note": "the two implementations must label the GT identically; a non-zero rate means the nearest-neighbour rule is tie-sensitive, not that either is wrong"
+  }
+}

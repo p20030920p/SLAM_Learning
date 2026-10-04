@@ -31,14 +31,20 @@ ROI 实例级）、§2 难点 5（算力受限下的稀疏语义表示）、§4.
 
 | 编号 | 复现对象 | 角色 | 数据 | 算力 | 状态 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| [02-01](01_3rscan/) | 3RScan | **数据集**：同房间多次扫描 + 物体重排标注 | 3RScan（需申请） | — | ⬜ |
-| [02-02](02_oasis_map/) | OASIS-Map | **直接对手**：语义对应做物体级变化检测 | 3RScan / 自采 | GPU | ⬜ |
-| [02-03](03_concept_graphs/) | ConceptGraphs | 底座：开放词汇 3D 场景图 | Replica / ScanNet | GPU | ⬜ |
-| [02-04](04_dualmaps/) | DualMap | 底座：会**自我编辑**的开放词汇地图 | 公开 + 自采 | GPU | ⬜ |
-| [02-05](05_hov_sg/) | HOV-SG | 分层开放词汇图 **+ 语言导航** | Replica / HM3D | GPU | ⬜ |
-| [02-06](06_clio/) | Clio | 机载实时分层场景图（算力受限路线） | 自采 / 公开 | GPU | ⬜ |
-| [02-07](07_anyloc/) | AnyLoc | **视觉锚定**：通用视觉位置识别（整图检索） | Pitts250k / Tokyo24-7 等 | GPU | ⬜ |
-| [02-08](08_revisit_anything/) | Revisit Anything | **视觉锚定**：分割级检索（SAM 片段） | VPR-datasets-downloader | GPU | ⬜ |
+| [02-01](01_3rscan/) | 3RScan | **数据集**：同房间多次扫描 + 物体重排标注 | 3RScan（需申请） | — | 🟢 已跑通（本机有 1 对会话） |
+| [02-02](02_oasis_map/) | OASIS-Map | **直接对手**：语义对应做物体级变化检测 | 3RScan / 自采 | GPU | ⛔ 上游代码未发布（Code Soon），按规则只能做论文精读 |
+| [02-03](03_concept_graphs/) | ConceptGraphs | 底座：开放词汇 3D 场景图 | Replica / ScanNet | GPU | ⛔ 本机无 GPU（SAM+CLIP+LLaVA-7B，≥16–24 GB 显存 + GPT-4） |
+| [02-04](04_dualmaps/) | DualMap | 底座：会**自我编辑**的开放词汇地图 | 公开 + 自采 | GPU | ⛔ 本机无 GPU（论文用 RTX 4090） |
+| [02-05](05_hov_sg/) | HOV-SG | 分层开放词汇图 **+ 语言导航** | Replica / HM3D | GPU | ⛔ 本机无 GPU（SAM + 3×CLIP ViT-H-14，四篇里最重） |
+| [02-06](06_clio/) | Clio | 机载实时分层场景图（算力受限路线） | 自采 / 公开 | GPU | ⛔ 本机无 GPU（论文用 RTX 3090 / Spot 上的 4090 Laptop） |
+| [02-07](07_anyloc/) | AnyLoc | **视觉锚定**：通用视觉位置识别（整图检索） | Pitts250k / Tokyo24-7 等 | GPU | ⛔ 官方仓库已克隆；论文数字绑 ViT-G14，无 GPU |
+| [02-08](08_revisit_anything/) | Revisit Anything | **视觉锚定**：分割级检索（SAM 片段） | VPR-datasets-downloader | GPU | ⛔ 本机无 GPU（ViT-G + SAM ViT-H + 6.65 GB 描述子库） |
+
+> **这张表的"状态"列在 2026-10-05 从 ⬜ 改成 ⛔，是信息增加，不是退步**：
+> 每个文件夹里现在都有一份 `reproduce.py`，它的 `require()` 直接返回**具体缺什么**
+> （缺的是哪张卡、哪个数据集、还是上游根本没发代码），
+> 依据是各文件夹 `paper_baseline.md` 里对着原文记下的硬件与数据要求。
+> 换句话说：**要开工时不用重新调研，缺的只是硬件。**
 
 > **car.md 的优先建议**里，难点 7（动态环境下的 VPR）正是
 > [02-07](07_anyloc/) 与 [02-08](08_revisit_anything/) 这一对：

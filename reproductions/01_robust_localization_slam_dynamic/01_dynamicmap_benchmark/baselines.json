@@ -21,8 +21,14 @@
     "DUFOMap_AA": 98.3408,
     "BeautyMap_SA": 96.9529,
     "BeautyMap_AA": 97.6431,
+    "Removert_official_SA": 99.6179,
+    "Removert_official_AA": 94.2928,
     "crosscheck_points": 3000000,
     "crosscheck_disagreements": 0
+  },
+  "metric_groups": {
+    "plain_keys": "the benchmark's own ROS-free ports - this folder's original subject",
+    "Removert_official_*": "the authors' own irapkaist/removert run, scored on the same KITTI 00 GT; kept separate because it is a different measurement (see 01-04). ERASOR's port is faithful in its own metric, Removert's is not - so the port's authority has to be checked per method."
   },
   "checks_expected": [
     "ground_truth_is_a_binary_label_set",

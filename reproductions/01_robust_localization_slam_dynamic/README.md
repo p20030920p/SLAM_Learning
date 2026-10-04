@@ -25,15 +25,21 @@
 
 | 编号 | 复现对象 | 角色 | 数据 | 算力 | 状态 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| [01-01](01_dynamicmap_benchmark/) | DynamicMap_Benchmark | **评测地基**：点级 GT + PR/RR/F1 | KITTI / MulRan / SemanticKITTI | CPU | ⬜ |
-| [01-02](02_kiss_icp/) | KISS-ICP | **下游定位器**：测清理后地图的可用性 | KITTI odometry | CPU | ⬜ |
-| [01-03](03_erasor/) | ERASOR | 被测方法：伪占据比 + 阈值 | KITTI / MulRan | CPU | ⬜ |
-| [01-04](04_removert/) | Removert | 被测方法：删除后**回滚** | KITTI / MulRan | CPU | ⬜ |
-| [01-05](05_dufomap/) | DUFOMap | 被测方法：光线投射建模遮挡 | KITTI / MulRan | CPU | ⬜ |
-| [01-06](06_beautymap/) | BeautyMap | 被测方法：二值地面矩阵，免调参 | KITTI / MulRan | CPU | ⬜ |
-| [01-07](07_dynosam/) | DynoSAM | 备选：物体级动态 SLAM（含物体轨迹） | KITTI tracking / OMD | GPU | ⬜ |
-| [01-08](08_ngd_slam/) | NGD-SLAM | **纯几何**动态检测，不依赖语义先验 | TUM RGB-D / BONN | **CPU** | ⬜ |
-| [01-09](09_lt_mapper/) | LT-mapper | 多会话长期建图 + 几何变化检测 | MulRan / KITTI 多会话 | CPU | ⬜ |
+| [01-01](01_dynamicmap_benchmark/) | DynamicMap_Benchmark | **评测地基**：点级 GT + PR/RR/F1 | KITTI / MulRan / SemanticKITTI | CPU | 🟢 已跑通（17 项指标） |
+| [01-02](02_kiss_icp/) | KISS-ICP | **下游定位器**：测清理后地图的可用性 | KITTI odometry | CPU | 🟢 代码跑通（0.409 %）· 论文 0.50 % 需注册 KITTI |
+| [01-03](03_erasor/) | ERASOR | 被测方法：伪占据比 + 阈值 | KITTI / MulRan | CPU | 🟢 **官方仓库**：PR/RR/F1 = 95.62/94.41/0.950 |
+| [01-04](04_removert/) | Removert | 被测方法：删除后**回滚** | KITTI / MulRan | CPU | 🟢 **官方仓库**：SA/DA/AA = 99.62/89.25/94.29 |
+| [01-05](05_dufomap/) | DUFOMap | 被测方法：光线投射建模遮挡 | KITTI / MulRan | CPU | 🟢 已跑通（精确命中论文） |
+| [01-06](06_beautymap/) | BeautyMap | 被测方法：二值地面矩阵，免调参 | KITTI / MulRan | CPU | 🟢 已跑通（≤0.19 pp） |
+| [01-07](07_dynosam/) | DynoSAM | 备选：物体级动态 SLAM（含物体轨迹） | KITTI tracking / OMD | GPU | ⛔ 上游 configure 阶段就要求 CUDA（见 `work/feasibility.md`） |
+| [01-08](08_ngd_slam/) | NGD-SLAM | **纯几何**动态检测，不依赖语义先验 | TUM RGB-D / BONN | **CPU** | 🟢 已跑通（ATE/RPE-平移命中） |
+| [01-09](09_lt_mapper/) | LT-mapper | 多会话长期建图 + 几何变化检测 | MulRan / KITTI 多会话 | CPU | 🟡 官方仓库已克隆并评估（见 `work/feasibility.md`） |
+
+> **两点更新（2026-10-05）**：
+> 1. **01-03 / 01-04 现在跑的是官方仓库**（ROS 1 用 micromamba + robostack 装，不需要 root）。
+>    换过去之后发现：**Removert 的基准重实现漏掉了一半以上该删的动态点**（DA 41.53 → 89.25），
+>    而 ERASOR 的重实现在它自己的口径下是自洽的。→ **"重实现能不能代表原方法"要逐个查。**
+> 2. **D 线的 CPU 部分已经全部出数字**，见 [`../PAPER_BASELINES.md`](../PAPER_BASELINES.md) §二之二。
 
 > **car.md 的优先建议**里，难点 1（未知动态物体检测）对应 [01-08](08_ngd_slam/)，
 > 难点 3（终身 SLAM）与难点 4（评测基准）对应 [01-09](09_lt_mapper/) 与 [01-01](01_dynamicmap_benchmark/)。

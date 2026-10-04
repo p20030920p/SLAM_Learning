@@ -152,6 +152,15 @@ def require(ctx):
     if not os.path.exists(_gt(ctx)):
         return ("official GT missing - wget https://urserver.kaist.ac.kr/publicdata/erasor/"
                 "erasor_paper_pcds.zip -P " + _official(ctx) + " && unzip it there")
+    # the authors' evaluator needs sklearn + tabulate; the benchmark evaluator needs scipy
+    probe = subprocess.run([_venv_python(ctx), "-c",
+                            "import numpy, sklearn, tabulate, scipy, tqdm"],
+                           capture_output=True, text=True)
+    if probe.returncode != 0:
+        rel = os.path.relpath(_venv_python(ctx), _repo(ctx))
+        return (f"{rel} needs numpy + scikit-learn + tabulate + tqdm (the authors' "
+                f"analysis_runner) and scipy (the benchmark evaluator): "
+                f"{rel} -m pip install scikit-learn tabulate tqdm scipy")
     return None
 
 

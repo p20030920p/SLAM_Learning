@@ -1,0 +1,83 @@
+{
+  "reproduction": "01-09",
+  "paper": "LT-mapper (ICRA 2022) - the change-detection half, reproduced from the authors' own repository gisbi-kim/lt-mapper",
+  "recorded": "2026-10-05T03:05:00+08:00",
+  "recorded_with": "official removert_removert binary built from code/lt-mapper/ltremovert (package name 'removert') driven by work/run_official.sh; scored by 01_dynamicmap_benchmark/work/evaluate.py with --impl both (official export_eval_pcd and the scipy re-implementation, which agree exactly)",
+  "rel_tolerance": 0.02,
+  "note": "The paper's own change-detection numbers need the ParkingLot dataset (raw Ouster+IMU, still needs SC-LIO-SAM) or MulRan KAIST 04 (by e-mail), and its headline delta-map numbers need the LT-map module, which is NOT in the repository - so the target recorded here is not a paper number: it is the official implementation's output on the only data available locally, a two-session split of one continuous KITTI 00 pass. Plain SA/DA/AA/HA keys are the map-side output on the both-sessions coverage-matched GT; full_gt_* is the same map on the whole 141-frame GT (the sibling folders' protocol, which this run's coverage cannot fill); central_gt_* and control_* measure the run against the central session's own footprint so the cleaned maps and the uncleaned control are compared on identical GT. README.md says which row is quoted and why none of them is comparable to the sibling rows.",
+  "paper_reported": {
+    "change_detection": "no comparable table - the paper's quantitative change-detection results are the delta-map size/time numbers of the LT-map module (85.7 MB vs 213.6 MB; 9.8 s vs 87/160 s), which is absent from the checkout (0 grep hits for delta_map/meta_map; Removerter.cpp:1671 is a comment)",
+    "source": "LT-mapper ICRA 2022; work/feasibility.md sections 1 and 5"
+  },
+  "sibling_rows_same_evaluator_same_gt": {
+    "note": "cleaned maps of the SAME 141 KITTI 00 frames, full GT, same 0.05 m rule - context only, not a like-for-like comparison: those maps cover all 141 frames",
+    "removert_official_scanside": {"SA": 99.6179, "DA": 89.2523, "AA": 94.2928},
+    "removert_benchmark_port": {"SA": 99.44, "DA": 41.53, "AA": 64.26},
+    "erasor_benchmark_port": {"SA": 66.71, "DA": 98.54, "AA": 81.07},
+    "dufomap": {"SA": 97.96, "DA": 98.72, "AA": 98.34}
+  },
+  "input": {
+    "central_session": "KITTI 00 benchmark frames 004390..004470 (81 scans), idx [0,81)",
+    "query_session": "frames 004451..004530 (80 scans), idx [61,141), auto-cropped by the 10 m ROI rule (Session.cpp:234) to 29 keyframes",
+    "frame_convention": "sensor-frame binary pcd scans (p_sensor = R(q)^T (p_world - t)) + 12-numbers-per-line pose files in the benchmark's common world frame; round trip back to the source clouds verified to ~4e-6 m",
+    "overlap": "~15 m of the central session's 40.8 m trajectory"
+  },
+  "metrics": {
+    "SA": 69.1376,
+    "DA": 74.5142,
+    "AA": 71.7756,
+    "HA": 71.7253,
+    "map_points": 758035,
+    "full_gt_SA": 49.5095,
+    "full_gt_DA": 76.499,
+    "full_gt_AA": 61.542,
+    "full_gt_HA": 60.1138,
+    "central_gt_SA": 69.7517,
+    "central_gt_DA": 79.2194,
+    "central_gt_AA": 74.3285,
+    "central_gt_HA": 74.1758,
+    "central_gt_map_points": 758035,
+    "scanside_SA": 64.0794,
+    "scanside_DA": 79.8526,
+    "scanside_AA": 71.5318,
+    "scanside_HA": 71.0999,
+    "scanside_map_points": 7100333,
+    "control_SA": 99.4405,
+    "control_DA": 1.6549,
+    "control_AA": 12.8245,
+    "control_HA": 3.2537,
+    "control_map_points": 2675552,
+    "gt_static_covered": 12363618,
+    "gt_dynamic_covered": 88508,
+    "static_coverage_pct": 71.6057,
+    "dynamic_coverage_pct": 92.2122,
+    "central_gt_static": 11497294,
+    "central_gt_dynamic": 49658,
+    "central_keyframes": 81,
+    "query_roi_keyframes": 29,
+    "updated_map_points": 758035,
+    "updated_map_strong_points": 743148,
+    "union_centralside_points": 523626,
+    "union_queryside_points": 377339,
+    "strong_nd_points": 185216,
+    "weak_nd_points": 12813,
+    "nd_points": 218931,
+    "pd_points": 43853
+  },
+  "outputs": {
+    "headline_scored": "results/ltmapper_kitti00/updated_map.pcd (Step 3 map-side result; the only map-level static output this version writes - map_static/ stays empty because the only reachable call to saveCurrentStaticAndDynamicPointCloudGlobal is the _MVM debug one)",
+    "also_scored": "results/ltmapper_kitti00/scans_updated_merged.pcd (the 81 cleaned central scans merged with their poses, the scan-side output 01-04 scores as Removert's headline)",
+    "no_removal_control": "results/ltmapper_kitti00/OriginalNoisyCentralMapGlobal.pcd (the central session's raw map, kept by the same run)"
+  },
+  "case_study": {
+    "patch": "work/local_patches.patch - one hunk, Removerter.cpp:938 boost::shared_ptr<std::vector<int>> -> pcl::IndicesPtr / pcl::make_shared, because PCL >= 1.11 makes ExtractIndices::setIndices take pcl::IndicesPtr. This was the single compile error in the checkout (grep 'error:' -> 1); no algorithm line is touched.",
+    "note": "ltremovert needs no <opencv/cv.h> fix (the sibling Removert does) and does not link GTSAM; ltslam, which does need GTSAM, is deliberately not built."
+  },
+  "checks_expected": [
+    "sessions_are_valid_ltremovert_input",
+    "query_session_overlaps_the_central_session",
+    "official_pipeline_produced_a_cleaned_map",
+    "evaluator_implementations_agree",
+    "change_detection_found_both_directions"
+  ]
+}

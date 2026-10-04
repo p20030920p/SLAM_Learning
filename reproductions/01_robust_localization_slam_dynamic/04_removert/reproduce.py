@@ -190,6 +190,12 @@ def require(ctx):
     runner = os.path.join(ctx["work_dir"], "run_official.sh")
     if not os.path.exists(runner):
         return f"driver missing: {runner}"
+    probe = subprocess.run([_venv_python(ctx), "-c", "import yaml, numpy, scipy"],
+                           capture_output=True, text=True)
+    if probe.returncode != 0:
+        rel = os.path.relpath(_venv_python(ctx), _repo(ctx))
+        return (f"{rel} needs pyyaml + numpy + scipy (params generation and the "
+                f"benchmark evaluator): {rel} -m pip install pyyaml numpy scipy")
     return None
 
 

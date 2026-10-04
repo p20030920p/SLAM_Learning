@@ -175,27 +175,27 @@ planner_server:
 
 ## 复现进度 Reproduction progress
 
-**进度** — 8/17 跑通 · 0 本次实际运行 · 10/17 已自动化 · 更新于 2026-10-05 02:51 CST
+**进度** — 9/17 跑通 · 9 本次实际运行 · 17/17 已自动化 · 更新于 2026-10-05 03:24 CST
 
 | # | 方向 | 复现对象 | 状态 | 本次运行 | 回测 | 关键指标 / 阻塞原因 / findings |
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | — | ✅ 通过 | 17 项指标 · 2 条 finding |
-| 01-02 | D1 | KISS-ICP | 🟢 green | — | ✅ 通过 | 8 项指标 · 4 条 finding |
-| 01-03 | D1 | ERASOR | 🟢 green | — | ✅ 通过 | 21 项指标 · 2 条 finding |
-| 01-04 | D1 | Removert | 🟢 green | — | ✅ 通过 | 20 项指标 · 3 条 finding |
-| 01-05 | D1 | DUFOMap | 🟢 green | — | ✅ 通过 | 11 项指标 · 3 条 finding |
-| 01-06 | D1 | BeautyMap | 🟢 green | — | ✅ 通过 | 9 项指标 · 3 条 finding |
+| 01-01 | D1 | DynamicMap_Benchmark | 🟢 green | ✅ | ✅ 通过 | 19 项指标 · 3 条 finding |
+| 01-02 | D1 | KISS-ICP | 🟢 green | ✅ | ✅ 通过 | 8 项指标 · 4 条 finding |
+| 01-03 | D1 | ERASOR | 🟢 green | ✅ | ✅ 通过 | 21 项指标 · 2 条 finding |
+| 01-04 | D1 | Removert | 🟢 green | ✅ | ✅ 通过 | 20 项指标 · 3 条 finding |
+| 01-05 | D1 | DUFOMap | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
+| 01-06 | D1 | BeautyMap | 🟢 green | ✅ | ✅ 通过 | 9 项指标 · 3 条 finding |
 | 01-07 | D1 | DynoSAM | ⛔ blocked | — | — | GPU/CUDA absent, and DynoSAM cannot even `cmake`-configure without it: dynosam_nn/CMakeLists.txt:3 declares… |
-| 01-08 | D1 | NGD-SLAM | 🟢 green | — | ✅ 通过 | 11 项指标 · 3 条 finding |
-| 01-09 | D1 | LT-mapper | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-01 | D2 | 3RScan | 🟢 green | — | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
+| 01-08 | D1 | NGD-SLAM | 🟢 green | ✅ | ✅ 通过 | 11 项指标 · 3 条 finding |
+| 01-09 | D1 | LT-mapper | 🟢 green | ✅ | ✅ 通过 | 40 项指标 · 8 条 finding |
+| 02-01 | D2 | 3RScan | 🟢 green | ✅ | ✅ 通过 | objects_total=32, unchanged=26, moved=5, absent_unlabelled=1 · 5 条 finding |
 | 02-02 | D2 | OASIS-Map | ⛔ blocked | — | — | no upstream code to run: the OASIS-Map project page (checked 2026-10-05) still says 'Code Soon' and the pap… |
-| 02-03 | D2 | ConceptGraphs | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-04 | D2 | DualMap | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-05 | D2 | HOV-SG | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-06 | D2 | Clio | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-07 | D2 | AnyLoc | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
-| 02-08 | D2 | Revisit Anything | ⬜ planned | — | — | 待开始（缺 reproduce.py） |
+| 02-03 | D2 | ConceptGraphs | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. ConceptGraph… |
+| 02-04 | D2 | DualMap | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. DualMap (RA-… |
+| 02-05 | D2 | HOV-SG | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. HOV-SG (RSS … |
+| 02-06 | D2 | Clio | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. Clio (RA-L 2… |
+| 02-07 | D2 | AnyLoc | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. AnyLoc (RA-L… |
+| 02-08 | D2 | Revisit Anything | ⛔ blocked | — | — | this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. Revisit Anyt… |
 
 > 本表由 `python3 reproductions/run_all.py` 自动生成，块内内容请勿手改。
 > 新增复现：建好文件夹与 `README.md`，再放一个实现 `require(ctx)` / `run(ctx)` 的 `reproduce.py`，重跑本命令即可。
