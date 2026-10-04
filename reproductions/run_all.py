@@ -10,6 +10,10 @@ progress block in the READMEs, and writes `status.json`.
     python3 reproductions/run_all.py --check      # do not run, only re-render status
     python3 reproductions/run_all.py --only 02-01
 
+`--only ID` runs a single reproduction; the ledger and the README progress
+tables still describe every reproduction, carrying the unselected ones over
+from the previous run with `ran` reset (it means "ran in this pass").
+
 A reproduction is a folder `reproductions/<direction>/<NN_name>/` containing:
 
     README.md        the plan; its `| 复现状态 | ... |` line is the static status
@@ -120,6 +124,42 @@ def load_module(path, name):
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
+
+def load_previous():
+    """The last run's records, by id.
+
+    `--only` runs a subset, but the ledger is about *all* the reproductions:
+    without this, `run_all.py --only 02-01` would rewrite status.json and the
+    README progress table down to that one row and silently drop the other
+    sixteen.
+    """
+    if not os.path.exists(STATUS_PATH):
+        return {}
+    try:
+        with open(STATUS_PATH, encoding="utf-8") as fh:
+            data = json.load(fh)
+    except Exception:
+        return {}
+    return {r["id"]: r for r in data.get("reproductions", []) if "id" in r}
+
+
+def carried_over(entry, prev):
+    """A previous record, re-anchored to the folder's current README.
+
+    `ran` always means "ran in this pass", so it is False here even when the
+    carried record was produced by a real run earlier.
+    """
+    r = dict(entry)
+    r.update(read_plan(entry["path"]))
+    r.update({"ran": False, "metrics": {}, "checks": [], "findings": [],
+              "artifacts": [], "level": "planned", "note": ""})
+    if prev:
+        r.update({k: prev[k] for k in ("level", "metrics", "checks", "findings",
+                                       "artifacts", "note", "backtest")
+                  if k in prev})
+    r["ran"] = False
+    return r
 
 
 # --------------------------------------------------------------------------- #
@@ -327,26 +367,11 @@ def main():
 
     print(f"discovered {len(all_entries)} reproduction folders under {HERE}"
           + (f"; running only {args.only}" if args.only else "") + "\n")
+    previous = load_previous()
     results = []
     for e in entries:
         if args.check:
-            r = dict(e)
-            r.update(read_plan(e["path"]))
-            r.update({"ran": False, "metrics": {}, "checks": [], "findings": [],
-                      "artifacts": [], "level": "planned", "note": ""})
-            prev = None
-            if os.path.exists(STATUS_PATH):
-                try:
-                    prev = next((x for x in json.load(open(STATUS_PATH, encoding="utf-8"))["reproductions"]
-                                 if x["id"] == e["id"]), None)
-                except Exception:
-                    prev = None
-            if prev:
-                r.update({k: prev[k] for k in
-                          ("level", "metrics", "checks", "findings", "note",
-                           "ran", "backtest")
-                          if k in prev})
-            results.append(r)
+            results.append(carried_over(e, previous.get(e["id"])))
             continue
 
         print(f"[{e['id']}] {e['folder']}")
@@ -367,6 +392,15 @@ def main():
                   + (f" ({sum(1 for d in bt['diffs'] if not d['ok'])} diff)"
                      if bt["status"] != "ok" else ""))
         print()
+
+    # `--only` runs a subset, but the ledger covers every reproduction: keep the
+    # ones that were not selected, as the previous run left them, so that
+    # status.json and the progress table never shrink to the selection.
+    selected = {e["id"] for e in entries}
+    for e in all_entries:
+        if e["id"] not in selected:
+            results.append(carried_over(e, previous.get(e["id"])))
+    results.sort(key=lambda r: r["id"])
 
     def _rel(path):
         try:

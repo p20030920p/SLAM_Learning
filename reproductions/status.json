@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T00:24:44+08:00",
+  "generated": "2026-10-05T00:35:04+08:00",
   "root": "reproductions",
   "summary": {
     "total": 17,
@@ -7,7 +7,7 @@
     "failed": 0,
     "blocked": 0,
     "planned": 16,
-    "ran_this_pass": 1
+    "ran_this_pass": 0
   },
   "reproductions": [
     {
@@ -182,7 +182,7 @@
       "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
       "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
       "heading": "02-01 · 3RScan",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -276,6 +276,7 @@
         "results/observability.json",
         "results/observability.csv"
       ],
+      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -458,8 +459,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "02-02",
