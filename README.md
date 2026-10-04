@@ -44,7 +44,16 @@ around it that a SLAM exercise needs.
 
 The arena is 14.7 × 14.7 m at 5 cm per cell (294 × 294), saved as
 `src/race_navigation/maps/race_map.{pgm,yaml}`. The robot spawns at `(8.07, 7.53)` facing into the
-arena, carries a 12 m lidar and a front camera, and uses an omnidirectional motion model in AMCL.
+arena, carries a **single-plane 360° 12 m lidar** (`gpu_lidar` with only a horizontal `<scan>`
+block, published on `/scan` — i.e. a **2D lidar**, which is also what the target hardware uses) and a
+**front RGB camera** (640×480, 15 Hz — **no depth and no IMU**), and uses an omnidirectional motion
+model in AMCL.
+
+> **Sim-to-hardware gap, stated plainly**: the target platform is an Intel RealSense **D435i**
+> (stereo IR + depth + Bosch BMI055 IMU) plus a 2D lidar. The lidar half already matches; the camera
+> half does not — this simulator has neither depth nor an IMU, so no VIO/LIO fusion can be exercised
+> here yet. See the sensor-fit section of [`reproductions/README.md`](reproductions/README.md)
+> for the per-reproduction audit and the two halves' public datasets.
 
 Package names keep their upstream `race_*` prefix so this tree still lines up one-to-one with
 Sim2Real-AlgoBench; the launch files and the configuration are what you actually work with.

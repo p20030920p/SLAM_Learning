@@ -43,7 +43,14 @@
 
 赛场为 14.7 × 14.7 m，栅格 5 cm（294 × 294），保存为
 `src/race_navigation/maps/race_map.{pgm,yaml}`。小车出生点在 `(8.07, 7.53)`，朝向场地内部，
-搭载 12 m 激光雷达与前置摄像头，AMCL 使用全向运动模型。
+搭载**单线 360°、12 m 的 2D 激光雷达**（`gpu_lidar` 只配了水平 `<scan>`、没有 `<vertical>`，
+话题 `/scan` —— 正好对上目标硬件的那台雷达）与**前置 RGB 摄像头**（640×480、15 Hz，
+**没有深度、也没有 IMU**），AMCL 使用全向运动模型。
+
+> **仿真与实物的差距，直说**：目标平台是 Intel RealSense **D435i**（双目 IR + 深度 + Bosch BMI055 IMU）
+> 加一台 2D 雷达。**雷达这一半已经对上，相机这一半没有** —— 本仿真既无深度也无 IMU，
+> 所以在这里还跑不了 VIO/LIO 融合。逐条复现的传感器契合度与两个半边各自可用的公开数据，
+> 见 [`reproductions/README.md`](reproductions/README.md) 的「传感器契合度」一节。
 
 包名保留了上游的 `race_*` 前缀，这样可以和 Sim2Real-AlgoBench 一一对应；你实际打交道的是
 launch 文件和配置。
