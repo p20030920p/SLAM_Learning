@@ -2,7 +2,9 @@
 
 # 01-04 · Removert
 
-**先删可疑点，再用多分辨率距离图像把误删的静态点回滚 —— 官方实现的 DA 比基准重实现高 47.7 个百分点，「Removert 最保守」是重实现的产物。**
+**Removert: Remove then Revert - Static Map Building in Challenging Environment**
+
+先从距离图像删可疑点，再用多分辨率图像把误删的静态点找回来。
 
 [![venue](https://img.shields.io/badge/venue-IROS%202020-22314E)](https://doi.org/10.1109/IROS45743.2020.9340856)
 ![result](https://img.shields.io/badge/result-DA%2089.25%20vs%2041.53%20port-2ea043)
@@ -10,59 +12,43 @@
 ![data](https://img.shields.io/badge/data-KITTI%2000%20%C2%B7%20Zenodo-1c7ed6)
 ![compute](https://img.shields.io/badge/compute-ROS%201%20Noetic%20%C2%B7%20micromamba-6f42c1)
 
-[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+[Quick start](#quick-start) &nbsp;•&nbsp; [Results](#results) &nbsp;•&nbsp; [Notes](#notes)
 
 *[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
 
 </div>
 
----
-
-## 一句话 Verdict
-
-| 同一份 141 帧、同一个点级评测器 | SA | DA | AA |
-| :--- | ---: | ---: | ---: |
-| **官方仓库 irapkaist/removert** | **99.62** | **89.25** | **94.29** |
-| 基准里的重实现 | 99.44 | 41.53 | 64.26 |
-
-论文原文没有编号表格（作者仓库里的 PDF 全文 `TABLE` 命中 0 次），所以对标的是官方实现自己的输出。
-
-## 关键设定 Settings
-
-| 项 | 内容 |
-| :--- | :--- |
-| 本机怎么跑 | ROS 1 Noetic（micromamba）· 官方 `removert_removert`，141 帧 **76 s** |
-| 论文 | Removert: Remove then Revert — Static Map Building in Challenging Environment |
-| 论文链接 | [doi:10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856) |
-| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文没有编号表格（原因见下） |
-| 代码 | [irapkaist/removert](https://github.com/irapkaist/removert) ✅ **官方仓库已编译并跑通** |
-| 数据 | KITTI 00（DynamicMap_Benchmark 的 Zenodo 免注册包，141 帧） |
-| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
-| 任务书对应 | §2 难点 4 高变动场景的地图维护；§6 并行实验 H1′（排名稳定性） |
-| 复现顺序 | 5 |
-| 能否复现 | ✅ 能，但要 ROS 1：官方仓库跑通；原论文没有数字表，对上的是官方仓库自己的输出。 |
-| 复现完成 | ☑ 2026-10-05 · 官方实现 SA/DA/AA = 99.62 / 89.25 / 94.29 |
-
----
-
-## 它做了什么 What it does
-
 先从距离图像里删掉「可疑」的点，再用多分辨率距离图像把**被误删的静态点回滚回来**（remove then revert）。
-
-## 为什么复现它 Why
 
 **四个方法里唯一带显式回滚步骤的。** 回滚本质上就是在保护静态结构，所以如果 H1′ 成立（F1 高 ≠ 定位好），Removert 应该是表现最稳的对照组。
 本轮结果让它的地位更重要了：**它并不"保守"——保守的是基准里那份重实现。**
 
-## 复现目标（可验收）Goals
+|  |  |
+| :--- | :--- |
+| **同一份 141 帧、同一个点级评测器** | SA · 论文 DA |
+| **官方仓库 irapkaist/removert** | **99.62** · 论文 **89.25** |
+| **基准里的重实现** | 99.44 · 论文 41.53 |
+| **Platform** | CPU · 20 核 · Ubuntu 24.04 + ROS 2 Jazzy |
+| **Reproduce** | [`reproduce.py`](reproduce.py) · [`baselines.json`](baselines.json) |
 
-- [x] **用作者自己的仓库编译并跑通**，产出清理后的地图
-- [x] 记录它一次运行到底产出哪几个地图、各自是什么含义（这一步推翻了"一个方法一个数字"的假设）
-- [x] 与基准的无 ROS 重实现在**同一份数据、同一个评测器**下对比
-- [ ] 交给 01-02，看回滚是否真的换来了更低的配准失败率（依赖 KITTI 完整序列）
-- [ ] 记录 revert 步骤单独删掉/救回了多少点（需要改上游参数跑两次）
+论文原文没有编号表格（作者仓库里的 PDF 全文 `TABLE` 命中 0 次），所以对标的是官方实现自己的输出。
 
-## 怎么跑 How to run
+---
+
+## Quick start
+
+| 依赖 | 版本 / 说明 |
+| :--- | :--- |
+| ROS | ROS 1 Noetic（micromamba，无 root）：`reproductions/tools/ros1_env.sh` |
+| 数据 | KITTI 00（DynamicMap_Benchmark 的 Zenodo 免注册包，141 帧） |
+| 耗时 | 141 帧 **76 s**（CPU） |
+| 对照 | 同一份数据、同一个点级评测器下与基准重实现并排 |
+
+```bash
+source reproductions/tools/ros1_env.sh
+bash reproductions/01_robust_localization_slam_dynamic/04_removert/work/run_official.sh
+python3 reproductions/run_all.py --only 01-04
+```
 
 ```bash
 # 0. 一次性：ROS 1 Noetic 环境（本机是 ROS 2 Jazzy、无 sudo、无 Docker）
@@ -86,20 +72,7 @@ python3 reproductions/run_all.py --only 01-04
 `work/gen_params.py`（复制上游 `config/params_kitti.yaml`，只改路径与序列区间）→
 `work/run_official.sh`（roscore + `rosparam load` + 官方 `removert_removert` 节点）。
 
-## 坑与注意 Pitfalls
-
-| 坑 | 症状 | 处理 |
-| :--- | :--- | :--- |
-| **ROS 2 环境污染 ROS 1** | 编译成功，运行时 `symbol lookup error: undefined symbol: image_transport::ImageTransport` | ROS 1/ROS 2 同名库（`libimage_transport.so`…）被 Jazzy 抢先加载。`reproductions/tools/ros1_env.sh` 会把 `/opt/ros/jazzy*` 从各搜索路径里剥掉 |
-| **OpenCV 4 没有 `<opencv/cv.h>`** | 编译期 `fatal error: opencv/cv.h` | 补丁删掉这个 OpenCV 1.x umbrella header（`opencv2/opencv.hpp` 已在下一行） |
-| **PCL ≥ 1.11 换了智能指针** | `setIndices(boost::shared_ptr<...>)` 无匹配重载 | 4 处改成 `pcl::IndicesPtr` / `pcl::make_shared` |
-| **PCL 的 VTK 依赖没导出** | 链接期 `libvtksys-9.2.so.1: DSO missing from command line` | 构建脚本加 `-I$ENV/include/vtk-9.2` 与 `-Wl,--copy-dt-needed-entries` |
-| **上游参数文件是给 KITTI 09 调的** | 直接跑会用 1300–1600 帧 | 我们只跑 0–140，其余参数一律保留上游默认值 |
-
-> 所有补丁都在 [`work/local_patches.patch`](work/local_patches.patch)，只碰 API 兼容性，**不碰算法**。
-> `code/` 目录里是被打过补丁的上游源码，`git -C code/removert diff` 可复核。
-
-## 复现结果 Results
+## Results
 
 ### 一、官方实现 vs 基准重实现：同一份数据、同一个评测器
 
@@ -173,7 +146,24 @@ python3 reproductions/run_all.py --only 01-04
 原先"一个几乎不删、一个删得过多"的对照关系是**重实现的产物**，不是方法的性质。
 这句话直接改写了任务书 §6 H1′ 的前提：**要比较排序稳定性，先要确认每个方法跑的是它自己的代码。**
 
-## 记录 Log
+## Notes
+
+- [x] **用作者自己的仓库编译并跑通**，产出清理后的地图
+- [x] 记录它一次运行到底产出哪几个地图、各自是什么含义（这一步推翻了"一个方法一个数字"的假设）
+- [x] 与基准的无 ROS 重实现在**同一份数据、同一个评测器**下对比
+- [ ] 交给 01-02，看回滚是否真的换来了更低的配准失败率（依赖 KITTI 完整序列）
+- [ ] 记录 revert 步骤单独删掉/救回了多少点（需要改上游参数跑两次）
+
+| 坑 | 症状 | 处理 |
+| :--- | :--- | :--- |
+| **ROS 2 环境污染 ROS 1** | 编译成功，运行时 `symbol lookup error: undefined symbol: image_transport::ImageTransport` | ROS 1/ROS 2 同名库（`libimage_transport.so`…）被 Jazzy 抢先加载。`reproductions/tools/ros1_env.sh` 会把 `/opt/ros/jazzy*` 从各搜索路径里剥掉 |
+| **OpenCV 4 没有 `<opencv/cv.h>`** | 编译期 `fatal error: opencv/cv.h` | 补丁删掉这个 OpenCV 1.x umbrella header（`opencv2/opencv.hpp` 已在下一行） |
+| **PCL ≥ 1.11 换了智能指针** | `setIndices(boost::shared_ptr<...>)` 无匹配重载 | 4 处改成 `pcl::IndicesPtr` / `pcl::make_shared` |
+| **PCL 的 VTK 依赖没导出** | 链接期 `libvtksys-9.2.so.1: DSO missing from command line` | 构建脚本加 `-I$ENV/include/vtk-9.2` 与 `-Wl,--copy-dt-needed-entries` |
+| **上游参数文件是给 KITTI 09 调的** | 直接跑会用 1300–1600 帧 | 我们只跑 0–140，其余参数一律保留上游默认值 |
+
+> 所有补丁都在 [`work/local_patches.patch`](work/local_patches.patch)，只碰 API 兼容性，**不碰算法**。
+> `code/` 目录里是被打过补丁的上游源码，`git -C code/removert diff` 可复核。
 
 | 日期 | 做了什么 | 结果 / 数字 | 结论 |
 | :--- | :--- | :--- | :--- |
@@ -183,3 +173,27 @@ python3 reproductions/run_all.py --only 01-04
 | 2026-10-05 | 编译官方仓库 | 3 处 PCL/OpenCV API 补丁 | 算法源码未改 |
 | 2026-10-05 | 官方节点跑 KITTI 00（141 帧） | 76 s，4,628,181 点静态图 | 官方实现可跑通 |
 | 2026-10-05 | 同数据同评测器对比两种实现 | 官方 DA 89.25 vs 重实现 41.53（+47.7 pp） | **基准重实现低估了 Removert** |
+
+## Documentation
+
+- 论文自报数字与出处：[`paper_baseline.md`](paper_baseline.md)
+- 复现脚本：[`reproduce.py`](reproduce.py) · 回测基线：[`baselines.json`](baselines.json)
+- 本文件夹的脚本、协议与实测记录：[`work/`](work/)
+- 复现区索引与约定：[`../README.md`](../README.md) · 状态账本：[`../../status.json`](../../status.json)
+
+<!-- run_all.py 读下面这几行生成索引表，改动请保持同样的 | 键 | 值 | 形式 -->
+
+| 元数据 | 内容 |
+| :--- | :--- |
+| 论文 | Removert: Remove then Revert — Static Map Building in Challenging Environment |
+| 论文链接 | [doi:10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856) |
+| 代码 | [irapkaist/removert](https://github.com/irapkaist/removert) ✅ **官方仓库已编译并跑通** |
+| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
+| 任务书对应 | §2 难点 4 高变动场景的地图维护；§6 并行实验 H1′（排名稳定性） |
+| 能否复现 | ✅ 能，但要 ROS 1：官方仓库跑通；原论文没有数字表，对上的是官方仓库自己的输出。 |
+| 复现完成 | ☑ 2026-10-05 · 官方实现 SA/DA/AA = 99.62 / 89.25 / 94.29 |
+| 复现顺序 | 5 |
+| 项 | 内容 |
+| 本机怎么跑 | ROS 1 Noetic（micromamba）· 官方 `removert_removert`，141 帧 **76 s** |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文没有编号表格（原因见下） |
+| 数据 | KITTI 00（DynamicMap_Benchmark 的 Zenodo 免注册包，141 帧） |

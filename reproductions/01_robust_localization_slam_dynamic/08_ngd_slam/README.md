@@ -2,7 +2,9 @@
 
 # 01-08 · NGD-SLAM
 
-**没有 GPU 也要实时：用光流与深度方差替代神经网络的逐帧分割，让追踪不再等网络 —— ATE 与 RPE-平移命中论文。**
+**NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU**
+
+不用 GPU 的实时动态 SLAM：光流与深度方差替代逐帧神经网络分割。
 
 [![venue](https://img.shields.io/badge/venue-IROS%202025-22314E)](https://arxiv.org/abs/2405.07392)
 ![result](https://img.shields.io/badge/result-ATE%200.0157%20vs%200.015-2ea043)
@@ -10,43 +12,11 @@
 ![data](https://img.shields.io/badge/data-TUM%20RGB--D%20%C2%B7%20direct%20links-1c7ed6)
 ![compute](https://img.shields.io/badge/compute-CPU%20only-6f42c1)
 
-[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [记录](#记录-log)
+[Quick start](#quick-start) &nbsp;•&nbsp; [Results](#results) &nbsp;•&nbsp; [Notes](#notes)
 
 *[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
 
 </div>
-
----
-
-## 一句话 Verdict
-
-| 指标 | 本文件夹（TUM f3/walking_xyz） | 论文表 I |
-| :--- | ---: | ---: |
-| ATE | **0.0157 m** | 0.015 m |
-| RPE 平移 | **0.0201 m/s** | 0.020 m/s |
-| RPE 旋转 | 0.604 °/s（RMSE）/ 0.475 °/s（均值） | 0.470 °/s —— **未解差异**（论文没写用哪个统计量） |
-
-读官方代码推翻了计划里的一条判断：它**用** YOLO 语义（`System.cc:217`），省掉的是「追踪等网络」，不是语义本身。
-
-## 关键设定 Settings
-
-| 项 | 内容 |
-| :--- | :--- |
-| 本机怎么跑 | 纯 CPU · 官方 C++ 自编 + `.venvs/dmb`；数据集直链免注册 |
-| 论文 | NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU |
-| 论文链接 | [arXiv:2405.07392](https://arxiv.org/abs/2405.07392) |
-| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— f3/w xyz：ATE **0.015 m**、RPE 0.020 m/s、0.470 °/s |
-| 代码 | [yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) ✅ 官方仓库，本地 commit `a93a14c` |
-| 数据 | TUM RGB-D（[cvg.cit.tum.de](https://cvg.cit.tum.de/data/datasets/rgbd-dataset/download)，**免注册直链**）；BONN |
-| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
-| 任务书对应 | §2 难点 5（算力受限 + 语义）；§1 H6（算力与分割冲突的调度方案） |
-| 复现顺序 | 6 |
-| 能否复现 | ✅ 能：官方代码明确「无 GPU」，TUM RGB-D 免注册直链，对上论文的 ATE / RPE 表。 |
-| 复现完成 | ☑ 2026-10-05 · ATE 与 RPE-平移命中论文 |
-
----
-
-## 它做了什么 What it does
 
 > ⚠️ **本 README 原来写的是错的。** 原描述是「不用神经网络做分割，改用光流 + 深度方差判断特征点是否运动」。
 > **读代码后确认：它用了神经网络（YOLO-fastest-xl），而且恰恰是一个语义方法。**
@@ -78,8 +48,6 @@
   **落进动态掩码的点直接丢弃**（`ORBmatcher.cc:2045`），地图点身份直接继承；
 - 光流不够用时按**分级规则**退回完整 ORB（`Tracking.cc:3381`：内点 < 20 立刻切；< 75 且隔了 5 帧；< 300 且隔了 30 帧）。
 
-## 为什么复现它 Why
-
 **这里要对 car.md 的假设做一次纠正。** car.md 难点 1 主张「独立于语义分割、用纯几何运动视差检测未知动态物体」。
 **NGD-SLAM 不是这条路线**：它依赖 YOLO 的 COCO 类别，未知类别的动态物体同样看不见。
 它真正的贡献是**算力调度**——论文 §1 H6 给的第三条修正（"低频语义 + 高频传播"）的一个完整实现。
@@ -87,7 +55,32 @@
 所以复现它的正确问题是：**"把语义这个最贵的模块从每帧解耦出去，代价有多大？"**
 答案是下面那组数字：精度基本不掉，速度翻倍。
 
-## 复现结果 Results
+|  |  |
+| :--- | :--- |
+| **ATE** | **0.0157 m** · 论文 0.015 m |
+| **RPE 平移** | **0.0201 m/s** · 论文 0.020 m/s |
+| **RPE 旋转** | 0.604 °/s（RMSE）/ 0.475 °/s（均值） · 论文 0.470 °/s —— **未解差异**（论文没写用哪个统计量） |
+| **Platform** | CPU · 20 核 · Ubuntu 24.04 + ROS 2 Jazzy |
+| **Reproduce** | [`reproduce.py`](reproduce.py) · [`baselines.json`](baselines.json) |
+
+读官方代码推翻了计划里的一条判断：它**用** YOLO 语义（`System.cc:217`），省掉的是「追踪等网络」，不是语义本身。
+
+---
+
+## Quick start
+
+| 依赖 | 版本 / 说明 |
+| :--- | :--- |
+| Python / C++ | 官方 C++ 自编 + `.venvs/dmb`；论文明确「无 GPU」 |
+| 数据 | TUM RGB-D `fr3/walking_xyz`（官方直链，免注册） |
+| 指标 | ATE / RPE（平移 + 旋转），官方 `evaluate_ate_scale.py` 口径 |
+
+```bash
+python3 reproductions/01_robust_localization_slam_dynamic/08_ngd_slam/work/run_ngd.py
+python3 reproductions/run_all.py --only 01-08
+```
+
+## Results
 
 ### 一、跑法与结果
 
@@ -150,7 +143,7 @@ RGB-D 尺度已知，脚本里的尺度拟合是为单目写的；本次拟合�
 `build.sh` 会构建 Sophus 的库与单元测试，而 Sophus 的测试在 GCC 13 下因 `-Werror=array-bounds` 失败；
 **但这个项目只用 Sophus 的头文件**（`CMakeLists.txt:49` 只把它加进 include 路径），跳过它不影响任何结果。
 
-## 记录 Log
+## Notes
 
 | 日期 | 做了什么 | 结果 / 数字 | 结论 |
 | :--- | :--- | :--- | :--- |
@@ -161,8 +154,6 @@ RGB-D 尺度已知，脚本里的尺度拟合是为单目写的；本次拟合�
 | 10-05 | 跑 3 次，827 帧全量 | ATE 0.0146–0.0156、RPE 平移 0.0195–0.0201 | ✅ 两项命中论文 |
 | 10-05 | 旋转 RPE 两种口径 | RMSE 0.601 / 均值 0.476（论文 0.470） | ⚠️ **未解差异**，已如实记录 |
 
-## 下一步 Next
-
 1. **RPE-旋转的差异定性**：论文表头没写 RMSE 还是均值。要么找到它引用的原始表格来源，
    要么在 BONN 序列上再验一次——如果 BONN 的旋转数也对不上，就说明是口径问题而不是我们的运行问题。
 2. **回答"动态物体类别 × 是否检出"**（原来的复现目标）：现在知道它走 YOLO 的 COCO 类别，
@@ -170,3 +161,27 @@ RGB-D 尺度已知，脚本里的尺度拟合是为单目写的；本次拟合�
    这正好同时检验 car.md 难点 1 的假设和 NGD-SLAM 的边界。
 3. **补 f3/w static**（论文 0.007 m）：静态序列是这套系统的下限，
    如果连静态序列都对不上，说明差异来自 SLAM 本身而不是动态处理。
+
+## Documentation
+
+- 论文自报数字与出处：[`paper_baseline.md`](paper_baseline.md)
+- 复现脚本：[`reproduce.py`](reproduce.py) · 回测基线：[`baselines.json`](baselines.json)
+- 本文件夹的脚本、协议与实测记录：[`work/`](work/)
+- 复现区索引与约定：[`../README.md`](../README.md) · 状态账本：[`../../status.json`](../../status.json)
+
+<!-- run_all.py 读下面这几行生成索引表，改动请保持同样的 | 键 | 值 | 形式 -->
+
+| 元数据 | 内容 |
+| :--- | :--- |
+| 论文 | NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU |
+| 论文链接 | [arXiv:2405.07392](https://arxiv.org/abs/2405.07392) |
+| 代码 | [yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) ✅ 官方仓库，本地 commit `a93a14c` |
+| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
+| 任务书对应 | §2 难点 5（算力受限 + 语义）；§1 H6（算力与分割冲突的调度方案） |
+| 能否复现 | ✅ 能：官方代码明确「无 GPU」，TUM RGB-D 免注册直链，对上论文的 ATE / RPE 表。 |
+| 复现完成 | ☑ 2026-10-05 · ATE 与 RPE-平移命中论文 |
+| 复现顺序 | 6 |
+| 项 | 内容 |
+| 本机怎么跑 | 纯 CPU · 官方 C++ 自编 + `.venvs/dmb`；数据集直链免注册 |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— f3/w xyz：ATE **0.015 m**、RPE 0.020 m/s、0.470 °/s |
+| 数据 | TUM RGB-D（[cvg.cit.tum.de](https://cvg.cit.tum.de/data/datasets/rgbd-dataset/download)，**免注册直链**）；BONN |

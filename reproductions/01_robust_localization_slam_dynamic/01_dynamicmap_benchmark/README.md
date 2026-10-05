@@ -2,7 +2,9 @@
 
 # 01-01 · DynamicMap_Benchmark
 
-**把「动态点删除」变成可横向比较的基准：一份点级 GT、一套评测规则、四个方法同台 —— 并顺手回答了「指标排名 ≠ 定位可用性排名」。**
+**A Dynamic Points Removal Benchmark in Point Cloud Maps**
+
+把「动态点删除」放到同一把尺子上：一份点级真值、一套评测规则、所有方法同台。
 
 [![venue](https://img.shields.io/badge/venue-ITSC%202023-22314E)](https://arxiv.org/abs/2307.07260)
 ![role](https://img.shields.io/badge/role-benchmark-0b7285)
@@ -11,53 +13,47 @@
 ![data](https://img.shields.io/badge/data-Zenodo%20%C2%B7%20no%20signup-1c7ed6)
 ![compute](https://img.shields.io/badge/compute-CPU%20only-6f42c1)
 
-[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [记录](#记录-log)
+[Quick start](#quick-start) &nbsp;•&nbsp; [Results](#results) &nbsp;•&nbsp; [Notes](#notes)
 
 *[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
 
 </div>
 
----
-
-## 一句话 Verdict
-
-| | 本文件夹 |
-| :--- | :--- |
-| 序列与真值 | 141 帧 · 17,362,230 点 · 动态点只占 **0.55 %** |
-| 评测规则 | 官方 C++ 与独立 scipy 重写，在 300 万点上 **0 处分歧** |
-| 四个方法的排名 | SA：Removert > DUFOMap > BeautyMap > ERASOR<br>AA：DUFOMap > BeautyMap > ERASOR > Removert |
-| H1′ 下游定位 | ρ(归一化 AA, 效用) **0.78** · ρ(提交口径 AA) **0.38** · ρ(SA) **0.23** |
-| 误删分层 | Removert 官方在「从没被看到」的点上误删率是「每帧都看得到」的 **51 倍** |
-
-## 关键设定 Settings
-
-| 项 | 内容 |
-| :--- | :--- |
-| 本机怎么跑 | 纯 CPU · `python3 reproductions/run_all.py --only 01-01` |
-| 论文 | A Dynamic Points Removal Benchmark in Point Cloud Maps |
-| 论文链接 | [arXiv:2307.07260](https://arxiv.org/abs/2307.07260) |
-| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00，Octomap w GF：SA/DA/AA = **93.06 / 98.67 / 95.83** |
-| 代码 | [KTH-RPL/DynamicMap_Benchmark](https://github.com/KTH-RPL/DynamicMap_Benchmark) ✅ 已克隆 |
-| 数据 | ✅ **已到手**：[Zenodo 10886629](https://zenodo.org/records/10886629) 的 `00.zip`（385 MB，**免注册**）= KITTI 00 选定帧段 + 人工 GT |
-| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
-| 任务书对应 | §6 并行实验（恢复自原 T1） |
-| 复现顺序 | 3 |
-| 能否复现 | ✅ 能：官方评测脚本 + Zenodo 免注册数据 `00.zip`，出论文里那张方法对比表。 |
-| 复现完成 | ☑ 2026-10-05 · 评测器与四条基线均已跑 |
-
----
-
-## 它做了什么 What it does
+![A Dynamic Points Removal Benchmark in Point Cloud Maps](results/observability_strata.png)
 
 把「动态点删除」变成可横向比较的任务：提供人工标注的真值、统一的点级指标，并把 ERASOR、Removert、DUFOMap、BeautyMap 等方法重构成无 ROS 的统一实现，让它们第一次可比。
-
-## 为什么复现它 Why
 
 **所有对比的地基。** 没有同一套 GT 与同一套指标，四个清理方法的排名就不可比，任务书 §6 的 H1′ 也无从检验。
 
 ---
 
-## 复现结果 Results
+|  |  |
+| :--- | :--- |
+| **序列与真值** | 141 帧 · 17,362,230 点 · 动态点只占 **0.55 %** |
+| **评测规则** | 官方 C++ 与独立 scipy 重写，在 300 万点上 **0 处分歧** |
+| **四个方法的排名** | SA：Removert > DUFOMap > BeautyMap > ERASOR<br>AA：DUFOMap > BeautyMap > ERASOR > Removert |
+| **H1′ 下游定位** | ρ(归一化 AA, 效用) **0.78** · ρ(提交口径 AA) **0.38** · ρ(SA) **0.23** |
+| **误删分层** | Removert 官方在「从没被看到」的点上误删率是「每帧都看得到」的 **51 倍** |
+| **Platform** | CPU · 20 核 · Ubuntu 24.04 + ROS 2 Jazzy |
+| **Reproduce** | [`reproduce.py`](reproduce.py) · [`baselines.json`](baselines.json) |
+
+---
+
+## Quick start
+
+| 依赖 | 版本 / 说明 |
+| :--- | :--- |
+| Python | `python3` + `.venvs/dmb`（numpy / scipy / scikit-learn / tabulate） |
+| 评测器 | 官方 C++ 实现 + 独立 scipy 重写，两者在 300 万点上交叉验证 |
+| 数据 | Zenodo `00.zip`（385 MB，免注册） |
+| 规模 | 141 帧 · 17,362,230 个 GT 点 · 0.55 % 动态 |
+
+```bash
+python3 reproductions/run_all.py --only 01-01        # 数据 + 评测器 + 四个方法 + H1′
+python3 reproductions/01_robust_localization_slam_dynamic/01_dynamicmap_benchmark/work/observability_strata.py
+```
+
+## Results
 
 ### 一、数据：KITTI 注册这一硬阻塞被绕开了
 
@@ -135,8 +131,6 @@ python3 work/evaluate.py --seq-dir data/raw/00 --map <cleaned.pcd> \
 脚本 [`work/evaluate.py`](work/evaluate.py)；上游代码在 `code/DynamicMap_Benchmark/`（gitignore）；
 数据在 `data/raw/00/`（gitignore，385 MB）。**四个方法共用一个数据目录，地图产物落在各自的方法文件夹里。**
 
-## 五、四个方法全部跑通：基准表 I 的 D 线部分已复现
-
 01-03 / 01-04 / 01-05 / 01-06 四个方法在同一份 KITTI 00 数据、同一套评测器下跑完。
 **三个命中到两位小数，一个在 0.2 pp 内**：
 
@@ -174,7 +168,7 @@ ERASOR 输出地图只有 **1,417,955** 点，GT 有 **17,362,230** 点（它的
 python3 reproductions/run_all.py            # 五个复现全跑 + 回测 + 刷新进度表
 ```
 
-## 记录 Log
+## Notes
 
 | 日期 | 做了什么 | 结果 / 数字 | 结论 |
 | :--- | :--- | :--- | :--- |
@@ -186,8 +180,6 @@ python3 reproductions/run_all.py            # 五个复现全跑 + 回测 + 刷�
 | 10-05 | 编译 ERASOR / Removert（C++）+ 跑 BeautyMap（Python） | 14 s / 130 s / 49 s | 四个方法齐了 |
 | 10-05 | 评测四个方法的清理地图 | **3 个命中两位小数，1 个在 0.2 pp 内** | 基准表 I 的 D 线部分已复现 |
 
-## 下一步 Next
-
 1. ~~跑 01-03 / 01-04 / 01-06~~ ✅ **已完成**——四组 SA/DA/AA 都已产出并回测通过。
 2. **补 KITTI 05**（Zenodo `05.zip`，864 MB）作为第二个序列，检验参数的跨序列泛化
    （论文都声称"同一套参数跑所有序列"，这条只有在第二个序列上才能验）。
@@ -197,3 +189,27 @@ python3 reproductions/run_all.py            # 五个复现全跑 + 回测 + 刷�
    (b) 如上面第五节所示，ERASOR 的输出被下采样了 10 倍，**必须先决定这个分辨率差异算不算方法的一部分**，
    否则测出来的是体素大小而不是清理质量。
 4. **回答复现目标第 4 条**：GT 覆盖范围之外怎么办（自采数据必然遇到）。
+
+## Documentation
+
+- 论文自报数字与出处：[`paper_baseline.md`](paper_baseline.md)
+- 复现脚本：[`reproduce.py`](reproduce.py) · 回测基线：[`baselines.json`](baselines.json)
+- 本文件夹的脚本、协议与实测记录：[`work/`](work/)
+- 复现区索引与约定：[`../README.md`](../README.md) · 状态账本：[`../../status.json`](../../status.json)
+
+<!-- run_all.py 读下面这几行生成索引表，改动请保持同样的 | 键 | 值 | 形式 -->
+
+| 元数据 | 内容 |
+| :--- | :--- |
+| 论文 | A Dynamic Points Removal Benchmark in Point Cloud Maps |
+| 论文链接 | [arXiv:2307.07260](https://arxiv.org/abs/2307.07260) |
+| 代码 | [KTH-RPL/DynamicMap_Benchmark](https://github.com/KTH-RPL/DynamicMap_Benchmark) ✅ 已克隆 |
+| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
+| 任务书对应 | §6 并行实验（恢复自原 T1） |
+| 能否复现 | ✅ 能：官方评测脚本 + Zenodo 免注册数据 `00.zip`，出论文里那张方法对比表。 |
+| 复现完成 | ☑ 2026-10-05 · 评测器与四条基线均已跑 |
+| 复现顺序 | 3 |
+| 项 | 内容 |
+| 本机怎么跑 | 纯 CPU · `python3 reproductions/run_all.py --only 01-01` |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00，Octomap w GF：SA/DA/AA = **93.06 / 98.67 / 95.83** |
+| 数据 | ✅ **已到手**：[Zenodo 10886629](https://zenodo.org/records/10886629) 的 `00.zip`（385 MB，**免注册**）= KITTI 00 选定帧段 + 人工 GT |

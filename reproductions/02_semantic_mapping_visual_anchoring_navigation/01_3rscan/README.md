@@ -2,7 +2,9 @@
 
 # 02-01 · 3RScan
 
-**同房间多次扫描 + 物体重排标注的标准数据集 —— 用官方工具箱把 A/B 会话协议与「可观测性」判据落地。**
+**3RScan / RIO: 3D Object Instance Re-Localization in Changing Indoor Environments**
+
+同一房间多次扫描、物体被搬动的标准数据集与官方工具。
 
 [![venue](https://img.shields.io/badge/venue-ICCV%202019%20dataset-22314E)](https://arxiv.org/abs/1908.06109)
 ![result](https://img.shields.io/badge/result-protocol%20%2B%20observability-2ea043)
@@ -10,69 +12,45 @@
 ![data](https://img.shields.io/badge/data-public%20sample%20pair-1c7ed6)
 ![compute](https://img.shields.io/badge/compute-CPU%20%C2%B7%20C%2B%2B%20tools-6f42c1)
 
-[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+[Quick start](#quick-start) &nbsp;•&nbsp; [Results](#results) &nbsp;•&nbsp; [Notes](#notes)
 
 *[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
 
 </div>
 
----
-
-## 一句话 Verdict
-
-| | 本文件夹 | 全量数据集 |
-| :--- | :--- | :--- |
-| 数据 | **1 对 A/B 会话**（51 帧 · 32 个物体） | 1482 scans / 478 场景 / 1004 rescan（需申请表） |
-| 已落地 | 官方三个二进制全跑通；A/B 协议 v1（容差 1.0 m，标定自实测噪声 0.639 m） | — |
-| 可观测性 | 9 可见 / 4 被遮挡 / 16 视场外；库的可见性分数与自写 OBB 估计器 **22/31 一致**（分歧处库对） |
-| 一条硬结论 | 最小真实位移 0.265 m **小于**最大对齐噪声 0.639 m → **纯几何分不开「移动」与「噪声」** | — |
-
-## 关键设定 Settings
-
-| 项 | 内容 |
-| :--- | :--- |
-| 本机怎么跑 | 纯 CPU · 官方三个 C++ 二进制（`rio_example` / `align_poses` / `rio_renderer_render_all`） |
-| 论文 | 3RScan（数据集）—— 源自 RIO: 3D Object Instance Re-Localization in Changing Indoor Environments |
-| 论文链接 | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) |
-| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
-| 代码 | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) ✅ 实测 200 |
-| 数据 | 3RScan 本体（需同意条款后下载），约 1.5k 次扫描 / 数百个房间 |
-| 方向 | D2 · 语义建图、视觉定位与导航 |
-| 任务书对应 | §4.1 地图更新策略；物体级变化检测题目的评测数据 |
-| 复现顺序 | 13 |
-| 能否复现 | 🟡 半能：仓库只有数据集 + 工具（数据要签协议），三个二进制可跑，没有方法代码。 |
-| 复现完成 | ◐ 工具已按官方说明跑通，待全量数据 |
-
----
-
-## 它做了什么 What it does
-
 同一个房间被**多次扫描**，并对房间内物体做了实例级标注与**重排（rearrangement）**标注——也就是「哪个物体在第几次扫描里被移动/替换了」。
-
-## 为什么复现它 Why
 
 **这是整个变化检测题目的数据瓶颈所在。** 现有语义建图数据集几乎都是「静态单次采集」，没有重访协议；3RScan 是少数例外，也是 OASIS-Map 用的室内数据。没有它，跨会话身份一致率这类指标根本无从计算。
 
-## 复现目标（可验收）Goals
+|  |  |
+| :--- | :--- |
+| **数据** | **1 对 A/B 会话**（51 帧 · 32 个物体） · 论文 1482 scans / 478 场景 / 1004 rescan（需申请表） |
+| **已落地** | 官方三个二进制全跑通；A/B 协议 v1（容差 1.0 m，标定自实测噪声 0.639 m） · 论文 — |
+| **可观测性** | 9 可见 / 4 被遮挡 / 16 视场外；库的可见性分数与自写 OBB 估计器 **22/31 一致**（分歧处库对） |
+| **一条硬结论** | 最小真实位移 0.265 m **小于**最大对齐噪声 0.639 m → **纯几何分不开「移动」与「噪声」** · 论文 — |
+| **Platform** | CPU · 20 核 · Ubuntu 24.04 + ROS 2 Jazzy |
+| **Reproduce** | [`reproduce.py`](reproduce.py) · [`baselines.json`](baselines.json) |
 
-- [ ] 拿到数据，确认标注文件格式（物体 ID / 6DoF 位姿 / 扫描间对应关系）
-- [ ] **组装出至少一对 A/B 会话**：A 建图，B 是同一房间物体被移动后的重访
-- [ ] 写死二次访问协议：会话划分、真值类别（未变/移动/移除/新增/替换）、**容差半径**
-- [ ] 输出：协议文档 + 一对可用会话的数据清单
+---
 
-## 怎么跑 How to run
+## Quick start
+
+| 依赖 | 版本 / 说明 |
+| :--- | :--- |
+| C++ | 官方三个二进制：`rio_example` / `align_poses` / `rio_renderer_render_all` |
+| 数据 | 公开示例数据（`3RScan.json` 3.1 MB + `3RScan.v2.zip` 39.9 MB，**无需申请表**；全量才需要） |
+| 本机规模 | 1 对 A/B 会话（51 帧 · 32 个物体） |
+
+```bash
+python3 reproductions/02_semantic_mapping_visual_anchoring_navigation/01_3rscan/work/build_ab_pair.py
+python3 reproductions/run_all.py --only 02-01
+```
 
 1. 到仓库 README 指定入口申请/同意条款并下载
 2. 解压后先只处理**一个房间**，把 A/B 两次扫描的物体标注对齐成一张表
 3. 把协议写进本文件夹的 `work/protocol.md`（**先写死再跑**，不能事后调）
 
-## 坑与注意 Pitfalls
-
-- 需要同意条款，**不是直接 clone 就能用**；先办手续再排时间。
-- 标注是**扫描级**的，不是天然按「会话」组织，A/B 会话要自己组装 —— 这步是主要工作量。
-- 容差半径（判断「同一个物体」的位置阈值）必须写进报告，默认建议 0.5 m 并说明理由。
-
-## 复现结果 Results
+## Results
 
 ### 一、按库复现：把仓库自带的三个二进制跑起来
 
@@ -180,7 +158,16 @@ python3 reproductions/run_all.py --only 02-01
 | `frame_coverage_is_partial` | 只发了 **51/753** 帧（轨迹前缀），`out_of_view` 是暂定结论 |
 | `geometric_separation` | 最小真实位移 0.265 m < 最大对齐噪声 0.639 m —— 纯几何分不开 |
 
-## 记录 Log
+## Notes
+
+- [ ] 拿到数据，确认标注文件格式（物体 ID / 6DoF 位姿 / 扫描间对应关系）
+- [ ] **组装出至少一对 A/B 会话**：A 建图，B 是同一房间物体被移动后的重访
+- [ ] 写死二次访问协议：会话划分、真值类别（未变/移动/移除/新增/替换）、**容差半径**
+- [ ] 输出：协议文档 + 一对可用会话的数据清单
+
+- 需要同意条款，**不是直接 clone 就能用**；先办手续再排时间。
+- 标注是**扫描级**的，不是天然按「会话」组织，A/B 会话要自己组装 —— 这步是主要工作量。
+- 容差半径（判断「同一个物体」的位置阈值）必须写进报告，默认建议 0.5 m 并说明理由。
 
 | 日期 | 做了什么 | 结果 / 数字 | 结论 |
 | :--- | :--- | :--- | :--- |
@@ -196,11 +183,33 @@ python3 reproductions/run_all.py --only 02-01
 | 10-04 | 写 `build_ab_pair.py` 并跑通 | 32 物体 → 26/5/0/0/1/0 | 协议 v1 落地 |
 | 10-04 | 标定对齐噪声 | 未动物体残差 mean 0.151 / p95 0.528 / max 0.639 m | **容差改 1.0 m** |
 
-## 下一步 Next
-
 1. **申请全量数据集**：项目页 <https://waldjohannau.github.io/RIO/> 的下载表单
    （<https://forms.gle/NvL5dvB4tSFrHfQH6>，3RScan Terms of Use）→ 拿到下载脚本后按 scan id 拉取。
    本机现有数据只有 **1 对**会话，统计上不足以支撑任何 F1 结论。
 2. **造可观测性分层**：用 A、B 的相机位姿 + 深度图渲染「每个物体在 B 中是否可见 / 被遮挡 / 视场外」。
    这是协议目前最大的缺口，也是 H1a 的直接检验手段。
 3. 有了分层后，才能把「可观测性分层 F1」和「未观测区分率」算出来。
+
+## Documentation
+
+- 论文自报数字与出处：[`paper_baseline.md`](paper_baseline.md)
+- 复现脚本：[`reproduce.py`](reproduce.py) · 回测基线：[`baselines.json`](baselines.json)
+- 本文件夹的脚本、协议与实测记录：[`work/`](work/)
+- 复现区索引与约定：[`../README.md`](../README.md) · 状态账本：[`../../status.json`](../../status.json)
+
+<!-- run_all.py 读下面这几行生成索引表，改动请保持同样的 | 键 | 值 | 形式 -->
+
+| 元数据 | 内容 |
+| :--- | :--- |
+| 论文 | 3RScan（数据集）—— 源自 RIO: 3D Object Instance Re-Localization in Changing Indoor Environments |
+| 论文链接 | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) |
+| 代码 | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) ✅ 实测 200 |
+| 方向 | D2 · 语义建图、视觉定位与导航 |
+| 任务书对应 | §4.1 地图更新策略；物体级变化检测题目的评测数据 |
+| 能否复现 | 🟡 半能：仓库只有数据集 + 工具（数据要签协议），三个二进制可跑，没有方法代码。 |
+| 复现完成 | ◐ 工具已按官方说明跑通，待全量数据 |
+| 复现顺序 | 13 |
+| 项 | 内容 |
+| 本机怎么跑 | 纯 CPU · 官方三个 C++ 二进制（`rio_example` / `align_poses` / `rio_renderer_render_all`） |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
+| 数据 | 3RScan 本体（需同意条款后下载），约 1.5k 次扫描 / 数百个房间 |

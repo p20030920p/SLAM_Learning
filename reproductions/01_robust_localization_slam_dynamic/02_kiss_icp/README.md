@@ -2,7 +2,9 @@
 
 # 01-02 · KISS-ICP
 
-**纯点对点 ICP 也能做到 SOTA 里程计（作者的主张）—— 在官方 KITTI 00–10 全量上复现到 0.53 %（论文 0.50 %），并把它当作 H1′ 的下游定位器。**
+**KISS-ICP: In Defense of Point-to-Point ICP**
+
+只用点对点 ICP 的 LiDAR 里程计，在官方 KITTI 00–10 全量上跑。
 
 [![venue](https://img.shields.io/badge/venue-RA--L%202023-22314E)](https://doi.org/10.1109/LRA.2023.3236571)
 ![result](https://img.shields.io/badge/result-0.53%25%20vs%200.50%25%20paper-2ea043)
@@ -10,45 +12,13 @@
 ![data](https://img.shields.io/badge/data-KITTI%2000--10%20%C2%B7%2043%20GB%20%C2%B7%20no%20signup-1c7ed6)
 ![compute](https://img.shields.io/badge/compute-CPU%20%C2%B7%20PyPI-6f42c1)
 
-[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [记录](#记录-log)
+[Quick start](#quick-start) &nbsp;•&nbsp; [Results](#results) &nbsp;•&nbsp; [Notes](#notes)
 
 *[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
 
 </div>
 
----
-
-## 一句话 Verdict
-
-| 指标 | 本文件夹（KITTI 00–10，23,201 帧） | 论文表 II |
-| :--- | ---: | ---: |
-| 平均相对平移误差 | **0.53 %** | 0.50 % |
-| 每序列对照 | 与作者已执行 notebook 的逐序列值同表 | — |
-
-下游可用性（H1′ 第 1–2 项）：6 张清理后的地图 × 141 帧 × 4 档初值误差的配准实验，
-**ρ(归一化 AA, 定位效用) = 0.78**、**ρ(提交口径 AA) = 0.38** —— 两种排名不一致。
-
-## 关键设定 Settings
-
-| 项 | 内容 |
-| :--- | :--- |
-| 本机怎么跑 | 纯 CPU · PyPI `kiss-icp` + `.venvs/dmb`；全量 KITTI 00–10 约 20 min |
-| 论文 | KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way |
-| 论文链接 | [doi:10.1109/LRA.2023.3236571](https://doi.org/10.1109/LRA.2023.3236571) |
-| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00–10 平均相对平移误差 **0.50 %**（表 II, p.6） |
-| 代码 | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) ✅ 官方仓库；运行用 PyPI `kiss-icp==1.3.0` |
-| 代码思路 | [`work/code_reading.md`](work/code_reading.md) —— 逐行读，标注文件:行号 |
-| 数据 | ✅ **官方 KITTI odometry 00–10 已到手**：从 KITTI 官方那份 84.8 GB 的 `data_odometry_velodyne.zip` 里**按字节区间只取需要的 11 条序列**（43 GB，免注册），见 [`work/fetch_kitti_odometry.py`](work/fetch_kitti_odometry.py) |
-| 原库自己的结果 | [`work/kiss_icp_notebook_reference.json`](work/kiss_icp_notebook_reference.json) —— 作者发布的**已执行 notebook** 里逐序列的数字（均值 0.50 %） |
-| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
-| 任务书对应 | §6 并行实验里的「下游定位器」；§2 难点 4 的对照基线 |
-| 复现顺序 | 7 |
-| 能否复现 | ✅ 能：`pip install kiss-icp` + 官方 84.8 GB zip 里只取 00–10（43 GB，免注册），跑作者自己的 `eval/kitti.ipynb` 等价脚本即出论文表 II。 |
-| 复现完成 | ☑ 2026-10-05 · 均值 0.53 %、逐序列与作者自己的 notebook 最大差 0.157 pp |
-
----
-
-## 它做了什么 What it does
+![KISS-ICP: In Defense of Point-to-Point ICP](results/h1prime.png)
 
 **没有任何特征、没有描述子、没有回环、没有位姿图** —— 就是一个点到点 ICP 加一张体素哈希图。
 论文的贡献是**把 ICP 的三个老问题各自用一行机制解决**，让整套系统只有 7 个参数且不必按数据集调：
@@ -63,13 +33,37 @@
 `RegisterFrame` 整个主循环只有 9 行（`KissICP.cpp:35-68`），ICP 本体只有论文的式 (9)–(12) 四个公式
 （`Registration.cpp:138-167`）。细节见 [`work/code_reading.md`](work/code_reading.md)。
 
-## 为什么复现它 Why
-
 它是整个 D 线的**下游定位器**：任务书 §6 的并行实验要回答"动态点清理完之后，地图对定位还有多少价值"，
 前面四个清理方法（01-03…01-06）的输出，最终都要喂给它来测"配准失败率"。
 **没有它，H1′ 只有一半。**
 
-## 复现结果 Results
+|  |  |
+| :--- | :--- |
+| **平均相对平移误差** | **0.53 %** · 论文 0.50 % |
+| **每序列对照** | 与作者已执行 notebook 的逐序列值同表 · 论文 — |
+| **Platform** | CPU · 20 核 · Ubuntu 24.04 + ROS 2 Jazzy |
+| **Reproduce** | [`reproduce.py`](reproduce.py) · [`baselines.json`](baselines.json) |
+
+下游可用性（H1′ 第 1–2 项）：6 张清理后的地图 × 141 帧 × 4 档初值误差的配准实验，
+**ρ(归一化 AA, 定位效用) = 0.78**、**ρ(提交口径 AA) = 0.38** —— 两种排名不一致。
+
+---
+
+## Quick start
+
+| 依赖 | 版本 / 说明 |
+| :--- | :--- |
+| Python | PyPI `kiss-icp==1.3.0` + `.venvs/dmb` |
+| 数据 | KITTI odometry 00–10（从官方 84.8 GB zip 里按字节区间只取 11 条序列，43 GB，免注册） |
+| 规模 | 23,201 帧 · 11 条序列 |
+| 下游实验 | 6 张清理图 × 141 帧 × 4 档初值误差的配准 |
+
+```bash
+python3 reproductions/run_all.py --only 01-02        # 官方 00–10 表 + H1′ 下游实验
+python3 reproductions/01_robust_localization_slam_dynamic/02_kiss_icp/work/fetch_kitti_odometry.py   # 按需重下数据
+```
+
+## Results
 
 ### 一、怎么拿到论文用的数据
 
@@ -184,8 +178,6 @@ KISS-ICP 用的是 KITTI devkit 指标：段长 `{100…800} m`、每 10 帧一�
 **崩点在指标算完之后**（`pipeline.py:88` 的 `_run_evaluation()` 先于第 90 行的写盘），
 所以只需补一行、且**完全不影响里程计与指标**。补丁记在 [`work/local_patches.patch`](work/local_patches.patch)。
 
-## 五、下游可用性：H1′ 实验
-
 **为什么在 01-02 里做**：01-03…01-06 每个文件夹的目标里都有一条没打勾的
 「把清理后的地图交给 01-02，得到配准失败率」；任务书 §6 的并行实验 H1′ 问的也是同一件事 ——
 **按地图质量指标排名，和按"这张图还能不能用来定位"排名，是否一致？**
@@ -226,7 +218,7 @@ KISS-ICP 用的是 KITTI devkit 指标：段长 `{100…800} m`、每 10 帧一�
 > ⚠️ 两条限制（同时写在脚本 docstring 里）：① 这是**自配准**，绝对失败率偏乐观，
 > 能成立的只有**排名对比**；② 官方 ERASOR 的地图在**另一个坐标系**，因此被排除而非当作差图打分。
 
-## 记录 Log
+## Notes
 
 | 日期 | 做了什么 | 结果 / 数字 | 结论 |
 | :--- | :--- | :--- | :--- |
@@ -237,8 +229,6 @@ KISS-ICP 用的是 KITTI devkit 指标：段长 `{100…800} m`、每 10 帧一�
 | 10-05 | 按字节区间从 zip 里只取 00–10 | **43 GB / 23,201 帧**，逐序列校验通过 | 官方数据到手 |
 | 10-05 | 跑作者 `eval/kitti.ipynb` 的等价脚本 | 均值 **0.53 %**，逐序列最大差 0.157 pp | ✅ **复现：对上论文表 II 与作者自己的 notebook** |
 
-## 下一步 Next
-
 1. **H1′ 的第 3 项**：ρ < 0.9 已成立，接下来要给「假阳性集中在低可观测性区域」提供证据 ——
    按可观测性给静态点分档，统计各档的删除率与配准贡献（可复用 02-01 的可观测性判据）。
    现在可以**把 H1′ 也搬到官方 00–10 上**了：数据在手，不必再受 141 帧的限制。
@@ -246,3 +236,29 @@ KISS-ICP 用的是 KITTI devkit 指标：段长 `{100…800} m`、每 10 帧一�
    如果 H1′ 要测"清理质量对长期定位的影响"，回环这一项它不提供。
 3. 论文还有 MulRan / Newer College / Boreas 三张表，都是**另外的注册/表单**；
    本次复现的是主表（KITTI）。要做那三张表得先解决数据。
+
+## Documentation
+
+- 论文自报数字与出处：[`paper_baseline.md`](paper_baseline.md)
+- 复现脚本：[`reproduce.py`](reproduce.py) · 回测基线：[`baselines.json`](baselines.json)
+- 本文件夹的脚本、协议与实测记录：[`work/`](work/)
+- 复现区索引与约定：[`../README.md`](../README.md) · 状态账本：[`../../status.json`](../../status.json)
+
+<!-- run_all.py 读下面这几行生成索引表，改动请保持同样的 | 键 | 值 | 形式 -->
+
+| 元数据 | 内容 |
+| :--- | :--- |
+| 论文 | KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way |
+| 论文链接 | [doi:10.1109/LRA.2023.3236571](https://doi.org/10.1109/LRA.2023.3236571) |
+| 代码 | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) ✅ 官方仓库；运行用 PyPI `kiss-icp==1.3.0` |
+| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
+| 任务书对应 | §6 并行实验里的「下游定位器」；§2 难点 4 的对照基线 |
+| 能否复现 | ✅ 能：`pip install kiss-icp` + 官方 84.8 GB zip 里只取 00–10（43 GB，免注册），跑作者自己的 `eval/kitti.ipynb` 等价脚本即出论文表 II。 |
+| 复现完成 | ☑ 2026-10-05 · 均值 0.53 %、逐序列与作者自己的 notebook 最大差 0.157 pp |
+| 复现顺序 | 7 |
+| 项 | 内容 |
+| 本机怎么跑 | 纯 CPU · PyPI `kiss-icp` + `.venvs/dmb`；全量 KITTI 00–10 约 20 min |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00–10 平均相对平移误差 **0.50 %**（表 II, p.6） |
+| 代码思路 | [`work/code_reading.md`](work/code_reading.md) —— 逐行读，标注文件:行号 |
+| 数据 | ✅ **官方 KITTI odometry 00–10 已到手**：从 KITTI 官方那份 84.8 GB 的 `data_odometry_velodyne.zip` 里**按字节区间只取需要的 11 条序列**（43 GB，免注册），见 [`work/fetch_kitti_odometry.py`](work/fetch_kitti_odometry.py) |
+| 原库自己的结果 | [`work/kiss_icp_notebook_reference.json`](work/kiss_icp_notebook_reference.json) —— 作者发布的**已执行 notebook** 里逐序列的数字（均值 0.50 %） |

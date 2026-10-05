@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-06T05:43:01+08:00",
+  "generated": "2026-10-06T06:33:51+08:00",
   "root": "reproductions",
   "summary": {
     "total": 21,
@@ -7,7 +7,7 @@
     "failed": 0,
     "blocked": 8,
     "planned": 0,
-    "ran_this_pass": 1
+    "ran_this_pass": 0
   },
   "reproductions": [
     {
@@ -3259,14 +3259,14 @@
       "venue": "",
       "static_status": "",
       "heading": "02-08 · Revisit Anything",
-      "verdict": "🟡 **CPU 可以跑，只是慢**：仓库自己建议先用 **17places**（约 340 张图）跑通；DINOv2 + SAM 在 CPU 上是分钟级/张，整套小数据集是小时级 —— 可行但要有耐心。",
-      "tick": "⛔ 本机不可复现（无 GPU）",
+      "verdict": "✅ **能，纯 CPU**：作者把分割与特征提取都预处理好了，本机只跑聚合/检索段（表 2 量的就是这一段）。要自己从原图重建描述子才需要 GPU",
+      "tick": "☑ 2026-10-06 · R@1 95.32 / R@5 98.28（论文 95.3 / 98.0），`reproduce.py` 可重跑",
       "order": 16,
       "repo_label": "AnyLoc/Revisit-Anything",
       "repo_url": "https://github.com/AnyLoc/Revisit-Anything",
       "paper_label": "arXiv:2409.18049",
       "paper_url": "https://arxiv.org/abs/2409.18049",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "R@1": 95.32,
         "R@5": 98.28,
@@ -3322,12 +3322,12 @@
         "results/segloc_17places.json",
         "work/logs/segloc_17places_map.log"
       ],
+      "level": "green",
       "note": "SegVLAD-PreT on 17Places: R@1 95.32 / R@5 98.28 vs paper 95.3/98.0 (406+406, CPU, map vocabulary)",
       "backtest": {
         "status": "no-baseline",
         "diffs": []
-      },
-      "level": "green"
+      }
     }
   ]
 }

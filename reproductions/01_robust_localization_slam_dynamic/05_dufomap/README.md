@@ -2,7 +2,9 @@
 
 # 01-05 · DUFOMap
 
-**用光线投射显式建模遮挡，把「这次被挡住了」和「真的动了」分开 —— 与论文表 I 两位小数完全一致。**
+**DUFOMap: Efficient Dynamic Awareness Mapping**
+
+用光线投射显式建模遮挡，区分「这次被挡住了」和「真的动了」。
 
 [![venue](https://img.shields.io/badge/venue-RA--L%202024-22314E)](https://doi.org/10.1109/LRA.2024.3387658)
 ![result](https://img.shields.io/badge/result-exact%20match-2ea043)
@@ -10,52 +12,44 @@
 ![data](https://img.shields.io/badge/data-KITTI%2000%20%C2%B7%20Zenodo-1c7ed6)
 ![compute](https://img.shields.io/badge/compute-CPU%20%C2%B7%20PyPI-6f42c1)
 
-[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [记录](#记录-log)
+[Quick start](#quick-start) &nbsp;•&nbsp; [Results](#results) &nbsp;•&nbsp; [Notes](#notes)
 
 *[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
 
 </div>
 
----
-
-## 一句话 Verdict
-
-| 指标 | 本文件夹 | 论文表 I, p.5 |
-| :--- | ---: | ---: |
-| SA / DA / AA | **97.96 / 98.72 / 98.34** | 97.96 / 98.72 / 98.34 |
-
-⚠️ 上游示例脚本传的是 `d_p = 2` 并注释 "same with paper"，但论文默认值是 **`d_p = 1`**——
-只有 `d_p = 1` 才命中论文（`d_p = 2` 的 AA 只差 0.09，因为动态点只占 0.55 %）。
-
-## 关键设定 Settings
-
-| 项 | 内容 |
-| :--- | :--- |
-| 本机怎么跑 | 纯 CPU · PyPI `dufomap==1.1.1` + `.venvs/dmb` |
-| 论文 | DUFOMap: Efficient Dynamic Awareness Mapping |
-| 论文链接 | [doi:10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) |
-| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00，SA/DA/AA = **97.96 / 98.72 / 98.34** |
-| 代码 | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) ✅ 实测 200；本复现用 PyPI `dufomap==1.1.1` |
-| 数据 | KITTI sequence 00，经 DynamicMap_Benchmark 打包（[Zenodo 10886629](https://zenodo.org/records/10886629)，385 MB，**免注册**） |
-| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
-| 任务书对应 | §2 难点 4；§4.1 删除判据里的「可观测性」 |
-| 复现顺序 | 1 |
-| 能否复现 | ✅ 能，而且最简单：`pip install dufomap` + KITTI 00 免注册数据，官方评测脚本直接出论文表 I。 |
-| 复现完成 | ☑ 2026-10-05 · 与论文两位小数一致 |
-
----
-
-## 它做了什么 What it does
-
 维护一张动态感知的占据地图：用**光线投射**显式建模「这个体素是没被看到、还是被挡住了、还是真的空」，从而避开逐数据集调阈值。
-
-## 为什么复现它 Why
 
 **它已经在我们想做的那个概念上走了一步**：判据里含可见性。它既是天然基线，也是「可观测性」这个切入点最直接的对手——必须读清它到底把可见性建模到什么程度，才能说清我们的增量在哪。
 
 ---
 
-## 复现结果 Results
+|  |  |
+| :--- | :--- |
+| **SA / DA / AA** | **97.96 / 98.72 / 98.34** · 论文 97.96 / 98.72 / 98.34 |
+| **Platform** | CPU · 20 核 · Ubuntu 24.04 + ROS 2 Jazzy |
+| **Reproduce** | [`reproduce.py`](reproduce.py) · [`baselines.json`](baselines.json) |
+
+⚠️ 上游示例脚本传的是 `d_p = 2` 并注释 "same with paper"，但论文默认值是 **`d_p = 1`**——
+只有 `d_p = 1` 才命中论文（`d_p = 2` 的 AA 只差 0.09，因为动态点只占 0.55 %）。
+
+---
+
+## Quick start
+
+| 依赖 | 版本 / 说明 |
+| :--- | :--- |
+| Python | PyPI `dufomap==1.1.1` + `.venvs/dmb` |
+| 数据 | KITTI 00，经 DynamicMap_Benchmark 打包（Zenodo，385 MB，免注册） |
+| 参数 | 论文默认 `d_p = 1`（上游示例脚本写的是 2，注释说 same with paper —— 只有 1 命中论文） |
+
+```bash
+# 上游示例把 d_p 传成 2；论文默认值是 1，本复现用 1
+reproductions/.venvs/dmb/bin/python -m dufomap --d_p 1 ...
+python3 reproductions/run_all.py --only 01-05
+```
+
+## Results
 
 ### 一、命中论文：SA/DA/AA 三位小数级一致
 
@@ -149,7 +143,7 @@ python3 reproductions/run_all.py --only 01-05
 | `geometric_mean_hides_the_sa_da_tradeoff` | AA 只差 0.09 pp，而 SA/DA 各差约 2 pp 且方向相反 —— 几何平均在稀有正例问题上退化成 SA |
 | `dynamic_points_are_0_55_percent_of_the_map` | 任何按点平均的指标，本质上都是静态点保留率 |
 
-## 记录 Log
+## Notes
 
 | 日期 | 做了什么 | 结果 / 数字 | 结论 |
 | :--- | :--- | :--- | :--- |
@@ -160,11 +154,33 @@ python3 reproductions/run_all.py --only 01-05
 | 10-05 | 查论文表 IV 发现默认 `d_p=1`，重跑 | **97.9635 / 98.7196 / 98.3408** | ✅ **命中论文 97.96 / 98.72 / 98.34** |
 | 10-05 | 双实现交叉验证评测口径 | 17,362,230 个 GT 点，**分歧 0** | 数字可信 |
 
-## 下一步 Next
-
 1. **交 01-02**：把清理后的地图喂给下游定位器，得到"配准失败率"，这是任务书 §6 并行实验的下一环。
    （注意 KISS-ICP 需要连续点云序列，而这里的地图是**累积地图**——这两者的接口需要先定义清楚。）
 2. **跑 01-03 / 01-04 / 01-06**：同一个数据、同一套评测，得到四张清理后的地图。
 3. **回答问题 2**（复现目标里那条）：它区分「未观测」与「不存在」吗？粒度是体素级还是物体级？
    → 现在有了代码和数据，可以**直接读源码 + 做实验**回答，而不是靠读论文推测。
 4. **补 KITTI 05 序列**（Zenodo 864 MB）以验证参数的跨序列泛化——论文声称"同一套参数跑所有实验"。
+
+## Documentation
+
+- 论文自报数字与出处：[`paper_baseline.md`](paper_baseline.md)
+- 复现脚本：[`reproduce.py`](reproduce.py) · 回测基线：[`baselines.json`](baselines.json)
+- 本文件夹的脚本、协议与实测记录：[`work/`](work/)
+- 复现区索引与约定：[`../README.md`](../README.md) · 状态账本：[`../../status.json`](../../status.json)
+
+<!-- run_all.py 读下面这几行生成索引表，改动请保持同样的 | 键 | 值 | 形式 -->
+
+| 元数据 | 内容 |
+| :--- | :--- |
+| 论文 | DUFOMap: Efficient Dynamic Awareness Mapping |
+| 论文链接 | [doi:10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) |
+| 代码 | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) ✅ 实测 200；本复现用 PyPI `dufomap==1.1.1` |
+| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
+| 任务书对应 | §2 难点 4；§4.1 删除判据里的「可观测性」 |
+| 能否复现 | ✅ 能，而且最简单：`pip install dufomap` + KITTI 00 免注册数据，官方评测脚本直接出论文表 I。 |
+| 复现完成 | ☑ 2026-10-05 · 与论文两位小数一致 |
+| 复现顺序 | 1 |
+| 项 | 内容 |
+| 本机怎么跑 | 纯 CPU · PyPI `dufomap==1.1.1` + `.venvs/dmb` |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00，SA/DA/AA = **97.96 / 98.72 / 98.34** |
+| 数据 | KITTI sequence 00，经 DynamicMap_Benchmark 打包（[Zenodo 10886629](https://zenodo.org/records/10886629)，385 MB，**免注册**） |

@@ -2,7 +2,9 @@
 
 # 01-09 · LT-mapper
 
-**多会话长期建图：多会话对齐 → 高/低动态变化检测 → 正负变化管理 —— 仓库只有变化检测半边，跑通并量化了它的覆盖度代价。**
+**LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping**
+
+多会话 LiDAR 长期建图框架 —— 仓库只放了变化检测那一半。
 
 [![venue](https://img.shields.io/badge/venue-ICRA%202022-22314E)](https://arxiv.org/abs/2107.07712)
 ![result](https://img.shields.io/badge/result-change--detection%20half%20only-d29922)
@@ -10,64 +12,40 @@
 ![data](https://img.shields.io/badge/data-KITTI%2000%20two--session%20split-1c7ed6)
 ![compute](https://img.shields.io/badge/compute-ROS%201%20Noetic%20%C2%B7%20no%20GTSAM-6f42c1)
 
-[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+[Quick start](#quick-start) &nbsp;•&nbsp; [Results](#results) &nbsp;•&nbsp; [Notes](#notes)
 
 *[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
 
 </div>
 
----
-
-## 一句话 Verdict
-
-| | 本文件夹 |
-| :--- | :--- |
-| 变化检测半边（官方 `ltremovert`） | SA/DA/AA = **69.14 / 74.51 / 71.78**（覆盖度匹配 GT；未清理对照只有 99.44 / 1.65） |
-| 论文的 delta-map 数字 | 85.7 MB / 9.8 s —— **仓库里没有 LT-map 模块**（全仓库 grep `delta_map` 0 命中），任何环境都复现不了 |
-| 一半的代价 | 只有 71.6 % 的 GT 静态点被这两段会话观测到，所以这一行**不能**与兄弟复现的行直接比 |
-
-## 关键设定 Settings
-
-| 项 | 内容 |
-| :--- | :--- |
-| 本机怎么跑 | ROS 1 Noetic（micromamba）· 官方 `ltremovert`（不链接 GTSAM），一次约 **40 s** |
-| 论文 | LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping |
-| 论文链接 | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) |
-| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
-| 代码 | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) ✅ 实测 200 |
-| 数据 | MulRan / KITTI（多会话序列） |
-| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
-| 任务书对应 | §2 难点 4 地图维护；car.md 难点 3「终身 SLAM」与参考库 |
-| 复现顺序 | 9 |
-| 能否复现 | 🟡 半能：要 ROS 1 + MulRan（需注册）+ 先有 SC-LIO-SAM 会话；仓库只有 ltremovert 半边，lt-map 无代码。 |
-| 复现完成 | ◐ 变化检测半边已跑通，建图半边仓库里没有 |
-
----
-
-## 它做了什么 What it does
-
 模块化的长期 LiDAR 建图流水线：**多会话 SLAM（MSS）→ 高/低动态变化检测 → 正/负变化管理**，并在会话间维护位姿图，因此不要求好的初始对齐。
-
-## 为什么复现它 Why
 
 它是任务书 §4.1「地图更新策略」和 car.md 难点 3「终身 SLAM」共同指向的那篇工作。关键复现点在于它的**变化检测是几何的、体素阈值化的**——能报出变化区域，却分不清「结构真的变了」和「只是这次被挡住了」。这句话如果能在实验里复现出来，就直接支撑了「可观测性」这个切入点。
 
-## 仓库里有什么、没有什么 What is and is not in the checkout
+|  |  |
+| :--- | :--- |
+| **变化检测半边（官方 `ltremovert`）** | SA/DA/AA = **69.14 / 74.51 / 71.78**（覆盖度匹配 GT；未清理对照只有 99.44 / 1.65） |
+| **论文的 delta-map 数字** | 85.7 MB / 9.8 s —— **仓库里没有 LT-map 模块**（全仓库 grep `delta_map` 0 命中），任何环境都复现不了 |
+| **一半的代价** | 只有 71.6 % 的 GT 静态点被这两段会话观测到，所以这一行**不能**与兄弟复现的行直接比 |
+| **Platform** | CPU · 20 核 · Ubuntu 24.04 + ROS 2 Jazzy |
+| **Reproduce** | [`reproduce.py`](reproduce.py) · [`baselines.json`](baselines.json) |
 
-| 论文模块 | 包 | 本次是否运行 | 原因 |
-| :--- | :--- | :--- | :--- |
-| 多会话 SLAM（MSS, LT-SLAM） | `ltslam` | ❌ | `ltslam/CMakeLists.txt:26` 要 GTSAM，本机 `find .venvs/ros1noetic -iname '*gtsam*'` 无结果；本次不安装任何东西 |
-| 变化检测（LT-removert） | `removert`（目录 `ltremovert/`） | ✅ **本次运行** | 不链接 GTSAM（`ltremovert/CMakeLists.txt:27,88-94`），依赖齐全 |
-| LT-map / delta-map（论文 85.7 MB / 9.8 s） | — | ❌ | **仓库里根本没有代码**：全仓库 grep `delta_map\|meta_map` 0 命中，`Removerter.cpp:1671` 只是注释 |
+---
 
-## 复现目标（可验收）Goals
+## Quick start
 
-- [ ] 跑通多会话对齐，得到跨会话的位姿图 → **需要 GTSAM，本次未做**（见上表）
-- [x] 复现它的变化检测，记录**用了什么阈值** → 用的是上游自己的 `config/params_ltmapper.yaml`，一字未改（阈值为 `remove_resolution_list [2.5]`、`revert_resolution_list [2.2]`、`num_nn_points_within 2`、`dist_nn_points_within 0.01`、`downsample_voxel_size 0.05`）
-- [ ] **关键实验**：构造一个「结构未变但本次被遮挡」的场景，看它是否误报变化 → 本次数据（同一条 KITTI 00 连续行驶的先后两段）里，遮挡/视角差异**已经**是「变化」的一部分；见下面 Results 的 finding
-- [x] 产出：官方实现的实测数字 + 覆盖度分析（`results/*.json`）
+| 依赖 | 版本 / 说明 |
+| :--- | :--- |
+| ROS | ROS 1 Noetic（micromamba）：`reproductions/tools/ros1_env.sh` |
+| 构建 | 只编 `ltremovert` 半边，**不链接 GTSAM**（`ltslam` 才需要，本机没装） |
+| 输入 | KITTI 00 双会话切分（中心 004390–004470 / 查询 004451–004530） |
+| 耗时 | 一次约 **40 s**（CPU） |
 
-## 怎么跑 How to run
+```bash
+source reproductions/tools/ros1_env.sh
+bash reproductions/01_robust_localization_slam_dynamic/09_lt_mapper/work/run_ltremovert.sh
+python3 reproductions/run_all.py --only 01-09
+```
 
 ```bash
 # 1) 只构建 removert 包（SRC 必须是*包目录*，给仓库根目录 catkin 会去编 ltslam 然后卡在 GTSAM）
@@ -98,21 +76,7 @@ python3 reproductions/run_all.py --only 01-09
 `pcl::IndicesPtr`）。这是整个 checkout 编译期的**唯一**一个 error（`grep 'error:' → 1`），没有碰任何算法行；
 与 04_removert 需要的是同一类修复（那边还多一个 `<opencv/cv.h>`，ltremovert 没有这个问题）。
 
-## Input 是怎么造出来的 Why not the paper's dataset
-
-论文的 ParkingLot 数据是 **6 个会话 / 3 天**，但下下来是 **raw Ouster + IMU**，还得先过 SC-LIO-SAM 才能喂给
-ltremovert；作者 Docker 镜像 2.2 GB 而本机没有 docker；MulRan 的 KAIST 04 要发邮件索取。本机**已有**的是
-benchmark 的 KITTI 00：141 帧 world-frame 点云，`VIEWPOINT` 字段里存着传感器位姿，可以反解回传感器系
-（和 [`02_kiss_icp/work/make_kitti_seq.py`](../02_kiss_icp/work/make_kitti_seq.py) 同一个反演，只是这次写 `.pcd`，
-因为 ltremovert 的 `.bin` 分支在 `Session.cpp:277-281` 被注释掉了）。两个会话的位姿**本来就在同一个世界系**，
-所以不需要 `ltslam`、也就不需要 GTSAM。
-
-```
-central session（待清理的地图）  KITTI 00 第 4390..4470 帧，81 张
-query   session（清洁工）        KITTI 00 第 4451..4530 帧，80 张 → 被 10 m ROI 规则（Session.cpp:234）自动裁到 29 张
-```
-
-## 复现结果 Results
+## Results
 
 所有数字由 `01_dynamicmap_benchmark/work/evaluate.py --impl both` 打出，官方 `export_eval_pcd` 与 scipy 复实现
 **逐点一致**（`disagreeing_points: 0`）。地图都是官方 `removert_removert` 二进制的输出。
@@ -162,7 +126,30 @@ GT 固定为 central 会话自己的覆盖范围（11,497,294 static / 49,658 dy
 - 运行时间：官方节点处理 81+29 个关键帧约 **38 s**（同一输入热缓存时约 8 s；全部工作在构造函数里做完，之后 `ros::spin()`）。这**不是**
   论文的 9.8 s——那个数属于 LT-map 的 delta-map 更新，代码不在此仓库里。
 
-## 结论与诚实的边界 Verdict and honest limits
+## Notes
+
+| 论文模块 | 包 | 本次是否运行 | 原因 |
+| :--- | :--- | :--- | :--- |
+| 多会话 SLAM（MSS, LT-SLAM） | `ltslam` | ❌ | `ltslam/CMakeLists.txt:26` 要 GTSAM，本机 `find .venvs/ros1noetic -iname '*gtsam*'` 无结果；本次不安装任何东西 |
+| 变化检测（LT-removert） | `removert`（目录 `ltremovert/`） | ✅ **本次运行** | 不链接 GTSAM（`ltremovert/CMakeLists.txt:27,88-94`），依赖齐全 |
+| LT-map / delta-map（论文 85.7 MB / 9.8 s） | — | ❌ | **仓库里根本没有代码**：全仓库 grep `delta_map\|meta_map` 0 命中，`Removerter.cpp:1671` 只是注释 |
+
+- [ ] 跑通多会话对齐，得到跨会话的位姿图 → **需要 GTSAM，本次未做**（见上表）
+- [x] 复现它的变化检测，记录**用了什么阈值** → 用的是上游自己的 `config/params_ltmapper.yaml`，一字未改（阈值为 `remove_resolution_list [2.5]`、`revert_resolution_list [2.2]`、`num_nn_points_within 2`、`dist_nn_points_within 0.01`、`downsample_voxel_size 0.05`）
+- [ ] **关键实验**：构造一个「结构未变但本次被遮挡」的场景，看它是否误报变化 → 本次数据（同一条 KITTI 00 连续行驶的先后两段）里，遮挡/视角差异**已经**是「变化」的一部分；见下面 Results 的 finding
+- [x] 产出：官方实现的实测数字 + 覆盖度分析（`results/*.json`）
+
+论文的 ParkingLot 数据是 **6 个会话 / 3 天**，但下下来是 **raw Ouster + IMU**，还得先过 SC-LIO-SAM 才能喂给
+ltremovert；作者 Docker 镜像 2.2 GB 而本机没有 docker；MulRan 的 KAIST 04 要发邮件索取。本机**已有**的是
+benchmark 的 KITTI 00：141 帧 world-frame 点云，`VIEWPOINT` 字段里存着传感器位姿，可以反解回传感器系
+（和 [`02_kiss_icp/work/make_kitti_seq.py`](../02_kiss_icp/work/make_kitti_seq.py) 同一个反演，只是这次写 `.pcd`，
+因为 ltremovert 的 `.bin` 分支在 `Session.cpp:277-281` 被注释掉了）。两个会话的位姿**本来就在同一个世界系**，
+所以不需要 `ltslam`、也就不需要 GTSAM。
+
+```
+central session（待清理的地图）  KITTI 00 第 4390..4470 帧，81 张
+query   session（清洁工）        KITTI 00 第 4451..4530 帧，80 张 → 被 10 m ROI 规则（Session.cpp:234）自动裁到 29 张
+```
 
 1. **能复现的部分已经复现**：官方 `ltremovert` 二进制、上游自己的参数、KITTI 00 双会话输入，SA/DA/AA =
    **69.14 / 74.51 / 71.78**（覆盖度匹配 GT；完整 GT 下 49.51 / 76.50 / 61.54）。打分链路双实现逐点一致。
@@ -174,8 +161,6 @@ GT 固定为 central 会话自己的覆盖范围（11,497,294 static / 49,658 dy
    71.61%）。要做真正可比的对照，得让 central 会话覆盖整条轨迹——但那样 query 就成了 central 的子集，
    变化检测会退化成自比较。这个取舍本身是本次复现最值得记下来的结论。
 
-## 坑与注意 Pitfalls
-
 - ROS1，与本仓库的 ROS 2 环境隔离；`tools/ros1_env.sh` 会把 `/opt/ros/jazzy*` 从各路径里剔掉。
 - 它的模块是分步的（MSS / CD / CM），**按模块验收**，不要指望一条命令跑到底——本次只验收了 CD。
 - `catkin_make` 的 SRC **必须是包目录** `.../lt-mapper/ltremovert`；给仓库根目录会把 `ltslam` 一起软链进
@@ -184,8 +169,6 @@ GT 固定为 central 会话自己的覆盖范围（11,497,294 static / 49,658 dy
   喂 world-frame 点云等于在世界原点挖球，而车早在 20 m 外。
 - 文件名排序必须等于位姿行序；Release 构建把 `assert` 编掉了，不匹配不会报错，只会静默错位。
 - 大文件（`*.pcd`、`data/`）按设计被 gitignore；提交的是 JSON 指标和脚本。
-
-## 记录 Log
 
 | 日期 | 做了什么 | 结果 / 数字 | 结论 |
 | :--- | :--- | :--- | :--- |
@@ -196,3 +179,27 @@ GT 固定为 central 会话自己的覆盖范围（11,497,294 static / 49,658 dy
 | 2026-10-05 | 修驱动：完成标记复用了上一轮的残留文件 | 上一轮 `run_all.py` 其实在节点跑完前就 kill 了它（日志块缓冲导致误判），改成「先删标记 + 运行前清空输出目录 + 按每目录 81 个文件验收」 | 复现脚本必须能证明是**本轮**跑出来的，否则绿灯是假的 |
 | 2026-10-05 | benchmark 打分（`--impl both`） | 覆盖度匹配 GT：**SA/DA/AA = 69.14 / 74.51 / 71.78**；完整 141 帧 GT：49.51 / 76.50 / 61.54；两实现逐点一致 | 覆盖率（GT static 71.61%）是完整 GT 分数的主因，已单独记录 |
 | 2026-10-05 | 同 GT 对照实验（未清理原始图） | 原始图 SA 99.44 / DA 1.65 → 清理后 69.75 / 79.22（central GT） | 量化了「29.7 pp 静态换 77.6 pp 动态」的取舍；也与 04 的 `dist_nn 0.1` vs 本次 `0.01` 配置差异对上 |
+
+## Documentation
+
+- 论文自报数字与出处：[`paper_baseline.md`](paper_baseline.md)
+- 复现脚本：[`reproduce.py`](reproduce.py) · 回测基线：[`baselines.json`](baselines.json)
+- 本文件夹的脚本、协议与实测记录：[`work/`](work/)
+- 复现区索引与约定：[`../README.md`](../README.md) · 状态账本：[`../../status.json`](../../status.json)
+
+<!-- run_all.py 读下面这几行生成索引表，改动请保持同样的 | 键 | 值 | 形式 -->
+
+| 元数据 | 内容 |
+| :--- | :--- |
+| 论文 | LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping |
+| 论文链接 | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) |
+| 代码 | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) ✅ 实测 200 |
+| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
+| 任务书对应 | §2 难点 4 地图维护；car.md 难点 3「终身 SLAM」与参考库 |
+| 能否复现 | 🟡 半能：要 ROS 1 + MulRan（需注册）+ 先有 SC-LIO-SAM 会话；仓库只有 ltremovert 半边，lt-map 无代码。 |
+| 复现完成 | ◐ 变化检测半边已跑通，建图半边仓库里没有 |
+| 复现顺序 | 9 |
+| 项 | 内容 |
+| 本机怎么跑 | ROS 1 Noetic（micromamba）· 官方 `ltremovert`（不链接 GTSAM），一次约 **40 s** |
+| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
+| 数据 | MulRan / KITTI（多会话序列） |
