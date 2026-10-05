@@ -1,0 +1,53 @@
+{
+  "reproduction": "02-07",
+  "paper": "AnyLoc: Towards Universal Visual Place Recognition (RA-L 2023)",
+  "recorded_with": "the authors' own code and artefacts: demo/utilities.py (DINOv2 features + VLAD), utilities.get_top_k_recall (faiss cosine, seed 42), the released vocabulary (dinov2_vitg14/l31_value_c32/indoor/c_centers.pt), and 17 Places from the authors' dataset mirror. Driver: work/run_17places.py, driven by reproduce.py.",
+  "rel_tolerance": 0.046,
+  "abs_tolerance_pp": 3.0,
+  "paper_reported": {
+    "dataset": "17 Places (structured, indoor)",
+    "configuration": "AnyLoc-VLAD-DINOv2 = DINOv2 ViT-G14, layer 31, value facet, VLAD with 32 clusters (Table III note p.5 / Table V p.6)",
+    "database_images": 406,
+    "query_images": 406,
+    "gt_criterion": "5 frames tolerance (Table I, p.4)",
+    "R@1": 65.0,
+    "R@5": 80.5,
+    "comparison_same_table": {
+      "MixVPR": {
+        "R@1": 63.8,
+        "R@5": 78.8
+      }
+    },
+    "hardware": "NVIDIA RTX 3090 (paper §IV-B, p.4); this machine has no GPU",
+    "source": "Table III, p.5"
+  },
+  "metrics": {},
+  "cpu_cost": {
+    "measured_per_image_s": 14.47,
+    "images": 812,
+    "estimated_hours": 3.3,
+    "note": "measured on the 20-core CPU (14 torch threads), 640x480 input cropped to 630x476 = 1530 patches"
+  },
+  "upstream_exits": {
+    "onedrive_public_release": "now returns a sign-in page; images taken from the same authors' Box mirror linked in the Revisit Anything README",
+    "dl_fbaipublicfiles_com": "measured 1.3 kB/s; the ViT-G14 checkpoint is converted from Meta's official HuggingFace mirror by work/fetch_dinov2_weights.py",
+    "vocabulary": "authors' official HuggingFace Space demo cache (the same c_centers.pt the demo would download from OneDrive)"
+  },
+  "conversion_evidence": {
+    "strict_load": "0 missing, 0 unexpected keys against the authors' architecture (vit_giant2 + swiglufused)",
+    "parameters": "1136 M (paper states 1.1 B)",
+    "per_layer_cosine_vs_transformers": {
+      "block_0": 0.999981,
+      "block_9": 0.999887,
+      "block_19": 0.999135,
+      "block_39": 0.995534
+    },
+    "reading": "smooth decay from ~1e-5 - fp32 accumulation across two op orders, not a wrong key mapping (a swapped SwiGLU half would already disagree at block 0)"
+  },
+  "checks_expected": [
+    "paper_configuration_used",
+    "full_dataset_scored",
+    "recall_matches_the_paper"
+  ],
+  "metrics_note": "filled from the completed run; the keys the driver emits are R@1, R@5, diff_R@1, diff_R@5, database, query, model, layer, facet, num_clusters, domain and R@1_alt_gt"
+}
