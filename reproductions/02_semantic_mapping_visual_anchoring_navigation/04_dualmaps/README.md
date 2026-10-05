@@ -1,20 +1,49 @@
+<div align="center">
+
 # 02-04 · DualMap
 
-| 项 Item | 内容 |
+**少数会「自我编辑」的开放词汇地图 —— 论文把硬件门槛写得最明确：主实验用 NVIDIA RTX 4090。**
+
+[![venue](https://img.shields.io/badge/venue-RA--L%202025-0b7285)](https://arxiv.org/abs/2506.01950)
+![blocked](https://img.shields.io/badge/blocked-needs%20an%20RTX%204090%20%28paper%27s%20GPU%29-cf222e)
+[![code](https://img.shields.io/badge/code-Eku127%2FDualMap-181717?logo=github&logoColor=white)](https://github.com/Eku127/DualMap)
+![data](https://img.shields.io/badge/data-Replica%20%C2%B7%20public-1c7ed6)
+![needs](https://img.shields.io/badge/needs-RTX%204090--class%20GPU-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| | |
 | :--- | :--- |
+| **阻塞点** | 论文主实验：**NVIDIA RTX 4090**（p.6 §V-A-4）；附录补充实验用 RTX 3080 Laptop；长时建图实验用 RTX 4090 Desktop |
+| **实测证据** | 本机无 GPU。GroundingDINO + SAM 在 CPU 上**能**跑，但每帧几十秒，而论文的 Replica 序列是几千帧 —— 差两三个数量级；本机 15 GB 内存也吃紧 |
+| **要什么才能跑** | RTX 4090 级 GPU。数据（Replica）公开，代码 MIT 可直接 clone |
+| **排位** | 四篇 D2 底座里**硬件要求写得最清楚**的一篇，换机器时第一个该排上 |
+
+## 关键设定 Settings
+
+| 项 | 内容 |
+| :--- | :--- |
+| 怎么才能跑 | RTX 4090 级 GPU（论文主实验用的就是它）；Replica 数据公开，代码 MIT |
 | 论文 | DualMap: Online Open-Vocabulary Semantic Mapping for Natural Language Navigation in Dynamic Changing Scenes |
-| Venue | **RA-L 2025** |
 | 论文链接 | [arXiv:2506.01950](https://arxiv.org/abs/2506.01950) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [Eku127/DualMap](https://github.com/Eku127/DualMap) ✅ 实测 200（带 ROS 支持） |
 | 数据 | 公开数据集 + 自采集（见仓库） |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | §4.1「修订语义」；§2 难点 5 |
-| 复现状态 | ⬜ 未开始（论文报告值已记录） |
-
 | 复现顺序 | 18 |
 | 能否复现 | ⛔ 按论文规模不现实：GroundingDINO + SAM 在 CPU 上能跑但每帧几十秒，论文的 Replica 序列是几千帧；本机内存 15 GB 也吃紧。 |
 | 复现完成 | ⛔ 本机不可复现（无 GPU） |
+
+---
 
 ## 它做了什么 What it does
 
@@ -31,7 +60,7 @@
 - [ ] 记录它修改地图时是否给出置信度（若无，这就是「未标定」的又一例证）
 - [ ] 产出：`work/dualmaps_edit_policy.md`
 
-## 步骤 Steps
+## 怎么跑 How to run
 
 ```bash
 git clone https://github.com/Eku127/DualMap code/

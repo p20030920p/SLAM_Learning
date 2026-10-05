@@ -1,19 +1,49 @@
+<div align="center">
+
 # 02-02 · OASIS-Map
 
-| 项 Item | 内容 |
+**用语义对应匹配做物体级变化检测，表 I 专门有 `Assoc.` 列、表 III 专测身份保持 —— 但代码至今未发布，按本仓库的规则只能做论文精读。**
+
+[![venue](https://img.shields.io/badge/venue-arXiv%202026--07%20%C2%B7%20under%20review-0b7285)](https://arxiv.org/abs/2607.14899)
+![blocked](https://img.shields.io/badge/blocked-no%20upstream%20code%20released-cf222e)
+[![code](https://img.shields.io/badge/code-project%20page%20says%20%E2%80%9CCode%20Soon%E2%80%9D-181717)](https://dynamic.robots.ox.ac.uk/projects/oasis-map/)
+![data](https://img.shields.io/badge/data-3RScan%20%C2%B7%20car%20park%20%C2%B7%20outdoor%20market-1c7ed6)
+![needs](https://img.shields.io/badge/needs-the%20authors%20to%20publish-6e7781)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| | |
 | :--- | :--- |
+| **阻塞点** | 项目页（2026-10-05 实测）仍写 **Code Soon**，没有仓库链接；论文本身也还在 under review |
+| **为什么不能绕** | 本仓库的规则是「**有库就用别人的库，没库就不复现**」—— 自己照着论文写一份，出来的数字既不是它的也不是我们的 |
+| **它仍然贡献了什么** | 论文精读已落地：[`paper_baseline.md`](paper_baseline.md) 记录了它的头号数字（3RScan moved-F1 0.353 / static-F1 0.663；Car Park replaced-F1 0.783），并**修正了一处判断** —— 它有 Unknown 类，所以「加一个弃权类」不能当作我们的差异点 |
+| **要什么才能跑** | 作者发布代码。届时本文件夹的 `reproduce.py` 就是放真实 `run()` 的地方 |
+
+## 关键设定 Settings
+
+| 项 | 内容 |
+| :--- | :--- |
+| 怎么才能跑 | 等作者发布代码（项目页现写 Code Soon）；本仓库的规则是「没库就不复现」 |
 | 论文 | OASIS-Map: Object-Level Change Detection in Multi-Session Mapping using Semantic Correspondence Matching |
-| Venue | **arXiv 2026-07，under review**（Oxford, Dynamic Robot Systems Group） |
 | 论文链接 | [arXiv:2607.14899](https://arxiv.org/abs/2607.14899) · [项目页](https://dynamic.robots.ox.ac.uk/projects/oasis-map/) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | ❌ **未发布** —— 项目页标注 *Code Soon*（实测：页面可达，无仓库链接） |
 | 数据 | 3RScan（室内 RGB-D）· 停车场换车（室外 RGB-LiDAR）· 户外市场 |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | §4.1 删除判据「可观测性」；§5 H3；物体级变化检测题目 |
-| 复现状态 | ⛔ **按规则排除**：论文/项目页标 **Code Soon**，至今未发布代码；「没有库的先不复现」 |
 | 复现顺序 | 21 |
 | 能否复现 | ⛔ 不能复现：代码未发布（项目页仍写 Code Soon），没有库可跑。 |
 | 复现完成 | ⛔ 无库可复现 |
+
+---
 
 ## 它做了什么 What it does
 
@@ -34,7 +64,7 @@
 - [ ] 列出它报告的指标与消融，指出缺哪一项（例如可观测性分层 F1、ECE）
 - [ ] 产出：`work/oasis_map_notes.md` + 一句话差异声明
 
-## 步骤 Steps
+## 怎么跑 How to run
 
 目前**只能读论文**（代码未发布）。建议顺序：
 

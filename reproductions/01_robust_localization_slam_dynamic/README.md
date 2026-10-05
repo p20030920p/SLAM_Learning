@@ -1,4 +1,23 @@
+<div align="center">
+
 # D1 · 动态环境下的鲁棒定位与 SLAM
+
+**清理掉的东西，到底让定位变好还是变坏？—— 这条链已经跑出数字：指标排名与定位可用性排名不一致（H1′ 成立）。**
+
+![question](https://img.shields.io/badge/question-%E6%B8%85%E7%90%86%E5%AE%8C%E8%BF%98%E8%83%BD%E4%B8%8D%E8%83%BD%E5%AE%9A%E4%BD%8D-22314E)
+![finding](https://img.shields.io/badge/finding-H1%E2%80%B2%20%E6%88%90%E7%AB%8B%20%C2%B7%20%CF%81%28AA%2C%20%E6%95%88%E7%94%A8%29%20%3D%200.78-2ea043)
+![note](https://img.shields.io/badge/note-%E6%8F%90%E4%BA%A4%E5%8F%A3%E5%BE%84%E7%9A%84%E6%8C%87%E6%A0%87%20%CF%81%20%3D%200.38-bf8700)
+![chain](https://img.shields.io/badge/chain-01--01%20%E2%86%92%2001--02%20%E2%86%92%2001--03%E2%80%A606-1c7ed6)
+![compute](https://img.shields.io/badge/compute-%E7%BA%AF%20CPU%20%E5%8F%AF%E8%B7%91-6f42c1)
+
+[要回答的问题](#本方向要回答的问题) &nbsp;•&nbsp; [目录](#目录-index) &nbsp;•&nbsp; [顺序与产出](#顺序-与-产出) &nbsp;•&nbsp; [H1′ 实测](#h1-实测结果2026-10-05141-帧-kitti-006-张地图) &nbsp;•&nbsp; [记录](#记录-notes)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [D2 方向](../02_semantic_mapping_visual_anchoring_navigation/README.md) &nbsp;•&nbsp; [论文报告值](../PAPER_BASELINES.md) &nbsp;•&nbsp; [背景分析](../NOTES.md)*
+
+</div>
+
+---
+
 
 **Robust localization and SLAM in dynamic environments** · робастная локализация и SLAM
 в динамических средах

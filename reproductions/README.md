@@ -1,4 +1,22 @@
+<div align="center">
+
 # 复现区 Reproductions
+
+**一篇论文一个文件夹：从作者自己的代码出发，跑到作者自己的数字 —— 跑得通的给出数字，跑不通的把「缺什么」写在明面上。**
+
+![rule](https://img.shields.io/badge/rule-%E6%9C%89%E5%BA%93%E6%89%8D%E5%A4%8D%E7%8E%B0-2ea043)
+![driver](https://img.shields.io/badge/driver-%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%20run__all.py-6f42c1)
+![backtest](https://img.shields.io/badge/backtest-baselines.json%20%E5%9B%9E%E6%B5%8B-1c7ed6)
+![layout](https://img.shields.io/badge/layout-code%2F%20%C2%B7%20data%2F%20%E4%B8%8D%E8%BF%9B%20git-6e7781)
+
+[复现清单](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [目录约定](#目录约定-layout) &nbsp;•&nbsp; [自动化](#自动化-automation) &nbsp;•&nbsp; [ROS 1 怎么跑](#ros-1-上游仓库怎么跑01-03-erasor--01-04-removert-用这一套) &nbsp;•&nbsp; [背景分析](NOTES.md)
+
+*[← 仓库主页](../../README.md) &nbsp;•&nbsp; [D1 方向](../01_robust_localization_slam_dynamic/README.md) &nbsp;•&nbsp; [D2 方向](../02_semantic_mapping_visual_anchoring_navigation/README.md) &nbsp;•&nbsp; [状态账本](../status.json)*
+
+</div>
+
+---
+
 
 按 **方向 → 论文** 两级编号，一篇论文一个文件夹。**这个页面只有索引、清单和约定**；
 背景分析（两个方向、传感器契合度、与任务书 / `car.md` 的对应、论文报告值、链接核验）
@@ -19,7 +37,7 @@
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— ☑ 10 · ◐ 2 · ☐ 1 · ⛔ 8（共 21） · 更新于 2026-10-06 01:23 CST
+**按「越好复现 + 越能对上原库结果」排序** —— ☑ 10 · ◐ 2 · ☐ 1 · ⛔ 8（共 21） · 更新于 2026-10-06 02:01 CST
 
 | # | ✓ | 复现库 | 对应论文 | 能不能复现（一句话） |
 | :-- | :-- | :-- | :-- | :-- |

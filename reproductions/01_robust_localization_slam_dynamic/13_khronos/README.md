@@ -1,9 +1,38 @@
+<div align="center">
+
 # 01-13 · Khronos
 
-| 项 Item | 内容 |
+**4D 时空度量语义地图：物体、动态与变化都进场景图 —— 工作区、数据、无头驱动全部就绪，卡在这台机器装不下它的内存。**
+
+[![venue](https://img.shields.io/badge/venue-RSS%202024-0b7285)](https://arxiv.org/abs/2402.13817)
+![blocked](https://img.shields.io/badge/blocked-needs%20more%20than%2013.5%20GB%20RAM-cf222e)
+[![code](https://img.shields.io/badge/code-MIT--SPARK%2FKhronos-181717?logo=github&logoColor=white)](https://github.com/MIT-SPARK/Khronos)
+![data](https://img.shields.io/badge/data-tesse__cd%20bag%20%2B%20GT%20%C2%B7%20downloaded-1c7ed6)
+![needs](https://img.shields.io/badge/needs-a%20machine%20with%2020%20GB%2B%20free%20RAM-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [复现脚本](reproduce.py)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| | |
 | :--- | :--- |
+| **阻塞点** | 29 个包已编译、10.3 GB bag 已解压、四份 GT 已下齐、无头启动与评测配置都已就绪；一跑起来 `khronos_node` 就以约 **250 MB/s** 涨内存，**五次尝试（`systemd` 上限 5 / 8 / 11 / 12 / 13.5 GB）全部 OOM-killed** |
+| **实测证据** | RSS 逐 5 秒采样：1.34 → 2.64 → 4.04 → 4.82 → 6.02 GB（20 秒内），**没有收敛迹象**；同一时段 bag 播放器始终不在前列 —— 是节点本身，不是 10.3 GB 的 bag |
+| **要什么才能跑** | 可用内存 ≥ 20 GB 的机器：`require()` 现在按 `/proc/meminfo` 的 `MemAvailable` 判定，**换机器即可直接跑完整流程**。要在这台机器上跑，只能降分辨率或截断 bag（会改实验口径，未擅自采用） |
+| **记录** | [README 的内存一节](README.md) —— 五次尝试与采样表 |
+
+## 关键设定 Settings
+
+| 项 | 内容 |
+| :--- | :--- |
+| 怎么才能跑 | 可用内存 ≥ 20 GB 的机器（`require()` 按 `MemAvailable` 判定）；本机 15 GB 总内存，实测 >13.5 GB 仍不够 |
 | 论文 | Khronos: A Unified Approach for Spatio-Temporal Metric-Semantic SLAM in Dynamic Environments |
-| Venue | **RSS 2024**（arXiv:2402.13817） |
 | 论文链接 | [arXiv:2402.13817](https://arxiv.org/abs/2402.13817) |
 | 论文报告值 | 官方评测套件会直接打出论文那张表：Accuracy / Completeness / F1@0.2、Object F1、Dynamic F1、Change F1（见 `khronos_eval` 的 `plotting/tables.py`） |
 | 代码 | [MIT-SPARK/Khronos](https://github.com/MIT-SPARK/Khronos) ✅ BSD-3，**ROS 2 版** |
@@ -11,11 +40,11 @@
 | 为什么在这 | **官方要求 Ubuntu 24.04 + ROS 2 Jazzy —— 正是本机**（`lsb_release`：Ubuntu 24.04.4，`/opt/ros/jazzy`），而且仓库**自带评测套件**，能出与论文同格式的表；任务书 §2 难点 4 的核心参考 |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM（4D 时空地图 + 变化检测） |
 | 任务书对应 | §2 难点 4 高变动场景的地图维护；§4.1 地图更新策略（「删什么、什么时候删」） |
-| 复现状态 | 🟡 **工作区已编译、数据已下载、无头驱动已就绪，待跑**：29 个包全部 `colcon build` 通过（含 `khronos`/`khronos_ros`/`khronos_eval`）；`tesse_cd_apartment` bag（10.3 GB）与四份 GT 已下齐；本机无显示器，加了一个把 `start_visualizer` 透传到内层 launch 的补丁 |
-
 | 复现顺序 | 12 |
 | 能否复现 | ✅ **能，而且环境正好命中**：Ubuntu 24.04 + ROS 2 Jazzy 就是官方要求的组合，`colcon build` 已在本机跑通；数据（模拟 bag + GT）与评测套件都是官方直链。剩下的是跑一遍 + 用官方 `evaluate_pipeline.sh` 出表。 |
 | 复现完成 | ☐ 待做（工作区/数据/驱动 ✅，未跑） |
+
+---
 
 ## 已经落地的东西（2026-10-05）
 
@@ -38,7 +67,7 @@
 按「越好复现的先做」，它应该在前四个之后动手，但**动手前先把工作区建起来看能不能编译过**，
 编译不过就立刻记 ⛔ 而不是耗在里面。
 
-## 复现计划 Steps
+## 怎么跑 How to run
 
 1. 建 ROS 2 工作区，`git clone` + `vcs import . < khronos/install/https.rosinstall`；
 2. 系统依赖 `ros-$ROS_DISTRO-gtsam libgoogle-glog-dev nlohmann-json3-dev`（本机无 sudo 时走 micromamba/conda-forge，与 ROS 1 那套做法一致）；

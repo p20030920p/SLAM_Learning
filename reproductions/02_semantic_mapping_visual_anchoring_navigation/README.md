@@ -1,4 +1,23 @@
+<div align="center">
+
 # D2 · 语义建图、视觉定位与导航
+
+**地图里有什么？这个东西还是上次那个东西吗？—— 表示层（开放词汇地图）与视觉锚定两条线，本机受 GPU 硬件限制。**
+
+![mapping](https://img.shields.io/badge/mapping-%E8%AF%AD%E4%B9%89%E5%BB%BA%E5%9B%BE%20%C2%B7%204%20%E4%B8%AA%E5%BA%95%E5%BA%A7-22314E)
+![anchoring](https://img.shields.io/badge/anchoring-%E8%A7%86%E8%A7%89%E9%94%9A%E5%AE%9A%20%C2%B7%20%E6%95%B4%E5%9B%BE%20%2F%20%E5%88%86%E5%89%B2%E7%BA%A7%E6%A3%80%E7%B4%A2-1c7ed6)
+![navigation](https://img.shields.io/badge/navigation-%E5%AF%BC%E8%88%AA%20%C2%B7%20HOV--SG%20%2B%20Gazebo%20%E4%BE%A7%20Nav2-6f42c1)
+![blocked](https://img.shields.io/badge/blocked-%E6%9C%AC%E6%9C%BA%E6%97%A0%20GPU%EF%BC%9A4%20%E4%B8%AA%E5%BA%95%E5%BA%A7%E5%8F%97%E9%98%BB-bf8700)
+![rule](https://img.shields.io/badge/rule-%E6%9C%89%E5%BA%93%E6%89%8D%E5%A4%8D%E7%8E%B0-2ea043)
+
+[要回答的问题](#本方向要回答的问题) &nbsp;•&nbsp; [目录](#目录-index) &nbsp;•&nbsp; [顺序与产出](#顺序-与-产出) &nbsp;•&nbsp; [记录](#记录-notes)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [D1 方向](../01_robust_localization_slam_dynamic/README.md) &nbsp;•&nbsp; [传感器契合度](../NOTES.md) &nbsp;•&nbsp; [论文报告值](../PAPER_BASELINES.md)*
+
+</div>
+
+---
+
 
 **Semantic mapping, visual anchoring and navigation** · семантическое картирование,
 визуальная привязка и навигация
