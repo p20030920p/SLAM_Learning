@@ -13,7 +13,7 @@
 | 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 | 复现顺序 | 17 |
-| 能否复现 | ⛔ 本机不能：要 CUDA（PyTorch + PyTorch3D），本机没有 GPU。 |
+| 能否复现 | ⛔ 按论文规模不现实：CPU 上 PyTorch3D 与 SAM/CLIP/LLaVA 都能装能跑，但论文是对 Replica/ScanNet 整段序列建图，CPU 吞吐差两三个数量级；另外 LLaVA-7B 光权重就 ~14 GB（本机 15 GB 内存）。 |
 | 复现完成 | ⛔ 本机不可复现（无 GPU） |
 
 ## 它做了什么 What it does

@@ -1,0 +1,43 @@
+diff --git a/alignment/map_zipper.py b/alignment/map_zipper.py
+index 630e041..f041efa 100644
+--- a/alignment/map_zipper.py
++++ b/alignment/map_zipper.py
+@@ -9,7 +9,11 @@ from utils.session import Session
+ from utils.session_map import SessionMap
+ from utils.logger import logger
+ from alignment.matcher.open3d_scan_matcher import Open3DScanMatcher
+-from alignment.matcher.pygicp_scan_matcher import PyGICPScanMatcher
++try:  # optional: needs koide3/fast_gicp built with CUDA; the example configs use
++    # Open3DScanMatcher, so the import must not be fatal when pygicp is absent.
++    from alignment.matcher.pygicp_scan_matcher import PyGICPScanMatcher
++except ImportError:
++    PyGICPScanMatcher = None
+ from alignment.global_registration import register_with_fpfh_ransac
+ 
+ 
+diff --git a/utils/session.py b/utils/session.py
+index 2432392..9812487 100644
+--- a/utils/session.py
++++ b/utils/session.py
+@@ -96,9 +96,19 @@ class Session:
+             return PointCloud(scan.pcd)
+         elif isinstance(idx, slice):
+             clouds = [self.scans[i].pcd for i in range(*idx.indices(len(self)))]
++            # Upstream does `combined += pcd` in a loop over every scan. On this
++            # machine (Open3D 0.18, 703 scans) that path dies with a segfault
++            # after ~35 s; concatenating the point arrays once is the same cloud
++            # and does not touch the algorithm. Colours are not carried over
++            # because every consumer paints them again downstream.
++            if not clouds:
++                return PointCloud(o3d.geometry.PointCloud())
++            pts = np.vstack([np.asarray(c.points) for c in clouds])
+             combined = o3d.geometry.PointCloud()
+-            for pcd in clouds:
+-                combined += pcd
++            combined.points = o3d.utility.Vector3dVector(pts)
++            if all(c.has_colors() for c in clouds):
++                cols = np.vstack([np.asarray(c.colors) for c in clouds])
++                combined.colors = o3d.utility.Vector3dVector(cols)
+             return PointCloud(combined)
+         else:
+             raise TypeError("Index must be int or slice")

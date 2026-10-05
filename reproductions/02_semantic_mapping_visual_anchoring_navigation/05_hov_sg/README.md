@@ -13,7 +13,7 @@
 | 复现状态 | ⬜ 未开始（论文报告值已记录） |
 
 | 复现顺序 | 19 |
-| 能否复现 | ⛔ 本机不能：要 GPU（OpenCLIP + SAM + habitat-sim），HM3DSem 数据也很大。 |
+| 能否复现 | ⛔ 按论文规模不现实：habitat-sim 本身可以 headless 跑，CLIP/SAM 在 CPU 上也能推理，但 HM3DSem 是数千帧的大场景，CPU 上不现实。 |
 | 复现完成 | ⛔ 本机不可复现（无 GPU） |
 
 ## 它做了什么 What it does

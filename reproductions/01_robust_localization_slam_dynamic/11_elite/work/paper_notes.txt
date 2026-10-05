@@ -1,0 +1,549 @@
+                                                            Ephemerality meets LiDAR-based Lifelong Mapping
+                                                                       Hyeonjae Gil1† , Dongjae Lee1† , Giseop Kim2 , and Ayoung Kim1∗
+
+
+                                           Abstract— Lifelong mapping is crucial for the long-term                                                  Parked car
+                                        deployment of robots in dynamic environments. In this paper,
+                                        we present ELite, an ephemerality-aided LiDAR-based lifelong
+                                        mapping framework which can seamlessly align multiple session                                                     New walls appeared
+                                        data, remove dynamic objects, and update maps in an end-to-                         02 (Aug 2019)             04 (Aug 2024)              05 (Aug 2024)
+                                        end fashion. Map elements are typically classified as static or
+                                        dynamic, but cases like parked cars indicate the need for more                                      Binary Changes                               Ours
+arXiv:2502.13452v2 [cs.RO] 3 Mar 2025
+
+
+
+
+                                        detailed categories than binary. Central to our approach is the
+                                        probabilistic modeling of the world into two-stage ephemerality,
+                                        which represent the transiency of points in the map within two
+                                        different time scales. By leveraging the spatiotemporal context
+                                        encoded in ephemeralities, ELite can accurately infer transient                     02 → 04                 04 → 05
+
+                                        map elements, maintain a reliable up-to-date static map, and                                               Appeared      Disappeared   0.0    Ephemerality   1.0
+
+                                        improve robustness in aligning the new data in a more fine-
+                                        grained manner. Extensive real-world experiments on long-term                Fig. 1. An example scene from three KAIST sequences [15, 16] with newly
+                                        datasets demonstrate the robustness and effectiveness of our                 appeared walls and parked cars. Representing changes in a simple binary
+                                        system. The source code is publicly available for the robotics               manner, existing methods treat both the car and the wall as static objects. Our
+                                        community: https://github.com/dongjae0107/ELite.                             proposed system leverages two-stage ephemerality to differentiate parked
+                                                                                                                     cars as ephemeral objects and walls as persistent changes based on their
+                                                               I. INTRODUCTION                                       ephemerality scores.
+
+                                           Over the past decade, Light Detection and Ranging
+                                                                                                                     walls), and the other reflects a relatively short-term variation
+                                        (LiDAR)-based mapping has significantly advanced [1–4],
+                                                                                                                     (parked cars). Unfortunately, both are categorized into a
+                                        increasing the demand for long-term deployment of such
+                                                                                                                     single static class in existing methods [11, 12]; yet, our
+                                        systems in various fields, including urban areas or construc-
+                                                                                                                     approach can distinguish them based on their ephemerality
+                                        tion sites [5]. These environments are inherently dynamic;
+                                                                                                                     score.
+                                        objects frequently move, and layouts change. To handle these
+                                                                                                                        The key idea is that changes in real-world are grad-
+                                        dynamics, continuously revisiting and maintaining the map
+                                                                                                                     ual. Detailing changes beyond binary categorization, we
+                                        of the environment—lifelong mapping—is required.
+                                                                                                                     introduce ephemerality as the core concept of our lifelong
+                                           LiDAR-based lifelong mapping has gained interest rela-
+                                                                                                                     mapping framework. Ephemerality represents the likelihood
+                                        tively recently compared to the visual domain [6–8]. Long-
+                                                                                                                     of a point being transient or persistent. Previous literature
+                                        term mapping pipelines for static map [9] or semantic map
+                                                                                                                     [6, 13, 14] has commonly treated ephemeral objects the same
+                                        [10] construction were suggested, but the standard frame-
+                                                                                                                     as dynamic ones (e.g., pedestrians, moving vehicles) in short-
+                                        work for lifelong mapping was absent. Recently, the modular
+                                                                                                                     term contexts. In this paper, we extend the focus to long-term
+                                        lifelong mapping frameworks [11, 12] were suggested. They
+                                                                                                                     perspectives, elaborating dynamic objects with details from
+                                        process the session—a set of point clouds and poses—as an
+                                                                                                                     ephemeral variation to gradual map evolution.
+                                        input and focus on the inter-session changes for efficient map
+                                                                                                                        This paper builds on the modular framework of LT-
+                                        management and incremental update.
+                                                                                                                     mapper [11]. Unlike previous approaches [11, 12] with three
+                                           These changes have been modeled as binary (i.e., appear-
+                                                                                                                     independent modules, ours facilitates seamless integration
+                                        ing or disappearing), leading to a binary classification of map
+                                                                                                                     of each module with ephemerality, which permeates the
+                                        elements (i.e., static or dynamic). The inherent limitation of
+                                                                                                                     entire pipeline and enhances both per-module and overall
+                                        this approach is its inability to differentiate between long-
+                                                                                                                     performance. In doing so, we infer a two-stage ephemerality
+                                        term gradual changes and short-term ephemeral variations.
+                                                                                                                     with different time scales to express the subtle differences.
+                                        An example is illustrated in Fig. 1, where two objects appear
+                                                                                                                     This allows us to represent changes between sessions in a
+                                        on the new map: one represents a persistent change (new
+                                                                                                                     more fine-grained manner than traditional binary approaches.
+                                          † Equal contribution, ∗ Corresponding author.                              In addition, leveraging spatiotemporal context, we can accu-
+                                          ‡ This work was supported by the National Research Foundation of
+                                                                                                                     rately distinguish meaningful changes from those resulting
+                                        Korea (NRF) grant funded by the Korea government (MSIT)(No. RS-2024-         from errors and use them for effective map updates. The
+                                        00461409), and in part by the Robotics and AI (RAI) Institute.
+                                          1 H. Gil, D. Lee, and A. Kim are with the Department of Mechanical Engi-   contributions of our system are as follows.
+                                        neering, Seoul National University, Seoul, S. Korea [h.gil, pur22,              •    We introduce a two-stage ephemerality concept—
+                                        ayoungk]@snu.ac.kr
+                                          2 G.Kim is with Vision Group of NAVER LABS, Seongnam, Gyeonggi-                    local and global—to capture short-term and long-term
+                                        do, 13561, S. Korea giseop.kim@naverlabs.com                                         changes, respectively. This approach extends beyond
+    binary static/dynamic classification by distinguishing         Prior Sessions 𝑆#:!"#   ELite   Global ephemerality of 𝑀!"#      Lifelong Map
+
+    truly persistent changes from transient variations.                                                                Map Update
+                                                                                             Map Alignment
+  • We propose ELite, a LiDAR-based lifelong mapping
+                                                                     New Session 𝑆!                               𝑆!                 Delta Map
+    framework that incorporates ephemerality into each                                                                        𝑀!
+                                                                                            Dynamic Object
+    module. Our approach uses ephemerality to guide map                                        Removal            𝑀!"#
+
+    alignment, prioritize meaningful map updates, and ro-                                                                            Static Map
+                                                                                                   Local ephemerality of 𝑆!
+    bustly detect evolving structures over time.
+  • ELite maintains three types of maps: a lifelong map
+                                                                Fig. 2.    Overview of the ELite system pipeline. Given multiple input
+    capturing spatiotemporal history, an adjustable static      sessions, ELite updates the map by estimating local ephemerality within
+    map filtering out ephemeral clutter, and an object-         each session and updating global ephemerality across sessions. The system
+                                                                operates through three modules: multi-session map alignment, dynamic
+    oriented delta map highlighting changed components.         object removal, and map update. Additionally, the system manages three
+    These representations enable flexible usage based on        types of maps: a lifelong map, a delta map, and a static map.
+    different requirements and time horizons.
+  • Each module within ELite has been thoroughly eval-
+                                                                   2) Dynamic object removal: Geometry-based methods
+    uated, showing superior performance compared to the         discretize the environment using voxels [27–29], range im-
+    baselines. All codes and related softwares are open-        ages [30], bins [31, 32], or matrices [33]. However, these
+    sourced for the community.                                  methods are constrained by grid resolution, risking inaccu-
+                                                                racies when a single cell contains both static and dynamic
+                  II. RELATED WORK                              points. Learning-based methods [34–36] can also be effective
+                                                                but typically require extensive labeled datasets to maintain
+A. Change Detection                                             robust performance in unfamiliar scenarios.
+   In the 3D change detection literature, many methods             3) Map update: LT-mapper [11] and Yang et al. [12]
+adopt an object-centric approach. For instance, Schmid et al.   detect changes between sessions and update the existing
+[17] and Langer et al. [18] define and manage changes           map accordingly. They save the changed points and use a
+based on panoptic or semantic segmentation. However, these      version control system [37] that allows manual rollbacks [38]
+strategies often rely on neural networks trained on large       to previous map via simple arithmetic operations. Unfortu-
+amounts of labeled data, which may be infeasible for diverse    nately, these methods treat changes as binary, which dilutes
+or unstructured outdoor environments. Alternatively, several    meaningful changes with outliers from various error sources.
+approaches [19, 20] leverage geometric changes as a prior for      Extending the modular nature, ELite addresses the draw-
+reconstructing object-level differences between sessions. Al-   backs in each of the three modules by introducing ephemeral-
+though effective, they assume that changes occur in discrete,   ity as a unifying concept throughout the pipeline. It identifies
+object-wise units—an assumption that may break down in          static and persistent regions during multi-session alignment,
+highly dynamic outdoor settings, such as construction sites     removes dynamic objects without discretization, and prior-
+where sand or soil is incrementally added. To address this      itizes meaningful changes for map updates by leveraging
+limitation, we detect changes at the point cloud level and      contextual information. This integrated use of ephemerality
+maintain point-wise ephemerality, thereby accommodating         helps ensure more accurate and robust lifelong mapping in
+continuous or non-discrete changes. This allows us to handle    real-world, continuously evolving environments.
+a broader range of real-world scenarios and move beyond a
+                                                                                              III. METHOD
+binary changed/not-changed classification paradigm.
+                                                                A. System Overview
+B. LiDAR-based Lifelong Mapping                                    ELite manages two stages of ephemerality: local ephemer-
+   LiDAR-based lifelong mapping has dealt with scalabil-        ality (ϵl ) and global ephemerality (ϵg ). Here, ϵl reflects the
+ity [21–23] or predictability [24], but most of them were       probability of a point being dynamic within a single session
+demonstrated in two-dimensional spaces. Pomerleau et al. [9]    (e.g., moving cars have higher ϵl than parked cars), while ϵg
+suggested 3D map maintenance pipeline, but they assumed         captures the long-term likelihood of a point being transient
+accurate registration and lacked the ability to revert the      (e.g., a car repeatedly parked in the same location exhibits a
+updates. Recently, LT-mapper [11] suggested the modular         higher ϵg than a permanent building).
+approach for lifelong mapping with the following three             Fig. 2 provides an overview of the system. Starting from
+modules.                                                        the base map M1 , which is built directly from the first
+   1) Multi-session map alignment: Aligning a point cloud       session S1 (see §III-C), our lifelong mapper L( · ) incremen-
+map is often viewed as a registration problem [12, 25, 26].     tally updates the previous lifelong map Mt−1 using the new
+However, relying solely on simple rigid-body transforma-        session St :
+                                                                                      (
+tions can introduce alignment errors when the mapped region                             M̂St ,              t=1
+expands [19]. To address these challenges, multi-session pose                  Mt =                                          (1)
+                                                                                        L(Mt−1 , St ),      t>1
+graph optimization (PGO) frameworks [11, 19] have been
+proposed, but they still face local inconsistencies in large-     The lifelong map is a point cloud in which each point
+                                                                                                                   N
+scale environments.                                             contains (x, y, z, ϵg ). A session S = {(Pi , Ti )}i=1 is a set
+    Initialization           Forward Registration                Backward Registration                     Voxel ray-casting               Point-wise update (Ours)
+                                          end
+                                                                                                                                                            Surface edges
+                                                                          start
+
+
+
+
+        Initial transform                        Scan-to-map
+                                  start
+       from loop closure                          registration
+                                                                    end
+
+
+
+     Scan       The first loop closure          Scan for registration      Pose update area
+                                                                                                                                                           Sensor origin
+
+Fig. 3. Illustration of our map alignment module, which begins by aligning                                Observed point      Free point     Occupied       Unoccupied
+poses using the initial transform from the first loop closure candidate. It
+then refines alignment in two stages: forward and backward. By iterating
+                                                                                                    Fig. 4. When voxelizing space, as indicated by the green square, the
+through scans in both directions, the module updates poses via scan-to-map
+                                                                                                    occupied area is inflated and errors can occur when a single voxel mixes
+ICP registration, ensuring global and local consistency in the final pose
+                                                                                                    static and dynamic points. Our method updates point-wise ephemerality
+estimates.
+                                                                                                    based on ray information, enabling more precise removal of dynamic
+                                                                                                    objects.
+of scans and their corresponding poses in a local coordinate
+frame, obtained from any positioning system (e.g. LiDAR                                             ϵg (ephemeral) have less influence.
+odometry [4] or SLAM [3]).                                                                                                  X
+   First, ELite aligns the new session to the existing lifelong                                             TICP = argmin        (1 − ϵg,i ) ∥di (T)∥2Σi ,                  (4)
+                                                                                                                            T
+map by finding the scan-wise optimal transformations (§III-                                                                         i
+B). Next, it estimates local ephemerality ϵl for each point via                                     ϵg,i is the global ephemerality of the ith map point, and
+point-wise ephemerality propagation in the dynamic object                                           di (T) is the residual error under transformation T. Detailed
+removal module and then discards dynamic points (§III-C).                                           explanation of ϵg will be provided in §III-C and §III-D. As
+Finally, leveraging the estimated local ephemerality, the map                                       the system incorporates more sessions, the ϵg distribution in
+update module classifies map points into multiple categories                                        the lifelong map becomes more reliable, steadily improving
+and applies category-specific update rules to compute the                                           alignment robustness.
+new global ephemerality ϵg (§III-D). Over repeated updates,
+ϵg acts as a reliable weight for aligning newly acquired ses-                                       C. Dynamic Object Removal
+sions, thereby enhancing system robustness during extended
+                                                                                                       The dynamic object removal module first aggregates all
+operation.                                                                                                                                                    ′
+                                                                                                    scans in the aligned session to form MSt′ = ∪N       i=1 Ti Pi . Its
+
+B. Multi-session Map Alignment                                                                      goal is to produce a cleaned session map M̂St′ by discarding
+                                                                                                    dynamic points from MSt′ .
+   The goal of an alignment module is to find the optimal                                              Treating each scan as a set of rays, we iteratively update
+transformation T′i for each scan Pi in a session and pass the                                       the local ephemerality ϵl of points in MSt′ . A local ephemer-
+                                    N
+aligned session S ′ = {(Pi , T′i )}i=1 to subsequent modules.                                       ality of a point should decrease if it is near an occupied space
+   Fig. 3 illustrates our alignment pipeline. We first select a                                     (the endpoint of a ray) and increase if it lies in free space (the
+               t−1
+loop pair (Pm      , Pst ) from two sessions (St−1 and St ) via                                     path along a ray). We propagate ephemerality across space
+Scan Context [39] to estimate an initial transformation Tinit .                                     by modeling a function of the distance x from a ray:
+We then refine Tinit in a forward pass over indices i ∈ [s, N ]                                                                                
+using Generalized Iterative Closest Point (GICP) [40]:                                                        min α · 1 − exp{−x2 /σo 2 } + β, α
+                                                                                                                                                         if oi ∈ Oi
+                                                                                                     f (x) =                                                              (5)
+                                                                                                              max α · 1 + exp{−x2 /σ 2 } − β, α         if fi ∈ Fi
+                            i
+                            Y                                                                                                       f
+
+             Tfwd
+              i   =               TICP
+                                   j ·T
+                                       init
+                                            · Ti                 if i ∈ [s, N ].              (2)
+                            j=s
+                                                                                                    Oi is the set of endpoints in scan Pi and Fi consists of
+                                                                                                    sampled points along the rays that approximate free space
+After each GICP step at i, TICP
+                            i   is also applied to subsequent
+                                                                                                    [41]. α and β are scale parameters (fixed to 0.5 and 0.1,
+point clouds to provide better initial guesses. Since point
+                                                                                                    respectively), while σo and σf are standard deviations.
+clouds prior to index s may remain misaligned and there
+                                                                                                       Starting from an initial value ϵl = 0.5, each point in Oi
+could be accumulated errors, we perform a backward pass
+                                                                                                    or Fi retrieves its k-nearest neighbors in MSt′ and updates
+from i = N down to s. This yields:
+                                                                                                    their ϵl via Bayesian inference:
+                            N                      i
+                            Y                      Y                                                                                f (x) · ϵl,prev
+                T′i =             TICP,rev
+                                   k       ·             TICP
+                                                          j ·T
+                                                              init
+                                                                   · Ti .                     (3)       ϵl,new =                                                  .         (6)
+                            k=i                    j=s
+                                                                                                                   f (x) · ϵl,prev + (1 − f (x)) · (1 − ϵl,prev )
+Working in both directions—similar to “zipping up” two                                                 As shown in Fig. 4, leveraging the actual rays rather
+maps—improves overall alignment consistency and compen-                                             than voxelization prevents the artificial inflation of occupied
+sates the trajectory drift.                                                                         regions and leads to more precise ephemerality propagation.
+   During scan-to-map registration, points with low ϵg (per-                                        After several updates, points in MSt′ with ϵl < τl are deemed
+manent) have higher weight in GICP, while points with high                                          static and pushed into M̂St′ .
+D. Long-term Map Update                                                           (iv) Previously Explored                            : Previous Session 𝑆!"#
+
+   The map update module merges the previous lifelong map                                                                             : Current Session 𝑆!
+
+Mt−1 with the cleaned session map M̂St′ to form the new
+                                                                                  (i) Coexisting Points
+lifelong map Mt :
+                                                                                                                                   (iii) Emerged Points
+                     Mt = Mt−1 ∪ M̂St′ .
+                                                                        (v) Newly Explored
+It then classifies the points into five categories based on their
+nearest neighbors (NNs), as shown in Fig. 5: (i) Coexisting
+points Ct , (ii) Deleted points Dt from Mt−1 , (iii) Emerged
+                                                                                                             (ii) Deleted Points
+points Et in M̂St′ . Points in either Dt or Et are further
+classified into: (iv) Previously explored points, and (v) Newly
+explored points, if they are located in areas not explored by       Fig. 5. In our map update module, points are classified into five categories.
+both the previous and current sessions.                             Coexisting points (Ct ) are shown in grey. Deleted points (Dt ) are red if they
+   For each point in Ct , we update its ϵg via Bayesian             truly disappeared and pink if they belong to previously visited regions only.
+                                                                    Emerged points (Et ) are blue if newly added and sky blue if observed only
+inference using the previous ϵg (from Mt−1 ) and the current        in the current session. Each category follows a specific update strategy for
+ϵl (from M̂St′ ):                                                   robust map maintenance.
+                                 ϵgt−1 · ϵlt
+           ϵgt =                                           .  (7)
+                   ϵgt−1 · ϵlt + (1 − ϵgt−1 ) · (1 − ϵlt )          and KAIST01-03), as each provides multiple overlapping
+                                                                    routes recorded at sufficiently spaced time intervals. Each
+   The set Dt can include truly removed objects as well as
+                                                                    first session is used to build the base map; the remaining ses-
+spurious points from sensor noise or pose errors. To empha-
+                                                                    sions serve as new data for alignment. We employ SC-LIO-
+size meaningful changes and suppress noise, we introduce an
+                                                                    SAM [3, 39] for mapping each session. Following previous
+objectness factor γ, which prioritizes object-like clusters. We
+                                                                    works [12, 42], we evaluate alignment using Accuracy (AC),
+find that the local density ρ of points effectively distinguishes
+                                                                    RMSE, and Chamfer Distance (CD). In detail, we establish
+object-level changes from noise and leverage it to define γ.
+                                                                    point correspondences between two point clouds using the
+          1/3
+   γi = ρi ,     ρi ∝ {pj ∈ D | ∥pj − pi ∥ ≤ r, j ̸= i}      (8)    nearest neighbor search and get the inlier set using a distance
+                                                                    threshold σinlier (set to 0.5m). AC measures the ratio of inlier
+   Each deleted point’s ϵg are updated through Bayesian
+                                                                    pairs, RMSE is their root mean squared distance, and CD is
+inference between previous ϵg and γ, similar to (7):
+                                                                    the bidirectional sum of average inlier distance. As baselines,
+                                ϵgt−1 · γ                           we compare against ICP-based map-to-map registration [43]
+           ϵgt =                                      .      (9)
+                   ϵgt−1 · γ + (1 − ϵgt−1 ) · (1 − γ)               and multi-session PGO in LT-mapper [11].
+   Meanwhile, emerged points Et comprise both newly built              Dynamic Object Removal. Following [29, 31, 33], we
+structures and ephemeral objects, introducing uncertainty of        evaluate three different sequences from the SemanticKITTI
+their permanence. We thus scale their local ephemerality by         [44] dataset, adopting the protocol in [45]. We use Preser-
+an uncertainty factor k along with the objectness factor:           vation Rate (PR) and Removal Rate (RR) [31] at the point
+                                                                   level without downsampling the ground truth map to ensure
+              ϵg,i = k · 2 − γ · ϵl,i ∀i ∈ Et .         (10)        accuracy. We also report the F1 score, the harmonic mean
+Points in category (iv) inherit their previous ϵg unchanged,        of PR and RR. Baselines include state-of-the-art methods
+while those in category (v) initialize ϵg directly from their       such as Removert [30], ERASOR [31], DUFOMap [29], and
+ϵl .                                                                BeautyMap [33].
+     Over multiple sessions, truly static points accumulate            Map Update. Since no labeled dataset exists for inter-
+enough observations for their ϵg to decrease and stabilize,         session changes, we conduct a qualitative evaluation us-
+distinguishing them from highly ephemeral objects. Changes          ing the MulRan [15] (KAIST01, 02) and HeLiPR [16]
+in Mt are recorded in a delta map for session St , which con-       (KAIST04, 05) datasets. With a four-year gap between
+tinuously tracks and logs changes (∆ϵg ). Unlike LT-mapper’s        these datasets, we can observe both short-term and long-term
+diff map [11], this delta map captures the magnitude of             changes.
+change, enabling fine-grained analysis of environmental vari-
+                                                                    B. Multi-session Map Alignment
+ation. Finally, a static map can be retrieved by filtering Mt
+with a user-defined threshold τg on ϵg .                              Table. I shows our map alignment performance, where
+                                                                    our method consistently outperforms the baselines. While
+                     IV. EXPERIMENT
+                                                                    baselines can perform reasonably well in small-scale settings
+A. Experimental Setup                                               such as LT-ParkingLot, it struggles to register large-scale
+   We conduct both quantitative and qualitative evaluations         environments such as DCC and KAIST. Fig. 6 compares
+for each module of our system.                                      two session maps in the DCC sequence (01 and 02). LT-
+   Multi-session Map Alignment. We use six sequences                mapper [11], which leverages multi-session PGO, achieves
+from LT-ParkingLot [11] and MulRan [15] (DCC01-03                   globally consistent but locally misaligned results. In contrast,
+                              TABLE I                                                                      TABLE II
+                 M AP ALIGNMENT EVALUATION RESULTS                                      DYNAMIC OBJECT REMOVAL RESULTS ON S EMANTIC KITTI
+
+                                                         Metrics                                                  SuMa [44, 46]          KITTI Poses [47]
+       Sequence                  Method                                           Seq         Method
+                                              AC ↑      RMSE ↓          CD ↓                                  PR ↑    RR ↑    F1 ↑    PR ↑    RR ↑     F1 ↑
+                                                                                         Removert [30]        99.55   41.14   58.22   99.24   41.42   58.44
+                           ICP [43]           0.962       0.117         0.194            ERASOR [31]          70.23   98.49   81.98   65.99   98.32   78.98
+  LT-ParkingLot            LT-mapper [11]     0.968       0.121         0.175            DUFOMap [29]         98.63   98.66   98.64   92.59   98.47   95.44
+                                                                                  00
+                           ELite (Ours)       0.969       0.090         0.133            BeautyMap [33]       97.13   97.79   97.46   97.07   97.84   97.45
+                                                                                         ELite - 0.2 (Ours)   97.30   98.74   98.02   93.22   98.55   95.81
+                           ICP [43]           0.692       0.204         0.272            ELite - 0.5 (Ours)   98.54   98.28   98.41   96.61   97.93   97.27
+          DCC              LT-mapper [11]     0.738       0.182         0.306
+                                                                                         Removert [30]        98.27   39.47   56.32   98.43   39.85   56.73
+                           ELite (Ours)       0.942       0.111         0.162            ERASOR [31]          98.35   90.96   94.51   83.06   92.43   87.49
+                           ICP [43]           0.641       0.218         0.256            DUFOMap [29]         98.94   93.93   96.37   98.97   93.52   96.17
+                                                                                  01
+                                                                                         BeautyMap [33]       99.30   92.37   95.71   99.20   90.20   94.48
+        KAIST              LT-mapper [11]     0.909       0.169         0.315            ELite - 0.2 (Ours)   94.70   97.84   96.24   95.18   97.86   96.50
+                           ELite (Ours)       0.963       0.120         0.184            ELite - 0.5 (Ours)   96.72   96.52   96.62   97.15   96.62   96.89
+  Best performance in bold.                                                              Removert [30]        96.69   35.26   51.68   97.18   35.34   51.83
+                                                                                         ERASOR [31]          50.79   92.26   65.51   51.63   93.83   66.61
+                                                                                         DUFOMap [29]         68.61   89.29   77.60   70.78   89.49   79.04
+                                                                                  02
+                                                                                         BeautyMap [33]       83.43   84.66   84.04   82.07   90.61   86.13
+                                                                                         ELite - 0.2 (Ours)   80.71   91.21   85.64   80.44   90.84   85.32
+                                                                                         ELite - 0.5 (Ours)   84.03   89.70   86.77   83.62   89.21   86.32
+                                                                                Best performance in bold, second best underlined.
+
+
+
+
+                                                                                            (a) Raw Map                           (b) Removert [30]
+
+
+           Local misalignment                    Locally well aligned
+
+         (a) LT-mapper [11]                           (b) Ours
+
+Fig. 6. Qualitative comparison of multi-session map alignment on the
+DCC sequence in MulRan [15]. Both methods exhibit globally consistent
+alignment, but our method demonstrates superior local consistency.                        (c) ERASOR [31]                         (d) DUFOMap [29]
+
+
+
+
+                                                                                         (e) BeautyMap [33]                           (f) Ours
+         Incorrect Association                  Correct Association
+         (Ephemeral Objects)                     (Static Objects)               Fig. 8.   Qualitative comparison of dynamic object removal in the Se-
+                                                                                manticKITTI [44] 01 sequence. The ground truth dynamic points in (a)
+            (a) GICP [40]                             (b) Ours                  are shown in red. Figures (b)-(f) depict the cleaned maps produced by each
+                                                                                method, with red points indicating remaining dynamic objects.
+Fig. 7. Qualitative comparison on the KAIST sequence, showing the ad-
+vantage of using ϵg as a weight for scan-to-map registration. By prioritizing   sequences. Lowering the threshold to τl = 0.2 significantly
+long-term static structures, our method robustly aligns sessions even with
+significant time gaps or dynamic objects.                                       increases RR with only a moderate sacrifice in PR, show-
+                                                                                ing the flexibility to prioritize either aggressive removal of
+our bidirectional registration yields both global and local                     dynamic objects or better preservation of static points.
+consistency. Fig. 7 shows the effectiveness of weighting scan-                     We also evaluate two different pose estimation sources:
+to-map registration with ϵg . By assigning higher weights to                    KITTI poses [47] and SuMa poses [46] from SemanticKITTI
+static structures, our alignment module accurately registers                    [44]. As noted in Table. II, all methods perform worse when
+sessions separated by huge time intervals or containing many                    using KITTI poses, indicating the importance of accurate
+dynamic objects.                                                                pose estimation. Spatial quantization-based methods degrade
+                                                                                further with less accurate poses, while our point-wise itera-
+C. Dynamic Object Removal
+                                                                                tive update remains comparatively robust.
+   Table. II and Fig. 8 illustrate the performance of various
+dynamic object removal methods. We report results for two                       D. Map Update
+thresholds of ϵl : 0.2 and 0.5. Our approach at τl = 0.5                          Fig. 9 shows the results of our map update module. The top
+achieves the highest or comparable performance on most                          row depicts the evolving lifelong map over several sessions.
+       KAIST 01 (2019.02)                   KAIST 02 (2019.08)                      KAIST 04 (2023.08)                  KAIST 05 (2023.08)
+               𝝐𝒈                                                                                                      Lifelong Map
+      low           high
+
+
+
+
+     Session Map 01             Session Map 02        Updated Map 02              Delta Map                            Static Map
+
+
+
+
+Fig. 9. Sample scene from the KAIST sequences of MulRan [15] and HeLiPR [16]. The red box highlights short-term changes, such as parked cars
+whose ephemerality increases over time. The blue box highlights long-term changes, including a newly constructed building between 02 and 04. While
+its initial ephemerality is slightly high, indicating potential transience, it decreases as more updates confirm its permanence.
+
+
+
+
+            (a) Diff map [11]                 (b) Delta map (ours)
+
+Fig. 10.   Qualitative comparison of inter-session change representations.     Fig. 11.       Left: Static map constructed from the LT-ParkingLot
+The diff map [11] uses a binary appearance/disappearance scheme, treating      dataset. Right: Heatmap of frequently changing points after updates from
+true changes and measurement noise equally. In contrast, our delta map         six sessions, overlaid on the static map. Higher heatmap values indicate a
+includes an objectness factor γ (darker colors correspond to higher values),   stronger likelihood of ephemeral objects, aiding in navigation or planning.
+which assigns greater weights to object-level changes and suppresses noise.
+
+                                                                               more region-specific dynamics. We plan to explore this
+After multiple updates, transient objects like parked cars                     direction in our future work.
+(red box) exhibit increasing ephemerality, aligning with their
+dynamic nature. Meanwhile, newly built structures (blue                                                V. CONCLUSION
+box) see a gradual decrease in ephemerality, reflecting long-                     We present ELite, a LiDAR-based lifelong mapping frame-
+term permanence. Thus, two-stage ephemerality propagation                      work that distinguishes map elements beyond static and
+effectively distinguishes static from ephemeral objects. ELite                 dynamic using two-stage ephemerality. ELite integrates map
+can also produce a static map by filtering points whose ϵg is                  alignment, dynamic object removal, and updates into a
+below a user-defined threshold τg . A smaller τg yields a map                  cohesive system, enhancing performance by propagating
+retaining only long-term static structures, whereas a higher                   ephemerality across modules. By providing an extended
+τg preserves moderately ephemeral objects (e.g., currently                     representation for map changes, ELite enables meaningful
+parked cars). This threshold acts as a convenient way to tailor                updates and supports applications such as static map con-
+the static map for specific needs.                                             struction and spatial analysis. Real-world validation confirms
+   Fig. 10 compares the diff map [11] to our delta map. While                  its accuracy and reliability, making ELite a valuable tool for
+the diff map provides only binary information about point                      long-term robot operation.
+appearance or disappearance, our delta map introduces an ob-
+jectness factor γ to accurately separate meaningful changes
+from artifacts, thus enabling more robust map updates.
+E. Potential Downstream Tasks
+   Using delta maps, we can create a heatmap indicating how
+frequently each region undergoes change. As depicted in
+Fig. 11, ephemeral objects tend to yield high heatmap values,
+identifying areas prone to frequent changes—a potentially
+valuable insight for optimizing robot navigation. Moreover,
+with enough updates, time-domain analysis similar to [24]
+can be applied, and this can be integrated into (7) to reflect
+                          R EFERENCES                                        mation and local geometric verification,” in 2020 IEEE/RSJ
+ [1] J. Zhang, S. Singh et al., “Loam: Lidar odometry and mapping            International Conference on Intelligent Robots and Systems
+     in real-time.” in Proc. Robot.: Science & Sys. Conf., vol. 2,           (IROS). IEEE, 2020, pp. 8453–8460.
+     no. 9. Berkeley, CA, 2014, pp. 1–9.                                [19] J. Rowell, L. Zhang, and M. Fallon, “Lista: Geometric object-
+ [2] T. Shan and B. Englot, “Lego-loam: Lightweight and ground-              based change detection in cluttered environments,” arXiv
+     optimized lidar odometry and mapping on variable terrain,” in           preprint arXiv:2403.02175, 2024.
+     Proc. IEEE/RSJ Intl. Conf. on Intell. Robots and Sys. IEEE,        [20] A. Adam, T. Sattler, K. Karantzalos, and T. Pajdla, “Objects
+     2018, pp. 4758–4765.                                                    can move: 3d change detection by geometric transformation
+ [3] T. Shan, B. Englot, D. Meyers, W. Wang, C. Ratti, and                   consistency,” in European Conference on Computer Vision.
+     D. Rus, “Lio-sam: Tightly-coupled lidar inertial odometry via           Springer, 2022, pp. 108–124.
+     smoothing and mapping,” in Proc. IEEE/RSJ Intl. Conf. on           [21] M. T. Lázaro, R. Capobianco, and G. Grisetti, “Efficient long-
+     Intell. Robots and Sys. IEEE, 2020, pp. 5135–5142.                      term mapping in dynamic environments,” in Proc. IEEE/RSJ
+ [4] W. Xu, Y. Cai, D. He, J. Lin, and F. Zhang, “Fast-lio2: Fast            Intl. Conf. on Intell. Robots and Sys. IEEE, 2018, pp. 153–
+     direct lidar-inertial odometry,” IEEE Trans. Robot., vol. 38,           160.
+     no. 4, pp. 2053–2073, 2022.                                        [22] M. Zhao, X. Guo, L. Song, B. Qin, X. Shi, G. H. Lee, and
+ [5] D. Lee, M. Jung, W. Yang, and A. Kim, “Lidar odometry                   G. Sun, “A general framework for lifelong localization and
+     survey: recent advancements and remaining challenges,” Intl.            mapping in changing environment,” in Proc. IEEE/RSJ Intl.
+     Service Robot., vol. 17, no. 2, pp. 95–118, 2024.                       Conf. on Intell. Robots and Sys. IEEE, 2021, pp. 3305–3312.
+ [6] K. Konolige and J. Bowman, “Towards lifelong visual maps,”         [23] G. Kurz, M. Holoch, and P. Biber, “Geometry-based graph
+     in Proc. IEEE/RSJ Intl. Conf. on Intell. Robots and Sys., 2009,         pruning for lifelong slam,” in 2021 IEEE/RSJ International
+     pp. 1156–1163.                                                          Conference on Intelligent Robots and Systems (IROS). IEEE,
+ [7] A. Cramariuc, L. Bernreiter, F. Tschopp, M. Fehr, V. Reijg-             2021, pp. 3313–3320.
+     wart, J. Nieto, R. Siegwart, and C. Cadena, “maplab 2.0–a          [24] T. Krajnı́k, J. P. Fentanes, J. M. Santos, and T. Duckett,
+     modular and multi-modal mapping framework,” IEEE Robot.                 “Fremen: Frequency map enhancement for long-term mobile
+     and Automat. Lett., vol. 8, no. 2, pp. 520–527, 2022.                   robot autonomy in changing environments,” IEEE Trans.
+ [8] R. Elvira, J. D. Tardós, and J. M. Montiel, “Orbslam-atlas:            Robot., vol. 33, no. 4, pp. 964–977, 2017.
+     a robust and accurate multi-map system,” in Proc. IEEE/RSJ         [25] P. Yin, S. Zhao, H. Lai, R. Ge, J. Zhang, H. Choset, and
+     Intl. Conf. on Intell. Robots and Sys. IEEE, 2019, pp. 6253–            S. Scherer, “Automerge: A framework for map assembling and
+     6259.                                                                   smoothing in city-scale environments,” IEEE Trans. Robot.,
+ [9] F. Pomerleau, P. Krüsi, F. Colas, P. Furgale, and R. Siegwart,         2023.
+     “Long-term 3d map maintenance in dynamic environments,”            [26] N. Stathoulopoulos, B. Lindqvist, A. Koval, A.-A. Agha-
+     in Proc. IEEE Intl. Conf. on Robot. and Automat. IEEE,                  Mohammadi, and G. Nikolakopoulos, “Frame: A modular
+     2014, pp. 3712–3719.                                                    framework for autonomous map merging: Advancements in
+[10] L. Sun, Z. Yan, A. Zaganidis, C. Zhao, and T. Duckett,                  the field,” IEEE Trans. Field Robot., vol. 1, pp. 1–26, 2024.
+     “Recurrent-octomap: Learning state-based map refinement for        [27] A. Hornung, K. M. Wurm, M. Bennewitz, C. Stachniss, and
+     long-term semantic mapping with 3-d-lidar data,” IEEE Robot.            W. Burgard, “Octomap: An efficient probabilistic 3d mapping
+     and Automat. Lett., vol. 3, no. 4, pp. 3749–3756, 2018.                 framework based on octrees,” Autonomous Robots, vol. 34,
+[11] G. Kim and A. Kim, “Lt-mapper: A modular framework for                  pp. 189–206, 2013.
+     lidar-based lifelong mapping,” in Proc. IEEE Intl. Conf. on        [28] L. Schmid, O. Andersson, A. Sulser, P. Pfreundschuh, and
+     Robot. and Automat. IEEE, 2022, pp. 7995–8002.                          R. Siegwart, “Dynablox: Real-time detection of diverse dy-
+[12] L. Yang, S. M. Prakhya, S. Zhu, and Z. Liu, “Lifelong 3d                namic objects in complex environments,” IEEE Robot. and
+     mapping framework for hand-held & robot-mounted lidar                   Automat. Lett., 2023.
+     mapping systems,” IEEE Robot. and Automat. Lett., 2024.            [29] D. Duberg, Q. Zhang, M. Jia, and P. Jensfelt, “Dufomap:
+[13] C. McManus, W. Churchill, A. Napier, B. Davis, and P. New-              Efficient dynamic awareness mapping,” IEEE Robot. and
+     man, “Distraction suppression for vision-based pose estima-             Automat. Lett., 2024.
+     tion at city scales,” in Proc. IEEE Intl. Conf. on Robot. and      [30] G. Kim and A. Kim, “Remove, then revert: Static point
+     Automat. IEEE, 2013, pp. 3762–3769.                                     cloud map construction using multiresolution range images,”
+[14] D. Barnes, W. Maddern, G. Pascoe, and I. Posner, “Driven                in Proc. IEEE/RSJ Intl. Conf. on Intell. Robots and Sys. IEEE,
+     to distraction: Self-supervised distractor learning for robust          2020, pp. 10 758–10 765.
+     monocular visual odometry in urban environments,” in Proc.         [31] H. Lim, S. Hwang, and H. Myung, “Erasor: Egocentric ratio
+     IEEE Intl. Conf. on Robot. and Automat. IEEE, 2018, pp.                 of pseudo occupancy-based dynamic object removal for static
+     1894–1900.                                                              3d point cloud map building,” IEEE Robot. and Automat. Lett.,
+[15] G. Kim, Y. S. Park, Y. Cho, J. Jeong, and A. Kim, “Mulran:              vol. 6, no. 2, pp. 2272–2279, 2021.
+     Multimodal range dataset for urban place recognition,” in          [32] H. Lim, L. Nunes, B. Mersch, X. Chen, J. Behley, H. Myung,
+     Proc. IEEE Intl. Conf. on Robot. and Automat. IEEE, 2020,               and C. Stachniss, “Erasor2: Instance-aware robust 3d mapping
+     pp. 6246–6253.                                                          of the static world in dynamic scenes,” in Proc. Robot.:
+[16] M. Jung, W. Yang, D. Lee, H. Gil, G. Kim, and A. Kim,                   Science & Sys. Conf. IEEE, 2023.
+     “Helipr: Heterogeneous lidar dataset for inter-lidar place         [33] M. Jia, Q. Zhang, B. Yang, J. Wu, M. Liu, and P. Jensfelt,
+     recognition under spatiotemporal variations,” Intl. J. of Robot.        “Beautymap: Binary-encoded adaptable ground matrix for
+     Research, p. 02783649241242136, 2023.                                   dynamic points removal in global maps,” IEEE Robot. and
+[17] L. Schmid, J. Delmerico, J. L. Schönberger, J. Nieto, M. Polle-        Automat. Lett., 2024.
+     feys, R. Siegwart, and C. Cadena, “Panoptic multi-tsdfs: a         [34] P. Pfreundschuh, H. F. Hendrikx, V. Reijgwart, R. Dubé,
+     flexible representation for online multi-resolution volumetric          R. Siegwart, and A. Cramariuc, “Dynamic object aware lidar
+     mapping and long-term dynamic scene consistency,” in 2022               slam based on automatic generation of training data,” in Proc.
+     International Conference on Robotics and Automation (ICRA).             IEEE Intl. Conf. on Robot. and Automat. IEEE, 2021, pp.
+     IEEE, 2022, pp. 8018–8024.                                              11 641–11 647.
+[18] E. Langer, T. Patten, and M. Vincze, “Robust and efficient         [35] B. Mersch, X. Chen, I. Vizzo, L. Nunes, J. Behley, and
+     object change detection by combining global semantic infor-             C. Stachniss, “Receding moving object segmentation in 3d
+     lidar data using sparse 4d convolutions,” IEEE Robot. and                Robot. and Automat. IEEE, 2023, pp. 8371–8377.
+     Automat. Lett., vol. 7, no. 3, pp. 7503–7510, 2022.                 [42] X. Hu, L. Zheng, J. Wu, R. Geng, Y. Yu, H. Wei, X. Tang,
+[36] J. Sun, Y. Dai, X. Zhang, J. Xu, R. Ai, W. Gu, and X. Chen,              L. Wang, J. Jiao, and M. Liu, “Paloc: Advancing slam
+     “Efficient spatial-temporal information fusion for lidar-based           benchmarking with prior-assisted 6-dof trajectory generation
+     3d moving object segmentation,” in Proc. IEEE/RSJ Intl. Conf.            and uncertainty estimation,” IEEE/ASME Trans. Mechatron-
+     on Intell. Robots and Sys. IEEE, 2022, pp. 11 456–11 463.                ics, 2024.
+[37] D. Spinellis, “Git,” IEEE software, vol. 29, no. 3, pp. 100–101,    [43] D. Girardeau-Montaut, “Cloudcompare,” France: EDF R&D
+     2012.                                                                    Telecom ParisTech, 2016.
+[38] M. Holoch, G. Kurz, and P. Biber, “Detecting invalid map            [44] J. Behley, M. Garbade, A. Milioto, J. Quenzel, S. Behnke,
+     merges in lifelong slam,” in Proc. IEEE/RSJ Intl. Conf. on               C. Stachniss, and J. Gall, “Semantickitti: A dataset for se-
+     Intell. Robots and Sys. IEEE, 2022, pp. 11 039–11 046.                   mantic scene understanding of lidar sequences,” in Proc. IEEE
+[39] G. Kim, S. Choi, and A. Kim, “Scan context++: Structural                 Intl. Conf. on Comput. Vision, 2019, pp. 9297–9307.
+     place recognition robust to rotation and lateral variations in      [45] Q. Zhang, D. Duberg, R. Geng, M. Jia, L. Wang, and P. Jens-
+     urban environments,” IEEE Trans. Robot., vol. 38, no. 3, pp.             felt, “A dynamic points removal benchmark in point cloud
+     1856–1874, 2021.                                                         maps,” in Proc. IEEE Intell. Transport. Sys. Conf. IEEE,
+[40] K. Koide, M. Yokozuka, S. Oishi, and A. Banno, “Voxelized                2023, pp. 608–614.
+     gicp for fast and accurate 3d point cloud registration,” in Proc.   [46] J. Behley and C. Stachniss, “Efficient surfel-based slam using
+     IEEE Intl. Conf. on Robot. and Automat. IEEE, 2021, pp.                  3d laser range data in urban environments.” in Proc. Robot.:
+     11 054–11 059.                                                           Science & Sys. Conf., vol. 2018, 2018, p. 59.
+[41] X. Zhong, Y. Pan, J. Behley, and C. Stachniss, “Shine-              [47] A. Geiger, P. Lenz, C. Stiller, and R. Urtasun, “Vision meets
+     mapping: Large-scale 3d mapping using sparse hierarchical                robotics: The kitti dataset,” Intl. J. of Robot. Research, vol. 32,
+     implicit neural representations,” in Proc. IEEE Intl. Conf. on           no. 11, pp. 1231–1237, 2013.
+

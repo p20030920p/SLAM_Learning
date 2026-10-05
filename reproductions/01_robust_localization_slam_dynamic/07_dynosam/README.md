@@ -13,7 +13,7 @@
 | 复现状态 | ⛔ **本机不可跑**：上游在 `cmake` configure 阶段就要求 CUDA 工具链（`nvcc`/TensorRT/`cudaoptflow.hpp`），与数据无关 —— 见 [`work/feasibility.md`](work/feasibility.md) |
 
 | 复现顺序 | 20 |
-| 能否复现 | ⛔ 本机不能：`cmake` configure 阶段就要 CUDA / TensorRT（dynosam_nn），与数据无关。 |
+| 能否复现 | 🟡 **原来的判读要改**：CUDA 不是死结 —— `nvcc` 可以**在没有 GPU 的机器上安装**（已实测：conda-forge `cuda-nvcc` 装上 CUDA 13.4 编译器），`-DDYNOSAM_NN_USE_TRT=OFF` 又能去掉 TensorRT，两者一起就把 configure 阶段的 CUDA 门去掉了。真正剩下的是**一整套 ROS 2 + GTSAM 工作区**（上游对着 ROS 2 Kilted 写，本机是 Jazzy）。 |
 | 复现完成 | ⛔ 本机不可复现（无 GPU） |
 
 ## 它做了什么 What it does
