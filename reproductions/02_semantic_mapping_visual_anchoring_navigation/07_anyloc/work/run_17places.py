@@ -34,8 +34,8 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 FOLDER = os.path.dirname(HERE)
 REPO = os.path.join(FOLDER, "code", "AnyLoc")
-DATA = os.path.join(FOLDER, "data", "17places", "17places")
-VOCAB_SRC = os.path.join(FOLDER, "data", "vocabulary")
+DATA = os.path.join(FOLDER, "data", "raw", "17places", "17places")
+VOCAB_SRC = os.path.join(FOLDER, "data", "raw", "vocabulary")
 PAPER = {"R@1": 65.0, "R@5": 80.5}
 
 

@@ -1,0 +1,49 @@
+{
+  "reproduction": "02-08",
+  "paper": "Revisit Anything: Visual Place Recognition via Image Segment Retrieval (ECCV 2024)",
+  "recorded_with": "the authors' own repo and preprocessed pack: place_rec_main.py with the default experiment exp0_global_SegLoc_VLAD_PCA_o3 (neighbour aggregation order 3 + PCA), the shipped map VLAD vocabulary and PCA model, and the released 17places_full.zip descriptors. Driven by reproduce.py.",
+  "rel_tolerance": 0.016,
+  "abs_tolerance": 1.5,
+  "paper_reported": {
+    "dataset": "17Places (indoor)",
+    "configuration": "SegVLAD-PreT, (D) and (M) vocabulary variants reported as tied",
+    "database_images": 406,
+    "query_images": 406,
+    "R@1": 95.3,
+    "R@5": 98.0,
+    "R@2": 96.5,
+    "R@3": 97.1,
+    "R@4": 97.6,
+    "gt_criterion": "repo gt.py: loc_rad = 15 -> a query is correct if any of 31 database frames is retrieved",
+    "hardware": "no hardware stated in the paper; the preprocessed pack makes GPU unnecessary for this table",
+    "source": "Table 2, p.9"
+  },
+  "metrics": {
+    "R@1": 95.32,
+    "R@5": 98.28,
+    "paper_R@1": 95.3,
+    "paper_R@5": 98.0,
+    "diff_R@1": 0.02,
+    "diff_R@5": 0.28,
+    "recall_R@1_to_R@5": [95.32, 97.04, 97.29, 97.78, 98.28],
+    "query_images": 406
+  },
+  "cpu_cost": {
+    "pipeline_minutes": 25,
+    "note": "only the aggregation stage runs: the segmentation masks and per-segment DINO features come precomputed in the released pack (11.1 GB, 16 GB extracted)"
+  },
+  "protocol_warning": {
+    "what": "17Places R@1 is 95.3 in this paper and 65.0 in AnyLoc (02-07) with the same DINOv2 ViT-G14 backbone",
+    "why": "different ground-truth windows, not a different method: this repo uses +-15 frames (31 candidates, gt.py:63), AnyLoc uses the dataset's own +-5 frame ground truth (6 candidates)",
+    "consequence": "the two folders must not be ranked against each other without normalising the criterion first"
+  },
+  "local_patches": [
+    "workdir_data repointed at this folder's data/raw/workdir_root (upstream points at an author's home directory)",
+    "hardcoded cuda in the aggregation path replaced by a device that resolves to cuda when available, cpu otherwise (func_vpr.aggFt, place_rec_main)"
+  ],
+  "checks_expected": [
+    "paper_configuration_used",
+    "full_dataset_scored",
+    "recall_matches_the_paper"
+  ]
+}

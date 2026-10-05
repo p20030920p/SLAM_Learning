@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-06T02:01:04+08:00",
+  "generated": "2026-10-06T05:43:01+08:00",
   "root": "reproductions",
   "summary": {
     "total": 21,
-    "green": 12,
+    "green": 13,
     "failed": 0,
-    "blocked": 9,
+    "blocked": 8,
     "planned": 0,
-    "ran_this_pass": 0
+    "ran_this_pass": 1
   },
   "reproductions": [
     {
@@ -3266,13 +3266,68 @@
       "repo_url": "https://github.com/AnyLoc/Revisit-Anything",
       "paper_label": "arXiv:2409.18049",
       "paper_url": "https://arxiv.org/abs/2409.18049",
-      "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
-      "artifacts": [],
-      "level": "blocked",
-      "note": "this machine has no GPU (nvidia-smi/nvcc absent, no /usr/local/cuda*); 20-core CPU, 15 GB RAM. Revisit Anything (ECCV 2024) needs a GPU for ViT-G (1.1B) + SAM ViT-H segment descriptors, plus the descriptor store the full benchmark needs (6.65 GB for Pitts-30k). Data: Baidu Mall / Pitts-30k, public. Recorded in paper_baseline.md, which also lists the paper's own headline numbers, so the target is known before the hardware arrives."
+      "ran": true,
+      "metrics": {
+        "R@1": 95.32,
+        "R@5": 98.28,
+        "paper_R@1": 95.3,
+        "paper_R@5": 98.0,
+        "diff_R@1": 0.02,
+        "diff_R@5": 0.28,
+        "recall_R@1_to_R@5": [
+          95.32,
+          97.04,
+          97.29,
+          97.78,
+          98.28
+        ],
+        "query_images": 406
+      },
+      "checks": [
+        {
+          "name": "paper_configuration_used",
+          "ok": true,
+          "detail": "the paper's default experiment (neighbour aggregation order 3 + PCA, from the README's 'Running the code'); the vocabulary variant is the shipped map one, and Table 2 lists (D) and (M) as tied for this dataset"
+        },
+        {
+          "name": "full_dataset_scored",
+          "ok": true,
+          "detail": "406 query images against the 406-image database"
+        },
+        {
+          "name": "recall_matches_the_paper",
+          "ok": true,
+          "detail": "R@1 95.32 (paper 95.3) · R@5 98.28 (paper 98.0) within 1.5 pp"
+        }
+      ],
+      "findings": [
+        {
+          "name": "the_row_reproduces_on_cpu_with_the_released_pack",
+          "detail": "R@1 95.32 / R@5 98.28 against the paper's 95.3/98.0; ~25 min on CPU, because the segmentation and DINO features are precomputed upstream. Only the aggregation stage runs here - which is exactly what Table 2 measures."
+        },
+        {
+          "name": "17places_r1_differs_by_30_points_between_the_two_papers",
+          "detail": "Revisit Anything reports 95.3 and AnyLoc reports 65.0 for '17Places' with the same backbone. The cause is this repo's gt.py:63 - loc_rad = 15, so a query counts as correct if any of 31 database frames is retrieved - while AnyLoc uses the dataset's own ground_truth_new.npy with a 5-frame window (6 candidates). The candidate sets differ 5x, so the numbers are not comparable; each folder reports against its own paper's criterion."
+        },
+        {
+          "name": "only_the_map_vocabulary_pca_ships",
+          "detail": "the pack contains 17places_r_fitted_pca_model_order3_map.pkl and the two dinoNV variants, but not the domain-vocabulary model the config lists as pca_model_pkl, so --vocab-vlad domain stops at a missing file. The map variant uses only shipped artefacts, and the paper reports (D) and (M) as tied for 17Places, so the comparison stays honest."
+        },
+        {
+          "name": "upstream_hardcodes_cuda_in_the_aggregation_path",
+          "detail": "func_vpr.aggFt moves tensors with .to('cuda') and place_rec_main builds torch.device('cuda'), with no CPU fallback, so the PreT pipeline does not run on a CPU-only machine out of the box. work/local_patches.patch makes the device conditional - identical behaviour wherever CUDA exists."
+        }
+      ],
+      "artifacts": [
+        "results/segloc_17places.json",
+        "work/logs/segloc_17places_map.log"
+      ],
+      "note": "SegVLAD-PreT on 17Places: R@1 95.32 / R@5 98.28 vs paper 95.3/98.0 (406+406, CPU, map vocabulary)",
+      "backtest": {
+        "status": "no-baseline",
+        "diffs": []
+      },
+      "level": "green"
     }
   ]
 }

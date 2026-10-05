@@ -1,0 +1,436 @@
+diff --git a/func_vpr.py b/func_vpr.py
+index abe8183..40e53a5 100644
+--- a/func_vpr.py
++++ b/func_vpr.py
+@@ -42,6 +42,12 @@ sys.path.append('VLAD-BuFF')
+ # import utils
+ import vpr_model
+ import torch.nn.functional as F
++
++# LOCAL PATCH (see work/local_patches.patch): upstream hardcodes CUDA in the
++# aggregation path, so the PreT pipeline cannot run on a CPU-only machine.
++# This resolves to 'cuda' whenever CUDA is available, i.e. behaviour on a GPU
++# box is unchanged.
++_DEV = 'cuda' if __import__('torch').cuda.is_available() else 'cpu'
+ # matplotlib.use('TkAgg')
+ workdir = '/media/kartik/data/kartik/data/segrec/out'
+ workdir_data = '/media/kartik/data/kartik/data/segrec/'
+@@ -486,7 +492,7 @@ def getIdxs_simple_without_segMasks(ims,masks_in, minArea=400, retunrMask = True
+                 # segMasks.append(segmask)
+         return np.array(imInds), regInds, segMasks 
+ 
+-def getAnyLocFt(img, extractor, device='cuda',upsample=True):
++def getAnyLocFt(img, extractor, device=_DEV,upsample=True):
+     base_tf = tvf.Compose([tvf.ToTensor(),
+         tvf.Normalize(mean=[0.485, 0.456, 0.406], 
+                         std=[0.229, 0.224, 0.225])])
+@@ -507,7 +513,7 @@ def getAnyLocFt(img, extractor, device='cuda',upsample=True):
+ 
+ 
+ 
+-def loadSAM(sam_checkpoint, cfg, device = 'cuda'):
++def loadSAM(sam_checkpoint, cfg, device=_DEV):
+     model_type = "vit_h"
+     sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
+     sam.to(device=device)
+@@ -515,7 +521,7 @@ def loadSAM(sam_checkpoint, cfg, device = 'cuda'):
+ 
+     return mask_generator
+ 
+-def loadSAM_FastSAM(fastsam_checkpoint, cfg, device = 'cuda'):
++def loadSAM_FastSAM(fastsam_checkpoint, cfg, device=_DEV):
+     model = FastSAM(fastsam_checkpoint)
+     model.to(device)  # Ensure model is moved to the appropriate device
+ 
+@@ -527,9 +533,9 @@ def loadSAM_FastSAM(fastsam_checkpoint, cfg, device = 'cuda'):
+     return model 
+ 
+ 
+-def loadDINO(cfg, device = "cuda"):
++def loadDINO(cfg, device=_DEV):
+     if cfg['dinov2']:
+-        dino = DinoV2ExtractFeatures("dinov2_vitg14", 31, 'value', device='cuda',norm_descs=False)
++        dino = DinoV2ExtractFeatures("dinov2_vitg14", 31, 'value', device=_DEV,norm_descs=False)
+     else:
+         dino = get_dino_pixel_wise_features_model(cfg = cfg, device = device)    
+ 
+@@ -561,7 +567,7 @@ def process_single_DINO(cfg,img,models,device):
+     img_feat_norm = torch.nn.functional.normalize(img_feat, dim=1)
+     return img_p, img_feat_norm
+ 
+-def masks_given_image(SAM, ims_i, dataPath1, cfg, mask_full_resolution=False, device="cuda"):
++def masks_given_image(SAM, ims_i, dataPath1, cfg, mask_full_resolution=False, device=_DEV):
+     rmin = cfg['rmin']
+ 
+     if mask_full_resolution: #DINO always full resolution
+@@ -591,7 +597,7 @@ def masks_given_image(SAM, ims_i, dataPath1, cfg, mask_full_resolution=False, de
+     return masks_seg, masks
+ 
+ 
+-def masks_given_image_old(sam_checkpoint, ims_i, dataPath1, cfg, mask_full_resolution=False, device="cuda"):
++def masks_given_image_old(sam_checkpoint, ims_i, dataPath1, cfg, mask_full_resolution=False, device=_DEV):
+     rmin = cfg['rmin']
+ 
+     if mask_full_resolution: #DINO always full resolution
+@@ -606,7 +612,7 @@ def masks_given_image_old(sam_checkpoint, ims_i, dataPath1, cfg, mask_full_resol
+                 "dino_strides": 4, "use_traced_model": False, 
+                 "rmin":0, "DAStoreFull":False, "dinov2": True, "wrap":False, "resize": True} # robohop specifc params
+ 
+-    SAM = loadSAM(sam_checkpoint,cfg_sam, device="cuda")
++    SAM = loadSAM(sam_checkpoint,cfg_sam, device=_DEV)
+ 
+     masks_seg = []
+     im = cv2.imread(f'{dataPath1}/{ims_i}')[rmin:,:,:]
+@@ -623,7 +629,7 @@ def masks_given_image_old(sam_checkpoint, ims_i, dataPath1, cfg, mask_full_resol
+     return masks_seg
+ 
+ 
+-def dino_given_image(dino, ims_i, dataPath1, cfg, device="cuda"):
++def dino_given_image(dino, ims_i, dataPath1, cfg, device=_DEV):
+     rmin = cfg['rmin']
+ 
+     width_DINO, height_DINO =  cfg['desired_width'], cfg['desired_height']
+@@ -644,7 +650,7 @@ def dino_given_image(dino, ims_i, dataPath1, cfg, device="cuda"):
+     return ift_dino
+ 
+ 
+-def process_dino_ft_to_h5(h5FullPath,cfg,ims,models,device = "cuda",dataDir="./"):
++def process_dino_ft_to_h5(h5FullPath,cfg,ims,models,device=_DEV,dataDir="./"):
+     rmin = cfg['rmin']
+     with h5py.File(h5FullPath, "w") as f:
+         # loop over images and create a h5py group per image
+@@ -661,7 +667,7 @@ def process_dino_ft_to_h5(h5FullPath,cfg,ims,models,device = "cuda",dataDir="./"
+             grp = f.create_group(f"{imname}")
+             grp.create_dataset("ift_dino", data=ift_dino.detach().cpu().numpy(), chunks=True)
+ 
+-def process_SAM_to_h5(h5FullPath,cfg,ims,models,device="cuda",dataDir="./"):
++def process_SAM_to_h5(h5FullPath,cfg,ims,models,device=_DEV,dataDir="./"):
+     rmin = cfg['rmin']
+     with h5py.File(h5FullPath, "w") as f:
+         for i, _ in enumerate(tqdm(ims)):
+@@ -678,7 +684,7 @@ def process_SAM_to_h5(h5FullPath,cfg,ims,models,device="cuda",dataDir="./"):
+                     grp["masks"].create_dataset(f"{j}/{k}", data=m[k])    
+ 
+ 
+-def process_SAM_to_h5_FastSAM(h5FullPath,cfg,ims,model,device="cuda",dataDir="./"):
++def process_SAM_to_h5_FastSAM(h5FullPath,cfg,ims,model,device=_DEV,dataDir="./"):
+     rmin = cfg['rmin']
+     with h5py.File(h5FullPath, "w") as f:
+         for i, _ in enumerate(tqdm(ims)):
+@@ -695,7 +701,7 @@ def process_SAM_to_h5_FastSAM(h5FullPath,cfg,ims,model,device="cuda",dataDir="./
+                 for k in m.keys():
+                     grp["masks"].create_dataset(f"{j}/{k}", data=m[k])    
+ 
+-def process_single_FastSAM(cfg,input_image,model, imname, device="cuda", imgsz=1024, iou=0.9, conf=0.4, retina=True):
++def process_single_FastSAM(cfg,input_image,model, imname, device=_DEV, imgsz=1024, iou=0.9, conf=0.4, retina=True):
+     
+     input_image = input_image.convert("RGB")
+ 
+@@ -890,15 +896,15 @@ def aggFt(desc_path, masks, segRange, cfg,aggType, vlad = None, upsample = False
+     imFts=[]
+     for i in tqdm(range(len(keys))):
+         if aggType =="avg":
+-            segfeat = torch.empty([1,1536,0]).to('cuda')
+-            dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to('cuda')
++            segfeat = torch.empty([1,1536,0]).to(_DEV)
++            dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to(_DEV)
+             if upsample:
+                 dino_desc = torch.nn.functional.interpolate(dino_desc, [cfg['desired_height'],cfg['desired_width']], mode="bilinear", align_corners=True)
+             dino_desc_norm = torch.nn.functional.normalize(dino_desc, dim=1)
+             if segment_global:
+                 for j in range(len(segRange[i])):
+-                    # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to('cuda')
+-                    mask = masks[i][segRange[i][j]].to('cuda')
++                    # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to(_DEV)
++                    mask = masks[i][segRange[i][j]].to(_DEV)
+                     mask = torch.nn.functional.interpolate(mask.float().unsqueeze(0).unsqueeze(0), [cfg['desired_height'],cfg['desired_width']], mode = 'nearest').squeeze().bool()
+                     reg_feat_norm = dino_desc_norm[:,:,mask]
+                 
+@@ -908,8 +914,8 @@ def aggFt(desc_path, masks, segRange, cfg,aggType, vlad = None, upsample = False
+                 imFts.append(imFt)
+             if segment:
+                 for j in range(len(segRange[i])):
+-                    # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to('cuda')
+-                    mask = torch.from_numpy(masks[i][j]).to('cuda')
++                    # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to(_DEV)
++                    mask = torch.from_numpy(masks[i][j]).to(_DEV)
+                     if upsample:
+                         mask = torch.nn.functional.interpolate(mask.float().unsqueeze(0).unsqueeze(0), [cfg['desired_height'],cfg['desired_width']], mode = 'nearest').squeeze().bool()
+                     else :
+@@ -925,14 +931,14 @@ def aggFt(desc_path, masks, segRange, cfg,aggType, vlad = None, upsample = False
+                 imFts.append(imFt)
+         elif aggType=="vlad":
+             if segment:
+-                dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to('cuda')
++                dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to(_DEV)
+                 if upsample:
+                     dino_desc = torch.nn.functional.interpolate(dino_desc, [cfg['desired_height'],cfg['desired_width']], mode="bilinear", align_corners=True)
+ 
+                 dino_desc_norm = torch.nn.functional.normalize(dino_desc, dim=1)
+                 for j in range(len(segRange[i])):
+-                    mask = torch.from_numpy(masks[i][j]).to('cuda')
+-                    # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to('cuda')
++                    mask = torch.from_numpy(masks[i][j]).to(_DEV)
++                    # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to(_DEV)
+                     if upsample:
+                         mask = torch.nn.functional.interpolate(mask.float().unsqueeze(0).unsqueeze(0), [cfg['desired_height'],cfg['desired_width']], mode = 'nearest').squeeze().bool()
+                     else :
+@@ -945,7 +951,7 @@ def aggFt(desc_path, masks, segRange, cfg,aggType, vlad = None, upsample = False
+                     imFts.append(gd_np)
+             # segfeat = torch.empty([1,49152,0])
+             else:
+-                dino_desc = torch.from_numpy(np.reshape(f[keys[i]]['ift_dino'][()],(1,1536,f[keys[i]]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to('cuda')
++                dino_desc = torch.from_numpy(np.reshape(f[keys[i]]['ift_dino'][()],(1,1536,f[keys[i]]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to(_DEV)
+                 # if upsample:
+                 #     dino_desc = torch.nn.functional.interpolate(dino_desc, [cfg['desired_height'],cfg['desired_width']], mode="bilinear", align_corners=True)
+                 dino_desc_norm = torch.nn.functional.normalize(dino_desc, dim=1)
+@@ -969,14 +975,14 @@ def seg_vlad(desc_path, segMask, segRange, vlad, cfg):
+         i=0
+         for i in tqdm(range(len(keys))):
+                 mask_list=[]
+-                dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to('cuda')
++                dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to(_DEV)
+                 # dino_desc = torch.nn.functional.interpolate(dino_desc, [cfg['desired_height'],cfg['desired_width']], mode="bilinear", align_corners=True)
+-                dino_desc = torch.from_numpy(np.reshape(f[keys[i]]['ift_dino'][()],(1,1536,f[keys[i]]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to('cuda')
+-                # dino_desc=torch.reshape(dino_desc,(1,1536,500*500)).to('cuda')
++                dino_desc = torch.from_numpy(np.reshape(f[keys[i]]['ift_dino'][()],(1,1536,f[keys[i]]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to(_DEV)
++                # dino_desc=torch.reshape(dino_desc,(1,1536,500*500)).to(_DEV)
+                 dino_desc_norm = torch.nn.functional.normalize(dino_desc, dim=1)
+                 for j in range(len(segRange[i])):
+-                        mask = torch.from_numpy(segMask[i][j]).to('cuda')
+-                        # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to('cuda')
++                        mask = torch.from_numpy(segMask[i][j]).to(_DEV)
++                        # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to(_DEV)
+                         mask = torch.nn.functional.interpolate(mask.float().unsqueeze(0).unsqueeze(0), [cfg['desired_height'],cfg['desired_width']], mode = 'nearest').squeeze().bool()
+                         mask_list.append(mask.cpu())
+                 # reg_feat_norm = dino_desc_norm[:,:,mask]
+@@ -1009,28 +1015,28 @@ def seg_vlad_gpu(desc_path, segMask, segRange, c_centers, cfg, desc_dim = 1536,
+                         idx[i,j] = np.array([np.clip(i//14,0,cfg['desired_height']//14-1) ,np.clip(j//14,0,cfg['desired_width']//14-1)])
+         i=0
+         ind = np.ravel_multi_index(idx.reshape(-1,2).T,(cfg['desired_height']//14,cfg['desired_width']//14))
+-        ind = torch.tensor(ind, device = 'cuda')
++        ind = torch.tensor(ind, device=_DEV)
+         for i in tqdm(range(len(keys))):
+                 # mask_list=[]
+-                dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to('cuda')
++                dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to(_DEV)
+                 # dino_desc = torch.nn.functional.interpolate(dino_desc, [cfg['desired_height'],cfg['desired_width']], mode="bilinear", align_corners=True)
+-                dino_desc = torch.from_numpy(np.reshape(f[keys[i]]['ift_dino'][()],(1,desc_dim,f[keys[i]]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to('cuda')
+-                # dino_desc=torch.reshape(dino_desc,(1,1536,500*500)).to('cuda')
++                dino_desc = torch.from_numpy(np.reshape(f[keys[i]]['ift_dino'][()],(1,desc_dim,f[keys[i]]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to(_DEV)
++                # dino_desc=torch.reshape(dino_desc,(1,1536,500*500)).to(_DEV)
+                 dino_desc_norm = torch.nn.functional.normalize(dino_desc, dim=1)
+                 # t1 = time.time()
+-                mask = torch.from_numpy(np.array(segMask[i])).to('cuda')
++                mask = torch.from_numpy(np.array(segMask[i])).to(_DEV)
+                 mask = torch.nn.functional.interpolate(mask.float().unsqueeze(0), [cfg['desired_height'],cfg['desired_width']], mode = 'nearest').squeeze().bool().reshape(len(segMask[i]),-1)
+-                mask_idx = torch.zeros((len(segMask[i]),dh*dw),device="cuda").bool()
++                mask_idx = torch.zeros((len(segMask[i]),dh*dw),device=_DEV).bool()
+                 mask_ind_flat = torch.argwhere(mask)
+                 mask_idx[mask_ind_flat[:,0],ind[mask_ind_flat[:,1]]] = True
+                 # print(mask_idx.shape)
+                 # mask_list_ar = np.concatenate(segMask[i], axis = 0).reshape((len(segMask[i]),segMask[i][0].shape[0],segMask[i][0].shape[1])).astype('float64')
+-                # mask_tensor = torch.tensor(mask_list_ar,device="cuda")
++                # mask_tensor = torch.tensor(mask_list_ar,device=_DEV)
+                 # mask_low = torch.nn.functional.interpolate(mask_tensor.float().unsqueeze(0), [cfg['desired_height']//14,cfg['desired_width']//14], mode = 'bilinear').squeeze().bool()
+                 # masks_low = mask_low.reshape(len(segMask[0]),-1)
+                 # for j in range(len(segRange[i])):
+-                #         mask = torch.from_numpy(segMask[i][j]).to('cuda')
+-                #         # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to('cuda')
++                #         mask = torch.from_numpy(segMask[i][j]).to(_DEV)
++                #         # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to(_DEV)
+                 #         mask = torch.nn.functional.interpolate(mask.float().unsqueeze(0).unsqueeze(0), [cfg['desired_height'],cfg['desired_width']], mode = 'nearest').squeeze().bool()
+                 #         idx_un = idx[mask.cpu()]
+                 #         mask_idx = np.zeros((35,35),dtype=bool)
+@@ -1044,9 +1050,9 @@ def seg_vlad_gpu(desc_path, segMask, segRange, c_centers, cfg, desc_dim = 1536,
+                 
+                 # return reg_feat_per,idx,mask_list
+                 if adj_mat is not None:
+-                    gd= vlad_single(reg_feat_per.squeeze(),c_centers.to('cuda'),idx,mask_idx, adj_mat[i].to("cuda"))
++                    gd= vlad_single(reg_feat_per.squeeze(),c_centers.to(_DEV),idx,mask_idx, adj_mat[i].to(_DEV))
+                 else:
+-                     gd= vlad_single(reg_feat_per.squeeze(),c_centers.to('cuda'),idx,mask_idx)
++                     gd= vlad_single(reg_feat_per.squeeze(),c_centers.to(_DEV),idx,mask_idx)
+                 # t3 = time.time()
+                 # print("time taken by vlad: ", t3-t2)
+                 # gd_og, labels_og = vlad.generate(reg_feat_per.cpu().squeeze(),idx,mask_list)
+@@ -1071,31 +1077,31 @@ def seg_vlad_gpu_single(ind, idx, desc_path_in, img_key, segMask, c_centers, cfg
+     #     for j in range(cfg['desired_width']):
+     #         idx[i, j] = np.array([np.clip(i//14, 0, dh-1), np.clip(j//14, 0, dw-1)])
+     # ind = np.ravel_multi_index(idx.reshape(-1, 2).T, (dh, dw))
+-    # ind = torch.tensor(ind, device='cuda')
++    # ind = torch.tensor(ind, device=_DEV)
+     
+-    # dino_desc = torch.from_numpy(f[img_key]['ift_dino'][()]).to('cuda')
+-    # dino_desc = torch.from_numpy(np.reshape(f[img_key]['ift_dino'][()],(1,desc_dim,f[img_key]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to('cuda')
++    # dino_desc = torch.from_numpy(f[img_key]['ift_dino'][()]).to(_DEV)
++    # dino_desc = torch.from_numpy(np.reshape(f[img_key]['ift_dino'][()],(1,desc_dim,f[img_key]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to(_DEV)
+ 
+     dino_desc = torch.from_numpy(desc_path_in[img_key]['ift_dino'][()]) 
+     # dino_desc = torch.nn.functional.interpolate(dino_desc, [cfg['desired_height'],cfg['desired_width']], mode="bilinear", align_corners=True)
+     total_elements = dino_desc.shape[2] * dino_desc.shape[3]
+-    dino_desc = dino_desc.reshape(1, desc_dim, total_elements).to('cuda')
++    dino_desc = dino_desc.reshape(1, desc_dim, total_elements).to(_DEV)
+ 
+ 
+     dino_desc_norm = torch.nn.functional.normalize(dino_desc, dim=1)
+ 
+     #IMPORTANT: could be wrong here
+-    mask = torch.from_numpy(np.array(segMask)).to('cuda')
++    mask = torch.from_numpy(np.array(segMask)).to(_DEV)
+     mask = torch.nn.functional.interpolate(mask.float().unsqueeze(0), [cfg['desired_height'],cfg['desired_width']], mode = 'nearest').squeeze().bool().reshape(len(segMask),-1)
+-    mask_idx = torch.zeros((len(segMask),dh*dw),device="cuda").bool()
++    mask_idx = torch.zeros((len(segMask),dh*dw),device=_DEV).bool()
+     mask_ind_flat = torch.argwhere(mask)
+     mask_idx[mask_ind_flat[:,0],ind[mask_ind_flat[:,1]]] = True
+ 
+     reg_feat_per = dino_desc_norm.permute(0, 2, 1)
+     if adj_mat is not None:
+-        gd, execution_time = vlad_single(reg_feat_per.squeeze(), c_centers.to('cuda'), idx, mask_idx, adj_mat.to("cuda"))
++        gd, execution_time = vlad_single(reg_feat_per.squeeze(), c_centers.to(_DEV), idx, mask_idx, adj_mat.to(_DEV))
+     else:
+-        gd, execution_time = vlad_single(reg_feat_per.squeeze(), c_centers.to('cuda'), idx, mask_idx)
++        gd, execution_time = vlad_single(reg_feat_per.squeeze(), c_centers.to(_DEV), idx, mask_idx)
+ 
+     return gd.cpu() 
+     # return gd.cpu() , execution_time
+@@ -1109,31 +1115,31 @@ def seg_vlad_gpu_single_img(ind, idx, dino_desc, img_key, segMask, c_centers, cf
+     #     for j in range(cfg['desired_width']):
+     #         idx[i, j] = np.array([np.clip(i//14, 0, dh-1), np.clip(j//14, 0, dw-1)])
+     # ind = np.ravel_multi_index(idx.reshape(-1, 2).T, (dh, dw))
+-    # ind = torch.tensor(ind, device='cuda')
++    # ind = torch.tensor(ind, device=_DEV)
+     
+-    # dino_desc = torch.from_numpy(f[img_key]['ift_dino'][()]).to('cuda')
+-    # dino_desc = torch.from_numpy(np.reshape(f[img_key]['ift_dino'][()],(1,desc_dim,f[img_key]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to('cuda')
++    # dino_desc = torch.from_numpy(f[img_key]['ift_dino'][()]).to(_DEV)
++    # dino_desc = torch.from_numpy(np.reshape(f[img_key]['ift_dino'][()],(1,desc_dim,f[img_key]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to(_DEV)
+ 
+     # dino_desc = torch.from_numpy(desc_path_in[img_key]['ift_dino'][()]) 
+     # dino_desc = torch.nn.functional.interpolate(dino_desc, [cfg['desired_height'],cfg['desired_width']], mode="bilinear", align_corners=True)
+     total_elements = dino_desc.shape[2] * dino_desc.shape[3]
+-    dino_desc = dino_desc.reshape(1, desc_dim, total_elements).to('cuda')
++    dino_desc = dino_desc.reshape(1, desc_dim, total_elements).to(_DEV)
+ 
+ 
+     dino_desc_norm = torch.nn.functional.normalize(dino_desc, dim=1)
+ 
+     #IMPORTANT: could be wrong here
+-    mask = torch.from_numpy(np.array(segMask)).to('cuda')
++    mask = torch.from_numpy(np.array(segMask)).to(_DEV)
+     mask = torch.nn.functional.interpolate(mask.float().unsqueeze(0), [cfg['desired_height'],cfg['desired_width']], mode = 'nearest').squeeze().bool().reshape(len(segMask),-1)
+-    mask_idx = torch.zeros((len(segMask),dh*dw),device="cuda").bool()
++    mask_idx = torch.zeros((len(segMask),dh*dw),device=_DEV).bool()
+     mask_ind_flat = torch.argwhere(mask)
+     mask_idx[mask_ind_flat[:,0],ind[mask_ind_flat[:,1]]] = True
+ 
+     reg_feat_per = dino_desc_norm.permute(0, 2, 1)
+     if adj_mat is not None:
+-        gd, execution_time = vlad_single(reg_feat_per.squeeze(), c_centers.to('cuda'), idx, mask_idx, adj_mat.to("cuda"))
++        gd, execution_time = vlad_single(reg_feat_per.squeeze(), c_centers.to(_DEV), idx, mask_idx, adj_mat.to(_DEV))
+     else:
+-        gd, execution_time = vlad_single(reg_feat_per.squeeze(), c_centers.to('cuda'), idx, mask_idx)
++        gd, execution_time = vlad_single(reg_feat_per.squeeze(), c_centers.to(_DEV), idx, mask_idx)
+ 
+     return gd.cpu() 
+ 
+@@ -1142,7 +1148,7 @@ def vlad_single(query_descs,c_centers,idx,masks,adj_mat=None):
+     num_clusters =32
+     # intra_norm = True
+     
+-    c_centers_norm = F.normalize(c_centers,dim=1).to('cuda')
++    c_centers_norm = F.normalize(c_centers,dim=1).to(_DEV)
+     labels = torch.argmax(query_descs @ c_centers_norm.T,dim=1)
+     # labels=torch.linalg.norm(query_descs[:,None,:] - c_centers[None,:,:],axis=2).argmin(1)
+     # print("labels_shape: ", labels.shape)
+@@ -1150,11 +1156,11 @@ def vlad_single(query_descs,c_centers,idx,masks,adj_mat=None):
+     #TODO: use normed clusters
+     residuals = query_descs - c_centers[labels]
+ 
+-    # un_vlad = torch.zeros(num_clusters * desc_dim).to('cuda')
+-    # n_vlad_all = torch.empty((0,num_clusters * desc_dim)).to('cuda')
++    # un_vlad = torch.zeros(num_clusters * desc_dim).to(_DEV)
++    # n_vlad_all = torch.empty((0,num_clusters * desc_dim)).to(_DEV)
+     # n_vlad_all=[]
+     # mask_list_ar = np.concatenate(masks, axis = 0).reshape((len(masks),masks[0].shape[0],masks[0].shape[1])).astype('float64')
+-    # mask_tensor = torch.tensor(mask_list_ar,device="cuda")
++    # mask_tensor = torch.tensor(mask_list_ar,device=_DEV)
+ 
+     # pool = torch.nn.AdaptiveMaxPool2d(35)
+     # mask_tensor_d = pool(mask_tensor.unsqueeze(0))
+@@ -1178,7 +1184,7 @@ def vlad_single(query_descs,c_centers,idx,masks,adj_mat=None):
+     # return n_vlad
+     return n_vlad, execution_time
+ 
+-def vlad_matmuls_per_cluster(num_c,masks,res,clus_labels,adjMat=None,device='cuda'):
++def vlad_matmuls_per_cluster(num_c,masks,res,clus_labels,adjMat=None,device=_DEV):
+     """
+     Expects input tensors to be cuda and float/double
+     """
+@@ -1218,14 +1224,14 @@ def save_res_label(desc_path, vlad):
+         i=0
+         for i in tqdm(range(len(keys))):
+                 mask_list=[]
+-                dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to('cuda')
++                dino_desc = torch.from_numpy(f[keys[i]]['ift_dino'][()]).to(_DEV)
+                 # dino_desc = torch.nn.functional.interpolate(dino_desc, [cfg['desired_height'],cfg['desired_width']], mode="bilinear", align_corners=True)
+-                dino_desc = torch.from_numpy(np.reshape(f[keys[i]]['ift_dino'][()],(1,1536,f[keys[i]]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to('cuda')
+-                # dino_desc=torch.reshape(dino_desc,(1,1536,cfg['desired_height']*cfg['desired_width'])).to('cuda')
++                dino_desc = torch.from_numpy(np.reshape(f[keys[i]]['ift_dino'][()],(1,1536,f[keys[i]]['ift_dino'][()].shape[2]*f[keys[i]]['ift_dino'][()].shape[3]))).to(_DEV)
++                # dino_desc=torch.reshape(dino_desc,(1,1536,cfg['desired_height']*cfg['desired_width'])).to(_DEV)
+                 dino_desc_norm = torch.nn.functional.normalize(dino_desc, dim=1)
+                 # for j in range(len(segRange[i])):
+                 #         mask = torch.from_numpy(segMask[i][j]).to('cpu')
+-                #         # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to('cuda')
++                #         # mask = torch.from_numpy(G.nodes[segRange[i][j]]['segmentation']).to(_DEV)
+                 #         mask = torch.nn.functional.interpolate(mask.float().unsqueeze(0).unsqueeze(0), [cfg['desired_height']//14,cfg['desired_width']//14], mode = 'nearest').squeeze().bool()
+                 #         mask_list.append(mask.flatten())
+                 # reg_feat_norm = dino_desc_norm[:,:,mask]
+diff --git a/place_rec_global_config.py b/place_rec_global_config.py
+index 6e9c92b..84cdb50 100644
+--- a/place_rec_global_config.py
++++ b/place_rec_global_config.py
+@@ -2,7 +2,7 @@
+ # See README for more details on how to set the paths/expt configs in this script.
+ 
+ # Step 0: set the parent path of where all datasets lie
+-workdir_data = '/home/kartikgarg/workdir'
++workdir_data = '/home/qzl/workspace/Practice_SLam/SLAM_Learning/reproductions/02_semantic_mapping_visual_anchoring_navigation/08_revisit_anything/data/raw/workdir_root'   # LOCAL PATCH (see work/local_patches.patch): the authors' path
+ 
+ # Step 1: Set Dataset specific configurations
+ datasets = {
+diff --git a/place_rec_main.py b/place_rec_main.py
+index baebde7..3b7fee2 100644
+--- a/place_rec_main.py
++++ b/place_rec_main.py
+@@ -33,6 +33,12 @@ import faiss
+ import json
+ from importlib import reload
+ 
++# LOCAL PATCH (see work/local_patches.patch): upstream hardcodes CUDA in the
++# aggregation path, so the PreT pipeline cannot run on a CPU-only machine.
++# This resolves to 'cuda' whenever CUDA is available, i.e. behaviour on a GPU
++# box is unchanged.
++_DEV = 'cuda' if __import__('torch').cuda.is_available() else 'cpu'
++
+ # matplotlib.use('TkAgg')
+ matplotlib.use('Agg') #Headless
+ 
+@@ -137,7 +143,7 @@ if __name__=="__main__":
+ 
+     cache_dir = './cache'
+ 
+-    device = torch.device("cuda")
++    device = torch.device(_DEV)
+     # Dino_v2 properties (parameters)
+     desc_layer: int = 31
+     desc_facet: Literal["query", "key", "value", "token"] = "value"
+@@ -191,7 +197,7 @@ if __name__=="__main__":
+             for j in range(cfg['desired_width']):
+                 idx_matrix[i, j] = np.array([np.clip(i//14, 0, dh-1), np.clip(j//14, 0, dw-1)])
+         ind_matrix = np.ravel_multi_index(idx_matrix.reshape(-1, 2).T, (dh, dw))
+-        ind_matrix = torch.tensor(ind_matrix, device='cuda')
++        ind_matrix = torch.tensor(ind_matrix, device=_DEV)
+ 
+ 
+         masks_r_path = f"{workdir}/{dataset_config['masks_h5_filename_r']}"

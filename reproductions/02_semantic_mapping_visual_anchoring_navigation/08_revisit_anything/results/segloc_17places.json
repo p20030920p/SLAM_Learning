@@ -1,0 +1,21 @@
+{
+  "metrics": {
+    "R@1": 95.32,
+    "R@5": 98.28,
+    "paper_R@1": 95.3,
+    "paper_R@5": 98.0,
+    "diff_R@1": 0.02,
+    "diff_R@5": 0.28,
+    "recall_R@1_to_R@5": [
+      95.32,
+      97.04,
+      97.29,
+      97.78,
+      98.28
+    ],
+    "query_images": 406
+  },
+  "command": "/home/qzl/workspace/Practice_SLam/SLAM_Learning/reproductions/.venvs/anyloc/bin/python place_rec_main.py --dataset 17places --experiment exp0_global_SegLoc_VLAD_PCA_o3 --vocab-vlad map --save-results",
+  "experiment": "exp0_global_SegLoc_VLAD_PCA_o3",
+  "vocab_vlad": "map"
+}
