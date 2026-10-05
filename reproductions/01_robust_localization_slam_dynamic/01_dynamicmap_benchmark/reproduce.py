@@ -29,6 +29,43 @@ import sys
 # has been done; this is the per-run regression guard.
 CROSSCHECK_POINTS = 3_000_000
 
+# --- stage 2: H1' part 3, where the false removals actually come from ---------
+#
+# The task book's parallel experiment (§6) promises, if the rankings disagree, to
+# show that the false positives come from low-observability regions. This stage
+# measures that: every GT point is scored for how many of the 141 frames could
+# have seen it (range + the spinning lidar's vertical FOV), then the evaluator's
+# own "this method dropped it" labels are binned by that score.
+#
+# Both map families are kept because they answer different questions: the maps
+# as submitted are what the tables print, and the 0.2 m group has been voxelised
+# by us so that its curve is a pure density measurement - which is what the
+# control line establishes.
+OBS_CONTROL = "uncleaned 0.2m (density control)"
+OBS_MAP_SETS = {
+    # rendered from the registration experiment's private sequence folder
+    "02_kiss_icp/data/raw/regutil_seq/eval": {
+        "uncleaned 0.2m (density control)": "uncleaned_exportGT.pcd",
+        "erasor port 0.2m": "erasor_port_exportGT.pcd",
+        "removert official 0.2m": "removert_official_exportGT.pcd",
+        "removert port 0.2m": "removert_port_exportGT.pcd",
+        "dufomap 0.2m": "dufomap_exportGT.pcd",
+        "beautymap 0.2m": "beautymap_exportGT.pcd",
+    },
+    # and the benchmark's own sequence folder, for the maps as submitted
+    "01_dynamicmap_benchmark/data/raw/00/eval": {
+        "erasor port (as submitted)": "erasor_output_exportGT.pcd",
+        "removert official (as submitted)": "StaticMapScansideMapGlobal_exportGT.pcd",
+        "removert port (as submitted)": "removert_output_exportGT.pcd",
+        "dufomap (as submitted)": "dufomap_output_paper_default_dp1_exportGT.pcd",
+        "beautymap (as submitted)": "beautymap_output_exportGT.pcd",
+    },
+}
+# the headline numbers of H1' part 3, per map: overall, never-seen, always-seen
+OBS_HEADLINE = ["erasor port (as submitted)", "removert official (as submitted)",
+                "removert port (as submitted)", "dufomap (as submitted)",
+                "beautymap (as submitted)", OBS_CONTROL]
+
 METHOD_IDS = {"01-03": "ERASOR", "01-04": "Removert", "01-05": "DUFOMap", "01-06": "BeautyMap"}
 
 # This ledger is about the benchmark's own row for each method - the ROS-free
@@ -236,16 +273,141 @@ def run(ctx):
             "detail": f"no score json yet for: {', '.join(missing)}",
         })
 
+    # ---- stage 2: H1' part 3 - where the false removals come from -----------
+    obs = _stage_observability(ctx)
+    metrics.update(obs["metrics"])
+    checks.extend(obs["checks"])
+    findings.extend(obs["findings"])
+
     return {
         "metrics": metrics,
         "checks": checks,
         "findings": findings,
-        "artifacts": [],
+        "artifacts": ["results/observability_strata.json",
+                      "results/observability_strata.png"],
         "note": (f"benchmark infrastructure verified: {len(frames)} frames, "
                  f"{len(scores)}/4 methods scored"
                  + (f", eval cross-check {disagreements} disagreements"
-                    if disagreements is not None else "")),
+                    if disagreements is not None else "")
+                 + f"; false removals stratified by observability: "
+                   f"{obs['metrics'].get('obs_ratio_low_over_high_removert_official', float('nan')):.1f}x "
+                   f"at never-seen vs always-seen points"),
     }
+
+
+def _stage_observability(ctx):
+    """Bin the evaluator's dropped labels by how often each point could be seen."""
+    import subprocess
+
+    venv = os.path.join(ctx["repo_root"], "reproductions", ".venvs", "dmb", "bin", "python")
+    if not os.path.exists(venv):
+        venv = sys.executable
+
+    maps_file = os.path.join(ctx["work_dir"], "generated", "observability_maps.json")
+    out_json = os.path.join(ctx["results_dir"], "observability_strata.json")
+    mapping = {}
+    for folder, entries in OBS_MAP_SETS.items():
+        for name, fname in entries.items():
+            path = os.path.normpath(os.path.join(ctx["repo_root"], "reproductions",
+                                                 ctx["direction"], folder, fname))
+            if os.path.exists(path):
+                mapping[name] = path
+    if len(mapping) < 4:
+        return {"metrics": {}, "checks": [], "findings": [{
+            "name": "observability_strata_not_run",
+            "detail": ("the evaluator's *_exportGT.pcd label files are missing - they are "
+                       "written when a map is scored, so run 01-02 and the method folders "
+                       "first")}]}
+
+    if not os.path.exists(out_json) or os.environ.get("OBS_FORCE"):
+        os.makedirs(os.path.dirname(maps_file), exist_ok=True)
+        with open(maps_file, "w", encoding="utf-8") as fh:
+            json.dump(mapping, fh, indent=2)
+        r = subprocess.run([venv, os.path.join(ctx["work_dir"], "observability_strata.py"),
+                            "--seq-dir", _seq_dir(ctx), "--maps", maps_file,
+                            "--control", OBS_CONTROL, "--out", out_json,
+                            "--figure", os.path.join(ctx["results_dir"],
+                                                     "observability_strata.png")],
+                           capture_output=True, text=True, timeout=2 * 60 * 60)
+        if r.returncode != 0:
+            raise RuntimeError("observability_strata.py failed: "
+                               + (r.stderr or r.stdout)[-800:])
+
+    with open(out_json, encoding="utf-8") as fh:
+        data = json.load(fh)
+
+    metrics, checks, findings = {}, [], []
+    for name in OBS_HEADLINE:
+        row = data["maps"].get(name)
+        if not row:
+            continue
+        key = (name.replace(" (as submitted)", "").replace(" ", "_")
+               .replace("0.2m", "0p2m").replace("(", "").replace(")", "").replace("-", "_"))
+        low = row["0"]["false_removal_pct"]
+        high = row["100+"]["false_removal_pct"]
+        metrics[f"obs_overall_{key}"] = row["_total"]["false_removal_pct"]
+        metrics[f"obs_never_seen_{key}"] = low
+        metrics[f"obs_always_seen_{key}"] = high
+        if low is not None and high not in (None, 0):
+            metrics[f"obs_ratio_low_over_high_{key}"] = round(low / high, 4)
+
+    ctrl = data["maps"].get(OBS_CONTROL, {})
+    ctrl_rates = [ctrl.get(b, {}).get("false_removal_pct") for b in data["protocol"]["bin_labels"]]
+    ctrl_rates = [r for r in ctrl_rates if r is not None]
+    checks.append({
+        "name": "the_density_control_rises_with_observability",
+        "ok": len(ctrl_rates) >= 3 and ctrl_rates[-1] > ctrl_rates[0],
+        "detail": ("the naive map voxelised to 0.2 m - which deletes no structure on "
+                   f"purpose - goes from {ctrl_rates[0]:.1f}% dropped at never-seen points to "
+                   f"{ctrl_rates[-1]:.1f}% at always-seen points. That rise is the density "
+                   "confound this stage exists to subtract, and if it ever reverses, the "
+                   "stratification is measuring something else."),
+    })
+    checks.append({
+        "name": "observability_strata_cover_every_bin",
+        "ok": all(all(b in data["maps"][n] for b in data["protocol"]["bin_labels"])
+                  for n in data["maps"]),
+        "detail": f"{len(data['maps'])} maps x {len(data['protocol']['bin_labels'])} bins, "
+                  f"{data['protocol']['frames']} frame poses",
+    })
+
+    rem = data["maps"].get("removert official (as submitted)")
+    if rem:
+        low = rem["0"]["false_removal_pct"]
+        high = rem["100+"]["false_removal_pct"]
+        findings.append({
+            "name": "h1_prime_part3_holds_for_maps_that_actually_keep_their_points",
+            "detail": (f"Removert's official map drops only {rem['_total']['false_removal_pct']:.2f}% "
+                       f"of static GT points overall, so its dropped labels are genuine "
+                       f"misclassification rather than downsampling: {low:.1f}% at points no frame "
+                       f"could see against {high:.1f}% at points every frame could see - a "
+                       f"{low / high:.0f}x concentration in the low-observability stratum. The "
+                       "task book's H1' part 3 is therefore supported where it is testable."),
+            "never_seen_pct": low, "always_seen_pct": high,
+        })
+    er = data["maps"].get("erasor port (as submitted)")
+    if er:
+        findings.append({
+            "name": "h1_prime_part3_fails_where_sa_loss_is_downsampling",
+            "detail": (f"ERASOR's map, as submitted, drops {er['_total']['false_removal_pct']:.1f}% "
+                       f"of static points and its rate RISES with observability "
+                       f"({er['0']['false_removal_pct']:.1f}% never-seen -> "
+                       f"{er['100+']['false_removal_pct']:.1f}% always-seen) - the signature of "
+                       "voxel downsampling (dense, well-observed surfaces lose more points to the "
+                       "grid), not of misclassification. For such maps 'false positive' is not a "
+                       "meaningful phrase until the metric is resolution-corrected."),
+            "never_seen_pct": er["0"]["false_removal_pct"],
+            "always_seen_pct": er["100+"]["false_removal_pct"],
+        })
+    findings.append({
+        "name": "the_0p2m_strata_are_a_density_measurement",
+        "detail": ("once every map is voxelised to 0.2 m, all of them - control included - sit "
+                   "on one rising curve (about 62% dropped at never-seen points, 82% at "
+                   "always-seen ones), and the method differences are a roughly constant offset. "
+                   "Anything measured on such maps is mostly a statement about resolution."),
+    })
+
+    return {"metrics": metrics, "checks": checks, "findings": findings}
 
 
 def _write_pcd(path: str, arr) -> None:

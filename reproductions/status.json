@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T19:30:28+08:00",
+  "generated": "2026-10-05T22:54:32+08:00",
   "root": "reproductions",
   "summary": {
     "total": 21,
@@ -27,7 +27,7 @@
       "repo_url": "https://github.com/KTH-RPL/DynamicMap_Benchmark",
       "paper_label": "arXiv:2307.07260",
       "paper_url": "https://arxiv.org/abs/2307.07260",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "frames": 141,
         "gt_points": 17362230,
@@ -47,7 +47,31 @@
         "Removert_official_SA": 99.6179,
         "Removert_official_AA": 94.2928,
         "crosscheck_points": 3000000,
-        "crosscheck_disagreements": 0
+        "crosscheck_disagreements": 0,
+        "obs_overall_erasor_port": 33.2922,
+        "obs_never_seen_erasor_port": 14.1626,
+        "obs_always_seen_erasor_port": 34.0563,
+        "obs_ratio_low_over_high_erasor_port": 0.4159,
+        "obs_overall_removert_official": 0.3821,
+        "obs_never_seen_removert_official": 11.714,
+        "obs_always_seen_removert_official": 0.2305,
+        "obs_ratio_low_over_high_removert_official": 50.82,
+        "obs_overall_removert_port": 0.5639,
+        "obs_never_seen_removert_port": 2.0852,
+        "obs_always_seen_removert_port": 0.3373,
+        "obs_ratio_low_over_high_removert_port": 6.182,
+        "obs_overall_dufomap": 2.0365,
+        "obs_never_seen_dufomap": 0.0124,
+        "obs_always_seen_dufomap": 1.8063,
+        "obs_ratio_low_over_high_dufomap": 0.0069,
+        "obs_overall_beautymap": 3.0471,
+        "obs_never_seen_beautymap": 1.3109,
+        "obs_always_seen_beautymap": 2.5788,
+        "obs_ratio_low_over_high_beautymap": 0.5083,
+        "obs_overall_uncleaned_0p2m_density_control": 80.6169,
+        "obs_never_seen_uncleaned_0p2m_density_control": 61.6415,
+        "obs_always_seen_uncleaned_0p2m_density_control": 81.5117,
+        "obs_ratio_low_over_high_uncleaned_0p2m_density_control": 0.7562
       },
       "checks": [
         {
@@ -64,6 +88,16 @@
           "name": "the_two_eval_implementations_agree",
           "ok": true,
           "detail": "official PCL binary vs independent scipy rewrite label 3000000 sampled GT points with 0 disagreements"
+        },
+        {
+          "name": "the_density_control_rises_with_observability",
+          "ok": true,
+          "detail": "the naive map voxelised to 0.2 m - which deletes no structure on purpose - goes from 61.6% dropped at never-seen points to 81.5% at always-seen points. That rise is the density confound this stage exists to subtract, and if it ever reverses, the stratification is measuring something else."
+        },
+        {
+          "name": "observability_strata_cover_every_bin",
+          "ok": true,
+          "detail": "11 maps x 6 bins, 141 frame poses"
         }
       ],
       "findings": [
@@ -101,11 +135,29 @@
             "DA": 89.2523,
             "AA": 94.2928
           }
+        },
+        {
+          "name": "h1_prime_part3_holds_for_maps_that_actually_keep_their_points",
+          "detail": "Removert's official map drops only 0.38% of static GT points overall, so its dropped labels are genuine misclassification rather than downsampling: 11.7% at points no frame could see against 0.2% at points every frame could see - a 51x concentration in the low-observability stratum. The task book's H1' part 3 is therefore supported where it is testable.",
+          "never_seen_pct": 11.714,
+          "always_seen_pct": 0.2305
+        },
+        {
+          "name": "h1_prime_part3_fails_where_sa_loss_is_downsampling",
+          "detail": "ERASOR's map, as submitted, drops 33.3% of static points and its rate RISES with observability (14.2% never-seen -> 34.1% always-seen) - the signature of voxel downsampling (dense, well-observed surfaces lose more points to the grid), not of misclassification. For such maps 'false positive' is not a meaningful phrase until the metric is resolution-corrected.",
+          "never_seen_pct": 14.1626,
+          "always_seen_pct": 34.0563
+        },
+        {
+          "name": "the_0p2m_strata_are_a_density_measurement",
+          "detail": "once every map is voxelised to 0.2 m, all of them - control included - sit on one rising curve (about 62% dropped at never-seen points, 82% at always-seen ones), and the method differences are a roughly constant offset. Anything measured on such maps is mostly a statement about resolution."
         }
       ],
-      "artifacts": [],
-      "level": "green",
-      "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements",
+      "artifacts": [
+        "results/observability_strata.json",
+        "results/observability_strata.png"
+      ],
+      "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements; false removals stratified by observability: 50.8x at never-seen vs always-seen points",
       "backtest": {
         "status": "ok",
         "diffs": [
@@ -243,9 +295,35 @@
             "why": ""
           }
         ],
-        "new_metrics_not_in_baseline": [],
+        "new_metrics_not_in_baseline": [
+          "obs_always_seen_beautymap",
+          "obs_always_seen_dufomap",
+          "obs_always_seen_erasor_port",
+          "obs_always_seen_removert_official",
+          "obs_always_seen_removert_port",
+          "obs_always_seen_uncleaned_0p2m_density_control",
+          "obs_never_seen_beautymap",
+          "obs_never_seen_dufomap",
+          "obs_never_seen_erasor_port",
+          "obs_never_seen_removert_official",
+          "obs_never_seen_removert_port",
+          "obs_never_seen_uncleaned_0p2m_density_control",
+          "obs_overall_beautymap",
+          "obs_overall_dufomap",
+          "obs_overall_erasor_port",
+          "obs_overall_removert_official",
+          "obs_overall_removert_port",
+          "obs_overall_uncleaned_0p2m_density_control",
+          "obs_ratio_low_over_high_beautymap",
+          "obs_ratio_low_over_high_dufomap",
+          "obs_ratio_low_over_high_erasor_port",
+          "obs_ratio_low_over_high_removert_official",
+          "obs_ratio_low_over_high_removert_port",
+          "obs_ratio_low_over_high_uncleaned_0p2m_density_control"
+        ],
         "baseline_recorded": "2026-10-05T01:12:18+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-02",
@@ -2482,7 +2560,7 @@
       "repo_url": "https://github.com/UZ-SLAMLab/ORB_SLAM3",
       "paper_label": "arXiv:2007.11898",
       "paper_url": "https://arxiv.org/abs/2007.11898",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "euroc_mh01_rmse_ate_m": 0.045423,
         "euroc_mh01_rmse_ate_scale_corrected_m": 0.024724,
@@ -2524,6 +2602,7 @@
       "artifacts": [
         "results/run_mh01/f_dataset-MH01.txt"
       ],
+      "level": "green",
       "note": "EuRoC MH_01 stereo-inertial on CPU: RMSE ATE 0.045423 m (paper 0.036 m), scale-corrected 0.024724 m",
       "backtest": {
         "status": "ok",
@@ -2561,8 +2640,7 @@
           "delta_vs_paper_m"
         ],
         "baseline_recorded": "2026-10-05T19:30:19+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-13",

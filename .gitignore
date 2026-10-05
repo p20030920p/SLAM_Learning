@@ -41,6 +41,9 @@ reproductions/**/data/*
 # own output alone is 616 MB). They stay on the machine; the small JSON/text
 # metrics next to them are what gets committed.
 reproductions/**/results/**/*.pcd
+# Per-point intermediates (e.g. one observability count per GT point: 17.4M
+# int16 = 35 MB) are rebuildable from the script that writes them.
+reproductions/**/results/**/*.npy
 # Generated rosparams embed absolute paths of this machine.
 reproductions/**/work/generated/
 
