@@ -52,7 +52,7 @@
 | `Range:` 1.5 / 2 / 4 / 8 MB 块 | 直接返回配额页 |
 
 结论：这是**按字节预算的滚动配额**（不是权限问题，文件是公开的），而且**块越小越容易通过**。
-所以 [`work/gdrive_range_fetch.py`](work/gdrive_range_fetch.py) 按 **1 MB** 一块拉、
+所以 [`../../tools/gdrive_range_fetch.py`](../../tools/gdrive_range_fetch.py) 按 **1 MB** 一块拉、
 **断点续传**、遇限流按 3s→60s 退避；配额耗尽后会一直返回配额页，**只能等它恢复**
 （Google 自己的说法是最多 24 小时）。
 
@@ -77,8 +77,8 @@ ELite 的输入是作者自己跑完 SLAM 并降采样后的 `pcd + poses.txt`�
 
 ```bash
 # 1) 数据（限流时用分块下载器）
-python3 work/gdrive_range_fetch.py 1jZJQQKLAFIvPAIda4a0LsfNrUVQsqVBK code/ELite/data/parkinglot/01.zip
-python3 work/gdrive_range_fetch.py 1WpqRhpLyCIUKhd_aFwm687POBhzHiXM6 code/ELite/data/parkinglot/02.zip
+python3 ../../tools/gdrive_range_fetch.py 1jZJQQKLAFIvPAIda4a0LsfNrUVQsqVBK code/ELite/data/parkinglot/01.zip
+python3 ../../tools/gdrive_range_fetch.py 1WpqRhpLyCIUKhd_aFwm687POBhzHiXM6 code/ELite/data/parkinglot/02.zip
 
 # 2) 跑官方两段 config（cwd 必须是 code/ELite，config 里是相对路径）
 cd code/ELite
@@ -102,7 +102,7 @@ python3 work/evaluate_alignment.py --a <01 的地图> --b <02 的地图> \
 
 作者的数据在 Google Drive 上，`gdown` / `uc?id=` 直接返回 2009 字节的
 `Google Drive - Quota exceeded`。**但带 `Range:` 的请求照样返回真实字节**，
-所以 [`work/gdrive_range_fetch.py`](work/gdrive_range_fetch.py) 用 1 MB 分块 + 断点续传 + 退避重试把它拉完
+所以 [`../../tools/gdrive_range_fetch.py`](../../tools/gdrive_range_fetch.py) 用 1 MB 分块 + 断点续传 + 退避重试把它拉完
 （01: 382,569,530 B / 02: 373,153,485 B，与 Drive 上的声明尺寸一致）。
 这绕过的是**配额页**，不是权限 —— 文件本来就是公开的。
 

@@ -39,13 +39,17 @@ import open3d as o3d
 
 
 def nn_distances(src: np.ndarray, tgt: np.ndarray) -> np.ndarray:
-    tree = o3d.geometry.KDTreeFlann(o3d.geometry.PointCloud(
-        o3d.utility.Vector3dVector(tgt)))
-    out = np.empty(len(src))
-    for i, p in enumerate(src):
-        _, _, d2 = tree.search_knn_vector_3d(p, 1)
-        out[i] = np.sqrt(d2[0])
-    return out
+    """Nearest-neighbour distance from every point of `src` into `tgt`.
+
+    Open3D's `compute_point_cloud_distance` is the same query as a per-point
+    `KDTreeFlann.search_knn_vector_3d` loop, but vectorised in C++ - the Python
+    loop took tens of minutes on a multi-million-point session map, this takes
+    seconds. The numbers are identical (both report the distance to the single
+    nearest neighbour), so the metric stays the paper's.
+    """
+    src_pcd = o3d.geometry.PointCloud(o3d.utility.Vector3dVector(src))
+    tgt_pcd = o3d.geometry.PointCloud(o3d.utility.Vector3dVector(tgt))
+    return np.asarray(src_pcd.compute_point_cloud_distance(tgt_pcd))
 
 
 def metrics(a_pts: np.ndarray, b_pts: np.ndarray, sigma: float):

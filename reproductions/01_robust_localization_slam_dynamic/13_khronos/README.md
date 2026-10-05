@@ -11,11 +11,23 @@
 | 为什么在这 | **官方要求 Ubuntu 24.04 + ROS 2 Jazzy —— 正是本机**（`lsb_release`：Ubuntu 24.04.4，`/opt/ros/jazzy`），而且仓库**自带评测套件**，能出与论文同格式的表；任务书 §2 难点 4 的核心参考 |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM（4D 时空地图 + 变化检测） |
 | 任务书对应 | §2 难点 4 高变动场景的地图维护；§4.1 地图更新策略（「删什么、什么时候删」） |
-| 复现状态 | ⬜ 未开始（已检查：仓库/数据可达，依赖明确；**作者自述 ROS 2 版仍在开发、不稳定**） |
+| 复现状态 | 🟡 **工作区已编译、数据已下载、无头驱动已就绪，待跑**：29 个包全部 `colcon build` 通过（含 `khronos`/`khronos_ros`/`khronos_eval`）；`tesse_cd_apartment` bag（10.3 GB）与四份 GT 已下齐；本机无显示器，加了一个把 `start_visualizer` 透传到内层 launch 的补丁 |
 
 | 复现顺序 | 12 |
-| 能否复现 | 🟡 能，但是本清单里最重的一个：`vcs import` 拉一个 ROS 2 工作区（Hydra/spark_dsg 等一系列依赖）+ `colcon build`，再跑 GDrive 上的 bag；换来的是**官方评测脚本直接产出论文那张表**。 |
-| 复现完成 | ☐ 待做 |
+| 能否复现 | ✅ **能，而且环境正好命中**：Ubuntu 24.04 + ROS 2 Jazzy 就是官方要求的组合，`colcon build` 已在本机跑通；数据（模拟 bag + GT）与评测套件都是官方直链。剩下的是跑一遍 + 用官方 `evaluate_pipeline.sh` 出表。 |
+| 复现完成 | ☐ 待做（工作区/数据/驱动 ✅，未跑） |
+
+## 已经落地的东西（2026-10-05）
+
+| 项 | 状态 |
+| :--- | :--- |
+| ROS 2 工作区 | `code/` 下 29 个包装成（`install/` 里含 `khronos`、`khronos_ros`、`khronos_eval`、`hydra`、`kimera_pgmo`、`spark_dsg`…）|
+| 系统依赖 | GTSAM 4.2 装在 `reproductions/.venvs/gtsam42`（conda-forge，无 sudo），构建时用 `-Dgtsam_DIR=...`；另加了 `-include cstdint -include type_traits`（新 GCC 下上游缺头）与 `-ltbb` |
+| 数据 | `data/datasets/tesse_cd_apartment/`（10.3 GB bag，话题与 launch 里的 `/tesse/*` 逐条对上，含 GT 语义 `/tesse/seg_cam/converted/image_raw`）；`data/raw/gt_apartment/` 四份 GT（尺寸与 Drive 声明一致） |
+| GDrive 下载 | 两个数据文件夹都用 [`../../tools/gdrive_range_fetch.py`](../../tools/gdrive_range_fetch.py) 分块拉（普通下载会被 Drive 的按文件配额挡住） |
+| 无头启动补丁 | [`work/local_patches.patch`](work/local_patches.patch)：上游把可视化和 rviz 都挂在 `start_visualizer` 上，**但没从 `uhumans2_khronos.launch.yaml` 透传**，导致命令行关不掉 —— 补一个 arg 转发，算法零改动 |
+| 评测配置 | [`work/eval_apartment.yaml`](work/eval_apartment.yaml)：上游把 GT 路径写死在 `/data/datasets/...`（容器布局），本机无 `/data` 也无 root，只改这三条路径，其余阈值/检测器/评测项全部保留上游值 |
+| 运行驱动 | [`work/run_khronos.sh`](work/run_khronos.sh)：无头 `ros2 launch` → 等 bag 播完 → 调 `/khronos_node/experiment/finish_mapping_and_save` → 等 `final.4dmap` |
 
 ## 为什么它排在 ELite / ORB-SLAM3 之后
 
@@ -37,3 +49,14 @@
 > ⚠️ 语义推理（`semantic_inference`）是**可选**的：模拟数据集默认用真值语义标签，
 > 真实数据集用预录的分割话题 —— 也就是说**没有 GPU / 没有 TensorRT 也能跑通主线**，
 > 只是不能用在线开放集分割。这一点复现时要写清楚。
+
+## 与论文表格的对照目标
+
+官方评测套件 `khronos_eval` 会直接打出论文同格式的表（README 里给的示例行就是 tesse_cd 两个场景）：
+
+| Data | Accuracy@0.2 | Completeness@0.2 | F1@0.2 | ObjectF1 | DynamicF1 | ChangeF1 |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: |
+| apartment（论文/上游 README 示例） | 99.9 | 91.9 | 95.5 | 53.1 | 49.5 | 47.8 |
+| office（同上） | 99.3 | 77.0 | 84.1 | 54.8 | 41.4 | 51.7 |
+
+复现目标是 **apartment 这一行**：跑官方 pipeline → `khronos_eval` 出表 → 对上这六个数。
