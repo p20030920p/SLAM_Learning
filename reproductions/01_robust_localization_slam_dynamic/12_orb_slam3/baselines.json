@@ -1,0 +1,40 @@
+{
+  "reproduction": "01-12",
+  "paper": "ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM (T-RO 2021)",
+  "recorded": "2026-10-05T19:30:19+08:00",
+  "recorded_with": "reproduce.py: Examples/Stereo-Inertial/stereo_inertial_euroc on EuRoC MH_01 (ASL format, from the HuggingFace mirror), evaluated with the repository's own evaluation/evaluate_ate_scale.py against evaluation/Ground_truth/EuRoC_imu/MH_GT.txt",
+  "rel_tolerance": 0.1,
+  "abs_tolerance": 0.01,
+  "note": "Table II, p.7: stereo-inertial RMS ATE on EuRoC MH01 = 0.036 m. Three runs of the same command on this machine gave 0.0454 / 0.0351 / 0.0416 m - one matches the paper almost exactly and the spread brackets it, which is what a multithreaded SLAM system does. The baseline is the first run because run_all.py re-runs and backtests it; the tolerance is wide enough to cover the measured spread.",
+  "paper_reported": {
+    "EuRoC_MH01_stereo_inertial_rmse_ate_m": 0.036,
+    "source": "Table II, p.7",
+    "status": "REPRODUCED on CPU (0.0351-0.0454 m over three runs)"
+  },
+  "metrics": {
+    "euroc_mh01_rmse_ate_m": 0.045423,
+    "euroc_mh01_rmse_ate_scale_corrected_m": 0.024724,
+    "euroc_mh01_matched_pairs": 3638,
+    "paper_rmse_ate_m": 0.036
+  },
+  "checks_expected": [
+    "runs_without_gpu_or_display",
+    "ate_is_within_the_paper_spread"
+  ],
+  "findings_expected": [
+    "cpu_only_stereo_inertial_slam_is_possible_here",
+    "run_to_run_spread_of_a_multithreaded_slam",
+    "the_paper_reports_the_full_trajectory_without_scale_correction"
+  ],
+  "environment": {
+    "gpu": "none - the CUDA compiler is not even installed for this folder",
+    "display": "none - stereo_inertial_euroc.cc:132 passes bUseViewer=false",
+    "build": "Pangolin v0.8 built against conda GLFW (-DBUILD_PANGOLIN_FFMPEG=OFF, -include cstdint -include type_traits); ORB-SLAM3 CMakeLists patched from -std=c++11 to -std=c++14",
+    "eval_script_patch": "upstream's evaluation/*.py is Python 2: the print statements and two dict-view calls were ported (see work/local_patches.patch)"
+  },
+  "run_to_run_spread_m": [
+    0.0454,
+    0.0351,
+    0.0416
+  ]
+}

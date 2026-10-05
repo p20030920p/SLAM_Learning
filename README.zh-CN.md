@@ -41,7 +41,7 @@
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— ☑ 8 · ◐ 2 · ☐ 3 · ⛔ 8（共 21） · 更新于 2026-10-05 18:12 CST
+**按「越好复现 + 越能对上原库结果」排序** —— ☑ 9 · ◐ 2 · ☐ 2 · ⛔ 8（共 21） · 更新于 2026-10-05 19:30 CST
 
 | # | ✓ | 复现库 | 对应论文 | 能不能复现（一句话） |
 | :-- | :-- | :-- | :-- | :-- |
@@ -55,7 +55,7 @@
 | 01-10 | ☑ | [cocel-postech/genz-icp](https://github.com/cocel-postech/genz-icp) | [arXiv:2411.06766](https://arxiv.org/abs/2411.06766) | ✅ 能：`pip install genz-icp pyyaml` + 已经在手的 KITTI 00–10，跑 `kitti.yaml` 预调参数即出论文表 III。 |
 | 01-09 | ◐ | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) | 🟡 半能：要 ROS 1 + MulRan（需注册）+ 先有 SC-LIO-SAM 会话；仓库只有 ltremovert 半边，lt-map 无代码。 |
 | 01-11 | ☐ | [dongjae0107/ELite](https://github.com/dongjae0107/ELite) | [arXiv:2502.13452](https://arxiv.org/abs/2502.13452) | 🟡 能：`python3.10 + open3d 0.18 + loguru`，跑官方 `run_elite.py`（两段 config：先建 01 的图，再把 02 对齐上去），再用官方定义算 AC/RMSE/CD 对表 I；纯 CPU（CUDA 只用于可选的加速匹配）。 |
-| 01-12 | ☐ | [UZ-SLAMLab/ORB_SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) | [arXiv:2007.11898](https://arxiv.org/abs/2007.11898) | ✅ **能，而且完全不需要 GPU**：自编 Pangolin(v0.8) + ORB-SLAM3，跑 `stereo_inertial_euroc`，再用**仓库自带的** `evaluation/evaluate_ate_scale.py` 对表 II。 |
+| 01-12 | ☑ | [UZ-SLAMLab/ORB_SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) | [arXiv:2007.11898](https://arxiv.org/abs/2007.11898) | ✅ **能，而且完全不需要 GPU**：自编 Pangolin(v0.8) + ORB-SLAM3，跑 `stereo_inertial_euroc`，再用**仓库自带的** `evaluation/evaluate_ate_scale.py` 对表 II。 |
 | 01-13 | ☐ | [MIT-SPARK/Khronos](https://github.com/MIT-SPARK/Khronos) | [arXiv:2402.13817](https://arxiv.org/abs/2402.13817) | 🟡 能，但是本清单里最重的一个：`vcs import` 拉一个 ROS 2 工作区（Hydra/spark_dsg 等一系列依赖）+ `colcon build`，再跑 GDrive 上的 bag；换来的是**官方评测脚本直接产出论文那张表**。 |
 | 02-01 | ◐ | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) | 🟡 半能：仓库只有数据集 + 工具（数据要签协议），三个二进制可跑，没有方法代码。 |
 | 02-06 | ⛔ | [MIT-SPARK/Clio](https://github.com/MIT-SPARK/Clio) | [arXiv:2404.13696](https://arxiv.org/abs/2404.13696) | ⛔ 按论文规模不现实：FastSAM + CLIP ViT-L 在 CPU 上每分钟只能处理少量帧，而论文是对整段 Replica 序列建图。**注意**：TensorRT 是可选的（README 明说不是必须），所以卡住的不是「有没有 GPU」这一句话，而是 CPU 的吞吐。 |

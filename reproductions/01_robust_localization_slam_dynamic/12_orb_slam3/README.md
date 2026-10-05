@@ -11,11 +11,11 @@
 | 为什么在这 | 任务书 §0.1 的实物是 **D435i（双目 IR + 深度 + BMI055 IMU）**，而本目录此前 17 个复现**没有一个吃这套配置**。ORB-SLAM3 仓库自带 **`Examples/Stereo-Inertial/stereo_inertial_realsense_D435i`** 例子和 `RealSense_D435i.yaml`，是最短的一条「对上实物相机半边」的路 |
 | 方向 | D1 · 传感器半边（VIO）；同时补上 [`../../NOTES.md`](../../NOTES.md) 里点名的空白 |
 | 任务书对应 | §0.1 传感器设定；§2 难点 3/7 的视觉惯性一半 |
-| 复现状态 | 🟡 **编译完成、正在跑**：Pangolin + ORB-SLAM3 已在本机编好（无需 sudo），EuRoC MH_01 双目惯性正在跑（纯 CPU） |
+| 复现状态 | 🟢 **已复现（纯 CPU）**：EuRoC MH_01 双目惯性三次运行 RMSE ATE = **0.0454 / 0.0351 / 0.0416 m**，论文表 II 是 **0.036 m** —— 最好的一次几乎命中，三次的散布正好把论文值夹在中间 |
 
 | 复现顺序 | 11 |
 | 能否复现 | ✅ **能，而且完全不需要 GPU**：自编 Pangolin(v0.8) + ORB-SLAM3，跑 `stereo_inertial_euroc`，再用**仓库自带的** `evaluation/evaluate_ate_scale.py` 对表 II。 |
-| 复现完成 | ☐ MH_01 正在跑（并发的 3 个进程已收成 1 个），跑完填 ATE |
+| 复现完成 | ☑ 2026-10-05 · MH_01 RMSE ATE 0.035–0.045 m（论文 0.036 m），用仓库自带的评测脚本 |
 
 ## 为什么它值得单独一条复现
 
@@ -81,3 +81,54 @@ python3 work/evaluate_ate.py --run-dir results/run_mh01 --gt-seq MH01 \
 
 论文表 II 的脚注写明是「与 **processed GT** 比较」，`evaluation/Ground_truth/EuRoC_imu/MH_GT.txt`
 就是那份 GT —— 所以评测口径直接沿用作者的工具与真值，坐标/单位/对齐方式都不需要我们猜。
+
+
+## 结果 Results（纯 CPU）
+
+```bash
+cd results/run_mh01 && ../../code/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc \
+  ../../code/ORB_SLAM3/Vocabulary/ORBvoc.txt \
+  ../../code/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml \
+  ../../data/raw ../../code/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC_TimeStamps/MH01.txt dataset-MH01
+```
+
+三次同样的命令、同样的数据（ORB-SLAM3 是多线程的，结果本身就会抖）：
+
+| 运行 | RMSE ATE（全轨迹） | 尺度校正后 | 匹配上的位姿对 |
+| :-- | --: | --: | --: |
+| run 1 | 0.0454 m | 0.0247 m | 3638 |
+| **run 2** | **0.0351 m** | 0.0225 m | 3638 |
+| run 3 | 0.0416 m | 0.0237 m | 3570 |
+| **论文表 II（MH01，双目惯性）** | **0.036 m** | — | — |
+
+**判读**：
+
+1. **论文那个数复现出来了**：run 2 的 0.0351 m 与论文 0.036 m 只差 1 mm；
+   三次的散布（0.035–0.045）把论文值夹在中间。**只报最好的一次是挑数据，只报最差的一次也是**，
+   所以三次都列出来。
+2. **两条曲线口径不同**：上游评测脚本同时给出「不做尺度校正」与「做尺度校正」两列
+   （0.0454 vs 0.0247）。双目惯性里尺度是可观测的，选哪列会差一倍；
+   论文表 II 的脚注写的是「all the frames in the trajectory, comparing with the processed GT」，
+   所以这里以**不做尺度校正**的全轨迹为主列。
+3. **整条链路没有 GPU、没有显示器、没有 ROS、没有 sudo**：Pangolin v0.8 用 conda 的 GLFW 自己编，
+   ORB-SLAM3 自包含编译，例子本身就是 `bUseViewer=false`。
+   代价只是**墙钟时间**（3682 帧双目约 4 分钟），不是硬件门槛。
+
+### 一个上游的坑（值得记下来）
+
+序列路径给错的时候（例如指到不存在的目录），程序**不会报错，而是卡死在 100% CPU 上空转**。
+原因在 `Examples/Stereo-Inertial/stereo_inertial_euroc.cc` 的 `LoadIMU`：
+
+```cpp
+while(!fImu.eof()){
+    string s; getline(fImu,s);
+    if (s[0] == '#') continue;   // 文件打不开 -> getline 立刻失败 -> s 为空 -> s[0] 是 UB
+    ...
+}
+```
+
+文件打开失败时 `failbit` 置位而 `eofbit` 没有，`getline` 每次立即返回空串，循环不退出。
+我们一开始就踩了这个：把序列目录写成 `data/raw/MH_01_easy`（实际解压出来是 `data/raw/mav0`），
+于是白等了 60 分钟。**用 strace 看 `openat` 的返回值**才定位到
+（`openat(.../mav0/imu0/data.csv) = -1 ENOENT`）。
+教训：这种「不报错只空转」的失败模式，只能靠看系统调用或 IO 计数发现。
