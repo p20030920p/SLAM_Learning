@@ -24,6 +24,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import gc
 import importlib.util
 import json
 import os
@@ -71,7 +72,23 @@ def images(split, limit=None):
     return [os.path.join(d, f) for f in (names[:limit] if limit else names)]
 
 
-def extract(fnames, model, layer, facet, num_c, domain, device, cache):
+def build_models(model, layer, facet, num_c, domain, device):
+    """Load the extractor and the authors' vocabulary once for both splits.
+
+    Loading ViT-G/14 twice (once per split) peaks at two copies of a 4.5 GB model
+    and got the first attempt OOM-killed between the splits; one instance is
+    enough and keeps the peak near a single model.
+    """
+    demo = load_module(os.path.join(REPO, "demo", "utilities.py"), "anyloc_demo_utils")
+    extractor = demo.DinoV2ExtractFeatures(model, layer, facet, device=device)
+    c_centers_file, _spec = vocab_path(model, layer, facet, num_c, domain)
+    vlad = demo.VLAD(num_c, desc_dim=None, cache_dir=os.path.dirname(c_centers_file))
+    vlad.fit(None)
+    print(f"  vocabulary: {os.path.relpath(c_centers_file, FOLDER)} ({num_c} clusters)")
+    return extractor, vlad
+
+
+def extract(fnames, extractor, vlad, device, cache):
     """Descriptor extraction, exactly the demo's preprocessing."""
     import numpy as np
     import torch
@@ -91,14 +108,6 @@ def extract(fnames, model, layer, facet, num_c, domain, device, cache):
         arr = np.load(part)
         done = int(arr.shape[0])
         print(f"  resuming after {done} images from {os.path.basename(part)}")
-
-    demo = load_module(os.path.join(REPO, "demo", "utilities.py"), "anyloc_demo_utils")
-    extractor = demo.DinoV2ExtractFeatures(model, layer, facet, device=device)
-    c_centers_file, _spec = vocab_path(model, layer, facet, num_c, domain)
-    vlad = demo.VLAD(num_c, desc_dim=None, cache_dir=os.path.dirname(c_centers_file))
-    vlad.fit(None)
-    print(f"  vocabulary: {os.path.relpath(c_centers_file, FOLDER)} "
-          f"({num_c} clusters)")
 
     base_tf = tvf.Compose([tvf.ToTensor(),
                            tvf.Normalize(mean=[0.485, 0.456, 0.406],
@@ -153,10 +162,13 @@ def main():
 
     tag = f"{args.model}_l{args.layer}_{args.facet}"
     cache_dir = os.path.join(HERE, "descs")
-    db = extract(db_files, args.model, args.layer, args.facet, args.num_c, args.domain,
-                 device, os.path.join(cache_dir, f"{tag}_17places_db.npy"))
-    qu = extract(qu_files, args.model, args.layer, args.facet, args.num_c, args.domain,
-                 device, os.path.join(cache_dir, f"{tag}_17places_query.npy"))
+    extractor, vlad = build_models(args.model, args.layer, args.facet, args.num_c,
+                                   args.domain, device)
+    db = extract(db_files, extractor, vlad, device,
+                 os.path.join(cache_dir, f"{tag}_17places_db.npy"))
+    gc.collect()
+    qu = extract(qu_files, extractor, vlad, device,
+                 os.path.join(cache_dir, f"{tag}_17places_query.npy"))
 
     # The paper's recall function, unmodified.
     sys.path.insert(0, REPO)
