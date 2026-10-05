@@ -67,6 +67,38 @@ git clone https://github.com/AnyLoc/AnyLoc code/
 # 按仓库 README 用 VPR-datasets-downloader 拉数据，再跑 demo
 ```
 
+## 复现怎么跑（本机，纯 CPU）
+
+```bash
+# 1) 图片：作者 OneDrive 的公开 release 现在跳登录页，改用同一作者组在 Revisit Anything
+#    README 里挂的 Box 镜像（17places_only_dataset.zip，64,078,223 B）
+curl -L -o data/raw/17places_only_dataset.zip \
+  "https://adelaideuniversity.app.box.com/index.php?rm=box_download_shared_file&shared_name=199q2lpvy3psm5qgfagvh25r9c51ey6b&file_id=f_1677165155027"
+# 2) 词表：作者官方 HF Space（他们 README 挂的 demo）里的 dinov2_vitg14/l31_value_c32/indoor/c_centers.pt
+#    —— 197,425 B，32 簇 × 1536 维，正好是 ViT-G14 的隐藏维度，尺寸自证配置
+# 3) 权重：dl.fbaipublicfiles.com 本机实测 1.3 kB/s（84 MB 要 18 小时），改用 Meta 官方 HF 镜像转换
+python3 work/fetch_dinov2_weights.py dinov2_vitg14     # 转换 + 双重校验后才落盘
+# 4) 跑
+python3 work/run_17places.py                          # ~14.5 s/张，812 张约 3.3 h，每 25 张落一次盘
+```
+
+### 为什么权重那一步要自己转换（以及怎么证明它是对的）
+
+`torch.hub.load('facebookresearch/dinov2', 'dinov2_vitg14')` 会去 `dl.fbaipublicfiles.com` 取 4.23 GB 的 `.pth`。
+本机实测该源 **1.3 kB/s**（ViT-S 的 84 MB 都要 18 小时），而 HuggingFace 上 Meta 官方镜像有 **20 MB/s**。
+所以 [`work/fetch_dinov2_weights.py`](work/fetch_dinov2_weights.py) 把 HF 的命名（`q_proj/k_proj/v_proj`、`down/gate/up_proj`）
+还原成作者代码要的命名（`attn.qkv`、SwiGLU 的 `mlp.w12/w3`），**权重本身不变，只改键名**。
+
+转换必须自证，脚本因此在落盘后跑两道校验，任何一道不过就**自动删除**文件：
+
+| 校验 | 结果 |
+| :--- | :--- |
+| 作者自己的加载器（`vit_giant2` + `swiglufused`）严格加载 | **0 缺失 / 0 多余**，567 个张量、**1136 M 参数**（论文说 1.1 B） |
+| 与 transformers 独立实现逐块比对（[`work/check_dinov2_conversion.py`](work/check_dinov2_conversion.py)） | 第 0 块余弦 **0.999981** → 第 39 块 **0.995534** |
+
+第二道要解释一下：两个 fp32 实现跑 40 层网络本来就会漂移，**平滑衰减**是数值累积的特征；
+如果是键名接错（比如 SwiGLU 的两半调换），第 0 块就会崩掉——而那里是 0.999981。
+
 ## 坑与注意 Pitfalls
 
 - 数据集下载器拉的是外链，**先小规模验证一条**再全量下。
