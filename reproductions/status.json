@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-06T01:18:49+08:00",
+  "generated": "2026-10-06T01:23:33+08:00",
   "root": "reproductions",
   "summary": {
     "total": 21,
@@ -7,7 +7,7 @@
     "failed": 0,
     "blocked": 9,
     "planned": 0,
-    "ran_this_pass": 12
+    "ran_this_pass": 0
   },
   "reproductions": [
     {
@@ -17,8 +17,8 @@
       "folder": "01_dynamicmap_benchmark",
       "path": "reproductions/01_robust_localization_slam_dynamic/01_dynamicmap_benchmark",
       "title": "A Dynamic Points Removal Benchmark in Point Cloud Maps",
-      "venue": "**ITSC 2023**（arXiv:2307.07260）",
-      "static_status": "🟡 地基已跑通（数据 + 评测器 + 交叉验证）；四个方法的数字待跑",
+      "venue": "",
+      "static_status": "",
       "heading": "01-01 · DynamicMap_Benchmark",
       "verdict": "✅ 能：官方评测脚本 + Zenodo 免注册数据 `00.zip`，出论文里那张方法对比表。",
       "tick": "☑ 2026-10-05 · 评测器与四条基线均已跑",
@@ -27,7 +27,7 @@
       "repo_url": "https://github.com/KTH-RPL/DynamicMap_Benchmark",
       "paper_label": "arXiv:2307.07260",
       "paper_url": "https://arxiv.org/abs/2307.07260",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "frames": 141,
         "gt_points": 17362230,
@@ -157,6 +157,7 @@
         "results/observability_strata.json",
         "results/observability_strata.png"
       ],
+      "level": "green",
       "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements; false removals stratified by observability: 50.8x at never-seen vs always-seen points",
       "backtest": {
         "status": "ok",
@@ -322,8 +323,7 @@
           "obs_ratio_low_over_high_uncleaned_0p2m_density_control"
         ],
         "baseline_recorded": "2026-10-05T01:12:18+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-02",
@@ -332,8 +332,8 @@
       "folder": "02_kiss_icp",
       "path": "reproductions/01_robust_localization_slam_dynamic/02_kiss_icp",
       "title": "KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way",
-      "venue": "**RA-L 2023**",
-      "static_status": "🟢 **已复现：官方 KITTI 00–10 全量 23,201 帧，均值 0.53 %，对上论文表 II 的 0.50 %**",
+      "venue": "",
+      "static_status": "",
       "heading": "01-02 · KISS-ICP",
       "verdict": "✅ 能：`pip install kiss-icp` + 官方 84.8 GB zip 里只取 00–10（43 GB，免注册），跑作者自己的 `eval/kitti.ipynb` 等价脚本即出论文表 II。",
       "tick": "☑ 2026-10-05 · 均值 0.53 %、逐序列与作者自己的 notebook 最大差 0.157 pp",
@@ -342,7 +342,7 @@
       "repo_url": "https://github.com/PRBonn/kiss-icp",
       "paper_label": "doi:10.1109/LRA.2023.3236571",
       "paper_url": "https://doi.org/10.1109/LRA.2023.3236571",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "kitti_mean_translation_error_pct": 0.5252,
         "kitti_mean_rotational_error_deg_per_m": 0.00147,
@@ -486,6 +486,7 @@
         "results/kiss_icp_kitti_official.json",
         "results/registration_utility.json"
       ],
+      "level": "green",
       "note": "official KITTI 00-10: mean relative translational error 0.53 % (paper 0.50 %), 23201 frames; downstream localizability rho(normalised AA, utility) = 0.7827 at level L2",
       "backtest": {
         "status": "ok",
@@ -933,8 +934,7 @@
           "kitti_seconds"
         ],
         "baseline_recorded": "2026-10-05T06:49:12+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-03",
@@ -943,8 +943,8 @@
       "folder": "03_erasor",
       "path": "reproductions/01_robust_localization_slam_dynamic/03_erasor",
       "title": "ERASOR: Egocentric Ratio of Pseudo Occupancy-Based Dynamic Object Removal for Static 3D Point Cloud Map Building",
-      "venue": "**RA-L 2021**",
-      "static_status": "🟢 **官方实现复现成功：PR/RR/F1 = 95.62 / 94.41 / 0.950**（论文表 II 93.98 / 97.08 / 0.955，作者自己在 master 上重跑是 95.79 / 95.64 / 0.957）",
+      "venue": "",
+      "static_status": "",
       "heading": "01-03 · ERASOR",
       "verdict": "✅ 能，但要 ROS 1（本机已用 micromamba 建好）：官方仓库跑通，对上论文表 II 的 PR/RR/F1。",
       "tick": "☑ 2026-10-05 · 官方实现 PR/RR/F1 = 95.62 / 94.41 / 0.950",
@@ -953,7 +953,7 @@
       "repo_url": "https://github.com/LimHyungTae/ERASOR",
       "paper_label": "arXiv:2103.04316",
       "paper_url": "https://arxiv.org/abs/2103.04316",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "published_PR": 93.979499,
         "published_RR": 97.080901,
@@ -1014,6 +1014,7 @@
         "results/score_published.json",
         "results/erasor_official/00_result.pcd"
       ],
+      "level": "green",
       "note": "official ERASOR on the authors' seq-00 snippet: PR/RR/F1 = 95.62/94.41/0.950 (paper Table II 93.98/97.081/0.955)",
       "backtest": {
         "status": "ok",
@@ -1168,8 +1169,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T03:05:00+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-04",
@@ -1178,8 +1178,8 @@
       "folder": "04_removert",
       "path": "reproductions/01_robust_localization_slam_dynamic/04_removert",
       "title": "Removert: Remove then Revert — Static Map Building in Challenging Environment",
-      "venue": "**IROS 2020**",
-      "static_status": "🟢 **官方实现跑通：SA/DA/AA = 99.62 / 89.25 / 94.29**（基准重实现只有 99.44 / 41.53 / 64.26）",
+      "venue": "",
+      "static_status": "",
       "heading": "01-04 · Removert",
       "verdict": "✅ 能，但要 ROS 1：官方仓库跑通；原论文没有数字表，对上的是官方仓库自己的输出。",
       "tick": "☑ 2026-10-05 · 官方实现 SA/DA/AA = 99.62 / 89.25 / 94.29",
@@ -1188,7 +1188,7 @@
       "repo_url": "https://github.com/irapkaist/removert",
       "paper_label": "doi:10.1109/IROS45743.2020.9340856",
       "paper_url": "https://doi.org/10.1109/IROS45743.2020.9340856",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "official_SA": 99.6179,
         "official_DA": 89.2523,
@@ -1247,6 +1247,7 @@
         "results/score_official_mapside.json",
         "results/score_benchmark_port.json"
       ],
+      "level": "green",
       "note": "official Removert (irapkaist/removert) on KITTI 00: SA/DA/AA = 99.62/89.25/94.29; benchmark port 99.44/41.53/64.26",
       "backtest": {
         "status": "ok",
@@ -1394,8 +1395,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T02:45:00+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-05",
@@ -1404,8 +1404,8 @@
       "folder": "05_dufomap",
       "path": "reproductions/01_robust_localization_slam_dynamic/05_dufomap",
       "title": "DUFOMap: Efficient Dynamic Awareness Mapping",
-      "venue": "**RA-L 2024**",
-      "static_status": "🟢 **已复现：与论文 2 位小数完全一致**",
+      "venue": "",
+      "static_status": "",
       "heading": "01-05 · DUFOMap",
       "verdict": "✅ 能，而且最简单：`pip install dufomap` + KITTI 00 免注册数据，官方评测脚本直接出论文表 I。",
       "tick": "☑ 2026-10-05 · 与论文两位小数一致",
@@ -1414,7 +1414,7 @@
       "repo_url": "https://github.com/KTH-RPL/dufomap",
       "paper_label": "doi:10.1109/LRA.2024.3387658",
       "paper_url": "https://doi.org/10.1109/LRA.2024.3387658",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 97.9635,
         "DA": 98.7196,
@@ -1465,6 +1465,7 @@
         "results/dufomap_score_paper_default_dp1.json",
         "results/dufomap_score_benchmark_example_dp2.json"
       ],
+      "level": "green",
       "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
       "backtest": {
         "status": "ok",
@@ -1549,8 +1550,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:56:38+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-06",
@@ -1559,8 +1559,8 @@
       "folder": "06_beautymap",
       "path": "reproductions/01_robust_localization_slam_dynamic/06_beautymap",
       "title": "BeautyMap: Binary-Encoded Adaptable Ground Matrix for Dynamic Points Removal in Global Maps",
-      "venue": "**RA-L 2024**",
-      "static_status": "🟢 **已复现：命中论文表 I（96.76/98.38/97.56）**",
+      "venue": "",
+      "static_status": "",
       "heading": "01-06 · BeautyMap",
       "verdict": "✅ 能：官方仓库 `python main.py`，配同一套官方评测，命中论文表 I。",
       "tick": "☑ 2026-10-05 · 命中论文表 I",
@@ -1569,7 +1569,7 @@
       "repo_url": "https://github.com/MKJia/BeautyMap",
       "paper_label": "arXiv:2405.07283",
       "paper_url": "https://arxiv.org/abs/2405.07283",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 96.9529,
         "DA": 98.3382,
@@ -1610,6 +1610,7 @@
       "artifacts": [
         "results/beautymap_score.json"
       ],
+      "level": "green",
       "note": "BeautyMap on KITTI 00: SA/DA/HA = 96.95/98.34/97.64 vs paper 96.76/98.38/97.56",
       "backtest": {
         "status": "ok",
@@ -1680,8 +1681,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:06:29+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-07",
@@ -1715,8 +1715,8 @@
       "folder": "08_ngd_slam",
       "path": "reproductions/01_robust_localization_slam_dynamic/08_ngd_slam",
       "title": "NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU",
-      "venue": "**IROS 2025**",
-      "static_status": "🟢 **已复现：ATE 与 RPE-平移命中论文**；RPE-旋转有一处未解差异",
+      "venue": "",
+      "static_status": "",
       "heading": "01-08 · NGD-SLAM",
       "verdict": "✅ 能：官方代码明确「无 GPU」，TUM RGB-D 免注册直链，对上论文的 ATE / RPE 表。",
       "tick": "☑ 2026-10-05 · ATE 与 RPE-平移命中论文",
@@ -1725,7 +1725,7 @@
       "repo_url": "https://github.com/yuhaozhang7/NGD-SLAM",
       "paper_label": "arXiv:2405.07392",
       "paper_url": "https://arxiv.org/abs/2405.07392",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "ATE_rigid_m": 0.015709,
         "ATE_scaled_m": 0.013536,
@@ -1784,6 +1784,7 @@
       "artifacts": [
         "results/ngd_slam_rgbd_dataset_freiburg3_walking_xyz_trial1_CameraTrajectory.txt"
       ],
+      "level": "green",
       "note": "NGD-SLAM on TUM fr3/walking_xyz: ATE 0.0157 m vs paper 0.015 m; RPE trans 0.0201 m/s vs 0.02",
       "backtest": {
         "status": "ok",
@@ -1884,8 +1885,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:48:19+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-09",
@@ -1894,8 +1894,8 @@
       "folder": "09_lt_mapper",
       "path": "reproductions/01_robust_localization_slam_dynamic/09_lt_mapper",
       "title": "LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping",
-      "venue": "**ICRA 2022**",
-      "static_status": "🟢 **变化检测半边已跑通**（官方 `ltremovert`，KITTI 00 双会话切分，SA/DA/AA = 69.14/74.51/71.78）；**LT-map / delta-map 半边仓库里没有代码**，论文 85.7 MB / 9.8 s 不可复现；`ltslam` 需 GTSAM（本机未装，未安装任何东西）",
+      "venue": "",
+      "static_status": "",
       "heading": "01-09 · LT-mapper",
       "verdict": "🟡 半能：要 ROS 1 + MulRan（需注册）+ 先有 SC-LIO-SAM 会话；仓库只有 ltremovert 半边，lt-map 无代码。",
       "tick": "◐ 变化检测半边已跑通，建图半边仓库里没有",
@@ -1904,7 +1904,7 @@
       "repo_url": "https://github.com/gisbi-kim/lt-mapper",
       "paper_label": "arXiv:2107.07712",
       "paper_url": "https://arxiv.org/abs/2107.07712",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "SA": 69.1376,
         "DA": 74.5142,
@@ -2022,6 +2022,7 @@
         "work/local_patches.patch",
         "work/generated/params.yaml"
       ],
+      "level": "green",
       "note": "official ltremovert on a two-session KITTI 00 split (81 central + 29 query keyframes): SA/DA/AA = 69.14/74.51/71.78 on the coverage-matched GT (71.6% of GT static observable), 49.51/76.50 on the full 141-frame GT; LT-map/delta-map half of the paper is absent from the repo",
       "backtest": {
         "status": "ok",
@@ -2309,8 +2310,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T03:05:00+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-10",
@@ -2319,8 +2319,8 @@
       "folder": "10_genz_icp",
       "path": "reproductions/01_robust_localization_slam_dynamic/10_genz_icp",
       "title": "GenZ-ICP: Generalizable and Degeneracy-Robust LiDAR Odometry Using an Adaptive Weighting",
-      "venue": "**RA-L 2025**（arXiv:2411.06766）",
-      "static_status": "🟢 **已复现**：均值 **0.52 %**（论文表 III 0.51 %），23,201 帧；同数据 KISS-ICP 0.53 %",
+      "venue": "",
+      "static_status": "",
       "heading": "01-10 · GenZ-ICP",
       "verdict": "✅ 能：`pip install genz-icp pyyaml` + 已经在手的 KITTI 00–10，跑 `kitti.yaml` 预调参数即出论文表 III。",
       "tick": "☑ 2026-10-05 · 均值 0.52 %（论文 0.51 %，差 +0.01 pp）",
@@ -2329,7 +2329,7 @@
       "repo_url": "https://github.com/cocel-postech/genz-icp",
       "paper_label": "arXiv:2411.06766",
       "paper_url": "https://arxiv.org/abs/2411.06766",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "kitti_mean_translation_error_pct": 0.5193,
         "kitti_mean_rotational_error_deg_per_m": 0.00124,
@@ -2384,6 +2384,7 @@
       "artifacts": [
         "results/genz_icp_kitti.json"
       ],
+      "level": "green",
       "note": "official KITTI 00-10: mean relative translational error 0.52 % (paper 0.51 %), 23201 frames; KISS-ICP on the same data 0.53 %",
       "backtest": {
         "status": "ok",
@@ -2515,8 +2516,7 @@
           "kitti_seconds"
         ],
         "baseline_recorded": "2026-10-05T07:58:41+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-11",
@@ -2525,8 +2525,8 @@
       "folder": "11_elite",
       "path": "reproductions/01_robust_localization_slam_dynamic/11_elite",
       "title": "Ephemerality meets LiDAR-based Lifelong Mapping（代码仓库名 ELite）",
-      "venue": "**ICRA 2025**（arXiv:2502.13452）",
-      "static_status": "🟢 **已复现表 I**：官方两段 config 跑完（703 + 667 帧，纯 CPU），AC/RMSE/CD = **0.9708 / 0.0678 / 0.0902**（论文 0.969 / 0.090 / 0.133）—— AC 命中，RMSE/CD 更优",
+      "venue": "",
+      "static_status": "",
       "heading": "01-11 · ELite",
       "verdict": "🟡 能：`python3.10 + open3d 0.18 + loguru`，跑官方 `run_elite.py`（两段 config：先建 01 的图，再把 02 对齐上去），再用官方定义算 AC/RMSE/CD 对表 I；纯 CPU（CUDA 只用于可选的加速匹配）。",
       "tick": "☑ 2026-10-06 · 两步 config 跑完 + AC/RMSE/CD 算出并对上表 I（表 II 需注册数据，未做）",
@@ -2535,7 +2535,7 @@
       "repo_url": "https://github.com/dongjae0107/ELite",
       "paper_label": "arXiv:2502.13452",
       "paper_url": "https://arxiv.org/abs/2502.13452",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "AC": 0.9708,
         "RMSE_m": 0.0678,
@@ -2592,6 +2592,7 @@
         "results/alignment_session01_vs_session02.json",
         "results/alignment_session01_vs_lifelong02.json"
       ],
+      "level": "green",
       "note": "ELite on LT-ParkingLot sessions 01+02 (official two-config pipeline): AC 0.971 / RMSE 0.068 m / CD 0.090 m vs paper 0.969 / 0.09 / 0.133",
       "backtest": {
         "status": "ok",
@@ -2676,8 +2677,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-06T01:00:00+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-12",
@@ -2686,8 +2686,8 @@
       "folder": "12_orb_slam3",
       "path": "reproductions/01_robust_localization_slam_dynamic/12_orb_slam3",
       "title": "ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM",
-      "venue": "**T-RO 2021**（arXiv:2007.11898）",
-      "static_status": "🟢 **已复现（纯 CPU）**：EuRoC MH_01 双目惯性三次运行 RMSE ATE = **0.0454 / 0.0351 / 0.0416 m**，论文表 II 是 **0.036 m** —— 最好的一次几乎命中，三次的散布正好把论文值夹在中间",
+      "venue": "",
+      "static_status": "",
       "heading": "01-12 · ORB-SLAM3（双目惯性 / VIO 半边）",
       "verdict": "✅ **能，而且完全不需要 GPU**：自编 Pangolin(v0.8) + ORB-SLAM3，跑 `stereo_inertial_euroc`，再用**仓库自带的** `evaluation/evaluate_ate_scale.py` 对表 II。",
       "tick": "☑ 2026-10-05 · MH_01 RMSE ATE 0.035–0.045 m（论文 0.036 m），用仓库自带的评测脚本",
@@ -2696,7 +2696,7 @@
       "repo_url": "https://github.com/UZ-SLAMLab/ORB_SLAM3",
       "paper_label": "arXiv:2007.11898",
       "paper_url": "https://arxiv.org/abs/2007.11898",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "euroc_mh01_rmse_ate_m": 0.045423,
         "euroc_mh01_rmse_ate_scale_corrected_m": 0.024724,
@@ -2738,6 +2738,7 @@
       "artifacts": [
         "results/run_mh01/f_dataset-MH01.txt"
       ],
+      "level": "green",
       "note": "EuRoC MH_01 stereo-inertial on CPU: RMSE ATE 0.045423 m (paper 0.036 m), scale-corrected 0.024724 m",
       "backtest": {
         "status": "ok",
@@ -2775,8 +2776,7 @@
           "delta_vs_paper_m"
         ],
         "baseline_recorded": "2026-10-05T19:30:19+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-13",
@@ -2810,8 +2810,8 @@
       "folder": "01_3rscan",
       "path": "reproductions/02_semantic_mapping_visual_anchoring_navigation/01_3rscan",
       "title": "3RScan（数据集）—— 源自 RIO: 3D Object Instance Re-Localization in Changing Indoor Environments",
-      "venue": "**ICCV 2019**（数据集）；多会话重访标准集",
-      "static_status": "🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据",
+      "venue": "",
+      "static_status": "",
       "heading": "02-01 · 3RScan",
       "verdict": "🟡 半能：仓库只有数据集 + 工具（数据要签协议），三个二进制可跑，没有方法代码。",
       "tick": "◐ 工具已按官方说明跑通，待全量数据",
@@ -2820,7 +2820,7 @@
       "repo_url": "https://github.com/WaldJohannaU/3RScan",
       "paper_label": "arXiv:1908.06109",
       "paper_url": "https://arxiv.org/abs/1908.06109",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -2914,6 +2914,7 @@
         "results/observability.json",
         "results/observability.csv"
       ],
+      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -3096,8 +3097,7 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "02-02",

@@ -1,20 +1,49 @@
+<div align="center">
+
 # 01-04 · Removert
 
-| 项 Item | 内容 |
+**先删可疑点，再用多分辨率距离图像把误删的静态点回滚 —— 官方实现的 DA 比基准重实现高 47.7 个百分点，「Removert 最保守」是重实现的产物。**
+
+[![venue](https://img.shields.io/badge/venue-IROS%202020-22314E)](https://doi.org/10.1109/IROS45743.2020.9340856)
+![result](https://img.shields.io/badge/result-DA%2089.25%20vs%2041.53%20port-2ea043)
+[![code](https://img.shields.io/badge/code-irapkaist%2Fremovert-181717?logo=github&logoColor=white)](https://github.com/irapkaist/removert)
+![data](https://img.shields.io/badge/data-KITTI%2000%20%C2%B7%20Zenodo-1c7ed6)
+![compute](https://img.shields.io/badge/compute-ROS%201%20Noetic%20%C2%B7%20micromamba-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| 同一份 141 帧、同一个点级评测器 | SA | DA | AA |
+| :--- | ---: | ---: | ---: |
+| **官方仓库 irapkaist/removert** | **99.62** | **89.25** | **94.29** |
+| 基准里的重实现 | 99.44 | 41.53 | 64.26 |
+
+论文原文没有编号表格（作者仓库里的 PDF 全文 `TABLE` 命中 0 次），所以对标的是官方实现自己的输出。
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
+| 本机怎么跑 | ROS 1 Noetic（micromamba）· 官方 `removert_removert`，141 帧 **76 s** |
 | 论文 | Removert: Remove then Revert — Static Map Building in Challenging Environment |
-| Venue | **IROS 2020** |
 | 论文链接 | [doi:10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文没有编号表格（原因见下） |
 | 代码 | [irapkaist/removert](https://github.com/irapkaist/removert) ✅ **官方仓库已编译并跑通** |
 | 数据 | KITTI 00（DynamicMap_Benchmark 的 Zenodo 免注册包，141 帧） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4 高变动场景的地图维护；§6 并行实验 H1′（排名稳定性） |
-| 复现状态 | 🟢 **官方实现跑通：SA/DA/AA = 99.62 / 89.25 / 94.29**（基准重实现只有 99.44 / 41.53 / 64.26） |
-
 | 复现顺序 | 5 |
 | 能否复现 | ✅ 能，但要 ROS 1：官方仓库跑通；原论文没有数字表，对上的是官方仓库自己的输出。 |
 | 复现完成 | ☑ 2026-10-05 · 官方实现 SA/DA/AA = 99.62 / 89.25 / 94.29 |
+
+---
 
 ## 它做了什么 What it does
 
@@ -33,7 +62,7 @@
 - [ ] 交给 01-02，看回滚是否真的换来了更低的配准失败率（依赖 KITTI 完整序列）
 - [ ] 记录 revert 步骤单独删掉/救回了多少点（需要改上游参数跑两次）
 
-## 步骤 Steps（全部可重跑）
+## 怎么跑 How to run
 
 ```bash
 # 0. 一次性：ROS 1 Noetic 环境（本机是 ROS 2 Jazzy、无 sudo、无 Docker）
@@ -70,7 +99,7 @@ python3 reproductions/run_all.py --only 01-04
 > 所有补丁都在 [`work/local_patches.patch`](work/local_patches.patch)，只碰 API 兼容性，**不碰算法**。
 > `code/` 目录里是被打过补丁的上游源码，`git -C code/removert diff` 可复核。
 
-## 复现结果 Results（2026-10-05）
+## 复现结果 Results
 
 ### 一、官方实现 vs 基准重实现：同一份数据、同一个评测器
 

@@ -1,9 +1,39 @@
+<div align="center">
+
 # 01-12 · ORB-SLAM3（双目惯性 / VIO 半边）
 
-| 项 Item | 内容 |
+**视觉 / 视觉惯性 / 多地图 SLAM 的经典实现 —— 用官方 stereo-inertial 例子在 EuRoC 上跑出论文量级的 ATE，全程纯 CPU。**
+
+[![venue](https://img.shields.io/badge/venue-T--RO%202021-22314E)](https://arxiv.org/abs/2007.11898)
+![result](https://img.shields.io/badge/result-ATE%200.035--0.045%20m%20vs%200.036-2ea043)
+[![code](https://img.shields.io/badge/code-UZ--SLAMLab%2FORB__SLAM3-181717?logo=github&logoColor=white)](https://github.com/UZ-SLAMLab/ORB_SLAM3)
+![data](https://img.shields.io/badge/data-EuRoC%20MH__01%20%C2%B7%20HF%20mirror-1c7ed6)
+![compute](https://img.shields.io/badge/compute-CPU%20only%20%C2%B7%20no%20ROS-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| 指标（EuRoC MH_01，双目惯性） | 本文件夹（三次运行） | 论文表 II |
+| :--- | ---: | ---: |
+| RMSE ATE | **0.0454 / 0.0351 / 0.0416 m** | 0.036 m |
+
+为什么它值得单独一条：任务书 §0.1 的实物是 **D435i（双目 IR + 深度 + IMU）**，
+而此前 17 个复现**没有一个吃这套配置**；ORB-SLAM3 自带 `stereo_inertial_realsense_D435i`
+例子与 `RealSense_D435i.yaml`，是「对上实物相机半边」最短的一条路。
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
+| 本机怎么跑 | 纯 CPU · 自编 Pangolin v0.8 + ORB-SLAM3，**不需要 ROS**；EuRoC MH_01 三次运行 |
 | 论文 | ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM |
-| Venue | **T-RO 2021**（arXiv:2007.11898） |
 | 论文链接 | [arXiv:2007.11898](https://arxiv.org/abs/2007.11898) |
 | 论文报告值 | 表 II, p.7（EuRoC，**双目惯性**，RMS ATE / m）：MH01 **0.036**、MH02 0.033、MH03 0.035、MH04 0.051、MH05 0.082、V101 0.038、V102 0.014、V103 0.024、V201 0.032、V202 0.014、V203 0.024，**平均 0.035** |
 | 代码 | [UZ-SLAMLab/ORB_SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) ✅ GPL-3.0，**自包含 CMake，不需要 ROS** |
@@ -11,11 +41,11 @@
 | 为什么在这 | 任务书 §0.1 的实物是 **D435i（双目 IR + 深度 + BMI055 IMU）**，而本目录此前 17 个复现**没有一个吃这套配置**。ORB-SLAM3 仓库自带 **`Examples/Stereo-Inertial/stereo_inertial_realsense_D435i`** 例子和 `RealSense_D435i.yaml`，是最短的一条「对上实物相机半边」的路 |
 | 方向 | D1 · 传感器半边（VIO）；同时补上 [`../../NOTES.md`](../../NOTES.md) 里点名的空白 |
 | 任务书对应 | §0.1 传感器设定；§2 难点 3/7 的视觉惯性一半 |
-| 复现状态 | 🟢 **已复现（纯 CPU）**：EuRoC MH_01 双目惯性三次运行 RMSE ATE = **0.0454 / 0.0351 / 0.0416 m**，论文表 II 是 **0.036 m** —— 最好的一次几乎命中，三次的散布正好把论文值夹在中间 |
-
 | 复现顺序 | 11 |
 | 能否复现 | ✅ **能，而且完全不需要 GPU**：自编 Pangolin(v0.8) + ORB-SLAM3，跑 `stereo_inertial_euroc`，再用**仓库自带的** `evaluation/evaluate_ate_scale.py` 对表 II。 |
 | 复现完成 | ☑ 2026-10-05 · MH_01 RMSE ATE 0.035–0.045 m（论文 0.036 m），用仓库自带的评测脚本 |
+
+---
 
 ## 为什么它值得单独一条复现
 
@@ -29,7 +59,7 @@
 3. **任务书 §2 难点 7（连续时间/运动畸变）与难点 3（退化定位）**都要用到视觉惯性，
    而这一块此前是空白。
 
-## 复现计划 Steps
+## 怎么跑 How to run
 
 1. 装依赖（Pangolin、OpenCV、Eigen3、DBoW2/g2o 仓库自带），`./build.sh`；
 2. 解决 EuRoC 下载（本机实测 `robotics.ethz.ch` 不可达，需换镜像——**这一步先查清再动手**）；
@@ -83,7 +113,7 @@ python3 work/evaluate_ate.py --run-dir results/run_mh01 --gt-seq MH01 \
 就是那份 GT —— 所以评测口径直接沿用作者的工具与真值，坐标/单位/对齐方式都不需要我们猜。
 
 
-## 结果 Results（纯 CPU）
+## 复现结果 Results
 
 ```bash
 cd results/run_mh01 && ../../code/ORB_SLAM3/Examples/Stereo-Inertial/stereo_inertial_euroc \

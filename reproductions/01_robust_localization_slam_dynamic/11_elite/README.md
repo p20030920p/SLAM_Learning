@@ -1,9 +1,40 @@
+<div align="center">
+
 # 01-11 · ELite
 
-| 项 Item | 内容 |
+**给每个体素维护「临时性」标签，决定新会话的点该合并、该局部保留、还是该丢弃 —— 官方两段流程跑完，AC 命中论文表 I。**
+
+[![venue](https://img.shields.io/badge/venue-ICRA%202025-22314E)](https://arxiv.org/abs/2502.13452)
+![result](https://img.shields.io/badge/result-AC%200.971%20vs%200.969-2ea043)
+[![code](https://img.shields.io/badge/code-dongjae0107%2FELite-181717?logo=github&logoColor=white)](https://github.com/dongjae0107/ELite)
+![data](https://img.shields.io/badge/data-ParkingLot%20%C2%B7%20GDrive%20ranged-1c7ed6)
+![compute](https://img.shields.io/badge/compute-CPU%20%C2%B7%20py3.10%20%2B%20open3d%200.18-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| 指标（LT-ParkingLot 会话 01 vs 02） | 本文件夹 | 论文表 I（ELite） | 同表 ICP / LT-mapper |
+| :--- | ---: | ---: | ---: |
+| AC ↑ | **0.9708** | 0.969 | 0.962 / 0.968 |
+| RMSE [m] ↓ | **0.0678** | 0.090 | 0.117 / 0.121 |
+| CD [m] ↓ | **0.0902** | 0.133 | 0.194 / 0.175 |
+
+⚠️ 论文没写 Table I 比的是哪两张点云；换用合并后的 lifelong 图是 0.9989 / 0.0833 / 0.1377。
+两种配对都记进 `results/alignment_*.json`，不挑好看的报。
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
-| 论文 | Ephemerality meets LiDAR-based Lifelong Mapping（代码仓库名 ELite）|
-| Venue | **ICRA 2025**（arXiv:2502.13452） |
+| 本机怎么跑 | 纯 CPU · `.venvs/elite`（python 3.10 + open3d 0.18 + numpy<2）；两段 config 合计约 **3 h**，两条长任务串行跑 |
+| 论文 | Ephemerality meets LiDAR-based Lifelong Mapping（代码仓库名 ELite） |
 | 论文链接 | [arXiv:2502.13452](https://arxiv.org/abs/2502.13452) |
 | 论文报告值 | 表 I, p.5（LT-ParkingLot 地图对齐）：**AC 0.969 / RMSE 0.090 / CD 0.133**（对照 ICP 0.962/0.117/0.194、LT-mapper 0.968/0.121/0.175）<br>表 II（SemanticKITTI 动态点删除）另算，需要注册的 SemanticKITTI 真值 |
 | 代码 | [dongjae0107/ELite](https://github.com/dongjae0107/ELite) ✅ MIT，纯 Python |
@@ -11,20 +42,20 @@
 | 为什么在这 | 任务书 §2 难点 4「高变动场景的地图维护」；论文里**就是拿这个 ParkingLot 数据集做的主实验**，所以「复现」= 跑官方脚本 + 对上表 I 的 AC/RMSE/CD |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4；[`../09_lt_mapper/`](../09_lt_mapper/) 的同题对照（LT-mapper 是 ROS 1 + 需注册数据） |
-| 复现状态 | 🟢 **已复现表 I**：官方两段 config 跑完（703 + 667 帧，纯 CPU），AC/RMSE/CD = **0.9708 / 0.0678 / 0.0902**（论文 0.969 / 0.090 / 0.133）—— AC 命中，RMSE/CD 更优 |
-
 | 复现顺序 | 10 |
 | 能否复现 | 🟡 能：`python3.10 + open3d 0.18 + loguru`，跑官方 `run_elite.py`（两段 config：先建 01 的图，再把 02 对齐上去），再用官方定义算 AC/RMSE/CD 对表 I；纯 CPU（CUDA 只用于可选的加速匹配）。 |
 | 复现完成 | ☑ 2026-10-06 · 两步 config 跑完 + AC/RMSE/CD 算出并对上表 I（表 II 需注册数据，未做） |
 
-## 它做了什么 What it does（先记结论，复现时再逐行读代码）
+---
+
+## 它做了什么 What it does
 
 给多会话 LiDAR 地图里的每个体素维护一个「**临时性**」标签：区分
 **永久结构 / 半永久物体 / 临时物体（人、车、可移动物）**，据此决定新会话的点该
 合并进地图、还是只影响局部、还是丢弃。与 01-05 DUFOMap 的「可观测性」是同一族思路
 （都是「没看到 ≠ 不存在」），但判据是**跨会话的时间统计**而不是单次光线投射。
 
-## 复现计划 Steps
+## 怎么跑 How to run
 
 1. `conda/mamba create -n elite python=3.10`；`pip install -r requirements.txt`（含 `pygicp` 可选）；
 2. `bash scripts/download_parkinglot.sh`（Google Drive，免注册）；
@@ -73,7 +104,7 @@
 ELite 的输入是作者自己跑完 SLAM 并降采样后的 `pcd + poses.txt`。
 两者的结果不可互换 —— 用前者自己造位姿，等于换了输入，表 I 的 AC/RMSE/CD 就不再可比。
 
-## 复现计划 Steps
+## 怎么跑 How to run · 完整命令
 
 ```bash
 # 1) 数据（限流时用分块下载器）
@@ -123,7 +154,7 @@ python3 work/evaluate_alignment.py --a <01 的地图> --b <02 的地图> \
 另外 `viz_*: true` 会调 `draw_geometries()`，本机没有显示器，所以
 [`work/parkinglot_*_headless.yaml`](work/) 是**仅把 viewer 关掉**的 config 副本。
 
-## 复现结果 Results（2026-10-06）
+## 复现结果 Results
 
 **跑法**：官方两段 config（`parkinglot_first.yaml` → 会话 01 建图；`parkinglot.yaml` → 会话 02 对齐 + 更新），
 headless 副本只关掉 viewer；再用 [`work/evaluate_alignment.py`](work/evaluate_alignment.py)
@@ -151,7 +182,7 @@ headless 副本只关掉 viewer；再用 [`work/evaluate_alignment.py`](work/eva
 **还差什么**：论文表 II（SemanticKITTI 上的动态点删除 PR/RR/F1）需要注册的 SemanticKITTI 真值，本机没有；
 本文件夹复现的是表 I（作者自己的 ParkingLot 数据），这也是论文的主实验。
 
-## 记录 Log（补充）
+## 记录 Log
 
 | 日期 | 做了什么 | 结果 / 数字 | 结论 |
 | :--- | :--- | :--- | :--- |

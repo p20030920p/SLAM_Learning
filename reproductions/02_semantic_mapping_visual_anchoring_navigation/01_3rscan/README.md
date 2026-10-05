@@ -1,20 +1,49 @@
+<div align="center">
+
 # 02-01 · 3RScan
 
-| 项 Item | 内容 |
+**同房间多次扫描 + 物体重排标注的标准数据集 —— 用官方工具箱把 A/B 会话协议与「可观测性」判据落地。**
+
+[![venue](https://img.shields.io/badge/venue-ICCV%202019%20dataset-22314E)](https://arxiv.org/abs/1908.06109)
+![result](https://img.shields.io/badge/result-protocol%20%2B%20observability-2ea043)
+[![code](https://img.shields.io/badge/code-WaldJohannaU%2F3RScan-181717?logo=github&logoColor=white)](https://github.com/WaldJohannaU/3RScan)
+![data](https://img.shields.io/badge/data-public%20sample%20pair-1c7ed6)
+![compute](https://img.shields.io/badge/compute-CPU%20%C2%B7%20C%2B%2B%20tools-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| | 本文件夹 | 全量数据集 |
+| :--- | :--- | :--- |
+| 数据 | **1 对 A/B 会话**（51 帧 · 32 个物体） | 1482 scans / 478 场景 / 1004 rescan（需申请表） |
+| 已落地 | 官方三个二进制全跑通；A/B 协议 v1（容差 1.0 m，标定自实测噪声 0.639 m） | — |
+| 可观测性 | 9 可见 / 4 被遮挡 / 16 视场外；库的可见性分数与自写 OBB 估计器 **22/31 一致**（分歧处库对） |
+| 一条硬结论 | 最小真实位移 0.265 m **小于**最大对齐噪声 0.639 m → **纯几何分不开「移动」与「噪声」** | — |
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
+| 本机怎么跑 | 纯 CPU · 官方三个 C++ 二进制（`rio_example` / `align_poses` / `rio_renderer_render_all`） |
 | 论文 | 3RScan（数据集）—— 源自 RIO: 3D Object Instance Re-Localization in Changing Indoor Environments |
-| Venue | **ICCV 2019**（数据集）；多会话重访标准集 |
 | 论文链接 | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) ✅ 实测 200 |
 | 数据 | 3RScan 本体（需同意条款后下载），约 1.5k 次扫描 / 数百个房间 |
 | 方向 | D2 · 语义建图、视觉定位与导航 |
 | 任务书对应 | §4.1 地图更新策略；物体级变化检测题目的评测数据 |
-| 复现状态 | 🟢 已按库复现（三个二进制全部跑通）+ 协议/可观测性；待全量数据 |
-
 | 复现顺序 | 13 |
 | 能否复现 | 🟡 半能：仓库只有数据集 + 工具（数据要签协议），三个二进制可跑，没有方法代码。 |
 | 复现完成 | ◐ 工具已按官方说明跑通，待全量数据 |
+
+---
 
 ## 它做了什么 What it does
 
@@ -31,7 +60,7 @@
 - [ ] 写死二次访问协议：会话划分、真值类别（未变/移动/移除/新增/替换）、**容差半径**
 - [ ] 输出：协议文档 + 一对可用会话的数据清单
 
-## 步骤 Steps
+## 怎么跑 How to run
 
 1. 到仓库 README 指定入口申请/同意条款并下载
 2. 解压后先只处理**一个房间**，把 A/B 两次扫描的物体标注对齐成一张表
@@ -43,7 +72,7 @@
 - 标注是**扫描级**的，不是天然按「会话」组织，A/B 会话要自己组装 —— 这步是主要工作量。
 - 容差半径（判断「同一个物体」的位置阈值）必须写进报告，默认建议 0.5 m 并说明理由。
 
-## 复现结果 Results（2026-10-05）
+## 复现结果 Results
 
 ### 一、按库复现：把仓库自带的三个二进制跑起来
 

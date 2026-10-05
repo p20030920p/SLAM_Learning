@@ -1,20 +1,49 @@
+<div align="center">
+
 # 01-05 · DUFOMap
 
-| 项 Item | 内容 |
+**用光线投射显式建模遮挡，把「这次被挡住了」和「真的动了」分开 —— 与论文表 I 两位小数完全一致。**
+
+[![venue](https://img.shields.io/badge/venue-RA--L%202024-22314E)](https://doi.org/10.1109/LRA.2024.3387658)
+![result](https://img.shields.io/badge/result-exact%20match-2ea043)
+[![code](https://img.shields.io/badge/code-KTH--RPL%2Fdufomap-181717?logo=github&logoColor=white)](https://github.com/KTH-RPL/dufomap)
+![data](https://img.shields.io/badge/data-KITTI%2000%20%C2%B7%20Zenodo-1c7ed6)
+![compute](https://img.shields.io/badge/compute-CPU%20%C2%B7%20PyPI-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| 指标 | 本文件夹 | 论文表 I, p.5 |
+| :--- | ---: | ---: |
+| SA / DA / AA | **97.96 / 98.72 / 98.34** | 97.96 / 98.72 / 98.34 |
+
+⚠️ 上游示例脚本传的是 `d_p = 2` 并注释 "same with paper"，但论文默认值是 **`d_p = 1`**——
+只有 `d_p = 1` 才命中论文（`d_p = 2` 的 AA 只差 0.09，因为动态点只占 0.55 %）。
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
+| 本机怎么跑 | 纯 CPU · PyPI `dufomap==1.1.1` + `.venvs/dmb` |
 | 论文 | DUFOMap: Efficient Dynamic Awareness Mapping |
-| Venue | **RA-L 2024** |
 | 论文链接 | [doi:10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00，SA/DA/AA = **97.96 / 98.72 / 98.34** |
 | 代码 | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) ✅ 实测 200；本复现用 PyPI `dufomap==1.1.1` |
 | 数据 | KITTI sequence 00，经 DynamicMap_Benchmark 打包（[Zenodo 10886629](https://zenodo.org/records/10886629)，385 MB，**免注册**） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4；§4.1 删除判据里的「可观测性」 |
-| 复现状态 | 🟢 **已复现：与论文 2 位小数完全一致** |
-
 | 复现顺序 | 1 |
 | 能否复现 | ✅ 能，而且最简单：`pip install dufomap` + KITTI 00 免注册数据，官方评测脚本直接出论文表 I。 |
 | 复现完成 | ☑ 2026-10-05 · 与论文两位小数一致 |
+
+---
 
 ## 它做了什么 What it does
 
@@ -26,7 +55,7 @@
 
 ---
 
-## 复现结果 Results（2026-10-05）
+## 复现结果 Results
 
 ### 一、命中论文：SA/DA/AA 三位小数级一致
 

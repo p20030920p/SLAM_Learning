@@ -1,9 +1,39 @@
+<div align="center">
+
 # 01-02 · KISS-ICP
 
-| 项 Item | 内容 |
+**纯点对点 ICP 也能做到 SOTA 里程计（作者的主张）—— 在官方 KITTI 00–10 全量上复现到 0.53 %（论文 0.50 %），并把它当作 H1′ 的下游定位器。**
+
+[![venue](https://img.shields.io/badge/venue-RA--L%202023-22314E)](https://doi.org/10.1109/LRA.2023.3236571)
+![result](https://img.shields.io/badge/result-0.53%25%20vs%200.50%25%20paper-2ea043)
+[![code](https://img.shields.io/badge/code-PRBonn%2Fkiss--icp-181717?logo=github&logoColor=white)](https://github.com/PRBonn/kiss-icp)
+![data](https://img.shields.io/badge/data-KITTI%2000--10%20%C2%B7%2043%20GB%20%C2%B7%20no%20signup-1c7ed6)
+![compute](https://img.shields.io/badge/compute-CPU%20%C2%B7%20PyPI-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| 指标 | 本文件夹（KITTI 00–10，23,201 帧） | 论文表 II |
+| :--- | ---: | ---: |
+| 平均相对平移误差 | **0.53 %** | 0.50 % |
+| 每序列对照 | 与作者已执行 notebook 的逐序列值同表 | — |
+
+下游可用性（H1′ 第 1–2 项）：6 张清理后的地图 × 141 帧 × 4 档初值误差的配准实验，
+**ρ(归一化 AA, 定位效用) = 0.78**、**ρ(提交口径 AA) = 0.38** —— 两种排名不一致。
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
+| 本机怎么跑 | 纯 CPU · PyPI `kiss-icp` + `.venvs/dmb`；全量 KITTI 00–10 约 20 min |
 | 论文 | KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way |
-| Venue | **RA-L 2023** |
 | 论文链接 | [doi:10.1109/LRA.2023.3236571](https://doi.org/10.1109/LRA.2023.3236571) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00–10 平均相对平移误差 **0.50 %**（表 II, p.6） |
 | 代码 | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) ✅ 官方仓库；运行用 PyPI `kiss-icp==1.3.0` |
@@ -12,11 +42,11 @@
 | 原库自己的结果 | [`work/kiss_icp_notebook_reference.json`](work/kiss_icp_notebook_reference.json) —— 作者发布的**已执行 notebook** 里逐序列的数字（均值 0.50 %） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §6 并行实验里的「下游定位器」；§2 难点 4 的对照基线 |
-| 复现状态 | 🟢 **已复现：官方 KITTI 00–10 全量 23,201 帧，均值 0.53 %，对上论文表 II 的 0.50 %** |
-
 | 复现顺序 | 7 |
 | 能否复现 | ✅ 能：`pip install kiss-icp` + 官方 84.8 GB zip 里只取 00–10（43 GB，免注册），跑作者自己的 `eval/kitti.ipynb` 等价脚本即出论文表 II。 |
 | 复现完成 | ☑ 2026-10-05 · 均值 0.53 %、逐序列与作者自己的 notebook 最大差 0.157 pp |
+
+---
 
 ## 它做了什么 What it does
 
@@ -39,7 +69,7 @@
 前面四个清理方法（01-03…01-06）的输出，最终都要喂给它来测"配准失败率"。
 **没有它，H1′ 只有一半。**
 
-## 复现结果 Results（2026-10-05）
+## 复现结果 Results
 
 ### 一、怎么拿到论文用的数据
 

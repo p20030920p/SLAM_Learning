@@ -1,20 +1,48 @@
+<div align="center">
+
 # 01-09 · LT-mapper
 
-| 项 Item | 内容 |
+**多会话长期建图：多会话对齐 → 高/低动态变化检测 → 正负变化管理 —— 仓库只有变化检测半边，跑通并量化了它的覆盖度代价。**
+
+[![venue](https://img.shields.io/badge/venue-ICRA%202022-22314E)](https://arxiv.org/abs/2107.07712)
+![result](https://img.shields.io/badge/result-change--detection%20half%20only-d29922)
+[![code](https://img.shields.io/badge/code-gisbi--kim%2Flt--mapper-181717?logo=github&logoColor=white)](https://github.com/gisbi-kim/lt-mapper)
+![data](https://img.shields.io/badge/data-KITTI%2000%20two--session%20split-1c7ed6)
+![compute](https://img.shields.io/badge/compute-ROS%201%20Noetic%20%C2%B7%20no%20GTSAM-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| | 本文件夹 |
 | :--- | :--- |
+| 变化检测半边（官方 `ltremovert`） | SA/DA/AA = **69.14 / 74.51 / 71.78**（覆盖度匹配 GT；未清理对照只有 99.44 / 1.65） |
+| 论文的 delta-map 数字 | 85.7 MB / 9.8 s —— **仓库里没有 LT-map 模块**（全仓库 grep `delta_map` 0 命中），任何环境都复现不了 |
+| 一半的代价 | 只有 71.6 % 的 GT 静态点被这两段会话观测到，所以这一行**不能**与兄弟复现的行直接比 |
+
+## 关键设定 Settings
+
+| 项 | 内容 |
+| :--- | :--- |
+| 本机怎么跑 | ROS 1 Noetic（micromamba）· 官方 `ltremovert`（不链接 GTSAM），一次约 **40 s** |
 | 论文 | LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping |
-| Venue | **ICRA 2022** |
 | 论文链接 | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) ✅ 实测 200 |
 | 数据 | MulRan / KITTI（多会话序列） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4 地图维护；car.md 难点 3「终身 SLAM」与参考库 |
-| 复现状态 | 🟢 **变化检测半边已跑通**（官方 `ltremovert`，KITTI 00 双会话切分，SA/DA/AA = 69.14/74.51/71.78）；**LT-map / delta-map 半边仓库里没有代码**，论文 85.7 MB / 9.8 s 不可复现；`ltslam` 需 GTSAM（本机未装，未安装任何东西） |
-
 | 复现顺序 | 9 |
 | 能否复现 | 🟡 半能：要 ROS 1 + MulRan（需注册）+ 先有 SC-LIO-SAM 会话；仓库只有 ltremovert 半边，lt-map 无代码。 |
 | 复现完成 | ◐ 变化检测半边已跑通，建图半边仓库里没有 |
+
+---
 
 ## 它做了什么 What it does
 
@@ -39,7 +67,7 @@
 - [ ] **关键实验**：构造一个「结构未变但本次被遮挡」的场景，看它是否误报变化 → 本次数据（同一条 KITTI 00 连续行驶的先后两段）里，遮挡/视角差异**已经**是「变化」的一部分；见下面 Results 的 finding
 - [x] 产出：官方实现的实测数字 + 覆盖度分析（`results/*.json`）
 
-## 复现怎么跑 How to reproduce
+## 怎么跑 How to run
 
 ```bash
 # 1) 只构建 removert 包（SRC 必须是*包目录*，给仓库根目录 catkin 会去编 ltslam 然后卡在 GTSAM）
@@ -84,7 +112,7 @@ central session（待清理的地图）  KITTI 00 第 4390..4470 帧，81 张
 query   session（清洁工）        KITTI 00 第 4451..4530 帧，80 张 → 被 10 m ROI 规则（Session.cpp:234）自动裁到 29 张
 ```
 
-## Results
+## 复现结果 Results
 
 所有数字由 `01_dynamicmap_benchmark/work/evaluate.py --impl both` 打出，官方 `export_eval_pcd` 与 scipy 复实现
 **逐点一致**（`disagreeing_points: 0`）。地图都是官方 `removert_removert` 二进制的输出。

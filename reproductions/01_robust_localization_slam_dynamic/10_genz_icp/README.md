@@ -1,9 +1,38 @@
+<div align="center">
+
 # 01-10 · GenZ-ICP
 
-| 项 Item | 内容 |
+**在退化场景里按残差的稀疏/稠密程度自适应加权 —— KITTI 00–10 均值 0.52 %（论文 0.51 %），与 KISS-ICP 同数据同指标并排。**
+
+[![venue](https://img.shields.io/badge/venue-RA--L%202025-22314E)](https://arxiv.org/abs/2411.06766)
+![result](https://img.shields.io/badge/result-0.52%25%20vs%200.51%25%20paper-2ea043)
+[![code](https://img.shields.io/badge/code-cocel--postech%2Fgenz--icp-181717?logo=github&logoColor=white)](https://github.com/cocel-postech/genz-icp)
+![data](https://img.shields.io/badge/data-KITTI%2000--10%20%28reused%29-1c7ed6)
+![compute](https://img.shields.io/badge/compute-CPU%20%C2%B7%20PyPI-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| 方法 | 同一份 KITTI 00–10，23,201 帧 | 论文 |
+| :--- | ---: | ---: |
+| **GenZ-ICP** | **0.52 %** | 0.51 %（表 III） |
+| KISS-ICP（同表对照） | 0.53 % | 0.50 % |
+
+两条方法在同一份数据、同一套指标下并排，也正是论文表 III 的排法。
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
+| 本机怎么跑 | 纯 CPU · PyPI `genz-icp`，复用 01-02 已经下好的 KITTI 00–10 |
 | 论文 | GenZ-ICP: Generalizable and Degeneracy-Robust LiDAR Odometry Using an Adaptive Weighting |
-| Venue | **RA-L 2025**（arXiv:2411.06766） |
 | 论文链接 | [arXiv:2411.06766](https://arxiv.org/abs/2411.06766) |
 | 论文报告值 | 表 III, p.5：KITTI 00–10 相对平移误差 **0.51 %**（同一张表里 KISS-ICP 0.50 %） |
 | 代码 | [cocel-postech/genz-icp](https://github.com/cocel-postech/genz-icp) ✅ PyPI 包 `genz-icp`（自带预调好的 `kitti.yaml`） |
@@ -11,11 +40,11 @@
 | 为什么在这 | 与 01-02 是**同一份数据、同一套指标**的对照组：论文表 III 把两者并排，可以直接比 |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 3 退化场景下的鲁棒定位 |
-| 复现状态 | 🟢 **已复现**：均值 **0.52 %**（论文表 III 0.51 %），23,201 帧；同数据 KISS-ICP 0.53 % |
-
 | 复现顺序 | 8 |
 | 能否复现 | ✅ 能：`pip install genz-icp pyyaml` + 已经在手的 KITTI 00–10，跑 `kitti.yaml` 预调参数即出论文表 III。 |
 | 复现完成 | ☑ 2026-10-05 · 均值 0.52 %（论文 0.51 %，差 +0.01 pp） |
+
+---
 
 ## 它做了什么 What it does
 
@@ -45,7 +74,7 @@
 
 结果同时会把 01-02 测到的 KISS-ICP 数字并排打出来（论文表 III 就是这么排的）。
 
-## 结果 Results
+## 复现结果 Results
 
 ```bash
 ../../.venvs/genz/bin/python work/run_kitti_benchmark.py --out results/genz_icp_kitti.json

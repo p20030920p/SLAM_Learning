@@ -41,7 +41,7 @@ planning method in, drive the robot, and find out whether it actually works.
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— ☑ 10 · ◐ 2 · ☐ 1 · ⛔ 8（共 21） · 更新于 2026-10-06 01:18 CST
+**按「越好复现 + 越能对上原库结果」排序** —— ☑ 10 · ◐ 2 · ☐ 1 · ⛔ 8（共 21） · 更新于 2026-10-06 01:23 CST
 
 | # | ✓ | 复现库 | 对应论文 | 能不能复现（一句话） |
 | :-- | :-- | :-- | :-- | :-- |

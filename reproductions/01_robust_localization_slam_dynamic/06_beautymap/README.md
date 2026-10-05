@@ -1,19 +1,48 @@
+<div align="center">
+
 # 01-06 · BeautyMap
 
-| 项 Item | 内容 |
+**用二值编码的地面矩阵取代阈值，走「免调参」路线 —— 命中论文表 I。**
+
+[![venue](https://img.shields.io/badge/venue-RA--L%202024-22314E)](https://arxiv.org/abs/2405.07283)
+![result](https://img.shields.io/badge/result-hit%20Table%20I-2ea043)
+[![code](https://img.shields.io/badge/code-MKJia%2FBeautyMap-181717?logo=github&logoColor=white)](https://github.com/MKJia/BeautyMap)
+![data](https://img.shields.io/badge/data-KITTI%2000%20%C2%B7%20Zenodo-1c7ed6)
+![compute](https://img.shields.io/badge/compute-CPU-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| 指标 | 本文件夹 | 论文表 I, p.6 |
+| :--- | ---: | ---: |
+| SA / DA / HA | **96.95 / 98.34 / 97.64** | 96.76 / 98.38 / 97.56 |
+
+四个清理方法里**唯一 SA 与 DA 都过 96** 的一个：既不删得太狠，也不留着不动。
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
+| 本机怎么跑 | 纯 CPU · 官方仓库 python 脚本 |
 | 论文 | BeautyMap: Binary-Encoded Adaptable Ground Matrix for Dynamic Points Removal in Global Maps |
-| Venue | **RA-L 2024** |
 | 论文链接 | [arXiv:2405.07283](https://arxiv.org/abs/2405.07283) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 原论文自报结果与复现阻塞分析 |
 | 代码 | [MKJia/BeautyMap](https://github.com/MKJia/BeautyMap) ✅ 实测 200 |
 | 数据 | KITTI / MulRan（配合 DynamicMap_Benchmark） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4 高变动场景的地图维护 |
-| 复现状态 | 🟢 **已复现：命中论文表 I（96.76/98.38/97.56）** |
 | 复现顺序 | 2 |
 | 能否复现 | ✅ 能：官方仓库 `python main.py`，配同一套官方评测，命中论文表 I。 |
 | 复现完成 | ☑ 2026-10-05 · 命中论文表 I |
+
+---
 
 ## 它做了什么 What it does
 
@@ -30,7 +59,7 @@
 - [ ] 交给 01-02 得配准失败率
 - [ ] 与 DUFOMap 对照：免调参路线内部，谁的定位可用性更好
 
-## 步骤 Steps
+## 怎么跑 How to run
 
 ```bash
 git clone https://github.com/MKJia/BeautyMap code/
@@ -44,7 +73,7 @@ git clone https://github.com/MKJia/BeautyMap code/
   [`MKJia/BeautyMap`](https://github.com/MKJia/BeautyMap)（实测 200），别照抄旧的。
 - 地面假设在坡道/多层场景会失效，记录它在哪种场景下降。
 
-## 复现结果 Results（2026-10-05）
+## 复现结果 Results
 
 ### 一、命中论文表 I：SA/DA/HA 在 0.2 pp 内
 

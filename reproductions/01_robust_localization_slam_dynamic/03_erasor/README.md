@@ -1,20 +1,49 @@
+<div align="center">
+
 # 01-03 · ERASOR
 
-| 项 Item | 内容 |
+**把地图切成极坐标「伪占据」体素，用单次扫描的高度比判动态点 —— 官方仓库 + 官方数据 + 作者自己的评测器，F1 0.950（论文 0.955）。**
+
+[![venue](https://img.shields.io/badge/venue-RA--L%202021-22314E)](https://arxiv.org/abs/2103.04316)
+![result](https://img.shields.io/badge/result-F1%200.950%20vs%200.955-2ea043)
+[![code](https://img.shields.io/badge/code-LimHyungTae%2FERASOR-181717?logo=github&logoColor=white)](https://github.com/LimHyungTae/ERASOR)
+![data](https://img.shields.io/badge/data-official%20rosbag%20%2B%20GT-1c7ed6)
+![compute](https://img.shields.io/badge/compute-ROS%201%20Noetic%20%C2%B7%20micromamba-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [怎么跑](#怎么跑-how-to-run) &nbsp;•&nbsp; [坑与注意](#坑与注意-pitfalls) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| 指标 | 官方仓库 + 官方数据 | 论文表 II, p.8 |
+| :--- | ---: | ---: |
+| PR / RR / F1 | **95.62 / 94.41 / 0.950** | 93.980 / 97.081 / 0.955 |
+| 评测链自检 | 把作者自己发布的输出重打分 = 93.979 / 97.081 / 0.9550 | 逐位一致 |
+
+同一份数据换成基准的点级口径，同一个方法的 SA 掉到 66.71 —— **差的是指标，不是方法**。
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
+| 本机怎么跑 | ROS 1 Noetic（micromamba 装的，不需要 root）· 官方 `kitti_mapgen` + `offline_map_updater`，全流程 **47 s** |
 | 论文 | ERASOR: Egocentric Ratio of Pseudo Occupancy-Based Dynamic Object Removal for Static 3D Point Cloud Map Building |
-| Venue | **RA-L 2021** |
 | 论文链接 | [arXiv:2103.04316](https://arxiv.org/abs/2103.04316) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— 表 II, p.8：PR/RR/F1 = 93.980 / 97.081 / 0.955 |
 | 代码 | [LimHyungTae/ERASOR](https://github.com/LimHyungTae/ERASOR) ✅ **官方仓库已编译并跑通** |
 | 数据 | ✅ **官方 seq-00 rosbag + 全部 PCD/GT 直链可下**（作者服务器，免注册） |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4 高变动场景的地图维护；§6 并行实验 H1′ |
-| 复现状态 | 🟢 **官方实现复现成功：PR/RR/F1 = 95.62 / 94.41 / 0.950**（论文表 II 93.98 / 97.08 / 0.955，作者自己在 master 上重跑是 95.79 / 95.64 / 0.957） |
-
 | 复现顺序 | 4 |
 | 能否复现 | ✅ 能，但要 ROS 1（本机已用 micromamba 建好）：官方仓库跑通，对上论文表 II 的 PR/RR/F1。 |
 | 复现完成 | ☑ 2026-10-05 · 官方实现 PR/RR/F1 = 95.62 / 94.41 / 0.950 |
+
+---
 
 ## 它做了什么 What it does
 
@@ -33,7 +62,7 @@
 - [ ] 把清理后的地图交给 01-02，得到配准失败率
 - [ ] 产出：阈值—F1—定位失败率 的三者关系图
 
-## 步骤 Steps（全部可重跑）
+## 怎么跑 How to run
 
 ```bash
 # 0. 一次性：ROS 1 Noetic 环境（本机是 ROS 2 Jazzy、无 sudo、无 Docker）
@@ -78,7 +107,7 @@ python3 reproductions/run_all.py --only 01-03
 | **两个 wget 写同一个文件** | `rosbag info` 之前看不出问题，之后才发现 | 用 `rosbag info` 校验；本次已按 Range 重新完整下载 |
 | 坐标帧 | 基准 Zenodo 的世界系与官方 GT **不是同一帧**（实测中位差 1.6 m，仅 6% 点在 0.2 m 内） | 官方 GT 只能用官方 bag 跑，不能混用 |
 
-## 复现结果 Results（2026-10-05）
+## 复现结果 Results
 
 ### 一、官方实现：PR/RR/F1 = 95.62 / 94.41 / 0.950
 

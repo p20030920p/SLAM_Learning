@@ -1,20 +1,50 @@
+<div align="center">
+
 # 01-08 · NGD-SLAM
 
-| 项 Item | 内容 |
+**没有 GPU 也要实时：用光流与深度方差替代神经网络的逐帧分割，让追踪不再等网络 —— ATE 与 RPE-平移命中论文。**
+
+[![venue](https://img.shields.io/badge/venue-IROS%202025-22314E)](https://arxiv.org/abs/2405.07392)
+![result](https://img.shields.io/badge/result-ATE%200.0157%20vs%200.015-2ea043)
+[![code](https://img.shields.io/badge/code-yuhaozhang7%2FNGD--SLAM-181717?logo=github&logoColor=white)](https://github.com/yuhaozhang7/NGD-SLAM)
+![data](https://img.shields.io/badge/data-TUM%20RGB--D%20%C2%B7%20direct%20links-1c7ed6)
+![compute](https://img.shields.io/badge/compute-CPU%20only-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| 指标 | 本文件夹（TUM f3/walking_xyz） | 论文表 I |
+| :--- | ---: | ---: |
+| ATE | **0.0157 m** | 0.015 m |
+| RPE 平移 | **0.0201 m/s** | 0.020 m/s |
+| RPE 旋转 | 0.604 °/s（RMSE）/ 0.475 °/s（均值） | 0.470 °/s —— **未解差异**（论文没写用哪个统计量） |
+
+读官方代码推翻了计划里的一条判断：它**用** YOLO 语义（`System.cc:217`），省掉的是「追踪等网络」，不是语义本身。
+
+## 关键设定 Settings
+
+| 项 | 内容 |
 | :--- | :--- |
+| 本机怎么跑 | 纯 CPU · 官方 C++ 自编 + `.venvs/dmb`；数据集直链免注册 |
 | 论文 | NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU |
-| Venue | **IROS 2025** |
 | 论文链接 | [arXiv:2405.07392](https://arxiv.org/abs/2405.07392) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— f3/w xyz：ATE **0.015 m**、RPE 0.020 m/s、0.470 °/s |
 | 代码 | [yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) ✅ 官方仓库，本地 commit `a93a14c` |
 | 数据 | TUM RGB-D（[cvg.cit.tum.de](https://cvg.cit.tum.de/data/datasets/rgbd-dataset/download)，**免注册直链**）；BONN |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 5（算力受限 + 语义）；§1 H6（算力与分割冲突的调度方案） |
-| 复现状态 | 🟢 **已复现：ATE 与 RPE-平移命中论文**；RPE-旋转有一处未解差异 |
-
 | 复现顺序 | 6 |
 | 能否复现 | ✅ 能：官方代码明确「无 GPU」，TUM RGB-D 免注册直链，对上论文的 ATE / RPE 表。 |
 | 复现完成 | ☑ 2026-10-05 · ATE 与 RPE-平移命中论文 |
+
+---
 
 ## 它做了什么 What it does
 
@@ -57,7 +87,7 @@
 所以复现它的正确问题是：**"把语义这个最贵的模块从每帧解耦出去，代价有多大？"**
 答案是下面那组数字：精度基本不掉，速度翻倍。
 
-## 复现结果 Results（2026-10-05）
+## 复现结果 Results
 
 ### 一、跑法与结果
 

@@ -1,20 +1,51 @@
+<div align="center">
+
 # 01-01 · DynamicMap_Benchmark
 
-| 项 Item | 内容 |
+**把「动态点删除」变成可横向比较的基准：一份点级 GT、一套评测规则、四个方法同台 —— 并顺手回答了「指标排名 ≠ 定位可用性排名」。**
+
+[![venue](https://img.shields.io/badge/venue-ITSC%202023-22314E)](https://arxiv.org/abs/2307.07260)
+![role](https://img.shields.io/badge/role-benchmark-0b7285)
+![result](https://img.shields.io/badge/result-4%2F4%20methods%20scored-2ea043)
+[![code](https://img.shields.io/badge/code-KTH--RPL%2FDynamicMap__Benchmark-181717?logo=github&logoColor=white)](https://github.com/KTH-RPL/DynamicMap_Benchmark)
+![data](https://img.shields.io/badge/data-Zenodo%20%C2%B7%20no%20signup-1c7ed6)
+![compute](https://img.shields.io/badge/compute-CPU%20only-6f42c1)
+
+[结论](#一句话-verdict) &nbsp;•&nbsp; [复现结果](#复现结果-results) &nbsp;•&nbsp; [记录](#记录-log)
+
+*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+
+</div>
+
+---
+
+## 一句话 Verdict
+
+| | 本文件夹 |
 | :--- | :--- |
+| 序列与真值 | 141 帧 · 17,362,230 点 · 动态点只占 **0.55 %** |
+| 评测规则 | 官方 C++ 与独立 scipy 重写，在 300 万点上 **0 处分歧** |
+| 四个方法的排名 | SA：Removert > DUFOMap > BeautyMap > ERASOR<br>AA：DUFOMap > BeautyMap > ERASOR > Removert |
+| H1′ 下游定位 | ρ(归一化 AA, 效用) **0.78** · ρ(提交口径 AA) **0.38** · ρ(SA) **0.23** |
+| 误删分层 | Removert 官方在「从没被看到」的点上误删率是「每帧都看得到」的 **51 倍** |
+
+## 关键设定 Settings
+
+| 项 | 内容 |
+| :--- | :--- |
+| 本机怎么跑 | 纯 CPU · `python3 reproductions/run_all.py --only 01-01` |
 | 论文 | A Dynamic Points Removal Benchmark in Point Cloud Maps |
-| Venue | **ITSC 2023**（arXiv:2307.07260） |
 | 论文链接 | [arXiv:2307.07260](https://arxiv.org/abs/2307.07260) |
 | 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00，Octomap w GF：SA/DA/AA = **93.06 / 98.67 / 95.83** |
 | 代码 | [KTH-RPL/DynamicMap_Benchmark](https://github.com/KTH-RPL/DynamicMap_Benchmark) ✅ 已克隆 |
 | 数据 | ✅ **已到手**：[Zenodo 10886629](https://zenodo.org/records/10886629) 的 `00.zip`（385 MB，**免注册**）= KITTI 00 选定帧段 + 人工 GT |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §6 并行实验（恢复自原 T1） |
-| 复现状态 | 🟡 地基已跑通（数据 + 评测器 + 交叉验证）；四个方法的数字待跑 |
-
 | 复现顺序 | 3 |
 | 能否复现 | ✅ 能：官方评测脚本 + Zenodo 免注册数据 `00.zip`，出论文里那张方法对比表。 |
 | 复现完成 | ☑ 2026-10-05 · 评测器与四条基线均已跑 |
+
+---
 
 ## 它做了什么 What it does
 
@@ -26,7 +57,7 @@
 
 ---
 
-## 复现结果 Results（2026-10-05）
+## 复现结果 Results
 
 ### 一、数据：KITTI 注册这一硬阻塞被绕开了
 
