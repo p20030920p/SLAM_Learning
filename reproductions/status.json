@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-06T01:09:41+08:00",
+  "generated": "2026-10-06T01:18:49+08:00",
   "root": "reproductions",
   "summary": {
     "total": 21,
@@ -7,7 +7,7 @@
     "failed": 0,
     "blocked": 9,
     "planned": 0,
-    "ran_this_pass": 0
+    "ran_this_pass": 12
   },
   "reproductions": [
     {
@@ -27,7 +27,7 @@
       "repo_url": "https://github.com/KTH-RPL/DynamicMap_Benchmark",
       "paper_label": "arXiv:2307.07260",
       "paper_url": "https://arxiv.org/abs/2307.07260",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "frames": 141,
         "gt_points": 17362230,
@@ -157,7 +157,6 @@
         "results/observability_strata.json",
         "results/observability_strata.png"
       ],
-      "level": "green",
       "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements; false removals stratified by observability: 50.8x at never-seen vs always-seen points",
       "backtest": {
         "status": "ok",
@@ -323,7 +322,8 @@
           "obs_ratio_low_over_high_uncleaned_0p2m_density_control"
         ],
         "baseline_recorded": "2026-10-05T01:12:18+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-02",
@@ -342,7 +342,7 @@
       "repo_url": "https://github.com/PRBonn/kiss-icp",
       "paper_label": "doi:10.1109/LRA.2023.3236571",
       "paper_url": "https://doi.org/10.1109/LRA.2023.3236571",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "kitti_mean_translation_error_pct": 0.5252,
         "kitti_mean_rotational_error_deg_per_m": 0.00147,
@@ -486,7 +486,6 @@
         "results/kiss_icp_kitti_official.json",
         "results/registration_utility.json"
       ],
-      "level": "green",
       "note": "official KITTI 00-10: mean relative translational error 0.53 % (paper 0.50 %), 23201 frames; downstream localizability rho(normalised AA, utility) = 0.7827 at level L2",
       "backtest": {
         "status": "ok",
@@ -934,7 +933,8 @@
           "kitti_seconds"
         ],
         "baseline_recorded": "2026-10-05T06:49:12+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-03",
@@ -953,7 +953,7 @@
       "repo_url": "https://github.com/LimHyungTae/ERASOR",
       "paper_label": "arXiv:2103.04316",
       "paper_url": "https://arxiv.org/abs/2103.04316",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "published_PR": 93.979499,
         "published_RR": 97.080901,
@@ -1014,7 +1014,6 @@
         "results/score_published.json",
         "results/erasor_official/00_result.pcd"
       ],
-      "level": "green",
       "note": "official ERASOR on the authors' seq-00 snippet: PR/RR/F1 = 95.62/94.41/0.950 (paper Table II 93.98/97.081/0.955)",
       "backtest": {
         "status": "ok",
@@ -1169,7 +1168,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T03:05:00+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-04",
@@ -1188,7 +1188,7 @@
       "repo_url": "https://github.com/irapkaist/removert",
       "paper_label": "doi:10.1109/IROS45743.2020.9340856",
       "paper_url": "https://doi.org/10.1109/IROS45743.2020.9340856",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "official_SA": 99.6179,
         "official_DA": 89.2523,
@@ -1247,7 +1247,6 @@
         "results/score_official_mapside.json",
         "results/score_benchmark_port.json"
       ],
-      "level": "green",
       "note": "official Removert (irapkaist/removert) on KITTI 00: SA/DA/AA = 99.62/89.25/94.29; benchmark port 99.44/41.53/64.26",
       "backtest": {
         "status": "ok",
@@ -1395,7 +1394,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T02:45:00+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-05",
@@ -1414,7 +1414,7 @@
       "repo_url": "https://github.com/KTH-RPL/dufomap",
       "paper_label": "doi:10.1109/LRA.2024.3387658",
       "paper_url": "https://doi.org/10.1109/LRA.2024.3387658",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 97.9635,
         "DA": 98.7196,
@@ -1465,7 +1465,6 @@
         "results/dufomap_score_paper_default_dp1.json",
         "results/dufomap_score_benchmark_example_dp2.json"
       ],
-      "level": "green",
       "note": "DUFOMap on KITTI 00: SA/DA/AA = 97.96/98.72/98.34 vs paper 97.96/98.72/98.34",
       "backtest": {
         "status": "ok",
@@ -1550,7 +1549,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:56:38+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-06",
@@ -1569,7 +1569,7 @@
       "repo_url": "https://github.com/MKJia/BeautyMap",
       "paper_label": "arXiv:2405.07283",
       "paper_url": "https://arxiv.org/abs/2405.07283",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 96.9529,
         "DA": 98.3382,
@@ -1610,7 +1610,6 @@
       "artifacts": [
         "results/beautymap_score.json"
       ],
-      "level": "green",
       "note": "BeautyMap on KITTI 00: SA/DA/HA = 96.95/98.34/97.64 vs paper 96.76/98.38/97.56",
       "backtest": {
         "status": "ok",
@@ -1681,7 +1680,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:06:29+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-07",
@@ -1725,7 +1725,7 @@
       "repo_url": "https://github.com/yuhaozhang7/NGD-SLAM",
       "paper_label": "arXiv:2405.07392",
       "paper_url": "https://arxiv.org/abs/2405.07392",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "ATE_rigid_m": 0.015709,
         "ATE_scaled_m": 0.013536,
@@ -1784,7 +1784,6 @@
       "artifacts": [
         "results/ngd_slam_rgbd_dataset_freiburg3_walking_xyz_trial1_CameraTrajectory.txt"
       ],
-      "level": "green",
       "note": "NGD-SLAM on TUM fr3/walking_xyz: ATE 0.0157 m vs paper 0.015 m; RPE trans 0.0201 m/s vs 0.02",
       "backtest": {
         "status": "ok",
@@ -1885,7 +1884,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T01:48:19+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-09",
@@ -1904,27 +1904,27 @@
       "repo_url": "https://github.com/gisbi-kim/lt-mapper",
       "paper_label": "arXiv:2107.07712",
       "paper_url": "https://arxiv.org/abs/2107.07712",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "SA": 69.1376,
         "DA": 74.5142,
-        "AA": 71.7755,
+        "AA": 71.7756,
         "HA": 71.7253,
-        "map_points": 758034,
+        "map_points": 758035,
         "full_gt_SA": 49.5095,
         "full_gt_DA": 76.499,
         "full_gt_AA": 61.542,
         "full_gt_HA": 60.1138,
-        "scanside_SA": 64.0848,
-        "scanside_DA": 79.8461,
-        "scanside_AA": 71.5327,
-        "scanside_HA": 71.1025,
-        "scanside_map_points": 7100330,
+        "scanside_SA": 64.0849,
+        "scanside_DA": 79.8421,
+        "scanside_AA": 71.5309,
+        "scanside_HA": 71.1009,
+        "scanside_map_points": 7100335,
         "central_gt_SA": 69.7476,
         "central_gt_DA": 79.2179,
         "central_gt_AA": 74.332,
         "central_gt_HA": 74.1817,
-        "central_gt_map_points": 758034,
+        "central_gt_map_points": 758035,
         "control_SA": 99.4376,
         "control_DA": 1.6533,
         "control_AA": 12.8219,
@@ -1938,13 +1938,13 @@
         "central_gt_dynamic": 49658,
         "central_keyframes": 81,
         "query_roi_keyframes": 29,
-        "updated_map_points": 758034,
-        "updated_map_strong_points": 743147,
+        "updated_map_points": 758035,
+        "updated_map_strong_points": 743149,
         "union_centralside_points": 523626,
-        "union_queryside_points": 377338,
-        "nd_points": 218931,
+        "union_queryside_points": 377339,
+        "nd_points": 218932,
         "pd_points": 43853,
-        "strong_nd_points": 185216,
+        "strong_nd_points": 185217,
         "weak_nd_points": 12813
       },
       "checks": [
@@ -1961,7 +1961,7 @@
         {
           "name": "official_pipeline_produced_a_cleaned_map",
           "ok": true,
-          "detail": "updated_map.pcd holds 758034 points after makeGlobalMap + high-dynamic removal + low-dynamic detection over 81 central and 29 query keyframes"
+          "detail": "updated_map.pcd holds 758035 points after makeGlobalMap + high-dynamic removal + low-dynamic detection over 81 central and 29 query keyframes"
         },
         {
           "name": "evaluator_implementations_agree",
@@ -1976,7 +1976,7 @@
         {
           "name": "change_detection_found_both_directions",
           "ok": true,
-          "detail": "nd_map.pcd (central-only) 218931 points, pd_map.pcd (query-only) 43853 points; both empty would mean the two sessions saw identical geometry and nothing was measured"
+          "detail": "nd_map.pcd (central-only) 218932 points, pd_map.pcd (query-only) 43853 points; both empty would mean the two sessions saw identical geometry and nothing was measured"
         }
       ],
       "findings": [
@@ -1986,15 +1986,15 @@
         },
         {
           "name": "the_sa_loss_is_a_deliberate_trade_for_dynamic_rejection",
-          "detail": "on one identical GT - the central session's own footprint, 11497294 static / 49658 dynamic points, against which all three maps are measured - the no-removal control (the raw central map, 2675552 points) scores SA 99.44 / DA 1.65: it keeps everything and rejects nothing. After the change detection, updated_map.pcd scores SA 69.75 / DA 79.22 and the merged scan-side output SA 64.08 / DA 79.85. So the detector trades 29.7 pp of static preservation for 77.6 pp of dynamic rejection on this pair - aggressive next to 01-04's Removert run on the same kind of data (SA 99.62 / DA 89.25), which is upstream's own configuration difference: 01-04 runs params_kitti.yaml with dist_nn_points_within 0.1, ltremovert's params_ltmapper.yaml asks for 0.01, i.e. a ten times stricter requirement that two sessions agree."
+          "detail": "on one identical GT - the central session's own footprint, 11497294 static / 49658 dynamic points, against which all three maps are measured - the no-removal control (the raw central map, 2675552 points) scores SA 99.44 / DA 1.65: it keeps everything and rejects nothing. After the change detection, updated_map.pcd scores SA 69.75 / DA 79.22 and the merged scan-side output SA 64.08 / DA 79.84. So the detector trades 29.7 pp of static preservation for 77.6 pp of dynamic rejection on this pair - aggressive next to 01-04's Removert run on the same kind of data (SA 99.62 / DA 89.25), which is upstream's own configuration difference: 01-04 runs params_kitti.yaml with dist_nn_points_within 0.1, ltremovert's params_ltmapper.yaml asks for 0.01, i.e. a ten times stricter requirement that two sessions agree."
         },
         {
           "name": "the_run_has_two_upstream_outputs_and_they_are_close",
-          "detail": "on the identical central-session GT, map-side updated_map.pcd scores SA 69.75 / DA 79.22 (758034 points) and the scan-side merged scans_updated/ SA 64.08 / DA 79.85 (7100330 points) - AA 74.33 vs 71.53. Unlike 01-04, where the two outputs of one Removert run sat at opposite corners of the trade-off, here the choice of output moves AA by 2.8 pp; what moves this score is which GT footprint it is measured on (central GT AA 74.33, both-sessions GT AA 71.78, full 141-frame GT AA 61.54)."
+          "detail": "on the identical central-session GT, map-side updated_map.pcd scores SA 69.75 / DA 79.22 (758035 points) and the scan-side merged scans_updated/ SA 64.08 / DA 79.84 (7100335 points) - AA 74.33 vs 71.53. Unlike 01-04, where the two outputs of one Removert run sat at opposite corners of the trade-off, here the choice of output moves AA by 2.8 pp; what moves this score is which GT footprint it is measured on (central GT AA 74.33, both-sessions GT AA 71.78, full 141-frame GT AA 61.54)."
         },
         {
           "name": "nd_pd_asymmetry_is_the_signature_of_a_partial_overlap",
-          "detail": "central-only points (nd_map) 218931 vs query-only points (pd_map) 43853 - a 5.0x asymmetry. The query session covers a ~15 m stretch of the central session's 40.8 m trajectory, so far more of the central map is unseen by the query than the other way round. A real multi-session pair (the paper's two visits to one car park) would not have this shape."
+          "detail": "central-only points (nd_map) 218932 vs query-only points (pd_map) 43853 - a 5.0x asymmetry. The query session covers a ~15 m stretch of the central session's 40.8 m trajectory, so far more of the central map is unseen by the query than the other way round. A real multi-session pair (the paper's two visits to one car park) would not have this shape."
         },
         {
           "name": "the_paper_headline_is_not_reachable_from_this_checkout",
@@ -2006,7 +2006,7 @@
         },
         {
           "name": "runtime",
-          "detail": "the official node ran over 81 central + 29 query keyframes in 36 s wall clock (it does all the work in its constructor and then spins; the same input took ~32 s on a cold page cache and ~8 s warm, so read this as seconds, not as a benchmark). This is not the paper's 9.8 s figure: that one times the LT-map delta-map update, whose code is absent here, and it is not comparable to a whole change-detection pass."
+          "detail": "the official node ran over 81 central + 29 query keyframes in 38 s wall clock (it does all the work in its constructor and then spins; the same input took ~32 s on a cold page cache and ~8 s warm, so read this as seconds, not as a benchmark). This is not the paper's 9.8 s figure: that one times the LT-map delta-map update, whose code is absent here, and it is not comparable to a whole change-detection pass."
         },
         {
           "name": "roi_rule_recomputed_from_the_poses_matches_the_run",
@@ -2022,7 +2022,6 @@
         "work/local_patches.patch",
         "work/generated/params.yaml"
       ],
-      "level": "green",
       "note": "official ltremovert on a two-session KITTI 00 split (81 central + 29 query keyframes): SA/DA/AA = 69.14/74.51/71.78 on the coverage-matched GT (71.6% of GT static observable), 49.51/76.50 on the full 141-frame GT; LT-map/delta-map half of the paper is absent from the repo",
       "backtest": {
         "status": "ok",
@@ -2044,7 +2043,7 @@
           {
             "metric": "AA",
             "expected": 71.7756,
-            "got": 71.7755,
+            "got": 71.7756,
             "ok": true,
             "why": ""
           },
@@ -2058,7 +2057,7 @@
           {
             "metric": "map_points",
             "expected": 758035,
-            "got": 758034,
+            "got": 758035,
             "ok": true,
             "why": ""
           },
@@ -2121,42 +2120,42 @@
           {
             "metric": "central_gt_map_points",
             "expected": 758035,
-            "got": 758034,
+            "got": 758035,
             "ok": true,
             "why": ""
           },
           {
             "metric": "scanside_SA",
             "expected": 64.0794,
-            "got": 64.0848,
+            "got": 64.0849,
             "ok": true,
             "why": ""
           },
           {
             "metric": "scanside_DA",
             "expected": 79.8526,
-            "got": 79.8461,
+            "got": 79.8421,
             "ok": true,
             "why": ""
           },
           {
             "metric": "scanside_AA",
             "expected": 71.5318,
-            "got": 71.5327,
+            "got": 71.5309,
             "ok": true,
             "why": ""
           },
           {
             "metric": "scanside_HA",
             "expected": 71.0999,
-            "got": 71.1025,
+            "got": 71.1009,
             "ok": true,
             "why": ""
           },
           {
             "metric": "scanside_map_points",
             "expected": 7100333,
-            "got": 7100330,
+            "got": 7100335,
             "ok": true,
             "why": ""
           },
@@ -2254,14 +2253,14 @@
           {
             "metric": "updated_map_points",
             "expected": 758035,
-            "got": 758034,
+            "got": 758035,
             "ok": true,
             "why": ""
           },
           {
             "metric": "updated_map_strong_points",
             "expected": 743148,
-            "got": 743147,
+            "got": 743149,
             "ok": true,
             "why": ""
           },
@@ -2275,14 +2274,14 @@
           {
             "metric": "union_queryside_points",
             "expected": 377339,
-            "got": 377338,
+            "got": 377339,
             "ok": true,
             "why": ""
           },
           {
             "metric": "strong_nd_points",
             "expected": 185216,
-            "got": 185216,
+            "got": 185217,
             "ok": true,
             "why": ""
           },
@@ -2296,7 +2295,7 @@
           {
             "metric": "nd_points",
             "expected": 218931,
-            "got": 218931,
+            "got": 218932,
             "ok": true,
             "why": ""
           },
@@ -2310,7 +2309,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T03:05:00+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-10",
@@ -2329,7 +2329,7 @@
       "repo_url": "https://github.com/cocel-postech/genz-icp",
       "paper_label": "arXiv:2411.06766",
       "paper_url": "https://arxiv.org/abs/2411.06766",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "kitti_mean_translation_error_pct": 0.5193,
         "kitti_mean_rotational_error_deg_per_m": 0.00124,
@@ -2384,7 +2384,6 @@
       "artifacts": [
         "results/genz_icp_kitti.json"
       ],
-      "level": "green",
       "note": "official KITTI 00-10: mean relative translational error 0.52 % (paper 0.51 %), 23201 frames; KISS-ICP on the same data 0.53 %",
       "backtest": {
         "status": "ok",
@@ -2516,7 +2515,8 @@
           "kitti_seconds"
         ],
         "baseline_recorded": "2026-10-05T07:58:41+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-11",
@@ -2535,7 +2535,7 @@
       "repo_url": "https://github.com/dongjae0107/ELite",
       "paper_label": "arXiv:2502.13452",
       "paper_url": "https://arxiv.org/abs/2502.13452",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "AC": 0.9708,
         "RMSE_m": 0.0678,
@@ -2592,7 +2592,6 @@
         "results/alignment_session01_vs_session02.json",
         "results/alignment_session01_vs_lifelong02.json"
       ],
-      "level": "green",
       "note": "ELite on LT-ParkingLot sessions 01+02 (official two-config pipeline): AC 0.971 / RMSE 0.068 m / CD 0.090 m vs paper 0.969 / 0.09 / 0.133",
       "backtest": {
         "status": "ok",
@@ -2677,7 +2676,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-06T01:00:00+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-12",
@@ -2696,7 +2696,7 @@
       "repo_url": "https://github.com/UZ-SLAMLab/ORB_SLAM3",
       "paper_label": "arXiv:2007.11898",
       "paper_url": "https://arxiv.org/abs/2007.11898",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "euroc_mh01_rmse_ate_m": 0.045423,
         "euroc_mh01_rmse_ate_scale_corrected_m": 0.024724,
@@ -2738,7 +2738,6 @@
       "artifacts": [
         "results/run_mh01/f_dataset-MH01.txt"
       ],
-      "level": "green",
       "note": "EuRoC MH_01 stereo-inertial on CPU: RMSE ATE 0.045423 m (paper 0.036 m), scale-corrected 0.024724 m",
       "backtest": {
         "status": "ok",
@@ -2776,7 +2775,8 @@
           "delta_vs_paper_m"
         ],
         "baseline_recorded": "2026-10-05T19:30:19+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "01-13",
@@ -2801,7 +2801,7 @@
       "findings": [],
       "artifacts": [],
       "level": "blocked",
-      "note": "not enough RAM: 12.8 GB available, and this pipeline needs more than 13.5 GB (five runs under systemd MemoryMax {5,8,11,12,13.5}G were all OOM-killed within ~1-2 min). The RSS trace shows khronos_node itself growing ~250 MB/s with no plateau - the bag player is not the problem. Everything else is ready (workspace built, bag extracted, ground truth, evaluation config), so this is a hardware precondition, not missing work. See the README's memory section for the trace and for the reduced-resolution route."
+      "note": "not enough RAM: 12.9 GB available, and this pipeline needs more than 13.5 GB (five runs under systemd MemoryMax {5,8,11,12,13.5}G were all OOM-killed within ~1-2 min). The RSS trace shows khronos_node itself growing ~250 MB/s with no plateau - the bag player is not the problem. Everything else is ready (workspace built, bag extracted, ground truth, evaluation config), so this is a hardware precondition, not missing work. See the README's memory section for the trace and for the reduced-resolution route."
     },
     {
       "id": "02-01",
@@ -2820,7 +2820,7 @@
       "repo_url": "https://github.com/WaldJohannaU/3RScan",
       "paper_label": "arXiv:1908.06109",
       "paper_url": "https://arxiv.org/abs/1908.06109",
-      "ran": false,
+      "ran": true,
       "metrics": {
         "objects_total": 32,
         "unchanged": 26,
@@ -2914,7 +2914,6 @@
         "results/observability.json",
         "results/observability.csv"
       ],
-      "level": "green",
       "note": "A/B pair + observability — 9 visible, 4 occluded, 16 out of view",
       "backtest": {
         "status": "ok",
@@ -3097,7 +3096,8 @@
         ],
         "new_metrics_not_in_baseline": [],
         "baseline_recorded": "2026-10-05T00:24:40+08:00"
-      }
+      },
+      "level": "green"
     },
     {
       "id": "02-02",
