@@ -11,11 +11,11 @@
 | 为什么在这 | 任务书 §2 难点 4「高变动场景的地图维护」；论文里**就是拿这个 ParkingLot 数据集做的主实验**，所以「复现」= 跑官方脚本 + 对上表 I 的 AC/RMSE/CD |
 | 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
 | 任务书对应 | §2 难点 4；[`../09_lt_mapper/`](../09_lt_mapper/) 的同题对照（LT-mapper 是 ROS 1 + 需注册数据） |
-| 复现状态 | 🟡 **数据已到手，正在跑**：01（703 帧）/ 02（667 帧）都解压好了；会话 01 建图在跑（纯 CPU） |
+| 复现状态 | 🟢 **已复现表 I**：官方两段 config 跑完（703 + 667 帧，纯 CPU），AC/RMSE/CD = **0.9708 / 0.0678 / 0.0902**（论文 0.969 / 0.090 / 0.133）—— AC 命中，RMSE/CD 更优 |
 
 | 复现顺序 | 10 |
 | 能否复现 | 🟡 能：`python3.10 + open3d 0.18 + loguru`，跑官方 `run_elite.py`（两段 config：先建 01 的图，再把 02 对齐上去），再用官方定义算 AC/RMSE/CD 对表 I；纯 CPU（CUDA 只用于可选的加速匹配）。 |
-| 复现完成 | ☐ 两步 config 跑完 + 算出 AC/RMSE/CD 再勾 |
+| 复现完成 | ☑ 2026-10-06 · 两步 config 跑完 + AC/RMSE/CD 算出并对上表 I（表 II 需注册数据，未做） |
 
 ## 它做了什么 What it does（先记结论，复现时再逐行读代码）
 
@@ -122,3 +122,40 @@ python3 work/evaluate_alignment.py --a <01 的地图> --b <02 的地图> \
 三条补丁都记在 [`work/local_patches.patch`](work/local_patches.patch)。
 另外 `viz_*: true` 会调 `draw_geometries()`，本机没有显示器，所以
 [`work/parkinglot_*_headless.yaml`](work/) 是**仅把 viewer 关掉**的 config 副本。
+
+## 复现结果 Results（2026-10-06）
+
+**跑法**：官方两段 config（`parkinglot_first.yaml` → 会话 01 建图；`parkinglot.yaml` → 会话 02 对齐 + 更新），
+headless 副本只关掉 viewer；再用 [`work/evaluate_alignment.py`](work/evaluate_alignment.py)
+按论文 §IV-A p.5 的定义算 AC / RMSE / CD（σ_inlier = 0.5 m、最近邻建对应）。
+
+| 配对（论文没说用哪两张） | AC ↑ | RMSE [m] ↓ | CD [m] ↓ |
+| :--- | ---: | ---: | ---: |
+| **会话 01 图 vs 会话 02 清理后图（主）** | **0.9708** | **0.0678** | **0.0902** |
+| 会话 01 图 vs 会话 02 合并后的 lifelong 图 | 0.9989 | 0.0833 | 0.1377 |
+| **论文表 I · ELite (Ours)** | **0.969** | **0.090** | **0.133** |
+| 论文表 I · LT-mapper | 0.968 | 0.121 | 0.175 |
+| 论文表 I · ICP | 0.962 | 0.117 | 0.194 |
+
+**结论：AC 命中（0.9708 vs 0.969，差 +0.0018），RMSE 与 CD 都优于论文值**，
+并且两个指标都落在表 I 里 ELite 领先 ICP / LT-mapper 的位置上 —— 排序与论文一致。
+
+> ⚠️ **一处必须说明的含糊**：论文没有写 Table I 比的是哪两张点云。我们两种合理配对都算了，
+> 结果分别偏向论文行的两侧（主配对 RMSE/CD 更好，lifelong 配对 CD 0.1377 几乎正中 0.133）。
+> 所以这里报的是"AC 命中、RMSE/CD 不劣于论文"，而不是"逐位复现"。
+> 选择写在命令行并记进 `results/alignment_*.json`，不做含糊处理。
+
+**运行时长**（纯 CPU）：会话 01 约 75 min；会话 02 约 2 h（正向 19 min → 反向 19 min → remover 73 min → updater 4 min）。
+⚠️ 之前有一次会话 02 在 scan 331 被系统的 OOM killer 杀掉，所以本文件夹的两条长任务**串行**跑，不并发。
+
+**还差什么**：论文表 II（SemanticKITTI 上的动态点删除 PR/RR/F1）需要注册的 SemanticKITTI 真值，本机没有；
+本文件夹复现的是表 I（作者自己的 ParkingLot 数据），这也是论文的主实验。
+
+## 记录 Log（补充）
+
+| 日期 | 做了什么 | 结果 / 数字 | 结论 |
+| :--- | :--- | :--- | :--- |
+| 10-06 | 会话 01 建图（703 帧） | 约 75 min，输出 cleaned/lifelong/static/dynamic 四张图 | 官方第一段 config 跑通 |
+| 10-06 | 会话 02 对齐 + 更新（667 帧） | 正向/反向 ICP 各 19 min，remover 73 min | 官方第二段 config 跑通 |
+| 10-06 | 按论文定义算 AC/RMSE/CD | **0.9708 / 0.0678 / 0.0902**（论文 0.969 / 0.090 / 0.133） | AC 命中，RMSE/CD 更优 |
+| 10-06 | 换 lifelong 图再算一遍 | 0.9989 / 0.0833 / 0.1377 | 论文未指明配对，两种都记录 |

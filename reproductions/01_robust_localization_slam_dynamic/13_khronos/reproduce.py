@@ -120,6 +120,26 @@ def _collect_results(out_dir):
     return found
 
 
+def _available_gb():
+    """MemAvailable from /proc/meminfo, in GB (None if unreadable)."""
+    try:
+        with open("/proc/meminfo") as fh:
+            for line in fh:
+                if line.startswith("MemAvailable:"):
+                    return int(line.split()[1]) / 1048576.0
+    except OSError:
+        pass
+    return None
+
+
+# The pipeline was still growing when it hit a 13.5 GB cap - five attempts under
+# systemd MemoryMax {5, 8, 11, 12, 13.5} G were all OOM-killed, and the RSS trace
+# shows khronos_node climbing ~250 MB/s (1.34 -> 6.02 GB in 20 s) with no
+# plateau. The bag player is fine; it is the node. So the precondition is not
+# "has a GPU" or "has the data", it is "has more RAM than this laptop".
+MIN_AVAILABLE_GB = 20.0
+
+
 def require(ctx):
     if not os.path.isdir(_ws(ctx)):
         return ("official repo not cloned - git clone https://github.com/MIT-SPARK/Khronos "
@@ -143,6 +163,17 @@ def require(ctx):
         return f"local evaluation config missing: {_eval_config(ctx)}"
     if not os.path.exists("/opt/ros/jazzy/setup.bash"):
         return "ROS 2 Jazzy not found (the pipeline is a ROS 2 workspace)"
+
+    # Everything the reproduction needs is here; this machine is the limit.
+    avail = _available_gb()
+    if avail is not None and avail < MIN_AVAILABLE_GB:
+        return (f"not enough RAM: {avail:.1f} GB available, and this pipeline needs more than "
+                f"13.5 GB (five runs under systemd MemoryMax {{5,8,11,12,13.5}}G were all "
+                "OOM-killed within ~1-2 min). The RSS trace shows khronos_node itself growing "
+                "~250 MB/s with no plateau - the bag player is not the problem. Everything else "
+                "is ready (workspace built, bag extracted, ground truth, evaluation config), so "
+                "this is a hardware precondition, not missing work. See the README's memory "
+                "section for the trace and for the reduced-resolution route.")
     return None
 
 

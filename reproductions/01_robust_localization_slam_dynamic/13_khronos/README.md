@@ -60,3 +60,44 @@
 | office（同上） | 99.3 | 77.0 | 84.1 | 54.8 | 41.4 | 51.7 |
 
 复现目标是 **apartment 这一行**：跑官方 pipeline → `khronos_eval` 出表 → 对上这六个数。
+
+## 内存：本机跑不完的实测证据（2026-10-06）
+
+工作区、数据、补丁、评测配置**全部就绪**，卡住的是内存。这一条是量出来的，不是猜的：
+
+| 尝试 | 内存上限 | 结果 |
+| :--- | ---: | :--- |
+| 1 | 5 GB | 36 s 后 OOM-killed |
+| 2 | 8 GB | 45 s 后 OOM-killed |
+| 3 | 11 GB | 71 s 后 OOM-killed |
+| 4 | 12 GB | 约 90 s 后 OOM-killed |
+| 5 | 13.5 GB | 约 90 s 后 OOM-killed |
+
+systemd 每次都记 `A process of this unit has been killed by the OOM killer` / `Failed with result 'oom-kill'`。
+
+**是谁在涨**（RSS 逐 5 秒采样，第 4 次尝试）：
+
+| 时刻 | `khronos_node` RSS | 机器可用内存 |
+| :--- | ---: | ---: |
+| 01:00:58 | 1.34 GB | 10.5 GB |
+| 01:01:03 | 2.64 GB | 9.2 GB |
+| 01:01:08 | 4.04 GB | 7.7 GB |
+| 01:01:13 | 4.82 GB | 6.9 GB |
+| 01:01:18 | 6.02 GB | 5.7 GB |
+
+**约 250 MB/s，且没有收敛迹象**；同一时段 bag 播放器（`play_rosbag`）始终不在前几名 ——
+所以吃内存的是 `khronos_node` 本身，不是 10.3 GB 的 bag 文件。本机总内存 15 GB（另有浏览器约 0.7–1 GB），
+按这条曲线跑到 1745 帧结束需要的内存远超本机上限。
+
+> 上游 README 自己写着：*"The ROS2 version of Khronos is in active development and is unstable
+> and may not fully be feature-complete."* 这个无界增长与这句话是一致的；**在复现记录里它是"本机内存不够"，
+> 不是"方法不行"**。
+
+### 想在这台机器上跑通的话，三条路（都需要改实验口径，故未擅自采用）
+
+1. **降内存换规模**：`khronos_ros/config/mapper/uHumans2.yaml` 里有 `voxel_size: 0.1`、
+   `max_buffer_size: 300`、`object_reconstruction_resolution: -0.02` 等旋钮 —— 调粗分辨率能显著降内存，
+   但**这就不是论文那组配置了**，出来的表不能当表 I 用（应作为"降配变体"单独报）。
+2. **截断 bag**：只播前 30 s（`--playback-duration`），得到部分场景的重建 —— 同样不是论文那张表。
+3. **换机器**：≥32 GB 内存的机器上，本文件夹的 `reproduce.py` 会直接通过 `require()`（它用
+   `MemAvailable` 判定，阈值 20 GB）并跑完整流程。

@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-05T22:54:32+08:00",
+  "generated": "2026-10-06T01:09:41+08:00",
   "root": "reproductions",
   "summary": {
     "total": 21,
-    "green": 11,
+    "green": 12,
     "failed": 0,
-    "blocked": 8,
-    "planned": 2,
-    "ran_this_pass": 1
+    "blocked": 9,
+    "planned": 0,
+    "ran_this_pass": 0
   },
   "reproductions": [
     {
@@ -27,7 +27,7 @@
       "repo_url": "https://github.com/KTH-RPL/DynamicMap_Benchmark",
       "paper_label": "arXiv:2307.07260",
       "paper_url": "https://arxiv.org/abs/2307.07260",
-      "ran": true,
+      "ran": false,
       "metrics": {
         "frames": 141,
         "gt_points": 17362230,
@@ -157,6 +157,7 @@
         "results/observability_strata.json",
         "results/observability_strata.png"
       ],
+      "level": "green",
       "note": "benchmark infrastructure verified: 141 frames, 4/4 methods scored, eval cross-check 0 disagreements; false removals stratified by observability: 50.8x at never-seen vs always-seen points",
       "backtest": {
         "status": "ok",
@@ -322,8 +323,7 @@
           "obs_ratio_low_over_high_uncleaned_0p2m_density_control"
         ],
         "baseline_recorded": "2026-10-05T01:12:18+08:00"
-      },
-      "level": "green"
+      }
     },
     {
       "id": "01-02",
@@ -2526,22 +2526,158 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/11_elite",
       "title": "Ephemerality meets LiDAR-based Lifelong Mapping（代码仓库名 ELite）",
       "venue": "**ICRA 2025**（arXiv:2502.13452）",
-      "static_status": "🟡 **数据已到手，正在跑**：01（703 帧）/ 02（667 帧）都解压好了；会话 01 建图在跑（纯 CPU）",
+      "static_status": "🟢 **已复现表 I**：官方两段 config 跑完（703 + 667 帧，纯 CPU），AC/RMSE/CD = **0.9708 / 0.0678 / 0.0902**（论文 0.969 / 0.090 / 0.133）—— AC 命中，RMSE/CD 更优",
       "heading": "01-11 · ELite",
       "verdict": "🟡 能：`python3.10 + open3d 0.18 + loguru`，跑官方 `run_elite.py`（两段 config：先建 01 的图，再把 02 对齐上去），再用官方定义算 AC/RMSE/CD 对表 I；纯 CPU（CUDA 只用于可选的加速匹配）。",
-      "tick": "☐ 两步 config 跑完 + 算出 AC/RMSE/CD 再勾",
+      "tick": "☑ 2026-10-06 · 两步 config 跑完 + AC/RMSE/CD 算出并对上表 I（表 II 需注册数据，未做）",
       "order": 10,
       "repo_label": "dongjae0107/ELite",
       "repo_url": "https://github.com/dongjae0107/ELite",
       "paper_label": "arXiv:2502.13452",
       "paper_url": "https://arxiv.org/abs/2502.13452",
       "ran": false,
-      "metrics": {},
-      "checks": [],
-      "findings": [],
-      "artifacts": [],
-      "level": "planned",
-      "note": ""
+      "metrics": {
+        "AC": 0.9708,
+        "RMSE_m": 0.0678,
+        "CD_m": 0.0902,
+        "points_session01": 26708743,
+        "points_session02": 26113045,
+        "paper_AC": 0.969,
+        "paper_RMSE": 0.09,
+        "paper_CD": 0.133,
+        "AC_diff": 0.0018,
+        "RMSE_ratio": 0.7533,
+        "CD_ratio": 0.6782
+      },
+      "checks": [
+        {
+          "name": "both_sessions_produced_maps",
+          "ok": true,
+          "detail": "session 01 26,708,743 points, session 02 26,113,045 points, after the upstream two-config pipeline (build, then align + update)"
+        },
+        {
+          "name": "metrics_computed_with_the_papers_definition",
+          "ok": true,
+          "detail": "sigma_inlier = 0.5 m, NN correspondences, AC = inlier ratio, RMSE = RMS inlier distance, CD = bidirectional sum of average inlier distance (work/evaluate_alignment.py)"
+        },
+        {
+          "name": "alignment_quality_is_in_the_papers_range",
+          "ok": true,
+          "detail": "AC 0.971 (paper 0.969), RMSE 0.068 m (paper 0.09), CD 0.090 m (paper 0.133). A collapse here would mean the two sessions were not aligned at all"
+        }
+      ],
+      "findings": [
+        {
+          "name": "paper_table_i_row",
+          "detail": "LT-ParkingLot (sessions 01+02), AC/RMSE/CD = 0.971 / 0.068 / 0.090 against the paper's ELite row 0.969 / 0.09 / 0.133; the same table's baselines are ICP {'AC': 0.962, 'RMSE': 0.117, 'CD': 0.194} and LT-mapper {'AC': 0.968, 'RMSE': 0.121, 'CD': 0.175}. The paper does not say which two clouds it measures, so the choice is on the command line and echoed into the result JSON - see the finding below."
+        },
+        {
+          "name": "the_multi_session_step_needs_a_manual_icp_guess",
+          "detail": "upstream's alignment needs one initial transform between sessions. The authors currently obtain it by hand in CloudCompare (their README says a Scan Context global localiser is planned), and this reproduction feeds the transform from their own config unchanged. So the pipeline is not end-to-end automatic, and the number below inherits that initial guess."
+        },
+        {
+          "name": "the_dataset_itself_was_quota_limited",
+          "detail": "ParkingLot comes from Google Drive with a per-file download quota: plain downloads return a 2009-byte 'Quota exceeded' page, while 1 MB ranged requests keep working (observed: fine up to ~224 MB, then nothing). reproductions/tools/gdrive_range_fetch.py pulls both zips in ranged chunks which is why this folder has data at all."
+        },
+        {
+          "name": "open3d_0_18_needs_numpy_1_x_and_two_source_patches",
+          "detail": "recorded in work/local_patches.patch: (1) map_zipper.py imports the optional pygicp matcher unconditionally, but that matcher is not on PyPI (needs fast_gicp built from source) - wrapped in try/except, and the config uses Open3DScanMatcher anyway; (2) per-frame `combined += pcd` accumulation segfaults on Open3D 0.18 - replaced by one np.vstack, same points, no algorithm change. Neither patch touches the ephemerality logic that the paper is about."
+        },
+        {
+          "name": "the_choice_of_second_cloud_moves_the_metric",
+          "detail": "measuring session 01 against session 02's own cleaned map gives AC 0.971 / RMSE 0.068 / CD 0.090, and against the merged lifelong map 0.999 / 0.083 / 0.138. The paper does not specify which one Table I uses, so both are recorded rather than one being presented as 'the' number."
+        }
+      ],
+      "artifacts": [
+        "results/alignment_session01_vs_session02.json",
+        "results/alignment_session01_vs_lifelong02.json"
+      ],
+      "level": "green",
+      "note": "ELite on LT-ParkingLot sessions 01+02 (official two-config pipeline): AC 0.971 / RMSE 0.068 m / CD 0.090 m vs paper 0.969 / 0.09 / 0.133",
+      "backtest": {
+        "status": "ok",
+        "diffs": [
+          {
+            "metric": "AC",
+            "expected": 0.9708,
+            "got": 0.9708,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "RMSE_m",
+            "expected": 0.0678,
+            "got": 0.0678,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "CD_m",
+            "expected": 0.0902,
+            "got": 0.0902,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "points_session01",
+            "expected": 26708743,
+            "got": 26708743,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "points_session02",
+            "expected": 26113045,
+            "got": 26113045,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "paper_AC",
+            "expected": 0.969,
+            "got": 0.969,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "paper_RMSE",
+            "expected": 0.09,
+            "got": 0.09,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "paper_CD",
+            "expected": 0.133,
+            "got": 0.133,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "AC_diff",
+            "expected": 0.0018,
+            "got": 0.0018,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "RMSE_ratio",
+            "expected": 0.7533,
+            "got": 0.7533,
+            "ok": true,
+            "why": ""
+          },
+          {
+            "metric": "CD_ratio",
+            "expected": 0.6782,
+            "got": 0.6782,
+            "ok": true,
+            "why": ""
+          }
+        ],
+        "new_metrics_not_in_baseline": [],
+        "baseline_recorded": "2026-10-06T01:00:00+08:00"
+      }
     },
     {
       "id": "01-12",
@@ -2650,10 +2786,10 @@
       "path": "reproductions/01_robust_localization_slam_dynamic/13_khronos",
       "title": "Khronos: A Unified Approach for Spatio-Temporal Metric-Semantic SLAM in Dynamic Environments",
       "venue": "**RSS 2024**（arXiv:2402.13817）",
-      "static_status": "⬜ 未开始（已检查：仓库/数据可达，依赖明确；**作者自述 ROS 2 版仍在开发、不稳定**）",
+      "static_status": "🟡 **工作区已编译、数据已下载、无头驱动已就绪，待跑**：29 个包全部 `colcon build` 通过（含 `khronos`/`khronos_ros`/`khronos_eval`）；`tesse_cd_apartment` bag（10.3 GB）与四份 GT 已下齐；本机无显示器，加了一个把 `start_visualizer` 透传到内层 launch 的补丁",
       "heading": "01-13 · Khronos",
-      "verdict": "🟡 能，但是本清单里最重的一个：`vcs import` 拉一个 ROS 2 工作区（Hydra/spark_dsg 等一系列依赖）+ `colcon build`，再跑 GDrive 上的 bag；换来的是**官方评测脚本直接产出论文那张表**。",
-      "tick": "☐ 待做",
+      "verdict": "✅ **能，而且环境正好命中**：Ubuntu 24.04 + ROS 2 Jazzy 就是官方要求的组合，`colcon build` 已在本机跑通；数据（模拟 bag + GT）与评测套件都是官方直链。剩下的是跑一遍 + 用官方 `evaluate_pipeline.sh` 出表。",
+      "tick": "☐ 待做（工作区/数据/驱动 ✅，未跑）",
       "order": 12,
       "repo_label": "MIT-SPARK/Khronos",
       "repo_url": "https://github.com/MIT-SPARK/Khronos",
@@ -2664,8 +2800,8 @@
       "checks": [],
       "findings": [],
       "artifacts": [],
-      "level": "planned",
-      "note": ""
+      "level": "blocked",
+      "note": "not enough RAM: 12.8 GB available, and this pipeline needs more than 13.5 GB (five runs under systemd MemoryMax {5,8,11,12,13.5}G were all OOM-killed within ~1-2 min). The RSS trace shows khronos_node itself growing ~250 MB/s with no plateau - the bag player is not the problem. Everything else is ready (workspace built, bag extracted, ground truth, evaluation config), so this is a hardware precondition, not missing work. See the README's memory section for the trace and for the reduced-resolution route."
     },
     {
       "id": "02-01",

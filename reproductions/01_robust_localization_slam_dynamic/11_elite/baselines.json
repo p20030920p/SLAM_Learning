@@ -1,0 +1,46 @@
+{
+  "reproduction": "01-11",
+  "paper": "Ephemerality meets LiDAR-based Lifelong Mapping (ELite), ICRA 2025",
+  "recorded": "2026-10-06T01:00:00+08:00",
+  "recorded_with": "official two-config pipeline (run_elite.py config/parkinglot_first.yaml then parkinglot.yaml, headless copies in work/) on the authors' own LT-ParkingLot sessions 01 and 02; AC/RMSE/CD computed by work/evaluate_alignment.py from the paper's own definition (§IV-A p.5)",
+  "rel_tolerance": 0.02,
+  "note": "Table I does not say which two clouds it measures, so the pair is an explicit command-line choice here and is echoed into the result JSON. Both sensible pairings are recorded: session 01 against session 02's own cleaned map (the primary row) and against the merged lifelong map (the alternative).",
+  "paper_reported": {
+    "sequence": "LT-ParkingLot (sessions 01 and 02)",
+    "ELite": {"AC": 0.969, "RMSE": 0.090, "CD": 0.133},
+    "ICP": {"AC": 0.962, "RMSE": 0.117, "CD": 0.194},
+    "LT-mapper": {"AC": 0.968, "RMSE": 0.121, "CD": 0.175},
+    "source": "Table I, p.5"
+  },
+  "metrics": {
+    "AC": 0.9708,
+    "RMSE_m": 0.0678,
+    "CD_m": 0.0902,
+    "points_session01": 26708743,
+    "points_session02": 26113045,
+    "paper_AC": 0.969,
+    "paper_RMSE": 0.09,
+    "paper_CD": 0.133,
+    "AC_diff": 0.0018,
+    "RMSE_ratio": 0.7533,
+    "CD_ratio": 0.6782
+  },
+  "alternative_pairing": {
+    "a": "session 01 cleaned map",
+    "b": "session 02 merged lifelong map",
+    "AC": 0.9989,
+    "RMSE_m": 0.0833,
+    "CD_m": 0.1377,
+    "source": "results/alignment_session01_vs_lifelong02.json"
+  },
+  "pipeline_runtime": {
+    "session_01_build": "~75 min (CPU)",
+    "session_02_align_update": "~2 h (CPU): forward pass 19 min, reverse pass 19 min, map remover 73 min, map updater 4 min",
+    "note": "an earlier session-02 attempt was killed by the systemd OOM killer at scan 331; the successful run was serialised against 01-13 rather than started next to it"
+  },
+  "checks_expected": [
+    "both_sessions_produced_maps",
+    "metrics_computed_with_the_papers_definition",
+    "alignment_quality_is_in_the_papers_range"
+  ]
+}
