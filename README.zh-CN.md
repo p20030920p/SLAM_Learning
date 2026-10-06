@@ -40,7 +40,7 @@
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 20:55 CST
+**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 22:50 CST
 
 | # | 状态 | 复现库 | 论文 | 一句话 |
 | :-- | :-- | :-- | :-- | :-- |
@@ -99,6 +99,8 @@ bash reproductions/tools/build_ros1_catkin.sh   # catkin 构建，已处理 vtk 
 | [`reproductions/README.md`](reproductions/README.md) | 规则、六件套文件夹约定、驱动的四件事 |
 | [`reproductions/PAPER_BASELINES.md`](reproductions/PAPER_BASELINES.md) | 每篇论文自报的数字，让「复现」先有验收标准 |
 | [`reproductions/NOTES.md`](reproductions/NOTES.md) | 背景分析：两个方向、与任务的契合度、论文报告值、链接核验 |
+| [`reproductions/CANDIDATES.md`](reproductions/CANDIDATES.md) | **下一篇做什么**：87 条候选论文，全部有公开代码，仓库逐一实测可达，按「四条门槛」分档 |
+| [`reproductions/OPEN_PROBLEMS.md`](reproductions/OPEN_PROBLEMS.md) | 从这 87 条里抽出的 14 个开放问题，每条都带最小实验与证伪条件 |
 | [`reproductions/status.json`](reproductions/status.json) | 机器可读的账本，由驱动写出 |
 | [`docs/task-book/TASK_BOOK.md`](docs/task-book/TASK_BOOK.md) | 两个研究方向所依据的任务书 |
 | [`docs/car.md`](docs/car.md) | 八个难点，每个配一条可否证的假设 |

@@ -8,7 +8,7 @@
 ![driver](https://img.shields.io/badge/driver-run__all.py-6f42c1)
 ![backtest](https://img.shields.io/badge/backtest-baselines.json-1c7ed6)
 
-[复现清单](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [自动化](#自动化) &nbsp;•&nbsp; [约定](#约定) &nbsp;•&nbsp; [背景分析](NOTES.md)
+[复现清单](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [自动化](#自动化) &nbsp;•&nbsp; [约定](#约定) &nbsp;•&nbsp; [候选论文目录](CANDIDATES.md) &nbsp;•&nbsp; [开放问题](OPEN_PROBLEMS.md) &nbsp;•&nbsp; [背景分析](NOTES.md)
 
 *[仓库主页](../README.md) &nbsp;•&nbsp; [D1](01_robust_localization_slam_dynamic/README.md) &nbsp;•&nbsp; [D2](02_semantic_mapping_visual_anchoring_navigation/README.md)*
 
@@ -36,7 +36,7 @@
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 20:55 CST
+**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 22:50 CST
 
 | # | 状态 | 复现库 | 论文 | 一句话 |
 | :-- | :-- | :-- | :-- | :-- |
@@ -99,3 +99,15 @@ python3 reproductions/run_all.py --no-backtest   # 跳过与基线的比对
 bash reproductions/tools/ros1_env.sh          # 剥掉 ROS 2 的库，避免符号冲突
 bash reproductions/tools/build_ros1_catkin.sh # catkin 构建，含 vtk 头文件与 DSO 两个坑
 ```
+
+## 选下一篇做什么
+
+上面那张表只写了**已经做了什么**。要决定**下一篇做什么**，看这两页：
+
+| 文件 | 内容 |
+| :--- | :--- |
+| [`CANDIDATES.md`](CANDIDATES.md) | 87 条候选论文，每条都有公开代码，每个仓库都实测可达。按「有库 → 纯 CPU → 不要 ROS 1 → 数据免注册」分三档，22 条四条全过 |
+| [`OPEN_PROBLEMS.md`](OPEN_PROBLEMS.md) | 从这 87 条里抽出来的 14 个开放问题，每条都带「最小实验」与「什么结果会证伪它」 |
+
+选型规则和本目录一致：**先看有没有库，再看能不能在这台机器上跑，最后才看它重不重要。**
+`CANDIDATES.md` 里的「不建议复现」那一档也保留着，用来记住哪些论文是**因为没库或要 GPU** 才出局的。

@@ -41,7 +41,7 @@ the papers' own, reproduced on one machine — not a ranking.
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 20:55 CST
+**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 22:50 CST
 
 | # | 状态 | 复现库 | 论文 | 一句话 |
 | :-- | :-- | :-- | :-- | :-- |
@@ -101,6 +101,8 @@ bash reproductions/tools/build_ros1_catkin.sh   # catkin build, with the vtk-hea
 | [`reproductions/README.md`](reproductions/README.md) | the rule, the six-file folder contract, the driver's four passes |
 | [`reproductions/PAPER_BASELINES.md`](reproductions/PAPER_BASELINES.md) | what each paper claims, so a run has an acceptance threshold at all |
 | [`reproductions/NOTES.md`](reproductions/NOTES.md) | background analysis: the two directions, fit to the task, reported numbers, link checks |
+| [`reproductions/CANDIDATES.md`](reproductions/CANDIDATES.md) | **what to reproduce next**: 87 candidate papers that all ship public code, every repository fetched live, ranked by how many of the four gates they clear |
+| [`reproductions/OPEN_PROBLEMS.md`](reproductions/OPEN_PROBLEMS.md) | 14 open problems drawn from those 87, each with a minimal experiment and a stated falsifier |
 | [`reproductions/status.json`](reproductions/status.json) | machine-readable ledger, written by the driver |
 | [`docs/task-book/TASK_BOOK.md`](docs/task-book/TASK_BOOK.md) | the task book the two directions come from |
 | [`docs/car.md`](docs/car.md) | the eight difficulties, each with a falsifiable hypothesis |
