@@ -49,5 +49,15 @@
     "full_dataset_scored",
     "recall_matches_the_paper"
   ],
-  "metrics_note": "filled from the completed run; the keys the driver emits are R@1, R@5, diff_R@1, diff_R@5, database, query, model, layer, facet, num_clusters, domain and R@1_alt_gt"
+  "metrics_note": "filled from the completed run; the keys the driver emits are R@1, R@5, diff_R@1, diff_R@5, database, query, model, layer, facet, num_clusters, domain and R@1_alt_gt",
+  "meta": {
+    "paper": "AnyLoc: Towards Universal Visual Place Recognition",
+    "verdict": "能。纯 CPU 约 3.3 h，R@1 65.0 与论文一致。",
+    "tick": "完成",
+    "paper_link": "[arXiv:2308.00688](https://arxiv.org/abs/2308.00688)",
+    "code_link": "[AnyLoc/AnyLoc](https://github.com/AnyLoc/AnyLoc) ✅ 实测 200",
+    "direction": "D2 · 语义建图、视觉定位与导航",
+    "task_book": "⚠️ 补任务书缺掉的「视觉锚定」（原 T3 被删）",
+    "order": 15
+  }
 }

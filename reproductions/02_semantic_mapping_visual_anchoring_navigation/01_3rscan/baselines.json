@@ -40,5 +40,15 @@
     "depth_scale_plausible",
     "poses_are_rigid",
     "observability_partition"
-  ]
+  ],
+  "meta": {
+    "paper": "3RScan（数据集）—— 源自 RIO: 3D Object Instance Re-Localization in Changing Indoor Environments",
+    "verdict": "半能。只有数据集与工具，全量数据需申请。",
+    "tick": "半完成",
+    "paper_link": "[arXiv:1908.06109](https://arxiv.org/abs/1908.06109)",
+    "code_link": "[WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) ✅ 实测 200",
+    "direction": "D2 · 语义建图、视觉定位与导航",
+    "task_book": "§4.1 地图更新策略；物体级变化检测题目的评测数据",
+    "order": 13
+  }
 }

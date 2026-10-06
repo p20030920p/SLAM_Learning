@@ -1,0 +1,29 @@
+{
+  "model": "dinov2_vitg14",
+  "layer": 31,
+  "facet": "value",
+  "num_clusters": 32,
+  "domain": "indoor",
+  "database": 406,
+  "query": 406,
+  "limit": null,
+  "paper": {
+    "R@1": 65.0,
+    "R@5": 80.5
+  },
+  "recall": {
+    "ground_truth_new.npy": {
+      "R@1": 65.02,
+      "R@5": 80.54
+    },
+    "my_ground_truth_new.npy": {
+      "R@1": 67.49,
+      "R@5": 82.02
+    }
+  },
+  "primary_gt": "ground_truth_new.npy",
+  "diff_vs_paper": {
+    "R@1": 0.02,
+    "R@5": 0.04
+  }
+}

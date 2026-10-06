@@ -184,8 +184,13 @@ def main():
                                                  torch_mod.from_numpy(qu), gt_pos,
                                                  method="cosine", norm_descs=True,
                                                  use_gpu=False, use_percentage=True)
-        results["recall"][gt_name] = {f"R@{k}": float(v) for k, v in recalls.items()}
-        print(f"  {gt_name}: " + " · ".join(f"R@{k} {v:.1f}" for k, v in recalls.items()))
+        # `get_top_k_recall(..., use_percentage=True)` returns a *fraction*: the
+        # upstream name is misleading (it divides by the number of queries and
+        # stops there). Scale to percent so the numbers read like the paper's.
+        results["recall"][gt_name] = {f"R@{k}": round(float(v) * 100, 2)
+                                      for k, v in recalls.items()}
+        print(f"  {gt_name}: "
+              + " · ".join(f"R@{k} {v * 100:.1f}" for k, v in recalls.items()))
 
     primary = results["recall"]["ground_truth_new.npy"]
     results["primary_gt"] = "ground_truth_new.npy"

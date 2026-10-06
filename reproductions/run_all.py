@@ -111,10 +111,12 @@ def md_link(text):
 
 
 def read_plan(folder):
-    """The fields the README of one reproduction declares about itself.
+    """The fields one reproduction declares about itself.
 
-    The checklist in the repo READMEs is generated from these rows, so a
-    reproduction is edited in one place only: its own folder README.
+    These live in `baselines.json` under "meta": a README is a page for a
+    reader, not a database, and the checklist is generated from that file. The
+    README table is still parsed as a fallback, so a folder that has not been
+    migrated yet keeps working.
     """
     readme = os.path.join(folder, "README.md")
     info = {"title": "", "venue": "", "static_status": "", "heading": "",
@@ -126,6 +128,29 @@ def read_plan(folder):
     m = re.search(r"^#\s+(.+)$", text, re.M)
     if m:
         info["heading"] = m.group(1).strip()
+
+    meta = {}
+    bl = os.path.join(folder, "baselines.json")
+    if os.path.exists(bl):
+        try:
+            meta = json.load(open(bl, encoding="utf-8")).get("meta") or {}
+        except (ValueError, OSError):
+            meta = {}
+    if meta:
+        info["title"] = meta.get("paper", "")
+        info["venue"] = meta.get("venue", "")
+        info["static_status"] = meta.get("static_status", "")
+        info["verdict"] = meta.get("verdict", "")
+        info["tick"] = meta.get("tick", "")
+        info["order"] = int(meta.get("order", 0) or 0)
+        info["repo_label"], info["repo_url"] = md_link(meta.get("code_link", ""))
+        info["paper_label"], info["paper_url"] = md_link(meta.get("paper_link", ""))
+        if not info["repo_label"] and info["repo_url"]:
+            info["repo_label"] = info["repo_url"]
+        if not info["paper_label"] and info["paper_url"]:
+            info["paper_label"] = info["paper_url"]
+        return info
+
     for key, field in (("论文", "title"), ("Venue", "venue"), ("复现状态", "static_status"),
                        ("能否复现", "verdict"), ("复现完成", "tick"),
                        ("论文链接", "_paper_cell"), ("代码", "_code_cell")):
@@ -312,13 +337,13 @@ def render_progress(results):
     stamp = datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %H:%M %Z")
 
     def mark(r):
-        return (r.get("tick") or "☐").split()[0] if (r.get("tick") or "").strip() else "☐"
+        return (r.get("tick") or "未做").split()[0]
 
     ordered = sorted(results, key=lambda r: (r.get("order") or 999, r["id"]))
     counts = {}
     for r in ordered:
         counts[mark(r)] = counts.get(mark(r), 0) + 1
-    tally = " · ".join(f"{k} {counts[k]}" for k in ("☑", "◐", "☐", "⛔") if k in counts)
+    tally = " · ".join(f"{k} {counts[k]}" for k in ("完成", "半完成", "阻塞") if k in counts)
 
     lines = [
         PROGRESS_START,
@@ -327,7 +352,7 @@ def render_progress(results):
         "",
         f"**按「越好复现 + 越能对上原库结果」排序** —— {tally}（共 {total}） · 更新于 {stamp}",
         "",
-        "| # | ✓ | 复现库 | 对应论文 | 能不能复现（一句话） |",
+        "| # | 状态 | 复现库 | 论文 | 一句话 |",
         "| :-- | :-- | :-- | :-- | :-- |",
     ]
     for r in ordered:
@@ -339,10 +364,8 @@ def render_progress(results):
         lines.append(f"| {r['id']} | {mark(r)} | {repo} | {paper} | {verdict} |")
     lines += [
         "",
-        "> ✓ 的含义：**☑ 已完成并对上原库/论文的结果 · ◐ 只做了一半 · ☐ 还没做 · ⛔ 本机做不了（无 GPU / 无代码）**。",
-        "> 每一行的三个字段写在对应文件夹的 `README.md` 里（`复现库` / `论文链接` / `能否复现` / `复现顺序` / `复现完成`），",
-        "> 本表由 `python3 reproductions/run_all.py` 从这些字段生成，**块内内容不要手改**；跑完一个就把那个文件夹的 `复现完成` 改成 ☑。",
-        "",
+        "> 状态：完成 = 已对上原库数字 · 半完成 = 只做了仓库里有的那一半 · 阻塞 = 本机做不了（缺硬件或没有代码）。",
+        "> 每一行的字段写在对应文件夹的 `baselines.json` 里，本表由 `python3 reproductions/run_all.py` 生成，块内不要手改。",
         PROGRESS_END,
     ]
     return "\n".join(lines)

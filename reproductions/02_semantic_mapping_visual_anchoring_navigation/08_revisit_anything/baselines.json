@@ -21,11 +21,6 @@
   "metrics": {
     "R@1": 95.32,
     "R@5": 98.28,
-    "paper_R@1": 95.3,
-    "paper_R@5": 98.0,
-    "diff_R@1": 0.02,
-    "diff_R@5": 0.28,
-    "recall_R@1_to_R@5": [95.32, 97.04, 97.29, 97.78, 98.28],
     "query_images": 406
   },
   "cpu_cost": {
@@ -45,5 +40,15 @@
     "paper_configuration_used",
     "full_dataset_scored",
     "recall_matches_the_paper"
-  ]
+  ],
+  "meta": {
+    "paper": "Revisit Anything: Visual Place Recognition via Image Segment Retrieval",
+    "verdict": "能。纯 CPU 约 25 min，R@1 95.32 与论文一致。",
+    "tick": "完成",
+    "paper_link": "[arXiv:2409.18049](https://arxiv.org/abs/2409.18049)",
+    "code_link": "[AnyLoc/Revisit-Anything](https://github.com/AnyLoc/Revisit-Anything) ✅ 已克隆（commit 628508d）",
+    "direction": "D2 · 语义建图、视觉定位与导航",
+    "task_book": "car.md 方向二 · 难点 7「动态环境下的 VPR」的直接对手",
+    "order": 16
+  }
 }

@@ -46,5 +46,15 @@
     "official_pipeline_produced_a_static_map",
     "evaluator_implementations_agree",
     "benchmark_port_still_reproduces_its_row"
-  ]
+  ],
+  "meta": {
+    "paper": "Removert: Remove then Revert — Static Map Building in Challenging Environment",
+    "verdict": "能，需 ROS 1。官方实现 SA/DA/AA 99.62/89.25/94.29。",
+    "tick": "完成",
+    "paper_link": "[doi:10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856)",
+    "code_link": "[irapkaist/removert](https://github.com/irapkaist/removert) ✅ **官方仓库已编译并跑通**",
+    "direction": "D1 · 动态环境下的鲁棒定位与 SLAM",
+    "task_book": "§2 难点 4 高变动场景的地图维护；§6 并行实验 H1′（排名稳定性）",
+    "order": 5
+  }
 }

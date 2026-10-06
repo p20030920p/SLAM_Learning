@@ -7,9 +7,21 @@
   "note": "Table I does not say which two clouds it measures, so the pair is an explicit command-line choice here and is echoed into the result JSON. Both sensible pairings are recorded: session 01 against session 02's own cleaned map (the primary row) and against the merged lifelong map (the alternative).",
   "paper_reported": {
     "sequence": "LT-ParkingLot (sessions 01 and 02)",
-    "ELite": {"AC": 0.969, "RMSE": 0.090, "CD": 0.133},
-    "ICP": {"AC": 0.962, "RMSE": 0.117, "CD": 0.194},
-    "LT-mapper": {"AC": 0.968, "RMSE": 0.121, "CD": 0.175},
+    "ELite": {
+      "AC": 0.969,
+      "RMSE": 0.09,
+      "CD": 0.133
+    },
+    "ICP": {
+      "AC": 0.962,
+      "RMSE": 0.117,
+      "CD": 0.194
+    },
+    "LT-mapper": {
+      "AC": 0.968,
+      "RMSE": 0.121,
+      "CD": 0.175
+    },
     "source": "Table I, p.5"
   },
   "metrics": {
@@ -42,5 +54,15 @@
     "both_sessions_produced_maps",
     "metrics_computed_with_the_papers_definition",
     "alignment_quality_is_in_the_papers_range"
-  ]
+  ],
+  "meta": {
+    "paper": "Ephemerality meets LiDAR-based Lifelong Mapping（代码仓库名 ELite）",
+    "verdict": "能。AC 0.9708，论文 0.969，纯 CPU。",
+    "tick": "完成",
+    "paper_link": "[arXiv:2502.13452](https://arxiv.org/abs/2502.13452)",
+    "code_link": "[dongjae0107/ELite](https://github.com/dongjae0107/ELite) ✅ MIT，纯 Python",
+    "direction": "D1 · 动态环境下的鲁棒定位与 SLAM",
+    "task_book": "§2 难点 4；[`../09_lt_mapper/`](../09_lt_mapper/) 的同题对照（LT-mapper 是 ROS 1 + 需注册数据）",
+    "order": 10
+  }
 }

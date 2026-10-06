@@ -11,10 +11,26 @@
   },
   "sibling_rows_same_evaluator_same_gt": {
     "note": "cleaned maps of the SAME 141 KITTI 00 frames, full GT, same 0.05 m rule - context only, not a like-for-like comparison: those maps cover all 141 frames",
-    "removert_official_scanside": {"SA": 99.6179, "DA": 89.2523, "AA": 94.2928},
-    "removert_benchmark_port": {"SA": 99.44, "DA": 41.53, "AA": 64.26},
-    "erasor_benchmark_port": {"SA": 66.71, "DA": 98.54, "AA": 81.07},
-    "dufomap": {"SA": 97.96, "DA": 98.72, "AA": 98.34}
+    "removert_official_scanside": {
+      "SA": 99.6179,
+      "DA": 89.2523,
+      "AA": 94.2928
+    },
+    "removert_benchmark_port": {
+      "SA": 99.44,
+      "DA": 41.53,
+      "AA": 64.26
+    },
+    "erasor_benchmark_port": {
+      "SA": 66.71,
+      "DA": 98.54,
+      "AA": 81.07
+    },
+    "dufomap": {
+      "SA": 97.96,
+      "DA": 98.72,
+      "AA": 98.34
+    }
   },
   "input": {
     "central_session": "KITTI 00 benchmark frames 004390..004470 (81 scans), idx [0,81)",
@@ -79,5 +95,15 @@
     "official_pipeline_produced_a_cleaned_map",
     "evaluator_implementations_agree",
     "change_detection_found_both_directions"
-  ]
+  ],
+  "meta": {
+    "paper": "LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping",
+    "verdict": "半能。仓库只有变化检测半边。",
+    "tick": "半完成",
+    "paper_link": "[arXiv:2107.07712](https://arxiv.org/abs/2107.07712)",
+    "code_link": "[gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) ✅ 实测 200",
+    "direction": "D1 · 动态环境下的鲁棒定位与 SLAM",
+    "task_book": "§2 难点 4 地图维护；car.md 难点 3「终身 SLAM」与参考库",
+    "order": 9
+  }
 }

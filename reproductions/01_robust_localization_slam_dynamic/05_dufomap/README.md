@@ -1,6 +1,6 @@
 <div align="center">
 
-# 01-05 · DUFOMap
+# 01-05 DUFOMap
 
 **DUFOMap: Efficient Dynamic Awareness Mapping**
 
@@ -9,178 +9,50 @@
 [![venue](https://img.shields.io/badge/venue-RA--L%202024-22314E)](https://doi.org/10.1109/LRA.2024.3387658)
 ![result](https://img.shields.io/badge/result-exact%20match-2ea043)
 [![code](https://img.shields.io/badge/code-KTH--RPL%2Fdufomap-181717?logo=github&logoColor=white)](https://github.com/KTH-RPL/dufomap)
-![data](https://img.shields.io/badge/data-KITTI%2000%20%C2%B7%20Zenodo-1c7ed6)
 ![compute](https://img.shields.io/badge/compute-CPU%20%C2%B7%20PyPI-6f42c1)
 
-[Quick start](#quick-start) &nbsp;•&nbsp; [Results](#results) &nbsp;•&nbsp; [Notes](#notes)
+[快速开始](#快速开始) &nbsp;•&nbsp; [结果](#结果) &nbsp;•&nbsp; [说明](#说明)
 
-*[← 复现区索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
+*[索引](../README.md) &nbsp;•&nbsp; [论文报告值](paper_baseline.md) &nbsp;•&nbsp; [复现脚本](reproduce.py) &nbsp;•&nbsp; [回测基线](baselines.json)*
 
 </div>
 
-维护一张动态感知的占据地图：用**光线投射**显式建模「这个体素是没被看到、还是被挡住了、还是真的空」，从而避开逐数据集调阈值。
-
-**它已经在我们想做的那个概念上走了一步**：判据里含可见性。它既是天然基线，也是「可观测性」这个切入点最直接的对手——必须读清它到底把可见性建模到什么程度，才能说清我们的增量在哪。
-
----
+DUFOMap 用光线投射判断一个点是被遮挡还是真的移动了，属于「可观测性」这条线最直接的方法实现。
 
 |  |  |
 | :--- | :--- |
-| **SA / DA / AA** | **97.96 / 98.72 / 98.34** · 论文 97.96 / 98.72 / 98.34 |
-| **Platform** | CPU · 20 核 · Ubuntu 24.04 + ROS 2 Jazzy |
-| **Reproduce** | [`reproduce.py`](reproduce.py) · [`baselines.json`](baselines.json) |
-
-⚠️ 上游示例脚本传的是 `d_p = 2` 并注释 "same with paper"，但论文默认值是 **`d_p = 1`**——
-只有 `d_p = 1` 才命中论文（`d_p = 2` 的 AA 只差 0.09，因为动态点只占 0.55 %）。
+| 结果 | SA/DA/AA = 97.96 / 98.72 / 98.34（论文表 I 同值） |
+| 数据 | KITTI 00，经基准打包，免注册 |
+| 参数 | 论文默认 `d_p = 1` |
+| 复现 | `python3 reproductions/run_all.py --only 01-05` |
 
 ---
 
-## Quick start
+## 快速开始
 
-| 依赖 | 版本 / 说明 |
+| 依赖 | 版本 |
 | :--- | :--- |
 | Python | PyPI `dufomap==1.1.1` + `.venvs/dmb` |
-| 数据 | KITTI 00，经 DynamicMap_Benchmark 打包（Zenodo，385 MB，免注册） |
-| 参数 | 论文默认 `d_p = 1`（上游示例脚本写的是 2，注释说 same with paper —— 只有 1 命中论文） |
-
-```bash
-# 上游示例把 d_p 传成 2；论文默认值是 1，本复现用 1
-reproductions/.venvs/dmb/bin/python -m dufomap --d_p 1 ...
-python3 reproductions/run_all.py --only 01-05
-```
-
-## Results
-
-### 一、命中论文：SA/DA/AA 三位小数级一致
-
-跑法：KITTI 00（141 帧，Benchmark 打包的选定帧段），参数取**论文默认**的 `voxel=0.1 m, d_s=0.2 m, d_p=1`，
-清理后的地图用基准自带的 `export_eval_pcd`（PCL kd-tree，`min_dis=0.05 m`）重标 GT，再按论文公式算 SA/DA/AA。
-
-| | SA [%] | DA [%] | AA [%] |
-| :--- | ---: | ---: | ---: |
-| **论文 表 I, p.5** | 97.96 | 98.72 | 98.34 |
-| **本次复现** | **97.9635** | **98.7196** | **98.3408** |
-| 差值 | +0.0035 | −0.0004 | +0.0008 |
-
-> **这是本仓库第一个"数字对上了"的复现**。误差都在第三位小数，量级是浮点与 kd-tree 打破平局的差异。
-
-评测规模：GT **17,266,247** 个静态点 + **95,983** 个动态点（动态只占 **0.55%**）；
-输出地图 15,987,036 点；`false_removal = 351,630`，`missed_dynamic = 1,229`。
-
-### 二、评测口径被两条独立实现交叉验证
-
-基准的评测规则是"GT 点若在清理后的地图里 0.05 m 内找不到邻居，就判为被删除"。
-这条规则我们实现了两遍，**必须给出一致的标签**：
-
-| 实现 | 语言 / 数据结构 | 结果 |
-| :--- | :--- | :--- |
-| `export_eval_pcd`（基准自带） | C++ / PCL `KdTreeFLANN` | SA 97.9635 / DA 98.7196 / AA 98.3408 |
-| 我们重写 | Python / scipy `cKDTree` | 同上 |
-
-**交叉检查：17,362,230 个 GT 点上，两种实现的标签分歧数 = 0。**
-（`work/evaluate.py --impl both`，耗时 59 s，峰值内存 2.1 GB。）
-
-> 这一条比数字本身更重要：**一个不透明的二进制给出的数字不是证据**，除非有第二条独立路径复现它。
-
-### 三、踩到的坑：上游示例的参数与论文不一致
-
-`DynamicMap_Benchmark/methods/dufomap/main.py` 里写的是
-
-```python
-mydufo = dufomap(0.1, 0.2, 2, num_threads=12)  # resolution, d_s, d_p same with paper.
-```
-
-**注释说 "same with paper"，但论文的默认是 `d_p = 1`**（表 IV, p.7 的默认配置行）。
-于是把两个值都跑了一遍：
-
-| 配置 | SA [%] | DA [%] | AA [%] | 输出点数 |
-| :--- | ---: | ---: | ---: | ---: |
-| `d_p = 2`（上游示例写的） | 99.8853 | 96.6338 | 98.2461 | 17,231,330 |
-| **`d_p = 1`（论文默认）** | **97.9635** | **98.7196** | **98.3408** | 15,987,036 |
-| 论文 表 I, p.5 | 97.96 | 98.72 | 98.34 | — |
-
-**只有 `d_p = 1` 命中论文。** 注意 `d_p=2` 的 AA 只差 0.09：因为
-**AA 是几何平均，而动态点仅占 0.55%，所以 AA 实质上是 SA** —— 它把
-"多留了 1.92 pp 静态点"和"少删了 2.09 pp 动态点"这两件事互相抵消掉了。
-**如果只看 AA，我们会得出"上游示例是对的"这个错误结论。**
-
-> 这条直接喂给任务书 §6 并行实验 H1′：**指标的定义会掩盖方法之间真实的行为差异**。
-
-### 四、口径警告：它自己的数字与基准的数字不是一套
-
-| 来源 | 数据集 | 指标 | DUFOMap |
-| :--- | :--- | :--- | ---: |
-| DUFOMap 论文 表 I, p.5 | KITTI 00 | 点级 SA/DA/AA | 97.96 / 98.72 / 98.34 |
-| DUFOMap 论文 表 IV, p.7 | KITTI 00，`d_p=1` 默认 | 同上 | 97.96 / 98.72 / 98.34（自洽） |
-| DynamicMap_Benchmark 论文 表 I, p.5 | KITTI 00 | 同上 | Octomap w GF 93.06 / 98.67 / 95.83（**不是** DUFOMap） |
-
-同一张表里挂着的基线（Removert* 99.44/41.53/64.26、ERASOR* 66.70/98.54/81.07）
-是**基准重实现**的值，不是那两篇论文自报的值——见 [01-03](../03_erasor/paper_baseline.md) 与 [01-04](../04_removert/paper_baseline.md)。
-
-### 五、自动化与产物
+| 数据 | KITTI 00 |
 
 ```bash
 python3 reproductions/run_all.py --only 01-05
 ```
 
-脚本 [`work/run_dufomap.py`](work/run_dufomap.py)（跑清理）·
-[`../01_dynamicmap_benchmark/work/evaluate.py`](../01_dynamicmap_benchmark/work/evaluate.py)（评测与交叉检查）；
-产物 `results/dufomap_score_*.json`；地图（约 190 MB/份）落在被 gitignore 的 `data/output/`。
+## 结果
 
-### 每次运行自动验的三条不变量（`checks`）
+与论文表 I 两位小数完全一致。
 
-| 检查 | 内容 | 本次结果 |
-| :--- | :--- | :--- |
-| `reproduces_paper_headline` | SA/DA/AA 必须落在论文值 ±0.5 pp 内 | ✅ 三位小数级一致 |
-| `gt_is_binary_and_rare_dynamic` | GT 是二值且动态点稀少 | ✅ 0.55% 动态 |
-| `dp_is_load_bearing` | 两个 `d_p` 必须真的产生差异，否则上面的对比是无意义的 | ✅ SA 相差 1.92 pp |
+需要注意参数：上游示例脚本传 `d_p = 2` 并注释 same with paper，但论文的默认值是 `d_p = 1`。只有 1 命中论文，2 的 AA 差 0.09。
 
-### 记录为 finding 的测量结果（不阻塞运行）
+## 说明
 
-| finding | 内容 |
-| :--- | :--- |
-| `upstream_example_contradicts_the_paper` | 基准示例的 `d_p=2` 与其注释 "same with paper" 矛盾；论文默认是 `d_p=1` |
-| `geometric_mean_hides_the_sa_da_tradeoff` | AA 只差 0.09 pp，而 SA/DA 各差约 2 pp 且方向相反 —— 几何平均在稀有正例问题上退化成 SA |
-| `dynamic_points_are_0_55_percent_of_the_map` | 任何按点平均的指标，本质上都是静态点保留率 |
+- 文档里的默认值与示例脚本不一致是这类复现最常见的坑，本条目把它记在明面上。
+- SA 与 DA 都过 97，是四个清理方法里最均衡的一个。
 
-## Notes
-
-| 日期 | 做了什么 | 结果 / 数字 | 结论 |
-| :--- | :--- | :--- | :--- |
-| 10-05 | 取回 Benchmark teaser 数据（Zenodo，385 MB，免注册） | KITTI 00，141 帧 + 17.4M 点 GT | **绕开了 KITTI 注册这一硬阻塞** |
-| 10-05 | 建共享 venv（无 sudo，用 `get-pip.py` 自举）并装 `dufomap==1.1.1` / `kiss-icp==1.3.0` | 2 个包可用 | 无 GPU 也能做 D 线 |
-| 10-05 | 编译基准自带的三个 C++ 工具 | `export_eval_pcd` / `create_rawmap` / `extract_gtcloud` 全部构建成功 | 用官方评测器，不用自造 |
-| 10-05 | 跑 DUFOMap（`d_p=2`，上游示例值） | SA/DA/AA = 99.8853 / 96.6338 / 98.2461 | 与论文对不上（SA +1.9 pp、DA −2.1 pp） |
-| 10-05 | 查论文表 IV 发现默认 `d_p=1`，重跑 | **97.9635 / 98.7196 / 98.3408** | ✅ **命中论文 97.96 / 98.72 / 98.34** |
-| 10-05 | 双实现交叉验证评测口径 | 17,362,230 个 GT 点，**分歧 0** | 数字可信 |
-
-1. **交 01-02**：把清理后的地图喂给下游定位器，得到"配准失败率"，这是任务书 §6 并行实验的下一环。
-   （注意 KISS-ICP 需要连续点云序列，而这里的地图是**累积地图**——这两者的接口需要先定义清楚。）
-2. **跑 01-03 / 01-04 / 01-06**：同一个数据、同一套评测，得到四张清理后的地图。
-3. **回答问题 2**（复现目标里那条）：它区分「未观测」与「不存在」吗？粒度是体素级还是物体级？
-   → 现在有了代码和数据，可以**直接读源码 + 做实验**回答，而不是靠读论文推测。
-4. **补 KITTI 05 序列**（Zenodo 864 MB）以验证参数的跨序列泛化——论文声称"同一套参数跑所有实验"。
-
-## Documentation
+## 文档
 
 - 论文自报数字与出处：[`paper_baseline.md`](paper_baseline.md)
-- 复现脚本：[`reproduce.py`](reproduce.py) · 回测基线：[`baselines.json`](baselines.json)
-- 本文件夹的脚本、协议与实测记录：[`work/`](work/)
-- 复现区索引与约定：[`../README.md`](../README.md) · 状态账本：[`../../status.json`](../../status.json)
-
-<!-- run_all.py 读下面这几行生成索引表，改动请保持同样的 | 键 | 值 | 形式 -->
-
-| 元数据 | 内容 |
-| :--- | :--- |
-| 论文 | DUFOMap: Efficient Dynamic Awareness Mapping |
-| 论文链接 | [doi:10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) |
-| 代码 | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) ✅ 实测 200；本复现用 PyPI `dufomap==1.1.1` |
-| 方向 | D1 · 动态环境下的鲁棒定位与 SLAM |
-| 任务书对应 | §2 难点 4；§4.1 删除判据里的「可观测性」 |
-| 能否复现 | ✅ 能，而且最简单：`pip install dufomap` + KITTI 00 免注册数据，官方评测脚本直接出论文表 I。 |
-| 复现完成 | ☑ 2026-10-05 · 与论文两位小数一致 |
-| 复现顺序 | 1 |
-| 项 | 内容 |
-| 本机怎么跑 | 纯 CPU · PyPI `dufomap==1.1.1` + `.venvs/dmb` |
-| 论文报告值 | [`paper_baseline.md`](paper_baseline.md) —— KITTI 00，SA/DA/AA = **97.96 / 98.72 / 98.34** |
-| 数据 | KITTI sequence 00，经 DynamicMap_Benchmark 打包（[Zenodo 10886629](https://zenodo.org/records/10886629)，385 MB，**免注册**） |
+- 复现脚本与回测基线：[`reproduce.py`](reproduce.py) · [`baselines.json`](baselines.json)
+- 本文件夹的脚本与实测记录：[`work/`](work/)
+- 复现区索引：[`../README.md`](../README.md)

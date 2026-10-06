@@ -43,5 +43,15 @@
     "viewer": "disabled in Examples/RGB-D/rgbd_tum.cc (one line) - see work/local_patches.patch",
     "build": "-j3; -j10 gets OOM-killed on a 15 GB machine",
     "sophus": "NOT built - the project only uses its headers (CMakeLists.txt:49)"
+  },
+  "meta": {
+    "paper": "NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU",
+    "verdict": "能。纯 CPU，ATE 0.0157 m。",
+    "tick": "完成",
+    "paper_link": "[arXiv:2405.07392](https://arxiv.org/abs/2405.07392)",
+    "code_link": "[yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) ✅ 官方仓库，本地 commit `a93a14c`",
+    "direction": "D1 · 动态环境下的鲁棒定位与 SLAM",
+    "task_book": "§2 难点 5（算力受限 + 语义）；§1 H6（算力与分割冲突的调度方案）",
+    "order": 6
   }
 }

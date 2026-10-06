@@ -28,5 +28,15 @@
     "reproduces_paper_headline",
     "gt_is_binary_and_rare_dynamic",
     "dp_is_load_bearing"
-  ]
+  ],
+  "meta": {
+    "paper": "DUFOMap: Efficient Dynamic Awareness Mapping",
+    "verdict": "能。与论文表 I 两位小数一致。",
+    "tick": "完成",
+    "paper_link": "[doi:10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658)",
+    "code_link": "[KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) ✅ 实测 200；本复现用 PyPI `dufomap==1.1.1`",
+    "direction": "D1 · 动态环境下的鲁棒定位与 SLAM",
+    "task_book": "§2 难点 4；§4.1 删除判据里的「可观测性」",
+    "order": 1
+  }
 }

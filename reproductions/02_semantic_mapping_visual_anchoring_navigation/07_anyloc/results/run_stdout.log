@@ -1,0 +1,21 @@
+[anyloc] dinov2_vitg14 layer 31 facet value · VLAD c32 · domain indoor · device cpu (14 threads)
+  database 406 images · query 406 images
+Warning: Cache directory already exists: /home/qzl/workspace/Practice_SLam/SLAM_Learning/reproductions/02_semantic_mapping_visual_anchoring_navigation/07_anyloc/code/AnyLoc/cache/vocabulary/dinov2_vitg14/l31_value_c32/indoor
+Using cached cluster centers
+Desc dim set to 1536
+  vocabulary: code/AnyLoc/cache/vocabulary/dinov2_vitg14/l31_value_c32/indoor/c_centers.pt (32 clusters)
+  cached descriptors: work/descs/dinov2_vitg14_l31_value_17places_db.npy (406, 49152)
+  cached descriptors: work/descs/dinov2_vitg14_l31_value_17places_query.npy (406, 49152)
+Seed set to: 42 (type: <class 'int'>)
+  ground_truth_new.npy: R@1 65.0 · R@5 80.5
+  my_ground_truth_new.npy: R@1 67.5 · R@5 82.0
+[anyloc] wrote results/anyloc_17places.json
+  paper R@1/R@5 = 65.0/80.5 · ours 65.0/80.5
+
+Using cache found in /home/qzl/.cache/torch/hub/facebookresearch_dinov2_main
+/home/qzl/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/home/qzl/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/home/qzl/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")

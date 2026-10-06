@@ -36,5 +36,15 @@
     0.0454,
     0.0351,
     0.0416
-  ]
+  ],
+  "meta": {
+    "paper": "ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM",
+    "verdict": "能。纯 CPU，RMSE ATE 0.035 至 0.045 m。",
+    "tick": "完成",
+    "paper_link": "[arXiv:2007.11898](https://arxiv.org/abs/2007.11898)",
+    "code_link": "[UZ-SLAMLab/ORB_SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) ✅ GPL-3.0，**自包含 CMake，不需要 ROS**",
+    "direction": "D1 · 传感器半边（VIO）；同时补上 [`../../NOTES.md`](../../NOTES.md) 里点名的空白",
+    "task_book": "§0.1 传感器设定；§2 难点 3/7 的视觉惯性一半",
+    "order": 11
+  }
 }
