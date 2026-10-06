@@ -5,7 +5,7 @@
 ## 0 · 硬件设定（后面每一条难点都受它约束）
 
 > 原文没有硬件一节，而下面 8 个难点里有 5 个的可行性直接取决于传感器。本节把实物写死，
-> 完整分析见 [`docs/task-book/TASK_BOOK.md`](docs/task-book/TASK_BOOK.md) §0.1。
+> 完整分析见 [`task-book/TASK_BOOK.md`](task-book/TASK_BOOK.md) §0.1。
 
 | 项 | 实物 | 关键参数 |
 | :--- | :--- | :--- |

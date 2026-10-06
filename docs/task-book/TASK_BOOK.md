@@ -706,7 +706,7 @@ git checkout <commit>~1 -- 01_task_books/tasks/                  # 恢复全部�
 | 文件 | 内容 |
 |---|---|
 | [`../../reproductions/`](../../reproductions/) | 按方向编号的 17 个复现文件夹（S 先做，D 与 V 进阶） |
-| [`../../car.md`](../../car.md) | 两个方向的 8 个难点 + 可验证假设 + 分阶段方案 |
+| [`../car.md`](../car.md) | 两个方向的 8 个难点 + 可验证假设 + 分阶段方案 |
 
 **文献工作区（`Localise/`，本机）：**
 

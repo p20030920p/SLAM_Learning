@@ -2,46 +2,45 @@
 
 # SLAM_Learning
 
-**一个用于验证想法的 SLAM 平台：一台全向小车、一个赛场，以及已经接好的三件事 —— 建图、定位、规划。把一个方法丢进来，把车开一圈，就知道这个想法行不行。**
+**一篇论文一个文件夹：用作者自己的公开代码，跑到作者自己报的数字。跑得通的给出数字，跑不通的把缺什么写在明面上。**
 
-[![ROS 2](https://img.shields.io/badge/ROS%202-Jazzy-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/jazzy/)
-[![Gazebo](https://img.shields.io/badge/Gazebo%20Sim-8-F58113?logo=gazebo&logoColor=white)](https://gazebosim.org/)
+[![rule](https://img.shields.io/badge/rule-%E6%9C%89%E5%BA%93%E6%89%8D%E5%A4%8D%E7%8E%B0-2ea043)](reproductions/README.md)
+[![driver](https://img.shields.io/badge/driver-run__all.py-6f42c1)](reproductions/run_all.py)
+[![layout](https://img.shields.io/badge/layout-one%20paper%20per%20folder-1c7ed6)](reproductions/)
 [![License](https://img.shields.io/badge/license-MIT-3DA639)](LICENSE)
 
-[复现清单](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [快速开始](#快速开始) &nbsp;•&nbsp; [平台](#平台) &nbsp;•&nbsp; [详细文档](docs/platform.md)
+[复现清单](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [怎么跑](#怎么跑) &nbsp;•&nbsp; [目录结构](#目录结构) &nbsp;•&nbsp; [复现区](reproductions/)
 
 *[English](README.md) &nbsp;|&nbsp; 中文*
 
 </div>
 
-<p align="center">
-  <img src="docs/images/01_mapping.png" width="860" alt="slam_toolbox 在小车行进中构建赛场地图"/>
-</p>
-
-<p align="center">
-  <em>建图：小车在 Gazebo 中行驶，slam_toolbox 用仿真激光雷达把地图一点点长出来。</em>
-</p>
-
 ## 这是什么
 
-一个一次验证一个想法的试验台。机器人、传感器、地图与评测都已经接好，
-把一个建图、定位或规划方法丢进来就能开跑。
+一本复现账本。每一条都从**作者自己的仓库**出发，在这台机器上跑一遍，再回头跟论文或上游
+自己报的数字对表。跑不起来的条目照样留在表里，并写清楚**到底缺哪一样**——
+「跑不了，以及跑不了的原因」本身就是一条结果。
 
-它不是基准，也不是自主系统：没有排行榜与固定协议，也没有感知到决策到安全那条链。
-复现别人的论文并对齐他们自己的数字，是 [`reproductions/`](reproductions/) 的事。
+决定收录与否的只有一条规则：
+
+> **没有上游代码就不复现。** 绝不照着论文正文自己重写一份。
 
 |  |  |
 | :--- | :--- |
-| 机器人 | 三轮全向小车，单线 360 度 2D 雷达（`/scan`），前置 RGB 相机 |
-| 技术栈 | ROS 2 Jazzy、Gazebo Sim 8、slam_toolbox、AMCL、Nav2 加 A* 全局规划器 |
-| 范围 | 建图、定位、规划。没有硬件驱动，也没有标定流程 |
-| 来源 | 从 [Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) 抽出的建模、建图、定位与规划底座，算法库已删除 |
+| 条目 | 21 个文件夹，两个研究方向，一篇论文一个文件夹 |
+| 规则 | 只用作者自己的代码；没有代码的条目保持阻塞，并把原因写出来 |
+| 驱动 | `python3 reproductions/run_all.py` 负责发现、运行、回测、刷新下面的清单 |
+| 回测 | 每个跑通项把指标记在 `baselines.json` 里，重跑时自动比对 |
+| 本机 | 只有 CPU，没有 CUDA。所有「完成」条目都在本机跑过；GPU 受限的列为阻塞并写明原因 |
+
+这里不是基准，也没有排行榜。没有固定协议，表里的数字是**论文自己的数字在这台机器上的复现**，
+不是排名。
 
 <!-- PROGRESS:START -->
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 16:22 CST
+**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 20:55 CST
 
 | # | 状态 | 复现库 | 论文 | 一句话 |
 | :-- | :-- | :-- | :-- | :-- |
@@ -71,48 +70,54 @@
 > 每一行的字段写在对应文件夹的 `baselines.json` 里，本表由 `python3 reproductions/run_all.py` 生成，块内不要手改。
 <!-- PROGRESS:END -->
 
-## 快速开始
+## 怎么跑
 
 ```bash
 git clone https://github.com/p20030920p/SLAM_Learning.git
 cd SLAM_Learning
-source /opt/ros/jazzy/setup.bash
-rosdep install --from-paths src --ignore-src -r -y
-colcon build --symlink-install
-source install/setup.bash
+python3 reproductions/run_all.py                 # 发现、运行、回测，并刷新上面的清单
+python3 reproductions/run_all.py --only 02-01    # 只跑一篇
+python3 reproductions/run_all.py --check         # 不重跑，只按 status.json 重画清单
+python3 reproductions/run_all.py --no-backtest   # 跳过与 baselines.json 的比对
 ```
 
-仓库带三个流程：
+上游仓库与数据集**故意不进 git**——单个条目就是几百 MB。每个文件夹的 `README.md` 写明怎么取，
+`reproduce.py` 在开跑前先声明需要什么，所以缺数据会被报成**阻塞**，永远不会被算成通过。
 
-| Launch | 作用 |
-| :--- | :--- |
-| `mapping.launch.py` | 开动小车，用 slam_toolbox 建图 |
-| `localization_navigation.launch.py` | 在已保存的地图上定位，并用 A* 规划 |
-| `navigation_slam.launch.py` | 边导航边建图 |
+有几个上游仍是 catkin 体系，在本仓库内构建，不需要 root：
 
-规划器配置与验证记录见 [`docs/platform.md`](docs/platform.md)。
+```bash
+bash reproductions/tools/ros1_env.sh            # micromamba 建 ROS 1 Noetic，剥掉 ROS 2 的库
+bash reproductions/tools/build_ros1_catkin.sh   # catkin 构建，已处理 vtk 头文件与 DSO 两个坑
+```
 
-## 平台
-
-| 层 | 包 | 里面是什么 |
-| :--- | :--- | :--- |
-| 建模 | `race_description` · `race_gazebo` · `race_bringup` | 全向小车 URDF 与网格、赛场世界、仿真启动 |
-| 控制 | `race_control` | 一个节点：`Twist` 转 `TwistStamped`，让 Nav2 与遥控能驱动轮子 |
-| 建图 | `race_navigation` | slam_toolbox 配置与建图 launch |
-| 定位 | `race_navigation` | 为全向底盘调过的 AMCL，以及保存好的赛场地图 |
-| 规划 | `algo_core` · `algo_nav2_plugins` | 八邻域代价栅格上的 A*，以及把它接进 Nav2 的适配器 |
-
-相机的图像是 RGB，没有深度也没有 IMU，所以视觉惯性融合在这个仿真里还跑不了。
-赛场、传感器配置与仿真到实机的差距写在 [`docs/platform.md`](docs/platform.md)。
-
-## 文档
+## 目录结构
 
 | 位置 | 内容 |
 | :--- | :--- |
-| [`docs/platform.md`](docs/platform.md) | 流程、规划器配置、赛场与传感器、验证记录 |
-| [`reproductions/`](reproductions/) | 论文复现区：一篇论文一个文件夹，清单见上 |
+| [`reproductions/`](reproductions/) | **本仓库的主体**：21 个文件夹，一篇论文一个，外加上面的清单 |
+| [`reproductions/README.md`](reproductions/README.md) | 规则、六件套文件夹约定、驱动的四件事 |
+| [`reproductions/PAPER_BASELINES.md`](reproductions/PAPER_BASELINES.md) | 每篇论文自报的数字，让「复现」先有验收标准 |
+| [`reproductions/NOTES.md`](reproductions/NOTES.md) | 背景分析：两个方向、与任务的契合度、论文报告值、链接核验 |
+| [`reproductions/status.json`](reproductions/status.json) | 机器可读的账本，由驱动写出 |
 | [`docs/task-book/TASK_BOOK.md`](docs/task-book/TASK_BOOK.md) | 两个研究方向所依据的任务书 |
-| [`car.md`](car.md) | 八个难点，每个配一条可否证的假设 |
+| [`docs/car.md`](docs/car.md) | 八个难点，每个配一条可否证的假设 |
+| [`docs/platform.md`](docs/platform.md) | **归档**：原先随本仓库发布的 ROS 2 / Gazebo 仿真平台 |
+
+本仓库最初围绕的 ROS 2 仿真平台（`race_*` 与 `algo_*` 六个包）已移除，仓库现在就是复现账本
+加上它的背景文档。`docs/platform.md` 保留了那个平台的赛场几何、传感器配置与仿真到实机的差距，
+并标为归档。要重新跑起仿真，从
+[Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) 取 `src/`，
+或从本仓库的 git 历史里恢复。
+
+## 状态口径
+
+| 状态 | 含义 |
+| :--- | :--- |
+| 完成 | 在本机跑通，并落在上游报的数字上 |
+| 半完成 | 上游仓库只发布了方法的一半；跑的是有代码的那一半 |
+| 阻塞 | 本机做不了，并写明实测缺什么（内存、CUDA、没有代码） |
+| 计划 | 文件夹与方案已在，`reproduce.py` 还没写 |
 
 ## 许可
 

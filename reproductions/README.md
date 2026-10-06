@@ -10,7 +10,7 @@
 
 [复现清单](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [自动化](#自动化) &nbsp;•&nbsp; [约定](#约定) &nbsp;•&nbsp; [背景分析](NOTES.md)
 
-*[仓库主页](../../README.md) &nbsp;•&nbsp; [D1](../01_robust_localization_slam_dynamic/README.md) &nbsp;•&nbsp; [D2](../02_semantic_mapping_visual_anchoring_navigation/README.md)*
+*[仓库主页](../README.md) &nbsp;•&nbsp; [D1](01_robust_localization_slam_dynamic/README.md) &nbsp;•&nbsp; [D2](02_semantic_mapping_visual_anchoring_navigation/README.md)*
 
 </div>
 
@@ -36,7 +36,7 @@
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 16:22 CST
+**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 20:55 CST
 
 | # | 状态 | 复现库 | 论文 | 一句话 |
 | :-- | :-- | :-- | :-- | :-- |

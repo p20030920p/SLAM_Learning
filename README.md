@@ -2,47 +2,46 @@
 
 # SLAM_Learning
 
-**A ROS 2 Jazzy and Gazebo arena for SLAM practice: one omnidirectional robot, and the three pieces that matter already wired up — mapping, localization, planning. Drop a method in, drive the robot, and see whether the idea works.**
+**One paper per folder, reproduced with the authors' own public code, up to the authors' own numbers. What runs gets a number. What does not gets its missing piece written down in the open.**
 
-[![ROS 2](https://img.shields.io/badge/ROS%202-Jazzy-22314E?logo=ros&logoColor=white)](https://docs.ros.org/en/jazzy/)
-[![Gazebo](https://img.shields.io/badge/Gazebo%20Sim-8-F58113?logo=gazebo&logoColor=white)](https://gazebosim.org/)
+[![rule](https://img.shields.io/badge/rule-%E6%9C%89%E5%BA%93%E6%89%8D%E5%A4%8D%E7%8E%B0-2ea043)](reproductions/README.md)
+[![driver](https://img.shields.io/badge/driver-run__all.py-6f42c1)](reproductions/run_all.py)
+[![layout](https://img.shields.io/badge/layout-one%20paper%20per%20folder-1c7ed6)](reproductions/)
 [![License](https://img.shields.io/badge/license-MIT-3DA639)](LICENSE)
 
-[Reproduction checklist](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [Quick start](#quick-start) &nbsp;•&nbsp; [The platform](#the-platform) &nbsp;•&nbsp; [Details](docs/platform.md)
+[Reproduction checklist](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [How to run](#how-to-run) &nbsp;•&nbsp; [Layout](#layout) &nbsp;•&nbsp; [Reproductions](reproductions/)
 
 *English &nbsp;|&nbsp; [中文](README.zh-CN.md)*
 
 </div>
 
-<p align="center">
-  <img src="docs/images/01_mapping.png" width="860" alt="slam_toolbox building the arena map while the robot drives through Gazebo"/>
-</p>
-
-<p align="center">
-  <em>Mapping: slam_toolbox grows the map from the simulated lidar while the arena runs in Gazebo.</em>
-</p>
-
 ## What this is
 
-A testbed for validating one idea at a time. The robot, the sensors, the map and the evaluation are
-already wired up, so a new mapping, localization or planning method can be dropped in and driven.
+A ledger of paper reproductions. Every entry starts from the authors' own repository, runs on this
+machine, and is checked back against the numbers the paper or the upstream repository itself
+reports. Entries that cannot run here are kept and labelled with the exact missing piece, because
+"we could not run it, and here is what was missing" is a result worth recording.
 
-It is not a benchmark and not an autonomy stack. There is no leaderboard and no fixed protocol, and
-there is no perception to decision to safety chain. Reproducing other people's papers against their
-own numbers is what [`reproductions/`](reproductions/) is for.
+One rule decides what gets in:
+
+> **No upstream code, no reproduction.** A paper is never re-implemented from its prose.
 
 |  |  |
 | :--- | :--- |
-| Robot | three-wheeled omni car, single-plane 360 degree 2D lidar on `/scan`, front RGB camera |
-| Stack | ROS 2 Jazzy, Gazebo Sim 8, slam_toolbox, AMCL, Nav2 with an A* global planner |
-| Scope | mapping, localization, planning. No hardware drivers, no calibration pipeline |
-| Origin | the modelling, mapping, localization and planning base of [Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench), with its algorithm zoo removed |
+| Entries | 21 folders across 2 research directions, one paper each |
+| Rule | authors' own code only; no code means the entry stays blocked and says so |
+| Driver | `python3 reproductions/run_all.py` discovers, runs, backtests and rewrites the checklist below |
+| Backtest | each working entry records its metrics in `baselines.json`; a re-run is compared against them |
+| Machine | CPU only, no CUDA. Every green entry runs here; GPU-bound ones are listed as blocked with the reason |
+
+This is not a benchmark and not a leaderboard. There is no fixed protocol, and the numbers below are
+the papers' own, reproduced on one machine — not a ranking.
 
 <!-- PROGRESS:START -->
 
 ## 复现清单 Reproduction checklist
 
-**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 16:22 CST
+**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 20:55 CST
 
 | # | 状态 | 复现库 | 论文 | 一句话 |
 | :-- | :-- | :-- | :-- | :-- |
@@ -72,49 +71,56 @@ own numbers is what [`reproductions/`](reproductions/) is for.
 > 每一行的字段写在对应文件夹的 `baselines.json` 里，本表由 `python3 reproductions/run_all.py` 生成，块内不要手改。
 <!-- PROGRESS:END -->
 
-## Quick start
+## How to run
 
 ```bash
 git clone https://github.com/p20030920p/SLAM_Learning.git
 cd SLAM_Learning
-source /opt/ros/jazzy/setup.bash
-rosdep install --from-paths src --ignore-src -r -y
-colcon build --symlink-install
-source install/setup.bash
+python3 reproductions/run_all.py                 # discover, run, backtest, refresh the checklist
+python3 reproductions/run_all.py --only 02-01    # one entry
+python3 reproductions/run_all.py --check         # no re-run: re-render the checklist from status.json
+python3 reproductions/run_all.py --no-backtest   # skip the comparison against baselines.json
 ```
 
-Three workflows ship with it:
+Upstream checkouts and datasets are deliberately **not** in git — they are hundreds of megabytes per
+entry. Each folder's `README.md` says how to fetch what it needs, and `reproduce.py` declares the
+requirement before it runs, so a missing dataset is reported as *blocked*, never as a pass.
 
-| Launch | What it does |
+Some upstreams are still catkin-based. They are built inside this repository, without root:
+
+```bash
+bash reproductions/tools/ros1_env.sh            # micromamba ROS 1 Noetic, ROS 2 libs stripped
+bash reproductions/tools/build_ros1_catkin.sh   # catkin build, with the vtk-header and DSO pitfalls handled
+```
+
+## Layout
+
+| Path | What it holds |
 | :--- | :--- |
-| `mapping.launch.py` | drive the robot and build a map with slam_toolbox |
-| `localization_navigation.launch.py` | localize against a saved map and plan with A* |
-| `navigation_slam.launch.py` | map while navigating |
+| [`reproductions/`](reproductions/) | **the repository**: 21 folders, one paper each, plus the checklist above |
+| [`reproductions/README.md`](reproductions/README.md) | the rule, the six-file folder contract, the driver's four passes |
+| [`reproductions/PAPER_BASELINES.md`](reproductions/PAPER_BASELINES.md) | what each paper claims, so a run has an acceptance threshold at all |
+| [`reproductions/NOTES.md`](reproductions/NOTES.md) | background analysis: the two directions, fit to the task, reported numbers, link checks |
+| [`reproductions/status.json`](reproductions/status.json) | machine-readable ledger, written by the driver |
+| [`docs/task-book/TASK_BOOK.md`](docs/task-book/TASK_BOOK.md) | the task book the two directions come from |
+| [`docs/car.md`](docs/car.md) | the eight difficulties, each with a falsifiable hypothesis |
+| [`docs/platform.md`](docs/platform.md) | **archived**: the ROS 2 / Gazebo simulator that used to ship here |
 
-Planner configuration and the verification log are in [`docs/platform.md`](docs/platform.md).
+The ROS 2 simulator this repository was originally built around (the `race_*` and `algo_*`
+packages) has been removed; the repository is now the reproduction ledger plus its background
+documents. `docs/platform.md` keeps that platform's arena geometry, sensor rig and sim-to-hardware
+notes, marked as archived. To run the simulator again, take `src/` from
+[Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) or restore it from this
+repository's git history.
 
-## The platform
+## Status vocabulary
 
-| Layer | Package | What it holds |
-| :--- | :--- | :--- |
-| Modelling | `race_description` · `race_gazebo` · `race_bringup` | the omni car URDF and meshes, the arena world, simulation bring-up |
-| Control | `race_control` | one node: `Twist` to `TwistStamped`, so Nav2 and teleop can drive the wheels |
-| Mapping | `race_navigation` | slam_toolbox configuration and the mapping launch |
-| Localization | `race_navigation` | AMCL tuned for the holonomic chassis, plus the saved arena map |
-| Planning | `algo_core` · `algo_nav2_plugins` | A* over an 8-connected cost grid, and the Nav2 adapter that runs it |
-
-The camera is RGB only, with no depth and no IMU, so visual-inertial fusion cannot be exercised in
-this simulator yet. The arena, the sensor rig and the sim-to-hardware gap are in
-[`docs/platform.md`](docs/platform.md).
-
-## Documentation
-
-| Where | What |
+| Status | Meaning |
 | :--- | :--- |
-| [`docs/platform.md`](docs/platform.md) | workflows, planner configuration, arena and sensors, verification log |
-| [`reproductions/`](reproductions/) | paper reproductions: one folder per paper, with the checklist above |
-| [`docs/task-book/TASK_BOOK.md`](docs/task-book/TASK_BOOK.md) | the task book the two research directions come from |
-| [`car.md`](car.md) | the eight difficulties, each with a falsifiable hypothesis |
+| 完成 · done | ran here and landed on the number the upstream reports |
+| 半完成 · half | the upstream repository only ships part of the method; that part was reproduced |
+| 阻塞 · blocked | cannot run on this machine, with the measured missing piece named (RAM, CUDA, no code) |
+| 计划 · planned | folder and plan exist, `reproduce.py` does not yet |
 
 ## Licence
 
