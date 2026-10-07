@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "kind": "semantic_frontend_baseline",
+  "method": "ConceptGraphs",
+  "status": "failed",
+  "scope": "Replica room0 40-observation subset",
+  "started_at": "2026-10-07T22:09:24+00:00",
+  "configuration": {
+    "schema_version": 1,
+    "upstreams": {
+      "conceptgraphs": {
+        "url": "https://github.com/concept-graphs/concept-graphs.git",
+        "commit": "93277a02bd89171f8121e84203121cf7af9ebb5d"
+      },
+      "gradslam": {
+        "url": "https://github.com/gradslam/gradslam.git",
+        "commit": "59ca872e3d265ad09f63c4793d011fad67064452"
+      }
+    },
+    "segment_anything_commit": "6fdee8f2727f4506cfbbe553e23b895e27956588",
+    "pytorch3d_binary": "https://anaconda.org/pytorch3d/pytorch3d/0.7.4/download/linux-64/pytorch3d-0.7.4-py310_cu118_pyt201.tar.bz2",
+    "weights": [
+      {
+        "repo": "ybelkada/segment-anything",
+        "revision": "7790786db131bcdc639f24a915d9f2c331d843ee",
+        "filename": "checkpoints/sam_vit_h_4b8939.pth",
+        "sha256": "a7bf3b02f3ebf1267aba913ff637d9a2d5c33d3173bb679e46d9f338c26f262e",
+        "local": "sam/checkpoints/sam_vit_h_4b8939.pth"
+      },
+      {
+        "repo": "laion/CLIP-ViT-H-14-laion2B-s32B-b79K",
+        "revision": "1c2b8495b28150b8a4922ee1c8edee224c284c0c",
+        "filename": "open_clip_pytorch_model.bin",
+        "sha256": "9a78ef8e8c73fd0df621682e7a8e8eb36c6916cb3c16b291a082ecd52ab79cc4",
+        "local": "clip/open_clip_pytorch_model.bin"
+      }
+    ],
+    "scene": "room0",
+    "source_frame_indexes": {
+      "start": 0,
+      "stop_exclusive": 200,
+      "stride": 5
+    },
+    "segmentation": {
+      "class_set": "none",
+      "sam": "vit_h",
+      "points_per_side": 12,
+      "points_per_batch": 144
+    },
+    "mapping_overrides": {
+      "stride": 1,
+      "image_height": 480,
+      "image_width": 640,
+      "spatial_sim_type": "overlap",
+      "mask_conf_threshold": 0.95,
+      "match_method": "sim_sum",
+      "sim_threshold": 1.2,
+      "dbscan_eps": 0.1,
+      "gsa_variant": "none",
+      "class_agnostic": true,
+      "skip_bg": true,
+      "max_bbox_area_ratio": 0.5,
+      "save_suffix": "replica_subset_baseline",
+      "merge_interval": 20,
+      "merge_visual_sim_thresh": 0.8,
+      "merge_text_sim_thresh": 0.8,
+      "save_objects_all_frames": true
+    },
+    "queries": [
+      "chair",
+      "sofa",
+      "table",
+      "lamp"
+    ],
+    "scope": "Original class-agnostic ConceptGraphs frontend on 40 supplied-pose rendered RGB-D observations; no paper semantic score, trajectory estimate or navigation success claim."
+  },
+  "artifacts": {
+    "environment.txt": {
+      "sha256": "faf12db43a08f09a21a0a796bad88f8c7e5c31e60f83aa123e6af116f6626483",
+      "bytes": 2379,
+      "availability": "portable"
+    },
+    "dataset-manifest.json": {
+      "sha256": "90bb813e78a354963ee0b67ba883bd8fbc0bb60cf67baf2776cebe47e5518ad8",
+      "bytes": 21668,
+      "availability": "portable"
+    },
+    "compatibility.patch": {
+      "sha256": "b07dbfa684033a961858a578a1b0531148900070c2833d70212212526beee04f",
+      "bytes": 1866,
+      "availability": "portable"
+    },
+    "segmentation.log": {
+      "sha256": "92443a7d43a1dd03dbd6926c75623e9ea5f1402a7a31fd0146bdb1325437bbff",
+      "bytes": 849,
+      "availability": "portable"
+    }
+  },
+  "commands": [
+    [
+      "/home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python",
+      "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/author-code/conceptgraph/scripts/generate_gsa_results.py",
+      "--dataset_root",
+      "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/input/Replica",
+      "--dataset_config",
+      "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/author-code/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+      "--scene_id",
+      "room0",
+      "--class_set",
+      "none",
+      "--stride",
+      "1"
+    ]
+  ],
+  "exit_code": -15,
+  "repository": {
+    "commit": "7f5b396e9a3b3c28749991b592a67c32d391ce77",
+    "dirty": true
+  },
+  "script_sha256": "5cd9562cfe74415a08a0cac8e6d98239eecec8683cba350a6a5a87e9ce957aa1",
+  "config_sha256": "4709509160077f269e73aa9e3437e890cdfb1d049b4ceda539df14a49289aa47",
+  "gpu": {
+    "torch": "2.0.1+cu118",
+    "cuda_runtime": "11.8",
+    "name": "NVIDIA GeForce RTX 4070 SUPER",
+    "memory_bytes": 12878086144
+  },
+  "error": "Command '['/home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/author-code/conceptgraph/scripts/generate_gsa_results.py', '--dataset_root', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/input/Replica', '--dataset_config', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/author-code/conceptgraph/dataset/dataconfigs/replica/replica.yaml', '--scene_id', 'room0', '--class_set', 'none', '--stride', '1']' died with <Signals.SIGTERM: 15>.",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/qzl/projects/SLAM_Learning/scripts/run_conceptgraphs.py\", line 120, in main\n    execute(command, \"segmentation.log\", env)\n  File \"/home/qzl/projects/SLAM_Learning/scripts/run_conceptgraphs.py\", line 52, in execute\n    subprocess.run(command, cwd=work / \"conceptgraph\", env=env, stdout=log,\n  File \"/usr/lib/python3.10/subprocess.py\", line 526, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['/home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/author-code/conceptgraph/scripts/generate_gsa_results.py', '--dataset_root', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/input/Replica', '--dataset_config', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/author-code/conceptgraph/dataset/dataconfigs/replica/replica.yaml', '--scene_id', 'room0', '--class_set', 'none', '--stride', '1']' died with <Signals.SIGTERM: 15>.\n",
+  "finished_at": "2026-10-07T22:12:47+00:00"
+}

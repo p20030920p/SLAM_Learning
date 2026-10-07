@@ -2,7 +2,7 @@
 
 [English](RESULTS.md) | 中文
 
-实测日期为 2026 年 10 月 7 日。可发布记录绑定命令、版本、源码／数据／产物哈希。Windows 作者方法与受控实验使用 Python 3.10.19；两种作者方法和六组真实敏感性实验，也在干净 GitHub Ubuntu 22.04 环境成功执行。[Linux 运行](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701)、[元数据](../results/ci/linux-run.json)。Docker 未在本机构建；WSL 组件已装，Ubuntu 尚未安装。
+实测日期为 2026 年 10 月 7 日。可发布记录绑定命令、版本、源码／数据／产物哈希。Windows 作者方法与受控实验使用 Python 3.10.19；两种作者方法和六组真实敏感性实验，也在干净 GitHub Ubuntu 22.04 环境成功执行。[Linux 运行](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701)、[元数据](../results/ci/linux-run.json)。Docker 未在本机构建。10 月 8 日，本机 WSL2 作者方法、PCL 对照与语义子集已完成，见第 5–6 节。
 
 下列合成试验是形成候选假设的探索，不是看过结果后所选假设的独立确认。
 
@@ -23,7 +23,7 @@
 
 [DUFOMap 记录](../results/reference/dufomap/record.json)、[指标](../results/reference/dufomap/metrics.json)、[日志](../results/reference/dufomap/run.log)；[BeautyMap 记录](../results/reference/beautymap/record.json)、[指标](../results/reference/beautymap/metrics.json)、[兼容修正](../results/reference/beautymap/compatibility.patch)。[首次 Windows 失败](../results/reference/beautymap-windows-failure/record.json)为整数溢出，已用显式 64 位掩码修复。
 
-评价器是独立 SciPy 最近邻实现。清理图中任一点在真值点 5 cm 内，该真值点视为保留，不考虑保留点来自哪个输入身份，附近几何可能掩盖逐点动态标签。尚未与原 PCL 评价器对齐；当前作者版本也可能与论文时期不同，差值的单一原因未确定。
+评价器是独立 SciPy 最近邻实现。清理图中任一点在真值点 5 cm 内，该真值点视为保留，不考虑保留点来自哪个输入身份，附近几何可能掩盖逐点动态标签。10 月 8 日已与原 PCL 在两张已存地图上逐点对齐（第 5 节）；当前作者版本仍可能与论文时期不同，论文差值的单一原因未确定。
 
 Linux 作者方法的计数和分数完全一致：[DUFOMap Linux](../results/reference/dufomap-linux/record.json)、[BeautyMap Linux](../results/reference/beautymap-linux/record.json)。该 CI 源码为 `9f3a9ef`：扫描 intensity 可见，但作者几何代码不使用它。后续 Windows 最终运行实际移除扫描标注，分数不变。没有事后改写 Linux 记录。[Linux 直接标签诊断](../results/reference/pose-stress-linux/record.json)、[数值](../results/reference/pose-stress-linux/sensitivity.csv)。
 
@@ -47,7 +47,7 @@ DUFOMap 的 `segment` 接口对原点身份给标签，评分前验证全部真�
 
 更大容差保留更多静态点、检出更少动态点。这里 0.3 m 扰动降低静态保留，0.1 m 没有降低，反驳“任意位姿噪声都必然退化”。一段序列与一个确定性扰动不能建立典型部署失效结论。
 
-此表使用不同绑定路径与直接身份，不能合并到最近邻表。零扰动 SA 差距不能只归于评分密度，实现行为尚未独立隔离。局部重复运行有少量整数计数变化，不能承诺原生多线程位级确定性。[记录](../results/reference/pose-stress/record.json)、[六组数值](../results/reference/pose-stress/sensitivity.csv)、[846 个逐帧行](../results/reference/pose-stress/per_frame.csv)。
+此表使用不同绑定路径与直接身份，不能合并到最近邻表。第 5 节的同实例对照把大部分 SA 差距归于地图对应评分；较小的原生输出剩余差值尚未独立隔离。局部重复运行有少量整数计数变化，不能承诺原生多线程位级确定性。[记录](../results/reference/pose-stress/record.json)、[六组数值](../results/reference/pose-stress/sensitivity.csv)、[846 个逐帧行](../results/reference/pose-stress/per_frame.csv)。
 
 ## 3. 探索：可见性与公共运动混淆
 
@@ -83,8 +83,32 @@ DUFOMap 的 `segment` 接口对原点身份给标签，评分前验证全部真�
 
 匹配生成模型下，实验展示了方差下界机制；共享模型变化召回明显更低，不能证明匹配召回时更优，也不能证明真实估计协方差下校准。Brier 衡量概率预测质量，单独一个分数不构成完整校准证明。[记录](../results/reference/evidence-stress/record.json)、[试验](../results/reference/evidence-stress/trials.csv)、[全部条件](../results/reference/evidence-stress/summary.json)。
 
+## 5. 本机 WSL 与评价对照——10 月 8 日
+
+两种 CPU 作者方法在 WSL2 Ubuntu 22.04、Python 3.10.12 再次完成，混淆计数未变；BeautyMap 的地图与扫描标注均物理隔离。[DUFOMap WSL](../results/reference/dufomap-wsl/record.json)、[BeautyMap WSL](../results/reference/beautymap-wsl/record.json)。
+
+在固定 benchmark 提交上，用 GCC 11.4／PCL 1.12.1 编译**未修改的原 PCL 评价器**。每张地图的 17,362,230 个点身份与 SciPy 判定一致：**0 个分歧、0 个百分点差异**。[对照](../results/reference/evaluation-check-wsl/summary.json)、[编译／运行来源](../results/reference/evaluation-check-wsl/record.json)。这排除了这两张已存地图上评价器实现造成差值的解释，尚未解释与论文时期源码／参数的差异。
+
+第二个对照使用同一个训练完成的 DUFOMap、零注入误差：先获取直接 `segment` 标签，用保留点构建地图，再调用原生 `outputMap`。
+
+| 定义 | SA % | DA % |
+| --- | ---: | ---: |
+| 直接 `segment` 点身份 | 92.634271 | 98.957107 |
+| 相同保留点，5 cm 地图最近邻 | 97.981802 | 98.686226 |
+| 原生输出，5 cm 地图最近邻 | 97.979798 | 98.702895 |
+
+![实测对应规则效应](../docs/figures/metric_correspondence.png)
+
+只改变直接标签所生成地图的评分方式，SA 就提高 **5.347532 个百分点**。原生地图的额外差异为 SA −0.002004、DA +0.016670 个百分点。这把大部分 SA 差距定位到地图对应规则；较小的剩余差异不能单独归于绑定缺陷，原生波动与调用顺序尚未独立隔离。表中是评分定义，不是三个算法。[记录与绑定签名](../results/reference/api-check-wsl/record.json)、[原始计数](../results/reference/api-check-wsl/summary.json)。
+
+[21 帧回放](../docs/figures/replication_hero.gif)使用原 PCL 标签、公共世界坐标范围和明确来源帧。展示最终离线地图，计数先于抽稀／裁剪。[渲染元数据](../results/reference/reproduction-media-wsl/render.json)。
+
+## 6. 首个语义前端
+
+ConceptGraphs 的 class-agnostic SAM／CLIP 分割、作者三维关联／融合已处理 **40 次提供位姿的 Replica `room0` 观测**，得到 **39 个后处理对象**。4 个文本查询返回提供的世界坐标系中的候选坐标；尚未评价正确检索、语义榜单准确率或导航成功率。SAM 分批适配和首次中止运行见[语义复现](SEMANTIC.zh-CN.md)，含完整环境命令与原始记录。
+
 ## 检查与未完成部分
 
-原方法检查 32 个通过，Ruff 无错误；Matplotlib 依赖产生弃用警告。导出和 Git 中的原始字节均经过哈希验证。多数 Windows 数值使用 `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`，最终 BeautyMap 为 `17591fa`，隔离扫描标注后数值未变。每记录保存对应源码哈希。
+当前检查 36 个通过，Ruff 无错误；Matplotlib 依赖产生弃用警告。导出和 Git 中的原始字节均经过哈希验证。多数 Windows 数值使用 `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`，最终 BeautyMap 为 `17591fa`，隔离扫描标注后数值未变。每记录保存对应源码哈希。
 
-没有完成完整语义前端、语言目标检索、机器人导航、多会话身份评价或原 PCL 对齐。下一步先补复现门槛，再冻结假设；[计划](PLAN.zh-CN.md)分别记录已做、探索、待做事项。
+PCL／SciPy 对照和可执行语义子集、文本坐标检索已完成；完整语义榜单、标注目标正确率、机器人导航、多会话身份评价仍待完成。下一步查论文版本差异、补语义关联／目标标注和配对位姿误差对照，再冻结假设；[计划](PLAN.zh-CN.md)分别记录已做、探索、待做事项。

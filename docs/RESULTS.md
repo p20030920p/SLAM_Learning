@@ -2,7 +2,7 @@
 
 English | [中文](RESULTS.zh-CN.md)
 
-Measured on 7 October 2026. Portable records bind commands, versions, source hashes, data checksums and output hashes. Windows author/controlled experiments use Python 3.10.19. Both author methods and all six real-data sensitivity cells also **executed successfully on GitHub Actions Ubuntu 22.04**, with a fresh download and environment. [Linux run](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701), [execution metadata](../results/ci/linux-run.json). Docker was not locally built. WSL components are installed, but Ubuntu/platform activation is pending; see [WSL](WSL.md).
+Measured on 7 October 2026. Portable records bind commands, versions, source hashes, data checksums and output hashes. Windows author/controlled experiments use Python 3.10.19. Both author methods and all six real-data sensitivity cells also **executed successfully on GitHub Actions Ubuntu 22.04**, with a fresh download and environment. [Linux run](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701), [execution metadata](../results/ci/linux-run.json). Docker was not locally built. On 8 October, local WSL2 author, PCL and semantic-subset runs completed; see sections 5–6 and [WSL](WSL.md).
 
 Existing synthetic trials informed the candidate hypothesis. They are exploratory, not independent confirmation after hypothesis selection.
 
@@ -23,7 +23,7 @@ Paper targets are [DUFOMap Table I](https://arxiv.org/html/2403.01449v1) and [Be
 
 Evidence: [DUFOMap record](../results/reference/dufomap/record.json), [raw metrics](../results/reference/dufomap/metrics.json), [log](../results/reference/dufomap/run.log); [BeautyMap record](../results/reference/beautymap/record.json), [raw metrics](../results/reference/beautymap/metrics.json), [compatibility changes](../results/reference/beautymap/compatibility.patch). The [first BeautyMap failure](../results/reference/beautymap-windows-failure/record.json) records a Windows integer overflow, fixed with explicit 64-bit masks.
 
-These scores use an independent SciPy nearest-neighbor evaluator. A kept map point within 5 cm preserves the GT point, regardless of which input point generated it. Close retained geometry can therefore mask individual dynamic labels. Original PCL evaluator agreement has not been established, and newer author versions can differ from paper-era code. No single cause of the table mismatch is established.
+These scores use an independent SciPy nearest-neighbor evaluator. A kept map point within 5 cm preserves the GT point, regardless of which input point generated it. Close retained geometry can therefore mask individual dynamic labels. Original PCL agreement was established on 8 October for both stored maps (section 5); newer author versions can still differ from paper-era code. No single cause of the table mismatch is established.
 
 Linux repeats produced **identical author-method confusion counts and scores** for this snapshot: [DUFOMap Linux](../results/reference/dufomap-linux/record.json), [BeautyMap Linux](../results/reference/beautymap-linux/record.json). That CI run used `9f3a9ef`: scan intensity was available but unused by the author geometry code. The subsequent final Windows run physically removes scan annotations and gives unchanged results. This distinction is preserved rather than retroactively rewriting Linux evidence. Linux direct-label sensitivity has its own [record](../results/reference/pose-stress-linux/record.json) and [cells](../results/reference/pose-stress-linux/sensitivity.csv).
 
@@ -44,7 +44,7 @@ The DUFOMap binding's `segment` path assigns labels to original point identities
 
 Larger pose tolerance retains more static points and detects fewer dynamic ones. A 0.3 m perturbation reduces static retention here; 0.1 m does not. This is **counterevidence against a claim that any pose noise necessarily degrades performance**. One deterministic perturbation and one short sequence cannot establish typical deployment failure.
 
-This table uses another binding API and direct identities, so it must not be merged with the nearest-neighbor table. The gap between the two zero-perturbation SA values is not attributed solely to scoring density; API behavior has not been independently isolated. Small variations in integer counts occurred between local executions, consistent with a nondeterministic native path; no bitwise determinism is claimed. [Record](../results/reference/pose-stress/record.json), [six cells](../results/reference/pose-stress/sensitivity.csv), [846 frame-level rows](../results/reference/pose-stress/per_frame.csv).
+This table uses another binding API and direct identities, so it must not be merged with the nearest-neighbor table. The same-instance control in section 5 attributes most of this SA gap to correspondence scoring; the smaller native-export remainder is still not independently isolated. Small variations in integer counts occurred between local executions, consistent with a nondeterministic native path; no bitwise determinism is claimed. [Record](../results/reference/pose-stress/record.json), [six cells](../results/reference/pose-stress/sensitivity.csv), [846 frame-level rows](../results/reference/pose-stress/per_frame.csv).
 
 ## 3. Exploratory: visibility and common-mode ambiguity
 
@@ -80,10 +80,34 @@ A 1D Gaussian model uses 1,000 paired seeds, change prior 0.1, pose σ=0.15 m, s
 
 The experiment demonstrates the variance-floor mechanism under a matched generative model. It also shows the tradeoff: shared-latent inference has substantially lower changed-object recall. It does not prove superiority at matched recall, nor calibration with realistically estimated pose uncertainty. Brier measures probabilistic prediction quality; that score alone is not a complete calibration test. [Record](../results/reference/evidence-stress/record.json), [trials](../results/reference/evidence-stress/trials.csv), [all cells](../results/reference/evidence-stress/summary.json).
 
+## 5. Local WSL and evaluator controls — 8 October
+
+Both CPU author runs completed again under WSL2 Ubuntu 22.04/Python 3.10.12, with unchanged confusion counts. All BeautyMap map/scan intensity annotations were physically stripped. [DUFOMap WSL](../results/reference/dufomap-wsl/record.json), [BeautyMap WSL](../results/reference/beautymap-wsl/record.json).
+
+The **unmodified original PCL evaluator** at pinned benchmark commit, compiled with GCC 11.4/PCL 1.12.1, agrees with SciPy on all 17,362,230 point identities for each map: **0 disagreements and 0 pp differences**. [Comparison](../results/reference/evaluation-check-wsl/summary.json), [compile and execution provenance](../results/reference/evaluation-check-wsl/record.json). This excludes the evaluator implementation as the cause on these stored maps. It does not explain source-version/parameter differences with paper tables.
+
+A second control uses one trained DUFOMap instance and zero injected error. It first obtains direct `segment` labels, builds a map from those kept points, and then calls native `outputMap`.
+
+| Definition | SA % | DA % |
+| --- | ---: | ---: |
+| Direct `segment` identity | 92.634271 | 98.957107 |
+| Same kept points, 5 cm map NN | 97.981802 | 98.686226 |
+| Native output, 5 cm map NN | 97.979798 | 98.702895 |
+
+![Measured correspondence effect](../docs/figures/metric_correspondence.png)
+
+Changing only the scoring of the direct-label-derived map increases SA by **5.347532 pp**. The additional native-map difference is −0.002004 pp SA and +0.016670 pp DA. This localizes most of the large SA gap to map correspondence, without attributing the smaller remainder exclusively to a binding defect: native variation and operation order are not independently isolated. These are measurement definitions, not three algorithms. [Record and binding signatures](../results/reference/api-check-wsl/record.json), [raw counts](../results/reference/api-check-wsl/summary.json).
+
+The [21-frame replay](../docs/figures/replication_hero.gif) uses original PCL labels, common world bounds and named source frames. It shows final offline maps. Counts precede display thinning/cropping. [Rendering metadata](../results/reference/reproduction-media-wsl/render.json).
+
+## 6. First semantic frontend
+
+ConceptGraphs class-agnostic SAM/CLIP segmentation and native 3D association/fusion completed on **40 posed Replica `room0` observations**, producing **39 postprocessed objects**. Four text queries return candidate coordinates in the supplied world frame. Correct retrieval, semantic benchmark accuracy and navigation success have not been evaluated. The SAM batch adaptation and interrupted first run are disclosed in [SEMANTIC](SEMANTIC.md), with exact setup and raw records.
+
 ## Verification and remaining work
 
-Local checks: **32 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export and against committed Git bytes. Most Windows measurements use snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`; the final BeautyMap run uses `17591fa` after physically stripping scan intensity annotations while preserving VIEWPOINT. Its metrics are unchanged. Earlier failures remain separately retained. Per-record source hashes specify each executed snapshot.
+Local checks: **36 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export and against committed Git bytes. Most Windows measurements use snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`; the final BeautyMap run uses `17591fa` after physically stripping scan intensity annotations while preserving VIEWPOINT. Its metrics are unchanged. Earlier failures remain separately retained. Per-record source hashes specify each executed snapshot.
 
-No full semantic frontend, language target retrieval, robot navigation, multi-session identity evaluation or PCL cross-check is completed. The real-data and synthetic results support a focused research question and explicit follow-up protocol, not a system-level performance claim.
+PCL/SciPy cross-checking and an executable semantic subset with text-coordinate retrieval are complete. Full semantic benchmark evaluation, annotated target correctness, robot navigation and multi-session identity evaluation remain open. The real-data and synthetic results support a focused research question and explicit follow-up protocol, not a system-level performance claim.
 
-Next: reconcile the evaluator and reproduce a semantic frontend before freezing the hypothesis. [Stage gates](PLAN.md).
+Next: investigate paper-version differences, annotate semantic associations/targets and define paired pose-error controls before freezing the hypothesis. [Stage gates](PLAN.md).

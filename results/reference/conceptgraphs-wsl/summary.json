@@ -1,0 +1,150 @@
+{
+  "scope": "Original class-agnostic ConceptGraphs frontend on 40 supplied-pose rendered RGB-D observations; no paper semantic score, trajectory estimate or navigation success claim.",
+  "objects": 39,
+  "queries": [
+    {
+      "query": "chair",
+      "top_objects": [
+        {
+          "object_index": 0,
+          "cosine_similarity": 0.2708888053894043,
+          "center_world_m": [
+            1.7819418983654307,
+            0.6505302228374071,
+            -1.2153646492015813
+          ],
+          "num_detections": 39
+        },
+        {
+          "object_index": 13,
+          "cosine_similarity": 0.2378566712141037,
+          "center_world_m": [
+            1.840976612485471,
+            1.5275817742347666,
+            -1.2233795295482413
+          ],
+          "num_detections": 34
+        },
+        {
+          "object_index": 19,
+          "cosine_similarity": 0.23733913898468018,
+          "center_world_m": [
+            2.6148989282025608,
+            -0.1844969020335667,
+            -0.8955938246976717
+          ],
+          "num_detections": 12
+        }
+      ]
+    },
+    {
+      "query": "sofa",
+      "top_objects": [
+        {
+          "object_index": 17,
+          "cosine_similarity": 0.24774006009101868,
+          "center_world_m": [
+            2.8324087754829947,
+            -0.6408515360946526,
+            -0.6690317170674456
+          ],
+          "num_detections": 18
+        },
+        {
+          "object_index": 19,
+          "cosine_similarity": 0.2444470375776291,
+          "center_world_m": [
+            2.6148989282025608,
+            -0.1844969020335667,
+            -0.8955938246976717
+          ],
+          "num_detections": 12
+        },
+        {
+          "object_index": 14,
+          "cosine_similarity": 0.22947503626346588,
+          "center_world_m": [
+            2.8041670004672965,
+            -0.38461117074363055,
+            -0.7346401297034701
+          ],
+          "num_detections": 24
+        }
+      ]
+    },
+    {
+      "query": "table",
+      "top_objects": [
+        {
+          "object_index": 18,
+          "cosine_similarity": 0.25821325182914734,
+          "center_world_m": [
+            2.251438234329301,
+            -0.620170676309439,
+            -0.8589500329644217
+          ],
+          "num_detections": 28
+        },
+        {
+          "object_index": 0,
+          "cosine_similarity": 0.25266870856285095,
+          "center_world_m": [
+            1.7819418983654307,
+            0.6505302228374071,
+            -1.2153646492015813
+          ],
+          "num_detections": 39
+        },
+        {
+          "object_index": 8,
+          "cosine_similarity": 0.24564732611179352,
+          "center_world_m": [
+            2.2003462565447,
+            -0.4446512684626611,
+            -0.9048706608503346
+          ],
+          "num_detections": 33
+        }
+      ]
+    },
+    {
+      "query": "lamp",
+      "top_objects": [
+        {
+          "object_index": 2,
+          "cosine_similarity": 0.3190349340438843,
+          "center_world_m": [
+            2.2888435127823143,
+            -0.7533680056973857,
+            -0.2471149343278202
+          ],
+          "num_detections": 31
+        },
+        {
+          "object_index": 17,
+          "cosine_similarity": 0.2587772607803345,
+          "center_world_m": [
+            2.8324087754829947,
+            -0.6408515360946526,
+            -0.6690317170674456
+          ],
+          "num_detections": 18
+        },
+        {
+          "object_index": 19,
+          "cosine_similarity": 0.2530779540538788,
+          "center_world_m": [
+            2.6148989282025608,
+            -0.1844969020335667,
+            -0.8955938246976717
+          ],
+          "num_detections": 12
+        }
+      ]
+    }
+  ],
+  "map_sha256": "c2fed620209fc8841a72dfaef8e375441762004125ee13c2b7375f17cfda136e",
+  "coordinate_frame": "Supplied Replica camera-to-world frame; no SLAM estimate",
+  "query_correctness_evaluated": false,
+  "paper_semantic_metrics_evaluated": false
+}

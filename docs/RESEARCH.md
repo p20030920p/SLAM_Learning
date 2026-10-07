@@ -6,7 +6,7 @@ The research order is **reproduction → observations → structural bottleneck 
 
 ## 1. Start with the measured outputs
 
-DUFOMap and BeautyMap completed the same 141-frame teaser on Windows and Ubuntu. Their map-level scores agree across those platforms, but both differ from the corresponding paper targets. DUFOMap's direct-label sensitivity diagnostic also yields a different zero-perturbation score from the output-map nearest-neighbor evaluation. The cause of that gap has not been isolated. [Numbers, artifacts and exact limits](RESULTS.md).
+DUFOMap and BeautyMap completed the same 141-frame teaser on Windows and Ubuntu. Their map-level scores agree across those platforms, but both differ from the corresponding paper targets. DUFOMap's direct-label sensitivity diagnostic also yields a different zero-perturbation score from the output-map nearest-neighbor evaluation. A same-instance control now localizes most of the SA gap to map correspondence; a small native-export remainder is still unresolved. [Numbers, artifacts and exact limits](RESULTS.md).
 
 The first unresolved task is therefore a **measurement question**: which points are being judged, under which correspondence rule and implementation path? Before claiming a method fails, reconcile those protocols. Small injected pose errors sometimes improve scores in the current diagnostic; the observations do not justify universal degradation claims.
 
@@ -22,7 +22,7 @@ The [literature matrix](LITERATURE.md) traces how poses establish spatial corres
 
 [Khronos](https://arxiv.org/html/2402.13817v2) already jointly optimizes poses and structure. [SuperMap](https://arxiv.org/html/2608.22896v1) has visibility/disappearance states; [PerSeM](https://arxiv.org/html/2609.19542v2) has persistent semantic memory and acknowledges correlated geometric limitations. These are constraints on the claim. “Add memory,” “use visibility” or “jointly optimize” cannot be presented as the new idea.
 
-The present cross-field argument is partly inferred. A real semantic-map frontend must be reproduced before asserting that the same empirical failure is common to fields 1 and 2.
+The present cross-field argument is partly inferred. The first ConceptGraphs RGB-D subset now executes, but annotated pose-error controls are still needed before claiming that the same empirical failure is common to fields 1 and 2.
 
 ## 3. Minimal mechanism
 

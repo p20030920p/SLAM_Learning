@@ -28,7 +28,7 @@ jobs:
       - run: uv run python scripts/verify_evidence.py
       - run: uv run python scripts/check_docs.py
       - if: runner.os == 'Linux'
-        run: bash -n scripts/setup_linux.sh scripts/run_reproduction.sh
+        run: bash -n scripts/setup_linux.sh scripts/run_reproduction.sh scripts/setup_semantic.sh
       - run: uv run slam-study run --experiment mechanism
       - run: uv run slam-study run --experiment evidence-stress
       - run: uv run slam-study report --runs results/runs --output results/ci-report.md

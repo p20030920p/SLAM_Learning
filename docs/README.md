@@ -11,6 +11,7 @@ Read the measured reproduction before the proposed explanation. The independent 
 | 3. Candidate explanation | [Research](RESEARCH.md) | [研究](RESEARCH.zh-CN.md) |
 | 4. Next experiments | [Plan](PLAN.md) | [计划](PLAN.zh-CN.md) |
 | Environment and commands | [Reproduction](REPRODUCE.md), [WSL](WSL.md) | [复现](REPRODUCE.zh-CN.md)、[WSL](WSL.zh-CN.md) |
+| Semantic baseline | [Semantic frontend](SEMANTIC.md) | [语义前端](SEMANTIC.zh-CN.md) |
 | Figures and animation | [Media](figures/README.md) | [媒体](figures/README.zh-CN.md) |
 | Migration record | [Audit](AUDIT.md) | [审计](AUDIT.zh-CN.md) |
 | Disclosure and defense | [Interview](INTERVIEW.md) | [面试](INTERVIEW.zh-CN.md) |

@@ -4,19 +4,28 @@ Generated from run records. Execution, paper agreement and hypothesis validation
 
 | Experiment | Scope | Execution | Paper table | SA % | DA % | AA % | HA % | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| dufomap api diagnostic | full_teaser | executed | not evaluated | — | — | — | — | [api-check-wsl](reference/api-check-wsl/record.json) |
+| measured diagnostic plot | measured_diagnostic_plot | executed | not evaluated | — | — | — | — | [api-diagnostic-plot](reference/api-diagnostic-plot/record.json) |
 | beautymap | full_teaser | executed | mismatch | 96.9529 | 98.3382 | 97.6431 | 97.6407 | [beautymap](reference/beautymap/record.json) |
 | beautymap | full_teaser | executed | mismatch | 96.9529 | 98.3382 | 97.6431 | 97.6407 | [beautymap-linux](reference/beautymap-linux/record.json) |
 | beautymap | full_teaser | failed | not evaluated | — | — | — | — | [beautymap-windows-failure](reference/beautymap-windows-failure/record.json) |
+| beautymap | full_teaser | executed | mismatch | 96.9529 | 98.3382 | 97.6431 | 97.6407 | [beautymap-wsl](reference/beautymap-wsl/record.json) |
+| ConceptGraphs | Replica room0 40-observation subset | executed | not evaluated | — | — | — | — | [conceptgraphs-wsl](reference/conceptgraphs-wsl/record.json) |
+| ConceptGraphs | Replica room0 40-observation subset | failed | not evaluated | — | — | — | — | [conceptgraphs-wsl-batch144-interrupted](reference/conceptgraphs-wsl-batch144-interrupted/record.json) |
 | dufomap | full_teaser | executed | mismatch | 97.9798 | 98.7029 | 98.3407 | 98.3400 | [dufomap](reference/dufomap/record.json) |
 | dufomap | full_teaser | executed | mismatch | 97.9798 | 98.7029 | 98.3407 | 98.3400 | [dufomap-linux](reference/dufomap-linux/record.json) |
+| dufomap | full_teaser | executed | mismatch | 97.9798 | 98.7029 | 98.3407 | 98.3400 | [dufomap-wsl](reference/dufomap-wsl/record.json) |
+| map evaluator cross check | full_teaser | executed | not evaluated | — | — | — | — | [evaluation-check-wsl](reference/evaluation-check-wsl/record.json) |
 | controlled synthetic calibration test | controlled_synthetic_calibration_test | executed | not evaluated | — | — | — | — | [evidence-stress](reference/evidence-stress/record.json) |
 | controlled synthetic mechanism test | controlled_synthetic_mechanism_test | executed | not evaluated | — | — | — | — | [mechanism](reference/mechanism/record.json) |
 | real data pose sensitivity | real_data_pose_sensitivity | executed | not evaluated | — | — | — | — | [pose-stress](reference/pose-stress/record.json) |
 | real data pose sensitivity | real_data_pose_sensitivity | executed | not evaluated | — | — | — | — | [pose-stress-linux](reference/pose-stress-linux/record.json) |
+| author map replay | author_map_replay | executed | not evaluated | — | — | — | — | [reproduction-media-wsl](reference/reproduction-media-wsl/record.json) |
 
 Recorded failures:
 
 - beautymap (beautymap-windows-failure): CalledProcessError: Command '['D:\\workspace\\be2\\SLAM_Learning\\.venv310\\Scripts\\python.exe', '-m', 'slam_learning.cli', '_worker', '--root', 'D:\\workspace\\be2\\SLAM_Learning', '--method', 'beautymap', '--output', 'D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-9d32b2cc4c1c', '--frames', '0']' returned non-zero exit status 1.
+- ConceptGraphs (conceptgraphs-wsl-batch144-interrupted): Command '['/home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/author-code/conceptgraph/scripts/generate_gsa_results.py', '--dataset_root', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/input/Replica', '--dataset_config', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-855255b27df4/author-code/conceptgraph/dataset/dataconfigs/replica/replica.yaml', '--scene_id', 'room0', '--class_set', 'none', '--stride', '1']' died with <Signals.SIGTERM: 15>.
 
 Synthetic trials are exploratory mechanism checks with oracle inputs, not independent hypothesis validation.
 Large maps and source datasets are local-only; portable records contain their hashes and fresh-run logs.

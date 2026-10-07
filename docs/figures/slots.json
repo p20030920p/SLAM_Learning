@@ -5,23 +5,29 @@
       "id": "replication-hero",
       "path": "docs/figures/replication_hero.gif",
       "stage": "R0/R2",
-      "status": "reserved",
+      "status": "published",
       "caption": {
         "en": "DUFOMap, BeautyMap and GT on the same selected teaser entries; fixed view, raw / removed / retained. Offline final maps, not online updates.",
         "zh": "同一批 teaser 条目的 DUFOMap、BeautyMap、真值：固定视角，原始／移除／保留。使用最终离线地图，不表现为在线更新。"
       },
-      "source_records": []
+      "source_records": [
+        "results/reference/reproduction-media-wsl/record.json"
+      ],
+      "source_artifact": "replication_hero.gif"
     },
     {
       "id": "replication-frame",
       "path": "docs/figures/replication_frame.png",
       "stage": "R0/R2",
-      "status": "reserved",
+      "status": "published",
       "caption": {
         "en": "One named frame, same world bounds and point identities across every method and GT.",
         "zh": "明确帧号，同一世界坐标范围、同一点身份，对照各方法和真值。"
       },
-      "source_records": []
+      "source_records": [
+        "results/reference/reproduction-media-wsl/record.json"
+      ],
+      "source_artifact": "replication_frame.png"
     },
     {
       "id": "replication-paper-gap",
@@ -38,12 +44,15 @@
       "id": "metric-correspondence",
       "path": "docs/figures/metric_correspondence.png",
       "stage": "R1",
-      "status": "reserved",
+      "status": "published",
       "caption": {
-        "en": "Exact point identity versus map nearest neighbor on the same geometry; original PCL cross-check still required.",
-        "zh": "同一几何中的精确点身份与地图最近邻对照；仍需原 PCL 对齐。"
+        "en": "Same-instance DUFOMap: direct identities, nearest neighbors of the same kept points and native export; 141 frames, zero injected error.",
+        "zh": "同实例 DUFOMap：直接身份、相同保留点的最近邻、原生输出；141 帧，零注入误差。"
       },
-      "source_records": []
+      "source_records": [
+        "results/reference/api-diagnostic-plot/record.json"
+      ],
+      "source_artifact": "metric_correspondence.png"
     },
     {
       "id": "bottleneck-diagram",

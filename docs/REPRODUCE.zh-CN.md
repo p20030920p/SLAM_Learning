@@ -26,6 +26,19 @@ sudo apt-get install -y git libgl1 libgomp1 libglib2.0-0
 
 [CI](../.github/workflows/ci.yml)检查 Linux／Windows 核心；真实数据由手动 `real_data=true` 或提交消息包含 `[real-data]` 触发。[运行 37622082701](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701)在新 Ubuntu 环境下载、校验、执行两方法和位姿敏感性并导出记录，[来源与产物](../results/ci/linux-run.json)可追溯。后续扫描隔离改动经新 Windows 全量运行与跨平台解析检查；不改写旧运行版本。
 
+## 原评价器与实测回放
+
+Ubuntu 先安装 `build-essential pkg-config libpcl-dev libgoogle-glog-dev libgflags-dev`。使用作者方法命令打印的完整运行路径：
+
+```bash
+uv run slam-study cross-check results/runs/<dufomap-run>/record.json results/runs/<beautymap-run>/record.json
+uv run slam-study render-reproduction results/runs/<evaluation-check-run>/record.json
+uv run slam-study run --experiment api-check
+uv run python scripts/plot_api_check.py results/runs/<api-check-run>/record.json
+```
+
+对照编译未修改的固定 PCL 源码，保留真值点身份并列出分歧。回放要求一致性，绑定帧／视角／计数。接口诊断在同一训练实例上区分直接标签、这些保留点的地图和原生输出。独立 CUDA 基线见[语义复现](SEMANTIC.zh-CN.md)。
+
 ## 数据与作者源码
 
 ```bash
@@ -53,7 +66,7 @@ DUFOMap：分辨率 0.1 m、`d_s=0.2`、论文 `d_p=1`、两线程；积分距�
 
 BeautyMap：`dis_range=40`、`xy_resolution=1.0`、`h_res=0.5`。地图与扫描均只保留 XYZ，扫描保留 VIEWPOINT，实际移除含标注的 intensity。完整原图是离线清图的合法输入，不等于在线导航。Python 迭代器与 64 位掩码补丁仅作用于运行副本，保存于 `compatibility.patch`。
 
-真值点距离清理图中最近点不超过 0.05 m，则视为保留。SA = 静态保留／静态总数；DA = 动态移除／动态总数；AA 为几何均值；HA 为调和均值；全部以百分数记录，两种真值类均须存在。邻近几何会使地图评分不同于精确点身份，原 PCL 尚未对齐。
+真值点距离清理图中最近点不超过 0.05 m，则视为保留。SA = 静态保留／静态总数；DA = 动态移除／动态总数；AA 为几何均值；HA 为调和均值；全部以百分数记录，两种真值类均须存在。邻近几何会使地图评分不同于精确点身份；原 PCL 在本次两张 WSL 地图上逐点一致，[实测对照](../results/reference/evaluation-check-wsl/summary.json)。
 
 `--frames 10` 只做冒烟，不评分；`--strict-paper` 在表格不一致时返回 2，环境阻塞／执行失败返回 1，完整一致返回 0。普通运行完成执行即可返回 0，表格一致性另存。每次 UUID 目录独立，日志和失败保留。
 

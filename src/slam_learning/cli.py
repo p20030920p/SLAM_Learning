@@ -83,7 +83,7 @@ def main(argv: list[str] | None = None) -> int:
                     run_evidence_stress(root)
                 elif args.experiment == "api-check":
                     from .api_check import run_api_check
-                    record_path = run_api_check(root)
+                    record_path = run_api_check(root, args.timeout)
                     return int(json.loads(record_path.read_text(encoding="utf-8"))["status"] != "executed")
                 else:
                     from .pose_stress import run_pose_stress

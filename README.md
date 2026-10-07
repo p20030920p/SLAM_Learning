@@ -15,20 +15,20 @@ English &nbsp;|&nbsp; [中文](README.zh-CN.md)
 
 </div>
 
-<!-- MEDIA: replication-hero. Add the image after the measured animation is ready. -->
-<!-- ![Raw, removed and retained points across one fixed sequence](docs/figures/replication_hero.gif) -->
+![Raw, removed and retained points in author map replay](docs/figures/replication_hero.gif)
 
-> **Animation slot — author-method reproduction.** The same selected teaser entries and fixed view for DUFOMap, BeautyMap and ground truth: raw scan → removed → retained. Green: correctly removed dynamic points; red: removed static points; blue: retained dynamic points. Slot: `docs/figures/replication_hero.gif`.
+> **Measured author-map replay.** Twenty-one selected teaser entries, fixed world view: raw → removed → retained. Green: removed dynamic; red: removed static; blue: retained dynamic. Final offline maps, with GT used only for evaluation/color. [Rendering settings and source records](results/reference/reproduction-media-wsl/record.json).
 
 This repository studies how a robot decides that a mapped surface or object has changed. We start with executable author methods, inspect their outputs and evaluation rules, and then ask which decisions depend on trustworthy localization. The study spans robust mapping in dynamic scenes and persistent semantic maps.
 
 | Current material | Scope |
 | --- | --- |
 | Author-method reproduction | DUFOMap and BeautyMap; 141-frame KITTI-00 teaser |
-| Platforms checked | Windows and fresh Ubuntu 22.04 CI; CPU |
+| Platforms checked | Windows, fresh Ubuntu 22.04 CI and local WSL2 Ubuntu 22.04; CPU author runs |
 | Measurement | Static retention, dynamic removal; paper comparisons kept separate |
 | Exploratory diagnostics | Real-data pose sensitivity; two controlled mechanisms |
-| Next prerequisite | Resolve evaluator differences and reproduce a semantic-map frontend |
+| Semantic frontend | ConceptGraphs on 40 posed Replica observations; 39 objects and text-query coordinates |
+| Next prerequisite | Annotated associations/targets, more scenes and paired pose-error controls |
 
 ## Reproduction
 
@@ -41,10 +41,11 @@ Both methods completed all 141 frames and were scored against 17,362,230 labeled
 
 *SA retains static points; DA removes dynamic points. AA is geometric and HA harmonic, so the last column is not one shared ranking. Windows and Ubuntu scores agree. [Full protocol, paper values and raw records](docs/RESULTS.md).*
 
-<!-- MEDIA: replication-frame -->
-<!-- ![Author methods and ground truth on the same frame](docs/figures/replication_frame.png) -->
+![Author maps on source frame 004390](docs/figures/replication_frame.png)
 
-*Qualitative figure slot: one frame, identical spatial bounds and point identities for every panel. Caption must give the frame ID and the run IDs. Slot: `docs/figures/replication_frame.png`.*
+*Source frame `004390`; counts cover the full scan before display thinning. [Run/frame metadata](results/reference/reproduction-media-wsl/render.json).*
+
+The original benchmark PCL evaluator and SciPy agree on **every one of 17,362,230 GT points for each map**, with zero disagreements. This excludes the evaluator implementation as the cause of these paper-table differences; it does not resolve version/parameter differences. [Cross-check evidence](results/reference/evaluation-check-wsl/summary.json).
 
 A second diagnostic uses DUFOMap's direct point-label API. A larger pose margin preserves more static points but misses more dynamic ones; a small injected pose error does not always reduce the score. Its values cannot be merged into the map-correspondence table above.
 
@@ -56,7 +57,7 @@ A second diagnostic uses DUFOMap's direct point-label API. A larger pose margin 
 
 The working question is **whether a change residual can be separated from localization error, and whether another observation supplies independent evidence**. One pose error can shift many object correspondences together. Without stable anchors, coherent object motion can also resemble camera motion.
 
-This is a candidate structural bottleneck. The real runs establish pose-margin tradeoffs and an evaluation gap; the cross-paper claim also needs a semantic-map reproduction. Khronos already jointly optimizes poses and structure, while newer persistent maps already handle visibility and memory. [Paper-by-paper assumptions and counterexamples](docs/LITERATURE.md).
+This is a candidate structural bottleneck. The real runs establish pose-margin tradeoffs and an evaluation gap; a first semantic frontend is executable, while a shared empirical failure still needs annotated pose-error controls. Khronos already jointly optimizes poses and structure, while newer persistent maps already handle visibility and memory. [Paper-by-paper assumptions and counterexamples](docs/LITERATURE.md).
 
 <!-- MEDIA: bottleneck-diagram -->
 <!-- ![Pose uncertainty, association and provisional map updates](docs/figures/bottleneck_diagram.svg) -->
@@ -67,7 +68,7 @@ This is a candidate structural bottleneck. The real runs establish pose-margin t
 
 At matched query coverage, update latency and observation budget, accounting for shared pose uncertainty before committing changes may reduce false deletion and stale-target error compared with visibility-aware threshold and independent-noise baselines. Enough stable geometry or external pose information must be available.
 
-The hypothesis is **not frozen for confirmation**. First reconcile the measurement protocol and reproduce at least one semantic frontend. The criterion for rejecting it is written in [the research note](docs/RESEARCH.md); [the experiment plan](docs/PLAN.md) specifies the next gates.
+The hypothesis is **not frozen for confirmation**. The original PCL/map-NN comparison and a first semantic subset baseline are complete. Annotation and pose-error controls remain before confirmation. The criterion for rejecting it is written in [the research note](docs/RESEARCH.md); [the experiment plan](docs/PLAN.md) specifies the next gates.
 
 ## Exploratory experiments
 
@@ -107,12 +108,12 @@ bash scripts/run_reproduction.sh --smoke
 bash scripts/run_reproduction.sh
 ```
 
-The local WSL component is installed, but Ubuntu/platform activation is still required. [WSL setup](docs/WSL.md) distinguishes that prerequisite from completed Ubuntu CI runs.
+Local WSL2 Ubuntu 22.04 has now executed the CPU author methods and a separate CUDA semantic frontend. The active checkout is `~/projects/SLAM_Learning`. [WSL setup](docs/WSL.md), [semantic reproduction](docs/SEMANTIC.md).
 
 ## Next sequence
 
-1. Reconcile the evaluator and render the author-method comparison.
-2. Reproduce a real semantic-map frontend and inspect correspondence failures.
+1. PCL agreement and the measured author-map replay are complete; paper-version differences remain.
+2. Extend the semantic subset baseline with annotated identities/targets and correspondence failure controls.
 3. Retain or revise the bottleneck, then freeze a hypothesis and held-out protocol.
 4. Compare simple baselines at matched coverage and latency; publish figures, failures and raw evidence together.
 
@@ -125,6 +126,7 @@ The local WSL component is installed, but Ubuntu/platform activation is still re
 | [Research note](docs/RESEARCH.md) | Observation → bottleneck → candidate hypothesis |
 | [Experiment plan](docs/PLAN.md) | Reproduction gates and future discriminating experiments |
 | [Reproduction](docs/REPRODUCE.md) / [WSL](docs/WSL.md) | Installation, execution, scoring and evidence export |
+| [Semantic frontend](docs/SEMANTIC.md) | Actual ConceptGraphs subset, CUDA environment and query limits |
 | [Figure and video index](docs/figures/README.md) | Published assets and reserved GIF/video slots |
 | [Measured ledger](results/REPORT.md) | Generated from run records |
 | [Audit](docs/AUDIT.md) / [Disclosure](docs/INTERVIEW.md) | Source migration and interview preparation |

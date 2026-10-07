@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "kind": "map_evaluator_cross_check",
+  "status": "executed",
+  "scope": "full_teaser",
+  "started_at": "2026-10-07T21:51:43+00:00",
+  "environment": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "packages": {
+      "slam-learning": "0.2.0",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.9.2",
+      "dufomap": "1.1.1",
+      "open3d": "0.18.0",
+      "dztimer": "1.1.1"
+    }
+  },
+  "repository": {
+    "commit": "c07bf9f4081fc51aff805a4cdb775e4d0ea2dceb",
+    "dirty": true
+  },
+  "source_sha256": {
+    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
+    "src/slam_learning/adapters.py": "0d79fc212d6ab682e9d53e411b7da7d18073d4e2b5c1361f877594dd6a332f04",
+    "src/slam_learning/cli.py": "133f17b17b0aa723ce9afd7ab1cbbe954398b8edde5c5ae3072e17ab766a14c8",
+    "src/slam_learning/evaluation_check.py": "abaf41f7dd5aac071515662d230fc4181a9b554dfddb7a076cc2c7d209110ced",
+    "src/slam_learning/evidence_stress.py": "9957fe5974b3e8308d7287433279aedb8dbac0a89fd2511ca871a2f922e29c60",
+    "src/slam_learning/fetch.py": "fcce0e0fd024030d4f1b19ab1d63abdf1b0d7e5333dc89254520747ee03d03cd",
+    "src/slam_learning/metrics.py": "aeb849e7f3be8d1b54ebbc457317aafbf698d095bb412f4aeb7071fd8637b4dc",
+    "src/slam_learning/pcd.py": "ce37303693339309cf4d5f55d8bf7c4457973c0eb83392c581d4a5579634b034",
+    "src/slam_learning/pose_stress.py": "18f096b34da22a09d729ed141552d7dd49f5abc33c8a8cd61275d27cd6fdbfa6",
+    "src/slam_learning/provenance.py": "7cc155e7ae1e67e8313844217abcc36905f85427417d537e545af8f4a1880a9c",
+    "src/slam_learning/report.py": "1a3ad9c4ae41ec38aad4522fa334b95776a1112894f7be8c14c14238c637c181",
+    "src/slam_learning/runner.py": "addc4555f83f6f9d4d6ff74129daca8ac3e2133f512cb6332a2088c64555a13f",
+    "src/slam_learning/synthetic.py": "f836619ef1b05ade5a1ac0489de832061c0ddee717f1cfeb90a6b99dbee314cd"
+  },
+  "artifacts": {
+    "build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "summary.json": {
+      "sha256": "c407a0e27a8fb8da8957c64d153b6650408fe6ebe5ac4d8da7024d3ebd0055e4",
+      "bytes": 2325,
+      "availability": "portable"
+    },
+    "comparison.csv": {
+      "sha256": "0e5826de60e9d1ac2aac0a5e8583820adaefe8a74ceb0ca3da2692e703348f4c",
+      "bytes": 554,
+      "availability": "portable"
+    },
+    "disagreements.csv": {
+      "sha256": "52a65d2abd7e82d3ed54a9372b9dc4883849b149125eab81c9adaa8c19457a08",
+      "bytes": 71,
+      "availability": "portable"
+    },
+    "input-dufomap-record.json": {
+      "sha256": "fbf0ffbc2f16fd05bc6b8f42a04fca102bc2d0085dda9a918a02384a7b18d87a",
+      "bytes": 7088,
+      "availability": "portable"
+    },
+    "dufomap/pcl.log": {
+      "sha256": "9bdcd30d2db1aa9a3ba10a1c1a913a0c7c281647cc6c92c3d2ad069e886ef9a6",
+      "bytes": 306,
+      "availability": "portable"
+    },
+    "input-beautymap-record.json": {
+      "sha256": "bc6cd938bc2e48e8f62f42c8cae0603b8352cb8b7586505582871e438e6628fa",
+      "bytes": 8045,
+      "availability": "portable"
+    },
+    "beautymap/pcl.log": {
+      "sha256": "ef417478528b8eafee82d2b39c48ee9a2ba1e33aed7fc3cb4919f601c2181ef9",
+      "bytes": 308,
+      "availability": "portable"
+    },
+    "export_eval_pcd": {
+      "sha256": "074a20dffc0a2b3f7f912077a6256eb539f237e83c762b7ecace3fbb92eb26f3",
+      "bytes": 86912,
+      "availability": "local_only"
+    },
+    "dufomap/eval/cleaned_exportGT.pcd": {
+      "sha256": "47c918bcbdd2267a0349615ab7537e835f4c767bba56fb59a5de02111ce601a1",
+      "bytes": 277795874,
+      "availability": "local_only"
+    },
+    "beautymap/eval/cleaned_exportGT.pcd": {
+      "sha256": "a7fe2b1bf6418852e3f27601de0eb59fad016e188c16cee4c9bda3dbb1d2baf9",
+      "bytes": 277795874,
+      "availability": "local_only"
+    }
+  },
+  "commands": [
+    [
+      "g++",
+      "-std=c++17",
+      "-O3",
+      "/home/qzl/projects/SLAM_Learning/.cache/upstream/dynamicmap/scripts/cpp/export_eval_pcd.cpp",
+      "-o",
+      "/home/qzl/projects/SLAM_Learning/results/runs/evaluation-check-6489fe584ba2/export_eval_pcd",
+      "-I/usr/include/pcl-1.12",
+      "-I/usr/include/eigen3",
+      "-I/usr/include/ni",
+      "-I/usr/include/openni2",
+      "-lpcl_io",
+      "-lOpenNI",
+      "-lOpenNI2",
+      "-lpcl_octree",
+      "-lpcl_kdtree",
+      "-llz4",
+      "-lflann",
+      "-lflann_cpp",
+      "-llz4",
+      "-lpcl_common",
+      "-lglog",
+      "-lgflags"
+    ],
+    [
+      "/home/qzl/projects/SLAM_Learning/results/runs/evaluation-check-6489fe584ba2/export_eval_pcd",
+      "/home/qzl/projects/SLAM_Learning/results/runs/evaluation-check-6489fe584ba2/dufomap",
+      "cleaned.pcd",
+      "0.05"
+    ],
+    [
+      "/home/qzl/projects/SLAM_Learning/results/runs/evaluation-check-6489fe584ba2/export_eval_pcd",
+      "/home/qzl/projects/SLAM_Learning/results/runs/evaluation-check-6489fe584ba2/beautymap",
+      "cleaned.pcd",
+      "0.05"
+    ]
+  ],
+  "exit_code": 0,
+  "threshold_m": 0.05,
+  "dataset": {
+    "manifest_sha256": "ee139f3c00f1fd6019a74332dad460d6e30e3330a78b108a9609e81e4a1359a7",
+    "archive_sha256": "14e30a0ddc19f275477aa0e72e6ba713f0f6a6a29dcf7ded8a92ce0c421109fd",
+    "configuration": {
+      "id": "dynamicmap-kitti00-teaser",
+      "record": "https://zenodo.org/records/10886629",
+      "url": "https://zenodo.org/records/10886629/files/00.zip?download=1",
+      "filename": "00.zip",
+      "md5": "87f856c4dd1ad05d0ffd4171f92780a0",
+      "frames": 141,
+      "gt_points": 17362230,
+      "coordinate_frame": "world; sensor origins stored in PCD VIEWPOINT",
+      "scope": "Selected frames, not the full KITTI odometry sequence. Poses supplied by benchmark, not estimated here.",
+      "license_note": "Original KITTI/SemanticKITTI terms apply; data is not redistributed."
+    }
+  },
+  "upstreams": {
+    "dufomap": {
+      "url": "https://github.com/KTH-RPL/dufomap.git",
+      "commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+      "dirty": false
+    },
+    "dynamicmap": {
+      "url": "https://github.com/KTH-RPL/DynamicMap_Benchmark.git",
+      "commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+      "dirty": false
+    }
+  },
+  "pcl_source": {
+    "path": "/home/qzl/projects/SLAM_Learning/.cache/upstream/dynamicmap/scripts/cpp/export_eval_pcd.cpp",
+    "sha256": "e926176f3bdd290e4bda5bdbd22e7807b0182ca3b5c188d07f896dc14f71f2f7",
+    "modification": "none"
+  },
+  "pcl_modules": {
+    "pcl_io-1.12": "1.12.1",
+    "pcl_kdtree-1.12": "1.12.1"
+  },
+  "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "methods": [
+    {
+      "method": "dufomap",
+      "input_record_sha256": "fbf0ffbc2f16fd05bc6b8f42a04fca102bc2d0085dda9a918a02384a7b18d87a",
+      "input_map_sha256": "747357a383465721f7235a2639d26c7223e9398878e5268c41cd950b4a37b04d",
+      "exact_point_order_verified": true,
+      "gt_points": 17362230,
+      "disagreement_points": 0,
+      "scipy": {
+        "counts": {
+          "kept_static": 16917434,
+          "removed_static": 348813,
+          "removed_dynamic": 94738,
+          "kept_dynamic": 1245
+        },
+        "SA": 97.97979838930834,
+        "DA": 98.70289530437681,
+        "AA": 98.34068223458615,
+        "HA": 98.34001762682132
+      },
+      "pcl": {
+        "counts": {
+          "kept_static": 16917434,
+          "removed_static": 348813,
+          "removed_dynamic": 94738,
+          "kept_dynamic": 1245
+        },
+        "SA": 97.97979838930834,
+        "DA": 98.70289530437681,
+        "AA": 98.34068223458615,
+        "HA": 98.34001762682132
+      },
+      "difference_pp": {
+        "SA": 0.0,
+        "DA": 0.0,
+        "AA": 0.0,
+        "HA": 0.0
+      }
+    },
+    {
+      "method": "beautymap",
+      "input_record_sha256": "bc6cd938bc2e48e8f62f42c8cae0603b8352cb8b7586505582871e438e6628fa",
+      "input_map_sha256": "c7e41e99d7c43e56c02eaac5d6329bd3867e0d3bd5f0d04e1f1a071de669f767",
+      "exact_point_order_verified": true,
+      "gt_points": 17362230,
+      "disagreement_points": 0,
+      "scipy": {
+        "counts": {
+          "kept_static": 16740135,
+          "removed_static": 526112,
+          "removed_dynamic": 94388,
+          "kept_dynamic": 1595
+        },
+        "SA": 96.95294524629469,
+        "DA": 98.33824739797673,
+        "AA": 97.64313962379855,
+        "HA": 97.6406829872703
+      },
+      "pcl": {
+        "counts": {
+          "kept_static": 16740135,
+          "removed_static": 526112,
+          "removed_dynamic": 94388,
+          "kept_dynamic": 1595
+        },
+        "SA": 96.95294524629469,
+        "DA": 98.33824739797673,
+        "AA": 97.64313962379855,
+        "HA": 97.6406829872703
+      },
+      "difference_pp": {
+        "SA": 0.0,
+        "DA": 0.0,
+        "AA": 0.0,
+        "HA": 0.0
+      }
+    }
+  ],
+  "total_disagreement_points": 0,
+  "finished_at": "2026-10-07T21:53:09+00:00"
+}

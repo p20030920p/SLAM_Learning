@@ -53,7 +53,9 @@ def check(root: Path) -> list[str]:
                     errors.extend(f"{slot['id']}: {issue}" for issue in verify_record(record))
                     data = json.loads(record.read_text(encoding="utf-8"))
                     for name, info in data["artifacts"].items():
-                        if (record.parent / name).resolve() == asset.resolve() and asset.is_file():
+                        same_path = (record.parent / name).resolve() == asset.resolve()
+                        declared_copy = slot.get("source_artifact") == name
+                        if (same_path or declared_copy) and asset.is_file():
                             bound |= digest(asset) == info["sha256"]
             if not bound:
                 errors.append(f"Published asset is not hash-bound to its source record: {slot['id']}")

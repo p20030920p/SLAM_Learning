@@ -1,0 +1,40 @@
+# ConceptGraphs 前端复现
+
+[English](SEMANTIC.md) | 中文
+
+2026 年 10 月 8 日，固定源码的作者 **class-agnostic ConceptGraphs** 前端已在本机 WSL2 Ubuntu 22.04、RTX 4070 SUPER 执行。Replica `room0` 的 40 次观测得到 **39 个后处理对象**；4 个 CLIP 文本查询各返回 3 个候选对象及其世界坐标。[运行记录](../results/reference/conceptgraphs-wsl/record.json)、[输出](../results/reference/conceptgraphs-wsl/summary.json)、[原生建图日志](../results/reference/conceptgraphs-wsl/mapping.log)。
+
+这建立了可执行的 RGB-D 分割、对象关联／融合、坐标查询基线。查询正确率、语义榜单分数、动态场景性能、导航成功率**尚未评价**。返回坐标不证明找对目标。相机到世界的位姿由数据提供，不是 SLAM 估计结果；本次也未运行 LLaVA 描述、LLM 场景图构建或规划。
+
+## 运行独立环境
+
+在 `~/projects/SLAM_Learning` 中完成 [Linux 环境](WSL.zh-CN.md)后：
+
+```bash
+bash scripts/setup_semantic.sh
+.venv-semantic/bin/python scripts/run_conceptgraphs.py
+```
+
+CPU 的 `uv.lock` 环境与语义环境分开。[语义依赖](../environments/semantic/requirements.txt)固定已安装发行版，[semantic.json](../configs/semantic.json)固定作者提交、权重、PyTorch3D 二进制和参数。实测 Python 3.10.12、PyTorch 2.0.1+cu118、PyTorch3D 0.7.4。脚本校验作者推荐的 Linux 二进制 SHA-256，只安装到项目语义环境，不要求系统 CUDA 工具链。这套安装步骤已实际执行。
+
+## 数据与位姿
+
+[作者说明](https://github.com/concept-graphs/concept-graphs)使用 [NICE-SLAM 渲染的 Replica 轨迹](https://github.com/cvg/nice-slam/blob/master/scripts/download_replica.sh)。公开 ZIP 为 12,442,855,671 字节；HTTP Range 只获取来源帧 `000000、000005、…、000195`、深度和 `traj.txt`，没有宣称整个压缩包的 SHA-256。Zip CRC 校验下载成员，[清单](../results/reference/conceptgraphs-wsl/dataset-manifest.json)保存提取文件 SHA-256、压缩包长度和 ETag。
+
+对应的 40 个原始位姿矩阵按观测顺序紧凑排列。作者 loader 对子集取 stride 1，相当于对原始前 200 个条目取 stride 5。建图采用作者的 480×640 图像设置、缩放后的内参和提供的世界位姿。它是短小的静态渲染场景，不是实机部署，也不是完整 Replica 论文评价。
+
+每次运行获得独立的 RGB-D 子集与作者源码副本，不会把旧检测或旧地图当作新结果。权重和 RGB-D 数据不进入 Git。
+
+## 兼容性与资源适配
+
+[完整补丁](../results/reference/conceptgraphs-wsl/compatibility.patch)记录无窗口 Matplotlib、在 `class_set=none` 下跳过未使用的 GroundingDINO／RAM 导入和初始化、本地权重路径、SAM 分批。几何、关联公式和判断阈值未打补丁。
+
+作者默认一次处理 144 个 SAM 采样提示。在本机 12 GiB 显卡上，首帧显存饱和并停滞，因此主动中止并保留[中止运行](../results/reference/conceptgraphs-wsl-batch144-interrupted/record.json)。成功运行保留 12×12 采样网格，分成每批 36 点。分批是明确的资源适配，未宣称与未适配参考产生逐位相同的掩膜。40 个输入全部完成分割后，才进入建图。
+
+Meta 下载停滞后，SAM ViT-H 从固定修订的 Hugging Face 镜像获取；CLIP ViT-H 来自 LAION 模型库。两者加载前检查完整文件哈希；镜像来源和修订明确写在配置中。没有用父进程数据宣称完整系统速度或显存峰值。
+
+## 基线告诉了我们什么？
+
+作者建图日志记录对象增加、过滤和合并。这些操作处理 RGB-D 与基础模型特征，已经超出使用已知对象身份的玩具模型；但最终对象数量本身不能衡量碎片化或正确关联。公布的查询分数是余弦相似度，不是校准概率。
+
+下一步补对象身份与查询目标标注，固定分割／特征，比较精确位姿、独立误差和时间相关漂移。加入阈值扫描及匹配覆盖率／延迟。在这些对照和留出场景确定之前，共享位姿假设保持候选状态。[阶段计划](PLAN.zh-CN.md)。

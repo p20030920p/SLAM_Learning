@@ -4,6 +4,8 @@ English | [中文](WSL.zh-CN.md)
 
 On 7 October 2026 this host has WSL 3.0.1 and firmware virtualization enabled, but no registered Linux distribution. WSL reports that its virtual-machine platform is not active. The current process is not elevated. This is preparation status, separate from the successful Ubuntu CI runs.
 
+**8 October update:** WSL2 Ubuntu 22.04 is configured. Local author/PCL runs and the ConceptGraphs subset completed; RTX 4070 SUPER is visible and CUDA inference executed. Checkout: `~/projects/SLAM_Learning`. Skip installation steps 1–2 on this configured machine. Use `scripts/setup_linux.sh` for the CPU environment and [SEMANTIC](SEMANTIC.md) for the separate GPU environment.
+
 ## 1. Activate the platform
 
 Run from an **administrator PowerShell** in this checkout:
@@ -51,6 +53,6 @@ bash scripts/run_reproduction.sh
 
 The second command downloads/verifies data and runs the two author methods, then writes English and Chinese ledgers. It does not automatically run the candidate-hypothesis experiments. Save each run ID before changing parameters. [Stages R1–R3](PLAN.md) specify the next reproduction work.
 
-## GPU and media later
+## GPU environment and measured media
 
-The CPU suite requires no CUDA. Before a semantic frontend, check `nvidia-smi` inside WSL and test that frontend's GPU environment separately; Windows GPU availability alone is not a completed WSL CUDA check. See [Microsoft GPU support](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gpu-compute). Keep the future semantic environment separate from the current lockfile. GIF/video positions and input requirements are in [the media index](figures/README.md).
+The CPU suite requires no CUDA. This host passed the WSL GPU check and executed SAM/CLIP inference in the separate `.venv-semantic` environment; [SEMANTIC](SEMANTIC.md) records the exact setup and adaptations. On another host, check `nvidia-smi` inside WSL and test that frontend's environment separately. See [Microsoft GPU support](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gpu-compute). The measured map GIF and remaining video positions are in [the media index](figures/README.md).

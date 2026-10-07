@@ -4,6 +4,8 @@
 
 2026 年 10 月 7 日，本机已有 WSL 3.0.1、固件虚拟化已开，但没有注册 Linux 发行版，WSL 提示虚拟机平台未启动，当前进程不是管理员。这是准备状态，与成功的 Ubuntu CI 分开记录。
 
+**10 月 8 日更新：** WSL2 Ubuntu 22.04 已配置。本机作者方法／PCL 对照和 ConceptGraphs 子集已执行；RTX 4070 SUPER 可见，CUDA 推理已运行。副本位于 `~/projects/SLAM_Learning`。这台已配置机器跳过安装第 1–2 步；CPU 环境用 `scripts/setup_linux.sh`，GPU 环境见[语义复现](SEMANTIC.zh-CN.md)。
+
 ## 1. 启用平台
 
 在仓库根目录的**管理员 PowerShell** 执行：
@@ -51,6 +53,6 @@ bash scripts/run_reproduction.sh
 
 第二条下载／校验数据、执行两个作者方法，生成中英文汇总，不自动运行候选假设实验。改参数前保存每个运行编号。[R1–R3 阶段](PLAN.zh-CN.md)规定接下来要补的复现。
 
-## GPU 与媒体放到后续
+## GPU 环境与实测媒体
 
-CPU 实验无需 CUDA。语义前端前，先在 WSL 内检查 `nvidia-smi`，再单独测试该前端 GPU 环境；Windows 有 GPU 不等于 WSL CUDA 已通过。[Microsoft GPU 支持](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gpu-compute)可核查。未来语义环境与当前锁文件分开，GIF／视频位置与输入要求见[媒体索引](figures/README.zh-CN.md)。
+CPU 实验无需 CUDA。本机已通过 WSL GPU 检查，并在独立的 `.venv-semantic` 环境执行 SAM／CLIP 推理；[语义复现](SEMANTIC.zh-CN.md)记录具体配置与适配。换机器时仍需在 WSL 内检查 `nvidia-smi`，单独测试该前端环境，可核查 [Microsoft GPU 支持](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gpu-compute)。实测地图 GIF 与剩余视频位置见[媒体索引](figures/README.zh-CN.md)。

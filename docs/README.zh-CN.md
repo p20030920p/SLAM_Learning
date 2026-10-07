@@ -11,6 +11,7 @@
 | 3. 候选解释 | [研究](RESEARCH.zh-CN.md) | [Research](RESEARCH.md) |
 | 4. 下一步实验 | [计划](PLAN.zh-CN.md) | [Plan](PLAN.md) |
 | 环境与命令 | [复现](REPRODUCE.zh-CN.md)、[WSL](WSL.zh-CN.md) | [Reproduction](REPRODUCE.md), [WSL](WSL.md) |
+| 语义基线 | [语义前端](SEMANTIC.zh-CN.md) | [Semantic frontend](SEMANTIC.md) |
 | 图与动画 | [媒体](figures/README.zh-CN.md) | [Media](figures/README.md) |
 | 迁移记录 | [审计](AUDIT.zh-CN.md) | [Audit](AUDIT.md) |
 | 使用说明与答辩 | [面试](INTERVIEW.zh-CN.md) | [Interview](INTERVIEW.md) |

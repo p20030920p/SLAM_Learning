@@ -28,11 +28,11 @@ Literature cutoff: **7 October 2026**. “Active direction” means several rece
 | [SuperMap, August 2026](https://arxiv.org/html/2608.22896v1) | III conditions on pose; IV uses depth observation states and recursive evidence | Displayed model motivates checking shared pose covariance and calibration | Already separates observable, unobservable and disappeared; an omitted covariance formula does not prove a code defect |
 | [PerSeM, September 2026 preprint](https://arxiv.org/html/2609.19542v2) | 3.1/3.2 projects into persistent world voxels; 5 discusses drift/correlated errors | Label stability does not guarantee correct geometric evidence assignment | Memory/refinement already exists; correlated geometry is an acknowledged limitation |
 
-The recurring interface is narrow: establish spatial correspondence, then interpret map evidence. These papers do not implement one algorithm, and several already mitigate errors. The candidate question concerns residual shared geometric uncertainty in destructive-update confidence; an empirical cross-field claim still needs semantic-frontend reproduction.
+The recurring interface is narrow: establish spatial correspondence, then interpret map evidence. These papers do not implement one algorithm, and several already mitigate errors. The candidate question concerns residual shared geometric uncertainty in destructive-update confidence; an empirical cross-field claim still needs annotated pose-error controls beyond the first semantic subset.
 
 ## Code accessibility and scope
 
-DUFOMap and BeautyMap have executable author implementations and small labeled public data. Their exact commits are in [upstreams.json](../configs/upstreams.json). Other core works were read, not freshly reproduced.
+DUFOMap and BeautyMap have executable author implementations and small labeled public data. Their exact commits are in [upstreams.json](../configs/upstreams.json). A class-agnostic ConceptGraphs frontend now executed on 40 posed Replica observations; [source/settings](../configs/semantic.json), [scope](SEMANTIC.md). The other core works were read, not freshly reproduced.
 
 The [SuperMap repository](https://github.com/superxslam/SuperMap), inspected at `ec95b1d50a458645b2669836e2c431f1e957bbc6`, contained a README, paper and teaser, but no implementation, requirements file or runnable examples. Its setup text is not a runnable recipe at this snapshot. PerSeM is treated as a recent preprint, not an independently validated baseline.
 

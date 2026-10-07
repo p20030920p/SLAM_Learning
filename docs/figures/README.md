@@ -8,6 +8,9 @@ This is the single media index. Selected homepage positions carry captions and c
 
 | Asset | Stage | Caption |
 | --- | --- | --- |
+| [replication-hero](replication_hero.gif) | R0/R2 | DUFOMap, BeautyMap and GT on the same selected teaser entries; fixed view, raw / removed / retained. Offline final maps, not online updates. |
+| [replication-frame](replication_frame.png) | R0/R2 | One named frame, same world bounds and point identities across every method and GT. |
+| [metric-correspondence](metric_correspondence.png) | R1 | Same-instance DUFOMap: direct identities, nearest neighbors of the same kept points and native export; 141 frames, zero injected error. |
 | [pose-margin](../../results/reference/pose-stress/sensitivity.png) | R0 diagnostic | Real teaser, six direct-label sensitivity cells; no paper-table or semantic-navigation comparison. |
 | [mechanism-ambiguity](../../results/reference/mechanism/mechanism.png) | exploratory E1 | Oracle identity/visibility, minority versus majority movers; include the median failure. |
 | [evidence-calibration](../../results/reference/evidence-stress/calibration.png) | exploratory E0 | Gaussian shared bias with known scales; false deletion, Brier and changed-object recall together. |
@@ -16,10 +19,7 @@ This is the single media index. Selected homepage positions carry captions and c
 
 | File | Stage | What must be shown |
 | --- | --- | --- |
-| `docs/figures/replication_hero.gif` | R0/R2 | DUFOMap, BeautyMap and GT on the same selected teaser entries; fixed view, raw / removed / retained. Offline final maps, not online updates. |
-| `docs/figures/replication_frame.png` | R0/R2 | One named frame, same world bounds and point identities across every method and GT. |
 | `docs/figures/paper_gap.png` | R1 | Measured versus paper values, with AA and HA separated and evaluator differences annotated. |
-| `docs/figures/metric_correspondence.png` | R1 | Exact point identity versus map nearest neighbor on the same geometry; original PCL cross-check still required. |
 | `docs/figures/bottleneck_diagram.svg` | B0 | Pose, correspondence, evidence and provisional updates; empirical observations separated from conjectured feedback. |
 | `docs/figures/pose_drift.gif` | E0 | Exact, independent-noise and correlated-drift conditions at matched marginal error; fixed frontend and view. |
 | `docs/figures/semantic_update.mp4` | R3 then E2 | First an author semantic-map baseline, then delayed correction and object queries with validity/coverage shown. |
@@ -36,7 +36,7 @@ This is the single media index. Selected homepage positions carry captions and c
 
 ## Publication
 
-Reserved assets have no runnable renderer yet. Do not create an empty image or label a planned generator as tested. Once an actual renderer exists, record its command/version and bind the output hash to a media-producing run record; `check_docs.py` checks published assets against those hashes.
+The map replay and API diagnostic have tested renderers; the remaining reserved assets are not generated yet. Do not create an empty image or label a planned generator as tested. Once an actual renderer exists, record its command/version and bind the output hash to a media-producing run record; `check_docs.py` checks published assets against those hashes.
 
 Place the generated file at the reserved path, update the source evidence and status in [slots.json](slots.json), and replace the corresponding homepage comment with a live image. Apply the same asset to both language editions; translate captions. If localized overlays are needed, generate them from the same input/config, not two independent selections.
 

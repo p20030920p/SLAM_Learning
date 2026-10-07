@@ -58,7 +58,9 @@ def worker(root: Path, output: Path):
         "binding_docstrings": {"segment": mapper.segment.__doc__, "outputMap": mapper.outputMap.__doc__}})
 
 
-def run_api_check(root: Path) -> Path:
+def run_api_check(root: Path, timeout: float = 3600) -> Path:
+    if timeout <= 0:
+        raise ValueError("Timeout must be positive")
     output = root / "results/runs" / f"api-check-{uuid.uuid4().hex[:12]}"
     output.mkdir(parents=True)
     record = {"schema_version": 1, "kind": "dufomap_api_diagnostic", "status": "running", "scope": "full_teaser",
@@ -69,7 +71,7 @@ def run_api_check(root: Path) -> Path:
         record.update(validate_inputs(root, "dufomap"))
         command = [sys.executable, "-m", "slam_learning.api_check", str(root), str(output)]
         record["command"] = command
-        record["exit_code"] = execute(command, output, output / "run.log", 3600)
+        record["exit_code"] = execute(command, output, output / "run.log", timeout)
         record["summary"] = json.loads((output / "summary.json").read_text())
         record["status"] = "executed"
     except Exception as e:

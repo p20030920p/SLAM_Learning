@@ -4,7 +4,7 @@ English | [中文](REPRODUCE.zh-CN.md)
 
 ## Environment
 
-Python **3.10.19**; NumPy 1.26.4, SciPy 1.14.1, Matplotlib 3.9.2, DUFOMap 1.1.1, Open3D 0.18.0. [uv.lock](../uv.lock) pins the environment; [requirements.lock](../requirements.lock) contains hashed transitive dependencies for pip. Use Python 3.10, not an unrelated system interpreter. CPU suffices; a GPU is not used by the active suite.
+Python **3.10.19**; NumPy 1.26.4, SciPy 1.14.1, Matplotlib 3.9.2, DUFOMap 1.1.1, Open3D 0.18.0. [uv.lock](../uv.lock) pins the environment; [requirements.lock](../requirements.lock) contains hashed transitive dependencies for pip. Use Python 3.10, not an unrelated system interpreter. CPU suffices for the map-cleaning and exploratory suite; the separate [semantic frontend](SEMANTIC.md) uses CUDA.
 
 ```bash
 uv sync --frozen --python 3.10 --extra methods --extra dev
@@ -24,7 +24,7 @@ The [CI workflow](../.github/workflows/ci.yml) checks the core on Linux and Wind
 
 [Run 37622082701](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701) successfully installed a fresh Ubuntu environment, downloaded/verified data, executed both author methods and pose sensitivity, and uploaded portable evidence. Source commit and artifact details are in [linux-run.json](../results/ci/linux-run.json). Subsequent scan-annotation isolation was checked by a fresh Windows author run and cross-platform parser tests; exact executed code versions remain in each record.
 
-VMware without configured GPU passthrough is still suitable for this CPU suite. It requires working guest SSH or an interactive terminal and sufficient RAM/disk. On the current host the existing Ubuntu VM starts, but SSH/VMware Tools were unavailable; no guest execution is claimed. WSL management components are now installed; Ubuntu and platform activation are pending. [WSL preparation](WSL.md). Docker remains locally untested.
+VMware without configured GPU passthrough is still suitable for this CPU suite. It requires working guest SSH or an interactive terminal and sufficient RAM/disk. On the current host the existing Ubuntu VM starts, but SSH/VMware Tools were unavailable; no guest execution is claimed. Local WSL2 Ubuntu 22.04 has now completed fresh author, PCL and semantic-subset runs. [WSL environment](WSL.md). Docker remains locally untested.
 
 ## Data and upstream sources
 
@@ -55,9 +55,22 @@ DUFOMap: 0.1 m resolution, `d_s=0.2`, paper setting `d_p=1`, two native threads.
 
 BeautyMap: author code with `dis_range=40`, `xy_resolution=1.0`, `h_res=0.5`. Both map and scans are staged as **unlabeled XYZ**, preserving each scan's VIEWPOINT; annotation-bearing intensity is physically stripped. Scans and a completed raw map are legitimate inputs for offline cleaning, not an online-navigation experiment. Python iterator and 64-bit mask patches affect an isolated copy and are recorded in `compatibility.patch`.
 
-The evaluator labels a GT point retained if a cleaned-map point lies within 0.05 m. SA = kept static / all static; DA = removed dynamic / all dynamic; AA = geometric mean of SA and DA; HA = harmonic mean. Values are percentages. Both classes must exist. Near coincident geometry can make map correspondence differ from exact point-label evaluation. Original PCL equivalence has not been cross-checked.
+The evaluator labels a GT point retained if a cleaned-map point lies within 0.05 m. SA = kept static / all static; DA = removed dynamic / all dynamic; AA = geometric mean of SA and DA; HA = harmonic mean. Values are percentages. Both classes must exist. Near coincident geometry can make map correspondence differ from exact point-label evaluation. The original PCL evaluator agrees on every GT point for both measured WSL maps; [cross-check](../results/reference/evaluation-check-wsl/summary.json).
 
 `--frames 10` is smoke-only, with no GT score or paper comparison. `--strict-paper` returns 2 for paper disagreement, 1 for blocked/failed execution and 0 for a matched full run. Normal runs return 0 for completed execution even if paper agreement fails. A fresh UUID output directory prevents stale results; logs and nonzero subprocess exits are retained.
+
+## Original evaluator and measured replay
+
+Install `build-essential pkg-config libpcl-dev libgoogle-glog-dev libgflags-dev` on Ubuntu, then pass the complete run paths printed by the author commands:
+
+```bash
+uv run slam-study cross-check results/runs/<dufomap-run>/record.json results/runs/<beautymap-run>/record.json
+uv run slam-study render-reproduction results/runs/<evaluation-check-run>/record.json
+uv run slam-study run --experiment api-check
+uv run python scripts/plot_api_check.py results/runs/<api-check-run>/record.json
+```
+
+The cross-check compiles the unmodified pinned PCL source, preserves GT identities and lists disagreements. Replay requires agreement and binds frames/view/counts. The API diagnostic separates direct labels, a map of those kept points and native export using one trained instance. For the independent CUDA baseline use [SEMANTIC](SEMANTIC.md).
 
 ## Exploratory mechanism and real-data diagnostics
 

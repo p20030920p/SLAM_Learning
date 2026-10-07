@@ -8,18 +8,18 @@
 
 | 资产 | 阶段 | 图注 |
 | --- | --- | --- |
+| [replication-hero](replication_hero.gif) | R0/R2 | 同一批 teaser 条目的 DUFOMap、BeautyMap、真值：固定视角，原始／移除／保留。使用最终离线地图，不表现为在线更新。 |
+| [replication-frame](replication_frame.png) | R0/R2 | 明确帧号，同一世界坐标范围、同一点身份，对照各方法和真值。 |
+| [metric-correspondence](metric_correspondence.png) | R1 | 同实例 DUFOMap：直接身份、相同保留点的最近邻、原生输出；141 帧，零注入误差。 |
 | [pose-margin](../../results/reference/pose-stress/sensitivity.png) | R0 diagnostic | 真实 teaser 的六组直接标签敏感性；不作论文表格或语义导航比较。 |
 | [mechanism-ambiguity](../../results/reference/mechanism/mechanism.png) | exploratory E1 | 已知身份／可见性，少数与多数运动；保留中位数失败。 |
 | [evidence-calibration](../../results/reference/evidence-stress/calibration.png) | exploratory E0 | 已知尺度的高斯共享偏差；同时报告误删、Brier 与变化召回。 |
 
 ## 预留位置
 
-| 文件 | 阶段 | 必须呈现 |
+| 文件 | 阶段 | 展示要求 |
 | --- | --- | --- |
-| `docs/figures/replication_hero.gif` | R0/R2 | 同一批 teaser 条目的 DUFOMap、BeautyMap、真值：固定视角，原始／移除／保留。使用最终离线地图，不表现为在线更新。 |
-| `docs/figures/replication_frame.png` | R0/R2 | 明确帧号，同一世界坐标范围、同一点身份，对照各方法和真值。 |
 | `docs/figures/paper_gap.png` | R1 | 实测与论文差值，AA／HA 分开，注明评价器差异。 |
-| `docs/figures/metric_correspondence.png` | R1 | 同一几何中的精确点身份与地图最近邻对照；仍需原 PCL 对齐。 |
 | `docs/figures/bottleneck_diagram.svg` | B0 | 位姿、对应、证据与暂定更新；实测观察与猜测反馈分开。 |
 | `docs/figures/pose_drift.gif` | E0 | 相同边际误差下精确／独立噪声／相关漂移；固定前端与视角。 |
 | `docs/figures/semantic_update.mp4` | R3 then E2 | 先作者语义地图基线，再迟到修正和对象查询；显示有效性与覆盖率。 |
@@ -36,7 +36,7 @@
 
 ## 发布
 
-预留资产还没有可执行渲染器，不创建空图，也不把计划中的生成器标成已测试。实际渲染器完成后，记录命令／版本，将输出哈希绑定到媒体生成记录；`check_docs.py` 会核对已发布图的哈希。
+地图回放与接口诊断已有实测生成器；其余预留资产尚未生成，不创建空图，也不把计划中的生成器标成已测试。实际渲染器完成后，记录命令／版本，将输出哈希绑定到媒体生成记录；`check_docs.py` 会核对已发布图的哈希。
 
 把产物放到约定路径，更新 [slots.json](slots.json) 的来源与状态，再将首页注释改成真实图片。两种语言共用资产、分别翻译图注；需要中文画内标签时，从同一输入／配置生成，不做两套独立选图。
 
