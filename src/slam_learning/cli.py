@@ -26,9 +26,12 @@ def find_root(value: str | None) -> Path:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Evidence-first SLAM/semantic mapping experiments")
     sub = parser.add_subparsers(dest="action", required=True)
-    for action in ("doctor", "fetch", "run", "report", "verify", "export", "_worker"):
+    for action in ("doctor", "fetch", "run", "report", "verify", "export", "cross-check", "_worker"):
         p = sub.add_parser(action)
         p.add_argument("--root")
+        if action == "cross-check":
+            p.add_argument("records", nargs="+", help="Complete author-method record.json paths")
+            p.add_argument("--timeout", type=float, default=3600)
         if action == "fetch":
             p.add_argument("--direct", action="store_true", help="Bypass broken proxy only for these fetches")
         if action in ("run", "_worker"):
@@ -88,6 +91,11 @@ def main(argv: list[str] | None = None) -> int:
                     return 1
                 if args.strict_paper and (not record.get("paper_comparison") or not record["paper_comparison"]["matched"]):
                     return 2
+        elif args.action == "cross-check":
+            from .evaluation_check import run_evaluation_check
+            records = [Path(p) if Path(p).is_absolute() else root / p for p in args.records]
+            path = run_evaluation_check(root, records, args.timeout)
+            return int(json.loads(path.read_text(encoding="utf-8"))["status"] != "executed")
         elif args.action == "verify":
             from .runner import verify_record
             path = Path(args.record)
