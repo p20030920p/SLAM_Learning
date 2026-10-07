@@ -39,16 +39,17 @@ def semantic_frames(method, record_path, record, output):
         clouds = [np.asarray(o3d.io.read_point_cloud(str(path)).points)
                   for path in sorted((run / "objects").glob("*.ply"))]
         image_root = run / "input/Replica/room0"
-        images = sorted((image_root / "results").glob("frame*.jpg"))
+        observations = json.loads((run / "frame_observations.json").read_text())
+        images = [image_root / "results" / f"frame{item['source_index']:06d}.jpg" for item in observations]
         frame_ids = [int(path.stem.replace("frame", "")) for path in images]
-    if len(images) != 40 or not clouds:
+    if len(images) != record.get("summary", {}).get("observations", 40) or not clouds:
         raise ValueError("Complete native outputs required")
     # Keep final-map framing fixed across all source observations and all text queries.
     points = np.concatenate(clouds)
     lower, upper = np.quantile(points[:, [0, 2]], [0.001, 0.999], axis=0)
     margin = np.maximum((upper - lower) * .05, .1)
     lower, upper = lower - margin, upper + margin
-    chosen = np.unique(np.linspace(0, 39, 20, dtype=int))
+    chosen = np.unique(np.linspace(0, len(images)-1, min(20, len(images)), dtype=int))
     queries = copy.deepcopy(record["summary"]["queries"])
     if method == "conceptgraphs" and "map_frame_to_replica_world" not in record["summary"]:
         for query in queries:
@@ -70,7 +71,7 @@ def semantic_frames(method, record_path, record, output):
             for i, mask in enumerate(masks):
                 image[mask] = .65 * image[mask] + .35 * np.asarray(colors(i % 20)[:3]) * 255
             image = np.asarray(image, dtype=np.uint8)
-        query = queries[(order // 5) % len(queries)]
+        query = queries[min(len(queries)-1, order*len(queries)//len(chosen))]
         best = query["top_objects"][0]
         fig, axes = plt.subplots(1, 2, figsize=(12.8, 6.5), layout="constrained")
         axes[0].imshow(image)

@@ -52,8 +52,9 @@ def main():
             f"{d.metadata['Name']}=={d.version}" for d in importlib.metadata.distributions())) + "\n")
         data_source = root / ".cache/semantic-data/Replica"
         manifest = json.loads((data_source / "manifest.json").read_text())
-        expected = list(range(0, 200, 5))
-        if manifest["source_frame_indexes"] != expected:
+        staged_indexes = list(range(0, 200, 5))
+        expected = staged_indexes[::cfg["skip_frames"]]
+        if manifest["source_frame_indexes"] != staged_indexes:
             raise ValueError("Replica subset mismatch")
         input_root = output / "input/Replica"
         dimensions = None

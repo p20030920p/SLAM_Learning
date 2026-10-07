@@ -7,8 +7,8 @@
   "image_height": 360,
   "sam_points_per_batch": 36,
   "clip_batch_size": 4,
-  "skip_frames": 1,
+  "skip_frames": 5,
   "queries": ["chair", "sofa", "table", "lamp"],
-  "scope": "Author HOV-SG 3D segment-level feature mapping on the same 40 supplied-pose Replica observations. Hierarchical floor/room graph, semantic benchmark accuracy and navigation are not evaluated.",
-  "adaptations": "640x360 RGB/depth with separately rescaled intrinsics; SAM batching 36 and CLIP batching 4 for 12 GiB GPU. All segmentation/merging thresholds remain from the pinned author configuration."
+  "scope": "Author HOV-SG 3D segment-level feature mapping on 8 supplied-pose Replica observations (source frames 0,25,...175) from the staged 40-frame subset. Hierarchical floor/room graph, semantic benchmark accuracy and navigation are not evaluated.",
+  "adaptations": "640x360 RGB/depth with separately rescaled intrinsics; SAM batching 36 and CLIP batching 4 for 12 GiB GPU; loader skip_frames=5 after the 40-observation merge process was killed. Segmentation/merging thresholds remain from the pinned author configuration."
 }
