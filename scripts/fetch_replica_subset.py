@@ -68,6 +68,19 @@ def main():
         p.error("Positive frame count/stride covering at most 2000 source entries required")
     url = "https://cvg-data.inf.ethz.ch/nice-slam/data/Replica.zip"
     remote = RangeFile(url)
+    existing = args.output / "manifest.json"
+    indexes = list(range(0, args.frames * args.stride, args.stride))
+    if existing.exists():
+        manifest = json.loads(existing.read_text())
+        if (manifest["source_frame_indexes"] != indexes or manifest["archive_etag"] != remote.etag
+                or manifest["archive_bytes"] != remote.size or manifest["source_url"] != url):
+            raise ValueError("Cached subset/source snapshot differs; choose a new output directory")
+        for item in manifest["files"]:
+            path = (args.output / item["path"]).resolve()
+            if not path.is_relative_to(args.output.resolve()) or hashlib.sha256(path.read_bytes()).hexdigest() != item["sha256"]:
+                raise ValueError("Cached Replica subset file changed")
+        print(f"Cached subset verified: {existing}")
+        return
     with zipfile.ZipFile(remote) as archive:
         names = archive.namelist()
         trajectory = next(name for name in names if name.endswith("room0/traj.txt"))
@@ -77,7 +90,6 @@ def main():
         full = archive.read(trajectory)  # ZipFile validates CRC.
         (target / "traj.full.txt").write_bytes(full)
         lines = full.decode("utf-8").splitlines()
-        indexes = list(range(0, args.frames * args.stride, args.stride))
         entries = []
         for i in indexes:
             for filename in (f"frame{i:06d}.jpg", f"depth{i:06d}.png"):

@@ -107,12 +107,16 @@ def main():
         if text.count(before) != 1:
             raise ValueError("Unexpected upstream CLIP construction")
         text = text.replace(before, '"ViT-H-14", os.environ["SLAM_STUDY_CLIP_CHECKPOINT"]')
+        if text.count("points_per_batch=144,") != 1:
+            raise ValueError("Unexpected upstream SAM point batching")
+        text = text.replace("points_per_batch=144,", 'points_per_batch=int(os.environ["SLAM_STUDY_SAM_BATCH"]),')
         script.write_text(text)
         (output / "compatibility.patch").write_text("".join(difflib.unified_diff(
             original.splitlines(keepends=True), text.splitlines(keepends=True),
             fromfile="original/generate_gsa_results.py", tofile="runtime/generate_gsa_results.py")))
         env = dict(os.environ, PYTHONPATH=str(work), MPLBACKEND="Agg",
                    GSA_PATH=str(root / ".cache/semantic-weights/sam/checkpoints"),
+                   SLAM_STUDY_SAM_BATCH=str(config["segmentation"]["points_per_batch"]),
                    SLAM_STUDY_CLIP_CHECKPOINT=str(root / ".cache/semantic-weights/clip/open_clip_pytorch_model.bin"))
         dataset_config = work / "conceptgraph/dataset/dataconfigs/replica/replica.yaml"
         command = [sys.executable, str(script), "--dataset_root", str(data_root), "--dataset_config", str(dataset_config),
