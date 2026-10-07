@@ -16,6 +16,10 @@ def render_report(paths: list[Path], base: Path | None = None, lang: str = "en")
               "controlled_synthetic_mechanism_test": "探索性合成机制实验",
               "controlled_synthetic_calibration_test": "探索性合成校准实验",
               "real_data_pose_sensitivity": "真实数据位姿敏感性"}
+    labels.update(map_evaluator_cross_check="地图评价器对照", author_map_replay="作者地图离线回放",
+                  dufomap_api_diagnostic="DUFOMap 接口诊断",
+                  semantic_frontend_baseline="语义前端基线",
+                  **{"Replica room0 40-observation subset": "Replica room0 40 次观测子集"})
     lines = ["# 实测记录汇总" if zh else "# Measured experiment ledger", "",
              "由原始记录生成。执行完成、论文表格一致和假设验证是不同状态。" if zh
              else "Generated from run records. Execution, paper agreement and hypothesis validation are distinct.", "",

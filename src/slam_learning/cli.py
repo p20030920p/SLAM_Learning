@@ -40,7 +40,7 @@ def main(argv: list[str] | None = None) -> int:
             p.add_argument("--method", choices=("dufomap", "beautymap"), required=action == "_worker")
             p.add_argument("--frames", type=int, default=0, help="0=full teaser; positive=smoke, no paper score")
         if action == "run":
-            p.add_argument("--experiment", choices=("mechanism", "pose-stress", "evidence-stress"))
+            p.add_argument("--experiment", choices=("mechanism", "pose-stress", "evidence-stress", "api-check"))
             p.add_argument("--timeout", type=float, default=3600)
             p.add_argument("--strict-paper", action="store_true", help="Exit nonzero on paper mismatch")
         if action == "_worker":
@@ -81,6 +81,10 @@ def main(argv: list[str] | None = None) -> int:
                 elif args.experiment == "evidence-stress":
                     from .evidence_stress import run_evidence_stress
                     run_evidence_stress(root)
+                elif args.experiment == "api-check":
+                    from .api_check import run_api_check
+                    record_path = run_api_check(root)
+                    return int(json.loads(record_path.read_text(encoding="utf-8"))["status"] != "executed")
                 else:
                     from .pose_stress import run_pose_stress
                     record_path = run_pose_stress(root)
