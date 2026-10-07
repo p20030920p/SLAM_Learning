@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "kind": "controlled_synthetic_calibration_test",
+  "status": "executed",
+  "finished_at": "2026-10-07T12:23:52+00:00",
+  "environment": {
+    "python": "3.10.19 (main, Oct 10 2025, 12:44:43) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "slam-learning": "0.2.0",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.9.2",
+      "dufomap": "1.1.1",
+      "open3d": "0.18.0",
+      "dztimer": "1.1.1"
+    }
+  },
+  "repository": {
+    "commit": "01e2105aeb8a26bf5cdbe7420b56c0dddf81272c",
+    "dirty": true
+  },
+  "source_sha256": {
+    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
+    "src/slam_learning/adapters.py": "dbc421d7d06cc6c7342a7f3a3f89f8de6d5faef735a8ec87c4d7a449002cb123",
+    "src/slam_learning/cli.py": "1c68a88efac1a9e4dd5d300e451ceba1f612419254dba203d3fc30c80f1478f6",
+    "src/slam_learning/evidence_stress.py": "9957fe5974b3e8308d7287433279aedb8dbac0a89fd2511ca871a2f922e29c60",
+    "src/slam_learning/fetch.py": "fcce0e0fd024030d4f1b19ab1d63abdf1b0d7e5333dc89254520747ee03d03cd",
+    "src/slam_learning/metrics.py": "bd0f6408133cbe909f7e5dcf1d2e03199a582cc5c3ce9b0df990dc8526307eed",
+    "src/slam_learning/pcd.py": "9fc61d5f38920578bb98feb4df0a0967da80cec7187d7299de0d11aee521214d",
+    "src/slam_learning/pose_stress.py": "18f096b34da22a09d729ed141552d7dd49f5abc33c8a8cd61275d27cd6fdbfa6",
+    "src/slam_learning/provenance.py": "7cc155e7ae1e67e8313844217abcc36905f85427417d537e545af8f4a1880a9c",
+    "src/slam_learning/report.py": "5c36a37c48e1104baa6b77d40fdea721aff746e72a64e46b393b11e7a4d49561",
+    "src/slam_learning/runner.py": "addc4555f83f6f9d4d6ff74129daca8ac3e2133f512cb6332a2088c64555a13f",
+    "src/slam_learning/synthetic.py": "f836619ef1b05ade5a1ac0489de832061c0ddee717f1cfeb90a6b99dbee314cd"
+  },
+  "configuration": {
+    "id": "correlated-evidence-calibration",
+    "test_seeds_start": 1000,
+    "test_seeds_count": 1000,
+    "observations": [
+      1,
+      5,
+      20,
+      100
+    ],
+    "sensor_sigma_m": 0.02,
+    "pose_sigma_m": 0.15,
+    "motion_sigma_m": 0.5,
+    "change_prior": 0.1,
+    "delete_probability": 0.9,
+    "kind": "controlled_synthetic_calibration_test",
+    "scope": "Gaussian 1D generative model with oracle noise scales and class prior. Distinct sensor readings share one pose bias. This is not a SuperMap/PerSeM implementation."
+  },
+  "config_sha256": "dba18e38c39d103ef77b7aba012538029707657a007b64944d85592d7eb2775d",
+  "trials": 12000,
+  "artifacts": {
+    "trials.csv": {
+      "sha256": "f40ca07de422ea1d06da723caaf64e602ec0173f9e7aebc62b225acf1d2c5686",
+      "bytes": 1095413,
+      "availability": "portable"
+    },
+    "summary.json": {
+      "sha256": "68c70c1da79895654512a9a0e41a8b7adfcd75b36f888013fe6faf51e40d33da",
+      "bytes": 4230,
+      "availability": "portable"
+    },
+    "calibration.png": {
+      "sha256": "a49b3aafd76276ab143c192c28376c825cd4f9b8cef58d4b615fe0afd84ebe16",
+      "bytes": 123600,
+      "availability": "portable"
+    }
+  },
+  "scope_note": "Gaussian 1D generative model with oracle noise scales and class prior. Distinct sensor readings share one pose bias. This is not a SuperMap/PerSeM implementation."
+}

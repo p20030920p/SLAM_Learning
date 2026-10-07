@@ -59,8 +59,16 @@ def score_map(gt_path: Path, map_path: Path, threshold: float = 0.05) -> dict:
 
 def compare_paper(metrics: dict, target: dict) -> dict:
     tolerance = target["absolute_tolerance_pp"]
+    values = target["values"]
+    if not values or not np.isfinite(tolerance) or tolerance < 0:
+        raise ValueError("Nonempty paper targets and a finite nonnegative tolerance required")
+    for key, value in values.items():
+        if key not in ("SA", "DA", "AA", "HA") or key not in metrics:
+            raise ValueError(f"Missing or unsupported paper metric: {key}")
+        if not all(np.isfinite(v) and 0 <= v <= 100 for v in (value, metrics[key])):
+            raise ValueError(f"Invalid paper/measured percentage: {key}")
     rows = {k: {"measured": metrics[k], "reported": value, "difference_pp": metrics[k] - value,
                 "within_tolerance": abs(metrics[k] - value) <= tolerance}
-            for k, value in target["values"].items()}
+            for k, value in values.items()}
     return {"source": target["source"], "table": target["table"], "absolute_tolerance_pp": tolerance,
             "matched": all(r["within_tolerance"] for r in rows.values()), "metrics": rows}

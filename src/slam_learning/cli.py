@@ -110,7 +110,7 @@ def main(argv: list[str] | None = None) -> int:
             output = Path(args.output)
             output = output if output.is_absolute() else root / output
             output.parent.mkdir(parents=True, exist_ok=True)
-            output.write_text(render_report(paths), encoding="utf-8")
+            output.write_text(render_report(paths, output.parent), encoding="utf-8")
             print(output)
         return 0
     except (ValueError, OSError, KeyError) as e:

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "kind": "author_method",
+  "method": "beautymap",
+  "status": "executed",
+  "started_at": "2026-10-07T12:24:53+00:00",
+  "scope": "full_teaser",
+  "requested_frames": 0,
+  "specification": {
+    "upstream": "beautymap",
+    "mode": "authors' official repository with documented Python iterator compatibility patch",
+    "parameters": {
+      "dis_range": 40,
+      "xy_resolution": 1.0,
+      "h_res": 0.5
+    },
+    "paper_target": {
+      "source": "https://arxiv.org/html/2405.07283v1",
+      "table": "Table I, KITTI sequence 00, BeautyMap; HA not AA",
+      "values": {
+        "SA": 96.76,
+        "DA": 98.38,
+        "HA": 97.56
+      },
+      "absolute_tolerance_pp": 0.01
+    },
+    "scope_note": "Paper table values are taken from the paper, never from historical local baselines."
+  },
+  "environment": {
+    "python": "3.10.19 (main, Oct 10 2025, 12:44:43) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "slam-learning": "0.2.0",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.9.2",
+      "dufomap": "1.1.1",
+      "open3d": "0.18.0",
+      "dztimer": "1.1.1"
+    }
+  },
+  "repository": {
+    "commit": "01e2105aeb8a26bf5cdbe7420b56c0dddf81272c",
+    "dirty": true
+  },
+  "source_sha256": {
+    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
+    "src/slam_learning/adapters.py": "dbc421d7d06cc6c7342a7f3a3f89f8de6d5faef735a8ec87c4d7a449002cb123",
+    "src/slam_learning/cli.py": "1c68a88efac1a9e4dd5d300e451ceba1f612419254dba203d3fc30c80f1478f6",
+    "src/slam_learning/evidence_stress.py": "9957fe5974b3e8308d7287433279aedb8dbac0a89fd2511ca871a2f922e29c60",
+    "src/slam_learning/fetch.py": "fcce0e0fd024030d4f1b19ab1d63abdf1b0d7e5333dc89254520747ee03d03cd",
+    "src/slam_learning/metrics.py": "bd0f6408133cbe909f7e5dcf1d2e03199a582cc5c3ce9b0df990dc8526307eed",
+    "src/slam_learning/pcd.py": "9fc61d5f38920578bb98feb4df0a0967da80cec7187d7299de0d11aee521214d",
+    "src/slam_learning/pose_stress.py": "18f096b34da22a09d729ed141552d7dd49f5abc33c8a8cd61275d27cd6fdbfa6",
+    "src/slam_learning/provenance.py": "7cc155e7ae1e67e8313844217abcc36905f85427417d537e545af8f4a1880a9c",
+    "src/slam_learning/report.py": "5c36a37c48e1104baa6b77d40fdea721aff746e72a64e46b393b11e7a4d49561",
+    "src/slam_learning/runner.py": "addc4555f83f6f9d4d6ff74129daca8ac3e2133f512cb6332a2088c64555a13f",
+    "src/slam_learning/synthetic.py": "f836619ef1b05ade5a1ac0489de832061c0ddee717f1cfeb90a6b99dbee314cd"
+  },
+  "config_sha256": {
+    "dataset.json": "f105feb63c1aad0b0fa620554a437b9db394449db774c9ec3900193d60495742",
+    "evidence_stress.json": "dba18e38c39d103ef77b7aba012538029707657a007b64944d85592d7eb2775d",
+    "methods.json": "5a177d8e100109a5e5639070d8186c26651cf1a9fcf8e0a2e0dacaa66ac8f51f",
+    "pose_stress.json": "23f4a7eaca27fcacd7ddc1ec7e9ca4cb250682ca7f0c41c381feba812158b124",
+    "synthetic.json": "afecd70fd8bc7c41293fb5e992b1565bea16b7c13bd8f1f62b77634dce5d0c88",
+    "upstreams.json": "fbf09ad8ac99d166c198d8ab310c05728e5974c75a702cb79e9bb71f1467400b"
+  },
+  "artifacts": {
+    "cleaned.pcd": {
+      "sha256": "c7e41e99d7c43e56c02eaac5d6329bd3867e0d3bd5f0d04e1f1a071de669f767",
+      "bytes": 198707043,
+      "availability": "local_only"
+    },
+    "run.log": {
+      "sha256": "c2237a5112fe26449611434483f9b7e881223bb35c78ef25880f604b349b1ff3",
+      "bytes": 15411,
+      "availability": "portable"
+    },
+    "worker.json": {
+      "sha256": "fd013c0f4e605cc9b8ae582cb747872d49a8c1910a23d94fee68813521f22317",
+      "bytes": 1035,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "6cc1cd2ce82ff7ce92c5a59b2ae79c2c86605de977a2d7e95c43d669b7a0670f",
+      "bytes": 447,
+      "availability": "portable"
+    },
+    "compatibility.patch": {
+      "sha256": "b9a2723873f36d5911e82bda781ab55f8b466dc7d2acaf9c78419c5ff8e5a5ce",
+      "bytes": 380,
+      "availability": "portable"
+    }
+  },
+  "command": [
+    "D:\\workspace\\be2\\SLAM_Learning\\.venv\\Scripts\\python.exe",
+    "-m",
+    "slam_learning.cli",
+    "_worker",
+    "--root",
+    "D:\\workspace\\be2\\SLAM_Learning",
+    "--method",
+    "beautymap",
+    "--output",
+    "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-ab0e011782f9",
+    "--frames",
+    "0"
+  ],
+  "exit_code": 0,
+  "dataset": {
+    "manifest_sha256": "2ab94255b4ec657f601b9f57936b2592e327f505267835e708f41e5bb21896b4",
+    "archive_sha256": "14e30a0ddc19f275477aa0e72e6ba713f0f6a6a29dcf7ded8a92ce0c421109fd",
+    "configuration": {
+      "id": "dynamicmap-kitti00-teaser",
+      "record": "https://zenodo.org/records/10886629",
+      "url": "https://zenodo.org/records/10886629/files/00.zip?download=1",
+      "filename": "00.zip",
+      "md5": "87f856c4dd1ad05d0ffd4171f92780a0",
+      "frames": 141,
+      "gt_points": 17362230,
+      "coordinate_frame": "world; sensor origins stored in PCD VIEWPOINT",
+      "scope": "Selected frames, not the full KITTI odometry sequence. Poses supplied by benchmark, not estimated here.",
+      "license_note": "Original KITTI/SemanticKITTI terms apply; data is not redistributed."
+    }
+  },
+  "upstreams": {
+    "beautymap": {
+      "url": "https://github.com/MKJia/BeautyMap.git",
+      "commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e",
+      "dirty": false
+    },
+    "dynamicmap": {
+      "url": "https://github.com/KTH-RPL/DynamicMap_Benchmark.git",
+      "commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+      "dirty": false
+    }
+  },
+  "worker": {
+    "frames": 141,
+    "compatibility_patch": {
+      "iterator": {
+        "metadata[key] = map(int, value.split())": "metadata[key] = list(map(int, value.split()))",
+        "metadata[key] = map(float, value.split())": "metadata[key] = list(map(float, value.split()))"
+      },
+      "bitmask_width": {
+        "main.py": {
+          "replacement": "dtype=int -> dtype=np.int64",
+          "count": 2
+        },
+        "lib/bee_tree.py": {
+          "replacement": "dtype=int -> dtype=np.int64",
+          "count": 12
+        }
+      }
+    },
+    "author_command": [
+      "D:\\workspace\\be2\\SLAM_Learning\\.venv\\Scripts\\python.exe",
+      "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-ab0e011782f9\\author-code\\main.py",
+      "--data_dir",
+      "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-ab0e011782f9\\input",
+      "--dis_range",
+      "40",
+      "--xy_resolution",
+      "1.0",
+      "--h_res",
+      "0.5"
+    ],
+    "algorithm_input": "Unlabeled map XYZ and input scans; GT labels available only to evaluator"
+  },
+  "metrics": {
+    "counts": {
+      "kept_static": 16740135,
+      "removed_static": 526112,
+      "removed_dynamic": 94388,
+      "kept_dynamic": 1595
+    },
+    "SA": 96.95294524629469,
+    "DA": 98.33824739797673,
+    "AA": 97.64313962379855,
+    "HA": 97.6406829872703,
+    "gt_points": 17362230,
+    "map_points": 16558909,
+    "threshold_m": 0.05,
+    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+  },
+  "paper_comparison": {
+    "source": "https://arxiv.org/html/2405.07283v1",
+    "table": "Table I, KITTI sequence 00, BeautyMap; HA not AA",
+    "absolute_tolerance_pp": 0.01,
+    "matched": false,
+    "metrics": {
+      "SA": {
+        "measured": 96.95294524629469,
+        "reported": 96.76,
+        "difference_pp": 0.19294524629468413,
+        "within_tolerance": false
+      },
+      "DA": {
+        "measured": 98.33824739797673,
+        "reported": 98.38,
+        "difference_pp": -0.041752602023265695,
+        "within_tolerance": false
+      },
+      "HA": {
+        "measured": 97.6406829872703,
+        "reported": 97.56,
+        "difference_pp": 0.08068298727029344,
+        "within_tolerance": false
+      }
+    }
+  },
+  "finished_at": "2026-10-07T12:25:36+00:00"
+}

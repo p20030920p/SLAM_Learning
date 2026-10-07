@@ -1,0 +1,4 @@
+- metadata[key] = map(int, value.split())
++ metadata[key] = list(map(int, value.split()))
+- metadata[key] = map(float, value.split())
++ metadata[key] = list(map(float, value.split()))

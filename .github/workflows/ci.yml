@@ -33,7 +33,7 @@ jobs:
           name: core-evidence-${{ matrix.os }}
           path: results/runs/
   author-methods:
-    if: github.event_name == 'workflow_dispatch' && inputs.real_data
+    if: (github.event_name == 'workflow_dispatch' && inputs.real_data) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[real-data]'))
     runs-on: ubuntu-22.04
     timeout-minutes: 40
     steps:

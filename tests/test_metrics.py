@@ -56,3 +56,11 @@ def test_crlf_and_mixed_integer_fields(tmp_path):
 def test_paper_values_do_not_become_self_baselines():
     target = {"source": "paper", "table": "I", "values": {"SA": 96.76}, "absolute_tolerance_pp": 0.01}
     assert not compare_paper({"SA": 96.95}, target)["matched"]
+
+
+@pytest.mark.parametrize("values,measured,tolerance", [({}, {}, 0.01),
+    ({"SA": 97}, {"SA": float("nan")}, 0.01), ({"SA": 101}, {"SA": 97}, 0.01),
+    ({"SA": 97}, {"SA": 97}, -1)])
+def test_vacuous_or_invalid_paper_agreement_is_rejected(values, measured, tolerance):
+    with pytest.raises(ValueError):
+        compare_paper(measured, {"values": values, "absolute_tolerance_pp": tolerance})
