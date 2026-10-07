@@ -32,14 +32,15 @@ def semantic_frames(method, record_path, record, output):
         image_root = run / "input/Replica/room0"
         world_from_map = np.eye(4)
         poses = np.loadtxt(image_root / "traj.txt").reshape(-1, 4, 4)
-        snapshots = sorted((image_root / "objects_all_frames").glob("*.pkl.gz"))
+        snapshots = sorted((image_root / "objects_all_frames").rglob("[0-9]*.pkl.gz"))
         errors = []
-        for index, snapshot in enumerate(snapshots):
+        for snapshot in snapshots:
             with gzip.open(snapshot, "rb") as stream:
                 state = pickle.load(stream)
+            index = int(snapshot.name.split(".")[0])
             errors.append(float(np.max(np.abs(np.asarray(state["camera_pose"]) - poses[index]))))
             source_hashes[snapshot.relative_to(run).as_posix()] = digest(snapshot)
-        if len(errors) != 40 or max(errors) > 1e-6:
+        if [int(path.name.split(".")[0]) for path in snapshots] != list(range(1, 40)) or max(errors) > 1e-6:
             raise ValueError("Native camera poses differ from supplied absolute poses")
         images = sorted((image_root / "gsa_vis_none").glob("*.jpg"))
         frame_ids = [int(path.stem.replace("frame", "")) for path in images]
