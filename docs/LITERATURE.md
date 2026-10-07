@@ -1,5 +1,7 @@
 # Recent directions and structural reading
 
+English | [中文](LITERATURE.zh-CN.md)
+
 Literature cutoff: **7 October 2026**. “Active direction” means several recent representative works pursue it; this is not a bibliometric popularity ranking. The eight core works are chosen for comparable map-update decisions, not a leaderboard across incompatible tasks.
 
 ## Active directions within fields 1–2
@@ -26,7 +28,7 @@ Literature cutoff: **7 October 2026**. “Active direction” means several rece
 | [SuperMap, August 2026](https://arxiv.org/html/2608.22896v1) | III conditions on pose; IV uses depth observation states and recursive evidence | Displayed model motivates checking shared pose covariance and calibration | Already separates observable, unobservable and disappeared; an omitted covariance formula does not prove a code defect |
 | [PerSeM, September 2026 preprint](https://arxiv.org/html/2609.19542v2) | 3.1/3.2 projects into persistent world voxels; 5 discusses drift/correlated errors | Label stability does not guarantee correct geometric evidence assignment | Memory/refinement already exists; correlated geometry is an acknowledged limitation |
 
-The recurring interface is narrow: establish spatial correspondence, then interpret map evidence. These papers do not implement one algorithm, and several already mitigate errors. The question concerns residual shared geometric uncertainty in destructive-update confidence.
+The recurring interface is narrow: establish spatial correspondence, then interpret map evidence. These papers do not implement one algorithm, and several already mitigate errors. The candidate question concerns residual shared geometric uncertainty in destructive-update confidence; an empirical cross-field claim still needs semantic-frontend reproduction.
 
 ## Code accessibility and scope
 

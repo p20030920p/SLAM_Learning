@@ -1,6 +1,6 @@
 # Measured experiment ledger
 
-Generated from run records. Paper agreement is distinct from execution.
+Generated from run records. Execution, paper agreement and hypothesis validation are distinct.
 
 | Experiment | Scope | Execution | Paper table | SA % | DA % | AA % | HA % | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -18,6 +18,6 @@ Recorded failures:
 
 - beautymap (beautymap-windows-failure): CalledProcessError: Command '['D:\\workspace\\be2\\SLAM_Learning\\.venv310\\Scripts\\python.exe', '-m', 'slam_learning.cli', '_worker', '--root', 'D:\\workspace\\be2\\SLAM_Learning', '--method', 'beautymap', '--output', 'D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-9d32b2cc4c1c', '--frames', '0']' returned non-zero exit status 1.
 
-Synthetic trials are a mechanism test with oracle associations/visibility, not a paper reproduction.
+Synthetic trials are exploratory mechanism checks with oracle inputs, not independent hypothesis validation.
 Large maps and source datasets are local-only; portable records contain their hashes and fresh-run logs.
 `verify --full` requires those maps to be present. No historical archive score contributes to this table.

@@ -1,5 +1,7 @@
 # Reproduction protocol
 
+English | [中文](REPRODUCE.zh-CN.md)
+
 ## Environment
 
 Python **3.10.19**; NumPy 1.26.4, SciPy 1.14.1, Matplotlib 3.9.2, DUFOMap 1.1.1, Open3D 0.18.0. [uv.lock](../uv.lock) pins the environment; [requirements.lock](../requirements.lock) contains hashed transitive dependencies for pip. Use Python 3.10, not an unrelated system interpreter. CPU suffices; a GPU is not used by the active suite.
@@ -22,7 +24,7 @@ The [CI workflow](../.github/workflows/ci.yml) checks the core on Linux and Wind
 
 [Run 37622082701](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701) successfully installed a fresh Ubuntu environment, downloaded/verified data, executed both author methods and pose sensitivity, and uploaded portable evidence. Source commit and artifact details are in [linux-run.json](../results/ci/linux-run.json). Subsequent scan-annotation isolation was checked by a fresh Windows author run and cross-platform parser tests; exact executed code versions remain in each record.
 
-VMware without configured GPU passthrough is still suitable for this CPU suite. It requires working guest SSH or an interactive terminal and sufficient RAM/disk. On the current host the existing Ubuntu VM starts, but SSH/VMware Tools were unavailable; no guest execution is claimed. WSL and a Docker daemon were also unavailable locally.
+VMware without configured GPU passthrough is still suitable for this CPU suite. It requires working guest SSH or an interactive terminal and sufficient RAM/disk. On the current host the existing Ubuntu VM starts, but SSH/VMware Tools were unavailable; no guest execution is claimed. WSL management components are now installed; Ubuntu and platform activation are pending. [WSL preparation](WSL.md). Docker remains locally untested.
 
 ## Data and upstream sources
 
@@ -57,7 +59,7 @@ The evaluator labels a GT point retained if a cleaned-map point lies within 0.05
 
 `--frames 10` is smoke-only, with no GT score or paper comparison. `--strict-paper` returns 2 for paper disagreement, 1 for blocked/failed execution and 0 for a matched full run. Normal runs return 0 for completed execution even if paper agreement fails. A fresh UUID output directory prevents stale results; logs and nonzero subprocess exits are retained.
 
-## Mechanism and real-data diagnostics
+## Exploratory mechanism and real-data diagnostics
 
 ```bash
 uv run slam-study run --experiment mechanism
@@ -92,3 +94,5 @@ On PowerShell use `${PWD}` if needed by the local Docker client. The image inclu
 ## Troubleshooting
 
 Missing verified data is `blocked`; modified data or failed native execution is `failed`. Inspect that run's `record.json` and `run.log`. Do not copy an old score into the fresh output directory. Out-of-memory errors require more guest RAM or fewer simultaneous processes, not a changed metric. If an upstream pin is unavailable or dirty, preserve it and diagnose instead of silently checking out a new revision.
+
+For the reproduction-first workflow, use `bash scripts/run_reproduction.sh [--smoke]`. Generate the Chinese ledger with `report --lang zh`; [the stage plan](PLAN.md) separates reproduction from exploratory and confirmatory work.

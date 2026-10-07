@@ -1,5 +1,7 @@
 # Refactor audit
 
+English | [中文](AUDIT.zh-CN.md)
+
 Baseline inspected: `af1e58b`. Original files remain recoverable in Git; a local sibling backup was preserved. Historical scores are **unverified inherited claims**, not inputs to the new ledger.
 
 | Finding | Consequence | Replacement |
@@ -21,3 +23,5 @@ The author implementation uses scan XYZ but the downloaded intensity contains an
 The active suite has two methods and three experiments, rather than 21 nominally complete folders that were not all re-established. This scope reduction prioritizes auditable evidence. It does not imply every historical upstream is defective.
 
 Tests cover correspondence, metrics, parsing, failed subprocesses, timeouts, traversal, artifact tampering, exports and mechanisms. Hash verification establishes integrity, not independent scientific certification. Large maps are local-only; portable evidence requires no data redistribution.
+
+The writing revision orders the study as reproduction, observations, candidate bottleneck, hypothesis and next experiments. Synthetic measurements are retained but classified as exploratory. Independent bilingual documents, media slots and WSL preparation were added.

@@ -43,6 +43,7 @@ def main(argv: list[str] | None = None) -> int:
         if action == "report":
             p.add_argument("--runs", default="results/reference")
             p.add_argument("--output", default="results/REPORT.md")
+            p.add_argument("--lang", choices=("en", "zh"), default="en")
         if action == "verify":
             p.add_argument("record")
             p.add_argument("--full", action="store_true")
@@ -110,7 +111,7 @@ def main(argv: list[str] | None = None) -> int:
             output = Path(args.output)
             output = output if output.is_absolute() else root / output
             output.parent.mkdir(parents=True, exist_ok=True)
-            output.write_text(render_report(paths, output.parent), encoding="utf-8")
+            output.write_text(render_report(paths, output.parent, args.lang), encoding="utf-8")
             print(output)
         return 0
     except (ValueError, OSError, KeyError) as e:

@@ -1,45 +1,132 @@
-# 当定位误差被误认为地图变化
+<div align="center">
 
-面向实验室申请的方向 1「动态环境中的鲁棒定位与 SLAM」和方向 2「语义建图、视觉定位与导航」。这次重构将论文目录汇总改为有明确研究问题、实际执行记录和失败边界的项目。
+# SLAM Learning
 
-**研究问题：多个观测共享定位偏差时，地图维护为什么可能越看越自信、却越改越错？** 清除动态点、关联对象和更新语义都依赖空间对应关系。如果先固定有误差的位姿，再逐点／逐对象独立判定变化，公共的位姿误差可能变成许多“环境变化证据”。
+**变化场景中的地图更新复现研究**
 
-假设是：在不可逆更新之前，建模共享位姿不确定性与观测相关性；对无法观测的对象保留未知状态；缺少稳定锚点时延迟更新并请求额外视角。重点是可辨识性与证据校准，不能简单归结为“加一个记忆模块”。
+动态点清除 · 语义建图 · 定位不确定性
 
-| 阅读入口 | 内容 |
+[![Python](https://img.shields.io/badge/Python-3.10-3776AB)](pyproject.toml)
+[![CPU](https://img.shields.io/badge/author%20runs-CPU-356859)](docs/RESULTS.zh-CN.md)
+
+[复现](#复现) &nbsp;•&nbsp; [瓶颈](#瓶颈) &nbsp;•&nbsp; [快速开始](#快速开始)
+
+[English](README.md) &nbsp;|&nbsp; 中文
+
+</div>
+
+<!-- MEDIA: replication-hero. 实测动画完成后再添加图片。 -->
+<!-- ![固定序列中的原始点、移除点和保留点](docs/figures/replication_hero.gif) -->
+
+> **动画预留位——作者方法复现。** DUFOMap、BeautyMap 与真值使用同一批选定 teaser 条目和固定视角：原始扫描 → 移除点 → 保留点。绿色：正确移除的动态点；红色：误删静态点；蓝色：保留的动态点。文件位：`docs/figures/replication_hero.gif`。
+
+这个仓库研究机器人怎样判断地图中的表面或对象已经变化。先运行原作者方法，检查输出和评价口径，再分析哪些决策依赖可信定位。范围覆盖动态场景中的鲁棒建图，以及长期语义地图。
+
+| 当前材料 | 范围 |
 | --- | --- |
-| [中文研究摘要](docs/RESEARCH.zh-CN.md)／[英文论证](docs/RESEARCH.md) | 结构性问题、反例、公式、可证伪假设 |
-| [热门方向与论文对照](docs/LITERATURE.md) | 2024–2026 年代表作、共同假设、已有解决方案 |
-| [实际实验结果](docs/RESULTS.md) | 两种作者方法、三组实验、负面结果与适用边界 |
-| [复现说明](docs/REPRODUCE.md) | 干净环境安装、下载、运行、验证及 Linux 路径 |
-| [重构审计](docs/AUDIT.md) | 原仓库的问题、改动、未保留的历史结论 |
-| [替换后的提示词](docs/PROMPT.zh-CN.md) | 将足式 RL 研究思路改写为方向 1–2 |
-| [面试准备](docs/INTERVIEW.md) | 必须能解释的假设、指标和 AI 使用情况 |
+| 作者方法复现 | DUFOMap、BeautyMap；KITTI-00 的 141 帧 teaser |
+| 已检查的平台 | Windows、干净 Ubuntu 22.04 CI；CPU |
+| 测量 | 静态保留、动态清除；论文表格一致性另行记录 |
+| 探索性分析 | 真实数据位姿敏感性；两个受控机制实验 |
+| 下一步前提 | 解决评价口径差异，复现一个语义地图前端 |
 
-## 已完成的实测
+## 复现
 
-在公开 KITTI-00 teaser 的全部 141 帧、17,362,230 个标注点上，运行了 DUFOMap 作者绑定与 BeautyMap 作者代码。两种方法都完成执行，**均未在声明容差内完全匹配论文表格**。
+两种方法均完成全部 141 帧，对 17,362,230 个标注点评分。清理后的地图使用相同的 5 cm 最近邻评价规则。这是给定扫描位姿的地图清理实验，不是轨迹估计或导航实验。
 
-这两种方法和真实位姿敏感性实验也已在 [GitHub Ubuntu 22.04](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701) 从干净环境运行成功，作者方法的评分与 Windows 一致。Linux 原始记录已保存。本机 VMware 的 SSH 未连通，因此实际 Linux 验证使用 CI。
+| 作者方法 | SA % ↑ | DA % ↑ | 对应综合指标 | 与论文表格一致性 |
+| --- | ---: | ---: | ---: | --- |
+| DUFOMap 1.1.1 | 97.9798 | 98.7029 | AA 98.3407 | 超出 0.01 个百分点容差 |
+| BeautyMap，固定源码 | 96.9529 | 98.3382 | HA 97.6407 | 超出 0.01 个百分点容差 |
 
-受控实验测试位姿与对象运动的混淆，以及相关观测造成的过度自信。真实数据实验改变 DUFOMap 的位姿容差与注入误差，显示静态保留和动态检出的权衡，也包含小扰动下没有退化的情况。完整语义建图与导航尚未实测，合成对象位置误差也不是 SLAM ATE 或导航成功率。
+*SA 表示静态点保留率；DA 表示动态点清除率。AA 是几何均值，HA 是调和均值，不能把它们当成同一排名。Windows 与 Ubuntu 分数一致。[完整口径、论文数值与原始记录](docs/RESULTS.zh-CN.md)。*
 
-## 最短运行路径
+<!-- MEDIA: replication-frame -->
+<!-- ![同帧中的作者方法与真值对照](docs/figures/replication_frame.png) -->
 
-安装 Git 与 uv，然后在仓库根目录执行。Linux 与 PowerShell 均可使用：
+*定性图预留位：同一帧、相同空间范围、同一点身份。图注必须给出帧号与运行编号。文件位：`docs/figures/replication_frame.png`。*
+
+另一个诊断使用 DUFOMap 的直接点标签接口。较大的位姿容差保留更多静态点，但漏掉更多动态点；小幅注入位姿误差也不总是降低得分。这些值不能合并进上面的地图对应评分表。
+
+![真实 teaser 上 DUFOMap 的直接标签敏感性](results/reference/pose-stress/sensitivity.png)
+
+*三个平滑平移幅度、两个位姿容差、一段序列。这是敏感性观察，不是普遍失效结论。*
+
+## 瓶颈
+
+当前的问题是：**变化残差能否与定位误差区分，下一次观测是否提供了独立证据？** 一个公共位姿误差可以同时改变许多对象的对应关系。缺少稳定锚点时，对象共同运动也可能像相机运动。
+
+这是候选结构性瓶颈。真实复现证明了容差权衡与评价差异；要把论证扩展到语义地图，还必须复现一个语义前端。Khronos 已联合优化位姿和结构，新近长期地图也已处理可见性和记忆。[各论文的假设与反例](docs/LITERATURE.zh-CN.md)。
+
+<!-- MEDIA: bottleneck-diagram -->
+<!-- ![位姿不确定性、关联与暂定地图更新](docs/figures/bottleneck_diagram.svg) -->
+
+*结构图预留位：给定／估计位姿 → 对应关系 → 变化证据 → 地图更新；标明共享不确定性以及可以回退的更新。文件位：`docs/figures/bottleneck_diagram.svg`。*
+
+## 候选假设
+
+在匹配查询覆盖率、更新延迟和观测预算时，提交变化之前建模共享位姿不确定性，可能比可见性阈值与独立噪声基线降低误删和过期目标错误。前提是有足够稳定几何或外部位姿约束。
+
+这个假设**尚未冻结为验证结论**。先对齐评价口径，至少复现一个语义前端，再确定假设。[研究笔记](docs/RESEARCH.zh-CN.md)写出了否定条件，[实验计划](docs/PLAN.zh-CN.md)规定了下一步阶段门槛。
+
+## 探索性实验
+
+已有实验用来形成问题。看过结果之后选出的假设，不能再把这些结果当作独立验证。
+
+| 探索 | 观察 | 边界 |
+| --- | --- | --- |
+| 位姿与运动混淆 | 少数对象移动时，公共偏差修正和可见性处理有帮助 | 同向移动的多数对象会欺骗中位数修正 |
+| 相关证据 | 一个共享偏差下，独立位姿噪声推断会过度自信 | 共享潜变量方法变化召回较低，而且使用已知噪声尺度 |
+
+![多个观测共享一个位姿偏差时的置信度](results/reference/evidence-stress/calibration.png)
+
+*一维合成模型，不是语义 SLAM 实现。误删、召回、校准必须同时报告。[全部试验与负面结果](docs/RESULTS.zh-CN.md)。*
+
+<!-- MEDIA: pose-drift-video / semantic-update-video / risk-coverage -->
+*后续对照位置：`docs/figures/pose_drift.gif`、`docs/figures/semantic_update.mp4`、`docs/figures/risk_coverage.png`。[媒体索引](docs/figures/README.zh-CN.md)在渲染之前固定输入、视角、颜色与发布要求。*
+
+## 快速开始
+
+锁文件选择 Python 3.10 与精确依赖。当前作者方法不需要 CUDA。
 
 ```bash
 uv sync --frozen --python 3.10 --extra methods --extra dev
-uv run pytest -q
-uv run slam-study run --experiment mechanism
-uv run slam-study run --experiment evidence-stress
 uv run slam-study fetch
 uv run slam-study run --method dufomap
 uv run slam-study run --method beautymap
-uv run slam-study run --experiment pose-stress
-uv run slam-study report --runs results/runs --output results/my-report.md
+uv run slam-study report --runs results/runs --output results/local-reproduction.zh-CN.md --lang zh
 ```
 
-每次运行独立保存记录、日志与哈希；小样本 smoke 不参与论文评分；失败不会读取上次结果。数据和大点云不上传 GitHub。原版本保留于 Git 历史 `af1e58b`，新项目只接受实际运行产生的证据。
+`fetch` 校验 385 MB 公开压缩包并固定上游提交。`--frames 10` 仅做冒烟检查，不给论文评分。每次输出目录独立，失败无法沿用旧成绩。[环境、指标和导出命令](docs/REPRODUCE.zh-CN.md)。
 
-提交前应能现场解释“为什么更保守的方法可能只是在少回答”“为什么多数对象同向移动会让公共位姿修正失效”，以及为何已有的可见性、记忆和联合图优化不等于我们已经证明它们有缺陷。
+在准备好的 Linux／WSL 仓库内：
+
+```bash
+bash scripts/setup_linux.sh
+bash scripts/run_reproduction.sh --smoke
+bash scripts/run_reproduction.sh
+```
+
+本机已安装 WSL 组件，仍需启用平台并安装 Ubuntu。[WSL 说明](docs/WSL.zh-CN.md)将这些准备步骤与已完成的 Ubuntu CI 区分记录。
+
+## 接下来的顺序
+
+1. 对齐评价器，生成作者方法对照动画。
+2. 复现真实语义地图前端，检查对应关系失效。
+3. 保留或修订瓶颈，再冻结假设与留出验证协议。
+4. 在匹配覆盖率和延迟下比较简单基线，把图、失败案例与原始证据一起发布。
+
+## 文档
+
+| 阅读 | 内容 |
+| --- | --- |
+| [结果](docs/RESULTS.zh-CN.md) | 已执行方法、探索性观察与原始记录 |
+| [文献](docs/LITERATURE.zh-CN.md) | 近期方向、八篇核心工作与已有解决方案 |
+| [研究笔记](docs/RESEARCH.zh-CN.md) | 复现观察 → 瓶颈 → 候选假设 |
+| [实验计划](docs/PLAN.zh-CN.md) | 复现门槛与后续区分性实验 |
+| [复现](docs/REPRODUCE.zh-CN.md)／[WSL](docs/WSL.zh-CN.md) | 安装、执行、评分与证据导出 |
+| [图与视频索引](docs/figures/README.zh-CN.md) | 已发布资产与预留 GIF／视频位置 |
+| [实测汇总](results/REPORT.zh-CN.md) | 从运行记录生成 |
+| [审计](docs/AUDIT.zh-CN.md)／[说明](docs/INTERVIEW.zh-CN.md) | 源码迁移与面试准备 |
+
+全部叙述文档均有独立[英文版本](docs/README.md)。历史文件可由 `af1e58b` 恢复，不贡献当前研究的成绩。

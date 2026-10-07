@@ -1,6 +1,10 @@
-# Results and limits
+# Reproduction results and exploratory diagnostics
 
-Measured on 7 October 2026. Portable records bind commands, versions, source hashes, data checksums and output hashes. Windows author/controlled experiments use Python 3.10.19. Both author methods and all six real-data sensitivity cells also **executed successfully on GitHub Actions Ubuntu 22.04**, with a fresh download and environment. [Linux run](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701), [execution metadata](../results/ci/linux-run.json). Docker was not locally built; VMware Ubuntu started but SSH/Tools were unavailable.
+English | [中文](RESULTS.zh-CN.md)
+
+Measured on 7 October 2026. Portable records bind commands, versions, source hashes, data checksums and output hashes. Windows author/controlled experiments use Python 3.10.19. Both author methods and all six real-data sensitivity cells also **executed successfully on GitHub Actions Ubuntu 22.04**, with a fresh download and environment. [Linux run](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701), [execution metadata](../results/ci/linux-run.json). Docker was not locally built. WSL components are installed, but Ubuntu/platform activation is pending; see [WSL](WSL.md).
+
+Existing synthetic trials informed the candidate hypothesis. They are exploratory, not independent confirmation after hypothesis selection.
 
 ## 1. Author-method execution and paper disagreement
 
@@ -42,7 +46,7 @@ Larger pose tolerance retains more static points and detects fewer dynamic ones.
 
 This table uses another binding API and direct identities, so it must not be merged with the nearest-neighbor table. The gap between the two zero-perturbation SA values is not attributed solely to scoring density; API behavior has not been independently isolated. Small variations in integer counts occurred between local executions, consistent with a nondeterministic native path; no bitwise determinism is claimed. [Record](../results/reference/pose-stress/record.json), [six cells](../results/reference/pose-stress/sensitivity.csv), [846 frame-level rows](../results/reference/pose-stress/per_frame.csv).
 
-## 3. Visibility and common-mode ambiguity
+## 3. Exploratory: visibility and common-mode ambiguity
 
 Thirty objects, known instance identities, supplied true visibility, sensor noise σ=0.02 m, coherent mover displacement 1 m. Four pose biases × four mover fractions × two occlusion fractions × four methods × thirty held-out seeds = **3,840 paired trials**. A 99th-percentile noise threshold is selected using separate validation seeds. Confidence intervals bootstrap seed outcomes for each method/cell; methods share the same underlying randomized trials. These are intervals on means, not paired difference intervals.
 
@@ -61,7 +65,7 @@ Combined false-change 95% interval: **0.28–1.67%**. All-mover recall is only *
 
 With 80% coherent movers, 0.3 m bias and no occlusion, the combined method's static false-change rate is **100%**, pose error **0.9917 m**, and query error **0.9985 m**. The moving majority is incorrectly chosen as the common pose offset. This failure is expected from the stable-anchor assumption, and remains in the result set. [Record](../results/reference/mechanism/record.json), [all raw trials](../results/reference/mechanism/trials.csv), [cell summaries and intervals](../results/reference/mechanism/summary.json).
 
-## 4. Correlated observations and confidence
+## 4. Exploratory: correlated observations and confidence
 
 A 1D Gaussian model uses 1,000 paired seeds, change prior 0.1, pose σ=0.15 m, sensor σ=0.02 m and changed-object displacement σ=0.5 m. The same pose bias persists through 1, 5, 20 or 100 readings; deletion requires posterior change probability >0.9. Three inference assumptions give **12,000 trials**. Class prior and noise scales are known exactly; this is not an implementation of SuperMap or PerSeM.
 
@@ -74,10 +78,12 @@ A 1D Gaussian model uses 1,000 paired seeds, change prior 0.1, pose σ=0.15 m, s
 
 ![Correlated evidence calibration](../results/reference/evidence-stress/calibration.png)
 
-The experiment demonstrates the variance-floor mechanism under a matched generative model. It also shows the tradeoff: the calibrated model has substantially lower changed-object recall. It does not prove superiority at matched recall, nor calibration with realistically estimated pose uncertainty. [Record](../results/reference/evidence-stress/record.json), [trials](../results/reference/evidence-stress/trials.csv), [all cells](../results/reference/evidence-stress/summary.json).
+The experiment demonstrates the variance-floor mechanism under a matched generative model. It also shows the tradeoff: shared-latent inference has substantially lower changed-object recall. It does not prove superiority at matched recall, nor calibration with realistically estimated pose uncertainty. Brier measures probabilistic prediction quality; that score alone is not a complete calibration test. [Record](../results/reference/evidence-stress/record.json), [trials](../results/reference/evidence-stress/trials.csv), [all cells](../results/reference/evidence-stress/summary.json).
 
 ## Verification and remaining work
 
 Local checks: **32 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export and against committed Git bytes. Most Windows measurements use snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`; the final BeautyMap run uses `17591fa` after physically stripping scan intensity annotations while preserving VIEWPOINT. Its metrics are unchanged. Earlier failures remain separately retained. Per-record source hashes specify each executed snapshot.
 
 No full semantic frontend, language target retrieval, robot navigation, multi-session identity evaluation or PCL cross-check is completed. The real-data and synthetic results support a focused research question and explicit follow-up protocol, not a system-level performance claim.
+
+Next: reconcile the evaluator and reproduce a semantic frontend before freezing the hypothesis. [Stage gates](PLAN.md).

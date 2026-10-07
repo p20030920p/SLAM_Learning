@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "slots": [
+    {
+      "id": "replication-hero",
+      "path": "docs/figures/replication_hero.gif",
+      "stage": "R0/R2",
+      "status": "reserved",
+      "caption": {
+        "en": "DUFOMap, BeautyMap and GT on the same selected teaser entries; fixed view, raw / removed / retained. Offline final maps, not online updates.",
+        "zh": "同一批 teaser 条目的 DUFOMap、BeautyMap、真值：固定视角，原始／移除／保留。使用最终离线地图，不表现为在线更新。"
+      },
+      "source_records": []
+    },
+    {
+      "id": "replication-frame",
+      "path": "docs/figures/replication_frame.png",
+      "stage": "R0/R2",
+      "status": "reserved",
+      "caption": {
+        "en": "One named frame, same world bounds and point identities across every method and GT.",
+        "zh": "明确帧号，同一世界坐标范围、同一点身份，对照各方法和真值。"
+      },
+      "source_records": []
+    },
+    {
+      "id": "replication-paper-gap",
+      "path": "docs/figures/paper_gap.png",
+      "stage": "R1",
+      "status": "reserved",
+      "caption": {
+        "en": "Measured versus paper values, with AA and HA separated and evaluator differences annotated.",
+        "zh": "实测与论文差值，AA／HA 分开，注明评价器差异。"
+      },
+      "source_records": []
+    },
+    {
+      "id": "metric-correspondence",
+      "path": "docs/figures/metric_correspondence.png",
+      "stage": "R1",
+      "status": "reserved",
+      "caption": {
+        "en": "Exact point identity versus map nearest neighbor on the same geometry; original PCL cross-check still required.",
+        "zh": "同一几何中的精确点身份与地图最近邻对照；仍需原 PCL 对齐。"
+      },
+      "source_records": []
+    },
+    {
+      "id": "bottleneck-diagram",
+      "path": "docs/figures/bottleneck_diagram.svg",
+      "stage": "B0",
+      "status": "reserved",
+      "caption": {
+        "en": "Pose, correspondence, evidence and provisional updates; empirical observations separated from conjectured feedback.",
+        "zh": "位姿、对应、证据与暂定更新；实测观察与猜测反馈分开。"
+      },
+      "source_records": []
+    },
+    {
+      "id": "pose-margin",
+      "path": "results/reference/pose-stress/sensitivity.png",
+      "stage": "R0 diagnostic",
+      "status": "published",
+      "caption": {
+        "en": "Real teaser, six direct-label sensitivity cells; no paper-table or semantic-navigation comparison.",
+        "zh": "真实 teaser 的六组直接标签敏感性；不作论文表格或语义导航比较。"
+      },
+      "source_records": [
+        "results/reference/pose-stress/record.json"
+      ]
+    },
+    {
+      "id": "pose-drift-video",
+      "path": "docs/figures/pose_drift.gif",
+      "stage": "E0",
+      "status": "reserved",
+      "caption": {
+        "en": "Exact, independent-noise and correlated-drift conditions at matched marginal error; fixed frontend and view.",
+        "zh": "相同边际误差下精确／独立噪声／相关漂移；固定前端与视角。"
+      },
+      "source_records": []
+    },
+    {
+      "id": "semantic-update-video",
+      "path": "docs/figures/semantic_update.mp4",
+      "stage": "R3 then E2",
+      "status": "reserved",
+      "caption": {
+        "en": "First an author semantic-map baseline, then delayed correction and object queries with validity/coverage shown.",
+        "zh": "先作者语义地图基线，再迟到修正和对象查询；显示有效性与覆盖率。"
+      },
+      "source_records": []
+    },
+    {
+      "id": "mechanism-ambiguity",
+      "path": "results/reference/mechanism/mechanism.png",
+      "stage": "exploratory E1",
+      "status": "published",
+      "caption": {
+        "en": "Oracle identity/visibility, minority versus majority movers; include the median failure.",
+        "zh": "已知身份／可见性，少数与多数运动；保留中位数失败。"
+      },
+      "source_records": [
+        "results/reference/mechanism/record.json"
+      ]
+    },
+    {
+      "id": "evidence-calibration",
+      "path": "results/reference/evidence-stress/calibration.png",
+      "stage": "exploratory E0",
+      "status": "published",
+      "caption": {
+        "en": "Gaussian shared bias with known scales; false deletion, Brier and changed-object recall together.",
+        "zh": "已知尺度的高斯共享偏差；同时报告误删、Brier 与变化召回。"
+      },
+      "source_records": [
+        "results/reference/evidence-stress/record.json"
+      ]
+    },
+    {
+      "id": "risk-coverage",
+      "path": "docs/figures/risk_coverage.png",
+      "stage": "E2 after H0",
+      "status": "reserved",
+      "caption": {
+        "en": "Held-out risk–coverage and risk–latency curves; validation-only tuning and uncertainty intervals.",
+        "zh": "留出风险—覆盖率／延迟曲线；参数只由验证集选取，带不确定性区间。"
+      },
+      "source_records": []
+    },
+    {
+      "id": "failure-gallery",
+      "path": "docs/figures/failure_gallery.gif",
+      "stage": "R2/E1/E2",
+      "status": "reserved",
+      "caption": {
+        "en": "Unchanged, moved, removed, occluded and no-stable-anchor cases; no curated success-only sequence.",
+        "zh": "不变、移动、移除、遮挡、缺锚点情形；不只挑成功序列。"
+      },
+      "source_records": []
+    }
+  ]
+}
