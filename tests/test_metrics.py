@@ -43,6 +43,18 @@ def test_corrupt_binary_payload_is_rejected(tmp_path):
         read_pcd(path)
 
 
+def test_unlabeled_scan_preserves_geometry_and_sensor_pose(tmp_path):
+    source, staged = tmp_path / "source.pcd", tmp_path / "staged.pcd"
+    pose = [3.5, -2, 0.4, 1, 0, 0, 0]
+    write_pcd(source, np.array([[1, 2, 3]]), np.array([252]), viewpoint=pose)
+    cloud = read_pcd(source)
+    write_pcd(staged, cloud.xyz(), viewpoint=cloud.viewpoint)
+    result = read_pcd(staged)
+    assert result.records.dtype.names == ("x", "y", "z")
+    assert result.viewpoint == pose
+    np.testing.assert_array_equal(result.xyz(), cloud.xyz())
+
+
 def test_crlf_and_mixed_integer_fields(tmp_path):
     path = tmp_path / "cloud.pcd"
     header = "FIELDS x y z intensity\r\nSIZE 4 4 4 4\r\nTYPE F F F U\r\nCOUNT 1 1 1 1\r\nWIDTH 1\r\nHEIGHT 1\r\nPOINTS 1\r\nDATA binary\r\n"

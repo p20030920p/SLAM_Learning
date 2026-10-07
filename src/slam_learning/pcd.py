@@ -62,17 +62,22 @@ def read_pcd(path: Path) -> Cloud:
     return Cloud(records, viewpoint)
 
 
-def write_pcd(path: Path, xyz: np.ndarray, labels: np.ndarray | None = None) -> None:
+def write_pcd(path: Path, xyz: np.ndarray, labels: np.ndarray | None = None,
+              viewpoint: list[float] | None = None) -> None:
     xyz = np.asarray(xyz, dtype="<f4")
     if xyz.ndim != 2 or xyz.shape[1] != 3 or not np.isfinite(xyz).all():
         raise ValueError("xyz must be a finite Nx3 array")
     fields = ["x", "y", "z"] + (["intensity"] if labels is not None else [])
     if labels is not None and np.asarray(labels).shape != (len(xyz),):
         raise ValueError("Label shape mismatch")
+    viewpoint = [0, 0, 0, 1, 0, 0, 0] if viewpoint is None else viewpoint
+    if len(viewpoint) != 7 or not np.isfinite(viewpoint).all():
+        raise ValueError("Invalid PCD VIEWPOINT")
+    pose_text = " ".join(str(v) for v in viewpoint)
     values = np.column_stack([xyz, labels]).astype("<f4") if labels is not None else xyz
     header = ("VERSION .7\nFIELDS " + " ".join(fields) + "\nSIZE " + " ".join(["4"] * len(fields))
               + "\nTYPE " + " ".join(["F"] * len(fields)) + "\nCOUNT " + " ".join(["1"] * len(fields))
-              + f"\nWIDTH {len(xyz)}\nHEIGHT 1\nVIEWPOINT 0 0 0 1 0 0 0\nPOINTS {len(xyz)}\nDATA binary\n")
+              + f"\nWIDTH {len(xyz)}\nHEIGHT 1\nVIEWPOINT {pose_text}\nPOINTS {len(xyz)}\nDATA binary\n")
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("wb") as f:
         f.write(header.encode("ascii"))

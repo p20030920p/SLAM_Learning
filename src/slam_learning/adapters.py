@@ -80,11 +80,10 @@ def beautymap_run(sequence: Path, output: Path, upstream: Path, parameters: dict
     if frames:
         paths = paths[:frames]
     for path in paths:
-        # Hard links save disk when possible; copy works across drives/filesystems.
-        try:
-            (staged / "pcd" / path.name).hardlink_to(path)
-        except OSError:
-            shutil.copy2(path, staged / "pcd" / path.name)
+        # Scans also contain annotation-bearing intensity; remove it physically.
+        # Preserve the world coordinates and VIEWPOINT required by author code.
+        cloud = read_pcd(path)
+        write_pcd(staged / "pcd" / path.name, cloud.xyz(), viewpoint=cloud.viewpoint)
     command = [sys.executable, str(work / "main.py"), "--data_dir", str(staged),
                *[arg for k, v in parameters.items() for arg in (f"--{k}", str(v))]]
     subprocess.run(command, cwd=work, check=True)
@@ -94,7 +93,7 @@ def beautymap_run(sequence: Path, output: Path, upstream: Path, parameters: dict
     produced.replace(output)
     return {"frames": len(paths), "compatibility_patch": {"iterator": changes, "bitmask_width": dtype_changes},
             "author_command": command,
-            "algorithm_input": "Unlabeled map XYZ and input scans; GT labels available only to evaluator"}
+            "algorithm_input": "Only XYZ and VIEWPOINT in both map/scans; all intensity annotations stripped"}
 
 
 def worker(root: Path, method: str, output_dir: Path, frames: int) -> None:
