@@ -26,6 +26,8 @@ uv pip install --python .venv-reports/bin/python -r environments/reports/require
 # 用 Poppler 渲染每一页，检查图像后再导出记录。
 ```
 
+可传 `--cjk-font /path/to/licensed-font.ttc` 嵌入 TrueType 字体子集。本次 PDF 使用该 Windows 安装的微软雅黑并记录字体哈希，不把字体文件上传 Git；默认使用 STSong CID 回退。英文版中的中文版本链接也使用中文字体。
+
 **坐标核查：** ConceptGraphs 默认加载器会归一化 `__getitem__` 返回的位姿，但本次批处理入口明确读取绝对 `dataset.poses`。渲染前将保存的 39 个矩阵（观测 1–39；第 0 帧初始化无快照）逐个对照提供位姿，因此原 `center_world_m` 已是 Replica 世界坐标，不额外施加第一帧变换。HOV-SG 也读取绝对轨迹矩阵。应追踪实际入口，不能只看加载器默认值。
 
 未来实物视频再加入传感器原输入和独立事件／标注视角。固定相机与坐标轴，显示会话编号，区分提供／估计／参考位姿。录制是验证运行后的交付环节，不代表论文全部任务已复现。

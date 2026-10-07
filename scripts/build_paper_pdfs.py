@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata
 import json
 import platform
 import re
@@ -24,6 +25,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     HRFlowable, Image, KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle,
 )
@@ -68,12 +70,14 @@ def inline(text: str, source: Path, root: Path, base_url: str) -> str:
     text = text.replace(r"$(\sigma_p^2+\sigma_s^2)/N$", "(sigma_p^2 + sigma_s^2) / N")
     for i, token in enumerate(tokens):
         text = text.replace(f"SLAMLINKTOKEN{i}END", token)
-    return text
+    text = text.replace("$N$", "N")
+    # English editions still include a Chinese edition link; avoid missing glyphs.
+    return re.sub(r"[\u3400-\u9fff]+", r"<font name='StudyCJK'>\g<0></font>", text)
 
 
 def build(source: Path, target: Path, root: Path, language: str, base_url: str) -> int:
     chinese = language == "zh-CN"
-    face = "STSong-Light" if chinese else "Helvetica"
+    face = "StudyCJK" if chinese else "Helvetica"
     body = ParagraphStyle("body", fontName=face, fontSize=10.2, leading=15.6,
                           textColor=colors.HexColor("#263D47"), spaceAfter=8,
                           wordWrap="CJK" if chinese else None, splitLongWords=True)
@@ -195,6 +199,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-url", default="https://github.com/p20030920p/SLAM_Learning/blob/main/")
     parser.add_argument("--publish", action="store_true", help="Copy generated PDFs to output/pdf; evidence remains immutable")
+    parser.add_argument("--cjk-font", type=Path, help="Optional licensed TrueType/TTC font, embedded as a subset")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     suite_path = root / "configs/paper_suite.json"
@@ -205,9 +210,16 @@ def main():
     records = [root / method[key] for method in suite["methods"] for key in ("record", "media_record")]
     for path in records:
         verify_portable(path)
-    pdfmetrics.registerFont(UnicodeCIDFont("STSong-Light"))
-    pdfmetrics.registerFontFamily("STSong-Light", normal="STSong-Light", bold="STSong-Light",
-                                  italic="STSong-Light", boldItalic="STSong-Light")
+    if args.cjk_font:
+        pdfmetrics.registerFont(TTFont("StudyCJK", str(args.cjk_font), subfontIndex=0))
+        font_info = {"name": "embedded TrueType subset", "sha256": digest(args.cjk_font)}
+    else:
+        font = UnicodeCIDFont("STSong-Light")
+        font.name = "StudyCJK"
+        pdfmetrics.registerFont(font)
+        font_info = {"name": "STSong-Light built-in CID fallback"}
+    pdfmetrics.registerFontFamily("StudyCJK", normal="StudyCJK", bold="StudyCJK",
+                                  italic="StudyCJK", boldItalic="StudyCJK")
     output = root / "results/runs" / f"paper-pdfs-{uuid.uuid4().hex[:12]}"
     output.mkdir(parents=True)
     artifacts, sources, pages = {}, {}, {}
@@ -248,7 +260,10 @@ def main():
               "finished_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
               "repository_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip(),
               "repository_dirty": bool(subprocess.check_output(["git", "status", "--porcelain"], cwd=root, text=True)),
-              "generator_sha256": digest(Path(__file__)), "environment": {"python": platform.python_version()},
+              "generator_sha256": digest(Path(__file__)),
+              "environment": {"python": platform.python_version(),
+                              "packages": {name: importlib.metadata.version(name) for name in ("reportlab", "pypdf", "pillow")}},
+              "cjk_font": font_info,
               "input_sha256": sources, "page_counts": pages,
               "scope": "Reading reports, not new experiment measurements. Page rendering/visual QA is a separate publication gate.",
               "artifacts": artifacts}

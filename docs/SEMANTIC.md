@@ -43,6 +43,8 @@ Next, add annotated object identities and query targets, then compare exact, ind
 
 `bash scripts/setup_hovsg.sh` prepares independent `.venv-hovsg`; then run `.venv-hovsg/bin/python scripts/run_hovsg.py`. It shares verified Replica data/checkpoints, installs [pinned HOV-SG dependencies](../environments/hovsg/requirements.txt), and needs no PyTorch3D.
 
+The original installed-distribution snapshot included an HF Hub 2.x / OpenAI 1.3.7 dependency conflict. The install recipe resolves this with HF Hub 0.23.5 for local-checkpoint loading, removes the unused incompatible httpx2 distribution, and runs `uv pip check`. Original run environments remain recorded unchanged.
+
 The completed run processes 8 observations at source indices 0,25,...175, giving 50 segments and 166,777 reference points. RGB/depth are 640×360 with separately rescaled intrinsic axes; SAM batch is 36 and CLIP batch 4. Native geometric merging and feature selection execute with unchanged thresholds. Floor/room hierarchy, semantic mIoU and navigation are not evaluated. Fifty segments cannot rank against 39 objects.
 
 The first 40-observation attempt completed extraction, then its merge worker was killed with exit 137; the cause is not established and OOM is not confirmed. [Failed evidence](../results/reference/hovsg-wsl-interrupted/record.json) and [successful evidence](../results/reference/hovsg-wsl/record.json) are separate. The successful mapper records peak PyTorch allocation of 10,030,088,704 bytes, excluding driver allocations. Four text queries return candidate coordinates without correctness evaluation. [Card/video/PDF](papers/hovsg.md).

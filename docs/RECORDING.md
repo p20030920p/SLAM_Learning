@@ -26,6 +26,8 @@ uv pip install --python .venv-reports/bin/python -r environments/reports/require
 # Render every PDF page with Poppler; inspect images before exporting the record.
 ```
 
+The renderer offers `--cjk-font /path/to/licensed-font.ttc` for an embedded TrueType subset; the delivered PDFs use Microsoft YaHei from this Windows installation and record its hash. Without it, the built-in STSong CID fallback is used. Fonts are not redistributed in Git. English pages also use the CJK font for Chinese edition links.
+
 **Coordinate audit:** ConceptGraphs' default loader normalizes the poses returned by `__getitem__`, but the executed batch mapper deliberately reads absolute `dataset.poses` instead. Its 39 saved camera matrices (observations 1–39; initialization at 0 has no snapshot) are checked against supplied poses before rendering. The original `center_world_m` therefore already uses Replica world coordinates; no additional first-frame transformation is applied. HOV-SG also reads absolute trajectory matrices. Following the actual entry point matters more than a loader default.
 
 Future physical clips should add the raw sensor view and independent event/annotation view. Keep the camera and axes fixed, show a session identifier and disclose supply/estimate/reference pose sources. Recording is the last stage of a verified run, not evidence that every paper task was reproduced.

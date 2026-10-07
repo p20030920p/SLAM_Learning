@@ -43,6 +43,8 @@ Meta 下载停滞后，SAM ViT-H 从固定修订的 Hugging Face 镜像获取；
 
 `bash scripts/setup_hovsg.sh` 准备独立 `.venv-hovsg`，再运行 `.venv-hovsg/bin/python scripts/run_hovsg.py`。它共享已经校验的 Replica 子集／权重，安装固定的 [HOV-SG 依赖](../environments/hovsg/requirements.txt)，无需 PyTorch3D。
 
+原安装快照含 HF Hub 2.x／OpenAI 1.3.7 依赖冲突。安装配方改用 HF Hub 0.23.5 加载本地权重，移除未用且不兼容的 httpx2，并运行 `uv pip check`。历史运行环境记录保持原样。
+
 成功运行处理源帧 0,25,...175，共 8 次观测，产生 50 分段及 166,777 参考点。RGB／深度缩放为 640×360，两个内参轴分别缩放；SAM 批量 36、CLIP 批量 4。作者几何合并和特征筛选实际执行，阈值不变。未执行楼层／房间层级、语义 mIoU 或导航。50 分段不能与 39 对象排名。
 
 首次 40 观测完成前端后，合并进程被终止，退出码 137；未确认原因，不声称已确诊 OOM。[失败记录](../results/reference/hovsg-wsl-interrupted/record.json)与[成功记录](../results/reference/hovsg-wsl/record.json)独立保留。成功建图进程测得 PyTorch 分配峰值 10,030,088,704 字节，不含驱动分配。四文本查询返回坐标候选，正确性未评价。[论文卡／视频／PDF](papers/hovsg.zh-CN.md)。
