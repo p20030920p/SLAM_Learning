@@ -106,3 +106,5 @@ For Linux/WSL CUDA cores, use `bash scripts/setup_semantic.sh` then `.venv-seman
 | [Measured ledger](results/REPORT.md) / [Source audit](docs/AUDIT.md) | Machine-readable provenance and historical migration |
 
 Every narrative has an independent [Chinese edition](docs/README.zh-CN.md). Historical material is recoverable at `af1e58b` and contributes no current score.
+
+[Citation](CITATION.cff) · [Sources, data and media credits](docs/ATTRIBUTION.md) · [Study-code license](LICENSE).

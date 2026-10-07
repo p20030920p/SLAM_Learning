@@ -19,6 +19,9 @@ def render_report(paths: list[Path], base: Path | None = None, lang: str = "en")
     labels.update(map_evaluator_cross_check="地图评价器对照", author_map_replay="作者地图离线回放",
                   dufomap_api_diagnostic="DUFOMap 接口诊断",
                   semantic_frontend_baseline="语义前端基线",
+                  paper_reproduction_media="论文复现实测回放",
+                  bilingual_paper_reports="中英文研究报告",
+                  report_layout_review="报告排版检查",
                   **{"Replica room0 40-observation subset": "Replica room0 40 次观测子集"})
     lines = ["# 实测记录汇总" if zh else "# Measured experiment ledger", "",
              "由原始记录生成。执行完成、论文表格一致和假设验证是不同状态。" if zh

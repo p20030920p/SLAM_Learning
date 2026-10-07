@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "kind": "paper_reproduction_media",
+  "method": "dufomap",
+  "status": "executed",
+  "started_at": "2026-10-07T22:54:36+00:00",
+  "finished_at": "2026-10-07T22:54:38+00:00",
+  "environment": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "packages": {
+      "slam-learning": "0.2.0",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.9.2",
+      "dufomap": null,
+      "open3d": "0.18.0",
+      "dztimer": null
+    }
+  },
+  "repository": {
+    "commit": "ef776d631b8d46e934043a46ab94ede833209b6f",
+    "dirty": false
+  },
+  "generator_sha256": "a631b89d5cb36359396e63aa8c4cdfbb59a6555bec38aee118701b0b869ce064",
+  "input_record_sha256": "bb35aed8bb119f2a6e44168202c01adcc40e924e3d34a4c90a541421c616ea4d",
+  "rendering": {
+    "view": {
+      "projection": "world XY bird's-eye",
+      "bounds_xy_m": [
+        [
+          -50.71433529968262,
+          -28.983828282165526
+        ],
+        [
+          101.99741299743647,
+          38.611195683288535
+        ]
+      ],
+      "selection": "0.5/99.5 percentiles of every 500th GT point, plus 3 percent/minimum 1 m margin"
+    },
+    "source_frame_ids": [
+      "004390.pcd",
+      "004397.pcd",
+      "004404.pcd",
+      "004411.pcd",
+      "004418.pcd",
+      "004425.pcd",
+      "004432.pcd",
+      "004439.pcd",
+      "004446.pcd",
+      "004453.pcd",
+      "004460.pcd",
+      "004467.pcd",
+      "004474.pcd",
+      "004481.pcd",
+      "004488.pcd",
+      "004495.pcd",
+      "004502.pcd",
+      "004509.pcd",
+      "004516.pcd",
+      "004523.pcd",
+      "004530.pcd"
+    ],
+    "scope": "One method cropped from the verified common PCL-label replay; all metrics computed before rendering",
+    "playback_fps": 12,
+    "repeats_per_observation": 8,
+    "encoded_frames": 168,
+    "duration_s": 14.0,
+    "codec": "H.264",
+    "inspected_frame_stddev": [
+      36.14549650753389,
+      36.38881452733005,
+      36.449409547950445
+    ],
+    "reference": {
+      "repository": "https://github.com/p20030920p/Sim2Real-AlgoBench",
+      "commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+      "adapted_convention": "Per-method MP4 + GIF + metadata, fixed view and decoded-output QA; no source copied"
+    }
+  },
+  "artifacts": {
+    "replay.mp4": {
+      "sha256": "ab4ea8289e5387b19f75e0253a7b24b67c3dc1f839a148669b50008af97fccc0",
+      "bytes": 523829,
+      "availability": "portable"
+    },
+    "preview.gif": {
+      "sha256": "944506b36f70ee50d92120f07832cfb740c3f3d56200faad5e858173b0079f28",
+      "bytes": 813624,
+      "availability": "portable"
+    },
+    "poster.png": {
+      "sha256": "e72fbdf87ca3465d37ba73a8b247eea3ced77a33e2ba5dc256952965cb2ac95a",
+      "bytes": 78134,
+      "availability": "portable"
+    },
+    "render.json": {
+      "sha256": "584832df02f9660d7967575edb8711fa505c5f3dfff0f951f5b1dbe1dd4bc217",
+      "bytes": 1339,
+      "availability": "portable"
+    },
+    "input-record.json": {
+      "sha256": "bb35aed8bb119f2a6e44168202c01adcc40e924e3d34a4c90a541421c616ea4d",
+      "bytes": 4741,
+      "availability": "portable"
+    }
+  }
+}

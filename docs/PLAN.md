@@ -9,7 +9,7 @@ The hypothesis remains a candidate until the reproduction gates below are met. T
 | R0 | DUFOMap / BeautyMap author execution | Version, data, return code and output checks; publish measured/table differences | Executed on Windows, Ubuntu CI and local WSL; table differences remain |
 | R1 | Reconcile map NN / direct labels / original PCL | Same point identity and threshold; attribute each score difference | PCL/SciPy agree; direct/map scoring effect measured; paper-version and small API remainder open |
 | R2 | More real scenes, qualitative output | Same camera/ROI across methods; per-scene rather than one pooled number | Measured replay published; more scenes remain open |
-| R3 | One semantic-map frontend | Author baseline, poses, object associations and queried coordinates reproduced | ConceptGraphs 40-observation and HOV-SG 8-observation cores executed; annotations/full hierarchy remain open |
+| R3 | Two semantic mapping cores | Author baseline, poses, object associations and queried coordinates reproduced | ConceptGraphs 40-observation and HOV-SG 8-observation cores executed; annotations/full hierarchy remain open |
 | B0 | Retain or revise the bottleneck | Identify an observed shared failure and an explicit counterexample | Candidate; geometry-to-semantics inference not yet confirmed |
 | H0 | Freeze hypothesis and protocol | Commit held-out scenes/seeds, thresholds, coverage/latency budgets and rejection rule | Not frozen |
 | E0 | Pose magnitude versus correlation | Exact poses, independent errors and correlated drift with matched marginal error | Planned |
@@ -21,7 +21,7 @@ The hypothesis remains a candidate until the reproduction gates below are met. T
 
 Start with the author's offline object-map construction and query interface, not a navigation stack. [ConceptGraphs code](https://github.com/concept-graphs/concept-graphs) is a candidate because geometry/semantic association is inspectable. Before installing it, pin a runnable revision and record its dataset, checkpoints and depth/pose sources. Check GPU memory against the actual pipeline; the current CPU lockfile is not a ConceptGraphs environment.
 
-The baseline deliverable is one map built from original author settings, object association traces, and a query returning world coordinates. If known poses fail to reproduce that baseline, fix setup before injecting drift. HOV-SG is an alternative if its data/dependencies are easier to establish. The ConceptGraphs subset frontend has now executed; HOV-SG remains unexecuted. [Semantic baseline](SEMANTIC.md).
+The baseline deliverable is a map built with recorded author settings and explicit adaptations, object association traces, and queries returning world coordinates. If known poses fail to reproduce that baseline, fix setup before injecting drift. ConceptGraphs and HOV-SG subset cores have both executed; see the scoped [semantic baselines](SEMANTIC.md).
 
 ## Candidate confirmation factors
 

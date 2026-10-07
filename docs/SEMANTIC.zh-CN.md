@@ -50,3 +50,5 @@ Meta 下载停滞后，SAM ViT-H 从固定修订的 Hugging Face 镜像获取；
 首次 40 观测完成前端后，合并进程被终止，退出码 137；未确认原因，不声称已确诊 OOM。[失败记录](../results/reference/hovsg-wsl-interrupted/record.json)与[成功记录](../results/reference/hovsg-wsl/record.json)独立保留。成功建图进程测得 PyTorch 分配峰值 10,030,088,704 字节，不含驱动分配。四文本查询返回坐标候选，正确性未评价。[论文卡／视频／PDF](papers/hovsg.zh-CN.md)。
 
 ConceptGraphs 实际批处理入口读取绝对 `dataset.poses`，绕过加载器默认归一化；39 个保存相机矩阵已与给定位姿核对，历史世界坐标正确，无须额外第一帧变换。两种语义视频都回放最终地图，不表现为在线演化。[录制及坐标审计](RECORDING.zh-CN.md)。
+
+修正安装已再次实际执行，142 个安装包通过兼容检查。新的[依赖解决后重复运行](../results/reference/hovsg-wsl-resolved/record.json)完成 8 观测，复得 50 分段／166,777 点；地图 PLY 与分段特征 NPY 和先前核心运行字节一致。这次本机重复不能证明其他硬件／设置下确定性。

@@ -106,3 +106,5 @@ Linux／WSL CUDA 核心：先 `bash scripts/setup_semantic.sh`，再 `.venv-sema
 | [实测汇总](results/REPORT.zh-CN.md)／[来源审计](docs/AUDIT.zh-CN.md) | 机器可读来源及历史迁移 |
 
 每篇说明均有独立[英文／中文版本](docs/README.zh-CN.md)。历史内容可在 `af1e58b` 恢复，不贡献当前成绩。
+
+[引用](CITATION.cff) · [来源、数据与媒体署名](docs/ATTRIBUTION.zh-CN.md) · [研究代码许可](LICENSE)。

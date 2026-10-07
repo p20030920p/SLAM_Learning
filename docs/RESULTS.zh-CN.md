@@ -118,3 +118,5 @@ PCL／SciPy 对照和可执行语义子集、文本坐标检索已完成；完�
 HOV-SG 作者分段特征建图处理 8 次给定位姿观测（源索引 0,25,...175），产生 50 分段及 166,777 参考点。建图进程 PyTorch 分配峰值 10,030,088,704 字节，不含驱动分配。四条 CLIP 文本返回坐标候选，正确性未标注。首次 40 观测在提取后合并进程被终止，退出码 137，原因未确认。[成功](../results/reference/hovsg-wsl/record.json)、[失败](../results/reference/hovsg-wsl-interrupted/record.json)、[资源适配](papers/hovsg.zh-CN.md)。
 
 四篇各自 H.264／GIF 回放已发布，附完整解码检查及元数据。语义视频使用最终地图，不表示逐步建图。实际 ConceptGraphs 入口使用绝对位姿，39 个保存矩阵确认，无须额外第一帧转换。[媒体／报告](papers/README.zh-CN.md)、[坐标核查](RECORDING.zh-CN.md)。这些语义子集及计数不是完整论文 benchmark 验证。
+
+最终本机 Windows／WSL 通过 38 项测试，Ruff 无问题；26 份轻量记录及发布媒体／PDF 哈希均通过。32 页 PDF 全部渲染并目视检查，四个视频完整解码，检查首／中／尾帧。[依赖解决后 HOV-SG 重复运行](../results/reference/hovsg-wsl-resolved/record.json)地图／特征字节一致。[PDF 排版检查](../results/reference/paper-report-review/qa.json)。

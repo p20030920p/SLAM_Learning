@@ -50,3 +50,5 @@ uv run python scripts/verify_evidence.py
 ## 四篇各自录制
 
 [论文索引](../papers/README.zh-CN.md)连接原生结果、MP4、GIF、封面及双语 PDF。12 项新增媒体在 `slots.json` 中绑定哈希。[录制命令](../RECORDING.zh-CN.md)披露最终地图回放及坐标核查。`docs/figures/physical_capture.mp4` 预留至实物采集完成。
+
+12 份双语 PDF 绑定[生成证据](../../results/reference/paper-pdfs/record.json)，另有[32 页排版检查](../../results/reference/paper-report-review/qa.json)。索引现有 30 个已发布资产、7 个预留位置。

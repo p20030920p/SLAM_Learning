@@ -21,6 +21,7 @@ Read the measured reproduction before the proposed explanation. The independent 
 | D435i / L2 physical tests | [Protocol](REAL_WORLD.md) | [实物协议](REAL_WORLD.zh-CN.md) |
 | Video and PDF generation | [Recording](RECORDING.md) | [录制](RECORDING.zh-CN.md) |
 | Submission preparation | [Checklist](SUBMISSION.md) | [提交检查](SUBMISSION.zh-CN.md) |
+| Sources and credits | [Attribution](ATTRIBUTION.md) | [来源说明](ATTRIBUTION.zh-CN.md) |
 | Generated records | [Ledger](../results/REPORT.md) | [汇总](../results/REPORT.zh-CN.md) |
 
 Published figures have evidence; reserved GIF/video slots have captions and protocols but no invented output. CI checks document pairs, local links and the records behind published assets.
