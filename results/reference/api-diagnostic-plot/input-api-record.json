@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "kind": "dufomap_api_diagnostic",
+  "status": "executed",
+  "scope": "full_teaser",
+  "started_at": "2026-10-07T22:20:04+00:00",
+  "environment": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "packages": {
+      "slam-learning": "0.2.0",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.9.2",
+      "dufomap": "1.1.1",
+      "open3d": "0.18.0",
+      "dztimer": "1.1.1"
+    }
+  },
+  "repository": {
+    "commit": "3c48cd2e0e8089c09df8cec1d6ce8572ba07eadf",
+    "dirty": true
+  },
+  "source_sha256": {
+    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
+    "src/slam_learning/adapters.py": "0d79fc212d6ab682e9d53e411b7da7d18073d4e2b5c1361f877594dd6a332f04",
+    "src/slam_learning/api_check.py": "8ac9c6bce664a7fe3b3411282824f41c9c20832a74f18e1c65e05c3f3b891c46",
+    "src/slam_learning/cli.py": "8e4d95b9956f1fd0472e12a633309624d6b8cc83e38e41164859e93b09b22d2e",
+    "src/slam_learning/evaluation_check.py": "abaf41f7dd5aac071515662d230fc4181a9b554dfddb7a076cc2c7d209110ced",
+    "src/slam_learning/evidence_stress.py": "9957fe5974b3e8308d7287433279aedb8dbac0a89fd2511ca871a2f922e29c60",
+    "src/slam_learning/fetch.py": "fcce0e0fd024030d4f1b19ab1d63abdf1b0d7e5333dc89254520747ee03d03cd",
+    "src/slam_learning/metrics.py": "aeb849e7f3be8d1b54ebbc457317aafbf698d095bb412f4aeb7071fd8637b4dc",
+    "src/slam_learning/pcd.py": "ce37303693339309cf4d5f55d8bf7c4457973c0eb83392c581d4a5579634b034",
+    "src/slam_learning/pose_stress.py": "18f096b34da22a09d729ed141552d7dd49f5abc33c8a8cd61275d27cd6fdbfa6",
+    "src/slam_learning/provenance.py": "7cc155e7ae1e67e8313844217abcc36905f85427417d537e545af8f4a1880a9c",
+    "src/slam_learning/render_reproduction.py": "8c370d623bbe977aeab392cfc64fb0b3d5a250ccb391acdaa731e15bb5a98019",
+    "src/slam_learning/report.py": "ac739fb2917db14cad5ff2409ebea86ce3d66af77a20abdbbd666306a3ad3d14",
+    "src/slam_learning/runner.py": "ca8de183eeee374aa67ca4062e4d33dc9e6de6e7f821f08d0a8a3f4e4ffb0128",
+    "src/slam_learning/synthetic.py": "f836619ef1b05ade5a1ac0489de832061c0ddee717f1cfeb90a6b99dbee314cd"
+  },
+  "artifacts": {
+    "run.log": {
+      "sha256": "4838d5b26217bdddf83be14969cfd2e2d794d6010f2d6b9bc0bd89cecdc43917",
+      "bytes": 403,
+      "availability": "portable"
+    },
+    "summary.json": {
+      "sha256": "4dc73e2ba5f7cad61ac1b9b1b17a8549f841ac1b96d5a489531747f7a6a28ee6",
+      "bytes": 2746,
+      "availability": "portable"
+    },
+    "segment-kept.pcd": {
+      "sha256": "e794420d78a5b5078476d134d232dbd476553c097f115235c15483bc672f4faa",
+      "bytes": 191945690,
+      "availability": "local_only"
+    },
+    "dufomap_output.pcd": {
+      "sha256": "747357a383465721f7235a2639d26c7223e9398878e5268c41cd950b4a37b04d",
+      "bytes": 191944966,
+      "availability": "local_only"
+    }
+  },
+  "exit_code": 0,
+  "dataset": {
+    "manifest_sha256": "ee139f3c00f1fd6019a74332dad460d6e30e3330a78b108a9609e81e4a1359a7",
+    "archive_sha256": "14e30a0ddc19f275477aa0e72e6ba713f0f6a6a29dcf7ded8a92ce0c421109fd",
+    "configuration": {
+      "id": "dynamicmap-kitti00-teaser",
+      "record": "https://zenodo.org/records/10886629",
+      "url": "https://zenodo.org/records/10886629/files/00.zip?download=1",
+      "filename": "00.zip",
+      "md5": "87f856c4dd1ad05d0ffd4171f92780a0",
+      "frames": 141,
+      "gt_points": 17362230,
+      "coordinate_frame": "world; sensor origins stored in PCD VIEWPOINT",
+      "scope": "Selected frames, not the full KITTI odometry sequence. Poses supplied by benchmark, not estimated here.",
+      "license_note": "Original KITTI/SemanticKITTI terms apply; data is not redistributed."
+    }
+  },
+  "upstreams": {
+    "dufomap": {
+      "url": "https://github.com/KTH-RPL/dufomap.git",
+      "commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+      "dirty": false
+    },
+    "dynamicmap": {
+      "url": "https://github.com/KTH-RPL/DynamicMap_Benchmark.git",
+      "commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+      "dirty": false
+    }
+  },
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+    "-m",
+    "slam_learning.api_check",
+    "/home/qzl/projects/SLAM_Learning",
+    "/home/qzl/projects/SLAM_Learning/results/runs/api-check-52b6d3b7322b"
+  ],
+  "summary": {
+    "frames": 141,
+    "gt_points": 17362230,
+    "configuration": {
+      "resolution": 0.1,
+      "d_s": 0.2,
+      "d_p": 1,
+      "threads": 2,
+      "min_range": 0.2,
+      "max_range": 50.0
+    },
+    "one_trained_mapper": true,
+    "exact_scan_gt_identity": true,
+    "direct_segment": {
+      "counts": {
+        "kept_static": 15994462,
+        "removed_static": 1271785,
+        "removed_dynamic": 94982,
+        "kept_dynamic": 1001
+      },
+      "SA": 92.63427078275899,
+      "DA": 98.95710698769574,
+      "AA": 95.74350862892302,
+      "HA": 95.691356795392
+    },
+    "nn_of_segment_kept_map": {
+      "counts": {
+        "kept_static": 16917780,
+        "removed_static": 348467,
+        "removed_dynamic": 94722,
+        "kept_dynamic": 1261
+      },
+      "SA": 97.98180229901726,
+      "DA": 98.68622568579853,
+      "AA": 98.33338321639356,
+      "HA": 98.33275244442541,
+      "gt_points": 17362230,
+      "map_points": 15995463,
+      "threshold_m": 0.05,
+      "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+    },
+    "nn_of_native_output_map": {
+      "counts": {
+        "kept_static": 16917434,
+        "removed_static": 348813,
+        "removed_dynamic": 94738,
+        "kept_dynamic": 1245
+      },
+      "SA": 97.97979838930834,
+      "DA": 98.70289530437681,
+      "AA": 98.34068223458615,
+      "HA": 98.34001762682132,
+      "gt_points": 17362230,
+      "map_points": 15995399,
+      "threshold_m": 0.05,
+      "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+    },
+    "decomposition_pp": {
+      "segment_map_nn_minus_direct": {
+        "SA": 5.347531516258272,
+        "DA": -0.27088130189720516,
+        "AA": 2.5898745874705327,
+        "HA": 2.641395649033413
+      },
+      "native_nn_minus_segment_map_nn": {
+        "SA": -0.0020039097089181723,
+        "DA": 0.016669618578276868,
+        "AA": 0.007299018192597373,
+        "HA": 0.0072651823959120065
+      }
+    },
+    "scope": "API/evaluation diagnostic at zero injected pose error; no paper-table or structural-failure claim",
+    "binding_docstrings": {
+      "segment": "\n        Parameters\n        ----------\n        points (np.ndarray): \n            point cloud data, shape (N, 3), 3 for x, y, z\n        pose (np.ndarray): \n            pose of the sensor, two formats are supported:\n                * shape (4, 4), 4x4 matrix\n                * shape (7,), [x, y, z, qw, qx, qy, qz]\n        cloud_transform (bool): \n            whether need to transform the point cloud to the world frame\n            if the point cloud is already in the world frame, set it to False\n\n        Returns\n        -------\n        labels (np.ndarray):\n            dynamic binary labels, shape (N,); 0 for static, 1 for dynamic\n        ",
+      "outputMap": null
+    }
+  },
+  "finished_at": "2026-10-07T22:20:50+00:00"
+}

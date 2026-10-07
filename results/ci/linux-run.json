@@ -1,0 +1,39 @@
+{
+  "run_id": 37622082701,
+  "url": "https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701",
+  "source_commit": "9f3a9ef3891695246b41c2d1396d6efe45e8f685",
+  "jobs": [
+    {
+      "name": "core (windows-latest)",
+      "id": 112794564366,
+      "conclusion": "success"
+    },
+    {
+      "name": "author-methods",
+      "id": 112794564663,
+      "conclusion": "success"
+    },
+    {
+      "name": "core (ubuntu-22.04)",
+      "id": 112794564730,
+      "conclusion": "success"
+    }
+  ],
+  "artifact_id": 11482892234,
+  "downloaded_zip_sha256": "fd458306641ecd3b25cf989df01d28f399a5f83aeb2b8c13cd9fc178f7e5ad99",
+  "portable_records": [
+    {
+      "name": "beautymap-linux",
+      "record_sha256": "435e8ea4cb1afe5671aecd1d805920c8baf472947eb29ad5eac53c3edbb8c131"
+    },
+    {
+      "name": "dufomap-linux",
+      "record_sha256": "501e859707084bee452ccd46ab562c50f40e8b6f1ee925c668f2d3b5021f7702"
+    },
+    {
+      "name": "pose-stress-linux",
+      "record_sha256": "5ff9a7b70df5b5231ecb600ed9da6c0b150718b628866e588ed35cc0d74a08df"
+    }
+  ],
+  "note": "GitHub Actions Ubuntu 22.04 execution; signed download fetched without forwarding account credential. Large maps were excluded by workflow."
+}

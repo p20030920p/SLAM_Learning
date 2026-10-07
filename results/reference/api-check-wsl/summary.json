@@ -1,0 +1,77 @@
+{
+  "frames": 141,
+  "gt_points": 17362230,
+  "configuration": {
+    "resolution": 0.1,
+    "d_s": 0.2,
+    "d_p": 1,
+    "threads": 2,
+    "min_range": 0.2,
+    "max_range": 50.0
+  },
+  "one_trained_mapper": true,
+  "exact_scan_gt_identity": true,
+  "direct_segment": {
+    "counts": {
+      "kept_static": 15994462,
+      "removed_static": 1271785,
+      "removed_dynamic": 94982,
+      "kept_dynamic": 1001
+    },
+    "SA": 92.63427078275899,
+    "DA": 98.95710698769574,
+    "AA": 95.74350862892302,
+    "HA": 95.691356795392
+  },
+  "nn_of_segment_kept_map": {
+    "counts": {
+      "kept_static": 16917780,
+      "removed_static": 348467,
+      "removed_dynamic": 94722,
+      "kept_dynamic": 1261
+    },
+    "SA": 97.98180229901726,
+    "DA": 98.68622568579853,
+    "AA": 98.33338321639356,
+    "HA": 98.33275244442541,
+    "gt_points": 17362230,
+    "map_points": 15995463,
+    "threshold_m": 0.05,
+    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+  },
+  "nn_of_native_output_map": {
+    "counts": {
+      "kept_static": 16917434,
+      "removed_static": 348813,
+      "removed_dynamic": 94738,
+      "kept_dynamic": 1245
+    },
+    "SA": 97.97979838930834,
+    "DA": 98.70289530437681,
+    "AA": 98.34068223458615,
+    "HA": 98.34001762682132,
+    "gt_points": 17362230,
+    "map_points": 15995399,
+    "threshold_m": 0.05,
+    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+  },
+  "decomposition_pp": {
+    "segment_map_nn_minus_direct": {
+      "SA": 5.347531516258272,
+      "DA": -0.27088130189720516,
+      "AA": 2.5898745874705327,
+      "HA": 2.641395649033413
+    },
+    "native_nn_minus_segment_map_nn": {
+      "SA": -0.0020039097089181723,
+      "DA": 0.016669618578276868,
+      "AA": 0.007299018192597373,
+      "HA": 0.0072651823959120065
+    }
+  },
+  "scope": "API/evaluation diagnostic at zero injected pose error; no paper-table or structural-failure claim",
+  "binding_docstrings": {
+    "segment": "\n        Parameters\n        ----------\n        points (np.ndarray): \n            point cloud data, shape (N, 3), 3 for x, y, z\n        pose (np.ndarray): \n            pose of the sensor, two formats are supported:\n                * shape (4, 4), 4x4 matrix\n                * shape (7,), [x, y, z, qw, qx, qy, qz]\n        cloud_transform (bool): \n            whether need to transform the point cloud to the world frame\n            if the point cloud is already in the world frame, set it to False\n\n        Returns\n        -------\n        labels (np.ndarray):\n            dynamic binary labels, shape (N,); 0 for static, 1 for dynamic\n        ",
+    "outputMap": null
+  }
+}

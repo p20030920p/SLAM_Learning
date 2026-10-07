@@ -1,127 +1,134 @@
 <div align="center">
 
-# SLAM_Learning
+# SLAM Learning
 
-**一篇论文一个文件夹：用作者自己的公开代码，跑到作者自己报的数字。跑得通的给出数字，跑不通的把缺什么写在明面上。**
+**变化场景中的地图更新复现研究**
 
-[![rule](https://img.shields.io/badge/rule-%E6%9C%89%E5%BA%93%E6%89%8D%E5%A4%8D%E7%8E%B0-2ea043)](reproductions/README.md)
-[![driver](https://img.shields.io/badge/driver-run__all.py-6f42c1)](reproductions/run_all.py)
-[![layout](https://img.shields.io/badge/layout-one%20paper%20per%20folder-1c7ed6)](reproductions/)
-[![License](https://img.shields.io/badge/license-MIT-3DA639)](LICENSE)
+动态点清除 · 语义建图 · 定位不确定性
 
-[复现清单](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [怎么跑](#怎么跑) &nbsp;•&nbsp; [目录结构](#目录结构) &nbsp;•&nbsp; [复现区](reproductions/)
+[![Python](https://img.shields.io/badge/Python-3.10-3776AB)](pyproject.toml)
+[![CPU](https://img.shields.io/badge/author%20runs-CPU-356859)](docs/RESULTS.zh-CN.md)
 
-*[English](README.md) &nbsp;|&nbsp; 中文*
+[复现](#复现) &nbsp;•&nbsp; [瓶颈](#瓶颈) &nbsp;•&nbsp; [快速开始](#快速开始)
+
+[English](README.md) &nbsp;|&nbsp; 中文
 
 </div>
 
-## 这是什么
+![固定视角中的作者地图离线回放](docs/figures/replication_hero.gif)
 
-一本复现账本。每一条都从**作者自己的仓库**出发，在这台机器上跑一遍，再回头跟论文或上游
-自己报的数字对表。跑不起来的条目照样留在表里，并写清楚**到底缺哪一样**——
-「跑不了，以及跑不了的原因」本身就是一条结果。
+> **作者地图实测回放。** 21 个选定 teaser 条目，固定世界坐标视角：原始 → 移除 → 保留。绿色为移除动态点，红色为误删静态点，蓝色为保留动态点。使用最终离线地图，真值仅用于评分／着色。[渲染配置与来源记录](results/reference/reproduction-media-wsl/record.json)。
 
-决定收录与否的只有一条规则：
+这个仓库研究机器人怎样判断地图中的表面或对象已经变化。先运行原作者方法，检查输出和评价口径，再分析哪些决策依赖可信定位。范围覆盖动态场景中的鲁棒建图，以及长期语义地图。
 
-> **没有上游代码就不复现。** 绝不照着论文正文自己重写一份。
+| 当前材料 | 范围 |
+| --- | --- |
+| 作者方法复现 | DUFOMap、BeautyMap；KITTI-00 的 141 帧 teaser |
+| 已检查的平台 | Windows、干净 Ubuntu 22.04 CI、本机 WSL2 Ubuntu 22.04；作者清图方法使用 CPU |
+| 测量 | 静态保留、动态清除；论文表格一致性另行记录 |
+| 探索性分析 | 真实数据位姿敏感性；两个受控机制实验 |
+| 语义前端 | ConceptGraphs：40 次提供位姿的 Replica 观测、39 个对象和文本查询坐标 |
+| 下一步前提 | 关联／目标标注、更多场景与配对位姿误差对照 |
 
-|  |  |
-| :--- | :--- |
-| 条目 | 21 个文件夹，两个研究方向，一篇论文一个文件夹 |
-| 规则 | 只用作者自己的代码；没有代码的条目保持阻塞，并把原因写出来 |
-| 驱动 | `python3 reproductions/run_all.py` 负责发现、运行、回测、刷新下面的清单 |
-| 回测 | 每个跑通项把指标记在 `baselines.json` 里，重跑时自动比对 |
-| 本机 | 只有 CPU，没有 CUDA。所有「完成」条目都在本机跑过；GPU 受限的列为阻塞并写明原因 |
+## 复现
 
-这里不是基准，也没有排行榜。没有固定协议，表里的数字是**论文自己的数字在这台机器上的复现**，
-不是排名。
+两种方法均完成全部 141 帧，对 17,362,230 个标注点评分。清理后的地图使用相同的 5 cm 最近邻评价规则。这是给定扫描位姿的地图清理实验，不是轨迹估计或导航实验。
 
-<!-- PROGRESS:START -->
+| 作者方法 | SA % ↑ | DA % ↑ | 对应综合指标 | 与论文表格一致性 |
+| --- | ---: | ---: | ---: | --- |
+| DUFOMap 1.1.1 | 97.9798 | 98.7029 | AA 98.3407 | 超出 0.01 个百分点容差 |
+| BeautyMap，固定源码 | 96.9529 | 98.3382 | HA 97.6407 | 超出 0.01 个百分点容差 |
 
-## 复现清单 Reproduction checklist
+*SA 表示静态点保留率；DA 表示动态点清除率。AA 是几何均值，HA 是调和均值，不能把它们当成同一排名。Windows 与 Ubuntu 分数一致。[完整口径、论文数值与原始记录](docs/RESULTS.zh-CN.md)。*
 
-**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 22:50 CST
+![来源帧 004390 的作者地图对照](docs/figures/replication_frame.png)
 
-| # | 状态 | 复现库 | 论文 | 一句话 |
-| :-- | :-- | :-- | :-- | :-- |
-| 01-05 | 完成 | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) | [doi:10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) | 能。与论文表 I 两位小数一致。 |
-| 01-06 | 完成 | [MKJia/BeautyMap](https://github.com/MKJia/BeautyMap) | [arXiv:2405.07283](https://arxiv.org/abs/2405.07283) | 能。命中论文表 I。 |
-| 01-01 | 完成 | [KTH-RPL/DynamicMap_Benchmark](https://github.com/KTH-RPL/DynamicMap_Benchmark) | [arXiv:2307.07260](https://arxiv.org/abs/2307.07260) | 能。官方评测器加 Zenodo 免注册数据，四个方法同表。 |
-| 01-03 | 完成 | [LimHyungTae/ERASOR](https://github.com/LimHyungTae/ERASOR) | [arXiv:2103.04316](https://arxiv.org/abs/2103.04316) | 能，需 ROS 1。官方仓库对上论文表 II。 |
-| 01-04 | 完成 | [irapkaist/removert](https://github.com/irapkaist/removert) | [doi:10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856) | 能，需 ROS 1。官方实现 SA/DA/AA 99.62/89.25/94.29。 |
-| 01-08 | 完成 | [yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) | [arXiv:2405.07392](https://arxiv.org/abs/2405.07392) | 能。纯 CPU，ATE 0.0157 m。 |
-| 01-02 | 完成 | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) | [doi:10.1109/LRA.2023.3236571](https://doi.org/10.1109/LRA.2023.3236571) | 能。PyPI 包加官方 KITTI 00–10，均值 0.53 %。 |
-| 01-10 | 完成 | [cocel-postech/genz-icp](https://github.com/cocel-postech/genz-icp) | [arXiv:2411.06766](https://arxiv.org/abs/2411.06766) | 能。均值 0.52 %，论文 0.51 %。 |
-| 01-09 | 半完成 | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) | 半能。仓库只有变化检测半边。 |
-| 01-11 | 完成 | [dongjae0107/ELite](https://github.com/dongjae0107/ELite) | [arXiv:2502.13452](https://arxiv.org/abs/2502.13452) | 能。AC 0.9708，论文 0.969，纯 CPU。 |
-| 01-12 | 完成 | [UZ-SLAMLab/ORB_SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) | [arXiv:2007.11898](https://arxiv.org/abs/2007.11898) | 能。纯 CPU，RMSE ATE 0.035 至 0.045 m。 |
-| 01-13 | 阻塞 | [MIT-SPARK/Khronos](https://github.com/MIT-SPARK/Khronos) | [arXiv:2402.13817](https://arxiv.org/abs/2402.13817) | 不能。实测需要 13.5 GB 以上内存。 |
-| 02-01 | 半完成 | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) | 半能。只有数据集与工具，全量数据需申请。 |
-| 02-06 | 阻塞 | [MIT-SPARK/Clio](https://github.com/MIT-SPARK/Clio) | [arXiv:2404.13696](https://arxiv.org/abs/2404.13696) | 不能。论文用 RTX 3090。 |
-| 02-07 | 完成 | [AnyLoc/AnyLoc](https://github.com/AnyLoc/AnyLoc) | [arXiv:2308.00688](https://arxiv.org/abs/2308.00688) | 能。纯 CPU 约 3.3 h，R@1 65.0 与论文一致。 |
-| 02-08 | 完成 | [AnyLoc/Revisit-Anything](https://github.com/AnyLoc/Revisit-Anything) | [arXiv:2409.18049](https://arxiv.org/abs/2409.18049) | 能。纯 CPU 约 25 min，R@1 95.32 与论文一致。 |
-| 02-03 | 阻塞 | [concept-graphs/concept-graphs](https://github.com/concept-graphs/concept-graphs) | [arXiv:2309.16650](https://arxiv.org/abs/2309.16650) | 不能。需 16 至 24 GB 显存与 GPT-4 key。 |
-| 02-04 | 阻塞 | [Eku127/DualMap](https://github.com/Eku127/DualMap) | [arXiv:2506.01950](https://arxiv.org/abs/2506.01950) | 不能。论文用 RTX 4090。 |
-| 02-05 | 阻塞 | [hovsg/HOV-SG](https://github.com/hovsg/HOV-SG) | [arXiv:2403.17846](https://arxiv.org/abs/2403.17846) | 不能。四篇底座里算力最重，论文未写门槛。 |
-| 01-07 | 阻塞 | [ACFR-RPG/DynoSAM](https://github.com/ACFR-RPG/DynoSAM) | [arXiv:2501.11893](https://arxiv.org/abs/2501.11893) | 不能。configure 阶段就要求 CUDA。 |
-| 02-02 | 阻塞 | — | [arXiv:2607.14899](https://arxiv.org/abs/2607.14899) | 不能。代码未发布。 |
+*来源帧 `004390`；图中计数来自完整扫描，早于显示抽稀。[运行／帧元数据](results/reference/reproduction-media-wsl/render.json)。*
 
-> 状态：完成 = 已对上原库数字 · 半完成 = 只做了仓库里有的那一半 · 阻塞 = 本机做不了（缺硬件或没有代码）。
-> 每一行的字段写在对应文件夹的 `baselines.json` 里，本表由 `python3 reproductions/run_all.py` 生成，块内不要手改。
-<!-- PROGRESS:END -->
+原 benchmark PCL 与 SciPy 在每张地图的 **17,362,230 个真值点上逐点一致**，分歧为 0。这排除了本次论文表格差异来自评价器实现的解释，尚未解决源码版本／参数差异。[对照证据](results/reference/evaluation-check-wsl/summary.json)。
 
-## 怎么跑
+另一个诊断使用 DUFOMap 的直接点标签接口。较大的位姿容差保留更多静态点，但漏掉更多动态点；小幅注入位姿误差也不总是降低得分。这些值不能合并进上面的地图对应评分表。
+
+![真实 teaser 上 DUFOMap 的直接标签敏感性](results/reference/pose-stress/sensitivity.png)
+
+*三个平滑平移幅度、两个位姿容差、一段序列。这是敏感性观察，不是普遍失效结论。*
+
+## 瓶颈
+
+当前的问题是：**变化残差能否与定位误差区分，下一次观测是否提供了独立证据？** 一个公共位姿误差可以同时改变许多对象的对应关系。缺少稳定锚点时，对象共同运动也可能像相机运动。
+
+这是候选结构性瓶颈。真实复现证明了容差权衡与评价差异；语义前端子集已可执行，但共性实测失效仍需标注和位姿误差对照。Khronos 已联合优化位姿和结构，新近长期地图也已处理可见性和记忆。[各论文的假设与反例](docs/LITERATURE.zh-CN.md)。
+
+<!-- MEDIA: bottleneck-diagram -->
+<!-- ![位姿不确定性、关联与暂定地图更新](docs/figures/bottleneck_diagram.svg) -->
+
+*结构图预留位：给定／估计位姿 → 对应关系 → 变化证据 → 地图更新；标明共享不确定性以及可以回退的更新。文件位：`docs/figures/bottleneck_diagram.svg`。*
+
+## 候选假设
+
+在匹配查询覆盖率、更新延迟和观测预算时，提交变化之前建模共享位姿不确定性，可能比可见性阈值与独立噪声基线降低误删和过期目标错误。前提是有足够稳定几何或外部位姿约束。
+
+这个假设**尚未冻结为验证结论**。原 PCL／地图最近邻对照和首个语义子集基线已完成；确认之前仍需标注和位姿误差对照。[研究笔记](docs/RESEARCH.zh-CN.md)写出了否定条件，[实验计划](docs/PLAN.zh-CN.md)规定了下一步阶段门槛。
+
+## 探索性实验
+
+已有实验用来形成问题。看过结果之后选出的假设，不能再把这些结果当作独立验证。
+
+| 探索 | 观察 | 边界 |
+| --- | --- | --- |
+| 位姿与运动混淆 | 少数对象移动时，公共偏差修正和可见性处理有帮助 | 同向移动的多数对象会欺骗中位数修正 |
+| 相关证据 | 一个共享偏差下，独立位姿噪声推断会过度自信 | 共享潜变量方法变化召回较低，而且使用已知噪声尺度 |
+
+![多个观测共享一个位姿偏差时的置信度](results/reference/evidence-stress/calibration.png)
+
+*一维合成模型，不是语义 SLAM 实现。误删、召回、校准必须同时报告。[全部试验与负面结果](docs/RESULTS.zh-CN.md)。*
+
+<!-- MEDIA: pose-drift-video / semantic-update-video / risk-coverage -->
+*后续对照位置：`docs/figures/pose_drift.gif`、`docs/figures/semantic_update.mp4`、`docs/figures/risk_coverage.png`。[媒体索引](docs/figures/README.zh-CN.md)在渲染之前固定输入、视角、颜色与发布要求。*
+
+## 快速开始
+
+锁文件选择 Python 3.10 与精确依赖。当前作者方法不需要 CUDA。
 
 ```bash
-git clone https://github.com/p20030920p/SLAM_Learning.git
-cd SLAM_Learning
-python3 reproductions/run_all.py                 # 发现、运行、回测，并刷新上面的清单
-python3 reproductions/run_all.py --only 02-01    # 只跑一篇
-python3 reproductions/run_all.py --check         # 不重跑，只按 status.json 重画清单
-python3 reproductions/run_all.py --no-backtest   # 跳过与 baselines.json 的比对
+uv sync --frozen --python 3.10 --extra methods --extra dev
+uv run slam-study fetch
+uv run slam-study run --method dufomap
+uv run slam-study run --method beautymap
+uv run slam-study report --runs results/runs --output results/local-reproduction.zh-CN.md --lang zh
 ```
 
-上游仓库与数据集**故意不进 git**——单个条目就是几百 MB。每个文件夹的 `README.md` 写明怎么取，
-`reproduce.py` 在开跑前先声明需要什么，所以缺数据会被报成**阻塞**，永远不会被算成通过。
+`fetch` 校验 385 MB 公开压缩包并固定上游提交。`--frames 10` 仅做冒烟检查，不给论文评分。每次输出目录独立，失败无法沿用旧成绩。[环境、指标和导出命令](docs/REPRODUCE.zh-CN.md)。
 
-有几个上游仍是 catkin 体系，在本仓库内构建，不需要 root：
+在准备好的 Linux／WSL 仓库内：
 
 ```bash
-bash reproductions/tools/ros1_env.sh            # micromamba 建 ROS 1 Noetic，剥掉 ROS 2 的库
-bash reproductions/tools/build_ros1_catkin.sh   # catkin 构建，已处理 vtk 头文件与 DSO 两个坑
+bash scripts/setup_linux.sh
+bash scripts/run_reproduction.sh --smoke
+bash scripts/run_reproduction.sh
 ```
 
-## 目录结构
+本机 WSL2 Ubuntu 22.04 已执行 CPU 作者方法和独立 CUDA 语义前端。活跃副本位于 `~/projects/SLAM_Learning`。[WSL 说明](docs/WSL.zh-CN.md)、[语义复现](docs/SEMANTIC.zh-CN.md)。
 
-| 位置 | 内容 |
-| :--- | :--- |
-| [`reproductions/`](reproductions/) | **本仓库的主体**：21 个文件夹，一篇论文一个，外加上面的清单 |
-| [`reproductions/README.md`](reproductions/README.md) | 规则、六件套文件夹约定、驱动的四件事 |
-| [`reproductions/PAPER_BASELINES.md`](reproductions/PAPER_BASELINES.md) | 每篇论文自报的数字，让「复现」先有验收标准 |
-| [`reproductions/NOTES.md`](reproductions/NOTES.md) | 背景分析：两个方向、与任务的契合度、论文报告值、链接核验 |
-| [`reproductions/CANDIDATES.md`](reproductions/CANDIDATES.md) | **下一篇做什么**：87 条候选论文，全部有公开代码，仓库逐一实测可达，按「四条门槛」分档 |
-| [`reproductions/OPEN_PROBLEMS.md`](reproductions/OPEN_PROBLEMS.md) | 从这 87 条里抽出的 14 个开放问题，每条都带最小实验与证伪条件 |
-| [`reproductions/status.json`](reproductions/status.json) | 机器可读的账本，由驱动写出 |
-| [`docs/task-book/TASK_BOOK.md`](docs/task-book/TASK_BOOK.md) | 两个研究方向所依据的任务书 |
-| [`docs/car.md`](docs/car.md) | 八个难点，每个配一条可否证的假设 |
-| [`docs/platform.md`](docs/platform.md) | **归档**：原先随本仓库发布的 ROS 2 / Gazebo 仿真平台 |
+## 接下来的顺序
 
-本仓库最初围绕的 ROS 2 仿真平台（`race_*` 与 `algo_*` 六个包）已移除，仓库现在就是复现账本
-加上它的背景文档。`docs/platform.md` 保留了那个平台的赛场几何、传感器配置与仿真到实机的差距，
-并标为归档。要重新跑起仿真，从
-[Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) 取 `src/`，
-或从本仓库的 git 历史里恢复。
+1. PCL 一致性与作者地图实测动画已完成；论文版本差值仍待解释。
+2. 为语义子集基线补身份／目标标注，建立对应关系失效对照。
+3. 保留或修订瓶颈，再冻结假设与留出验证协议。
+4. 在匹配覆盖率和延迟下比较简单基线，把图、失败案例与原始证据一起发布。
 
-## 状态口径
+## 文档
 
-| 状态 | 含义 |
-| :--- | :--- |
-| 完成 | 在本机跑通，并落在上游报的数字上 |
-| 半完成 | 上游仓库只发布了方法的一半；跑的是有代码的那一半 |
-| 阻塞 | 本机做不了，并写明实测缺什么（内存、CUDA、没有代码） |
-| 计划 | 文件夹与方案已在，`reproduce.py` 还没写 |
+| 阅读 | 内容 |
+| --- | --- |
+| [结果](docs/RESULTS.zh-CN.md) | 已执行方法、探索性观察与原始记录 |
+| [文献](docs/LITERATURE.zh-CN.md) | 近期方向、八篇核心工作与已有解决方案 |
+| [研究笔记](docs/RESEARCH.zh-CN.md) | 复现观察 → 瓶颈 → 候选假设 |
+| [实验计划](docs/PLAN.zh-CN.md) | 复现门槛与后续区分性实验 |
+| [复现](docs/REPRODUCE.zh-CN.md)／[WSL](docs/WSL.zh-CN.md) | 安装、执行、评分与证据导出 |
+| [语义前端](docs/SEMANTIC.zh-CN.md) | 实际 ConceptGraphs 子集、CUDA 环境与查询边界 |
+| [图与视频索引](docs/figures/README.zh-CN.md) | 已发布资产与预留 GIF／视频位置 |
+| [实测汇总](results/REPORT.zh-CN.md) | 从运行记录生成 |
+| [审计](docs/AUDIT.zh-CN.md)／[说明](docs/INTERVIEW.zh-CN.md) | 源码迁移与面试准备 |
 
-## 许可
-
-MIT，见 [LICENSE](LICENSE)。派生自
-[Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench)，作者 p20030920p 与 zfyyyyy。
+全部叙述文档均有独立[英文版本](docs/README.md)。历史文件可由 `af1e58b` 恢复，不贡献当前研究的成绩。

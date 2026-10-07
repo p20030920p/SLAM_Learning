@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "kind": "real_data_pose_sensitivity",
+  "status": "executed",
+  "started_at": "2026-10-07T12:41:58+00:00",
+  "environment": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+    "packages": {
+      "slam-learning": "0.2.0",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.9.2",
+      "dufomap": "1.1.1",
+      "open3d": "0.18.0",
+      "dztimer": "1.1.1"
+    }
+  },
+  "repository": {
+    "commit": "9f3a9ef3891695246b41c2d1396d6efe45e8f685",
+    "dirty": false
+  },
+  "source_sha256": {
+    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
+    "src/slam_learning/adapters.py": "dbc421d7d06cc6c7342a7f3a3f89f8de6d5faef735a8ec87c4d7a449002cb123",
+    "src/slam_learning/cli.py": "e0259e77bfc0dff43cff8a451aca2581d4e31b8ced0e62b4803ea555c2841298",
+    "src/slam_learning/evidence_stress.py": "9957fe5974b3e8308d7287433279aedb8dbac0a89fd2511ca871a2f922e29c60",
+    "src/slam_learning/fetch.py": "fcce0e0fd024030d4f1b19ab1d63abdf1b0d7e5333dc89254520747ee03d03cd",
+    "src/slam_learning/metrics.py": "aeb849e7f3be8d1b54ebbc457317aafbf698d095bb412f4aeb7071fd8637b4dc",
+    "src/slam_learning/pcd.py": "9fc61d5f38920578bb98feb4df0a0967da80cec7187d7299de0d11aee521214d",
+    "src/slam_learning/pose_stress.py": "18f096b34da22a09d729ed141552d7dd49f5abc33c8a8cd61275d27cd6fdbfa6",
+    "src/slam_learning/provenance.py": "7cc155e7ae1e67e8313844217abcc36905f85427417d537e545af8f4a1880a9c",
+    "src/slam_learning/report.py": "778272431fa089b6b52bac0c9196077d6d71b0071497ecd07e30e7f35cb9e7da",
+    "src/slam_learning/runner.py": "addc4555f83f6f9d4d6ff74129daca8ac3e2133f512cb6332a2088c64555a13f",
+    "src/slam_learning/synthetic.py": "f836619ef1b05ade5a1ac0489de832061c0ddee717f1cfeb90a6b99dbee314cd"
+  },
+  "configuration": {
+    "id": "dufomap-correlated-pose-stress",
+    "frames": 141,
+    "translation_amplitudes_m": [
+      0.0,
+      0.1,
+      0.3
+    ],
+    "d_p": [
+      1,
+      2
+    ],
+    "resolution_m": 0.1,
+    "d_s_m": 0.2,
+    "threads": 2,
+    "perturbation": "World-frame scan XYZ and sensor translation both shifted by A*sin(2*pi*i/(N-1)) along x; orientation unchanged.",
+    "metric": "Author segment API point labels, evaluated against exact original point identities; no NN map metric or paper-table comparison.",
+    "scope": "One teaser sequence, one deterministic smooth perturbation per amplitude. Sensitivity diagnostic, not evidence of typical deployment failure."
+  },
+  "config_sha256": "23f4a7eaca27fcacd7ddc1ec7e9ca4cb250682ca7f0c41c381feba812158b124",
+  "artifacts": {
+    "run.log": {
+      "sha256": "433659f97627c09673f86c5cba3e8190fccebc77fe263231103df3b9587e0970",
+      "bytes": 1401,
+      "availability": "portable"
+    },
+    "sensitivity.csv": {
+      "sha256": "e7f936b07d3dcd3d7512747238df6158045e89ee0b9a0a6f08f81c39e501bf55",
+      "bytes": 718,
+      "availability": "portable"
+    },
+    "per_frame.csv": {
+      "sha256": "201e962232844c1b6c09e8573728643456ba4603bdeb838f9d4c964b4d783b90",
+      "bytes": 44462,
+      "availability": "portable"
+    },
+    "summary.json": {
+      "sha256": "61f6dde58b0a0799a5dcae9ad89a2ee11158e56482a416535c1dd86c589dc36e",
+      "bytes": 2588,
+      "availability": "portable"
+    },
+    "sensitivity.png": {
+      "sha256": "25aa40e16d175dd6a17d71d209860ac043ac557b61a0ac5b3263748512a9b8ae",
+      "bytes": 71341,
+      "availability": "portable"
+    }
+  },
+  "dataset": {
+    "manifest_sha256": "d8cf44365828d9906914483ff66d6af87b93ab4611946d0ba99308dfec7c7bd1",
+    "archive_sha256": "14e30a0ddc19f275477aa0e72e6ba713f0f6a6a29dcf7ded8a92ce0c421109fd",
+    "configuration": {
+      "id": "dynamicmap-kitti00-teaser",
+      "record": "https://zenodo.org/records/10886629",
+      "url": "https://zenodo.org/records/10886629/files/00.zip?download=1",
+      "filename": "00.zip",
+      "md5": "87f856c4dd1ad05d0ffd4171f92780a0",
+      "frames": 141,
+      "gt_points": 17362230,
+      "coordinate_frame": "world; sensor origins stored in PCD VIEWPOINT",
+      "scope": "Selected frames, not the full KITTI odometry sequence. Poses supplied by benchmark, not estimated here.",
+      "license_note": "Original KITTI/SemanticKITTI terms apply; data is not redistributed."
+    }
+  },
+  "upstreams": {
+    "dynamicmap": {
+      "url": "https://github.com/KTH-RPL/DynamicMap_Benchmark.git",
+      "commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+      "dirty": false
+    },
+    "dufomap": {
+      "url": "https://github.com/KTH-RPL/dufomap.git",
+      "commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+      "dirty": false
+    }
+  },
+  "scope_note": "One teaser sequence, one deterministic smooth perturbation per amplitude. Sensitivity diagnostic, not evidence of typical deployment failure.",
+  "finished_at": "2026-10-07T12:43:03+00:00"
+}

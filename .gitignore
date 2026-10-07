@@ -1,55 +1,19 @@
-# colcon / ament build artefacts
-build/
-install/
-log/
-
-# catkin (week-style workspaces, kept for compatibility)
-devel/
-.catkin_tools/
-**/build/
-**/devel/
-**/install/
-**/log/
-**/logs/
-
-# Python
+.venv*/
+.cache/
 __pycache__/
 *.py[cod]
 *.egg-info/
-
-# Editors
-.vscode/
-.idea/
-*.swp
-
-# Gazebo camera sensor default dump directory (top_camera::link::top_view_*.png)
-__default__/
-
-# Reproductions: upstream checkouts and datasets stay on the machine that runs
-# them; only what we write (plans, scripts, small results) is committed.
-#
-# `code/` is ignored as a whole directory, not as `code/*`, on purpose: a clone
-# inside it carries its own .git, and git would otherwise record the whole
-# checkout as an embedded repository (a gitlink) rather than as ignored files.
-# Both folders are created when you fetch something, so nothing needs to be
-# tracked to keep them alive.
-reproductions/**/code/
-reproductions/**/data/*
-!reproductions/**/data/.gitkeep
-
-# Reproductions: point-cloud artifacts are hundreds of MB per run (Removert's
-# own output alone is 616 MB). They stay on the machine; the small JSON/text
-# metrics next to them are what gets committed.
-reproductions/**/results/**/*.pcd
-# Per-point intermediates (e.g. one observability count per GT point: 17.4M
-# int16 = 35 MB) are rebuildable from the script that writes them.
-reproductions/**/results/**/*.npy
-# Generated rosparams embed absolute paths of this machine.
-reproductions/**/work/generated/
-reproductions/**/work/descs/
-
-# Reproductions: shared virtualenvs for the Python-based methods, plus the ROS 1
-# catkin workspaces used to build the upstream repos that are still catkin-based
-# (ERASOR / Removert / LT-mapper). Both are machine-local toolchains.
-reproductions/.venvs/
-reproductions/.ws/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+results/runs/
+results/local-reproduction*.md
+data/
+*.pcd
+*.bag
+*.db3
+*.pt
+*.pth
+*.zip
+*.tar*

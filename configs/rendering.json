@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "projection": "fixed bird-eye view for geometric comparison",
+  "world_bounds": null,
+  "bounds_rule": "Choose once from the raw source sequence; persist and reuse for all methods. Do not crop each output independently.",
+  "frame_ids": [],
+  "frame_rule": "Explicit provided teaser entries; show original filenames. Do not imply full consecutive KITTI sampling.",
+  "palette": {
+    "static": "#88929b",
+    "correct_dynamic_removal": "#1b9e77",
+    "false_static_removal": "#d95f45",
+    "missed_dynamic": "#3b78c3",
+    "unknown": "#c4a54a"
+  },
+  "gif_target": {
+    "fps": 8,
+    "max_frames": 21,
+    "suggested_max_mib": 8
+  },
+  "video_target": {
+    "format": "mp4",
+    "preview": "gif or PNG, with a link to the full video"
+  },
+  "sampling_rule": "Compute metrics before display thinning; save fixed seed and identical point selection per comparison.",
+  "metric_scope": "Specify full sequence / frame / ROI separately. Never label display-thinned counts as full evaluation.",
+  "label_rule": "Use scored point identities. Distinguish output-map NN, segment API and GT; never silently mix them.",
+  "offline_rule": "Author cleaned maps use all provided frames; replay is visualization of an offline output, not causal online inference.",
+  "language_rule": "Both editions share geometry/data. Captions are independent; optional localized overlays must be generated from the same config."
+}

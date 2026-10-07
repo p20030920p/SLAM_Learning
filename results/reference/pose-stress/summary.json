@@ -1,0 +1,97 @@
+{
+  "configuration": {
+    "id": "dufomap-correlated-pose-stress",
+    "frames": 141,
+    "translation_amplitudes_m": [
+      0.0,
+      0.1,
+      0.3
+    ],
+    "d_p": [
+      1,
+      2
+    ],
+    "resolution_m": 0.1,
+    "d_s_m": 0.2,
+    "threads": 2,
+    "perturbation": "World-frame scan XYZ and sensor translation both shifted by A*sin(2*pi*i/(N-1)) along x; orientation unchanged.",
+    "metric": "Author segment API point labels, evaluated against exact original point identities; no NN map metric or paper-table comparison.",
+    "scope": "One teaser sequence, one deterministic smooth perturbation per amplitude. Sensitivity diagnostic, not evidence of typical deployment failure."
+  },
+  "exact_gt_scan_identity_verified": true,
+  "gt_points": 17362230,
+  "cells": [
+    {
+      "d_p": 1,
+      "amplitude_m": 0.0,
+      "SA": 92.63398120043111,
+      "DA": 98.96752549930717,
+      "AA": 95.74839892424315,
+      "HA": 95.69607310993584,
+      "kept_static": 15994412,
+      "removed_static": 1271835,
+      "removed_dynamic": 94992,
+      "kept_dynamic": 991
+    },
+    {
+      "d_p": 1,
+      "amplitude_m": 0.1,
+      "SA": 92.6811194117633,
+      "DA": 99.03524582478147,
+      "AA": 95.80551886117993,
+      "HA": 95.75288403715543,
+      "kept_static": 16002551,
+      "removed_static": 1263696,
+      "removed_dynamic": 95057,
+      "kept_dynamic": 926
+    },
+    {
+      "d_p": 1,
+      "amplitude_m": 0.3,
+      "SA": 91.42879167661623,
+      "DA": 99.05399914568204,
+      "AA": 95.16505373626542,
+      "HA": 95.08877325380017,
+      "kept_static": 15786321,
+      "removed_static": 1479926,
+      "removed_dynamic": 95075,
+      "kept_dynamic": 908
+    },
+    {
+      "d_p": 2,
+      "amplitude_m": 0.0,
+      "SA": 99.7816491331324,
+      "DA": 96.39206942896138,
+      "AA": 98.07221650894387,
+      "HA": 98.05757592276848,
+      "kept_static": 17228546,
+      "removed_static": 37701,
+      "removed_dynamic": 92520,
+      "kept_dynamic": 3463
+    },
+    {
+      "d_p": 2,
+      "amplitude_m": 0.1,
+      "SA": 99.79233472103115,
+      "DA": 96.41394830334538,
+      "AA": 98.08859771076165,
+      "HA": 98.07405606545518,
+      "kept_static": 17230391,
+      "removed_static": 35856,
+      "removed_dynamic": 92541,
+      "kept_dynamic": 3442
+    },
+    {
+      "d_p": 2,
+      "amplitude_m": 0.3,
+      "SA": 99.39831742242538,
+      "DA": 96.42540866611796,
+      "AA": 97.90057904926753,
+      "HA": 97.8892963547038,
+      "kept_static": 17162359,
+      "removed_static": 103888,
+      "removed_dynamic": 92552,
+      "kept_dynamic": 3431
+    }
+  ]
+}

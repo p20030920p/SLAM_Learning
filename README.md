@@ -1,130 +1,134 @@
 <div align="center">
 
-# SLAM_Learning
+# SLAM Learning
 
-**One paper per folder, reproduced with the authors' own public code, up to the authors' own numbers. What runs gets a number. What does not gets its missing piece written down in the open.**
+**Reproducing map updates in changing scenes**
 
-[![rule](https://img.shields.io/badge/rule-%E6%9C%89%E5%BA%93%E6%89%8D%E5%A4%8D%E7%8E%B0-2ea043)](reproductions/README.md)
-[![driver](https://img.shields.io/badge/driver-run__all.py-6f42c1)](reproductions/run_all.py)
-[![layout](https://img.shields.io/badge/layout-one%20paper%20per%20folder-1c7ed6)](reproductions/)
-[![License](https://img.shields.io/badge/license-MIT-3DA639)](LICENSE)
+Dynamic point removal · Semantic mapping · Localization uncertainty
 
-[Reproduction checklist](#复现清单-reproduction-checklist) &nbsp;•&nbsp; [How to run](#how-to-run) &nbsp;•&nbsp; [Layout](#layout) &nbsp;•&nbsp; [Reproductions](reproductions/)
+[![Python](https://img.shields.io/badge/Python-3.10-3776AB)](pyproject.toml)
+[![CPU](https://img.shields.io/badge/author%20runs-CPU-356859)](docs/RESULTS.md)
 
-*English &nbsp;|&nbsp; [中文](README.zh-CN.md)*
+[Reproduction](#reproduction) &nbsp;•&nbsp; [Bottleneck](#bottleneck) &nbsp;•&nbsp; [Quick start](#quick-start)
+
+English &nbsp;|&nbsp; [中文](README.zh-CN.md)
 
 </div>
 
-## What this is
+![Raw, removed and retained points in author map replay](docs/figures/replication_hero.gif)
 
-A ledger of paper reproductions. Every entry starts from the authors' own repository, runs on this
-machine, and is checked back against the numbers the paper or the upstream repository itself
-reports. Entries that cannot run here are kept and labelled with the exact missing piece, because
-"we could not run it, and here is what was missing" is a result worth recording.
+> **Measured author-map replay.** Twenty-one selected teaser entries, fixed world view: raw → removed → retained. Green: removed dynamic; red: removed static; blue: retained dynamic. Final offline maps, with GT used only for evaluation/color. [Rendering settings and source records](results/reference/reproduction-media-wsl/record.json).
 
-One rule decides what gets in:
+This repository studies how a robot decides that a mapped surface or object has changed. We start with executable author methods, inspect their outputs and evaluation rules, and then ask which decisions depend on trustworthy localization. The study spans robust mapping in dynamic scenes and persistent semantic maps.
 
-> **No upstream code, no reproduction.** A paper is never re-implemented from its prose.
+| Current material | Scope |
+| --- | --- |
+| Author-method reproduction | DUFOMap and BeautyMap; 141-frame KITTI-00 teaser |
+| Platforms checked | Windows, fresh Ubuntu 22.04 CI and local WSL2 Ubuntu 22.04; CPU author runs |
+| Measurement | Static retention, dynamic removal; paper comparisons kept separate |
+| Exploratory diagnostics | Real-data pose sensitivity; two controlled mechanisms |
+| Semantic frontend | ConceptGraphs on 40 posed Replica observations; 39 objects and text-query coordinates |
+| Next prerequisite | Annotated associations/targets, more scenes and paired pose-error controls |
 
-|  |  |
-| :--- | :--- |
-| Entries | 21 folders across 2 research directions, one paper each |
-| Rule | authors' own code only; no code means the entry stays blocked and says so |
-| Driver | `python3 reproductions/run_all.py` discovers, runs, backtests and rewrites the checklist below |
-| Backtest | each working entry records its metrics in `baselines.json`; a re-run is compared against them |
-| Machine | CPU only, no CUDA. Every green entry runs here; GPU-bound ones are listed as blocked with the reason |
+## Reproduction
 
-This is not a benchmark and not a leaderboard. There is no fixed protocol, and the numbers below are
-the papers' own, reproduced on one machine — not a ranking.
+Both methods completed all 141 frames and were scored against 17,362,230 labeled points. The cleaned maps use the same 5 cm nearest-neighbor evaluation rule. These are map-cleaning runs with supplied poses, not trajectory-estimation or navigation experiments.
 
-<!-- PROGRESS:START -->
+| Author method | SA % ↑ | DA % ↑ | Reported aggregate | Paper-table agreement |
+| --- | ---: | ---: | ---: | --- |
+| DUFOMap 1.1.1 | 97.9798 | 98.7029 | AA 98.3407 | Difference beyond 0.01 pp tolerance |
+| BeautyMap, pinned source | 96.9529 | 98.3382 | HA 97.6407 | Difference beyond 0.01 pp tolerance |
 
-## 复现清单 Reproduction checklist
+*SA retains static points; DA removes dynamic points. AA is geometric and HA harmonic, so the last column is not one shared ranking. Windows and Ubuntu scores agree. [Full protocol, paper values and raw records](docs/RESULTS.md).*
 
-**按「越好复现 + 越能对上原库结果」排序** —— 完成 12 · 半完成 2 · 阻塞 7（共 21） · 更新于 2026-10-06 22:50 CST
+![Author maps on source frame 004390](docs/figures/replication_frame.png)
 
-| # | 状态 | 复现库 | 论文 | 一句话 |
-| :-- | :-- | :-- | :-- | :-- |
-| 01-05 | 完成 | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) | [doi:10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) | 能。与论文表 I 两位小数一致。 |
-| 01-06 | 完成 | [MKJia/BeautyMap](https://github.com/MKJia/BeautyMap) | [arXiv:2405.07283](https://arxiv.org/abs/2405.07283) | 能。命中论文表 I。 |
-| 01-01 | 完成 | [KTH-RPL/DynamicMap_Benchmark](https://github.com/KTH-RPL/DynamicMap_Benchmark) | [arXiv:2307.07260](https://arxiv.org/abs/2307.07260) | 能。官方评测器加 Zenodo 免注册数据，四个方法同表。 |
-| 01-03 | 完成 | [LimHyungTae/ERASOR](https://github.com/LimHyungTae/ERASOR) | [arXiv:2103.04316](https://arxiv.org/abs/2103.04316) | 能，需 ROS 1。官方仓库对上论文表 II。 |
-| 01-04 | 完成 | [irapkaist/removert](https://github.com/irapkaist/removert) | [doi:10.1109/IROS45743.2020.9340856](https://doi.org/10.1109/IROS45743.2020.9340856) | 能，需 ROS 1。官方实现 SA/DA/AA 99.62/89.25/94.29。 |
-| 01-08 | 完成 | [yuhaozhang7/NGD-SLAM](https://github.com/yuhaozhang7/NGD-SLAM) | [arXiv:2405.07392](https://arxiv.org/abs/2405.07392) | 能。纯 CPU，ATE 0.0157 m。 |
-| 01-02 | 完成 | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) | [doi:10.1109/LRA.2023.3236571](https://doi.org/10.1109/LRA.2023.3236571) | 能。PyPI 包加官方 KITTI 00–10，均值 0.53 %。 |
-| 01-10 | 完成 | [cocel-postech/genz-icp](https://github.com/cocel-postech/genz-icp) | [arXiv:2411.06766](https://arxiv.org/abs/2411.06766) | 能。均值 0.52 %，论文 0.51 %。 |
-| 01-09 | 半完成 | [gisbi-kim/lt-mapper](https://github.com/gisbi-kim/lt-mapper) | [arXiv:2107.07712](https://arxiv.org/abs/2107.07712) | 半能。仓库只有变化检测半边。 |
-| 01-11 | 完成 | [dongjae0107/ELite](https://github.com/dongjae0107/ELite) | [arXiv:2502.13452](https://arxiv.org/abs/2502.13452) | 能。AC 0.9708，论文 0.969，纯 CPU。 |
-| 01-12 | 完成 | [UZ-SLAMLab/ORB_SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) | [arXiv:2007.11898](https://arxiv.org/abs/2007.11898) | 能。纯 CPU，RMSE ATE 0.035 至 0.045 m。 |
-| 01-13 | 阻塞 | [MIT-SPARK/Khronos](https://github.com/MIT-SPARK/Khronos) | [arXiv:2402.13817](https://arxiv.org/abs/2402.13817) | 不能。实测需要 13.5 GB 以上内存。 |
-| 02-01 | 半完成 | [WaldJohannaU/3RScan](https://github.com/WaldJohannaU/3RScan) | [arXiv:1908.06109](https://arxiv.org/abs/1908.06109) | 半能。只有数据集与工具，全量数据需申请。 |
-| 02-06 | 阻塞 | [MIT-SPARK/Clio](https://github.com/MIT-SPARK/Clio) | [arXiv:2404.13696](https://arxiv.org/abs/2404.13696) | 不能。论文用 RTX 3090。 |
-| 02-07 | 完成 | [AnyLoc/AnyLoc](https://github.com/AnyLoc/AnyLoc) | [arXiv:2308.00688](https://arxiv.org/abs/2308.00688) | 能。纯 CPU 约 3.3 h，R@1 65.0 与论文一致。 |
-| 02-08 | 完成 | [AnyLoc/Revisit-Anything](https://github.com/AnyLoc/Revisit-Anything) | [arXiv:2409.18049](https://arxiv.org/abs/2409.18049) | 能。纯 CPU 约 25 min，R@1 95.32 与论文一致。 |
-| 02-03 | 阻塞 | [concept-graphs/concept-graphs](https://github.com/concept-graphs/concept-graphs) | [arXiv:2309.16650](https://arxiv.org/abs/2309.16650) | 不能。需 16 至 24 GB 显存与 GPT-4 key。 |
-| 02-04 | 阻塞 | [Eku127/DualMap](https://github.com/Eku127/DualMap) | [arXiv:2506.01950](https://arxiv.org/abs/2506.01950) | 不能。论文用 RTX 4090。 |
-| 02-05 | 阻塞 | [hovsg/HOV-SG](https://github.com/hovsg/HOV-SG) | [arXiv:2403.17846](https://arxiv.org/abs/2403.17846) | 不能。四篇底座里算力最重，论文未写门槛。 |
-| 01-07 | 阻塞 | [ACFR-RPG/DynoSAM](https://github.com/ACFR-RPG/DynoSAM) | [arXiv:2501.11893](https://arxiv.org/abs/2501.11893) | 不能。configure 阶段就要求 CUDA。 |
-| 02-02 | 阻塞 | — | [arXiv:2607.14899](https://arxiv.org/abs/2607.14899) | 不能。代码未发布。 |
+*Source frame `004390`; counts cover the full scan before display thinning. [Run/frame metadata](results/reference/reproduction-media-wsl/render.json).*
 
-> 状态：完成 = 已对上原库数字 · 半完成 = 只做了仓库里有的那一半 · 阻塞 = 本机做不了（缺硬件或没有代码）。
-> 每一行的字段写在对应文件夹的 `baselines.json` 里，本表由 `python3 reproductions/run_all.py` 生成，块内不要手改。
-<!-- PROGRESS:END -->
+The original benchmark PCL evaluator and SciPy agree on **every one of 17,362,230 GT points for each map**, with zero disagreements. This excludes the evaluator implementation as the cause of these paper-table differences; it does not resolve version/parameter differences. [Cross-check evidence](results/reference/evaluation-check-wsl/summary.json).
 
-## How to run
+A second diagnostic uses DUFOMap's direct point-label API. A larger pose margin preserves more static points but misses more dynamic ones; a small injected pose error does not always reduce the score. Its values cannot be merged into the map-correspondence table above.
+
+![DUFOMap direct-label sensitivity on the real teaser](results/reference/pose-stress/sensitivity.png)
+
+*Three smooth translation amplitudes, two pose margins, one sequence. A sensitivity observation, not a general failure claim.*
+
+## Bottleneck
+
+The working question is **whether a change residual can be separated from localization error, and whether another observation supplies independent evidence**. One pose error can shift many object correspondences together. Without stable anchors, coherent object motion can also resemble camera motion.
+
+This is a candidate structural bottleneck. The real runs establish pose-margin tradeoffs and an evaluation gap; a first semantic frontend is executable, while a shared empirical failure still needs annotated pose-error controls. Khronos already jointly optimizes poses and structure, while newer persistent maps already handle visibility and memory. [Paper-by-paper assumptions and counterexamples](docs/LITERATURE.md).
+
+<!-- MEDIA: bottleneck-diagram -->
+<!-- ![Pose uncertainty, association and provisional map updates](docs/figures/bottleneck_diagram.svg) -->
+
+*Diagram slot: supplied/estimated pose → correspondence → change evidence → map update; mark which uncertainty is shared and which edits can be revised. Slot: `docs/figures/bottleneck_diagram.svg`.*
+
+## Candidate hypothesis
+
+At matched query coverage, update latency and observation budget, accounting for shared pose uncertainty before committing changes may reduce false deletion and stale-target error compared with visibility-aware threshold and independent-noise baselines. Enough stable geometry or external pose information must be available.
+
+The hypothesis is **not frozen for confirmation**. The original PCL/map-NN comparison and a first semantic subset baseline are complete. Annotation and pose-error controls remain before confirmation. The criterion for rejecting it is written in [the research note](docs/RESEARCH.md); [the experiment plan](docs/PLAN.md) specifies the next gates.
+
+## Exploratory experiments
+
+Existing experiments help formulate the question. They are not held-out validation of a hypothesis selected after seeing them.
+
+| Exploration | Observation | Boundary |
+| --- | --- | --- |
+| Pose–motion ambiguity | Common-mode correction and visibility help with minority movers | A coherent moving majority fools the median correction |
+| Correlated evidence | Independent pose-noise inference becomes overconfident under one shared bias | Shared-latent inference has lower changed-object recall and uses known noise scales |
+
+![Confidence under observations that share one pose bias](results/reference/evidence-stress/calibration.png)
+
+*A 1D synthetic model, not a semantic SLAM implementation. Report false deletion, recall and calibration together. [All trials and negative results](docs/RESULTS.md).*
+
+<!-- MEDIA: pose-drift-video / semantic-update-video / risk-coverage -->
+*Future comparison slots: `docs/figures/pose_drift.gif`, `docs/figures/semantic_update.mp4`, `docs/figures/risk_coverage.png`. The [media index](docs/figures/README.md) fixes inputs, camera, colors and publication requirements before rendering.*
+
+## Quick start
+
+Python 3.10 and exact dependencies are selected by the lockfile. CUDA is unnecessary for the current author methods.
 
 ```bash
-git clone https://github.com/p20030920p/SLAM_Learning.git
-cd SLAM_Learning
-python3 reproductions/run_all.py                 # discover, run, backtest, refresh the checklist
-python3 reproductions/run_all.py --only 02-01    # one entry
-python3 reproductions/run_all.py --check         # no re-run: re-render the checklist from status.json
-python3 reproductions/run_all.py --no-backtest   # skip the comparison against baselines.json
+uv sync --frozen --python 3.10 --extra methods --extra dev
+uv run slam-study fetch
+uv run slam-study run --method dufomap
+uv run slam-study run --method beautymap
+uv run slam-study report --runs results/runs --output results/local-reproduction.md
 ```
 
-Upstream checkouts and datasets are deliberately **not** in git — they are hundreds of megabytes per
-entry. Each folder's `README.md` says how to fetch what it needs, and `reproduce.py` declares the
-requirement before it runs, so a missing dataset is reported as *blocked*, never as a pass.
+`fetch` verifies a 385 MB public archive and pins upstream commits. `--frames 10` is smoke-only, with no paper score. Fresh output directories prevent an old result from surviving a failed rerun. [Environment, metrics and export commands](docs/REPRODUCE.md).
 
-Some upstreams are still catkin-based. They are built inside this repository, without root:
+Inside a prepared Linux/WSL checkout:
 
 ```bash
-bash reproductions/tools/ros1_env.sh            # micromamba ROS 1 Noetic, ROS 2 libs stripped
-bash reproductions/tools/build_ros1_catkin.sh   # catkin build, with the vtk-header and DSO pitfalls handled
+bash scripts/setup_linux.sh
+bash scripts/run_reproduction.sh --smoke
+bash scripts/run_reproduction.sh
 ```
 
-## Layout
+Local WSL2 Ubuntu 22.04 has now executed the CPU author methods and a separate CUDA semantic frontend. The active checkout is `~/projects/SLAM_Learning`. [WSL setup](docs/WSL.md), [semantic reproduction](docs/SEMANTIC.md).
 
-| Path | What it holds |
-| :--- | :--- |
-| [`reproductions/`](reproductions/) | **the repository**: 21 folders, one paper each, plus the checklist above |
-| [`reproductions/README.md`](reproductions/README.md) | the rule, the six-file folder contract, the driver's four passes |
-| [`reproductions/PAPER_BASELINES.md`](reproductions/PAPER_BASELINES.md) | what each paper claims, so a run has an acceptance threshold at all |
-| [`reproductions/NOTES.md`](reproductions/NOTES.md) | background analysis: the two directions, fit to the task, reported numbers, link checks |
-| [`reproductions/CANDIDATES.md`](reproductions/CANDIDATES.md) | **what to reproduce next**: 87 candidate papers that all ship public code, every repository fetched live, ranked by how many of the four gates they clear |
-| [`reproductions/OPEN_PROBLEMS.md`](reproductions/OPEN_PROBLEMS.md) | 14 open problems drawn from those 87, each with a minimal experiment and a stated falsifier |
-| [`reproductions/status.json`](reproductions/status.json) | machine-readable ledger, written by the driver |
-| [`docs/task-book/TASK_BOOK.md`](docs/task-book/TASK_BOOK.md) | the task book the two directions come from |
-| [`docs/car.md`](docs/car.md) | the eight difficulties, each with a falsifiable hypothesis |
-| [`docs/platform.md`](docs/platform.md) | **archived**: the ROS 2 / Gazebo simulator that used to ship here |
+## Next sequence
 
-The ROS 2 simulator this repository was originally built around (the `race_*` and `algo_*`
-packages) has been removed; the repository is now the reproduction ledger plus its background
-documents. `docs/platform.md` keeps that platform's arena geometry, sensor rig and sim-to-hardware
-notes, marked as archived. To run the simulator again, take `src/` from
-[Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) or restore it from this
-repository's git history.
+1. PCL agreement and the measured author-map replay are complete; paper-version differences remain.
+2. Extend the semantic subset baseline with annotated identities/targets and correspondence failure controls.
+3. Retain or revise the bottleneck, then freeze a hypothesis and held-out protocol.
+4. Compare simple baselines at matched coverage and latency; publish figures, failures and raw evidence together.
 
-## Status vocabulary
+## Documentation
 
-| Status | Meaning |
-| :--- | :--- |
-| 完成 · done | ran here and landed on the number the upstream reports |
-| 半完成 · half | the upstream repository only ships part of the method; that part was reproduced |
-| 阻塞 · blocked | cannot run on this machine, with the measured missing piece named (RAM, CUDA, no code) |
-| 计划 · planned | folder and plan exist, `reproduce.py` does not yet |
+| Read | Contents |
+| --- | --- |
+| [Results](docs/RESULTS.md) | Executed methods, exploratory observations and raw records |
+| [Literature](docs/LITERATURE.md) | Recent directions, eight core papers, existing solutions |
+| [Research note](docs/RESEARCH.md) | Observation → bottleneck → candidate hypothesis |
+| [Experiment plan](docs/PLAN.md) | Reproduction gates and future discriminating experiments |
+| [Reproduction](docs/REPRODUCE.md) / [WSL](docs/WSL.md) | Installation, execution, scoring and evidence export |
+| [Semantic frontend](docs/SEMANTIC.md) | Actual ConceptGraphs subset, CUDA environment and query limits |
+| [Figure and video index](docs/figures/README.md) | Published assets and reserved GIF/video slots |
+| [Measured ledger](results/REPORT.md) | Generated from run records |
+| [Audit](docs/AUDIT.md) / [Disclosure](docs/INTERVIEW.md) | Source migration and interview preparation |
 
-## Licence
-
-MIT, see [LICENSE](LICENSE). Derived from
-[Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) by p20030920p and zfyyyyy.
+Every narrative document has an independent [Chinese counterpart](docs/README.zh-CN.md). Historical files remain recoverable at `af1e58b`; they do not contribute scores to the current study.

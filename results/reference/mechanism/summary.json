@@ -1,0 +1,5451 @@
+{
+  "threshold_m": 0.060191140283201765,
+  "configuration": {
+    "id": "pose-change-ambiguity",
+    "kind": "controlled_synthetic_mechanism_test",
+    "objects": 30,
+    "validation_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "test_seeds": [
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129
+    ],
+    "pose_bias_m": [
+      0.0,
+      0.15,
+      0.3,
+      0.6
+    ],
+    "moved_fraction": [
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ],
+    "occlusion_fraction": [
+      0.0,
+      0.5
+    ],
+    "noise_sigma_m": 0.02,
+    "object_displacement_m": 1.0,
+    "noise_gate_quantile": 0.99,
+    "bootstrap_samples": 1000,
+    "note": "Perfect instance associations and externally supplied visibility. No VLM, RGBD frontend, SLAM trajectory, or navigation execution is reproduced."
+  },
+  "cells": [
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0,
+          0.015277777777777777
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005537785380176665,
+        "ci95": [
+          0.00501765332827677,
+          0.00603239601733062
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0,
+          0.015277777777777777
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005537785380176665,
+        "ci95": [
+          0.005030211755264578,
+          0.006044265866826582
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.015277777777777776,
+        "ci95": [
+          0.005555555555555555,
+          0.026423611111111082
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.0062057544433094065,
+        "ci95": [
+          0.005515589064742884,
+          0.006950627941262185
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.007900013354571406,
+        "ci95": [
+          0.006543155802090896,
+          0.00939082787312028
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.015277777777777776,
+        "ci95": [
+          0.005555555555555555,
+          0.025
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.0062057544433094065,
+        "ci95": [
+          0.005515909488919119,
+          0.006907831734790623
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.007900013354571406,
+        "ci95": [
+          0.00655643909067056,
+          0.009418094562733173
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.49583333333333346,
+        "ci95": [
+          0.4708333333333334,
+          0.5222222222222223
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4711111111111111,
+          0.5155833333333333
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.004877854329664647,
+        "ci95": [
+          0.0038699774750602235,
+          0.005971394360538019
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.005555555555555555,
+        "ci95": [
+          0.0,
+          0.0125
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4222222222222223,
+        "ci95": [
+          0.3611111111111112,
+          0.4833333333333333
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47111111111111115,
+          0.5166666666666666
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.004877854329664647,
+        "ci95": [
+          0.0038404544262987715,
+          0.005993379120979045
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.49861111111111117,
+        "ci95": [
+          0.475,
+          0.5236111111111111
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4677777777777778,
+          0.5144722222222222
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005288239647537374,
+        "ci95": [
+          0.004281312226517312,
+          0.006689517083759071
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.010079119017096065,
+        "ci95": [
+          0.00848177730497455,
+          0.011674155524680813
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.008333333333333333,
+        "ci95": [
+          0.0013888888888888887,
+          0.015277777777777779
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4222222222222223,
+        "ci95": [
+          0.3611111111111111,
+          0.4833333333333333
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5166666666666667
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005288239647537374,
+        "ci95": [
+          0.004233103154374933,
+          0.0064023829386004785
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.010079119017096065,
+        "ci95": [
+          0.0085240638719044,
+          0.01166409604437018
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.00925925925925926,
+        "ci95": [
+          0.0,
+          0.020370370370370372
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.010571612739206768,
+        "ci95": [
+          0.009962590904236845,
+          0.011136730049241634
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.00925925925925926,
+        "ci95": [
+          0.0,
+          0.020370370370370372
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.010571612739206768,
+        "ci95": [
+          0.009939742978790897,
+          0.011184623939527372
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.044444444444444446,
+        "ci95": [
+          0.025925925925925925,
+          0.06481481481481483
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014327119705556028,
+        "ci95": [
+          0.013283384292803567,
+          0.015484987629689147
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.01923423893224027,
+        "ci95": [
+          0.0174388353821791,
+          0.021124910914844735
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.044444444444444446,
+        "ci95": [
+          0.027777777777777776,
+          0.061111111111111116
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014327119705556028,
+        "ci95": [
+          0.013222351569832536,
+          0.015570221583402388
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.01923423893224027,
+        "ci95": [
+          0.017323150928858607,
+          0.02106668393573331
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.4870370370370371,
+        "ci95": [
+          0.46296296296296297,
+          0.5111111111111111
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4677777777777778,
+          0.5166666666666667
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.009637919814574217,
+        "ci95": [
+          0.008453199453879918,
+          0.010810109778022435
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.007407407407407407,
+        "ci95": [
+          0.0,
+          0.016666666666666666
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.45,
+        "ci95": [
+          0.40277777777777773,
+          0.4944444444444444
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47000000000000003,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.009637919814574217,
+        "ci95": [
+          0.008398025971066501,
+          0.010742800433201468
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5333333333333333,
+        "ci95": [
+          0.48888888888888893,
+          0.5870833333333333
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46777777777777785,
+          0.5144722222222222
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.043858521165344416,
+        "ci95": [
+          0.011317607877165663,
+          0.09159633201597409
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.04852920539948762,
+        "ci95": [
+          0.01581944375610861,
+          0.09614998187542344
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.053703703703703705,
+        "ci95": [
+          0.01851851851851852,
+          0.09444444444444443
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.45,
+        "ci95": [
+          0.40277777777777773,
+          0.4972222222222221
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4699722222222222,
+          0.5166666666666667
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.043858521165344416,
+        "ci95": [
+          0.011221296625551857,
+          0.09171448587488368
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.04852920539948762,
+        "ci95": [
+          0.015820105386913186,
+          0.09628177132303639
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.008333333333333333,
+        "ci95": [
+          0.0,
+          0.02222222222222222
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.015403249184795914,
+        "ci95": [
+          0.0147073263719576,
+          0.016052055454091857
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.008333333333333333,
+        "ci95": [
+          0.0,
+          0.02222222222222222
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.015403249184795914,
+        "ci95": [
+          0.014700692528902682,
+          0.016094287855328765
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.03703703703703704,
+        "ci95": [
+          0.022175925925925925,
+          0.05370370370370371
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9904344756655415,
+        "ci95": [
+          0.9891810592998825,
+          0.9917411780956289
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9786845721236744,
+        "ci95": [
+          0.9762504029896232,
+          0.9810871921946318
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.03703703703703704,
+        "ci95": [
+          0.022222222222222223,
+          0.05185185185185186
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9904344756655415,
+        "ci95": [
+          0.9891748798232207,
+          0.9918837644083248
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9786845721236744,
+        "ci95": [
+          0.9761494879781144,
+          0.981216595028192
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.4749999999999999,
+        "ci95": [
+          0.43333333333333346,
+          0.5222222222222221
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4677777777777779,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014579852216330109,
+        "ci95": [
+          0.013320426691137937,
+          0.015770219323927654
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.008333333333333333,
+        "ci95": [
+          0.0,
+          0.02222222222222222
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.46481481481481474,
+        "ci95": [
+          0.4314351851851852,
+          0.5
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888886,
+          0.5144444444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014579852216330109,
+        "ci95": [
+          0.013487440084180066,
+          0.01585075989567787
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.8861111111111112,
+        "ci95": [
+          0.8000000000000002,
+          0.9611805555555555
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.6925925925925926,
+        "ci95": [
+          0.6037037037037037,
+          0.7796296296296297
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888897,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.7126440427321893,
+        "ci95": [
+          0.5660347831911757,
+          0.844633862235951
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.7079216372938539,
+        "ci95": [
+          0.565570833932141,
+          0.83530471801276
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.41944444444444445,
+        "ci95": [
+          0.3415972222222222,
+          0.4972222222222222
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.1574074074074074,
+        "ci95": [
+          0.09074074074074073,
+          0.22592592592592595
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46886111111111106,
+          0.5177777777777778
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.7126440427321893,
+        "ci95": [
+          0.5808200706704747,
+          0.842344327788342
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.7079216372938539,
+        "ci95": [
+          0.5790160360158545,
+          0.8359920991151863
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.016666666666666666,
+        "ci95": [
+          0.0,
+          0.04444444444444444
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.020578176296892594,
+        "ci95": [
+          0.01987785242639099,
+          0.021253695693701558
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.016666666666666666,
+        "ci95": [
+          0.0,
+          0.03888888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.020578176296892594,
+        "ci95": [
+          0.019906534849244838,
+          0.021250223625401864
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.012500000000000002
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9984647361300758,
+        "ci95": [
+          0.9975867992369649,
+          0.9992764650237562
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9917470997452986,
+        "ci95": [
+          0.9898317649158401,
+          0.99371656417285
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.012500000000000002
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9984647361300758,
+        "ci95": [
+          0.9975918439276273,
+          0.9993302670940684
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9917470997452986,
+        "ci95": [
+          0.9898523720179557,
+          0.993656784326801
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.49444444444444446,
+        "ci95": [
+          0.43333333333333335,
+          0.5611111111111111
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5166666666666667
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.020424678279355585,
+        "ci95": [
+          0.019327361862109815,
+          0.021574782610510115
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.016666666666666666,
+        "ci95": [
+          0.0,
+          0.04444444444444444
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4847222222222222,
+        "ci95": [
+          0.45555555555555555,
+          0.5125
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46777777777777785,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.020424678279355585,
+        "ci95": [
+          0.01929805823265431,
+          0.02154077400570575
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.4930555555555556,
+          0.5472569444444445
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47000000000000003,
+          0.5155833333333333
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9977966127802765,
+        "ci95": [
+          0.9966143961305202,
+          0.9988612954713288
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.99167185312878,
+        "ci95": [
+          0.989465761058271,
+          0.9938683958374002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.0,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.45555555555555555,
+          0.5888888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.015277777777777776
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888897,
+          0.5144444444444444
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9977966127802765,
+        "ci95": [
+          0.9965943194872559,
+          0.9989171638999399
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.99167185312878,
+        "ci95": [
+          0.9895270562942775,
+          0.9938275357650612
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15038472392905863,
+        "ci95": [
+          0.14901507319132212,
+          0.15165146164757043
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15038472392905863,
+        "ci95": [
+          0.14906645189097997,
+          0.15164467335053153
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.015277777777777776,
+        "ci95": [
+          0.005555555555555555,
+          0.027777777777777776
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.006205754443309414,
+        "ci95": [
+          0.005544337828839221,
+          0.006929646507729525
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.007900013354571404,
+        "ci95": [
+          0.006465493419192111,
+          0.00939519969239761
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.015277777777777776,
+        "ci95": [
+          0.005555555555555555,
+          0.02638888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.006205754443309414,
+        "ci95": [
+          0.0055659598939440625,
+          0.0068885254002411574
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.007900013354571404,
+        "ci95": [
+          0.006487822552148611,
+          0.009449275989040438
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4666666666666667,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.1511191284395159,
+        "ci95": [
+          0.14965848763650969,
+          0.15265259323391772
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5097222222222223,
+        "ci95": [
+          0.48194444444444445,
+          0.5361111111111112
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4222222222222223,
+        "ci95": [
+          0.3611111111111112,
+          0.47791666666666655
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46777777777777785,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.1511191284395159,
+        "ci95": [
+          0.14969024221936963,
+          0.1525757926223989
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.49861111111111117,
+        "ci95": [
+          0.47361111111111115,
+          0.5236111111111111
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46886111111111106,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005288239647537376,
+        "ci95": [
+          0.004199423858384251,
+          0.006553583733331432
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.010079119017096065,
+        "ci95": [
+          0.00846548969627918,
+          0.011551034485010164
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.008333333333333333,
+        "ci95": [
+          0.0013888888888888887,
+          0.016666666666666666
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4222222222222223,
+        "ci95": [
+          0.36111111111111105,
+          0.4777777777777778
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4710833333333333,
+          0.5177777777777777
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005288239647537376,
+        "ci95": [
+          0.004234557906674438,
+          0.006450387490871619
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.010079119017096065,
+        "ci95": [
+          0.008519715934944874,
+          0.011693973284812776
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.1503847239290586,
+        "ci95": [
+          0.1489945679551935,
+          0.15171523454040112
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.1503847239290586,
+        "ci95": [
+          0.14904951119307386,
+          0.15162959358353137
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.044444444444444446,
+        "ci95": [
+          0.027777777777777776,
+          0.06296296296296297
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014327119705556045,
+        "ci95": [
+          0.013249104561728267,
+          0.015496383116378252
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.019234238932240265,
+        "ci95": [
+          0.017550469496746317,
+          0.020981807778878404
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.044444444444444446,
+        "ci95": [
+          0.027777777777777776,
+          0.06296296296296296
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014327119705556045,
+        "ci95": [
+          0.013276446023539765,
+          0.015455319318731809
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.019234238932240265,
+        "ci95": [
+          0.0174283983319174,
+          0.021064616650249807
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46777777777777785,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15111912843951586,
+        "ci95": [
+          0.14966769271012031,
+          0.15257456282712825
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5203703703703703,
+        "ci95": [
+          0.4962962962962963,
+          0.5462962962962963
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.45,
+        "ci95": [
+          0.40548611111111105,
+          0.4972222222222222
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5166666666666666
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15111912843951586,
+        "ci95": [
+          0.14971058167183157,
+          0.15265619237013503
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5333333333333333,
+        "ci95": [
+          0.4888888888888889,
+          0.5851851851851853
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888886,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.04385852116534442,
+        "ci95": [
+          0.01111660874697488,
+          0.09204655898877347
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.04852920539948761,
+        "ci95": [
+          0.015634997707591344,
+          0.09559121140930965
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.053703703703703705,
+        "ci95": [
+          0.020370370370370372,
+          0.10004629629629626
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.45,
+        "ci95": [
+          0.40555555555555556,
+          0.4944444444444444
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5177777777777778
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.04385852116534442,
+        "ci95": [
+          0.011402982978996666,
+          0.09250812971190253
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.04852920539948761,
+        "ci95": [
+          0.016013945727092076,
+          0.09546824016819219
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.1503847239290586,
+        "ci95": [
+          0.14915927063919315,
+          0.15162261676569105
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.1503847239290586,
+        "ci95": [
+          0.14910780711901966,
+          0.15163290716342623
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.03703703703703704,
+        "ci95": [
+          0.02222222222222222,
+          0.05185185185185186
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9904344756655415,
+        "ci95": [
+          0.98920097434776,
+          0.9916499091196853
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9786845721236743,
+        "ci95": [
+          0.9762616095627947,
+          0.981094768407078
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.03703703703703704,
+        "ci95": [
+          0.024074074074074078,
+          0.053703703703703705
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9904344756655415,
+        "ci95": [
+          0.9890076605033933,
+          0.9918008368451667
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9786845721236743,
+        "ci95": [
+          0.9762645917307304,
+          0.9812180874298315
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46775,
+          0.5155833333333333
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15111912843951583,
+        "ci95": [
+          0.14963624132814493,
+          0.152634394063273
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5333333333333333,
+        "ci95": [
+          0.4916666666666666,
+          0.5777777777777777
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.46481481481481474,
+        "ci95": [
+          0.42962962962962964,
+          0.5037037037037037
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46886111111111106,
+          0.5155833333333333
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15111912843951583,
+        "ci95": [
+          0.14960652763547796,
+          0.15261299877556828
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.8861111111111112,
+        "ci95": [
+          0.805486111111111,
+          0.966736111111111
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.6925925925925926,
+        "ci95": [
+          0.6055555555555556,
+          0.7833333333333333
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5166944444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.7126440427321893,
+        "ci95": [
+          0.5804839969966507,
+          0.840298346928746
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.7079216372938537,
+        "ci95": [
+          0.564667167107425,
+          0.8367373130317061
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.41944444444444445,
+        "ci95": [
+          0.33611111111111114,
+          0.4944444444444444
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.1574074074074074,
+        "ci95": [
+          0.08703703703703704,
+          0.22777777777777775
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46777777777777785,
+          0.5166944444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.7126440427321893,
+        "ci95": [
+          0.5667716607401696,
+          0.8419278246602108
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.7079216372938537,
+        "ci95": [
+          0.57883567078865,
+          0.8385123372314419
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15038472392905858,
+        "ci95": [
+          0.1490747370029086,
+          0.1516007176588037
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15038472392905858,
+        "ci95": [
+          0.14909566731602045,
+          0.15170290971618883
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.0125
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9984647361300758,
+        "ci95": [
+          0.9975826314140783,
+          0.9993046740663543
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9917470997452985,
+        "ci95": [
+          0.9896699607208919,
+          0.9934933073071593
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.0125
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9984647361300758,
+        "ci95": [
+          0.9975804941728379,
+          0.9992984601919038
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9917470997452985,
+        "ci95": [
+          0.9898201390333199,
+          0.9937157322346992
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888886,
+          0.5144444444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15111912843951583,
+        "ci95": [
+          0.14955198152418683,
+          0.15269217360604734
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.45555555555555555,
+          0.5888888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4847222222222222,
+        "ci95": [
+          0.4569097222222221,
+          0.5138888888888888
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888897,
+          0.5144444444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.15111912843951583,
+        "ci95": [
+          0.1496757092882728,
+          0.15251568596279305
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.15000000000000002,
+        "ci95": [
+          0.15000000000000002,
+          0.15000000000000002
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.4930555555555555,
+          0.55
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4699722222222222,
+          0.5144444444444444
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9977966127802765,
+        "ci95": [
+          0.9965428021919444,
+          0.9990244140818726
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.99167185312878,
+        "ci95": [
+          0.9896772166254968,
+          0.9938560545286215
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.15,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.4555555555555555,
+          0.5834722222222223
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.01388888888888889
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4677777777777778,
+          0.5177777777777778
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9977966127802765,
+        "ci95": [
+          0.9965619679000111,
+          0.9990257271189854
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.99167185312878,
+        "ci95": [
+          0.9893836213442817,
+          0.9938832574294716
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.2996958724228465,
+        "ci95": [
+          0.29833399704827435,
+          0.3009624583471113
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.2996958724228465,
+        "ci95": [
+          0.29842824552382097,
+          0.3009728725607215
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.015277777777777776,
+        "ci95": [
+          0.006944444444444444,
+          0.027777777777777773
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.006205754443309411,
+        "ci95": [
+          0.005517284409192477,
+          0.0069663848614847585
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.007900013354571416,
+        "ci95": [
+          0.006452401237552258,
+          0.009370929837962004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.015277777777777776,
+        "ci95": [
+          0.005555555555555555,
+          0.02638888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.006205754443309411,
+        "ci95": [
+          0.005520807998192097,
+          0.006913361085317387
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.007900013354571416,
+        "ci95": [
+          0.006513513767026134,
+          0.00945020118589762
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888897,
+          0.5155833333333333
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.300414699473987,
+        "ci95": [
+          0.29899513363936514,
+          0.30186795477223116
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5097222222222223,
+        "ci95": [
+          0.4847222222222222,
+          0.5347569444444444
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4222222222222223,
+        "ci95": [
+          0.3611111111111111,
+          0.4779166666666666
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4677777777777778,
+          0.5155833333333333
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.300414699473987,
+        "ci95": [
+          0.29896835450409004,
+          0.30195123097503823
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.49861111111111117,
+        "ci95": [
+          0.47222222222222227,
+          0.5236111111111111
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47000000000000003,
+          0.5166944444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005288239647537373,
+        "ci95": [
+          0.0040872380978217385,
+          0.00637649764323623
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.010079119017096065,
+        "ci95": [
+          0.008512860064091354,
+          0.011600498677345835
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.008333333333333333,
+        "ci95": [
+          0.0027777777777777775,
+          0.016666666666666666
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4222222222222223,
+        "ci95": [
+          0.35555555555555557,
+          0.4777777777777778
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888886,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005288239647537373,
+        "ci95": [
+          0.00423536890723062,
+          0.006440064212309684
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.010079119017096065,
+        "ci95": [
+          0.008582762045484638,
+          0.011661862404076483
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.2996958724228465,
+        "ci95": [
+          0.29839243855078196,
+          0.30098049175326025
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.2996958724228465,
+        "ci95": [
+          0.2983107096958743,
+          0.30096668437018714
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.044444444444444446,
+        "ci95": [
+          0.02592592592592593,
+          0.06296296296296297
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014327119705556012,
+        "ci95": [
+          0.013282359817753319,
+          0.015606288595006458
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.019234238932240265,
+        "ci95": [
+          0.017349617760285863,
+          0.02094438296464526
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.044444444444444446,
+        "ci95": [
+          0.02777777777777778,
+          0.06296296296296297
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014327119705556012,
+        "ci95": [
+          0.013304540052830379,
+          0.01554263078112441
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.019234238932240265,
+        "ci95": [
+          0.01734909221774035,
+          0.020978563931089784
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47111111111111115,
+          0.5166666666666666
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.3004146994739871,
+        "ci95": [
+          0.29896279730072284,
+          0.30198900091970743
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5203703703703703,
+        "ci95": [
+          0.4962962962962963,
+          0.5444907407407408
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.45,
+        "ci95": [
+          0.4,
+          0.49999999999999994
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888886,
+          0.5166666666666667
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.3004146994739871,
+        "ci95": [
+          0.2988826449354227,
+          0.3018240310740179
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5333333333333333,
+        "ci95": [
+          0.48888888888888893,
+          0.5833333333333334
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4677777777777778,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.043858521165344416,
+        "ci95": [
+          0.011042767000689553,
+          0.09180437511460658
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.04852920539948762,
+        "ci95": [
+          0.016233096840518362,
+          0.09584494565365562
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.053703703703703705,
+        "ci95": [
+          0.020370370370370372,
+          0.09999999999999999
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.45,
+        "ci95": [
+          0.40548611111111105,
+          0.5027777777777777
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.043858521165344416,
+        "ci95": [
+          0.011267247818194555,
+          0.09177180047015891
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.04852920539948762,
+        "ci95": [
+          0.015778045333606622,
+          0.09643679074655233
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.2996958724228465,
+        "ci95": [
+          0.2983692167373963,
+          0.30096016801844194
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.2996958724228465,
+        "ci95": [
+          0.29836099471305294,
+          0.30097548473997643
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.03703703703703704,
+        "ci95": [
+          0.022222222222222223,
+          0.0537037037037037
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9904344756655415,
+        "ci95": [
+          0.9890676618643343,
+          0.991768102081599
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9786845721236744,
+        "ci95": [
+          0.9761754343249989,
+          0.9814168222301688
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.03703703703703704,
+        "ci95": [
+          0.02222222222222222,
+          0.053703703703703705
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9904344756655415,
+        "ci95": [
+          0.9891599190848992,
+          0.9918168758640536
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9786845721236744,
+        "ci95": [
+          0.9761983708247878,
+          0.9812647652015603
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46886111111111106,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.3004146994739871,
+        "ci95": [
+          0.29890897821165746,
+          0.301866617170394
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5333333333333333,
+        "ci95": [
+          0.48888888888888893,
+          0.5778472222222222
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.46481481481481474,
+        "ci95": [
+          0.4314814814814815,
+          0.5
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888897,
+          0.5155833333333333
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.3004146994739871,
+        "ci95": [
+          0.29897662674490066,
+          0.30205803016966043
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.8861111111111112,
+        "ci95": [
+          0.7971527777777779,
+          0.9638888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.6925925925925926,
+        "ci95": [
+          0.6055555555555556,
+          0.7833333333333333
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888886,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.7126440427321893,
+        "ci95": [
+          0.5668711453493931,
+          0.8448676891610738
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.7079216372938539,
+        "ci95": [
+          0.550626167988021,
+          0.8368169705814642
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.41944444444444445,
+        "ci95": [
+          0.3360416666666666,
+          0.49166666666666664
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.1574074074074074,
+        "ci95": [
+          0.08884259259259258,
+          0.2259722222222222
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46886111111111106,
+          0.5166944444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.7126440427321893,
+        "ci95": [
+          0.5666438153624197,
+          0.8435085750143931
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.7079216372938539,
+        "ci95": [
+          0.5631028966158401,
+          0.8346393306403993
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.2996958724228465,
+        "ci95": [
+          0.29847337979501903,
+          0.3009913871861679
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.2996958724228465,
+        "ci95": [
+          0.29837375160223883,
+          0.3009692457430375
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.0125
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9984647361300758,
+        "ci95": [
+          0.9976234185846357,
+          0.9992811367452435
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9917470997452986,
+        "ci95": [
+          0.9897124959278308,
+          0.9937154070192832
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.01388888888888889
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9984647361300758,
+        "ci95": [
+          0.9976067412203732,
+          0.9993144987873953
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9917470997452986,
+        "ci95": [
+          0.9896842478710041,
+          0.9936385057597977
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4677777777777778,
+          0.5177777777777778
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.3004146994739871,
+        "ci95": [
+          0.2990135264774577,
+          0.301890701157536
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.46111111111111114,
+          0.5944444444444444
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4847222222222222,
+        "ci95": [
+          0.4569444444444445,
+          0.5138888888888888
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46886111111111106,
+          0.5155833333333333
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.3004146994739871,
+        "ci95": [
+          0.2989159167751056,
+          0.3018641978089952
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.30000000000000004,
+        "ci95": [
+          0.30000000000000004,
+          0.30000000000000004
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.4930555555555555,
+          0.55
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46777777777777785,
+          0.5166666666666667
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9977966127802765,
+        "ci95": [
+          0.9966386498148281,
+          0.998952455722722
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.99167185312878,
+        "ci95": [
+          0.9893808478112261,
+          0.9938014915822899
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.3,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.45,
+          0.5888888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.013888888888888888
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4677777777777778,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9977966127802765,
+        "ci95": [
+          0.99653115455171,
+          0.9989293846790958
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.99167185312878,
+        "ci95": [
+          0.9895957051201639,
+          0.9938013990979055
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.5993566575176246,
+        "ci95": [
+          0.5981145680833787,
+          0.6005609559143135
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.5993566575176246,
+        "ci95": [
+          0.5980601812946446,
+          0.600690535259587
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.015277777777777776,
+        "ci95": [
+          0.005555555555555555,
+          0.02638888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.0062057544433094065,
+        "ci95": [
+          0.005615651695715606,
+          0.006905277612259862
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.007900013354571413,
+        "ci95": [
+          0.006380031773334883,
+          0.009481013101790607
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.015277777777777776,
+        "ci95": [
+          0.005520833333333335,
+          0.02638888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.0062057544433094065,
+        "ci95": [
+          0.0055283708004393705,
+          0.006912161790015343
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.007900013354571413,
+        "ci95": [
+          0.006549832105486805,
+          0.009466738278930024
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47000000000000003,
+          0.5144444444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.600068188041591,
+        "ci95": [
+          0.5986263976921898,
+          0.6014629415724214
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5097222222222223,
+        "ci95": [
+          0.4833333333333334,
+          0.5361111111111111
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4222222222222223,
+        "ci95": [
+          0.3611111111111111,
+          0.47777777777777775
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.4677777777777778,
+          0.5166666666666666
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.600068188041591,
+        "ci95": [
+          0.5985377373204164,
+          0.6014947124637017
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.49861111111111117,
+        "ci95": [
+          0.47357638888888887,
+          0.5236111111111111
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46666666666666673,
+          0.5155833333333333
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005288239647537371,
+        "ci95": [
+          0.004209538455204336,
+          0.006544813200621236
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.01007911901709606,
+        "ci95": [
+          0.00854545582185963,
+          0.011636210502832992
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.2,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.008333333333333333,
+        "ci95": [
+          0.0027777777777777775,
+          0.015312499999999972
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4222222222222223,
+        "ci95": [
+          0.36666666666666664,
+          0.4722222222222222
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5166666666666667
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.005288239647537371,
+        "ci95": [
+          0.0041711150152931795,
+          0.006420109036783176
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.01007911901709606,
+        "ci95": [
+          0.008385628952366175,
+          0.011584533867722312
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.5993566575176247,
+        "ci95": [
+          0.5980776559670167,
+          0.6006812398723723
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.5993566575176247,
+        "ci95": [
+          0.5980087229707535,
+          0.6006179376678875
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.044444444444444446,
+        "ci95": [
+          0.027777777777777776,
+          0.06296296296296297
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014327119705556002,
+        "ci95": [
+          0.013292240613848797,
+          0.015492842439857952
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.01923423893224026,
+        "ci95": [
+          0.017247662656913198,
+          0.020850781747407312
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.044444444444444446,
+        "ci95": [
+          0.027777777777777776,
+          0.06296296296296297
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.014327119705556002,
+        "ci95": [
+          0.013322820597815702,
+          0.015416241764446866
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.01923423893224026,
+        "ci95": [
+          0.01743788579463384,
+          0.021021265439707598
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46777777777777785,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.600068188041591,
+        "ci95": [
+          0.5986313253009609,
+          0.6016879460666013
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5203703703703703,
+        "ci95": [
+          0.4981481481481481,
+          0.5462962962962962
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.45,
+        "ci95": [
+          0.40277777777777785,
+          0.4972222222222221
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888886,
+          0.5144444444444444
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.600068188041591,
+        "ci95": [
+          0.5985267435571633,
+          0.6015207364858024
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5333333333333333,
+        "ci95": [
+          0.4888888888888889,
+          0.587037037037037
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888886,
+          0.5144444444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.04385852116534441,
+        "ci95": [
+          0.011379555317782217,
+          0.09186804703225913
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.04852920539948762,
+        "ci95": [
+          0.016048632466650885,
+          0.0960680139204875
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.4,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.053703703703703705,
+        "ci95": [
+          0.020370370370370372,
+          0.09629629629629628
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.45,
+        "ci95": [
+          0.40555555555555556,
+          0.49444444444444435
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5166666666666667
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.04385852116534441,
+        "ci95": [
+          0.011099251595158312,
+          0.09205092474095483
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.04852920539948762,
+        "ci95": [
+          0.01589919369917099,
+          0.09616763850431706
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.5993566575176247,
+        "ci95": [
+          0.5980340565063038,
+          0.6006642231202092
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.5993566575176247,
+        "ci95": [
+          0.5980937566157413,
+          0.6007057874618777
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.03703703703703704,
+        "ci95": [
+          0.022222222222222223,
+          0.05555555555555556
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9904344756655415,
+        "ci95": [
+          0.9892127828586876,
+          0.9916455890753326
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9786845721236745,
+        "ci95": [
+          0.9762233409334409,
+          0.9813705475104699
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.03703703703703704,
+        "ci95": [
+          0.022222222222222223,
+          0.053703703703703705
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9904344756655415,
+        "ci95": [
+          0.9890265170842271,
+          0.991772896752017
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9786845721236745,
+        "ci95": [
+          0.9760272725877859,
+          0.9811182032413626
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.600068188041591,
+        "ci95": [
+          0.5985163352335019,
+          0.6015439124904713
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5333333333333333,
+        "ci95": [
+          0.4861111111111111,
+          0.575
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.46481481481481474,
+        "ci95": [
+          0.42962962962962964,
+          0.5018518518518519
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.600068188041591,
+        "ci95": [
+          0.5986452613641321,
+          0.6017831791592849
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.8861111111111112,
+        "ci95": [
+          0.8027777777777777,
+          0.9638888888888889
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.6925925925925926,
+        "ci95": [
+          0.6074074074074074,
+          0.7722222222222223
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888897,
+          0.5144444444444445
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.7126440427321893,
+        "ci95": [
+          0.5667528973795122,
+          0.8440813791859383
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.7079216372938539,
+        "ci95": [
+          0.5650437938221272,
+          0.836576960212055
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.6,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.41944444444444445,
+        "ci95": [
+          0.3333333333333333,
+          0.49166666666666675
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.1574074074074074,
+        "ci95": [
+          0.09259259259259259,
+          0.23333333333333334
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46666666666666673,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.7126440427321893,
+        "ci95": [
+          0.5661772584454504,
+          0.843267693129293
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.7079216372938539,
+        "ci95": [
+          0.567819057218201,
+          0.8355735311138927
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.5993566575176247,
+        "ci95": [
+          0.5980414899398666,
+          0.6006203704585695
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.5993566575176247,
+        "ci95": [
+          0.5979961192926698,
+          0.6005401009257171
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0027777777777777775,
+          0.01388888888888889
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9984647361300758,
+        "ci95": [
+          0.9976166081701169,
+          0.9993083262151049
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9917470997452987,
+        "ci95": [
+          0.9896773677933769,
+          0.9935905236551653
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.0,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.0125
+        ]
+      },
+      "coverage": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9984647361300758,
+        "ci95": [
+          0.9976098434271925,
+          0.9992748483245977
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9917470997452987,
+        "ci95": [
+          0.9897001213293197,
+          0.9937931368229557
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "raw_residual",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46888888888888897,
+          0.5177777777777777
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.600068188041591,
+        "ci95": [
+          0.598454939720967,
+          0.6015964461207346
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "visibility_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.4611111111111111,
+          0.5944444444444444
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.4847222222222222,
+        "ci95": [
+          0.4555555555555556,
+          0.513888888888889
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46777777777777785,
+          0.5144444444444444
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.600068188041591,
+        "ci95": [
+          0.5985502530527151,
+          0.6015225140200982
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.6000000000000001,
+        "ci95": [
+          0.6000000000000001,
+          0.6000000000000001
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "common_mode_only",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 1.0,
+        "ci95": [
+          1.0,
+          1.0
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.49444444444444446,
+          0.55
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.47,
+          0.5166666666666666
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9977966127802765,
+        "ci95": [
+          0.9966807208884689,
+          0.9991529072523513
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9916718531287801,
+        "ci95": [
+          0.9894703169877408,
+          0.9938086225174955
+        ]
+      }
+    },
+    {
+      "pose_bias_m": 0.6,
+      "moved_fraction": 0.8,
+      "occlusion_fraction": 0.5,
+      "method": "combined",
+      "seeds": 30,
+      "static_false_change_rate": {
+        "mean": 0.5222222222222223,
+        "ci95": [
+          0.4555555555555556,
+          0.5834722222222223
+        ]
+      },
+      "moved_recall_all": {
+        "mean": 0.006944444444444444,
+        "ci95": [
+          0.0013888888888888887,
+          0.015277777777777777
+        ]
+      },
+      "coverage": {
+        "mean": 0.49222222222222217,
+        "ci95": [
+          0.46777777777777785,
+          0.5155555555555555
+        ]
+      },
+      "query_error_m": {
+        "mean": 0.9977966127802765,
+        "ci95": [
+          0.996602252108817,
+          0.9989261098394773
+        ]
+      },
+      "pose_error_m": {
+        "mean": 0.9916718531287801,
+        "ci95": [
+          0.9895184129383738,
+          0.9937739393559886
+        ]
+      }
+    }
+  ]
+}
