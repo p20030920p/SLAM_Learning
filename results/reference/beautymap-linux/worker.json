@@ -1,0 +1,32 @@
+{
+  "frames": 141,
+  "compatibility_patch": {
+    "iterator": {
+      "metadata[key] = map(int, value.split())": "metadata[key] = list(map(int, value.split()))",
+      "metadata[key] = map(float, value.split())": "metadata[key] = list(map(float, value.split()))"
+    },
+    "bitmask_width": {
+      "main.py": {
+        "replacement": "dtype=int -> dtype=np.int64",
+        "count": 2
+      },
+      "lib/bee_tree.py": {
+        "replacement": "dtype=int -> dtype=np.int64",
+        "count": 12
+      }
+    }
+  },
+  "author_command": [
+    "/home/runner/work/SLAM_Learning/SLAM_Learning/.venv/bin/python",
+    "/home/runner/work/SLAM_Learning/SLAM_Learning/results/runs/beautymap-bf260a76170f/author-code/main.py",
+    "--data_dir",
+    "/home/runner/work/SLAM_Learning/SLAM_Learning/results/runs/beautymap-bf260a76170f/input",
+    "--dis_range",
+    "40",
+    "--xy_resolution",
+    "1.0",
+    "--h_res",
+    "0.5"
+  ],
+  "algorithm_input": "Unlabeled map XYZ and input scans; GT labels available only to evaluator"
+}

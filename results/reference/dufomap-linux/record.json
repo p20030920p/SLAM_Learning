@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "kind": "author_method",
+  "method": "dufomap",
+  "status": "executed",
+  "started_at": "2026-10-07T12:40:56+00:00",
+  "scope": "full_teaser",
+  "requested_frames": 0,
+  "specification": {
+    "upstream": "dufomap",
+    "mode": "offline point-level map cleaning via authors' PyPI binding 1.1.1",
+    "parameters": {
+      "resolution": 0.1,
+      "d_s": 0.2,
+      "d_p": 1,
+      "threads": 2,
+      "min_range": 0.2,
+      "max_range": 50.0
+    },
+    "paper_target": {
+      "source": "https://arxiv.org/html/2403.01449v1",
+      "table": "Table I, KITTI small town 00, offline DUFOMap; Section IV-C parameters",
+      "values": {
+        "SA": 97.96,
+        "DA": 98.72,
+        "AA": 98.34
+      },
+      "absolute_tolerance_pp": 0.01
+    },
+    "scope_note": "Author demo uses d_p=2 whereas the paper states d_p=1. We explicitly run paper setting. Newer binding may differ from paper implementation."
+  },
+  "environment": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "platform": "Linux-6.8.0-1064-azure-x86_64-with-glibc2.35",
+    "packages": {
+      "slam-learning": "0.2.0",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.9.2",
+      "dufomap": "1.1.1",
+      "open3d": "0.18.0",
+      "dztimer": "1.1.1"
+    }
+  },
+  "repository": {
+    "commit": "9f3a9ef3891695246b41c2d1396d6efe45e8f685",
+    "dirty": false
+  },
+  "source_sha256": {
+    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
+    "src/slam_learning/adapters.py": "dbc421d7d06cc6c7342a7f3a3f89f8de6d5faef735a8ec87c4d7a449002cb123",
+    "src/slam_learning/cli.py": "e0259e77bfc0dff43cff8a451aca2581d4e31b8ced0e62b4803ea555c2841298",
+    "src/slam_learning/evidence_stress.py": "9957fe5974b3e8308d7287433279aedb8dbac0a89fd2511ca871a2f922e29c60",
+    "src/slam_learning/fetch.py": "fcce0e0fd024030d4f1b19ab1d63abdf1b0d7e5333dc89254520747ee03d03cd",
+    "src/slam_learning/metrics.py": "aeb849e7f3be8d1b54ebbc457317aafbf698d095bb412f4aeb7071fd8637b4dc",
+    "src/slam_learning/pcd.py": "9fc61d5f38920578bb98feb4df0a0967da80cec7187d7299de0d11aee521214d",
+    "src/slam_learning/pose_stress.py": "18f096b34da22a09d729ed141552d7dd49f5abc33c8a8cd61275d27cd6fdbfa6",
+    "src/slam_learning/provenance.py": "7cc155e7ae1e67e8313844217abcc36905f85427417d537e545af8f4a1880a9c",
+    "src/slam_learning/report.py": "778272431fa089b6b52bac0c9196077d6d71b0071497ecd07e30e7f35cb9e7da",
+    "src/slam_learning/runner.py": "addc4555f83f6f9d4d6ff74129daca8ac3e2133f512cb6332a2088c64555a13f",
+    "src/slam_learning/synthetic.py": "f836619ef1b05ade5a1ac0489de832061c0ddee717f1cfeb90a6b99dbee314cd"
+  },
+  "config_sha256": {
+    "dataset.json": "f105feb63c1aad0b0fa620554a437b9db394449db774c9ec3900193d60495742",
+    "evidence_stress.json": "dba18e38c39d103ef77b7aba012538029707657a007b64944d85592d7eb2775d",
+    "methods.json": "5a177d8e100109a5e5639070d8186c26651cf1a9fcf8e0a2e0dacaa66ac8f51f",
+    "pose_stress.json": "23f4a7eaca27fcacd7ddc1ec7e9ca4cb250682ca7f0c41c381feba812158b124",
+    "synthetic.json": "afecd70fd8bc7c41293fb5e992b1565bea16b7c13bd8f1f62b77634dce5d0c88",
+    "upstreams.json": "fbf09ad8ac99d166c198d8ab310c05728e5974c75a702cb79e9bb71f1467400b"
+  },
+  "artifacts": {
+    "cleaned.pcd": {
+      "sha256": "747357a383465721f7235a2639d26c7223e9398878e5268c41cd950b4a37b04d",
+      "bytes": 191944966,
+      "availability": "local_only"
+    },
+    "run.log": {
+      "sha256": "1c39565d915aec485d2c37f7d43197b85a922971b2fec81a7287ad0a0cd250dc",
+      "bytes": 575,
+      "availability": "portable"
+    },
+    "worker.json": {
+      "sha256": "9da8a7c8682672c1ed7d3209ebd52ea177fbc326f7ffc39bee57118029f5b061",
+      "bytes": 122,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "e43b3371a9b3f15923f177b41b66194b05a717c3ea702b20640a1050b5e4e676",
+      "bytes": 432,
+      "availability": "portable"
+    }
+  },
+  "command": [
+    "/home/runner/work/SLAM_Learning/SLAM_Learning/.venv/bin/python",
+    "-m",
+    "slam_learning.cli",
+    "_worker",
+    "--root",
+    "/home/runner/work/SLAM_Learning/SLAM_Learning",
+    "--method",
+    "dufomap",
+    "--output",
+    "/home/runner/work/SLAM_Learning/SLAM_Learning/results/runs/dufomap-6ca0f8dd3c5a",
+    "--frames",
+    "0"
+  ],
+  "exit_code": 0,
+  "dataset": {
+    "manifest_sha256": "d8cf44365828d9906914483ff66d6af87b93ab4611946d0ba99308dfec7c7bd1",
+    "archive_sha256": "14e30a0ddc19f275477aa0e72e6ba713f0f6a6a29dcf7ded8a92ce0c421109fd",
+    "configuration": {
+      "id": "dynamicmap-kitti00-teaser",
+      "record": "https://zenodo.org/records/10886629",
+      "url": "https://zenodo.org/records/10886629/files/00.zip?download=1",
+      "filename": "00.zip",
+      "md5": "87f856c4dd1ad05d0ffd4171f92780a0",
+      "frames": 141,
+      "gt_points": 17362230,
+      "coordinate_frame": "world; sensor origins stored in PCD VIEWPOINT",
+      "scope": "Selected frames, not the full KITTI odometry sequence. Poses supplied by benchmark, not estimated here.",
+      "license_note": "Original KITTI/SemanticKITTI terms apply; data is not redistributed."
+    }
+  },
+  "upstreams": {
+    "dynamicmap": {
+      "url": "https://github.com/KTH-RPL/DynamicMap_Benchmark.git",
+      "commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+      "dirty": false
+    },
+    "dufomap": {
+      "url": "https://github.com/KTH-RPL/dufomap.git",
+      "commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+      "dirty": false
+    }
+  },
+  "worker": {
+    "frames": 141,
+    "compatibility_patch": null,
+    "integration_filter": "0.2 < range < 50 m, per current author demo"
+  },
+  "metrics": {
+    "counts": {
+      "kept_static": 16917434,
+      "removed_static": 348813,
+      "removed_dynamic": 94738,
+      "kept_dynamic": 1245
+    },
+    "SA": 97.97979838930834,
+    "DA": 98.70289530437681,
+    "AA": 98.34068223458615,
+    "HA": 98.34001762682132,
+    "gt_points": 17362230,
+    "map_points": 15995399,
+    "threshold_m": 0.05,
+    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+  },
+  "paper_comparison": {
+    "source": "https://arxiv.org/html/2403.01449v1",
+    "table": "Table I, KITTI small town 00, offline DUFOMap; Section IV-C parameters",
+    "absolute_tolerance_pp": 0.01,
+    "matched": false,
+    "metrics": {
+      "SA": {
+        "measured": 97.97979838930834,
+        "reported": 97.96,
+        "difference_pp": 0.019798389308348874,
+        "within_tolerance": false
+      },
+      "DA": {
+        "measured": 98.70289530437681,
+        "reported": 98.72,
+        "difference_pp": -0.01710469562318906,
+        "within_tolerance": false
+      },
+      "AA": {
+        "measured": 98.34068223458615,
+        "reported": 98.34,
+        "difference_pp": 0.0006822345861507983,
+        "within_tolerance": true
+      }
+    }
+  },
+  "finished_at": "2026-10-07T12:41:24+00:00"
+}

@@ -68,7 +68,7 @@ archive/             explicitly unverified inherited claims
 
 The previous implementation is recoverable from commit `af1e58b`; it is excluded from the active experiment suite. [The audit](docs/AUDIT.md) explains why its status labels were not retained as evidence.
 
-Linux CPU commands and a Docker entry point are in [REPRODUCE.md](docs/REPRODUCE.md). CUDA is unnecessary for the active experiments. Platform verification is recorded in the results document; a Dockerfile alone does not imply a tested container.
+Both author methods and the real-data sensitivity experiment also ran successfully on [Ubuntu 22.04 CI](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701); author-method scores match Windows. Linux records are published alongside Windows records. CPU commands and an optional, locally untested Docker entry point are in [REPRODUCE.md](docs/REPRODUCE.md). CUDA is unnecessary.
 
 ## Research integrity
 

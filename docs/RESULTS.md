@@ -1,6 +1,6 @@
 # Results and limits
 
-Measured on 7 October 2026. Portable records bind commands, versions, source hashes, data checksums and output hashes. Author and controlled experiments were executed with Python 3.10.19 on Windows. Linux verification is recorded below when available. Docker was not locally built; VMware Ubuntu started but SSH/Tools were unavailable. Provided infrastructure is not counted as a successful experiment.
+Measured on 7 October 2026. Portable records bind commands, versions, source hashes, data checksums and output hashes. Windows author/controlled experiments use Python 3.10.19. Both author methods and all six real-data sensitivity cells also **executed successfully on GitHub Actions Ubuntu 22.04**, with a fresh download and environment. [Linux run](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701), [execution metadata](../results/ci/linux-run.json). Docker was not locally built; VMware Ubuntu started but SSH/Tools were unavailable.
 
 ## 1. Author-method execution and paper disagreement
 
@@ -20,6 +20,8 @@ Paper targets are [DUFOMap Table I](https://arxiv.org/html/2403.01449v1) and [Be
 Evidence: [DUFOMap record](../results/reference/dufomap/record.json), [raw metrics](../results/reference/dufomap/metrics.json), [log](../results/reference/dufomap/run.log); [BeautyMap record](../results/reference/beautymap/record.json), [raw metrics](../results/reference/beautymap/metrics.json), [compatibility changes](../results/reference/beautymap/compatibility.patch). The [first BeautyMap failure](../results/reference/beautymap-windows-failure/record.json) records a Windows integer overflow, fixed with explicit 64-bit masks.
 
 These scores use an independent SciPy nearest-neighbor evaluator. A kept map point within 5 cm preserves the GT point, regardless of which input point generated it. Close retained geometry can therefore mask individual dynamic labels. Original PCL evaluator agreement has not been established, and newer author versions can differ from paper-era code. No single cause of the table mismatch is established.
+
+Linux repeats produced **identical author-method confusion counts and scores** for this snapshot: [DUFOMap Linux](../results/reference/dufomap-linux/record.json), [BeautyMap Linux](../results/reference/beautymap-linux/record.json). That CI run used `9f3a9ef`: scan intensity was available but unused by the author geometry code. The subsequent final Windows run physically removes scan annotations and gives unchanged results. This distinction is preserved rather than retroactively rewriting Linux evidence. Linux direct-label sensitivity has its own [record](../results/reference/pose-stress-linux/record.json) and [cells](../results/reference/pose-stress-linux/sensitivity.csv).
 
 ## 2. Real-data pose sensitivity
 

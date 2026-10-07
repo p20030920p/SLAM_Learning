@@ -5,11 +5,14 @@ Generated from run records. Paper agreement is distinct from execution.
 | Experiment | Scope | Execution | Paper table | SA % | DA % | AA % | HA % | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | beautymap | full_teaser | executed | mismatch | 96.9529 | 98.3382 | 97.6431 | 97.6407 | [beautymap](reference/beautymap/record.json) |
+| beautymap | full_teaser | executed | mismatch | 96.9529 | 98.3382 | 97.6431 | 97.6407 | [beautymap-linux](reference/beautymap-linux/record.json) |
 | beautymap | full_teaser | failed | not evaluated | — | — | — | — | [beautymap-windows-failure](reference/beautymap-windows-failure/record.json) |
 | dufomap | full_teaser | executed | mismatch | 97.9798 | 98.7029 | 98.3407 | 98.3400 | [dufomap](reference/dufomap/record.json) |
+| dufomap | full_teaser | executed | mismatch | 97.9798 | 98.7029 | 98.3407 | 98.3400 | [dufomap-linux](reference/dufomap-linux/record.json) |
 | controlled synthetic calibration test | controlled_synthetic_calibration_test | executed | not evaluated | — | — | — | — | [evidence-stress](reference/evidence-stress/record.json) |
 | controlled synthetic mechanism test | controlled_synthetic_mechanism_test | executed | not evaluated | — | — | — | — | [mechanism](reference/mechanism/record.json) |
 | real data pose sensitivity | real_data_pose_sensitivity | executed | not evaluated | — | — | — | — | [pose-stress](reference/pose-stress/record.json) |
+| real data pose sensitivity | real_data_pose_sensitivity | executed | not evaluated | — | — | — | — | [pose-stress-linux](reference/pose-stress-linux/record.json) |
 
 Recorded failures:
 

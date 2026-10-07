@@ -20,6 +20,8 @@ sudo apt-get install -y git libgl1 libgomp1 libglib2.0-0
 
 The [CI workflow](../.github/workflows/ci.yml) checks the core on Linux and Windows. Its real-data job runs on manual dispatch with `real_data=true`, or a push whose commit message contains `[real-data]`. Consult actual Actions results; configuration alone is not verification.
 
+[Run 37622082701](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701) successfully installed a fresh Ubuntu environment, downloaded/verified data, executed both author methods and pose sensitivity, and uploaded portable evidence. Source commit and artifact details are in [linux-run.json](../results/ci/linux-run.json). Subsequent scan-annotation isolation was checked by a fresh Windows author run and cross-platform parser tests; exact executed code versions remain in each record.
+
 VMware without configured GPU passthrough is still suitable for this CPU suite. It requires working guest SSH or an interactive terminal and sufficient RAM/disk. On the current host the existing Ubuntu VM starts, but SSH/VMware Tools were unavailable; no guest execution is claimed. WSL and a Docker daemon were also unavailable locally.
 
 ## Data and upstream sources
