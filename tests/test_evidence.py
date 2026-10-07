@@ -64,3 +64,39 @@ def test_portable_export_keeps_hashes_and_does_not_overwrite(tmp_path):
     assert verify_record(destination / "record.json") == []
     with pytest.raises(ValueError, match="exists"):
         export_record(record, destination)
+
+
+def test_nested_artifacts_remain_verifiable_after_export(tmp_path):
+    run = tmp_path / "run"
+    (run / "method").mkdir(parents=True)
+    log = run / "method/pcl.log"
+    log.write_text("original evaluator output")
+    record = run / "record.json"
+    write_json(record, {"schema_version": 1, "kind": "map_evaluator_cross_check", "status": "executed",
+                       "artifacts": {"method/pcl.log": {"sha256": digest(log), "availability": "portable"}}})
+    destination = tmp_path / "reference"
+    export_record(record, destination)
+    assert verify_record(destination / "record.json") == []
+
+
+def test_export_failure_does_not_publish_partial_evidence(tmp_path, monkeypatch):
+    run = tmp_path / "run"
+    run.mkdir()
+    artifact = run / "run.log"
+    artifact.write_text("measured")
+    record = run / "record.json"
+    write_json(record, {"schema_version": 1, "kind": "mechanism", "status": "executed", "artifacts": {
+        "run.log": {"sha256": digest(artifact), "availability": "portable"}}})
+    import slam_learning.runner as runner
+    original_copy = runner.shutil.copy2
+
+    def fail_on_artifact(source, destination):
+        if source.name == "run.log":
+            raise OSError("Interrupted artifact copy")
+        return original_copy(source, destination)
+
+    monkeypatch.setattr(runner.shutil, "copy2", fail_on_artifact)
+    destination = tmp_path / "reference"
+    with pytest.raises(OSError):
+        export_record(record, destination)
+    assert not destination.exists()

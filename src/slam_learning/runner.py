@@ -7,6 +7,7 @@ import shutil
 import sys
 import traceback
 import uuid
+import tempfile
 from pathlib import Path
 
 from .metrics import compare_paper, score_map
@@ -163,9 +164,15 @@ def export_record(path: Path, destination: Path) -> None:
         raise ValueError("Cannot export invalid run: " + "; ".join(errors))
     if destination.exists():
         raise ValueError("Reference destination exists; choose a new name to preserve earlier evidence")
-    destination.mkdir(parents=True)
+    destination.parent.mkdir(parents=True, exist_ok=True)
     record = json.loads(path.read_text(encoding="utf-8"))
-    shutil.copy2(path, destination / "record.json")
-    for name, artifact in record["artifacts"].items():
-        if artifact["availability"] == "portable":
-            shutil.copy2(path.parent / name, destination / name)
+    with tempfile.TemporaryDirectory(prefix=".export-", dir=destination.parent) as temporary:
+        staged = Path(temporary) / "record"
+        staged.mkdir()
+        shutil.copy2(path, staged / "record.json")
+        for name, artifact in record["artifacts"].items():
+            if artifact["availability"] == "portable":
+                target = staged / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(path.parent / name, target)
+        staged.rename(destination)
