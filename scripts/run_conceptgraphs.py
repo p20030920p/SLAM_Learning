@@ -149,7 +149,8 @@ def main():
             objects_ft = torch.nn.functional.normalize(objects.get_stacked_values_torch("clip_ft").float(), dim=-1)
             similarity = (feature.cpu() @ objects_ft.cpu().T).numpy()
         results = []
-        world_from_map = np.loadtxt(data_root / config["scene"] / "traj.txt")[0].reshape(4, 4)
+        # cfslam_pipeline_batch uses dataset.poses[idx], not normalized __getitem__ poses.
+        world_from_map = np.eye(4)
         for query, scores in zip(config["queries"], similarity):
             ids = np.argsort(scores)[::-1][:3]
             results.append({"query": query, "top_objects": [{"object_index": int(i), "cosine_similarity": float(scores[i]),
@@ -157,7 +158,7 @@ def main():
                 "center_world_m": (world_from_map[:3, :3] @ np.asarray(objects[i]["bbox"].get_center()) + world_from_map[:3, 3]).tolist(),
                 "num_detections": int(objects[i]["num_detections"])} for i in ids]})
         summary = {"scope": config["scope"], "objects": len(objects), "queries": results,
-                   "map_sha256": sha(map_path), "coordinate_frame": "Replica world for center_world_m; first-camera frame for center_map_m and native map",
+                   "map_sha256": sha(map_path), "coordinate_frame": "Replica world; batch mapper uses absolute dataset.poses, not normalized __getitem__ poses",
                    "map_frame_to_replica_world": world_from_map.tolist(),
                    "query_correctness_evaluated": False, "paper_semantic_metrics_evaluated": False}
         (output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")

@@ -30,8 +30,17 @@ def semantic_frames(method, record_path, record, output):
             saved = pickle.load(stream)  # Only a fully verified locally generated author map.
         clouds = [np.asarray(obj["pcd_np"]) for obj in saved["objects"]]
         image_root = run / "input/Replica/room0"
-        world_from_map = np.loadtxt(image_root / "traj.txt")[0].reshape(4, 4)
-        clouds = [cloud @ world_from_map[:3, :3].T + world_from_map[:3, 3] for cloud in clouds]
+        world_from_map = np.eye(4)
+        poses = np.loadtxt(image_root / "traj.txt").reshape(-1, 4, 4)
+        snapshots = sorted((image_root / "objects_all_frames").glob("*.pkl.gz"))
+        errors = []
+        for index, snapshot in enumerate(snapshots):
+            with gzip.open(snapshot, "rb") as stream:
+                state = pickle.load(stream)
+            errors.append(float(np.max(np.abs(np.asarray(state["camera_pose"]) - poses[index]))))
+            source_hashes[snapshot.relative_to(run).as_posix()] = digest(snapshot)
+        if len(errors) != 40 or max(errors) > 1e-6:
+            raise ValueError("Native camera poses differ from supplied absolute poses")
         images = sorted((image_root / "gsa_vis_none").glob("*.jpg"))
         frame_ids = [int(path.stem.replace("frame", "")) for path in images]
     else:
@@ -51,11 +60,6 @@ def semantic_frames(method, record_path, record, output):
     lower, upper = lower - margin, upper + margin
     chosen = np.unique(np.linspace(0, len(images)-1, min(20, len(images)), dtype=int))
     queries = copy.deepcopy(record["summary"]["queries"])
-    if method == "conceptgraphs" and "map_frame_to_replica_world" not in record["summary"]:
-        for query in queries:
-            for candidate in query["top_objects"]:
-                candidate["center_map_m"] = candidate["center_world_m"]
-                candidate["center_world_m"] = (world_from_map[:3, :3] @ np.asarray(candidate["center_map_m"]) + world_from_map[:3, 3]).tolist()
     frames, metadata = [], []
     for order, index in enumerate(chosen):
         path = images[index]
@@ -96,7 +100,8 @@ def semantic_frames(method, record_path, record, output):
         metadata.append({"source_frame": frame_ids[index], "query": query["query"], "candidate": best})
     return frames, {"view": "Fixed Replica world XZ final-map projection", "bounds_xz_m": [lower.tolist(), upper.tolist()],
                     "map_frame_to_replica_world": world_from_map.tolist() if method == "conceptgraphs" else np.eye(4).tolist(),
-                    "legacy_coordinate_note": "Historical ConceptGraphs center_world_m stored first-camera coordinates. This derived replay explicitly converts them with the first supplied camera-to-world pose.",
+                    "coordinate_audit": {"entrypoint": "cfslam_pipeline_batch.py uses absolute dataset.poses; loader normalized __getitem__ poses are bypassed",
+                                         "checked_native_camera_poses": len(errors), "maximum_absolute_matrix_error": max(errors)} if method == "conceptgraphs" else {"entrypoint": "HOV-SG ReplicaDataset reads absolute traj.txt matrices"},
                     "source_artifact_hashes": source_hashes, "frames": metadata,
                     "scope": "Final semantic map replay with source observations; no evolving-map or live-screen claim"}
 
