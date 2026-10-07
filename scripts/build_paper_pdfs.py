@@ -215,7 +215,7 @@ def main():
         font_info = {"name": "embedded TrueType subset", "sha256": digest(args.cjk_font)}
     else:
         font = UnicodeCIDFont("STSong-Light")
-        font.name = "StudyCJK"
+        font.fontName = "StudyCJK"
         pdfmetrics.registerFont(font)
         font_info = {"name": "STSong-Light built-in CID fallback"}
     pdfmetrics.registerFontFamily("StudyCJK", normal="StudyCJK", bold="StudyCJK",
