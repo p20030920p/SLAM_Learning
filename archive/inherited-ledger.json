@@ -1,0 +1,162 @@
+{
+  "status": "unverified_inherited_claims",
+  "recovery_commit": "af1e58b",
+  "historical_summary": {
+    "total": 21,
+    "green": 14,
+    "failed": 0,
+    "blocked": 7,
+    "planned": 0,
+    "ran_this_pass": 0
+  },
+  "note": "Historical labels are not new execution evidence. Original files remain in Git history and in a local sibling backup.",
+  "entries": [
+    {
+      "id": "01-01",
+      "title": "A Dynamic Points Removal Benchmark in Point Cloud Maps",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。官方评测器加 Zenodo 免注册数据，四个方法同表。"
+    },
+    {
+      "id": "01-02",
+      "title": "KISS-ICP: In Defense of Point-to-Point ICP — Simple, Accurate, and Robust Registration If Done the Right Way",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。PyPI 包加官方 KITTI 00–10，均值 0.53 %。"
+    },
+    {
+      "id": "01-03",
+      "title": "ERASOR: Egocentric Ratio of Pseudo Occupancy-Based Dynamic Object Removal for Static 3D Point Cloud Map Building",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能，需 ROS 1。官方仓库对上论文表 II。"
+    },
+    {
+      "id": "01-04",
+      "title": "Removert: Remove then Revert — Static Map Building in Challenging Environment",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能，需 ROS 1。官方实现 SA/DA/AA 99.62/89.25/94.29。"
+    },
+    {
+      "id": "01-05",
+      "title": "DUFOMap: Efficient Dynamic Awareness Mapping",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。与论文表 I 两位小数一致。"
+    },
+    {
+      "id": "01-06",
+      "title": "BeautyMap: Binary-Encoded Adaptable Ground Matrix for Dynamic Points Removal in Global Maps",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。命中论文表 I。"
+    },
+    {
+      "id": "01-07",
+      "title": "DynoSAM: Open-Source Smoothing and Mapping Framework for Dynamic SLAM",
+      "tick": "阻塞",
+      "level": "blocked",
+      "verdict": "不能。configure 阶段就要求 CUDA。"
+    },
+    {
+      "id": "01-08",
+      "title": "NGD-SLAM: Towards Real-Time Dynamic SLAM without GPU",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。纯 CPU，ATE 0.0157 m。"
+    },
+    {
+      "id": "01-09",
+      "title": "LT-mapper: A Modular Framework for LiDAR-based Lifelong Mapping",
+      "tick": "半完成",
+      "level": "green",
+      "verdict": "半能。仓库只有变化检测半边。"
+    },
+    {
+      "id": "01-10",
+      "title": "GenZ-ICP: Generalizable and Degeneracy-Robust LiDAR Odometry Using an Adaptive Weighting",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。均值 0.52 %，论文 0.51 %。"
+    },
+    {
+      "id": "01-11",
+      "title": "Ephemerality meets LiDAR-based Lifelong Mapping（代码仓库名 ELite）",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。AC 0.9708，论文 0.969，纯 CPU。"
+    },
+    {
+      "id": "01-12",
+      "title": "ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。纯 CPU，RMSE ATE 0.035 至 0.045 m。"
+    },
+    {
+      "id": "01-13",
+      "title": "Khronos: A Unified Approach for Spatio-Temporal Metric-Semantic SLAM in Dynamic Environments",
+      "tick": "阻塞",
+      "level": "blocked",
+      "verdict": "不能。实测需要 13.5 GB 以上内存。"
+    },
+    {
+      "id": "02-01",
+      "title": "3RScan（数据集）—— 源自 RIO: 3D Object Instance Re-Localization in Changing Indoor Environments",
+      "tick": "半完成",
+      "level": "green",
+      "verdict": "半能。只有数据集与工具，全量数据需申请。"
+    },
+    {
+      "id": "02-02",
+      "title": "OASIS-Map: Object-Level Change Detection in Multi-Session Mapping using Semantic Correspondence Matching",
+      "tick": "阻塞",
+      "level": "blocked",
+      "verdict": "不能。代码未发布。"
+    },
+    {
+      "id": "02-03",
+      "title": "ConceptGraphs: Open-Vocabulary 3D Scene Graphs for Perception and Planning",
+      "tick": "阻塞",
+      "level": "blocked",
+      "verdict": "不能。需 16 至 24 GB 显存与 GPT-4 key。"
+    },
+    {
+      "id": "02-04",
+      "title": "DualMap: Online Open-Vocabulary Semantic Mapping for Natural Language Navigation in Dynamic Changing Scenes",
+      "tick": "阻塞",
+      "level": "blocked",
+      "verdict": "不能。论文用 RTX 4090。"
+    },
+    {
+      "id": "02-05",
+      "title": "Hierarchical Open-Vocabulary 3D Scene Graphs for Language-Grounded Robot Navigation",
+      "tick": "阻塞",
+      "level": "blocked",
+      "verdict": "不能。四篇底座里算力最重，论文未写门槛。"
+    },
+    {
+      "id": "02-06",
+      "title": "Clio: Real-time Task-Driven Open-Set 3D Scene Graphs",
+      "tick": "阻塞",
+      "level": "blocked",
+      "verdict": "不能。论文用 RTX 3090。"
+    },
+    {
+      "id": "02-07",
+      "title": "AnyLoc: Towards Universal Visual Place Recognition",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。纯 CPU 约 3.3 h，R@1 65.0 与论文一致。"
+    },
+    {
+      "id": "02-08",
+      "title": "Revisit Anything: Visual Place Recognition via Image Segment Retrieval",
+      "tick": "完成",
+      "level": "green",
+      "verdict": "能。纯 CPU 约 25 min，R@1 95.32 与论文一致。"
+    }
+  ]
+}

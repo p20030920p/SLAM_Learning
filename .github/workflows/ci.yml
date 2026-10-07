@@ -1,0 +1,64 @@
+name: CPU reproducibility
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      real_data:
+        description: Download 385 MB teaser and run both author methods on Linux
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  core:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.9.2'
+      - run: uv sync --frozen --python 3.10 --extra dev
+      - run: uv run ruff check src tests scripts
+      - run: uv run pytest -q
+      - run: uv run slam-study run --experiment mechanism
+      - run: uv run slam-study run --experiment evidence-stress
+      - run: uv run slam-study report --runs results/runs --output results/ci-report.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core-evidence-${{ matrix.os }}
+          path: results/runs/
+  author-methods:
+    if: github.event_name == 'workflow_dispatch' && inputs.real_data
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.9.2'
+      - run: sudo apt-get update && sudo apt-get install -y libgl1 libgomp1 libglib2.0-0
+      - run: uv sync --frozen --python 3.10 --extra methods --extra dev
+      - run: uv run slam-study fetch
+      - run: uv run slam-study run --method dufomap
+      - run: uv run slam-study run --method beautymap
+      - run: uv run slam-study run --experiment pose-stress
+      - run: uv run slam-study report --runs results/runs --output results/linux-report.md
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: linux-author-evidence
+          path: |
+            results/runs/**/record.json
+            results/runs/**/metrics.json
+            results/runs/**/worker.json
+            results/runs/**/run.log
+            results/runs/**/compatibility.patch
+            results/runs/**/summary.json
+            results/runs/**/*.csv
+            results/runs/**/*.png
+            results/linux-report.md

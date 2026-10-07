@@ -1,0 +1,26 @@
+{
+  "dufomap": {
+    "upstream": "dufomap",
+    "mode": "offline point-level map cleaning via authors' PyPI binding 1.1.1",
+    "parameters": {"resolution": 0.1, "d_s": 0.2, "d_p": 1, "threads": 2, "min_range": 0.2, "max_range": 50.0},
+    "paper_target": {
+      "source": "https://arxiv.org/html/2403.01449v1",
+      "table": "Table I, KITTI small town 00, offline DUFOMap; Section IV-C parameters",
+      "values": {"SA": 97.96, "DA": 98.72, "AA": 98.34},
+      "absolute_tolerance_pp": 0.01
+    },
+    "scope_note": "Author demo uses d_p=2 whereas the paper states d_p=1. We explicitly run paper setting. Newer binding may differ from paper implementation."
+  },
+  "beautymap": {
+    "upstream": "beautymap",
+    "mode": "authors' official repository with documented Python iterator compatibility patch",
+    "parameters": {"dis_range": 40, "xy_resolution": 1.0, "h_res": 0.5},
+    "paper_target": {
+      "source": "https://arxiv.org/html/2405.07283v1",
+      "table": "Table I, KITTI sequence 00, BeautyMap; HA not AA",
+      "values": {"SA": 96.76, "DA": 98.38, "HA": 97.56},
+      "absolute_tolerance_pp": 0.01
+    },
+    "scope_note": "Paper table values are taken from the paper, never from historical local baselines."
+  }
+}
