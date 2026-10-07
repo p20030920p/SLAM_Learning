@@ -1,0 +1,13 @@
+Creating RGB-D point cloud:   0%|          | 0/8 [00:00<?, ?it/s]Creating RGB-D point cloud: 100%|██████████| 8/8 [00:00<00:00, 57.70it/s]Creating RGB-D point cloud: 100%|██████████| 8/8 [00:00<00:00, 57.62it/s]
+Extracting features:   0%|          | 0/8 [00:00<?, ?it/s]/home/qzl/projects/SLAM_Learning/.venv-hovsg/lib/python3.10/site-packages/torch/nn/modules/conv.py:459: UserWarning: Applied workaround for CuDNN issue, install nvrtc.so (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:80.)
+  return F.conv2d(input, weight, bias, self.stride,
+Extracting features:  12%|█▎        | 1/8 [00:05<00:37,  5.39s/it]Extracting features:  25%|██▌       | 2/8 [00:09<00:29,  4.92s/it]Extracting features:  38%|███▊      | 3/8 [00:13<00:22,  4.44s/it]Extracting features:  50%|█████     | 4/8 [00:17<00:16,  4.14s/it]Extracting features:  62%|██████▎   | 5/8 [00:20<00:11,  3.83s/it]Extracting features:  75%|███████▌  | 6/8 [00:24<00:07,  3.83s/it]Extracting features:  88%|████████▊ | 7/8 [00:28<00:03,  3.81s/it]Extracting features: 100%|██████████| 8/8 [00:31<00:00,  3.72s/it]Extracting features: 100%|██████████| 8/8 [00:31<00:00,  3.99s/it]
+Merging 3d masks hierarchically
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:01<00:03,  1.03s/it] 50%|█████     | 2/4 [00:02<00:02,  1.40s/it] 75%|███████▌  | 3/4 [00:03<00:01,  1.32s/it]100%|██████████| 4/4 [00:06<00:00,  1.94s/it]100%|██████████| 4/4 [00:06<00:00,  1.70s/it]
+th:  0.7333333333333333
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:03<00:03,  3.50s/it]100%|██████████| 2/2 [00:08<00:00,  4.31s/it]100%|██████████| 2/2 [00:08<00:00,  4.19s/it]
+th:  0.7333333333333333
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:14<00:00, 14.93s/it]100%|██████████| 1/1 [00:14<00:00, 14.93s/it]
+Fusing features: 0it [00:00, ?it/s]Fusing features: 6it [00:00, 59.49it/s]Fusing features: 12it [00:01,  5.39it/s]Fusing features: 15it [00:02,  5.04it/s]Fusing features: 25it [00:03,  9.33it/s]Fusing features: 34it [00:03, 15.14it/s]Fusing features: 43it [00:03, 21.67it/s]Fusing features: 50it [00:03, 15.21it/s]
+number of masks:  50
+number of pcds in hovsg:  50

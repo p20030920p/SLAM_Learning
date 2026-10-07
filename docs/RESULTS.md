@@ -106,8 +106,16 @@ ConceptGraphs class-agnostic SAM/CLIP segmentation and native 3D association/fus
 
 ## Verification and remaining work
 
-Local checks: **36 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export and against committed Git bytes. Most Windows measurements use snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`; the final BeautyMap run uses `17591fa` after physically stripping scan intensity annotations while preserving VIEWPOINT. Its metrics are unchanged. Earlier failures remain separately retained. Per-record source hashes specify each executed snapshot.
+Local checks: **38 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export and against committed Git bytes. Most Windows measurements use snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`; the final BeautyMap run uses `17591fa` after physically stripping scan intensity annotations while preserving VIEWPOINT. Its metrics are unchanged. Earlier failures remain separately retained. Per-record source hashes specify each executed snapshot.
 
 PCL/SciPy cross-checking and an executable semantic subset with text-coordinate retrieval are complete. Full semantic benchmark evaluation, annotated target correctness, robot navigation and multi-session identity evaluation remain open. The real-data and synthetic results support a focused research question and explicit follow-up protocol, not a system-level performance claim.
 
 Next: investigate paper-version differences, annotate semantic associations/targets and define paired pose-error controls before freezing the hypothesis. [Stage gates](PLAN.md).
+
+## 7. Four-paper media and HOV-SG core — 8 October
+
+HOV-SG's author segment-level feature mapper processes 8 supplied-pose observations (source 0,25,...175), producing 50 segments and 166,777 reference points. Peak mapper PyTorch allocation is 10,030,088,704 bytes, excluding driver allocations. Four CLIP texts return candidate coordinates; accuracy is not annotated. The first 40-observation merge was killed with exit 137 after extraction; cause remains unconfirmed. [Success](../results/reference/hovsg-wsl/record.json), [failure](../results/reference/hovsg-wsl-interrupted/record.json), [resource adaptations](papers/hovsg.md).
+
+Four per-paper H.264/GIF replays are published with full decode checks and metadata. Semantic clips use final maps, not progressive mapping. The actual ConceptGraphs entrypoint uses absolute poses, confirmed by 39 saved matrices; no extra first-frame transformation is applied. [Media/reports](papers/README.md), [coordinate audit](RECORDING.md). These semantic subsets and counts are not full paper benchmark validation.
+
+Final local Windows and WSL checks pass 38 tests with Ruff clean. Twenty-six portable records and all published media/PDF hashes verify. All 32 PDF pages were rendered and visually reviewed; four videos decode completely and first/middle/last frames were inspected. The [HOV-SG resolved-environment repeat](../results/reference/hovsg-wsl-resolved/record.json) preserves byte-identical map/feature outputs. [PDF layout review](../results/reference/paper-report-review/qa.json).

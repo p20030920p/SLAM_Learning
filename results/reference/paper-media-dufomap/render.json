@@ -1,0 +1,55 @@
+{
+  "view": {
+    "projection": "world XY bird's-eye",
+    "bounds_xy_m": [
+      [
+        -50.71433529968262,
+        -28.983828282165526
+      ],
+      [
+        101.99741299743647,
+        38.611195683288535
+      ]
+    ],
+    "selection": "0.5/99.5 percentiles of every 500th GT point, plus 3 percent/minimum 1 m margin"
+  },
+  "source_frame_ids": [
+    "004390.pcd",
+    "004397.pcd",
+    "004404.pcd",
+    "004411.pcd",
+    "004418.pcd",
+    "004425.pcd",
+    "004432.pcd",
+    "004439.pcd",
+    "004446.pcd",
+    "004453.pcd",
+    "004460.pcd",
+    "004467.pcd",
+    "004474.pcd",
+    "004481.pcd",
+    "004488.pcd",
+    "004495.pcd",
+    "004502.pcd",
+    "004509.pcd",
+    "004516.pcd",
+    "004523.pcd",
+    "004530.pcd"
+  ],
+  "scope": "One method cropped from the verified common PCL-label replay; all metrics computed before rendering",
+  "playback_fps": 12,
+  "repeats_per_observation": 8,
+  "encoded_frames": 168,
+  "duration_s": 14.0,
+  "codec": "H.264",
+  "inspected_frame_stddev": [
+    36.14549650753389,
+    36.38881452733005,
+    36.449409547950445
+  ],
+  "reference": {
+    "repository": "https://github.com/p20030920p/Sim2Real-AlgoBench",
+    "commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+    "adapted_convention": "Per-method MP4 + GIF + metadata, fixed view and decoded-output QA; no source copied"
+  }
+}

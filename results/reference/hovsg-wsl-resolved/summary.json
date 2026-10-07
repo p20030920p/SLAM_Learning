@@ -1,0 +1,140 @@
+{
+  "scope": "Author HOV-SG 3D segment-level feature mapping on 8 supplied-pose Replica observations (source frames 0,25,...175) from the staged 40-frame subset. Hierarchical floor/room graph, semantic benchmark accuracy and navigation are not evaluated.",
+  "observations": 8,
+  "objects": 50,
+  "reference_points": 166777,
+  "queries": [
+    {
+      "query": "chair",
+      "top_objects": [
+        {
+          "object_index": 48,
+          "cosine_similarity": 0.28702688217163086,
+          "center_world_m": [
+            2.0138853502707827,
+            1.7572965746436255,
+            -1.3809464199861978
+          ]
+        },
+        {
+          "object_index": 1,
+          "cosine_similarity": 0.27776479721069336,
+          "center_world_m": [
+            1.8421307613710414,
+            0.6641141143503924,
+            -1.0808043981502364
+          ]
+        },
+        {
+          "object_index": 47,
+          "cosine_similarity": 0.24742192029953003,
+          "center_world_m": [
+            1.9028426139816248,
+            1.534130468235185,
+            -1.0720483344278495
+          ]
+        }
+      ]
+    },
+    {
+      "query": "sofa",
+      "top_objects": [
+        {
+          "object_index": 3,
+          "cosine_similarity": 0.2544223666191101,
+          "center_world_m": [
+            2.8397964265944076,
+            -1.0880497596779155,
+            -0.31327881918871886
+          ]
+        },
+        {
+          "object_index": 48,
+          "cosine_similarity": 0.24675647914409637,
+          "center_world_m": [
+            2.0138853502707827,
+            1.7572965746436255,
+            -1.3809464199861978
+          ]
+        },
+        {
+          "object_index": 8,
+          "cosine_similarity": 0.24409398436546326,
+          "center_world_m": [
+            2.7908423247172784,
+            -0.7007126534143238,
+            -0.6635310645156587
+          ]
+        }
+      ]
+    },
+    {
+      "query": "table",
+      "top_objects": [
+        {
+          "object_index": 40,
+          "cosine_similarity": 0.26792436838150024,
+          "center_world_m": [
+            -0.3389752365980322,
+            0.36723854730414945,
+            -1.1133350414893144
+          ]
+        },
+        {
+          "object_index": 25,
+          "cosine_similarity": 0.2669965922832489,
+          "center_world_m": [
+            -0.3278194674298244,
+            1.8408902134151928,
+            -1.0995874295425312
+          ]
+        },
+        {
+          "object_index": 29,
+          "cosine_similarity": 0.26661938428878784,
+          "center_world_m": [
+            2.165593500905792,
+            -0.6154663944945007,
+            -0.7353568097562148
+          ]
+        }
+      ]
+    },
+    {
+      "query": "lamp",
+      "top_objects": [
+        {
+          "object_index": 14,
+          "cosine_similarity": 0.3289233148097992,
+          "center_world_m": [
+            2.314479074759479,
+            -0.7111512038487022,
+            -0.24924716942591166
+          ]
+        },
+        {
+          "object_index": 29,
+          "cosine_similarity": 0.28885194659233093,
+          "center_world_m": [
+            2.165593500905792,
+            -0.6154663944945007,
+            -0.7353568097562148
+          ]
+        },
+        {
+          "object_index": 22,
+          "cosine_similarity": 0.2860405445098877,
+          "center_world_m": [
+            0.4063195366644833,
+            0.8839806583105468,
+            1.2232984563504479
+          ]
+        }
+      ]
+    }
+  ],
+  "query_correctness_evaluated": false,
+  "paper_semantic_metrics_evaluated": false,
+  "gpu_peak_allocated_bytes": 10030088704,
+  "coordinate_frame": "Supplied Replica camera-to-world; no SLAM estimate"
+}

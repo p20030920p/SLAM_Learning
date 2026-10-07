@@ -1,0 +1,403 @@
+{
+  "view": "Fixed Replica world XZ final-map projection",
+  "bounds_xz_m": [
+    [
+      -1.0789637034326556,
+      -1.6637514235683448
+    ],
+    [
+      3.19868050623088,
+      1.392236671446229
+    ]
+  ],
+  "map_frame_to_replica_world": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "coordinate_audit": {
+    "entrypoint": "cfslam_pipeline_batch.py uses absolute dataset.poses; loader normalized __getitem__ poses are bypassed",
+    "checked_native_camera_poses": 39,
+    "maximum_absolute_matrix_error": 1.1297417135125443e-07
+  },
+  "source_artifact_hashes": {
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000001.pkl.gz": "f992240b6acca7ddc400c29c36e1c63b1f27871e6469d5462b3d201b13812ac6",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000002.pkl.gz": "231d16a8769b42cf9d6b38f48ecf0e7330e0a81a3e5447802c8967329feb88e4",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000003.pkl.gz": "4fb65129add7c560cab34019b651bab1da7f310acc0668719d455e44acf81555",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000004.pkl.gz": "0be77b4488e224d2afe504a1a459b53355b26c20ee72f9c7fa490666177a4c04",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000005.pkl.gz": "3be8c01e9b340cc068996a4f1ae080ecea3a683fa7bd82f0331bdc9a955b6b18",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000006.pkl.gz": "b4a00514bf7f477730d83e9f9cfb5257c7a9b303c323c30d01392f648dc76db1",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000007.pkl.gz": "f3b2a873e8c748fa9ba6f782f0f8204c0149e4acc5e0517e5c184f4823eea8d3",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000008.pkl.gz": "8ba112d2c2ef44600624a818dbb10c6176f4e17bf553abd9a9bfa53dc06b1e98",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000009.pkl.gz": "e9a32f9b9b5bd641d490593e4dbe90a55f51572f015cbab0f00e09e1643043f7",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000010.pkl.gz": "d2cf490ed780cbbdc07b7ee6900bf7ddefe50a40037a7da8f3f6accad51d33d3",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000011.pkl.gz": "bebc39ecc1d0bcc3c6125885c3202bbf2a6ba7f1c501a1d70bf9997d77d7ea5a",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000012.pkl.gz": "312842d576cfe5d43ef7f86c7f44e4086957479aae8bd52b53e1f081b33b4479",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000013.pkl.gz": "5b820e7819b91b15f86eb4e13ec371d4c95535b24d89b0fc65e2a65c4ad02c9d",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000014.pkl.gz": "0a17d5305066d141f4d048196f8d8ccd63b2764ab122b55f87a2531917670253",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000015.pkl.gz": "b2bffbb3f47ab3f06aaddf3bc1d53354bb1eb46382e7cf9c8c202b98c8f9c0f9",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000016.pkl.gz": "441cd7fad9e19afb893c986c068990c6a08919fd46a81e89940d697c28627dca",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000017.pkl.gz": "1c4833af421b0ef06e012a989edf9416b85e026981180f895b8b71d8019dba2a",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000018.pkl.gz": "e9ad962cd8afde392d960d11ded8a40f811a6dad0180c5aeb5f38eeb51e3bd30",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000019.pkl.gz": "2092666208dbc52b99dad9e146591cd5ce507c52fda689b8cbe0408676868057",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000020.pkl.gz": "6b60a76a0a8dc8ad4b18bbee33752ebd32d422c3eaec67b236aac4eaaacec8e1",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000021.pkl.gz": "f5884a142ee16af5dcd4649fa34ff9181c5282914d92c62045b069945a04696b",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000022.pkl.gz": "d72431d23a6a42dd8a4410d20adfd17eb47e49dced6f3f2e09d98acc85c77746",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000023.pkl.gz": "f4a04127969d2edbc80f20d68015b99311cdccc0de9d0b796f6df01db2029737",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000024.pkl.gz": "01397a3a7edee4afa8badaaf067cb83c454aa660883d427216d046d06aebc95f",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000025.pkl.gz": "a94a2c524dd42ad565499d2af7e0bda49c80e698bcb1f0e1be66d326816904db",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000026.pkl.gz": "48456990ce53ed1914a560f6fd7c84fb05bfc2cb6e97db96e484913ba982bd58",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000027.pkl.gz": "f4890c3611579b25a33ee8ef2fafeffbe5f49182b3769a6d295b848650d0b642",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000028.pkl.gz": "595467ead97e0f22428e56a9a97fc2cf156ee9f0f513e0faa964d5ea3d9892d6",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000029.pkl.gz": "88ff4f76efdbd20ace91e98a1136aea580f29fa0303622fb90c80fa40eaaf957",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000030.pkl.gz": "7bd154d32dbf1c43851bb529fde79d8bbd9a1c74b089e08ad099fab9a767326f",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000031.pkl.gz": "0ed40a5e3e7b779de3ad161ad90d9be11e9bbfca0375bd568cd51e4900ace960",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000032.pkl.gz": "56d5c735aff45292def12cbfbd8b58ec32f3eafa99918a0602b6541e436a0d08",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000033.pkl.gz": "97465cfc49010c9c2d1c1a13588c6052039fd09aba9149eb99e54c5a98f951ad",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000034.pkl.gz": "4c1ec5f1c85eeea15756acb7bca475b5d2304377223bdfbafa9171f74ffc004d",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000035.pkl.gz": "6223b9397e016d6ca738ae92bd93a11abf0c74301bc0989b5e2967e24a05577b",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000036.pkl.gz": "7ad9b12a5eca1bc18c3af0018a6030f09be021fca4909686c429a543abc5c3cb",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000037.pkl.gz": "e062e3062e430c7ab5104ebffac158fa68a673af73ad09127f33e8a9e69e5797",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000038.pkl.gz": "2fffa48dcea568c3d993a16eeed489909447918144aba2485f42b6c2313fe680",
+    "input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000039.pkl.gz": "de64ec4dc9d8ad3c06f45c814b8e49676626e55b325f9d319638c766ddce2ec9",
+    "input/Replica/room0/gsa_vis_none/frame000000.jpg": "65333f2bb755943695af1a00e56f73a6241ab522531a331529154d4409e9d442",
+    "input/Replica/room0/gsa_vis_none/frame000010.jpg": "f989dda8f0b8cde99c8a944cc559d6174b57023cc8c8687f99b52e25ee2acd99",
+    "input/Replica/room0/gsa_vis_none/frame000020.jpg": "3df2033fdb1b73bf9e47b7675ab0227fc224ce8719cf58cad76a925312f6ebd7",
+    "input/Replica/room0/gsa_vis_none/frame000030.jpg": "009431f6b100c9e0a854c341d06e832384f0a1e2a683ce5aec37aef62abcb773",
+    "input/Replica/room0/gsa_vis_none/frame000040.jpg": "d39dcd9954613647f5a81865068edff39d68904a7d684ef4d499fc738b70769b",
+    "input/Replica/room0/gsa_vis_none/frame000050.jpg": "2e6215f93d2be42c509167da77f162681deeff6b72e10a27e6e765abb600828d",
+    "input/Replica/room0/gsa_vis_none/frame000060.jpg": "3658617e79cb698e29925433a6c5aff43bbc0a775b77931120bdee5599f75f29",
+    "input/Replica/room0/gsa_vis_none/frame000070.jpg": "0436c5010aa3a69ed99302a10099403d9a51ddebad4b007f19a8d8b667660945",
+    "input/Replica/room0/gsa_vis_none/frame000080.jpg": "2e551ae49694f177998d320b3675f015e61cafa91753119e4601da194db4b1ef",
+    "input/Replica/room0/gsa_vis_none/frame000090.jpg": "dae11b399b209ac7274f07eea333897c29729ae1d4d802e71ce7a5209a3fd717",
+    "input/Replica/room0/gsa_vis_none/frame000100.jpg": "9aeb41c7d2b58622f40f1105a46a4764a99afcbc7120d03bce426a4a3044dc1a",
+    "input/Replica/room0/gsa_vis_none/frame000110.jpg": "2fbc9d26269c3df3663094309ec4b042d8f2801a0ae0c7175af3217b6aea252f",
+    "input/Replica/room0/gsa_vis_none/frame000120.jpg": "47bdc404140ddee1c607b3ee35daad186779d1178e127e7d054ac1bb2c0098ea",
+    "input/Replica/room0/gsa_vis_none/frame000130.jpg": "99ebb5e4e67b732b65e842a216dfb1cc64700e1cd59ae2247ee7c614d900563c",
+    "input/Replica/room0/gsa_vis_none/frame000140.jpg": "c502005526a984f3a257180c24d4dd03a8245bead9d0024ca1851c4b539d820a",
+    "input/Replica/room0/gsa_vis_none/frame000150.jpg": "474e9883667f533357d9d607116a39a947e8b264569a6141105f41ad562885d7",
+    "input/Replica/room0/gsa_vis_none/frame000160.jpg": "a743efe3da915eff127f77259fb4a2222234f61a4d622bd2492392392a681731",
+    "input/Replica/room0/gsa_vis_none/frame000170.jpg": "157dc2a4042094973d741f759190b6a5d019669324a60d042554d82b44e0afee",
+    "input/Replica/room0/gsa_vis_none/frame000180.jpg": "9c81b8346d5a60b5bc9fb7cc4f3d149f408bc90569676577da7977a49ad251b4",
+    "input/Replica/room0/gsa_vis_none/frame000195.jpg": "ab85ddec191b552d098ce78d5e0c0c9fd1b9b0d4ce2d4326ba16d7cbe71263d1"
+  },
+  "frames": [
+    {
+      "source_frame": 0,
+      "query": "chair",
+      "candidate": {
+        "object_index": 0,
+        "cosine_similarity": 0.2708888053894043,
+        "center_world_m": [
+          1.7819418983654307,
+          0.6505302228374071,
+          -1.2153646492015813
+        ],
+        "num_detections": 39
+      }
+    },
+    {
+      "source_frame": 10,
+      "query": "chair",
+      "candidate": {
+        "object_index": 0,
+        "cosine_similarity": 0.2708888053894043,
+        "center_world_m": [
+          1.7819418983654307,
+          0.6505302228374071,
+          -1.2153646492015813
+        ],
+        "num_detections": 39
+      }
+    },
+    {
+      "source_frame": 20,
+      "query": "chair",
+      "candidate": {
+        "object_index": 0,
+        "cosine_similarity": 0.2708888053894043,
+        "center_world_m": [
+          1.7819418983654307,
+          0.6505302228374071,
+          -1.2153646492015813
+        ],
+        "num_detections": 39
+      }
+    },
+    {
+      "source_frame": 30,
+      "query": "chair",
+      "candidate": {
+        "object_index": 0,
+        "cosine_similarity": 0.2708888053894043,
+        "center_world_m": [
+          1.7819418983654307,
+          0.6505302228374071,
+          -1.2153646492015813
+        ],
+        "num_detections": 39
+      }
+    },
+    {
+      "source_frame": 40,
+      "query": "chair",
+      "candidate": {
+        "object_index": 0,
+        "cosine_similarity": 0.2708888053894043,
+        "center_world_m": [
+          1.7819418983654307,
+          0.6505302228374071,
+          -1.2153646492015813
+        ],
+        "num_detections": 39
+      }
+    },
+    {
+      "source_frame": 50,
+      "query": "sofa",
+      "candidate": {
+        "object_index": 17,
+        "cosine_similarity": 0.24774006009101868,
+        "center_world_m": [
+          2.8324087754829947,
+          -0.6408515360946526,
+          -0.6690317170674456
+        ],
+        "num_detections": 18
+      }
+    },
+    {
+      "source_frame": 60,
+      "query": "sofa",
+      "candidate": {
+        "object_index": 17,
+        "cosine_similarity": 0.24774006009101868,
+        "center_world_m": [
+          2.8324087754829947,
+          -0.6408515360946526,
+          -0.6690317170674456
+        ],
+        "num_detections": 18
+      }
+    },
+    {
+      "source_frame": 70,
+      "query": "sofa",
+      "candidate": {
+        "object_index": 17,
+        "cosine_similarity": 0.24774006009101868,
+        "center_world_m": [
+          2.8324087754829947,
+          -0.6408515360946526,
+          -0.6690317170674456
+        ],
+        "num_detections": 18
+      }
+    },
+    {
+      "source_frame": 80,
+      "query": "sofa",
+      "candidate": {
+        "object_index": 17,
+        "cosine_similarity": 0.24774006009101868,
+        "center_world_m": [
+          2.8324087754829947,
+          -0.6408515360946526,
+          -0.6690317170674456
+        ],
+        "num_detections": 18
+      }
+    },
+    {
+      "source_frame": 90,
+      "query": "sofa",
+      "candidate": {
+        "object_index": 17,
+        "cosine_similarity": 0.24774006009101868,
+        "center_world_m": [
+          2.8324087754829947,
+          -0.6408515360946526,
+          -0.6690317170674456
+        ],
+        "num_detections": 18
+      }
+    },
+    {
+      "source_frame": 100,
+      "query": "table",
+      "candidate": {
+        "object_index": 18,
+        "cosine_similarity": 0.25821325182914734,
+        "center_world_m": [
+          2.251438234329301,
+          -0.620170676309439,
+          -0.8589500329644217
+        ],
+        "num_detections": 28
+      }
+    },
+    {
+      "source_frame": 110,
+      "query": "table",
+      "candidate": {
+        "object_index": 18,
+        "cosine_similarity": 0.25821325182914734,
+        "center_world_m": [
+          2.251438234329301,
+          -0.620170676309439,
+          -0.8589500329644217
+        ],
+        "num_detections": 28
+      }
+    },
+    {
+      "source_frame": 120,
+      "query": "table",
+      "candidate": {
+        "object_index": 18,
+        "cosine_similarity": 0.25821325182914734,
+        "center_world_m": [
+          2.251438234329301,
+          -0.620170676309439,
+          -0.8589500329644217
+        ],
+        "num_detections": 28
+      }
+    },
+    {
+      "source_frame": 130,
+      "query": "table",
+      "candidate": {
+        "object_index": 18,
+        "cosine_similarity": 0.25821325182914734,
+        "center_world_m": [
+          2.251438234329301,
+          -0.620170676309439,
+          -0.8589500329644217
+        ],
+        "num_detections": 28
+      }
+    },
+    {
+      "source_frame": 140,
+      "query": "table",
+      "candidate": {
+        "object_index": 18,
+        "cosine_similarity": 0.25821325182914734,
+        "center_world_m": [
+          2.251438234329301,
+          -0.620170676309439,
+          -0.8589500329644217
+        ],
+        "num_detections": 28
+      }
+    },
+    {
+      "source_frame": 150,
+      "query": "lamp",
+      "candidate": {
+        "object_index": 2,
+        "cosine_similarity": 0.3190349340438843,
+        "center_world_m": [
+          2.2888435127823143,
+          -0.7533680056973857,
+          -0.2471149343278202
+        ],
+        "num_detections": 31
+      }
+    },
+    {
+      "source_frame": 160,
+      "query": "lamp",
+      "candidate": {
+        "object_index": 2,
+        "cosine_similarity": 0.3190349340438843,
+        "center_world_m": [
+          2.2888435127823143,
+          -0.7533680056973857,
+          -0.2471149343278202
+        ],
+        "num_detections": 31
+      }
+    },
+    {
+      "source_frame": 170,
+      "query": "lamp",
+      "candidate": {
+        "object_index": 2,
+        "cosine_similarity": 0.3190349340438843,
+        "center_world_m": [
+          2.2888435127823143,
+          -0.7533680056973857,
+          -0.2471149343278202
+        ],
+        "num_detections": 31
+      }
+    },
+    {
+      "source_frame": 180,
+      "query": "lamp",
+      "candidate": {
+        "object_index": 2,
+        "cosine_similarity": 0.3190349340438843,
+        "center_world_m": [
+          2.2888435127823143,
+          -0.7533680056973857,
+          -0.2471149343278202
+        ],
+        "num_detections": 31
+      }
+    },
+    {
+      "source_frame": 195,
+      "query": "lamp",
+      "candidate": {
+        "object_index": 2,
+        "cosine_similarity": 0.3190349340438843,
+        "center_world_m": [
+          2.2888435127823143,
+          -0.7533680056973857,
+          -0.2471149343278202
+        ],
+        "num_detections": 31
+      }
+    }
+  ],
+  "scope": "Final semantic map replay with source observations; no evolving-map or live-screen claim",
+  "playback_fps": 12,
+  "repeats_per_observation": 8,
+  "encoded_frames": 160,
+  "duration_s": 13.333333333333334,
+  "codec": "H.264",
+  "inspected_frame_stddev": [
+    57.60954593955785,
+    59.282428747883124,
+    58.60454460958794
+  ],
+  "reference": {
+    "repository": "https://github.com/p20030920p/Sim2Real-AlgoBench",
+    "commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+    "adapted_convention": "Per-method MP4 + GIF + metadata, fixed view and decoded-output QA; no source copied"
+  }
+}

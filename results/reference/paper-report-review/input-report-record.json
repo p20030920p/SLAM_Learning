@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "kind": "bilingual_paper_reports",
+  "status": "executed",
+  "finished_at": "2026-10-07T23:24:09+00:00",
+  "repository_commit": "0feeb441f10e6fcb05f325e58ae1b98199cd2670",
+  "repository_dirty": true,
+  "generator_sha256": "8a885c768802d13e2b4634c1735cee5662b9cf014819de4dc31fe351cf15ae4f",
+  "environment": {
+    "python": "3.12.14",
+    "packages": {
+      "reportlab": "4.4.9",
+      "pypdf": "6.10.0",
+      "pillow": "12.3.0"
+    }
+  },
+  "cjk_font": {
+    "name": "embedded TrueType subset",
+    "sha256": "d79c55e68b1131eea0cc1c47be4f572d964f28c682e143db2ad09c1e4cb07a3f"
+  },
+  "input_sha256": {
+    "configs/paper_suite.json": "ac9d6ccbf2582d9422c4b611af1356015306a4cf896b23e9a2128f74480f606e",
+    "results/reference/dufomap-wsl/record.json": "fbf0ffbc2f16fd05bc6b8f42a04fca102bc2d0085dda9a918a02384a7b18d87a",
+    "results/reference/paper-media-dufomap/record.json": "b08e14c3db27509d58a2d7f7bc171293fa1479365ee016531592f237c4d2bfd5",
+    "results/reference/beautymap-wsl/record.json": "bc6cd938bc2e48e8f62f42c8cae0603b8352cb8b7586505582871e438e6628fa",
+    "results/reference/paper-media-beautymap/record.json": "ed9bfa361cae53befd0725b20a8a8965cf4187daf44b4f403af82be5db7398ea",
+    "results/reference/conceptgraphs-wsl/record.json": "48d3de3a63dac4982bc68b8df36fb069eaaacde741f50c26b6ebfd919838203c",
+    "results/reference/paper-media-conceptgraphs/record.json": "1476b6b75187a78755007aa29ca2f5e1fcca7cc8f14ad828fc4cb036dd9232a6",
+    "results/reference/hovsg-wsl/record.json": "90610f68150e3c32314352cc22b9ca2f518c3c2ad9e1eb9452114a5395c89c3b",
+    "results/reference/paper-media-hovsg/record.json": "0ceb9c33d74e378a093d43b4b53257486bc986ba140a108df1125b640c23bb32",
+    "docs/papers/dufomap.md": "cdbd42c99c334f1791b0a7667984b79d61509dacdd11a3535556f938d311c5b6",
+    "docs/papers/dufomap.zh-CN.md": "10e952931c57cec86d6477df26f924ca847e9049326bb44e9cf86037d4d6c09f",
+    "docs/papers/beautymap.md": "5a8b77bc1fcaf6b55f43458a1fa3c82f950c76e31079f0e1824d832b7d0aa27e",
+    "docs/papers/beautymap.zh-CN.md": "fe5cd12919307202e5a4e764f593ed799d52d897cb438f24bb64f51b7a8403ec",
+    "docs/papers/conceptgraphs.md": "82f4ae26933132116b5fca27f47d45eabf0b45654d6a9d2ed0c9dcc6da496139",
+    "docs/papers/conceptgraphs.zh-CN.md": "187afe0151e7885aa15d7e389740c2cdb3f38dd2a6864a119d29bc36e2def8c6",
+    "docs/papers/hovsg.md": "55247f78584d67c5c5a0b4c79d350b207ccd6a76a09ba3d45646c2539af8188d",
+    "docs/papers/hovsg.zh-CN.md": "36857b7e51c5e2eaf37f8bae7919def43b39b39cf5096820e0132a0646910569",
+    "docs/STUDY.md": "aadc665fc21e1c31d9307a04673ed960aeb6dc2435dc1c527d84eee4139b82e9",
+    "docs/STUDY.zh-CN.md": "9d38789474ddb8e683f5c9c40f465665cec1ceabbca0d077c65c314b048f50b6",
+    "docs/REAL_WORLD.md": "972702c5b008cf0c9e20a348919689617997a06e5dd3acf4b9cc483749bdcc6e",
+    "docs/REAL_WORLD.zh-CN.md": "aa3e59cc051dad989e8d7d181597a361da62879e575b3e01ca49604e0d541dd1",
+    "docs/media/dufomap/poster.png": "e72fbdf87ca3465d37ba73a8b247eea3ced77a33e2ba5dc256952965cb2ac95a",
+    "docs/media/beautymap/poster.png": "4f90ac96b5859e45b71d869385c5124f9bc4fe821341a4c4ffb81de5ff52bfd4",
+    "docs/media/conceptgraphs/poster.png": "2197a396828827676a24ef6f494ce6cdb9aee3e41bd1ec4ea04e155821d13b34",
+    "docs/media/hovsg/poster.png": "261c73b67ddcf20ca9c5a7276d26e015572041009fd9d3eec342bda413132775"
+  },
+  "page_counts": {
+    "dufomap.en.pdf": 2,
+    "dufomap.zh-CN.pdf": 2,
+    "beautymap.en.pdf": 2,
+    "beautymap.zh-CN.pdf": 2,
+    "conceptgraphs.en.pdf": 2,
+    "conceptgraphs.zh-CN.pdf": 2,
+    "hovsg.en.pdf": 2,
+    "hovsg.zh-CN.pdf": 2,
+    "study.en.pdf": 3,
+    "study.zh-CN.pdf": 3,
+    "real-world.en.pdf": 3,
+    "real-world.zh-CN.pdf": 3
+  },
+  "scope": "Reading reports, not new experiment measurements. Page rendering/visual QA is a separate publication gate.",
+  "artifacts": {
+    "inputs/configs/paper_suite.json": {
+      "sha256": "ac9d6ccbf2582d9422c4b611af1356015306a4cf896b23e9a2128f74480f606e",
+      "bytes": 1922,
+      "availability": "portable"
+    },
+    "inputs/results/reference/dufomap-wsl/record.json": {
+      "sha256": "fbf0ffbc2f16fd05bc6b8f42a04fca102bc2d0085dda9a918a02384a7b18d87a",
+      "bytes": 7088,
+      "availability": "portable"
+    },
+    "inputs/results/reference/paper-media-dufomap/record.json": {
+      "sha256": "b08e14c3db27509d58a2d7f7bc171293fa1479365ee016531592f237c4d2bfd5",
+      "bytes": 3187,
+      "availability": "portable"
+    },
+    "inputs/results/reference/beautymap-wsl/record.json": {
+      "sha256": "bc6cd938bc2e48e8f62f42c8cae0603b8352cb8b7586505582871e438e6628fa",
+      "bytes": 8045,
+      "availability": "portable"
+    },
+    "inputs/results/reference/paper-media-beautymap/record.json": {
+      "sha256": "ed9bfa361cae53befd0725b20a8a8965cf4187daf44b4f403af82be5db7398ea",
+      "bytes": 3188,
+      "availability": "portable"
+    },
+    "inputs/results/reference/conceptgraphs-wsl/record.json": {
+      "sha256": "48d3de3a63dac4982bc68b8df36fb069eaaacde741f50c26b6ebfd919838203c",
+      "bytes": 10594,
+      "availability": "portable"
+    },
+    "inputs/results/reference/paper-media-conceptgraphs/record.json": {
+      "sha256": "1476b6b75187a78755007aa29ca2f5e1fcca7cc8f14ad828fc4cb036dd9232a6",
+      "bytes": 19081,
+      "availability": "portable"
+    },
+    "inputs/results/reference/hovsg-wsl/record.json": {
+      "sha256": "90610f68150e3c32314352cc22b9ca2f518c3c2ad9e1eb9452114a5395c89c3b",
+      "bytes": 18566,
+      "availability": "portable"
+    },
+    "inputs/results/reference/paper-media-hovsg/record.json": {
+      "sha256": "0ceb9c33d74e378a093d43b4b53257486bc986ba140a108df1125b640c23bb32",
+      "bytes": 7552,
+      "availability": "portable"
+    },
+    "inputs/docs/papers/dufomap.md": {
+      "sha256": "cdbd42c99c334f1791b0a7667984b79d61509dacdd11a3535556f938d311c5b6",
+      "bytes": 3573,
+      "availability": "portable"
+    },
+    "dufomap.en.pdf": {
+      "sha256": "6b9523bc9e35b6bc30eb55010298ebc6d1f73e63781467d6f0d884196c663ffc",
+      "bytes": 98694,
+      "availability": "portable"
+    },
+    "inputs/docs/papers/dufomap.zh-CN.md": {
+      "sha256": "10e952931c57cec86d6477df26f924ca847e9049326bb44e9cf86037d4d6c09f",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "dufomap.zh-CN.pdf": {
+      "sha256": "7563946774d102932be9500ea01a91f7a0d435b9acf7424e3ed026a83eeb74cd",
+      "bytes": 233329,
+      "availability": "portable"
+    },
+    "inputs/docs/papers/beautymap.md": {
+      "sha256": "5a8b77bc1fcaf6b55f43458a1fa3c82f950c76e31079f0e1824d832b7d0aa27e",
+      "bytes": 3422,
+      "availability": "portable"
+    },
+    "beautymap.en.pdf": {
+      "sha256": "7f938e9cf6b2f0374739d432551a0625ae754063f6930d827438df9456c1c42c",
+      "bytes": 98848,
+      "availability": "portable"
+    },
+    "inputs/docs/papers/beautymap.zh-CN.md": {
+      "sha256": "fe5cd12919307202e5a4e764f593ed799d52d897cb438f24bb64f51b7a8403ec",
+      "bytes": 3008,
+      "availability": "portable"
+    },
+    "beautymap.zh-CN.pdf": {
+      "sha256": "051b8c66f3f82e914b12c67ac7346e4796787f257a8416c6b4e7c3651e7c7484",
+      "bytes": 234025,
+      "availability": "portable"
+    },
+    "inputs/docs/papers/conceptgraphs.md": {
+      "sha256": "82f4ae26933132116b5fca27f47d45eabf0b45654d6a9d2ed0c9dcc6da496139",
+      "bytes": 3911,
+      "availability": "portable"
+    },
+    "conceptgraphs.en.pdf": {
+      "sha256": "a82ead0272d82482e9b245bdbd795a7d8cd780d2712980533919c97595fae405",
+      "bytes": 476482,
+      "availability": "portable"
+    },
+    "inputs/docs/papers/conceptgraphs.zh-CN.md": {
+      "sha256": "187afe0151e7885aa15d7e389740c2cdb3f38dd2a6864a119d29bc36e2def8c6",
+      "bytes": 3320,
+      "availability": "portable"
+    },
+    "conceptgraphs.zh-CN.pdf": {
+      "sha256": "a89b5eecdc7ce77795aa160ec88e82ee0e7bd5bafe0838f54d6eabfa2986bedd",
+      "bytes": 621223,
+      "availability": "portable"
+    },
+    "inputs/docs/papers/hovsg.md": {
+      "sha256": "55247f78584d67c5c5a0b4c79d350b207ccd6a76a09ba3d45646c2539af8188d",
+      "bytes": 3846,
+      "availability": "portable"
+    },
+    "hovsg.en.pdf": {
+      "sha256": "4b9d97d65d4c15506459e65da88eb595285e7a6f42058104f14816ec22bfcb13",
+      "bytes": 418159,
+      "availability": "portable"
+    },
+    "inputs/docs/papers/hovsg.zh-CN.md": {
+      "sha256": "36857b7e51c5e2eaf37f8bae7919def43b39b39cf5096820e0132a0646910569",
+      "bytes": 3255,
+      "availability": "portable"
+    },
+    "hovsg.zh-CN.pdf": {
+      "sha256": "bdb73c24b43136c4a564a73f0aa4ca23626633989c9668febe3f22186375d1f3",
+      "bytes": 566043,
+      "availability": "portable"
+    },
+    "inputs/docs/STUDY.md": {
+      "sha256": "aadc665fc21e1c31d9307a04673ed960aeb6dc2435dc1c527d84eee4139b82e9",
+      "bytes": 8413,
+      "availability": "portable"
+    },
+    "study.en.pdf": {
+      "sha256": "013cfcfaa23edabf63dae963c8070485237dd1a20aa35a835629f82c50f12bf3",
+      "bytes": 29434,
+      "availability": "portable"
+    },
+    "inputs/docs/STUDY.zh-CN.md": {
+      "sha256": "9d38789474ddb8e683f5c9c40f465665cec1ceabbca0d077c65c314b048f50b6",
+      "bytes": 6956,
+      "availability": "portable"
+    },
+    "study.zh-CN.pdf": {
+      "sha256": "2ee23176f55401b35899603dce0167f3dd1cff82cfc9b9646c0d9ba3b12c90b2",
+      "bytes": 253700,
+      "availability": "portable"
+    },
+    "inputs/docs/REAL_WORLD.md": {
+      "sha256": "972702c5b008cf0c9e20a348919689617997a06e5dd3acf4b9cc483749bdcc6e",
+      "bytes": 9282,
+      "availability": "portable"
+    },
+    "real-world.en.pdf": {
+      "sha256": "bb56c4cdf18007c1936145a799fc3fb36abfe6f00a8d70c4abc3eeb0a5974f56",
+      "bytes": 28901,
+      "availability": "portable"
+    },
+    "inputs/docs/REAL_WORLD.zh-CN.md": {
+      "sha256": "aa3e59cc051dad989e8d7d181597a361da62879e575b3e01ca49604e0d541dd1",
+      "bytes": 7617,
+      "availability": "portable"
+    },
+    "real-world.zh-CN.pdf": {
+      "sha256": "b8683f3c7d4e30123cdfe3fa071a8f6f83382ef04a5e2060d0f30d90778c2a3a",
+      "bytes": 264192,
+      "availability": "portable"
+    },
+    "inputs/docs/media/dufomap/poster.png": {
+      "sha256": "e72fbdf87ca3465d37ba73a8b247eea3ced77a33e2ba5dc256952965cb2ac95a",
+      "bytes": 78134,
+      "availability": "portable"
+    },
+    "inputs/docs/media/beautymap/poster.png": {
+      "sha256": "4f90ac96b5859e45b71d869385c5124f9bc4fe821341a4c4ffb81de5ff52bfd4",
+      "bytes": 77667,
+      "availability": "portable"
+    },
+    "inputs/docs/media/conceptgraphs/poster.png": {
+      "sha256": "2197a396828827676a24ef6f494ce6cdb9aee3e41bd1ec4ea04e155821d13b34",
+      "bytes": 304185,
+      "availability": "portable"
+    },
+    "inputs/docs/media/hovsg/poster.png": {
+      "sha256": "261c73b67ddcf20ca9c5a7276d26e015572041009fd9d3eec342bda413132775",
+      "bytes": 260670,
+      "availability": "portable"
+    }
+  }
+}

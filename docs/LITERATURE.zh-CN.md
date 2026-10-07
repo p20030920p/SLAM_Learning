@@ -32,8 +32,10 @@
 
 ## 代码可得性与复现范围
 
-DUFOMap、BeautyMap 有可执行作者实现与小型公开标注数据，固定提交见 [upstreams.json](../configs/upstreams.json)。ConceptGraphs 的 class-agnostic 前端已处理 40 次提供位姿的 Replica 观测，见[源码／参数](../configs/semantic.json)、[边界](SEMANTIC.zh-CN.md)。其余核心工作做了阅读，未新近复现。
+DUFOMap、BeautyMap 有可执行作者实现与小型公开标注数据，固定提交见 [upstreams.json](../configs/upstreams.json)。ConceptGraphs 的 class-agnostic 前端已处理 40 次提供位姿的 Replica 观测，HOV-SG 已完成 8 观测分段特征建图核心，见[边界](SEMANTIC.zh-CN.md)。其余四篇工作做了阅读，未新近复现。
 
 [SuperMap 仓库](https://github.com/superxslam/SuperMap)在检查提交 `ec95b1d50a458645b2669836e2c431f1e957bbc6` 时，仅有 README、论文、演示，没有实现、依赖文件与可运行例程，安装文字不构成该快照下的复现配方。PerSeM 是近期预印本，不当作独立验证过的成熟基线。
 
 先复现可检查的接口和负面对照，再进入真实语义前端；不能把合成对象位置包装成语义导航结果。[阶段安排](PLAN.zh-CN.md)。
+
+本次主选四篇为 DUFOMap、BeautyMap、ConceptGraphs、HOV-SG；前两篇完整 teaser，后两篇语义核心子集。HOV-SG 已执行 8 观测分段特征建图，其他四篇只作已读比较与反例。[四篇研究分析](STUDY.zh-CN.md)、[实际范围索引](papers/README.zh-CN.md)。

@@ -46,3 +46,9 @@ uv run python scripts/verify_evidence.py
 ```
 
 Do not retouch masks or change metric numbers in an editor. Publish failure cases too. Raw scans, model weights and dataset files stay outside this directory. PNG/SVG figures should have readable labels and a solid background for both GitHub themes.
+
+## Four-paper recordings
+
+[Paper index](../papers/README.md) links each native result to its MP4, GIF, poster and bilingual PDF. These 12 media assets are hash-bound in `slots.json`. [Recording commands](../RECORDING.md) disclose final-map replay and coordinate checks. Physical capture is reserved as `docs/figures/physical_capture.mp4` until data collection.
+
+Twelve bilingual PDFs are hash-bound to [generation evidence](../../results/reference/paper-pdfs/record.json), with separate [32-page layout review](../../results/reference/paper-report-review/qa.json). The index now contains 30 published assets and 7 reserved slots.
