@@ -2,7 +2,7 @@
   "schema_version": 1,
   "projection": "fixed bird-eye view for geometric comparison",
   "world_bounds": null,
-  "bounds_rule": "Choose once from raw selected frames; persist and reuse for all methods. Do not crop each output independently.",
+  "bounds_rule": "Choose once from the raw source sequence; persist and reuse for all methods. Do not crop each output independently.",
   "frame_ids": [],
   "frame_rule": "Explicit provided teaser entries; show original filenames. Do not imply full consecutive KITTI sampling.",
   "palette": {
