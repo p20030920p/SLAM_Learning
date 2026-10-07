@@ -38,3 +38,13 @@ SAM ViT-H comes from a revision-pinned Hugging Face mirror after the Meta downlo
 The original mapping log contains object additions, filtering and merging; these operations execute on real RGB-D observations and foundation-model features rather than oracle object identities. The final object count alone cannot measure fragmentation or correct association. The published query scores are cosine similarity, not calibrated probabilities.
 
 Next, add annotated object identities and query targets, then compare exact, independent and temporally correlated pose errors with the segmentation/features fixed. Include threshold sweeps and matched coverage/latency. The shared-pose hypothesis remains a candidate until these controls and held-out scenes are defined. [Stage plan](PLAN.md).
+
+## HOV-SG: fourth mapping core
+
+`bash scripts/setup_hovsg.sh` prepares independent `.venv-hovsg`; then run `.venv-hovsg/bin/python scripts/run_hovsg.py`. It shares verified Replica data/checkpoints, installs [pinned HOV-SG dependencies](../environments/hovsg/requirements.txt), and needs no PyTorch3D.
+
+The completed run processes 8 observations at source indices 0,25,...175, giving 50 segments and 166,777 reference points. RGB/depth are 640×360 with separately rescaled intrinsic axes; SAM batch is 36 and CLIP batch 4. Native geometric merging and feature selection execute with unchanged thresholds. Floor/room hierarchy, semantic mIoU and navigation are not evaluated. Fifty segments cannot rank against 39 objects.
+
+The first 40-observation attempt completed extraction, then its merge worker was killed with exit 137; the cause is not established and OOM is not confirmed. [Failed evidence](../results/reference/hovsg-wsl-interrupted/record.json) and [successful evidence](../results/reference/hovsg-wsl/record.json) are separate. The successful mapper records peak PyTorch allocation of 10,030,088,704 bytes, excluding driver allocations. Four text queries return candidate coordinates without correctness evaluation. [Card/video/PDF](papers/hovsg.md).
+
+The actual ConceptGraphs batch mapper reads absolute `dataset.poses`, bypassing the loader default normalization. Thirty-nine saved camera matrices match supplied poses; historical world coordinates are correct, without an extra first-frame transformation. Both semantic clips replay final maps, not online evolution. [Recording and coordinate audit](RECORDING.md).

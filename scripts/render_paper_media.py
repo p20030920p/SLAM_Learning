@@ -20,6 +20,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageSequence
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from slam_learning.provenance import digest, environment, git_state, utc_now, write_json
 from slam_learning.runner import verify_record
+from slam_learning.pose_audit import audit_camera_snapshots
 
 
 def semantic_frames(method, record_path, record, output):
@@ -33,15 +34,9 @@ def semantic_frames(method, record_path, record, output):
         world_from_map = np.eye(4)
         poses = np.loadtxt(image_root / "traj.txt").reshape(-1, 4, 4)
         snapshots = sorted((image_root / "objects_all_frames").rglob("[0-9]*.pkl.gz"))
-        errors = []
-        for snapshot in snapshots:
-            with gzip.open(snapshot, "rb") as stream:
-                state = pickle.load(stream)
-            index = int(snapshot.name.split(".")[0])
-            errors.append(float(np.max(np.abs(np.asarray(state["camera_pose"]) - poses[index]))))
-            source_hashes[snapshot.relative_to(run).as_posix()] = digest(snapshot)
-        if [int(path.name.split(".")[0]) for path in snapshots] != list(range(1, 40)) or max(errors) > 1e-6:
-            raise ValueError("Native camera poses differ from supplied absolute poses")
+        audit = audit_camera_snapshots(snapshots, poses, list(range(1, 40)))
+        source_hashes.update({Path(path).relative_to(run).as_posix(): value
+                             for path, value in audit["source_hashes"].items()})
         images = sorted((image_root / "gsa_vis_none").glob("*.jpg"))
         frame_ids = [int(path.stem.replace("frame", "")) for path in images]
     else:
@@ -102,7 +97,8 @@ def semantic_frames(method, record_path, record, output):
     return frames, {"view": "Fixed Replica world XZ final-map projection", "bounds_xz_m": [lower.tolist(), upper.tolist()],
                     "map_frame_to_replica_world": world_from_map.tolist() if method == "conceptgraphs" else np.eye(4).tolist(),
                     "coordinate_audit": {"entrypoint": "cfslam_pipeline_batch.py uses absolute dataset.poses; loader normalized __getitem__ poses are bypassed",
-                                         "checked_native_camera_poses": len(errors), "maximum_absolute_matrix_error": max(errors)} if method == "conceptgraphs" else {"entrypoint": "HOV-SG ReplicaDataset reads absolute traj.txt matrices"},
+                                         "checked_native_camera_poses": audit["checked_native_camera_poses"],
+                                         "maximum_absolute_matrix_error": audit["maximum_absolute_matrix_error"]} if method == "conceptgraphs" else {"entrypoint": "HOV-SG ReplicaDataset reads absolute traj.txt matrices"},
                     "source_artifact_hashes": source_hashes, "frames": metadata,
                     "scope": "Final semantic map replay with source observations; no evolving-map or live-screen claim"}
 

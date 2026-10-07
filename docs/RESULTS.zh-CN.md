@@ -112,3 +112,9 @@ ConceptGraphs 的 class-agnostic SAM／CLIP 分割、作者三维关联／融合
 当前检查 36 个通过，Ruff 无错误；Matplotlib 依赖产生弃用警告。导出和 Git 中的原始字节均经过哈希验证。多数 Windows 数值使用 `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`，最终 BeautyMap 为 `17591fa`，隔离扫描标注后数值未变。每记录保存对应源码哈希。
 
 PCL／SciPy 对照和可执行语义子集、文本坐标检索已完成；完整语义榜单、标注目标正确率、机器人导航、多会话身份评价仍待完成。下一步查论文版本差异、补语义关联／目标标注和配对位姿误差对照，再冻结假设；[计划](PLAN.zh-CN.md)分别记录已做、探索、待做事项。
+
+## 7. 四篇媒体与 HOV-SG 核心：10 月 8 日
+
+HOV-SG 作者分段特征建图处理 8 次给定位姿观测（源索引 0,25,...175），产生 50 分段及 166,777 参考点。建图进程 PyTorch 分配峰值 10,030,088,704 字节，不含驱动分配。四条 CLIP 文本返回坐标候选，正确性未标注。首次 40 观测在提取后合并进程被终止，退出码 137，原因未确认。[成功](../results/reference/hovsg-wsl/record.json)、[失败](../results/reference/hovsg-wsl-interrupted/record.json)、[资源适配](papers/hovsg.zh-CN.md)。
+
+四篇各自 H.264／GIF 回放已发布，附完整解码检查及元数据。语义视频使用最终地图，不表示逐步建图。实际 ConceptGraphs 入口使用绝对位姿，39 个保存矩阵确认，无须额外第一帧转换。[媒体／报告](papers/README.zh-CN.md)、[坐标核查](RECORDING.zh-CN.md)。这些语义子集及计数不是完整论文 benchmark 验证。

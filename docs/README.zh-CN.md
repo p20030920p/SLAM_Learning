@@ -19,3 +19,9 @@
 | 生成记录 | [汇总](../results/REPORT.zh-CN.md) | [Ledger](../results/REPORT.md) |
 
 已发布图有证据；预留 GIF／视频位置只有图注和协议，不填虚构输出。CI 检查双语配对、本地链接，以及已发布资产背后的记录。
+
+| Four-paper reproduction | [Paper cards](papers/README.md) | [论文卡](papers/README.zh-CN.md) |
+| Common bottleneck | [Study](STUDY.md) | [共性研究](STUDY.zh-CN.md) |
+| D435i / L2 physical tests | [Protocol](REAL_WORLD.md) | [实物协议](REAL_WORLD.zh-CN.md) |
+| Video and PDF generation | [Recording](RECORDING.md) | [录制](RECORDING.zh-CN.md) |
+| Submission preparation | [Checklist](SUBMISSION.md) | [提交检查](SUBMISSION.zh-CN.md) |

@@ -32,7 +32,7 @@ The recurring interface is narrow: establish spatial correspondence, then interp
 
 ## Code accessibility and scope
 
-DUFOMap and BeautyMap have executable author implementations and small labeled public data. Their exact commits are in [upstreams.json](../configs/upstreams.json). A class-agnostic ConceptGraphs frontend now executed on 40 posed Replica observations; [source/settings](../configs/semantic.json), [scope](SEMANTIC.md). The other core works were read, not freshly reproduced.
+DUFOMap and BeautyMap have executable author implementations and small labeled public data. Their exact commits are in [upstreams.json](../configs/upstreams.json). A class-agnostic ConceptGraphs frontend now executed on 40 posed Replica observations; [source/settings](../configs/semantic.json), [scope](SEMANTIC.md). HOV-SG now executes its 8-observation segment feature-map core; [paper card](papers/hovsg.md). The remaining four works were read, not freshly reproduced. [Four-paper structural analysis](STUDY.md).
 
 The [SuperMap repository](https://github.com/superxslam/SuperMap), inspected at `ec95b1d50a458645b2669836e2c431f1e957bbc6`, contained a README, paper and teaser, but no implementation, requirements file or runnable examples. Its setup text is not a runnable recipe at this snapshot. PerSeM is treated as a recent preprint, not an independently validated baseline.
 

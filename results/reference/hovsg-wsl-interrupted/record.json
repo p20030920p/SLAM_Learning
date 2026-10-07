@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "kind": "semantic_frontend_baseline",
+  "method": "HOV-SG",
+  "status": "failed",
+  "started_at": "2026-10-07T22:46:26+00:00",
+  "configuration": {
+    "schema_version": 1,
+    "upstream": {
+      "url": "https://github.com/hovsg/HOV-SG.git",
+      "commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605"
+    },
+    "author_config": "config/semantic_segmentation.yaml",
+    "scene": "room0",
+    "image_width": 640,
+    "image_height": 360,
+    "sam_points_per_batch": 36,
+    "clip_batch_size": 4,
+    "skip_frames": 1,
+    "queries": [
+      "chair",
+      "sofa",
+      "table",
+      "lamp"
+    ],
+    "scope": "Author HOV-SG 3D segment-level feature mapping on the same 40 supplied-pose Replica observations. Hierarchical floor/room graph, semantic benchmark accuracy and navigation are not evaluated.",
+    "adaptations": "640x360 RGB/depth with separately rescaled intrinsics; SAM batching 36 and CLIP batching 4 for 12 GiB GPU. All segmentation/merging thresholds remain from the pinned author configuration."
+  },
+  "artifacts": {
+    "camera-source.yaml": {
+      "sha256": "cbe326b08ef36cfc133f3b262fc00d17ba3702677dfd4e1e2ff9d3bbe94bb8f0",
+      "bytes": 592,
+      "availability": "portable"
+    },
+    "compatibility.patch": {
+      "sha256": "553e21c8278002570728ac606dfc7e4f4870b4db97c61596f9ed1d84c0ea2690",
+      "bytes": 579,
+      "availability": "portable"
+    },
+    "dataset-manifest.json": {
+      "sha256": "90bb813e78a354963ee0b67ba883bd8fbc0bb60cf67baf2776cebe47e5518ad8",
+      "bytes": 21668,
+      "availability": "portable"
+    },
+    "derived-input.json": {
+      "sha256": "bc8d898cab742481f306827c29bb712e69e20e773afebc74e59952459b3af3fe",
+      "bytes": 12021,
+      "availability": "portable"
+    },
+    "effective-config.yaml": {
+      "sha256": "85ed84444d3eedf883cb1747c86bb71901c347842f285c32df08c841eaf7a0e8",
+      "bytes": 1097,
+      "availability": "portable"
+    },
+    "environment.txt": {
+      "sha256": "04c47a25baeb24ede19b97b0ceb1616c9ed5082cee352b9b041b11677ba9eb51",
+      "bytes": 2503,
+      "availability": "portable"
+    },
+    "frame_observations.json": {
+      "sha256": "c987c700adb079799e7f789ee20d96dbec5639e14272cf9ab18d0b46f48ba292",
+      "bytes": 2891,
+      "availability": "portable"
+    },
+    "mapping.log": {
+      "sha256": "f841a4d9b338456dabca65191b68da8536cce063997b148e6cae0238f897a0d8",
+      "bytes": 6973,
+      "availability": "portable"
+    },
+    "observations/000000.npz": {
+      "sha256": "826ce64b38a55144441883da927ca2c72d917079d617195b0140a320feae188f",
+      "bytes": 155990,
+      "availability": "local_only"
+    },
+    "observations/000001.npz": {
+      "sha256": "df6269f7d5cf138d6010316ccf347351a5ff14be45e3ba775df164c67356be04",
+      "bytes": 173559,
+      "availability": "local_only"
+    },
+    "observations/000002.npz": {
+      "sha256": "f6ccfc81f66b0a4b1aeafb00378fe0d0785f5f890a15f1791a5881552a5f1329",
+      "bytes": 164159,
+      "availability": "local_only"
+    },
+    "observations/000003.npz": {
+      "sha256": "7778fcda425e2ab3deec5654a8da3b0b25d22377691d30aad4a18d96486a4252",
+      "bytes": 176368,
+      "availability": "local_only"
+    },
+    "observations/000004.npz": {
+      "sha256": "81d7d22bfef57d1a1fe266ebf064c2fe2ba84e690850d854f4161ba572884b9d",
+      "bytes": 172653,
+      "availability": "local_only"
+    },
+    "observations/000005.npz": {
+      "sha256": "c8349fd800b7feef10e02a187ba27a77ba1fd0781237ad86b696218a8f59d25a",
+      "bytes": 176130,
+      "availability": "local_only"
+    },
+    "observations/000006.npz": {
+      "sha256": "9fffda32691d512882226e1ea08e7b3c43478765a8b44c10e59746cfcefff8d7",
+      "bytes": 189405,
+      "availability": "local_only"
+    },
+    "observations/000007.npz": {
+      "sha256": "faaa9d6e9609fa7c374805065f095e23ad46786218909c1bf26f66c444a171c8",
+      "bytes": 168067,
+      "availability": "local_only"
+    },
+    "observations/000008.npz": {
+      "sha256": "268d45f69334c842af7612b752847c69bd5257d99b963cdf957498b8fc211444",
+      "bytes": 155911,
+      "availability": "local_only"
+    },
+    "observations/000009.npz": {
+      "sha256": "9a43436f742085a12c16391c5c3db9e6f4ad8fd7c9cf6d9c526575712321b0be",
+      "bytes": 176106,
+      "availability": "local_only"
+    },
+    "observations/000010.npz": {
+      "sha256": "162ede7cb1c61499156895b8dd3626824de7e386214fe6ade660649df0d8de72",
+      "bytes": 155542,
+      "availability": "local_only"
+    },
+    "observations/000011.npz": {
+      "sha256": "c4ff26331905fb50d7df3f45500de32e8a71b5c1a7f2ebf8faeeaef9317ccbfd",
+      "bytes": 150463,
+      "availability": "local_only"
+    },
+    "observations/000012.npz": {
+      "sha256": "619fc8b0c501d0830946f1cfe1de69677f5a3651aa326024e377d9a11500d6eb",
+      "bytes": 133919,
+      "availability": "local_only"
+    },
+    "observations/000013.npz": {
+      "sha256": "b6f0570341f73c39b1ddceed131df6b8b4460db17718e944e0a9987ac52e023f",
+      "bytes": 158750,
+      "availability": "local_only"
+    },
+    "observations/000014.npz": {
+      "sha256": "a3fd12fffcca6f4010fe545e2e5da5c07e641c97b9f974a85180c32770d28aff",
+      "bytes": 167208,
+      "availability": "local_only"
+    },
+    "observations/000015.npz": {
+      "sha256": "6e639d9f1ea4d15b42702e43e908cdc5152a1b8fbd712b15b389b4c63395c28d",
+      "bytes": 141974,
+      "availability": "local_only"
+    },
+    "observations/000016.npz": {
+      "sha256": "75ae125aae67213df6f09a2104591cec2ba376af84464eb76646b9ee55715257",
+      "bytes": 162601,
+      "availability": "local_only"
+    },
+    "observations/000017.npz": {
+      "sha256": "92512eb0d59ee7633316f4bb3b5cdd7290c7f24b157a27e63fa49bf99dd09dc7",
+      "bytes": 132784,
+      "availability": "local_only"
+    },
+    "observations/000018.npz": {
+      "sha256": "3f41636a26918c273851e6f8d086998c3af8514e8e00d696181deedc08e48692",
+      "bytes": 121235,
+      "availability": "local_only"
+    },
+    "observations/000019.npz": {
+      "sha256": "f4752bcac7d900699b6a3b0499d68486f0aa99795db508c7d9e7dd50e331975e",
+      "bytes": 146138,
+      "availability": "local_only"
+    },
+    "observations/000020.npz": {
+      "sha256": "4aa1ce7e3082f99e537d4d29d83d34a92bc6d89f837418bea6657f5edf4b5d11",
+      "bytes": 115270,
+      "availability": "local_only"
+    },
+    "observations/000021.npz": {
+      "sha256": "a9b7ee2e69ca7c668bdd64d8407194b198ed64479a361453ae702ca211c1ea7d",
+      "bytes": 150207,
+      "availability": "local_only"
+    },
+    "observations/000022.npz": {
+      "sha256": "1a3557328d61da0894b1a87ff496a4780643b5757b904601feec849016b1bea4",
+      "bytes": 158099,
+      "availability": "local_only"
+    },
+    "observations/000023.npz": {
+      "sha256": "104309c70012b1f12c5eb5e9dfec455ce9232e3218c2f4b17b887388a6bc4505",
+      "bytes": 160451,
+      "availability": "local_only"
+    },
+    "observations/000024.npz": {
+      "sha256": "a798ebcdb562fae94c76102e8059993eded5eac29b773f49a254fc03a5bf0a4b",
+      "bytes": 155557,
+      "availability": "local_only"
+    },
+    "observations/000025.npz": {
+      "sha256": "64a8cb9676a14bd1dff68d6aa5e6e9fe8cdbed417fa83018fc34475b553efe42",
+      "bytes": 154207,
+      "availability": "local_only"
+    },
+    "observations/000026.npz": {
+      "sha256": "c7fdbf912f0622668e0f308f997da43a5b6e1374f40defe76c93a4d91c95f6ff",
+      "bytes": 146518,
+      "availability": "local_only"
+    },
+    "observations/000027.npz": {
+      "sha256": "300cda8c3227b8c7924fb2c0c1da11e5debd56eea02b2230c95ca8b89e13b316",
+      "bytes": 150733,
+      "availability": "local_only"
+    },
+    "observations/000028.npz": {
+      "sha256": "59068e3658968718a0b0213f160596a0e8e5f7730cea37d568f07bd281a2825d",
+      "bytes": 172778,
+      "availability": "local_only"
+    },
+    "observations/000029.npz": {
+      "sha256": "ca4def31aea0bb2a307023fe2f9f7986ab865397fc8428cc503eaed784347812",
+      "bytes": 178574,
+      "availability": "local_only"
+    },
+    "observations/000030.npz": {
+      "sha256": "c62243eeb0fdcb54e51e6483ca6c01fa7b7d073e7f4151dd440e7633c651d623",
+      "bytes": 153538,
+      "availability": "local_only"
+    },
+    "observations/000031.npz": {
+      "sha256": "0d179309770f91615b860735226813ffad0006ed1d6946ffae393754f572ff89",
+      "bytes": 124637,
+      "availability": "local_only"
+    },
+    "observations/000032.npz": {
+      "sha256": "7768850b60b252cbb731cafb6f0909374f763aa3c5e12e950d65cedc932f45e5",
+      "bytes": 161415,
+      "availability": "local_only"
+    },
+    "observations/000033.npz": {
+      "sha256": "82045c58035526868b3199643dd485f916b0a8d70b34ee70155a641be7d317bc",
+      "bytes": 143201,
+      "availability": "local_only"
+    },
+    "observations/000034.npz": {
+      "sha256": "6f0a4ef39040a66d84af0cbb2e138e12669bc67b5911dac3b091247c19c93aa6",
+      "bytes": 146387,
+      "availability": "local_only"
+    },
+    "observations/000035.npz": {
+      "sha256": "5e965b36fbd3f83c600b1e496c5ad6027122049611922df57a6fdaa97ca26091",
+      "bytes": 136231,
+      "availability": "local_only"
+    },
+    "observations/000036.npz": {
+      "sha256": "9c0004aa016f6c4085891240d6e60be3b6beeaa57f0f99bc336367a2b3d4408a",
+      "bytes": 127756,
+      "availability": "local_only"
+    },
+    "observations/000037.npz": {
+      "sha256": "55484056a8e4c6720393153e9c698ebd27fdd66e24d0932f180a1b6765a7c1a8",
+      "bytes": 153214,
+      "availability": "local_only"
+    },
+    "observations/000038.npz": {
+      "sha256": "6e2e87dd432b8a6c477cf65a762acf26b9a4776274e6f7b9745dc55ce3805ca0",
+      "bytes": 159052,
+      "availability": "local_only"
+    },
+    "observations/000039.npz": {
+      "sha256": "428d8950e822155e39c37769fc44a8e4e943aa191d87af2081d313724107e058",
+      "bytes": 144289,
+      "availability": "local_only"
+    },
+    "unfinished-record.json": {
+      "sha256": "8201ea36af0ec29b25bfa60300ff9838c220f17140c64394508cbcf8192195ef",
+      "bytes": 1363,
+      "availability": "portable"
+    }
+  },
+  "script_sha256": "646b2413e99ae97cffc8c49ef0db1d95f2682db53341f8fdd7cbea0d5d6933ad",
+  "config_sha256": "b51c6b0eaa4b6ce30311739eb83ef8065cd6767d0728f75c38585a80bcf4f570",
+  "exit_code": 137,
+  "repository": {
+    "commit": "529e0cf3a56a470f77f4bd18aac3d1878275d070",
+    "dirty": false
+  },
+  "finished_at": "2026-10-07T23:00:44+00:00",
+  "error": "Shell reported worker Killed (SIGKILL) in late hierarchical merge after all 40 frontend observations; WSL session ended. OOM cause is not established.",
+  "terminalization": "Observed after worker termination; original running record preserved"
+}

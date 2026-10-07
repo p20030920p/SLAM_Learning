@@ -9,13 +9,13 @@ The hypothesis remains a candidate until the reproduction gates below are met. T
 | R0 | DUFOMap / BeautyMap author execution | Version, data, return code and output checks; publish measured/table differences | Executed on Windows, Ubuntu CI and local WSL; table differences remain |
 | R1 | Reconcile map NN / direct labels / original PCL | Same point identity and threshold; attribute each score difference | PCL/SciPy agree; direct/map scoring effect measured; paper-version and small API remainder open |
 | R2 | More real scenes, qualitative output | Same camera/ROI across methods; per-scene rather than one pooled number | Measured replay published; more scenes remain open |
-| R3 | One semantic-map frontend | Author baseline, poses, object associations and queried coordinates reproduced | ConceptGraphs 40-observation subset executed; annotated accuracy/full scene remain open |
+| R3 | One semantic-map frontend | Author baseline, poses, object associations and queried coordinates reproduced | ConceptGraphs 40-observation and HOV-SG 8-observation cores executed; annotations/full hierarchy remain open |
 | B0 | Retain or revise the bottleneck | Identify an observed shared failure and an explicit counterexample | Candidate; geometry-to-semantics inference not yet confirmed |
 | H0 | Freeze hypothesis and protocol | Commit held-out scenes/seeds, thresholds, coverage/latency budgets and rejection rule | Not frozen |
 | E0 | Pose magnitude versus correlation | Exact poses, independent errors and correlated drift with matched marginal error | Planned |
 | E1 | Anchors, visibility and scene changes | Static/moved/removed/occluded identities; minority and majority movers | Exploratory toy exists; real extension planned |
 | E2 | Update and query risk | Compare at matched coverage, recall and latency; record stale duration | Planned; current toy alone cannot decide |
-| V0 | Publish animation/video | Render from scored labels and bind camera/run/frame metadata | Map replay and API figure published; semantic/drift videos reserved |
+| V0 | Publish animation/video | Render from scored labels and bind camera/run/frame metadata | Four per-paper MP4/GIFs and bilingual reports published; drift/held-out comparisons reserved |
 
 ## First semantic reproduction
 
@@ -40,3 +40,5 @@ R0/R2 feed the raw–removed–retained animation; R1 feeds the correspondence f
 ## Stop or revise
 
 Do not advance to a confirmatory claim if the baseline measurement is unresolved. Revise H1 if simple threshold sweeps match its benefit, independent variance is sufficient, covariance estimates are uncalibrated, or reduced deletion increases stale-target time. Report majority-motion failure as an information boundary rather than excluding the scene.
+
+The four delivered scopes are fixed in [paper cards](papers/README.md). The [physical protocol](REAL_WORLD.md) adds fixed-pose visibility controls before handheld error controls. Complete graph/navigation remains outside the delivered semantic subsets.

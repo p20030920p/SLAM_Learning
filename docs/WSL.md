@@ -37,7 +37,7 @@ sh /tmp/slam-study-uv-install.sh
 source "$HOME/.local/bin/env"
 mkdir -p ~/projects
 cd ~/projects
-git clone --branch codex/structural-slam-refactor https://github.com/p20030920p/SLAM_Learning.git
+git clone --branch main https://github.com/p20030920p/SLAM_Learning.git
 cd SLAM_Learning
 bash scripts/setup_linux.sh
 ```

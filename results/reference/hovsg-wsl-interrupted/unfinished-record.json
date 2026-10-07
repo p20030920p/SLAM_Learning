@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "kind": "semantic_frontend_baseline",
+  "method": "HOV-SG",
+  "status": "running",
+  "started_at": "2026-10-07T22:46:26+00:00",
+  "configuration": {
+    "schema_version": 1,
+    "upstream": {
+      "url": "https://github.com/hovsg/HOV-SG.git",
+      "commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605"
+    },
+    "author_config": "config/semantic_segmentation.yaml",
+    "scene": "room0",
+    "image_width": 640,
+    "image_height": 360,
+    "sam_points_per_batch": 36,
+    "clip_batch_size": 4,
+    "skip_frames": 1,
+    "queries": [
+      "chair",
+      "sofa",
+      "table",
+      "lamp"
+    ],
+    "scope": "Author HOV-SG 3D segment-level feature mapping on the same 40 supplied-pose Replica observations. Hierarchical floor/room graph, semantic benchmark accuracy and navigation are not evaluated.",
+    "adaptations": "640x360 RGB/depth with separately rescaled intrinsics; SAM batching 36 and CLIP batching 4 for 12 GiB GPU. All segmentation/merging thresholds remain from the pinned author configuration."
+  },
+  "artifacts": {},
+  "script_sha256": "646b2413e99ae97cffc8c49ef0db1d95f2682db53341f8fdd7cbea0d5d6933ad",
+  "config_sha256": "b51c6b0eaa4b6ce30311739eb83ef8065cd6767d0728f75c38585a80bcf4f570",
+  "exit_code": null,
+  "repository": {
+    "commit": "529e0cf3a56a470f77f4bd18aac3d1878275d070",
+    "dirty": false
+  }
+}

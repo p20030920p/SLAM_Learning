@@ -38,3 +38,13 @@ Meta 下载停滞后，SAM ViT-H 从固定修订的 Hugging Face 镜像获取；
 作者建图日志记录对象增加、过滤和合并。这些操作处理 RGB-D 与基础模型特征，已经超出使用已知对象身份的玩具模型；但最终对象数量本身不能衡量碎片化或正确关联。公布的查询分数是余弦相似度，不是校准概率。
 
 下一步补对象身份与查询目标标注，固定分割／特征，比较精确位姿、独立误差和时间相关漂移。加入阈值扫描及匹配覆盖率／延迟。在这些对照和留出场景确定之前，共享位姿假设保持候选状态。[阶段计划](PLAN.zh-CN.md)。
+
+## HOV-SG：第四篇建图核心
+
+`bash scripts/setup_hovsg.sh` 准备独立 `.venv-hovsg`，再运行 `.venv-hovsg/bin/python scripts/run_hovsg.py`。它共享已经校验的 Replica 子集／权重，安装固定的 [HOV-SG 依赖](../environments/hovsg/requirements.txt)，无需 PyTorch3D。
+
+成功运行处理源帧 0,25,...175，共 8 次观测，产生 50 分段及 166,777 参考点。RGB／深度缩放为 640×360，两个内参轴分别缩放；SAM 批量 36、CLIP 批量 4。作者几何合并和特征筛选实际执行，阈值不变。未执行楼层／房间层级、语义 mIoU 或导航。50 分段不能与 39 对象排名。
+
+首次 40 观测完成前端后，合并进程被终止，退出码 137；未确认原因，不声称已确诊 OOM。[失败记录](../results/reference/hovsg-wsl-interrupted/record.json)与[成功记录](../results/reference/hovsg-wsl/record.json)独立保留。成功建图进程测得 PyTorch 分配峰值 10,030,088,704 字节，不含驱动分配。四文本查询返回坐标候选，正确性未评价。[论文卡／视频／PDF](papers/hovsg.zh-CN.md)。
+
+ConceptGraphs 实际批处理入口读取绝对 `dataset.poses`，绕过加载器默认归一化；39 个保存相机矩阵已与给定位姿核对，历史世界坐标正确，无须额外第一帧变换。两种语义视频都回放最终地图，不表现为在线演化。[录制及坐标审计](RECORDING.zh-CN.md)。

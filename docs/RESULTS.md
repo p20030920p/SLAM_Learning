@@ -111,3 +111,9 @@ Local checks: **36 passed**, Ruff clean; Matplotlib dependencies emit deprecatio
 PCL/SciPy cross-checking and an executable semantic subset with text-coordinate retrieval are complete. Full semantic benchmark evaluation, annotated target correctness, robot navigation and multi-session identity evaluation remain open. The real-data and synthetic results support a focused research question and explicit follow-up protocol, not a system-level performance claim.
 
 Next: investigate paper-version differences, annotate semantic associations/targets and define paired pose-error controls before freezing the hypothesis. [Stage gates](PLAN.md).
+
+## 7. Four-paper media and HOV-SG core — 8 October
+
+HOV-SG's author segment-level feature mapper processes 8 supplied-pose observations (source 0,25,...175), producing 50 segments and 166,777 reference points. Peak mapper PyTorch allocation is 10,030,088,704 bytes, excluding driver allocations. Four CLIP texts return candidate coordinates; accuracy is not annotated. The first 40-observation merge was killed with exit 137 after extraction; cause remains unconfirmed. [Success](../results/reference/hovsg-wsl/record.json), [failure](../results/reference/hovsg-wsl-interrupted/record.json), [resource adaptations](papers/hovsg.md).
+
+Four per-paper H.264/GIF replays are published with full decode checks and metadata. Semantic clips use final maps, not progressive mapping. The actual ConceptGraphs entrypoint uses absolute poses, confirmed by 39 saved matrices; no extra first-frame transformation is applied. [Media/reports](papers/README.md), [coordinate audit](RECORDING.md). These semantic subsets and counts are not full paper benchmark validation.
