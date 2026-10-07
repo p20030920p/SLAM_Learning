@@ -16,6 +16,8 @@ Baseline inspected: `af1e58b`. Original files remain recoverable in Git; a local
 
 BeautyMap needed Python `map` iterators converted to lists and explicitly 64-bit integer masks to avoid Windows overflow. The first failure is preserved. Pinned checkouts remain clean; only per-run copies are patched and patch details exported.
 
+The author implementation uses scan XYZ but the downloaded intensity contains annotations. The final adapter physically strips scan intensity too, preserving sensor VIEWPOINT. A fresh full BeautyMap run confirmed unchanged scores after that isolation change.
+
 The active suite has two methods and three experiments, rather than 21 nominally complete folders that were not all re-established. This scope reduction prioritizes auditable evidence. It does not imply every historical upstream is defective.
 
 Tests cover correspondence, metrics, parsing, failed subprocesses, timeouts, traversal, artifact tampering, exports and mechanisms. Hash verification establishes integrity, not independent scientific certification. Large maps are local-only; portable evidence requires no data redistribution.

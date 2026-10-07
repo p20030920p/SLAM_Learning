@@ -3,7 +3,7 @@
   "kind": "author_method",
   "method": "beautymap",
   "status": "executed",
-  "started_at": "2026-10-07T12:24:53+00:00",
+  "started_at": "2026-10-07T12:41:06+00:00",
   "scope": "full_teaser",
   "requested_frames": 0,
   "specification": {
@@ -40,20 +40,20 @@
     }
   },
   "repository": {
-    "commit": "01e2105aeb8a26bf5cdbe7420b56c0dddf81272c",
+    "commit": "17591fa93a42276a5bef91913a727b0177180684",
     "dirty": true
   },
   "source_sha256": {
     "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
-    "src/slam_learning/adapters.py": "dbc421d7d06cc6c7342a7f3a3f89f8de6d5faef735a8ec87c4d7a449002cb123",
-    "src/slam_learning/cli.py": "1c68a88efac1a9e4dd5d300e451ceba1f612419254dba203d3fc30c80f1478f6",
+    "src/slam_learning/adapters.py": "0d79fc212d6ab682e9d53e411b7da7d18073d4e2b5c1361f877594dd6a332f04",
+    "src/slam_learning/cli.py": "e0259e77bfc0dff43cff8a451aca2581d4e31b8ced0e62b4803ea555c2841298",
     "src/slam_learning/evidence_stress.py": "9957fe5974b3e8308d7287433279aedb8dbac0a89fd2511ca871a2f922e29c60",
     "src/slam_learning/fetch.py": "fcce0e0fd024030d4f1b19ab1d63abdf1b0d7e5333dc89254520747ee03d03cd",
-    "src/slam_learning/metrics.py": "bd0f6408133cbe909f7e5dcf1d2e03199a582cc5c3ce9b0df990dc8526307eed",
-    "src/slam_learning/pcd.py": "9fc61d5f38920578bb98feb4df0a0967da80cec7187d7299de0d11aee521214d",
+    "src/slam_learning/metrics.py": "aeb849e7f3be8d1b54ebbc457317aafbf698d095bb412f4aeb7071fd8637b4dc",
+    "src/slam_learning/pcd.py": "ce37303693339309cf4d5f55d8bf7c4457973c0eb83392c581d4a5579634b034",
     "src/slam_learning/pose_stress.py": "18f096b34da22a09d729ed141552d7dd49f5abc33c8a8cd61275d27cd6fdbfa6",
     "src/slam_learning/provenance.py": "7cc155e7ae1e67e8313844217abcc36905f85427417d537e545af8f4a1880a9c",
-    "src/slam_learning/report.py": "5c36a37c48e1104baa6b77d40fdea721aff746e72a64e46b393b11e7a4d49561",
+    "src/slam_learning/report.py": "778272431fa089b6b52bac0c9196077d6d71b0071497ecd07e30e7f35cb9e7da",
     "src/slam_learning/runner.py": "addc4555f83f6f9d4d6ff74129daca8ac3e2133f512cb6332a2088c64555a13f",
     "src/slam_learning/synthetic.py": "f836619ef1b05ade5a1ac0489de832061c0ddee717f1cfeb90a6b99dbee314cd"
   },
@@ -72,13 +72,13 @@
       "availability": "local_only"
     },
     "run.log": {
-      "sha256": "c2237a5112fe26449611434483f9b7e881223bb35c78ef25880f604b349b1ff3",
-      "bytes": 15411,
+      "sha256": "6ffdb946d620898b0c7779e6768f7e04cb170307bd8a9d797a14a386b159bd46",
+      "bytes": 13098,
       "availability": "portable"
     },
     "worker.json": {
-      "sha256": "fd013c0f4e605cc9b8ae582cb747872d49a8c1910a23d94fee68813521f22317",
-      "bytes": 1035,
+      "sha256": "957aa019ae4155f5a142cb4774f1e41618dacd9d695009c9785901c4f5308f6f",
+      "bytes": 1039,
       "availability": "portable"
     },
     "metrics.json": {
@@ -102,7 +102,7 @@
     "--method",
     "beautymap",
     "--output",
-    "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-ab0e011782f9",
+    "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-b891f3c2c413",
     "--frames",
     "0"
   ],
@@ -155,9 +155,9 @@
     },
     "author_command": [
       "D:\\workspace\\be2\\SLAM_Learning\\.venv\\Scripts\\python.exe",
-      "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-ab0e011782f9\\author-code\\main.py",
+      "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-b891f3c2c413\\author-code\\main.py",
       "--data_dir",
-      "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-ab0e011782f9\\input",
+      "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-b891f3c2c413\\input",
       "--dis_range",
       "40",
       "--xy_resolution",
@@ -165,7 +165,7 @@
       "--h_res",
       "0.5"
     ],
-    "algorithm_input": "Unlabeled map XYZ and input scans; GT labels available only to evaluator"
+    "algorithm_input": "Only XYZ and VIEWPOINT in both map/scans; all intensity annotations stripped"
   },
   "metrics": {
     "counts": {
@@ -209,5 +209,5 @@
       }
     }
   },
-  "finished_at": "2026-10-07T12:25:36+00:00"
+  "finished_at": "2026-10-07T12:41:44+00:00"
 }

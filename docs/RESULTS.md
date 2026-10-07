@@ -42,7 +42,7 @@ This table uses another binding API and direct identities, so it must not be mer
 
 ## 3. Visibility and common-mode ambiguity
 
-Thirty objects, known instance identities, supplied true visibility, sensor noise σ=0.02 m, coherent mover displacement 1 m. Four pose biases × four mover fractions × two occlusion fractions × four methods × thirty held-out seeds = **3,840 paired trials**. A 99th-percentile noise threshold is selected using separate validation seeds. Confidence intervals bootstrap paired seed outcomes within each cell.
+Thirty objects, known instance identities, supplied true visibility, sensor noise σ=0.02 m, coherent mover displacement 1 m. Four pose biases × four mover fractions × two occlusion fractions × four methods × thirty held-out seeds = **3,840 paired trials**. A 99th-percentile noise threshold is selected using separate validation seeds. Confidence intervals bootstrap seed outcomes for each method/cell; methods share the same underlying randomized trials. These are intervals on means, not paired difference intervals.
 
 At 0.3 m bias, 20% movers and 50% occlusion:
 
@@ -76,6 +76,6 @@ The experiment demonstrates the variance-floor mechanism under a matched generat
 
 ## Verification and remaining work
 
-Local checks: **31 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export. Source snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c` contains the code used for the final Windows measurements; later reporting/target-validation edits do not change their numeric computation. Earlier failed execution is separately retained.
+Local checks: **32 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export and against committed Git bytes. Most Windows measurements use snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`; the final BeautyMap run uses `17591fa` after physically stripping scan intensity annotations while preserving VIEWPOINT. Its metrics are unchanged. Earlier failures remain separately retained. Per-record source hashes specify each executed snapshot.
 
 No full semantic frontend, language target retrieval, robot navigation, multi-session identity evaluation or PCL cross-check is completed. The real-data and synthetic results support a focused research question and explicit follow-up protocol, not a system-level performance claim.

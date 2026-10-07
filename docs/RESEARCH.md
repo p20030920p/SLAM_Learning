@@ -8,6 +8,16 @@ Many pipelines first establish world-space correspondence using estimated poses,
 
 Our inference is a possible feedback loop: pose error induces mistaken edits, later localization uses the edited map, and evidence for the original geometry is lost. This submission does not claim to have observed the full loop in a deployed system. It isolates mechanisms and tests one author's real-data sensitivity.
 
+```mermaid
+flowchart LR
+    P[Pose estimate and uncertainty] --> C[Spatial correspondence]
+    C --> E[Visibility and change evidence]
+    E --> U[Commit or defer map updates]
+    U --> Q[Semantic target validity and coordinates]
+    U --> L[Later localization against map]
+    L --> P
+```
+
 [Khronos](https://arxiv.org/html/2402.13817v2) already jointly optimizes poses and structure and reasons about visibility. [SuperMap](https://arxiv.org/html/2608.22896v1) separates unobservable from disappeared objects; [PerSeM](https://arxiv.org/html/2609.19542v2) preserves/refines semantic memory. Neither “joint SLAM,” “add memory,” nor “three states” is claimed as new.
 
 The narrower question is whether **destructive-update confidence is calibrated to shared pose uncertainty and correlated revisits**, including the interval before pose correction. Memory alone cannot guarantee correct world-space correspondence; PerSeM's limitations explicitly leave correlated geometric errors open.

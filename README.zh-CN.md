@@ -8,7 +8,7 @@
 
 | 阅读入口 | 内容 |
 | --- | --- |
-| [研究论证](docs/RESEARCH.md) | 结构性问题、反例、公式、可证伪假设 |
+| [中文研究摘要](docs/RESEARCH.zh-CN.md)／[英文论证](docs/RESEARCH.md) | 结构性问题、反例、公式、可证伪假设 |
 | [热门方向与论文对照](docs/LITERATURE.md) | 2024–2026 年代表作、共同假设、已有解决方案 |
 | [实际实验结果](docs/RESULTS.md) | 两种作者方法、三组实验、负面结果与适用边界 |
 | [复现说明](docs/REPRODUCE.md) | 干净环境安装、下载、运行、验证及 Linux 路径 |

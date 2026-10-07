@@ -18,9 +18,9 @@
   },
   "author_command": [
     "D:\\workspace\\be2\\SLAM_Learning\\.venv\\Scripts\\python.exe",
-    "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-ab0e011782f9\\author-code\\main.py",
+    "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-b891f3c2c413\\author-code\\main.py",
     "--data_dir",
-    "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-ab0e011782f9\\input",
+    "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\beautymap-b891f3c2c413\\input",
     "--dis_range",
     "40",
     "--xy_resolution",
@@ -28,5 +28,5 @@
     "--h_res",
     "0.5"
   ],
-  "algorithm_input": "Unlabeled map XYZ and input scans; GT labels available only to evaluator"
+  "algorithm_input": "Only XYZ and VIEWPOINT in both map/scans; all intensity annotations stripped"
 }

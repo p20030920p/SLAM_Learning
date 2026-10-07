@@ -49,7 +49,7 @@ uv run slam-study run --method beautymap
 
 DUFOMap: 0.1 m resolution, `d_s=0.2`, paper setting `d_p=1`, two native threads. Integrate points with `0.2 < range < 50 m`, then propagate once offline and export the cleaned original-point map. All original points are supplied to output, matching current demo structure. The current demo uses `d_p=2`; that discrepancy is explicit. Paper-era binary equivalence is not asserted.
 
-BeautyMap: author code with `dis_range=40`, `xy_resolution=1.0`, `h_res=0.5`. Raw map geometry is staged as **unlabeled XYZ**; GT labels are available only to the evaluator. Scans and a completed raw map are legitimate inputs for offline cleaning, not an online-navigation experiment. Python iterator and 64-bit mask compatibility patches affect an isolated copy and are recorded in `compatibility.patch`.
+BeautyMap: author code with `dis_range=40`, `xy_resolution=1.0`, `h_res=0.5`. Both map and scans are staged as **unlabeled XYZ**, preserving each scan's VIEWPOINT; annotation-bearing intensity is physically stripped. Scans and a completed raw map are legitimate inputs for offline cleaning, not an online-navigation experiment. Python iterator and 64-bit mask patches affect an isolated copy and are recorded in `compatibility.patch`.
 
 The evaluator labels a GT point retained if a cleaned-map point lies within 0.05 m. SA = kept static / all static; DA = removed dynamic / all dynamic; AA = geometric mean of SA and DA; HA = harmonic mean. Values are percentages. Both classes must exist. Near coincident geometry can make map correspondence differ from exact point-label evaluation. Original PCL equivalence has not been cross-checked.
 
