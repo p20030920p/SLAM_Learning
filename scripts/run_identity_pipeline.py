@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -16,6 +17,17 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from slam_learning.identity_budget import check_resources, digest
+
+
+def git_read_command(repo):
+    metadata = repo / ".git"
+    if sys.platform == "linux" and metadata.is_file():
+        match = re.fullmatch(r"gitdir: ([A-Za-z]):[/\\](.+)\s*", metadata.read_text().strip())
+        if match:
+            drive, suffix = match.groups()
+            gitdir = f"/mnt/{drive.lower()}/{suffix.replace(chr(92), '/')}"
+            return ["git", f"--git-dir={gitdir}", f"--work-tree={repo}"]
+    return ["git", "-C", str(repo)]
 
 
 def main():
@@ -32,8 +44,9 @@ def main():
     for folder in ("src", "scripts", "configs", "annotations/room2"):
         shutil.copytree(args.repo / folder, source_snapshot / folder,
                         ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
-    revision = subprocess.check_output(["git", "-C", str(args.repo), "rev-parse", "HEAD"], text=True).strip()
-    dirty = bool(subprocess.check_output(["git", "-C", str(args.repo), "status", "--porcelain"], text=True).strip())
+    git = git_read_command(args.repo)
+    revision = subprocess.check_output([*git, "rev-parse", "HEAD"], text=True).strip()
+    dirty = bool(subprocess.check_output([*git, "status", "--porcelain"], text=True).strip())
     args.repo = source_snapshot
     record = {"kind": "identity_budget_v2_pipeline", "analysis_type": "ai_only_exploratory",
               "status": "waiting_for_resources", "started_at": datetime.now(timezone.utc).isoformat(),
