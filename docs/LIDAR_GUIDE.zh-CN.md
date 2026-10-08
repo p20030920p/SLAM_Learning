@@ -134,7 +134,7 @@ ICP/KISS 使用同目录 `lidar_odom.rviz`。原始模式 Fixed Frame=`physical_
 | `poses.json` / `status.json` | 逐帧位姿/状态，可对照原始视频检查异常 |
 | `odometry.log` / `kiss-worker.log` / `rviz.log` | 算法与显示错误；退出码正常不能代替质量检查 |
 | `uart.bin` / `receive.csv` / `capture.json` | 仅 `-Record`；原始 UART、每块主机接收时刻、清单 |
-| `rviz-live.mp4` / `video.json` | 加 `-Video` 自动录制独立 RViz 视图；本次新增录像功能实测为相机，雷达录像待另做现场示例 |
+| `rviz-live.mp4` / `video.json` | 加 `-Video` 自动录制独立 RViz 视图；雷达已验证能录启动窗口，但最新会话无有效点云，尚缺有效雷达录像示例 |
 
 点云桥接采用经过官方几何对照的 Python 解码，并保留原始 UART 供原生 SDK 重解码。不是把实时 Python 解码冒充原生 SDK。CRC 不合格包不会进入算法；记录队列满等采集错误直接判链路失败。
 

@@ -12,7 +12,7 @@
 | 测主分支 DUFOMap/BeautyMap/ConceptGraphs/HOV-SG，以后准备合入 | [主分支适配与合入门槛](docs/MAIN_INTEGRATION.zh-CN.md) |
 | 环境丢失、Shell/串口/RViz 出错 | [环境与排错](docs/ENVIRONMENT.zh-CN.md) |
 | 查本次确实运行了什么 | [实时入口验证](docs/LIVE_VALIDATION.zh-CN.md) |
-| 查新一轮相机固定测试与动态前景干扰 | [相机第四轮](docs/CAMERA_TEST_ROUND4.zh-CN.md) |
+| 查相机固定对照、动态干扰与最新雷达收流复查 | [实物第四轮](docs/CAMERA_TEST_ROUND4.zh-CN.md) |
 | 一行自动录制相机算法视频 | [简易录像](docs/SIMPLE_RECORDING.zh-CN.md) |
 | 查整理范围、旧实验和脚本用途 | [清理记录](docs/CLEANUP.zh-CN.md)、[历史资料](docs/archive/INDEX.zh-CN.md) |
 
@@ -39,8 +39,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Persona
 | 设备/算法 | 状态 |
 | --- | --- |
 | 相机 | SDK 实测 **D435，没有 IMU**；四路收流正常。旧确认固定双目基线通过初期目标，移动精度未验 |
-| 相机实时 | 四图与点云显示、stereo/RGB-D/建图入口可运行；桥接约 4–6 Hz。新 60 秒固定相机录制观察到动态前景，RGB-D 7.77 cm/11.63°、双目 1.37 cm/2.15°，均有偏离超标；待无人入镜对照 |
-| L2 | 当前实体串口自动发现，CRC 合格点云和 IMU 可收到，实时 ICP/KISS 入口可运行 |
+| 相机实时 | 四图与点云及定位入口可运行，桥接约 4–6 Hz。前景干扰段曾超标；最新固定相机、动态背景段 RGB-D 2.06 mm/0.387°、双目 1.66 mm/0.249°，数值在目标内，完全静态对照仍待完成 |
+| L2 | 历史点云／IMU及 ICP/KISS 已运行；最新复查实体串口仍在，但仅收到 32 字节、无有效点云，待检查独立供电／接线 |
 | L2 定位 | 旧确认固定的 ICP/KISS 漂移均超标；原始设备时间比例约 2，IMU/Point-LIO 尚未验收 |
 | 主分支算法 | DUFOMap 固定输入接口已跑；BeautyMap 原边界失败、局部扩域对照保留；语义实物接口和 SA/DA 等正式质量指标未验 |
 
