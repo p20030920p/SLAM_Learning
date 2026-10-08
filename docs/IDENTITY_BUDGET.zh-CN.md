@@ -36,7 +36,7 @@
 
 [复核包](../annotations/review/identity-v2/index.html) 含原始 RGB、草稿边界、深度预览和可编辑表单。保留的[确认性协议](../configs/identity_budget_v2.json) 仍要求真实人工回执，才能封存或运行前端，不会静默接受探索标注。
 
-[用户调整后的探索协议](../configs/identity_budget_v2_exploratory.json) 在封存、前端、建图入口均须显式传入 `--exploratory`。[AI 标注](../annotations/room2/targets.ai-v2.json) 保持 `human_reviewed: false`，冻结记录与每次运行均声明 `ai_only_exploratory`。AI 原图检查不能替代独立人工复核。room1 原始标注与分数保持不变；后续部件定义修订只能保存为新标注版本，并明确标为事后分析。
+[用户调整后的探索协议](../configs/identity_budget_v2_exploratory.json) 在封存、前端、建图入口均须显式传入 `--exploratory`。[AI 标注](../annotations/room2/targets.ai-v2.1.json) 保持 `human_reviewed: false`，冻结记录与每次运行均声明 `ai_only_exploratory`。AI 原图检查不能替代独立人工复核。room1 原始标注与分数保持不变；后续部件定义修订只能保存为新标注版本，并明确标为事后分析。
 
 ## 运行与录制
 
@@ -50,16 +50,16 @@ python scripts/check_study_resources.py
 
 ```bash
 python scripts/seal_delayed_annotations.py --protocol configs/identity_budget_v2_exploratory.json \
-  --annotations annotations/room2/targets.ai-v2.json --data "$DATA" \
+  --annotations annotations/room2/targets.ai-v2.1.json --data "$DATA" \
   --output "$SEAL" --seal --exploratory
 python scripts/record_session.py --output "$FRONT_VIDEO" --cwd "$REPO" -- \
   "$SEMANTIC_PYTHON" scripts/prepare_delayed_frontend.py \
-  --protocol configs/identity_budget_v2_exploratory.json --annotations annotations/room2/targets.ai-v2.json \
+  --protocol configs/identity_budget_v2_exploratory.json --annotations annotations/room2/targets.ai-v2.1.json \
   --data "$DATA" --freeze "$SEAL/freeze.json" --native-source "$SOURCE" \
   --weights "$WEIGHTS" --output "$FRONT" --exploratory
 python scripts/record_session.py --output "$MAP_VIDEO" --cwd "$REPO" -- \
   "$SEMANTIC_PYTHON" scripts/run_identity_budget.py \
-  --protocol configs/identity_budget_v2_exploratory.json --annotations annotations/room2/targets.ai-v2.json \
+  --protocol configs/identity_budget_v2_exploratory.json --annotations annotations/room2/targets.ai-v2.1.json \
   --data "$DATA" --freeze "$SEAL/freeze.json" --frontend "$FRONT" \
   --weights "$WEIGHTS" --output "$RUN" --exploratory
 python scripts/analyze_identity_budget.py --run "$RUN" --data "$DATA" --output "$ANALYSIS"

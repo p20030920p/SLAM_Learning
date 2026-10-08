@@ -760,6 +760,28 @@
         "results/reference/delayed-support-control/record.json"
       ],
       "source_artifact": "figures/support-control.png"
+    },
+    {
+      "id": "identity-budget-v2-curves",
+      "path": "docs/figures/identity-budget-v2-curves.png",
+      "stage": "identity-v2-exploratory",
+      "status": "reserved",
+      "caption": {
+        "en": "AI-only exploratory room2 readouts at equal candidate caps; actual candidates/points/correction cost reported separately. No result yet.",
+        "zh": "AI-only room2 探索读出，仅候选上限匹配；另报实际候选／点数／修正成本。尚无结果。"
+      },
+      "source_records": []
+    },
+    {
+      "id": "identity-budget-v2-rviz",
+      "path": "docs/figures/identity-budget-v2-rviz.gif",
+      "stage": "identity-v2-exploratory",
+      "status": "reserved",
+      "caption": {
+        "en": "Actual RViz window showing saved measured states, all four arms at fixed 30cm/seed417; saved-map replay, not live inference. Full video retained locally. Pending execution.",
+        "zh": "真实 RViz 窗口查看固定 30cm／种子417 下四组实测保存状态；地图回放，不是实时推理。全程视频留本地，待运行。"
+      },
+      "source_records": []
     }
   ]
 }

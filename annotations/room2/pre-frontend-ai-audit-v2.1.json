@@ -1,0 +1,241 @@
+{
+  "human_reviewed": false,
+  "analysis_type": "ai_only_exploratory",
+  "rows": [
+    {
+      "physical_id": "blue_vase",
+      "views": [
+        {
+          "frame": 12,
+          "points": 652,
+          "median": [
+            -0.052,
+            -0.434,
+            -0.579
+          ]
+        },
+        {
+          "frame": 62,
+          "points": 1099,
+          "median": [
+            -0.057,
+            -0.452,
+            -0.601
+          ]
+        },
+        {
+          "frame": 112,
+          "points": 737,
+          "median": [
+            -0.055,
+            -0.461,
+            -0.596
+          ]
+        },
+        {
+          "frame": 162,
+          "points": 598,
+          "median": [
+            -0.052,
+            -0.451,
+            -0.573
+          ]
+        }
+      ],
+      "median_distance_to_frame12_m": [
+        0.005749864664415434,
+        0.005905468594804978,
+        0.005723696454687481
+      ]
+    },
+    {
+      "physical_id": "bird_figurine",
+      "views": [
+        {
+          "frame": 12,
+          "points": 252,
+          "median": [
+            0.029,
+            0.188,
+            -1.126
+          ]
+        },
+        {
+          "frame": 62,
+          "points": 295,
+          "median": [
+            0.027,
+            0.163,
+            -1.108
+          ]
+        },
+        {
+          "frame": 112,
+          "points": 215,
+          "median": [
+            0.028,
+            0.165,
+            -1.115
+          ]
+        },
+        {
+          "frame": 162,
+          "points": 226,
+          "median": [
+            0.027,
+            0.188,
+            -1.129
+          ]
+        }
+      ],
+      "median_distance_to_frame12_m": [
+        0.006487528270845035,
+        0.005903937448718665,
+        0.006092666627732796
+      ]
+    },
+    {
+      "physical_id": "brown_jar",
+      "views": [
+        {
+          "frame": 12,
+          "points": 249,
+          "median": [
+            -0.099,
+            -0.183,
+            -1.462
+          ]
+        },
+        {
+          "frame": 62,
+          "points": 342,
+          "median": [
+            -0.1,
+            -0.201,
+            -1.446
+          ]
+        },
+        {
+          "frame": 112,
+          "points": 298,
+          "median": [
+            -0.099,
+            -0.193,
+            -1.447
+          ]
+        },
+        {
+          "frame": 162,
+          "points": 231,
+          "median": [
+            -0.102,
+            -0.2,
+            -1.47
+          ]
+        }
+      ],
+      "median_distance_to_frame12_m": [
+        0.007142965413016256,
+        0.007358933519847727,
+        0.007477741761413726
+      ]
+    },
+    {
+      "physical_id": "fish_figurine",
+      "views": [
+        {
+          "frame": 12,
+          "points": 121,
+          "median": [
+            -0.137,
+            -0.358,
+            -1.144
+          ]
+        },
+        {
+          "frame": 62,
+          "points": 180,
+          "median": [
+            -0.135,
+            -0.365,
+            -1.145
+          ]
+        },
+        {
+          "frame": 112,
+          "points": 157,
+          "median": [
+            -0.131,
+            -0.37,
+            -1.143
+          ]
+        },
+        {
+          "frame": 162,
+          "points": 132,
+          "median": [
+            -0.136,
+            -0.366,
+            -1.14
+          ]
+        }
+      ],
+      "median_distance_to_frame12_m": [
+        0.007687522993588712,
+        0.00806954314554493,
+        0.008546351547509613
+      ]
+    },
+    {
+      "physical_id": "chair",
+      "views": [
+        {
+          "frame": 12,
+          "points": 4639,
+          "median": [
+            1.539,
+            -0.648,
+            -1.574
+          ]
+        },
+        {
+          "frame": 62,
+          "points": 3832,
+          "median": [
+            1.506,
+            -0.634,
+            -1.353
+          ]
+        },
+        {
+          "frame": 112,
+          "points": 3534,
+          "median": [
+            1.511,
+            -0.643,
+            -1.39
+          ]
+        },
+        {
+          "frame": 162,
+          "points": 4796,
+          "median": [
+            1.54,
+            -0.649,
+            -1.621
+          ]
+        }
+      ],
+      "median_distance_to_frame12_m": [
+        0.0029670030536457547,
+        0.0030311587652674405,
+        0.003468485140899322
+      ]
+    }
+  ],
+  "scope": "Pre-frontend raw-depth cross-view consistency diagnostic; not instance ground truth",
+  "annotations_sha256": "d3ab86a0508998d06988912510e913dd71d87fd922cdfc96794b13616cbea7b7",
+  "source_manifest_sha256": "4d86b29da01b996b245d14353c9865e9285d4519480d0da74f656bbd3da210af",
+  "change": "Exclude grey table from chair at frames12/162, before any model output. Earlier labels and freeze retained.",
+  "media_legend_review": "All 3D map colors indicate arms only; no query-correctness coloring."
+}

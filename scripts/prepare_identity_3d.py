@@ -54,6 +54,7 @@ def main():
             displayed.append(xyz)
     lower, upper = np.quantile(np.concatenate(displayed), [.01, .99], axis=0)
     manifest = {"schema_version": 1, "kind": "measured_output_rviz_review", "method": "conceptgraphs",
+                "legend": "Arm colors only, not query scores or ground truth.\n\nComplete saved native states; no support/cap filtering in this view.\n\nAI-only exploratory; saved-map replay, not inference.",
                 "scope": "AI-only labels; actual RViz display of saved complete states, not live inference or FPS",
                 "steps": steps, "sources": sources, "generator_sha256": digest(Path(__file__)),
                 "display_transform": "Replica (x,y,z)->(x,z,-y), display thinning only; stored maps unchanged",

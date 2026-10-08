@@ -32,7 +32,8 @@ def git_read_command(repo):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    for name in ("repo", "semantic-python", "data", "freeze", "native-source", "weights", "output", "recordings"):
+    for name in ("repo", "semantic-python", "protocol", "annotations", "data", "freeze", "native-source",
+                 "weights", "output", "recordings"):
         parser.add_argument(f"--{name}", type=Path, required=True)
     parser.add_argument("--wait-idle-seconds", type=int, default=5400)
     args = parser.parse_args()
@@ -87,7 +88,8 @@ def main():
         save()
         if recorded:
             command = [sys.executable, str(args.repo / "scripts/record_session.py"),
-                       "--output", str(args.recordings / name), "--cwd", str(args.repo), "--", *command]
+                       "--output", str(args.recordings / name), "--cwd", str(args.repo),
+                       "--watch-root", str(args.output / name), "--", *command]
         started = time.monotonic()
         with (args.output / f"{name}.log").open("w") as log:
             result = subprocess.run(command, cwd=args.repo, stdout=log, stderr=subprocess.STDOUT)
@@ -100,8 +102,8 @@ def main():
             raise RuntimeError(f"Phase failed; retained evidence: {name}")
 
     try:
-        protocol = args.repo / "configs/identity_budget_v2_exploratory.json"
-        annotations = args.repo / "annotations/room2/targets.ai-v2.json"
+        protocol = args.repo / args.protocol.relative_to(original_repo)
+        annotations = args.repo / args.annotations.relative_to(original_repo)
         common = ["--protocol", str(protocol), "--annotations", str(annotations), "--data", str(args.data),
                   "--freeze", str(args.freeze), "--weights", str(args.weights), "--exploratory"]
         execute("frontend", [str(args.semantic_python), str(args.repo / "scripts/prepare_delayed_frontend.py"),
@@ -113,6 +115,8 @@ def main():
         execute("analysis", [sys.executable, str(args.repo / "scripts/analyze_identity_budget.py"),
                              "--run", str(args.output / "mapping"), "--data", str(args.data),
                              "--output", str(args.output / "analysis")])
+        execute("report", [sys.executable, str(args.repo / "scripts/summarize_identity_budget.py"),
+                           "--analysis", str(args.output / "analysis"), "--output", str(args.output / "report")])
         execute("prepare-3d", [sys.executable, str(args.repo / "scripts/prepare_identity_3d.py"),
                                "--run", str(args.output / "mapping"), "--data", str(args.data),
                                "--output", str(args.output / "view-3d")])

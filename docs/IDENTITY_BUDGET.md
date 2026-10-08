@@ -36,7 +36,7 @@ Zero-error own-policy correction, zero-error native/oracle equivalence and origi
 
 The [review package](../annotations/review/identity-v2/index.html) contains raw RGB, proposed polygons, depth previews and an editable review form. The preserved [confirmation protocol](../configs/identity_budget_v2.json) still requires a real human receipt before sealing or frontend execution. It cannot silently accept exploratory labels.
 
-The [owner-amended exploratory protocol](../configs/identity_budget_v2_exploratory.json) requires an explicit `--exploratory` option at sealing, frontend and mapper entry points. Its [AI labels](../annotations/room2/targets.ai-v2.json) retain `human_reviewed: false`; its freeze and every run record state `ai_only_exploratory`. AI raw-view checks do not replace independent human review. Room1 originals and scores remain unchanged; any later ontology repair must be a new, explicitly post-hoc annotation/analysis version.
+The [owner-amended exploratory protocol](../configs/identity_budget_v2_exploratory.json) requires an explicit `--exploratory` option at sealing, frontend and mapper entry points. Its [AI labels](../annotations/room2/targets.ai-v2.1.json) retain `human_reviewed: false`; its freeze and every run record state `ai_only_exploratory`. AI raw-view checks do not replace independent human review. Room1 originals and scores remain unchanged; any later ontology repair must be a new, explicitly post-hoc annotation/analysis version.
 
 ## Run and recording workflow
 
@@ -50,16 +50,16 @@ Exit 2 means defer heavy work; do not stop another process, change its environme
 
 ```bash
 python scripts/seal_delayed_annotations.py --protocol configs/identity_budget_v2_exploratory.json \
-  --annotations annotations/room2/targets.ai-v2.json --data "$DATA" \
+  --annotations annotations/room2/targets.ai-v2.1.json --data "$DATA" \
   --output "$SEAL" --seal --exploratory
 python scripts/record_session.py --output "$FRONT_VIDEO" --cwd "$REPO" -- \
   "$SEMANTIC_PYTHON" scripts/prepare_delayed_frontend.py \
-  --protocol configs/identity_budget_v2_exploratory.json --annotations annotations/room2/targets.ai-v2.json \
+  --protocol configs/identity_budget_v2_exploratory.json --annotations annotations/room2/targets.ai-v2.1.json \
   --data "$DATA" --freeze "$SEAL/freeze.json" --native-source "$SOURCE" \
   --weights "$WEIGHTS" --output "$FRONT" --exploratory
 python scripts/record_session.py --output "$MAP_VIDEO" --cwd "$REPO" -- \
   "$SEMANTIC_PYTHON" scripts/run_identity_budget.py \
-  --protocol configs/identity_budget_v2_exploratory.json --annotations annotations/room2/targets.ai-v2.json \
+  --protocol configs/identity_budget_v2_exploratory.json --annotations annotations/room2/targets.ai-v2.1.json \
   --data "$DATA" --freeze "$SEAL/freeze.json" --frontend "$FRONT" \
   --weights "$WEIGHTS" --output "$RUN" --exploratory
 python scripts/analyze_identity_budget.py --run "$RUN" --data "$DATA" --output "$ANALYSIS"

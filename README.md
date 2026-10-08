@@ -15,6 +15,8 @@ English | [中文](README.zh-CN.md)
 
 </div>
 
+> **Experimental branch only:** [room2 identity-budget v2](docs/IDENTITY_BUDGET.md) uses a separately declared AI-only exploratory protocol after the owner waived manual review. Native execution is queued behind the other window; H1 remains unverified. [Commit-bound implementation review](docs/reviews/IDENTITY_BUDGET_3740e51.md). No main merge is authorized.
+
 ![Measured author-map replay](docs/figures/replication_hero.gif)
 
 *Replay of measured final maps; GT is used only for evaluation and coloring. Playback is not live inference. [Source](results/reference/reproduction-media-wsl/record.json).*

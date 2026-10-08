@@ -46,7 +46,7 @@ def child(directory):
     def monitor():
         positions = {}
         last_clock = 0
-        watch = Path(spec["cwd"]) / "results/runs"
+        watch = Path(spec["watch_root"]) if spec.get("watch_root") else Path(spec["cwd"]) / "results/runs"
         while not stop.wait(1):
             elapsed = time.monotonic() - start
             if elapsed - last_clock >= 15:
@@ -55,7 +55,9 @@ def child(directory):
             for log in watch.glob("**/*.log"):
                 relative_parts = log.relative_to(watch).parts
                 prefix = spec.get("watch_prefix")
-                if not prefix or not relative_parts[0].startswith(prefix):
+                if not prefix and not spec.get("watch_root"):
+                    continue
+                if prefix and not relative_parts[0].startswith(prefix):
                     continue
                 if log.stat().st_mtime < spec["prepared_epoch"] or "author-code" in log.parts:
                     continue
@@ -95,6 +97,7 @@ def main():
     parser.add_argument("--cwd", type=Path, default=Path.cwd())
     parser.add_argument("--fps", type=int, default=5)
     parser.add_argument("--child", type=Path)
+    parser.add_argument("--watch-root", type=Path, help="Explicit run directory whose live logs enter the video")
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args()
     if args.child:
@@ -111,6 +114,7 @@ def main():
         "prepared_epoch": time.time(),
         "fps": args.fps,
         "size": [1280, 800],
+        "watch_root": str(args.watch_root.resolve()) if args.watch_root else None,
     }
     spec["recorder_script_sha256"] = sha(__file__)
     spec["watch_prefix"] = None

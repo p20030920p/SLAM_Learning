@@ -1,14 +1,16 @@
 import copy
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
 
 from slam_learning.identity_budget import (
-    ARMS, hypothesis_decision, load_snapshot, object_id, readout, restore_fixed_semantics,
+    ARMS, check_resources, digest, hypothesis_decision, load_snapshot, object_id, readout, restore_fixed_semantics,
     save_snapshot, scan_readouts, select_candidates, validate_annotations, validate_freeze, validate_protocol,
 )
 
@@ -23,7 +25,7 @@ def cfg():
 
 @pytest.fixture
 def ann():
-    return json.loads((ROOT / "annotations/room2/targets.ai-v2.json").read_text())
+    return json.loads((ROOT / "annotations/room2/targets.ai-v2.1.json").read_text())
 
 
 def state(tmp_path):
@@ -209,3 +211,61 @@ def test_simple_control_match_or_identity_error_blocks_hypothesis(cfg):
         if row["arm"] == "oracle_replay":
             row["annotated_mixed_objects"] = 1
     assert hypothesis_decision(rows, cfg)["status"] == "narrow_or_stop_H1"
+
+
+def test_foreign_gpu_process_blocks_before_other_work(monkeypatch):
+    calls = []
+
+    def run(command, **kwargs):
+        calls.append(command)
+        return SimpleNamespace(stdout="999999, another-window-python, 8000 MiB\n")
+    monkeypatch.setattr(subprocess, "run", run)
+    with pytest.raises(RuntimeError, match="Another GPU process"):
+        check_resources()
+    assert len(calls) == 1
+
+
+def test_author_jobs_block_even_when_wsl_gpu_inventory_is_empty(monkeypatch):
+    def run(command, **kwargs):
+        return SimpleNamespace(stdout="" if command[0] == "nvidia-smi" else
+                               " 632 /home/qzl/projects/SLAM_Author_Originals/envs/python generate_gsa_results.py\n")
+    monkeypatch.setattr(subprocess, "run", run)
+    with pytest.raises(RuntimeError, match="Other window"):
+        check_resources()
+
+
+def test_idle_resource_gate_is_read_only(monkeypatch):
+    commands = []
+
+    def run(command, **kwargs):
+        commands.append(command)
+        return SimpleNamespace(stdout=f"{os.getpid()}, self, 0 MiB\n" if command[0] == "nvidia-smi" else " PID ARGS\n")
+    monkeypatch.setattr(subprocess, "run", run)
+    assert check_resources()["no_other_compute_processes"]
+    assert [c[0] for c in commands] == ["nvidia-smi", "ps"]
+
+
+def test_exploratory_freeze_binds_every_raw_file_and_cannot_pose_as_human_review(tmp_path, ann):
+    cfg = json.loads((ROOT / "configs/identity_budget_v2_exploratory.json").read_text())
+    config, annotation = tmp_path / "protocol.json", tmp_path / "annotations.json"
+    config.write_text(json.dumps(cfg))
+    annotation.write_text(json.dumps(ann))
+    names = [f"room2/results/{stem}{f:06d}.{ext}" for f in cfg["mapping_frames"] + cfg["reference_frames"]
+             for stem, ext in (("frame", "jpg"), ("depth", "png"))] + ["room2/traj.full.txt", "room2/traj.txt"]
+    files = []
+    for name in names:
+        p = tmp_path / name
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(b"fixture raw bytes")
+        files.append({"path": name, "sha256": digest(p)})
+    manifest = {"scene": "room2", "protocol_sha256": digest(config), "mapping_frames": cfg["mapping_frames"],
+                "reference_frames": cfg["reference_frames"], "files": files}
+    (tmp_path / "manifest.json").write_text(json.dumps(manifest))
+    freeze = {"analysis_type": "ai_only_exploratory", "protocol_sha256": digest(config),
+              "annotations_sha256": digest(annotation), "source_manifest_sha256": digest(tmp_path / "manifest.json")}
+    validate_freeze(config, annotation, tmp_path, freeze, exploratory=True)
+    with pytest.raises(ValueError):
+        validate_freeze(config, annotation, tmp_path, freeze)
+    (tmp_path / names[0]).write_bytes(b"changed")
+    with pytest.raises(ValueError, match="source hash mismatch"):
+        validate_freeze(config, annotation, tmp_path, freeze, exploratory=True)

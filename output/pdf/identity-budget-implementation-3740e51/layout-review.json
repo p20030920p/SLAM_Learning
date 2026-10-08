@@ -1,0 +1,41 @@
+{
+  "kind": "per_page_pdf_layout_review",
+  "status": "passed",
+  "pages": [
+    {
+      "language": "en",
+      "page": 1,
+      "render_sha256": "64c14e5772d7e877f40b994f1c5ba052869d2b9b8819c788b559782c21690f93",
+      "visually_inspected": true,
+      "layout_passed": true
+    },
+    {
+      "language": "en",
+      "page": 2,
+      "render_sha256": "cb4a268872a6cd68432ea7193fb84c90b3747d50cb7f50e9ae10cbf0d22480c5",
+      "visually_inspected": true,
+      "layout_passed": true
+    },
+    {
+      "language": "zh-CN",
+      "page": 1,
+      "render_sha256": "b47df8bfae85c81e0f9f5fd152d84492abcbce99abdad3699df33d4b7c0a60a0",
+      "visually_inspected": true,
+      "layout_passed": true
+    },
+    {
+      "language": "zh-CN",
+      "page": 2,
+      "render_sha256": "6c991e059188cacb6423e85bd9ac43caf9214695435d368b4ae20e729ca3f835",
+      "visually_inspected": true,
+      "layout_passed": true
+    }
+  ],
+  "checks": [
+    "no clipped text",
+    "no overlapping rows/footer",
+    "CJK glyphs present",
+    "table headers repeat",
+    "page numbers correct"
+  ]
+}

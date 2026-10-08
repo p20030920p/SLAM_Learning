@@ -15,6 +15,8 @@
 
 </div>
 
+> **仅实验分支：** 用户不再人工复核后，[room2 对象身份与候选预算 v2](docs/IDENTITY_BUDGET.zh-CN.md) 使用单独声明的 AI-only 探索协议。原生执行排队等待另一窗口资源；H1 未验证。[绑定提交的实现审核](docs/reviews/IDENTITY_BUDGET_3740e51.zh-CN.md)。未授权合并 main。
+
 ![作者地图实测回放](docs/figures/replication_hero.gif)
 
 *实测最终地图的回放，GT 仅用于评价与着色；不是实时算法演示。[来源](results/reference/reproduction-media-wsl/record.json)。*

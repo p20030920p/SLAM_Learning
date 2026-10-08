@@ -56,6 +56,7 @@ def main():
               "Saved snapshots where labeled. Final map for query stages." if semantic else
               "Green: removed dynamic\nRed: removed static\nBlue: retained dynamic\nGray: static support\n\n"
               "GT colors for evaluation only, excluded from mapper input.")
+    legend = manifest.get("legend", legend)
     source_label = QtWidgets.QLabel(legend+"\n\nMetric grid; display thinning only.")
     source_label.setWordWrap(True)
     layout.addWidget(source_label)
