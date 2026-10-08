@@ -8015,6 +8015,10 @@
     "bytes": 439670,
     "sha256": "d127dbe3530a5ad5d815be8cae2ba75b4a6f26dd2c590abd6985013a592afdfe"
   },
+  "runs/conceptgraphs-room0-batch16-stages-04/evaluation-config.diff": {
+    "bytes": 462,
+    "sha256": "01779a33caeb3f3f4244658cf673d62029b4f0d837f1f799b4380adc5cc7eb65"
+  },
   "runs/conceptgraphs-setup-02/ram-requirements.diff": {
     "bytes": 170,
     "sha256": "0b8b8a44a51f7a50f19f3b69fa335d6fce8b6fc16fc311dd944b3e53f7ffe40b"
@@ -8047,6 +8051,10 @@
     "sha256": "5ba03c1bbf439228a27e50f81a83b1dcde3f9152ce898498af92085c2392a825",
     "bytes": 8835
   },
+  "runs/chamferdist-cuda-build-02/build/run.log": {
+    "sha256": "98fb9f07e29c9300f09cb3ef3eefb1f9ec354c57209f64111564237c3ebe2029",
+    "bytes": 718
+  },
   "runs/conceptgraphs-import-preflight-02/run.log": {
     "sha256": "ff407b1bedba6db1ee123244adcedad3e5982031a23aa820d2afc781f66f33eb",
     "bytes": 2675
@@ -8062,6 +8070,30 @@
   "data/replica-full/Replica/room0/gsa_classes_none.json": {
     "bytes": 8,
     "sha256": "259a3e1f10ddc8c33777eb7b00023eb4c175c99090cbf821a15c41678eacaee0"
+  },
+  "runs/conceptgraphs-room0-batch16-stages-04/mapping/run.log": {
+    "sha256": "f081179576899d2635a9030f062b70dcd4d45a0906a20fa47e03dcfa772148e4",
+    "bytes": 25886
+  },
+  "data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz": {
+    "bytes": 33778067,
+    "sha256": "47c70ef35d15d28ec10cc64b59c055fc0850efbfd8a608cabe7f5d578cdbec1a"
+  },
+  "runs/conceptgraphs-room0-batch16-stages-04/rgb-fusion/run.log": {
+    "sha256": "1ea8d9f6cf590132b86bf446d8d21aed6d76b05794409b15a2a459a2a7e874c4",
+    "bytes": 16599
+  },
+  "data/replica-full/Replica/room0/rgb_cloud/pointclouds/pc_points.h5": {
+    "sha256": "6761282d253ba23034c1111b572d458860c0f72c7ed3b1311fd8f9538855fd0e",
+    "bytes": 93061268
+  },
+  "data/replica-full/Replica/room0/rgb_cloud/pointcloud.pcd": {
+    "sha256": "96792f68eca5474c3da15630a55490d3dc7f48778ccd1c94cfbb7fa2888a6dac",
+    "bytes": 124079146
+  },
+  "runs/conceptgraphs-room0-original-gui-01/run.log": {
+    "sha256": "fe3c42f9c8a61440a9f8ce3ade112c2ae4cab3601d55d37061e5924d3c15ea58",
+    "bytes": 77
   },
   "runs/dufomap-cmake-build-gcc11-01/run.log": {
     "sha256": "2d8460d38ce9223db25bbd25dc6284fbd5edf5c57788b581bc20af7d15dfe12c",
@@ -11438,6 +11470,14 @@
   "data/replica-full/Replica/room0/gsa_vis_none/frame001995.jpg": {
     "bytes": 249965,
     "sha256": "a3a475c5a1ce52920056dd02d97a5f12c1a79ea563721590439333142bde4744"
+  },
+  "data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub.pkl.gz": {
+    "bytes": 34294356,
+    "sha256": "446f9ac2c71e9a0767269301b3e69cc3c8c83297ed738e9dbd39ae0ebd9ca99c"
+  },
+  "runs/conceptgraphs-room0-original-window-01/conceptgraphs-room0-original-window.mp4": {
+    "bytes": 297953,
+    "sha256": "2eb0bc99c6319ebac785eaccc444a3a8fe9db1701775ab30c2ea6888af3883b3"
   },
   "runs/room0-frontend-playback-01/room0-rgb-and-sam-playback.mp4": {
     "bytes": 24332503,

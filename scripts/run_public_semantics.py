@@ -69,7 +69,8 @@ if cg['status']!='executed_single_scene':raise RuntimeError('First complete CG c
 hov_enabled=hov['status']=='executed_single_scene'
 detect_enabled=args.include_detect
 if detect_enabled:
-    detect_enabled=run_detect('room0',state['scenes']['room0'],args.wait_cg.parent/'rgb-fusion/record.json')
+    rgb_record=Path(cg['rgb_reference']['record']) if cg.get('rgb_reference') else args.wait_cg.parent/'rgb-fusion/record.json'
+    detect_enabled=run_detect('room0',state['scenes']['room0'],rgb_record)
     if not detect_enabled:
         state['scenes']['room0']['detect_note']='Do not repeat an unresolved first Detect failure across seven scenes';save()
 for scene in ['office0','office1','office2','office3','office4','room1','room2']:

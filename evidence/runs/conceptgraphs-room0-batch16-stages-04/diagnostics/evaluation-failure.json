@@ -1,0 +1,11 @@
+{
+  "status": "failed",
+  "stage": "evaluation",
+  "exit_code": 1,
+  "cause": "RuntimeError: Not compiled with GPU support, from chamferdist CUDA KNN",
+  "scope": "Dependency build failure during semantic evaluation. Original mapping and RGB fusion completed and remain valid; no semantic score.",
+  "record": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-batch16-stages-04/evaluation/record.json",
+  "repair_record": "/home/qzl/projects/SLAM_Author_Originals/runs/chamferdist-cuda-build-02/build/record.json",
+  "repair_status": "CUDA extension rebuilt from unchanged tracked source; CUDA-only binding verified; real GPU KNN and original evaluation queued after HOV-SG",
+  "retry": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/outcomes.json"
+}

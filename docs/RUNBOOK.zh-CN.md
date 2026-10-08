@@ -146,6 +146,7 @@ cd "$RUNTIME/upstream/conceptgraphs/conceptgraph"
 cat "$RUNTIME/runs/conceptgraphs-replica-room0-none-batch16-04/record.json"
 tail -c 1500 "$RUNTIME/runs/conceptgraphs-replica-room0-none-batch16-04/run.log"
 cat "$RUNTIME/runs/conceptgraphs-room0-batch16-stages-04/outcomes.json"
+cat "$RUNTIME/runs/conceptgraphs-room0-evaluation-cuda-05/outcomes.json"
 ```
 
 自动队列结束或停止、GPU 空闲后，若 room1 仍无前端输出，可亲自执行：
@@ -194,11 +195,11 @@ cat "$RUNTIME/runs/hovsg-room0-batch16-stages-03/outcomes.json"
 
 该任务先运行完整 2000 帧输入的原始特征图入口（skip_frames=10、SAM 批量 16），检查 PLY 与 1024 维特征对应关系，再运行作者语义评价。评价工作目录独立，作者生成的颜色 JSON 不写进源码。单场景结果、资源配置和未完成阶段都分别记录。
 
-其余 7 个公开场景由 `public-semantic-benchmark-04` 串行排队：先等待 room0 重试验证，然后加入作者原版 ConceptGraphs-Detect。首个 HOV-SG 或 Detect 流程未通过时，不在另外 7 个场景重复同一失败；SAM-only ConceptGraphs 可以继续。只有对应方法的 8 个场景全部成功，才调用未经修改的作者八场景评价入口。旧队列的等待、替换或前序失败均保留记录。
+其余 7 个公开场景由 `public-semantic-benchmark-05` 串行排队：先等待 room0 重试验证，然后加入作者原版 ConceptGraphs-Detect。首个 HOV-SG 或 Detect 流程未通过时，不在另外 7 个场景重复同一失败；SAM-only ConceptGraphs 可以继续。只有对应方法的 8 个场景全部成功，才调用未经修改的作者八场景评价入口。旧队列的等待、替换或前序失败均保留记录。
 
 ```bash
-cat "$RUNTIME/runs/public-semantic-benchmark-04/outcomes.json"
-tail -n 20 "$RUNTIME/runs/public-semantic-benchmark-04/orchestration.log"
+cat "$RUNTIME/runs/public-semantic-benchmark-05/outcomes.json"
+tail -n 20 "$RUNTIME/runs/public-semantic-benchmark-05/orchestration.log"
 ```
 
 Detect 的原始命令保留 `--class_set ram --box_threshold 0.2 --text_threshold 0.2 --stride 5 --add_bg_classes --accumu_classes --exp_suffix withbg_allclasses`。其映射使用 `mask_conf_threshold=0.25`、`skip_bg=False`，沿用作者命令生成的后缀 `ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1`。README 的评价示例额外写了 `_masksub`，与映射命令不一致；这里显式传入实际文件名，不复制或伪造结果。Detect 复用同场景原始 RGB PointFusion 表面前，必须提供成功的记录并重新核对文件 SHA-256。
@@ -226,6 +227,18 @@ python3 "$DOCS/scripts/render_frontend_video.py" \
 
 三维映射完成后，在 WSL 中执行：
 
+本机已经验证的地图可通过带哈希检查和资源限额的入口打开，`--name` 必须新建：
+
+```bash
+python3 "$DOCS/scripts/open_cg_gui.py" --runtime "$RUNTIME" \
+  --validation "$RUNTIME/runs/conceptgraphs-room0-batch16-stages-04/map-validation/validation.json" \
+  --name cg-gui-manual-01 --software-rendering
+```
+
+已完成的原版窗口实录：[60 秒视频](../evidence/videos/conceptgraphs-room0-original-window.mp4)。本机 Windows 文件在 `D:\workspace\be2\SLAM_Recordings\author-originals\conceptgraphs-room0-original-window.mp4`。录制内容为 RGB → `i` 实例颜色 → 左键拖动旋转 → `r` RGB → 鼠标滚轮。查看器只对显示点云做作者原代码的 0.05 m 下采样；无文本查询或关系图。`q` 关闭窗口，`v` 保存相机参数到本次工作目录。
+
+直接调用作者查看器的等价命令：
+
 ```bash
 cd "$RUNTIME/upstream/conceptgraphs/conceptgraph"
 "$RUNTIME/envs/conceptgraphs/bin/python" scripts/visualize_cfslam_results.py \
@@ -237,6 +250,8 @@ cd "$RUNTIME/upstream/conceptgraphs/conceptgraph"
 作者 `scripts/animate_mapping_save.py --input_folder <objects_all_frames 下本次运行文件夹>` 可以导出 RGB、二维分割、三维 RGB 和三维实例动画，但需要另一次成功启用 `save_objects_all_frames=True` 的运行。当前重试关闭了这个高内存可选项。前次失败的部分检查点缺少完整元数据，不能用来伪装完整视频；原脚本还按列表顺序配 RGB，导出前需检查检查点索引与源帧对齐。最终地图成功后可先按上面的窗口命令手动录制 RGB／实例视图。
 
 ## 5. 证据和预算
+
+本机第三次建图与 RGB 参考表面已成功，第一次原评价因 chamferdist 缺少 CUDA 支持退出。扩展已补编；`conceptgraphs-room0-evaluation-cuda-05` 等待 HOV-SG 后验证真实 GPU KNN，再重跑原评价。它用 `--reuse-chain` 对原地图／RGB 文件重新核对 SHA-256，原失败记录保持原样。自动队列仍在运行时不要重复启动评价。
 
 直接执行作者入口时可加外层记录器；它不导入算法、不替换算法函数。输出目录必须新建，`--artifact` 可要求关键输出存在，`--timeout` 会记录超时。
 

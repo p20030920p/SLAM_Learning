@@ -48,7 +48,10 @@ if code:fail('feature_map',code)
 state['stages']['feature_map']=0;save()
 python=r/'envs/hovsg/bin/python'
 artifacts=r/'runs'/feature_name/'artifacts/replica'
-subprocess.run([str(python),str(scripts/'validate_hovsg_outputs.py'),'--artifacts',str(artifacts),
+state.update(status='validating_feature_map');save()
+subprocess.run(['systemd-run','--user','--scope','--unit','slam-author-'+args.name+'-validation',
+    '-p','MemoryMax='+args.memory_max,'-p','MemorySwapMax='+args.swap_max,
+    str(python),str(scripts/'validate_hovsg_outputs.py'),'--artifacts',str(artifacts),
     '--output',str(root/'validation.json')],check=True)
 state['status']='waiting_for_ground_truth';save()
 gt_manifest=r/'replica-original-manifest.json'

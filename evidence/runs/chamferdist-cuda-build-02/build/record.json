@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "method": "chamferdist-CUDA-build",
+  "scope": "Unchanged tracked source copy; FORCE_CUDA=1, CUDA 11.8, arch 8.9, gcc11; no GPU allocation during compilation. Fixes original evaluator dependency, not its algorithm. Source hashes in source-copy.json.",
+  "status": "executed",
+  "started_at": "2026-10-08T21:34:49.627242+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-chamferdist-cuda-build-02",
+    "-p",
+    "MemoryMax=6G",
+    "-p",
+    "MemorySwapMax=8G",
+    "/home/qzl/.local/bin/uv",
+    "--no-cache",
+    "pip",
+    "install",
+    "--python",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "--reinstall",
+    "--no-deps",
+    "--no-build-isolation",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/chamferdist-cuda-build-02/source"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/runs/chamferdist-cuda-build-02/source",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/dependencies/chamferdist",
+  "source_commit": "ee753899b583bdc06bd2505dc162fd54ba0c6c5b",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "98fb9f07e29c9300f09cb3ef3eefb1f9ec354c57209f64111564237c3ebe2029",
+      "bytes": 718
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "CUDA_HOME": "/home/qzl/projects/SLAM_Author_Originals/envs/cuda118",
+    "TORCH_CUDA_ARCH_LIST": "8.9",
+    "DISPLAY": ":0",
+    "FORCE_CUDA": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "MAX_JOBS": "2",
+    "CC": "gcc-11",
+    "CXX": "g++-11"
+  },
+  "pid": 156527,
+  "elapsed_seconds": 58.26270787099929,
+  "source_dirty_after": ""
+}

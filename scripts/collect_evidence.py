@@ -72,6 +72,11 @@ def main():
             path=Path(name) if Path(name).is_absolute() else record_path.parent/name
             if path.is_relative_to(args.runtime):
                 manifest[path.relative_to(args.runtime).as_posix()]=item
+            if path.is_relative_to(args.runtime/'runs') and path.suffix=='.csv' and path.stat().st_size<10*1024*1024:
+                assert sha256(path)==item['sha256'], 'Completed original CSV changed'
+                target=args.output/'runs'/path.relative_to(args.runtime/'runs')
+                target.parent.mkdir(parents=True,exist_ok=True)
+                shutil.copy2(path,target)
     for source in sorted((args.runtime/'runs').rglob('validation.json')):
         target=args.output/'runs'/source.relative_to(args.runtime/'runs')
         target.parent.mkdir(parents=True,exist_ok=True)
@@ -105,6 +110,11 @@ def main():
         if data.get('status')=='rendered':
             path=Path(data['video'])
             manifest[path.relative_to(args.runtime).as_posix()]={'bytes':data['bytes'],'sha256':data['video_sha256']}
+    for name in ['source-copy.json','compile-preflight.log','gui-actions.json']:
+        for source in sorted((args.runtime/'runs').glob('*/'+name)):
+            target=args.output/'runs'/source.relative_to(args.runtime/'runs')
+            target.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copy2(source,target)
     for source in sorted((args.runtime/'runs').glob('*/diagnostics/*')):
         if source.suffix not in ['.json','.log']:continue
         target=args.output/'runs'/source.relative_to(args.runtime/'runs')

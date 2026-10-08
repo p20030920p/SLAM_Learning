@@ -21,6 +21,8 @@ parser.add_argument('--name', required=True)
 parser.add_argument('--scene', default='room0')
 parser.add_argument('--variant', choices=['none', 'detect'], default='none')
 parser.add_argument('--rgb-record', type=Path, help='Completed same-scene original RGB fusion record to verify and reuse')
+parser.add_argument('--reuse-chain',type=Path,help='Verify and reuse successful mapping/RGB stages after an evaluation-only failure')
+parser.add_argument('--check-chamfer-cuda',action='store_true',help='Run a real tiny CUDA KNN probe before original evaluation')
 parser.add_argument('--animation-checkpoints', action='store_true', help='Author optional deep-copy snapshots; high RAM use, disabled in the README mapping command')
 parser.add_argument('--memory-max', default='12G')
 parser.add_argument('--swap-max', default='48G')
@@ -72,7 +74,27 @@ suffix = ('overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub' if args.vari
           else 'overlap_maskconf0.25_simsum1.2_dbscan.1')
 experiment = variant + '_' + suffix
 post = scene / 'pcd_saves' / ('full_pcd_' + experiment + '_post.pkl.gz')
-if post.exists():raise FileExistsError('Refusing to overwrite an existing original 3D map')
+if args.reuse_chain:
+    previous_map=json.loads((args.reuse_chain/'mapping/record.json').read_text())
+    assert previous_map['status']=='executed' and previous_map['method']=='ConceptGraphs-mapping'
+    assert previous_map['source_commit']==frontend['source_commit']
+    previous_validation=args.reuse_chain/'map-validation/validation.json'
+    checked=json.loads(previous_validation.read_text())
+    assert checked['status']=='validated' and checked['scene']==args.scene and str(post) in checked['artifacts']
+    assert previous_map['artifacts'][str(post)]['sha256']==checked['artifacts'][str(post)]['sha256']
+    for name,item in checked['artifacts'].items():
+        path=Path(name);assert path.resolve().is_relative_to(r/'data')
+        digest=hashlib.sha256()
+        with path.open('rb') as stream:
+            for block in iter(lambda:stream.read(4*1024*1024),b''):digest.update(block)
+        assert digest.hexdigest()==item['sha256']
+    (root/'map-validation').mkdir()
+    (root/'map-validation/validation.json').write_bytes(previous_validation.read_bytes())
+    state['mapping_reference']={'record':str(args.reuse_chain/'mapping/record.json'),
+        'status':'verified_reuse_of_completed_original_map'};save()
+    assert not args.rgb_record, 'Reuse chain already supplies the original RGB record'
+    args.rgb_record=args.reuse_chain/'rgb-fusion/record.json'
+elif post.exists():raise FileExistsError('Refusing to overwrite an existing original 3D map')
 
 def run(name, command, artifacts, cwd=None, scope=''):
     state.update(status='waiting_for_gpu_for_' + name);save()
@@ -100,12 +122,16 @@ mapping = [python, 'slam/cfslam_pipeline_batch.py',
     'save_objects_all_frames=' + str(args.animation_checkpoints), 'hydra.run.dir=' + str(root / 'mapping-hydra')]
 if args.variant == 'none':
     mapping += ['class_agnostic=True', 'merge_interval=20', 'merge_visual_sim_thresh=0.8', 'merge_text_sim_thresh=0.8']
-run('mapping', mapping, [post],
-    scope='Full 2000-frame '+args.scene+'; stride 5 (400 frames); exact README '+args.variant+' mapping parameters; optional animation checkpoints='+str(args.animation_checkpoints)+'; RAM/swap cgroup '+args.memory_max+'/'+args.swap_max+'. Frontend provenance: '+str(args.wait_record))
+if not args.reuse_chain:
+    run('mapping', mapping, [post],
+        scope='Full 2000-frame '+args.scene+'; stride 5 (400 frames); exact README '+args.variant+' mapping parameters; optional animation checkpoints='+str(args.animation_checkpoints)+'; RAM/swap cgroup '+args.memory_max+'/'+args.swap_max+'. Frontend provenance: '+str(args.wait_record))
 validation = [str(python), str(scripts / 'validate_cg_map.py'), '--scene-root', str(scene),
               '--experiment', experiment, '--output', str(root / 'map-validation/validation.json')]
 if not args.animation_checkpoints:validation += ['--without-animation-checkpoints']
-subprocess.run(validation, check=True)
+if not args.reuse_chain:
+    state.update(status='validating_map');save()
+    subprocess.run(['systemd-run','--user','--scope','--unit','slam-author-'+args.name+'-map-validation',
+        '-p','MemoryMax='+args.memory_max,'-p','MemorySwapMax='+args.swap_max,*validation], check=True)
 rgb_artifacts = [scene / 'rgb_cloud/pointclouds/pc_points.h5', scene / 'rgb_cloud/pointcloud.pcd']
 if args.rgb_record:
     rgb = json.loads(args.rgb_record.read_text())
@@ -138,8 +164,12 @@ copy.write_text(configured)
 (root / 'evaluation-config.diff').write_text(''.join(difflib.unified_diff(
     text.splitlines(True), configured.splitlines(True), fromfile='author/eval_replica_semseg.py', tofile='configured/eval_replica_semseg_scene.py')))
 csv = root / 'results' / experiment / 'replica_ex6_results.csv'
+if args.check_chamfer_cuda:
+    run('cuda-preflight',[python,scripts/'check_chamfer_cuda.py'],[],cwd=root,
+        scope='Tiny real CUDA KNN forward test before original evaluator; no semantic score')
 run('evaluation', [python, copy, '--replica_root', scene.parent, '--replica_semantic_root', r / 'data/Replica-semantic',
     '--n_exclude', '6', '--pred_exp_name', experiment], [csv], cwd=root,
     scope='Original semantic evaluator and exact author HDF5 GT; ONLY '+args.scene+' selected in explicit configuration copy; n_exclude=6')
+subprocess.run([sys.executable,str(scripts/'summarize_cg_evaluation.py'),'--run-root',str(root),'--scene',args.scene],check=True)
 state['status'] = 'executed_single_scene';save()
 print('Original ConceptGraphs mapping/RGB fusion/single-scene evaluation completed', flush=True)

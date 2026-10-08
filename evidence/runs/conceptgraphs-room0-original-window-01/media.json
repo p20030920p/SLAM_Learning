@@ -1,0 +1,57 @@
+{
+  "status": "rendered",
+  "video": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-original-window-01/conceptgraphs-room0-original-window.mp4",
+  "bytes": 297953,
+  "video_sha256": "2eb0bc99c6319ebac785eaccc444a3a8fe9db1701775ab30c2ea6888af3883b3",
+  "started_at": "2026-10-08T21:31:57.264380+00:00",
+  "window_info": "\nxwininfo: Window id: 0x600007 \"Open3D - full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz\"\n\n  Absolute upper-left X:  373\n  Absolute upper-left Y:  118\n  Relative upper-left X:  38\n  Relative upper-left Y:  59\n  Width: 1280\n  Height: 720\n  Depth: 24\n  Visual: 0x2f0\n  Visual Class: TrueColor\n  Border width: 0\n  Class: InputOutput\n  Colormap: 0x600006 (not installed)\n  Bit Gravity State: ForgetGravity\n  Window Gravity State: NorthWestGravity\n  Backing Store State: NotUseful\n  Save Under State: no\n  Map State: IsViewable\n  Override Redirect State: no\n  Corners:  +373+118  -267+118  -267-242  +373-242\n  -geometry 1280x720+373+118\n\n",
+  "command": [
+    "ffmpeg",
+    "-nostdin",
+    "-n",
+    "-f",
+    "x11grab",
+    "-framerate",
+    "15",
+    "-video_size",
+    "1280x720",
+    "-window_id",
+    "6291463",
+    "-i",
+    ":0",
+    "-t",
+    "60",
+    "-an",
+    "-c:v",
+    "libx264",
+    "-threads",
+    "2",
+    "-preset",
+    "fast",
+    "-crf",
+    "22",
+    "-pix_fmt",
+    "yuv420p",
+    "-movflags",
+    "+faststart",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-original-window-01/conceptgraphs-room0-original-window.mp4"
+  ],
+  "ffprobe": {
+    "programs": [],
+    "streams": [
+      {
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "15/1",
+        "nb_frames": "900"
+      }
+    ],
+    "format": {
+      "duration": "60.000000"
+    }
+  },
+  "gui_record": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-original-gui-01/record.json",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_map": "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz",
+  "scope": "Direct capture of the unchanged author Open3D GUI on the validated room0 map. Actual window pixels, not a terminal video or synthesized 3D animation. GUI actions are recorded separately. Display-only 0.05m downsampling and no_clip; no semantic-query accuracy or relation-graph claim."
+}

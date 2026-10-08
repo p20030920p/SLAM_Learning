@@ -17,7 +17,8 @@ r=args.runtime.resolve();root=r/'runs'/args.name
 assert root.resolve().is_relative_to(r/'runs')
 record=json.loads(args.record.read_text())
 assert record['status']=='failed' and record['exit_code']==-9
-folder=root/'diagnostics';folder.mkdir(exist_ok=False)
+folder=root/'diagnostics';folder.mkdir(exist_ok=True)
+assert not any((folder/name).exists() for name in ['systemd-oom.log','kernel-oom.log','failure-diagnosis.json']), 'Failure evidence already exists'
 unit=subprocess.check_output(['journalctl','--user','-u',args.unit,'--no-pager'],text=True)
 assert 'OOM killer' in unit
 (folder/'systemd-oom.log').write_text(unit)

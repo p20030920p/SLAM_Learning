@@ -55,13 +55,21 @@ room0 的完整前端已执行成功并通过全部 400 个预期输出的检查
 
 HOV-SG `hovsg-room0-batch16-stages-02` 完成了 200/200 个原生 1200×680 帧的特征提取，随后在层级掩码合并阶段触发 14G RAM / 2G swap cgroup OOM，exit -9。原始入口在全流程结束后才保存特征图，本次没有可验证的最终 PLY/PT 文件。[HOV-SG 诊断](../evidence/runs/hovsg-room0-batch16-stages-02/diagnostics/failure-diagnosis.json)。这不是语义精度失败，也不能复用为已完成特征图。
 
-当前重试 `conceptgraphs-room0-batch16-stages-04` 已开始原始映射；HOV-SG `hovsg-room0-batch16-stages-03` 等待它结束后重做特征图。资源限额为每任务 12G RAM / 48G swap，另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间可能明显增加耗时；是否能完成仍以退出记录与产物验证为准。
+`conceptgraphs-room0-batch16-stages-04` 的原始映射已成功退出，最终后处理地图通过检查：77 个对象记录，357,134 个点记录（对象之间可能重复，不是唯一点数），几何与 1024 维特征均有限。原始 RGB PointFusion 的 400 帧也已完成，参考 HDF5／PCD 已保存。[地图检查](../evidence/runs/conceptgraphs-room0-batch16-stages-04/map-validation/validation.json)。映射总耗时约 1043 秒，其中包含序列化与换页；资源采样起于运行中途，不能当完整峰值或论文性能比较。
 
-`public-semantic-benchmark-04` 等待首个完整链路，再串行推进其余 7 个公开 Replica 场景及 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
+原始语义评价在 CUDA 最近邻处失败：此前 chamferdist 只编译了 CPU 支持。已按同一份依赖源码重新编译 CUDA 11.8 扩展，并检查 CUDA 专用绑定与二进制哈希；实际 GPU KNN 测试和原评价由 `conceptgraphs-room0-evaluation-cuda-05` 排队执行，等待 HOV-SG 释放 GPU。该重试只在重新核对 SHA-256 后复用已成功的地图和 RGB 表面，没有重新建图或改评价公式。**当前仍无语义分数。** [失败诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-04/diagnostics/evaluation-failure.json)。
+
+HOV-SG `hovsg-room0-batch16-stages-03` 正在重新提取完整特征图。特征图与评价任务限额为 12G RAM / 48G swap，另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间会影响耗时，不能用本轮时间比较论文效率。
+
+`public-semantic-benchmark-05` 等待首个完整链路，再串行推进其余 7 个公开 Replica 场景及 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
 
 完整前端另导出 40 秒、400 帧 RGB／SAM 对照回放，源图与已验证分割逐一匹配。它展示实际二维产物，不代表三维窗口操作或语义准确率。查看和重做命令见 [运行手册](RUNBOOK.zh-CN.md)。
 
 ![前端回放的中间帧：左侧 RGB，右侧作者 SAM 分割](../evidence/figures/room0-frontend-example.png)
+
+已另录制作者原版 Open3D 窗口：60 秒、1280×720、15 fps，包含 RGB、实例颜色切换和视角旋转。[播放／下载三维窗口视频](../evidence/videos/conceptgraphs-room0-original-window.mp4)。这是同一份已验证地图的实时窗口采集；查看器按作者原代码以 0.05 m 下采样显示，保存的地图未改变。没有 CLIP 文本查询或关系图效果的声明。
+
+![三维窗口中的实例颜色](../evidence/figures/room0-original-gui-instance.png)
 
 ## 待完成
 

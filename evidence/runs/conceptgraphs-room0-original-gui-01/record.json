@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-original-GUI",
+  "scope": "Unchanged author GUI on a completed, hash-verified room0 map. No CLIP model/query or relationship graph; visualization only, not a semantic-accuracy experiment. Original viewer downsamples display geometry to 0.05m; saved map unchanged. Software OpenGL=True",
+  "status": "executed",
+  "started_at": "2026-10-08T21:26:57.876301+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-conceptgraphs-room0-original-gui-01",
+    "-p",
+    "MemoryMax=8G",
+    "-p",
+    "MemorySwapMax=40G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/scripts/visualize_cfslam_results.py",
+    "--result_path",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz",
+    "--no_clip"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-original-gui-01-work",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "fe3c42f9c8a61440a9f8ce3ade112c2ae4cab3601d55d37061e5924d3c15ea58",
+      "bytes": 77
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz": {
+      "sha256": "47c70ef35d15d28ec10cc64b59c055fc0850efbfd8a608cabe7f5d578cdbec1a",
+      "bytes": 33778067
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "DISPLAY": ":0"
+  },
+  "pid": 147342,
+  "elapsed_seconds": 401.96796152799834,
+  "source_dirty_after": ""
+}

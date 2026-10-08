@@ -47,7 +47,8 @@ def main() -> int:
         'environment': {name: os.environ[name] for name in [
             'OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','WANDB_MODE',
             'HF_HUB_CACHE','GSA_PATH','PYTORCH_CUDA_ALLOC_CONF','CUDA_HOME',
-            'TORCH_CUDA_ARCH_LIST'] if name in os.environ},
+            'TORCH_CUDA_ARCH_LIST','LIBGL_ALWAYS_SOFTWARE','DISPLAY','FORCE_CUDA',
+            'CUDA_VISIBLE_DEVICES','MAX_JOBS','CC','CXX'] if name in os.environ},
     }
     record_path = args.output / 'record.json'
     record_path.write_text(json.dumps(record, indent=2) + '\n')

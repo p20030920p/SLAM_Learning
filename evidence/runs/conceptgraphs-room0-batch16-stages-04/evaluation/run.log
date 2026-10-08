@@ -1,0 +1,22 @@
+Running scope as unit: slam-author-conceptgraphs-room0-batch16-stages-04-evaluation.scope
+Excluding classes:  [(0, 'other'), (23, 'floor'), (48, 'wall'), (19, 'ceiling'), (22, 'door'), (50, 'window')]
+Evaluating on: room0 room_0
+Using only the classes that exists in GT of this scene:  29
+23 classes remains. They are:  [(1, 'basket'), (5, 'blanket'), (6, 'blinds'), (7, 'book'), (12, 'cabinet'), (13, 'candle'), (14, 'chair'), (18, 'cushion'), (24, 'indoor-plant'), (25, 'lamp'), (29, 'picture'), (30, 'pillar'), (33, 'plant-stand'), (34, 'plate'), (35, 'pot'), (38, 'sofa'), (39, 'stool'), (40, 'switch'), (41, 'table'), (46, 'vase'), (47, 'vent'), (49, 'wall-plug'), (51, 'rug')]
+Loading mapping result from /home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz
+/home/qzl/projects/SLAM_Author_Originals/dependencies/gradslam/gradslam/structures/pointclouds.py:319: UserWarning: Could not find pointcloud embeddings: /home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/rgb_cloud/pointclouds/pc_embeddings.h5. Skipping
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-batch16-stages-04/eval_replica_semseg_scene.py", line 359, in <module>
+    main(args)
+  File "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-batch16-stages-04/eval_replica_semseg_scene.py", line 298, in main
+    conf_matrix, keep_index = eval_replica(
+  File "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-batch16-stages-04/eval_replica_semseg_scene.py", line 184, in eval_replica
+    slam_nn_in_pred = knn_points(
+  File "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/chamferdist/chamfer.py", line 274, in knn_points
+    p1_dists, p1_idx = _knn_points.apply(
+  File "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/autograd/function.py", line 506, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+  File "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/chamferdist/chamfer.py", line 170, in forward
+    idx, dists = _C.knn_points_idx(p1, p2, lengths1, lengths2, K, version)
+RuntimeError: Not compiled with GPU support.

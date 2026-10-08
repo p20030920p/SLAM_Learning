@@ -69,6 +69,18 @@ RTX 4070 SUPER 使用 8.9 架构；其他 GPU 应按设备调整。扩展验证�
 
 ## 数据与权重
 
+原始评价实际调用 chamferdist 的 CUDA KNN，只有 CPU 扩展可以导入仍会在这里失败。本机已用同一份源码、CUDA 11.8、gcc11 和 `FORCE_CUDA=1` 补编；[编译记录](../evidence/runs/chamferdist-cuda-build-02/build/record.json) 与 [扩展哈希／绑定检查](../evidence/runs/chamferdist-cuda-build-02/compile-preflight.log) 保留。实际 GPU KNN 测试由评分重试在 GPU 空闲后执行，不把绑定存在当作完整评分通过。
+
+新环境在上述 CUDA 工具链准备好后执行；本机已有编译产物，不需重复安装：
+
+```bash
+python3 "$DOCS/scripts/build_chamfer_cuda.py" --runtime "$RUNTIME" --name chamferdist-cuda-manual-01
+# GPU 空闲后，测试原评价所需的真实 CUDA 最近邻操作：
+"$CGPY" "$DOCS/scripts/check_chamfer_cuda.py"
+```
+
+编译在全新的源码副本中完成，逐文件核对作者仓库追踪文件哈希，不改 CUDA 算子或评价公式。
+
 SAM 与 CLIP 沿用已下载的原始模型文件，复制到本任务后重新计算 SHA-256；不是复用旧输出。GroundingDINO / RAM 按作者链接下载，哈希见 [权重清单](../evidence/weights-SHA256SUMS.txt)。相机 JSON 按固定版 Replica YAML 转写字段，分辨率 1200×680、深度尺度 6553.5。
 
 本机完整 Replica 的恢复和检查不需要再次下载：
