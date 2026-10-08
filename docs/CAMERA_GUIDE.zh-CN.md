@@ -177,3 +177,5 @@ RViz Topic QoS 设 Reliable/Volatile。修改 Fixed Frame 只改变显示参考�
 ROS 时间使用 WSL 接收时刻，保留原生流间时间差；SDK 原时间在原始录制/frames.json 中保留。它不构成相机—雷达硬件同步，也不能直接用 Windows/WSL 两套时钟之差当网络延迟。
 
 下一步按[测试计划](TEST_PLAN.zh-CN.md)执行固定→尺量直线→转动→小闭环。需要主分支语义/地图算法时先看[适配与合入要求](MAIN_INTEGRATION.zh-CN.md)和[已完成的真实 RGB-D 输入检查](RGBD_MAIN_INPUT.zh-CN.md)，不能把普通 RGB-D SLAM 地图叫作 ConceptGraphs/HOV-SG 结果。
+
+摔落后四路回放、双目几何筛查、启动停顿和关灯投射器对照见[摔落与弱光实测](POSTFALL_LOWLIGHT.zh-CN.md)。弱光下 RGB 和按 RGB 着色的点云会偏暗；可勾选左右 IR 看双目实际输入，点云切 `FlatColor/AxisColor` 仅改善显示。双设备同时运行步骤及四份实际录像也在该报告中。

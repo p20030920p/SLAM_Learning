@@ -1,4 +1,5 @@
-param([int]$Seconds = 60, [string]$Session = 'static')
+param([int]$Seconds = 60, [string]$Session = 'static',
+      [ValidateSet('default','on','off')][string]$Emitter = 'default')
 $ErrorActionPreference = 'Stop'
 if ($Seconds -le 0 -or $Session -notmatch '^[a-zA-Z0-9_-]+$') { throw 'Use positive seconds and an ASCII session label.' }
 $taskRoot = Split-Path $PSScriptRoot -Parent
@@ -15,7 +16,7 @@ if ($taskNt.Count -ne 1) { throw 'Physical serial path is ambiguous. Inspect SER
 $taskPort = '\\?\GLOBALROOT' + $taskNt[0].Name
 $taskJobs = @()
 try {
-    $taskJobs += Start-Job -ScriptBlock { param($p,$root,$out,$n) Set-Location -LiteralPath $root; & $p scripts\capture_camera.py --seconds $n --record-raw --output $out; if ($LASTEXITCODE) { throw "Camera exit $LASTEXITCODE" } } -ArgumentList $taskPython,$taskRoot,(Join-Path $taskOutput 'camera'),$Seconds
+    $taskJobs += Start-Job -ScriptBlock { param($p,$root,$out,$n,$emitter) Set-Location -LiteralPath $root; & $p scripts\capture_camera.py --seconds $n --record-raw --emitter $emitter --output $out; if ($LASTEXITCODE) { throw "Camera exit $LASTEXITCODE" } } -ArgumentList $taskPython,$taskRoot,(Join-Path $taskOutput 'camera'),$Seconds,$Emitter
     $taskJobs += Start-Job -ScriptBlock { param($p,$root,$out,$n,$port) Set-Location -LiteralPath $root; & $p scripts\capture_l2.py --seconds $n --query-version --output $out --port $port; if ($LASTEXITCODE) { throw "L2 exit $LASTEXITCODE" } } -ArgumentList $taskPython,$taskRoot,(Join-Path $taskOutput 'l2'),$Seconds,$taskPort
     $taskJobs | Wait-Job | Receive-Job
     if (@($taskJobs | Where-Object State -ne 'Completed').Count) { throw 'A capture job failed. Inspect capture.json.' }

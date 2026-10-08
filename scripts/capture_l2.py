@@ -33,6 +33,9 @@ def main():
               "port": args.port, "baud": args.baud, "status": "running",
               "evaluation_completed": False, "sdk_reference_commit": "0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
               "clock": "device uptime; host receive time is separately recorded; not cross-sensor synchronized"}
+    record["host_clock"]={"name":"perf_counter", "implementation":time.get_clock_info("perf_counter").implementation,
+        "resolution_s":time.get_clock_info("perf_counter").resolution,
+        "policy":"One-host monotonic UART chunk receipt time; not laser firing time or hardware synchronization"}
     parser = Parser()
     stats = collections.defaultdict(list)
     preview_clouds = collections.deque(maxlen=100)
@@ -57,6 +60,7 @@ def main():
                 port.write(request)
                 record["transmitted"] = {"purpose": "read device version only", "hex": request.hex()}
             start = time.perf_counter()
+            record["host_capture_start_monotonic_ns"]=time.perf_counter_ns()
             chunks=queue.Queue()
             read_errors=[]
             stop_reader=threading.Event()
@@ -65,9 +69,10 @@ def main():
                     while not stop_reader.is_set() and time.perf_counter()-start<args.seconds:
                         chunk=port.read(max(1,min(port.in_waiting,65536)))
                         now=time.perf_counter()-start
+                        host_ns=time.perf_counter_ns()
                         if chunk:
                             raw.write(chunk)
-                            chunks.put((now,chunk))
+                            chunks.put((now,host_ns,chunk))
                 except Exception as e:
                     read_errors.append(repr(e))
                 finally:
@@ -78,13 +83,13 @@ def main():
                 item=chunks.get(timeout=10)
                 if item is None:
                     break
-                now,chunk=item
+                now,host_ns,chunk=item
                 total_bytes += len(chunk)
-                receive.append([now, len(chunk)])
+                receive.append([now, len(chunk), host_ns])
                 for kind, packet in parser.feed(chunk):
                     if kind in (102, 104):
                         seq, stamp = info(packet)
-                        stats[kind].append((seq, stamp, now))
+                        stats[kind].append((seq, stamp, now, host_ns))
                     if kind == 102:
                         cloud = points(packet)
                         valid_points += len(cloud)
@@ -150,7 +155,7 @@ def main():
                 "sequence_modulus":1024,"clock_host_seconds_per_device_second":float(slope) if len(a)>1 else None,
                 "clock_affine_residual_p95_s":float(np.percentile(np.abs(residual),95)) if len(a)>1 else None}
             with (args.output/f"packets-{kind}.csv").open("w",newline="") as f:
-                w=csv.writer(f); w.writerow(["seq","device_timestamp_s","host_receive_elapsed_s"]); w.writerows(samples)
+                w=csv.writer(f); w.writerow(["seq","device_timestamp_s","host_receive_elapsed_s","host_receive_monotonic_ns"]); w.writerows(samples)
         if imu:
             a=np.asarray(imu)
             record["imu_summary"]={"acceleration_norm_median":float(np.median(np.linalg.norm(a[:,10:13],axis=1))),
@@ -159,7 +164,7 @@ def main():
             with (args.output/"imu.csv").open("w",newline="") as f:
                 w=csv.writer(f); w.writerow(["seq","device_timestamp_s","host_receive_elapsed_s","qx","qy","qz","qw","wx","wy","wz","ax","ay","az"]); w.writerows(imu)
         with (args.output/"receive.csv").open("w",newline="") as f:
-            w=csv.writer(f); w.writerow(["host_receive_elapsed_s","bytes"]); w.writerows(receive)
+            w=csv.writer(f); w.writerow(["host_receive_elapsed_s","bytes","host_receive_monotonic_ns"]); w.writerows(receive)
         p=args.output/"uart.bin"
         if p.exists():
             with p.open("rb") as f:

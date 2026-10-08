@@ -2,6 +2,8 @@
 
 适用本机已单独供电、通过 CH343 USB 转串口连接的 **宇树 YS-L2**。当前链路为 Windows 串口接收→本机回环 TCP→WSL ROS2→RViz/算法。SDK 和原生解码交叉核验过程保留在[历史诊断](archive/DIAGNOSTICS_ROUND3.zh-CN.md)。
 
+2026-10-09 重新供电后已恢复点云与 IMU，已完成关灯条件下双设备共存和 ICP/KISS 有效 RViz 录像；旧的 32 字节无点云会话仍保留。最新指标、异常及录像位置见[摔落与弱光实测](POSTFALL_LOWLIGHT.zh-CN.md)。
+
 ## 1. 接线、开机和实时显示
 
 1. L2 独立供电，USB 转串口接电脑。底座平放固定，视野包含墙角、地面、家具；先避免只看到一面空白平墙。不要通过转动外壳来代替传感器内部扫描。
@@ -134,7 +136,7 @@ ICP/KISS 使用同目录 `lidar_odom.rviz`。原始模式 Fixed Frame=`physical_
 | `poses.json` / `status.json` | 逐帧位姿/状态，可对照原始视频检查异常 |
 | `odometry.log` / `kiss-worker.log` / `rviz.log` | 算法与显示错误；退出码正常不能代替质量检查 |
 | `uart.bin` / `receive.csv` / `capture.json` | 仅 `-Record`；原始 UART、每块主机接收时刻、清单 |
-| `rviz-live.mp4` / `video.json` | 加 `-Video` 自动录制独立 RViz 视图；雷达已验证能录启动窗口，但最新会话无有效点云，尚缺有效雷达录像示例 |
+| `rviz-live.mp4` / `video.json` | 加 `-Video` 自动录制独立 RViz 视图；本轮已有 ICP/KISS 有效点云与轨迹录像，位置见弱光实测报告 |
 
 点云桥接采用经过官方几何对照的 Python 解码，并保留原始 UART 供原生 SDK 重解码。不是把实时 Python 解码冒充原生 SDK。CRC 不合格包不会进入算法；记录队列满等采集错误直接判链路失败。
 

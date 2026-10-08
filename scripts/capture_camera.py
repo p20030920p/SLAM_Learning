@@ -27,6 +27,9 @@ def main():
     args.output.mkdir(parents=True,exist_ok=False)
     record={"started_at":datetime.now(timezone.utc).isoformat(),"status":"running","evaluation_completed":False,
             "sdk":importlib.metadata.version("pyrealsense2"),"requested_video":"640x480@30 color, depth, infrared1, infrared2"}
+    record["host_clock"]={"name":"perf_counter", "implementation":time.get_clock_info("perf_counter").implementation,
+        "resolution_s":time.get_clock_info("perf_counter").resolution,
+        "policy":"One-host monotonic callback receipt time; not exposure time or cross-device hardware synchronization"}
     pipeline=rs.pipeline()
     started=False
     samples=collections.defaultdict(list)
@@ -60,7 +63,7 @@ def main():
 
         def receive(frame):
             frames=list(frame.as_frameset()) if frame.is_frameset() else [frame]
-            now=time.monotonic()
+            now=time.perf_counter()
             for f in frames:
                 p=f.get_profile()
                 samples[f"{p.stream_type()}:{p.stream_index()}"].append([f.get_frame_number(),f.get_timestamp(),now,str(f.get_frame_timestamp_domain())])
@@ -99,6 +102,7 @@ def main():
         if not video.isOpened():
             raise RuntimeError("Cannot open video writer")
         start=time.monotonic()
+        record["host_capture_start_monotonic_ns"]=time.perf_counter_ns()
         while time.monotonic()-start<args.seconds:
             frames=q.get(timeout=5)
             color=frames.get_color_frame(); depth=frames.get_depth_frame()

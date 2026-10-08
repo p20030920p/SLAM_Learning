@@ -1,0 +1,2124 @@
+{
+  "schema_version": 1,
+  "local_date": "2026-10-09",
+  "base_commit": "66bf648d1739754385580d90d421d4685e70685e",
+  "scene": {
+    "operator_reported_room_lights_off": true,
+    "lux_measured": false,
+    "camera_fall_reported": true,
+    "operator_confirmed_fixed_after_fall": false,
+    "measured_range_reference": false,
+    "camera_lidar_extrinsics_validated": false,
+    "rigid_mount_validated": false
+  },
+  "scope": "Post-fall camera screening, projector A-B-A, concurrent independent odometry and host receipt-time association; no fusion or precision acceptance",
+  "camera_health": {
+    "scope": "Scene-dependent basic health screening, not a certified damage or range-accuracy test",
+    "raw_sha256": "4fe8c688da8520ed22aba953b147a3d8d8f478c592a55d4cf624122a6da83afa",
+    "device": {
+      "name": "RealSense D435",
+      "serial_number": "831612073355",
+      "firmware_version": "5.17.0.10",
+      "usb_type_descriptor": "3.2"
+    },
+    "stored_intrinsics_unchanged": true,
+    "stored_extrinsics_unchanged": true,
+    "streams": {
+      "stream.depth:0": {
+        "unique_frames": 227,
+        "sensor_hz": 28.871998248147992,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 322.4814453125,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      },
+      "stream.infrared:1": {
+        "unique_frames": 227,
+        "sensor_hz": 29.977424379215766,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 33.6923828125,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      },
+      "stream.infrared:2": {
+        "unique_frames": 227,
+        "sensor_hz": 29.977424379215766,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 33.6923828125,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      },
+      "stream.color:0": {
+        "unique_frames": 228,
+        "sensor_hz": 29.97851381641565,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 33.601806640625,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      }
+    },
+    "images": {
+      "color.png": {
+        "sample": "First saved preview after two seconds, not whole-recording statistics",
+        "mean_8bit": 18.555677083333332,
+        "std_8bit": 26.94476939925555,
+        "fraction_below_10": 0.59291015625,
+        "fraction_above_250": 0.0006477864583333333
+      },
+      "ir1.png": {
+        "sample": "First saved preview after two seconds, not whole-recording statistics",
+        "mean_8bit": 93.59275390625,
+        "std_8bit": 85.49951900963855,
+        "fraction_below_10": 0.0,
+        "fraction_above_250": 0.17316731770833332
+      },
+      "ir2.png": {
+        "sample": "First saved preview after two seconds, not whole-recording statistics",
+        "mean_8bit": 95.81643880208334,
+        "std_8bit": 89.06943600521237,
+        "fraction_below_10": 0.0,
+        "fraction_above_250": 0.1978515625
+      }
+    },
+    "stereo_pairs": [
+      {
+        "index": 0,
+        "left_frame": 65,
+        "left_features": 3751,
+        "right_features": 3619,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "e064a8737a87094bd35bc7ec593047080a956a74b2ca0276ba833170580edbe7",
+        "right_image_sha256": "a5672603ad09cb163536f8fa1abbf5de512011d31bf28f8ff1a50c6404f6e5c6",
+        "mutual_ratio_matches": 525,
+        "status": "measured",
+        "geometric_inliers": 387,
+        "absolute_vertical_disparity_median_px": 0.1705780029296875,
+        "absolute_vertical_disparity_p95_px": 0.5105056762695312,
+        "signed_vertical_disparity_median_px": -0.166595458984375,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 1,
+        "left_frame": 80,
+        "left_features": 3748,
+        "right_features": 3608,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "e575c617d37e8b37c2f9641ca0ee9580225c5522422f89c976926eb72416bbb1",
+        "right_image_sha256": "80859a2c9c2130f1cc820be569364e2b0de4b9b72e1c8c8a79cdbe57ac8b9b7e",
+        "mutual_ratio_matches": 474,
+        "status": "measured",
+        "geometric_inliers": 400,
+        "absolute_vertical_disparity_median_px": 0.16032791137695312,
+        "absolute_vertical_disparity_p95_px": 0.4950183928012848,
+        "signed_vertical_disparity_median_px": -0.15343475341796875,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 2,
+        "left_frame": 95,
+        "left_features": 3699,
+        "right_features": 3525,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "596e699a3dd211656bb9eaa1025a070d5969686c97c29c4950a565e7cffe68b8",
+        "right_image_sha256": "aa225edd39db7f43bb67e1de9ef300b4a278ebb1f044d563568c7a516a2f926a",
+        "mutual_ratio_matches": 495,
+        "status": "measured",
+        "geometric_inliers": 398,
+        "absolute_vertical_disparity_median_px": 0.1738739013671875,
+        "absolute_vertical_disparity_p95_px": 0.49446219205856323,
+        "signed_vertical_disparity_median_px": -0.16106033325195312,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 3,
+        "left_frame": 110,
+        "left_features": 3777,
+        "right_features": 3649,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "f0dc3c43ac79365ecf31f52cedb0422815d9e784e4b85faf811d30258e948c13",
+        "right_image_sha256": "00d50a4967f6b50f0ab0da124b6d22cd325817f34de9c985bcf7d09744fb718b",
+        "mutual_ratio_matches": 489,
+        "status": "measured",
+        "geometric_inliers": 369,
+        "absolute_vertical_disparity_median_px": 0.17236328125,
+        "absolute_vertical_disparity_p95_px": 0.5268020629882812,
+        "signed_vertical_disparity_median_px": -0.16131591796875,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 4,
+        "left_frame": 125,
+        "left_features": 3837,
+        "right_features": 3613,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "a45186eef3947b9250666d33df5cdb95990f62fc76acaa76415e9f6fb929b59b",
+        "right_image_sha256": "6add79876a38d9946b5abb5f4c193e1a4617bcb6867c0a14f00c52717ceeacc5",
+        "mutual_ratio_matches": 522,
+        "status": "measured",
+        "geometric_inliers": 428,
+        "absolute_vertical_disparity_median_px": 0.16152381896972656,
+        "absolute_vertical_disparity_p95_px": 0.4594566226005554,
+        "signed_vertical_disparity_median_px": -0.1534423828125,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 5,
+        "left_frame": 140,
+        "left_features": 3706,
+        "right_features": 3568,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "c334fd1216fe10f28edd43e66db7a209fb1536dc0ac820429970a61bd5e504be",
+        "right_image_sha256": "2e93be177f6a625b37d429751c0efd4384272c77f047a2ec6159df37c9f5c918",
+        "mutual_ratio_matches": 509,
+        "status": "measured",
+        "geometric_inliers": 417,
+        "absolute_vertical_disparity_median_px": 0.167572021484375,
+        "absolute_vertical_disparity_p95_px": 0.49143677949905396,
+        "signed_vertical_disparity_median_px": -0.1527099609375,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 6,
+        "left_frame": 155,
+        "left_features": 3723,
+        "right_features": 3624,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "a4235ccbb5df28e52b561a487119a512e8b20830a94649fba0a8c04618d72285",
+        "right_image_sha256": "0e805ae200d77f2e6ef00b1ab4d1308ee26d5135e65d6f0ddfdd6b78f39df7ef",
+        "mutual_ratio_matches": 504,
+        "status": "measured",
+        "geometric_inliers": 402,
+        "absolute_vertical_disparity_median_px": 0.1695709228515625,
+        "absolute_vertical_disparity_p95_px": 0.4679683744907379,
+        "signed_vertical_disparity_median_px": -0.1556549072265625,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 7,
+        "left_frame": 170,
+        "left_features": 3594,
+        "right_features": 3393,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "2598c33c27f6ab0ffbb6e16eda31abd94db2a13964b811155419a99aff95d925",
+        "right_image_sha256": "4d1b39b012b21fad44a6c2aa86f0d099ff79076d3c0a8974f6a61e29da265cef",
+        "mutual_ratio_matches": 560,
+        "status": "measured",
+        "geometric_inliers": 478,
+        "absolute_vertical_disparity_median_px": 0.17119216918945312,
+        "absolute_vertical_disparity_p95_px": 0.4632415771484375,
+        "signed_vertical_disparity_median_px": -0.16294097900390625,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 8,
+        "left_frame": 185,
+        "left_features": 3764,
+        "right_features": 3648,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "36e6b42acc6fe4fd3cb12806aed1fc4998d72f1ccea4a274eea5645f7c11098e",
+        "right_image_sha256": "8a8d1f4018b9e88a5879b036d2d449b105d525d4fbba4648a396968e8e394e26",
+        "mutual_ratio_matches": 466,
+        "status": "measured",
+        "geometric_inliers": 372,
+        "absolute_vertical_disparity_median_px": 0.17540740966796875,
+        "absolute_vertical_disparity_p95_px": 0.5027145147323608,
+        "signed_vertical_disparity_median_px": -0.1642608642578125,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 9,
+        "left_frame": 200,
+        "left_features": 3762,
+        "right_features": 3581,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "063b741e63fd07eb248fc598064137c520c7d9266991905ef99b4f3d934bb90b",
+        "right_image_sha256": "c6e156c4c6741ebc3e6dcee2fc83168bc1426829a2af972001cfceb80813d46e",
+        "mutual_ratio_matches": 462,
+        "status": "measured",
+        "geometric_inliers": 379,
+        "absolute_vertical_disparity_median_px": 0.1862335205078125,
+        "absolute_vertical_disparity_p95_px": 0.5058029294013977,
+        "signed_vertical_disparity_median_px": -0.171478271484375,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 10,
+        "left_frame": 215,
+        "left_features": 3579,
+        "right_features": 3480,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "a80683792889d205254188da6b4066abf138d5f94ba999957527f5b4a0e26fff",
+        "right_image_sha256": "31d86c6826e4b009f51c36a56bb3ff3e682b1c7342477fe649092b7bb387457f",
+        "mutual_ratio_matches": 537,
+        "status": "measured",
+        "geometric_inliers": 438,
+        "absolute_vertical_disparity_median_px": 0.17798995971679688,
+        "absolute_vertical_disparity_p95_px": 0.5150524377822876,
+        "signed_vertical_disparity_median_px": -0.1708049774169922,
+        "positive_horizontal_disparity_fraction": 1.0
+      },
+      {
+        "index": 11,
+        "left_frame": 230,
+        "left_features": 3643,
+        "right_features": 3691,
+        "right_minus_left_s": 0.0,
+        "left_image_sha256": "94b1503107c5600f91e11b9e8b1a86a0b67d819ef95c21e9e7db7ee67002a114",
+        "right_image_sha256": "1ef12c6496043dc9a89cbe5ef71af291cbbd3aa69867cfb824c65e7ebe9c89b1",
+        "mutual_ratio_matches": 483,
+        "status": "measured",
+        "geometric_inliers": 367,
+        "absolute_vertical_disparity_median_px": 0.1678619384765625,
+        "absolute_vertical_disparity_p95_px": 0.4385116696357727,
+        "signed_vertical_disparity_median_px": -0.1557769775390625,
+        "positive_horizontal_disparity_fraction": 1.0
+      }
+    ],
+    "steady_streams": {
+      "stream.depth:0": {
+        "warmup_s": 2,
+        "unique_frames": 167,
+        "sensor_hz": 29.977805958588025,
+        "max_sensor_gap_ms": 33.779052734375,
+        "max_host_receipt_gap_ms": 47.0000000022992
+      },
+      "stream.infrared:1": {
+        "warmup_s": 2,
+        "unique_frames": 167,
+        "sensor_hz": 29.977721370267776,
+        "max_sensor_gap_ms": 33.6923828125,
+        "max_host_receipt_gap_ms": 47.0000000022992
+      },
+      "stream.infrared:2": {
+        "warmup_s": 2,
+        "unique_frames": 167,
+        "sensor_hz": 29.977721370267776,
+        "max_sensor_gap_ms": 33.6923828125,
+        "max_host_receipt_gap_ms": 47.0000000022992
+      },
+      "stream.color:0": {
+        "warmup_s": 2,
+        "unique_frames": 167,
+        "sensor_hz": 29.977916981482792,
+        "max_sensor_gap_ms": 33.59228515625,
+        "max_host_receipt_gap_ms": 47.0000000022992
+      }
+    },
+    "geometry_summary": {
+      "sampled_pairs": 12,
+      "inlier_matches": 4835,
+      "absolute_vertical_disparity_median_px": 0.17119216918945312,
+      "absolute_vertical_disparity_p95_px": 0.48910217285156254,
+      "interpretation": "Screening only: repeated IR dots, saturation, coplanar objects and match selection limit confidence. No automatic calibration write."
+    }
+  },
+  "probe_raw_playback": {
+    "status": "verified",
+    "observer_version": 2,
+    "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+    "raw_sha256": "4fe8c688da8520ed22aba953b147a3d8d8f478c592a55d4cf624122a6da83afa",
+    "duration_s": 7.872568,
+    "eof_reached": true,
+    "raw_image_message_counts": {
+      "stream.infrared:1": 231,
+      "stream.infrared:2": 231,
+      "stream.depth:0": 227,
+      "stream.color:0": 228
+    },
+    "sdk_frame_callbacks": {
+      "stream.infrared:1": 231,
+      "stream.infrared:2": 231,
+      "stream.depth:0": 227,
+      "stream.color:0": 228
+    },
+    "decoded_unique_frames": {
+      "stream.infrared:1": 231,
+      "stream.infrared:2": 231,
+      "stream.depth:0": 227,
+      "stream.color:0": 228
+    },
+    "sdk_counts_match_raw_file": {
+      "stream.infrared:1": true,
+      "stream.infrared:2": true,
+      "stream.depth:0": true,
+      "stream.color:0": true
+    },
+    "live_frame_numbers_missing_from_recording": {
+      "stream.color:0": [],
+      "stream.depth:0": [],
+      "stream.infrared:1": [],
+      "stream.infrared:2": []
+    },
+    "raw_minus_live_unique_counts": {
+      "stream.color:0": 0,
+      "stream.depth:0": 0,
+      "stream.infrared:1": 4,
+      "stream.infrared:2": 4
+    },
+    "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+  },
+  "projector_trials": [
+    {
+      "session": "data\\dark-on-qpc-a-20261009-023004",
+      "camera": {
+        "status": "received",
+        "device": {
+          "name": "RealSense D435",
+          "serial_number": "831612073355",
+          "firmware_version": "5.17.0.10",
+          "usb_type_descriptor": "3.2"
+        },
+        "elapsed_seconds": 25.01599999999962,
+        "raw": {
+          "bytes": 895287296,
+          "sha256": "cf688aa6933e7b2420222fc0bb759cedb586f6d488d409294ba56f6a719ca0d7"
+        },
+        "temporary_emitter": {
+          "requested": "on",
+          "observed_value": 1.0
+        },
+        "temporary_options_restored": true,
+        "streams": {
+          "stream.depth:0": {
+            "unique_frames": 739,
+            "sensor_hz": 29.977184559329444,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 34.042236328125,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          },
+          "stream.infrared:1": {
+            "unique_frames": 738,
+            "sensor_hz": 29.977294628682085,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 33.751220703125,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          },
+          "stream.infrared:2": {
+            "unique_frames": 738,
+            "sensor_hz": 29.977294628682085,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 33.751220703125,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          },
+          "stream.color:0": {
+            "unique_frames": 738,
+            "sensor_hz": 29.977602736168066,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 33.634765625,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          }
+        },
+        "depth_valid_fraction_median": 0.4754947916666667,
+        "center_depth_median_m": 0.30100001429673284,
+        "center_depth_temporal_std_m": 0.0010907024077768965,
+        "depth_note": "Whole-frame fill and central ROI describe this scene; no measured range target or accuracy claim.",
+        "host_clock": {
+          "name": "perf_counter",
+          "implementation": "QueryPerformanceCounter()",
+          "resolution_s": 1e-07,
+          "policy": "One-host monotonic callback receipt time; not exposure time or cross-device hardware synchronization"
+        }
+      },
+      "camera_steady_after_2s": {
+        "stream.depth:0": {
+          "unique_frames": 690,
+          "sensor_hz": 29.97733799143091,
+          "max_sensor_gap_ms": 34.042236328125,
+          "max_host_receipt_gap_ms": 34.06080000058864
+        },
+        "stream.infrared:1": {
+          "unique_frames": 690,
+          "sensor_hz": 29.977326528140527,
+          "max_sensor_gap_ms": 33.751220703125,
+          "max_host_receipt_gap_ms": 34.06080000058864
+        },
+        "stream.infrared:2": {
+          "unique_frames": 690,
+          "sensor_hz": 29.977326528140527,
+          "max_sensor_gap_ms": 33.751220703125,
+          "max_host_receipt_gap_ms": 34.06080000058864
+        },
+        "stream.color:0": {
+          "unique_frames": 690,
+          "sensor_hz": 29.977445937845353,
+          "max_sensor_gap_ms": 33.634765625,
+          "max_host_receipt_gap_ms": 34.06080000058864
+        }
+      },
+      "camera_raw_playback": {
+        "status": "verified",
+        "observer_version": 2,
+        "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+        "raw_sha256": "cf688aa6933e7b2420222fc0bb759cedb586f6d488d409294ba56f6a719ca0d7",
+        "duration_s": 27.699499,
+        "eof_reached": true,
+        "raw_image_message_counts": {
+          "stream.infrared:1": 742,
+          "stream.infrared:2": 742,
+          "stream.depth:0": 741,
+          "stream.color:0": 738
+        },
+        "sdk_frame_callbacks": {
+          "stream.infrared:1": 742,
+          "stream.infrared:2": 742,
+          "stream.depth:0": 741,
+          "stream.color:0": 738
+        },
+        "decoded_unique_frames": {
+          "stream.infrared:1": 742,
+          "stream.infrared:2": 742,
+          "stream.depth:0": 741,
+          "stream.color:0": 738
+        },
+        "sdk_counts_match_raw_file": {
+          "stream.infrared:1": true,
+          "stream.infrared:2": true,
+          "stream.depth:0": true,
+          "stream.color:0": true
+        },
+        "live_frame_numbers_missing_from_recording": {
+          "stream.color:0": [],
+          "stream.depth:0": [],
+          "stream.infrared:1": [],
+          "stream.infrared:2": []
+        },
+        "raw_minus_live_unique_counts": {
+          "stream.color:0": 0,
+          "stream.depth:0": 2,
+          "stream.infrared:1": 4,
+          "stream.infrared:2": 4
+        },
+        "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+      },
+      "lidar": {
+        "sensor": "Unitree L2",
+        "started_at": "2026-10-08T23:30:06.552112+00:00",
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "baud": 4000000,
+        "status": "received",
+        "evaluation_completed": false,
+        "sdk_reference_commit": "0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
+        "clock": "device uptime; host receive time is separately recorded; not cross-sensor synchronized",
+        "host_clock": {
+          "name": "perf_counter",
+          "implementation": "QueryPerformanceCounter()",
+          "resolution_s": 1e-07,
+          "policy": "One-host monotonic UART chunk receipt time; not laser firing time or hardware synchronization"
+        },
+        "requested_driver_rx_buffer_bytes": 1048576,
+        "transmitted": {
+          "purpose": "read device version only",
+          "hex": "55aa050a640000002000000003000000000000008ad8adeb00000000000000ff"
+        },
+        "host_capture_start_monotonic_ns": 17278293932800,
+        "device_version": {
+          "hardware": "2.2.1.1",
+          "firmware": "2.8.8.1",
+          "name": "YS-L2",
+          "date": "250403"
+        },
+        "last_inside_state": {
+          "sys_rotation_period": 4641,
+          "com_rotation_period": 229513,
+          "dirty_index": 1.6666667461395264,
+          "packet_lost_up": 0.0,
+          "packet_lost_down": 0.0,
+          "apd_temperature": 55.49913787841797,
+          "apd_voltage": 163.2807159423828,
+          "laser_voltage": 50.679317474365234,
+          "imu_temperature": 65.798828125
+        },
+        "elapsed_seconds": 25.02377499999784,
+        "raw_bytes": 6122971,
+        "valid_points": 1496926,
+        "crc_errors": 0,
+        "discarded_bytes": 2,
+        "trailing_bytes": 1,
+        "packet_counts": {
+          "105": 1,
+          "101": 1,
+          "102": 5386,
+          "104": 6248
+        },
+        "packet_sizes": {
+          "105:104": 1,
+          "101:40": 1,
+          "102:1044": 5386,
+          "104:80": 6248
+        },
+        "102": {
+          "count": 5386,
+          "sensor_hz": 430.39820124274974,
+          "sequence_missing": 0,
+          "sequence_duplicates": 0,
+          "timestamp_non_increasing": 0,
+          "max_sensor_gap_s": 0.0026816600000074686,
+          "host_hz": 215.44228959791772,
+          "sequence_modulus": 1024,
+          "clock_host_seconds_per_device_second": 1.9977420055649182,
+          "clock_affine_residual_p95_s": 0.00022590460498106424
+        },
+        "104": {
+          "count": 6248,
+          "sensor_hz": 499.28068774379415,
+          "sequence_missing": 0,
+          "sequence_duplicates": 0,
+          "timestamp_non_increasing": 0,
+          "max_sensor_gap_s": 0.004000089999976808,
+          "host_hz": 249.92753321768228,
+          "sequence_modulus": 1024,
+          "clock_host_seconds_per_device_second": 1.9977414910733697,
+          "clock_affine_residual_p95_s": 0.0016314366501431364
+        },
+        "imu_summary": {
+          "acceleration_norm_median": 19.784696672648195,
+          "gyro_norm_median": 0.11269812099461765,
+          "quaternion_norm_median": 0.9983124283269388
+        },
+        "raw_sha256": "3a0ef791fe1d8b5f42ef155b4634fe62a32bf165132c1183ae9104ba0004e3e4"
+      },
+      "lidar_audit": {
+        "status": "received",
+        "packet_counts": {
+          "105": 1,
+          "101": 1,
+          "102": 5386,
+          "104": 6248
+        },
+        "crc_errors": 0,
+        "valid_points": 1496926,
+        "crc_reject_fraction": 0.0,
+        "clock_policy": "report raw timing discrepancy; no timestamp scaling applied",
+        "102": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 5,
+          "missing_packets": 0,
+          "duplicates": 0,
+          "raw_sensor_hz": 430.39820124274974,
+          "timestamp_non_increasing": 0,
+          "host_receive_hz": 215.44228959791772,
+          "host_per_device_second": 1.9977420055649178,
+          "residual_p95_ms": 0.22590460498017606,
+          "ready_for_inertial_odometry": false
+        },
+        "104": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 6,
+          "missing_packets": 0,
+          "duplicates": 0,
+          "raw_sensor_hz": 499.28068774379415,
+          "timestamp_non_increasing": 0,
+          "host_receive_hz": 249.92753321768228,
+          "host_per_device_second": 1.9977414910733697,
+          "residual_p95_ms": 1.6314366501431363,
+          "ready_for_inertial_odometry": false
+        }
+      },
+      "receipt_association": {
+        "scope": "Same Windows host receipt-time association; no hardware sync, calibrated extrinsics, deskew, or fused pose",
+        "session": "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\dark-on-qpc-a-20261009-023004",
+        "status": "associated",
+        "warmup_seconds": 2,
+        "overlap_seconds": 22.2876791,
+        "camera_raw_sha256": "cf688aa6933e7b2420222fc0bb759cedb586f6d488d409294ba56f6a719ca0d7",
+        "lidar_raw_sha256": "3a0ef791fe1d8b5f42ef155b4634fe62a32bf165132c1183ae9104ba0004e3e4",
+        "clock": {
+          "name": "perf_counter",
+          "implementation": "QueryPerformanceCounter()",
+          "resolution_s": 1e-07,
+          "policy": "One-host monotonic callback receipt time; not exposure time or cross-device hardware synchronization"
+        },
+        "streams": {
+          "stream.depth:0": {
+            "unique_frames_in_overlap": 668,
+            "host_receipt_hz": 29.977541697670613,
+            "nearest_line_abs_offset": {
+              "count": 668,
+              "median_ms": 1.1525,
+              "p95_ms": 2.220795,
+              "max_ms": 2.7864
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 668,
+              "median_ms": 58.35785,
+              "p95_ms": 110.33143,
+              "max_ms": 162.7074
+            }
+          },
+          "stream.infrared:1": {
+            "unique_frames_in_overlap": 668,
+            "host_receipt_hz": 29.977541697670613,
+            "nearest_line_abs_offset": {
+              "count": 668,
+              "median_ms": 1.1525,
+              "p95_ms": 2.220795,
+              "max_ms": 2.7864
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 668,
+              "median_ms": 58.35785,
+              "p95_ms": 110.33143,
+              "max_ms": 162.7074
+            }
+          },
+          "stream.infrared:2": {
+            "unique_frames_in_overlap": 668,
+            "host_receipt_hz": 29.977541697670613,
+            "nearest_line_abs_offset": {
+              "count": 668,
+              "median_ms": 1.1525,
+              "p95_ms": 2.220795,
+              "max_ms": 2.7864
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 668,
+              "median_ms": 58.35785,
+              "p95_ms": 110.33143,
+              "max_ms": 162.7074
+            }
+          },
+          "stream.color:0": {
+            "unique_frames_in_overlap": 668,
+            "host_receipt_hz": 29.977541697670613,
+            "nearest_line_abs_offset": {
+              "count": 668,
+              "median_ms": 1.1525,
+              "p95_ms": 2.220795,
+              "max_ms": 2.7864
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 668,
+              "median_ms": 58.35785,
+              "p95_ms": 110.33143,
+              "max_ms": 162.7074
+            }
+          }
+        }
+      }
+    },
+    {
+      "session": "data\\dark-off-qpc-b-20261009-023127",
+      "camera": {
+        "status": "received",
+        "device": {
+          "name": "RealSense D435",
+          "serial_number": "831612073355",
+          "firmware_version": "5.17.0.10",
+          "usb_type_descriptor": "3.2"
+        },
+        "elapsed_seconds": 25.0,
+        "raw": {
+          "bytes": 934760448,
+          "sha256": "235460cfa74fa24596cd7bc076eeee6f0bdaf4cd60dfff0556309a074de1c737"
+        },
+        "temporary_emitter": {
+          "requested": "off",
+          "observed_value": 0.0
+        },
+        "temporary_options_restored": true,
+        "streams": {
+          "stream.depth:0": {
+            "unique_frames": 737,
+            "sensor_hz": 29.67776205754329,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 281.752685546875,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          },
+          "stream.infrared:1": {
+            "unique_frames": 737,
+            "sensor_hz": 29.977598162802938,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 38.2080078125,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          },
+          "stream.infrared:2": {
+            "unique_frames": 737,
+            "sensor_hz": 29.977598162802938,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 38.2080078125,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          },
+          "stream.color:0": {
+            "unique_frames": 737,
+            "sensor_hz": 29.977586835165564,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 38.185302734375,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          }
+        },
+        "depth_valid_fraction_median": 0.2598876953125,
+        "center_depth_median_m": 0.30100001429673284,
+        "center_depth_temporal_std_m": 0.005477903064603051,
+        "depth_note": "Whole-frame fill and central ROI describe this scene; no measured range target or accuracy claim.",
+        "host_clock": {
+          "name": "perf_counter",
+          "implementation": "QueryPerformanceCounter()",
+          "resolution_s": 1e-07,
+          "policy": "One-host monotonic callback receipt time; not exposure time or cross-device hardware synchronization"
+        }
+      },
+      "camera_steady_after_2s": {
+        "stream.depth:0": {
+          "unique_frames": 690,
+          "sensor_hz": 29.97759273347938,
+          "max_sensor_gap_ms": 36.94189453125,
+          "max_host_receipt_gap_ms": 38.24200000235578
+        },
+        "stream.infrared:1": {
+          "unique_frames": 690,
+          "sensor_hz": 29.977573627675568,
+          "max_sensor_gap_ms": 38.2080078125,
+          "max_host_receipt_gap_ms": 38.24200000235578
+        },
+        "stream.infrared:2": {
+          "unique_frames": 690,
+          "sensor_hz": 29.977573627675568,
+          "max_sensor_gap_ms": 38.2080078125,
+          "max_host_receipt_gap_ms": 38.24200000235578
+        },
+        "stream.color:0": {
+          "unique_frames": 690,
+          "sensor_hz": 29.97748924400003,
+          "max_sensor_gap_ms": 38.185302734375,
+          "max_host_receipt_gap_ms": 38.24200000235578
+        }
+      },
+      "camera_raw_playback": {
+        "status": "verified",
+        "observer_version": 2,
+        "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+        "raw_sha256": "235460cfa74fa24596cd7bc076eeee6f0bdaf4cd60dfff0556309a074de1c737",
+        "duration_s": 27.661039,
+        "eof_reached": true,
+        "raw_image_message_counts": {
+          "stream.infrared:1": 741,
+          "stream.infrared:2": 741,
+          "stream.depth:0": 737,
+          "stream.color:0": 737
+        },
+        "sdk_frame_callbacks": {
+          "stream.infrared:1": 741,
+          "stream.infrared:2": 741,
+          "stream.depth:0": 737,
+          "stream.color:0": 737
+        },
+        "decoded_unique_frames": {
+          "stream.infrared:1": 741,
+          "stream.infrared:2": 741,
+          "stream.depth:0": 737,
+          "stream.color:0": 737
+        },
+        "sdk_counts_match_raw_file": {
+          "stream.infrared:1": true,
+          "stream.infrared:2": true,
+          "stream.depth:0": true,
+          "stream.color:0": true
+        },
+        "live_frame_numbers_missing_from_recording": {
+          "stream.color:0": [],
+          "stream.depth:0": [],
+          "stream.infrared:1": [],
+          "stream.infrared:2": []
+        },
+        "raw_minus_live_unique_counts": {
+          "stream.color:0": 0,
+          "stream.depth:0": 0,
+          "stream.infrared:1": 4,
+          "stream.infrared:2": 4
+        },
+        "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+      },
+      "lidar": {
+        "sensor": "Unitree L2",
+        "started_at": "2026-10-08T23:31:30.214751+00:00",
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "baud": 4000000,
+        "status": "received",
+        "evaluation_completed": false,
+        "sdk_reference_commit": "0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
+        "clock": "device uptime; host receive time is separately recorded; not cross-sensor synchronized",
+        "host_clock": {
+          "name": "perf_counter",
+          "implementation": "QueryPerformanceCounter()",
+          "resolution_s": 1e-07,
+          "policy": "One-host monotonic UART chunk receipt time; not laser firing time or hardware synchronization"
+        },
+        "requested_driver_rx_buffer_bytes": 1048576,
+        "transmitted": {
+          "purpose": "read device version only",
+          "hex": "55aa050a640000002000000003000000000000008ad8adeb00000000000000ff"
+        },
+        "host_capture_start_monotonic_ns": 17361955809500,
+        "device_version": {
+          "hardware": "2.2.1.1",
+          "firmware": "2.8.8.1",
+          "name": "YS-L2",
+          "date": "250403"
+        },
+        "last_inside_state": {
+          "sys_rotation_period": 4641,
+          "com_rotation_period": 229420,
+          "dirty_index": 7.0,
+          "packet_lost_up": 0.0,
+          "packet_lost_down": 0.0,
+          "apd_temperature": 55.89497375488281,
+          "apd_voltage": 163.9172821044922,
+          "laser_voltage": 50.9056282043457,
+          "imu_temperature": 66.435546875
+        },
+        "elapsed_seconds": 25.024120199999743,
+        "raw_bytes": 6122917,
+        "valid_points": 1499289,
+        "crc_errors": 0,
+        "discarded_bytes": 0,
+        "trailing_bytes": 833,
+        "packet_counts": {
+          "104": 6250,
+          "105": 1,
+          "101": 1,
+          "102": 5385
+        },
+        "packet_sizes": {
+          "104:80": 6250,
+          "105:104": 1,
+          "101:40": 1,
+          "102:1044": 5385
+        },
+        "104": {
+          "count": 6250,
+          "sensor_hz": 499.5203765057012,
+          "sequence_missing": 0,
+          "sequence_duplicates": 0,
+          "timestamp_non_increasing": 0,
+          "max_sensor_gap_s": 0.004000600000040322,
+          "host_hz": 250.0080265418951,
+          "sequence_modulus": 1024,
+          "clock_host_seconds_per_device_second": 1.9979897834652698,
+          "clock_affine_residual_p95_s": 0.0017470186315497085
+        },
+        "102": {
+          "count": 5385,
+          "sensor_hz": 430.4402259054873,
+          "sequence_missing": 0,
+          "sequence_duplicates": 0,
+          "timestamp_non_increasing": 0,
+          "max_sensor_gap_s": 0.0026816799999096474,
+          "host_hz": 215.4304302396963,
+          "sequence_modulus": 1024,
+          "clock_host_seconds_per_device_second": 1.997989822156289,
+          "clock_affine_residual_p95_s": 0.0007395328867872309
+        },
+        "imu_summary": {
+          "acceleration_norm_median": 19.78924086378582,
+          "gyro_norm_median": 0.11080558649436159,
+          "quaternion_norm_median": 0.9983124240185208
+        },
+        "raw_sha256": "ffae7d559e5dde11f034cade3666bbc5d9d2ee6cf1e99d5ea03fb5a3a8fb6f32"
+      },
+      "lidar_audit": {
+        "status": "received",
+        "packet_counts": {
+          "104": 6250,
+          "105": 1,
+          "101": 1,
+          "102": 5385
+        },
+        "crc_errors": 0,
+        "valid_points": 1499289,
+        "crc_reject_fraction": 0.0,
+        "clock_policy": "report raw timing discrepancy; no timestamp scaling applied",
+        "104": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 6,
+          "missing_packets": 0,
+          "duplicates": 0,
+          "raw_sensor_hz": 499.5203765057012,
+          "timestamp_non_increasing": 0,
+          "host_receive_hz": 250.0080265418951,
+          "host_per_device_second": 1.997989783465271,
+          "residual_p95_ms": 1.7470186315422476,
+          "ready_for_inertial_odometry": false
+        },
+        "102": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 5,
+          "missing_packets": 0,
+          "duplicates": 0,
+          "raw_sensor_hz": 430.4402259054873,
+          "timestamp_non_increasing": 0,
+          "host_receive_hz": 215.4304302396963,
+          "host_per_device_second": 1.9979898221562895,
+          "residual_p95_ms": 0.739532886790073,
+          "ready_for_inertial_odometry": false
+        }
+      },
+      "receipt_association": {
+        "scope": "Same Windows host receipt-time association; no hardware sync, calibrated extrinsics, deskew, or fused pose",
+        "session": "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\dark-off-qpc-b-20261009-023127",
+        "status": "associated",
+        "warmup_seconds": 2,
+        "overlap_seconds": 22.2852912,
+        "camera_raw_sha256": "235460cfa74fa24596cd7bc076eeee6f0bdaf4cd60dfff0556309a074de1c737",
+        "lidar_raw_sha256": "ffae7d559e5dde11f034cade3666bbc5d9d2ee6cf1e99d5ea03fb5a3a8fb6f32",
+        "clock": {
+          "name": "perf_counter",
+          "implementation": "QueryPerformanceCounter()",
+          "resolution_s": 1e-07,
+          "policy": "One-host monotonic callback receipt time; not exposure time or cross-device hardware synchronization"
+        },
+        "streams": {
+          "stream.depth:0": {
+            "unique_frames_in_overlap": 668,
+            "host_receipt_hz": 29.977605155910783,
+            "nearest_line_abs_offset": {
+              "count": 668,
+              "median_ms": 1.16195,
+              "p95_ms": 2.202775,
+              "max_ms": 4.577
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 668,
+              "median_ms": 58.4165,
+              "p95_ms": 110.30198999999999,
+              "max_ms": 131.0114
+            }
+          },
+          "stream.infrared:1": {
+            "unique_frames_in_overlap": 668,
+            "host_receipt_hz": 29.977605155910783,
+            "nearest_line_abs_offset": {
+              "count": 668,
+              "median_ms": 1.16195,
+              "p95_ms": 2.202775,
+              "max_ms": 4.577
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 668,
+              "median_ms": 58.4165,
+              "p95_ms": 110.30198999999999,
+              "max_ms": 131.0114
+            }
+          },
+          "stream.infrared:2": {
+            "unique_frames_in_overlap": 668,
+            "host_receipt_hz": 29.977605155910783,
+            "nearest_line_abs_offset": {
+              "count": 668,
+              "median_ms": 1.16195,
+              "p95_ms": 2.202775,
+              "max_ms": 4.577
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 668,
+              "median_ms": 58.4165,
+              "p95_ms": 110.30198999999999,
+              "max_ms": 131.0114
+            }
+          },
+          "stream.color:0": {
+            "unique_frames_in_overlap": 668,
+            "host_receipt_hz": 29.977605155910783,
+            "nearest_line_abs_offset": {
+              "count": 668,
+              "median_ms": 1.16195,
+              "p95_ms": 2.202775,
+              "max_ms": 4.577
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 668,
+              "median_ms": 58.4165,
+              "p95_ms": 110.30198999999999,
+              "max_ms": 131.0114
+            }
+          }
+        }
+      }
+    },
+    {
+      "session": "data\\dark-on-qpc-c-20261009-023202",
+      "camera": {
+        "status": "received",
+        "device": {
+          "name": "RealSense D435",
+          "serial_number": "831612073355",
+          "firmware_version": "5.17.0.10",
+          "usb_type_descriptor": "3.2"
+        },
+        "elapsed_seconds": 25.0,
+        "raw": {
+          "bytes": 878010368,
+          "sha256": "fbace17e09972cff32b616b4ce1497a0bf08db39024cfe65b515467e47f8e85b"
+        },
+        "temporary_emitter": {
+          "requested": "on",
+          "observed_value": 1.0
+        },
+        "temporary_options_restored": true,
+        "streams": {
+          "stream.depth:0": {
+            "unique_frames": 705,
+            "sensor_hz": 28.456681749535107,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 1288.291015625,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          },
+          "stream.infrared:1": {
+            "unique_frames": 704,
+            "sensor_hz": 28.454576074705752,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 1288.430908203125,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          },
+          "stream.infrared:2": {
+            "unique_frames": 704,
+            "sensor_hz": 28.454576074705752,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 1288.430908203125,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          },
+          "stream.color:0": {
+            "unique_frames": 737,
+            "sensor_hz": 29.977467895489983,
+            "sequence_missing": 0,
+            "timestamp_non_increasing": 0,
+            "max_sensor_gap_ms": 34.427490234375,
+            "timestamp_domains": [
+              "timestamp_domain.system_time"
+            ]
+          }
+        },
+        "depth_valid_fraction_median": 0.4738313802083333,
+        "center_depth_median_m": 0.3020000143442303,
+        "center_depth_temporal_std_m": 0.0010240443697929404,
+        "depth_note": "Whole-frame fill and central ROI describe this scene; no measured range target or accuracy claim.",
+        "host_clock": {
+          "name": "perf_counter",
+          "implementation": "QueryPerformanceCounter()",
+          "resolution_s": 1e-07,
+          "policy": "One-host monotonic callback receipt time; not exposure time or cross-device hardware synchronization"
+        }
+      },
+      "camera_steady_after_2s": {
+        "stream.depth:0": {
+          "unique_frames": 689,
+          "sensor_hz": 29.977339729808563,
+          "max_sensor_gap_ms": 33.735595703125,
+          "max_host_receipt_gap_ms": 33.76439999919967
+        },
+        "stream.infrared:1": {
+          "unique_frames": 689,
+          "sensor_hz": 29.977348977555252,
+          "max_sensor_gap_ms": 33.65380859375,
+          "max_host_receipt_gap_ms": 33.76439999919967
+        },
+        "stream.infrared:2": {
+          "unique_frames": 689,
+          "sensor_hz": 29.977348977555252,
+          "max_sensor_gap_ms": 33.65380859375,
+          "max_host_receipt_gap_ms": 33.76439999919967
+        },
+        "stream.color:0": {
+          "unique_frames": 689,
+          "sensor_hz": 29.977281692356165,
+          "max_sensor_gap_ms": 34.427490234375,
+          "max_host_receipt_gap_ms": 33.76439999919967
+        }
+      },
+      "camera_raw_playback": {
+        "status": "verified",
+        "observer_version": 2,
+        "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+        "raw_sha256": "fbace17e09972cff32b616b4ce1497a0bf08db39024cfe65b515467e47f8e85b",
+        "duration_s": 27.683204,
+        "eof_reached": true,
+        "raw_image_message_counts": {
+          "stream.infrared:1": 708,
+          "stream.infrared:2": 708,
+          "stream.depth:0": 707,
+          "stream.color:0": 737
+        },
+        "sdk_frame_callbacks": {
+          "stream.infrared:1": 708,
+          "stream.infrared:2": 708,
+          "stream.depth:0": 707,
+          "stream.color:0": 737
+        },
+        "decoded_unique_frames": {
+          "stream.infrared:1": 708,
+          "stream.infrared:2": 708,
+          "stream.depth:0": 707,
+          "stream.color:0": 737
+        },
+        "sdk_counts_match_raw_file": {
+          "stream.infrared:1": true,
+          "stream.infrared:2": true,
+          "stream.depth:0": true,
+          "stream.color:0": true
+        },
+        "live_frame_numbers_missing_from_recording": {
+          "stream.color:0": [],
+          "stream.depth:0": [],
+          "stream.infrared:1": [],
+          "stream.infrared:2": []
+        },
+        "raw_minus_live_unique_counts": {
+          "stream.color:0": 0,
+          "stream.depth:0": 2,
+          "stream.infrared:1": 4,
+          "stream.infrared:2": 4
+        },
+        "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+      },
+      "lidar": {
+        "sensor": "Unitree L2",
+        "started_at": "2026-10-08T23:32:04.758380+00:00",
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "baud": 4000000,
+        "status": "received",
+        "evaluation_completed": false,
+        "sdk_reference_commit": "0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
+        "clock": "device uptime; host receive time is separately recorded; not cross-sensor synchronized",
+        "host_clock": {
+          "name": "perf_counter",
+          "implementation": "QueryPerformanceCounter()",
+          "resolution_s": 1e-07,
+          "policy": "One-host monotonic UART chunk receipt time; not laser firing time or hardware synchronization"
+        },
+        "requested_driver_rx_buffer_bytes": 1048576,
+        "transmitted": {
+          "purpose": "read device version only",
+          "hex": "55aa050a640000002000000003000000000000008ad8adeb00000000000000ff"
+        },
+        "host_capture_start_monotonic_ns": 17396500112900,
+        "device_version": {
+          "hardware": "2.2.1.1",
+          "firmware": "2.8.8.1",
+          "name": "YS-L2",
+          "date": "250403"
+        },
+        "last_inside_state": {
+          "sys_rotation_period": 4641,
+          "com_rotation_period": 229495,
+          "dirty_index": 0.3333333432674408,
+          "packet_lost_up": 0.0,
+          "packet_lost_down": 0.0,
+          "apd_temperature": 56.17240524291992,
+          "apd_voltage": 163.4606475830078,
+          "laser_voltage": 50.637046813964844,
+          "imu_temperature": 66.7421875
+        },
+        "elapsed_seconds": 25.023475199999666,
+        "raw_bytes": 6122643,
+        "valid_points": 1497362,
+        "crc_errors": 0,
+        "discarded_bytes": 238,
+        "trailing_bytes": 321,
+        "packet_counts": {
+          "104": 6250,
+          "105": 1,
+          "101": 1,
+          "102": 5385
+        },
+        "packet_sizes": {
+          "104:80": 6250,
+          "105:104": 1,
+          "101:40": 1,
+          "102:1044": 5385
+        },
+        "104": {
+          "count": 6250,
+          "sensor_hz": 499.440534689384,
+          "sequence_missing": 0,
+          "sequence_duplicates": 0,
+          "timestamp_non_increasing": 0,
+          "max_sensor_gap_s": 0.004000380000093173,
+          "host_hz": 249.97993339987138,
+          "sequence_modulus": 1024,
+          "clock_host_seconds_per_device_second": 1.9980379132575476,
+          "clock_affine_residual_p95_s": 0.0017192765192186143
+        },
+        "102": {
+          "count": 5385,
+          "sensor_hz": 430.42962012623474,
+          "sequence_missing": 0,
+          "sequence_duplicates": 0,
+          "timestamp_non_increasing": 0,
+          "max_sensor_gap_s": 0.0027236899999252273,
+          "host_hz": 215.42655043169316,
+          "sequence_modulus": 1024,
+          "clock_host_seconds_per_device_second": 1.998037774747537,
+          "clock_affine_residual_p95_s": 0.0006966208505861271
+        },
+        "imu_summary": {
+          "acceleration_norm_median": 19.78902385777723,
+          "gyro_norm_median": 0.11047297417635768,
+          "quaternion_norm_median": 0.9983124228067026
+        },
+        "raw_sha256": "343382a758d8456bc603c7e3d030fa513f2a683e0e0d014638f4b2b15cc2a7b1"
+      },
+      "lidar_audit": {
+        "status": "received",
+        "packet_counts": {
+          "104": 6250,
+          "105": 1,
+          "101": 1,
+          "102": 5385
+        },
+        "crc_errors": 0,
+        "valid_points": 1497362,
+        "crc_reject_fraction": 0.0,
+        "clock_policy": "report raw timing discrepancy; no timestamp scaling applied",
+        "104": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 6,
+          "missing_packets": 0,
+          "duplicates": 0,
+          "raw_sensor_hz": 499.440534689384,
+          "timestamp_non_increasing": 0,
+          "host_receive_hz": 249.97993339987138,
+          "host_per_device_second": 1.998037913257547,
+          "residual_p95_ms": 1.7192765192202129,
+          "ready_for_inertial_odometry": false
+        },
+        "102": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 5,
+          "missing_packets": 0,
+          "duplicates": 0,
+          "raw_sensor_hz": 430.42962012623474,
+          "timestamp_non_increasing": 0,
+          "host_receive_hz": 215.42655043169316,
+          "host_per_device_second": 1.998037774747537,
+          "residual_p95_ms": 0.696620850587082,
+          "ready_for_inertial_odometry": false
+        }
+      },
+      "receipt_association": {
+        "scope": "Same Windows host receipt-time association; no hardware sync, calibrated extrinsics, deskew, or fused pose",
+        "session": "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\dark-on-qpc-c-20261009-023202",
+        "status": "associated",
+        "warmup_seconds": 2,
+        "overlap_seconds": 22.368844,
+        "camera_raw_sha256": "fbace17e09972cff32b616b4ce1497a0bf08db39024cfe65b515467e47f8e85b",
+        "lidar_raw_sha256": "343382a758d8456bc603c7e3d030fa513f2a683e0e0d014638f4b2b15cc2a7b1",
+        "clock": {
+          "name": "perf_counter",
+          "implementation": "QueryPerformanceCounter()",
+          "resolution_s": 1e-07,
+          "policy": "One-host monotonic callback receipt time; not exposure time or cross-device hardware synchronization"
+        },
+        "streams": {
+          "stream.depth:0": {
+            "unique_frames_in_overlap": 670,
+            "host_receipt_hz": 29.977109586660827,
+            "nearest_line_abs_offset": {
+              "count": 670,
+              "median_ms": 1.18765,
+              "p95_ms": 2.221319999999999,
+              "max_ms": 2.5591
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 670,
+              "median_ms": 58.3914,
+              "p95_ms": 109.92160499999999,
+              "max_ms": 142.4034
+            }
+          },
+          "stream.infrared:1": {
+            "unique_frames_in_overlap": 670,
+            "host_receipt_hz": 29.977109586660827,
+            "nearest_line_abs_offset": {
+              "count": 670,
+              "median_ms": 1.18765,
+              "p95_ms": 2.221319999999999,
+              "max_ms": 2.5591
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 670,
+              "median_ms": 58.3914,
+              "p95_ms": 109.92160499999999,
+              "max_ms": 142.4034
+            }
+          },
+          "stream.infrared:2": {
+            "unique_frames_in_overlap": 670,
+            "host_receipt_hz": 29.977109586660827,
+            "nearest_line_abs_offset": {
+              "count": 670,
+              "median_ms": 1.18765,
+              "p95_ms": 2.221319999999999,
+              "max_ms": 2.5591
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 670,
+              "median_ms": 58.3914,
+              "p95_ms": 109.92160499999999,
+              "max_ms": 142.4034
+            }
+          },
+          "stream.color:0": {
+            "unique_frames_in_overlap": 670,
+            "host_receipt_hz": 29.977109586660827,
+            "nearest_line_abs_offset": {
+              "count": 670,
+              "median_ms": 1.18765,
+              "p95_ms": 2.221319999999999,
+              "max_ms": 2.5591
+            },
+            "nearest_50line_group_abs_offset": {
+              "count": 670,
+              "median_ms": 58.3914,
+              "p95_ms": 109.92160499999999,
+              "max_ms": 142.4034
+            }
+          }
+        }
+      }
+    }
+  ],
+  "live_pairs": [
+    {
+      "camera_session": "data\\live-camera-20261009-023303-779",
+      "lidar_session": "data\\live-lidar-20261009-023307-581",
+      "wrapper_receipt": {
+        "scope": "Concurrent separate algorithms; not calibrated sensor fusion",
+        "camera_session": "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\live-camera-20261009-023303-779",
+        "completed_at": "2026-10-08T23:33:54.3578778Z",
+        "started_at": "2026-10-08T23:33:02.1331556Z",
+        "lidar_algorithm": "icp",
+        "lidar_exit": null,
+        "fixed_sensor_declaration": false,
+        "camera_algorithm": "rgbd",
+        "lidar_session": [
+          "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\live-lidar-20261009-023307-581"
+        ],
+        "camera_exit": null
+      },
+      "host_reported_capture_window_overlap_s": 36.761952,
+      "camera_result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "rgbd",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "video": {
+          "status": "saved",
+          "output": "rviz-live.mp4",
+          "content": "Actual independent RViz view of live ROS topics; no synthetic poses",
+          "frame_rate": 10,
+          "size": [
+            1440,
+            1000
+          ],
+          "audio": false,
+          "display": ":90",
+          "elapsed_seconds": 46.26133935699909,
+          "forced_shutdown_pids": [],
+          "probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1440,
+                "height": 1000,
+                "nb_frames": "449"
+              }
+            ],
+            "format": {
+              "duration": "44.900000"
+            }
+          },
+          "bytes": 7491555
+        },
+        "source_observations": 321,
+        "odometry_messages": 314,
+        "status_messages": 314,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": {
+          "left": {
+            "width": 640,
+            "height": 480,
+            "fx": 386.3125915527344,
+            "fy": 386.3125915527344,
+            "ppx": 314.95684814453125,
+            "ppy": 233.64193725585938
+          },
+          "right": {
+            "width": 640,
+            "height": 480,
+            "fx": 386.3125915527344,
+            "fy": 386.3125915527344,
+            "ppx": 314.95684814453125,
+            "ppy": 233.64193725585938
+          },
+          "color": {
+            "width": 640,
+            "height": 480,
+            "fx": 614.6063842773438,
+            "fy": 615.578125,
+            "ppx": 323.0701904296875,
+            "ppy": 251.8853759765625
+          },
+          "baseline_m": 0.05004335567355156,
+          "sdk_left_to_color": {
+            "rotation_column_major": [
+              0.9999877214431763,
+              0.004955935757607222,
+              -0.00021392074995674193,
+              -0.004954231902956963,
+              0.9999607801437378,
+              0.007341783028095961,
+              0.00025029777316376567,
+              -0.0073406328447163105,
+              0.9999729990959167
+            ],
+            "translation_m": [
+              0.015406528487801552,
+              -0.0001232208451256156,
+              -0.00025224441196769476
+            ]
+          }
+        },
+        "pose_output_fraction": 0.9781931464174455,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.0,
+        "pose_output_fraction_after_first_2s": 0.9770491803278688,
+        "ros_input_hz": 8.110394988716582,
+        "ros_input_gap_p95_ms": 140.38324275,
+        "odometry_compute_ms": {
+          "p50": 40.04800319671631,
+          "p95": 50.83849430084228
+        },
+        "valid_pose_output_fraction": 0.9750778816199377,
+        "valid_pose_output_fraction_after_first_2s": 0.9770491803278688,
+        "translation_excursion_max_m": 0.007801666111738633,
+        "translation_endpoint_separation_m": 0.0036985159203163144,
+        "rotation_excursion_max_deg": 1.504770150578367,
+        "estimated_path_length_m": 0.3104456538359861,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "lidar_result": {
+        "status": "streamed",
+        "sensor": "lidar",
+        "algorithm": "icp",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "video": {
+          "status": "saved",
+          "output": "rviz-live.mp4",
+          "content": "Actual independent RViz view of live ROS topics; no synthetic poses",
+          "frame_rate": 10,
+          "size": [
+            1440,
+            1000
+          ],
+          "audio": false,
+          "display": ":91",
+          "elapsed_seconds": 43.00947358100166,
+          "forced_shutdown_pids": [],
+          "probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1440,
+                "height": 1000,
+                "nb_frames": "422"
+              }
+            ],
+            "format": {
+              "duration": "42.200000"
+            }
+          },
+          "bytes": 10746937
+        },
+        "source_observations": 172,
+        "odometry_messages": 170,
+        "status_messages": 170,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": null,
+        "pose_output_fraction": 0.9883720930232558,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.0,
+        "pose_output_fraction_after_first_2s": 0.9877300613496932,
+        "ros_input_hz": 4.320669996017635,
+        "ros_input_gap_p95_ms": 275.86039100000005,
+        "odometry_compute_ms": {
+          "p50": 134.91594791412354,
+          "p95": 170.42928934097287
+        },
+        "valid_pose_output_fraction": 0.9825581395348837,
+        "valid_pose_output_fraction_after_first_2s": 0.9877300613496932,
+        "translation_excursion_max_m": 0.45705038521153124,
+        "translation_endpoint_separation_m": 0.4521295974481723,
+        "rotation_excursion_max_deg": 12.846461109969237,
+        "estimated_path_length_m": 1.866212362961317,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "camera_raw_playback": {
+        "status": "verified",
+        "observer_version": 2,
+        "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+        "raw_sha256": "477cb1b18a1be653d6372fd26e81d3b82b0ccc94bc928b4d497c97fe60039aa2",
+        "duration_s": 39.880152,
+        "eof_reached": true,
+        "raw_image_message_counts": {
+          "stream.infrared:1": 1189,
+          "stream.infrared:2": 1189,
+          "stream.depth:0": 1191,
+          "stream.color:0": 1188
+        },
+        "sdk_frame_callbacks": {
+          "stream.infrared:1": 1189,
+          "stream.infrared:2": 1189,
+          "stream.depth:0": 1191,
+          "stream.color:0": 1188
+        },
+        "decoded_unique_frames": {
+          "stream.infrared:1": 1189,
+          "stream.infrared:2": 1189,
+          "stream.depth:0": 1191,
+          "stream.color:0": 1188
+        },
+        "sdk_counts_match_raw_file": {
+          "stream.infrared:1": true,
+          "stream.infrared:2": true,
+          "stream.depth:0": true,
+          "stream.color:0": true
+        },
+        "live_frame_numbers_missing_from_recording": {
+          "stream.color:0": [],
+          "stream.depth:0": [],
+          "stream.infrared:1": [],
+          "stream.infrared:2": []
+        },
+        "raw_minus_live_unique_counts": {
+          "stream.color:0": 3,
+          "stream.depth:0": 7,
+          "stream.infrared:1": 5,
+          "stream.infrared:2": 5
+        },
+        "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+      },
+      "lidar_capture": {
+        "started_at": "2026-10-08T23:33:09.462895+00:00",
+        "sensor": "lidar",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "clouds_sent": 172,
+        "imu_sent": 10002,
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "decoder": "Python SDK-based conversion with float angle accumulation; not native SDK binary",
+        "timestamp_policy": "Host UART receive time; raw device and per-point times preserved; no IMU fusion or deskew",
+        "device": {
+          "name": "YS-L2",
+          "firmware": "2.8.8.1",
+          "hardware": "2.2.1.1"
+        },
+        "raw_sha256": "4d7b87e88bc0d9b5a0b8fcf2c8cdbcd2e7d899e60dce462986513cb501af336e",
+        "elapsed_seconds": 40.03200000000288,
+        "crc_errors": 1,
+        "packet_counts": {
+          "105": 1,
+          "101": 1,
+          "102": 8614,
+          "104": 10002
+        },
+        "discarded_bytes": 1073,
+        "102": {
+          "count": 8614,
+          "missing": 1,
+          "duplicates": 0,
+          "host_hz": 215.4057771664343,
+          "host_seconds_per_device_second": 1.9983315436823907
+        },
+        "104": {
+          "count": 10002,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 250.11879454795184,
+          "host_seconds_per_device_second": 1.998324572772963
+        }
+      },
+      "lidar_raw_audit": {
+        "status": "received",
+        "packet_counts": {
+          "105": 1,
+          "101": 1,
+          "102": 8614,
+          "104": 10002
+        },
+        "crc_errors": 1,
+        "valid_points": 2389468,
+        "crc_reject_fraction": 5.3708577259788386e-05,
+        "clock_policy": "report raw timing discrepancy; no timestamp scaling applied",
+        "102": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 8,
+          "missing_packets": 1,
+          "duplicates": 0,
+          "raw_sensor_hz": 430.39991956993373,
+          "timestamp_non_increasing": 0
+        },
+        "104": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 9,
+          "missing_packets": 0,
+          "duplicates": 0,
+          "raw_sensor_hz": 499.800106444179,
+          "timestamp_non_increasing": 0
+        }
+      },
+      "live_code_hashes": {
+        "configs/rviz/lidar_odom.rviz": "9a1f24bc709de478b38dc1b07e0cc1b435a8b48a7121a3a22028a0018cde39c9",
+        "configs/rviz/camera_map.rviz": "e5ae4f92b5523b2125d3526514e1bdb2a6821243dcd2e625479f21e6a873a2e8",
+        "configs/rviz/lidar_raw.rviz": "5c0dc607823a5fabcdf23429dcec05eba01dc3ad8b732abdfb93408d5209277a",
+        "scripts/live_transport.py": "34075e84568f816726edb8438f6690b51790a3627119b23e691666eabe389b44",
+        "scripts/live_windows.py": "f6f1846c4055b526f5f00102531ac2e848a38a2b6259349c09abfd34718ded45",
+        "scripts/live_metrics.py": "31934295a6351b84de6c7281b6228099c3189a1484c30f785390a87e27dc88e3",
+        "scripts/live_kiss_worker.py": "8bf0ae2629c472999a7394f24747ccf87b37cb420fbf3fa0e2d9c83f91ef55be",
+        "configs/rviz/camera_raw.rviz": "ffb97fedf2c840a6824ba6dcf9965312c4b6f9cd1c6c7c3a329244f13a28da7a",
+        "scripts/protocol_l2.py": "c9085c194135e01b8592dbdc90e541a6ab726710476a48432dff4e7b4f3df494",
+        "configs/rviz/camera_odom.rviz": "18dfd179ae5e8a1f331280f75884ab180ee3aca57ce4aebaceebf2b91e7ccc8a",
+        "scripts/record_rviz.py": "5ad85872d28b0c4e37a16fef77b7b8c42c97c7f51e77450ae765234665ce7c57",
+        "scripts/start_live.ps1": "08f79173ece4511b7acc6d133d06e3e8b168c3ef577255703604d3bf2b838187",
+        "scripts/live_ros.py": "23d8f8b698c1cc30e3ea2e421d4c4f9983c2ae10e90c340dfb2ec2c6d178f97b"
+      },
+      "media": [
+        {
+          "path": "data\\live-camera-20261009-023303-779\\rviz-live.mp4",
+          "bytes": 7491555,
+          "sha256": "b7b40a9f0ece29fac8b76a7a33b29ea036aa8f6c58fdad552b5789b46eb25152"
+        },
+        {
+          "path": "data\\live-lidar-20261009-023307-581\\rviz-live.mp4",
+          "bytes": 10746937,
+          "sha256": "9bfb7567a87227c4514753d1cec223794430e8a5dc6d5e86371e26d86e9b7abd"
+        }
+      ]
+    },
+    {
+      "camera_session": "data\\live-camera-20261009-023416-505",
+      "lidar_session": "data\\live-lidar-20261009-023420-197",
+      "wrapper_receipt": {
+        "scope": "Concurrent separate algorithms; not calibrated sensor fusion",
+        "camera_session": "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\live-camera-20261009-023416-505",
+        "completed_at": "2026-10-08T23:35:06.6738721Z",
+        "started_at": "2026-10-08T23:34:15.0878439Z",
+        "lidar_algorithm": "kiss",
+        "lidar_exit": 0,
+        "fixed_sensor_declaration": false,
+        "camera_algorithm": "stereo",
+        "lidar_session": [
+          "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\live-lidar-20261009-023420-197"
+        ],
+        "camera_exit": 0
+      },
+      "host_reported_capture_window_overlap_s": 36.784057,
+      "camera_result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "stereo",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "video": {
+          "status": "saved",
+          "output": "rviz-live.mp4",
+          "content": "Actual independent RViz view of live ROS topics; no synthetic poses",
+          "frame_rate": 10,
+          "size": [
+            1440,
+            1000
+          ],
+          "audio": false,
+          "display": ":90",
+          "elapsed_seconds": 47.089912939001806,
+          "forced_shutdown_pids": [],
+          "probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1440,
+                "height": 1000,
+                "nb_frames": "463"
+              }
+            ],
+            "format": {
+              "duration": "46.300000"
+            }
+          },
+          "bytes": 7264421
+        },
+        "source_observations": 323,
+        "odometry_messages": 318,
+        "status_messages": 318,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": {
+          "left": {
+            "width": 640,
+            "height": 480,
+            "fx": 386.3125915527344,
+            "fy": 386.3125915527344,
+            "ppx": 314.95684814453125,
+            "ppy": 233.64193725585938
+          },
+          "right": {
+            "width": 640,
+            "height": 480,
+            "fx": 386.3125915527344,
+            "fy": 386.3125915527344,
+            "ppx": 314.95684814453125,
+            "ppy": 233.64193725585938
+          },
+          "color": {
+            "width": 640,
+            "height": 480,
+            "fx": 614.6063842773438,
+            "fy": 615.578125,
+            "ppx": 323.0701904296875,
+            "ppy": 251.8853759765625
+          },
+          "baseline_m": 0.05004335567355156,
+          "sdk_left_to_color": {
+            "rotation_column_major": [
+              0.9999877214431763,
+              0.004955935757607222,
+              -0.00021392074995674193,
+              -0.004954231902956963,
+              0.9999607801437378,
+              0.007341783028095961,
+              0.00025029777316376567,
+              -0.0073406328447163105,
+              0.9999729990959167
+            ],
+            "translation_m": [
+              0.015406528487801552,
+              -0.0001232208451256156,
+              -0.00025224441196769476
+            ]
+          }
+        },
+        "pose_output_fraction": 0.9845201238390093,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.0,
+        "pose_output_fraction_after_first_2s": 0.9836601307189542,
+        "ros_input_hz": 8.168781205167864,
+        "ros_input_gap_p95_ms": 175.76982694999998,
+        "odometry_compute_ms": {
+          "p50": 31.57651424407959,
+          "p95": 40.839362144470215
+        },
+        "valid_pose_output_fraction": 0.9814241486068112,
+        "valid_pose_output_fraction_after_first_2s": 0.9836601307189542,
+        "translation_excursion_max_m": 0.0009916560769030745,
+        "translation_endpoint_separation_m": 0.0003178569316666854,
+        "rotation_excursion_max_deg": 0.17971406555406363,
+        "estimated_path_length_m": 0.08536600989104107,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "lidar_result": {
+        "status": "streamed",
+        "sensor": "lidar",
+        "algorithm": "kiss",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "video": {
+          "status": "saved",
+          "output": "rviz-live.mp4",
+          "content": "Actual independent RViz view of live ROS topics; no synthetic poses",
+          "frame_rate": 10,
+          "size": [
+            1440,
+            1000
+          ],
+          "audio": false,
+          "display": ":91",
+          "elapsed_seconds": 43.85983276400293,
+          "forced_shutdown_pids": [],
+          "probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1440,
+                "height": 1000,
+                "nb_frames": "430"
+              }
+            ],
+            "format": {
+              "duration": "43.000000"
+            }
+          },
+          "bytes": 11848622
+        },
+        "source_observations": 172,
+        "odometry_messages": 172,
+        "status_messages": 0,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": null,
+        "pose_output_fraction": 1.0,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": null,
+        "pose_output_fraction_after_first_2s": 1.0,
+        "ros_input_hz": 4.308524729694683,
+        "ros_input_gap_p95_ms": 269.2739535,
+        "kiss_worker_compute_ms": {
+          "p50": 32.21835949989327,
+          "p95": 102.87077300163219
+        },
+        "valid_pose_output_fraction": null,
+        "valid_pose_output_fraction_after_first_2s": null,
+        "translation_excursion_max_m": 0.3660424483819012,
+        "translation_endpoint_separation_m": 0.3203976650824896,
+        "rotation_excursion_max_deg": 179.855119616124,
+        "estimated_path_length_m": 2.5407726004793676,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "camera_raw_playback": {
+        "status": "verified",
+        "observer_version": 2,
+        "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+        "raw_sha256": "5f089cc88000aca4068044f99962b89f18fef1b9bf93ed307eb184dea5bc8d6e",
+        "duration_s": 39.877749,
+        "eof_reached": true,
+        "raw_image_message_counts": {
+          "stream.infrared:1": 1189,
+          "stream.infrared:2": 1189,
+          "stream.depth:0": 1191,
+          "stream.color:0": 1188
+        },
+        "sdk_frame_callbacks": {
+          "stream.infrared:1": 1189,
+          "stream.infrared:2": 1189,
+          "stream.depth:0": 1191,
+          "stream.color:0": 1188
+        },
+        "decoded_unique_frames": {
+          "stream.infrared:1": 1189,
+          "stream.infrared:2": 1189,
+          "stream.depth:0": 1191,
+          "stream.color:0": 1188
+        },
+        "sdk_counts_match_raw_file": {
+          "stream.infrared:1": true,
+          "stream.infrared:2": true,
+          "stream.depth:0": true,
+          "stream.color:0": true
+        },
+        "live_frame_numbers_missing_from_recording": {
+          "stream.color:0": [],
+          "stream.depth:0": [],
+          "stream.infrared:1": [],
+          "stream.infrared:2": []
+        },
+        "raw_minus_live_unique_counts": {
+          "stream.color:0": 2,
+          "stream.depth:0": 4,
+          "stream.infrared:1": 4,
+          "stream.infrared:2": 4
+        },
+        "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+      },
+      "lidar_capture": {
+        "started_at": "2026-10-08T23:34:22.893742+00:00",
+        "sensor": "lidar",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "clouds_sent": 172,
+        "imu_sent": 9992,
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "decoder": "Python SDK-based conversion with float angle accumulation; not native SDK binary",
+        "timestamp_policy": "Host UART receive time; raw device and per-point times preserved; no IMU fusion or deskew",
+        "device": {
+          "name": "YS-L2",
+          "firmware": "2.8.8.1",
+          "hardware": "2.2.1.1"
+        },
+        "raw_sha256": "011f8c5529f709ef10901601d95dc7262a89aef691bd6d19a6ce1938d77f8862",
+        "elapsed_seconds": 40.03199999999924,
+        "crc_errors": 2,
+        "packet_counts": {
+          "105": 1,
+          "101": 1,
+          "102": 8610,
+          "104": 9992
+        },
+        "discarded_bytes": 2874,
+        "102": {
+          "count": 8610,
+          "missing": 2,
+          "duplicates": 0,
+          "host_hz": 215.39192874477203,
+          "host_seconds_per_device_second": 1.998769887919762
+        },
+        "104": {
+          "count": 9992,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 249.9687257624599,
+          "host_seconds_per_device_second": 1.9987729565135026
+        }
+      },
+      "lidar_raw_audit": {
+        "status": "received",
+        "packet_counts": {
+          "105": 1,
+          "101": 1,
+          "102": 8610,
+          "104": 9992
+        },
+        "crc_errors": 2,
+        "valid_points": 2386953,
+        "crc_reject_fraction": 0.00010749220681500591,
+        "clock_policy": "report raw timing discrepancy; no timestamp scaling applied",
+        "102": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 8,
+          "missing_packets": 2,
+          "duplicates": 0,
+          "raw_sensor_hz": 430.4073449104887,
+          "timestamp_non_increasing": 0
+        },
+        "104": {
+          "sequence_modulus": 1024,
+          "sequence_wraps": 10,
+          "missing_packets": 0,
+          "duplicates": 0,
+          "raw_sensor_hz": 499.55000299729954,
+          "timestamp_non_increasing": 0
+        }
+      },
+      "live_code_hashes": {
+        "configs/rviz/lidar_odom.rviz": "9a1f24bc709de478b38dc1b07e0cc1b435a8b48a7121a3a22028a0018cde39c9",
+        "configs/rviz/camera_map.rviz": "e5ae4f92b5523b2125d3526514e1bdb2a6821243dcd2e625479f21e6a873a2e8",
+        "configs/rviz/lidar_raw.rviz": "5c0dc607823a5fabcdf23429dcec05eba01dc3ad8b732abdfb93408d5209277a",
+        "scripts/live_transport.py": "34075e84568f816726edb8438f6690b51790a3627119b23e691666eabe389b44",
+        "scripts/live_windows.py": "f6f1846c4055b526f5f00102531ac2e848a38a2b6259349c09abfd34718ded45",
+        "scripts/live_metrics.py": "31934295a6351b84de6c7281b6228099c3189a1484c30f785390a87e27dc88e3",
+        "scripts/live_kiss_worker.py": "8bf0ae2629c472999a7394f24747ccf87b37cb420fbf3fa0e2d9c83f91ef55be",
+        "configs/rviz/camera_raw.rviz": "ffb97fedf2c840a6824ba6dcf9965312c4b6f9cd1c6c7c3a329244f13a28da7a",
+        "scripts/protocol_l2.py": "c9085c194135e01b8592dbdc90e541a6ab726710476a48432dff4e7b4f3df494",
+        "configs/rviz/camera_odom.rviz": "18dfd179ae5e8a1f331280f75884ab180ee3aca57ce4aebaceebf2b91e7ccc8a",
+        "scripts/record_rviz.py": "5ad85872d28b0c4e37a16fef77b7b8c42c97c7f51e77450ae765234665ce7c57",
+        "scripts/start_live.ps1": "08f79173ece4511b7acc6d133d06e3e8b168c3ef577255703604d3bf2b838187",
+        "scripts/live_ros.py": "23d8f8b698c1cc30e3ea2e421d4c4f9983c2ae10e90c340dfb2ec2c6d178f97b"
+      },
+      "media": [
+        {
+          "path": "data\\live-camera-20261009-023416-505\\rviz-live.mp4",
+          "bytes": 7264421,
+          "sha256": "60b2c839315bcb881d0a2db759a0ca8f98f3c0b468675a7d4c9e773f8b459c2f"
+        },
+        {
+          "path": "data\\live-lidar-20261009-023420-197\\rviz-live.mp4",
+          "bytes": 11848622,
+          "sha256": "0a1d5a740e7cb600bd484deb758ba1b21a3c509054399f41ceacb5b313fc02b8"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Stored calibration equality does not establish physical calibration integrity.",
+    "Epipolar residuals are scene-dependent selected SIFT/fundamental-RANSAC inliers, not a metrology certification.",
+    "Projector controls keep L2 powered; no L2-off control, so no definitive optical interference attribution.",
+    "Nearest receipt-time offsets describe host arrivals, not exposure/firing or hardware synchronization.",
+    "No post-fall fixed declaration or independent trajectory: pose excursions are descriptive, not static drift/ATE/RPE.",
+    "L2 host/device clock slope remains about 2; IMU units and axes are unvalidated, so no LIO.",
+    "First RGB-D/ICP temporary wrapper incorrectly treated unavailable child exit codes as failure; both native sessions completed. Later wrapper fixed and stereo/KISS child exits were 0."
+  ],
+  "official_sdk_export": {
+    "status": "exported",
+    "schema_version": 2,
+    "mode": "lidar",
+    "source_session": "data/dark-on-qpc-a-20261009-023004/l2",
+    "source_sha256": "3a0ef791fe1d8b5f42ef155b4634fe62a32bf165132c1183ae9104ba0004e3e4",
+    "lines_per_cloud": 50,
+    "timestamp_policy": "recorded host receive time of last line; not hardware synchronization",
+    "deskewing": false,
+    "imu_used": false,
+    "decoder": "official Unitree SDK2 parseFromPacketToPointCloud (unchanged)",
+    "sdk_decode_counts": {
+      "lines": 5386,
+      "points": 1496926,
+      "point_bytes": 24
+    },
+    "sdk_commit": "0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
+    "sdk_decoder_binary_sha256": "0514f63c6d2e5f454707270e24714e9e5050474654dbbf8703caa70db1ff0635",
+    "crc_errors": 0,
+    "packet_counts": {
+      "105": 1,
+      "101": 1,
+      "102": 5386,
+      "104": 6248
+    },
+    "incomplete_final_lines": 6,
+    "duration_s": 22.74386289999893,
+    "exported_clouds": 99
+  },
+  "current_tool_hashes": {
+    "scripts\\capture_camera.py": "13ae9ae74320071dcd958bf7ea0c843b349d51041ff8933c7e6aeb842310ccbf",
+    "scripts\\capture_l2.py": "96fdc758c1fa984962365aa6674718c7ac4289f9b64b444616b25e8a6e28d89c",
+    "scripts\\capture_pair.ps1": "b6850c3380717b26b7228f6e02904a50984749fefdc877a49f4144d8d36bd900",
+    "scripts\\audit_camera_health.py": "111d0235dd55a863b1859b322e6d0fa6fe28fcf1a3593fb2bc9327891e2c4ba1",
+    "scripts\\audit_pair.py": "ea26a78d0055e064b374c13f5366591d0ae6ff86b01ffdbea183fd4617b023e6"
+  },
+  "validation": {
+    "unit_tests_passed": 8,
+    "raw_camera_audits_verified": 6,
+    "qpc_pair_associations": 3,
+    "coarse_clock_rejected": true,
+    "official_sdk_current_uart_decode": "5386 lines / 1496926 points / 99 exported 50-line clouds after warmup",
+    "rviz_videos_validated": 4,
+    "main_worktree_unmodified": true
+  }
+}
