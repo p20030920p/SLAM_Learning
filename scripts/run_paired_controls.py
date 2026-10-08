@@ -16,25 +16,40 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("suite", type=Path)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--resume", action="store_true", help="Verify completed cells and dispatch only missing ones"
+    )
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     protocol_path = root / "configs/paired_controls.json"
     protocol = json.loads(protocol_path.read_text())
     suite = json.loads((args.suite / "record.json").read_text())
-    args.output.mkdir(parents=True, exist_ok=False)
-    (args.output / "protocol.json").write_bytes(protocol_path.read_bytes())
-    record = {
-        "schema_version": 1,
-        "kind": "paired_parameter_controls",
-        "status": "running",
-        "started_at": utc_now(),
-        "protocol": protocol,
-        "repository": git_state(root),
-        "script_sha256": digest(Path(__file__)),
-        "suite_protocol_sha256": digest(args.suite / "inputs/configs/paired_pose.json"),
-        "artifacts": {},
-        "cells": [],
-    }
+    if args.resume:
+        record = json.loads((args.output / "record.json").read_text())
+        if record["protocol"] != protocol or record["suite_protocol_sha256"] != digest(
+            args.suite / "inputs/configs/paired_pose.json"
+        ):
+            raise ValueError("Resume protocol/input mismatch")
+        record.setdefault("resumptions", []).append(
+            {"at": utc_now(), "script_sha256": digest(Path(__file__))}
+        )
+        record.update(status="running")
+        record.pop("failed_cell", None)
+    else:
+        args.output.mkdir(parents=True, exist_ok=False)
+        (args.output / "protocol.json").write_bytes(protocol_path.read_bytes())
+        record = {
+            "schema_version": 1,
+            "kind": "paired_parameter_controls",
+            "status": "running",
+            "started_at": utc_now(),
+            "protocol": protocol,
+            "repository": git_state(root),
+            "script_sha256": digest(Path(__file__)),
+            "suite_protocol_sha256": digest(args.suite / "inputs/configs/paired_pose.json"),
+            "artifacts": {},
+            "cells": [],
+        }
     write_json(args.output / "record.json", record)
     for original in suite["cells"]:
         method = original["method"]
@@ -49,6 +64,17 @@ def main():
         for threshold in thresholds:
             name = f"{original['id']}-threshold-{threshold}"
             destination = args.output / "cells" / name
+            previous = next((cell for cell in record["cells"] if cell["id"] == name), None)
+            if previous is not None:
+                path = destination / "record.json"
+                issues = verify_record(path, full=True)
+                measured = json.loads(path.read_text())
+                if issues or measured["status"] != "executed" or digest(path) != previous["record_sha256"]:
+                    raise ValueError(f"Previously completed cell no longer verifies: {name}: {issues}")
+                print(f"Verified completed {name}", flush=True)
+                continue
+            if destination.exists():
+                raise ValueError(f"Preserve failed/unindexed cell before resuming: {destination}")
             env_name = ".venv" if method == "dufomap" else ".venv-semantic"
             command = [
                 str(root / env_name / "bin/python"),
@@ -66,7 +92,11 @@ def main():
                 command.extend(
                     [
                         "--source",
-                        str(root / "results/runs/conceptgraphs-7795d7b47007"),
+                        str(
+                            suite.get("semantic_sources", {}).get(
+                                "conceptgraphs", root / "results/runs/conceptgraphs-7795d7b47007"
+                            )
+                        ),
                         "--text-features",
                         str((args.suite / "inputs/text_features.npy").resolve()),
                     ]
@@ -104,7 +134,11 @@ def main():
             write_json(args.output / "record.json", record)
     record.update(status="executed", finished_at=utc_now(), completed_cells=len(record["cells"]), exit_code=0)
     for path in args.output.rglob("*"):
-        if not path.is_file() or "cells" in path.relative_to(args.output).parts or path.name == "record.json":
+        if (
+            not path.is_file()
+            or "cells" in path.relative_to(args.output).parts
+            or path == args.output / "record.json"
+        ):
             continue
         record["artifacts"][path.relative_to(args.output).as_posix()] = {
             "sha256": digest(path),

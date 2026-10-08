@@ -17,7 +17,7 @@ from slam_learning.provenance import digest, git_state, utc_now, write_json
 from slam_learning.runner import verify_record
 
 
-def prepare(root, output):
+def prepare(root, output, semantic_sources):
     protocol_path = root / "configs/paired_pose.json"
     protocol = json.loads(protocol_path.read_text())
     output.mkdir(parents=True, exist_ok=False)
@@ -67,8 +67,7 @@ def prepare(root, output):
                     )
         for method in ("dufomap", "beautymap") if group == "lidar" else ("conceptgraphs", "hovsg"):
             cells.extend([{**entry, "method": method, "id": f"{method}-{entry['id']}"} for entry in entries])
-    cg = root / "results/runs/conceptgraphs-7795d7b47007"
-    hov = root / "results/runs/hovsg-0206da9f0145"
+    cg, hov = [semantic_sources[method] for method in ("conceptgraphs", "hovsg")]
     for source in (cg, hov):
         errors = verify_record(source / "record.json", full=True)
         if errors:
@@ -82,6 +81,7 @@ def prepare(root, output):
         "repository": git_state(root),
         "cells": cells,
         "artifacts": {},
+        "semantic_sources": {method: str(path) for method, path in semantic_sources.items()},
         "source_records": {
             str(p.relative_to(root)): digest(p) for p in (cg / "record.json", hov / "record.json")
         },
@@ -102,6 +102,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--resume", type=Path)
+    parser.add_argument(
+        "--conceptgraphs-source", type=Path, help="Full local native run with cached detections"
+    )
+    parser.add_argument(
+        "--hovsg-source", type=Path, help="Full local native run with cached per-mask features"
+    )
     parser.add_argument("--methods", nargs="+", default=["dufomap", "beautymap", "conceptgraphs", "hovsg"])
     parser.add_argument("--references-only", action="store_true")
     parser.add_argument(
@@ -114,7 +120,23 @@ def main():
     output = (
         args.resume or args.output or root / "results/runs" / f"paired-pose-{uuid.uuid4().hex[:12]}"
     ).resolve()
-    record = json.loads((output / "record.json").read_text()) if args.resume else prepare(root, output)
+    semantic_sources = {
+        "conceptgraphs": (
+            args.conceptgraphs_source or root / "results/runs/conceptgraphs-7795d7b47007"
+        ).resolve(),
+        "hovsg": (args.hovsg_source or root / "results/runs/hovsg-0206da9f0145").resolve(),
+    }
+    record = (
+        json.loads((output / "record.json").read_text())
+        if args.resume
+        else prepare(root, output, semantic_sources)
+    )
+    semantic_sources = {
+        method: Path(path) for method, path in record.get("semantic_sources", semantic_sources).items()
+    }
+    for source, expected in record["source_records"].items():
+        if digest(root / source) != expected:
+            raise ValueError("Native source record changed: " + source)
     for name, expected in record["source_code"].items():
         if not args.aggregate_only and digest(root / name) != expected:
             raise ValueError("Source changed after protocol preparation: " + name)
@@ -164,12 +186,8 @@ def main():
             str(output / cell["path"]),
         ]
         if cell["method"] in ("conceptgraphs", "hovsg"):
-            source = (
-                "conceptgraphs-7795d7b47007" if cell["method"] == "conceptgraphs" else "hovsg-0206da9f0145"
-            )
-            command.extend(
-                ["--source", str(root / "results/runs" / source), "--text-features", str(text_path)]
-            )
+            source = semantic_sources[cell["method"]]
+            command.extend(["--source", str(source), "--text-features", str(text_path)])
         print(f"[{index+1}/{len(record['cells'])}] {cell['id']}", flush=True)
         output_log = output / f"{cell['id']}.log"
         with output_log.open("w") as log:

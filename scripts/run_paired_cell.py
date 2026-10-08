@@ -47,7 +47,8 @@ def semantic_inputs(root, output, source, method, errors):
             shutil.copy2(original / name, data / name)
     poses = np.loadtxt(root / ".cache/semantic-data/Replica/room0/traj.full.txt").reshape(-1, 4, 4)[indexes]
     poses[:, :3, 3] += errors
-    np.savetxt(data / "traj.txt", poses.reshape(-1, 16), fmt="%.12g")
+    # Preserve float64 native poses through the text adapter, including zero error.
+    np.savetxt(data / "traj.txt", poses.reshape(-1, 16), fmt="%.17g")
     if method == "hovsg":
         shutil.copy2(source / "input/Replica/cam_params.json", data.parent / "cam_params.json")
     return data
@@ -127,7 +128,8 @@ def hovsg(root, output, source, errors, threshold):
         cfg.pipeline.init_overlap_thresh = threshold
     torch.manual_seed(7)
     np.random.seed(7)
-    torch.set_num_threads(4)
+    # Native CPU advanced-index feature fusion is sensitive to thread count.
+    torch.set_num_threads(8)
     graph = graph_module.Graph.__new__(graph_module.Graph)
     # Same native initialization except unused SAM/CLIP models: features are fixed.
     graph.cfg, graph.clip_feat_dim = cfg, 1024
