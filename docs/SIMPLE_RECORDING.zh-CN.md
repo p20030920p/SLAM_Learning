@@ -22,6 +22,17 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Persona
 
 ## 本次已录制的示例
 
+### 最新：调整朝向后，三样物品进入画面
+
+本机目录：`D:\workspace\be2\Personal-Learning-Physical\data\live-camera-20261009-012157-871`。直接打开其中的 `rviz-live.mp4`。
+
+- 你确认调整后重新录制：视频 35 秒，1440×1000、10 fps、350 帧，约 4.45 MB，无音频，已自动打开。
+- 检查第 15 秒和第 25 秒实际录像帧，可以看到纸巾卷、包装盒和左侧饮料瓶；饮料种类按你的“可乐”描述记录，程序没有识别物体或测量新旧位移。
+- RGB-D 算法收到 156 组输入、输出 155 条位姿，lost=0，ROS 输入约 4.95 Hz。当前轨迹很短；这个模式显示当前点云和里程计轨迹，不会自动生成完整房间地图。RViz 的 3D 视角使近物点云显得较小，可在交互窗口用滚轮和拖动调整。
+- 原始四路回放核验通过：左右 IR 各 895 帧、深度 894 帧、RGB 892 帧；实时使用的帧均能在原始文件中找到。本次仍按 `preview` 保存，没有正式静止声明或独立真值，不判定位精度通过。数字证据见[调整后的录像检查](../evidence/video-tabletop-adjusted-20261009.json)。
+
+### 较早一段：调整之前
+
 本机目录：`D:\workspace\be2\Personal-Learning-Physical\data\live-camera-20261009-011425-896`。
 
 - 数据约 30.23 秒，视频 35.9 秒、1440×1000、10 fps、359 帧，约 4.55 MB；编码及实际画面已检查。
