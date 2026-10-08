@@ -26,6 +26,7 @@ from tf2_ros import StaticTransformBroadcaster, TransformBroadcaster
 from rtabmap_msgs.msg import OdomInfo, MapData
 from live_transport import receive
 from live_metrics import match_observations
+from record_rviz import RvizRecording
 
 CAMERA = "/physical/camera"
 
@@ -304,6 +305,7 @@ def main():
     thread = threading.Thread(target=spin, daemon=True)
     thread.start()
     children, logs = [], []
+    video = None
     record = dict(status="starting", sensor=config["sensor"], algorithm=config["algorithm"],
                   session_type=config["session_type"], quality_claim=False,
                   timestamp_policy="ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.")
@@ -334,10 +336,12 @@ def main():
                    "-r", f"rgb/image:={CAMERA}/color/image", "-r", f"depth/image:={CAMERA}/depth/image",
                    "-r", f"rgb/camera_info:={CAMERA}/color/camera_info",
                    "-r", "odom:=/odom", "-r", "odom_info:=/odom_info"], "mapping.log")
+        family = "camera" if config["sensor"] == "camera" else "lidar"
+        variant = "map" if config["algorithm"] == "rgbd-slam" else ("raw" if config["algorithm"] == "sensor" else "odom")
+        rviz = Path(__file__).resolve().parents[1] / f"configs/rviz/{family}_{variant}.rviz"
+        if config.get("video"):
+            video = RvizRecording(session, rviz, config["domain"])
         if not config["no_gui"]:
-            family = "camera" if config["sensor"] == "camera" else "lidar"
-            variant = "map" if config["algorithm"] == "rgbd-slam" else ("raw" if config["algorithm"] == "sensor" else "odom")
-            rviz = Path(__file__).resolve().parents[1] / f"configs/rviz/{family}_{variant}.rviz"
             start(["rviz2", "-d", str(rviz)], "rviz.log")
         with socket.socket() as server:
             server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -367,6 +371,8 @@ def main():
                     failed = [p.returncode for p in children if p.poll() is not None and p.returncode != 0]
                     if failed:
                         raise RuntimeError(f"Owned algorithm/GUI process stopped: {failed}; inspect logs")
+                    if video:
+                        video.check()
         time.sleep(2)
         if not node.inputs:
             raise RuntimeError("No sensor observations received; inspect live-capture.json")
@@ -377,6 +383,10 @@ def main():
     except Exception as error:
         record.update(status="failed", error=repr(error), traceback=traceback.format_exc())
     finally:
+        if video:
+            record["video"] = video.close()
+            if record["video"]["status"] == "failed":
+                record["status"] = "failed"
         for child in reversed(children):
             if child.poll() is None:
                 os.killpg(child.pid, signal.SIGINT)

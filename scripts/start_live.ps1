@@ -6,7 +6,7 @@ param(
     [ValidateRange(0,86400)][int]$Seconds = 0,
     [ValidateRange(1,30)][int]$FPS = 10,
     [ValidateRange(1,200)][int]$Lines = 50,
-    [switch]$Record, [switch]$NoGui, [switch]$CheckOnly
+    [switch]$Record, [switch]$Video, [switch]$NoGui, [switch]$CheckOnly
 )
 $ErrorActionPreference = 'Stop'
 if (($Sensor -eq 'camera' -and $Algorithm -in @('icp','kiss')) -or
@@ -38,6 +38,7 @@ $taskCheck = $taskCheck.Replace('""ROS_BRIDGE_READY""','"ROS_BRIDGE_READY"')
 if ($Algorithm -eq 'kiss') {
     $taskCheck += "`n.cache/kiss-venv/bin/python -c 'import kiss_icp; print(1)'`n"
 }
+if ($Video) { $taskCheck += "`ncommand -v ffmpeg`ncommand -v ffprobe`ncommand -v Xvfb`n" }
 [System.IO.File]::WriteAllText($taskCheckPath,$taskCheck.Replace("`r`n","`n"),[System.Text.UTF8Encoding]::new($false))
 try {
     & wsl.exe -d Ubuntu-22.04 -- bash "$taskLinuxRoot/.cache/$taskCheckName"
@@ -63,7 +64,7 @@ $taskOutput = Join-Path $taskRoot "data\$taskName"
 $taskLinuxSession = "$taskLinuxRoot/data/$taskName"
 $taskConfig = @{
     sensor=$Sensor; algorithm=$Algorithm; session_type=$SessionType; seconds=$Seconds
-    fps=$FPS; lines=$Lines; emitter=$Emitter; record=[bool]$Record; no_gui=[bool]$NoGui
+    fps=$FPS; lines=$Lines; emitter=$Emitter; record=[bool]$Record; video=[bool]$Video; no_gui=[bool]$NoGui
     serial_port=$taskPort; port=17635; domain=83
     windows_session=$taskOutput; linux_session=$taskLinuxSession
     token=[guid]::NewGuid().ToString('N')
@@ -72,7 +73,7 @@ if ($Sensor -eq 'lidar') { $taskConfig.port=17636; $taskConfig.domain=84 }
 $taskConfigPath = Join-Path $taskOutput 'config.json'
 [System.IO.File]::WriteAllText($taskConfigPath,($taskConfig | ConvertTo-Json),[System.Text.UTF8Encoding]::new($false))
 $taskHashes = @{}
-foreach ($taskSource in @('start_live.ps1','live_windows.py','live_ros.py','live_transport.py','live_metrics.py','live_kiss_worker.py','protocol_l2.py')) {
+foreach ($taskSource in @('start_live.ps1','live_windows.py','live_ros.py','live_transport.py','live_metrics.py','live_kiss_worker.py','record_rviz.py','protocol_l2.py')) {
     $taskHashes["scripts/$taskSource"] = (Get-FileHash -LiteralPath (Join-Path $PSScriptRoot $taskSource) -Algorithm SHA256).Hash.ToLowerInvariant()
 }
 foreach ($taskView in Get-ChildItem -LiteralPath (Join-Path $taskRoot 'configs\rviz') -Filter '*.rviz') {
@@ -93,12 +94,13 @@ try {
     Write-Output "Session: $taskOutput"
     & $taskPython (Join-Path $PSScriptRoot 'live_windows.py') $taskConfigPath
     $taskCaptureExit = $LASTEXITCODE
-    if (-not $taskHelper.WaitForExit(20000)) { throw 'Bridge shutdown timed out; inspect session logs.' }
+    if (-not $taskHelper.WaitForExit(40000)) { throw 'Bridge shutdown timed out; inspect session logs.' }
     if ($taskCaptureExit -ne 0) { throw "Capture failed; inspect $taskOutput\live-capture.json" }
     $taskResult = Get-Content -LiteralPath (Join-Path $taskOutput 'live-result.json') -Raw | ConvertFrom-Json
     if ($taskResult.status -eq 'failed') { throw "Bridge failed; inspect $taskOutput\live-result.json and bridge.stderr.log" }
     Write-Output "ROS observations=$($taskResult.source_observations), poses=$($taskResult.odometry_messages), lost fraction=$($taskResult.lost_status_fraction)"
     Write-Output 'This receipt is not a precision acceptance. Use the declared stationary/motion protocol in docs/TEST_PLAN.zh-CN.md.'
+    if ($Video) { Invoke-Item -LiteralPath (Join-Path $taskOutput 'rviz-live.mp4') }
 } finally {
     if ($taskHelper -and -not $taskHelper.HasExited) {
         # Only the helper we launched; never stop another WSL/ROS session.

@@ -12,6 +12,7 @@
 | 测主分支 DUFOMap/BeautyMap/ConceptGraphs/HOV-SG，以后准备合入 | [主分支适配与合入门槛](docs/MAIN_INTEGRATION.zh-CN.md) |
 | 环境丢失、Shell/串口/RViz 出错 | [环境与排错](docs/ENVIRONMENT.zh-CN.md) |
 | 查本次确实运行了什么 | [实时入口验证](docs/LIVE_VALIDATION.zh-CN.md) |
+| 一行自动录制相机算法视频 | [简易录像](docs/SIMPLE_RECORDING.zh-CN.md) |
 | 查整理范围、旧实验和脚本用途 | [清理记录](docs/CLEANUP.zh-CN.md)、[历史资料](docs/archive/INDEX.zh-CN.md) |
 
 ## 最短启动方式

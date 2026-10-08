@@ -92,7 +92,15 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Persona
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Personal-Learning-Physical\scripts\test_camera_stationary.ps1 -Seconds 20
 ```
 
-它录制→核验原始回放→导出双目→运行离线算法→打开视频，录制时没有实时窗口。实时脚本保存数据和数值，不自动录制 RViz 桌面；需视频时用本机录屏工具录制完整 RViz 窗口，并注明 LIVE 和算法名。
+它录制→核验原始回放→导出双目→运行离线算法→打开视频，录制时没有实时窗口。
+
+**简单自动录像：** 加 `-Video` 会录制一个独立、固定布局的 RViz 实时视图，保存 `rviz-live.mp4`，结束后自动打开。`-Record` 同时保留原始相机数据；`-NoGui` 用于只录像、减少窗口。最简单的 30 秒 RGB-D 演示命令是：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Personal-Learning-Physical\scripts\start_live.ps1 -Sensor camera -Algorithm rgbd -Seconds 30 -Video -Record -NoGui
+```
+
+录像显示 RGB、深度、点云、轨迹和真实跟踪状态，无音频。独立录像视图不跟随另一个 RViz 窗口的鼠标操作；开头/结束包括启动和收尾，文件时长会略长于 30 秒数据。`video.json` 保存编码检查；演示不要求复杂场地，近物、空洞和 LOST 如实保留。当前录制示例见[简易录像](SIMPLE_RECORDING.zh-CN.md)。
 
 ORB-SLAM3 Stereo/RGB-D 是后续对照，**本分支还没有安装与实测其入口**。应呈现特征、跟踪状态、轨迹与稀疏关键帧地图，不能期待彩色稠密房间；当前 D435 不具备其惯性输入条件。[官方实现](https://github.com/UZ-SLAMLab/ORB_SLAM3)。
 
@@ -160,6 +168,7 @@ RViz Topic QoS 设 Reliable/Volatile。修改 Fixed Frame 只改变显示参考�
 | `odometry.log` / `mapping.log` / `rviz.log` | 定位、建图、显示故障，不能只看终端最后一行 |
 | `raw.db3` / `frames.json` / `capture.json` | 仅 `-Record` 时保存；RealSense SDK 原始录像及采集清单，不是通用 ROS bag |
 | `rtabmap.db` | 仅 rgbd-slam 建图数据库；不是 RealSense 原始录像 |
+| `rviz-live.mp4` / `video.json` | 仅 `-Video`；独立 RViz 实时录像及编码/时长检查 |
 
 本入口四路硬件配置 640×480@30，但桥接主动按 `-FPS 10` **上限**抽样，SDK 对齐/跨系统复制在本机短测约 4–6 组/s，不保证达到 10 Hz。RViz 右下角渲染 FPS、ROS 图像输入率和硬件流帧率是三个指标。要验硬件 30 fps，用独立原始采集和 SDK 回放审核；不能把桥接低帧率直接算成 USB 丢帧。
 
