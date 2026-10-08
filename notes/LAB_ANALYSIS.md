@@ -2,6 +2,8 @@
 
 English | [中文](LAB_ANALYSIS.zh-CN.md) | [Index](README.md)
 
+Numbers below retain the earlier subset and exploratory records. See [new author-workflow evidence](AUTHOR_RESULTS_ANALYSIS.md) for four public releases; keep the experiments distinct.
+
 The supplied email asks for an argued open research question and a testable hypothesis, based on relevant work from roughly the past 3–5 years. Reproduction, numbers and figures should substantiate the reasoning. Deliver a carefully organized GitHub repository link by October 9 inclusive. The email does not specify a timezone or an exact final hour.
 
 ## Connecting topics 1 and 2

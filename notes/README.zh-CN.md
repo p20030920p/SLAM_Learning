@@ -23,6 +23,7 @@
 | 搞清四篇各自做了什么 | [四篇论文卡](../docs/papers/README.zh-CN.md) |
 | 对照近期工作、已有解决机制与反例 | [文献分析](../docs/LITERATURE.zh-CN.md)；其中其余工作属于阅读比较，不能说都复现过 |
 | 理解复现与 H1 的关系 | [独立研究分析](../docs/STUDY.zh-CN.md) |
+| 看新增完整作者流程怎样改变判断 | [四份公开数据与假设边界](AUTHOR_RESULTS_ANALYSIS.zh-CN.md)；新运行与旧子集记录分开阅读 |
 | 看作者表格与我们的数值差距 | [LiDAR 结果](../docs/RESULTS.zh-CN.md)、[语义范围](../docs/SEMANTIC.zh-CN.md) |
 | 理解零误差／打乱／漂移如何构造 | [配对协议](../docs/PAIRED_PROTOCOL.zh-CN.md) |
 | 看 76 主单元、21 探索对照和强基线 | [配对结果](../docs/PAIRED_RESULTS.zh-CN.md)、[分析记录](../results/reference/paired-pose/record.json) |
@@ -37,6 +38,8 @@
 | --- | --- |
 | `D:\workspace\be2\SLAM_Learning` | Windows 的 main 工作目录，老师展示内容 |
 | `D:\workspace\be2\SLAM_Personal_Guide` | 当前个人文档分支，阅读／编辑手册 |
+| `D:\workspace\be2\SLAM_Author_Originals` | 新的独立原始复现分支，固定原库与运行证据 |
+| `/home/qzl/projects/SLAM_Author_Originals` | 新原始流程的独立 WSL 环境、完整公开数据与大文件结果 |
 | `/home/qzl/projects/SLAM_Learning` | WSL 实际运行仓库，已有三个 Python 环境、数据与作者代码缓存 |
 | `D:\workspace\be2\SLAM_Recordings\2026-10-08` | 已有完整终端录屏；`rviz-review-v3/` 是图形录制原片 |
 | `D:\workspace\be2\SLAM_Home` | 自己采集的设备数据与视频，单独保存 |

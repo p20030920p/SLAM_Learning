@@ -2,6 +2,8 @@
 
 English | [中文](UPSTREAM_COMPARISON.zh-CN.md) | [Index](README.md)
 
+This compares the earlier execution layer and subsets. New independent pins, full public data and status are in the [author-originals branch](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals); see [the added analysis](AUTHOR_RESULTS_ANALYSIS.md).
+
 This repository runs, adapts, evaluates and records **author cores**. It does not reimplement all four algorithms or reproduce every paper experiment. Compare pinned snapshots and actual per-run copies; current author default branches may differ.
 
 ## Original repositories and pins

@@ -2,6 +2,8 @@
 
 [English](UPSTREAM_COMPARISON.md) | [索引](README.zh-CN.md)
 
+本文对照的是原有运行层及子集。新增独立原始流程的固定版本、完整公开数据和当前状态在 [作者复现分支](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals)；结果关联见 [新增分析](AUTHOR_RESULTS_ANALYSIS.zh-CN.md)。
+
 本库是**作者核心的运行、适配、评价与证据组织层**。它没有重写四个算法，也没有完成四篇全部实验。对照时看固定快照与每次运行的实际副本，作者仓库当前默认分支可能已经改变。
 
 ## 原库入口与固定版本
