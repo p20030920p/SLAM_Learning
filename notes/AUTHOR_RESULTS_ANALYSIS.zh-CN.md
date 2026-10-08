@@ -19,6 +19,8 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 
 新增 [DUFOMap 表 IV 消融](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DUFOMAP_TABLE4.zh-CN.md)：五组 SA/DA/AA 均与论文两位小数一致，无误差补偿时 SA 为 14.89%，完整设置为 97.96%。这确认误差补偿是已经存在的强基线；不能将“考虑位姿误差”本身写成新贡献，也不能从该消融推出 H1 已有效。H1 仍须验证迟到修正后的对象对应和查询坐标恢复。
 
+新增 [BeautyMap 表 III 与历史协议](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/KITTI_PAPER_PROTOCOL.zh-CN.md)：在作者注明的历史 benchmark 预处理、原始 GT／PCL 导出和原作者 HA 评分下，02 的 0.5/1/2 m 三组 SA/DA/HA 共 9 项匹配论文两位小数。该场景中更粗网格提高 DA、降低 SA，属于作者已有的参数取舍，不是 H1 的收益。旧评分只有 AA，核对论文 HA 时另跑原作者含 HA 的评分器；不能混用两列。01 的差距尚未解决，也不能从 02 匹配推定全部历史设置一致。
+
 ## 与 H1 的关联和界限
 
 | 新证据 | 对问题选择的作用 | 不能从中推出什么 |
@@ -26,15 +28,17 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 | 同时报告 SA、DA，半室内出现取舍 | 新机制应在匹配变化召回时比较误删风险，综合分数不足以说明错误类型 | 不能说 DA 较低一定由共享位姿误差造成 |
 | 两种方法都读取给定扫描位姿 | 明确可干预的接口是“位姿→空间对应→地图决策” | 没测 ATE/RPE，不能声称改善定位或 SLAM 轨迹 |
 | BeautyMap 用先验地图的 XYZ，GT 标签未参与清理决策 | 必须交代先验几何来源，避免把 GT 文件名和使用标签混为一谈 | 有先验地图的离线结果不能直接代表无先验在线建图 |
-| DUFOMap 默认 Python 体素结果在 0.05 m 近邻评分中 SA 明显较低 | 先排除输出表示和评价阈值的影响，再讨论误删机制 | 不能将体素中心偏移当作算法删除了同样比例的静态点 |
+| DUFOMap 同一 Python 参数：0.05 m 下原始点／体素 SA 为 99.8860/51.6256%；体素阈值改为 0.10 m 后 SA 为 98.9436% | 输出表示与评价阈值强烈影响评分；同时观察 DA，放宽阈值也改变动态点匹配 | 不能将体素低 SA 当作同等静态结构被删；Python d_p=2，与 C++ 默认 d_p=1 不同，不能把二者差异归为单一因素 |
 | room0 的 400 帧 ConceptGraphs 前端、原始映射与 RGB 表面已完成；最终地图为 77 个对象记录，原语义评价修复 CUDA 依赖后重试 | 完整空间表示与资源失败阶段可复查；作者窗口已能检查 RGB 和实例结构 | 对象记录数不是实例准确率；没有语义分数或 H1 恢复性证据 |
 | HOV-SG 的 200/200 原分辨率特征提取完成，层级合并 OOM，最终特征图未保存 | 需要区分特征提取进度与完整地图交付，当前在重试 | Replica 不提供 HM3D 多楼层层级评价；提取进度不能代替语义分数 |
 
 这批基线没有施加迟到位姿修正、没有运行 H1，也没有测对象变化后的过期时长。它们支持继续研究接口及评价取舍，尚未证明四篇论文有共同主导失效原因。
 
+[Python 输出与阈值的完整对照](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DUFOMAP_OUTPUT_AUDIT.zh-CN.md)采用原始入口和原评价；0.10 m 为单独的敏感性分析，不替换论文 0.05 m 指标，也不支持 H1 已有效。
+
 资源问题应单列。代码检查提示一个待测因素：HOV-SG 的 [合并函数](https://github.com/hovsg/HOV-SG/blob/d6e65a53c8be6faec3f01f00d1644d967f89e605/hovsg/utils/graph_utils.py#L373)接受 `voxel_size`，但该函数内没有执行体素下采样，而是追加点再运行 DBSCAN。这可能增加后续邻域计算成本；需要逐轮点数、内存/交换空间峰值和阶段耗时才能验证，当前不能断言它是全部 OOM 的原因，更不能当作 H1 的有效性证据。SAM 微批量解决的是显存压力，不保证 CPU 合并阶段可容纳完整地图。
 
-新增原始 KITTI 下载也暴露了协议差异：当前作者 50 m 预处理重建的 00 与旧发布包，141 帧点数均不同，提供的位姿也不完全相同。[下载、预处理与对照记录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DATA_ACCESS.zh-CN.md)。因此，新 01/02 结果与旧发布包分开报告；差异本身不能证明算法退化或反驳论文，也不能当作 H1 的效果。
+新增原始 KITTI 下载也暴露了协议差异：当前作者 50 m 预处理重建的 00 与旧发布包，141 帧点数均不同，提供的位姿也不完全相同。[下载、预处理与对照记录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DATA_ACCESS.zh-CN.md)。切回历史版后 141 帧点数相同，但文件仍不同，00/01 的差距仍在。因此，新版预处理、历史重建与旧发布包分别报告；差异本身不能证明算法退化或反驳论文，也不能当作 H1 的效果。
 
 在同一份新 02 输入上，DUFOMap 的 SA/DA 为 68.6114/89.2862%，BeautyMap 默认为 83.4254/84.6594%。[原始评分与三组网格结果](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/KITTI_SELECTED_RESULTS.zh-CN.md)。这里出现了更明显的静态保留问题，可作为配对干预候选；仍须固定观测与评价协议，分别干预位姿、可见性和参数，不能从跨场景分数直接确定原因。
 
