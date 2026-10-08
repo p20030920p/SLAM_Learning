@@ -120,7 +120,7 @@ def main():
         execute("prepare-3d", [sys.executable, str(args.repo / "scripts/prepare_identity_3d.py"),
                                "--run", str(args.output / "mapping"), "--data", str(args.data),
                                "--output", str(args.output / "view-3d")])
-        execute("saved-map-rviz", ["bash", str(args.repo / "scripts/record_visual_review.sh"),
+        execute("saved-map-rviz", ["env", "ROS_DOMAIN_ID=83", "bash", str(args.repo / "scripts/record_visual_review.sh"),
                                    str(args.output / "view-3d/manifest.json")], recorded=True)
         record["status"] = "executed"
     except Exception as error:

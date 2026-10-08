@@ -4,7 +4,7 @@ set -eo pipefail
 manifest=$(realpath "$1")
 scripts=$(cd "$(dirname "$0")" && pwd)
 source /opt/ros/humble/setup.bash
-export ROS_DOMAIN_ID=71
+export ROS_DOMAIN_ID="${ROS_DOMAIN_ID:-71}"
 export ROS_LOCALHOST_ONLY=1
 export LIBGL_ALWAYS_SOFTWARE=1
 export QT_X11_NO_MITSHM=1
