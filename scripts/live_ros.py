@@ -1,5 +1,6 @@
 """Local WSL ROS receiver, algorithm supervisor and measured live diagnostics."""
 import argparse
+from array import array as byte_array
 from collections import deque
 import json
 import os
@@ -49,7 +50,7 @@ def cloud_message(xyzi, frame, ns, rgb=False):
                     for i, name in enumerate(names)]
     value.point_step = 16
     value.row_step = 16 * len(xyzi)
-    value.data = np.asarray(xyzi, dtype="<f4").tobytes()
+    value.data = byte_array("B", np.asarray(xyzi, dtype="<f4").tobytes())
     return value
 
 
@@ -157,7 +158,7 @@ class Receiver(Node):
         message.encoding = encoding
         message.step = array.strides[0]
         message.is_bigendian = False
-        message.data = array.tobytes()
+        message.data = byte_array("B", array.tobytes())
         self.images[key].publish(message)
 
     def camera(self, metadata, arrays):

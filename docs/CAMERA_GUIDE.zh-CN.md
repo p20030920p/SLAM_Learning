@@ -170,7 +170,7 @@ RViz Topic QoS 设 Reliable/Volatile。修改 Fixed Frame 只改变显示参考�
 | `rtabmap.db` | 仅 rgbd-slam 建图数据库；不是 RealSense 原始录像 |
 | `rviz-live.mp4` / `video.json` | 仅 `-Video`；独立 RViz 实时录像及编码/时长检查 |
 
-本入口四路硬件配置 640×480@30，但桥接主动按 `-FPS 10` **上限**抽样，SDK 对齐/跨系统复制在本机短测约 4–6 组/s，不保证达到 10 Hz。RViz 右下角渲染 FPS、ROS 图像输入率和硬件流帧率是三个指标。要验硬件 30 fps，用独立原始采集和 SDK 回放审核；不能把桥接低帧率直接算成 USB 丢帧。
+本入口四路硬件配置 640×480@30，但桥接主动按 `-FPS 10` **上限**抽样，旧入口在本机短测约 4–6 组/s；改用 ROS 原生字节数组后，最新 15 秒预览约 8.19 组/s，仍不保证达到 10 Hz。RViz 右下角渲染 FPS、ROS 图像输入率和硬件流帧率是三个指标。要验硬件 30 fps，用独立原始采集和 SDK 回放审核；不能把桥接低帧率直接算成 USB 丢帧。离线 10 Hz 对照及未通过项见[无人值守回放](OFFLINE_REPLAY.zh-CN.md)。
 
 `pose_output_fraction` 包括算法失败位姿，和 lost 一起看；`valid_pose_output_fraction` 剔除原生里程计的失败协方差标记，`...after_first_2s` 将初始化单列。它仍只是算法自报可用性，不能替代独立精度。RGB-D 近似同步可能选 RGB 或深度时间戳，覆盖按两者之一在 1 微秒内一一匹配。
 

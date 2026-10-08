@@ -1,0 +1,81 @@
+--- a/scripts/run_odometry_baseline.py
++++ b/scripts/run_odometry_baseline.py
+@@ -4,8 +4,6 @@
+ Input stamps and stereo calibration are preserved; replay uses /clock.
+ """
+ import argparse
+-from array import array as byte_array
+-import hashlib
+ import json
+ import os
+ from pathlib import Path
+@@ -71,7 +69,6 @@
+              "--ros-args","-r",f"__node:={name}","--params-file",str(parameter_file)]
+     algorithm_name={"stereo":"stereo","rgbd":"RGB-D","lidar":"ICP"}[args.mode]
+     result={"status":"running","algorithm":f"RTAB-Map {algorithm_name} odometry (F2M)",
+-            "script_sha256":hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+             "mode":args.mode,"observer_version":2,
+             "dataset":str(args.dataset.resolve()),"source_sha256":dataset["source_sha256"],
+             "input_duration_s":pairs[-1]["stamp_s"]-pairs[0]["stamp_s"],
+@@ -88,7 +85,7 @@
+     if args.session_type=="motion":
+         result.update(ground_truth="Operator-selected motion session; no independent pose or metric reference",
+                       scope="Moving stereo/ICP odometry replay only; no loop-closure node or motion accuracy acceptance")
+-    rows=[]; poses=[]; sent={}; published=0; last_map=None; publish_timing=[]
++    rows=[]; poses=[]; sent={}; published=0; last_map=None
+     log=(args.output/"node.log").open("w")
+     process=None; node=None; executor=None; spin_thread=None
+     rclpy.init()
+@@ -164,7 +161,7 @@
+                 info.p=[i["fx"],0.0,i["ppx"],-i["fx"]*dataset["baseline_m"] if side=="right" else 0.0,
+                         0.0,i["fy"],i["ppy"],0.0,0.0,0.0,1.0,0.0]
+                 msg=Image(); msg.header=info.header; msg.height=image.shape[0]; msg.width=image.shape[1]
+-                msg.encoding="mono8"; msg.step=msg.width; msg.data=byte_array("B",image.tobytes())
++                msg.encoding="mono8"; msg.step=msg.width; msg.data=image.tobytes()
+                 pubs[side][1].publish(info); pubs[side][0].publish(msg)
+             if args.mode=="rgbd":
+                 color=cv2.imread(str(args.dataset/row["color"]))
+@@ -182,7 +179,7 @@
+                 for key,data,encoding,step in (("rgb",color,"bgr8",color.shape[1]*3),
+                                                ("depth",depth,"32FC1",depth.shape[1]*4)):
+                     msg=Image(); msg.header=info.header; msg.height=data.shape[0]; msg.width=data.shape[1]
+-                    msg.encoding=encoding; msg.step=step; msg.data=byte_array("B",data.tobytes())
++                    msg.encoding=encoding; msg.step=step; msg.data=data.tobytes()
+                     pubs[key][0].publish(msg)
+             if args.mode=="lidar":
+                 with np.load(args.dataset/row["cloud"]) as cloud:
+@@ -191,24 +188,13 @@
+                 msg.height=1; msg.width=len(xyzi); msg.is_dense=True; msg.is_bigendian=False
+                 msg.fields=[PointField(name=field,offset=i*4,datatype=PointField.FLOAT32,count=1)
+                             for i,field in enumerate(("x","y","z","intensity"))]
+-                msg.point_step=16; msg.row_step=16*len(xyzi); msg.data=byte_array("B",xyzi.tobytes())
++                msg.point_step=16; msg.row_step=16*len(xyzi); msg.data=xyzi.tobytes()
+                 pubs["cloud"][0].publish(msg)
+             published+=1
+-            completed=time.monotonic()
+-            publish_timing.append({"index":published-1,"stamp_ns":ns,
+-                "scheduled_elapsed_s":(row["stamp_s"]-pairs[0]["stamp_s"])/args.speed,
+-                "publish_completed_elapsed_s":completed-wall_start,
+-                "deadline_lateness_s":max(0.0,completed-due)})
+             if published%100==0:
+                 print(f"published={published}/{len(pairs)} statuses={len(rows)} poses={len(poses)}",flush=True)
+             if process.poll() is not None:
+                 raise RuntimeError(f"Odometry process exited {process.returncode}")
+-        result["wall_publish_s"]=time.monotonic()-wall_start
+-        if len(publish_timing)>1:
+-            intervals=np.diff([r["publish_completed_elapsed_s"] for r in publish_timing])
+-            result["actual_publish_hz"]=(len(publish_timing)-1)/(publish_timing[-1]["publish_completed_elapsed_s"]-publish_timing[0]["publish_completed_elapsed_s"])
+-            result["publish_interval_s"]={"median":float(np.median(intervals)),"p95":float(np.percentile(intervals,95))}
+-            result["publish_deadline_lateness_max_s"]=max(r["deadline_lateness_s"] for r in publish_timing)
+         deadline=time.monotonic()+10
+         while time.monotonic()<deadline and (len(rows)<published or len(poses)<published):
+             time.sleep(0.05)
+@@ -288,7 +274,7 @@
+         result["timing_gate"]={"input_period_s":period,"compute_p95_below_period":bool(rows and result["time_estimation_s"]["p95"]<period),
+                                "callback_latency_p95_below_two_periods":bool(rows and result["latency_s"]["p95"]<period*2),
+                                "note":"Observed software replay, not sensor acquisition latency or an unloaded benchmark"}
+-        for name,value in (("result.json",result),("status.json",rows),("poses.json",poses),("publish-timing.json",publish_timing)):
++        for name,value in (("result.json",result),("status.json",rows),("poses.json",poses)):
+             (args.output/name).write_text(json.dumps(value,indent=2,allow_nan=False)+"\n")
+     print(json.dumps(result,indent=2))
+     return int(result["status"]!="evaluated")

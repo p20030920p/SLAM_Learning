@@ -43,3 +43,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Persona
 下一段只需简单动作：先停 5 秒→慢慢向左右各移少量→回原处停 5 秒。若要测“物体被移动”，相机要固定，单独把一个盒子移到新位置，并记动作时刻；两类动作分开录，避免混淆相机运动和物体运动。不同动作的正式预期与指标见[测试计划](TEST_PLAN.zh-CN.md)。
 
 录像和原始室内画面留本机 data，不推送到 GitHub；可复用脚本、说明和轻量数字记录随本分支保存。
+
+## 无需现场操作的后续对照
+
+已有录像可以直接重复算法并保存视频，不必重新摆放或手持相机。[无人值守回放](OFFLINE_REPLAY.zh-CN.md)给出了 SDK 对齐 RGB-D 导出、Linux 输入暂存、5/10 Hz 实际送帧与覆盖率检查。新实机短录像为 `data/live-camera-20261009-021748-685/rviz-live.mp4`，约 19.5 秒，预览级，不评移动精度。
