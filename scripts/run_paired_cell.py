@@ -295,7 +295,7 @@ def main():
     parser.add_argument("--errors", type=Path, required=True)
     parser.add_argument("--source", type=Path)
     parser.add_argument("--text-features", type=Path)
-    parser.add_argument("--threshold", type=float)
+    parser.add_argument("--threshold", type=json.loads)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     output = args.output.resolve()

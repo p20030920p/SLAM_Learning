@@ -104,6 +104,11 @@ def main():
     parser.add_argument("--resume", type=Path)
     parser.add_argument("--methods", nargs="+", default=["dufomap", "beautymap", "conceptgraphs", "hovsg"])
     parser.add_argument("--references-only", action="store_true")
+    parser.add_argument(
+        "--aggregate-only",
+        action="store_true",
+        help="Verify completed cells without executing or changing them",
+    )
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     output = (
@@ -111,7 +116,7 @@ def main():
     ).resolve()
     record = json.loads((output / "record.json").read_text()) if args.resume else prepare(root, output)
     for name, expected in record["source_code"].items():
-        if digest(root / name) != expected:
+        if not args.aggregate_only and digest(root / name) != expected:
             raise ValueError("Source changed after protocol preparation: " + name)
     for relative in ("configs/paired_pose.json", "annotations/room0/targets.json"):
         if digest(root / relative) != digest(output / "inputs" / relative):
@@ -140,6 +145,8 @@ def main():
             if previous["status"] != "executed" or problems:
                 raise ValueError(f"Refusing to overwrite failed or changed cell {cell['id']}: {problems}")
             continue
+        if args.aggregate_only:
+            raise ValueError("Aggregation requires every selected cell to be complete: " + cell["id"])
         env_name = {
             "dufomap": ".venv",
             "beautymap": ".venv",
@@ -223,6 +230,16 @@ def main():
         completed_cells=len(measured),
         exit_code=0,
         summary={"cells": measured, "scope": record["protocol"]["scope"]},
+    )
+    record["executed_cell_script_sha256"] = sorted(
+        {
+            json.loads((output / "cells" / cell["id"] / "record.json").read_text())["script_sha256"]
+            for cell in record["cells"]
+            if (output / "cells" / cell["id"] / "record.json").is_file()
+        }
+    )
+    record["implementation_amendment"] = (
+        "CLI threshold parsing preserves JSON integer type for DUFOMap's uint d_p. Primary cells have no threshold override; original code snapshot and each actual cell script hash are retained."
     )
     for path in output.rglob("*"):
         if not path.is_file() or "cells" in path.relative_to(output).parts or path.name == "record.json":
