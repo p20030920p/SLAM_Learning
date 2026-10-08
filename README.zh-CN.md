@@ -2,6 +2,8 @@
 
 从空白分支开始的本机实物传感器学习与验证。目录：`D:\workspace\be2\Personal-Learning-Physical`。
 
+**最新算法实测：** 已用真实录制运行 RTAB-Map Stereo 和 L2 纯点云 ICP。约 58 秒双目静止基线收齐 576/576 输出，最大偏离 0.286 mm／0.093°，通过静止目标；L2 50 线 ICP 收齐 250/250 输出，但偏离 19.05 cm／16.11°，静止精度失败。不能将静止结果称为移动定位精度。[结果、视频、预期与复现命令](docs/BASELINE_RESULTS.zh-CN.md)。
+
 本分支为独立工作树中的 **orphan 分支**，没有复制主分支内容。主仓库为 `../SLAM_Learning`，检查时主分支提交为 `354b02d69ccc90304174f6d36010d25043d739ca`。当前只做本地提交，不推送、不合并。
 
 ## 已确认的设备
@@ -65,6 +67,6 @@ git -C .cache/unilidar_sdk2 checkout 0e3c51f512e6b8ff60b8c32f160b412cb48445c2
 - 最新静止相机预览：`data/static-20261008-221334/camera/preview.mp4`
 - 最新静止 L2 预览：`data/static-20261008-221334/l2/preview.mp4`
 
-当前预览都是实际接收数据的可视化，没有执行 SLAM。双设备并发测试另存于 `data/link-*`，结果见 `evidence/concurrent-link.json`。
+以上 `camera/preview.mp4`、`l2/preview.mp4` 是原始采集预览。新增算法输出视频和统计另见 [实际基线报告](docs/BASELINE_RESULTS.zh-CN.md)。双设备并发测试另存于 `data/link-*`，结果见 `evidence/concurrent-link.json`。
 
 测试源码本地提交保存；硬件采集大文件不会出现在提交中。[当前完成与待解决项](docs/HARDWARE_STATUS.zh-CN.md)。

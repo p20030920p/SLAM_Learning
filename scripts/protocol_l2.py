@@ -92,6 +92,11 @@ def points(packet):
     return out[(raw > 0) & (distance >= max(0, rmin)) & (distance <= min(100, rmax))]
 
 
-def version_request():
-    body = MAGIC + struct.pack("<II2I", 100, 32, 3, 0)
+def user_command(command, value=0):
+    """SDK2 volatile user control packet; caller must document hardware writes."""
+    body = MAGIC + struct.pack("<II2I", 100, 32, command, value)
     return body + struct.pack("<II2s2s", zlib.crc32(body[12:]), 0, b"\0\0", b"\0\xff")
+
+
+def version_request():
+    return user_command(3)

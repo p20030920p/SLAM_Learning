@@ -1,0 +1,7 @@
+{
+  "run": "data/rtabmap-stereo-static-01",
+  "accepted_for_validation": false,
+  "reason": "Observer stopped when status messages were complete without waiting for all pose callbacks; 576 status but 485 pose messages. Single-threaded replay with per-callback disk writes caused observer delays. Its static_gate_passed=true did not check pose coverage and is invalid.",
+  "correction": "Version 2 receives on a separate executor, saves maps after reception, waits for both topics and checks unique timestamp coverage for both. Original v1 files retained. Accepted re-run is data/rtabmap-stereo-static-02.",
+  "scope": "Harness defect; v1 callback latency cannot be attributed to the algorithm. Version 2 is still a loaded-host software replay, not acquisition latency or full-rate camera benchmark."
+}

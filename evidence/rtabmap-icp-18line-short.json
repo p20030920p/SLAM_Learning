@@ -1,0 +1,78 @@
+{
+  "status": "evaluated",
+  "algorithm": "RTAB-Map ICP odometry (F2M)",
+  "mode": "lidar",
+  "observer_version": 2,
+  "dataset": "/mnt/d/workspace/be2/Personal-Learning-Physical/data/l2-clouds-static-01",
+  "source_sha256": "c79cc1fd24c7e01566416a2867f603229e9a948c32ad26304da3188b817c1749",
+  "input_duration_s": 2.4223108291625977,
+  "requested_pairs": 30,
+  "replay_speed": 1,
+  "command": [
+    "ros2",
+    "run",
+    "rtabmap_odom",
+    "icp_odometry",
+    "--ros-args",
+    "-r",
+    "__node:=physical_icp_odometry",
+    "--params-file",
+    "data/rtabmap-icp-smoke/requested-parameters.yaml"
+  ],
+  "base_frame": "lidar: official SDK XYZ",
+  "ground_truth": "User-confirmed stationary; no external pose or metric range reference",
+  "scope": "Static stability only, not moving SLAM or loop closure validation",
+  "wall_replay_s": 12.45490589999963,
+  "published_pairs": 30,
+  "status_messages": 18,
+  "odometry_messages": 18,
+  "lost_status_fraction": 0.0,
+  "status_output_fraction": 0.6,
+  "pose_output_fraction": 0.6,
+  "observed_output_fraction": 0.6,
+  "features": {
+    "median": 0.0,
+    "p95": 0.0
+  },
+  "inliers": {
+    "median": 0.0,
+    "p95": 0.0
+  },
+  "time_estimation_s": {
+    "median": 0.08838009834289551,
+    "p95": 0.10573107004165648
+  },
+  "latency_s": {
+    "median": 0.10658117900015895,
+    "p95": 0.1245877655004051
+  },
+  "icp_inliers_ratio": {
+    "median": 0.6268996894359589,
+    "p95": 0.7168115586042404
+  },
+  "icp_correspondences": {
+    "median": 1050.5,
+    "p95": 1144.75
+  },
+  "valid_pose_count": 17,
+  "high_covariance_pose_count": 1,
+  "pose_filter_note": "Initial/high-covariance discontinuity poses excluded; lost status separately counted",
+  "static_translation_max_m": 0.1141017092574003,
+  "static_translation_final_m": 0.1141017092574003,
+  "static_rotation_max_deg": 5.545578612775852,
+  "static_rotation_final_deg": 5.353467187537853,
+  "static_gate": {
+    "max_translation_m": 0.05,
+    "max_rotation_deg": 2.0,
+    "loss_fraction": 0.0,
+    "minimum_output_fraction": 0.99,
+    "note": "Project engineering target, not device specification or ATE"
+  },
+  "static_gate_passed": false,
+  "timing_gate": {
+    "input_period_s": 0.08352795962629647,
+    "compute_p95_below_period": false,
+    "callback_latency_p95_below_two_periods": true,
+    "note": "Observed software replay, not sensor acquisition latency or an unloaded benchmark"
+  }
+}
