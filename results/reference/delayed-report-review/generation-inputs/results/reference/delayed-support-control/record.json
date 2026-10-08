@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "kind": "posthoc_delayed_support_analysis",
+  "status": "executed",
+  "exit_code": 0,
+  "finished_at": "2026-10-08T18:07:00+00:00",
+  "primary_analysis_sha256": "9ed7f9333400f0923e2b53880d39ce7c260f83f2e169b9c27d3be58561e0ec03",
+  "summary": [
+    {
+      "rms_m": 0.1,
+      "Fixed history / support 3": {
+        "prefix_coverage": 0.614330826286411,
+        "prefix_recovery": 0.4444444444444444,
+        "prefix_query_hit": 0.4444444444444444,
+        "map_objects": 14.666666666666666
+      },
+      "Fixed history / support 1*": {
+        "prefix_coverage": 0.8755032848725733,
+        "prefix_recovery": 1.0,
+        "prefix_query_hit": 0.8888888888888888,
+        "map_objects": 100.33333333333333
+      },
+      "Oracle reassociation / support 3": {
+        "prefix_coverage": 0.8817326379725082,
+        "prefix_recovery": 0.6666666666666666,
+        "prefix_query_hit": 0.6666666666666666,
+        "map_objects": 25.0
+      }
+    },
+    {
+      "rms_m": 0.3,
+      "Fixed history / support 3": {
+        "prefix_coverage": 0.15867835701967914,
+        "prefix_recovery": 0.1111111111111111,
+        "prefix_query_hit": 0.1111111111111111,
+        "map_objects": 8.333333333333334
+      },
+      "Fixed history / support 1*": {
+        "prefix_coverage": 0.8703665362688088,
+        "prefix_recovery": 1.0,
+        "prefix_query_hit": 0.7777777777777777,
+        "map_objects": 117.0
+      },
+      "Oracle reassociation / support 3": {
+        "prefix_coverage": 0.8817326379725082,
+        "prefix_recovery": 0.6666666666666666,
+        "prefix_query_hit": 0.6666666666666666,
+        "map_objects": 25.0
+      }
+    }
+  ],
+  "artifacts": {
+    "measurements.csv": {
+      "sha256": "5169a19b2609914d8178ed7b7a812f08a9f90d12ab844477abb2387941d3daab",
+      "bytes": 1004,
+      "availability": "portable"
+    },
+    "summary.json": {
+      "sha256": "b97c45624401dd78ebd3280474b456b48fe1647d9bd936eee2783fe5aaf5ed0d",
+      "bytes": 1464,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-417/artifact-manifest.json": {
+      "sha256": "f4f6a51fdc00f9980ff4a9e0315fdff14e9e55af9fe2ed66a2a8d49abee19495",
+      "bytes": 1454,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-417/decision-trace.json": {
+      "sha256": "bab580b96d5db7b8bd188f3e2062328adc338387985191566adea430c6e66cf5",
+      "bytes": 6445,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-417/record.json": {
+      "sha256": "c96d3ca29663f5519a068e5c6bb4d1026fab07e3f24eb750cdc8d5e2d64f194f",
+      "bytes": 6332,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-417/stage-08.json": {
+      "sha256": "8d40094a3f448f7db232dc01ac2a6a8aa6c34bdd8d4c0d6dae247aa02c70367f",
+      "bytes": 1513,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-417/stage-12.json": {
+      "sha256": "a3df27944d9f7c2a2f0dddca494ef7a292b277d5b75d4666653699180bdf86a5",
+      "bytes": 1900,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-417/stage-16.json": {
+      "sha256": "2821bf85f55832183835a381559ec5c589881f220c1c6a112b910af1426427d2",
+      "bytes": 1885,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-518/artifact-manifest.json": {
+      "sha256": "7740ff4726a7e68894af598b1cda4bac99d4f28b6b437f6b53e7abc7da1dc5b1",
+      "bytes": 1454,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-518/decision-trace.json": {
+      "sha256": "a6c1e70db7bd8a277aba3009ceeab9e1542c20fec1ef442fd8e2466bc3871f55",
+      "bytes": 6415,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-518/record.json": {
+      "sha256": "83ef49a10346f6cd2117324a27255c20de62f14d0af2e97be1395245bc1cc2d6",
+      "bytes": 6285,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-518/stage-08.json": {
+      "sha256": "3c1816bb44acf18253502f9cfa3800080b248aa008ad263774d4cbdb03185bd8",
+      "bytes": 1481,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-518/stage-12.json": {
+      "sha256": "8ac8b48f4c8aa63c0cbd693b56a9753cec03ed01efcedb536504bc2b98889d84",
+      "bytes": 1885,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-518/stage-16.json": {
+      "sha256": "7fdeb8993c841c4ecec47d6173af2170e690f803677a6d5028f202b152d9ce9c",
+      "bytes": 1884,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-619/artifact-manifest.json": {
+      "sha256": "576a5d1c351c8fb74a4c1a49ba5a5873e01170e518d8dbbf6f992add30db7769",
+      "bytes": 1454,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-619/decision-trace.json": {
+      "sha256": "776a1cdd041f8ef47bc974d6af81d755b1729b90b6ebdead76fa233b7d1427bb",
+      "bytes": 6441,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-619/record.json": {
+      "sha256": "75951ec8d785eed26567e7fbc68b25c8c9496299e62592966b8eb13838c3a81b",
+      "bytes": 6286,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-619/stage-08.json": {
+      "sha256": "9c5d0225f9a3aa73b39a119d4903ecec26e24402de288bcce7cc3168c6bf095b",
+      "bytes": 1483,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-619/stage-12.json": {
+      "sha256": "8118ff1a30332cf915b8a2380d52517a7783ea14a6899567b71ffc896f182580",
+      "bytes": 1886,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.10-619/stage-16.json": {
+      "sha256": "4ffde9f9432b37e27dfd77828a96c4ff41c7a4cd6b9db92a1e658fc23877044c",
+      "bytes": 1882,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-417/artifact-manifest.json": {
+      "sha256": "dcaee9329d3d51ac3e265d95ca3d9e2584038f0d16541b429337dd026b7d5150",
+      "bytes": 1454,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-417/decision-trace.json": {
+      "sha256": "9c5dfc456a916a9e6e75b098765ef1598bc5082bc6d19adec7fad6125e3faf41",
+      "bytes": 6444,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-417/record.json": {
+      "sha256": "1312f9c2b9d293173ed21adf1ddea02af7a7cd5b6c70c7c70761b2783f8b49bf",
+      "bytes": 6332,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-417/stage-08.json": {
+      "sha256": "9d1bdb582e2783e75e45badac2ac5ba0e78a3db1f3d1ae48fad2d319a8077ca2",
+      "bytes": 1513,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-417/stage-12.json": {
+      "sha256": "563417f4e75bb20e61689f09502156ea9b6db47c4a0eb380c2c96044a8b354bb",
+      "bytes": 1900,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-417/stage-16.json": {
+      "sha256": "2187d894b6aeada04000fcd0d539ad295946f5d60d00ea104b02c159e34edd96",
+      "bytes": 1885,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-518/artifact-manifest.json": {
+      "sha256": "3e0e35129d8e0c9075624af47609cfb5a2cad78729d78b1e21930f33e5adcb4a",
+      "bytes": 1454,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-518/decision-trace.json": {
+      "sha256": "8e8621b6d8b50c781e57d5578969c37c3acd2f8e514d17432cc0fc44066cd2a3",
+      "bytes": 6446,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-518/record.json": {
+      "sha256": "a47a0e473cb24edd58f76b1783cbc6d4183bfb14f06876a39c8e264815e09c7c",
+      "bytes": 6289,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-518/stage-08.json": {
+      "sha256": "9ce198d3661ead6cec5bd4ec4442c89a90296961288b9bc43bc2a0485f1e0017",
+      "bytes": 1483,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-518/stage-12.json": {
+      "sha256": "f851da4ede3e341c718e1bb2444bbe73fb7d3953532eb3ee3f53285e50b196d7",
+      "bytes": 1887,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-518/stage-16.json": {
+      "sha256": "b347a26c0b9bc3f5ffc391f9e1eda1fe67d17041616ab6440abb61b8b2874e7b",
+      "bytes": 1884,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-619/artifact-manifest.json": {
+      "sha256": "1770578a5e212f3e4cdb02a3b94208745af2a48b6eeb7c6b216980633b6aafbb",
+      "bytes": 1454,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-619/decision-trace.json": {
+      "sha256": "fe2c7dd1102151e9bc97a9ccb8904fc7d3bf88feea60615c4b9ad07e0639fc21",
+      "bytes": 6449,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-619/record.json": {
+      "sha256": "3e0ddd058a19f409f620bbab3ee9de33f4a2bace78a162c5b4843136a68f985f",
+      "bytes": 6336,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-619/stage-08.json": {
+      "sha256": "4cd31b47ef447ff98d635fc25d1b06cf6e7d7de229ee17c7c9025fbf9cb8c03d",
+      "bytes": 1516,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-619/stage-12.json": {
+      "sha256": "4510559ca8839a2f8dd610c1f2ab1bc786bdc1e4bb6168a8dc12651110d2f82e",
+      "bytes": 1902,
+      "availability": "portable"
+    },
+    "cells/fixed_association-0.30-619/stage-16.json": {
+      "sha256": "f1d88f2cf5463bf0d69a5f82798fbb59441387d6be3b375fce2e11491f125436",
+      "bytes": 1883,
+      "availability": "portable"
+    },
+    "figures/support-control.png": {
+      "sha256": "7914102f4b60db17fbf07915b65a88e0a84bfd844b58515f0fa51c094cba4d1f",
+      "bytes": 135296,
+      "availability": "portable"
+    },
+    "inputs/declared-followup.json": {
+      "sha256": "6697e91f370e7c814fec469942ca19aecd8877e0eb6a0c5bf89cf3c1f79873de",
+      "bytes": 954,
+      "availability": "portable"
+    },
+    "inputs/executed-adapter.py": {
+      "sha256": "20917f587de34c0f457526e3af685a4b9228682a3bbb367644cd17129674e0e8",
+      "bytes": 21552,
+      "availability": "portable"
+    },
+    "inputs/executed-analysis.py": {
+      "sha256": "d3870943576828efbbb6f66f1e1010fa31c35ebf6fe590bb2ac5d4d7a27aaac3",
+      "bytes": 6981,
+      "availability": "portable"
+    },
+    "inputs/executed-metrics.py": {
+      "sha256": "259970e76499941ec1041f3c93f3dcb15b095d825f8239f298ab4a01aae9c606",
+      "bytes": 5793,
+      "availability": "portable"
+    },
+    "inputs/record.json": {
+      "sha256": "8cd0c0b79cd8c1e349a298df7961079e76061cc65f18243cc7c57524ae993049",
+      "bytes": 7505,
+      "availability": "portable"
+    }
+  }
+}

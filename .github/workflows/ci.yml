@@ -27,6 +27,8 @@ jobs:
       - run: uv run pytest -q
       - run: uv run python scripts/verify_evidence.py
       - run: uv run python scripts/verify_paired_evidence.py
+      - run: uv run python scripts/verify_delayed_evidence.py
+      - run: uv run python scripts/verify_delayed_support.py
       - run: uv run python scripts/check_docs.py
       - if: runner.os == 'Linux'
         run: bash -n scripts/setup_linux.sh scripts/run_reproduction.sh scripts/setup_semantic.sh scripts/setup_hovsg.sh

@@ -29,6 +29,8 @@ uv run pytest -q
 uv run ruff check src tests scripts
 uv run python scripts/verify_evidence.py
 uv run python scripts/verify_paired_evidence.py
+uv run python scripts/verify_delayed_evidence.py
+uv run python scripts/verify_delayed_support.py
 uv run python scripts/check_docs.py
 uv run slam-study verify results/runs/RUN_ID/record.json --full
 ```
@@ -38,5 +40,7 @@ Replace `RUN_ID` with the actual folder. Portable `results/reference` exports la
 LiDAR map proximity is 5 cm. [Results](RESULTS.md) define SA/DA denominators and direct-label versus proximity differences. AA is geometric and HA harmonic; they are not a common ranking. BeautyMap inputs physically exclude GT intensity while retaining XYZ/VIEWPOINT. ConceptGraphs uses absolute `dataset.poses`; do not apply the first-frame transform again.
 
 The 76 primary and 21 exploratory control cells have a separate [protocol](PAIRED_PROTOCOL.md), [evidence entry](../results/reference/paired-pose/record.json) and [rerun commands](PAIRED_RESULTS.md#reproduce-inspect-and-defend). Never overwrite v1 outputs.
+
+The new room1 study has 35 frozen delayed-correction cells and six separate post-hoc support controls. [Protocol and fresh-run sequence](DELAYED_PROTOCOL.md#reproduction-status) · [Results and revised H1 decision](DELAYED_RESULTS.md).
 
 Configs, source snapshots and run records pin data/weight checksums, author revisions and resource adaptations. [Sources and licenses](ATTRIBUTION.md) remain traceable. Detailed personal installation/recording/troubleshooting notes stay local. Public PDFs are record-bound generation snapshots; editing current research text does not silently rewrite them.

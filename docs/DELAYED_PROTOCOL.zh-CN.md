@@ -36,8 +36,33 @@
 
 场景静态，不能检验真实变化召回、动态目标过期时长或匹配风险—召回—延迟的前沿。正面结果仅支持下一步测试真实变化和迟到的估计位姿修正。负面结果应导致停止或修改 H1，不能悄悄换一个有利场景。
 
-## 执行状态
+## 复现状态
 
-设计已冻结，参考标注与原生执行是后续独立关卡。大输入与地图留在本地；修复须保留源码版本及失败尝试。本协议不能写成实测发现。
+已完成 35 个主单元和七项原核心等价检查，另有独立的 6 单元事后支持门槛对照。[实测结果与修订决策](DELAYED_RESULTS.zh-CN.md)与设计分开；原配置和标注封存不变。大输入与地图留在本地，实际源码版本和设置失败尝试均保留。
+
+新运行先按[复现入口](REPRODUCE.zh-CN.md)完成 ConceptGraphs 基线。`native_run` 填实际包含 `author-code` 的运行目录，`weights` 填已核验的 SAM／CLIP 权重目录。Linux／WSL 仓库根目录下，选择新的空 `study_dir`，不覆盖已有证据：
+
+```bash
+study_dir="$PWD/results/runs/delayed-local-v2"
+native_run="$PWD/results/runs/conceptgraphs-YOUR_RUN_ID"
+weights="$PWD/.cache/semantic-weights"
+.venv-semantic/bin/python scripts/fetch_delayed_scene.py --protocol configs/delayed_pose.json --output "$study_dir/data"
+.venv-semantic/bin/python scripts/seal_delayed_annotations.py --protocol configs/delayed_pose.json --annotations annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation"
+```
+
+对照原始 RGB-D 检查四张标注叠图后再封存。复跑不变文件可使用已发布多边形；人工审核后若修改标注，须另建标注／协议版本并保留旧版。检查完成后：
+
+```bash
+.venv-semantic/bin/python scripts/seal_delayed_annotations.py --protocol configs/delayed_pose.json --annotations annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation" --seal
+.venv-semantic/bin/python scripts/prepare_delayed_frontend.py --protocol configs/delayed_pose.json --annotations annotations/room1/targets.json --freeze "$study_dir/annotation/freeze.json" --data "$study_dir/data" --native-source "$native_run" --weights "$weights" --output "$study_dir/frontend"
+.venv-semantic/bin/python scripts/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/primary"
+.venv/bin/python scripts/analyze_delayed_correction.py "$study_dir/primary" --annotations-review "$study_dir/annotation" --frontend "$study_dir/frontend" --output "$study_dir/primary-export"
+.venv/bin/python scripts/verify_delayed_evidence.py --record "$study_dir/primary-export/record.json" --raw-suite "$study_dir/primary"
+.venv-semantic/bin/python scripts/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/support-control" --support-control-from "$study_dir/primary"
+.venv/bin/python scripts/analyze_delayed_support.py "$study_dir/support-control" --primary "$study_dir/primary-export" --output "$study_dir/support-export"
+.venv/bin/python scripts/verify_delayed_support.py --record "$study_dir/support-export/record.json" --primary "$study_dir/primary-export" --raw-followup "$study_dir/support-control"
+```
+
+CPU 命令使用另行安装的项目环境。用 `scripts/record_session.py` 包装原生命令可留存完整实时终端录像；本次实际命令及录制元数据已在[新实验](DELAYED_RESULTS.zh-CN.md)留档。前端提取与建图是两个录制阶段。脚本顺序执行，不修改旧实验输出。
 
 来源：[NICE-SLAM 数据准备](https://github.com/cvg/nice-slam#replica-1)、[固定 ConceptGraphs batch mapper](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/slam/cfslam_pipeline_batch.py)。

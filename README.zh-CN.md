@@ -50,9 +50,9 @@
 
 [独立分析：达到什么、未达到什么、指标与 H1 的关系](docs/STUDY.zh-CN.md) · [完整配对结果](docs/PAIRED_RESULTS.zh-CN.md) · [协议](docs/PAIRED_PROTOCOL.zh-CN.md) · [配对报告 EN](output/pdf/paired-study.en.pdf) / [中文](output/pdf/paired-study.zh-CN.pdf)
 
-## 下一项验证
+## 新场景的迟到修正实验
 
-以 ConceptGraphs 为最小对象，冻结新场景、独立标注、迟到位姿修正计划和资源预算，比较原核心、简单保护、仅修正坐标、有界回放与 oracle 全量回放。若简单方法达到相同覆盖、变化召回与延迟前沿，应否定 H1 的相应收益主张。
+**35 个冻结 room1 主单元 + 6 个独立事后对照**改变了诊断。30 cm 下，修正刚发生时，固定历史关联的几何修正恢复率为 11.1%，oracle 重新关联为 66.7%；支持门槛从 3 降至 1 后，固定历史组恢复率升至 100%，同时暴露候选从 8.3 增至 117.0。标注是部分表面，尚待独立人工复核。重新关联的必要性仍未证实；先比较身份质量与相同候选预算，再决定是否实现 H1。[新结果与决策](docs/DELAYED_RESULTS.zh-CN.md) · [报告 EN](output/pdf/delayed-study.en.pdf) / [中文](output/pdf/delayed-study.zh-CN.pdf)。
 
 D435i／Unitree L2 的[居家实验设计](docs/REAL_WORLD.zh-CN.md)从固定传感器的静止、遮挡、移动、移除开始，再测试手持重访。**尚无实物验证成绩。**
 
@@ -60,6 +60,6 @@ D435i／Unitree L2 的[居家实验设计](docs/REAL_WORLD.zh-CN.md)从固定传
 
 [最少复现命令](docs/REPRODUCE.zh-CN.md) · [论文与原始结果](docs/papers/README.zh-CN.md) · [可视化说明](docs/RECORDING.zh-CN.md) · [文档索引](docs/README.zh-CN.md)
 
-`src/`、`scripts/`、`configs/` 提供研究代码和固定设置；`results/reference/` 提供轻量原始证据与失败记录；`output/pdf/` 提供 14 份报告快照。完整数据、权重、地图和个人操作手册不进入主分支。
+`src/`、`scripts/`、`configs/` 提供研究代码和固定设置；`results/reference/` 提供轻量原始证据与失败记录；`output/pdf/` 提供 16 份报告快照。完整数据、权重、地图和个人操作手册不进入主分支。
 
 [AI 使用与研究边界](docs/DISCLOSURE.zh-CN.md) · [来源与许可](docs/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [License](LICENSE)

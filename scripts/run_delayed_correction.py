@@ -100,6 +100,7 @@ def main():
     for name, source in (("protocol.json", config_path), ("annotations.json", annotation_path),
                          ("freeze.json", args.freeze), ("source-manifest.json", args.data / "manifest.json"),
                          ("frontend-record.json", args.frontend / "record.json"),
+                         ("semantic-config.json", root / "configs/semantic.json"),
                          ("executed-adapter.py", Path(__file__)),
                          ("executed-metrics.py", root / "src/slam_learning/delayed_pose.py")):
         (args.output / name).write_bytes(source.read_bytes())
@@ -112,6 +113,18 @@ def main():
         parent = json.loads((args.support_control_from / "record.json").read_text())
         if parent["status"] != "executed" or not all(g["passed"] for g in parent["gates"].values()):
             raise ValueError("Post-hoc control requires a completed validated primary suite")
+        if parent["freeze_sha256"] != sha(args.freeze) or parent["configuration"] != config:
+            raise ValueError("Post-hoc control changed frozen primary inputs")
+        for name in ("protocol.json", "annotations.json", "source-manifest.json", "frontend-record.json",
+                     "executed-metrics.py"):
+            if sha(args.output / name) != sha(args.support_control_from / name):
+                raise ValueError(f"Post-hoc input differs from primary: {name}")
+        parent_semantic = args.support_control_from / "semantic-config.json"
+        if not parent_semantic.is_file():
+            # The original v1 primary archived this input in its adjacent source audit.
+            parent_semantic = args.support_control_from.parent / "source-audit/semantic-config.json"
+        if not parent_semantic.is_file() or sha(parent_semantic) != sha(root / "configs/semantic.json"):
+            raise ValueError("Post-hoc control requires unchanged recorded native mapping settings")
         record.update(kind="posthoc_support_control", primary_parent_sha256=sha(
             args.support_control_from / "record.json"), inherited_parent_gates=parent["gates"],
             execution_subset={"arms": ["fixed_association"], "obj_min_detections": 1,

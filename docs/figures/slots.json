@@ -732,6 +732,34 @@
         "results/reference/visual-review/record.json"
       ],
       "source_artifact": "hovsg/poster.png"
+    },
+    {
+      "id": "delayed-primary-figure",
+      "path": "results/reference/delayed-pose/figures/delayed-results.png",
+      "stage": "Delayed correction diagnostic",
+      "status": "published",
+      "caption": {
+        "en": "Frozen room1 primary comparisons: means and seed ranges; AI labels await human review.",
+        "zh": "冻结 room1 主实验：均值与种子范围；AI 标注待人工复核。"
+      },
+      "source_records": [
+        "results/reference/delayed-pose/record.json"
+      ],
+      "source_artifact": "figures/delayed-results.png"
+    },
+    {
+      "id": "delayed-support-figure",
+      "path": "results/reference/delayed-support-control/figures/support-control.png",
+      "stage": "Delayed correction diagnostic",
+      "status": "published",
+      "caption": {
+        "en": "Six separate post-hoc support controls; candidate counts are not false-positive rates.",
+        "zh": "六个独立事后支持门槛对照；候选数不是假阳性率。"
+      },
+      "source_records": [
+        "results/reference/delayed-support-control/record.json"
+      ],
+      "source_artifact": "figures/support-control.png"
     }
   ]
 }

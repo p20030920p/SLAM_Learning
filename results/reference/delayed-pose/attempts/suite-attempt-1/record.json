@@ -1,0 +1,109 @@
+{
+  "kind": "delayed_pose_correction",
+  "status": "failed",
+  "started_at": "2026-10-08T17:47:07.901782+00:00",
+  "configuration": {
+    "schema_version": 1,
+    "id": "conceptgraphs-room1-delayed-correction-v1",
+    "design_frozen_at_utc": "2026-10-08T17:28:00Z",
+    "status": "design_frozen_annotations_pending",
+    "scene": "room1",
+    "mapping_frames": [
+      0,
+      25,
+      50,
+      75,
+      100,
+      125,
+      150,
+      175,
+      200,
+      225,
+      250,
+      275,
+      300,
+      325,
+      350,
+      375
+    ],
+    "reference_frames": [
+      12,
+      137,
+      262,
+      387
+    ],
+    "correction_after_observations": 8,
+    "evaluation_observations": [
+      8,
+      12,
+      16
+    ],
+    "translation_rms_m": [
+      0.1,
+      0.3
+    ],
+    "seeds": [
+      417,
+      518,
+      619
+    ],
+    "mapping_seed": 7,
+    "error_model": "Prefix world-x Gaussian random walk, first pose fixed, normalized to prefix RMS. One exact correction of all eight historical poses after observation eight; subsequent observations use exact supplied poses. No rotations, estimated uncertainty or object motion.",
+    "arms": [
+      "native",
+      "threshold",
+      "visibility",
+      "fixed_association",
+      "oracle_replay"
+    ],
+    "native_threshold": 1.2,
+    "simple_threshold": 1.0,
+    "visibility_min_support": 0.2,
+    "visibility_min_pixels": 16,
+    "visibility_depth_tolerance_m": 0.1,
+    "reference_distance_m": 0.1,
+    "reference_coverage_min": 0.2,
+    "reference_precision_min": 0.5,
+    "annotation_policy": "Select up to four identifiable static object instances from the four raw reference RGB-D views, prioritizing cross-view identity and excluding wall/floor/ceiling. Record every visible selected instance in all reference views. Polygons, instance IDs, class queries and exclusions must be frozen before SAM/CLIP and mapper outputs are inspected. AI-assisted labels require independent human audit and do not constitute official Replica GT.",
+    "coordinate_control": "Rebuild corrected geometry using the complete native add/merge/denoise/filter event trace while forcing all historical association and postprocess membership decisions; retain original fused semantic features. This is a strong oracle geometry control, not a deployable low-memory method. Never infer irrecoverable association loss from a single rigid centroid shift.",
+    "primary_comparison": "Immediately after correction, compare fixed-association corrected geometry with native full replay at the same exact poses and frozen frontend. Use identity support/contamination, partial-surface coverage and restricted top-1 retrieval separately. Continue four and eight observations to measure persistence.",
+    "decision_rule": "A loss attributable to historical decisions requires oracle replay to improve independently annotated target recovery/identity or restricted query correctness over fixed-association geometry in at least two of three seeds at an RMS level, with no zero-error adapter mismatch. Smaller coordinate distance alone is insufficient. If simple guards match recovery, scope is narrowed; no benefit means do not implement H1 yet. One new scene and seeded interventions do not establish generalization or a common four-method bottleneck.",
+    "freeze_gate": "No native mapping until the annotation file and source RGB-D manifest hashes are bound in a second immutable freeze record. Later code repairs are logged, not silently substituted for frozen inputs."
+  },
+  "freeze_sha256": "939f87efd1b59136642817a0110f635603bfec15d9e5f41448442a0d0642c49a",
+  "cells": [],
+  "gates": {},
+  "artifacts": {
+    "protocol.json": {
+      "sha256": "2326035a4fcaf22695b08c28ba87fb94b1bcbebe83471dff3549424fadfc1640",
+      "bytes": 3095
+    },
+    "frontend-record.json": {
+      "sha256": "32b51db651435f24ae9b27b3ca3c8edbdbe6f45d7156c9482ca4250ad2845d56",
+      "bytes": 4823
+    },
+    "executed-metrics.py": {
+      "sha256": "259970e76499941ec1041f3c93f3dcb15b095d825f8239f298ab4a01aae9c606",
+      "bytes": 5793
+    },
+    "executed-adapter.py": {
+      "sha256": "e18e6415bcdad7ef51518b14432d5d8b7293f3d680db599c4abc137aa29f670a",
+      "bytes": 20517
+    },
+    "annotations.json": {
+      "sha256": "d8238220c27f29dccf073454196c54b01dfb2ece93cea34ecbcb876ba5b5b3c9",
+      "bytes": 1614
+    },
+    "source-manifest.json": {
+      "sha256": "683a603dcb5d554367e879e9b45e8ec6ee6a320b91785ca58f70efdf232990ae",
+      "bytes": 10925
+    },
+    "freeze.json": {
+      "sha256": "939f87efd1b59136642817a0110f635603bfec15d9e5f41448442a0d0642c49a",
+      "bytes": 558
+    }
+  },
+  "error": "unsupported operand type(s) for /: 'str' and 'str'",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/workspace/be2/SLAM_DelayedCorrection/scripts/run_delayed_correction.py\", line 139, in main\n    classes, _ = create_or_load_colors(cfg, cfg.color_file_name)\n  File \"/home/qzl/projects/slam-delayed-correction/frontend-v1/author-code/conceptgraph/slam/utils.py\", line 41, in create_or_load_colors\n    classes_fp = cfg['dataset_root'] / cfg['scene_id'] / f\"{filename}.json\"\nTypeError: unsupported operand type(s) for /: 'str' and 'str'\n",
+  "finished_at": "2026-10-08T17:47:12.688887+00:00"
+}

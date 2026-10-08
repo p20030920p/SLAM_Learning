@@ -1,0 +1,297 @@
+{
+  "cells": 35,
+  "gates": {
+    "extracted-loop-vs-native-batch": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 36
+    },
+    "zero-fixed_association-8": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 53
+    },
+    "zero-fixed_association-12": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 68
+    },
+    "zero-fixed_association-16": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 36
+    },
+    "zero-oracle_replay-8": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 53
+    },
+    "zero-oracle_replay-12": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 68
+    },
+    "zero-oracle_replay-16": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 36
+    }
+  },
+  "primary_decisions": [
+    {
+      "rms_m": 0.1,
+      "favorable_seeds_out_of_three": 2,
+      "categorical_gate_met": true,
+      "mean_recovery_difference": 0.2222222222222222,
+      "mean_query_hit_difference": 0.2222222222222222
+    },
+    {
+      "rms_m": 0.3,
+      "favorable_seeds_out_of_three": 3,
+      "categorical_gate_met": true,
+      "mean_recovery_difference": 0.5555555555555555,
+      "mean_query_hit_difference": 0.5555555555555555
+    }
+  ],
+  "candidate_h1_validated": false,
+  "decision": "Categorical prerequisite met provisionally",
+  "limits": [
+    "One static scene",
+    "AI-assisted partial labels await independent human audit",
+    "Exact supplied corrections",
+    "Full-history diagnostic controls, not bounded replay",
+    "No real change recall, live stale-target duration or matched delay frontier"
+  ],
+  "all_seed_contrasts": [
+    {
+      "rms_m": 0.1,
+      "seed": 417,
+      "observation": 8,
+      "oracle_minus_fixed_prefix_coverage": 0.5376304098673834,
+      "oracle_minus_fixed_prefix_recovery": 0.3333333333333333,
+      "oracle_minus_fixed_prefix_query_hit": 0.3333333333333333,
+      "oracle_minus_fixed_all_recovery": 0.3333333333333333,
+      "oracle_minus_fixed_all_query_hit": 0.3333333333333333,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 5
+    },
+    {
+      "rms_m": 0.1,
+      "seed": 417,
+      "observation": 12,
+      "oracle_minus_fixed_prefix_coverage": 0.2333605576234632,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 2
+    },
+    {
+      "rms_m": 0.1,
+      "seed": 417,
+      "observation": 16,
+      "oracle_minus_fixed_prefix_coverage": 0.22817417188602396,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 2
+    },
+    {
+      "rms_m": 0.1,
+      "seed": 518,
+      "observation": 8,
+      "oracle_minus_fixed_prefix_coverage": 0.003835764451647794,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 4
+    },
+    {
+      "rms_m": 0.1,
+      "seed": 518,
+      "observation": 12,
+      "oracle_minus_fixed_prefix_coverage": 0.003835764451647683,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 1
+    },
+    {
+      "rms_m": 0.1,
+      "seed": 518,
+      "observation": 16,
+      "oracle_minus_fixed_prefix_coverage": 0.003619665045921039,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 1
+    },
+    {
+      "rms_m": 0.1,
+      "seed": 619,
+      "observation": 8,
+      "oracle_minus_fixed_prefix_coverage": 0.2607392607392607,
+      "oracle_minus_fixed_prefix_recovery": 0.3333333333333333,
+      "oracle_minus_fixed_prefix_query_hit": 0.3333333333333333,
+      "oracle_minus_fixed_all_recovery": 0.3333333333333333,
+      "oracle_minus_fixed_all_query_hit": 0.3333333333333333,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 5
+    },
+    {
+      "rms_m": 0.1,
+      "seed": 619,
+      "observation": 12,
+      "oracle_minus_fixed_prefix_coverage": 0.0066600066600066565,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 3
+    },
+    {
+      "rms_m": 0.1,
+      "seed": 619,
+      "observation": 16,
+      "oracle_minus_fixed_prefix_coverage": 0.0066600066600066565,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 3
+    },
+    {
+      "rms_m": 0.3,
+      "seed": 417,
+      "observation": 8,
+      "oracle_minus_fixed_prefix_coverage": 0.5376304098673834,
+      "oracle_minus_fixed_prefix_recovery": 0.3333333333333333,
+      "oracle_minus_fixed_prefix_query_hit": 0.3333333333333333,
+      "oracle_minus_fixed_all_recovery": 0.3333333333333333,
+      "oracle_minus_fixed_all_query_hit": 0.3333333333333333,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 5
+    },
+    {
+      "rms_m": 0.3,
+      "seed": 417,
+      "observation": 12,
+      "oracle_minus_fixed_prefix_coverage": 0.2333605576234632,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 2
+    },
+    {
+      "rms_m": 0.3,
+      "seed": 417,
+      "observation": 16,
+      "oracle_minus_fixed_prefix_coverage": 0.22817417188602396,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 2
+    },
+    {
+      "rms_m": 0.3,
+      "seed": 518,
+      "observation": 8,
+      "oracle_minus_fixed_prefix_coverage": 0.8780049232237238,
+      "oracle_minus_fixed_prefix_recovery": 0.6666666666666666,
+      "oracle_minus_fixed_prefix_query_hit": 0.6666666666666666,
+      "oracle_minus_fixed_all_recovery": 0.6666666666666666,
+      "oracle_minus_fixed_all_query_hit": 0.6666666666666666,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 6
+    },
+    {
+      "rms_m": 0.3,
+      "seed": 518,
+      "observation": 12,
+      "oracle_minus_fixed_prefix_coverage": 0.5241544207025775,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.3333333333333333,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.25,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 3
+    },
+    {
+      "rms_m": 0.3,
+      "seed": 518,
+      "observation": 16,
+      "oracle_minus_fixed_prefix_coverage": 0.5214531781309946,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.3333333333333333,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.25,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 3
+    },
+    {
+      "rms_m": 0.3,
+      "seed": 619,
+      "observation": 8,
+      "oracle_minus_fixed_prefix_coverage": 0.75352750976738,
+      "oracle_minus_fixed_prefix_recovery": 0.6666666666666666,
+      "oracle_minus_fixed_prefix_query_hit": 0.6666666666666666,
+      "oracle_minus_fixed_all_recovery": 0.6666666666666666,
+      "oracle_minus_fixed_all_query_hit": 0.6666666666666666,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 6
+    },
+    {
+      "rms_m": 0.3,
+      "seed": 619,
+      "observation": 12,
+      "oracle_minus_fixed_prefix_coverage": 0.37510533766611553,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 4
+    },
+    {
+      "rms_m": 0.3,
+      "seed": 619,
+      "observation": 16,
+      "oracle_minus_fixed_prefix_coverage": 0.3699189519286764,
+      "oracle_minus_fixed_prefix_recovery": 0.0,
+      "oracle_minus_fixed_prefix_query_hit": 0.0,
+      "oracle_minus_fixed_all_recovery": 0.0,
+      "oracle_minus_fixed_all_query_hit": 0.0,
+      "oracle_minus_fixed_mixed_objects": 0,
+      "oracle_minus_fixed_fragments": 4
+    }
+  ]
+}

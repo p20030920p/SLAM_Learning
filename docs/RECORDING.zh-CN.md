@@ -27,4 +27,6 @@
 
 论文卡原有 GIF／MP4 是已测最终地图的绘制回放。LiDAR 原始／移除／保留来自原 PCL 分类；语义面板显示原生观测、最终地图和查询候选。ConceptGraphs 世界坐标按实际绝对位姿入口及 39 个相机矩阵核查，不额外乘第一帧变换。
 
-14 份双语 PDF 保留各自生成源快照、字节哈希和逐页检查证据；当前文字修订不静默覆盖历史报告。[论文媒体与报告](papers/README.zh-CN.md) · [配对报告及检查](../results/reference/paired-report-review/record.json)。完整手动录制、安装与本机操作步骤放个人本地手册。
+16 份双语 PDF 保留各自生成源快照、字节哈希和逐页检查证据；当前文字修订不静默覆盖历史报告。[论文媒体与报告](papers/README.zh-CN.md) · [配对报告及检查](../results/reference/paired-report-review/record.json)。完整手动录制、安装与本机操作步骤放个人本地手册。
+
+Room1 迟到修正实验另增三段完整本地终端录像：前端 82.4 秒、35 单元主实验 509.4 秒、6 单元事后对照 189.8 秒。最后一段有一次画面保持；全部 MP4 已完整解码。[哈希、命令、日志和检查图](../results/reference/delayed-recordings/record.json)绑定对应科学记录。这些是执行录像；上方独立 RViz 视频查看已有基线的保存输出。[实验结果](DELAYED_RESULTS.zh-CN.md)。

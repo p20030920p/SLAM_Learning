@@ -144,7 +144,7 @@ def main():
     write_json(args.output / "summary.json", summary)
     for name in ("record.json", "protocol.json", "annotations.json", "freeze.json", "source-manifest.json",
                  "frontend-record.json", "executed-adapter.py", "executed-metrics.py", "native-zero-gate.py",
-                 "native-zero-command.json", "native-zero.log", "text_features.npy"):
+                 "native-zero-command.json", "native-zero.log", "text_features.npy", "semantic-config.json"):
         source = args.suite / name
         if source.exists():
             target = args.output / "inputs" / name

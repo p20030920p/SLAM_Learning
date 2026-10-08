@@ -29,6 +29,8 @@ uv run pytest -q
 uv run ruff check src tests scripts
 uv run python scripts/verify_evidence.py
 uv run python scripts/verify_paired_evidence.py
+uv run python scripts/verify_delayed_evidence.py
+uv run python scripts/verify_delayed_support.py
 uv run python scripts/check_docs.py
 uv run slam-study verify results/runs/RUN_ID/record.json --full
 ```
@@ -38,5 +40,7 @@ uv run slam-study verify results/runs/RUN_ID/record.json --full
 LiDAR 地图近邻阈值 5 cm；SA／DA 的分母及 DUFOMap 直接标签与地图对应差异见[结果](RESULTS.zh-CN.md)。AA 为几何平均，HA 为调和平均，不作统一排行榜。BeautyMap 输入物理移除 GT intensity；XYZ 和 VIEWPOINT 保留。ConceptGraphs 实际入口使用绝对 `dataset.poses`，不再乘第一帧变换。
 
 配对实验的 76 主单元和 21 探索对照有[独立协议](PAIRED_PROTOCOL.zh-CN.md)、[全部记录](../results/reference/paired-pose/record.json)与[复跑命令](PAIRED_RESULTS.zh-CN.md#复跑检查与面试)。新输出不得覆盖 v1。
+
+新 room1 实验含 35 个冻结迟到修正单元和 6 个独立事后支持门槛对照。[协议与新运行步骤](DELAYED_PROTOCOL.zh-CN.md#复现状态) · [结果与 H1 修订决策](DELAYED_RESULTS.zh-CN.md)。
 
 数据／权重校验、作者提交和资源适配在配置、源码快照和运行记录内固定；[来源与许可](ATTRIBUTION.zh-CN.md)可追溯。完整安装、个人录制和本机排错手册留在本地。公开 PDF 为记录绑定的生成快照，修改当前研究文字不会静默改写旧报告。

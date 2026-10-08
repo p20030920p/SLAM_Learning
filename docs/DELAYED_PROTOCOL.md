@@ -38,6 +38,31 @@ The scene is static, so this experiment cannot establish true-change recall, dyn
 
 ## Reproduction status
 
-Design frozen; reference annotation and native execution are separate gates. Large inputs and maps stay local. Later repairs must retain their source versions and failed attempts. This document must not be presented as measured findings.
+Completed: 35 primary cells and seven native parity gates. A separate six-cell post-hoc support control follows the primary study. [Results and revised decision](DELAYED_RESULTS.md) are separate from this design; the original configuration and annotation freeze remain unchanged. Large inputs and maps stay local; executed source versions and the failed setup attempt are retained.
+
+For a fresh native rerun, first complete the ConceptGraphs baseline in the [reproduction entry](REPRODUCE.md). Set `native_run` to its actual run folder containing `author-code`; set `weights` to the verified SAM/CLIP cache. From the repository root in Linux/WSL, choose a new empty `study_dir`. Do not overwrite existing evidence.
+
+```bash
+study_dir="$PWD/results/runs/delayed-local-v2"
+native_run="$PWD/results/runs/conceptgraphs-YOUR_RUN_ID"
+weights="$PWD/.cache/semantic-weights"
+.venv-semantic/bin/python scripts/fetch_delayed_scene.py --protocol configs/delayed_pose.json --output "$study_dir/data"
+.venv-semantic/bin/python scripts/seal_delayed_annotations.py --protocol configs/delayed_pose.json --annotations annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation"
+```
+
+Inspect the four overlays against raw RGB-D before sealing. An unchanged-file reproduction can use the published polygons; a human-reviewed revision needs a new annotation/protocol version and should preserve the old one. After review:
+
+```bash
+.venv-semantic/bin/python scripts/seal_delayed_annotations.py --protocol configs/delayed_pose.json --annotations annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation" --seal
+.venv-semantic/bin/python scripts/prepare_delayed_frontend.py --protocol configs/delayed_pose.json --annotations annotations/room1/targets.json --freeze "$study_dir/annotation/freeze.json" --data "$study_dir/data" --native-source "$native_run" --weights "$weights" --output "$study_dir/frontend"
+.venv-semantic/bin/python scripts/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/primary"
+.venv/bin/python scripts/analyze_delayed_correction.py "$study_dir/primary" --annotations-review "$study_dir/annotation" --frontend "$study_dir/frontend" --output "$study_dir/primary-export"
+.venv/bin/python scripts/verify_delayed_evidence.py --record "$study_dir/primary-export/record.json" --raw-suite "$study_dir/primary"
+.venv-semantic/bin/python scripts/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/support-control" --support-control-from "$study_dir/primary"
+.venv/bin/python scripts/analyze_delayed_support.py "$study_dir/support-control" --primary "$study_dir/primary-export" --output "$study_dir/support-export"
+.venv/bin/python scripts/verify_delayed_support.py --record "$study_dir/support-export/record.json" --primary "$study_dir/primary-export" --raw-followup "$study_dir/support-control"
+```
+
+The CPU commands use the separate installed project environment. Wrap native commands with `scripts/record_session.py` to retain a complete real-time terminal video; the actual invocation and recording metadata are archived in the [new study](DELAYED_RESULTS.md). Frontend extraction and the mapper are distinct recording stages. These scripts run sequentially and leave prior study outputs untouched.
 
 Sources: [NICE-SLAM data preparation](https://github.com/cvg/nice-slam#replica-1), [pinned ConceptGraphs batch mapper](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/slam/cfslam_pipeline_batch.py).

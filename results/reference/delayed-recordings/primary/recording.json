@@ -1,0 +1,96 @@
+{
+  "command_exit_code": 0,
+  "finished_at": "2026-10-08T17:56:11+00:00",
+  "command_elapsed_seconds": 505.82055453299995,
+  "kind": "full_terminal_recording",
+  "status": "executed",
+  "command": {
+    "command": [
+      "/home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python",
+      "/mnt/d/workspace/be2/SLAM_DelayedCorrection/scripts/run_delayed_correction.py",
+      "--frontend",
+      "/home/qzl/projects/slam-delayed-correction/frontend-v1",
+      "--data",
+      "/home/qzl/projects/slam-delayed-correction/data/Replica",
+      "--freeze",
+      "/mnt/d/workspace/be2/SLAM_DelayedCorrection/results/runs/annotation-preparation/freeze.json",
+      "--weights",
+      "/home/qzl/projects/SLAM_Learning/.cache/semantic-weights",
+      "--output",
+      "/home/qzl/projects/slam-delayed-correction/suite-attempt-2"
+    ],
+    "cwd": "/mnt/d/workspace/be2/SLAM_DelayedCorrection",
+    "prepared_at": "2026-10-08T17:48:00+00:00",
+    "prepared_epoch": 1791481680.9837303,
+    "fps": 5,
+    "size": [
+      1280,
+      800
+    ],
+    "recorder_script_sha256": "665da86cb14df9afc4748b0540875dedf45abc88ab076e4a026c51eb8d175cf9",
+    "watch_prefix": null
+  },
+  "duration_seconds": 509.4,
+  "monotonic_capture": {
+    "frames": 2547,
+    "held_frames": 0,
+    "elapsed_seconds": 509.37536087199993
+  },
+  "scope": "Actual private X terminal captured live; no speedup, cuts or desktop capture",
+  "recorder_script_sha256": "665da86cb14df9afc4748b0540875dedf45abc88ab076e4a026c51eb8d175cf9",
+  "full_video_decoded": true,
+  "artifacts": {
+    "command.json": {
+      "sha256": "1c16a3f6e4f25dafcde21243ad49ca253d34d6208009e399e6c389f50d69f555",
+      "bytes": 917
+    },
+    "DONE": {
+      "sha256": "a8cf98eb9d17787d96cd46f23324e89fe7f5174772a95d39d942546cad3c6c12",
+      "bytes": 25
+    },
+    "encoder-progress.txt": {
+      "sha256": "6a4662bd7ac131c4602b857cc98bb2e476bfc7e2a6f88891c59ea111df163f8a",
+      "bytes": 172736
+    },
+    "exit.json": {
+      "sha256": "90733be571b9e330781dc0b23af024d80eb02331e3648fa8ca07d10c727016e9",
+      "bytes": 124
+    },
+    "ffmpeg.log": {
+      "sha256": "9669f192f81139f4fee39091503f2ab4a79403541375bcb6c4f674839fa60a97",
+      "bytes": 87543
+    },
+    "full-session.mp4": {
+      "sha256": "66f80ff55096f732ced24a27ad36e6dbb26b54072dbe19a05ae5e1870f2bd53a",
+      "bytes": 5192776
+    },
+    "GO": {
+      "sha256": "731939102ec1f53234820705aec2a668cd9dfc7a1f834abfeaf090877c17d0b3",
+      "bytes": 25
+    },
+    "review-end.png": {
+      "sha256": "2f022d8feb12b8d3e7076a7e28eaafc0fd9c2869a077953d5630a72b4e1f1a99",
+      "bytes": 267727
+    },
+    "review-middle.png": {
+      "sha256": "6afd7f3f4434d1893413933f289857f07cecea899ea9dbbb4a93e7febb4e0fa7",
+      "bytes": 261805
+    },
+    "review-start.png": {
+      "sha256": "e9441987b82b18ccaf32f0ed9119c545139e6be9a8f4bfc11429d0a98d2fd6d6",
+      "bytes": 106413
+    },
+    "terminal.raw": {
+      "sha256": "dab0350a252d6cab43a0fe33bac655882f062c2d55a395dfecf8b8580afef8c8",
+      "bytes": 7374
+    },
+    "terminal.time": {
+      "sha256": "39f90b6215bdd7496fe14df987b0fb7bacfbe9ea9fe783542f652f6a7bfb5548",
+      "bytes": 2600
+    },
+    "xvfb.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

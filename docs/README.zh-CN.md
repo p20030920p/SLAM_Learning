@@ -10,6 +10,8 @@
 | [四篇论文卡](papers/README.zh-CN.md) | 实际执行范围、视频、报告与失败 |
 | [配对结果](PAIRED_RESULTS.zh-CN.md) | 97 单元、目标标注、参数对照与证据限制 |
 | [配对协议](PAIRED_PROTOCOL.zh-CN.md) | 控制变量、适配和评价定义 |
+| [迟到修正结果](DELAYED_RESULTS.zh-CN.md) | 新场景 35 个冻结单元、6 个事后支持门槛对照与 H1 修订决策 |
+| [迟到修正协议](DELAYED_PROTOCOL.zh-CN.md) | 独立参考视图、原核心等价与历史关联干预 |
 | [原始复现结果](RESULTS.zh-CN.md) | 论文差值、PCL 一致性与评分效应 |
 | [居家验证设计](REAL_WORLD.zh-CN.md) | 固定传感器事件与迟到修正实验 |
 | [复现入口](REPRODUCE.zh-CN.md) | 最少命令与独立依赖 |
