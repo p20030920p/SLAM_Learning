@@ -1,0 +1,494 @@
+{
+  "schema_version": 1,
+  "kind": "graphical_measured_map_inspection",
+  "status": "executed",
+  "created_at": "2026-10-08T17:22:27+00:00",
+  "scope": "Actual RViz graphical windows captured from saved native outputs; no live inference, simulated robot or FPS benchmark",
+  "wrapper_metadata_note": "Nested recording.json uses the historical terminal-wrapper kind; it captures the whole private X framebuffer including RViz and the evidence panel",
+  "summary": [
+    {
+      "method": "dufomap",
+      "duration_seconds": 34.4,
+      "steps": 4,
+      "scope": "Recorded graphical inspection of saved measured outputs; no new inference or FPS claim",
+      "source_manifest_sha256": "17ab722790b8ab4eab35dd65902b6a73ab807207db82a7d5f16b9a2687d829be",
+      "video_sha256": "d8e0e1cbc66ac0a2a8795d1915328e75f0b1bb440bbd64307d0ae60520d31881",
+      "qa_times_s": [
+        5,
+        12,
+        19,
+        26
+      ],
+      "full_decode_passed": true,
+      "human_visual_review": "AI visual inspection completed; no independent human review claimed",
+      "visual_review_note": "All 21 stage frames inspected individually or in contact sheets: graphical cloud visible, stage labels legible, mapping snapshots distinguished from final queries; independent human review remains available."
+    },
+    {
+      "method": "beautymap",
+      "duration_seconds": 34.4,
+      "steps": 4,
+      "scope": "Recorded graphical inspection of saved measured outputs; no new inference or FPS claim",
+      "source_manifest_sha256": "32e5ded375db138a93405e7d513aeea1359d98399a6fdec334f97fbeed9ea15e",
+      "video_sha256": "1015682d4c62d13ee8c6bf48ca7a67788e51617b015f49c1b7e0fa7a97f0b8da",
+      "qa_times_s": [
+        5,
+        12,
+        19,
+        26
+      ],
+      "full_decode_passed": true,
+      "human_visual_review": "AI visual inspection completed; no independent human review claimed",
+      "visual_review_note": "All 21 stage frames inspected individually or in contact sheets: graphical cloud visible, stage labels legible, mapping snapshots distinguished from final queries; independent human review remains available."
+    },
+    {
+      "method": "conceptgraphs",
+      "duration_seconds": 69.6,
+      "steps": 9,
+      "scope": "Recorded graphical inspection of saved measured outputs; no new inference or FPS claim",
+      "source_manifest_sha256": "479a2400b63fcde65916293cf6a1ba7b3c1465b2c5987175244075e10a659b03",
+      "video_sha256": "bb28408dfc19c2484e549047ebf884ac2494739eb38f1a95d25e57a0e47cc96f",
+      "qa_times_s": [
+        5,
+        12,
+        19,
+        26,
+        33,
+        40,
+        47,
+        54,
+        61
+      ],
+      "full_decode_passed": true,
+      "human_visual_review": "AI visual inspection completed; no independent human review claimed",
+      "visual_review_note": "All 21 stage frames inspected individually or in contact sheets: graphical cloud visible, stage labels legible, mapping snapshots distinguished from final queries; independent human review remains available."
+    },
+    {
+      "method": "hovsg",
+      "duration_seconds": 34.4,
+      "steps": 4,
+      "scope": "Recorded graphical inspection of saved measured outputs; no new inference or FPS claim",
+      "source_manifest_sha256": "1ee747b2676c2ba3738716bebffe0a24d57e9890897530414969c673ecda697f",
+      "video_sha256": "8c0cdbc920979b8df0a79802df55c19ae0664392b90ad03507e12828c0e0f132",
+      "qa_times_s": [
+        5,
+        12,
+        19,
+        26
+      ],
+      "full_decode_passed": true,
+      "human_visual_review": "AI visual inspection completed; no independent human review claimed",
+      "visual_review_note": "All 21 stage frames inspected individually or in contact sheets: graphical cloud visible, stage labels legible, mapping snapshots distinguished from final queries; independent human review remains available."
+    }
+  ],
+  "artifacts": {
+    "beautymap/command.json": {
+      "sha256": "82b67a39bf472515a365a705817b6ba6a948ffca70ac539b508af917750938b0",
+      "bytes": 508,
+      "availability": "portable"
+    },
+    "beautymap/exit.json": {
+      "sha256": "4a019e14b5153b1c23821b85e6eceb6d19431e89479769ccd574b6147592d99d",
+      "bytes": 124,
+      "availability": "portable"
+    },
+    "beautymap/manifest.json": {
+      "sha256": "32e5ded375db138a93405e7d513aeea1359d98399a6fdec334f97fbeed9ea15e",
+      "bytes": 2276,
+      "availability": "portable"
+    },
+    "beautymap/poster.png": {
+      "sha256": "88eeaaa3959272eb9bada5a2be6dd5cbd5b918da0ba40ee793d3891a10419860",
+      "bytes": 513156,
+      "availability": "portable"
+    },
+    "beautymap/prepare_visual_review.source.py": {
+      "sha256": "4879554d00c8968d2645e0285692c101ab28c64226514d1a47c2062d038d0a3f",
+      "bytes": 8209,
+      "availability": "portable"
+    },
+    "beautymap/qa-00.png": {
+      "sha256": "0f9cda60a7f6c684427375e96c9364b6b38fd3018acaa3c77392099798fc4828",
+      "bytes": 533699,
+      "availability": "portable"
+    },
+    "beautymap/qa-01.png": {
+      "sha256": "42c76711ef02a6556974c6b7b72e787c358d63a826de1d708a42bc5c90506d54",
+      "bytes": 366983,
+      "availability": "portable"
+    },
+    "beautymap/qa-02.png": {
+      "sha256": "88eeaaa3959272eb9bada5a2be6dd5cbd5b918da0ba40ee793d3891a10419860",
+      "bytes": 513156,
+      "availability": "portable"
+    },
+    "beautymap/qa-03.png": {
+      "sha256": "d5231126c6a095e705c13e522c6cfd9cc642e0760fb77af2edc359027b2754aa",
+      "bytes": 535957,
+      "availability": "portable"
+    },
+    "beautymap/record_visual_review.source.sh": {
+      "sha256": "8260e848ec82169e705ffc3a695211f07a413bcc3554da2cf7d9d793179817b6",
+      "bytes": 2234,
+      "availability": "portable"
+    },
+    "beautymap/recording.json": {
+      "sha256": "7222ab1eec9106982a1dc461530a87c772f83d41a651f2f426d2f99665b82710",
+      "bytes": 2842,
+      "availability": "portable"
+    },
+    "beautymap/review.mp4": {
+      "sha256": "1015682d4c62d13ee8c6bf48ca7a67788e51617b015f49c1b7e0fa7a97f0b8da",
+      "bytes": 613397,
+      "availability": "portable"
+    },
+    "beautymap/review.rviz": {
+      "sha256": "56cf69c6f37029d650a04ae4cd0217e77f5e7696d0fe65e011bfafbb989e5aae",
+      "bytes": 1249,
+      "availability": "portable"
+    },
+    "beautymap/rviz.log": {
+      "sha256": "04fbafa23a6ea466c32120470fc4b467c0756b14b8f51201a7c1b1d7f6e1864a",
+      "bytes": 267,
+      "availability": "portable"
+    },
+    "beautymap/terminal.raw": {
+      "sha256": "29017617f505e16412f5d7b69779f6f7b4ad773b9b9104cf7984f54eb7d69365",
+      "bytes": 1192,
+      "availability": "portable"
+    },
+    "beautymap/terminal.time": {
+      "sha256": "d9475de2e70c737fdf8557635c31f3bd8bab58ee4e36bcd6bdca9976bb9d0cb5",
+      "bytes": 114,
+      "availability": "portable"
+    },
+    "beautymap/view_measured_rviz.source.py": {
+      "sha256": "b360e45a0e5f320f1f478e6b62700cea7b751631a6d69faec358abe1c4baaeb8",
+      "bytes": 6446,
+      "availability": "portable"
+    },
+    "conceptgraphs/command.json": {
+      "sha256": "cc6ed95ebe9750b06e64f122a9fb408bdf9b4a8b1e8c8405962d6775810b2dc2",
+      "bytes": 513,
+      "availability": "portable"
+    },
+    "conceptgraphs/exit.json": {
+      "sha256": "701744336e2f015d09247654b55dcc853500219d983010e6439ad094b852a35c",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "conceptgraphs/manifest.json": {
+      "sha256": "479a2400b63fcde65916293cf6a1ba7b3c1465b2c5987175244075e10a659b03",
+      "bytes": 6500,
+      "availability": "portable"
+    },
+    "conceptgraphs/poster.png": {
+      "sha256": "ee871d6b603f4516236487a205e9ebd739aedde6d99d3bd676108890fb933143",
+      "bytes": 633117,
+      "availability": "portable"
+    },
+    "conceptgraphs/prepare_visual_review.source.py": {
+      "sha256": "4879554d00c8968d2645e0285692c101ab28c64226514d1a47c2062d038d0a3f",
+      "bytes": 8209,
+      "availability": "portable"
+    },
+    "conceptgraphs/qa-00.png": {
+      "sha256": "4db8c9b92e0b54e639af2088b2a3c34ff1bb256c1864fb2d9f50760f8f58662b",
+      "bytes": 362292,
+      "availability": "portable"
+    },
+    "conceptgraphs/qa-01.png": {
+      "sha256": "2373cfb9cc0b6b1de3ebcdba4773a68c5848e154d95633aa6232e36382230fb6",
+      "bytes": 579369,
+      "availability": "portable"
+    },
+    "conceptgraphs/qa-02.png": {
+      "sha256": "ee871d6b603f4516236487a205e9ebd739aedde6d99d3bd676108890fb933143",
+      "bytes": 633117,
+      "availability": "portable"
+    },
+    "conceptgraphs/qa-03.png": {
+      "sha256": "6a4ea5ce3373f3092459bd062e63dfdebda0aea00ee50a459780f5bd6aaed18e",
+      "bytes": 622678,
+      "availability": "portable"
+    },
+    "conceptgraphs/qa-04.png": {
+      "sha256": "ab7b078dd3c68841047fc3033d1290cfb033fa79e59a8e6caa9b7341ed9667c3",
+      "bytes": 628276,
+      "availability": "portable"
+    },
+    "conceptgraphs/qa-05.png": {
+      "sha256": "0ff2712dad386ab66f6453c4efb497a3c211a19dfb5d1f02ab3a4bfecbc38495",
+      "bytes": 613201,
+      "availability": "portable"
+    },
+    "conceptgraphs/qa-06.png": {
+      "sha256": "bce3f63ab888a3e0bf36dde8b8c34e978338ddc99f3dfe0a3897cf36eb600741",
+      "bytes": 605131,
+      "availability": "portable"
+    },
+    "conceptgraphs/qa-07.png": {
+      "sha256": "c592d91796bbd354d154b1f42e23c3b32b9df3ded3585d94920c3114b733df43",
+      "bytes": 521452,
+      "availability": "portable"
+    },
+    "conceptgraphs/qa-08.png": {
+      "sha256": "34dce7d3737c85e77958785a23f5229b9a2de1230ff65cd610c5ffe060a187ed",
+      "bytes": 531969,
+      "availability": "portable"
+    },
+    "conceptgraphs/record_visual_review.source.sh": {
+      "sha256": "8260e848ec82169e705ffc3a695211f07a413bcc3554da2cf7d9d793179817b6",
+      "bytes": 2234,
+      "availability": "portable"
+    },
+    "conceptgraphs/recording.json": {
+      "sha256": "e755f44dfafc0994303bcc7b9c0274807c7da64944bffac3b0033f7556f9141e",
+      "bytes": 2848,
+      "availability": "portable"
+    },
+    "conceptgraphs/review.mp4": {
+      "sha256": "bb28408dfc19c2484e549047ebf884ac2494739eb38f1a95d25e57a0e47cc96f",
+      "bytes": 1354731,
+      "availability": "portable"
+    },
+    "conceptgraphs/review.rviz": {
+      "sha256": "fc12d3d4b777daf61f468d0c152f843c3198bd65b976ba476aef404c870c6cee",
+      "bytes": 1252,
+      "availability": "portable"
+    },
+    "conceptgraphs/rviz.log": {
+      "sha256": "3673c3baad558f49422d93a06096261d065000d5bbc733323ba445ee11538438",
+      "bytes": 267,
+      "availability": "portable"
+    },
+    "conceptgraphs/terminal.raw": {
+      "sha256": "9bea0e1317623e2de7937ee2de210fc8d9716378e10be724c1342465e3f7b8c7",
+      "bytes": 2058,
+      "availability": "portable"
+    },
+    "conceptgraphs/terminal.time": {
+      "sha256": "90ddb7088deb0957513c012ff6df0ee3dae9cc69eea1285205971ff6a6f8ac11",
+      "bytes": 215,
+      "availability": "portable"
+    },
+    "conceptgraphs/view_measured_rviz.source.py": {
+      "sha256": "b360e45a0e5f320f1f478e6b62700cea7b751631a6d69faec358abe1c4baaeb8",
+      "bytes": 6446,
+      "availability": "portable"
+    },
+    "contact-1.png": {
+      "sha256": "d82a1822f3ed158d58cd6d7388bbceb92988430b10f82cf427f888808c40d6ae",
+      "bytes": 1586112,
+      "availability": "portable"
+    },
+    "contact-2.png": {
+      "sha256": "5055498f435175b144e0565d91c0616e80310254346f3f58058dea0d59e48aee",
+      "bytes": 1591600,
+      "availability": "portable"
+    },
+    "dufomap/command.json": {
+      "sha256": "afd73cdf6ed264949a2eea8e9446d4bb7d5486c7db0daee66c7b909875ba1d2a",
+      "bytes": 507,
+      "availability": "portable"
+    },
+    "dufomap/exit.json": {
+      "sha256": "72ca0d0e2eaa38c95b71ff5c6fae9db929352479cf88408180b23f623a6ea8fd",
+      "bytes": 124,
+      "availability": "portable"
+    },
+    "dufomap/manifest.json": {
+      "sha256": "17ab722790b8ab4eab35dd65902b6a73ab807207db82a7d5f16b9a2687d829be",
+      "bytes": 2270,
+      "availability": "portable"
+    },
+    "dufomap/poster.png": {
+      "sha256": "f7da192a24e7e66110477e3217785670ea1b116166adc3a88dce7fe1e562f5b2",
+      "bytes": 515405,
+      "availability": "portable"
+    },
+    "dufomap/prepare_visual_review.source.py": {
+      "sha256": "4879554d00c8968d2645e0285692c101ab28c64226514d1a47c2062d038d0a3f",
+      "bytes": 8209,
+      "availability": "portable"
+    },
+    "dufomap/qa-00.png": {
+      "sha256": "3ca67d29ef0f409ed071440e8cc4097536503a7cdedc91ae18002eee45e532bb",
+      "bytes": 535303,
+      "availability": "portable"
+    },
+    "dufomap/qa-01.png": {
+      "sha256": "3f2f31556dc844fcb12c958fee588bd5f2ff09f93c4f4e330f8374bab3224b56",
+      "bytes": 367461,
+      "availability": "portable"
+    },
+    "dufomap/qa-02.png": {
+      "sha256": "f7da192a24e7e66110477e3217785670ea1b116166adc3a88dce7fe1e562f5b2",
+      "bytes": 515405,
+      "availability": "portable"
+    },
+    "dufomap/qa-03.png": {
+      "sha256": "7d8300b955121f435a6d8aa47f41d0dba46bfcc93801077e9d2f6e9f99f05e00",
+      "bytes": 533502,
+      "availability": "portable"
+    },
+    "dufomap/record_visual_review.source.sh": {
+      "sha256": "8260e848ec82169e705ffc3a695211f07a413bcc3554da2cf7d9d793179817b6",
+      "bytes": 2234,
+      "availability": "portable"
+    },
+    "dufomap/recording.json": {
+      "sha256": "408e8b2a866afa1fd6fe73c049d1d9fc5230292f0d096c8bd5904182723b5d50",
+      "bytes": 2842,
+      "availability": "portable"
+    },
+    "dufomap/review.mp4": {
+      "sha256": "d8e0e1cbc66ac0a2a8795d1915328e75f0b1bb440bbd64307d0ae60520d31881",
+      "bytes": 619493,
+      "availability": "portable"
+    },
+    "dufomap/review.rviz": {
+      "sha256": "56cf69c6f37029d650a04ae4cd0217e77f5e7696d0fe65e011bfafbb989e5aae",
+      "bytes": 1249,
+      "availability": "portable"
+    },
+    "dufomap/rviz.log": {
+      "sha256": "1643ebbf70f967f14d477d0746c36e9787b6132706dd4903e2d229636d5d6af9",
+      "bytes": 267,
+      "availability": "portable"
+    },
+    "dufomap/terminal.raw": {
+      "sha256": "1f83bb3e3776859e11e67792c4aabce9729ebf8161809a9851bae0ded1d8dca0",
+      "bytes": 1189,
+      "availability": "portable"
+    },
+    "dufomap/terminal.time": {
+      "sha256": "ae8f9dcdf1a54461ae8171b052713b5dd660aeeda50adbbd74e0d596204f927f",
+      "bytes": 114,
+      "availability": "portable"
+    },
+    "dufomap/view_measured_rviz.source.py": {
+      "sha256": "b360e45a0e5f320f1f478e6b62700cea7b751631a6d69faec358abe1c4baaeb8",
+      "bytes": 6446,
+      "availability": "portable"
+    },
+    "finalize_visual_evidence.source.py": {
+      "sha256": "ecb9568cec6d78277cdfde743527cc77691afe7031de1fa78bfdd150747635b1",
+      "bytes": 3201,
+      "availability": "portable"
+    },
+    "hovsg/command.json": {
+      "sha256": "1704c68d8f16e6d2bd2d19dc31f5317aa1b79c805f795dae9d1b0fc3c44dfab6",
+      "bytes": 505,
+      "availability": "portable"
+    },
+    "hovsg/exit.json": {
+      "sha256": "7ba8b4a2eed972e3414bd91e26d605454c355393d3e73be49cd0417f442ca0c6",
+      "bytes": 124,
+      "availability": "portable"
+    },
+    "hovsg/manifest.json": {
+      "sha256": "1ee747b2676c2ba3738716bebffe0a24d57e9890897530414969c673ecda697f",
+      "bytes": 10673,
+      "availability": "portable"
+    },
+    "hovsg/poster.png": {
+      "sha256": "eb2e86c6ee9a7fdc375d1ae73fef4d9e4d710227e63a3b22df4e7a49ee0d31f4",
+      "bytes": 717520,
+      "availability": "portable"
+    },
+    "hovsg/prepare_visual_review.source.py": {
+      "sha256": "4879554d00c8968d2645e0285692c101ab28c64226514d1a47c2062d038d0a3f",
+      "bytes": 8209,
+      "availability": "portable"
+    },
+    "hovsg/qa-00.png": {
+      "sha256": "1c77f66cf4062e6487196d8be7d36d3932781ea4a94f893ceb64471c95493391",
+      "bytes": 716438,
+      "availability": "portable"
+    },
+    "hovsg/qa-01.png": {
+      "sha256": "30ddb63a58d77c521548e19ec1462a202a488627cd639b53f4640012e71d1230",
+      "bytes": 712865,
+      "availability": "portable"
+    },
+    "hovsg/qa-02.png": {
+      "sha256": "eb2e86c6ee9a7fdc375d1ae73fef4d9e4d710227e63a3b22df4e7a49ee0d31f4",
+      "bytes": 717520,
+      "availability": "portable"
+    },
+    "hovsg/qa-03.png": {
+      "sha256": "0fb4a022b84fcb169ed79a8047474a4776c0ca02670507f78bc7d734d9732a35",
+      "bytes": 722403,
+      "availability": "portable"
+    },
+    "hovsg/record_visual_review.source.sh": {
+      "sha256": "8260e848ec82169e705ffc3a695211f07a413bcc3554da2cf7d9d793179817b6",
+      "bytes": 2234,
+      "availability": "portable"
+    },
+    "hovsg/recording.json": {
+      "sha256": "4c7b12402c0569052293234480d61203eed72b7152566ba728083da7f63f59a7",
+      "bytes": 2841,
+      "availability": "portable"
+    },
+    "hovsg/review.mp4": {
+      "sha256": "8c0cdbc920979b8df0a79802df55c19ae0664392b90ad03507e12828c0e0f132",
+      "bytes": 550762,
+      "availability": "portable"
+    },
+    "hovsg/review.rviz": {
+      "sha256": "65042120433d986e8588a8060839b4391d91aa97a129ccf1a5cdeef858732af0",
+      "bytes": 1253,
+      "availability": "portable"
+    },
+    "hovsg/rviz.log": {
+      "sha256": "387947c370d797a2308a4d3aa2fda108750e58804f9bc5ee25676d97ea1f021c",
+      "bytes": 267,
+      "availability": "portable"
+    },
+    "hovsg/terminal.raw": {
+      "sha256": "cb717bd0354f2d07be77da0b6ea57053b1cbad82065367f905d8f4297d82fa98",
+      "bytes": 1280,
+      "availability": "portable"
+    },
+    "hovsg/terminal.time": {
+      "sha256": "e70747534068643b2da2db7f5136f9a295091dc16f1af0ff22b7c1a7696c2c52",
+      "bytes": 114,
+      "availability": "portable"
+    },
+    "hovsg/view_measured_rviz.source.py": {
+      "sha256": "b360e45a0e5f320f1f478e6b62700cea7b751631a6d69faec358abe1c4baaeb8",
+      "bytes": 6446,
+      "availability": "portable"
+    },
+    "import_visual_reviews.source.py": {
+      "sha256": "aab992efce9f8213523b976dc641e512cdd23e3e571617e4a8d57208a8f187ca",
+      "bytes": 4929,
+      "availability": "portable"
+    },
+    "make_visual_contact.source.py": {
+      "sha256": "af382da9cd7fc9924c8ef67d9a84526ab2f16c39ec1e613ce80111014dea2431",
+      "bytes": 752,
+      "availability": "portable"
+    },
+    "record_session.source.py": {
+      "sha256": "665da86cb14df9afc4748b0540875dedf45abc88ab076e4a026c51eb8d175cf9",
+      "bytes": 14201,
+      "availability": "portable"
+    },
+    "summary.json": {
+      "sha256": "8f9cbe893c5c672098ce120d1bb6ae7619ee58c397cebae7f9db03cc7b086363",
+      "bytes": 3259,
+      "availability": "portable"
+    }
+  },
+  "visual_review": {
+    "reviewer": "AI visual inspection, not independent human validation",
+    "stages": 21,
+    "result": "accepted for measured-output graphical inspection",
+    "contact_sheets": [
+      "contact-1.png",
+      "contact-2.png"
+    ]
+  }
+}

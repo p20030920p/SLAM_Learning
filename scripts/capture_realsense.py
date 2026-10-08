@@ -16,14 +16,18 @@ def main():
     parser.add_argument("--seconds", type=float, default=120)
     parser.add_argument("--session", required=True, help="Physical protocol session label")
     parser.add_argument("--output", type=Path, default=Path(".cache/hardware"))
+    parser.add_argument("--recording-format", choices=("bag", "db3"), default="bag",
+                        help="Use the installed SDK's supported format: legacy bag or newer db3")
     args = parser.parse_args()
     if args.seconds <= 0 or not args.session.replace("-", "").replace("_", "").isalnum():
         parser.error("Positive duration and a simple session label are required")
     output = args.output / f"{args.session}-{uuid.uuid4().hex[:8]}"
     output.mkdir(parents=True, exist_ok=False)
+    raw_path = output / f"capture.{args.recording_format}"
     record = {"schema_version": 1, "kind": "physical_sensor_capture", "sensor": "D435i",
               "session": args.session, "status": "recording", "evaluation_completed": False,
               "started_at": datetime.now(timezone.utc).isoformat(), "requested_seconds": args.seconds,
+              "requested_recording_format": args.recording_format,
               "scope": "Raw RGB, depth, accelerometer and gyroscope. No SLAM pose or hardware-test score claimed."}
     pipeline = None
     started = False
@@ -35,7 +39,7 @@ def main():
         config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
         config.enable_stream(rs.stream.accel)
         config.enable_stream(rs.stream.gyro)
-        config.enable_record_to_file(str(output / "capture.bag"))
+        config.enable_record_to_file(str(raw_path))
         profile = pipeline.start(config)
         started = True
         device = profile.get_device()
@@ -68,13 +72,15 @@ def main():
     finally:
         if started:
             pipeline.stop()
-        bag = output / "capture.bag"
+        bag = raw_path
         if bag.exists():
             h = hashlib.sha256()
             with bag.open("rb") as stream:
                 for block in iter(lambda: stream.read(4*1024*1024), b""):
                     h.update(block)
             record["raw_bag"] = {"sha256": h.hexdigest(), "bytes": bag.stat().st_size, "availability": "local_only"}
+            record["raw_recording"] = {"path": raw_path.name, "format": args.recording_format,
+                                       **record["raw_bag"]}
         record["finished_at"] = datetime.now(timezone.utc).isoformat()
         (output / "capture.json").write_text(json.dumps(record, indent=2, allow_nan=False) + "\n")
     print(output / "capture.json")

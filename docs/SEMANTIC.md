@@ -10,7 +10,7 @@ This establishes an executable RGB-D segmentation, object association/fusion and
 
 ## Run the separate environment
 
-In `~/projects/SLAM_Learning`, after [Linux setup](WSL.md):
+In `~/projects/SLAM_Learning`, after [Linux setup](REPRODUCE.md):
 
 ```bash
 bash scripts/setup_semantic.sh

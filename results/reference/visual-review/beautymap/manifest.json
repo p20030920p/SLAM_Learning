@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "method": "beautymap",
+  "kind": "measured_output_rviz_review",
+  "scope": "Recorded graphical inspection of saved measured outputs; no new inference or FPS claim",
+  "generator_sha256": "4879554d00c8968d2645e0285692c101ab28c64226514d1a47c2062d038d0a3f",
+  "sources": {
+    "/home/qzl/projects/SLAM_Learning/results/runs/evaluation-check-6489fe584ba2/record.json": "fdb0137695715839f9248ac340e88f9885331bd6a43024792db50bd25304d25b",
+    "/home/qzl/projects/SLAM_Learning/.cache/datasets/00/gt_cloud.pcd": "344df4512eb4ee9e4f3297312f806011cef9bfde50ca0ce5f90a0ffca48e0e44",
+    "/home/qzl/projects/SLAM_Learning/.cache/datasets/00/provenance.json": "ee139f3c00f1fd6019a74332dad460d6e30e3330a78b108a9609e81e4a1359a7",
+    "/home/qzl/projects/SLAM_Learning/results/runs/evaluation-check-6489fe584ba2/beautymap/eval/cleaned_exportGT.pcd": "a7fe2b1bf6418852e3f27601de0eb59fad016e188c16cee4c9bda3dbb1d2baf9"
+  },
+  "steps": [
+    {
+      "file": "000.npz",
+      "sha256": "8f375e2d981dffe3b4e010cc44fb688635e455ba1cbf69b3674d39b1f5ceb209",
+      "label": "INPUT | GT colors for inspection only | 21 selected scans",
+      "source_index": null,
+      "input_points": 120000,
+      "display_points": 120000
+    },
+    {
+      "file": "001.npz",
+      "sha256": "b13127bc13c5bd3c7d12902fb931303363d900bfd2df0f342eadb1aef37136b4",
+      "label": "REMOVED | green dynamic / red static loss",
+      "source_index": null,
+      "input_points": 2073,
+      "display_points": 2073
+    },
+    {
+      "file": "002.npz",
+      "sha256": "0a64a95e137b6e75a5a661b0dedd64dfe636c12481f49fcd45b3d3784e2e2ff6",
+      "label": "RETAINED | gray static / blue dynamic leakage",
+      "source_index": null,
+      "input_points": 117927,
+      "display_points": 117927
+    },
+    {
+      "file": "003.npz",
+      "sha256": "8f375e2d981dffe3b4e010cc44fb688635e455ba1cbf69b3674d39b1f5ceb209",
+      "label": "INPUT again | final-map decisions, not online growth",
+      "source_index": null,
+      "input_points": 120000,
+      "display_points": 120000
+    }
+  ],
+  "display_transform": "(x,y,z)->(x,z,-y) for Replica only; stored maps unchanged",
+  "focal_point": [
+    -10.24614420890801,
+    5.923454084396369,
+    -0.8356247645616488
+  ],
+  "distance": 106.38665187272197
+}

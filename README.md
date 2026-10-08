@@ -4,117 +4,62 @@
 
 **When should a map believe that the world changed?**
 
-Dynamic robust mapping · Semantic mapping and localization · Shared pose uncertainty
+Dynamic robust mapping · Semantic mapping and localization
 
 [![CPU reproducibility](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](pyproject.toml)
-[![Papers](https://img.shields.io/badge/author%20cores-4-147D85)](docs/papers/README.md)
 
-[Four papers](#four-related-reproductions) &nbsp;•&nbsp; [Research question](#research-question) &nbsp;•&nbsp; [Physical tests](#d435i-and-unitree-l2-without-a-robot)
+English | [中文](README.zh-CN.md)
 
-English &nbsp;|&nbsp; [中文](README.zh-CN.md)
+[Research analysis](docs/STUDY.md) · [Experimental results](docs/PAIRED_RESULTS.md) · [Home validation design](docs/REAL_WORLD.md)
 
 </div>
 
 ![Measured author-map replay](docs/figures/replication_hero.gif)
 
-*Measured final-map replay: 21 selected scans, fixed world view, raw → removed → retained. Green: removed dynamic; red: removed static; blue: retained dynamic. GT is used only for scoring/coloring. [Source and rendering settings](results/reference/reproduction-media-wsl/record.json).*
+*Replay of measured final maps; GT is used only for evaluation and coloring. Playback is not live inference. [Source](results/reference/reproduction-media-wsl/record.json).*
 
-This study connects the two selected laboratory themes through one interface: **posed observations → spatial correspondence → map decision**. We reproduce author pipelines first, audit their measurements, then formulate a testable hypothesis. The supplied-pose mapping runs do not estimate a SLAM trajectory.
+Starting from four 2024 papers, this study examines the shared dependency **posed observations → spatial correspondence → map decision**. Author cores are reproduced before controlled experiments revise the hypothesis. These supplied-pose runs do not estimate a SLAM trajectory.
 
-## Four related reproductions
+## Reproduction scope
 
-| Paper | Actually executed | Report | Watch | PDF |
-| --- | --- | --- | --- | --- |
-| DUFOMap, 2024 | Author dynamic-point removal, full 141-scan KITTI-00 teaser | [Card](docs/papers/dufomap.md) | [MP4](docs/media/dufomap/replay.mp4) / [GIF](docs/media/dufomap/preview.gif) | [EN](output/pdf/dufomap.en.pdf) / [中文](output/pdf/dufomap.zh-CN.pdf) |
-| BeautyMap, 2024 | Author map cleaning, same full teaser | [Card](docs/papers/beautymap.md) | [MP4](docs/media/beautymap/replay.mp4) / [GIF](docs/media/beautymap/preview.gif) | [EN](output/pdf/beautymap.en.pdf) / [中文](output/pdf/beautymap.zh-CN.pdf) |
-| ConceptGraphs, ICRA 2024 | SAM/CLIP and native association/fusion; 40 posed Replica observations, 39 objects | [Card](docs/papers/conceptgraphs.md) | [MP4](docs/media/conceptgraphs/replay.mp4) / [GIF](docs/media/conceptgraphs/preview.gif) | [EN](output/pdf/conceptgraphs.en.pdf) / [中文](output/pdf/conceptgraphs.zh-CN.pdf) |
-| HOV-SG, RSS 2024 | Native segment feature-map core; 8 posed observations, 50 segments | [Card](docs/papers/hovsg.md) | [MP4](docs/media/hovsg/replay.mp4) / [GIF](docs/media/hovsg/preview.gif) | [EN](output/pdf/hovsg.en.pdf) / [中文](output/pdf/hovsg.zh-CN.pdf) |
+| Work | Actually completed | Inspect | Bilingual reports |
+| --- | --- | --- | --- |
+| DUFOMap | Author 1.1.1; all 141 KITTI teaser scans and 17,362,230 points | [Card](docs/papers/dufomap.md) · [Video](docs/media/dufomap/replay.mp4) · [RViz](docs/media/rviz/dufomap.mp4) | [EN](output/pdf/dufomap.en.pdf) / [中文](output/pdf/dufomap.zh-CN.pdf) |
+| BeautyMap | Author map cleaning on the same teaser; GT excluded from algorithm inputs | [Card](docs/papers/beautymap.md) · [Video](docs/media/beautymap/replay.mp4) · [RViz](docs/media/rviz/beautymap.mp4) | [EN](output/pdf/beautymap.en.pdf) / [中文](output/pdf/beautymap.zh-CN.pdf) |
+| ConceptGraphs | SAM/CLIP and association/fusion on 40 posed room0 observations; 39 objects | [Card](docs/papers/conceptgraphs.md) · [Video](docs/media/conceptgraphs/replay.mp4) · [RViz](docs/media/rviz/conceptgraphs.mp4) | [EN](output/pdf/conceptgraphs.en.pdf) / [中文](output/pdf/conceptgraphs.zh-CN.pdf) |
+| HOV-SG | Segment feature-map core on 8 room0 observations; 50 segments | [Card](docs/papers/hovsg.md) · [Video](docs/media/hovsg/replay.mp4) · [RViz](docs/media/rviz/hovsg.mp4) | [EN](output/pdf/hovsg.en.pdf) / [中文](output/pdf/hovsg.zh-CN.pdf) |
 
-The semantic runs are **explicit core subsets**: complete semantic paper benchmarks, full graph reasoning and navigation are unfinished. Object/segment counts are not accuracy and cannot rank the two systems. The interrupted HOV-SG 40-observation attempt is retained. [Scope and failures](docs/SEMANTIC.md).
+Semantic reproductions are explicit core subsets. Complete semantic benchmarks, LLM graph reasoning, floor/room hierarchy and navigation remain unfinished. The interrupted 40-observation HOV-SG attempt is retained. [Scope and failures](docs/SEMANTIC.md).
 
-| ConceptGraphs: native observations + final object map | HOV-SG: native observations + final segment map |
+| ConceptGraphs object map | HOV-SG segment map |
 | --- | --- |
-| ![ConceptGraphs replay](docs/media/conceptgraphs/preview.gif) | ![HOV-SG replay](docs/media/hovsg/preview.gif) |
+| ![ConceptGraphs](docs/media/conceptgraphs/preview.gif) | ![HOV-SG](docs/media/hovsg/preview.gif) |
 
-*Red is a text-query candidate, not annotated correctness. Both maps are final world-XZ projections; the clips are measured-output replays, not live screen recordings or FPS benchmarks. [Recording convention and coordinate audit](docs/RECORDING.md).*
+*Red denotes a text-query candidate, not annotated correctness. Both clips replay saved outputs.*
 
-## What the numbers establish
+## How the results revise the question
 
-| Author method | SA % ↑ | DA % ↑ | Aggregate | Paper-table agreement |
-| --- | ---: | ---: | --- | --- |
-| DUFOMap 1.1.1 | 97.9798 | 98.7029 | Geometric AA 98.3407 | Not all values within 0.01 pp |
-| BeautyMap, pinned source | 96.9529 | 98.3382 | Harmonic HA 97.6407 | Not all values within 0.01 pp |
+![Paired measurements and seed ranges](results/reference/paired-pose/figures/paired-results.png)
 
-All 141 scans and 17,362,230 labeled points are evaluated with 5 cm map proximity. Windows, fresh Ubuntu CI and WSL counts agree. Original PCL and SciPy agree **pointwise with zero disagreements** for both maps. This excludes that evaluator implementation as the cause of the remaining paper-table gaps. AA and HA are different aggregates. [Full counts, targets and controls](docs/RESULTS.md).
+**76 primary cells + 21 exploratory parameter controls** show that at 30 cm RMS, monotone drift preserves more static LiDAR points than shuffled errors, while ConceptGraphs loses more partial-surface coverage. This rejects “temporal correlation is always worse.” A common dominant shared-uncertainty bottleneck remains unproven; simple threshold changes already improve some outcomes.
 
-Changing only the scoring of the same DUFOMap retained points, from original identities to map proximity, raises SA by **5.347532 pp**. This is a measurement effect, not an algorithm gain. The actual ConceptGraphs mapper uses absolute poses; 39 saved camera matrices verify the coordinate convention. These audits matter before drawing a research conclusion.
+Changing only correspondence in the scoring of the same DUFOMap output changes SA by **5.347532 percentage points**. This is a measurement effect, not an algorithm gain. One teaser, one static room and four partial surfaces without independent human annotation review limit the claims.
 
-## Paired evidence: 97 native-core cells
+**Narrowed open question:** when a later pose correction changes historical correspondence, how can object identity and query coordinates become valid again, while exposing results that remain stale? Candidate H1 retains observation provenance, pose versions and bounded replay. No prototype benefit has been established.
 
-Four partial-surface targets now accompany **76 paired pose cells + 21 parameter controls**. At 30 cm RMS, monotone drift preserves more static LiDAR points than shuffled errors, while ConceptGraphs loses more reference coverage. This rejects “correlation is always worse”; it does not establish a universal shared-uncertainty bottleneck. H1 remains a candidate. Annotations are AI-assisted and await independent human review.
+[Standalone analysis: achievements, gaps, metrics and H1](docs/STUDY.md) · [Full paired results](docs/PAIRED_RESULTS.md) · [Protocol](docs/PAIRED_PROTOCOL.md) · [Paired report EN](output/pdf/paired-study.en.pdf) / [中文](output/pdf/paired-study.zh-CN.pdf)
 
-![Paired measurements, mean and seed range](results/reference/paired-pose/figures/paired-results.png)
+## Next validation
 
-[Protocol](docs/PAIRED_PROTOCOL.md) · [Results, revised hypothesis and falsification plan](docs/PAIRED_RESULTS.md) · [EN PDF](output/pdf/paired-study.en.pdf) / [中文 PDF](output/pdf/paired-study.zh-CN.pdf).
+Use ConceptGraphs as the smallest test case. Freeze a new scene, independent annotations, delayed pose corrections and a resource budget; compare the native core, simple protection, coordinate correction alone, bounded replay and oracle full replay. Reject the corresponding H1 benefit if simple methods reach the same coverage, change-recall and delay frontier.
 
-Four **complete live terminal recordings** are also retained locally, from startup through exit 0: 36.6 / 42.0 / 256.6 / 168.8 seconds. Open `D:/workspace/be2/SLAM_Recordings/2026-10-08/VIDEO_INDEX.md` on the collection machine. [Recording evidence and commands](docs/RECORDING.md#complete-local-execution-recordings); large MP4s stay outside Git.
+The D435i / Unitree L2 [home experiment design](docs/REAL_WORLD.md) begins with separate fixed-sensor static, occlusion, movement and removal sessions, followed by handheld revisits. **No physical validation results are available yet.**
 
-## Research question
+## Inspect and reproduce
 
-**Can map updates remain reliable under temporally correlated pose errors, at equal change recall, query coverage and update delay, when stable anchors exist?**
+[Minimal reproduction commands](docs/REPRODUCE.md) · [Paper cards and raw results](docs/papers/README.md) · [Visualization scope](docs/RECORDING.md) · [Document index](docs/README.md)
 
-The shared dependency is spatial correspondence, not a claim that all four methods ignore noise or assume static scenes. DUFOMap already has tolerances, BeautyMap protects hidden geometry, ConceptGraphs supports updates, and HOV-SG explicitly acknowledges its static-scene limit. Wrong correspondence may cause false removal or incorrect semantic assignment; a shared empirical failure has not yet been established across all four.
+`src/`, `scripts/` and `configs/` contain study code and pinned settings; `results/reference/` contains portable raw evidence and failures; `output/pdf/` contains 14 report snapshots. Full datasets, weights, maps and personal operating notes stay outside main.
 
-Candidate H1 keeps one shared pose variable and observation provenance, delays ambiguous edits, and replays affected observations after a correction. A bounded object/submap sidecar is feasible. Stable anchors are required; known covariance is an oracle diagnostic. Khronos already jointly optimizes and reconciles maps, so memory or joint optimization alone is not a novelty claim.
-
-Reject H1 if a simple threshold/visibility baseline matches its risk at the same recall, coverage and delay, or if deferred edits merely increase stale-target time. Existing room0 and synthetic trials informed the idea and remain exploratory. [Careful four-paper analysis](docs/STUDY.md) · [EN PDF](output/pdf/study.en.pdf) / [中文 PDF](output/pdf/study.zh-CN.pdf).
-
-![Measured correspondence effect](docs/figures/metric_correspondence.png)
-
-<!-- MEDIA: bottleneck-diagram / pose-drift-video / risk-coverage -->
-*Reserved research figures: pose/correspondence mechanism, matched-error drift video and held-out risk–coverage–delay curves. [Inputs and publication gates](docs/figures/README.md).*
-
-## D435i and Unitree L2 without a robot
-
-**Planned; hardware data has not been collected.** A robot is unnecessary for testing map decisions and object-coordinate queries.
-
-| Setup | Distinguishing test | Required control |
-| --- | --- | --- |
-| Fixed D435i tripod | Static / occluded / moved / removed object, semantic identity and target coordinates | Identity sensor pose; background reference and annotated visibility |
-| Fixed L2 tripod | Static geometry retention, rays through genuinely empty space | Raw point/time/ring data and verified sensor pose |
-| Handheld loop | Same pixels/features, independent versus correlated injected pose errors | Estimated odometry separated from reference; equal achieved pose RMS |
-| Rigid D435i + L2 mount | Whether an independent geometric source helps association | Extrinsics, timestamp-offset measurement and RGB-D/LiDAR interference control |
-
-The detailed protocol specifies room layout, calibration, native/ROS capture, event states, labels, validation/test sessions, failure cases, metrics and publication files. D435i IMU is not ground-truth position. A shared-clock assumption is not made for L2. [Executable physical plan](docs/REAL_WORLD.md) · [EN PDF](output/pdf/real-world.en.pdf) / [中文 PDF](output/pdf/real-world.zh-CN.pdf).
-
-<!-- MEDIA: physical-capture-video -->
-*Physical video slot: real sensor input + map decision + independent annotation/event view, with session ID and pose source. No synthetic score occupies this slot.*
-
-## Quick start
-
-```bash
-uv sync --frozen --python 3.10 --extra methods --extra dev
-uv run slam-study fetch
-uv run slam-study run --method dufomap
-uv run slam-study run --method beautymap
-uv run python scripts/verify_evidence.py
-uv run python scripts/check_docs.py
-```
-
-For Linux/WSL CUDA cores, use `bash scripts/setup_semantic.sh` then `.venv-semantic/bin/python scripts/run_conceptgraphs.py`; use `bash scripts/setup_hovsg.sh` then `.venv-hovsg/bin/python scripts/run_hovsg.py`. Separate environments pin their dependencies and verify checkpoints. [WSL](docs/WSL.md) · [Full reproduction commands](docs/REPRODUCE.md).
-
-## Reading and interview route
-
-| Read | Purpose |
-| --- | --- |
-| [Four paper cards](docs/papers/README.md) / [Results](docs/RESULTS.md) | Exact executed scope, media, PDF, numbers and retained failures |
-| [Cross-paper study](docs/STUDY.md) / [Literature](docs/LITERATURE.md) | Structural question, stated limitations, existing solutions and novelty boundary |
-| [Experiment gates](docs/PLAN.md) / [Physical protocol](docs/REAL_WORLD.md) | Reproduce → annotate → freeze hypothesis → held-out comparisons |
-| [Recording](docs/RECORDING.md) / [Media index](docs/figures/README.md) | Regenerate measured clips and bilingual reports; reserve future figures |
-| [Submission checklist](docs/SUBMISSION.md) / [AI disclosure](docs/INTERVIEW.md) | A reviewer can trace claim → figure → metric → run → command |
-| [Measured ledger](results/REPORT.md) / [Source audit](docs/AUDIT.md) | Machine-readable provenance and historical migration |
-
-Every narrative has an independent [Chinese edition](docs/README.zh-CN.md). Historical material is recoverable at `af1e58b` and contributes no current score.
-
-[Citation](CITATION.cff) · [Sources, data and media credits](docs/ATTRIBUTION.md) · [Study-code license](LICENSE).
+[AI use and research boundaries](docs/DISCLOSURE.md) · [Sources and licenses](docs/ATTRIBUTION.md) · [Citation](CITATION.cff) · [License](LICENSE)

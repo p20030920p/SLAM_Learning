@@ -1,0 +1,53 @@
+Panels: []
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Background Color: 20; 27; 38
+    Fixed Frame: map
+    Frame Rate: 15
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Metric grid
+      Enabled: true
+      Cell Size: 5
+      Plane Cell Count: 50
+      Color: 60; 75; 90
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Measured output
+      Enabled: true
+      Topic:
+        Value: /study/cloud
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        Depth: 1
+      Size (Pixels): 3
+      Style: Points
+      Color Transformer: RGB8
+      Position Transformer: XYZ
+      Decay Time: 0
+    - Class: rviz_default_plugins/Marker
+      Name: Evidence label
+      Enabled: true
+      Marker Topic:
+        Value: /study/label
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        Depth: 1
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 106.38665187272197
+      Focal Point:
+        X: -10.24614420890801
+        Y: 5.923454084396369
+        Z: -0.8356247645616488
+      Pitch: 0.85
+      Yaw: 1.4
+      Target Frame: map
+Window Geometry:
+  Width: 1000
+  Height: 800
+  X: 280
+  Y: 0
+  Hide Left Dock: true
+  Hide Right Dock: true
