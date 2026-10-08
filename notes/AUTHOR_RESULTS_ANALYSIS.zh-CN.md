@@ -2,7 +2,7 @@
 
 [English](AUTHOR_RESULTS_ANALYSIS.md) · [个人索引](README.zh-CN.md) · [独立复现分支](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals)
 
-2026-10-08 新增结果。这里分析新的独立原流程；本分支旧表格仍是原有子集和探索实验的记录，不覆盖、不拼接成同一实验。实时完成范围看复现分支的 [状态表](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/STATUS.zh-CN.md)。
+2026-10-09 更新。这里分析新的独立原流程；本分支旧表格仍是原有子集和探索实验的记录，不覆盖、不拼接成同一实验。实时完成范围看复现分支的 [状态表](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/STATUS.zh-CN.md)。
 
 ## 已达到的效果
 
@@ -15,7 +15,9 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 | AV2 release，575 扫描 | 96.6651 / 88.8985 | 92.4013 / 85.1671 | 两者 DA 均比上述 KITTI 公开包低；BeautyMap 参数迁移需单独标注 |
 | 半室内，960 扫描 | 99.6373 / 83.0049 | 94.7785 / 90.4048 | DUFOMap 更保留静态点，BeautyMap 更移除动态点 |
 
-可复查来源：[原始评分日志](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/evidence/runs/released-lidar-01/scores/run.log)、[参数与图表](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/docs/STATUS.zh-CN.md)。作者公开包不等于 KITTI 完整序列；AV2 的 BeautyMap 参数沿用室外示例，尚未核实论文专属设置。没有重复运行区间或显著性结论。
+可复查来源：[原始评分日志](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/evidence/runs/released-lidar-01/scores/run.log)、[参数与图表](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/docs/STATUS.zh-CN.md)。论文清理表格使用选定帧段，并非整条 KITTI 序列。BeautyMap 的 AV2 沿用室外示例参数，属于该论文未报告的补充迁移实验。没有重复运行区间或显著性结论。
+
+新增 [DUFOMap 表 IV 消融](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DUFOMAP_TABLE4.zh-CN.md)：五组 SA/DA/AA 均与论文两位小数一致，无误差补偿时 SA 为 14.89%，完整设置为 97.96%。这确认误差补偿是已经存在的强基线；不能将“考虑位姿误差”本身写成新贡献，也不能从该消融推出 H1 已有效。H1 仍须验证迟到修正后的对象对应和查询坐标恢复。
 
 ## 与 H1 的关联和界限
 

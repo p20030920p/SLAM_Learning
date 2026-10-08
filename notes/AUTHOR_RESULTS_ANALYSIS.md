@@ -2,7 +2,7 @@
 
 English · [中文](AUTHOR_RESULTS_ANALYSIS.zh-CN.md) · [Index](README.md)
 
-This 2026-10-08 addition concerns the independent [author-originals branch](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals). Earlier tables in this study-guide branch remain historical subset and exploratory records. Do not concatenate the two experiments. Consult the [live scope](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/STATUS.zh-CN.md) for completed versus queued stages.
+Updated 2026-10-09. This addition concerns the independent [author-originals branch](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals). Earlier tables in this study-guide branch remain historical subset and exploratory records. Do not concatenate the two experiments. Consult the [live scope](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/STATUS.zh-CN.md) for completed versus queued stages.
 
 Both original LiDAR entries and the author's PCL export/scoring finished all four public labeled releases: 1997 scans per method. These are single runs, percentages, without repeatability intervals.
 
@@ -13,7 +13,9 @@ Both original LiDAR entries and the author's PCL export/scoring finished all fou
 | AV2, 575 scans | 96.6651 / 88.8985 | 92.4013 / 85.1671 |
 | Semi-indoor, 960 scans | 99.6373 / 83.0049 | 94.7785 / 90.4048 |
 
-[Immutable scoring log](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/evidence/runs/released-lidar-01/scores/run.log), [parameters and figure](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/docs/STATUS.zh-CN.md). Public releases are not complete KITTI sequences. BeautyMap AV2 transfers the outdoor example parameters, not a verified paper-specific configuration.
+[Immutable scoring log](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/evidence/runs/released-lidar-01/scores/run.log), [parameters and figure](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/docs/STATUS.zh-CN.md). The paper tables use selected KITTI intervals rather than full sequences. BeautyMap AV2 transfers the outdoor example parameters as an additional experiment outside that paper's reported scenes.
+
+The new [DUFOMap Table IV ablation](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DUFOMAP_TABLE4.zh-CN.md) matches all five SA/DA/AA rows at the paper's two-decimal precision. SA changes from 14.89% without the error margins to 97.96% with full settings. Error compensation is therefore an existing strong baseline, not a new contribution. This does not test H1: recovery of object correspondence and query coordinates after delayed correction still needs its own experiment.
 
 Semi-indoor results expose a static-preservation/dynamic-removal tradeoff. Compare false deletion at matched change recall; a composite score conceals error types. Both methods consume supplied poses, so these runs establish no ATE/RPE or online localization gain. BeautyMap consumes prior XYZ geometry; the GT label channel is not used in cleaning decisions. DUFOMap's voxel-center output can lose nearest-neighbor matches at a tighter threshold, which must not be interpreted directly as static-point deletion.
 
