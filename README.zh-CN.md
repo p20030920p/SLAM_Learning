@@ -1,65 +1,19 @@
-<div align="center">
-
-# SLAM Learning
-
-**地图什么时候应该相信世界发生了变化？**
-
-动态环境稳健建图 · 语义建图与定位
-
-[![CPU reproducibility](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml)
-[![Python](https://img.shields.io/badge/Python-3.10-3776AB)](pyproject.toml)
+# 个人学习与分析分支
 
 [English](README.md) | 中文
 
-[研究分析](docs/STUDY.zh-CN.md) · [实验结果](docs/PAIRED_RESULTS.zh-CN.md) · [居家验证设计](docs/REAL_WORLD.zh-CN.md)
+当前分支：`notes/personal-study-guide-20261008`。给老师检查的研究展示仍在 [main](https://github.com/p20030920p/SLAM_Learning/tree/main)。本分支只增加个人操作和分析文档，运行代码与 main `6deb08a` 相同。
 
-</div>
+**从[完整文档索引](notes/README.zh-CN.md)开始。**
 
-![作者地图实测回放](docs/figures/replication_hero.gif)
-
-*实测最终地图的回放，GT 仅用于评价与着色；不是实时算法演示。[来源](results/reference/reproduction-media-wsl/record.json)。*
-
-本研究从四篇 2024 年工作出发，分析 **给定位姿观测 → 空间对应 → 地图决策** 的共同依赖。先复现作者核心，再用受控实验修订假设。当前运行使用给定位姿，不估计 SLAM 轨迹。
-
-## 复现了什么
-
-| 工作 | 实际完成范围 | 查看结果 | 双语报告 |
-| --- | --- | --- | --- |
-| DUFOMap | 作者 1.1.1；KITTI teaser 全部 141 扫描、17,362,230 点 | [论文卡](docs/papers/dufomap.zh-CN.md) · [视频](docs/media/dufomap/replay.mp4) · [RViz](docs/media/rviz/dufomap.mp4) | [EN](output/pdf/dufomap.en.pdf) / [中文](output/pdf/dufomap.zh-CN.pdf) |
-| BeautyMap | 同一 teaser 的作者地图清理；GT 不输入算法 | [论文卡](docs/papers/beautymap.zh-CN.md) · [视频](docs/media/beautymap/replay.mp4) · [RViz](docs/media/rviz/beautymap.mp4) | [EN](output/pdf/beautymap.en.pdf) / [中文](output/pdf/beautymap.zh-CN.pdf) |
-| ConceptGraphs | Replica room0，40 次观测的 SAM／CLIP 与关联融合，39 对象 | [论文卡](docs/papers/conceptgraphs.zh-CN.md) · [视频](docs/media/conceptgraphs/replay.mp4) · [RViz](docs/media/rviz/conceptgraphs.mp4) | [EN](output/pdf/conceptgraphs.en.pdf) / [中文](output/pdf/conceptgraphs.zh-CN.pdf) |
-| HOV-SG | 同场景 8 次观测的分段特征建图，50 分段 | [论文卡](docs/papers/hovsg.zh-CN.md) · [视频](docs/media/hovsg/replay.mp4) · [RViz](docs/media/rviz/hovsg.mp4) | [EN](output/pdf/hovsg.en.pdf) / [中文](output/pdf/hovsg.zh-CN.pdf) |
-
-语义部分是明确限定的核心子集；完整语义 benchmark、LLM 图推理、楼层／房间层级与导航未完成。HOV-SG 的 40 观测中断尝试保留。[范围与失败](docs/SEMANTIC.zh-CN.md)。
-
-| ConceptGraphs 对象地图 | HOV-SG 分段地图 |
+| 你要做什么 | 入口 |
 | --- | --- |
-| ![ConceptGraphs](docs/media/conceptgraphs/preview.gif) | ![HOV-SG](docs/media/hovsg/preview.gif) |
+| 对照实验室要求，整理自己的开放问题与假设 | [分析提纲与填写区](notes/LAB_ANALYSIS.zh-CN.md) |
+| 从 Windows 打开并运行四个复现核心 | [Windows → WSL → 命令 → 产物](notes/WINDOWS_START.zh-CN.md) |
+| 对照作者原库，理解我们改了什么 | [原库、固定版本、补丁与范围](notes/UPSTREAM_COMPARISON.zh-CN.md) |
+| 手动打开 RViz，重走视频录制流程 | [复现与录屏](notes/MANUAL_RECORDING.zh-CN.md) |
+| 使用 D435i、Unitree L2 做居家采集 | [设备操作手册](notes/HOME_RUNBOOK.zh-CN.md) |
 
-*红色表示文本查询候选，不表示已判正确。均为保存输出的回放。*
+研究结论见[独立分析](docs/STUDY.zh-CN.md)，已有测量见[配对结果](docs/PAIRED_RESULTS.zh-CN.md)，正式新实验设计见[居家协议](docs/REAL_WORLD.zh-CN.md)。硬件数据适配和 H1 尚未完成，设备录制与假设验证需要分别报告。
 
-## 结果怎样改变了问题
-
-![配对测量与种子范围](results/reference/paired-pose/figures/paired-results.png)
-
-**76 个主单元 + 21 个探索参数对照**表明：30 cm RMS 下，单调漂移比打乱误差保留更多 LiDAR 静态点，但 ConceptGraphs 的部分表面覆盖更低。“时间相关误差总是更坏”被这组结果否定；“共享位姿不确定性是共同主导瓶颈”仍未证实。简单阈值变化已改善部分结果。
-
-同一 DUFOMap 输出仅改变评分对应方式，SA 就相差 **5.347532 个百分点**。该差值属于测量定义，不能当算法提升。一个 teaser、一个静态房间与未经独立人工审核的四个部分表面，限制了结论范围。
-
-**收窄后的开放问题：** 后续位姿修正改变历史对应时，怎样让对象身份与查询坐标恢复有效，并明确告知用户哪些结果仍然过期？候选 H1 保留观测来源、位姿版本和有界重放；尚未实现或验证收益。
-
-[独立分析：达到什么、未达到什么、指标与 H1 的关系](docs/STUDY.zh-CN.md) · [完整配对结果](docs/PAIRED_RESULTS.zh-CN.md) · [协议](docs/PAIRED_PROTOCOL.zh-CN.md) · [配对报告 EN](output/pdf/paired-study.en.pdf) / [中文](output/pdf/paired-study.zh-CN.pdf)
-
-## 下一项验证
-
-以 ConceptGraphs 为最小对象，冻结新场景、独立标注、迟到位姿修正计划和资源预算，比较原核心、简单保护、仅修正坐标、有界回放与 oracle 全量回放。若简单方法达到相同覆盖、变化召回与延迟前沿，应否定 H1 的相应收益主张。
-
-D435i／Unitree L2 的[居家实验设计](docs/REAL_WORLD.zh-CN.md)从固定传感器的静止、遮挡、移动、移除开始，再测试手持重访。**尚无实物验证成绩。**
-
-## 核查与复现
-
-[最少复现命令](docs/REPRODUCE.zh-CN.md) · [论文与原始结果](docs/papers/README.zh-CN.md) · [可视化说明](docs/RECORDING.zh-CN.md) · [文档索引](docs/README.zh-CN.md)
-
-`src/`、`scripts/`、`configs/` 提供研究代码和固定设置；`results/reference/` 提供轻量原始证据与失败记录；`output/pdf/` 提供 14 份报告快照。完整数据、权重、地图和个人操作手册不进入主分支。
-
-[AI 使用与研究边界](docs/DISCLOSURE.zh-CN.md) · [来源与许可](docs/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [License](LICENSE)
+完整视频和原始设备数据保存在本机，不包含在此分支。分支发布后同样可公开访问。
