@@ -1,0 +1,9 @@
+Running scope as unit: slam-author-kitti-historical-protocol-01-02-scores.scope
+Evaluation results in seq [95m02[0m
+| Methods        |   # static |   # dynamics |   SA [%] ↑ |   DA [%] ↑ |   AA [%] ↑ |
+|----------------+------------+--------------+------------+------------+------------|
+| dufomap        |    7853378 |      3669060 |    68.7417 |    89.0077 |    78.2211 |
+| beautymap      |    9532721 |      1989717 |    83.3978 |    82.4092 |    82.9021 |
+| beautymap_xy05 |    9589860 |      1932578 |    83.9165 |    84.1405 |    84.0284 |
+| beautymap_xy20 |    8558568 |      2963870 |    74.9226 |    88.8251 |    81.5782 |
+Time cost: 2.14s

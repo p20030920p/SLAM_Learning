@@ -6,6 +6,10 @@
 
 新增：[DUFOMap 表 IV 五组消融对照](docs/DUFOMAP_TABLE4.zh-CN.md)，SA/DA/AA 共 15 项与论文两位小数一致。
 
+[BeautyMap 表 III 三组网格消融](docs/KITTI_PAPER_PROTOCOL.zh-CN.md)也已匹配论文 SA/DA/HA 共 9 项，历史／当前预处理结果分别保留。
+
+另完成 [Python 原始点／体素输出对照](docs/DUFOMAP_OUTPUT_AUDIT.zh-CN.md)：同一 Python 参数下，输出表示和评价阈值强烈影响评分，不能把体素低 SA 直接当作静态点误删。
+
 已补下载原始 KITTI 所需 333 帧并完成 01/02 两种原始方法及三组网格参数的评分。[新增结果与论文差距](docs/KITTI_SELECTED_RESULTS.zh-CN.md)。当前预处理与旧发布包存在版本差异，新结果单列。
 
 ConceptGraphs 已完成 room0 的完整前端、原始三维映射与 RGB 参考表面；原始语义评价修复依赖后排队重试。这里有 [60 秒作者三维窗口实录](evidence/videos/conceptgraphs-room0-original-window.mp4)，可查看 RGB、实例颜色和视角操作。

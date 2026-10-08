@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "method": "Historical-DynamicMap-build",
+  "scope": "Author-documented DUFOMap historical benchmark revision; unfiltered selected KITTI scans and original C++ GT generation; currently downloadable SuMa poses; paper input equivalence unproven; 2GiB RAM/6GiB swap, CPU100%; no paper timing claim",
+  "status": "executed",
+  "started_at": "2026-10-08T23:00:41.265017+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-historical-protocol-01-cmake-configure",
+    "-p",
+    "MemoryMax=2G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=100%",
+    "cmake",
+    "-S",
+    "/home/qzl/projects/SLAM_Author_Originals/protocol-sources/dynamicmap-dufo-paper/scripts",
+    "-B",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/build"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/protocol-sources/dynamicmap-dufo-paper",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/protocol-sources/dynamicmap-dufo-paper",
+  "source_commit": "161b555017608277d21230cd0be0e80589ee8576",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "71b9c12e8e0903604576bb32c7730a82d6ce0264933d76047d9ea7498bf0846f",
+      "bytes": 8840
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 232013,
+  "elapsed_seconds": 41.312173038000765,
+  "source_dirty_after": ""
+}

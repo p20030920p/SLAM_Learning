@@ -1,0 +1,47 @@
+{
+  "scope": "Author-documented DUFOMap historical benchmark revision; unfiltered selected KITTI scans and original C++ GT generation; currently downloadable SuMa poses; paper input equivalence unproven",
+  "metrics": {
+    "00": {
+      "dufomap": {
+        "SA_percent": 98.6217,
+        "DA_percent": 98.7362,
+        "AA_percent": 98.679
+      }
+    },
+    "01": {
+      "dufomap": {
+        "SA_percent": 98.8671,
+        "DA_percent": 93.9496,
+        "AA_percent": 96.377
+      },
+      "beautymap": {
+        "SA_percent": 98.771,
+        "DA_percent": 92.0418,
+        "AA_percent": 95.3471
+      }
+    },
+    "02": {
+      "dufomap": {
+        "SA_percent": 68.7417,
+        "DA_percent": 89.0077,
+        "AA_percent": 78.2211
+      },
+      "beautymap": {
+        "SA_percent": 83.3978,
+        "DA_percent": 82.4092,
+        "AA_percent": 82.9021
+      },
+      "beautymap_xy05": {
+        "SA_percent": 83.9165,
+        "DA_percent": 84.1405,
+        "AA_percent": 84.0284
+      },
+      "beautymap_xy20": {
+        "SA_percent": 74.9226,
+        "DA_percent": 88.8251,
+        "AA_percent": 81.5782
+      }
+    }
+  },
+  "limits": "Historical benchmark does not establish identical paper inputs or method checkout. BeautyMap z=.5m chosen from current author README; historical scorer has no HA column."
+}

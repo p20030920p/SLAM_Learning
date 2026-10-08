@@ -1,0 +1,87 @@
+{
+  "status": "validated",
+  "maps": {
+    "00-dufomap": {
+      "path": "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/00/dufomap/dufomap_output.pcd",
+      "points": 16268314
+    },
+    "01-dufomap": {
+      "path": "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/01/dufomap/dufomap_output.pcd",
+      "points": 11167250
+    },
+    "01-beautymap": {
+      "path": "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/01/beautymap/beautymap_output.pcd",
+      "points": 11286244
+    },
+    "02-dufomap": {
+      "path": "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/dufomap/dufomap_output.pcd",
+      "points": 7222273
+    },
+    "02-beautymap": {
+      "path": "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/beautymap/beautymap_output.pcd",
+      "points": 9236867
+    },
+    "02-beautymap_xy05": {
+      "path": "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/beautymap_xy05/beautymap_output.pcd",
+      "points": 9182035
+    },
+    "02-beautymap_xy20": {
+      "path": "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/beautymap_xy20/beautymap_output.pcd",
+      "points": 8249543
+    }
+  },
+  "artifacts": {
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/00/dufomap/dufomap_output.pcd": {
+      "sha256": "1a2edf1a6000ed47bc497d002cea943e3e61a318e0503ec048d9f2c44db089a1",
+      "bytes": 260293212
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/01/dufomap/dufomap_output.pcd": {
+      "sha256": "fb2acf59f4a9155c9217d1933757930752c0d19187901977d5a0e8538c12fe23",
+      "bytes": 178676188
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/01/beautymap/beautymap_output.pcd": {
+      "sha256": "7a6966688e373e0e7f3cb9c707726bc631c7f66bd8045088d926bb80e2ac196f",
+      "bytes": 180580055
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/dufomap/dufomap_output.pcd": {
+      "sha256": "85cba380f1cfa80873afb33e015c8cd1ac937f73a012e81c2afdabbc72d5c439",
+      "bytes": 115556554
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/beautymap/beautymap_output.pcd": {
+      "sha256": "d11ea6d19cf6335f0cf35c4abf3b3b451a77d406fd065382b7c03f57fa39e26a",
+      "bytes": 147790021
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/beautymap_xy05/beautymap_output.pcd": {
+      "sha256": "8983f9709fb1ac2db35a24a14ac38df0e8313369389b9973bcddde76c32bcd48",
+      "bytes": 146912709
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/beautymap_xy20/beautymap_output.pcd": {
+      "sha256": "bfb9838ec588daee6731a86b169be749dccfada2cc36e90391a69c839070325a",
+      "bytes": 131992837
+    }
+  },
+  "prepared": {
+    "00": {
+      "scans": 141,
+      "same_release_point_count": 141,
+      "byte_identical_release_scans": 0,
+      "gt_points": 17362230,
+      "released_comparison_performed": true
+    },
+    "01": {
+      "scans": 101,
+      "same_release_point_count": null,
+      "byte_identical_release_scans": null,
+      "gt_points": 11771122,
+      "released_comparison_performed": false
+    },
+    "02": {
+      "scans": 91,
+      "same_release_point_count": null,
+      "byte_identical_release_scans": null,
+      "gt_points": 11522438,
+      "released_comparison_performed": false
+    }
+  },
+  "scope": "Seven completed original maps, finite geometry, layouts, SHA-256 and recorded original logs; only 00 was compared with a released input. No new accuracy formula."
+}

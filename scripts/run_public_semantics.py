@@ -18,6 +18,7 @@ parser.add_argument('--wait-cg',type=Path,required=True)
 parser.add_argument('--wait-hov',type=Path,required=True)
 parser.add_argument('--name',required=True)
 parser.add_argument('--include-detect',action='store_true',help='Also run the unmodified author RAM+DINO frontend and Detect mapping/evaluation')
+parser.add_argument('--hov-home-fallback',action='store_true',help='If default HOV room0 fails, separately test author skip_frames=100; never count this as default benchmark completion')
 args=parser.parse_args()
 r=args.runtime.resolve();root=r/'runs'/args.name
 root.mkdir(parents=True,exist_ok=False)
@@ -25,6 +26,7 @@ root.mkdir(parents=True,exist_ok=False)
 scripts=Path(__file__).resolve().parent
 state={'status':'waiting_for_room0','pid':os.getpid(),'boot_id':Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
        'scope':'All 8 public Replica scenes, local computation; SAM-only microbatch16 compatibility; optional unchanged RAM+DINO Detect; no API/HM3D/LLaVA',
+       'hov_home_fallback_enabled':args.hov_home_fallback,
        'scenes':{}}
 def save():(root/'outcomes.json').write_text(json.dumps(state,indent=2)+'\n')
 def on_exception(kind,value,traceback):
@@ -67,6 +69,15 @@ hov=wait_terminal(args.wait_hov)
 state['scenes']['room0']={'conceptgraphs':cg['status'],'hovsg':hov['status']};save()
 if cg['status']!='executed_single_scene':raise RuntimeError('First complete CG chain failed; not repeating it across seven scenes')
 hov_enabled=hov['status']=='executed_single_scene'
+if not hov_enabled and args.hov_home_fallback:
+    state['status']='running_room0_hov_home_sampling_variant';save();wait_gpu()
+    home_name=args.name+'-room0-hov-home'
+    code=run_script('run_hovsg_stages.py',['--runtime',r,'--scene','room0','--wait-outcomes',args.wait_cg,
+        '--name',home_name,'--sam-batch','16','--skip-frames','100','--feature-timeout','21600'])
+    state['scenes']['room0']['hovsg_home_variant']={'exit_code':code,'run':home_name,
+        'skip_frames':100,'sampled_frames':20,'scope':'Additional home sampling configuration only; excluded from default eight-scene HOV completion'};save()
+    # hov_enabled remains false: a home sampling variant cannot stand in for
+    # the failed default-sampling benchmark.
 detect_enabled=args.include_detect
 if detect_enabled:
     rgb_record=Path(cg['rgb_reference']['record']) if cg.get('rgb_reference') else args.wait_cg.parent/'rgb-fusion/record.json'
@@ -115,10 +126,12 @@ for method,complete,exp in [
         '--replica_root',r/'data/replica-full/Replica','--replica_semantic_root',r/'data/Replica-semantic',
         '--n_exclude','6','--pred_exp_name',exp]
     with (root/'orchestration.log').open('ab') as log:
+        limited=['systemd-run','--user','--scope','--unit','slam-author-'+args.name+'-'+method+'-eight-scene-evaluation',
+            '-p','MemoryMax=12G','-p','MemorySwapMax=48G',*map(str,command)]
         code=subprocess.call([sys.executable,str(scripts/'record_command.py'),'--output',str(root/(method+'-eight-scene-evaluation')),
             '--cwd',str(work),'--source',str(source),'--method','ConceptGraphs-original-eight-scene-evaluation',
             '--scope','UNMODIFIED original evaluator, all eight scenes, original HDF5 GT; '+('SAM-only batch16 compatibility' if method=='cg' else 'unchanged RAM+DINO box-prompted SAM frontend; actual mapping suffix from author command'),
-            '--timeout','7200','--artifact',str(work/'results'/exp/'replica_ex6_results.csv'),'--',*map(str,command)],
+            '--timeout','7200','--artifact',str(work/'results'/exp/'replica_ex6_results.csv'),'--',*limited],
             stdout=log,stderr=subprocess.STDOUT)
     state['eight_scene_'+method+'_evaluation_exit']=code;save()
 state['status']='finished_with_recorded_outcomes';save()

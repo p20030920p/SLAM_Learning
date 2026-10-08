@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "method": "Historical-map-validation",
+  "scope": "Seven original historical-protocol maps: hash-bound successful original records and finite binary geometry; correct untested release comparison counters for 01/02 in separate validation",
+  "status": "executed",
+  "started_at": "2026-10-08T23:09:57.180624+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-historical-results-validation-01",
+    "-p",
+    "MemoryMax=1G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/mnt/d/workspace/be2/SLAM_Author_Originals/scripts/validate_historical_outputs.py",
+    "--run",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01",
+    "--output",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-results-validation-01/validation.json"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/protocol-sources/dynamicmap-dufo-paper",
+  "source_commit": "161b555017608277d21230cd0be0e80589ee8576",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "2d35f335fab28789c60eaf05c7a114fdf6cca3b0c35d890f6c44cd6f8b20dfb1",
+      "bytes": 2212
+    },
+    "validation.json": {
+      "sha256": "e708ef268d66b7c69ca36b024816ab4cbf2b3032a7b6b103b3e9a7fe4107f004",
+      "bytes": 3838
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 233866,
+  "elapsed_seconds": 1.5174915659990802,
+  "source_dirty_after": ""
+}

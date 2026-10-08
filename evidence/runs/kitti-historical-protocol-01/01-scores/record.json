@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "method": "Historical-DynamicMap-score",
+  "scope": "Author-documented DUFOMap historical benchmark revision; unfiltered selected KITTI scans and original C++ GT generation; currently downloadable SuMa poses; paper input equivalence unproven; 2GiB RAM/6GiB swap, CPU100%; no paper timing claim",
+  "status": "executed",
+  "started_at": "2026-10-08T23:03:26.039043+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-historical-protocol-01-01-scores",
+    "-p",
+    "MemoryMax=2G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=100%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/author-scripts/py/eval/01-scores.py"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/protocol-sources/dynamicmap-dufo-paper",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/protocol-sources/dynamicmap-dufo-paper",
+  "source_commit": "161b555017608277d21230cd0be0e80589ee8576",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "26a7228ddf52493c235080e3f4c4905d474780c82ebb207af7d11bde691ce3a4",
+      "bytes": 465
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 232985,
+  "elapsed_seconds": 1.5678242100002535,
+  "source_dirty_after": ""
+}

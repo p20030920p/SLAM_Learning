@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "method": "Historical-DynamicMap-export",
+  "scope": "Author-documented DUFOMap historical benchmark revision; unfiltered selected KITTI scans and original C++ GT generation; currently downloadable SuMa poses; paper input equivalence unproven; 2GiB RAM/6GiB swap, CPU100%; no paper timing claim",
+  "status": "executed",
+  "started_at": "2026-10-08T23:03:10.649954+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-historical-protocol-01-01-beautymap-export",
+    "-p",
+    "MemoryMax=2G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=100%",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/build/export_eval_pcd",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/dataset/01",
+    "beautymap_output.pcd",
+    ".05"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/protocol-sources/dynamicmap-dufo-paper",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/protocol-sources/dynamicmap-dufo-paper",
+  "source_commit": "161b555017608277d21230cd0be0e80589ee8576",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "0e58714e8700fb125283f4f3a503080561e6d56c771dcde146b3f18dcfd09120",
+      "bytes": 364
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/dataset/01/eval/beautymap_output_exportGT.pcd": {
+      "sha256": "cd0892e1dae18bd7f3956750bf98ce40c817c4410e213917274b8d603915f549",
+      "bytes": 188338146
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 232963,
+  "elapsed_seconds": 15.199940510998204,
+  "source_dirty_after": ""
+}

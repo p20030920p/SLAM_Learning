@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-score",
+  "scope": "Author Python entry: same 141 released 00 scans, d_p=2, d_s=.2m, voxel=.1m, range .2..50m; raw=False flag versus completed voxel=True; not C++ d_p=1 or paper table reproduction; NN threshold=0.1m; additional sensitivity, not paper metric; 2GiB RAM/6GiB swap, CPU100%; no timing claim",
+  "status": "executed",
+  "started_at": "2026-10-08T22:59:05.939526+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-dufo-python-output-audit-01-threshold_10cm-scores",
+    "-p",
+    "MemoryMax=2G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=100%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufo-python-output-audit-01/author-scripts/py/eval/threshold_10cm.py"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "55f1605d5e1e08367854e2de08648ec1f131ee3d162d1cd71588e3343819a4f1",
+      "bytes": 530
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 231920,
+  "elapsed_seconds": 2.974730310999803,
+  "source_dirty_after": ""
+}

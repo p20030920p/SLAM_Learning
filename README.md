@@ -6,6 +6,10 @@ This independent, orphan branch runs the official DUFOMap, BeautyMap, ConceptGra
 
 The new [DUFOMap Table IV reproduction](docs/DUFOMAP_TABLE4.zh-CN.md) matches all five SA/DA/AA rows at the paper's two-decimal precision.
 
+[BeautyMap Table III](docs/KITTI_PAPER_PROTOCOL.zh-CN.md) now matches all nine SA/DA/HA values for three cell sizes using historical original preprocessing and author scoring. Current and historical protocols remain separate.
+
+The completed [Python raw/voxel output audit](docs/DUFOMAP_OUTPUT_AUDIT.zh-CN.md) shows strong score sensitivity to representation and nearest-neighbor threshold; low voxel-output SA cannot directly establish static-point deletion.
+
 The missing original KITTI inputs (333 selected frames) are downloaded and verified. Both methods and three BeautyMap XY cell sizes have completed original scoring on 01/02. [Results and paper differences](docs/KITTI_SELECTED_RESULTS.zh-CN.md) remain separate because the current preprocessing differs from the older released benchmark.
 
 ConceptGraphs room0 now has a validated complete frontend, original 3D map and RGB reference surface. Semantic evaluation is queued after repairing its CUDA dependency. A [60-second original viewer recording](evidence/videos/conceptgraphs-room0-original-window.mp4) shows RGB/instance colors and orbit controls.

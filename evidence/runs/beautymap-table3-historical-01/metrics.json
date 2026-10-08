@@ -1,0 +1,60 @@
+{
+  "status": "evaluated",
+  "paper": "https://arxiv.org/html/2405.07283v1#S4.T3",
+  "metrics": {
+    "beautymap_xy05": {
+      "SA_percent": 83.9165,
+      "DA_percent": 84.1405,
+      "AA_percent": 84.0284,
+      "HA_percent": 84.0284,
+      "paper_SA_DA_HA_percent": [
+        83.92,
+        84.14,
+        84.03
+      ],
+      "difference_percentage_points": [
+        -0.003500000000002501,
+        0.0005000000000023874,
+        -0.001599999999996271
+      ],
+      "all_match_two_decimals": true
+    },
+    "beautymap": {
+      "SA_percent": 83.3978,
+      "DA_percent": 82.4092,
+      "AA_percent": 82.9021,
+      "HA_percent": 82.9006,
+      "paper_SA_DA_HA_percent": [
+        83.4,
+        82.41,
+        82.9
+      ],
+      "difference_percentage_points": [
+        -0.002200000000001978,
+        -0.0007999999999981355,
+        0.0005999999999914962
+      ],
+      "all_match_two_decimals": true
+    },
+    "beautymap_xy20": {
+      "SA_percent": 74.9226,
+      "DA_percent": 88.8251,
+      "AA_percent": 81.5782,
+      "HA_percent": 81.2837,
+      "paper_SA_DA_HA_percent": [
+        74.92,
+        88.83,
+        81.28
+      ],
+      "difference_percentage_points": [
+        0.002600000000001046,
+        -0.004899999999992133,
+        0.0036999999999949296
+      ],
+      "all_match_two_decimals": true
+    }
+  },
+  "matched_values_at_two_decimals": 9,
+  "original_score_log_sha256": "bf510d98446cafb4517ac5068bd774c573b792b670ab3030146281d5429863f9",
+  "scope": "BeautyMap Table III accuracy only, historical original preprocessing/GT/export plus original current HA scorer; method source unchanged. Matching numbers do not prove all unreported paper settings or pose versions identical."
+}

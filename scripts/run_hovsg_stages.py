@@ -17,12 +17,19 @@ parser.add_argument('--scene',default='room0')
 parser.add_argument('--sam-batch',type=int,default=16)
 parser.add_argument('--memory-max',default='12G')
 parser.add_argument('--swap-max',default='48G')
+parser.add_argument('--feature-timeout',type=int,default=21600,help='Feature extraction plus CPU hierarchical fusion, in seconds; recorded per run')
+parser.add_argument('--evaluation-timeout',type=int,default=7200)
+parser.add_argument('--skip-frames',type=int,default=10)
 args=parser.parse_args()
+assert args.feature_timeout>0 and args.evaluation_timeout>0 and args.skip_frames>0
 r=args.runtime.resolve();root=r/'runs'/args.name
 root.mkdir(parents=True,exist_ok=False)
 scripts=Path(__file__).resolve().parent
 state={'status':'waiting_for_conceptgraphs','wait_outcomes':str(args.wait_outcomes),'sam_batch':args.sam_batch,
-       'boot_id':Path('/proc/sys/kernel/random/boot_id').read_text().strip(),'pid':os.getpid(),'stages':{}}
+       'boot_id':Path('/proc/sys/kernel/random/boot_id').read_text().strip(),'pid':os.getpid(),'stages':{},
+       'skip_frames':args.skip_frames,'sampling_scope':'author default' if args.skip_frames==10 else 'additional sampling variant, not default paper benchmark',
+       'resource_config':{'memory_max':args.memory_max,'swap_max':args.swap_max,
+                          'feature_timeout_seconds':args.feature_timeout,'evaluation_timeout_seconds':args.evaluation_timeout}}
 def save(): (root/'outcomes.json').write_text(json.dumps(state,indent=2)+'\n')
 def on_exception(kind,value,traceback):
     state.update(status='failed',error_type=kind.__name__,error=str(value));save()
@@ -42,7 +49,8 @@ state['previous_chain_status']=previous['status'];state['status']='waiting_for_g
 feature_name=args.name+'-features'
 state.update(status='running_feature_map');save()
 code=subprocess.call([sys.executable,str(scripts/'run_semantic_entry.py'),'--runtime',str(r),
-    '--mode','hovsg','--scene',args.scene,'--name',feature_name,'--timeout','7200','--sam-batch',str(args.sam_batch),
+    '--mode','hovsg','--scene',args.scene,'--name',feature_name,'--timeout',str(args.feature_timeout),'--sam-batch',str(args.sam_batch),
+    '--skip-frames',str(args.skip_frames),
     '--memory-max',args.memory_max,'--swap-max',args.swap_max])
 if code:fail('feature_map',code)
 state['stages']['feature_map']=0;save()
@@ -72,8 +80,8 @@ limited=['systemd-run','--user','--scope','--unit','slam-author-'+args.name+'-ev
     '-p','MemoryMax='+args.memory_max,'-p','MemorySwapMax='+args.swap_max,*map(str,command)]
 code=subprocess.call([sys.executable,str(scripts/'record_command.py'),'--output',str(root/'evaluation'),
     '--cwd',str(work),'--source',str(source),'--method','HOV-SG-semantic-evaluation',
-    '--scope','Original semantic evaluator, original Replica '+alias+' mesh/info; single scene; frontend SAM batch '+str(args.sam_batch)+' compatibility config; full RGB-D 1200x680, skip_frames=10',
-    '--timeout','7200','--',*limited])
+    '--scope','Original semantic evaluator, original Replica '+alias+' mesh/info; single scene; frontend SAM batch '+str(args.sam_batch)+' compatibility config; full RGB-D 1200x680, skip_frames='+str(args.skip_frames)+('; additional sampling variant, not paper default' if args.skip_frames!=10 else ''),
+    '--timeout',str(args.evaluation_timeout),'--',*limited])
 if code:fail('evaluation',code)
 log=(root/'evaluation/run.log').read_text()
 metrics={}
@@ -82,6 +90,6 @@ for metric in ['miou','fmiou','macc','pacc']:
     assert len(values)==1,(metric,values)
     metrics[metric]=float(values[0]);assert math.isfinite(metrics[metric])
 (root/'metrics.json').write_text(json.dumps({'scene':args.scene,'gt_scene':alias,'units':'fraction (0..1)',
-    'metrics':metrics,'scope':'Single scene, resource compatibility config. Original author evaluator, not eight-scene mean.'},indent=2)+'\n')
+    'metrics':metrics,'skip_frames':args.skip_frames,'scope':'Single scene, resource compatibility config. Original author evaluator, not eight-scene mean.'+(' Additional sampling variant, not default benchmark.' if args.skip_frames!=10 else '')},indent=2)+'\n')
 state['stages']['evaluation']=0;state['status']='executed_single_scene';save()
 print('HOV-SG original feature-map/evaluation stages completed with recorded resource config',flush=True)

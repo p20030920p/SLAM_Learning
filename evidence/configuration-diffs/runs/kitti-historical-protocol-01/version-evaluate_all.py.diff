@@ -1,0 +1,45 @@
+--- paper-161b555/scripts/py/eval/evaluate_all.py
++++ current-8b60f36/scripts/py/eval/evaluate_all.py
+@@ -1,12 +1,14 @@
+ 
+ '''
+-# Created: 2023-04-16 18:03
+-# @Copyright (C) 2023-now, RPL, KTH Royal Institute of Technology
+-# @Author: Kin ZHANG  (https://kin-zhang.github.io/)
+-
+-# If you find this repo helpful, please cite the respective publication in DynamicBenchmark.
+-# This script is licensed under the terms of the MIT license.
+-# For a copy, see <https://opensource.org/licenses/MIT>.
++# @date: 2023-04-16 18:03
++# @author: Qingwen Zhang (https://kin-zhang.github.io/)
++# Copyright (C) 2023-now, RPL, KTH Royal Institute of Technology
++# 
++# @detail: Evaluate result and print score
++# 
++# This file is part of DynamicMap_Benchmark (https://github.com/KTH-RPL/DynamicMap_Benchmark).
++# If you find this repo helpful, please cite the respective publication as 
++# listed on the above website.
+ '''
+ 
+ import numpy as np
+@@ -21,7 +23,7 @@
+ 
+ # TODO: Change the parameters below to your own settings ====>>
+ Result_Folder = "/home/kin/data/Dynamic_Papers_assets/BenchmarkPaper"
+-algorithms = ["removert", "erasor", "octomap", "octomapg", "octomapfg"]
++algorithms = ["octomap", "octomapg", "octomapfg", "beautymap", "dufomap"]
+ all_seqs = ["00", "05", "av2", "semindoor"]
+ # TODO: Change the parameters below to your own settings <<===
+ 
+@@ -50,8 +52,9 @@
+             SA = float(correct_static) / float(num_gt['static']) * 100
+             DA = float(correct_dynamic) / float(num_gt['dynamic']) * 100
+             AA = math.sqrt(SA * DA)
+-            printed_data.append([algo] + [num_et['static'], num_et['dynamic'], SA, DA,  AA])
++            HA = 2 * SA * DA / (SA + DA)
++            printed_data.append([algo] + [num_et['static'], num_et['dynamic'], SA, DA,  AA, HA])
+             # break
+         print(f"Evaluation results in seq {bc.HEADER}{seq}{bc.ENDC}")
+-        print(tabulate(printed_data, headers=['Methods', '# static', '# dynamics', 'SA [%] ↑', 'DA [%] ↑', 'AA [%] ↑'], tablefmt='orgtbl'))
++        print(tabulate(printed_data, headers=['Methods', '# static', '# dynamics', 'SA [%] ↑', 'DA [%] ↑', 'AA [%] ↑', 'HA [%] ↑'], tablefmt='orgtbl'))
+     print(f"Time cost: {(time() - st_time):.2f}s")

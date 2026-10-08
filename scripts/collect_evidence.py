@@ -112,7 +112,7 @@ def main():
             path=Path(data['video'])
             manifest[path.relative_to(args.runtime).as_posix()]={'bytes':data['bytes'],'sha256':data['video_sha256']}
     for name in ['source-copy.json','compile-preflight.log','gui-actions.json','input-manifest.json',
-                 'kthcampus-input-manifest.json','twofloor-input-manifest.json','protocol-comparison.json']:
+                 'kthcampus-input-manifest.json','twofloor-input-manifest.json','protocol-comparison.json','source-version.json','launch.json']:
         for source in sorted((args.runtime/'runs').glob('*/'+name)):
             target=args.output/'runs'/source.relative_to(args.runtime/'runs')
             target.parent.mkdir(parents=True,exist_ok=True)

@@ -15,7 +15,9 @@ parser.add_argument('--allocator-conf',default='')
 parser.add_argument('--sam-batch',type=int,default=144)
 parser.add_argument('--memory-max',default='12G')
 parser.add_argument('--swap-max',default='48G')
+parser.add_argument('--skip-frames',type=int,default=10,help='HOV-SG author pipeline sampling interval; other modes keep their own stride')
 args=parser.parse_args()
+assert args.skip_frames>0
 r=args.runtime.resolve()
 active=subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip()
 if active:raise RuntimeError('A CUDA process is active; refusing a concurrent GPU experiment')
@@ -32,6 +34,7 @@ if args.mode=='hovsg':
         'main.save_path='+str(output/'artifacts'),
         'models.clip.checkpoint='+str(r/'weights/laion2b_s32b_b79k.bin'),
         'models.sam.checkpoint='+str(r/'weights/sam_vit_h_4b8939.pth'),
+        'pipeline.skip_frames='+str(args.skip_frames),
         'hydra.run.dir='+str(output/'hydra')]
     if args.sam_batch != 144:command+=['models.sam.points_per_batch='+str(args.sam_batch)]
     artifacts=[output/'artifacts/replica'/name for name in ['full_pcd.ply','masked_pcd.ply','mask_feats.pt','full_feats.pt']]
@@ -51,6 +54,7 @@ else:
                scene/('gsa_detections_'+variant)/'frame001995.pkl.gz',
                scene/('gsa_vis_'+variant)/'frame001995.jpg']
 scope=f'Full 2000-frame Replica {args.scene}, author {args.mode} entry; RAM/swap cgroup {args.memory_max}/{args.swap_max}; timeout {args.timeout}s'
+if args.mode=='hovsg':scope+='; author pipeline.skip_frames='+str(args.skip_frames)+' ('+str(len(range(0,2000,args.skip_frames)))+' sampled frames); '+('author default sampling' if args.skip_frames==10 else 'additional sampling variant, not default paper benchmark')
 if args.sam_batch==144 and args.mode!='cg-detect':scope+='; original SAM points_per_batch=144'
 if args.mode=='cg-detect':scope+='; original RAM+DINO and box-prompted SAM'
 if args.allocator_conf:scope+='; allocator environment variant '+args.allocator_conf

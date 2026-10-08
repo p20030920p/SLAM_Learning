@@ -21,6 +21,8 @@ KITTI 下载和原始预处理在本机 Linux 文件系统执行，大文件不�
 
 01/02 两种方法与三组 BeautyMap XY 网格的原始评分现已全部完成，见 [结果与论文数值差距](KITTI_SELECTED_RESULTS.zh-CN.md)。
 
+后续已按作者注明的历史 benchmark `161b555` 重做未过滤扫描及原始 C++ GT 生成，BeautyMap 02 的三组 SA/DA/HA 共 9 项匹配论文两位小数。历史输入、当前 50 m 输入和原始发布包分别保留，见 [历史协议与表 III](KITTI_PAPER_PROTOCOL.zh-CN.md)。切回历史版尚未消除 00/01 的差距。
+
 在 Windows 打开 Ubuntu 后，设置 [运行手册](RUNBOOK.zh-CN.md)中的 `RUNTIME` / `DOCS`，新建运行名重做：
 
 ```bash

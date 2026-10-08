@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-10-08T23:18:17.598606+00:00",
+  "pid": 233558,
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "command": [
+    "python3",
+    "/mnt/d/workspace/be2/SLAM_Author_Originals/scripts/run_public_semantics.py",
+    "--runtime",
+    "/home/qzl/projects/SLAM_Author_Originals",
+    "--wait-cg",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/outcomes.json",
+    "--wait-hov",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03/outcomes.json",
+    "--name",
+    "public-semantic-benchmark-06",
+    "--include-detect",
+    "--hov-home-fallback"
+  ],
+  "scope": "Observed actual argv of the waiting task-owned orchestrator; no process environment read. Default HOV failure triggers a separately labelled skip_frames=100 variant, excluded from default benchmark."
+}

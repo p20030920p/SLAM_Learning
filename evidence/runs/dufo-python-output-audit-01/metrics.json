@@ -1,0 +1,34 @@
+{
+  "scope": "Author Python entry: same 141 released 00 scans, d_p=2, d_s=.2m, voxel=.1m, range .2..50m; raw=False flag versus completed voxel=True; not C++ d_p=1 or paper table reproduction",
+  "metrics": {
+    "threshold_5cm": {
+      "raw": {
+        "SA_percent": 99.886,
+        "DA_percent": 96.0305,
+        "AA_percent": 97.9393,
+        "HA_percent": 97.9203
+      },
+      "voxel": {
+        "SA_percent": 51.6256,
+        "DA_percent": 98.1257,
+        "AA_percent": 71.1744,
+        "HA_percent": 67.6561
+      }
+    },
+    "threshold_10cm": {
+      "raw": {
+        "SA_percent": 99.9422,
+        "DA_percent": 94.5584,
+        "AA_percent": 97.2131,
+        "HA_percent": 97.1758
+      },
+      "voxel": {
+        "SA_percent": 98.9436,
+        "DA_percent": 95.2856,
+        "AA_percent": 97.0974,
+        "HA_percent": 97.0802
+      }
+    }
+  },
+  "limits": "Two separate original-entry executions, no repeated-run variance; d_p differs from C++ default. Threshold .10m is additional analysis."
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "method": "DUFOMap-Python-raw",
+  "scope": "Author Python entry: same 141 released 00 scans, d_p=2, d_s=.2m, voxel=.1m, range .2..50m; raw=False flag versus completed voxel=True; not C++ d_p=1 or paper table reproduction; 2GiB RAM/6GiB swap, CPU100%; no timing claim",
+  "status": "executed",
+  "started_at": "2026-10-08T22:57:23.093896+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-dufo-python-output-audit-01-raw-mapping",
+    "-p",
+    "MemoryMax=2G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=100%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/main.py",
+    "--data_dir",
+    "/home/qzl/projects/SLAM_Author_Originals/data/00-pristine",
+    "--voxel_map",
+    "False"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/runs/dufo-python-output-audit-01/raw-mapping",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "dufomap_output.pcd": {
+      "sha256": "5ff4134c4d54cdc677df26d225066b7559a752263622c91caba61f963216457b",
+      "bytes": 206784286
+    },
+    "run.log": {
+      "sha256": "6d8e803af93952aac745e43f5c9718acd0f71d3f286f37d0a1327b5e17740dc8",
+      "bytes": 25770
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 231449,
+  "elapsed_seconds": 12.835289058999479,
+  "source_dirty_after": ""
+}

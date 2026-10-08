@@ -1,0 +1,15 @@
+--- paper/extract_semkitti.py
++++ extract_00.py
+@@ -22,9 +22,9 @@
+ from av2.geometry.se3 import SE3
+ 
+ # original data path when you downloaded the semantic kitti dataset
+-ORIGIN_PATH = "/home/kin/bags/KITTI/SemanticKitti/"
+-SEQUENCE = "00"
+-SaveDataFolder = f"/home/kin/data/{SEQUENCE}/pcd"
++ORIGIN_PATH = '/home/qzl/projects/SLAM_Author_Originals/data/kitti-original/'
++SEQUENCE = '00'
++SaveDataFolder = '/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/prepared/00/pcd'
+ 
+ if __name__ == "__main__":
+     # full frame range for each sequence

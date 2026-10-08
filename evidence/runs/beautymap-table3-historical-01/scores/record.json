@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "method": "BeautyMap-TableIII-original-HA-score",
+  "scope": "Original current evaluator including HA; hash-verified original historical 02 GT/exports; unchanged BeautyMap .5/1/2m cells, z=.5m, range40m; original PCL threshold .05m; not runtime comparison",
+  "status": "executed",
+  "started_at": "2026-10-08T23:08:07.954192+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-beautymap-table3-historical-01",
+    "-p",
+    "MemoryMax=2G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=100%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/beautymap-table3-historical-01/author-scripts/eval/evaluate_all.py"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "bf510d98446cafb4517ac5068bd774c573b792b670ab3030146281d5429863f9",
+      "bytes": 630
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 233714,
+  "elapsed_seconds": 2.5212663689999317,
+  "source_dirty_after": ""
+}

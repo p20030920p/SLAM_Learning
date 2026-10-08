@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-08T22:55:27.130364+00:00",
+  "unit": "slam-author-hovsg-room0-batch16-stages-03-features.scope",
+  "previous_memory_max_bytes": 12884901888,
+  "new_memory_max_bytes": 17179869184,
+  "command": [
+    "systemctl",
+    "--user",
+    "set-property",
+    "--runtime",
+    "slam-author-hovsg-room0-batch16-stages-03-features.scope",
+    "MemoryMax=16G"
+  ],
+  "status": "applied_and_verified",
+  "after": "ControlGroup=/user.slice/user-1000.slice/user@1000.service/app.slice/slam-author-hovsg-room0-batch16-stages-03-features.scope\nMemoryCurrent=13313409024\nMemoryMax=17179869184\n",
+  "reason": "Original hierarchical mask merge reached 12GiB RAM cap and approximately 27GiB swap; increase RAM cap only, no algorithm/configuration change. Existing 7200s recorder timeout remains in force.",
+  "recording_note": "First helper applied setting but could not save its record because diagnostics directory was absent. This recovery record verifies current setting; exact first helper stdout/MemoryCurrent were not retained."
+}

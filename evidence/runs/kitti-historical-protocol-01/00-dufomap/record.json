@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "method": "dufomap",
+  "scope": "Author-documented DUFOMap historical benchmark revision; unfiltered selected KITTI scans and original C++ GT generation; currently downloadable SuMa poses; paper input equivalence unproven; 2GiB RAM/6GiB swap, CPU100%; no paper timing claim",
+  "status": "executed",
+  "started_at": "2026-10-08T23:01:43.976311+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-historical-protocol-01-00-dufomap",
+    "-p",
+    "MemoryMax=2G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=100%",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dufomap-gcc11/dufomap_run",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/00/dufomap",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/assets/config.toml"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "7125a1ad548587d94ea2c46fd06ee08a45b70c6fad01a41c758c8dbfcb393890",
+      "bytes": 23654
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/00/dufomap/dufomap_output.pcd": {
+      "sha256": "1a2edf1a6000ed47bc497d002cea943e3e61a318e0503ec048d9f2c44db089a1",
+      "bytes": 260293212
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 232473,
+  "elapsed_seconds": 10.676434326000162,
+  "source_dirty_after": ""
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "method": "beautymap",
+  "scope": "Author-documented DUFOMap historical benchmark revision; unfiltered selected KITTI scans and original C++ GT generation; currently downloadable SuMa poses; paper input equivalence unproven; 2GiB RAM/6GiB swap, CPU100%; no paper timing claim",
+  "status": "executed",
+  "started_at": "2026-10-08T23:03:52.264728+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-historical-protocol-01-02-beautymap",
+    "-p",
+    "MemoryMax=2G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=100%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap/main.py",
+    "--data_dir",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/beautymap",
+    "--dis_range",
+    "40",
+    "--xy_resolution",
+    "1.0",
+    "--h_res",
+    "0.5"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap",
+  "source_commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "eb68495ffcb2ee82b35cc774cc4c24aec7245f1a81f4c48e964f1ed6657bb858",
+      "bytes": 11690
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-historical-protocol-01/inputs/02/beautymap/beautymap_output.pcd": {
+      "sha256": "d11ea6d19cf6335f0cf35c4abf3b3b451a77d406fd065382b7c03f57fa39e26a",
+      "bytes": 147790021
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 233228,
+  "elapsed_seconds": 17.154882861999795,
+  "source_dirty_after": ""
+}

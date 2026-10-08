@@ -31,13 +31,15 @@ DUFOMap 原始 C++、BeautyMap 原始 Python、DynamicMap 作者 PCL 导出与 P
 
 评价直接编译并调用作者 `export_eval_pcd`，阈值 0.05 m，然后运行作者 `evaluate_all.py`。只按 README 修改其三项配置：结果目录、方法列表、序列列表；修改副本和 diff 保留。未用主分支的替代评价实现。
 
-DUFOMap C++ 输出 15,987,036 点。Python 演示默认输出 0.1 m 体素中心，与 C++ 输出表示不同。在 0.05 m 最近邻评价中，体素中心可能偏离原始点，低 SA 不能直接解释为错误移除了同样比例的静态结构。后续验证可比较同一绑定的原始点输出与体素中心输出，并扫描评价阈值；这些属于单独的分析实验，不修改本次原始运行。
+DUFOMap C++ 输出 15,987,036 点。已补跑同一 Python 绑定的原始点输出：在 0.05 m 阈值下 SA/DA 为 99.8860/96.0305%，默认体素输出为 51.6256/98.1257%；体素阈值改为 0.10 m 后为 98.9436/95.2856%。输出表示与评价阈值强烈影响评分，低 SA 不能直接解释为同等静态结构被删。Python 还硬编码 d_p=2、积分距离 0.2–50 m，C++ 默认 d_p=1 且无最大距离限制，二者差异不止输出表示。[完整对照及界限](DUFOMAP_OUTPUT_AUDIT.zh-CN.md)。
 
 BeautyMap 按作者流程读取 `gt_cloud.pcd` 的几何作为先验地图。核查固定版 `lib/bee_tree.py` 后确认，地图构建使用 `original_points[:, :3]`；输出保留原点属性，GT 标签未参与清理决策。这些分数不是用真实在线 SLAM 轨迹进行的系统级评价。
 
 ## 论文消融新增结果
 
 DUFOMap 表 IV 的五组参数设置已完成原始 C++、作者 PCL 导出与原评分，SA/DA/AA 共 15 个数值保留两位小数后均与论文一致。仅调整作者 TOML 公开参数，完整设置复用经 SHA-256 核对的原始成功输出。[逐项论文对照与重做命令](DUFOMAP_TABLE4.zh-CN.md)。CPU 配额与并行任务影响耗时，本轮不用于论文性能比较。
+
+BeautyMap 表 III 的 02 三组网格消融也已匹配：按作者注明的历史 benchmark 完成原始提取、GT 生成与 PCL 导出，再用原作者含 HA 的评价脚本评分，SA/DA/HA 共 9 项均与论文两位小数一致。[历史协议、九项对照及未解决的 00/01 差距](KITTI_PAPER_PROTOCOL.zh-CN.md)。
 
 核对论文后明确：这些动态清理表格使用选定帧段，完整复现不要求把整条 KITTI 序列作为相同表格的输入。当前发布包缺少论文 01/02 帧段；BeautyMap 的 AV2 运行属于补充迁移实验，不应要求它与未报告的“论文 AV2 参数”一致。[按论文核对的范围](SCOPE.zh-CN.md)。
 
@@ -73,11 +75,13 @@ HOV-SG `hovsg-room0-batch16-stages-02` 完成了 200/200 个原生 1200×680 帧
 
 `conceptgraphs-room0-batch16-stages-04` 的原始映射已成功退出，最终后处理地图通过检查：77 个对象记录，357,134 个点记录（对象之间可能重复，不是唯一点数），几何与 1024 维特征均有限。原始 RGB PointFusion 的 400 帧也已完成，参考 HDF5／PCD 已保存。[地图检查](../evidence/runs/conceptgraphs-room0-batch16-stages-04/map-validation/validation.json)。映射总耗时约 1043 秒，其中包含序列化与换页；资源采样起于运行中途，不能当完整峰值或论文性能比较。
 
-原始语义评价在 CUDA 最近邻处失败：此前 chamferdist 只编译了 CPU 支持。已按同一份依赖源码重新编译 CUDA 11.8 扩展，并检查 CUDA 专用绑定与二进制哈希；实际 GPU KNN 测试和原评价由 `conceptgraphs-room0-evaluation-cuda-05` 排队执行，等待 HOV-SG 释放 GPU。该重试只在重新核对 SHA-256 后复用已成功的地图和 RGB 表面，没有重新建图或改评价公式。**当前仍无语义分数。** [失败诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-04/diagnostics/evaluation-failure.json)。
+原始语义评价在 CUDA 最近邻处失败：此前 chamferdist 只编译了 CPU 支持。已按同一份依赖源码重新编译 CUDA 11.8 扩展，并检查 CUDA 专用绑定与二进制哈希；[真实 GPU KNN 测试](../evidence/runs/chamferdist-cuda-probe-01/run.log)已通过，返回预期索引与距离。原评价由 `conceptgraphs-room0-evaluation-cuda-05` 排队执行，等待 HOV-SG 释放 GPU，并会再检查一次该运算。该重试只在重新核对 SHA-256 后复用已成功的地图和 RGB 表面，没有重新建图或改评价公式。**当前仍无语义分数。** [失败诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-04/diagnostics/evaluation-failure.json)。
 
-HOV-SG `hovsg-room0-batch16-stages-03` 已完成 200/200 个原生帧的特征提取，正在层级掩码融合；最终特征图尚未保存。特征图与评价任务限额为 12G RAM / 48G swap，另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间会影响耗时，不能用本轮时间比较论文效率。
+HOV-SG `hovsg-room0-batch16-stages-03` 已完成 200/200 个原生帧的特征提取，正在层级掩码融合；最终特征图尚未保存。启动限额为 12G RAM / 48G swap，融合期间观测到约 27 GiB swap 后将该特征任务 RAM 限额临时提高至 16G；评价仍为 12G/48G。[调整记录](../evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/resource-adjustment.json)。本次已加载记录器的 7200 秒超时仍有效，新版包装脚本允许显式配置较长超时，不能追改本次记录。另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间会影响耗时，不能用本轮时间比较论文效率。
 
-`public-semantic-benchmark-05` 等待首个完整链路，再串行推进其余 7 个公开 Replica 场景及 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
+`public-semantic-benchmark-06` 等待首个完整链路，再串行推进其余 7 个公开 Replica 场景及 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。05 仅等待、未启动作者阶段时被替换，记录保留；06 为最终八场景评价也加上 12G/48G 限额。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
+
+若 HOV-SG 默认采样的 room0 失败，06 另尝试作者公开的 `pipeline.skip_frames=100`：在原生 2000 帧输入中均匀取 20 帧，SAM 批量 16，其余作者方法不改。该家用配置独立记录，尚未执行；无论成功与否都不计作默认采样或完整八场景 HOV benchmark。
 
 完整前端另导出 40 秒、400 帧 RGB／SAM 对照回放，源图与已验证分割逐一匹配。它展示实际二维产物，不代表三维窗口操作或语义准确率。查看和重做命令见 [运行手册](RUNBOOK.zh-CN.md)。
 
