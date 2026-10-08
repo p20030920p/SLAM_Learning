@@ -61,12 +61,21 @@ def query_audit(root, suite, target):
                 camera = (points - ref["pose"][:3, 3]) @ ref["pose"][:3, :3]
                 camera = camera[camera[:, 2] > 0.01]
                 k, depth = ref["camera_k"], ref["depth"]
-                uv = np.rint(camera[:, :2] / camera[:, 2, None] * [k[0, 0], k[1, 1]] + [k[0, 2], k[1, 2]]).astype(int)
-                valid = (uv[:, 0] >= 0) & (uv[:, 0] < depth.shape[1]) & (uv[:, 1] >= 0) & (uv[:, 1] < depth.shape[0])
+                uv = np.rint(
+                    camera[:, :2] / camera[:, 2, None] * [k[0, 0], k[1, 1]] + [k[0, 2], k[1, 2]]
+                ).astype(int)
+                valid = (
+                    (uv[:, 0] >= 0)
+                    & (uv[:, 0] < depth.shape[1])
+                    & (uv[:, 1] >= 0)
+                    & (uv[:, 1] < depth.shape[0])
+                )
                 uv, camera = uv[valid], camera[valid]
                 uv = uv[np.abs(camera[:, 2] - depth[uv[:, 1], uv[:, 0]]) <= 0.1]
                 ax = axes[row, col]
-                image = root / f".cache/semantic-data/Replica/room0/results/frame{ref['source_frame']:06d}.jpg"
+                image = (
+                    root / f".cache/semantic-data/Replica/room0/results/frame{ref['source_frame']:06d}.jpg"
+                )
                 ax.imshow(Image.open(image))
                 ax.scatter(uv[:, 0], uv[:, 1], s=0.35, c="#ed584d", alpha=0.6, label="Top-1 visible geometry")
                 for other in references:
@@ -76,7 +85,9 @@ def query_audit(root, suite, target):
                     ax.plot(polygon[:, 0], polygon[:, 1], color="#00d7ef", linewidth=1.4)
                 ax.set_title(f"{method} | query: {ref['query']} | zero pose error")
                 ax.axis("off")
-    fig.suptitle("Red: retrieved visible geometry | cyan: partial reference polygons | unmatched is not open-world false")
+    fig.suptitle(
+        "Red: retrieved visible geometry | cyan: partial reference polygons | unmatched is not open-world false"
+    )
     fig.savefig(target, dpi=180)
     plt.close(fig)
 
@@ -112,6 +123,10 @@ def main():
             raise ValueError("Incomplete primary cell")
         export_record(source / "record.json", args.output / "suite/cells" / spec["id"])
         row = flatten(spec, record)
+        error = np.load(args.suite / spec["path"])
+        row["adjacent_translation_difference_rms_m"] = float(
+            np.sqrt(np.mean(np.sum(np.diff(error, axis=0) ** 2, axis=1)))
+        )
         rows.append(row)
         by_id[spec["id"]] = row
         for target in record["summary"]["metrics"].get("targets", []):
