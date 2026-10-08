@@ -169,6 +169,31 @@ python3 "$DOCS/scripts/prepare_cg_semantic_gt.py" --runtime "$RUNTIME"
 
 本机已完成时直接读取 `conceptgraphs-semantic-gt-manifest.json`，无需重下。HOV-SG 原始网格 GT 使用 `scripts/fetch_replica_gt.py --runtime "$RUNTIME"`，在完整解压 CRC 成功前不能用于报告评价完成。
 
+本机两套 GT 均已准备好。原始网格的目录名带下划线，如 `room_0`；本地 `replica-original-manifest.json` 保存 RGB-D 名称到原始 GT 名称的对应，不重命名数据。
+
+HOV-SG 串行任务进度：
+
+```bash
+cat "$RUNTIME/runs/hovsg-room0-batch16-stages-02/outcomes.json"
+```
+
+该任务先运行完整 2000 帧输入的原始特征图入口（skip_frames=10、SAM 批量 16），检查 PLY 与 1024 维特征对应关系，再运行作者语义评价。评价工作目录独立，作者生成的颜色 JSON 不写进源码。单场景结果、资源配置和未完成阶段都分别记录。
+
+其余 7 个公开场景已由 `public-semantic-benchmark-01` 串行排队：先等待 room0 验证。首个 HOV-SG 流程未通过时不在另外 7 个场景重复同一失败；ConceptGraphs 可以继续。只有 8 个场景全部成功，才调用未经修改的作者八场景评价入口。
+
+```bash
+cat "$RUNTIME/runs/public-semantic-benchmark-01/outcomes.json"
+tail -n 20 "$RUNTIME/runs/public-semantic-benchmark-01/orchestration.log"
+```
+
+重启后先检查旧进程，避免把遗留的 running 当作当前仍在执行：
+
+```bash
+python3 "$DOCS/scripts/recover_after_restart.py" --runtime "$RUNTIME"
+```
+
+它只根据不同的 WSL boot_id 标记中断，保留所有文件，不推断运行成功，不覆盖已有结果。对未完成前端，需先检查最后完整帧和当前入口的 start 参数，再决定续跑；不要直接重复启动同名队列。
+
 ### 打开作者可视化窗口
 
 三维映射完成后，在 WSL 中执行：

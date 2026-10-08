@@ -15,3 +15,5 @@
 | 动态点云评价 | [KTH-RPL/DynamicMap_Benchmark](https://github.com/KTH-RPL/DynamicMap_Benchmark) | `8b60f36a` |
 
 作者源码保持原样。依赖、编译器、数据路径或 API 模型的变化必须单独记录。DeepSeek 只属于替代模型实验，不能算原论文 GPT-4 的复现；本轮费用上限为 1 美元，密钥和大文件不提交 Git。
+
+个人阅读、假设分析、家中测试与手动录制的索引在另一个 [学习文档分支](https://github.com/p20030920p/SLAM_Learning/blob/notes/personal-study-guide-20261008/notes/README.zh-CN.md)。本分支专门保留作者流程与执行证据。

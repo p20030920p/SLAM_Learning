@@ -1,0 +1,16 @@
+usage: eval_replica_semseg.py [-h] [--replica_root REPLICA_ROOT]
+                              [--replica_semantic_root REPLICA_SEMANTIC_ROOT]
+                              [--pred_exp_name PRED_EXP_NAME]
+                              [--n_exclude {1,4,6}] [--device DEVICE]
+
+options:
+  -h, --help            show this help message and exit
+  --replica_root REPLICA_ROOT
+  --replica_semantic_root REPLICA_SEMANTIC_ROOT
+  --pred_exp_name PRED_EXP_NAME
+                        The name of cfslam experiment. Will be used to load
+                        the result.
+  --n_exclude {1,4,6}   Number of classes to exclude: 1: exclude "other" 4:
+                        exclude "other", "floor", "wall", "ceiling" 6: exclude
+                        "other", "floor", "wall", "ceiling", "door", "window"
+  --device DEVICE

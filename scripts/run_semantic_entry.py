@@ -44,7 +44,8 @@ else:
     variant='none' if args.mode=='cg-none' else 'ram_withbg_allclasses'
     artifacts=[r/'data/replica-full/Replica'/args.scene/('gsa_classes_'+variant+'.json')]
 scope=f'Full 2000-frame Replica {args.scene}, author {args.mode} entry; 14GiB RAM/2GiB swap cgroup; timeout {args.timeout}s'
-if args.sam_batch==144:scope+='; original SAM points_per_batch=144'
+if args.sam_batch==144 and args.mode!='cg-detect':scope+='; original SAM points_per_batch=144'
+if args.mode=='cg-detect':scope+='; original RAM+DINO and box-prompted SAM'
 if args.allocator_conf:scope+='; allocator environment variant '+args.allocator_conf
 if args.sam_batch != 144:
     if args.mode!='hovsg':raise ValueError('SAM batch override is exposed by the original HOV-SG Hydra config only')

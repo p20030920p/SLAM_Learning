@@ -23,6 +23,7 @@ def sha256(path):
 
 parser=argparse.ArgumentParser()
 parser.add_argument('--runtime',type=Path,required=True)
+parser.add_argument('--verify-extracted',action='store_true',help='Recheck full gzip CRC and existing extracted files without rewriting the dataset')
 args=parser.parse_args()
 r=args.runtime.resolve();downloads=r/'downloads/replica-original'
 downloads.mkdir(parents=True,exist_ok=True)
@@ -65,22 +66,24 @@ destination=r/'data/replica-original'
 destination.mkdir(parents=True,exist_ok=True)
 stream=Parts([downloads/asset['name'] for asset in assets])
 with gzip.GzipFile(fileobj=stream) as decompressed:
-    with tarfile.open(fileobj=decompressed,mode='r|') as archive:
-        for member in archive:
-            target=(destination/member.name).resolve()
-            if not target.is_relative_to(destination.resolve()):raise ValueError('Unsafe archive path')
-            if not (member.isfile() or member.isdir()):raise ValueError('Unexpected non-data tar member')
-            archive.extract(member,path=destination)
+    if not args.verify_extracted:
+        with tarfile.open(fileobj=decompressed,mode='r|') as archive:
+            for member in archive:
+                target=(destination/member.name).resolve()
+                if not target.is_relative_to(destination.resolve()):raise ValueError('Unsafe archive path')
+                if not (member.isfile() or member.isdir()):raise ValueError('Unexpected non-data tar member')
+                archive.extract(member,path=destination)
     while decompressed.read(4*1024*1024):pass  # Consume footer and verify full gzip CRC.
 print('Original Replica release fully extracted with gzip CRC verified',flush=True)
-roots=list(destination.rglob('room0/habitat/mesh_semantic.ply'))
+roots=list(destination.rglob('room_0/habitat/mesh_semantic.ply'))
 if len(roots)!=1:raise RuntimeError('Cannot uniquely find original room0 semantics')
 dataset_root=roots[0].parents[2]
 result={'root':str(dataset_root),'release':'v1.0','gzip_crc':'verified','scenes':{}}
 for scene in ['office0','office1','office2','office3','office4','room0','room1','room2']:
-    semantic=dataset_root/scene/'habitat/mesh_semantic.ply'
-    info=dataset_root/scene/'habitat/info_semantic.json'
-    result['scenes'][scene]={'mesh':str(semantic),'mesh_sha256':sha256(semantic),
-                             'info_exists':info.is_file()}
+    alias=scene[:-1]+'_'+scene[-1]
+    semantic=dataset_root/alias/'habitat/mesh_semantic.ply'
+    info=dataset_root/alias/'habitat/info_semantic.json'
+    result['scenes'][scene]={'original_scene_name':alias,'mesh':str(semantic),'mesh_sha256':sha256(semantic),
+                             'info':str(info),'info_sha256':sha256(info)}
 (r/'replica-original-manifest.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps(result,indent=2))

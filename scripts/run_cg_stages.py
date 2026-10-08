@@ -25,9 +25,14 @@ root.mkdir(parents=True, exist_ok=False)
 os.environ.update(OMP_NUM_THREADS='8', OPENBLAS_NUM_THREADS='8', MKL_NUM_THREADS='8', WANDB_MODE='disabled',
                   HF_HUB_CACHE=str(r / 'cache/huggingface/hub'),
                   GSA_PATH=str(r / 'dependencies/Grounded-Segment-Anything'))
-state = {'status': 'waiting_for_frontend', 'frontend_record': str(args.wait_record), 'stages': {}}
+state = {'status': 'waiting_for_frontend', 'frontend_record': str(args.wait_record), 'stages': {},
+         'pid': os.getpid(), 'boot_id': Path('/proc/sys/kernel/random/boot_id').read_text().strip()}
 def save():
     (root / 'outcomes.json').write_text(json.dumps(state, indent=2) + '\n')
+def on_exception(kind, value, traceback):
+    state.update(status='failed', error_type=kind.__name__, error=str(value));save()
+    sys.__excepthook__(kind, value, traceback)
+sys.excepthook=on_exception
 save()
 while True:
     frontend = json.loads(args.wait_record.read_text())

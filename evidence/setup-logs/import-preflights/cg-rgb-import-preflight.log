@@ -1,0 +1,24 @@
+usage: run_slam_rgb.py [-h] --dataset_root DATASET_ROOT --dataset_config
+                       DATASET_CONFIG [--scene_id SCENE_ID]
+                       [--image_height IMAGE_HEIGHT]
+                       [--image_width IMAGE_WIDTH] [--start START] [--end END]
+                       [--stride STRIDE] [--visualize] [--save_pcd]
+                       [--seed SEED] [--device DEVICE] [--load_semseg]
+
+options:
+  -h, --help            show this help message and exit
+  --dataset_root DATASET_ROOT
+  --dataset_config DATASET_CONFIG
+                        This path may need to be changed depending on where
+                        you run this script.
+  --scene_id SCENE_ID
+  --image_height IMAGE_HEIGHT
+  --image_width IMAGE_WIDTH
+  --start START
+  --end END
+  --stride STRIDE
+  --visualize
+  --save_pcd
+  --seed SEED
+  --device DEVICE
+  --load_semseg         Load GT semantic segmentation and run fusion on them.

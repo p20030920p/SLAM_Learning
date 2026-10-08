@@ -35,6 +35,10 @@ def main():
         target=args.output/'setup-logs'/source.parent.name/'setup.log'
         target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(source,target)
+    for source in (args.runtime/'runs').glob('*-import-preflight.log'):
+        target=args.output/'setup-logs/import-preflights'/source.name
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(source,target)
     environment_log=args.runtime/'hovsg-author-environment-create.log'
     if environment_log.is_file():
         target=args.output/'setup-logs/hovsg-author-environment-create.log'
@@ -70,7 +74,21 @@ def main():
         target=args.output/'runs'/source.relative_to(args.runtime/'runs')
         target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(source,target)
+        data=json.loads(source.read_text())
+        if data.get('status')=='validated':
+            for name,item in data.get('artifacts',{}).items():
+                path=Path(name)
+                if path.is_absolute() and path.is_relative_to(args.runtime):
+                    manifest[path.relative_to(args.runtime).as_posix()]=item
     for source in sorted((args.runtime/'runs').rglob('outcomes.json')):
+        target=args.output/'runs'/source.relative_to(args.runtime/'runs')
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(source,target)
+    for source in sorted((args.runtime/'runs').rglob('metrics.json')):
+        target=args.output/'runs'/source.relative_to(args.runtime/'runs')
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(source,target)
+    for source in sorted((args.runtime/'runs').rglob('orchestration.log')):
         target=args.output/'runs'/source.relative_to(args.runtime/'runs')
         target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(source,target)
