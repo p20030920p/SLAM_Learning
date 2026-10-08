@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "scene": "room0",
+  "annotation_type": "AI-assisted visual polygons on raw RGB; rendered depth and supplied poses yield visible-surface references",
+  "annotator": "Codex visual inspection; not human-reviewed or official Replica semantic ground truth",
+  "coordinate_canvas": [640, 363],
+  "scope": "Four visible instances/parts, not exhaustive room labels. Lamp annotation is its shade. Occluded and unobserved surfaces are not ground truth. Evaluation-only, never mapper input.",
+  "targets": [
+    {"id": "cabinet", "query": "cabinet", "source_frame": 0,
+     "polygon": [[397,130],[570,152],[582,162],[567,204],[389,181],[390,147]],
+     "anchor_pixel": [473,169], "anchor_name": "visible cabinet front centre"},
+    {"id": "lamp_shade", "query": "floor lamp", "source_frame": 0,
+     "polygon": [[126,173],[134,163],[153,158],[182,155],[205,156],[211,163],[217,204],[215,218],[205,229],[184,234],[160,230],[145,222],[136,208]],
+     "anchor_pixel": [178,205], "anchor_name": "visible shade surface; not whole lamp centre"},
+    {"id": "ottoman_left", "query": "ottoman", "source_frame": 150,
+     "polygon": [[195,290],[202,276],[219,266],[243,265],[263,273],[278,289],[282,307],[276,326],[260,340],[230,343],[209,336],[197,322]],
+     "anchor_pixel": [238,298], "anchor_name": "visible left ottoman seat"},
+    {"id": "ottoman_right", "query": "ottoman", "source_frame": 150,
+     "polygon": [[311,313],[316,296],[332,281],[353,277],[374,279],[393,292],[402,309],[400,331],[388,348],[369,359],[344,359],[322,346],[313,333]],
+     "anchor_pixel": [357,309], "anchor_name": "visible right ottoman seat"}
+  ],
+  "review": "Polygons and derived overlays are published for correction. Scores are annotation-dependent exploratory diagnostics; no paper mIoU or independently validated accuracy claim."
+}
