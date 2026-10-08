@@ -145,7 +145,7 @@ cd "$RUNTIME/upstream/conceptgraphs/conceptgraph"
 ```bash
 cat "$RUNTIME/runs/conceptgraphs-replica-room0-none-batch16-04/record.json"
 tail -c 1500 "$RUNTIME/runs/conceptgraphs-replica-room0-none-batch16-04/run.log"
-cat "$RUNTIME/runs/conceptgraphs-room0-batch16-stages-03/outcomes.json"
+cat "$RUNTIME/runs/conceptgraphs-room0-batch16-stages-04/outcomes.json"
 ```
 
 自动队列结束或停止、GPU 空闲后，若 room1 仍无前端输出，可亲自执行：
@@ -159,7 +159,20 @@ python3 "$DOCS/scripts/run_cg_stages.py" --runtime "$RUNTIME" --scene room1 \
 
 脚本拒绝覆盖已有前端或三维结果。后续阶段先检查全部 400 个预期输出、1024 维特征及有限数值，再调用作者原始三维融合、RGB PointFusion 和评价。评价副本只显式选择当前场景，保留 diff，不能拿单场景结果当八场景均值。
 
-首次映射的 14 GiB cgroup OOM 记录在 `conceptgraphs-room0-batch16-stages-02/diagnostics/`，294 个部分动画检查点保存在该运行的 `partial-outputs/`。当前重试保留作者默认 `save_objects_all_frames=False`，不保留逐帧动画副本；RAM/swap 显式设为 17G/10G，不修改 WSL 全局配置。关闭动画保存是否足以完成本机全序列，仍以实际退出记录为准。
+首次映射的 14 GiB cgroup OOM 记录在 `conceptgraphs-room0-batch16-stages-02/diagnostics/`，294 个部分动画检查点保存在该运行的 `partial-outputs/`。第二次关闭动画后完成 400 帧，但仍在最终序列化触发 17G/10G 限制；截断文件已归档，不能评价。当前重试保留作者默认 `save_objects_all_frames=False`，显式使用每任务 12G RAM / 48G swap。
+
+本机已启用 48 GiB 的任务专用临时交换文件。重启 WSL 后需要重新启用；既有文件会核对清单，不重新格式化。在 Windows PowerShell 执行：
+
+```powershell
+wsl -d Ubuntu-22.04 -u root -- python3 /mnt/d/workspace/be2/SLAM_Author_Originals/scripts/prepare_swap.py --runtime /home/qzl/projects/SLAM_Author_Originals --gib 48
+```
+
+它不修改 fstab 或 WSL 配置。所有任务结束且内存允许后，在 Ubuntu 中清理本任务文件；不要在任务运行中关闭：
+
+```bash
+sudo swapoff /home/qzl/projects/SLAM_Author_Originals/resources/author-temporary.swap
+sudo rm -- /home/qzl/projects/SLAM_Author_Originals/resources/author-temporary.swap
+```
 
 ConceptGraphs 语义 GT 的本机校验命令如下，公开文件 ID 来自固定作者 README：
 
@@ -176,16 +189,16 @@ python3 "$DOCS/scripts/prepare_cg_semantic_gt.py" --runtime "$RUNTIME"
 HOV-SG 串行任务进度：
 
 ```bash
-cat "$RUNTIME/runs/hovsg-room0-batch16-stages-02/outcomes.json"
+cat "$RUNTIME/runs/hovsg-room0-batch16-stages-03/outcomes.json"
 ```
 
 该任务先运行完整 2000 帧输入的原始特征图入口（skip_frames=10、SAM 批量 16），检查 PLY 与 1024 维特征对应关系，再运行作者语义评价。评价工作目录独立，作者生成的颜色 JSON 不写进源码。单场景结果、资源配置和未完成阶段都分别记录。
 
-其余 7 个公开场景由 `public-semantic-benchmark-03` 串行排队：先等待 room0 重试验证，然后加入作者原版 ConceptGraphs-Detect。首个 HOV-SG 或 Detect 流程未通过时，不在另外 7 个场景重复同一失败；SAM-only ConceptGraphs 可以继续。只有对应方法的 8 个场景全部成功，才调用未经修改的作者八场景评价入口。旧的 `public-semantic-benchmark-01/02` 只启动了等待器，已在启动任何场景前更换，记录保留。
+其余 7 个公开场景由 `public-semantic-benchmark-04` 串行排队：先等待 room0 重试验证，然后加入作者原版 ConceptGraphs-Detect。首个 HOV-SG 或 Detect 流程未通过时，不在另外 7 个场景重复同一失败；SAM-only ConceptGraphs 可以继续。只有对应方法的 8 个场景全部成功，才调用未经修改的作者八场景评价入口。旧队列的等待、替换或前序失败均保留记录。
 
 ```bash
-cat "$RUNTIME/runs/public-semantic-benchmark-03/outcomes.json"
-tail -n 20 "$RUNTIME/runs/public-semantic-benchmark-03/orchestration.log"
+cat "$RUNTIME/runs/public-semantic-benchmark-04/outcomes.json"
+tail -n 20 "$RUNTIME/runs/public-semantic-benchmark-04/orchestration.log"
 ```
 
 Detect 的原始命令保留 `--class_set ram --box_threshold 0.2 --text_threshold 0.2 --stride 5 --add_bg_classes --accumu_classes --exp_suffix withbg_allclasses`。其映射使用 `mask_conf_threshold=0.25`、`skip_bg=False`，沿用作者命令生成的后缀 `ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1`。README 的评价示例额外写了 `_masksub`，与映射命令不一致；这里显式传入实际文件名，不复制或伪造结果。Detect 复用同场景原始 RGB PointFusion 表面前，必须提供成功的记录并重新核对文件 SHA-256。
@@ -199,6 +212,17 @@ python3 "$DOCS/scripts/recover_after_restart.py" --runtime "$RUNTIME"
 它只根据不同的 WSL boot_id 标记中断，保留所有文件，不推断运行成功，不覆盖已有结果。对未完成前端，需先检查最后完整帧和当前入口的 start 参数，再决定续跑；不要直接重复启动同名队列。
 
 ### 打开作者可视化窗口
+
+已完成的前端可以先播放本机 Windows 文件：`D:\workspace\be2\SLAM_Recordings\author-originals\room0-rgb-and-sam-playback.mp4`。它是 400 帧 RGB／SAM 对照，40 秒、10 fps，仅展示已保存二维产物。视频、源图哈希与编码命令保存在 `runs/room0-frontend-playback-02/`；Git 仅提交轻量清单。
+
+重做回放时输出目录必须新建：
+
+```bash
+python3 "$DOCS/scripts/render_frontend_video.py" \
+  --scene-root "$RUNTIME/data/replica-full/Replica/room0" \
+  --validation "$RUNTIME/runs/conceptgraphs-room0-batch16-stages-04/validation.json" \
+  --output "$RUNTIME/runs/room0-frontend-playback-manual-01"
+```
 
 三维映射完成后，在 WSL 中执行：
 

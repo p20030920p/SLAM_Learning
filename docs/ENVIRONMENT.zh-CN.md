@@ -1,5 +1,7 @@
 # 语义环境与兼容性
 
+本机 WSL 约 19 GiB RAM，RTX 4070 SUPER 12 GB。完整语义流程已遇到经内核确认的 cgroup OOM；当前单任务限额为 12G RAM / 48G swap，任务目录另有 48 GiB 临时交换文件，总交换空间约 64 GiB。没有修改 WSL 配置或作者算法。这属于资源兼容配置，不用于论文耗时／内存性能对比。[资源清单](../evidence/swap-manifest.json)、[启用与清理命令](RUNBOOK.zh-CN.md)。
+
 本机已经建立两个独立环境：`$RUNTIME/envs/conceptgraphs`（Python 3.10.12）和 `$RUNTIME/envs/hovsg`（Python 3.9）。打开作者入口的命令见 [运行手册](RUNBOOK.zh-CN.md)。精确已安装版本保存在 [ConceptGraphs 清单](../evidence/conceptgraphs-environment.txt) 与 [HOV-SG 清单](../evidence/hovsg-environment.txt)；环境安装日志保留在 evidence/setup-logs。
 
 ## HOV-SG

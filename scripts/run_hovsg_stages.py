@@ -15,6 +15,8 @@ parser.add_argument('--wait-outcomes',type=Path,required=True)
 parser.add_argument('--name',required=True)
 parser.add_argument('--scene',default='room0')
 parser.add_argument('--sam-batch',type=int,default=16)
+parser.add_argument('--memory-max',default='12G')
+parser.add_argument('--swap-max',default='48G')
 args=parser.parse_args()
 r=args.runtime.resolve();root=r/'runs'/args.name
 root.mkdir(parents=True,exist_ok=False)
@@ -40,7 +42,8 @@ state['previous_chain_status']=previous['status'];state['status']='waiting_for_g
 feature_name=args.name+'-features'
 state.update(status='running_feature_map');save()
 code=subprocess.call([sys.executable,str(scripts/'run_semantic_entry.py'),'--runtime',str(r),
-    '--mode','hovsg','--scene',args.scene,'--name',feature_name,'--timeout','7200','--sam-batch',str(args.sam_batch)])
+    '--mode','hovsg','--scene',args.scene,'--name',feature_name,'--timeout','7200','--sam-batch',str(args.sam_batch),
+    '--memory-max',args.memory_max,'--swap-max',args.swap_max])
 if code:fail('feature_map',code)
 state['stages']['feature_map']=0;save()
 python=r/'envs/hovsg/bin/python'
@@ -63,7 +66,7 @@ command=[python,source/'application/eval/evaluate_sem_seg.py','main.dataset=repl
     'models.clip.checkpoint='+str(r/'weights/laion2b_s32b_b79k.bin'),
     'hydra.run.dir='+str(work/'hydra')]
 limited=['systemd-run','--user','--scope','--unit','slam-author-'+args.name+'-evaluation',
-    '-p','MemoryMax=14G','-p','MemorySwapMax=2G',*map(str,command)]
+    '-p','MemoryMax='+args.memory_max,'-p','MemorySwapMax='+args.swap_max,*map(str,command)]
 code=subprocess.call([sys.executable,str(scripts/'record_command.py'),'--output',str(root/'evaluation'),
     '--cwd',str(work),'--source',str(source),'--method','HOV-SG-semantic-evaluation',
     '--scope','Original semantic evaluator, original Replica '+alias+' mesh/info; single scene; frontend SAM batch '+str(args.sam_batch)+' compatibility config; full RGB-D 1200x680, skip_frames=10',

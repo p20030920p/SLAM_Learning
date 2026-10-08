@@ -22,8 +22,8 @@ parser.add_argument('--scene', default='room0')
 parser.add_argument('--variant', choices=['none', 'detect'], default='none')
 parser.add_argument('--rgb-record', type=Path, help='Completed same-scene original RGB fusion record to verify and reuse')
 parser.add_argument('--animation-checkpoints', action='store_true', help='Author optional deep-copy snapshots; high RAM use, disabled in the README mapping command')
-parser.add_argument('--memory-max', default='17G')
-parser.add_argument('--swap-max', default='10G')
+parser.add_argument('--memory-max', default='12G')
+parser.add_argument('--swap-max', default='48G')
 parser.add_argument('--wait-outcomes', type=Path, help='Serialize retry after another recorded original chain reaches a terminal state')
 args = parser.parse_args()
 r = args.runtime.resolve()
@@ -75,6 +75,7 @@ post = scene / 'pcd_saves' / ('full_pcd_' + experiment + '_post.pkl.gz')
 if post.exists():raise FileExistsError('Refusing to overwrite an existing original 3D map')
 
 def run(name, command, artifacts, cwd=None, scope=''):
+    state.update(status='waiting_for_gpu_for_' + name);save()
     while subprocess.check_output(['nvidia-smi', '--query-compute-apps=pid', '--format=csv,noheader'], text=True).strip():
         time.sleep(10)
     state.update(status='running_' + name);save()

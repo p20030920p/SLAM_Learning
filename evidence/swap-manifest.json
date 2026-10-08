@@ -1,0 +1,12 @@
+{
+  "status": "enabled",
+  "path": "/home/qzl/projects/SLAM_Author_Originals/resources/author-temporary.swap",
+  "bytes": 51539607552,
+  "gib": 48,
+  "checked_at": "2026-10-08T20:58:57.729904+00:00",
+  "swaps_before": "Filename\t\t\t\tType\t\tSize\t\tUsed\t\tPriority\n/dev/sdc                                partition\t16777216\t57192\t\t-2\n",
+  "swaps_after": "Filename\t\t\t\tType\t\tSize\t\tUsed\t\tPriority\n/dev/sdc                                partition\t16777216\t57192\t\t-2\n/home/qzl/projects/SLAM_Author_Originals/resources/author-temporary.swap file\t\t50331644\t0\t\t-3\n",
+  "scope": "Temporary local resource compatibility; no algorithm/source/data/threshold change; not a paper resource-performance result",
+  "persistent_configuration_changed": false,
+  "cleanup": "After all jobs finish and RAM permits, run swapoff on this exact path as root, then remove this task-owned file. Not added to fstab."
+}

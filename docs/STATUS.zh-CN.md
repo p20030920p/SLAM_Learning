@@ -1,6 +1,6 @@
 # 运行状态与解释
 
-更新日期：2026-10-08。实际工作区：`/home/qzl/projects/SLAM_Author_Originals`。
+更新日期：2026-10-09（莫斯科）。实际工作区：`/home/qzl/projects/SLAM_Author_Originals`。
 
 ## 已实际执行
 
@@ -51,11 +51,17 @@ ConceptGraphs room0 原始 SAM 批量 144 运行逐帧变慢。Windows 性能计
 
 room0 的完整前端已执行成功并通过全部 400 个预期输出的检查，1024 维特征均为有限数值。首次三维关联在 295/400 附近触发 14 GiB cgroup 内存限制，exit -9；内核和 systemd 均确认 OOM，294 个部分检查点已保留，没有最终地图或语义分数。[诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-02/diagnostics/failure-diagnosis.json)。
 
-重试 `conceptgraphs-room0-batch16-stages-03` 已排队，等待当前 HOV-SG 完成：保留同一完整前端及全部映射阈值，关闭可选的 `save_objects_all_frames`（恢复作者 README 默认），RAM/swap 限额改为 17G/10G。作者动画保存会深拷贝历史对象，可能增加峰值；关闭后的效果尚待实际运行验证，不将推断当作已解决。后续 RGB 参考表面与语义评价只有前序成功才执行；单场景结果不会当作八场景均值。
+第二次映射 `conceptgraphs-room0-batch16-stages-03` 关闭可选的 `save_objects_all_frames`，恢复作者 README 默认，全部 400 帧关联在约 5 分钟内完成。但最终序列化仍触发 17G RAM / 10G swap 的 cgroup OOM，exit -9。截断文件已移入该运行的 `partial-outputs/`，没有最终地图，不用于评价。[第二次诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-03/diagnostics/failure-diagnosis.json)。关闭动画保存没有解决全部峰值内存问题。
 
-HOV-SG 的完整 room0 特征提取已实际启动，原始语义评价随后执行。使用原生 1200×680 RGB-D、作者 skip_frames=10，仅通过作者 Hydra 参数把 SAM 每批提示点设为 16；这一资源配置变体也单独标注，不复用旧的降分辨率子集结果。尚未报告完整特征图或语义分数。
+HOV-SG `hovsg-room0-batch16-stages-02` 完成了 200/200 个原生 1200×680 帧的特征提取，随后在层级掩码合并阶段触发 14G RAM / 2G swap cgroup OOM，exit -9。原始入口在全流程结束后才保存特征图，本次没有可验证的最终 PLY/PT 文件。[HOV-SG 诊断](../evidence/runs/hovsg-room0-batch16-stages-02/diagnostics/failure-diagnosis.json)。这不是语义精度失败，也不能复用为已完成特征图。
 
-其余 7 个公开 Replica 场景已排入本机串行队列，等待首个完整链路通过；未完成阶段仍按 waiting / running 记录。队列同时包含尚未执行的 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
+当前重试 `conceptgraphs-room0-batch16-stages-04` 已开始原始映射；HOV-SG `hovsg-room0-batch16-stages-03` 等待它结束后重做特征图。资源限额为每任务 12G RAM / 48G swap，另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间可能明显增加耗时；是否能完成仍以退出记录与产物验证为准。
+
+`public-semantic-benchmark-04` 等待首个完整链路，再串行推进其余 7 个公开 Replica 场景及 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
+
+完整前端另导出 40 秒、400 帧 RGB／SAM 对照回放，源图与已验证分割逐一匹配。它展示实际二维产物，不代表三维窗口操作或语义准确率。查看和重做命令见 [运行手册](RUNBOOK.zh-CN.md)。
+
+![前端回放的中间帧：左侧 RGB，右侧作者 SAM 分割](../evidence/figures/room0-frontend-example.png)
 
 ## 待完成
 

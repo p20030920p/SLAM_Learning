@@ -46,6 +46,8 @@ def main():
         shutil.copy2(environment_log,target)
     weights=args.runtime/'weights/SHA256SUMS'
     if weights.is_file():shutil.copy2(weights,args.output/'weights-SHA256SUMS.txt')
+    swap=args.runtime/'resources/swap-manifest.json'
+    if swap.is_file():shutil.copy2(swap,args.output/'swap-manifest.json')
     manifest={}
     paths=list((args.runtime/'data/00-pristine').rglob('*'))
     paths+=list((args.runtime/'data/benchmark-released').rglob('*.pcd'))
@@ -92,6 +94,17 @@ def main():
         target=args.output/'runs'/source.relative_to(args.runtime/'runs')
         target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(source,target)
+    for source in sorted((args.runtime/'runs').glob('*/media.json')):
+        target=args.output/'runs'/source.relative_to(args.runtime/'runs')
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(source,target)
+        for name in ['source-manifest.json','ffmpeg.log']:
+            companion=source.with_name(name)
+            if companion.is_file():shutil.copy2(companion,target.with_name(name))
+        data=json.loads(source.read_text())
+        if data.get('status')=='rendered':
+            path=Path(data['video'])
+            manifest[path.relative_to(args.runtime).as_posix()]={'bytes':data['bytes'],'sha256':data['video_sha256']}
     for source in sorted((args.runtime/'runs').glob('*/diagnostics/*')):
         if source.suffix not in ['.json','.log']:continue
         target=args.output/'runs'/source.relative_to(args.runtime/'runs')

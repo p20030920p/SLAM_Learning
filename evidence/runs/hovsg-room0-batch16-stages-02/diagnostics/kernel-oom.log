@@ -1,0 +1,105 @@
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: python invoked oom-killer: gfp_mask=0x100cca(GFP_HIGHUSER_MOVABLE), order=0, oom_score_adj=0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: CPU: 1 UID: 1000 PID: 7178 Comm: python Not tainted 6.18.40.1-microsoft-standard-WSL2 #1 PREEMPT(none) 
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: Call Trace:
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  <TASK>
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  dump_stack_lvl+0x5f/0x80
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  dump_stack+0x14/0x20
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  dump_header+0x48/0x170
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  oom_kill_process+0x106/0x230
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  out_of_memory+0x255/0x570
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  mem_cgroup_out_of_memory+0xc1/0x100
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  try_charge_memcg+0x42a/0x690
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  charge_memcg+0x34/0x80
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  __mem_cgroup_charge+0x31/0x90
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  filemap_add_folio+0x8c/0x220
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  ? filemap_alloc_folio_noprof+0xfa/0x110
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  __filemap_get_folio+0x19f/0x310
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  filemap_fault+0x110/0x1340
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  __do_fault+0x39/0x190
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  do_fault+0x2e2/0x6d0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  __handle_mm_fault+0x5cf/0x880
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  ? schedule+0x2b/0xb0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  handle_mm_fault+0x175/0x340
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  do_user_addr_fault+0x174/0x710
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  exc_page_fault+0x6d/0x140
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  asm_exc_page_fault+0x2b/0x30
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: RIP: 0033:0x7d77b3df5ff9
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: Code: Unable to access opcode bytes at 0x7d77b3df5fcf.
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: RSP: 002b:00007d77aeffe4a0 EFLAGS: 00010287
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: RAX: 00007d77aeffe520 RBX: 00007d75d60cda20 RCX: 0000000092efc2e8
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: RDX: 0000000000103bb2 RSI: 00007d77aeffed20 RDI: 00007d764c3238d0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: RBP: 00007d764c3238d0 R08: ffff828a29f325df R09: 0000000000001000
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: R10: 0000000092efc2e8 R11: 0000000000000000 R12: 0000000092efc2e8
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: R13: 0000000000103ba5 R14: 00007d77aeffed50 R15: 00007d77aeffed20
+Oct 08 23:47:12 DESKTOP-GI2390C kernel:  </TASK>
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: memory: usage 14680064kB, limit 14680064kB, failcnt 44109
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: swap: usage 2097152kB, limit 2097152kB, failcnt 176
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: Memory cgroup stats for /wsl-user/distro-628/user.slice/user-1000.slice/user@1000.service/app.slice/slam-author-hovsg-room0-batch16-stages-02-features.scope:
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: anon 14908657664
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: file 75595776
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: kernel 47431680
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: kernel_stack 393216
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pagetables 37597184
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: sec_pagetables 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: percpu 160
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: sock 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: vmalloc 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: shmem 75526144
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: file_mapped 75591680
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: file_dirty 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: file_writeback 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: swapcached 5427200
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: anon_thp 750780416
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: file_thp 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: shmem_thp 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: inactive_anon 11143557120
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: active_anon 3841327104
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: inactive_file 8192
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: active_file 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: unevictable 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: slab_reclaimable 8139920
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: slab_unreclaimable 1300528
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: slab 9440448
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: workingset_refault_anon 1434
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: workingset_refault_file 678552
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: workingset_activate_anon 1434
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: workingset_activate_file 81769
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: workingset_restore_anon 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: workingset_restore_file 9637
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: workingset_nodereclaim 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgdemote_kswapd 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgdemote_direct 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgdemote_khugepaged 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgdemote_proactive 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgscan 9025117
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgsteal 2953218
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pswpin 1434
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pswpout 482826
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgscan_kswapd 1311153
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgscan_direct 7676348
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgscan_khugepaged 37616
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgscan_proactive 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgsteal_kswapd 281976
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgsteal_direct 2663701
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgsteal_khugepaged 7541
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgsteal_proactive 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgfault 506401572
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgmajfault 4102
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgrefill 212889
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgactivate 1050341
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pgdeactivate 199544
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pglazyfree 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: pglazyfreed 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: swpin_zero 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: swpout_zero 41688
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: thp_fault_alloc 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: thp_collapse_alloc 516
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: thp_swpout 158
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: thp_swpout_fallback 0
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: Tasks state (memory values in pages):
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: [  pid  ]   uid  tgid total_vm      rss rss_anon rss_file rss_shmem pgtables_bytes swapents oom_score_adj name
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: [   7152]  1000  7152 17074496  3659311  3639658     1221     18432 37593088   523008             0 python
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: oom-kill:constraint=CONSTRAINT_MEMCG,nodemask=(null),cpuset=distro-628,mems_allowed=0,oom_memcg=/wsl-user/distro-628/user.slice/user-1000.slice/user@1000.service/app.slice/slam-author-hovsg-room0-batch16-stages-02-features.scope,task_memcg=/wsl-user/distro-628/user.slice/user-1000.slice/user@1000.service/app.slice/slam-author-hovsg-room0-batch16-stages-02-features.scope,task=python,pid=7152,uid=1000
+Oct 08 23:47:12 DESKTOP-GI2390C kernel: Memory cgroup out of memory: Killed process 7152 (python) total-vm:68297984kB, anon-rss:14558632kB, file-rss:4884kB, shmem-rss:73728kB, UID:1000 pgtables:36712kB oom_score_adj:0
+Oct 08 23:56:01 DESKTOP-GI2390C kernel: python invoked oom-killer: gfp_mask=0xcc0(GFP_KERNEL), order=0, oom_score_adj=0
+Oct 08 23:56:01 DESKTOP-GI2390C kernel: CPU: 5 UID: 1000 PID: 16260 Comm: python Not tainted 6.18.40.1-microsoft-standard-WSL2 #1 PREEMPT(none) 

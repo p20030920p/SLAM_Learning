@@ -13,6 +13,8 @@ parser.add_argument('--name',required=True)
 parser.add_argument('--timeout',type=int,default=7200)
 parser.add_argument('--allocator-conf',default='')
 parser.add_argument('--sam-batch',type=int,default=144)
+parser.add_argument('--memory-max',default='12G')
+parser.add_argument('--swap-max',default='48G')
 args=parser.parse_args()
 r=args.runtime.resolve()
 active=subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip()
@@ -48,7 +50,7 @@ else:
     artifacts=[scene/('gsa_classes_'+variant+'.json'),
                scene/('gsa_detections_'+variant)/'frame001995.pkl.gz',
                scene/('gsa_vis_'+variant)/'frame001995.jpg']
-scope=f'Full 2000-frame Replica {args.scene}, author {args.mode} entry; 14GiB RAM/2GiB swap cgroup; timeout {args.timeout}s'
+scope=f'Full 2000-frame Replica {args.scene}, author {args.mode} entry; RAM/swap cgroup {args.memory_max}/{args.swap_max}; timeout {args.timeout}s'
 if args.sam_batch==144 and args.mode!='cg-detect':scope+='; original SAM points_per_batch=144'
 if args.mode=='cg-detect':scope+='; original RAM+DINO and box-prompted SAM'
 if args.allocator_conf:scope+='; allocator environment variant '+args.allocator_conf
@@ -56,7 +58,7 @@ if args.sam_batch != 144:
     if args.mode!='hovsg':raise ValueError('SAM batch override is exposed by the original HOV-SG Hydra config only')
     scope+='; explicit resource compatibility config models.sam.points_per_batch='+str(args.sam_batch)+' instead of 144'
 limited=['systemd-run','--user','--scope','--unit','slam-author-'+args.name,
-         '-p','MemoryMax=14G','-p','MemorySwapMax=2G',*map(str,command)]
+         '-p','MemoryMax='+args.memory_max,'-p','MemorySwapMax='+args.swap_max,*map(str,command)]
 recorder=[sys.executable,str(Path(__file__).with_name('record_command.py')),
     '--output',str(output),'--cwd',str(cwd),'--source',str(source),'--method',args.mode,
     '--scope',scope,'--timeout',str(args.timeout)]

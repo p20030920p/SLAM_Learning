@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "exit_code": -9,
+  "cause": "Memory cgroup OOM confirmed by kernel and systemd unit",
+  "last_stage": "completed_400_frames_then_final_serialization",
+  "record": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-batch16-stages-03/mapping/record.json",
+  "unit": "slam-author-conceptgraphs-room0-batch16-stages-03-mapping.scope",
+  "scope": "Resource failure, not an algorithm-accuracy result. No final map/evaluation completion inferred.",
+  "partial_map": {
+    "original_path": "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub.pkl.gz",
+    "preserved_path": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-batch16-stages-03/partial-outputs/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub.pkl.gz",
+    "bytes": 19847965,
+    "sha256": "42c0cb3acb5a542f09fee8d1f9700a3d32359af6f5552d4fe60a372c41cc6c79",
+    "validity": "Unverified interrupted serialization; excluded from evaluation"
+  }
+}

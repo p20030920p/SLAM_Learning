@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-mapping",
+  "scope": "Full 2000-frame room0; stride 5 (400 frames); exact README none mapping parameters; optional animation checkpoints=False; RAM/swap cgroup 17G/10G. Frontend provenance: /home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-replica-room0-none-batch16-04/record.json",
+  "status": "failed",
+  "started_at": "2026-10-08T20:48:17.464925+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-conceptgraphs-room0-batch16-stages-03-mapping",
+    "-p",
+    "MemoryMax=17G",
+    "-p",
+    "MemorySwapMax=10G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "slam/cfslam_pipeline_batch.py",
+    "dataset_root=/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "dataset_config=/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "stride=5",
+    "scene_id=room0",
+    "spatial_sim_type=overlap",
+    "mask_conf_threshold=0.95",
+    "match_method=sim_sum",
+    "sim_threshold=1.2",
+    "dbscan_eps=0.1",
+    "gsa_variant=none",
+    "skip_bg=True",
+    "max_bbox_area_ratio=0.5",
+    "save_suffix=overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub",
+    "save_objects_all_frames=False",
+    "hydra.run.dir=/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-batch16-stages-03/mapping-hydra",
+    "class_agnostic=True",
+    "merge_interval=20",
+    "merge_visual_sim_thresh=0.8",
+    "merge_text_sim_thresh=0.8"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": -9,
+  "artifacts": {
+    "run.log": {
+      "sha256": "40d838a90932eccd9d3cead6747a89c33898f3acf77627f54480b44cc79fe900",
+      "bytes": 25408
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything"
+  },
+  "pid": 80134,
+  "elapsed_seconds": 464.8589647869994,
+  "source_dirty_after": "",
+  "missing_artifacts": [
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz"
+  ]
+}
