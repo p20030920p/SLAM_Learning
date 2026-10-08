@@ -28,16 +28,13 @@ ros2 pkg prefix rtabmap_odom
 
 再次按 Win+X，打开一个新的 PowerShell。保持它在 Windows 中，不执行 `wsl`。USB 相机由 Windows SDK 访问，不需要把相机转交给 WSL。
 
-先将镜头朝向 1–3 m 的有纹理墙角、纸箱或家具，移开挡在镜头前的近物，避开直射灯和亮屏；相机保持不动。复制 **PowerShell 命令**：
+先将镜头朝向 1–3 m 的有纹理墙角、纸箱或家具，移开挡在镜头前的近物，避开直射灯和亮屏；相机保持不动。复制下面**唯一一行 PowerShell 命令**，整行粘贴后回车；不需要先切换目录或设置变量：
 
 ```powershell
-Set-Location -LiteralPath D:\workspace\be2\Personal-Learning-Physical
-$taskView = 'data\camera-view-' + (Get-Date -Format 'yyyyMMdd-HHmmss')
-.venv\Scripts\python.exe scripts\capture_camera.py --seconds 5 --output $taskView
-Invoke-Item (Join-Path $taskView 'preview.png')
+powershell -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Personal-Learning-Physical\scripts\preview_camera.ps1
 ```
 
-5 秒结束后才打开图片，它是本段约第 2 秒的截图。若采集显示 `failed`，先查看输出中的 `error`，不要继续后续导出。相机被其他查看器占用时，先关闭查看器。
+脚本自行选择新输出目录；5 秒结束后才打开图片，它是本段约第 2 秒的截图。`-ExecutionPolicy Bypass` 仅用于这次运行，不修改全局执行策略。若采集失败，脚本停止并给出记录路径，先查看 `capture.json` 的 `error`，不要继续后续导出。相机被其他查看器占用时，先关闭查看器。若使用教程后面的多行命令，应逐行执行，不要把多条命令拼成一行。
 
 图片的四格分别为 RGB、伪彩深度、左 IR、右 IR。普通哑光墙角应有可辨认的深度结构，两路 IR 应清楚、能看到场景纹理；玻璃、反光、轮廓边缘和黑亮物有空洞并不罕见。深度黑色表示无效；整幅大面积无效或近物占满镜头时先改摆位。这四格仍是传感器检查，没有算法轨迹。
 
