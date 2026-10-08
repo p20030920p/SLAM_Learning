@@ -1,7 +1,10 @@
 {
-  "status": "waiting_for_room0",
+  "status": "interrupted",
   "pid": 6007,
   "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
   "scope": "All 8 public Replica scenes, local computation; SAM microbatch16 compatibility; no API/HM3D/LLaVA",
-  "scenes": {}
+  "scenes": {},
+  "ended_at": "2026-10-08T20:00:48.696741+00:00",
+  "interruption_reason": "Idle orchestration supervisor replaced before launching any scene, to include original ConceptGraphs-Detect. Active room0 ConceptGraphs/HOV processes were not stopped.",
+  "replacement": "public-semantic-benchmark-02"
 }

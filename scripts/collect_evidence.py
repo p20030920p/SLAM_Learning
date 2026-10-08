@@ -92,6 +92,11 @@ def main():
         target=args.output/'runs'/source.relative_to(args.runtime/'runs')
         target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(source,target)
+    for source in sorted((args.runtime/'runs').glob('*/diagnostics/*')):
+        if source.suffix not in ['.json','.log']:continue
+        target=args.output/'runs'/source.relative_to(args.runtime/'runs')
+        target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copy2(source,target)
     (args.output/'artifact-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     sources={}
     for source in sorted((args.runtime/'upstream').iterdir()):

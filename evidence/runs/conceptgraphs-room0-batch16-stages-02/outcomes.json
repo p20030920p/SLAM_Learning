@@ -1,6 +1,9 @@
 {
-  "status": "running_mapping",
+  "status": "failed",
   "frontend_record": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-replica-room0-none-batch16-04/record.json",
-  "stages": {},
-  "frontend_scope": "Full 2000-frame room0, stride 5 = 400 frames; original source copy with ONLY SAM points_per_batch=144->16; all 12x12 prompts, weights and thresholds retained. Explicit resource compatibility variant; not original batch-default result."
+  "stages": {
+    "mapping": 247
+  },
+  "frontend_scope": "Full 2000-frame room0, stride 5 = 400 frames; original source copy with ONLY SAM points_per_batch=144->16; all 12x12 prompts, weights and thresholds retained. Explicit resource compatibility variant; not original batch-default result.",
+  "recovered_terminal_state": "Nonzero child exit recorded"
 }

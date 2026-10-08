@@ -42,7 +42,12 @@ else:
     if args.mode=='cg-detect':command+=['--box_threshold','0.2','--text_threshold','0.2',
                                        '--add_bg_classes','--accumu_classes','--exp_suffix','withbg_allclasses']
     variant='none' if args.mode=='cg-none' else 'ram_withbg_allclasses'
-    artifacts=[r/'data/replica-full/Replica'/args.scene/('gsa_classes_'+variant+'.json')]
+    scene=r/'data/replica-full/Replica'/args.scene
+    for name in ['gsa_detections_'+variant,'gsa_vis_'+variant,'gsa_classes_'+variant+'.json']:
+        if (scene/name).exists():raise FileExistsError('Refusing to overwrite existing original frontend: '+name)
+    artifacts=[scene/('gsa_classes_'+variant+'.json'),
+               scene/('gsa_detections_'+variant)/'frame001995.pkl.gz',
+               scene/('gsa_vis_'+variant)/'frame001995.jpg']
 scope=f'Full 2000-frame Replica {args.scene}, author {args.mode} entry; 14GiB RAM/2GiB swap cgroup; timeout {args.timeout}s'
 if args.sam_batch==144 and args.mode!='cg-detect':scope+='; original SAM points_per_batch=144'
 if args.mode=='cg-detect':scope+='; original RAM+DINO and box-prompted SAM'

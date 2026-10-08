@@ -2,7 +2,7 @@
   "schema_version": 1,
   "method": "ConceptGraphs-mapping",
   "scope": "Full 2000-frame room0; stride 5 (400 frames); exact README mapping parameters; author optional save_objects_all_frames=True for animation. Frontend provenance: /home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-replica-room0-none-batch16-04/record.json",
-  "status": "running",
+  "status": "failed",
   "started_at": "2026-10-08T19:43:08.952324+00:00",
   "command": [
     "systemd-run",
@@ -40,8 +40,13 @@
   "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
   "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
   "source_dirty_before": "",
-  "exit_code": null,
-  "artifacts": {},
+  "exit_code": -9,
+  "artifacts": {
+    "run.log": {
+      "sha256": "54b38776561608a0735415b549a1dc24204df06b6f665548347cac0bf8223031",
+      "bytes": 17946
+    }
+  },
   "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
   "environment": {
     "OMP_NUM_THREADS": "8",
@@ -51,5 +56,10 @@
     "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
     "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything"
   },
-  "pid": 5792
+  "pid": 5792,
+  "elapsed_seconds": 1091.4495793780002,
+  "source_dirty_after": "",
+  "missing_artifacts": [
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz"
+  ]
 }

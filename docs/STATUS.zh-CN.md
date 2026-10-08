@@ -49,11 +49,13 @@ ConceptGraphs room0 原始 SAM 批量 144 运行逐帧变慢。Windows 性能计
 
 当前兼容运行只在独立入口副本把 SAM `points_per_batch` 从 144 改为 16，保留全部 12×12 提示点、400 个采样帧、权重与阈值，作者 checkout 不改。共享显存快照降至约 75 MB。已比较的 26 个共同帧，匹配掩码最小 IoU 为 0.9999564，CLIP 余弦相似度约 1；这不是全序列或逐位一致性证明。[比较记录](../evidence/sam-batch-comparison.json) / [显存快照](../evidence/gpu-memory-observations.json)。
 
-room0 的完整前端已执行成功并通过全部 400 个预期输出的检查，1024 维特征均为有限数值。作者三维关联已启动，RGB 参考表面与语义评价随后按依赖顺序执行；前端缺帧会拒绝评价。单 room0 结果将明确标注为单场景，不充当八场景平均值。
+room0 的完整前端已执行成功并通过全部 400 个预期输出的检查，1024 维特征均为有限数值。首次三维关联在 295/400 附近触发 14 GiB cgroup 内存限制，exit -9；内核和 systemd 均确认 OOM，294 个部分检查点已保留，没有最终地图或语义分数。[诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-02/diagnostics/failure-diagnosis.json)。
 
-HOV-SG 的后续完整 room0 特征图与原始语义评价已排队，等待当前 ConceptGraphs 链路释放 GPU。使用原生 1200×680 RGB-D、作者 skip_frames=10，仅通过作者 Hydra 参数把 SAM 每批提示点设为 16；这一资源配置变体也单独标注，不复用旧的降分辨率子集结果。
+重试 `conceptgraphs-room0-batch16-stages-03` 已排队，等待当前 HOV-SG 完成：保留同一完整前端及全部映射阈值，关闭可选的 `save_objects_all_frames`（恢复作者 README 默认），RAM/swap 限额改为 17G/10G。作者动画保存会深拷贝历史对象，可能增加峰值；关闭后的效果尚待实际运行验证，不将推断当作已解决。后续 RGB 参考表面与语义评价只有前序成功才执行；单场景结果不会当作八场景均值。
 
-其余 7 个公开 Replica 场景已排入本机串行队列，等待首个完整链路通过；未完成阶段仍按 waiting / running 记录。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
+HOV-SG 的完整 room0 特征提取已实际启动，原始语义评价随后执行。使用原生 1200×680 RGB-D、作者 skip_frames=10，仅通过作者 Hydra 参数把 SAM 每批提示点设为 16；这一资源配置变体也单独标注，不复用旧的降分辨率子集结果。尚未报告完整特征图或语义分数。
+
+其余 7 个公开 Replica 场景已排入本机串行队列，等待首个完整链路通过；未完成阶段仍按 waiting / running 记录。队列同时包含尚未执行的 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
 
 ## 待完成
 

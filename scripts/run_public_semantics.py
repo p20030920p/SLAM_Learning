@@ -17,13 +17,14 @@ parser.add_argument('--runtime',type=Path,required=True)
 parser.add_argument('--wait-cg',type=Path,required=True)
 parser.add_argument('--wait-hov',type=Path,required=True)
 parser.add_argument('--name',required=True)
+parser.add_argument('--include-detect',action='store_true',help='Also run the unmodified author RAM+DINO frontend and Detect mapping/evaluation')
 args=parser.parse_args()
 r=args.runtime.resolve();root=r/'runs'/args.name
 root.mkdir(parents=True,exist_ok=False)
 (root/'orchestration.log').touch(exist_ok=False)
 scripts=Path(__file__).resolve().parent
 state={'status':'waiting_for_room0','pid':os.getpid(),'boot_id':Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
-       'scope':'All 8 public Replica scenes, local computation; SAM microbatch16 compatibility; no API/HM3D/LLaVA',
+       'scope':'All 8 public Replica scenes, local computation; SAM-only microbatch16 compatibility; optional unchanged RAM+DINO Detect; no API/HM3D/LLaVA',
        'scenes':{}}
 def save():(root/'outcomes.json').write_text(json.dumps(state,indent=2)+'\n')
 def on_exception(kind,value,traceback):
@@ -47,12 +48,30 @@ def wait_gpu():
 def run_script(script,arguments):
     with (root/'orchestration.log').open('ab') as log:
         return subprocess.call([sys.executable,str(scripts/script),*map(str,arguments)],stdout=log,stderr=subprocess.STDOUT)
+
+def run_detect(scene,row,rgb_record):
+    prefix=args.name+'-'+scene+'-detect'
+    state['status']='running_'+scene+'_detect_frontend';save();wait_gpu()
+    code=run_script('run_semantic_entry.py',['--runtime',r,'--mode','cg-detect','--scene',scene,'--name',prefix+'-frontend'])
+    row['detect_frontend_exit']=code;save()
+    if code:
+        row['detect_stages_exit']='not run; frontend failed';save();return False
+    state['status']='running_'+scene+'_detect_stages';save()
+    code=run_script('run_cg_stages.py',['--runtime',r,'--scene',scene,'--variant','detect',
+        '--wait-record',r/'runs'/(prefix+'-frontend')/'record.json','--name',prefix+'-stages','--rgb-record',rgb_record])
+    row['detect_stages_exit']=code;save();return code==0
+
 save()
 cg=wait_terminal(args.wait_cg)
 hov=wait_terminal(args.wait_hov)
 state['scenes']['room0']={'conceptgraphs':cg['status'],'hovsg':hov['status']};save()
 if cg['status']!='executed_single_scene':raise RuntimeError('First complete CG chain failed; not repeating it across seven scenes')
 hov_enabled=hov['status']=='executed_single_scene'
+detect_enabled=args.include_detect
+if detect_enabled:
+    detect_enabled=run_detect('room0',state['scenes']['room0'],args.wait_cg.parent/'rgb-fusion/record.json')
+    if not detect_enabled:
+        state['scenes']['room0']['detect_note']='Do not repeat an unresolved first Detect failure across seven scenes';save()
 for scene in ['office0','office1','office2','office3','office4','room1','room2']:
     row={};state['scenes'][scene]=row
     prefix=args.name+'-'+scene
@@ -66,6 +85,9 @@ for scene in ['office0','office1','office2','office3','office4','room1','room2']
         row['cg_stages_exit']=run_script('run_cg_stages.py',[
             '--runtime',r,'--scene',scene,'--wait-record',r/'runs'/frontend/'record.json','--name',cg_name]);save()
     else:row['cg_stages_exit']='not run; frontend failed'
+    if detect_enabled and row['cg_stages_exit']==0:
+        detect_enabled=run_detect(scene,row,r/'runs'/cg_name/'rgb-fusion/record.json')
+    else:row['detect_stages_exit']='not run; disabled, unresolved Detect failure, or no validated same-scene RGB surface'
     if hov_enabled:
         state['status']='running_'+scene+'_hovsg';save()
         if row['cg_stages_exit']==0:
@@ -79,21 +101,24 @@ for scene in ['office0','office1','office2','office3','office4','room1','room2']
     else:row['hovsg_exit']='not run; unresolved first HOV failure'
     save()
 complete_cg=all(row.get('cg_stages_exit')==0 for scene,row in state['scenes'].items() if scene!='room0')
-if complete_cg:
-    wait_gpu();state['status']='running_unmodified_eight_scene_cg_evaluation';save()
+complete_detect=args.include_detect and all(row.get('detect_stages_exit')==0 for row in state['scenes'].values())
+for method,complete,exp in [
+    ('cg',complete_cg,'none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub'),
+    ('detect',complete_detect,'ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1')]:
+    if not complete:continue
+    wait_gpu();state['status']='running_unmodified_eight_scene_'+method+'_evaluation';save()
     source=r/'upstream/conceptgraphs'
-    work=root/'full-evaluation-work';work.mkdir()
+    work=root/(method+'-full-evaluation-work');work.mkdir()
     os.environ.update(HF_HUB_CACHE=str(r/'cache/huggingface/hub'),OMP_NUM_THREADS='8',OPENBLAS_NUM_THREADS='8',MKL_NUM_THREADS='8')
-    exp='none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub'
     command=[r/'envs/conceptgraphs/bin/python',source/'conceptgraph/scripts/eval_replica_semseg.py',
         '--replica_root',r/'data/replica-full/Replica','--replica_semantic_root',r/'data/Replica-semantic',
         '--n_exclude','6','--pred_exp_name',exp]
     with (root/'orchestration.log').open('ab') as log:
-        code=subprocess.call([sys.executable,str(scripts/'record_command.py'),'--output',str(root/'eight-scene-evaluation'),
+        code=subprocess.call([sys.executable,str(scripts/'record_command.py'),'--output',str(root/(method+'-eight-scene-evaluation')),
             '--cwd',str(work),'--source',str(source),'--method','ConceptGraphs-original-eight-scene-evaluation',
-            '--scope','UNMODIFIED original evaluator, all eight scenes, original HDF5 GT; all frontends use explicit SAM batch16 compatibility',
+            '--scope','UNMODIFIED original evaluator, all eight scenes, original HDF5 GT; '+('SAM-only batch16 compatibility' if method=='cg' else 'unchanged RAM+DINO box-prompted SAM frontend; actual mapping suffix from author command'),
             '--timeout','7200','--artifact',str(work/'results'/exp/'replica_ex6_results.csv'),'--',*map(str,command)],
             stdout=log,stderr=subprocess.STDOUT)
-    state['eight_scene_cg_evaluation_exit']=code;save()
+    state['eight_scene_'+method+'_evaluation_exit']=code;save()
 state['status']='finished_with_recorded_outcomes';save()
 print('Public semantic queue finished; read outcomes for exact completed/failed scope',flush=True)

@@ -140,15 +140,15 @@ cd "$RUNTIME/upstream/conceptgraphs/conceptgraph"
 
 ### 本机 12 GB GPU 的兼容运行
 
-原始 SAM 批量 144 的共享显存占用与试验记录见 [状态文档](STATUS.zh-CN.md)。本机正在运行 `conceptgraphs-replica-room0-none-batch16-04`，只把单批提示点改为 16。原始 checkout 保持干净，入口副本与单行 diff 保留在 `$RUNTIME/variants/`；不要把此结果称为原始默认批量结果。
+原始 SAM 批量 144 的共享显存占用与试验记录见 [状态文档](STATUS.zh-CN.md)。本机已完成 `conceptgraphs-replica-room0-none-batch16-04`，只把单批提示点改为 16。原始 checkout 保持干净，入口副本与单行 diff 保留在 `$RUNTIME/variants/`；不要把此结果称为原始默认批量结果。
 
 ```bash
 cat "$RUNTIME/runs/conceptgraphs-replica-room0-none-batch16-04/record.json"
 tail -c 1500 "$RUNTIME/runs/conceptgraphs-replica-room0-none-batch16-04/run.log"
-cat "$RUNTIME/runs/conceptgraphs-room0-batch16-stages-02/outcomes.json"
+cat "$RUNTIME/runs/conceptgraphs-room0-batch16-stages-03/outcomes.json"
 ```
 
-GPU 空闲后，若要亲自运行尚无前端输出的 room1，可执行：
+自动队列结束或停止、GPU 空闲后，若 room1 仍无前端输出，可亲自执行：
 
 ```bash
 python3 "$DOCS/scripts/run_cg_resource_frontend.py" --runtime "$RUNTIME" \
@@ -158,6 +158,8 @@ python3 "$DOCS/scripts/run_cg_stages.py" --runtime "$RUNTIME" --scene room1 \
 ```
 
 脚本拒绝覆盖已有前端或三维结果。后续阶段先检查全部 400 个预期输出、1024 维特征及有限数值，再调用作者原始三维融合、RGB PointFusion 和评价。评价副本只显式选择当前场景，保留 diff，不能拿单场景结果当八场景均值。
+
+首次映射的 14 GiB cgroup OOM 记录在 `conceptgraphs-room0-batch16-stages-02/diagnostics/`，294 个部分动画检查点保存在该运行的 `partial-outputs/`。当前重试保留作者默认 `save_objects_all_frames=False`，不保留逐帧动画副本；RAM/swap 显式设为 17G/10G，不修改 WSL 全局配置。关闭动画保存是否足以完成本机全序列，仍以实际退出记录为准。
 
 ConceptGraphs 语义 GT 的本机校验命令如下，公开文件 ID 来自固定作者 README：
 
@@ -179,12 +181,14 @@ cat "$RUNTIME/runs/hovsg-room0-batch16-stages-02/outcomes.json"
 
 该任务先运行完整 2000 帧输入的原始特征图入口（skip_frames=10、SAM 批量 16），检查 PLY 与 1024 维特征对应关系，再运行作者语义评价。评价工作目录独立，作者生成的颜色 JSON 不写进源码。单场景结果、资源配置和未完成阶段都分别记录。
 
-其余 7 个公开场景已由 `public-semantic-benchmark-01` 串行排队：先等待 room0 验证。首个 HOV-SG 流程未通过时不在另外 7 个场景重复同一失败；ConceptGraphs 可以继续。只有 8 个场景全部成功，才调用未经修改的作者八场景评价入口。
+其余 7 个公开场景由 `public-semantic-benchmark-03` 串行排队：先等待 room0 重试验证，然后加入作者原版 ConceptGraphs-Detect。首个 HOV-SG 或 Detect 流程未通过时，不在另外 7 个场景重复同一失败；SAM-only ConceptGraphs 可以继续。只有对应方法的 8 个场景全部成功，才调用未经修改的作者八场景评价入口。旧的 `public-semantic-benchmark-01/02` 只启动了等待器，已在启动任何场景前更换，记录保留。
 
 ```bash
-cat "$RUNTIME/runs/public-semantic-benchmark-01/outcomes.json"
-tail -n 20 "$RUNTIME/runs/public-semantic-benchmark-01/orchestration.log"
+cat "$RUNTIME/runs/public-semantic-benchmark-03/outcomes.json"
+tail -n 20 "$RUNTIME/runs/public-semantic-benchmark-03/orchestration.log"
 ```
+
+Detect 的原始命令保留 `--class_set ram --box_threshold 0.2 --text_threshold 0.2 --stride 5 --add_bg_classes --accumu_classes --exp_suffix withbg_allclasses`。其映射使用 `mask_conf_threshold=0.25`、`skip_bg=False`，沿用作者命令生成的后缀 `ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1`。README 的评价示例额外写了 `_masksub`，与映射命令不一致；这里显式传入实际文件名，不复制或伪造结果。Detect 复用同场景原始 RGB PointFusion 表面前，必须提供成功的记录并重新核对文件 SHA-256。
 
 重启后先检查旧进程，避免把遗留的 running 当作当前仍在执行：
 
@@ -206,7 +210,7 @@ cd "$RUNTIME/upstream/conceptgraphs/conceptgraph"
 
 窗口内按 `r` 看 RGB、`i` 看实例，鼠标旋转/缩放查看结构。要使用 `f` 输入文本查询，去掉 `--no_clip`，并先确认 GPU 空闲。none 分支不提供背景类别或关系图；`g` 只有真实关系文件存在时才有意义。
 
-三维运行同时启用了作者 `save_objects_all_frames=True`。作者 `scripts/animate_mapping_save.py --input_folder <objects_all_frames 下本次运行文件夹>` 可以导出 RGB、二维分割、三维 RGB 和三维实例动画。这是实际结果渲染，完成前不能当作已录制视频。
+作者 `scripts/animate_mapping_save.py --input_folder <objects_all_frames 下本次运行文件夹>` 可以导出 RGB、二维分割、三维 RGB 和三维实例动画，但需要另一次成功启用 `save_objects_all_frames=True` 的运行。当前重试关闭了这个高内存可选项。前次失败的部分检查点缺少完整元数据，不能用来伪装完整视频；原脚本还按列表顺序配 RGB，导出前需检查检查点索引与源帧对齐。最终地图成功后可先按上面的窗口命令手动录制 RGB／实例视图。
 
 ## 5. 证据和预算
 
