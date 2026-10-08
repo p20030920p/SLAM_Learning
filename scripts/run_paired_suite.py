@@ -242,7 +242,7 @@ def main():
         "CLI threshold parsing preserves JSON integer type for DUFOMap's uint d_p. Primary cells have no threshold override; original code snapshot and each actual cell script hash are retained."
     )
     for path in output.rglob("*"):
-        if not path.is_file() or "cells" in path.relative_to(output).parts or path.name == "record.json":
+        if not path.is_file() or "cells" in path.relative_to(output).parts or path == output / "record.json":
             continue
         relative = path.relative_to(output).as_posix()
         record["artifacts"][relative] = {

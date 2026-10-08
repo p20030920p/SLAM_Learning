@@ -42,6 +42,9 @@ def semantic_inputs(root, output, source, method, errors):
             detections.mkdir(exist_ok=True)
             name = f"frame{index:06d}.pkl.gz"
             (detections / name).symlink_to(original / "gsa_detections_none" / name)
+    if method == "conceptgraphs":
+        for name in ("gsa_classes_none.json", "gsa_classes_none_colors.json"):
+            shutil.copy2(original / name, data / name)
     poses = np.loadtxt(root / ".cache/semantic-data/Replica/room0/traj.full.txt").reshape(-1, 4, 4)[indexes]
     poses[:, :3, 3] += errors
     np.savetxt(data / "traj.txt", poses.reshape(-1, 16), fmt="%.12g")
@@ -67,6 +70,9 @@ def conceptgraphs(root, output, source, errors, threshold):
     )
     command = [
         sys.executable,
+        "-c",
+        "import random,sys,runpy,numpy as np,torch; random.seed(7); np.random.seed(7); "
+        "torch.manual_seed(7); sys.argv=sys.argv[1:]; runpy.run_path(sys.argv[0],run_name='__main__')",
         str(work / "conceptgraph/slam/cfslam_pipeline_batch.py"),
         f"dataset_root={data.parent}",
         f"dataset_config={work}/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
