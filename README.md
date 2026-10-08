@@ -10,7 +10,7 @@ Dynamic robust mapping · Semantic mapping and localization · Shared pose uncer
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](pyproject.toml)
 [![Papers](https://img.shields.io/badge/author%20cores-4-147D85)](docs/papers/README.md)
 
-[Four papers](#four-related-reproductions) &nbsp;•&nbsp; [Research question](#research-question) &nbsp;•&nbsp; [Physical tests](#d435i-and-unitree-l2-without-a-robot)
+[Quick start](#quick-start) &nbsp;•&nbsp; [Four papers](#four-related-reproductions) &nbsp;•&nbsp; [Paired evidence](#paired-evidence-97-native-core-cells) &nbsp;•&nbsp; [Repository layout](#repository-layout)
 
 English &nbsp;|&nbsp; [中文](README.zh-CN.md)
 
@@ -21,6 +21,19 @@ English &nbsp;|&nbsp; [中文](README.zh-CN.md)
 *Measured final-map replay: 21 selected scans, fixed world view, raw → removed → retained. Green: removed dynamic; red: removed static; blue: retained dynamic. GT is used only for scoring/coloring. [Source and rendering settings](results/reference/reproduction-media-wsl/record.json).*
 
 This study connects the two selected laboratory themes through one interface: **posed observations → spatial correspondence → map decision**. We reproduce author pipelines first, audit their measurements, then formulate a testable hypothesis. The supplied-pose mapping runs do not estimate a SLAM trajectory.
+
+## Quick start
+
+```bash
+uv sync --frozen --python 3.10 --extra methods --extra dev
+uv run slam-study fetch
+uv run slam-study run --method dufomap
+uv run slam-study run --method beautymap
+uv run python scripts/verify_evidence.py
+uv run python scripts/check_docs.py
+```
+
+For Linux/WSL CUDA cores, use `bash scripts/setup_semantic.sh` then `.venv-semantic/bin/python scripts/run_conceptgraphs.py`; use `bash scripts/setup_hovsg.sh` then `.venv-hovsg/bin/python scripts/run_hovsg.py`. Separate environments pin their dependencies and verify checkpoints. [WSL](docs/WSL.md) · [Full reproduction commands](docs/REPRODUCE.md).
 
 ## Four related reproductions
 
@@ -58,7 +71,7 @@ Four partial-surface targets now accompany **76 paired pose cells + 21 parameter
 
 [Protocol](docs/PAIRED_PROTOCOL.md) · [Results, revised hypothesis and falsification plan](docs/PAIRED_RESULTS.md) · [EN PDF](output/pdf/paired-study.en.pdf) / [中文 PDF](output/pdf/paired-study.zh-CN.pdf).
 
-Four **complete live terminal recordings** are also retained locally, from startup through exit 0: 36.6 / 42.0 / 256.6 / 168.8 seconds. Open `D:/workspace/be2/SLAM_Recordings/2026-10-08/VIDEO_INDEX.md` on the collection machine. [Recording evidence and commands](docs/RECORDING.md#complete-local-execution-recordings); large MP4s stay outside Git.
+Four complete terminal recordings are retained outside Git. See [recording evidence and commands](docs/RECORDING.md#complete-local-execution-recordings) for access details and reproduction.
 
 ## Research question
 
@@ -72,12 +85,12 @@ Reject H1 if a simple threshold/visibility baseline matches its risk at the same
 
 ![Measured correspondence effect](docs/figures/metric_correspondence.png)
 
-<!-- MEDIA: bottleneck-diagram / pose-drift-video / risk-coverage -->
-*Reserved research figures: pose/correspondence mechanism, matched-error drift video and held-out risk–coverage–delay curves. [Inputs and publication gates](docs/figures/README.md).*
-
 ## D435i and Unitree L2 without a robot
 
 **Planned; hardware data has not been collected.** A robot is unnecessary for testing map decisions and object-coordinate queries.
+
+<details>
+<summary>Physical test setups and required controls</summary>
 
 | Setup | Distinguishing test | Required control |
 | --- | --- | --- |
@@ -88,32 +101,33 @@ Reject H1 if a simple threshold/visibility baseline matches its risk at the same
 
 The detailed protocol specifies room layout, calibration, native/ROS capture, event states, labels, validation/test sessions, failure cases, metrics and publication files. D435i IMU is not ground-truth position. A shared-clock assumption is not made for L2. [Executable physical plan](docs/REAL_WORLD.md) · [EN PDF](output/pdf/real-world.en.pdf) / [中文 PDF](output/pdf/real-world.zh-CN.pdf).
 
-<!-- MEDIA: physical-capture-video -->
-*Physical video slot: real sensor input + map decision + independent annotation/event view, with session ID and pose source. No synthetic score occupies this slot.*
+</details>
 
-## Quick start
+## Repository layout
 
-```bash
-uv sync --frozen --python 3.10 --extra methods --extra dev
-uv run slam-study fetch
-uv run slam-study run --method dufomap
-uv run slam-study run --method beautymap
-uv run python scripts/verify_evidence.py
-uv run python scripts/check_docs.py
+```text
+SLAM_Learning/
+├── src/slam_learning/   # Study code and the slam-study CLI
+├── scripts/            # Setup, reproduction, rendering and verification
+├── configs/            # Dataset, method, experiment and documentation settings
+├── environments/       # Separate semantic-core and report dependencies
+├── annotations/        # Paired-study target annotations
+├── tests/              # Automated checks
+├── docs/               # Bilingual narratives, paper cards and media
+├── results/            # Measured ledger and traceable run records
+├── output/pdf/         # Bilingual reports
+└── archive/            # Historical migration index
 ```
 
-For Linux/WSL CUDA cores, use `bash scripts/setup_semantic.sh` then `.venv-semantic/bin/python scripts/run_conceptgraphs.py`; use `bash scripts/setup_hovsg.sh` then `.venv-hovsg/bin/python scripts/run_hovsg.py`. Separate environments pin their dependencies and verify checkpoints. [WSL](docs/WSL.md) · [Full reproduction commands](docs/REPRODUCE.md).
+See the [documentation index](docs/README.md) for all reading routes. Local environments, caches, datasets and new run outputs are excluded by `.gitignore`; committed reference records support measurement and media audits.
 
 ## Reading and interview route
 
-| Read | Purpose |
+| Goal | Start here |
 | --- | --- |
-| [Four paper cards](docs/papers/README.md) / [Results](docs/RESULTS.md) | Exact executed scope, media, PDF, numbers and retained failures |
-| [Cross-paper study](docs/STUDY.md) / [Literature](docs/LITERATURE.md) | Structural question, stated limitations, existing solutions and novelty boundary |
-| [Experiment gates](docs/PLAN.md) / [Physical protocol](docs/REAL_WORLD.md) | Reproduce → annotate → freeze hypothesis → held-out comparisons |
-| [Recording](docs/RECORDING.md) / [Media index](docs/figures/README.md) | Regenerate measured clips and bilingual reports; reserve future figures |
-| [Submission checklist](docs/SUBMISSION.md) / [AI disclosure](docs/INTERVIEW.md) | A reviewer can trace claim → figure → metric → run → command |
-| [Measured ledger](results/REPORT.md) / [Source audit](docs/AUDIT.md) | Machine-readable provenance and historical migration |
+| Audit reproductions and measurements | [Paper cards](docs/papers/README.md) · [Results](docs/RESULTS.md) · [Measured ledger](results/REPORT.md) |
+| Understand the question and next experiments | [Cross-paper study](docs/STUDY.md) · [Experiment gates](docs/PLAN.md) · [Physical protocol](docs/REAL_WORLD.md) |
+| Prepare a submission or defense | [Submission checklist](docs/SUBMISSION.md) · [AI disclosure](docs/INTERVIEW.md) · [Full documentation index](docs/README.md) |
 
 Every narrative has an independent [Chinese edition](docs/README.zh-CN.md). Historical material is recoverable at `af1e58b` and contributes no current score.
 
