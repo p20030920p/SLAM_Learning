@@ -1,0 +1,99 @@
+{
+  "schema_version": 2,
+  "id": "conceptgraphs-room2-identity-budget-v2-exploratory",
+  "status": "ai_annotation_audit_pending",
+  "scene": "room2",
+  "mapping_frames": [
+    0,
+    25,
+    50,
+    75,
+    100,
+    125,
+    150,
+    175,
+    200,
+    225,
+    250,
+    275,
+    300,
+    325,
+    350,
+    375
+  ],
+  "reference_frames": [
+    12,
+    62,
+    112,
+    162
+  ],
+  "correction_after_observations": 8,
+  "evaluation_observations": [
+    8,
+    12,
+    16
+  ],
+  "primary_observation": 8,
+  "translation_rms_m": [
+    0.1,
+    0.3
+  ],
+  "seeds": [
+    417,
+    518,
+    619
+  ],
+  "mapping_seed": 7,
+  "arms": [
+    "native_fixed",
+    "threshold_fixed",
+    "visibility_fixed",
+    "oracle_replay"
+  ],
+  "expected_mapping_cells": 28,
+  "support_minima": [
+    1,
+    2,
+    3
+  ],
+  "candidate_caps": [
+    25,
+    50,
+    100,
+    null
+  ],
+  "candidate_sort": [
+    "detection_support_desc",
+    "point_count_desc",
+    "object_id_asc"
+  ],
+  "native_threshold": 1.2,
+  "simple_threshold": 1.0,
+  "visibility_min_support": 0.2,
+  "visibility_min_pixels": 16,
+  "visibility_depth_tolerance_m": 0.1,
+  "reference_distance_m": 0.1,
+  "reference_coverage_min": 0.2,
+  "reference_precision_min": 0.5,
+  "requires_human_review": false,
+  "min_instances": 4,
+  "max_instances": 6,
+  "error_model": "World-x prefix random walk, first pose fixed, normalized RMS; exact historical correction after observation eight. Subsequent supplied poses are exact. No rotations or object motion.",
+  "correction_control": "All arms receive the same exact corrected prefix poses. Fixed arms rebuild geometry using their own original association trace and preserve historical members and semantic features. Oracle recomputes native associations at exact poses. Full prefix regeneration is a strong geometry control, not a deployable memory-bounded method.",
+  "state_policy": "Save complete native state immediately after correction and before readout filtering; support/cap scans are offline only. Native periodic postprocessing remains fixed. At stage16 save pre-final-filter state separately from finalized parity state.",
+  "annotation_policy": "Use only raw held-out RGB-D references. Fix 4-6 physical instance IDs, shared category queries, parts and exclusions before any room2 SAM/CLIP or mapper output. If fewer than four qualify, stop. Unlabelled candidates are unknown, not false positives. Later room1 label repairs are separately versioned post-hoc analysis.",
+  "budget_claim": "Equal candidate upper limits only. Report actual candidates, points, snapshot bytes and correction compute cost; do not claim equal total memory or point budgets.",
+  "decision": {
+    "improvement_percentage_points": 10,
+    "minimum_finite_caps": 2,
+    "minimum_positive_seeds": 2,
+    "no_increase_identity_errors": true,
+    "scope": "At one fixed RMS and support condition, use the same endpoint (instance recovery or category-query hit) and compare oracle against the strongest simple control separately at each cap. Require mean advantage >=10pp and >=2/3 positive paired seeds at >=2 finite caps. Both annotated duplicate excess and mixed-object counts must not increase in any paired seed. Passing licenses a prototype plan only, not H1 confirmation."
+  },
+  "analysis_type": "ai_only_exploratory",
+  "owner_amendment": {
+    "date": "2026-10-08",
+    "instruction": "Owner declined further manual review and authorized continuing on the experimental branch; no main merge authorized.",
+    "confirmation_study": false
+  }
+}
