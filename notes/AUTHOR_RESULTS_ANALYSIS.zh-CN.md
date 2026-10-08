@@ -29,8 +29,8 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 | 两种方法都读取给定扫描位姿 | 明确可干预的接口是“位姿→空间对应→地图决策” | 没测 ATE/RPE，不能声称改善定位或 SLAM 轨迹 |
 | BeautyMap 用先验地图的 XYZ，GT 标签未参与清理决策 | 必须交代先验几何来源，避免把 GT 文件名和使用标签混为一谈 | 有先验地图的离线结果不能直接代表无先验在线建图 |
 | DUFOMap 同一 Python 参数：0.05 m 下原始点／体素 SA 为 99.8860/51.6256%；体素阈值改为 0.10 m 后 SA 为 98.9436% | 输出表示与评价阈值强烈影响评分；同时观察 DA，放宽阈值也改变动态点匹配 | 不能将体素低 SA 当作同等静态结构被删；Python d_p=2，与 C++ 默认 d_p=1 不同，不能把二者差异归为单一因素 |
-| room0 的 400 帧 ConceptGraphs 前端、原始映射与 RGB 表面已完成；最终地图为 77 个对象记录，原语义评价修复 CUDA 依赖后重试 | 完整空间表示与资源失败阶段可复查；作者窗口已能检查 RGB 和实例结构 | 对象记录数不是实例准确率；没有语义分数或 H1 恢复性证据 |
-| HOV-SG 的 200/200 原分辨率特征提取完成，层级合并 OOM，最终特征图未保存 | 需要区分特征提取进度与完整地图交付，当前在重试 | Replica 不提供 HM3D 多楼层层级评价；提取进度不能代替语义分数 |
+| room0 的 400 帧 ConceptGraphs 前端、原始映射与 RGB 表面已完成；最终地图为 77 个对象记录；CUDA 实际预检查通过，原语义评价开始运行 | 完整空间表示与资源失败阶段可复查；作者窗口已能检查 RGB 和实例结构 | 对象记录数不是实例准确率；尚无完成的语义分数或 H1 恢复性证据 |
+| HOV-SG 的 200/200 原分辨率提取完成；前次融合 OOM，03 重试达到 7200 秒墙钟上限，仍未保存最终图 | 提取进度与完整地图交付分开；OOM 和超时也分别记录 | Replica 不提供 HM3D 多楼层层级评价；进度和资源失败不能代替语义分数 |
 
 这批基线没有施加迟到位姿修正、没有运行 H1，也没有测对象变化后的过期时长。它们支持继续研究接口及评价取舍，尚未证明四篇论文有共同主导失效原因。
 
@@ -42,7 +42,7 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 
 在同一份新 02 输入上，DUFOMap 的 SA/DA 为 68.6114/89.2862%，BeautyMap 默认为 83.4254/84.6594%。[原始评分与三组网格结果](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/KITTI_SELECTED_RESULTS.zh-CN.md)。这里出现了更明显的静态保留问题，可作为配对干预候选；仍须固定观测与评价协议，分别干预位姿、可见性和参数，不能从跨场景分数直接确定原因。
 
-新增 [60 秒作者三维窗口实录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/videos/conceptgraphs-room0-original-window.mp4)，展示同一份验证地图的 RGB／实例颜色与视角操作。颜色差异来自查看器切换，不是语义准确率对照。HOV-SG 的完整特征图重试正在运行。
+新增 [60 秒作者三维窗口实录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/videos/conceptgraphs-room0-original-window.mp4)，展示同一份验证地图的 RGB／实例颜色与视角操作。颜色差异来自查看器切换，不是语义准确率对照。HOV-SG 默认采样 03 重试已超时；队列另设 20 帧家用采样变体，不能算默认 benchmark。[超时记录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/timeout-diagnosis.json)。
 
 ## 可以怎样简洁地写
 
