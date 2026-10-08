@@ -2,9 +2,11 @@
 
 从空白分支开始的本机实物传感器学习与验证。目录：`D:\workspace\be2\Personal-Learning-Physical`。
 
+**自己操作从这里开始：[一步一步使用本机测试流程](docs/USAGE.zh-CN.md)。** 按“固定设备 → 同时录制 → 核验原始数据 → 导出 → 定位 → 主分支接口测试”执行，文中给出命令、输出文件和正常判据。
+
 **最新算法实测：** 双目静止基线通过本段目标（0.286 mm／0.093°），尚未验移动。原生 L2 点云上的 RTAB-Map ICP、KISS-ICP 均静止失败；KISS 关闭速度外推的诊断对照降至 13.23 cm／8.23°，仍未通过。主分支 DUFOMap 原适配器已处理 40 次实测观测。BeautyMap 原入口遇到小地图边界错误，局部空白网格扩域对照可处理全部 40 次观测，但还不是主分支修复或质量验收。SA／DA 均无标注依据。[第三轮结果、实际效果与复现命令](docs/DIAGNOSTICS_ROUND3.zh-CN.md)；[第二轮](docs/DIAGNOSTICS_ROUND2.zh-CN.md)；[首轮完整基线](docs/BASELINE_RESULTS.zh-CN.md)。
 
-本分支为独立工作树中的 **orphan 分支**，没有复制主分支内容。主仓库为 `../SLAM_Learning`，检查时主分支提交为 `354b02d69ccc90304174f6d36010d25043d739ca`。当前只做本地提交，不推送、不合并。
+本分支为独立工作树中的 **orphan 分支**，没有复制主分支内容。主仓库为 `../SLAM_Learning`，检查时主分支提交为 `354b02d69ccc90304174f6d36010d25043d739ca`。现按用户要求推送到同一仓库的独立分支 [`Personal-Learning-Physical`](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)，不合并、不改主分支。它与 `notes/personal-study-guide-20261008` 是不同分支。
 
 ## 已确认的设备
 
@@ -71,4 +73,4 @@ git -C .cache/unilidar_sdk2 checkout 0e3c51f512e6b8ff60b8c32f160b412cb48445c2
 
 以上 `camera/preview.mp4`、`l2/preview.mp4` 是原始采集预览。新增算法输出视频和统计另见 [实际基线报告](docs/BASELINE_RESULTS.zh-CN.md)。双设备并发测试另存于 `data/link-*`，结果见 `evidence/concurrent-link.json`。
 
-测试源码本地提交保存；硬件采集大文件不会出现在提交中。[当前完成与待解决项](docs/HARDWARE_STATUS.zh-CN.md)。
+推送内容包括测试源码、文档和 `evidence/` 中的轻量记录；原始录制、视频、PCD、环境及 SDK 缓存不上传。报告中的 `../data/...` 链接只在本机有对应数据时可用，GitHub 页面不会包含这些媒体。[当前完成与待解决项](docs/HARDWARE_STATUS.zh-CN.md)。
