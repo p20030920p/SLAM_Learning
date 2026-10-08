@@ -54,6 +54,10 @@ def child(directory):
                 print(f"[elapsed {elapsed:.0f}s | UTC {now()}]", flush=True)
                 last_clock = elapsed
             for log in watch.glob("**/*.log"):
+                relative_parts = log.relative_to(watch).parts
+                prefix = spec.get("watch_prefix")
+                if not prefix or not relative_parts[0].startswith(prefix):
+                    continue
                 if log.stat().st_mtime < spec["prepared_epoch"] or "author-code" in log.parts:
                     continue
                 offset = positions.get(log, 0)
@@ -108,6 +112,13 @@ def main():
         "fps": args.fps,
         "size": [1280, 800],
     }
+    spec["recorder_script_sha256"] = sha(__file__)
+    spec["watch_prefix"] = None
+    if "--method" in command:
+        spec["watch_prefix"] = command[command.index("--method") + 1] + "-"
+    for method in ("conceptgraphs", "hovsg"):
+        if any(Path(part).name == f"run_{method}.py" for part in command):
+            spec["watch_prefix"] = method + "-"
     (directory / "command.json").write_text(json.dumps(spec, indent=2) + "\n")
     recorder = terminal = server = None
     try:
@@ -248,13 +259,29 @@ def main():
         if duration < result["command_elapsed_seconds"]:
             raise RuntimeError("Recording duration does not cover the command")
         subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-f", "null", "-"], check=True)
+        for label, moment in (("start", 1), ("middle", duration / 2), ("end", max(0, duration - 1))):
+            subprocess.run(
+                [
+                    "ffmpeg",
+                    "-v",
+                    "error",
+                    "-ss",
+                    str(moment),
+                    "-i",
+                    str(video),
+                    "-frames:v",
+                    "1",
+                    str(directory / f"review-{label}.png"),
+                ],
+                check=True,
+            )
         result.update(
             kind="full_terminal_recording",
             status="executed",
             command=spec,
             duration_seconds=duration,
             scope="Actual private X terminal captured live; no speedup, cuts or desktop capture",
-            recorder_script_sha256=sha(__file__),
+            recorder_script_sha256=spec["recorder_script_sha256"],
             full_video_decoded=True,
             artifacts={
                 p.name: {"sha256": sha(p), "bytes": p.stat().st_size}
