@@ -1,6 +1,6 @@
 # Lab requirements, current evidence and personal analysis outline
 
-English | [中文](LAB_ANALYSIS.zh-CN.md) | [Index](README.md)
+English | [中文](LAB_ANALYSIS.zh-CN.md) | [Index](README.md) | [Completed research draft (Chinese)](OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md)
 
 Numbers below retain the earlier subset and exploratory records. See [new author-workflow evidence](AUTHOR_RESULTS_ANALYSIS.md) for four public releases; keep the experiments distinct.
 
@@ -60,28 +60,31 @@ Khronos already includes joint optimization, history and map reconciliation. Mem
 | Stop exposing stale coordinates | Event/correction-to-invalidation/update times, including abstention coverage loss | A final offline map cannot measure stale exposure |
 | Justify H1 cost | Risk curves at matched recall/coverage/latency, peak memory and replay time | Budgets are not measurements; selecting one favorable operating point is insufficient |
 
-## Your own analysis space
+## Completed short draft
 
-These prompts are unfilled, not verified conclusions. Keep each paragraph to one judgment and separate fact, interpretation and boundary.
+Filled on 2026-10-09. First-person prose is an editable argument, not a claim that the applicant personally read every source or manually executed these runs. See the [full Chinese draft](OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md) for sources, component controls and rejection rules.
 
-**Why these four papers, about 100 words:**
+**Why these four papers:**
 
-> Fill in: the interface I care about is… The two method families expose… This lets me test… Current coverage excludes…
+> I study how poses affect correspondence, map decisions and language-target coordinates. DUFOMap and BeautyMap expose the static-preservation/dynamic-removal tradeoff; ConceptGraphs and HOV-SG expose differences between geometry, association and retrieval. These interfaces connect the two selected topics without ranking different tasks. Current experiments use supplied poses and do not evaluate trajectory estimation, visual localization benchmarks or robot navigation.
 
-**The counterexample that changed my view, about 150 words:**
+**The counterexample requiring a narrower claim:**
 
-> Fill in: I initially expected… Record/figure… instead shows… I therefore abandon… Remaining explanations include…
+> Correlated error is not necessarily worse: at 30 cm RMS, DUFOMap direct SA is 76.5854% for shuffled errors and 88.5977% for drift. HOV-SG retains 0.9136 annotated-surface coverage under drift while restricted hits fall from zero-error 2/3 to 1/3. Local geometry, identity and coordinate validity require separate measurements. Sorting also changes error-to-viewpoint assignment, and the four partial annotations lack independent human review; these tests do not identify a unique cause.
 
-**Open question, one or two sentences:**
+**Open question:**
 
-> Fill in: under… existing… does not guarantee… The measurable objective is…
+> When a delayed pose correction changes historical correspondences, how can finite provenance storage support recovery of object identity and open-vocabulary query coordinates while limiting exposure of stale coordinates still marked valid? Measure quality, coverage, latency and cost, explicitly retaining out-of-window failures.
 
-**Hypothesis and rejection rule, about 150 words:**
+**Hypothesis and rejection rule:**
 
-> Fill in: change only… hold… fixed; compare with… under budget… If… occurs, reject…
+> H1-R holds observations, front ends and evaluation fixed and predicts that replaying association from a checkpoint improves identity/coordinates over geometry-only correction with frozen associations. Compare both full-replay agreement and independent truth. Sixteen observations/512 MiB is a proposed provenance-cache cap; checkpoints and maps cost extra. Reject additional benefit if geometry correction suffices or simple protection matches the coverage/latency frontier. Test shared uncertainty as H1-U separately; replay success does not validate it.
 
-| Date / run or session ID | Observation | Effect on the argument | Unresolved explanation |
+| Audit date / run | Result | Effect on the argument | Remaining boundary |
 | --- | --- | --- | --- |
-| To fill | To fill | To fill | To fill |
+| 2026-10-09; `dufomap-table4-ablation-01` | All 15 SA/DA/AA entries match paper rounding | Existing compensation is a strong baseline | No delayed corrections or H1 result |
+| 2026-10-09; `beautymap-table3-historical-01` | All nine SA/DA/HA entries match Table III rounding | Existing parameter tradeoffs matter; AA differs from HA | 00/01 gaps remain; not all historical settings are identified |
+| 2026-10-09; `dufo-python-output-audit-01` | Voxel SA depends strongly on representation/NN threshold | Freeze scoring before attributing errors | Low voxel SA does not imply equivalent deletion |
+| Applicant manual rerun / D435i and L2 sessions | Not yet performed or collected | Operation and experiment protocols are available | Adapters, reference annotations and recovery module remain unverified |
 
-Do not report planned recording, pending adapters or a candidate implementation as completed. Hardware connectivity and data adaptation remain unverified. A workflow demonstration can be useful without becoming a hypothesis result.
+Automated author-run records do not establish personal manual observations. Keep these new originals distinct from older exploratory subsets. The proposed hypothesis experiment has not started.

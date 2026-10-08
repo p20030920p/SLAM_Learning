@@ -20,6 +20,7 @@ Start with the evidence boundaries, run DUFOMap once, then inspect RViz. Run met
 
 | Need | Entry |
 | --- | --- |
+| Read a completed open-question and hypothesis argument | [Full draft (Chinese)](OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md): concise prose, evidence/counterexamples, H1-R/H1-U, controls and rejection conditions |
 | Understand each selected paper | [Four paper cards](../docs/papers/README.md) |
 | Check related work, safeguards and counterexamples | [Literature](../docs/LITERATURE.md); additional papers were read, not all reproduced |
 | Connect reproduction to H1 | [Independent analysis](../docs/STUDY.md) |
@@ -49,4 +50,4 @@ Start with the evidence boundaries, run DUFOMap once, then inspect RViz. Run met
 
 `local/full-notes-20261008` preserves older local notes. This new guide branch starts from main `6deb08a` and changes documentation only. Machine availability statements were checked on 2026-10-08.
 
-Before submission, explain one counterexample, one metric denominator, one real command/output pair and one outcome that would reject H1. Fill the personal analysis section in the [lab outline](LAB_ANALYSIS.md) before deciding what research text belongs on main.
+Before submission, explain one counterexample, one metric denominator, one real command/output pair and one outcome that would reject H1. The [lab outline](LAB_ANALYSIS.md) now contains a completed short draft; the [full Chinese argument](OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md) develops it. Check sources and records before selecting research text for main.

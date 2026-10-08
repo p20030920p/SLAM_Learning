@@ -41,7 +41,7 @@ Start with one four-event demonstration per sensor: 5 min 20 s each, for pipelin
 
 Extract 40 timestamped observations from a fixed-sensor recording. Hold RGB, depth, calibration, masks and per-mask features fixed. Identity poses are the reference. Observations 0–7 are exact; 8–15 receive a world-x bias ramping from 0 to 10 cm; the remainder are exact. This is a deterministic recovery stress test, not a deployment noise model. Report achieved RMS, extrema and ordering; do not claim sorting isolates correlation.
 
-Deliver the same historical correction at observation 16, 24 or 36, restoring reference poses for 8–15. With a 16-observation cache, the first correction is inside the window; the others include expired provenance. Fall back to full reconstruction or explicitly return unrecoverable. Cross event conditions with delay, debugging on static clips before freezing test settings. Rotation and handheld estimated poses are later separate factors.
+Deliver the same historical correction at observation 16, 24 or 36, restoring reference poses for 8–15. Fix event order: receive correction before processing the new observation, retaining the previous 16 processed observations. The respective caches are 0–15, 8–23 and 20–35: the first two retain the affected provenance; the last does not. Observation 24 is the boundary at which frame 8 is still retained; correcting after processing the new frame changes that condition. Record ordering and evictions. Fall back to full reconstruction or explicitly return unrecoverable. Cross event conditions with delay, debugging on static clips before freezing settings. Rotation and handheld estimated poses are later factors.
 
 | Comparison | Intervention |
 | --- | --- |
@@ -52,7 +52,7 @@ Deliver the same historical correction at observation 16, 24 or 36, restoring re
 | B4 Candidate shared pose | Add shared-pose handling and affected-association replay without stronger front ends or additional labels |
 | B5 Oracle full replay | Rebuild all history under corrected poses; report actual time and memory |
 
-Run B0/B1/B2/B5 first to determine whether replay adds value beyond geometry correction. Compare B3/B4 only after uncertainty estimation is implemented and calibrated. Known injected errors/covariance are separate oracle conditions. Provenance and pose versions alone are not demonstrated novelty.
+Run B0/B1/B2/B5 plus B4-R, changing association replay alone with the same protection rule, to test its value beyond geometry correction. In a second stage, B3 and B4-U use identical replay and differ only in independent/joint uncertainty models. Implement and calibrate the estimator before comparison; known injected covariance is a separate oracle. B5 is a same-core corrected-input reference and still requires independent ground truth evaluation. See the [completed research draft](../notes/OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md). Provenance and pose versions alone are not demonstrated novelty.
 
 ## C Handheld and dual-sensor extensions
 
