@@ -1,9 +1,14 @@
 {
-  "status": "running_feature_map",
+  "status": "failed",
   "wait_outcomes": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-batch16-stages-04/outcomes.json",
   "sam_batch": 16,
   "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
   "pid": 94687,
-  "stages": {},
-  "previous_chain_status": "failed"
+  "stages": {
+    "feature_map": 124
+  },
+  "previous_chain_status": "failed",
+  "failed_stage": "feature_map",
+  "error_type": "RuntimeError",
+  "error": "Author HOV-SG stage did not complete: feature_map"
 }

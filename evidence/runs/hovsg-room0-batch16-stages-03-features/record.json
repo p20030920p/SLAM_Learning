@@ -2,7 +2,7 @@
   "schema_version": 1,
   "method": "hovsg",
   "scope": "Full 2000-frame Replica room0, author hovsg entry; RAM/swap cgroup 12G/48G; timeout 7200s; explicit resource compatibility config models.sam.points_per_batch=16 instead of 144",
-  "status": "running",
+  "status": "timed_out",
   "started_at": "2026-10-08T21:29:22.376625+00:00",
   "command": [
     "systemd-run",
@@ -30,7 +30,32 @@
   "source_commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605",
   "source_dirty_before": "",
   "exit_code": null,
-  "artifacts": {},
+  "artifacts": {
+    "diagnostics/resource-adjustment.json": {
+      "sha256": "b92f11a457e6928ef5c81b88ea39f97ad1a331de7e8dc82dd33aad1084ee3748",
+      "bytes": 1039
+    },
+    "hydra/.hydra/config.yaml": {
+      "sha256": "77bacd68c168b5a660d2be64dcad3d88ddc061ba1c48e0388671271b8df77a75",
+      "bytes": 1067
+    },
+    "hydra/.hydra/hydra.yaml": {
+      "sha256": "7d0a4d2396f1ecf34d15ecb980eb108798b972bcc5d267a2427a1a324c03caad",
+      "bytes": 4491
+    },
+    "hydra/.hydra/overrides.yaml": {
+      "sha256": "fd9a2d6b422823b0c8fd555d1e1c6d1392160a171f05e7783f3977125277521e",
+      "bytes": 473
+    },
+    "hydra/semantic_segmentation.log": {
+      "sha256": "c7ed54c64e52a09dfb6cd321865decffe54b7228122d8e6c9634260c04a6ca2c",
+      "bytes": 918
+    },
+    "run.log": {
+      "sha256": "efb34f86fb846f2513b99d39587768f49b33094bbd70f6a855009a66a95e4250",
+      "bytes": 38295
+    }
+  },
   "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
   "environment": {
     "OMP_NUM_THREADS": "8",
@@ -41,5 +66,14 @@
     "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
     "DISPLAY": ":0"
   },
-  "pid": 147539
+  "pid": 147539,
+  "timeout_seconds": 7200.0,
+  "elapsed_seconds": 7203.235454194999,
+  "source_dirty_after": "",
+  "missing_artifacts": [
+    "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/artifacts/replica/full_pcd.ply",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/artifacts/replica/masked_pcd.ply",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/artifacts/replica/mask_feats.pt",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/artifacts/replica/full_feats.pt"
+  ]
 }

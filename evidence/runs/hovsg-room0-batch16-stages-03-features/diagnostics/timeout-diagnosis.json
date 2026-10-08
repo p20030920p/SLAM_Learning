@@ -1,0 +1,33 @@
+{
+  "status": "confirmed_recorder_wall_time_limit",
+  "recorded_at": "2026-10-08T23:30:29.415763+00:00",
+  "method": "hovsg",
+  "source_commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605",
+  "timeout_seconds": 7200.0,
+  "elapsed_seconds": 7203.235454194999,
+  "record": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/record.json",
+    "bytes": 3439,
+    "sha256": "7bda81ae15e276575d3202a3cf8187f7e8684f218f0c7d1590f063ac7767f699"
+  },
+  "log": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/run.log",
+    "bytes": 38295,
+    "sha256": "efb34f86fb846f2513b99d39587768f49b33094bbd70f6a855009a66a95e4250"
+  },
+  "missing_artifacts": [
+    "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/artifacts/replica/full_pcd.ply",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/artifacts/replica/masked_pcd.ply",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/artifacts/replica/mask_feats.pt",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03-features/artifacts/replica/full_feats.pt"
+  ],
+  "scope": "The recorder terminated this command at its configured elapsed-time limit. This is not an OOM diagnosis or an accuracy result. No missing final map is counted as completed; the original record and log are unchanged.",
+  "memory_observations": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-03/diagnostics/memory-observations.json",
+    "bytes": 82108,
+    "sha256": "fcdfa0233929e742ab0650d02a996b3c5ff610e9c722d09ad4cbbb361094307e"
+  },
+  "observed_max_memory_bytes": 17179869184,
+  "observed_max_swap_bytes": 29360603136,
+  "memory_scope": "Observed cgroup memory includes page cache; swap is reported separately. Sampling starts after process launch, so maxima are lower bounds, not whole-run peaks or paper performance results."
+}

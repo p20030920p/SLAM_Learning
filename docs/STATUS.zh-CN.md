@@ -75,9 +75,11 @@ HOV-SG `hovsg-room0-batch16-stages-02` 完成了 200/200 个原生 1200×680 帧
 
 `conceptgraphs-room0-batch16-stages-04` 的原始映射已成功退出，最终后处理地图通过检查：77 个对象记录，357,134 个点记录（对象之间可能重复，不是唯一点数），几何与 1024 维特征均有限。原始 RGB PointFusion 的 400 帧也已完成，参考 HDF5／PCD 已保存。[地图检查](../evidence/runs/conceptgraphs-room0-batch16-stages-04/map-validation/validation.json)。映射总耗时约 1043 秒，其中包含序列化与换页；资源采样起于运行中途，不能当完整峰值或论文性能比较。
 
-原始语义评价在 CUDA 最近邻处失败：此前 chamferdist 只编译了 CPU 支持。已按同一份依赖源码重新编译 CUDA 11.8 扩展，并检查 CUDA 专用绑定与二进制哈希；[真实 GPU KNN 测试](../evidence/runs/chamferdist-cuda-probe-01/run.log)已通过，返回预期索引与距离。原评价由 `conceptgraphs-room0-evaluation-cuda-05` 排队执行，等待 HOV-SG 释放 GPU，并会再检查一次该运算。该重试只在重新核对 SHA-256 后复用已成功的地图和 RGB 表面，没有重新建图或改评价公式。**当前仍无语义分数。** [失败诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-04/diagnostics/evaluation-failure.json)。
+原始语义评价在 CUDA 最近邻处失败：此前 chamferdist 只编译了 CPU 支持。已按同一份依赖源码重新编译 CUDA 11.8 扩展，并检查 CUDA 专用绑定与二进制哈希；[真实 GPU KNN 测试](../evidence/runs/chamferdist-cuda-probe-01/run.log)已通过。`conceptgraphs-room0-evaluation-cuda-05` 在 HOV-SG 退出后也通过了实际 CUDA 预检查，开始原始 room0 语义评价。该重试只在重新核对 SHA-256 后复用已成功的地图和 RGB 表面，没有重新建图或改评价公式。**当前仍无完成的语义分数。** [前次失败诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-04/diagnostics/evaluation-failure.json)。
 
-HOV-SG `hovsg-room0-batch16-stages-03` 已完成 200/200 个原生帧的特征提取，正在层级掩码融合；最终特征图尚未保存。启动限额为 12G RAM / 48G swap，融合期间观测到约 27 GiB swap 后将该特征任务 RAM 限额临时提高至 16G；评价仍为 12G/48G。[调整记录](../evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/resource-adjustment.json)。本次已加载记录器的 7200 秒超时仍有效，新版包装脚本允许显式配置较长超时，不能追改本次记录。另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间会影响耗时，不能用本轮时间比较论文效率。
+HOV-SG `hovsg-room0-batch16-stages-03` 完成 200/200 个原生帧提取后，在层级掩码融合中达到记录器的 7200 秒上限，于莫斯科时间 2026-10-09 02:29 超时结束；记录状态为 `timed_out`，父阶段返回 124，最终四份 PLY/PT 均未保存。[超时诊断](../evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/timeout-diagnosis.json)绑定原记录和日志哈希。这次是设定的墙钟超时，不能改写成 OOM 或语义准确率失败。
+
+启动限额为 12G RAM / 48G swap，融合期间将该特征任务 RAM 限额提高至 16G；中途开始的资源采样分别观察到最多 16.00 GiB RAM 和 27.34 GiB swap，不能相加当同时峰值，也不是完整运行峰值。[调整记录](../evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/resource-adjustment.json)。新版包装脚本允许显式配置较长超时，不能追改本次已加载的 7200 秒记录。另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间会影响耗时，不能用本轮时间比较论文效率。
 
 `public-semantic-benchmark-06` 等待首个完整链路，再串行推进其余 7 个公开 Replica 场景及 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。05 仅等待、未启动作者阶段时被替换，记录保留；06 为最终八场景评价也加上 12G/48G 限额。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
 

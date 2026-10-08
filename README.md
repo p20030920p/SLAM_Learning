@@ -12,7 +12,7 @@ The completed [Python raw/voxel output audit](docs/DUFOMAP_OUTPUT_AUDIT.zh-CN.md
 
 The missing original KITTI inputs (333 selected frames) are downloaded and verified. Both methods and three BeautyMap XY cell sizes have completed original scoring on 01/02. [Results and paper differences](docs/KITTI_SELECTED_RESULTS.zh-CN.md) remain separate because the current preprocessing differs from the older released benchmark.
 
-ConceptGraphs room0 now has a validated complete frontend, original 3D map and RGB reference surface. Semantic evaluation is queued after repairing its CUDA dependency. A [60-second original viewer recording](evidence/videos/conceptgraphs-room0-original-window.mp4) shows RGB/instance colors and orbit controls.
+ConceptGraphs room0 has a validated complete frontend, original 3D map and RGB reference surface. Its original semantic evaluator is running after a successful real CUDA probe. HOV-SG default-sampling retry reached its configured two-hour wall-time limit during hierarchical fusion without saving a final map; a separate home sampling run is queued and will not count as the default benchmark. A [60-second original viewer recording](evidence/videos/conceptgraphs-room0-original-window.mp4) shows RGB/instance colors and orbit controls.
 
 [中文入口](README.zh-CN.md) · [Results and limitations](docs/STATUS.zh-CN.md) · [Windows/WSL commands](docs/RUNBOOK.zh-CN.md) · [Data downloads and ScanNet access](docs/DATA_ACCESS.zh-CN.md) · [Coverage and upstream comparison](docs/SCOPE.zh-CN.md) · [Execution evidence](evidence/README.md)
 
