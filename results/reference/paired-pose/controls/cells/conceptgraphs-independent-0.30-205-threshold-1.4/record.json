@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "kind": "paired_author_mapping_cell",
+  "method": "conceptgraphs",
+  "status": "executed",
+  "started_at": "2026-10-08T15:33:55+00:00",
+  "artifacts": {
+    "summary.json": {
+      "sha256": "9a3a2cb3e9fe63f2e2b206f63906abf0454ab7fb64efc257343f526e2708cd83",
+      "bytes": 4622,
+      "availability": "portable"
+    },
+    "native.log": {
+      "sha256": "352e6cf9125b04edcc178163a09449547a651dda78e3cb393e5529cd7644d13d",
+      "bytes": 1381,
+      "availability": "portable"
+    },
+    "objects.npz": {
+      "sha256": "19e18aae23bb24e80bf16b45775cf93c4ce6ff962fec7122acbfc636f7821370",
+      "bytes": 1917404,
+      "availability": "local_only"
+    }
+  },
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/scripts/run_paired_cell.py",
+    "--method",
+    "conceptgraphs",
+    "--output",
+    "results/runs/paired-controls-v1/cells/conceptgraphs-independent-0.30-205-threshold-1.4",
+    "--errors",
+    "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/inputs/semantic/independent-0.30-205.npy",
+    "--threshold",
+    "1.4",
+    "--source",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007",
+    "--text-features",
+    "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/inputs/text_features.npy"
+  ],
+  "errors_sha256": "212cf0d4efbd1c0ec5e5f7e1bb62b0ccd024004af0e35569bd89d3183199a825",
+  "script_sha256": "122b13ca7b44a1eafaa3527051a9d7ed7dec773b70933917d0ef546786efc4f4",
+  "annotations_sha256": "a069799a2007f9ca252012fe04174b43997e2e09ee42afdd71d7a9318b5880f4",
+  "exit_code": 0,
+  "summary": {
+    "mapping": {
+      "command": [
+        "/home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python",
+        "-c",
+        "import random,sys,runpy,numpy as np,torch; random.seed(7); np.random.seed(7); torch.manual_seed(7); sys.argv=sys.argv[1:]; runpy.run_path(sys.argv[0],run_name='__main__')",
+        "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/author-code/conceptgraph/slam/cfslam_pipeline_batch.py",
+        "dataset_root=/home/qzl/projects/SLAM_Learning/results/runs/paired-controls-v1/cells/conceptgraphs-independent-0.30-205-threshold-1.4/input/Replica",
+        "dataset_config=/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/author-code/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+        "scene_id=room0",
+        "stride=1",
+        "image_height=480",
+        "image_width=640",
+        "spatial_sim_type=overlap",
+        "mask_conf_threshold=0.95",
+        "match_method=sim_sum",
+        "sim_threshold=1.4",
+        "dbscan_eps=0.1",
+        "gsa_variant=none",
+        "class_agnostic=true",
+        "skip_bg=true",
+        "max_bbox_area_ratio=0.5",
+        "save_suffix=paired",
+        "merge_interval=20",
+        "merge_visual_sim_thresh=0.8",
+        "merge_text_sim_thresh=0.8",
+        "save_objects_all_frames=true"
+      ],
+      "observations": 8,
+      "history": [
+        {
+          "observation": 1,
+          "objects": 0
+        },
+        {
+          "observation": 2,
+          "objects": 2
+        },
+        {
+          "observation": 3,
+          "objects": 5
+        },
+        {
+          "observation": 4,
+          "objects": 7
+        },
+        {
+          "observation": 5,
+          "objects": 11
+        },
+        {
+          "observation": 6,
+          "objects": 13
+        },
+        {
+          "observation": 7,
+          "objects": 13
+        }
+      ],
+      "threshold": 1.4
+    },
+    "objects": 11,
+    "metrics": {
+      "targets": [
+        {
+          "target": "cabinet",
+          "query": "cabinet",
+          "reference_surface_points": 3372,
+          "best_surface_coverage": 0.0,
+          "recoverable": false,
+          "qualifying_segments": 0,
+          "top1_segment": 0,
+          "top1_surface_coverage": 0.0,
+          "top1_visible_precision": 0.0022715939941270985,
+          "top1_target_hit": false,
+          "top1_anchor_distance_m": 0.43350394821730315,
+          "reference_anchor_world_m": [
+            -0.32641609625146595,
+            1.0779672600648018,
+            -1.0610186347557844
+          ],
+          "cosine_similarity": 0.21665574610233307
+        },
+        {
+          "target": "lamp_shade",
+          "query": "floor lamp",
+          "reference_surface_points": 2032,
+          "best_surface_coverage": 0.09005905511811024,
+          "recoverable": false,
+          "qualifying_segments": 0,
+          "top1_segment": 2,
+          "top1_surface_coverage": 0.0,
+          "top1_visible_precision": 0.0,
+          "top1_target_hit": false,
+          "top1_anchor_distance_m": 0.531232590980205,
+          "reference_anchor_world_m": [
+            2.4214398533928305,
+            -0.6252194311353718,
+            -0.2484808944075515
+          ],
+          "cosine_similarity": 0.2244984209537506
+        },
+        {
+          "target": "ottoman_left",
+          "query": "ottoman",
+          "reference_surface_points": 1914,
+          "best_surface_coverage": 0.10031347962382445,
+          "recoverable": false,
+          "qualifying_segments": 0,
+          "top1_segment": 0,
+          "top1_surface_coverage": 0.10031347962382445,
+          "top1_visible_precision": 0.01239964317573595,
+          "top1_target_hit": false,
+          "top1_anchor_distance_m": 0.4928009429894952,
+          "reference_anchor_world_m": [
+            1.8286374750308099,
+            0.673499858132624,
+            -1.0295898889243604
+          ],
+          "cosine_similarity": 0.24592195451259613
+        },
+        {
+          "target": "ottoman_right",
+          "query": "ottoman",
+          "reference_surface_points": 2092,
+          "best_surface_coverage": 0.09703632887189292,
+          "recoverable": false,
+          "qualifying_segments": 0,
+          "top1_segment": 0,
+          "top1_surface_coverage": 0.09703632887189292,
+          "top1_visible_precision": 0.014897413024085638,
+          "top1_target_hit": false,
+          "top1_anchor_distance_m": 0.5367738576632585,
+          "reference_anchor_world_m": [
+            1.828970300062193,
+            1.5224383008875406,
+            -1.0194754992681223
+          ],
+          "cosine_similarity": 0.24592195451259613
+        }
+      ],
+      "category_hits": {
+        "cabinet": false,
+        "ottoman": false,
+        "floor lamp": false
+      },
+      "query_hit_fraction": 0.0,
+      "target_recovery_fraction": 0.0,
+      "mean_best_surface_coverage": 0.0718522159034569
+    }
+  },
+  "finished_at": "2026-10-08T15:34:07+00:00",
+  "elapsed_seconds": 11.691002276999825
+}

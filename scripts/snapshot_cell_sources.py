@@ -13,6 +13,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("runs", nargs="+", type=Path)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--candidate-source",
+        nargs="*",
+        type=Path,
+        default=[],
+        help="Exact interim adapters; accepted only if their hashes match executed records",
+    )
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     required = set()
@@ -32,6 +39,16 @@ def main():
             digest = hashlib.sha256(content).hexdigest()
             if digest in required and digest not in versions:
                 versions[digest] = {"commit": commit, "newlines": style, "content": content}
+    for candidate in args.candidate_source:
+        content = candidate.read_bytes()
+        digest = hashlib.sha256(content).hexdigest()
+        if digest in required and digest not in versions:
+            versions[digest] = {
+                "commit": None,
+                "source": candidate.name,
+                "notice": "Interim adapter reconstructed from disclosed edits; exact bytes verified against executed records",
+                "content": content,
+            }
     if required - versions.keys():
         raise ValueError(f"Executed source is absent from Git history: {required - versions.keys()}")
     args.output.mkdir(parents=True, exist_ok=False)

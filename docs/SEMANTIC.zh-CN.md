@@ -2,6 +2,8 @@
 
 [English](SEMANTIC.md) | 中文
 
+本轮扩展：[配对结果](PAIRED_RESULTS.zh-CN.md) 补受限标注、97 个建图单元、简单对照及收窄的候选 H1。先前基线 PDF 保留其记录的源快照，配对研究 PDF 是本轮扩展。
+
 2026 年 10 月 8 日，固定源码的作者 **class-agnostic ConceptGraphs** 前端已在本机 WSL2 Ubuntu 22.04、RTX 4070 SUPER 执行。Replica `room0` 的 40 次观测得到 **39 个后处理对象**；4 个 CLIP 文本查询各返回 3 个候选对象及其世界坐标。[运行记录](../results/reference/conceptgraphs-wsl/record.json)、[输出](../results/reference/conceptgraphs-wsl/summary.json)、[原生建图日志](../results/reference/conceptgraphs-wsl/mapping.log)。
 
 这建立了可执行的 RGB-D 分割、对象关联／融合、坐标查询基线。查询正确率、语义榜单分数、动态场景性能、导航成功率**尚未评价**。返回坐标不证明找对目标。相机到世界的位姿由数据提供，不是 SLAM 估计结果；本次也未运行 LLaVA 描述、LLM 场景图构建或规划。
@@ -37,7 +39,7 @@ Meta 下载停滞后，SAM ViT-H 从固定修订的 Hugging Face 镜像获取；
 
 作者建图日志记录对象增加、过滤和合并。这些操作处理 RGB-D 与基础模型特征，已经超出使用已知对象身份的玩具模型；但最终对象数量本身不能衡量碎片化或正确关联。公布的查询分数是余弦相似度，不是校准概率。
 
-下一步补对象身份与查询目标标注，固定分割／特征，比较精确位姿、独立误差和时间相关漂移。加入阈值扫描及匹配覆盖率／延迟。在这些对照和留出场景确定之前，共享位姿假设保持候选状态。[阶段计划](PLAN.zh-CN.md)。
+配对扩展已补四个部分表面目标、固定特征位姿误差对及阈值对照。完整身份真值、动态语义召回、匹配覆盖／延迟仍待完成。[结果与限制](PAIRED_RESULTS.zh-CN.md)。H1 保持候选，留出确认尚未开始。
 
 ## HOV-SG：第四篇建图核心
 

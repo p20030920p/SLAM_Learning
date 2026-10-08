@@ -22,6 +22,9 @@ def render_report(paths: list[Path], base: Path | None = None, lang: str = "en")
                   paper_reproduction_media="论文复现实测回放",
                   bilingual_paper_reports="中英文研究报告",
                   report_layout_review="报告排版检查",
+                  paired_pose_analysis="配对位姿探索分析",
+                  bilingual_paired_reports="中英文配对研究报告",
+                  full_terminal_recordings="全过程终端录制",
                   **{"Replica room0 40-observation subset": "Replica room0 40 次观测子集"})
     lines = ["# 实测记录汇总" if zh else "# Measured experiment ledger", "",
              "由原始记录生成。执行完成、论文表格一致和假设验证是不同状态。" if zh

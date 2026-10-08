@@ -13,7 +13,7 @@ The repository should let a reviewer trace **a research claim to a figure, a met
 | What was measured? | Native logs, portable records, evaluation definitions and differences from paper tables |
 | What can I watch or read? | One MP4/GIF and independent English/Chinese PDF per completed core run |
 | What is your hypothesis? | A candidate mechanism, a minimal implementation, baseline controls and rejection criteria |
-| What is unfinished? | Semantic labels/accuracy, complete graph/navigation and physical collection listed explicitly |
+| What is unfinished? | Independent label review, complete semantic accuracy/graphs/navigation and physical collection remain open |
 
 Keep one prominent measured visual, then a compact four-paper table. Put install details on reproduction pages. Videos must identify input, method, pose source, coordinates and run; a rendered replay must not imply live throughput or a screen capture. PDFs should contain the same scope and numerical evidence as the paper cards.
 

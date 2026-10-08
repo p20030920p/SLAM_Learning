@@ -2,6 +2,8 @@
 
 English | [中文](RESULTS.zh-CN.md)
 
+Current extension: [paired results](PAIRED_RESULTS.md) adds restricted annotations, 97 mapping cells, simple controls and a narrower candidate H1. Earlier baseline PDFs retain their recorded source snapshot; the paired-study PDF is the current extension.
+
 Measured on 7 October 2026. Portable records bind commands, versions, source hashes, data checksums and output hashes. Windows author/controlled experiments use Python 3.10.19. Both author methods and all six real-data sensitivity cells also **executed successfully on GitHub Actions Ubuntu 22.04**, with a fresh download and environment. [Linux run](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701), [execution metadata](../results/ci/linux-run.json). Docker was not locally built. On 8 October, local WSL2 author, PCL and semantic-subset runs completed; see sections 5–6 and [WSL](WSL.md).
 
 Existing synthetic trials informed the candidate hypothesis. They are exploratory, not independent confirmation after hypothesis selection.
@@ -106,11 +108,11 @@ ConceptGraphs class-agnostic SAM/CLIP segmentation and native 3D association/fus
 
 ## Verification and remaining work
 
-Local checks: **38 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export and against committed Git bytes. Most Windows measurements use snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`; the final BeautyMap run uses `17591fa` after physically stripping scan intensity annotations while preserving VIEWPOINT. Its metrics are unchanged. Earlier failures remain separately retained. Per-record source hashes specify each executed snapshot.
+Local checks: **40 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export and against committed Git bytes. Most Windows measurements use snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`; the final BeautyMap run uses `17591fa` after physically stripping scan intensity annotations while preserving VIEWPOINT. Its metrics are unchanged. Earlier failures remain separately retained. Per-record source hashes specify each executed snapshot.
 
-PCL/SciPy cross-checking and an executable semantic subset with text-coordinate retrieval are complete. Full semantic benchmark evaluation, annotated target correctness, robot navigation and multi-session identity evaluation remain open. The real-data and synthetic results support a focused research question and explicit follow-up protocol, not a system-level performance claim.
+PCL/SciPy cross-checking and an executable semantic subset with text-coordinate retrieval are complete. Restricted partial-surface target diagnostics are now in the paired extension; full semantic benchmark evaluation, robot navigation and multi-session identity evaluation remain open. The real-data and synthetic results support a focused research question and explicit follow-up protocol, not a system-level performance claim.
 
-Next: investigate paper-version differences, annotate semantic associations/targets and define paired pose-error controls before freezing the hypothesis. [Stage gates](PLAN.md).
+Next: independently review annotations, add new scenes and test actual changes/correction delays before freezing a confirmatory hypothesis. [Stage gates](PLAN.md).
 
 ## 7. Four-paper media and HOV-SG core — 8 October
 

@@ -506,6 +506,120 @@
         "results/reference/paper-pdfs/record.json",
         "results/reference/paper-report-review/record.json"
       ]
+    },
+    {
+      "id": "paired-paired-results",
+      "path": "results/reference/paired-pose/figures/paired-results.png",
+      "stage": "E0 exploratory",
+      "status": "published",
+      "caption": {
+        "en": "Paired mapping outcomes, three-seed mean and range; different objectives and axes, not a leaderboard.",
+        "zh": "配对建图结果，三种子均值／范围；不同目标和纵轴，不作排行榜。"
+      },
+      "source_records": [
+        "results/reference/paired-pose/record.json"
+      ],
+      "source_artifact": "figures/paired-results.png"
+    },
+    {
+      "id": "paired-dynamic-recall",
+      "path": "results/reference/paired-pose/figures/dynamic-recall.png",
+      "stage": "E0 exploratory",
+      "status": "published",
+      "caption": {
+        "en": "Dynamic removal accompanies static retention; exploratory subset means.",
+        "zh": "动态移除与静态保留一起读，探索子集均值。"
+      },
+      "source_records": [
+        "results/reference/paired-pose/record.json"
+      ],
+      "source_artifact": "figures/dynamic-recall.png"
+    },
+    {
+      "id": "paired-paired-errors",
+      "path": "results/reference/paired-pose/figures/paired-errors.png",
+      "stage": "E0 exploratory",
+      "status": "published",
+      "caption": {
+        "en": "Identical scalar error multisets under two temporal assignments; fixed first pose and initial jump.",
+        "zh": "相同标量误差集合、两种时间分配；固定第一帧且有初始跳变。"
+      },
+      "source_records": [
+        "results/reference/paired-pose/record.json"
+      ],
+      "source_artifact": "figures/paired-errors.png"
+    },
+    {
+      "id": "paired-target-query-audit",
+      "path": "results/reference/paired-pose/figures/target-query-audit.png",
+      "stage": "E0 exploratory",
+      "status": "published",
+      "caption": {
+        "en": "Zero-error retrieved visible geometry versus partial reference polygons; unmatched is not an open-world false positive.",
+        "zh": "零误差返回可见几何与部分参考多边形；未命中不等于开放世界假阳性。"
+      },
+      "source_records": [
+        "results/reference/paired-pose/record.json"
+      ],
+      "source_artifact": "figures/target-query-audit.png"
+    },
+    {
+      "id": "paired-annotation-000000",
+      "path": "results/reference/paired-pose/annotations/annotation-000000.png",
+      "stage": "E0 exploratory",
+      "status": "published",
+      "caption": {
+        "en": "AI-assisted raw-frame cabinet/lamp polygons, not independently reviewed official GT.",
+        "zh": "AI 辅助原帧柜子／灯罩多边形，非独立审核的官方真值。"
+      },
+      "source_records": [
+        "results/reference/paired-pose/record.json"
+      ],
+      "source_artifact": "annotations/annotation-000000.png"
+    },
+    {
+      "id": "paired-annotation-000150",
+      "path": "results/reference/paired-pose/annotations/annotation-000150.png",
+      "stage": "E0 exploratory",
+      "status": "published",
+      "caption": {
+        "en": "AI-assisted two-ottoman polygons; partial reference, not complete instance labels.",
+        "zh": "AI 辅助两个圆凳多边形，为部分参考，不是完整实例标签。"
+      },
+      "source_records": [
+        "results/reference/paired-pose/record.json"
+      ],
+      "source_artifact": "annotations/annotation-000150.png"
+    },
+    {
+      "id": "report-paired-study.en",
+      "path": "output/pdf/paired-study.en.pdf",
+      "stage": "E0 exploratory report",
+      "status": "published",
+      "caption": {
+        "en": "Paired study report: measured controls, narrowed question and candidate H1.",
+        "zh": "配对研究报告：实测对照、收窄问题与候选 H1。"
+      },
+      "source_artifact": "paired-study.en.pdf",
+      "source_records": [
+        "results/reference/paired-study-pdfs/record.json",
+        "results/reference/paired-report-review/record.json"
+      ]
+    },
+    {
+      "id": "report-paired-study.zh-CN",
+      "path": "output/pdf/paired-study.zh-CN.pdf",
+      "stage": "E0 exploratory report",
+      "status": "published",
+      "caption": {
+        "en": "Paired study report: measured controls, narrowed question and candidate H1.",
+        "zh": "配对研究报告：实测对照、收窄问题与候选 H1。"
+      },
+      "source_artifact": "paired-study.zh-CN.pdf",
+      "source_records": [
+        "results/reference/paired-study-pdfs/record.json",
+        "results/reference/paired-report-review/record.json"
+      ]
     }
   ]
 }

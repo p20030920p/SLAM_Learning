@@ -1,0 +1,97 @@
+{
+  "mapping": {
+    "observations": 8,
+    "reference_points": 292386,
+    "cache_zero_error_byte_equivalence": null,
+    "native_overlap_threshold": 0.75
+  },
+  "objects": 59,
+  "metrics": {
+    "targets": [
+      {
+        "target": "cabinet",
+        "query": "cabinet",
+        "reference_surface_points": 3372,
+        "best_surface_coverage": 1.0,
+        "recoverable": true,
+        "qualifying_segments": 9,
+        "top1_segment": 35,
+        "top1_surface_coverage": 0.4522538552787663,
+        "top1_visible_precision": 1.0,
+        "top1_target_hit": true,
+        "top1_anchor_distance_m": 0.019454407562193573,
+        "reference_anchor_world_m": [
+          -0.32641609625146595,
+          1.0779672600648018,
+          -1.0610186347557844
+        ],
+        "cosine_similarity": 0.3229454755783081
+      },
+      {
+        "target": "lamp_shade",
+        "query": "floor lamp",
+        "reference_surface_points": 2032,
+        "best_surface_coverage": 0.8996062992125984,
+        "recoverable": true,
+        "qualifying_segments": 2,
+        "top1_segment": 14,
+        "top1_surface_coverage": 0.8996062992125984,
+        "top1_visible_precision": 0.8947368421052632,
+        "top1_target_hit": true,
+        "top1_anchor_distance_m": 0.008888645105652807,
+        "reference_anchor_world_m": [
+          2.4214398533928305,
+          -0.6252194311353718,
+          -0.2484808944075515
+        ],
+        "cosine_similarity": 0.28156036138534546
+      },
+      {
+        "target": "ottoman_left",
+        "query": "ottoman",
+        "reference_surface_points": 1914,
+        "best_surface_coverage": 0.8996865203761756,
+        "recoverable": true,
+        "qualifying_segments": 1,
+        "top1_segment": 57,
+        "top1_surface_coverage": 0.0,
+        "top1_visible_precision": 0.0,
+        "top1_target_hit": false,
+        "top1_anchor_distance_m": 1.1194240533183928,
+        "reference_anchor_world_m": [
+          1.8286374750308099,
+          0.673499858132624,
+          -1.0295898889243604
+        ],
+        "cosine_similarity": 0.31973835825920105
+      },
+      {
+        "target": "ottoman_right",
+        "query": "ottoman",
+        "reference_surface_points": 2092,
+        "best_surface_coverage": 0.902963671128107,
+        "recoverable": true,
+        "qualifying_segments": 2,
+        "top1_segment": 57,
+        "top1_surface_coverage": 0.0,
+        "top1_visible_precision": 0.0,
+        "top1_target_hit": false,
+        "top1_anchor_distance_m": 0.42081254272343743,
+        "reference_anchor_world_m": [
+          1.828970300062193,
+          1.5224383008875406,
+          -1.0194754992681223
+        ],
+        "cosine_similarity": 0.31973835825920105
+      }
+    ],
+    "category_hits": {
+      "cabinet": true,
+      "ottoman": false,
+      "floor lamp": true
+    },
+    "query_hit_fraction": 0.6666666666666666,
+    "target_recovery_fraction": 1.0,
+    "mean_best_surface_coverage": 0.9255641226792203
+  }
+}

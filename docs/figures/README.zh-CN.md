@@ -51,4 +51,8 @@ uv run python scripts/verify_evidence.py
 
 [论文索引](../papers/README.zh-CN.md)连接原生结果、MP4、GIF、封面及双语 PDF。12 项新增媒体在 `slots.json` 中绑定哈希。[录制命令](../RECORDING.zh-CN.md)披露最终地图回放及坐标核查。`docs/figures/physical_capture.mp4` 预留至实物采集完成。
 
-12 份双语 PDF 绑定[生成证据](../../results/reference/paper-pdfs/record.json)，另有[32 页排版检查](../../results/reference/paper-report-review/qa.json)。索引现有 30 个已发布资产、7 个预留位置。
+12 份双语 PDF 绑定[生成证据](../../results/reference/paper-pdfs/record.json)，另有[32 页排版检查](../../results/reference/paper-report-review/qa.json)。索引现有 38 个已发布资产、7 个预留位置。
+
+## 配对探索与全过程
+
+新增六张实测 PNG：配对结果／误差、动态移除、受限查询投影及两张原帧标注叠加。[配对报告](../PAIRED_RESULTS.zh-CN.md)解释不同损失与候选状态。新增双语 PDF 有[生成证据](../../results/reference/paired-study-pdfs/record.json)和[11 页视觉检查](../../results/reference/paired-report-review/qa.json)。合计 14 份 PDF，先前 12 份基线报告保留原快照。四份全过程 MP4 在本地保存；[索引与录制约定](../RECORDING.zh-CN.md#本地全过程执行录制)。

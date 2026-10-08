@@ -257,7 +257,7 @@ def main():
         }
     )
     record["implementation_amendment"] = (
-        "CLI threshold parsing preserves JSON integer type for DUFOMap's uint d_p. Primary cells have no threshold override; original code snapshot and each actual cell script hash are retained."
+        "Retained adapter amendments: JSON integer d_p parsing; source-package bootstrap; native semantic metadata; fixed mapping RNG; 17-digit float64 pose text and native eight-thread HOV fusion. Original and exact executed code snapshots, per-cell hashes and rejected attempts are retained. ConceptGraphs native float32 poses agree under both text precisions for all 19 errors; HOV perturbations began only after zero-error map/features byte equivalence passed."
     )
     for path in output.rglob("*"):
         if not path.is_file() or "cells" in path.relative_to(output).parts or path == output / "record.json":

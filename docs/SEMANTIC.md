@@ -2,6 +2,8 @@
 
 English | [中文](SEMANTIC.zh-CN.md)
 
+Current extension: [paired results](PAIRED_RESULTS.md) adds restricted annotations, 97 mapping cells, simple controls and a narrower candidate H1. Earlier baseline PDFs retain their recorded source snapshot; the paired-study PDF is the current extension.
+
 On 8 October 2026, the pinned author **class-agnostic ConceptGraphs** frontend executed on local WSL2 Ubuntu 22.04 and RTX 4070 SUPER. Forty Replica `room0` observations produced **39 postprocessed objects**. Four CLIP text queries returned three object candidates and supplied-world coordinates each. [Run record](../results/reference/conceptgraphs-wsl/record.json), [output](../results/reference/conceptgraphs-wsl/summary.json), [native mapping log](../results/reference/conceptgraphs-wsl/mapping.log).
 
 This establishes an executable RGB-D segmentation, object association/fusion and coordinate-query baseline. Query correctness, semantic benchmark scores, dynamic-scene performance and navigation success are **not evaluated**. A returned coordinate is not proof of a correct target. The camera-to-world poses are supplied, not estimated by SLAM. LLaVA captions, LLM scene-graph construction and planning are outside this run.
@@ -37,7 +39,7 @@ SAM ViT-H comes from a revision-pinned Hugging Face mirror after the Meta downlo
 
 The original mapping log contains object additions, filtering and merging; these operations execute on real RGB-D observations and foundation-model features rather than oracle object identities. The final object count alone cannot measure fragmentation or correct association. The published query scores are cosine similarity, not calibrated probabilities.
 
-Next, add annotated object identities and query targets, then compare exact, independent and temporally correlated pose errors with the segmentation/features fixed. Include threshold sweeps and matched coverage/latency. The shared-pose hypothesis remains a candidate until these controls and held-out scenes are defined. [Stage plan](PLAN.md).
+The paired extension adds four partial-surface targets, fixed-feature pose-error pairs and threshold controls. Full identity ground truth, dynamic-semantic recall and matched coverage/latency remain open. [Results and limitations](PAIRED_RESULTS.md). H1 remains a candidate; held-out confirmation has not started.
 
 ## HOV-SG: fourth mapping core
 

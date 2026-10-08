@@ -51,4 +51,8 @@ Do not retouch masks or change metric numbers in an editor. Publish failure case
 
 [Paper index](../papers/README.md) links each native result to its MP4, GIF, poster and bilingual PDF. These 12 media assets are hash-bound in `slots.json`. [Recording commands](../RECORDING.md) disclose final-map replay and coordinate checks. Physical capture is reserved as `docs/figures/physical_capture.mp4` until data collection.
 
-Twelve bilingual PDFs are hash-bound to [generation evidence](../../results/reference/paper-pdfs/record.json), with separate [32-page layout review](../../results/reference/paper-report-review/qa.json). The index now contains 30 published assets and 7 reserved slots.
+Twelve bilingual PDFs are hash-bound to [generation evidence](../../results/reference/paper-pdfs/record.json), with separate [32-page layout review](../../results/reference/paper-report-review/qa.json). The index now contains 38 published assets and 7 reserved slots.
+
+## Paired exploration and full sessions
+
+Six measured PNGs add paired outcomes/errors, dynamic removal, restricted query projections and two raw-frame annotation overlays. [Paired report](../PAIRED_RESULTS.md) explains the different losses and candidate status. Two new bilingual PDFs have [generation](../../results/reference/paired-study-pdfs/record.json) and [11-page visual review](../../results/reference/paired-report-review/qa.json) evidence. Together there are 14 PDFs; previous 12 baseline reports retain their original snapshots. Four full execution MP4s stay local; [index and recording convention](../RECORDING.md#complete-local-execution-recordings).
