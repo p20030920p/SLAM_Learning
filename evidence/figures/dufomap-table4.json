@@ -1,0 +1,87 @@
+{
+  "metrics": "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-table4-ablation-01/metrics.json",
+  "original_log_sha256": "f4efa0abbcd31a38b603f3f09c376f7f7521f8d9116d8819e7c5f4c4c8a3ead4",
+  "matched_at_paper_two_decimal_precision": 15,
+  "rows": {
+    "no_ds_no_dp": {
+      "SA_percent": 14.8856,
+      "DA_percent": 99.9917,
+      "AA_percent": 38.5802,
+      "HA_percent": 25.9135,
+      "paper_SA_DA_AA_percent": [
+        14.89,
+        99.99,
+        38.58
+      ],
+      "difference_percentage_points": [
+        -0.004400000000000404,
+        0.0016999999999995907,
+        0.00019999999999953388
+      ]
+    },
+    "ds_only": {
+      "SA_percent": 30.2853,
+      "DA_percent": 99.9865,
+      "AA_percent": 55.0284,
+      "HA_percent": 46.4893,
+      "paper_SA_DA_AA_percent": [
+        30.29,
+        99.99,
+        55.03
+      ],
+      "difference_percentage_points": [
+        -0.004699999999999704,
+        -0.0034999999999882903,
+        -0.0016000000000033765
+      ]
+    },
+    "dp_only": {
+      "SA_percent": 91.8936,
+      "DA_percent": 98.9727,
+      "AA_percent": 95.3675,
+      "HA_percent": 95.3019,
+      "paper_SA_DA_AA_percent": [
+        91.89,
+        98.97,
+        95.37
+      ],
+      "difference_percentage_points": [
+        0.0036000000000058208,
+        0.0027000000000043656,
+        -0.0024999999999977263
+      ]
+    },
+    "coarse_voxel": {
+      "SA_percent": 92.9696,
+      "DA_percent": 98.2424,
+      "AA_percent": 95.5696,
+      "HA_percent": 95.5333,
+      "paper_SA_DA_AA_percent": [
+        92.97,
+        98.24,
+        95.57
+      ],
+      "difference_percentage_points": [
+        -0.00039999999999906777,
+        0.0024000000000086175,
+        -0.00039999999999906777
+      ]
+    },
+    "full": {
+      "SA_percent": 97.9635,
+      "DA_percent": 98.7196,
+      "AA_percent": 98.3408,
+      "HA_percent": 98.3401,
+      "paper_SA_DA_AA_percent": [
+        97.96,
+        98.72,
+        98.34
+      ],
+      "difference_percentage_points": [
+        0.003500000000002501,
+        -0.00039999999999906777,
+        0.0007999999999981355
+      ]
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "method": "DUFOMap",
+  "scope": "Unlabeled kthcampus/twofloor qualitative workflow; no accuracy or efficiency claim; original default config; 3305 scans",
+  "status": "executed",
+  "started_at": "2026-10-08T22:16:21.607644+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-dufomap-released-qualitative-01-twofloor",
+    "-p",
+    "MemoryMax=4G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=200%",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dufomap-gcc11/dufomap_run",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-released-qualitative-01/inputs/twofloor",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/assets/config.toml"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "3e54bd1ab85ee0fd9032d14f1161be90d824ce00957134c2cfe45d2ac65081c8",
+      "bytes": 491637
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-released-qualitative-01/inputs/twofloor/dufomap_output.pcd": {
+      "sha256": "c73bf438b1363dffcd13b4cd76a998b5d3df3a335564c33e654ccf3e8fcf41d7",
+      "bytes": 901047932
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 224218,
+  "elapsed_seconds": 50.561670465000134,
+  "source_dirty_after": ""
+}

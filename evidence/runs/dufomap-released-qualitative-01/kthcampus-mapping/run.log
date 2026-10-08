@@ -1,0 +1,30 @@
+Running scope as unit: slam-author-dufomap-released-qualitative-01-kthcampus.scope
+[LOG] Step 1: Successfully read configuration from: /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/assets/config.toml
+[LOG] Step 2: Starting Processing data from: "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-released-qualitative-01/inputs/kthcampus"
+[?25l[LOG] Running dufomap [                                                  ] 0% [00m:00s<00m:00s] [LOG] Running dufomap [██▌                                               ] 5% [00m:01s<00m:34s] [LOG] Running dufomap [█████▌                                            ] 10% [00m:03s<00m:29s] [LOG] Running dufomap [████████                                          ] 15% [00m:05s<00m:28s] [LOG] Running dufomap [███████████                                       ] 21% [00m:06s<00m:23s] [LOG] Running dufomap [█████████████▌                                    ] 27% [00m:07s<00m:19s] [LOG] Running dufomap [████████████████▌                                 ] 33% [00m:07s<00m:15s] [LOG] Running dufomap [███████████████████                               ] 37% [00m:08s<00m:13s] [LOG] Running dufomap [██████████████████████                            ] 43% [00m:09s<00m:12s] [LOG] Running dufomap [█████████████████████████                         ] 50% [00m:10s<00m:10s] [LOG] Running dufomap [███████████████████████████▌                      ] 55% [00m:10s<00m:08s] [LOG] Running dufomap [██████████████████████████████▌                   ] 61% [00m:11s<00m:07s] [LOG] Running dufomap [█████████████████████████████████                 ] 66% [00m:12s<00m:06s] [LOG] Running dufomap [████████████████████████████████████              ] 72% [00m:12s<00m:04s] [LOG] Running dufomap [██████████████████████████████████████▌           ] 76% [00m:13s<00m:04s] [LOG] Running dufomap [█████████████████████████████████████████▌        ] 82% [00m:14s<00m:02s] [LOG] Running dufomap [████████████████████████████████████████████      ] 87% [00m:14s<00m:02s] [LOG] Running dufomap [███████████████████████████████████████████████   ] 93% [00m:15s<00m:00s] [?25h[0m
+[LOG] Step 3: Finished Processing data. Start saving map... 
+Timings in seconds (s)
+              Component               	 Total 	 Last  	 Mean  	StDev 	  Min  	  Max  	Steps
+[1m[31mTotal 18 of 18 (100%)                 	22.7631	22.7631	22.7631	nan	22.7631	22.7631	1[0m
+[1m[32m  1. Read                             	0.4267	0.0179	0.0237	0.0098	0.0141	0.0481	18[0m
+[1m[33m  2. Insert Pointcloud                	14.5485	0.3597	0.8082	0.4859	0.3164	1.7359	18[0m
+[1m[34m    1. Filter Distance 1              	0.0000	0.0000	0.0000	0.0000	0.0000	0.0000	18[0m
+[1m[35m    2. Create Int. Cloud              	0.5912	0.0210	0.0328	0.0187	0.0155	0.0887	18[0m
+[1m[36m    3. Filter Distance 2              	0.0000	0.0000	0.0000	0.0000	0.0000	0.0000	18[0m
+[1m[37m    4. Integrate Hits                 	0.7826	0.0244	0.0435	0.0237	0.0188	0.1032	18[0m
+[1m[37m      1. Create Nodes                 	0.6476	0.0201	0.0360	0.0188	0.0140	0.0696	18[0m
+[1m[37m      2. Update Nodes                 	0.1280	0.0042	0.0071	0.0068	0.0033	0.0336	18[0m
+[1m[31m    5. Get Misses                     	10.7245	0.2901	0.5958	0.3457	0.2601	1.2948	18[0m
+[1m[31m      1. Generate Ray Cast Goals      	0.3000	0.0086	0.0167	0.0101	0.0072	0.0389	18[0m
+[1m[31m      2. Ray Cast                     	9.1750	0.2485	0.5097	0.2801	0.2304	1.1135	18[0m
+[1m[31m      3. Accum. Grids                 	0.0000	0.0000	0.0000	nan	nan	nan	0[0m
+[1m[31m      4. Extract Misses               	1.2440	0.0329	0.0691	0.0633	0.0148	0.2300	18[0m
+[1m[32m    6. Integrate Misses               	2.9868	0.0387	0.1659	0.1449	0.0274	0.4778	18[0m
+[1m[32m      1. Create Nodes                 	2.8423	0.0342	0.1579	0.1419	0.0250	0.4596	18[0m
+[1m[32m      2. Update Nodes                 	0.1350	0.0045	0.0075	0.0033	0.0023	0.0156	18[0m
+[1m[33m    7. Propagate                      	0.0000	0.0000	0.0000	0.0000	0.0000	0.0000	18[0m
+[1m[34m  3. Propagate                        	0.3725	0.3725	0.3725	nan	0.3725	0.3725	1[0m
+[1m[35m  4. Cluster                          	0.0000	0.0000	0.0000	nan	0.0000	0.0000	1[0m
+[1m[36m  5. Query                            	1.3772	1.3772	1.3772	nan	1.3772	1.3772	1[0m
+[1m[37m  6. write                            	5.4206	5.4206	5.4206	nan	5.4206	5.4206	1[0m
+[LOG]: Finished! ^v^.. Clean output map with 20051966 points save in "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-released-qualitative-01/inputs/kthcampus/dufomap_output.pcd"

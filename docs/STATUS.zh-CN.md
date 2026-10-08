@@ -25,7 +25,7 @@ DUFOMap 原始 C++、BeautyMap 原始 Python、DynamicMap 作者 PCL 导出与 P
 
 ![原作者评价指标](../evidence/figures/lidar-scores.png)
 
-数值直接取自 [作者评分日志](../evidence/runs/released-lidar-01/scores/run.log)，图表来源与哈希见 [JSON](../evidence/figures/lidar-scores.json)。DUFOMap 使用作者默认 config；BeautyMap 在 KITTI 使用 40 / 1 / 0.5，半室内使用 10 / 0.5 / 0.2；AV2 沿用室外参数，尚未核实论文专属参数。AA 是 SA、DA 的几何平均，HA 是调和平均。
+数值直接取自 [作者评分日志](../evidence/runs/released-lidar-01/scores/run.log)，图表来源与哈希见 [JSON](../evidence/figures/lidar-scores.json)。DUFOMap 使用作者默认 config；BeautyMap 在 KITTI 使用 40 / 1 / 0.5，半室内使用 10 / 0.5 / 0.2；AV2 沿用室外参数，属于 BeautyMap 论文未报告的补充迁移实验。AA 是 SA、DA 的几何平均，HA 是调和平均。
 
 两种方法在 AV2 的 DA 均低于两份 KITTI 数据；半室内的静态保留与动态剔除出现不同权衡。应同时报告 SA、DA 和场景，不能只用综合分数描述失败方式。这些结果尚不能确定失败的运动机制、证明语义一定能补救，或证明在线定位误差降低；当前未测 ATE/RPE、回环或闭环导航。
 
@@ -34,6 +34,14 @@ DUFOMap 原始 C++、BeautyMap 原始 Python、DynamicMap 作者 PCL 导出与 P
 DUFOMap C++ 输出 15,987,036 点。Python 演示默认输出 0.1 m 体素中心，与 C++ 输出表示不同。在 0.05 m 最近邻评价中，体素中心可能偏离原始点，低 SA 不能直接解释为错误移除了同样比例的静态结构。后续验证可比较同一绑定的原始点输出与体素中心输出，并扫描评价阈值；这些属于单独的分析实验，不修改本次原始运行。
 
 BeautyMap 按作者流程读取 `gt_cloud.pcd` 的几何作为先验地图。核查固定版 `lib/bee_tree.py` 后确认，地图构建使用 `original_points[:, :3]`；输出保留原点属性，GT 标签未参与清理决策。这些分数不是用真实在线 SLAM 轨迹进行的系统级评价。
+
+## 论文消融新增结果
+
+DUFOMap 表 IV 的五组参数设置已完成原始 C++、作者 PCL 导出与原评分，SA/DA/AA 共 15 个数值保留两位小数后均与论文一致。仅调整作者 TOML 公开参数，完整设置复用经 SHA-256 核对的原始成功输出。[逐项论文对照与重做命令](DUFOMAP_TABLE4.zh-CN.md)。CPU 配额与并行任务影响耗时，本轮不用于论文性能比较。
+
+核对论文后明确：这些动态清理表格使用选定帧段，完整复现不要求把整条 KITTI 序列作为相同表格的输入。当前发布包缺少论文 01/02 帧段；BeautyMap 的 AV2 运行属于补充迁移实验，不应要求它与未报告的“论文 AV2 参数”一致。[按论文核对的范围](SCOPE.zh-CN.md)。
+
+另外完成 DUFOMap 原始默认参数在两份无标注作者数据的运行：twofloor（Livox，3305 帧）输出 56,315,484 点，KTH campus（Leica，18 帧）输出 20,051,966 点，退出成功，点云结构、有限坐标与哈希均通过检查。[输入下载与 CRC](../evidence/benchmark-qualitative-manifest.json)、[twofloor 检查](../evidence/runs/dufomap-released-qualitative-01/twofloor/validation.json)、[campus 检查](../evidence/runs/dufomap-released-qualitative-01/kthcampus/validation.json)。两者无 GT，这些点数不代表清理准确率，未加入 SA/DA 表。
 
 ## 兼容性记录
 
@@ -59,7 +67,7 @@ HOV-SG `hovsg-room0-batch16-stages-02` 完成了 200/200 个原生 1200×680 帧
 
 原始语义评价在 CUDA 最近邻处失败：此前 chamferdist 只编译了 CPU 支持。已按同一份依赖源码重新编译 CUDA 11.8 扩展，并检查 CUDA 专用绑定与二进制哈希；实际 GPU KNN 测试和原评价由 `conceptgraphs-room0-evaluation-cuda-05` 排队执行，等待 HOV-SG 释放 GPU。该重试只在重新核对 SHA-256 后复用已成功的地图和 RGB 表面，没有重新建图或改评价公式。**当前仍无语义分数。** [失败诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-04/diagnostics/evaluation-failure.json)。
 
-HOV-SG `hovsg-room0-batch16-stages-03` 正在重新提取完整特征图。特征图与评价任务限额为 12G RAM / 48G swap，另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间会影响耗时，不能用本轮时间比较论文效率。
+HOV-SG `hovsg-room0-batch16-stages-03` 已完成 200/200 个原生帧的特征提取，正在层级掩码融合；最终特征图尚未保存。特征图与评价任务限额为 12G RAM / 48G swap，另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间会影响耗时，不能用本轮时间比较论文效率。
 
 `public-semantic-benchmark-05` 等待首个完整链路，再串行推进其余 7 个公开 Replica 场景及 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
 

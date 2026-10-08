@@ -4,10 +4,12 @@
 
 | 方法 | 作者公开链路 | 本轮覆盖 | 完整复现仍需 |
 |---|---|---|---|
-| DUFOMap | 读取带位姿点云 → 动态清理 → 点云输出 → DynamicMap 评价 | 原始 C++ 在全部四份公开标注数据完成作者评价；Python 默认演示单独对照 | KITTI 全序列、论文参数/消融、性能与位姿来源对照 |
-| BeautyMap | 先验全局地图 + 位姿/扫描 → 二进制地面矩阵 → 清理 → 同一评价 | 原始 main.py 与作者评价覆盖四份公开数据，共 1997 帧；AV2 参数迁移已标注 | AV2 论文专属参数核验、先验地图/地面/稀疏性实验、论文消融 |
-| ConceptGraphs | RGB-D/位姿 → SAM 或 RAM+DINO+SAM → CLIP → 对象关联/融合 → LLaVA 描述 → GPT-4 精炼/关系 → 语义/规划评价 | 独立环境/CUDA 算子、完整 RGB-D 与作者 HDF5 GT；room0 的 400 帧 SAM 前端完成；首次三维融合 cgroup OOM，恢复默认检查点配置后重试已排队；原版 Detect 已排队 | 完整 8 场景与两种前端、三维/语义评价、LLaVA 基础权重、原始 GPT-4、规划任务 |
-| HOV-SG | RGB-D/位姿 → SAM+CLIP → 融合语义地图 → 楼层/房间/对象图 → 查询/导航/评价 | 全新作者 YAML 环境、完整 Replica RGB-D 与已通过 CRC 的原始语义 GT；SAM 批量 16、原分辨率的 room0 特征提取正在执行 | 完整 Replica/ScanNet 语义评价；8 个 HM3DSem 场景及完整层级评价；导航 |
+| DUFOMap | 读取带位姿点云 → 动态清理 → 点云输出 → DynamicMap 评价 | 四份公开标注数据完成原始 C++ 与作者评价；论文表 IV 五组 SA/DA/AA 匹配两位小数；两份无标注 campus/twofloor 全部 3323 帧运行成功；Python 默认演示单独对照 | 论文 KITTI 01 选定帧段、在线 DUFOMap⋆、性能、位姿来源对照及其余定性数据 |
+| BeautyMap | 先验全局地图 + 位姿/扫描 → 二进制地面矩阵 → 清理 → 同一评价 | 原始 main.py 与作者评价覆盖四份公开数据，共 1997 帧；AV2 是补充迁移场景，不是该论文表 I 的原场景 | 论文 01/02 选定帧段、表 III/IV 参数与模块消融、运行时间对照；先验与稀疏性实验属于额外分析 |
+| ConceptGraphs | RGB-D/位姿 → SAM 或 RAM+DINO+SAM → CLIP → 对象关联/融合 → LLaVA 描述 → GPT-4 精炼/关系 → 语义/规划评价 | room0 的 400 帧 SAM 前端、原始三维融合与 RGB PointFusion 成功，最终 77 对象；真实 Open3D 窗口实录完成；CUDA 评价依赖已重编，原评价重试和 Detect 排队 | 完整 8 场景与两种前端、语义 GT 评价、LLaVA 基础权重、原始 GPT-4、规划任务 |
+| HOV-SG | RGB-D/位姿 → SAM+CLIP → 融合语义地图 → 楼层/房间/对象图 → 查询/导航/评价 | 完整 Replica RGB-D 与原始语义 GT；SAM 批量 16、原分辨率 room0 的 200 帧提取完成，层级掩码融合进行中，最终特征图尚未保存 | 完整 Replica/ScanNet 语义评价；8 个 HM3DSem 场景及完整层级评价；导航 |
+
+“论文完整复现”须按论文实际使用的选定帧段核对，不能把整条 KITTI 序列当成这些表格的完成条件。DUFOMap 定量表包含 00、01、AV2、半室内；BeautyMap 的表格及消融还涉及 01/02。当前作者 Zenodo 发布包不含 01/02，仍需原始 KITTI 点云、SemanticKITTI 标签/位姿和作者提取流程；[官方 KITTI 下载入口](https://www.cvlibs.net/datasets/kitti/eval_odometry.php)要求账户登录，[SemanticKITTI 下载说明](https://www.semantic-kitti.org/dataset.html#download)提供标签和 SuMa 位姿。论文来源：[DUFOMap §IV/V](https://arxiv.org/html/2403.01449v1#S4)、[BeautyMap §IV](https://arxiv.org/html/2405.07283v1#S4)；已完成的 [DUFOMap 表 IV 对照](DUFOMAP_TABLE4.zh-CN.md)。
 
 逐行核查入口：
 

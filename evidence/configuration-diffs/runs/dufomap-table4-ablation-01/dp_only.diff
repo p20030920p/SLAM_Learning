@@ -1,0 +1,14 @@
+--- author/assets/config.toml
++++ dp_only.toml
+@@ -1,8 +1,8 @@
+ 
+ [important]
+-resolution = 0.1            # voxel size (meters), v in the paper, default 0.1
+-inflate_unknown = 1         # d_p in the paper, default 1
+-inflate_hits_dist = 0.2     # d_s in the paper, default 0.2
++resolution = 0.1 # voxel size (meters), v in the paper, default 0.1
++inflate_unknown = 1 # d_p in the paper, default 1
++inflate_hits_dist = 0.0 # d_s in the paper, default 0.2
+ 
+ 
+ # ----------- No need to modify if you are not professional dufoer or ufoer.

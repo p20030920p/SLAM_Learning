@@ -45,7 +45,7 @@ for ax, metric in zip(axes, ['SA', 'DA', 'HA']):
 axes[0].set_ylabel('Author metric (%)')
 fig.legend(*axes[0].get_legend_handles_labels(),loc='upper center',bbox_to_anchor=(.5,.91),ncol=2,frameon=False)
 fig.suptitle('Original methods on all four public labeled releases', fontsize=13, y=.98)
-fig.text(.5, .04, 'GT poses / prior maps; NN threshold 0.05m. AV2 BeautyMap uses transferred outdoor settings.\nSingle runs; no uncertainty estimates.',
+fig.text(.5, .04, 'Supplied poses / prior maps; NN threshold 0.05m. AV2 BeautyMap uses transferred outdoor settings.\nSingle runs; no uncertainty estimates.',
          ha='center', fontsize=8)
 fig.subplots_adjust(left=.065,right=.99,bottom=.28,top=.73,wspace=.17)
 fig.savefig(args.output / 'lidar-scores.png', dpi=180)

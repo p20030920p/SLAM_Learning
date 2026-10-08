@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-score",
+  "scope": "Table IV accuracy settings; all 141 public 00 scans; original C++/PCL/Python; no performance or online claim; scores; CPU quota 200%, not timing reproduction",
+  "status": "executed",
+  "started_at": "2026-10-08T22:10:05.018723+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-dufomap-table4-ablation-01-scores",
+    "-p",
+    "MemoryMax=4G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=200%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-table4-ablation-01/author-scripts/py/eval/evaluate_all.py"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "f4efa0abbcd31a38b603f3f09c376f7f7521f8d9116d8819e7c5f4c4c8a3ead4",
+      "bytes": 818
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 223765,
+  "elapsed_seconds": 10.49654162799925,
+  "source_dirty_after": ""
+}

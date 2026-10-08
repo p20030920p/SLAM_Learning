@@ -104,6 +104,20 @@ python3 "$DOCS/scripts/run_released_lidar.py" --runtime "$RUNTIME" --name releas
 
 已有下载会校验后复用；运行目录名必须新建。四份公开数据全部完成不代表论文所有消融、完整 KITTI 序列或定位系统实验完成。
 
+### 论文消融与无标注传感器示例
+
+DUFOMap 表 IV 五组精度消融已完成，[论文逐项对照](DUFOMAP_TABLE4.zh-CN.md)提供 PowerShell 重做命令和原始日志。它使用作者 TOML 参数，不替换算法函数。
+
+KTH campus（Leica，18 帧）和 twofloor（Livox，3305 帧）来自同一作者 Zenodo 发布版，**没有精度 GT**。下载与原始默认参数运行：
+
+```bash
+python3 "$DOCS/scripts/fetch_benchmark.py" --runtime "$RUNTIME" --qualitative-only
+"$RUNTIME/envs/lidar/bin/python" "$DOCS/scripts/run_dufo_qualitative.py" \
+  --runtime "$RUNTIME" --name dufomap-qualitative-manual-01
+```
+
+两份数据单独保存于 `data/benchmark-qualitative`，完成标准是完整帧数、原始入口退出成功、有限点坐标和文件哈希。点数减少不是动态剔除准确率；不要把它们加入有标签评分表。读取 `runs/dufomap-released-qualitative-01/outcomes.json` 判断本机是否已经完成。
+
 ## 4. 语义方法的原始命令
 
 独立环境与 CUDA 构建说明见 [环境文档](ENVIRONMENT.zh-CN.md)。

@@ -28,7 +28,7 @@ def main():
     for name in ['lidar-environment.txt','conceptgraphs-environment.txt','hovsg-environment.txt','workspace.json',
                  'replica-full-manifest.json','benchmark-released-manifest.json','clip-cache-provenance.json',
                  'conceptgraphs-semantic-gt-manifest.json','replica-original-manifest.json',
-                 'replica-original-parts-manifest.json']:
+                 'replica-original-parts-manifest.json','benchmark-qualitative-manifest.json']:
         source=args.runtime/name
         if source.is_file(): shutil.copy2(source,args.output/name)
     for source in (args.runtime/'runs').glob('*/setup.log'):
@@ -110,7 +110,8 @@ def main():
         if data.get('status')=='rendered':
             path=Path(data['video'])
             manifest[path.relative_to(args.runtime).as_posix()]={'bytes':data['bytes'],'sha256':data['video_sha256']}
-    for name in ['source-copy.json','compile-preflight.log','gui-actions.json']:
+    for name in ['source-copy.json','compile-preflight.log','gui-actions.json','input-manifest.json',
+                 'kthcampus-input-manifest.json','twofloor-input-manifest.json']:
         for source in sorted((args.runtime/'runs').glob('*/'+name)):
             target=args.output/'runs'/source.relative_to(args.runtime/'runs')
             target.parent.mkdir(parents=True,exist_ok=True)

@@ -1,0 +1,72 @@
+{
+  "status": "executed_five_settings",
+  "pid": 222645,
+  "settings": {
+    "no_ds_no_dp": {
+      "voxel_m": 0.1,
+      "ds_m": 0.0,
+      "dp": 0,
+      "paper_SA_DA_AA_percent": [
+        14.89,
+        99.99,
+        38.58
+      ],
+      "mapping": "executed",
+      "export": "executed"
+    },
+    "ds_only": {
+      "voxel_m": 0.1,
+      "ds_m": 0.2,
+      "dp": 0,
+      "paper_SA_DA_AA_percent": [
+        30.29,
+        99.99,
+        55.03
+      ],
+      "mapping": "executed",
+      "export": "executed"
+    },
+    "dp_only": {
+      "voxel_m": 0.1,
+      "ds_m": 0.0,
+      "dp": 1,
+      "paper_SA_DA_AA_percent": [
+        91.89,
+        98.97,
+        95.37
+      ],
+      "mapping": "executed",
+      "export": "executed"
+    },
+    "coarse_voxel": {
+      "voxel_m": 0.2,
+      "ds_m": 0.2,
+      "dp": 1,
+      "paper_SA_DA_AA_percent": [
+        92.97,
+        98.24,
+        95.57
+      ],
+      "mapping": "executed",
+      "export": "executed"
+    },
+    "full": {
+      "voxel_m": 0.1,
+      "ds_m": 0.2,
+      "dp": 1,
+      "paper_SA_DA_AA_percent": [
+        97.96,
+        98.72,
+        98.34
+      ],
+      "mapping": {
+        "verified_original_record": "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-cpp-original-command-01/record.json",
+        "sha256": "daa8c7c3871e3c18ef279a47aabb03d0fab0f5a79a08b1095a8764e535898f7d"
+      },
+      "export": "executed"
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "paper": "https://arxiv.org/html/2403.01449v1#S5.T4",
+  "scope": "Table IV accuracy settings; all 141 public 00 scans; original C++/PCL/Python; no performance or online claim"
+}

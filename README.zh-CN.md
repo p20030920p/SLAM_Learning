@@ -4,6 +4,8 @@
 
 **状态：两种 LiDAR 原始入口与作者评价已完成四份公开标注数据，共 1997 帧；语义方法仍在推进。尚未完成四篇论文的全部实验。**
 
+新增：[DUFOMap 表 IV 五组消融对照](docs/DUFOMAP_TABLE4.zh-CN.md)，SA/DA/AA 共 15 项与论文两位小数一致。
+
 ConceptGraphs 已完成 room0 的完整前端、原始三维映射与 RGB 参考表面；原始语义评价修复依赖后排队重试。这里有 [60 秒作者三维窗口实录](evidence/videos/conceptgraphs-room0-original-window.mp4)，可查看 RGB、实例颜色和视角操作。
 
 [English](README.md) · [运行与结果](docs/STATUS.zh-CN.md) · [Windows 起步和命令](docs/RUNBOOK.zh-CN.md) · [环境](docs/ENVIRONMENT.zh-CN.md) · [原库和复现范围](docs/SCOPE.zh-CN.md) · [执行证据](evidence/README.md)

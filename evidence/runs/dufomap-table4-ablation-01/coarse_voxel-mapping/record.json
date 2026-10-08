@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "method": "DUFOMap",
+  "scope": "Table IV accuracy settings; all 141 public 00 scans; original C++/PCL/Python; no performance or online claim; coarse_voxel-mapping; CPU quota 200%, not timing reproduction",
+  "status": "executed",
+  "started_at": "2026-10-08T22:08:51.254889+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-dufomap-table4-ablation-01-coarse_voxel-mapping",
+    "-p",
+    "MemoryMax=4G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=200%",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dufomap-gcc11/dufomap_run",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-table4-ablation-01/inputs/coarse_voxel",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-table4-ablation-01/coarse_voxel.toml"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "b2642320ba9819caacecf9a7b6fe657c98d2e010e345b56ba9e6d8f1f7158149",
+      "bytes": 23666
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-table4-ablation-01/inputs/coarse_voxel/dufomap_output.pcd": {
+      "sha256": "c0d47b0d0d28ce4aaa5fb8647b1b6279bb68dd7d61b91331a92dc9e37e7cad8f",
+      "bytes": 242570604
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-table4-ablation-01/coarse_voxel.toml": {
+      "sha256": "7ef15669dd592763f7a1bed9be74498d77b4c6b1b5e672ab3f55a00f2d23f6e4",
+      "bytes": 1604
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 223477,
+  "elapsed_seconds": 7.51191732100051,
+  "source_dirty_after": ""
+}

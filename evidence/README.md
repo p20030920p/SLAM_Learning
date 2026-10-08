@@ -6,6 +6,10 @@
 
 These small files are copied from new executions in `/home/qzl/projects/SLAM_Author_Originals`, not from the main branch's previous runs.
 
+`runs/dufomap-table4-ablation-01/` contains the five documented parameter settings, original PCL exports and original scoring logs. All 15 SA/DA/AA values match Table IV at two decimals; `figures/dufomap-table4.json` verifies this against the recorded log hash. No runtime comparison is claimed.
+
+`benchmark-qualitative-manifest.json` records the CRC/checksums for the unlabeled campus/twofloor releases. `runs/dufomap-released-qualitative-01/` records successful original DUFOMap runs on all 18/3305 scans, plus streaming geometry validation. These datasets have no GT and are excluded from accuracy tables.
+
 Each `record.json` contains the actual command, source commit, exit status, elapsed time, source cleanliness and artifact hashes. `artifact-manifest.json` binds local dataset and point-cloud outputs to SHA-256. A successful exit alone is not a full-reproduction claim. Logs include failed compiler/dependency attempts where collected; large datasets, weights and point clouds remain local.
 
 `configuration-diffs/` preserves relative paths for the author-required evaluation settings and separately labeled environment/SAM microbatch compatibility adjustments. Source snapshots with `running` or `interrupted` status are not completed results. `figures/lidar-scores.json` copies the printed original evaluator numbers, with its log hash. `sam-batch-comparison.json` checks only the 26 common saved frames; it does not establish full-sequence equivalence. The scope and limitations are described in [the status document](../docs/STATUS.zh-CN.md).

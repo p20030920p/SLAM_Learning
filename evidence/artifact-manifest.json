@@ -8027,6 +8027,26 @@
     "bytes": 184,
     "sha256": "71775a31d84d87c9cec02c51c882a890bde36eeef069146bac8a4602f27908a0"
   },
+  "runs/dufomap-table4-ablation-01/coarse_voxel.diff": {
+    "bytes": 542,
+    "sha256": "c6b06f36c0a3f29b9a2eeee3ca6ab818ca748d474993bb79b6d4428fd373da54"
+  },
+  "runs/dufomap-table4-ablation-01/dp_only.diff": {
+    "bytes": 537,
+    "sha256": "5c63fa0de90fc4ec8073df07c11ccf27680a4632ae85b346466a23311fe7fa2f"
+  },
+  "runs/dufomap-table4-ablation-01/ds_only.diff": {
+    "bytes": 537,
+    "sha256": "8f44700ebb1dd50799d98f432307713b3f8453810264f14d688cfcb4f7522742"
+  },
+  "runs/dufomap-table4-ablation-01/evaluation-config.diff": {
+    "bytes": 684,
+    "sha256": "1d87beedbb11d2d2df10bae79fcc62765c8a420b24abec9c717f57ab983b2587"
+  },
+  "runs/dufomap-table4-ablation-01/no_ds_no_dp.diff": {
+    "bytes": 541,
+    "sha256": "3171d530f9c0389fe1f5e2211c464c2e840716cc9afe3bdd1c0c5da68e3e38ae"
+  },
   "runs/lidar-evaluation-01/evaluation-config.diff": {
     "bytes": 660,
     "sha256": "58a387de66a4917e2b0154729d6ee012fb8d5691cf60b1c14ced083bcd06b68a"
@@ -8122,6 +8142,114 @@
   "runs/dufomap-python-original-01/run.log": {
     "sha256": "dcb417e31b1a1a40adff47ce14bc0d41cd879f5426fcb7c41933b3f57670df0f",
     "bytes": 24905
+  },
+  "runs/dufomap-released-qualitative-01/kthcampus-mapping/run.log": {
+    "sha256": "b2134f5219626a1bfaf08fffc4a0d79476a55dacc43060f845b8111b0b80b346",
+    "bytes": 5455
+  },
+  "runs/dufomap-released-qualitative-01/inputs/kthcampus/dufomap_output.pcd": {
+    "sha256": "b37bc30700ed4429ba32ed556a9aa5874d62a9deea5fe86e60ae8101c51fbf05",
+    "bytes": 320831644
+  },
+  "runs/dufomap-released-qualitative-01/twofloor-mapping/run.log": {
+    "sha256": "3e54bd1ab85ee0fd9032d14f1161be90d824ce00957134c2cfe45d2ac65081c8",
+    "bytes": 491637
+  },
+  "runs/dufomap-released-qualitative-01/inputs/twofloor/dufomap_output.pcd": {
+    "sha256": "c73bf438b1363dffcd13b4cd76a998b5d3df3a335564c33e654ccf3e8fcf41d7",
+    "bytes": 901047932
+  },
+  "runs/dufomap-table4-ablation-01/coarse_voxel-export/run.log": {
+    "sha256": "0b0eb9fc03bf23469e51b454f11630bcab125473117d07a516aea28a189646dc",
+    "bytes": 407
+  },
+  "runs/dufomap-table4-ablation-01/dataset/00/eval/coarse_voxel_output_exportGT.pcd": {
+    "sha256": "c2d2462d9037be4c1b319bd818f100ab8a8641ee99386508e851424b74891f16",
+    "bytes": 277795874
+  },
+  "runs/dufomap-table4-ablation-01/coarse_voxel-mapping/run.log": {
+    "sha256": "b2642320ba9819caacecf9a7b6fe657c98d2e010e345b56ba9e6d8f1f7158149",
+    "bytes": 23666
+  },
+  "runs/dufomap-table4-ablation-01/inputs/coarse_voxel/dufomap_output.pcd": {
+    "sha256": "c0d47b0d0d28ce4aaa5fb8647b1b6279bb68dd7d61b91331a92dc9e37e7cad8f",
+    "bytes": 242570604
+  },
+  "runs/dufomap-table4-ablation-01/coarse_voxel.toml": {
+    "sha256": "7ef15669dd592763f7a1bed9be74498d77b4c6b1b5e672ab3f55a00f2d23f6e4",
+    "bytes": 1604
+  },
+  "runs/dufomap-table4-ablation-01/dp_only-export/run.log": {
+    "sha256": "c9d49965d77e463a8b872a626f301a229641ec1d4cf7d9c4918b445171c42387",
+    "bytes": 397
+  },
+  "runs/dufomap-table4-ablation-01/dataset/00/eval/dp_only_output_exportGT.pcd": {
+    "sha256": "bff5a81e99de054c0819cb1e5fc361d84cffd6ba9df62cb4ba5426bfb85df34d",
+    "bytes": 277795874
+  },
+  "runs/dufomap-table4-ablation-01/dp_only-mapping/run.log": {
+    "sha256": "a4743d8ac7ed43225fca47ad3d713f489223ad61e091ce0df0b33a4be6ce851f",
+    "bytes": 23656
+  },
+  "runs/dufomap-table4-ablation-01/inputs/dp_only/dufomap_output.pcd": {
+    "sha256": "bf05bac0f9150d023bcd055d2373625251ba68899966367dd45e169ce38196be",
+    "bytes": 210286556
+  },
+  "runs/dufomap-table4-ablation-01/dp_only.toml": {
+    "sha256": "0cf80a853ac21148d576f61713cc4854c180f8a6533c3f5f6d4aedcac0363937",
+    "bytes": 1604
+  },
+  "runs/dufomap-table4-ablation-01/ds_only-export/run.log": {
+    "sha256": "001f17249fb729d7521d08063f0fc5919c997ac0a509cb96ef360bf5d0a06498",
+    "bytes": 397
+  },
+  "runs/dufomap-table4-ablation-01/dataset/00/eval/ds_only_output_exportGT.pcd": {
+    "sha256": "29025131197a5956b5bff0fdd2b861f4ea6526d4a9031cbaf6f7fde717fe3e1b",
+    "bytes": 277795874
+  },
+  "runs/dufomap-table4-ablation-01/ds_only-mapping/run.log": {
+    "sha256": "16d5b1f80d5da83b0265b8d31b4433d409e081d237a4c05b4ef30893b4ba6eb9",
+    "bytes": 23656
+  },
+  "runs/dufomap-table4-ablation-01/inputs/ds_only/dufomap_output.pcd": {
+    "sha256": "80b938932932f6c888a632de3abf6ded602bd635852fc7560db5bc7d9cd0f7c4",
+    "bytes": 58460826
+  },
+  "runs/dufomap-table4-ablation-01/ds_only.toml": {
+    "sha256": "e53f9b48a5e8d2f7e41c428e6c599c665325c5f9e73681a61bac44d997bf64d7",
+    "bytes": 1604
+  },
+  "runs/dufomap-table4-ablation-01/full-export/run.log": {
+    "sha256": "44fb9e12ed9581ffd3ec7e0d69e232778d7b2342eb883386284393e7ffbb9d1e",
+    "bytes": 391
+  },
+  "runs/dufomap-table4-ablation-01/dataset/00/eval/full_output_exportGT.pcd": {
+    "sha256": "be2f16d94485560f7969411fcd29d7a743ff43f5dbd5f2117ee5df338481d88a",
+    "bytes": 277795874
+  },
+  "runs/dufomap-table4-ablation-01/no_ds_no_dp-export/run.log": {
+    "sha256": "b29d989a933cfe0ea98595ca4aacc813a30908fc6728bf65817c6b048ec35c9b",
+    "bytes": 405
+  },
+  "runs/dufomap-table4-ablation-01/dataset/00/eval/no_ds_no_dp_output_exportGT.pcd": {
+    "sha256": "db77f8477056eb32b212f0716c3446808a02ea2f63f23663be89befedc02846f",
+    "bytes": 277795874
+  },
+  "runs/dufomap-table4-ablation-01/no_ds_no_dp-mapping/run.log": {
+    "sha256": "d81e0bb466f15231b6d78609f38448a2736868396f8e5ef942d2734019e2fd42",
+    "bytes": 23672
+  },
+  "runs/dufomap-table4-ablation-01/inputs/no_ds_no_dp/dufomap_output.pcd": {
+    "sha256": "15c1a9abd94426daf1ceeee765891b31f6a57bc475ea1b0e4e0f97a7326ad57e",
+    "bytes": 22899658
+  },
+  "runs/dufomap-table4-ablation-01/no_ds_no_dp.toml": {
+    "sha256": "9141af5c261facbb26259eeb744b3e3b55da40c8b08de49bfbb57d1a1dd62115",
+    "bytes": 1604
+  },
+  "runs/dufomap-table4-ablation-01/scores/run.log": {
+    "sha256": "f4efa0abbcd31a38b603f3f09c376f7f7521f8d9116d8819e7c5f4c4c8a3ead4",
+    "bytes": 818
   },
   "runs/hovsg-import-preflight-01/run.log": {
     "sha256": "ab875df4c720f520681e40fe685d4fa7885bb366bf457dc1266510c1d584eb50",
