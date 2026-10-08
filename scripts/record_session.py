@@ -188,6 +188,7 @@ def main():
                 "-e",
                 "script",
                 "-q",
+                "-f",
                 "-e",
                 "--log-out",
                 str(directory / "terminal.raw"),
