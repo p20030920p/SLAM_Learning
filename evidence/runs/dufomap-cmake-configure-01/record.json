@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "method": "DUFOMap-build",
+  "scope": "Official CMake configure with author-recommended g++-10",
+  "status": "executed",
+  "started_at": "2026-10-08T18:17:30.426540+00:00",
+  "command": [
+    "cmake",
+    "-S",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+    "-B",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dufomap",
+    "-D",
+    "CMAKE_CXX_COMPILER=g++-10"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "e492fef8ff9f54474a8d9a4a38927e47d0ff14a0792d6e2759fafdc17cbefc55",
+      "bytes": 765
+    }
+  },
+  "elapsed_seconds": 5.598242373000005,
+  "source_dirty_after": ""
+}

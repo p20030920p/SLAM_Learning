@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "method": "DUFOMap",
+  "scope": "Author C++ entry and unchanged assets/config.toml, all 141 scans of public 00 teaser",
+  "status": "executed",
+  "started_at": "2026-10-08T18:20:55.205938+00:00",
+  "command": [
+    "/home/qzl/projects/SLAM_Author_Originals/build/dufomap-gcc11/dufomap_run",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-cpp-original-01/input/00",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/assets/config.toml"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "6e27bb75866fc612e5a426f7d7d07bf0f96c4bc1b3c899df08ccac288788d288",
+      "bytes": 23545
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/dufomap-cpp-original-01/input/00/dufomap_output.pcd": {
+      "sha256": "daa8c7c3871e3c18ef279a47aabb03d0fab0f5a79a08b1095a8764e535898f7d",
+      "bytes": 255792764
+    }
+  },
+  "elapsed_seconds": 12.220750782999971,
+  "source_dirty_after": ""
+}

@@ -1,0 +1,9 @@
+/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/ms_deform_attn.py:31: UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+  warnings.warn("Failed to load custom C++ ops. Running on CPU mode Only!")
+RAM sub-package not found. Please check your GSA_PATH. 
+Traceback (most recent call last):
+  File "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/scripts/generate_gsa_results.py", line 63, in <module>
+    raise e
+  File "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/scripts/generate_gsa_results.py", line 58, in <module>
+    from ram.models import ram
+ModuleNotFoundError: No module named 'ram'

@@ -1,0 +1,14 @@
+{
+  "provider": "DeepSeek",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "model": "deepseek-flash",
+  "thinking": "disabled",
+  "task_cap_usd": "1.00",
+  "max_output_tokens": 8192,
+  "input_reservation_tokens": 1000000,
+  "peak_input_usd_per_million": "0.30",
+  "peak_output_usd_per_million": "1.20",
+  "price_verified_date": "2026-10-08",
+  "price_source": "https://api-docs.deepseek.com/quick_start/pricing/?push_animated=1&theme=light&webview_progress_bar=1",
+  "reservation_policy": "Reserve the full documented context ceiling plus maximum output for every request. Never release reservations, including failures. This permits at most 3 calls under this task cap; do not claim a complete graph if more calls are needed."
+}

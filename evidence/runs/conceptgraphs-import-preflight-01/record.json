@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-preflight",
+  "scope": "Import preflight of original 2D frontend, no mapping yet",
+  "status": "failed",
+  "started_at": "2026-10-08T18:29:36.514978+00:00",
+  "command": [
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "scripts/generate_gsa_results.py",
+    "--help"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 1,
+  "artifacts": {
+    "run.log": {
+      "sha256": "794169ef801b2682c1f1a83f11876f82529739f34be66af24cdec8baf8bac1aa",
+      "bytes": 754
+    }
+  },
+  "elapsed_seconds": 11.680882382999926,
+  "source_dirty_after": ""
+}

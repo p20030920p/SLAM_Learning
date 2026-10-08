@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "method": "HOV-SG-preflight",
+  "scope": "Import/configuration preflight of author semantic entry, no mapping yet",
+  "status": "executed",
+  "started_at": "2026-10-08T18:29:25.783989+00:00",
+  "command": [
+    "/home/qzl/projects/SLAM_Author_Originals/envs/hovsg/bin/python",
+    "application/semantic_segmentation.py",
+    "--help"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/hovsg",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/hovsg",
+  "source_commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "ab875df4c720f520681e40fe685d4fa7885bb366bf457dc1266510c1d584eb50",
+      "bytes": 1192
+    }
+  },
+  "elapsed_seconds": 10.430575237999847,
+  "source_dirty_after": ""
+}

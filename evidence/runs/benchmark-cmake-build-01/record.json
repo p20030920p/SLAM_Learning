@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-build",
+  "scope": "Unmodified official export_eval_pcd executable",
+  "status": "executed",
+  "started_at": "2026-10-08T18:21:52.132582+00:00",
+  "command": [
+    "cmake",
+    "--build",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dynamicmap",
+    "--target",
+    "export_eval_pcd",
+    "--parallel",
+    "2"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "e5ecfda025e1ec79c4be5557054862f4229298de7fa48cdb4da55a9ecceccc74",
+      "bytes": 166
+    }
+  },
+  "elapsed_seconds": 4.320041278000076,
+  "source_dirty_after": ""
+}

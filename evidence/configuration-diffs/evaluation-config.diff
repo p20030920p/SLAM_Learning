@@ -1,0 +1,15 @@
+--- upstream/evaluate_all.py
++++ configured/evaluate_all.py
+@@ -22,9 +22,9 @@
+ from utils import cnt_staticAdynamic, check_file_exists, bc
+ 
+ # TODO: Change the parameters below to your own settings ====>>
+-Result_Folder = "/home/kin/data/Dynamic_Papers_assets/BenchmarkPaper"
+-algorithms = ["octomap", "octomapg", "octomapfg", "beautymap", "dufomap"]
+-all_seqs = ["00", "05", "av2", "semindoor"]
++Result_Folder = '/home/qzl/projects/SLAM_Author_Originals/runs/lidar-evaluation-01/dataset'
++algorithms = ['beautymap', 'dufomap', 'dufomap_python']
++all_seqs = ['00']
+ # TODO: Change the parameters below to your own settings <<===
+ 
+ if __name__ == "__main__":

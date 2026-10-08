@@ -1,0 +1,50 @@
+/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/ms_deform_attn.py:31: UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+  warnings.warn("Failed to load custom C++ ops. Running on CPU mode Only!")
+usage: generate_gsa_results.py [-h] --dataset_root DATASET_ROOT
+                               --dataset_config DATASET_CONFIG
+                               [--scene_id SCENE_ID] [--start START]
+                               [--end END] [--stride STRIDE]
+                               [--desired_height DESIRED_HEIGHT]
+                               [--desired_width DESIRED_WIDTH]
+                               [--box_threshold BOX_THRESHOLD]
+                               [--text_threshold TEXT_THRESHOLD]
+                               [--nms_threshold NMS_THRESHOLD]
+                               [--class_set {scene,generic,minimal,tag2text,ram,none}]
+                               [--detector {yolo,dino}] [--add_bg_classes]
+                               [--accumu_classes]
+                               [--sam_variant {fastsam,mobilesam,lighthqsam}]
+                               [--save_video] [--device DEVICE]
+                               [--use_slow_vis] [--exp_suffix EXP_SUFFIX]
+
+options:
+  -h, --help            show this help message and exit
+  --dataset_root DATASET_ROOT
+  --dataset_config DATASET_CONFIG
+                        This path may need to be changed depending on where
+                        you run this script.
+  --scene_id SCENE_ID
+  --start START
+  --end END
+  --stride STRIDE
+  --desired_height DESIRED_HEIGHT
+  --desired_width DESIRED_WIDTH
+  --box_threshold BOX_THRESHOLD
+  --text_threshold TEXT_THRESHOLD
+  --nms_threshold NMS_THRESHOLD
+  --class_set {scene,generic,minimal,tag2text,ram,none}
+                        If none, no tagging and detection will be used and the
+                        SAM will be run in dense sampling mode.
+  --detector {yolo,dino}
+                        When given classes, whether to use YOLO-World or
+                        GroundingDINO to detect objects.
+  --add_bg_classes      If set, add background classes (wall, floor, ceiling)
+                        to the class set.
+  --accumu_classes      if set, the class set will be accumulated over frames
+  --sam_variant {fastsam,mobilesam,lighthqsam}
+  --save_video
+  --device DEVICE
+  --use_slow_vis        If set, use vis_result_slow_caption. Only effective
+                        when using ram/tag2text.
+  --exp_suffix EXP_SUFFIX
+                        The suffix of the folder that the results will be
+                        saved to.

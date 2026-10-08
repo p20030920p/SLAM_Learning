@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-build",
+  "scope": "Official CMake evaluation tools",
+  "status": "executed",
+  "started_at": "2026-10-08T18:21:06.699550+00:00",
+  "command": [
+    "cmake",
+    "-S",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap/scripts",
+    "-B",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dynamicmap"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "5ba03c1bbf439228a27e50f81a83b1dcde3f9152ce898498af92085c2392a825",
+      "bytes": 8835
+    }
+  },
+  "elapsed_seconds": 46.32409709600006,
+  "source_dirty_after": ""
+}

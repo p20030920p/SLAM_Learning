@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "repositories": {
+    "dufomap": {"url": "https://github.com/KTH-RPL/dufomap.git", "commit": "9e239ddd5995136e14f5212f33382a6ebc59e518"},
+    "beautymap": {"url": "https://github.com/MKJia/BeautyMap.git", "commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e"},
+    "conceptgraphs": {"url": "https://github.com/concept-graphs/concept-graphs.git", "commit": "93277a02bd89171f8121e84203121cf7af9ebb5d"},
+    "hovsg": {"url": "https://github.com/hovsg/HOV-SG.git", "commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605"},
+    "dynamicmap": {"url": "https://github.com/KTH-RPL/DynamicMap_Benchmark.git", "commit": "8b60f36a735a910b8c54b7eb12438db76fb32460"}
+  },
+  "author_dependencies": {
+    "ufomap": {"url": "https://github.com/UnknownFreeOccupied/ufomap", "commit": "fcb20f445d257280c039c07ab756c9d5b37ebd78", "selected_by": "DUFOMap gitlink"},
+    "grounded_sam": {"url": "https://github.com/IDEA-Research/Grounded-Segment-Anything.git", "commit": "a4d76a2b55e348943cba4cd57d7553c354296223", "selected_by": "ConceptGraphs README"},
+    "llava": {"url": "https://github.com/haotian-liu/LLaVA.git", "commit": "8fc54a09a6be74b2abd913c468fb3d42ae826194", "selected_by": "ConceptGraphs README"}
+  }
+}

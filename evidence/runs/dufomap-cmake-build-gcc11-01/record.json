@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "method": "DUFOMap-build",
+  "scope": "Unmodified source; g++-11 instead of recommended g++-10",
+  "status": "executed",
+  "started_at": "2026-10-08T18:20:39.101633+00:00",
+  "command": [
+    "cmake",
+    "--build",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dufomap-gcc11",
+    "--parallel",
+    "2"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "2d8460d38ce9223db25bbd25dc6284fbd5edf5c57788b581bc20af7d15dfe12c",
+      "bytes": 284
+    }
+  },
+  "elapsed_seconds": 14.963619494,
+  "source_dirty_after": ""
+}

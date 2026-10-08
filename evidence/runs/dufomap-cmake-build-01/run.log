@@ -1,0 +1,92 @@
+[ 25%] Building CXX object ufomap/CMakeFiles/Map.dir/src/map/io.cpp.o
+[ 50%] Linking CXX shared library libMap.so
+[ 50%] Built target Map
+[ 75%] Building CXX object CMakeFiles/dufomap_run.dir/src/dufomap.cpp.o
+In file included from /usr/include/c++/10/pstl/parallel_backend.h:16,
+                 from /usr/include/c++/10/pstl/algorithm_impl.h:22,
+                 from /usr/include/c++/10/pstl/glue_execution_defs.h:50,
+                 from /usr/include/c++/10/execution:32,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/algorithm/algorithm.hpp:56,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/map/integration/integration_impl.hpp:46,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/map/integration/integration.hpp:46,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/src/dufomap.cpp:2:
+/usr/include/c++/10/pstl/parallel_backend_tbb.h: In function ‘void __pstl::__par_backend::__cancel_execution()’:
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:70:10: error: ‘tbb::task’ has not been declared
+   70 |     tbb::task::self().group()->cancel_group_execution();
+      |          ^~~~
+/usr/include/c++/10/pstl/parallel_backend_tbb.h: At global scope:
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:414:1: error: expected class-name before ‘{’ token
+  414 | {
+      | ^
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:415:23: error: ‘task’ in namespace ‘tbb’ does not name a type
+  415 |     /*override*/ tbb::task*
+      |                       ^~~~
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:438:6: error: ‘task’ in namespace ‘tbb’ does not name a type
+  438 | tbb::task*
+      |      ^~~~
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:483:1: error: expected class-name before ‘{’ token
+  483 | {
+      | ^
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:490:23: error: ‘task’ in namespace ‘tbb’ does not name a type
+  490 |     /*override*/ tbb::task*
+      |                       ^~~~
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:520:6: error: ‘task’ in namespace ‘tbb’ does not name a type
+  520 | tbb::task*
+      |      ^~~~
+/usr/include/c++/10/pstl/parallel_backend_tbb.h: In lambda function:
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:602:24: error: ‘task’ has not been declared in ‘tbb’
+  602 |             using tbb::task;
+      |                        ^~~~
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:603:13: error: ‘task’ has not been declared
+  603 |             task::spawn_root_and_wait(*new (task::allocate_root())
+      |             ^~~~
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:603:45: error: ‘task’ was not declared in this scope; did you mean ‘tbb::detail::d1::task’?
+  603 |             task::spawn_root_and_wait(*new (task::allocate_root())
+      |                                             ^~~~
+      |                                             tbb::detail::d1::task
+In file included from /usr/include/oneapi/tbb/parallel_for.h:23,
+                 from /usr/include/tbb/parallel_for.h:17,
+                 from /usr/include/c++/10/pstl/parallel_backend_tbb.h:20,
+                 from /usr/include/c++/10/pstl/parallel_backend.h:16,
+                 from /usr/include/c++/10/pstl/algorithm_impl.h:22,
+                 from /usr/include/c++/10/pstl/glue_execution_defs.h:50,
+                 from /usr/include/c++/10/execution:32,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/algorithm/algorithm.hpp:56,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/map/integration/integration_impl.hpp:46,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/map/integration/integration.hpp:46,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/src/dufomap.cpp:2:
+/usr/include/oneapi/tbb/detail/_task.h:214:31: note: ‘tbb::detail::d1::task’ declared here
+  214 | class alignas(task_alignment) task : public task_traits {
+      |                               ^~~~
+In file included from /usr/include/c++/10/pstl/parallel_backend.h:16,
+                 from /usr/include/c++/10/pstl/algorithm_impl.h:22,
+                 from /usr/include/c++/10/pstl/glue_execution_defs.h:50,
+                 from /usr/include/c++/10/execution:32,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/algorithm/algorithm.hpp:56,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/map/integration/integration_impl.hpp:46,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/map/integration/integration.hpp:46,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/src/dufomap.cpp:2:
+/usr/include/c++/10/pstl/parallel_backend_tbb.h: In lambda function:
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:640:18: error: ‘tbb::task’ has not been declared
+  640 |             tbb::task::spawn_root_and_wait(*new (tbb::task::allocate_root()) _TaskType(
+      |                  ^~~~
+/usr/include/c++/10/pstl/parallel_backend_tbb.h:640:55: error: ‘task’ is not a member of ‘tbb’; did you mean ‘tbb::detail::d1::task’?
+  640 |             tbb::task::spawn_root_and_wait(*new (tbb::task::allocate_root()) _TaskType(
+      |                                                       ^~~~
+In file included from /usr/include/oneapi/tbb/parallel_for.h:23,
+                 from /usr/include/tbb/parallel_for.h:17,
+                 from /usr/include/c++/10/pstl/parallel_backend_tbb.h:20,
+                 from /usr/include/c++/10/pstl/parallel_backend.h:16,
+                 from /usr/include/c++/10/pstl/algorithm_impl.h:22,
+                 from /usr/include/c++/10/pstl/glue_execution_defs.h:50,
+                 from /usr/include/c++/10/execution:32,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/algorithm/algorithm.hpp:56,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/map/integration/integration_impl.hpp:46,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/ufomap/include/ufo/map/integration/integration.hpp:46,
+                 from /home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/src/dufomap.cpp:2:
+/usr/include/oneapi/tbb/detail/_task.h:214:31: note: ‘tbb::detail::d1::task’ declared here
+  214 | class alignas(task_alignment) task : public task_traits {
+      |                               ^~~~
+gmake[2]: *** [CMakeFiles/dufomap_run.dir/build.make:76: CMakeFiles/dufomap_run.dir/src/dufomap.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:100: CMakeFiles/dufomap_run.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2

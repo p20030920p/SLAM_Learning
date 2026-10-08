@@ -1,0 +1,81 @@
+Using Python 3.10.12 environment at: /home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs
+Resolved 1 package in 157ms
+   Building ram @ file:///home/qzl/projects/SLAM_Author_Originals/dependencies/recognize-anything
+      Built ram @ file:///home/qzl/projects/SLAM_Author_Originals/dependencies/recognize-anything
+Prepared 1 package in 179ms
+Installed 1 package in 1ms
+ + ram==0.0.1 (from file:///home/qzl/projects/SLAM_Author_Originals/dependencies/recognize-anything)
+Using Python 3.10.12 environment at: /home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs
+   Updating https://github.com/openai/CLIP.git (HEAD)
+    Updated https://github.com/openai/CLIP.git (d05afc436d78f1c48dc0dbf8e5980a9d471f35f6)
+Resolved 25 packages in 7.62s
+   Building clip @ git+https://github.com/openai/CLIP.git@d05afc436d78f1c48dc0dbf8e5980a9d471f35f6
+      Built clip @ git+https://github.com/openai/CLIP.git@d05afc436d78f1c48dc0dbf8e5980a9d471f35f6
+Prepared 1 package in 186ms
+Installed 1 package in 1ms
+ + clip==1.0 (from git+https://github.com/openai/CLIP.git@d05afc436d78f1c48dc0dbf8e5980a9d471f35f6)
+Using Python 3.10.12 environment at: /home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs
+Running ConceptGraphs-preflight; log: /home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-import-preflight-02/run.log
+ConceptGraphs-preflight: executed -> /home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-import-preflight-02/record.json
+⚠ Shard Index for nvidia/label/cuda-11.8.0/linux-64 not available, falling back to flat repodata
+Using Flat Repodata for nvidia/label/cuda-11.8.0/linux-64                                       ✔ Starting
+Using Flat Repodata for nvidia/label/cuda-11.8.0/linux-64                                 ✔ Done (0.0 sec)
+⚠ Shard Index for nvidia/label/cuda-11.8.0/noarch not available, falling back to flat repodata
+Using Flat Repodata for nvidia/label/cuda-11.8.0/noarch                                         ✔ Starting
+Using Flat Repodata for nvidia/label/cuda-11.8.0/noarch                                   ✔ Done (0.0 sec)
+Parsing Packages' Records                                                                 ✔ Done (0.0 sec)
+
+Resolving Environment                                                                           ⧖ Starting
+Resolving Environment                                                                     ✔ Done (0.0 sec)
+
+Transaction
+
+  Prefix: /home/qzl/projects/SLAM_Author_Originals/envs/cuda118
+
+  Updating specs:
+
+   - cuda-nvcc
+   - cuda-cudart-dev
+   - cuda-driver-dev
+
+
+  Package            Version  Build  Channel                       Size
+─────────────────────────────────────────────────────────────────────────
+  Install:
+─────────────────────────────────────────────────────────────────────────
+
+  + cuda-cccl        11.8.89  0      nvidia/label/cuda-11.8.0       1MB
+  + cuda-cudart      11.8.89  0      nvidia/label/cuda-11.8.0     202kB
+  + cuda-cudart-dev  11.8.89  0      nvidia/label/cuda-11.8.0       1MB
+  + cuda-driver-dev  11.8.89  0      nvidia/label/cuda-11.8.0      16kB
+  + cuda-nvcc        11.8.89  0      nvidia/label/cuda-11.8.0      53MB
+
+  Summary:
+
+  Install: 5 packages
+
+  Total download: 56MB
+
+─────────────────────────────────────────────────────────────────────────
+
+
+warning  libmamba Security Warning: This transaction includes executing package scripts (pre/post-link/unlink) if present. These scripts can contain arbitrary code. Please ensure you trust the package sources.
+
+Transaction starting
+Linking cuda-driver-dev-11.8.89-0
+Linking cuda-nvcc-11.8.89-0
+Linking cuda-cccl-11.8.89-0
+Linking cuda-cudart-11.8.89-0
+Linking cuda-cudart-dev-11.8.89-0
+
+Transaction finished
+
+
+To activate this environment, use:
+
+    micromamba activate /home/qzl/projects/SLAM_Author_Originals/envs/cuda118
+
+Or to execute a single command in this environment, use:
+
+    micromamba run -p /home/qzl/projects/SLAM_Author_Originals/envs/cuda118 mycommand
+

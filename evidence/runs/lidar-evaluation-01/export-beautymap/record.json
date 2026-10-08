@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-export",
+  "scope": "Official PCL nearest-neighbor evaluator, threshold 0.05m; public 00 teaser",
+  "status": "executed",
+  "started_at": "2026-10-08T18:23:52.096210+00:00",
+  "command": [
+    "/home/qzl/projects/SLAM_Author_Originals/build/dynamicmap/export_eval_pcd",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/lidar-evaluation-01/dataset/00",
+    "beautymap_output.pcd",
+    "0.05"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "1107e091f1d1184bea7d1a68372aa2e0f0c92d790aecd023f1bdd46b8987b42c",
+      "bytes": 264
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/lidar-evaluation-01/dataset/00/eval/beautymap_output_exportGT.pcd": {
+      "sha256": "a7fe2b1bf6418852e3f27601de0eb59fad016e188c16cee4c9bda3dbb1d2baf9",
+      "bytes": 277795874
+    }
+  },
+  "elapsed_seconds": 33.119063985000025,
+  "source_dirty_after": ""
+}

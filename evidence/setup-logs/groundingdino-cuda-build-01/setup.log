@@ -1,0 +1,407 @@
+Using Python 3.10.12 environment at: /home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs
+Resolved 1 package in 1.84s
+   Building groundingdino @ file:///home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO
+  × Failed to build `groundingdino @
+  │ file:///home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO`
+  ├─▶ The build backend returned an error
+  ╰─▶ Call to `setuptools.build_meta:__legacy__.build_editable` failed (exit
+      status: 1)
+
+      [stdout]
+      Building wheel groundingdino-0.1.0
+      Compiling with CUDA
+      running editable_wheel
+      creating
+      /home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino.egg-info
+      writing
+      /home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino.egg-info/PKG-INFO
+      writing dependency_links to
+      /home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino.egg-info/dependency_links.txt
+      writing requirements to
+      /home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino.egg-info/requires.txt
+      writing top-level names to
+      /home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino.egg-info/top_level.txt
+      writing manifest file
+      '/home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino.egg-info/SOURCES.txt'
+      reading manifest file
+      '/home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino.egg-info/SOURCES.txt'
+      adding license file 'LICENSE'
+      writing manifest file
+      '/home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino.egg-info/SOURCES.txt'
+      creating
+      '/home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino-0.1.0.dist-info'
+      creating
+      /home/qzl/.cache/uv/builds-v0/.tmpgWDxZJ/.tmp-kddvofgb/groundingdino-0.1.0.dist-info/WHEEL
+      running build_py
+      running build_ext
+      building 'groundingdino._C' extension
+      creating
+      /tmp/tmpy2o_jzkl.build-temp/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn
+      [1/4] /home/qzl/projects/SLAM_Author_Originals/envs/cuda118/bin/nvcc
+      -DWITH_CUDA
+      -I/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/torch/csrc/api/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/TH
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/THC
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/cuda118/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/include
+      -I/usr/include/python3.10 -c -c
+      /home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cuda.cu
+      -o
+      /tmp/tmpy2o_jzkl.build-temp/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cuda.o
+      -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__
+      -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"''
+      -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__
+      -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"'
+      '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"'
+      -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+      -gencode=arch=compute_89,code=sm_89 -std=c++17
+      FAILED: [code=1]
+      /tmp/tmpy2o_jzkl.build-temp/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cuda.o
+      /home/qzl/projects/SLAM_Author_Originals/envs/cuda118/bin/nvcc
+      -DWITH_CUDA
+      -I/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/torch/csrc/api/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/TH
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/THC
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/cuda118/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/include
+      -I/usr/include/python3.10 -c -c
+      /home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cuda.cu
+      -o
+      /tmp/tmpy2o_jzkl.build-temp/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cuda.o
+      -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__
+      -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"''
+      -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__
+      -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"'
+      '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"'
+      -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+      -gencode=arch=compute_89,code=sm_89 -std=c++17
+      In file included from
+      /home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_im2col_cuda.cuh:17,
+                       from
+      /home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cuda.cu:12:
+      /home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/ATen/cuda/CUDAContext.h:6:10:
+      fatal error: cusparse.h: No such file or directory
+          6 | #include <cusparse.h>
+            |          ^~~~~~~~~~~~
+      compilation terminated.
+      [2/4] c++ -MMD -MF
+      /tmp/tmpy2o_jzkl.build-temp/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cpu.o.d
+      -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv
+      -O2 -Wall -g -fstack-protector-strong -Wformat
+      -Werror=format-security -g -fwrapv -O2 -fPIC -DWITH_CUDA
+      -I/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/torch/csrc/api/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/TH
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/THC
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/cuda118/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/include
+      -I/usr/include/python3.10 -c -c
+      /home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cpu.cpp
+      -o
+      /tmp/tmpy2o_jzkl.build-temp/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cpu.o
+      -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"'
+      '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"'
+      -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++17
+      FAILED: [code=1]
+      /tmp/tmpy2o_jzkl.build-temp/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cpu.o
+      c++ -MMD -MF
+      /tmp/tmpy2o_jzkl.build-temp/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cpu.o.d
+      -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv
+      -O2 -Wall -g -fstack-protector-strong -Wformat
+      -Werror=format-security -g -fwrapv -O2 -fPIC -DWITH_CUDA
+      -I/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/torch/csrc/api/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/TH
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/THC
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/cuda118/include
+      -I/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/include
+      -I/usr/include/python3.10 -c -c
+      /home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cpu.cpp
+      -o
+      /tmp/tmpy2o_jzkl.build-temp/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cpu.o
+      -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"'
+      '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"'
+      -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++17
+      In file included from
+      /home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything/GroundingDINO/groundingdino/models/GroundingDINO/csrc/MsDeformAttn/ms_deform_attn_cpu.cpp:14:
+      /home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/include/ATen/cuda/CUDAContext.h:6:10:
+      fatal error: cusparse.h: No such file or directory
+          6 | #include <cusparse.h>
+            |          ^~~~~~~~~~~~
+      compilation terminated.
+      ninja: build stopped: subcommand failed.
+
+      [stderr]
+      /home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py:398:
+      UserWarning: There are no x86_64-linux-gnu-g++ version bounds defined
+      for CUDA version 11.8
+        warnings.warn(f'There are no {compiler_name} version bounds defined
+      for CUDA version {cuda_str_version}')
+      Emitting ninja build file /tmp/tmpy2o_jzkl.build-temp/build.ninja...
+      Compiling objects...
+      Using envvar MAX_JOBS (2) as the number of workers...
+      Traceback (most recent call last):
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 1893, in _run_ninja_build
+          subprocess.run(
+        File "/usr/lib/python3.10/subprocess.py", line 526, in run
+          raise CalledProcessError(retcode, process.args,
+      subprocess.CalledProcessError: Command '['ninja', '-v', '-j', '2']'
+      returned non-zero exit status 1.
+
+      The above exception was the direct cause of the following exception:
+
+      Traceback (most recent call last):
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/editable_wheel.py",
+      line 139, in run
+          self._create_wheel_file(bdist_wheel)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/editable_wheel.py",
+      line 340, in _create_wheel_file
+          files, mapping = self._run_build_commands(dist_name, unpacked, lib,
+      tmp)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/editable_wheel.py",
+      line 263, in _run_build_commands
+          self._run_build_subcommands()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/editable_wheel.py",
+      line 290, in _run_build_subcommands
+          self.run_command(name)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/cmd.py",
+      line 357, in run_command
+          self.distribution.run_command(command)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/dist.py",
+      line 1104, in run_command
+          super().run_command(command)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/dist.py",
+      line 1021, in run_command
+          cmd_obj.run()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/build_ext.py",
+      line 99, in run
+          _build_ext.run(self)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py",
+      line 368, in run
+          self.build_extensions()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 843, in build_extensions
+          build_ext.build_extensions(self)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py",
+      line 484, in build_extensions
+          self._build_extensions_serial()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py",
+      line 510, in _build_extensions_serial
+          self.build_extension(ext)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/build_ext.py",
+      line 264, in build_extension
+          _build_ext.build_extension(self, ext)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py",
+      line 565, in build_extension
+          objects = self.compiler.compile(
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 658, in unix_wrap_ninja_compile
+          _write_ninja_file_and_compile_objects(
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 1574, in _write_ninja_file_and_compile_objects
+          _run_ninja_build(
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 1909, in _run_ninja_build
+          raise RuntimeError(message) from e
+      RuntimeError: Error compiling objects for extension
+      /home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/dist.py:1021:
+      _DebuggingTips: Problem in editable installation.
+      !!
+
+      
+      ********************************************************************************
+              An error happened while installing `groundingdino` in editable
+      mode.
+
+              The following steps are recommended to help debug this problem:
+
+              - Try to install the project normally, without using the
+      editable mode.
+                Does the error still persist?
+                (If it does, try fixing the problem before attempting the
+      editable mode).
+              - If you are using binary extensions, make sure you have all
+      OS-level
+                dependencies installed (e.g. compilers, toolchains, binary
+      libraries, ...).
+              - Try the latest version of setuptools (maybe the error was
+      already fixed).
+              - If you (or your project dependencies) are using any setuptools
+      extension
+                or customization, make sure they support the editable mode.
+
+              After following the steps above, if the problem still persists
+      and
+              you think this is related to how setuptools handles editable
+      installations,
+              please submit a reproducible example
+              (see https://stackoverflow.com/help/minimal-reproducible-example)
+      to:
+
+                  https://github.com/pypa/setuptools/issues
+
+              See
+      https://setuptools.pypa.io/en/latest/userguide/development_mode.html
+      for details.
+      
+      ********************************************************************************
+
+      !!
+        cmd_obj.run()
+      Traceback (most recent call last):
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 1893, in _run_ninja_build
+          subprocess.run(
+        File "/usr/lib/python3.10/subprocess.py", line 526, in run
+          raise CalledProcessError(retcode, process.args,
+      subprocess.CalledProcessError: Command '['ninja', '-v', '-j', '2']'
+      returned non-zero exit status 1.
+
+      The above exception was the direct cause of the following exception:
+
+      Traceback (most recent call last):
+        File "<string>", line 11, in <module>
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/build_meta.py",
+      line 476, in build_editable
+          return self._build_with_temp_dir(
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/build_meta.py",
+      line 407, in _build_with_temp_dir
+          self.run_setup()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/build_meta.py",
+      line 522, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/build_meta.py",
+      line 320, in run_setup
+          exec(code, locals())
+        File "<string>", line 200, in <module>
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/__init__.py",
+      line 117, in setup
+          return distutils.core.setup(**attrs)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/core.py",
+      line 186, in setup
+          return run_commands(dist)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/core.py",
+      line 202, in run_commands
+          dist.run_commands()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/dist.py",
+      line 1002, in run_commands
+          self.run_command(cmd)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/dist.py",
+      line 1104, in run_command
+          super().run_command(command)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/dist.py",
+      line 1021, in run_command
+          cmd_obj.run()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/editable_wheel.py",
+      line 139, in run
+          self._create_wheel_file(bdist_wheel)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/editable_wheel.py",
+      line 340, in _create_wheel_file
+          files, mapping = self._run_build_commands(dist_name, unpacked, lib,
+      tmp)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/editable_wheel.py",
+      line 263, in _run_build_commands
+          self._run_build_subcommands()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/editable_wheel.py",
+      line 290, in _run_build_subcommands
+          self.run_command(name)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/cmd.py",
+      line 357, in run_command
+          self.distribution.run_command(command)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/dist.py",
+      line 1104, in run_command
+          super().run_command(command)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/dist.py",
+      line 1021, in run_command
+          cmd_obj.run()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/build_ext.py",
+      line 99, in run
+          _build_ext.run(self)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py",
+      line 368, in run
+          self.build_extensions()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 843, in build_extensions
+          build_ext.build_extensions(self)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py",
+      line 484, in build_extensions
+          self._build_extensions_serial()
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py",
+      line 510, in _build_extensions_serial
+          self.build_extension(ext)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/command/build_ext.py",
+      line 264, in build_extension
+          _build_ext.build_extension(self, ext)
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py",
+      line 565, in build_extension
+          objects = self.compiler.compile(
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 658, in unix_wrap_ninja_compile
+          _write_ninja_file_and_compile_objects(
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 1574, in _write_ninja_file_and_compile_objects
+          _run_ninja_build(
+        File
+      "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/lib/python3.10/site-packages/torch/utils/cpp_extension.py",
+      line 1909, in _run_ninja_build
+          raise RuntimeError(message) from e
+      RuntimeError: Error compiling objects for extension
+
+      hint: This usually indicates a problem with the package or the build
+      environment.

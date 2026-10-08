@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-preflight",
+  "scope": "Original entry with separately installed official RAM package; no algorithm source changes",
+  "status": "executed",
+  "started_at": "2026-10-08T18:30:55.949835+00:00",
+  "command": [
+    "env",
+    "GSA_PATH=/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "scripts/generate_gsa_results.py",
+    "--help"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "ff407b1bedba6db1ee123244adcedad3e5982031a23aa820d2afc781f66f33eb",
+      "bytes": 2675
+    }
+  },
+  "elapsed_seconds": 8.521999110000024,
+  "source_dirty_after": ""
+}
