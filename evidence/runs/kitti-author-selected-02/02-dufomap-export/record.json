@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-export",
+  "scope": "Author selected intervals 01:150-250,02:860-950 inclusive; original SuMa-pose preprocessing and original postprocessing methods",
+  "status": "executed",
+  "started_at": "2026-10-08T22:44:22.794044+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-author-selected-02-02-dufomap-export",
+    "-p",
+    "MemoryMax=4G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=200%",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dynamicmap/export_eval_pcd",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/dataset/02",
+    "dufomap_output.pcd",
+    "0.05"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "5ad38add165fd73f2ced76941decfc642cacbaf9bd0519b19765109bc7077e91",
+      "bytes": 396
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/dataset/02/eval/dufomap_output_exportGT.pcd": {
+      "sha256": "457efefa60830ae47c80c19033cb24afd4967afb392ba7c802c905909f2efe99",
+      "bytes": 182652658
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 230446,
+  "elapsed_seconds": 19.306480757999452,
+  "source_dirty_after": ""
+}

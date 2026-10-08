@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-score",
+  "scope": "Author selected intervals 01:150-250,02:860-950 inclusive; original SuMa-pose preprocessing and original postprocessing methods",
+  "status": "executed",
+  "started_at": "2026-10-08T22:47:02.482651+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-author-selected-02-01-scores",
+    "-p",
+    "MemoryMax=4G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=200%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/author-scripts/py/eval/01-evaluate_all.py"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "56f23ce53e98575f763adb01eebb9c8ba0e9bcf172eb2cf612450ced5e22cf9f",
+      "bytes": 515
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 230707,
+  "elapsed_seconds": 2.18156200500016,
+  "source_dirty_after": ""
+}

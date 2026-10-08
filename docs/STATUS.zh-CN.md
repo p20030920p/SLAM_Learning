@@ -43,6 +43,14 @@ DUFOMap 表 IV 的五组参数设置已完成原始 C++、作者 PCL 导出与�
 
 另外完成 DUFOMap 原始默认参数在两份无标注作者数据的运行：twofloor（Livox，3305 帧）输出 56,315,484 点，KTH campus（Leica，18 帧）输出 20,051,966 点，退出成功，点云结构、有限坐标与哈希均通过检查。[输入下载与 CRC](../evidence/benchmark-qualitative-manifest.json)、[twofloor 检查](../evidence/runs/dufomap-released-qualitative-01/twofloor/validation.json)、[campus 检查](../evidence/runs/dufomap-released-qualitative-01/kthcampus/validation.json)。两者无 GT，这些点数不代表清理准确率，未加入 SA/DA 表。
 
+## 新下载的 KITTI 01/02
+
+原始 00/01/02 所需 333 帧、标签、标定、SuMa 位姿及 KITTI 真值位姿均已下载并校验。当前作者预处理、两种默认方法以及 02 的三组 BeautyMap XY 网格参数已全部完成原始评分。[六组结果与论文逐项对照](KITTI_SELECTED_RESULTS.zh-CN.md)。
+
+01 的 DUFOMap / BeautyMap SA 分别为 98.9445 / 99.3033%；02 为 68.6114 / 83.4254%。00 重建的 141 个扫描点数均与旧发布包不同，提供的位姿也有差异；新结果单列，尚未匹配论文精度，不解释为定位改善或 H1 效果。[输入版本检查](DATA_ACCESS.zh-CN.md)。
+
+ScanNet 官方要求本人用机构邮箱签署协议申请访问，本轮已下载空白表并整理五个目标场景与后续导出步骤，数据本身尚未获授权下载。
+
 ## 兼容性记录
 
 - 推荐的 g++-10 与 Ubuntu 22.04 的 oneTBB 编译失败，完整失败日志已保留。换用 g++-11 后，未修改 DUFOMap / UFOMap 源码，编译和运行成功。属于工具链兼容变体。

@@ -1,0 +1,13 @@
+--- author/extract_semkitti.py
++++ configured/extract_semkitti.py
+@@ -36,8 +36,8 @@
+ 
+ # selected frame to release the pressure of the memory
+ FIX_SEQ_FRAME_RANGE = {"00": [4390, 4530], 
+-                    # "01": [150, 250], 
+-                    # "02": [860, 950], 
++                    "01": [150, 250], 
++                    "02": [860, 950], 
+                     "05": [2350, 2670],
+                     "07": [630, 820],
+                     "19": [150, 512]}

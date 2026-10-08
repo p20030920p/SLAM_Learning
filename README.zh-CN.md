@@ -6,9 +6,11 @@
 
 新增：[DUFOMap 表 IV 五组消融对照](docs/DUFOMAP_TABLE4.zh-CN.md)，SA/DA/AA 共 15 项与论文两位小数一致。
 
+已补下载原始 KITTI 所需 333 帧并完成 01/02 两种原始方法及三组网格参数的评分。[新增结果与论文差距](docs/KITTI_SELECTED_RESULTS.zh-CN.md)。当前预处理与旧发布包存在版本差异，新结果单列。
+
 ConceptGraphs 已完成 room0 的完整前端、原始三维映射与 RGB 参考表面；原始语义评价修复依赖后排队重试。这里有 [60 秒作者三维窗口实录](evidence/videos/conceptgraphs-room0-original-window.mp4)，可查看 RGB、实例颜色和视角操作。
 
-[English](README.md) · [运行与结果](docs/STATUS.zh-CN.md) · [Windows 起步和命令](docs/RUNBOOK.zh-CN.md) · [环境](docs/ENVIRONMENT.zh-CN.md) · [原库和复现范围](docs/SCOPE.zh-CN.md) · [执行证据](evidence/README.md)
+[English](README.md) · [运行与结果](docs/STATUS.zh-CN.md) · [Windows 起步和命令](docs/RUNBOOK.zh-CN.md) · [数据下载与 ScanNet 申请](docs/DATA_ACCESS.zh-CN.md) · [环境](docs/ENVIRONMENT.zh-CN.md) · [原库和复现范围](docs/SCOPE.zh-CN.md) · [执行证据](evidence/README.md)
 
 | 方法 | 作者原库 | 本分支固定提交 |
 |---|---|---|

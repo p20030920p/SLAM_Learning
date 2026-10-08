@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "method": "Input-validation",
+  "scope": "Author selected intervals 01:150-250,02:860-950 inclusive; original SuMa-pose preprocessing and original postprocessing methods",
+  "status": "executed",
+  "started_at": "2026-10-08T22:43:04.818885+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-author-selected-02-02-validation",
+    "-p",
+    "MemoryMax=4G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=200%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/mnt/d/workspace/be2/SLAM_Author_Originals/scripts/validate_kitti_prepared.py",
+    "--folder",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/prepared/02",
+    "--start",
+    "860",
+    "--end",
+    "950",
+    "--output",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/02-validation/validation.json"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "25625dd4a4dfe92ce5dd46ed32b7a8e75a2e55295a560bfb7e146e024db0299c",
+      "bytes": 264
+    },
+    "validation.json": {
+      "sha256": "9a567a5de4b15d8b6ccc8b9fe4934dbc5563cc28669788cd6b6ace74ebbe3988",
+      "bytes": 22789
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 229843,
+  "elapsed_seconds": 0.5657849529998202,
+  "source_dirty_after": ""
+}

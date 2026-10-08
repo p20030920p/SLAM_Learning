@@ -10,6 +10,10 @@ These small files are copied from new executions in `/home/qzl/projects/SLAM_Aut
 
 `benchmark-qualitative-manifest.json` records the CRC/checksums for the unlabeled campus/twofloor releases. `runs/dufomap-released-qualitative-01/` records successful original DUFOMap runs on all 18/3305 scans, plus streaming geometry validation. These datasets have no GT and are excluded from accuracy tables.
 
+`kitti-selected-manifest.json` records 333 original point-cloud ZIP members, matching label counts, calibration and both pose sources. `kitti-point-prefetch.json` independently records the same 333 local SHA-256 digests; all agree. Only selected point-cloud members were downloaded, each checked against its original ZIP CRC; no whole-84.8GB-archive hash is claimed. Label/calibration/pose ZIPs passed full CRC tests.
+
+`runs/kitti-author-selected-02/` contains current author preprocessing, default DUFOMap/BeautyMap and three XY cell sizes on 01/02, original exports and original scores. `runs/kitti-protocol-comparison-01/` documents differences from the older released 00 input; these new runs are [reported separately](../docs/KITTI_SELECTED_RESULTS.zh-CN.md) and do not match the paper's printed precision.
+
 Each `record.json` contains the actual command, source commit, exit status, elapsed time, source cleanliness and artifact hashes. `artifact-manifest.json` binds local dataset and point-cloud outputs to SHA-256. A successful exit alone is not a full-reproduction claim. Logs include failed compiler/dependency attempts where collected; large datasets, weights and point clouds remain local.
 
 `configuration-diffs/` preserves relative paths for the author-required evaluation settings and separately labeled environment/SAM microbatch compatibility adjustments. Source snapshots with `running` or `interrupted` status are not completed results. `figures/lidar-scores.json` copies the printed original evaluator numbers, with its log hash. `sam-batch-comparison.json` checks only the 26 common saved frames; it does not establish full-sequence equivalence. The scope and limitations are described in [the status document](../docs/STATUS.zh-CN.md).

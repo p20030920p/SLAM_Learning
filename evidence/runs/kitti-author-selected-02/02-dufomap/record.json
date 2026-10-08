@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "method": "dufomap",
+  "scope": "Author selected intervals 01:150-250,02:860-950 inclusive; original SuMa-pose preprocessing and original postprocessing methods",
+  "status": "executed",
+  "started_at": "2026-10-08T22:44:14.435217+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-author-selected-02-02-dufomap",
+    "-p",
+    "MemoryMax=4G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=200%",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dufomap-gcc11/dufomap_run",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/inputs/02/dufomap",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/assets/config.toml"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "a8f1533698f1e21b064d38e5c8ad649bb0d077fe0f9a6193f2450783be289103",
+      "bytes": 16220
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/inputs/02/dufomap/dufomap_output.pcd": {
+      "sha256": "7a7983dbe938f8404945267864515ca6d22218b8fbfd0a552475e3528b09ba12",
+      "bytes": 114234986
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 230276,
+  "elapsed_seconds": 8.198033347000091,
+  "source_dirty_after": ""
+}

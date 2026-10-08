@@ -265,6 +265,8 @@ cd "$RUNTIME/upstream/conceptgraphs/conceptgraph"
 
 ## 5. 证据和预算
 
+新增 KITTI 原始帧段下载、作者预处理重做命令及 ScanNet 本人申请步骤见 [数据文档](DATA_ACCESS.zh-CN.md)。任务已在运行时，先检查 `runs/kitti-selected-inputs-01/outcomes.json` 与 `runs/kitti-author-selected-02/outcomes.json`，不要重复启动同一任务。
+
 本机第三次建图与 RGB 参考表面已成功，第一次原评价因 chamferdist 缺少 CUDA 支持退出。扩展已补编；`conceptgraphs-room0-evaluation-cuda-05` 等待 HOV-SG 后验证真实 GPU KNN，再重跑原评价。它用 `--reuse-chain` 对原地图／RGB 文件重新核对 SHA-256，原失败记录保持原样。自动队列仍在运行时不要重复启动评价。
 
 直接执行作者入口时可加外层记录器；它不导入算法、不替换算法函数。输出目录必须新建，`--artifact` 可要求关键输出存在，`--timeout` 会记录超时。

@@ -8047,6 +8047,18 @@
     "bytes": 541,
     "sha256": "3171d530f9c0389fe1f5e2211c464c2e840716cc9afe3bdd1c0c5da68e3e38ae"
   },
+  "runs/kitti-author-selected-02/01-evaluation-config.diff": {
+    "bytes": 637,
+    "sha256": "58f0a6e90561db72ba119fd398870cb32b4c3919fda669e54e67c16dad70c8bb"
+  },
+  "runs/kitti-author-selected-02/02-evaluation-config.diff": {
+    "bytes": 673,
+    "sha256": "2b2c0d547af2346c3674b8938f651a06590a17ffcb1a7bdf93bebb7b0f9da031"
+  },
+  "runs/kitti-author-selected-02/extraction-config.diff": {
+    "bytes": 470,
+    "sha256": "336ff93152bc8d56fbadcde8fdcf3aa0ca41625efb1bf8f410604c3d899b02ca"
+  },
   "runs/lidar-evaluation-01/evaluation-config.diff": {
     "bytes": 660,
     "sha256": "58a387de66a4917e2b0154729d6ee012fb8d5691cf60b1c14ced083bcd06b68a"
@@ -8254,6 +8266,177 @@
   "runs/hovsg-import-preflight-01/run.log": {
     "sha256": "ab875df4c720f520681e40fe685d4fa7885bb366bf457dc1266510c1d584eb50",
     "bytes": 1192
+  },
+  "runs/kitti-author-selected-02/00-extract/run.log": {
+    "sha256": "95612927670660c7201e85d7a3070ea1297fa6eeaf4a39886bbab9e3096e6d91",
+    "bytes": 8068
+  },
+  "runs/kitti-author-selected-02/prepared/00/gt_cloud.pcd": {
+    "bytes": 273729095,
+    "sha256": "1c6f92b2b1c8445e15d559d89e60a3ef33e5f0de52d1cd70160e399fe5992e3e",
+    "points": 17108059
+  },
+  "runs/kitti-author-selected-02/00-validation/run.log": {
+    "sha256": "7eaf5cbe9608c41914ec5e66201475f015f6cedaa1b4ff292638ff65b11e4ac5",
+    "bytes": 366
+  },
+  "runs/kitti-author-selected-02/00-validation/validation.json": {
+    "sha256": "aa9cea5d3cd4eff12fef978138a5fc5a07e6cb78425c0ef6012fe97f9c4ebb55",
+    "bytes": 60749
+  },
+  "runs/kitti-author-selected-02/01-beautymap/run.log": {
+    "sha256": "be9002f3e8abe72badd6bca17dfde078d9aecaaae0df8d5546c06e7ebb0b636f",
+    "bytes": 15760
+  },
+  "runs/kitti-author-selected-02/inputs/01/beautymap/beautymap_output.pcd": {
+    "sha256": "c6e67cb999063d9edf902701bcb70ea6e295334fe97a47ead941357c24d7bb00",
+    "bytes": 172579447
+  },
+  "runs/kitti-author-selected-02/01-beautymap-export/run.log": {
+    "sha256": "20bfb449d8ca896d937f856bc28bfd2443480735549a02f4437a6b15c04e9692",
+    "bytes": 356
+  },
+  "runs/kitti-author-selected-02/dataset/01/eval/beautymap_output_exportGT.pcd": {
+    "sha256": "0ede25abca9984beba20376ac86d8d5de74bc2cc9656576adb0b2e5e12d5cc50",
+    "bytes": 179067650
+  },
+  "runs/kitti-author-selected-02/01-dufomap/run.log": {
+    "sha256": "8faa2e294a2e470b4bc4aabd6c0675fb965c913312c0a649f8be480df39b7a98",
+    "bytes": 17726
+  },
+  "runs/kitti-author-selected-02/inputs/01/dufomap/dufomap_output.pcd": {
+    "sha256": "d34600073706f43e32697607b07ea7ece615e8460492a079af2857cb1e0a0155",
+    "bytes": 169716876
+  },
+  "runs/kitti-author-selected-02/01-dufomap-export/run.log": {
+    "sha256": "4dcc6a31e6da56acd93a832617dc7fff59fc7386cc6d8cf7e26b3abec581a9ae",
+    "bytes": 396
+  },
+  "runs/kitti-author-selected-02/dataset/01/eval/dufomap_output_exportGT.pcd": {
+    "sha256": "b4c68567c93e1e05a4e27ddfecbbd89a5ce5c45ebde5c7abc7b05792a303c5bd",
+    "bytes": 179067650
+  },
+  "runs/kitti-author-selected-02/01-extract/run.log": {
+    "sha256": "c291d794d0f236934bc151229a497d4434520238899976cdb883876d6dd05ffc",
+    "bytes": 5506
+  },
+  "runs/kitti-author-selected-02/prepared/01/gt_cloud.pcd": {
+    "bytes": 179067607,
+    "sha256": "be04864a54c6ce24c491df700d57b2293de834468173fb1d6754b4c75a671b86",
+    "points": 11191716
+  },
+  "runs/kitti-author-selected-02/01-scores/run.log": {
+    "sha256": "56f23ce53e98575f763adb01eebb9c8ba0e9bcf172eb2cf612450ced5e22cf9f",
+    "bytes": 515
+  },
+  "runs/kitti-author-selected-02/01-validation/run.log": {
+    "sha256": "3e88be51e2a220b7c2ebc379ca6168fb5862fc893cb675bdb9d812823718f4fc",
+    "bytes": 265
+  },
+  "runs/kitti-author-selected-02/01-validation/validation.json": {
+    "sha256": "a23a363c3f8e1a6aa61223d94eb62991c840b8ec0d2f6e28ec73164f2cf97856",
+    "bytes": 25220
+  },
+  "runs/kitti-author-selected-02/02-beautymap/run.log": {
+    "sha256": "4033385815e5d124a798d9c51628acd1a9e6b851e851df09d49b0d8dfcd6e9de",
+    "bytes": 11181
+  },
+  "runs/kitti-author-selected-02/inputs/02/beautymap/beautymap_output.pcd": {
+    "sha256": "cb0677920ae7dc97a154112bb76cb1fda79c030657a82ca2dbcc49f81c51496d",
+    "bytes": 146209973
+  },
+  "runs/kitti-author-selected-02/02-beautymap-export/run.log": {
+    "sha256": "cf565287e965e88b4f9444a765633094e5f6afdacca4c66d07bb4a5b6c9864ae",
+    "bytes": 356
+  },
+  "runs/kitti-author-selected-02/dataset/02/eval/beautymap_output_exportGT.pcd": {
+    "sha256": "c4b15f72337d32fa580de8dc0f1ad6d5f347324990f50ffdeca461f0379a1531",
+    "bytes": 182652658
+  },
+  "runs/kitti-author-selected-02/02-beautymap_xy05/run.log": {
+    "sha256": "c81f0be96542ea9c15e9714b1ed85e109993aea3e8ccd0af02538e3955f8248f",
+    "bytes": 23229
+  },
+  "runs/kitti-author-selected-02/inputs/02/beautymap_xy05/beautymap_output.pcd": {
+    "sha256": "41b9a4dabea0f272a03ac0085b64275b73a757f7db4ca02f3b73bc388f03cac8",
+    "bytes": 144411557
+  },
+  "runs/kitti-author-selected-02/02-beautymap_xy05-export/run.log": {
+    "sha256": "0aa61b3f3f71e7137a34fdff1fedd9bd4496abec341257753e72d486612d9a4f",
+    "bytes": 366
+  },
+  "runs/kitti-author-selected-02/dataset/02/eval/beautymap_xy05_output_exportGT.pcd": {
+    "sha256": "242b8485aa13ee76041b417f8d928994f9400ad1b69b471a85bcccddb63c19e6",
+    "bytes": 182652658
+  },
+  "runs/kitti-author-selected-02/02-beautymap_xy20/run.log": {
+    "sha256": "648bcffa72d613f3f0a05f5d7c871f95a3545579a7b96889c8e166b611203046",
+    "bytes": 8069
+  },
+  "runs/kitti-author-selected-02/inputs/02/beautymap_xy20/beautymap_output.pcd": {
+    "sha256": "f9d2675519c13862077fbdfabac1aa036487e2d12d1861b8ce22d4ef4e274e73",
+    "bytes": 129797653
+  },
+  "runs/kitti-author-selected-02/02-beautymap_xy20-export/run.log": {
+    "sha256": "75702087933c0a3788bbbd87795124224ad9386cb9d67a8923bcc4fa0ee3f47b",
+    "bytes": 366
+  },
+  "runs/kitti-author-selected-02/dataset/02/eval/beautymap_xy20_output_exportGT.pcd": {
+    "sha256": "7571cec17ade0b5682c4b0fad5996d415239149a2ca156308b9f06828972ed48",
+    "bytes": 182652658
+  },
+  "runs/kitti-author-selected-02/02-dufomap/run.log": {
+    "sha256": "a8f1533698f1e21b064d38e5c8ad649bb0d077fe0f9a6193f2450783be289103",
+    "bytes": 16220
+  },
+  "runs/kitti-author-selected-02/inputs/02/dufomap/dufomap_output.pcd": {
+    "sha256": "7a7983dbe938f8404945267864515ca6d22218b8fbfd0a552475e3528b09ba12",
+    "bytes": 114234986
+  },
+  "runs/kitti-author-selected-02/02-dufomap-export/run.log": {
+    "sha256": "5ad38add165fd73f2ced76941decfc642cacbaf9bd0519b19765109bc7077e91",
+    "bytes": 396
+  },
+  "runs/kitti-author-selected-02/dataset/02/eval/dufomap_output_exportGT.pcd": {
+    "sha256": "457efefa60830ae47c80c19033cb24afd4967afb392ba7c802c905909f2efe99",
+    "bytes": 182652658
+  },
+  "runs/kitti-author-selected-02/02-extract/run.log": {
+    "sha256": "4b35dcc5f2d04881ae57a0b94cd5b70f528143a149b68e30fda4c3fa94d7e2c3",
+    "bytes": 4772
+  },
+  "runs/kitti-author-selected-02/prepared/02/gt_cloud.pcd": {
+    "bytes": 182652615,
+    "sha256": "027335d488d339235004cc1fc0c1cd5aa970c45734f63ecb10f4b580f6d65705",
+    "points": 11415779
+  },
+  "runs/kitti-author-selected-02/02-scores/run.log": {
+    "sha256": "7a57f6674515b0af7bf5675020cc275e3cbee9eeda4ec2abda6e2bc689548991",
+    "bytes": 733
+  },
+  "runs/kitti-author-selected-02/02-validation/run.log": {
+    "sha256": "25625dd4a4dfe92ce5dd46ed32b7a8e75a2e55295a560bfb7e146e024db0299c",
+    "bytes": 264
+  },
+  "runs/kitti-author-selected-02/02-validation/validation.json": {
+    "sha256": "9a567a5de4b15d8b6ccc8b9fe4934dbc5563cc28669788cd6b6ace74ebbe3988",
+    "bytes": 22789
+  },
+  "runs/kitti-protocol-comparison-01/protocol-comparison.json": {
+    "sha256": "3b7f8cdea1468b764cd1303dcbb11eede7c2e9c612bf10eea4f773786f6e3416",
+    "bytes": 29981
+  },
+  "runs/kitti-protocol-comparison-01/run.log": {
+    "sha256": "1c75932dbb284e30b9ffead0ad023d6b963b3658c145055b8837fd239efaae5d",
+    "bytes": 1367
+  },
+  "runs/kitti-result-validation-01/run.log": {
+    "sha256": "2bc1c7db59f6948c15c336e37653098c2e40a4cb4f8290eb634a7f953b8d85a5",
+    "bytes": 1327
+  },
+  "runs/kitti-result-validation-01/validation.json": {
+    "sha256": "08bac719108ba5e9c7fc8dffd123658e251b6077efa3649ddb903a8aa191ec57",
+    "bytes": 2772
   },
   "runs/lidar-evaluation-01/export-beautymap/run.log": {
     "sha256": "1107e091f1d1184bea7d1a68372aa2e0f0c92d790aecd023f1bdd46b8987b42c",
@@ -11602,6 +11785,1671 @@
   "data/replica-full/Replica/room0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub.pkl.gz": {
     "bytes": 34294356,
     "sha256": "446f9ac2c71e9a0767269301b3e69cc3c8c83297ed738e9dbd39ae0ebd9ca99c"
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004390.pcd": {
+    "bytes": 1994866,
+    "sha256": "9be41c574546a6a730ab05202a63494835bc2c19c9408b23094fcf79de59fa7a",
+    "points": 124662
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004391.pcd": {
+    "bytes": 1994673,
+    "sha256": "cdcaffb0a2d029d28293d589f251fa51ca0f1f6eb65450dac632f4742fd05ae0",
+    "points": 124650
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004392.pcd": {
+    "bytes": 1995924,
+    "sha256": "38fcb92615e2676bdbaaddca96d3f4431bc7931efa2aa598e54e31fe587073d8",
+    "points": 124728
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004393.pcd": {
+    "bytes": 1994130,
+    "sha256": "43a98e985197f3cddfb5e947f9f41223f44b89d64067bb535fb025d44fa1cc03",
+    "points": 124616
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004394.pcd": {
+    "bytes": 1991169,
+    "sha256": "d9f13bec4cd43dd79f1c4e8c145f8a6e5b2665070ef3066c0d6e1c4ffc63f11f",
+    "points": 124431
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004395.pcd": {
+    "bytes": 1991188,
+    "sha256": "257f8794b587f0da42633e209d323a366097b4f80dbdf47717121320dffc0938",
+    "points": 124432
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004396.pcd": {
+    "bytes": 1987730,
+    "sha256": "288d35103ff7c34187bc5bb652ba24b805583f7c31d55d62661109be397d3147",
+    "points": 124216
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004397.pcd": {
+    "bytes": 1983429,
+    "sha256": "cf1f49b5443bc4c5d1a809f2c1a4ce210e3b94542dc1179d9621e5462ea0c5ce",
+    "points": 123947
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004398.pcd": {
+    "bytes": 1979346,
+    "sha256": "c7c9b9fee612db7a3ae96fd23f0c2f16b4e7a8782961e68ffcdc2ae384b78648",
+    "points": 123692
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004399.pcd": {
+    "bytes": 1978947,
+    "sha256": "a3675f9fbc1045a8f8c0cb4b4dc63b5c8a5f84b3cc0485d756afb3c00bf236ef",
+    "points": 123667
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004400.pcd": {
+    "bytes": 1976994,
+    "sha256": "b4e8fdeae5e8143b5314e110d3c15eb39ebfdbfb886c77cb0f79f672394d8124",
+    "points": 123545
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004401.pcd": {
+    "bytes": 1975266,
+    "sha256": "fac59285eb94fb1ac334176f1ddf1f49aa6f96a3fcba4be1aa638330d8481575",
+    "points": 123437
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004402.pcd": {
+    "bytes": 1975013,
+    "sha256": "37a260e1136cc0071738f5b4e04e5a449612459fae7b6c80cad05631fec9a152",
+    "points": 123421
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004403.pcd": {
+    "bytes": 1975540,
+    "sha256": "cc0ebb76dcdb7d8c88b0950a212c7b7ae420eef1cd7763d88631930d567fe80f",
+    "points": 123454
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004404.pcd": {
+    "bytes": 1977137,
+    "sha256": "27349fe7500d29c6d44a9f315c0229bb8dca3598088ae1011cb0b391e3096ce4",
+    "points": 123554
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004405.pcd": {
+    "bytes": 1977957,
+    "sha256": "47b095e2ea4bf8b26d699717d38487b14c3f4bb3d74f7c9719300e8cd30389c2",
+    "points": 123605
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004406.pcd": {
+    "bytes": 1980355,
+    "sha256": "786805acba04639c26451b0685dacda1ebef2586dc34e7d76a69165e7c07e009",
+    "points": 123755
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004407.pcd": {
+    "bytes": 1981284,
+    "sha256": "c7503d0eb52914dc51745727466913cda4c8a59ab7587b45613a5e48c05bc045",
+    "points": 123813
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004408.pcd": {
+    "bytes": 1983345,
+    "sha256": "36892ea1945317442ee0bf177f0d1697b20695abcbcb34354476509433d6ead6",
+    "points": 123942
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004409.pcd": {
+    "bytes": 1985536,
+    "sha256": "71d146531e11ccaf130d97104f949da46d1ed8dba4359b3bc09b800aa4a661c3",
+    "points": 124079
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004410.pcd": {
+    "bytes": 1984640,
+    "sha256": "81f48e156af342a00db70a2dc4773af6f493e10400023f4cd733c04e827fa26e",
+    "points": 124023
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004411.pcd": {
+    "bytes": 1986545,
+    "sha256": "9ff6ca811de757c32f740ca9f376782827f270845243557800dfee7e79869bc2",
+    "points": 124142
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004412.pcd": {
+    "bytes": 1984546,
+    "sha256": "1644b453d7a6aeb939a8c99634208ed3c048559e257005738b6579ebfff484fa",
+    "points": 124017
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004413.pcd": {
+    "bytes": 1986399,
+    "sha256": "d4c5d131e230067e20398cccb1bbe2fbc5b5ed385b8400e68dbc4f184b30a776",
+    "points": 124133
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004414.pcd": {
+    "bytes": 1986241,
+    "sha256": "4fb0e73371adae3ec565df83a682a95d088c56dc21d042d1aaca8af1bac727d9",
+    "points": 124123
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004415.pcd": {
+    "bytes": 1984431,
+    "sha256": "1c96645cfd8cabb2f962ec0b84b5286f441f0d46147d19ff00b7d1e87c3199dc",
+    "points": 124010
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004416.pcd": {
+    "bytes": 1982627,
+    "sha256": "199fa39487207506ed02ab82bcc8f347c88b99b61d05ca0e8bbde57f4fe288af",
+    "points": 123897
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004417.pcd": {
+    "bytes": 1982160,
+    "sha256": "52dd10dbadc46ae6b40d3d670bd736522c3398b2178c5d1b5ee1af5878f4a8c1",
+    "points": 123868
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004418.pcd": {
+    "bytes": 1981744,
+    "sha256": "f1a918149d6e2691f2874195ae875d45c1d19a736a45b1834a57108120325645",
+    "points": 123842
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004419.pcd": {
+    "bytes": 1982258,
+    "sha256": "cdb89f4594cc1a7963ec4c0a2ca55a848b7ef889eff44d70ab2a4342bbb7eb32",
+    "points": 123874
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004420.pcd": {
+    "bytes": 1980003,
+    "sha256": "33bb70e07b0b4efb39eaff758ce855d07072898fecf248fb3969245156fc4541",
+    "points": 123733
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004421.pcd": {
+    "bytes": 1979186,
+    "sha256": "e110675ff1779452e10e3abbc07ca3953a6b424e565505fad215d15d3d07de73",
+    "points": 123682
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004422.pcd": {
+    "bytes": 1977459,
+    "sha256": "25bf00d78571820975781dc35cf868600b34dd559bff02a706800350f76684fb",
+    "points": 123574
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004423.pcd": {
+    "bytes": 1974769,
+    "sha256": "7225364e035a50e8cb02f068fc529a80630647b69482f8c44fb2819217ee03c6",
+    "points": 123406
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004424.pcd": {
+    "bytes": 1975231,
+    "sha256": "8ce9c52ace386b431d0a638760bcf9139254e57054233aa32a612a82f47513c4",
+    "points": 123435
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004425.pcd": {
+    "bytes": 1973667,
+    "sha256": "d41a4e976e045c7b9e1a568f87bc92c72c3f2dad3ff959232e963ccd932b505a",
+    "points": 123337
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004426.pcd": {
+    "bytes": 1974131,
+    "sha256": "ee83a5229e6e24da43ba3b2a6cc289d4c16b1c23c48a9571d85bccc26b6a2d11",
+    "points": 123366
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004427.pcd": {
+    "bytes": 1973455,
+    "sha256": "83d7176b0f05823151d853c38820ebdf2d3703f16ccf6daff420a6018174553b",
+    "points": 123324
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004428.pcd": {
+    "bytes": 1973923,
+    "sha256": "8a3a9230880a1cd65e5b2e4cac254ee70ecd97167f7f5822ddc8ae8e9dd8e77b",
+    "points": 123353
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004429.pcd": {
+    "bytes": 1973139,
+    "sha256": "201cb311744546b46e14e6862fa533889d2ed6531ca5e8f152d035e1670885bf",
+    "points": 123304
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004430.pcd": {
+    "bytes": 1971985,
+    "sha256": "3f39a7b325f37abba5b0c20c51d3e0fadec7a2fe9e50718f5e7c8c21f601e2ca",
+    "points": 123232
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004431.pcd": {
+    "bytes": 1971666,
+    "sha256": "2abe223b5ed9bfefe843472d9e31520877cb8f6797e997c1fc20ab06b2a465e8",
+    "points": 123212
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004432.pcd": {
+    "bytes": 1971571,
+    "sha256": "54ae3857dc4815f001cdbaa49ab1c39619e1665c6d50085039e05c53e7b09982",
+    "points": 123206
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004433.pcd": {
+    "bytes": 1970114,
+    "sha256": "8425f3843e4c744c8741d1f95caec93606e3099f36f7611db9e8a25da2dca7a5",
+    "points": 123115
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004434.pcd": {
+    "bytes": 1969346,
+    "sha256": "735e926aeee5881278d27b54b5ed75abb8d63cf9416122bc1ad1ad7c6360150a",
+    "points": 123067
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004435.pcd": {
+    "bytes": 1970433,
+    "sha256": "4bb07d5f97afe7d57f50d769453bb963940e96a4b309bda07a94e6349ad688bb",
+    "points": 123135
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004436.pcd": {
+    "bytes": 1971411,
+    "sha256": "21783a182e53e17e82b92f00edc57185b6d38861141ae8d0bd9e307e7581587b",
+    "points": 123196
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004437.pcd": {
+    "bytes": 1970706,
+    "sha256": "8ad278c44c1bd95c92f9014655fa4fbc146d88242c7ca480c6c9c413c4cf15b5",
+    "points": 123152
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004438.pcd": {
+    "bytes": 1969220,
+    "sha256": "8c9247d81947a3fa818e60ef5f11bc299c8c0da3a726f7bc97f0bc9b2df1d18c",
+    "points": 123059
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004439.pcd": {
+    "bytes": 1970372,
+    "sha256": "b73be5802c3732fe6cb14a81e1e28cc6e63c6d9dc64c46f985331639202360bd",
+    "points": 123131
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004440.pcd": {
+    "bytes": 1972067,
+    "sha256": "af0e99ef6d7b5902a93cc7484b1d14ceae3c84724b1f7da5b6c255e04096348a",
+    "points": 123237
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004441.pcd": {
+    "bytes": 1974290,
+    "sha256": "870eb639960f60dabc1bfb539c67547e33918d0b553af2ee137667d4d7a41de1",
+    "points": 123376
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004442.pcd": {
+    "bytes": 1975174,
+    "sha256": "53cd63861c1d074f3bec15d20e569be2695d12254f70d8fed08731594d49aa46",
+    "points": 123431
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004443.pcd": {
+    "bytes": 1973172,
+    "sha256": "dd24b17638d97e75d0006a14ec91f8fb6298cce8683bde540ea00a875826d416",
+    "points": 123306
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004444.pcd": {
+    "bytes": 1973253,
+    "sha256": "d90ba2f7de75e73822bc8f0756241b0c3917fcc3eaf745d9522e98bcbbf92010",
+    "points": 123311
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004445.pcd": {
+    "bytes": 1972852,
+    "sha256": "5bc2b7dbff0adf55ff891642d5e05fb68a01c3e2c5f2f46bdad3772ebaa4dee5",
+    "points": 123286
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004446.pcd": {
+    "bytes": 1969572,
+    "sha256": "ecb272cf14cdcbf051e420a63e4ccc32c55ad171984d23a83fcac13ff1767d6a",
+    "points": 123081
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004447.pcd": {
+    "bytes": 1968181,
+    "sha256": "ae16b4eea8c9265d77c3843fca6813b1fa9413afc49bcd9c4f4349d9f5692c5c",
+    "points": 122994
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004448.pcd": {
+    "bytes": 1965892,
+    "sha256": "319b1b957d946c3e7edd93f20d1e20609544611984b43afe56a2d69f84d4d499",
+    "points": 122851
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004449.pcd": {
+    "bytes": 1965781,
+    "sha256": "33d57bf6af7d1799f1b6dabbaab55db16490007dc4141f58b8a16328ac898a95",
+    "points": 122844
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004450.pcd": {
+    "bytes": 1963378,
+    "sha256": "d50dc6cfbcf71fdaf9c19ffc5e9032c734635f25f82a2b43ef78d6190493ea38",
+    "points": 122694
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004451.pcd": {
+    "bytes": 1964115,
+    "sha256": "09047e80e3fc11419b440822e9f756ac217fca770a0b8799934c85d8732e0af7",
+    "points": 122740
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004452.pcd": {
+    "bytes": 1963220,
+    "sha256": "ed06d30bc7e5aada84693476935740b005b1ce89c10d6b4bf0a0b90965423a19",
+    "points": 122684
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004453.pcd": {
+    "bytes": 1962275,
+    "sha256": "657479a5ffe907a63f1a458706bef2aec84ff6a9bb75c96c10e5ddce00693e13",
+    "points": 122625
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004454.pcd": {
+    "bytes": 1959125,
+    "sha256": "61ff41b53b74337c3d60e3c799e8a72ab557e7855ed5c88d034708fb1491ecd5",
+    "points": 122428
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004455.pcd": {
+    "bytes": 1954436,
+    "sha256": "b6e4de2d9fb897da5ad9f360c8bf0c8295e5a5c95a603eae9f2ed7448b0b7682",
+    "points": 122135
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004456.pcd": {
+    "bytes": 1943604,
+    "sha256": "10e0db5cbbb7bc5388c1ff1cc6caaa180baec6b884465641f0b956a91372e81d",
+    "points": 121458
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004457.pcd": {
+    "bytes": 1926931,
+    "sha256": "7b433cd072283f9e0688ca61c552a3ad72068f0651d2ae34a3015dc1cb171e2c",
+    "points": 120416
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004458.pcd": {
+    "bytes": 1907618,
+    "sha256": "d9b218de6161a55201de23dc8f6c480b35701638543e680a3009a52f20bf5ab0",
+    "points": 119209
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004459.pcd": {
+    "bytes": 1894914,
+    "sha256": "43b0ee36b07c5c5fbe89b0cab2d4449375739d783287189f8a4695b5956c4c12",
+    "points": 118415
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004460.pcd": {
+    "bytes": 1891439,
+    "sha256": "432566b0bd17453362e3411a97e5da7caab6cd5875684ec444aed6f44f25b547",
+    "points": 118198
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004461.pcd": {
+    "bytes": 1901125,
+    "sha256": "e2096a6268af240c4b893ab377d143390a1ece25c9f543fd3e3a06dc6d9f79d2",
+    "points": 118803
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004462.pcd": {
+    "bytes": 1893284,
+    "sha256": "1d1a2d1858bfa4649513bfb1b50400144d353a2f2b1048c09f527d8691d802e0",
+    "points": 118313
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004463.pcd": {
+    "bytes": 1883279,
+    "sha256": "18e9e0be102eafb08ae7c4b6bc7a47f2748f65fd8d546f511b3a68e9e43b01e0",
+    "points": 117688
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004464.pcd": {
+    "bytes": 1883585,
+    "sha256": "76dd90bb7e524c0add513794ae56f4196f167a0a06cdf520d4638b91809fceb3",
+    "points": 117707
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004465.pcd": {
+    "bytes": 1896050,
+    "sha256": "ec82dc6be514bb57b0276fb62d97c7b9f4a98516a47922a667cc33a7dfd5c910",
+    "points": 118486
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004466.pcd": {
+    "bytes": 1917044,
+    "sha256": "b2df7e0e757a87379b675fbbcc48c138e98021ce2bc7d3074ffb491e0a47daee",
+    "points": 119798
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004467.pcd": {
+    "bytes": 1935411,
+    "sha256": "4d279c29c19f212a31ac7938a3716b2f6e5aec468c87463f1ab33a1958f9d5ec",
+    "points": 120946
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004468.pcd": {
+    "bytes": 1939440,
+    "sha256": "eb89aeb8b035814df997ebb870b9d9d5331ab9ed9114c9acd6153ab9f8bb21f8",
+    "points": 121198
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004469.pcd": {
+    "bytes": 1938003,
+    "sha256": "6bda0944df3c195dd10957f03b4bee9c47cbbf8a1cbc3a0d1f254f3a45f297a1",
+    "points": 121108
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004470.pcd": {
+    "bytes": 1941635,
+    "sha256": "9909640198414f6fe5e176c7614f6e5fcfbf28f9444ea2367a1542daa3377d2d",
+    "points": 121335
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004471.pcd": {
+    "bytes": 1944182,
+    "sha256": "1d7e3d4e67a6b160f91b222b6fea329f31f17e9370850f3776a1f417181ec39c",
+    "points": 121494
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004472.pcd": {
+    "bytes": 1936737,
+    "sha256": "d6a82e8cab924bfb63aaa72ff8f4ab39c7c8bf18941bd13a7c88ff81a8d202e7",
+    "points": 121029
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004473.pcd": {
+    "bytes": 1937937,
+    "sha256": "edd0b8b922908ce64817e406aef2e60c29b5fc7801fc3cc54009d34ac880772d",
+    "points": 121104
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004474.pcd": {
+    "bytes": 1941279,
+    "sha256": "1653cf1ca9676bb55060d421b99efbe028350bb1f7a4193bb38ab211b1732d6e",
+    "points": 121313
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004475.pcd": {
+    "bytes": 1947009,
+    "sha256": "b6f5ccdbc2fe106f30ccf7b82a568737c59a2542115291e891a368d110134d61",
+    "points": 121671
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004476.pcd": {
+    "bytes": 1950291,
+    "sha256": "424c8aa902ea17180db8f32edbf079d4511c061b88a0988167a47ec5a3012d14",
+    "points": 121876
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004477.pcd": {
+    "bytes": 1947648,
+    "sha256": "9aae1801dd3ab69cabe1dd842e9cd4e5a447c200dd532682db32042360cde37e",
+    "points": 121711
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004478.pcd": {
+    "bytes": 1953234,
+    "sha256": "8c1f43770fefefdfb9f52829b13ea2a31df94e5a9650a654479594a09fafdd32",
+    "points": 122060
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004479.pcd": {
+    "bytes": 1956626,
+    "sha256": "0381508fc3b74f77c8fd221b91f3a3663c92ca8edfa216ba419b0aae45058ebf",
+    "points": 122272
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004480.pcd": {
+    "bytes": 1955633,
+    "sha256": "8f1c0bb358daca68e1191c675fe0101fe2c3932575fc17c1af2a19a9b60ecec5",
+    "points": 122210
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004481.pcd": {
+    "bytes": 1953102,
+    "sha256": "56b394cd4969237b32c211eb8b4cecb32c2244f59ac0e3d8510290a2de9afca2",
+    "points": 122052
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004482.pcd": {
+    "bytes": 1947266,
+    "sha256": "e1ca3f2803a6b6ecd9930323d7215afe4a1b2981c8a7242f671ae093e947408e",
+    "points": 121687
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004483.pcd": {
+    "bytes": 1938480,
+    "sha256": "bb0572b8151141772ba48be58059c1583b3eb676e3bec3979f072107286520ce",
+    "points": 121138
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004484.pcd": {
+    "bytes": 1929647,
+    "sha256": "b44e59464992c6919cef64a96df39d3c38df1aaf36797137c3f3f196bdad69bb",
+    "points": 120586
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004485.pcd": {
+    "bytes": 1923713,
+    "sha256": "1c5d57b2031b59ff5d9569a65f21e5d21fc24783ede440104d35d720c84da013",
+    "points": 120215
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004486.pcd": {
+    "bytes": 1913599,
+    "sha256": "020c626761aed061aa24c3849e1c2738080dc674238a915f66e1a3fd78b950df",
+    "points": 119583
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004487.pcd": {
+    "bytes": 1906591,
+    "sha256": "8235d065cbe31f2a74517555e5894028fd1785f00f7b929b3be96b805b17fd26",
+    "points": 119145
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004488.pcd": {
+    "bytes": 1902016,
+    "sha256": "3ac6d02cc9ef1b482b7e24d4e59896d15b1f211dda810451cb838a50345573ed",
+    "points": 118859
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004489.pcd": {
+    "bytes": 1886482,
+    "sha256": "84a9a1616ff45191e9c97a97f9cfa835daaeb899c6bec8bb25b6723bb5efef9c",
+    "points": 117888
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004490.pcd": {
+    "bytes": 1872626,
+    "sha256": "15572ace1f1ddb53118f79be4fb9b7b450713b67692b72505806122dfae65eec",
+    "points": 117022
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004491.pcd": {
+    "bytes": 1850544,
+    "sha256": "d250cae7c0c94e51c14d6016fc88d2250288733b651384709cd48f5ad2705448",
+    "points": 115642
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004492.pcd": {
+    "bytes": 1824433,
+    "sha256": "149dd5c56f8c51d02e87161d35fad73a17378284bfa5caf6a84c7ef65c91fb64",
+    "points": 114010
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004493.pcd": {
+    "bytes": 1795888,
+    "sha256": "e4af9ea217ef97353961b6f2c8e072ce2a1624308f9b009f5c421d6eb4586d3a",
+    "points": 112226
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004494.pcd": {
+    "bytes": 1809632,
+    "sha256": "032dba374b1d557652b991f72ee5cf9c4e4eea5cd7f22bdf4c30fd01aaaead1d",
+    "points": 113085
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004495.pcd": {
+    "bytes": 1837824,
+    "sha256": "501a545028c63fa53151ee42dbcf8381c01ed98d600f2d59499e421b47a1c5f9",
+    "points": 114847
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004496.pcd": {
+    "bytes": 1858562,
+    "sha256": "68e614af2cd85f44a798a024fe9c47197c8a343d95b80b1b813d7622e183948d",
+    "points": 116143
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004497.pcd": {
+    "bytes": 1882110,
+    "sha256": "46eaa79c3348c55a662f7842586cfe2fae0d27de371fc5e2751259d6b24e9bab",
+    "points": 117615
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004498.pcd": {
+    "bytes": 1901969,
+    "sha256": "7ca903920575f8bfbafe40c6244aec3a8312372da1aaaa519d00f1a161e25cee",
+    "points": 118856
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004499.pcd": {
+    "bytes": 1919745,
+    "sha256": "dc3b8e3ec33be45700b4688e5edfa540a26015df5b94ebbaaa8a856953111fd8",
+    "points": 119967
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004500.pcd": {
+    "bytes": 1937665,
+    "sha256": "70988d19ddad22a4a1b4fe991cf86e3c4f276e888dd82b62985bac74af8c3110",
+    "points": 121087
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004501.pcd": {
+    "bytes": 1945969,
+    "sha256": "d1ff3a72f96653e1ec627ad1205099279b457ea025e0b61c43a1dda03a4f016f",
+    "points": 121606
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004502.pcd": {
+    "bytes": 1946751,
+    "sha256": "eb367b7534bf6a020aa80087882769fc627226f940bdca6f175dbe4abe7874dd",
+    "points": 121655
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004503.pcd": {
+    "bytes": 1943907,
+    "sha256": "374398b55caf399a6b2d3dc6d3b7584216af9c3700398f2a12a093d84af2f546",
+    "points": 121477
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004504.pcd": {
+    "bytes": 1938961,
+    "sha256": "5b9715f1c68b24eacb7c7e98d9c2c24b20a1047ecbf27e14d78662c4b7329454",
+    "points": 121168
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004505.pcd": {
+    "bytes": 1938722,
+    "sha256": "3a7900f2b86ac94ec51d8ba8c8da9a15ea197a6b815887c01a801b67cd99db7e",
+    "points": 121153
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004506.pcd": {
+    "bytes": 1936604,
+    "sha256": "4ba55a8fc945809907a6d4de6bc974c0d3f8b710664eacdd309a7e376d8acc70",
+    "points": 121021
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004507.pcd": {
+    "bytes": 1920764,
+    "sha256": "bd44dcdad9d495bf2a1546e2fa1d490c3ff5a2b340c0917b93f8b4c6c9a74890",
+    "points": 120031
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004508.pcd": {
+    "bytes": 1918717,
+    "sha256": "08ddf56e705f193d064bbb4391d8875a540269e4e86aac5355def1f93159310c",
+    "points": 119903
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004509.pcd": {
+    "bytes": 1923215,
+    "sha256": "42b26235b3828eabd6f6e16b5f22eae35cfe1df09b432b342e98f75ac9013245",
+    "points": 120184
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004510.pcd": {
+    "bytes": 1924752,
+    "sha256": "edd05a00c8af3a08be7ab51320514265301a8a9ee1f81e141f9d013c56c95ca7",
+    "points": 120280
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004511.pcd": {
+    "bytes": 1920222,
+    "sha256": "10286f6c6e74bee16ace22964b1372a55b805ef6d387437f2bf257a93ee73a94",
+    "points": 119997
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004512.pcd": {
+    "bytes": 1923648,
+    "sha256": "149bae772aee84b20ab45ef581870c0355852e357a79e865d36698e62fd146da",
+    "points": 120211
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004513.pcd": {
+    "bytes": 1918018,
+    "sha256": "2c0503d47bf2d8022afd39f1cf445e1430bba34b6f4c6f65595429da8fafbecf",
+    "points": 119859
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004514.pcd": {
+    "bytes": 1914097,
+    "sha256": "c3f1aec5da99f5036acc5b32cf0d47da47d9db6ad81f306e57ca04d3ca9e40f7",
+    "points": 119614
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004515.pcd": {
+    "bytes": 1906224,
+    "sha256": "604d37cf86b7046e71917207dca0393d5207a44272f923fbc3ecd49ad9347282",
+    "points": 119122
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004516.pcd": {
+    "bytes": 1894863,
+    "sha256": "6be0e0addab84b1379a25924d5c08dc6b6f3722b8f043f9f33699c0398fb60d3",
+    "points": 118412
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004517.pcd": {
+    "bytes": 1882065,
+    "sha256": "efb76ae76f2aa2c32e5940037bb072e299cd1771f89757b5ecb2649743805925",
+    "points": 117612
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004518.pcd": {
+    "bytes": 1866369,
+    "sha256": "9b1bf5edc2cb955e63b9d580d52c0177e40a86e33e81db704c814a7512fa0936",
+    "points": 116631
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004519.pcd": {
+    "bytes": 1855022,
+    "sha256": "6b0166011c48362f1ee37bd4ce7d3fd65e37dd7b455d48cd832263e928c26cfe",
+    "points": 115922
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004520.pcd": {
+    "bytes": 1856717,
+    "sha256": "d9232275cd75431b44b9a099aa2736c2138f3e57df8a76cfc55d60259a17c80a",
+    "points": 116028
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004521.pcd": {
+    "bytes": 1879471,
+    "sha256": "eb8b86eff15a6c78c785b9f4e01aba55d87dea41aebd5c3e38c2e94d6b2a3949",
+    "points": 117450
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004522.pcd": {
+    "bytes": 1895519,
+    "sha256": "2fb8778cc496f9204c1e4ca30881283c1123802d6262ea8c2ba7af2c461da4f7",
+    "points": 118453
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004523.pcd": {
+    "bytes": 1888285,
+    "sha256": "1480da3ebebe37c8fac7da78a0b0ded2e33fddfa6bdce7a5af2067eaa65a8f2c",
+    "points": 118001
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004524.pcd": {
+    "bytes": 1895663,
+    "sha256": "3a29361e01d0283df09b3fe49880eaa34634306bf386672b4d8d90c04f84d910",
+    "points": 118462
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004525.pcd": {
+    "bytes": 1908525,
+    "sha256": "2ec9e5de9d7a0bbf6dcc29182f55aea350014e13b8bf09bf79bb83ab5ab6d497",
+    "points": 119266
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004526.pcd": {
+    "bytes": 1916829,
+    "sha256": "64c3ab164221594b4e36f69cf44849d773a9e9f0a976f4de8b099877ccd0ae1b",
+    "points": 119785
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004527.pcd": {
+    "bytes": 1917582,
+    "sha256": "9a829c8119c6d3b658e1f74c1b087d8a777fe07a626578cdc8b3f14435054680",
+    "points": 119832
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004528.pcd": {
+    "bytes": 1922621,
+    "sha256": "6d441f12b1fafba562f6402289bf5c20e4f390ac4eefc722b36c6e053efdaf2e",
+    "points": 120147
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004529.pcd": {
+    "bytes": 1924461,
+    "sha256": "3f04324ea5a082425bc0fe6ca4aa204fe92d9648ecc342a843de3ce71e9068a9",
+    "points": 120262
+  },
+  "runs/kitti-author-selected-02/prepared/00/pcd/004530.pcd": {
+    "bytes": 1927102,
+    "sha256": "02ecadf51a499993b935e158d7d973441eac82be725e588248a7e049e6b85789",
+    "points": 120427
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000150.pcd": {
+    "bytes": 1900819,
+    "sha256": "4bb4acf81b236988d26a6736a6dfd793cb412437ff2e6fe418a7618af89c24d0",
+    "points": 118784
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000151.pcd": {
+    "bytes": 1901470,
+    "sha256": "ef92bec44f34d0f5559544d6645c5fbc845fd757bb66a92899f03fa55d0ec864",
+    "points": 118825
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000152.pcd": {
+    "bytes": 1901810,
+    "sha256": "1b9a660e9d19863abfa7c76121c5979be9d3a0a442ed38883b2540d5dff50cf0",
+    "points": 118846
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000153.pcd": {
+    "bytes": 1904050,
+    "sha256": "8ad2ba62d3d9d78a7a773439861f166b773c53da0d84778f58db60470e9b35df",
+    "points": 118986
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000154.pcd": {
+    "bytes": 1900591,
+    "sha256": "87905c19a9698959121415527d505c10b88b9c963fddcf8ceedc7c544cf37bdb",
+    "points": 118770
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000155.pcd": {
+    "bytes": 1894545,
+    "sha256": "9fcc188c15b8f18e227d4b78f7c1c9a5633e2625517969538f5cd0993ade64bb",
+    "points": 118392
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000156.pcd": {
+    "bytes": 1880321,
+    "sha256": "3a6d703f62d9de9515159020b1ed32a5d9311e166c1b6d7773618f519ecd82a6",
+    "points": 117503
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000157.pcd": {
+    "bytes": 1864734,
+    "sha256": "13126b35f506c9299bfb03c5408f6f3b427731de604ce8244fcf5b642788bf98",
+    "points": 116529
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000158.pcd": {
+    "bytes": 1866113,
+    "sha256": "098a8844808f32811a2a0e971e0bf685a4e834b36b3bc305791b190262e90de6",
+    "points": 116615
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000159.pcd": {
+    "bytes": 1864368,
+    "sha256": "f762d767fc1bdeae2e67f10ca243bb69ae0bc1ceacc73895437d3c5e075d70b3",
+    "points": 116506
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000160.pcd": {
+    "bytes": 1863695,
+    "sha256": "659a3cfdc86064cd9292fbb16c02adf52edc93d35ac5d75dd1852ae2549f6e5c",
+    "points": 116464
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000161.pcd": {
+    "bytes": 1857871,
+    "sha256": "833fd6a8b2ae074a6e8e48ea4827bb18c63bed192ad0d62411feef9a079c7cf8",
+    "points": 116100
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000162.pcd": {
+    "bytes": 1853743,
+    "sha256": "f93e547b384dbd15b332055e962676798b3a9dcbba61a47da9d06eed75dd9517",
+    "points": 115842
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000163.pcd": {
+    "bytes": 1848818,
+    "sha256": "b738d2a7165ce8a96ae973d8c535b9e583f60a8b3aad66e5678432341d2b0339",
+    "points": 115534
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000164.pcd": {
+    "bytes": 1842498,
+    "sha256": "1e08c295be250a566b0eacb3cd777debac941ce676b310ddfcd13de68440584a",
+    "points": 115139
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000165.pcd": {
+    "bytes": 1831025,
+    "sha256": "07ca9eeabe42600c8390d8830593e595ec1200a054abf085deeb020798ff1062",
+    "points": 114422
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000166.pcd": {
+    "bytes": 1842465,
+    "sha256": "bed2060240c0003fa8a784da2983a75d10acce9c6343ba641fd9ee7682effd93",
+    "points": 115137
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000167.pcd": {
+    "bytes": 1849838,
+    "sha256": "843772f1de7b3f5949ae6cfe97a568035192ad3ee23622234b1206b3a816183e",
+    "points": 115598
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000168.pcd": {
+    "bytes": 1866846,
+    "sha256": "d239870b975904b3fcbc05d8d761feb927eca9e808973b41d9ea1b09c155ee4f",
+    "points": 116661
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000169.pcd": {
+    "bytes": 1888416,
+    "sha256": "b5aea439717e3d8d3c2358b1276b55fc7529e864e8a6b84d545cb681e011d2e7",
+    "points": 118009
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000170.pcd": {
+    "bytes": 1896831,
+    "sha256": "a96702af879ef8f151a8be75eea40f965ed0c878b795fb90c2effc7d0cda94f4",
+    "points": 118535
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000171.pcd": {
+    "bytes": 1901902,
+    "sha256": "908c3876bd348557825dfbc71167d1f216938e9c8cca9932bb821814479ac61f",
+    "points": 118852
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000172.pcd": {
+    "bytes": 1909440,
+    "sha256": "74c9dfce5e6c9b0762f0c5c890586cd41f220ba453828b850bab119ef00c4b53",
+    "points": 119323
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000173.pcd": {
+    "bytes": 1913744,
+    "sha256": "e9f308f8e72d7bccb98021c8575130bacbc64ec93f0d55d285db76b5d13eab07",
+    "points": 119592
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000174.pcd": {
+    "bytes": 1913904,
+    "sha256": "742b580f034a108da5fe770ad5d7514bff822f6debb47de3baca5743b0565dd0",
+    "points": 119602
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000175.pcd": {
+    "bytes": 1919280,
+    "sha256": "796c8dd4c1ed1e2e01ccbf225d0aa55fad6549d43e53f47f291d44314514a9fb",
+    "points": 119938
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000176.pcd": {
+    "bytes": 1911263,
+    "sha256": "b482e557e1f7758ecb4579408b24d943ab1471ecdac98e06cdec7bb0d6e1cb40",
+    "points": 119437
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000177.pcd": {
+    "bytes": 1902545,
+    "sha256": "d46168bc2b4658d9efee60724bcdf605ffd476c53e72971a8e744ef5d267b33e",
+    "points": 118892
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000178.pcd": {
+    "bytes": 1902898,
+    "sha256": "638f4aa20c214f3c4828b128ad2c3339b2f820ec2857d6785758fd7ea4d1e828",
+    "points": 118914
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000179.pcd": {
+    "bytes": 1898545,
+    "sha256": "d0936f360a9174e597c27b2e8b2647f68d9881ff285df205bedcd897a588206e",
+    "points": 118642
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000180.pcd": {
+    "bytes": 1893792,
+    "sha256": "b5f135ccc337f9f583113222d58f2c34bbdc0662909439cad8789989d0b24d50",
+    "points": 118345
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000181.pcd": {
+    "bytes": 1897535,
+    "sha256": "06669b41e8da7411782bb13a58172f010370275a3c2c351eeb778d2c65fdadbf",
+    "points": 118579
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000182.pcd": {
+    "bytes": 1904272,
+    "sha256": "ff7083565b032a7ef1967920c80549c5ceb92b32cb5b61618a6a52347ce2d348",
+    "points": 119000
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000183.pcd": {
+    "bytes": 1909938,
+    "sha256": "9ba0f1f9d965cc31e44f210ce0e48c5804fa9161bfd3f6e031aa2ba5494d78bb",
+    "points": 119354
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000184.pcd": {
+    "bytes": 1911458,
+    "sha256": "3281ffa5a31bbb6e67156e95be213b7a378fbe118788c3b3370dd594c547e770",
+    "points": 119449
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000185.pcd": {
+    "bytes": 1909885,
+    "sha256": "ea422bb5423caeb040360c689aaf27a845e2a300836754671756752086c91d9a",
+    "points": 119351
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000186.pcd": {
+    "bytes": 1907871,
+    "sha256": "b213bbbd2ac3ac33d4392dcdbc836d473d5da5bddb3e8200cd7ff7bc6416713a",
+    "points": 119225
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000187.pcd": {
+    "bytes": 1907378,
+    "sha256": "4db837a96e48e9d086c1cd784ca793c7f270c386702f5441466cb24811094754",
+    "points": 119194
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000188.pcd": {
+    "bytes": 1907954,
+    "sha256": "cab91106233257a5e8a12e79d90259988be8c227c33196b465077f15013ce4e6",
+    "points": 119230
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000189.pcd": {
+    "bytes": 1907794,
+    "sha256": "3083c20a2229e4865646d31f851f83adf70410368247a6e533f1d80a40e123b1",
+    "points": 119220
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000190.pcd": {
+    "bytes": 1905088,
+    "sha256": "aecc0d4fd71cd24e9e69df144c5702283525f19b0dfc2a44a7a45d66b84c9742",
+    "points": 119051
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000191.pcd": {
+    "bytes": 1902866,
+    "sha256": "48620ea7e78a46c5d2bee8f8e09d209644a123abf4b3bd09d280b6b957cc592e",
+    "points": 118912
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000192.pcd": {
+    "bytes": 1895919,
+    "sha256": "62066df4f4282a52b1fee41827c86db471232613de849e06823f883b21676a5e",
+    "points": 118478
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000193.pcd": {
+    "bytes": 1890849,
+    "sha256": "6531702ccec504d1154749207842d636061bf06f0787510f930dd152a5ac9f83",
+    "points": 118161
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000194.pcd": {
+    "bytes": 1889872,
+    "sha256": "b7e4ec8dbced068d4bf62b537bb44e3c8ae6e43658c2aa962308af687aef263b",
+    "points": 118100
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000195.pcd": {
+    "bytes": 1889150,
+    "sha256": "218b7b7898802e32b258a0eca206c2555131848fe2856d2db9d70145b22949bb",
+    "points": 118055
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000196.pcd": {
+    "bytes": 1887855,
+    "sha256": "a5c43dd0fbc2a7d2e1559d14282079495e662fd811a3b0522006b41c41464d85",
+    "points": 117974
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000197.pcd": {
+    "bytes": 1888304,
+    "sha256": "ab37cc50ae7307bc70efd877e25fea8ad8931b41c360b2797f8d1240c70aa083",
+    "points": 118002
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000198.pcd": {
+    "bytes": 1886241,
+    "sha256": "e043b060076e8a9f246255f96080a2ccf4f4a90e87efd3551afe23a26471f986",
+    "points": 117873
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000199.pcd": {
+    "bytes": 1889376,
+    "sha256": "3a57118b7c5792d240606ac24673cd50a30f11d8144d4e39da7612c8a87c52fa",
+    "points": 118069
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000200.pcd": {
+    "bytes": 1888353,
+    "sha256": "7f4ca3e146de63b8f88390122e1d792eae62e6a891a87102b940f4736bd182db",
+    "points": 118005
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000201.pcd": {
+    "bytes": 1893438,
+    "sha256": "68f81b6acb520ea8ad9544fc53512811e3a3f488d0b48d914a37da240ae13c6b",
+    "points": 118323
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000202.pcd": {
+    "bytes": 1896688,
+    "sha256": "27d333023b6273436eb14a23088e852a3f7c96c52357f3e3cb2eb0239276dfc0",
+    "points": 118526
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000203.pcd": {
+    "bytes": 1896000,
+    "sha256": "d9bca9f0263e90b3053665c3f015982595f5fc74ca944da2a35139fc361b05e8",
+    "points": 118483
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000204.pcd": {
+    "bytes": 1898065,
+    "sha256": "311939d9f7c83d5b485aaa8a4ec8c2948bbcc88597adf181dc76a438d7802349",
+    "points": 118612
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000205.pcd": {
+    "bytes": 1893215,
+    "sha256": "7c356263b738059f3509926e786bb285ec27700d5f601a33afbbe1a41bdd127a",
+    "points": 118309
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000206.pcd": {
+    "bytes": 1886769,
+    "sha256": "cd06ab81f003ed19dc08e5599d1c21d09dc9c752f61f84554be4d160d084c989",
+    "points": 117906
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000207.pcd": {
+    "bytes": 1872241,
+    "sha256": "36619db7bededaca7ec2a0b1b75d425220cc699a862786ddf22ac31ec9e2fc0e",
+    "points": 116998
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000208.pcd": {
+    "bytes": 1864065,
+    "sha256": "b246e8ee609fe3d63121df30c738d69a84baa298051c05689f61c9784769947a",
+    "points": 116487
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000209.pcd": {
+    "bytes": 1859663,
+    "sha256": "3e3e2f2b646d7fc98c2b7ad01d5e38c764b9a0bb28b5aab0377edd1df6372938",
+    "points": 116212
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000210.pcd": {
+    "bytes": 1842943,
+    "sha256": "4209017f7a224d878386bb92839d464d70b11cb4c1bb6a9cb6e24952d3b13dc8",
+    "points": 115167
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000211.pcd": {
+    "bytes": 1825123,
+    "sha256": "0d781fda2ede8ac4f03a63000f585f44f5a21233339a9cd6f84bf4fac18e3498",
+    "points": 114053
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000212.pcd": {
+    "bytes": 1803633,
+    "sha256": "e4a24c4323800e3a38b0f9fa9114142ee423597c47f27c8b43d847197fd36ca9",
+    "points": 112710
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000213.pcd": {
+    "bytes": 1789505,
+    "sha256": "7f614593bb9876c69ef9ae0be5320d738e3ecb07b5bf5c4636ba948d52f2175b",
+    "points": 111827
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000214.pcd": {
+    "bytes": 1761185,
+    "sha256": "99cf06c744cd7ce39583aae918ac7a2ba0c5f52c84cd14c510db7eb5a534e0bd",
+    "points": 110057
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000215.pcd": {
+    "bytes": 1726866,
+    "sha256": "0d6f84b4a93335aa56ac592827c38b33af9fe1ea4d68bdbc2c190d734199f2a5",
+    "points": 107912
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000216.pcd": {
+    "bytes": 1691969,
+    "sha256": "3917e7578a9e230f2c58fab9a8c3dfe922c00dd0515240f14e47f46f42bb6428",
+    "points": 105731
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000217.pcd": {
+    "bytes": 1675008,
+    "sha256": "019aa2f0d2906a691d64715867060eb52308499a005e8978cc5122ba2c3af395",
+    "points": 104671
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000218.pcd": {
+    "bytes": 1664035,
+    "sha256": "17d0b77736c2d242d117043ae3047d0819366725aae3bd1fc8f77b169304b1f5",
+    "points": 103985
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000219.pcd": {
+    "bytes": 1654495,
+    "sha256": "970dd236707565dc589f94c18c3f7eac82b2755f78ec581420636a57a95c28bd",
+    "points": 103389
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000220.pcd": {
+    "bytes": 1645824,
+    "sha256": "a8d014ef75b8860c56e6b21bb2cf457501518a4c15dc8249d306aba379bb6d2d",
+    "points": 102847
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000221.pcd": {
+    "bytes": 1631743,
+    "sha256": "129725b216c28827ec47145d2c6ef26372e133674c37ad9abce359586b8100a2",
+    "points": 101967
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000222.pcd": {
+    "bytes": 1624369,
+    "sha256": "c4e43c066ab023a2268b9628e42e6cf83d10ca8d4e2f5fbf0e9e5f46393130e3",
+    "points": 101506
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000223.pcd": {
+    "bytes": 1629471,
+    "sha256": "50ce7dfa943ac6beb0b8bf99148decb45ee7fa32066c8b2a778a4ae9430c78d5",
+    "points": 101825
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000224.pcd": {
+    "bytes": 1631985,
+    "sha256": "54132f81e344bf718337d4f042603b395c052bdf61e3de2d7775d164eb9cce04",
+    "points": 101982
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000225.pcd": {
+    "bytes": 1633583,
+    "sha256": "8f2a82508fca6cbec5f19125f9d41157f9ec8cd231753efb25ff06a280249a57",
+    "points": 102082
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000226.pcd": {
+    "bytes": 1627553,
+    "sha256": "c6b34e563b451965d84c30fe0cf1a36cda764dfd1085b8199948801cb7c4c3a1",
+    "points": 101705
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000227.pcd": {
+    "bytes": 1615585,
+    "sha256": "a1130e02f8561ec0d5e39841d02c4a15d735c7e03b2458235c4d359d63319d41",
+    "points": 100957
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000228.pcd": {
+    "bytes": 1614381,
+    "sha256": "13737151cc46fd354251d38ee9b23216cdd92bc32f8fae0f1d355d2375c9e67e",
+    "points": 100882
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000229.pcd": {
+    "bytes": 1609538,
+    "sha256": "1ece8030c96dfd4e71731832771b24ac9c2aeb98121e8cb89241240db07b4900",
+    "points": 100579
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000230.pcd": {
+    "bytes": 1605856,
+    "sha256": "be187310df0bf6d1c134e270906a903cb5d9abbbbed5ec3cc9e9fad37af2472b",
+    "points": 100349
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000231.pcd": {
+    "bytes": 1598784,
+    "sha256": "5b3a9522aa99765e4a9836e18296b9caffe5122aaf656301937cf97baab63a07",
+    "points": 99907
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000232.pcd": {
+    "bytes": 1598095,
+    "sha256": "85d6963972de0cd07c6182d8c46ddc71b3badf1779baf99214d9b80a0886ab40",
+    "points": 99864
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000233.pcd": {
+    "bytes": 1592689,
+    "sha256": "f2e93dfce12f643562da6603702c18809c47e56a5535bd9de92c34316b539ada",
+    "points": 99526
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000234.pcd": {
+    "bytes": 1593137,
+    "sha256": "5dd95e1a91f91c0c3d2869668c95e94681158dbe9d98666a24ff55af844b66c8",
+    "points": 99554
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000235.pcd": {
+    "bytes": 1584544,
+    "sha256": "f0d715a8ab5caf2569630d6f2c5a3bc6ae7f890a6798773b6bbcba608c97a2fd",
+    "points": 99017
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000236.pcd": {
+    "bytes": 1573455,
+    "sha256": "b4e2e8af2b23030328fe3c5925902e7aa63865170f70381ec1d361b13d7c9f65",
+    "points": 98324
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000237.pcd": {
+    "bytes": 1559408,
+    "sha256": "39c059b6c68b448522423b2c1409cba48e29438fb55dd79c41b7e59d1656905a",
+    "points": 97446
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000238.pcd": {
+    "bytes": 1547519,
+    "sha256": "5d9e6ac0646bb346910ece177a47e775695f5a6a88312854d3c10e54b19ab941",
+    "points": 96703
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000239.pcd": {
+    "bytes": 1534926,
+    "sha256": "8b91bd6ed296665369cb2b80159cf2278acaa6a8bc3e2e63a94c583262bfe234",
+    "points": 95916
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000240.pcd": {
+    "bytes": 1519233,
+    "sha256": "e3e84a2a83b8606ba227bd804b381f744627fff5af41d915755b5106162f32fa",
+    "points": 94935
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000241.pcd": {
+    "bytes": 1507676,
+    "sha256": "b6b587d1f6813fe75886e44860aefcf578e65ec9245a5749cb5163fe91a09e33",
+    "points": 94213
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000242.pcd": {
+    "bytes": 1500656,
+    "sha256": "6591ff469f8c7799401af652023c6b6795970fa33bc3949347cbb1c32a3f6046",
+    "points": 93774
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000243.pcd": {
+    "bytes": 1502777,
+    "sha256": "5618bef346f7aa18234c7e4df61d5cd9298813a0d81ee80831777bb625f34d2f",
+    "points": 93907
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000244.pcd": {
+    "bytes": 1493615,
+    "sha256": "6b2e610ea11902b1ee426c5c085e0b29236b43db5ac255671feddc329a01e095",
+    "points": 93334
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000245.pcd": {
+    "bytes": 1488719,
+    "sha256": "a8d34f5dda45c91b117b3522ce5258003a0364ebe03b434ee050aa5ea937d7f5",
+    "points": 93028
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000246.pcd": {
+    "bytes": 1478110,
+    "sha256": "ef521515edf645df861677b5e4cbdabcf18596bae9d74835aa5ce60de068f370",
+    "points": 92365
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000247.pcd": {
+    "bytes": 1460814,
+    "sha256": "cdb6b67e9e96f155cc16373e9202794c7640af932d43bc8d9915ac0fc4208cb1",
+    "points": 91284
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000248.pcd": {
+    "bytes": 1453519,
+    "sha256": "72b936a8e1b3b898246adf01182b5de4421ec4597997e2722c8b8331b9eef39a",
+    "points": 90828
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000249.pcd": {
+    "bytes": 1440272,
+    "sha256": "7ac32e2dd213c2bc55d11704042900404d9451b0de5d0f105fdda2aec1190f3a",
+    "points": 90000
+  },
+  "runs/kitti-author-selected-02/prepared/01/pcd/000250.pcd": {
+    "bytes": 1436047,
+    "sha256": "1ff643a96e582f8e6fbe506aa8759ef1d987bc0630d547db0d0034301c5ad59b",
+    "points": 89736
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000860.pcd": {
+    "bytes": 2007209,
+    "sha256": "57421333618ea4428d6ca2ad21e89cb5f552f577c9d94d808ff6b874c2df9fc4",
+    "points": 125434
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000861.pcd": {
+    "bytes": 2009597,
+    "sha256": "d7d74ef22b0515de18b74c1dc242737c0419429a29b9b434382574b16844c082",
+    "points": 125583
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000862.pcd": {
+    "bytes": 2013264,
+    "sha256": "e81e61223b320fc18848818a1bc1c20d0c3f2c11417a08517f6a7bc35dc8a152",
+    "points": 125812
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000863.pcd": {
+    "bytes": 2016285,
+    "sha256": "8988137737ffcf4ecbeecfd8a23f808008e9e4dbc924a535bc2081343f488a66",
+    "points": 126001
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000864.pcd": {
+    "bytes": 2016975,
+    "sha256": "5e6fcf5b2b16a8bbb44a54767dfa98ea7c7eb6d220cd54dce991e9ede780bb1f",
+    "points": 126044
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000865.pcd": {
+    "bytes": 2014558,
+    "sha256": "49ea4746fd7e3d6c2a00e2f83e1d67b1532b38c542f5913ad973961d6231d258",
+    "points": 125893
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000866.pcd": {
+    "bytes": 2011246,
+    "sha256": "fd44a9319490b42c853e31fd2a0da8385c7eb5ad371d34a8c9e998a2d4a9436c",
+    "points": 125686
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000867.pcd": {
+    "bytes": 2005820,
+    "sha256": "183f7ab11c3d47c8900aa9ed6390c4f056eb7413847c9162d8642ace7c0a00fb",
+    "points": 125347
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000868.pcd": {
+    "bytes": 2002574,
+    "sha256": "f147e7575e637adee8573903d02dfec47c4b5ad331bd22fad81ca4bfc279284b",
+    "points": 125144
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000869.pcd": {
+    "bytes": 1995500,
+    "sha256": "06af06674cfd1c64109ab0579235090882e4a784e7abd74c410d57d4ba911dee",
+    "points": 124702
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000870.pcd": {
+    "bytes": 1971166,
+    "sha256": "fa76c93504495eca677efb35f349b7c3867f56e0784eb7d0ed04f76c0b2a05a4",
+    "points": 123181
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000871.pcd": {
+    "bytes": 1939835,
+    "sha256": "b9459501ec0b2d90fb0a7851db2fe7be2d26942b9519985d9eeca1222ebc5065",
+    "points": 121223
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000872.pcd": {
+    "bytes": 1929342,
+    "sha256": "b0a6a9205b9a4d01a8a65020806a8a4c767538cab8bc58ba3426905a871e678a",
+    "points": 120567
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000873.pcd": {
+    "bytes": 1935247,
+    "sha256": "41afc2ab6afdcc0050a19747c5b62605a5a601814b2e8003815a09a570d9c761",
+    "points": 120936
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000874.pcd": {
+    "bytes": 1916413,
+    "sha256": "9edad3f3f7bc31da737a887e0dabc209753ee2bfd5d68f0f02c1e7f49725fbb9",
+    "points": 119759
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000875.pcd": {
+    "bytes": 1899166,
+    "sha256": "655449b0125c8900c6bf4e38a26cc6641a157715707058c7e96bb2893803fb33",
+    "points": 118681
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000876.pcd": {
+    "bytes": 1902383,
+    "sha256": "3d531e5806f5e12a55225a06103d60b8556cd92563e4855ced8184b569837a00",
+    "points": 118882
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000877.pcd": {
+    "bytes": 1924511,
+    "sha256": "518b1aa57356bb60c9a4f350124eb2266a8a51ecaf7ffe2d9ace726283080285",
+    "points": 120265
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000878.pcd": {
+    "bytes": 1934415,
+    "sha256": "9b733bc736bf9ae781e1289018b87665927fc33aecc8da93baf167ae0641bb94",
+    "points": 120884
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000879.pcd": {
+    "bytes": 1948798,
+    "sha256": "4a8eec69271357859ed31c200f01d53dbf1d5eca4604ef30139dadf335f06d16",
+    "points": 121783
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000880.pcd": {
+    "bytes": 1962622,
+    "sha256": "a0d5f54861785599988b35d76e5293e6cf7146e92704226a4af6f39362ac5765",
+    "points": 122647
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000881.pcd": {
+    "bytes": 1965422,
+    "sha256": "395b2c0416d845a9ae0a688db36b9f74b7759b32d8ed2159d77c30f80a550ef6",
+    "points": 122822
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000882.pcd": {
+    "bytes": 1964253,
+    "sha256": "803def2f1a797651a2e6f23bc67da8263dd8fba0fd7b5bfb2b41b61db1004f45",
+    "points": 122749
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000883.pcd": {
+    "bytes": 1961179,
+    "sha256": "0b8795d77b483f7f6be2366fca9c8d8fcbe24dee0cc14e3d487ccc0ae99bdabe",
+    "points": 122557
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000884.pcd": {
+    "bytes": 1980250,
+    "sha256": "f80582a1cfc6b13d9e333c1a14c084ea9e4a58bb45a9ec22657c7989feca0f7a",
+    "points": 123749
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000885.pcd": {
+    "bytes": 2003390,
+    "sha256": "463d618850f4d21c371547cb4beb6ef511f2aea08ea7959504bf7ce8c69dca76",
+    "points": 125195
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000886.pcd": {
+    "bytes": 2015870,
+    "sha256": "375e08f5450e7bd08c40e0d248962d1e132c6d1450934c4d0bc23edc55e2136c",
+    "points": 125975
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000887.pcd": {
+    "bytes": 2019855,
+    "sha256": "16084442913c4cb7b55d9ab98f58adad82c96f2eaafe5a6bf9beb18333280cc6",
+    "points": 126224
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000888.pcd": {
+    "bytes": 2022928,
+    "sha256": "a264317cb44c4cf0c72f907a7fddf3bd667d7e0e516b5ecf634dec26039f1b96",
+    "points": 126416
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000889.pcd": {
+    "bytes": 2025775,
+    "sha256": "5c7a366b2429cd2fdb9beb7ebb7b13e90bc0039abb34a1bf92a2debd420644e1",
+    "points": 126594
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000890.pcd": {
+    "bytes": 2026111,
+    "sha256": "e42e095c88fc5c7ea46942046be904aac00d4b656e987da5923fe4b934bea76f",
+    "points": 126615
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000891.pcd": {
+    "bytes": 2026350,
+    "sha256": "d05beadd88073c40db8bd8159473890478e6fa900da1cf840f544096abf54fc1",
+    "points": 126630
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000892.pcd": {
+    "bytes": 2026318,
+    "sha256": "ed9f659c31fe2872d0a1dc69b98e94b82e17ef8a6f5dae65f886ab0ad5d0ea39",
+    "points": 126628
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000893.pcd": {
+    "bytes": 2023791,
+    "sha256": "d65159493db77b25db56c6e675f05d866e3ec910226e9aac32d6a84fe48545ff",
+    "points": 126470
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000894.pcd": {
+    "bytes": 2020991,
+    "sha256": "3da9081c5ebb21c4bca56b611381cefa1a832a3da544995b15d07d80b9eeecad",
+    "points": 126295
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000895.pcd": {
+    "bytes": 2019166,
+    "sha256": "405847caf9993ee2f10c97a80f879b23b1dd2e5c60e7c68b29a712edd44c3609",
+    "points": 126181
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000896.pcd": {
+    "bytes": 2019649,
+    "sha256": "e63b3fd84f0c627707007a601c67f5810a1bfdba730170bc871e08c4045cf814",
+    "points": 126211
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000897.pcd": {
+    "bytes": 2015196,
+    "sha256": "db9e219aa04c97a0fa770b38acd2b32ba66edae10bffda5a8f95c6a81c7231a8",
+    "points": 125933
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000898.pcd": {
+    "bytes": 2013725,
+    "sha256": "ee3e10439bf8ece82fe5228583b9c65ff8891fea125db04cdf15fe3d1598b3ca",
+    "points": 125841
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000899.pcd": {
+    "bytes": 2012990,
+    "sha256": "245a56ce76a25fcf2d3c847ee34895f71832baee5c05ae202749911f9d0c3db8",
+    "points": 125795
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000900.pcd": {
+    "bytes": 2010717,
+    "sha256": "d2be28afeaba984f9970174863c1535b716cda10e4ed0e2469bd7fa19848a06a",
+    "points": 125653
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000901.pcd": {
+    "bytes": 2009663,
+    "sha256": "ff377876048b65118497a63d1fa0f5e5b7b030fc8abf14eadcaee2949a2c3207",
+    "points": 125587
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000902.pcd": {
+    "bytes": 2008111,
+    "sha256": "fec882c6e395d12c1bafb84c5c68b7a1d9ea996d77ccd2b44a7a3d2824c3dc46",
+    "points": 125490
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000903.pcd": {
+    "bytes": 2006110,
+    "sha256": "6d0957dbd9b9aabb1d7c49940bd4d94b72709a916b0c4125f55484ff7af3fcec",
+    "points": 125365
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000904.pcd": {
+    "bytes": 2006046,
+    "sha256": "a5b269f9fbd13a85d0d5ab058e6845be31fd15aa1bee8bc45288924a523a1082",
+    "points": 125361
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000905.pcd": {
+    "bytes": 2006094,
+    "sha256": "a918131041a6f9839e0df36cb672f53995eb325f1f6fe4c4570c21d8d05dcb35",
+    "points": 125364
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000906.pcd": {
+    "bytes": 2007788,
+    "sha256": "f55926cc7d98cbfdcfaffd8fa0d2586833b9448b385c34359ba9ef1499829938",
+    "points": 125470
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000907.pcd": {
+    "bytes": 2006128,
+    "sha256": "b73d7a1d05cea30116b0aa3bab1c2862793b15a45982beb731e4a7408b2e57d6",
+    "points": 125366
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000908.pcd": {
+    "bytes": 2006125,
+    "sha256": "f239d10581171e7a724a706b236ec94b175b75a53b39888c6a20a10e9c2fcc26",
+    "points": 125366
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000909.pcd": {
+    "bytes": 2007550,
+    "sha256": "0358a68611971af6d59a7501656e0a7a54e8531b1e54cd5f74d4bf76c54e1956",
+    "points": 125455
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000910.pcd": {
+    "bytes": 2008974,
+    "sha256": "82aeb674ed9fe0d553a83cbc15c12308d6274300ffec8c22e0096cd8105a14c4",
+    "points": 125544
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000911.pcd": {
+    "bytes": 2009695,
+    "sha256": "ed6a13510959ffa008819f0d34590949b8d141123a6d82b37b86edff5bd58e27",
+    "points": 125589
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000912.pcd": {
+    "bytes": 2009853,
+    "sha256": "5bdd6102c60a551cd3be2f4f1c951f85a7c015f142409e050ea7cd464d7d75ba",
+    "points": 125599
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000913.pcd": {
+    "bytes": 2009725,
+    "sha256": "7d2fb7ebb8b282d603ddc98f425aab5487916482e93a5ec7807b926057dc0b54",
+    "points": 125591
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000914.pcd": {
+    "bytes": 2011071,
+    "sha256": "f6b06bd72dbb0750e5aeda678996235cd048cb77d24517cd3a5258bd58b78a8e",
+    "points": 125675
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000915.pcd": {
+    "bytes": 2012367,
+    "sha256": "ce04802f08e62b66a5d1a25ead3194cde8601404a7a3e575f8794a11abfd07de",
+    "points": 125756
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000916.pcd": {
+    "bytes": 2010862,
+    "sha256": "d8b12274b43f18890989d52fb47253139b1cd3efeed6bbd2d35d4832e4651861",
+    "points": 125662
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000917.pcd": {
+    "bytes": 2011164,
+    "sha256": "d7c68d0d1cd08f535db972fa598d4abb8262901e494775f2fb69c5ef47c3bd76",
+    "points": 125681
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000918.pcd": {
+    "bytes": 2008555,
+    "sha256": "accadf9c9686f09f3b3942e97ce7aeb245c1ebd752bca3a4ee495a72c417ed11",
+    "points": 125518
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000919.pcd": {
+    "bytes": 2010172,
+    "sha256": "71d7ee5c1dfda2cc509ef88c64b658c2fdc12762ac4c6a65b4c63b8718890dcd",
+    "points": 125619
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000920.pcd": {
+    "bytes": 2011037,
+    "sha256": "04e2e110243ad97e546f0ba8c30aa024c9f68adddb6c4876672be6e7bf1167a7",
+    "points": 125673
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000921.pcd": {
+    "bytes": 2010093,
+    "sha256": "67396b51d379b66232f956e553bd8d11a5bdb8f0591e0c591459f376420db11e",
+    "points": 125614
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000922.pcd": {
+    "bytes": 2010299,
+    "sha256": "26003ec8bbb86de20df1582214db41822aa829193a75503f2707c078a94f8f63",
+    "points": 125627
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000923.pcd": {
+    "bytes": 2011372,
+    "sha256": "742da90f4e2729358bec794ace684c4c7561b740fb8cfab746ef42559445b36a",
+    "points": 125694
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000924.pcd": {
+    "bytes": 2012943,
+    "sha256": "0b9250eb7556085342ca8e2bc8a90360495625474a5ad932367bbae2830b6d56",
+    "points": 125792
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000925.pcd": {
+    "bytes": 2013518,
+    "sha256": "5444d2fdd882e884bc4ce43299c3e390cf5e73e5bfc8796fa47bc84b19f997d7",
+    "points": 125828
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000926.pcd": {
+    "bytes": 2016686,
+    "sha256": "0a5032f298ca630f581d07616c7696271c23865fcf9cf73e6b74862a1978ece5",
+    "points": 126026
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000927.pcd": {
+    "bytes": 2021486,
+    "sha256": "d6e3b68a20c38b1683d54103a21441f10fb68a1006cc5d1336e1e49e5c6c76ae",
+    "points": 126326
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000928.pcd": {
+    "bytes": 2025438,
+    "sha256": "4a68c0422c856cbfbcd352acc7f7481d00f69d00e7e882a3e852dbb2a126052a",
+    "points": 126573
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000929.pcd": {
+    "bytes": 2031484,
+    "sha256": "9193f4d6211dcf52f9ba476ce910f88db89b0e89a07e00a845625ca8a9642dec",
+    "points": 126951
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000930.pcd": {
+    "bytes": 2035070,
+    "sha256": "f2ab6274217a34c814b42cb000f627c886dc07e6a54ee4daa02d56d43eae2bd0",
+    "points": 127175
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000931.pcd": {
+    "bytes": 2036860,
+    "sha256": "7afc4b7e82d74ba3b42f9ad3d1065383d91e80b3d7dd59092ca218c2eb7fe501",
+    "points": 127287
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000932.pcd": {
+    "bytes": 2035293,
+    "sha256": "69f24ea1414ade5d9e6281172ada88ae59de3b976cf4a6010d7965963eb06fc3",
+    "points": 127189
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000933.pcd": {
+    "bytes": 2035933,
+    "sha256": "f74f23538752a03695f28b716092652e1acb7b5d884da2f9cf85e1579cdb965e",
+    "points": 127229
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000934.pcd": {
+    "bytes": 2039069,
+    "sha256": "a3cc9916488735bdf88fcb2fbee1e0eda5338c053930c9ced4603fc78dc0d568",
+    "points": 127425
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000935.pcd": {
+    "bytes": 2038511,
+    "sha256": "dfb32b299de5435154773155e8dfecc77569ee908fade06fcdcf9e8b992121f9",
+    "points": 127390
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000936.pcd": {
+    "bytes": 2038109,
+    "sha256": "f59f24dfd04eb72930e97733b6c32a2281315c505868029a575e04fdd114ce72",
+    "points": 127365
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000937.pcd": {
+    "bytes": 2037342,
+    "sha256": "b93eaeb0be48c1207de6f0102f722a60f0b6002cdf3629ecf08a1edf87aee434",
+    "points": 127317
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000938.pcd": {
+    "bytes": 2039596,
+    "sha256": "b34ad4454d6c1fa1ce2bff3ade184c58ae8baf1342d84668e83d7e3710bc56da",
+    "points": 127458
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000939.pcd": {
+    "bytes": 2038861,
+    "sha256": "26afea8efd3f2670b19e8cf8e0307bc8fcd831d83a1ce0cb57b22c4853f977ea",
+    "points": 127412
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000940.pcd": {
+    "bytes": 2037997,
+    "sha256": "14c0177edeccef5867cef736f7bb783f2c2b63f02ce17c7dce76ef7248a95623",
+    "points": 127358
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000941.pcd": {
+    "bytes": 2040332,
+    "sha256": "35cca026da2e1854695a8943c10a99052e176df368fb7db192b0de13c381c3b6",
+    "points": 127504
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000942.pcd": {
+    "bytes": 2042522,
+    "sha256": "cc3c6e9cbc4b20bb7e91f9874e50c7a2a40705650c37e34a9e550d88ae68cd26",
+    "points": 127641
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000943.pcd": {
+    "bytes": 2043197,
+    "sha256": "edbd7786e9499cc077682c4471801638c3881ec918a550c9794208f0b2d91ce3",
+    "points": 127683
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000944.pcd": {
+    "bytes": 2041736,
+    "sha256": "60c0e12d2d8ffb0fa4b165fe1322fc9205a725d4cdeab12d27dfb6f4cde7d917",
+    "points": 127592
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000945.pcd": {
+    "bytes": 2041630,
+    "sha256": "d1d40e2438e20d62f923b10008e25f8df91e02a0b5153b6aa6557fd6b6fa815d",
+    "points": 127585
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000946.pcd": {
+    "bytes": 2040301,
+    "sha256": "323c9c1d4d7214b676bbd7bbb7eb571cc0c09ae4b90480d868882285336eb6c7",
+    "points": 127502
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000947.pcd": {
+    "bytes": 2039307,
+    "sha256": "a6a590f7d505f0871db6a3d653c73de41dec76a30049dfecbcee73f130b932ae",
+    "points": 127440
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000948.pcd": {
+    "bytes": 2038687,
+    "sha256": "6aeba24a6bffaf4a1dc3e4338019182cb8690a6519f4c6f8569a259922457a9d",
+    "points": 127401
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000949.pcd": {
+    "bytes": 2037436,
+    "sha256": "302e7e828f297161e080cb05f087f812c9be0b6d7a9f40ca6b7cbf13cd6e2bba",
+    "points": 127323
+  },
+  "runs/kitti-author-selected-02/prepared/02/pcd/000950.pcd": {
+    "bytes": 2037930,
+    "sha256": "7431dd32f2848e7ced1bcead1e747ca3e6351309b1ef9029d69fff5bce3ac2bc",
+    "points": 127354
   },
   "runs/conceptgraphs-room0-original-window-01/conceptgraphs-room0-original-window.mp4": {
     "bytes": 297953,

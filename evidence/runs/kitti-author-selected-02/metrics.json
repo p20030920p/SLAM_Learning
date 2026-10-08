@@ -1,0 +1,46 @@
+{
+  "scope": "Author selected intervals 01:150-250,02:860-950 inclusive; original SuMa-pose preprocessing and original postprocessing methods",
+  "metrics": {
+    "01": {
+      "dufomap": {
+        "SA_percent": 98.9445,
+        "DA_percent": 93.9332,
+        "AA_percent": 96.4063,
+        "HA_percent": 96.3737
+      },
+      "beautymap": {
+        "SA_percent": 99.3033,
+        "DA_percent": 92.3692,
+        "AA_percent": 95.7735,
+        "HA_percent": 95.7108
+      }
+    },
+    "02": {
+      "dufomap": {
+        "SA_percent": 68.6114,
+        "DA_percent": 89.2862,
+        "AA_percent": 78.2691,
+        "HA_percent": 77.5953
+      },
+      "beautymap": {
+        "SA_percent": 83.4254,
+        "DA_percent": 84.6594,
+        "AA_percent": 84.0401,
+        "HA_percent": 84.0378
+      },
+      "beautymap_xy05": {
+        "SA_percent": 83.2957,
+        "DA_percent": 86.0901,
+        "AA_percent": 84.6814,
+        "HA_percent": 84.6699
+      },
+      "beautymap_xy20": {
+        "SA_percent": 74.5822,
+        "DA_percent": 90.6875,
+        "AA_percent": 82.2416,
+        "HA_percent": 81.8502
+      }
+    }
+  },
+  "cell_size_variant": "XY=0.5/1/2m; fixed author README z=0.5m and range=40m; no runtime comparison"
+}

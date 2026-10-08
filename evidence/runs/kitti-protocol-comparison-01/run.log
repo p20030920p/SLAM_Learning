@@ -1,0 +1,56 @@
+{
+  "status": "compared",
+  "first_frame_004390": {
+    "raw_points": 125883,
+    "released_points": 125883,
+    "current_50m_points": 124662,
+    "official_suma_sensor_translation_m": [
+      -15.343591358814148,
+      17.9377569753962,
+      -0.7518617015954464
+    ],
+    "released_viewpoint": [
+      -15.6504,
+      17.981,
+      -0.934952,
+      0.882959,
+      -0.0239536,
+      -0.0058903,
+      -0.468802
+    ],
+    "max_unaligned_pointwise_xyz_difference_m": 0.7178045763940717
+  },
+  "viewpoint_comparison": {
+    "frames": 141,
+    "left_alignment_from_first_frame": [
+      [
+        0.9999756425068913,
+        -0.001782385875476602,
+        -0.006754732425691579,
+        -0.28028899255136075
+      ],
+      [
+        0.0018328831460141081,
+        0.9999705789070746,
+        0.007427185734421272,
+        0.07747799952388945
+      ],
+      [
+        0.0067412947846121445,
+        -0.007439373293042834,
+        0.9999494134979537,
+        0.05375301012618927
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "max_translation_residual_m": 0.2731274511978179,
+    "median_translation_residual_m": 0.10890003725906985,
+    "max_rotation_residual_rad": 0.0007393163944568457
+  },
+  "scope": "Input protocol check only; supplied-pose differences are not localization ATE or evidence for H1; cause not established"
+}

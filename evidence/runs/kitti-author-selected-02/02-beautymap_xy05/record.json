@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "method": "beautymap_xy05",
+  "scope": "Author selected intervals 01:150-250,02:860-950 inclusive; original SuMa-pose preprocessing and original postprocessing methods",
+  "status": "executed",
+  "started_at": "2026-10-08T22:45:18.794941+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-author-selected-02-02-beautymap_xy05",
+    "-p",
+    "MemoryMax=4G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=200%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap/main.py",
+    "--data_dir",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/inputs/02/beautymap_xy05",
+    "--dis_range",
+    "40",
+    "--xy_resolution",
+    "0.5",
+    "--h_res",
+    "0.5"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap",
+  "source_commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "c81f0be96542ea9c15e9714b1ed85e109993aea3e8ccd0af02538e3955f8248f",
+      "bytes": 23229
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/inputs/02/beautymap_xy05/beautymap_output.pcd": {
+      "sha256": "41b9a4dabea0f272a03ac0085b64275b73a757f7db4ca02f3b73bc388f03cac8",
+      "bytes": 144411557
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 230502,
+  "elapsed_seconds": 34.92385179300072,
+  "source_dirty_after": ""
+}

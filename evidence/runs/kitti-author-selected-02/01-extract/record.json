@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-preprocess",
+  "scope": "Author selected intervals 01:150-250,02:860-950 inclusive; original SuMa-pose preprocessing and original postprocessing methods",
+  "status": "executed",
+  "started_at": "2026-10-08T22:42:52.177951+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-kitti-author-selected-02-01-extract",
+    "-p",
+    "MemoryMax=4G",
+    "-p",
+    "MemorySwapMax=6G",
+    "-p",
+    "CPUQuota=200%",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/kitti-prep/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/author-scripts/py/data/extract_semkitti.py",
+    "--original_path",
+    "/home/qzl/projects/SLAM_Author_Originals/data/kitti-original",
+    "--sequence",
+    "'01'",
+    "--save_data_folder",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/prepared",
+    "--gt_cloud",
+    "True"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "c291d794d0f236934bc151229a497d4434520238899976cdb883876d6dd05ffc",
+      "bytes": 5506
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/kitti-author-selected-02/prepared/01/gt_cloud.pcd": {
+      "sha256": "be04864a54c6ce24c491df700d57b2293de834468173fb1d6754b4c75a671b86",
+      "bytes": 179067607
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 229780,
+  "elapsed_seconds": 6.22251749499992,
+  "source_dirty_after": ""
+}
