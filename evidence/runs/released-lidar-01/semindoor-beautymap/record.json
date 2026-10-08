@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "method": "beautymap",
+  "scope": "All released semindoor scans; original Python; settings ['10', '0.5', '0.2']",
+  "status": "executed",
+  "started_at": "2026-10-08T19:14:47.745154+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-released-lidar-01-semindoor-beautymap",
+    "-p",
+    "MemoryMax=8G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap/main.py",
+    "--data_dir",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/inputs/semindoor/beautymap",
+    "--dis_range",
+    "10",
+    "--xy_resolution",
+    "0.5",
+    "--h_res",
+    "0.2"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap",
+  "source_commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "6a93d69fac319fa07139c974498a32b7f8981df2b6e9376ae761bc7759683660",
+      "bytes": 30156
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/inputs/semindoor/beautymap/beautymap_output.pcd": {
+      "sha256": "eae88da7a9c05060b83a14669188d967f2c878185a82737f91ab2f7f6175eddd",
+      "bytes": 380722247
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {},
+  "pid": 3718,
+  "elapsed_seconds": 53.103430161999995,
+  "source_dirty_after": ""
+}

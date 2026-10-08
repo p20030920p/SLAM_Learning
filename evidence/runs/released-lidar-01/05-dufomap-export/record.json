@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-export",
+  "scope": "Author PCL nearest-neighbor labels, 0.05m, all GT points",
+  "status": "executed",
+  "started_at": "2026-10-08T18:59:06.428881+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-released-lidar-01-05-dufomap-export",
+    "-p",
+    "MemoryMax=8G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dynamicmap/export_eval_pcd",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/dataset/05",
+    "dufomap_output.pcd",
+    "0.05"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "2ad7361c4c416c7714e50098f85c618f0aa0bdd0ab6a2c053f1a97d36a176c5c",
+      "bytes": 381
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/dataset/05/eval/dufomap_output_exportGT.pcd": {
+      "sha256": "5ff5d433d31a69af309bfa93f2d38c5a96d87cd8fef284b9ba6f32193e479a91",
+      "bytes": 639189266
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "pid": 1226,
+  "elapsed_seconds": 90.07381936299998,
+  "source_dirty_after": ""
+}

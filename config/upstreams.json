@@ -10,6 +10,9 @@
   "author_dependencies": {
     "ufomap": {"url": "https://github.com/UnknownFreeOccupied/ufomap", "commit": "fcb20f445d257280c039c07ab756c9d5b37ebd78", "selected_by": "DUFOMap gitlink"},
     "grounded_sam": {"url": "https://github.com/IDEA-Research/Grounded-Segment-Anything.git", "commit": "a4d76a2b55e348943cba4cd57d7553c354296223", "selected_by": "ConceptGraphs README"},
-    "llava": {"url": "https://github.com/haotian-liu/LLaVA.git", "commit": "8fc54a09a6be74b2abd913c468fb3d42ae826194", "selected_by": "ConceptGraphs README"}
+    "llava": {"url": "https://github.com/haotian-liu/LLaVA.git", "commit": "8fc54a09a6be74b2abd913c468fb3d42ae826194", "selected_by": "ConceptGraphs README"},
+    "gradslam": {"url": "https://github.com/gradslam/gradslam.git", "commit": "59ca872e3d265ad09f63c4793d011fad67064452", "selected_by": "Pinned snapshot of author-requested conceptfusion branch"},
+    "chamferdist": {"url": "https://github.com/krrish94/chamferdist.git", "commit": "ee753899b583bdc06bd2505dc162fd54ba0c6c5b", "selected_by": "Current author dependency checkout; README does not pin a commit"},
+    "recognize_anything": {"url": "https://github.com/xinyu1205/recognize-anything.git", "commit": "7cb804a8609e9f4b1a50b7f31436d2df40bb9481", "selected_by": "Compatibility dependency: official RAM package required by current ConceptGraphs import layout, not a paper-specified pin"}
   }
 }

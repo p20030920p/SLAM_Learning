@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "method": "beautymap",
+  "scope": "All released av2 scans; original Python; settings ['40', '1', '0.5']; outdoor README settings transferred, not independently paper-verified",
+  "status": "executed",
+  "started_at": "2026-10-08T19:05:05.885465+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-released-lidar-01-av2-beautymap",
+    "-p",
+    "MemoryMax=8G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap/main.py",
+    "--data_dir",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/inputs/av2/beautymap",
+    "--dis_range",
+    "40",
+    "--xy_resolution",
+    "1",
+    "--h_res",
+    "0.5"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/beautymap",
+  "source_commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "06f7f1acc8ee799598a65ebbe48e46ee0cfcf23ac26258d0549ada24b7193d1a",
+      "bytes": 78914
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/inputs/av2/beautymap/beautymap_output.pcd": {
+      "sha256": "246456d0ef45d23a91141af1bcdfc1e69f3aee42f09018c19730e9ff3c5b4c26",
+      "bytes": 816613383
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "pid": 2200,
+  "elapsed_seconds": 144.88821287199994,
+  "source_dirty_after": ""
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "method": "dufomap",
+  "scope": "All released semindoor scans, original C++ and default author config, g++-11 compatibility toolchain",
+  "status": "executed",
+  "started_at": "2026-10-08T19:13:56.721165+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-released-lidar-01-semindoor-dufomap",
+    "-p",
+    "MemoryMax=8G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dufomap-gcc11/dufomap_run",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/inputs/semindoor/dufomap",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/assets/config.toml"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "68c40a9c5bc0d8896e123b19b37cd8726d194db3a55694f03761156995061b2a",
+      "bytes": 144786
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/inputs/semindoor/dufomap/dufomap_output.pcd": {
+      "sha256": "f78a7b8e774f96e3565f505b02c1ae36af2570f2e0397b631bc1bc95c9fb477e",
+      "bytes": 409312380
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {},
+  "pid": 2654,
+  "elapsed_seconds": 46.07109189799985,
+  "source_dirty_after": ""
+}

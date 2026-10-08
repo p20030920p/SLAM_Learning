@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "method": "cg-none",
+  "scope": "Full 2000-frame Replica room0, original cg-none defaults; 14GiB RAM/2GiB swap cgroup; timeout 7200s",
+  "status": "interrupted",
+  "started_at": "2026-10-08T18:55:42.722725+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-conceptgraphs-replica-room0-none-original-02",
+    "-p",
+    "MemoryMax=14G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "scripts/generate_gsa_results.py",
+    "--dataset_root",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "--dataset_config",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "--scene_id",
+    "room0",
+    "--class_set",
+    "none",
+    "--stride",
+    "5"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": -15,
+  "artifacts": {
+    "run.log": {
+      "sha256": "fb89eae29619b01a01716a9fafe897f60e4d81049dbb55dd5dad0485b013256c",
+      "bytes": 1585
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "pid": 632,
+  "elapsed_seconds": 826.2753295090001,
+  "source_dirty_after": "",
+  "interruption_reason": "Supervisor resource intervention: Windows GPU counters showed 12,000,530,432 dedicated bytes and 7,730,102,272 shared bytes for WSL GPU process. Per-frame latency rose from ~8s to minutes. No CUDA OOM exception; not an algorithm-quality failure. Restart original source and parameters with an explicitly recorded allocator environment variant."
+}

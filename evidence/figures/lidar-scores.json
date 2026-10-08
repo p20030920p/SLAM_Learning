@@ -1,0 +1,63 @@
+{
+  "source_log": "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/scores/run.log",
+  "source_log_sha256": "bd9c7725744007963a211d43e9c99d898a426a51ef172035fec23ee4663d34fc",
+  "protocol": "Original PCL export_eval_pcd, 0.05m; original evaluate_all.py; printed precision",
+  "scores": {
+    "00": {
+      "dufomap": {
+        "SA": 97.9635,
+        "DA": 98.7196,
+        "AA": 98.3408,
+        "HA": 98.3401
+      },
+      "beautymap": {
+        "SA": 96.9529,
+        "DA": 98.3382,
+        "AA": 97.6431,
+        "HA": 97.6407
+      }
+    },
+    "05": {
+      "dufomap": {
+        "SA": 97.3035,
+        "DA": 96.7986,
+        "AA": 97.0507,
+        "HA": 97.0504
+      },
+      "beautymap": {
+        "SA": 96.7933,
+        "DA": 98.2248,
+        "AA": 97.5065,
+        "HA": 97.5038
+      }
+    },
+    "av2": {
+      "dufomap": {
+        "SA": 96.6651,
+        "DA": 88.8985,
+        "AA": 92.7005,
+        "HA": 92.6193
+      },
+      "beautymap": {
+        "SA": 92.4013,
+        "DA": 85.1671,
+        "AA": 88.7105,
+        "HA": 88.6369
+      }
+    },
+    "semindoor": {
+      "dufomap": {
+        "SA": 99.6373,
+        "DA": 83.0049,
+        "AA": 90.9417,
+        "HA": 90.5638
+      },
+      "beautymap": {
+        "SA": 94.7785,
+        "DA": 90.4048,
+        "AA": 92.5659,
+        "HA": 92.54
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-export",
+  "scope": "Author PCL nearest-neighbor labels, 0.05m, all GT points",
+  "status": "executed",
+  "started_at": "2026-10-08T18:56:29.509560+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-released-lidar-01-00-beautymap-export",
+    "-p",
+    "MemoryMax=8G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dynamicmap/export_eval_pcd",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/dataset/00",
+    "beautymap_output.pcd",
+    "0.05"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "37d970526058af7e95515482ecf054d14fadee8b8d80c91bcf09ae9c34db093b",
+      "bytes": 341
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/dataset/00/eval/beautymap_output_exportGT.pcd": {
+      "sha256": "a7fe2b1bf6418852e3f27601de0eb59fad016e188c16cee4c9bda3dbb1d2baf9",
+      "bytes": 277795874
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "pid": 712,
+  "elapsed_seconds": 30.654090051000026,
+  "source_dirty_after": ""
+}

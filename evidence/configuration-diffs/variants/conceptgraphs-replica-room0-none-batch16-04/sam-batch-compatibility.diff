@@ -1,0 +1,11 @@
+--- author/generate_gsa_results.py
++++ compatibility/generate_gsa_results.py
+@@ -244,7 +244,7 @@
+         mask_generator = SamAutomaticMaskGenerator(
+             model=sam,
+             points_per_side=12,
+-            points_per_batch=144,
++            points_per_batch=16,
+             pred_iou_thresh=0.88,
+             stability_score_thresh=0.95,
+             crop_n_layers=0,

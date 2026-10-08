@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "method": "cg-none",
+  "scope": "Full 2000-frame Replica room0, original cg-none defaults; 14GiB RAM/2GiB swap cgroup; timeout 7200s; allocator environment variant max_split_size_mb:128,garbage_collection_threshold:0.7",
+  "status": "interrupted",
+  "started_at": "2026-10-08T19:09:37.964206+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-conceptgraphs-replica-room0-none-allocator-03",
+    "-p",
+    "MemoryMax=14G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "scripts/generate_gsa_results.py",
+    "--dataset_root",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "--dataset_config",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "--scene_id",
+    "room0",
+    "--class_set",
+    "none",
+    "--stride",
+    "5"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": -15,
+  "artifacts": {
+    "run.log": {
+      "sha256": "1c2a3d4b96a0e7d251b8ff84d0483086e0e1a18901460b2056dfa809ad5024e9",
+      "bytes": 675
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "PYTORCH_CUDA_ALLOC_CONF": "max_split_size_mb:128,garbage_collection_threshold:0.7"
+  },
+  "pid": 2437,
+  "elapsed_seconds": 214.96288664500003,
+  "source_dirty_after": "",
+  "interruption_reason": "Allocator-only intervention did not remove shared GPU memory pressure: Windows WSL GPU process counters measured dedicated 12,020,310,016 bytes + shared 15,678,308,352 bytes. Preserving outputs and switching to explicitly labeled SAM batch-size compatibility copy. No algorithm-quality or CUDA OOM claim."
+}

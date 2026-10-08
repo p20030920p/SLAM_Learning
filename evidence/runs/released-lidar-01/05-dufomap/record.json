@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "method": "dufomap",
+  "scope": "All released 05 scans, original C++ and default author config, g++-11 compatibility toolchain",
+  "status": "executed",
+  "started_at": "2026-10-08T18:57:03.855959+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-released-lidar-01-05-dufomap",
+    "-p",
+    "MemoryMax=8G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dufomap-gcc11/dufomap_run",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/inputs/05/dufomap",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap/assets/config.toml"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dufomap",
+  "source_commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "ccb3223e5d76d87281603912e776172ad6a97eb4ab25ab5bde7d038a80a3bf19",
+      "bytes": 50246
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/inputs/05/dufomap/dufomap_output.pcd": {
+      "sha256": "e9e97b3522f39b1d9b008983cb3ac8e7ab0523f3a129018746ab20d7cd2550bd",
+      "bytes": 588681948
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "pid": 741,
+  "elapsed_seconds": 34.02448024299997,
+  "source_dirty_after": ""
+}

@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "source": "Read-only Windows Win32_PerfFormattedData_GPUPerformanceCounters_GPUProcessMemory, WSL GPU process pid_23140",
+  "gpu": "RTX 4070 SUPER 12GB",
+  "observations": [
+    {
+      "run": "conceptgraphs-replica-room0-none-original-02",
+      "dedicated_bytes": 12000530432,
+      "shared_bytes": 7730102272,
+      "total_committed_bytes": 19730632704,
+      "log_observation": "Initial frames about 8 seconds; frame 25 took over 200 seconds. Supervisor interruption; no CUDA OOM exception."
+    },
+    {
+      "run": "conceptgraphs-replica-room0-none-allocator-03",
+      "dedicated_bytes": 12020310016,
+      "shared_bytes": 15678308352,
+      "total_committed_bytes": 27698618368,
+      "allocator": "max_split_size_mb:128,garbage_collection_threshold:0.7",
+      "log_observation": "Allocator-only trial retained; shared GPU allocation still large. Supervisor interruption; not algorithm-quality failure."
+    },
+    {
+      "run": "conceptgraphs-replica-room0-none-batch16-04",
+      "dedicated_bytes": 11578671104,
+      "shared_bytes": 75497472,
+      "total_committed_bytes": 11654168576,
+      "log_observation": "Frames 6-14 approximately 4-5 seconds/frame. Only SAM points_per_batch changed in separate entry copy."
+    }
+  ],
+  "interpretation_limit": "Snapshots, not peak-memory measurements or performance benchmarks. Shared allocation alone does not prove which specific CUDA operation caused paging."
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "method": "DynamicMap-export",
+  "scope": "Author PCL nearest-neighbor labels, 0.05m, all GT points",
+  "status": "executed",
+  "started_at": "2026-10-08T19:17:39.855646+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-released-lidar-01-semindoor-beautymap-export",
+    "-p",
+    "MemoryMax=8G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/build/dynamicmap/export_eval_pcd",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/dataset/semindoor",
+    "beautymap_output.pcd",
+    "0.05"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/dynamicmap",
+  "source_commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "0d0c9c88aaa6b0646e7d72fbdaf74a89bd35986c467dde325c3c540e33f8a8c5",
+      "bytes": 356
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/released-lidar-01/dataset/semindoor/eval/beautymap_output_exportGT.pcd": {
+      "sha256": "68c7ed8ab367c7ba06b15e04b83869d34eba753c4dbc207d35e62f47c9dad6f1",
+      "bytes": 424229346
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {},
+  "pid": 3978,
+  "elapsed_seconds": 116.87478833900013,
+  "source_dirty_after": ""
+}

@@ -4,10 +4,10 @@
 
 | 方法 | 作者公开链路 | 本轮覆盖 | 完整复现仍需 |
 |---|---|---|---|
-| DUFOMap | 读取带位姿点云 → 动态清理 → 点云输出 → DynamicMap 评价 | Python 默认演示、原始 C++、141 帧 teaser、作者 PCL 与 SA/DA/AA/HA | 完整数据序列、论文参数/消融、性能与位姿来源对照 |
-| BeautyMap | 先验全局地图 + 位姿/扫描 → 二进制地面矩阵 → 清理 → 同一评价 | 原始 main.py、141 帧 teaser、作者评价 | 完整 benchmark、先验地图/地面/稀疏性实验、论文消融 |
-| ConceptGraphs | RGB-D/位姿 → SAM 或 RAM+DINO+SAM → CLIP → 对象关联/融合 → LLaVA 描述 → GPT-4 精炼/关系 → 语义/规划评价 | 固定原库与作者推荐 GSA/LLaVA；新环境安装中 | 完整 8 场景、两种前端、语义 GT、LLaVA 基础权重、原始 GPT-4、规划任务 |
-| HOV-SG | RGB-D/位姿 → SAM+CLIP → 融合语义地图 → 楼层/房间/对象图 → 查询/导航/评价 | 固定原库、全新作者 YAML 环境、完整 Replica；room0 首次运行被重启中断 | Replica/ScanNet 语义 GT；8 个 HM3DSem 场景及完整层级评价；导航 |
+| DUFOMap | 读取带位姿点云 → 动态清理 → 点云输出 → DynamicMap 评价 | 原始 C++ 在全部四份公开标注数据完成作者评价；Python 默认演示单独对照 | KITTI 全序列、论文参数/消融、性能与位姿来源对照 |
+| BeautyMap | 先验全局地图 + 位姿/扫描 → 二进制地面矩阵 → 清理 → 同一评价 | 原始 main.py 与作者评价覆盖四份公开数据，共 1997 帧；AV2 参数迁移已标注 | AV2 论文专属参数核验、先验地图/地面/稀疏性实验、论文消融 |
+| ConceptGraphs | RGB-D/位姿 → SAM 或 RAM+DINO+SAM → CLIP → 对象关联/融合 → LLaVA 描述 → GPT-4 精炼/关系 → 语义/规划评价 | 独立环境/CUDA 算子、完整 RGB-D 与作者 HDF5 GT；room0 前端运行中，SAM 批量兼容变体有 diff 和共同帧比较 | 完整 8 场景与两种前端、三维/语义评价、LLaVA 基础权重、原始 GPT-4、规划任务 |
+| HOV-SG | RGB-D/位姿 → SAM+CLIP → 融合语义地图 → 楼层/房间/对象图 → 查询/导航/评价 | 全新作者 YAML 环境、完整 Replica RGB-D；原始语义 GT 下载后核验中；首次运行被重启中断 | 完整 Replica/ScanNet 语义评价；8 个 HM3DSem 场景及完整层级评价；导航 |
 
 逐行核查入口：
 
