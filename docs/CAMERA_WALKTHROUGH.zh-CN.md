@@ -38,7 +38,25 @@ powershell -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Personal-Le
 
 图片的四格分别为 RGB、伪彩深度、左 IR、右 IR。普通哑光墙角应有可辨认的深度结构，两路 IR 应清楚、能看到场景纹理；玻璃、反光、轮廓边缘和黑亮物有空洞并不罕见。深度黑色表示无效；整幅大面积无效或近物占满镜头时先改摆位。这四格仍是传感器检查，没有算法轨迹。
 
-## 3. 做一次 50 秒、1 m 往返
+## 3. 先固定 20 秒，看到算法轨迹
+
+把相机支稳在桌面或支架上，画面包含有印刷纹理的包装、家具等，避开直射灯和亮屏；在按回车前就放稳。普通照明不足会影响成像，先改善环境照明，再判断是否需要改变曝光。餐巾纸和牛皮纸的平整区域可能缺少自然纹理，可将带字的药盒或包装放入视野。
+
+在 **Windows PowerShell** 中，只运行这一行：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Personal-Learning-Physical\scripts\test_camera_stationary.ps1
+```
+
+脚本先检查 WSL 算法环境，再等待 5 秒，录制 20 秒原始四路相机数据。整个录制保持固定；随后自动核验、导出、调用 WSL 的双目里程计并渲染视频。全部完成需要录制时间加回放、核验及渲染时间，终端有进度。若某步失败，脚本停止并给出记录目录，不跳过失败继续打开旧结果。
+
+输出在新的 `data/camera-stationary-时间戳/`，内有 `raw.db3`、`capture.json`、`playback-v2.json`、`stereo/`、`odometry/result.json` 和 `odometry/preview.mp4`。本机已配置好 WSL，无需为此移动 USB 设备到 Linux。只想检查环境、不启动相机时，在命令末尾加 `-CheckOnly`。
+
+视频上方是实际左右 IR，中间是 TRACKING／LOST、内点和耗时，左下是估计轨迹；固定时轨迹应靠近起点。右下是最终稀疏局部地图参考，不是实时逐帧地图。终端会打印覆盖、丢失比例、最大静止偏离与转角。20 秒是初步测试，不代替 60 秒固定验收、尺量测距或运动测试。
+
+RGB 模糊与 IR 模糊分别观察；本段双目算法使用 IR，RGB 并非跟踪输入。先确认固定后成像清楚，再做下一段运动。如果固定时仍模糊，保留该段以排查曝光、场景距离、镜头状态等原因；仅凭单帧不判定硬件故障。当前未自动改变曝光或增益。
+
+## 4. 做一次 50 秒、1 m 往返
 
 在地面标记 A、B，相距约 1 m。相机镜头方向、高度尽量保持一致，沿视线方向从 A 慢移到 B，再后退回 A，**不要转身**。让起终点相机尽量回到同一位置和朝向；路线前方场景最好仍在约 1–3 m 范围。
 
@@ -63,7 +81,7 @@ $taskWalk = 'data\camera-walk-' + (Get-Date -Format 'yyyyMMdd-HHmmss')
 
 命令运行时执行上表动作。SDK 启动可能先等待几秒，最终以录制视频时间及动作记录对齐。结束后确认 `status=received`；没有成功时先查看 `error`。
 
-## 4. 核验和导出，仍在 Windows 窗口
+## 5. 核验和导出，仍在 Windows 窗口
 
 使用刚才同一个 PowerShell 窗口，保留 `$taskWalk` 变量：
 
@@ -75,9 +93,9 @@ Split-Path -Leaf $taskWalk
 
 核验应为 `status=verified`；导出应为 `status=exported`，并显示非零 `pairs`。导出跳过约前 2 秒，每三帧取一对，约 10 Hz；真实左右标定来自原始录制。最后显示 `camera-walk-YYYYMMDD-HHMMSS`，下一步要用该**实际目录名**。
 
-## 5. 回到 Ubuntu 窗口，运行算法
+## 6. 回到 Ubuntu 窗口，运行算法
 
-将下一段第一行的目录名替换为第 4 步实际输出，不要原样粘贴日期占位符：
+将下一段第一行的目录名替换为第 5 步实际输出，不要原样粘贴日期占位符：
 
 ```bash
 task_walk=data/camera-walk-YYYYMMDD-HHMMSS
@@ -90,7 +108,7 @@ python3 scripts/render_odometry_video.py "$task_walk/stereo" "$task_walk/odom-mo
 
 `--session-type motion` 只改变会话说明、轨迹统计和视频解释，**不修改 RTAB-Map 跟踪参数或强迫轨迹形状**。不加选项时保留原来的静止模式。
 
-## 6. Windows 打开结果，怎样判断算法是否工作
+## 7. Windows 打开结果，怎样判断算法是否工作
 
 回到保留变量的 **Windows PowerShell**：
 

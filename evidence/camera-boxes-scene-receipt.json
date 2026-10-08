@@ -1,0 +1,71 @@
+{
+  "kind": "user_operated_camera_scene_receipt",
+  "source_directory": "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\camera-view-20261009-001635-131",
+  "user_described_objects": [
+    "napkin",
+    "kraft paper box",
+    "medicine packaging box"
+  ],
+  "user_reported_motion_blur": true,
+  "confirmed_fixed_session": false,
+  "status": "received",
+  "camera": "RealSense D435",
+  "depth_valid_fraction_median": 0.8361393229166667,
+  "center_depth_median_m": 0.678000032203272,
+  "center_temporal_std_m": 0.09476899412105244,
+  "streams": {
+    "stream.depth:0": {
+      "unique_frames": 137,
+      "sensor_hz": 29.97737285665169,
+      "sequence_missing": 0,
+      "timestamp_non_increasing": 0,
+      "max_sensor_gap_ms": 33.7060546875,
+      "timestamp_domains": [
+        "timestamp_domain.system_time"
+      ]
+    },
+    "stream.infrared:1": {
+      "unique_frames": 138,
+      "sensor_hz": 29.97718451376101,
+      "sequence_missing": 0,
+      "timestamp_non_increasing": 0,
+      "max_sensor_gap_ms": 33.611083984375,
+      "timestamp_domains": [
+        "timestamp_domain.system_time"
+      ]
+    },
+    "stream.infrared:2": {
+      "unique_frames": 138,
+      "sensor_hz": 29.97718451376101,
+      "sequence_missing": 0,
+      "timestamp_non_increasing": 0,
+      "max_sensor_gap_ms": 33.611083984375,
+      "timestamp_domains": [
+        "timestamp_domain.system_time"
+      ]
+    },
+    "stream.color:0": {
+      "unique_frames": 138,
+      "sensor_hz": 29.97760729063068,
+      "sequence_missing": 0,
+      "timestamp_non_increasing": 0,
+      "max_sensor_gap_ms": 33.79736328125,
+      "timestamp_domains": [
+        "timestamp_domain.system_time"
+      ]
+    }
+  },
+  "scope": "Receipt and scene description only; no range accuracy, stationary noise or algorithm quality claim",
+  "attachment_pixel_match": "Exact match to the uploaded 1280x1000 preview image",
+  "exposure_or_gain_changed_by_assistant": false,
+  "artifacts": {
+    "capture.json": {
+      "bytes": 4963,
+      "sha256": "2178fe6c1becb76b6e29863350c2870195e5f8754a37b819b80920ae4d7602b6"
+    },
+    "preview.png": {
+      "bytes": 1334547,
+      "sha256": "0282c877612e16c0cf357e2254a8391287e72b533b3bb151de82d647dd98e616"
+    }
+  }
+}
