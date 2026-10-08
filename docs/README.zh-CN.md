@@ -1,28 +1,19 @@
-# 研究阅读顺序
+# 研究材料索引
 
 [English](README.md) | 中文
 
-先读实测复现，再读提出的解释。两种语言独立成文，但使用相同记录和媒体资产；翻译说明文字，不按语言改测量值。
+按“结论 → 测量 → 来源”阅读；个人操作和申请准备手册留在本地。
 
-| 顺序 | 中文 | English |
-| --- | --- | --- |
-| Paired pose / 配对位姿 | [Protocol](PAIRED_PROTOCOL.md), [results](PAIRED_RESULTS.md) | [协议](PAIRED_PROTOCOL.zh-CN.md)、[结果](PAIRED_RESULTS.zh-CN.md) |
-| 1. 已执行输出 | [结果](RESULTS.zh-CN.md) | [Results](RESULTS.md) |
-| 2. 来源假设 | [文献](LITERATURE.zh-CN.md) | [Literature](LITERATURE.md) |
-| 3. 候选解释 | [研究](RESEARCH.zh-CN.md) | [Research](RESEARCH.md) |
-| 4. 下一步实验 | [计划](PLAN.zh-CN.md) | [Plan](PLAN.md) |
-| 环境与命令 | [复现](REPRODUCE.zh-CN.md)、[WSL](WSL.zh-CN.md) | [Reproduction](REPRODUCE.md), [WSL](WSL.md) |
-| 语义基线 | [语义前端](SEMANTIC.zh-CN.md) | [Semantic frontend](SEMANTIC.md) |
-| 图与动画 | [媒体](figures/README.zh-CN.md) | [Media](figures/README.md) |
-| 迁移记录 | [审计](AUDIT.zh-CN.md) | [Audit](AUDIT.md) |
-| 使用说明与答辩 | [面试](INTERVIEW.zh-CN.md) | [Interview](INTERVIEW.md) |
-| 研究提示词 | [提示词](PROMPT.zh-CN.md) | [Prompt](PROMPT.md) |
-| 四篇复现 | [论文卡](papers/README.zh-CN.md) | [Paper cards](papers/README.md) |
-| 共性瓶颈 | [共性研究](STUDY.zh-CN.md) | [Study](STUDY.md) |
-| D435i／L2 实物测试 | [实物协议](REAL_WORLD.zh-CN.md) | [Protocol](REAL_WORLD.md) |
-| 视频及 PDF | [录制](RECORDING.zh-CN.md) | [Recording](RECORDING.md) |
-| 提交准备 | [提交检查](SUBMISSION.zh-CN.md) | [Checklist](SUBMISSION.md) |
-| 来源与署名 | [来源说明](ATTRIBUTION.zh-CN.md) | [Attribution](ATTRIBUTION.md) |
-| 生成记录 | [汇总](../results/REPORT.zh-CN.md) | [Ledger](../results/REPORT.md) |
-
-已发布图有证据；预留 GIF／视频位置只有图注和协议，不填虚构输出。CI 检查双语配对、本地链接，以及已发布资产背后的记录。
+| 材料 | 用途 |
+| --- | --- |
+| [研究分析](STUDY.zh-CN.md) | 复现效果、共性依赖、反例、指标和候选 H1 |
+| [四篇论文卡](papers/README.zh-CN.md) | 实际执行范围、视频、报告与失败 |
+| [配对结果](PAIRED_RESULTS.zh-CN.md) | 97 单元、目标标注、参数对照与证据限制 |
+| [配对协议](PAIRED_PROTOCOL.zh-CN.md) | 控制变量、适配和评价定义 |
+| [原始复现结果](RESULTS.zh-CN.md) | 论文差值、PCL 一致性与评分效应 |
+| [居家验证设计](REAL_WORLD.zh-CN.md) | 固定传感器事件与迟到修正实验 |
+| [复现入口](REPRODUCE.zh-CN.md) | 最少命令与独立依赖 |
+| [可视化范围](RECORDING.zh-CN.md) | 结果回放、终端执行与真实 RViz 查看 |
+| [来源分析](LITERATURE.zh-CN.md) | 先验工作与新颖性边界 |
+| [AI 披露](DISCLOSURE.zh-CN.md) | 参与方式与证据等级 |
+| [来源与许可](ATTRIBUTION.zh-CN.md) | 数据、权重和媒体来源 |

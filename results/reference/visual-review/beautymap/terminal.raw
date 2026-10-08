@@ -1,0 +1,16 @@
+Script started on 2026-10-08 20:18:54+03:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="158" LINES="48"]
+SLAM Learning | FULL TERMINAL SESSION | normal elapsed time
+Started UTC: 2026-10-08T17:18:54+00:00
+Working directory: /home/qzl/projects/SLAM_Learning
+$ bash /mnt/d/workspace/be2/submission-review/scripts/record_visual_review.sh /mnt/d/workspace/be2/SLAM_Recordings/2026-10-08/rviz-review-v3/beautymap/data/manifest.json
+MEASURED OUTPUT REVIEW: actual RViz graphical window
+No mapper runs in this recording. Saved output and display thinning only.
+{"elapsed_s": 0.0, "step": 0, "label": "INPUT | GT colors for inspection only | 21 selected scans", "points": 120000}
+{"elapsed_s": 7.006, "step": 1, "label": "REMOVED | green dynamic / red static loss", "points": 2073}
+{"elapsed_s": 14.116, "step": 2, "label": "RETAINED | gray static / blue dynamic leakage", "points": 117927}
+[elapsed 16s | UTC 2026-10-08T17:19:10+00:00]
+{"elapsed_s": 21.076, "step": 3, "label": "INPUT again | final-map decisions, not online growth", "points": 120000}
+
+Command finished: exit 0; elapsed 30.72s; UTC 2026-10-08T17:19:25+00:00
+
+Script done on 2026-10-08 20:19:28+03:00 [COMMAND_EXIT_CODE="0"]

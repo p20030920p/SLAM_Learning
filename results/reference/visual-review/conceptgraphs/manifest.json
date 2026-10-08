@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "method": "conceptgraphs",
+  "kind": "measured_output_rviz_review",
+  "scope": "Recorded graphical inspection of saved measured outputs; no new inference or FPS claim",
+  "generator_sha256": "4879554d00c8968d2645e0285692c101ab28c64226514d1a47c2062d038d0a3f",
+  "sources": {
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/record.json": "48d3de3a63dac4982bc68b8df36fb069eaaacde741f50c26b6ebfd919838203c",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/objects.pkl.gz": "c2fed620209fc8841a72dfaef8e375441762004125ee13c2b7375f17cfda136e",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/traj.txt": "6a0a445947f8d54d42d780d5043b215f1e7c8d69d8bb24668bfac16751d0d259",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000001.pkl.gz": "f992240b6acca7ddc400c29c36e1c63b1f27871e6469d5462b3d201b13812ac6",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/gsa_vis_none/frame000005.jpg": "18f405f3d73627dc62b44438043022e29d0b3e0469b5afc0c3544d10b70a5791",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000010.pkl.gz": "d2cf490ed780cbbdc07b7ee6900bf7ddefe50a40037a7da8f3f6accad51d33d3",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/gsa_vis_none/frame000050.jpg": "2e6215f93d2be42c509167da77f162681deeff6b72e10a27e6e765abb600828d",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000020.pkl.gz": "6b60a76a0a8dc8ad4b18bbee33752ebd32d422c3eaec67b236aac4eaaacec8e1",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/gsa_vis_none/frame000100.jpg": "9aeb41c7d2b58622f40f1105a46a4764a99afcbc7120d03bce426a4a3044dc1a",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000030.pkl.gz": "7bd154d32dbf1c43851bb529fde79d8bbd9a1c74b089e08ad099fab9a767326f",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/gsa_vis_none/frame000150.jpg": "474e9883667f533357d9d607116a39a947e8b264569a6141105f41ad562885d7",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/objects_all_frames/none_replica_subset_baseline/000039.pkl.gz": "de64ec4dc9d8ad3c06f45c814b8e49676626e55b325f9d319638c766ddce2ec9",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/gsa_vis_none/frame000195.jpg": "ab85ddec191b552d098ce78d5e0c0c9fd1b9b0d4ce2d4326ba16d7cbe71263d1",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/gsa_vis_none/frame000000.jpg": "65333f2bb755943695af1a00e56f73a6241ab522531a331529154d4409e9d442",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/gsa_vis_none/frame000065.jpg": "e35dc236d146df78507cebe02840d451938dfde52fc5be7188b2aef5e70bd155",
+    "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/input/Replica/room0/gsa_vis_none/frame000130.jpg": "99ebb5e4e67b732b65e842a216dfb1cc64700e1cd59ae2247ee7c614d900563c"
+  },
+  "steps": [
+    {
+      "file": "000.npz",
+      "sha256": "39fa670769890002b39322f516bb7f497226fb5045131d644b9feebb42788ec1",
+      "label": "SAVED MAPPING SNAPSHOT | observation 1/39 | 3 object entries",
+      "source_index": "frame000005",
+      "input_points": 5253,
+      "display_points": 5253
+    },
+    {
+      "file": "001.npz",
+      "sha256": "f6a8eecab82db27323478b295a667b224715c9b87f65b053a3ae1fe7be4f949d",
+      "label": "SAVED MAPPING SNAPSHOT | observation 10/39 | 29 object entries",
+      "source_index": "frame000050",
+      "input_points": 84145,
+      "display_points": 84145
+    },
+    {
+      "file": "002.npz",
+      "sha256": "5074afd84eac32c9b1d9e0ca6f5e2dc72dbdf70ab475f0ab65285532d7f91b49",
+      "label": "SAVED MAPPING SNAPSHOT | observation 20/39 | 33 object entries",
+      "source_index": "frame000100",
+      "input_points": 110743,
+      "display_points": 110743
+    },
+    {
+      "file": "003.npz",
+      "sha256": "29af2772c277058a798b180d76bb84949725f91f25f8051ff57e7a4bc00cc379",
+      "label": "SAVED MAPPING SNAPSHOT | observation 30/39 | 38 object entries",
+      "source_index": "frame000150",
+      "input_points": 125956,
+      "display_points": 120000
+    },
+    {
+      "file": "004.npz",
+      "sha256": "706972a48efb8fa268c9893a09e2880cc4eb37a7d3bc16c736b97ee23e3c3e6c",
+      "label": "SAVED MAPPING SNAPSHOT | observation 39/39 | 39 object entries",
+      "source_index": "frame000195",
+      "input_points": 129813,
+      "display_points": 120000
+    },
+    {
+      "file": "005.npz",
+      "sha256": "8615868b229b74e6752ff96d338d624e4ac8351296b2c16782cc5e88a7a26982",
+      "label": "FINAL MAP | query chair | candidate #0 | cosine 0.271 (not probability)",
+      "source_index": "frame000000",
+      "input_points": 129813,
+      "display_points": 120000
+    },
+    {
+      "file": "006.npz",
+      "sha256": "6487ca005e980f7ce914ea93f985616002af4b87dec181620e36e5c81ae9dfee",
+      "label": "FINAL MAP | query sofa | candidate #17 | cosine 0.248 (not probability)",
+      "source_index": "frame000065",
+      "input_points": 129813,
+      "display_points": 120000
+    },
+    {
+      "file": "007.npz",
+      "sha256": "ceb198feff9173bf2f4659a3cf194275c6bf238f3b0f1fd1466fe7e5182c7053",
+      "label": "FINAL MAP | query table | candidate #18 | cosine 0.258 (not probability)",
+      "source_index": "frame000130",
+      "input_points": 129813,
+      "display_points": 120000
+    },
+    {
+      "file": "008.npz",
+      "sha256": "c957da1bac8055dde09f95a2e10e516b24be85f5f1fc3a2a7a8149eaf0d0ead1",
+      "label": "FINAL MAP | query lamp | candidate #2 | cosine 0.319 (not probability)",
+      "source_index": "frame000195",
+      "input_points": 129813,
+      "display_points": 120000
+    }
+  ],
+  "display_transform": "(x,y,z)->(x,z,-y) for Replica only; stored maps unchanged",
+  "focal_point": [
+    0.9561361372470856,
+    -0.14139771461486816,
+    -1.1622084140777589
+  ],
+  "distance": 7.50183768084498
+}

@@ -17,6 +17,6 @@
 
 Replica 的[研究条款](https://github.com/facebookresearch/Replica-Dataset/blob/main/LICENSE)限定非商业或非营利研究／教育的数据使用及发布，并规定访问条件。语义 GIF／MP4／封面包含为本研究生成的 Replica 派生观测，不作为重新 MIT 授权的数据集。数据／权重依据其条款从原文档来源下载。
 
-PDF 嵌入本机许可中文字体的子集，不单独分发字体文件。[INTERVIEW](INTERVIEW.zh-CN.md)披露 AI 参与及申请人需要亲自核查的内容。每张图都链接实测运行，或明确标记为未执行实验的预留。
+PDF 嵌入本机许可中文字体的子集，不单独分发字体文件。[AI 披露](DISCLOSURE.zh-CN.md)披露 AI 参与及申请人需要亲自核查的内容。每张图都链接实测运行，或明确标记为未执行实验的预留。
 
 配对扩展的多边形标注、查询检查图来自同一 Replica 渲染，适用上述条款；它们是 AI 辅助研究标注，不是官方或独立审核的真值。

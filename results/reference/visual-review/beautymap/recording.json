@@ -1,0 +1,87 @@
+{
+  "command_exit_code": 0,
+  "finished_at": "2026-10-08T17:19:25+00:00",
+  "command_elapsed_seconds": 30.721100449000005,
+  "kind": "full_terminal_recording",
+  "status": "executed",
+  "command": {
+    "command": [
+      "bash",
+      "/mnt/d/workspace/be2/submission-review/scripts/record_visual_review.sh",
+      "/mnt/d/workspace/be2/SLAM_Recordings/2026-10-08/rviz-review-v3/beautymap/data/manifest.json"
+    ],
+    "cwd": "/home/qzl/projects/SLAM_Learning",
+    "prepared_at": "2026-10-08T17:18:54+00:00",
+    "prepared_epoch": 1791479934.428712,
+    "fps": 5,
+    "size": [
+      1280,
+      800
+    ],
+    "recorder_script_sha256": "665da86cb14df9afc4748b0540875dedf45abc88ab076e4a026c51eb8d175cf9",
+    "watch_prefix": null
+  },
+  "duration_seconds": 34.4,
+  "monotonic_capture": {
+    "frames": 172,
+    "held_frames": 0,
+    "elapsed_seconds": 34.29000560999998
+  },
+  "scope": "Actual private X terminal captured live; no speedup, cuts or desktop capture",
+  "recorder_script_sha256": "665da86cb14df9afc4748b0540875dedf45abc88ab076e4a026c51eb8d175cf9",
+  "full_video_decoded": true,
+  "artifacts": {
+    "command.json": {
+      "sha256": "82b67a39bf472515a365a705817b6ba6a948ffca70ac539b508af917750938b0",
+      "bytes": 508
+    },
+    "DONE": {
+      "sha256": "4a78207257d53b37fa7646a05812f5e2df30026274aedfbb6cf5f11a2213d3fb",
+      "bytes": 25
+    },
+    "encoder-progress.txt": {
+      "sha256": "522e7832c7dd01e6c8f355262db2f102566d52a9f3b742c52245fd29a8c7388d",
+      "bytes": 11557
+    },
+    "exit.json": {
+      "sha256": "4a019e14b5153b1c23821b85e6eceb6d19431e89479769ccd574b6147592d99d",
+      "bytes": 124
+    },
+    "ffmpeg.log": {
+      "sha256": "00e6d494936c4dd875477adeef22107bbdb2fc9e8052fc7d21ea032c19154826",
+      "bytes": 9927
+    },
+    "full-session.mp4": {
+      "sha256": "1015682d4c62d13ee8c6bf48ca7a67788e51617b015f49c1b7e0fa7a97f0b8da",
+      "bytes": 613397
+    },
+    "GO": {
+      "sha256": "2d32118175567c5440ea41c88b88299a8dacad940baad28b1e6ba20cea283efa",
+      "bytes": 25
+    },
+    "review-end.png": {
+      "sha256": "fccb582a32c0a486076dd37e192333aefd9ac67be94af2411c706db197d95064",
+      "bytes": 175169
+    },
+    "review-middle.png": {
+      "sha256": "50ca82a76fea18425145a24dd9e210ddb31eec22129d6d7864febfc4ba2d75b2",
+      "bytes": 513221
+    },
+    "review-start.png": {
+      "sha256": "11b7972ee3c2bd49cc7ff1a07a3b28e33ff582b34af17b88913ebf6f23021ccf",
+      "bytes": 314229
+    },
+    "terminal.raw": {
+      "sha256": "29017617f505e16412f5d7b69779f6f7b4ad773b9b9104cf7984f54eb7d69365",
+      "bytes": 1192
+    },
+    "terminal.time": {
+      "sha256": "d9475de2e70c737fdf8557635c31f3bd8bab58ee4e36bcd6bdca9976bb9d0cb5",
+      "bytes": 114
+    },
+    "xvfb.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

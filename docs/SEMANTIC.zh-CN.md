@@ -10,7 +10,7 @@
 
 ## 运行独立环境
 
-在 `~/projects/SLAM_Learning` 中完成 [Linux 环境](WSL.zh-CN.md)后：
+在 `~/projects/SLAM_Learning` 中完成 [Linux 环境](REPRODUCE.zh-CN.md)后：
 
 ```bash
 bash scripts/setup_semantic.sh
