@@ -73,12 +73,15 @@ def main():
                 world=xyz@rotation(pose["xyzw"]).T+np.asarray(pose["xyz"])
                 accumulated.append(world[::8])
         cv2.rectangle(canvas,(0,480),(1280,555),(30,30,30),-1)
-        state="MISSING OUTPUT" if status is None else ("LOST" if status["lost"] else "TRACKING")
-        label(canvas,f"SAVED ALGORITHM OUTPUT REPLAY | RTAB-Map {'STEREO' if stereo else 'ICP'} | {state}",(15,510),0.62,
+        state="MISSING OUTPUT" if status is None else status.get("quality_state",("LOST" if status["lost"] else "TRACKING"))
+        algorithm="KISS-ICP" if result["algorithm"]=="KISS-ICP" else f"RTAB-Map {'STEREO' if stereo else 'ICP'}"
+        label(canvas,f"SAVED ALGORITHM OUTPUT REPLAY | {algorithm} | {state}",(15,510),0.55,
               (80,220,80) if state=="TRACKING" else (70,70,255))
         elapsed=row["stamp_s"]-rows[0]["stamp_s"]
         if status:
-            quality=f"features {status['features']} / inliers {status['inliers']}" if stereo else f"ICP inlier ratio {status['icp_inliers_ratio']:.3f}"
+            quality=(f"features {status['features']} / inliers {status['inliers']}" if stereo else
+                     f"ICP inlier ratio {status['icp_inliers_ratio']:.3f}" if status['icp_inliers_ratio'] is not None else
+                     f"registration source points {status['source_points']}; no tracking flag exposed")
             label(canvas,f"t={elapsed:.1f}s | {quality} | compute {status['time_estimation_s']*1000:.1f}ms",(15,540))
         label(canvas,"STATIONARY: EXPECT TRAJECTORY NEAR ORIGIN",(15,585),0.55)
         panel=canvas[600:870,:640]

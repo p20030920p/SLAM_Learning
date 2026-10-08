@@ -1,0 +1,721 @@
+{
+  "kind": "fixed_session_registration_control",
+  "source_sha256": "c79cc1fd24c7e01566416a2867f603229e9a948c32ad26304da3188b817c1749",
+  "algorithm_result": "data/kiss-official-static-50-01/result.json",
+  "reference_source_index": 1,
+  "voxel_m": 0.08,
+  "range_m": [
+    0.2,
+    20
+  ],
+  "sample_policy": "26 evenly spaced registered clouds plus maximum rotation",
+  "normal_policy": "20 voxel neighbours, radius <=0.4m, smallest covariance eigenvalue/trace <0.03",
+  "distance_policy": "One-way source to raw reference nearest neighbour; no outlier trimming; not an internal ICP residual",
+  "limitations": "Sensor fixed by user confirmation; environment was not independently labelled. This does not identify a hardware fault.",
+  "yaw_linear_fit_deg_per_s": 12.269736162592205,
+  "yaw_linear_fit_rmse_deg": 1.3496185382304033,
+  "samples": [
+    {
+      "source_index": 2,
+      "elapsed_s": 0.2319355010986328,
+      "voxel_points": 3566,
+      "rotation_deg": 2.9385671964211166,
+      "unwrapped_yaw_deg": 2.935322862442486,
+      "translation_m": 0.009089559239929794,
+      "identity_to_reference": {
+        "median_m": 0.05635576114124983,
+        "p95_m": 0.2574886682822568,
+        "within_0_3m_fraction": 0.9624228827818284
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.03699818328963174,
+        "p95_m": 0.2973621015922963,
+        "within_0_3m_fraction": 0.9506449803701627
+      },
+      "occupied_return_azimuth_bins_of_72": 71,
+      "planar_neighbourhood_fraction": 0.5961862030286035,
+      "planar_normals_within_15deg_of_z_fraction": 0.6114769520225776,
+      "normal_second_moment_eigenvalues": [
+        0.08602380169287717,
+        0.2967888653730735,
+        0.6171873329340494
+      ]
+    },
+    {
+      "source_index": 11,
+      "elapsed_s": 2.320051908493042,
+      "voxel_points": 3768,
+      "rotation_deg": 26.64391224120264,
+      "unwrapped_yaw_deg": 26.636838713520156,
+      "translation_m": 0.06502408073431325,
+      "identity_to_reference": {
+        "median_m": 0.05472420764225493,
+        "p95_m": 0.6538543781584953,
+        "within_0_3m_fraction": 0.8988853503184714
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.15561086354676507,
+        "p95_m": 1.0289897331807591,
+        "within_0_3m_fraction": 0.6560509554140127
+      },
+      "occupied_return_azimuth_bins_of_72": 72,
+      "planar_neighbourhood_fraction": 0.6369426751592356,
+      "planar_normals_within_15deg_of_z_fraction": 0.6045833333333334,
+      "normal_second_moment_eigenvalues": [
+        0.10414404362806848,
+        0.2815758260258193,
+        0.614280130346112
+      ]
+    },
+    {
+      "source_index": 21,
+      "elapsed_s": 4.640107154846191,
+      "voxel_points": 3735,
+      "rotation_deg": 54.44854465218243,
+      "unwrapped_yaw_deg": 54.43270199912797,
+      "translation_m": 0.11511904977241656,
+      "identity_to_reference": {
+        "median_m": 0.06192148328884729,
+        "p95_m": 0.8912580529119664,
+        "within_0_3m_fraction": 0.8819277108433735
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.28981997970649476,
+        "p95_m": 1.6386537524090772,
+        "within_0_3m_fraction": 0.5103078982597055
+      },
+      "occupied_return_azimuth_bins_of_72": 68,
+      "planar_neighbourhood_fraction": 0.6026773761713521,
+      "planar_normals_within_15deg_of_z_fraction": 0.6090626388271879,
+      "normal_second_moment_eigenvalues": [
+        0.09449529270292019,
+        0.286457468108523,
+        0.6190472391885566
+      ]
+    },
+    {
+      "source_index": 31,
+      "elapsed_s": 6.9589293003082275,
+      "voxel_points": 3500,
+      "rotation_deg": 85.93094124390801,
+      "unwrapped_yaw_deg": 85.92552740346714,
+      "translation_m": 0.1900140768173251,
+      "identity_to_reference": {
+        "median_m": 0.04901313079452078,
+        "p95_m": 0.5148912555612946,
+        "within_0_3m_fraction": 0.9117142857142857
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.411239203339425,
+        "p95_m": 2.6771078803564836,
+        "within_0_3m_fraction": 0.424
+      },
+      "occupied_return_azimuth_bins_of_72": 70,
+      "planar_neighbourhood_fraction": 0.6071428571428571,
+      "planar_normals_within_15deg_of_z_fraction": 0.5896470588235294,
+      "normal_second_moment_eigenvalues": [
+        0.10790264134194746,
+        0.29371207105274405,
+        0.5983852876053087
+      ]
+    },
+    {
+      "source_index": 41,
+      "elapsed_s": 9.278357028961182,
+      "voxel_points": 3476,
+      "rotation_deg": 115.2750546191791,
+      "unwrapped_yaw_deg": 115.2873528634527,
+      "translation_m": 0.2572006192401022,
+      "identity_to_reference": {
+        "median_m": 0.04369715840616582,
+        "p95_m": 0.5777610373060584,
+        "within_0_3m_fraction": 0.9108170310701956
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.4867762436587332,
+        "p95_m": 3.2492487452069403,
+        "within_0_3m_fraction": 0.3751438434982739
+      },
+      "occupied_return_azimuth_bins_of_72": 69,
+      "planar_neighbourhood_fraction": 0.5865937859608745,
+      "planar_normals_within_15deg_of_z_fraction": 0.5492888670917117,
+      "normal_second_moment_eigenvalues": [
+        0.1221209934856448,
+        0.3198628247359982,
+        0.5580161817783573
+      ]
+    },
+    {
+      "source_index": 51,
+      "elapsed_s": 11.597501754760742,
+      "voxel_points": 3441,
+      "rotation_deg": 144.39266558029584,
+      "unwrapped_yaw_deg": 144.41311913274845,
+      "translation_m": 0.3135884408708474,
+      "identity_to_reference": {
+        "median_m": 0.04246604900238093,
+        "p95_m": 0.8699013520600711,
+        "within_0_3m_fraction": 0.8936355710549259
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.5107715289115303,
+        "p95_m": 3.001365596535166,
+        "within_0_3m_fraction": 0.3859343214181924
+      },
+      "occupied_return_azimuth_bins_of_72": 71,
+      "planar_neighbourhood_fraction": 0.5727986050566696,
+      "planar_normals_within_15deg_of_z_fraction": 0.5667174023338407,
+      "normal_second_moment_eigenvalues": [
+        0.11773952755164555,
+        0.3083310164748371,
+        0.5739294559735173
+      ]
+    },
+    {
+      "source_index": 61,
+      "elapsed_s": 13.917165517807007,
+      "voxel_points": 3646,
+      "rotation_deg": 174.19082355702878,
+      "unwrapped_yaw_deg": 174.19774971389776,
+      "translation_m": 0.38753346577401404,
+      "identity_to_reference": {
+        "median_m": 0.045494461404239545,
+        "p95_m": 0.8721788523783773,
+        "within_0_3m_fraction": 0.8826110806363138
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.555690514142232,
+        "p95_m": 3.088715778392473,
+        "within_0_3m_fraction": 0.3782227098189797
+      },
+      "occupied_return_azimuth_bins_of_72": 71,
+      "planar_neighbourhood_fraction": 0.5844761382336807,
+      "planar_normals_within_15deg_of_z_fraction": 0.5912717034256217,
+      "normal_second_moment_eigenvalues": [
+        0.09731779399640267,
+        0.3041321923535215,
+        0.5985500136500757
+      ]
+    },
+    {
+      "source_index": 63,
+      "elapsed_s": 14.381128072738647,
+      "voxel_points": 3671,
+      "rotation_deg": 179.70528412551934,
+      "unwrapped_yaw_deg": 179.7080158315846,
+      "translation_m": 0.3999787660662429,
+      "identity_to_reference": {
+        "median_m": 0.0613667584879058,
+        "p95_m": 0.8399894480810892,
+        "within_0_3m_fraction": 0.8902206483247072
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.5430011050162786,
+        "p95_m": 2.634340236503647,
+        "within_0_3m_fraction": 0.3775538000544811
+      },
+      "occupied_return_azimuth_bins_of_72": 71,
+      "planar_neighbourhood_fraction": 0.6205393625715064,
+      "planar_normals_within_15deg_of_z_fraction": 0.5452151009657594,
+      "normal_second_moment_eigenvalues": [
+        0.1293550285208933,
+        0.3174005448198085,
+        0.5532444266592982
+      ]
+    },
+    {
+      "source_index": 71,
+      "elapsed_s": 16.237064123153687,
+      "voxel_points": 3814,
+      "rotation_deg": 158.1271651863834,
+      "unwrapped_yaw_deg": 201.8643218869815,
+      "translation_m": 0.40760299668852773,
+      "identity_to_reference": {
+        "median_m": 0.05964407723838791,
+        "p95_m": 0.9935956124134138,
+        "within_0_3m_fraction": 0.8751966439433665
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.5332389034014995,
+        "p95_m": 2.9337624091744527,
+        "within_0_3m_fraction": 0.38148925013109597
+      },
+      "occupied_return_azimuth_bins_of_72": 70,
+      "planar_neighbourhood_fraction": 0.6208704771893025,
+      "planar_normals_within_15deg_of_z_fraction": 0.5831925675675675,
+      "normal_second_moment_eigenvalues": [
+        0.11106181306185986,
+        0.30088657148667114,
+        0.5880516154514688
+      ]
+    },
+    {
+      "source_index": 81,
+      "elapsed_s": 18.557425498962402,
+      "voxel_points": 3968,
+      "rotation_deg": 129.77950260864083,
+      "unwrapped_yaw_deg": 230.21392919752844,
+      "translation_m": 0.38267451509216716,
+      "identity_to_reference": {
+        "median_m": 0.059771640234161136,
+        "p95_m": 0.8917565951260057,
+        "within_0_3m_fraction": 0.8825604838709677
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.4066436295271642,
+        "p95_m": 2.4787129080354404,
+        "within_0_3m_fraction": 0.43649193548387094
+      },
+      "occupied_return_azimuth_bins_of_72": 70,
+      "planar_neighbourhood_fraction": 0.6136592741935484,
+      "planar_normals_within_15deg_of_z_fraction": 0.6225872689938399,
+      "normal_second_moment_eigenvalues": [
+        0.08726999966783794,
+        0.2853175340457043,
+        0.6274124662864577
+      ]
+    },
+    {
+      "source_index": 90,
+      "elapsed_s": 20.64582586288452,
+      "voxel_points": 3927,
+      "rotation_deg": 104.60924308854186,
+      "unwrapped_yaw_deg": 255.39072772470806,
+      "translation_m": 0.3262659355719532,
+      "identity_to_reference": {
+        "median_m": 0.05734340385427038,
+        "p95_m": 0.8884538187074885,
+        "within_0_3m_fraction": 0.8846447669977082
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.3476298089731427,
+        "p95_m": 1.9553791333656376,
+        "within_0_3m_fraction": 0.479755538579068
+      },
+      "occupied_return_azimuth_bins_of_72": 71,
+      "planar_neighbourhood_fraction": 0.6243952126305068,
+      "planar_normals_within_15deg_of_z_fraction": 0.5860522022838499,
+      "normal_second_moment_eigenvalues": [
+        0.08585125547811506,
+        0.3198380875704775,
+        0.5943106569514077
+      ]
+    },
+    {
+      "source_index": 100,
+      "elapsed_s": 22.966071844100952,
+      "voxel_points": 3827,
+      "rotation_deg": 77.49498822389097,
+      "unwrapped_yaw_deg": 282.5058915383701,
+      "translation_m": 0.27560967387825325,
+      "identity_to_reference": {
+        "median_m": 0.06837638723408307,
+        "p95_m": 0.9528495482275678,
+        "within_0_3m_fraction": 0.8766657956623988
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.26952030069780625,
+        "p95_m": 1.7732313387419343,
+        "within_0_3m_fraction": 0.5226025607525477
+      },
+      "occupied_return_azimuth_bins_of_72": 71,
+      "planar_neighbourhood_fraction": 0.5894956885288738,
+      "planar_normals_within_15deg_of_z_fraction": 0.6108156028368794,
+      "normal_second_moment_eigenvalues": [
+        0.08853143127401884,
+        0.2928885931098681,
+        0.6185799756161128
+      ]
+    },
+    {
+      "source_index": 110,
+      "elapsed_s": 25.286454439163208,
+      "voxel_points": 3748,
+      "rotation_deg": 49.13203267701681,
+      "unwrapped_yaw_deg": 310.8685635170314,
+      "translation_m": 0.1813619928867637,
+      "identity_to_reference": {
+        "median_m": 0.04722227306447496,
+        "p95_m": 0.916511563337209,
+        "within_0_3m_fraction": 0.880469583778015
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.2350091070187406,
+        "p95_m": 1.9397615414430396,
+        "within_0_3m_fraction": 0.5493596584845251
+      },
+      "occupied_return_azimuth_bins_of_72": 69,
+      "planar_neighbourhood_fraction": 0.593649946638207,
+      "planar_normals_within_15deg_of_z_fraction": 0.5820224719101124,
+      "normal_second_moment_eigenvalues": [
+        0.11798722370187967,
+        0.2953083907164313,
+        0.5867043855816889
+      ]
+    },
+    {
+      "source_index": 120,
+      "elapsed_s": 27.605956315994263,
+      "voxel_points": 3628,
+      "rotation_deg": 18.803842916296087,
+      "unwrapped_yaw_deg": 341.2168651006789,
+      "translation_m": 0.12514382665189847,
+      "identity_to_reference": {
+        "median_m": 0.054493106454446605,
+        "p95_m": 0.9487497976473097,
+        "within_0_3m_fraction": 0.8842337375964718
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.1404693544809013,
+        "p95_m": 1.2713873989371538,
+        "within_0_3m_fraction": 0.7276736493936052
+      },
+      "occupied_return_azimuth_bins_of_72": 69,
+      "planar_neighbourhood_fraction": 0.5873759647188533,
+      "planar_normals_within_15deg_of_z_fraction": 0.5664007508212107,
+      "normal_second_moment_eigenvalues": [
+        0.11000947488565867,
+        0.3171982435159453,
+        0.5727922815983961
+      ]
+    },
+    {
+      "source_index": 130,
+      "elapsed_s": 29.926069736480713,
+      "voxel_points": 3564,
+      "rotation_deg": 8.261212258718379,
+      "unwrapped_yaw_deg": 368.12799460584444,
+      "translation_m": 0.14960695438707744,
+      "identity_to_reference": {
+        "median_m": 0.05074370328092437,
+        "p95_m": 0.897144334263674,
+        "within_0_3m_fraction": 0.8984287317620651
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.09808846793299882,
+        "p95_m": 0.843362000103325,
+        "within_0_3m_fraction": 0.8122895622895623
+      },
+      "occupied_return_azimuth_bins_of_72": 69,
+      "planar_neighbourhood_fraction": 0.5982042648709316,
+      "planar_normals_within_15deg_of_z_fraction": 0.5572232645403377,
+      "normal_second_moment_eigenvalues": [
+        0.13613459201427777,
+        0.2997942483843348,
+        0.5640711596013869
+      ]
+    },
+    {
+      "source_index": 140,
+      "elapsed_s": 32.245959997177124,
+      "voxel_points": 3672,
+      "rotation_deg": 36.5624451948193,
+      "unwrapped_yaw_deg": 396.5323997719385,
+      "translation_m": 0.15524018628505248,
+      "identity_to_reference": {
+        "median_m": 0.031579222523954696,
+        "p95_m": 0.7932070157446467,
+        "within_0_3m_fraction": 0.9022331154684096
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.18829324561141073,
+        "p95_m": 1.3076020879855157,
+        "within_0_3m_fraction": 0.6043028322440087
+      },
+      "occupied_return_azimuth_bins_of_72": 70,
+      "planar_neighbourhood_fraction": 0.6296296296296297,
+      "planar_normals_within_15deg_of_z_fraction": 0.5588235294117647,
+      "normal_second_moment_eigenvalues": [
+        0.11812579595320205,
+        0.3178672005284087,
+        0.5640070035183892
+      ]
+    },
+    {
+      "source_index": 150,
+      "elapsed_s": 34.56612730026245,
+      "voxel_points": 3887,
+      "rotation_deg": 62.85476455939292,
+      "unwrapped_yaw_deg": 422.8459557598007,
+      "translation_m": 0.12368427069196741,
+      "identity_to_reference": {
+        "median_m": 0.05981429079264156,
+        "p95_m": 1.0134006460331177,
+        "within_0_3m_fraction": 0.8736815024440443
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.3328766961219799,
+        "p95_m": 2.1174494270838,
+        "within_0_3m_fraction": 0.4764599948546437
+      },
+      "occupied_return_azimuth_bins_of_72": 70,
+      "planar_neighbourhood_fraction": 0.6431695394906097,
+      "planar_normals_within_15deg_of_z_fraction": 0.5616,
+      "normal_second_moment_eigenvalues": [
+        0.11057372641822413,
+        0.31564713274662504,
+        0.5737791408351506
+      ]
+    },
+    {
+      "source_index": 160,
+      "elapsed_s": 36.88605356216431,
+      "voxel_points": 3970,
+      "rotation_deg": 92.19840874924515,
+      "unwrapped_yaw_deg": 452.19490537445904,
+      "translation_m": 0.20446365266251149,
+      "identity_to_reference": {
+        "median_m": 0.06405415447885188,
+        "p95_m": 1.0445115749308918,
+        "within_0_3m_fraction": 0.8682619647355164
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.44224788600607123,
+        "p95_m": 3.3435350756473867,
+        "within_0_3m_fraction": 0.4113350125944584
+      },
+      "occupied_return_azimuth_bins_of_72": 72,
+      "planar_neighbourhood_fraction": 0.6292191435768262,
+      "planar_normals_within_15deg_of_z_fraction": 0.6044835868694955,
+      "normal_second_moment_eigenvalues": [
+        0.10099219558091341,
+        0.28320076335561245,
+        0.6158070410634742
+      ]
+    },
+    {
+      "source_index": 169,
+      "elapsed_s": 38.9735631942749,
+      "voxel_points": 3991,
+      "rotation_deg": 118.00434605497907,
+      "unwrapped_yaw_deg": 478.0172907322668,
+      "translation_m": 0.2563277418427264,
+      "identity_to_reference": {
+        "median_m": 0.020134465124224444,
+        "p95_m": 0.8103892136883228,
+        "within_0_3m_fraction": 0.8987722375344526
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.5151446314515342,
+        "p95_m": 3.654768805128339,
+        "within_0_3m_fraction": 0.3640691556001002
+      },
+      "occupied_return_azimuth_bins_of_72": 70,
+      "planar_neighbourhood_fraction": 0.6289150588824856,
+      "planar_normals_within_15deg_of_z_fraction": 0.6059760956175299,
+      "normal_second_moment_eigenvalues": [
+        0.0788578329909969,
+        0.30302353027354806,
+        0.618118636735455
+      ]
+    },
+    {
+      "source_index": 179,
+      "elapsed_s": 41.29339337348938,
+      "voxel_points": 3849,
+      "rotation_deg": 146.52898490671964,
+      "unwrapped_yaw_deg": 506.5495918524085,
+      "translation_m": 0.2902847365738981,
+      "identity_to_reference": {
+        "median_m": 0.05278862313148793,
+        "p95_m": 0.8639717751062628,
+        "within_0_3m_fraction": 0.8877630553390491
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.6385761427711206,
+        "p95_m": 3.6070591592638857,
+        "within_0_3m_fraction": 0.32605871654975316
+      },
+      "occupied_return_azimuth_bins_of_72": 68,
+      "planar_neighbourhood_fraction": 0.6037931930371525,
+      "planar_normals_within_15deg_of_z_fraction": 0.5976764199655766,
+      "normal_second_moment_eigenvalues": [
+        0.10014667763875365,
+        0.2914659925717865,
+        0.6083873297894598
+      ]
+    },
+    {
+      "source_index": 189,
+      "elapsed_s": 43.612717390060425,
+      "voxel_points": 3668,
+      "rotation_deg": 176.05289515878044,
+      "unwrapped_yaw_deg": 536.0604740799278,
+      "translation_m": 0.35254897367973836,
+      "identity_to_reference": {
+        "median_m": 0.04837259164801244,
+        "p95_m": 0.8842802480570053,
+        "within_0_3m_fraction": 0.8830425299890948
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.5624651443380846,
+        "p95_m": 3.2006555155791077,
+        "within_0_3m_fraction": 0.37649945474372953
+      },
+      "occupied_return_azimuth_bins_of_72": 69,
+      "planar_neighbourhood_fraction": 0.6033260632497274,
+      "planar_normals_within_15deg_of_z_fraction": 0.5680072300045188,
+      "normal_second_moment_eigenvalues": [
+        0.1089023815940413,
+        0.31208078284327656,
+        0.579016835562682
+      ]
+    },
+    {
+      "source_index": 199,
+      "elapsed_s": 45.932464361190796,
+      "voxel_points": 3585,
+      "rotation_deg": 155.6664734656535,
+      "unwrapped_yaw_deg": 564.3218911552364,
+      "translation_m": 0.3858162153407403,
+      "identity_to_reference": {
+        "median_m": 0.050370113747896225,
+        "p95_m": 0.8742180660205193,
+        "within_0_3m_fraction": 0.899581589958159
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.47659464358208553,
+        "p95_m": 2.8600582860179733,
+        "within_0_3m_fraction": 0.40446304044630405
+      },
+      "occupied_return_azimuth_bins_of_72": 69,
+      "planar_neighbourhood_fraction": 0.5863319386331939,
+      "planar_normals_within_15deg_of_z_fraction": 0.5727878211227403,
+      "normal_second_moment_eigenvalues": [
+        0.1133344213203317,
+        0.3026344364216421,
+        0.5840311422580262
+      ]
+    },
+    {
+      "source_index": 209,
+      "elapsed_s": 48.252660512924194,
+      "voxel_points": 3502,
+      "rotation_deg": 127.76896456808136,
+      "unwrapped_yaw_deg": 592.2222524385368,
+      "translation_m": 0.35107172086462507,
+      "identity_to_reference": {
+        "median_m": 0.061080709459114035,
+        "p95_m": 1.1076799430263644,
+        "within_0_3m_fraction": 0.8737864077669902
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.3795283139838419,
+        "p95_m": 2.780118458517517,
+        "within_0_3m_fraction": 0.45488292404340375
+      },
+      "occupied_return_azimuth_bins_of_72": 70,
+      "planar_neighbourhood_fraction": 0.5836664762992576,
+      "planar_normals_within_15deg_of_z_fraction": 0.5704500978473581,
+      "normal_second_moment_eigenvalues": [
+        0.11422418626150486,
+        0.308860167094609,
+        0.576915646643886
+      ]
+    },
+    {
+      "source_index": 219,
+      "elapsed_s": 50.57309341430664,
+      "voxel_points": 3710,
+      "rotation_deg": 99.2103911714723,
+      "unwrapped_yaw_deg": 620.7873500765402,
+      "translation_m": 0.31260342677301395,
+      "identity_to_reference": {
+        "median_m": 0.06472091582792652,
+        "p95_m": 1.0385307492731044,
+        "within_0_3m_fraction": 0.8789757412398922
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.32681374178407585,
+        "p95_m": 2.0091725675945376,
+        "within_0_3m_fraction": 0.4840970350404313
+      },
+      "occupied_return_azimuth_bins_of_72": 71,
+      "planar_neighbourhood_fraction": 0.6223719676549865,
+      "planar_normals_within_15deg_of_z_fraction": 0.5608488523170203,
+      "normal_second_moment_eigenvalues": [
+        0.12494803283829438,
+        0.3039182937749321,
+        0.5711336733867732
+      ]
+    },
+    {
+      "source_index": 229,
+      "elapsed_s": 52.89301800727844,
+      "voxel_points": 3857,
+      "rotation_deg": 71.10896961548869,
+      "unwrapped_yaw_deg": 648.8961467622258,
+      "translation_m": 0.27258053473037214,
+      "identity_to_reference": {
+        "median_m": 0.05615343808684777,
+        "p95_m": 0.9789235435790293,
+        "within_0_3m_fraction": 0.8822919367383977
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.2986971181861941,
+        "p95_m": 1.9954394619678966,
+        "within_0_3m_fraction": 0.5014259787399533
+      },
+      "occupied_return_azimuth_bins_of_72": 70,
+      "planar_neighbourhood_fraction": 0.6134301270417423,
+      "planar_normals_within_15deg_of_z_fraction": 0.5950972104818258,
+      "normal_second_moment_eigenvalues": [
+        0.0924826699604919,
+        0.3037316653068102,
+        0.6037856647326976
+      ]
+    },
+    {
+      "source_index": 239,
+      "elapsed_s": 55.21257543563843,
+      "voxel_points": 3959,
+      "rotation_deg": 40.2044405153991,
+      "unwrapped_yaw_deg": 679.7990974876619,
+      "translation_m": 0.18467805130187806,
+      "identity_to_reference": {
+        "median_m": 0.06249981541208314,
+        "p95_m": 1.0261060565016813,
+        "within_0_3m_fraction": 0.8704218236928517
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.21417373616775934,
+        "p95_m": 1.6826125858603471,
+        "within_0_3m_fraction": 0.5867643344278858
+      },
+      "occupied_return_azimuth_bins_of_72": 71,
+      "planar_neighbourhood_fraction": 0.604950745137661,
+      "planar_normals_within_15deg_of_z_fraction": 0.607098121085595,
+      "normal_second_moment_eigenvalues": [
+        0.09681758530964014,
+        0.28885521954268045,
+        0.6143271951476792
+      ]
+    },
+    {
+      "source_index": 249,
+      "elapsed_s": 57.53247666358948,
+      "voxel_points": 3991,
+      "rotation_deg": 11.87596546985567,
+      "unwrapped_yaw_deg": 708.1284656076004,
+      "translation_m": 0.1486334915829396,
+      "identity_to_reference": {
+        "median_m": 0.060701576827762255,
+        "p95_m": 0.8840240127288256,
+        "within_0_3m_fraction": 0.8864946128789777
+      },
+      "estimated_pose_to_reference": {
+        "median_m": 0.10042437964807362,
+        "p95_m": 1.143061035202408,
+        "within_0_3m_fraction": 0.7822600851916813
+      },
+      "occupied_return_azimuth_bins_of_72": 70,
+      "planar_neighbourhood_fraction": 0.6126284139313455,
+      "planar_normals_within_15deg_of_z_fraction": 0.6085889570552148,
+      "normal_second_moment_eigenvalues": [
+        0.09147638393219812,
+        0.2935368433023539,
+        0.6149867727654479
+      ]
+    }
+  ]
+}

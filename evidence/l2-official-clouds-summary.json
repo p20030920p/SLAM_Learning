@@ -1,0 +1,32 @@
+{
+  "status": "exported",
+  "schema_version": 2,
+  "mode": "lidar",
+  "source_session": "data/static-20261008-221334/l2",
+  "source_sha256": "c79cc1fd24c7e01566416a2867f603229e9a948c32ad26304da3188b817c1749",
+  "lines_per_cloud": 50,
+  "timestamp_policy": "recorded host receive time of last line; not hardware synchronization",
+  "deskewing": false,
+  "imu_used": false,
+  "decoder": "official Unitree SDK2 parseFromPacketToPointCloud (unchanged)",
+  "sdk_decode_counts": {
+    "lines": 12932,
+    "points": 3525525,
+    "point_bytes": 24
+  },
+  "sdk_commit": "0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
+  "sdk_decoder_binary_sha256": "6e1027fb51adb15fce443aff96b9e3bce0cbe54bfd15a61ed39f9d4c34435d21",
+  "crc_errors": 0,
+  "packet_counts": {
+    "105": 1,
+    "101": 1,
+    "102": 12932,
+    "104": 15000
+  },
+  "incomplete_final_lines": 1,
+  "duration_s": 57.76453169999991,
+  "exported_clouds": 250,
+  "first_stamp_s": 1791486819.2028813,
+  "last_stamp_s": 1791486876.967413,
+  "manifest_sha256": "dea366ccd3be2d414bc279da4f14d96a323767422306532b512fe6e357e85f09"
+}

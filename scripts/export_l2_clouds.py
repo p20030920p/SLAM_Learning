@@ -6,13 +6,16 @@ No motion compensation or IMU fusion is applied.
 """
 import argparse
 import csv
+from datetime import datetime
 import hashlib
 import json
 from pathlib import Path
 import struct
+import subprocess
+import tempfile
 
 import numpy as np
-from protocol_l2 import Parser,info,points
+from protocol_l2 import Parser,info,points,POINT_DTYPE
 
 
 def main():
@@ -21,6 +24,8 @@ def main():
     ap.add_argument("--output",type=Path,required=True)
     ap.add_argument("--lines",type=int,default=18)
     ap.add_argument("--skip-seconds",type=float,default=2)
+    ap.add_argument("--sdk-decoder",type=Path,
+                    help="Linux compiled decode_sdk_lines binary; uses unchanged official XYZ conversion")
     args=ap.parse_args()
     if args.lines<1 or args.skip_seconds<0:
         ap.error("Invalid grouping")
@@ -36,15 +41,46 @@ def main():
             "deskewing":False,"imu_used":False,"pairs":[]}
     if result["source_sha256"]!=capture["raw_sha256"]:
         raise ValueError("UART SHA-256 differs from capture manifest")
+    official_lines=None
+    result["decoder"]="python vectorized double angles (original baseline)"
+    if args.sdk_decoder:
+        decoded=Parser()
+        packets=[p for kind,p in decoded.feed(raw) if kind==102]
+        with tempfile.TemporaryDirectory(prefix="physical-sdk-lines-") as temporary:
+            packet_path=Path(temporary)/"packets.bin"; point_path=Path(temporary)/"points.bin"
+            packet_path.write_bytes(b"".join(packets))
+            run=subprocess.run([str(args.sdk_decoder.resolve()),str(packet_path),str(point_path)],
+                               capture_output=True,text=True,check=True)
+            result["sdk_decode_counts"]=json.loads(run.stdout)
+            blob=point_path.read_bytes()
+        if result["sdk_decode_counts"]["point_bytes"]!=POINT_DTYPE.itemsize:
+            raise ValueError("Official decoder point layout differs")
+        official_lines=[]; cursor=0
+        while cursor<len(blob):
+            count=struct.unpack_from("<I",blob,cursor)[0]; cursor+=4
+            if count>300 or cursor+count*POINT_DTYPE.itemsize>len(blob):
+                raise ValueError("Official decoder line length invalid")
+            official_lines.append(np.frombuffer(blob,dtype=POINT_DTYPE,count=count,offset=cursor))
+            cursor+=count*POINT_DTYPE.itemsize
+        if cursor!=len(blob) or len(official_lines)!=len(packets):
+            raise ValueError("Official decoder output incomplete")
+        result["decoder"]="official Unitree SDK2 parseFromPacketToPointCloud (unchanged)"
+        result["sdk_commit"]="0e3c51f512e6b8ff60b8c32f160b412cb48445c2"
+        result["sdk_decoder_binary_sha256"]=hashlib.sha256(args.sdk_decoder.read_bytes()).hexdigest()
+    point_index=0
     parser=Parser(); offset=0; lines=[]; line_times=[]; seqs=[]
-    epoch=__import__("datetime").datetime.fromisoformat(capture["started_at"]).timestamp()
+    epoch=datetime.fromisoformat(capture["started_at"]).timestamp()
     for row in timing:
         n=int(row["bytes"]); chunk=raw[offset:offset+n]; offset+=n
         host=float(row["host_receive_elapsed_s"])
         for kind,packet in parser.feed(chunk):
-            if kind!=102 or host<args.skip_seconds:
+            if kind!=102:
                 continue
-            seq,stamp=info(packet); p=points(packet)
+            p=official_lines[point_index] if official_lines is not None else points(packet)
+            point_index+=1
+            if host<args.skip_seconds:
+                continue
+            seq,stamp=info(packet)
             lines.append(p); line_times.append([stamp,host,struct.unpack_from("<f",packet,124)[0]])
             seqs.append(seq)
             if len(lines)<args.lines:

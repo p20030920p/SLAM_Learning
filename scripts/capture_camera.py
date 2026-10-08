@@ -19,6 +19,8 @@ def main():
     ap.add_argument("--seconds",type=float,default=30)
     ap.add_argument("--output",type=Path,required=True)
     ap.add_argument("--record-raw",action="store_true")
+    ap.add_argument("--emitter",choices=("default","on","off"),default="default",
+                    help="Temporary stereo IR projector control; original value restored on exit")
     args=ap.parse_args()
     if args.seconds <= 0:
         ap.error("seconds must be positive")
@@ -32,6 +34,7 @@ def main():
     video=None
     start=time.monotonic()
     processed=0
+    depth_sensor=None; changed_options=[]
     valid=[]
     medians=[]
     try:
@@ -69,7 +72,18 @@ def main():
 
         profile=pipeline.start(config,receive)
         started=True
-        record["depth_scale_m"]=profile.get_device().first_depth_sensor().get_depth_scale()
+        depth_sensor=profile.get_device().first_depth_sensor()
+        record["depth_scale_m"]=depth_sensor.get_depth_scale()
+        record["stereo_options_before"]={str(option):depth_sensor.get_option(option)
+            for option in (rs.option.emitter_enabled,rs.option.laser_power,rs.option.enable_auto_exposure,rs.option.exposure,rs.option.gain)
+            if depth_sensor.supports(option)}
+        if args.emitter!="default":
+            if not depth_sensor.supports(rs.option.emitter_enabled):
+                raise RuntimeError("This sensor does not expose emitter control")
+            previous=depth_sensor.get_option(rs.option.emitter_enabled)
+            changed_options.append((rs.option.emitter_enabled,previous))
+            depth_sensor.set_option(rs.option.emitter_enabled,1.0 if args.emitter=="on" else 0.0)
+            record["temporary_emitter"]={"requested":args.emitter,"observed_value":depth_sensor.get_option(rs.option.emitter_enabled)}
         record["intrinsics"]={}
         record["extrinsics_to_depth"]={}
         depth_profile=profile.get_stream(rs.stream.depth)
@@ -119,7 +133,20 @@ def main():
     finally:
         record["elapsed_seconds"]=time.monotonic()-start
         if started:
-            pipeline.stop()
+            try:
+                pipeline.stop()
+            except Exception as e:
+                record.update(status="failed",pipeline_stop_error=repr(e))
+        if changed_options:
+            try:
+                for option,value in reversed(changed_options):
+                    depth_sensor.set_option(option,value)
+                record["temporary_options_restored"]=all(depth_sensor.get_option(option)==value for option,value in changed_options)
+            except Exception as e:
+                record["temporary_options_restored"]=False
+                record["option_restore_error"]=repr(e)
+            if not record["temporary_options_restored"]:
+                record["status"]="failed"
         if video:
             video.release()
         record["streams"]={}

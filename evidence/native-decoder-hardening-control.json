@@ -1,0 +1,47 @@
+{
+  "source_sha256": "c79cc1fd24c7e01566416a2867f603229e9a948c32ad26304da3188b817c1749",
+  "kind": "decoder_input_guard_control",
+  "sdk_commit": "0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
+  "lines": 12932,
+  "binaries": {
+    "decode_sdk_lines": {
+      "binary_sha256": "6e1027fb51adb15fce443aff96b9e3bce0cbe54bfd15a61ed39f9d4c34435d21",
+      "stdout": {
+        "lines": 12932,
+        "points": 3525525,
+        "point_bytes": 24
+      },
+      "output_bytes": 84664328,
+      "output_sha256": "3a8c4fed71472a87e80ec51c1960f08f3aba611ff9c1e8e3828c8210060d3545"
+    },
+    "decode_sdk_lines_checked": {
+      "binary_sha256": "0514f63c6d2e5f454707270e24714e9e5050474654dbbf8703caa70db1ff0635",
+      "stdout": {
+        "lines": 12932,
+        "points": 3525525,
+        "point_bytes": 24
+      },
+      "output_bytes": 84664328,
+      "output_sha256": "3a8c4fed71472a87e80ec51c1960f08f3aba611ff9c1e8e3828c8210060d3545"
+    }
+  },
+  "invalid_inputs": {
+    "crc_mismatch": {
+      "expected_exit": 5,
+      "actual_exit": 5,
+      "pass": true
+    },
+    "point_count_overflow": {
+      "expected_exit": 4,
+      "actual_exit": 4,
+      "pass": true
+    },
+    "truncated_final_packet": {
+      "expected_exit": 6,
+      "actual_exit": 6,
+      "pass": true
+    }
+  },
+  "valid_output_byte_identical": true,
+  "pass": true
+}

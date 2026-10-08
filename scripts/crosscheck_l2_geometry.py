@@ -13,11 +13,13 @@ ap=argparse.ArgumentParser()
 ap.add_argument("raw",type=Path)
 ap.add_argument("--binary",type=Path,required=True)
 ap.add_argument("--output",type=Path,required=True)
+ap.add_argument("--sdk-float-angles",action="store_true")
 args=ap.parse_args()
 raw=args.raw.read_bytes(); parser=Parser()
 packets=[packet for kind,packet in parser.feed(raw) if kind==102]
 indices=np.unique(np.linspace(0,len(packets)-1,min(20,len(packets))).astype(int))
 result={"source_sha256":hashlib.sha256(raw).hexdigest(),"official_sdk_commit":"0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
+        "sdk_float_angle_control":args.sdk_float_angles,
         "sample_policy":"20 evenly spaced CRC-valid line packets over entire session",
         "xyz_tolerance_m":0.0001,"point_dt_tolerance_s":1e-7,"samples":[]}
 with tempfile.TemporaryDirectory(prefix="physical-sdk-check-") as directory:
@@ -25,7 +27,7 @@ with tempfile.TemporaryDirectory(prefix="physical-sdk-check-") as directory:
     for index in indices:
         packet=packets[index]; packetfile.write_bytes(packet)
         subprocess.run([str(args.binary.resolve()),str(packetfile),str(output)],capture_output=True,check=True)
-        official=np.fromfile(output,dtype=POINT_DTYPE); python=points(packet)
+        official=np.fromfile(output,dtype=POINT_DTYPE); python=points(packet,sdk_float_angles=args.sdk_float_angles)
         equal_count=len(official)==len(python)
         delta=max(float(np.abs(official[k]-python[k]).max()) for k in ("x","y","z")) if equal_count and len(python) else None
         dt=float(np.abs(official["time"]-python["time"]).max()) if equal_count and len(python) else None

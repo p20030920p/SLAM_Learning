@@ -1,0 +1,325 @@
+{
+  "kind": "receipt_only_not_stationary_validation",
+  "session": "data\\receipt-round2-20261008-231738",
+  "camera": {
+    "started_at": "2026-10-08T20:17:40.303303+00:00",
+    "status": "received",
+    "evaluation_completed": false,
+    "sdk": "2.58.4.10922",
+    "requested_video": "640x480@30 color, depth, infrared1, infrared2",
+    "device": {
+      "name": "RealSense D435",
+      "serial_number": "831612073355",
+      "firmware_version": "5.17.0.10",
+      "usb_type_descriptor": "3.2"
+    },
+    "imu_available": false,
+    "depth_scale_m": 0.0010000000474974513,
+    "stereo_options_before": {
+      "Emitter Enabled": 1.0,
+      "Laser Power": 150.0,
+      "Enable Auto Exposure": 1.0,
+      "Exposure": 8500.0,
+      "Gain": 16.0
+    },
+    "intrinsics": {
+      "stream.depth:0": {
+        "width": 640,
+        "height": 480,
+        "fx": 386.3125915527344,
+        "fy": 386.3125915527344,
+        "ppx": 314.95684814453125,
+        "ppy": 233.64193725585938,
+        "coeffs": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "model": "distortion.brown_conrady"
+      },
+      "stream.infrared:1": {
+        "width": 640,
+        "height": 480,
+        "fx": 386.3125915527344,
+        "fy": 386.3125915527344,
+        "ppx": 314.95684814453125,
+        "ppy": 233.64193725585938,
+        "coeffs": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "model": "distortion.brown_conrady"
+      },
+      "stream.infrared:2": {
+        "width": 640,
+        "height": 480,
+        "fx": 386.3125915527344,
+        "fy": 386.3125915527344,
+        "ppx": 314.95684814453125,
+        "ppy": 233.64193725585938,
+        "coeffs": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "model": "distortion.brown_conrady"
+      },
+      "stream.color:0": {
+        "width": 640,
+        "height": 480,
+        "fx": 614.6063842773438,
+        "fy": 615.578125,
+        "ppx": 323.0701904296875,
+        "ppy": 251.8853759765625,
+        "coeffs": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "model": "distortion.inverse_brown_conrady"
+      }
+    },
+    "extrinsics_to_depth": {
+      "stream.depth:0": {
+        "rotation_column_major": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "stream.infrared:1": {
+        "rotation_column_major": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "translation_m": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "stream.infrared:2": {
+        "rotation_column_major": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "translation_m": [
+          0.05004335567355156,
+          0.0,
+          0.0
+        ]
+      },
+      "stream.color:0": {
+        "rotation_column_major": [
+          0.9999877214431763,
+          -0.004954231902956963,
+          0.00025029777316376567,
+          0.004955935757607222,
+          0.9999607801437378,
+          -0.0073406328447163105,
+          -0.00021392074995674193,
+          0.007341783028095961,
+          0.9999729990959167
+        ],
+        "translation_m": [
+          -0.015405782498419285,
+          0.00020139543630648404,
+          0.00024747688439674675
+        ]
+      }
+    },
+    "elapsed_seconds": 5.032000000000153,
+    "streams": {
+      "stream.depth:0": {
+        "unique_frames": 138,
+        "sensor_hz": 28.412910549651023,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 285.195556640625,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      },
+      "stream.infrared:1": {
+        "unique_frames": 138,
+        "sensor_hz": 29.9753638269186,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 34.042724609375,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      },
+      "stream.infrared:2": {
+        "unique_frames": 138,
+        "sensor_hz": 29.9753638269186,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 34.042724609375,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      },
+      "stream.color:0": {
+        "unique_frames": 138,
+        "sensor_hz": 29.979087103589222,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 33.773193359375,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      }
+    },
+    "processed_video_frames": 141,
+    "depth_valid_fraction_median": 0.24179036458333333,
+    "center_depth_median_m": 0.26050001237308607,
+    "center_depth_temporal_std_m": 0.06418904727318112,
+    "depth_note": "Whole-frame fill and central ROI describe this scene; no measured range target or accuracy claim.",
+    "raw": {
+      "bytes": 149925888,
+      "sha256": "117b91311176a882a33a2c1da555ddfa89c4bb8e335bc80f316f741012348366"
+    }
+  },
+  "lidar": {
+    "sensor": "Unitree L2",
+    "started_at": "2026-10-08T20:17:40.271000+00:00",
+    "port": "\\\\?\\GLOBALROOT\\Device\\Serial2",
+    "baud": 4000000,
+    "status": "received",
+    "evaluation_completed": false,
+    "sdk_reference_commit": "0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
+    "clock": "device uptime; host receive time is separately recorded; not cross-sensor synchronized",
+    "requested_driver_rx_buffer_bytes": 1048576,
+    "transmitted": {
+      "purpose": "read device version only",
+      "hex": "55aa050a640000002000000003000000000000008ad8adeb00000000000000ff"
+    },
+    "device_version": {
+      "hardware": "2.2.1.1",
+      "firmware": "2.8.8.1",
+      "name": "YS-L2",
+      "date": "250403"
+    },
+    "last_inside_state": {
+      "sys_rotation_period": 4647,
+      "com_rotation_period": 229527,
+      "dirty_index": 0.0,
+      "packet_lost_up": 0.0,
+      "packet_lost_down": 0.0,
+      "apd_temperature": 60.75279998779297,
+      "apd_voltage": 170.38336181640625,
+      "laser_voltage": 50.69356918334961,
+      "imu_temperature": 75.794921875
+    },
+    "elapsed_seconds": 5.02528810000058,
+    "raw_bytes": 1223409,
+    "valid_points": 320157,
+    "crc_errors": 0,
+    "discarded_bytes": 0,
+    "trailing_bytes": 1,
+    "packet_counts": {
+      "104": 1249,
+      "105": 1,
+      "101": 1,
+      "102": 1076
+    },
+    "packet_sizes": {
+      "104:80": 1249,
+      "105:104": 1,
+      "101:40": 1,
+      "102:1044": 1076
+    },
+    "104": {
+      "count": 1249,
+      "sensor_hz": 499.1999920127938,
+      "sequence_missing": 0,
+      "sequence_duplicates": 0,
+      "timestamp_non_increasing": 0,
+      "max_sensor_gap_s": 0.004000089999863121,
+      "host_hz": 249.67243496682113,
+      "sequence_modulus": 1024,
+      "clock_host_seconds_per_device_second": 1.9998386399402186,
+      "clock_affine_residual_p95_s": 0.0016274635430468362
+    },
+    "102": {
+      "count": 1076,
+      "sensor_hz": 430.40252104568197,
+      "sequence_missing": 0,
+      "sequence_duplicates": 0,
+      "timestamp_non_increasing": 0,
+      "max_sensor_gap_s": 0.002710810000280617,
+      "host_hz": 215.22739204424693,
+      "sequence_modulus": 1024,
+      "clock_host_seconds_per_device_second": 1.9998090161787556,
+      "clock_affine_residual_p95_s": 0.00021398790186211158
+    },
+    "imu_summary": {
+      "acceleration_norm_median": 9.818135325802404,
+      "gyro_norm_median": 0.07843940817994495,
+      "quaternion_norm_median": 0.9983124254572145
+    },
+    "raw_sha256": "98425c70aa282e0eec7e7fe2e8fedd5840f6cab89462c5f314dac5184cc3d24a"
+  },
+  "camera_after_first_delivery_plus_2s": {
+    "stream.depth:0": {
+      "unique_frames": 77,
+      "sensor_hz": 29.973099928498844,
+      "sequence_missing": 0,
+      "max_sensor_gap_ms": 34.1220703125
+    },
+    "stream.infrared:1": {
+      "unique_frames": 77,
+      "sensor_hz": 29.973962854339785,
+      "sequence_missing": 0,
+      "max_sensor_gap_ms": 34.03125
+    },
+    "stream.infrared:2": {
+      "unique_frames": 77,
+      "sensor_hz": 29.973962854339785,
+      "sequence_missing": 0,
+      "max_sensor_gap_ms": 34.03125
+    },
+    "stream.color:0": {
+      "unique_frames": 77,
+      "sensor_hz": 29.974999008202836,
+      "sequence_missing": 0,
+      "max_sensor_gap_ms": 33.773193359375
+    }
+  },
+  "warmup_note": "Full startup stream statistics retained. Trimmed statistics are descriptive; no new static ground truth."
+}

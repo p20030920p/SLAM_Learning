@@ -63,7 +63,7 @@ def info(packet):
     return seq, sec + nsec * 1e-9
 
 
-def points(packet):
+def points(packet, *, sdk_float_angles=False):
     if len(packet) != 1044:
         raise ValueError(f"Unexpected point packet size {len(packet)}")
     a, b, theta_bias, alpha_bias, beta, xi, range_bias, scale = struct.unpack_from("<8f", packet, 64)
@@ -77,6 +77,17 @@ def points(packet):
     distance = scale * (raw.astype(np.float64) + range_bias)
     alpha = alpha0 + alpha_bias + j * alpha_step
     theta = theta0 + theta_bias + j * theta_step
+    if sdk_float_angles and n:
+        # Diagnostic control: match SDK float32 initialization and sequential
+        # angle addition. Default retains the first baseline's vectorized math.
+        alpha=np.empty(n,dtype=np.float32); theta=np.empty(n,dtype=np.float32)
+        alpha[0]=np.float32(alpha0)+np.float32(alpha_bias)
+        theta[0]=np.float32(theta0)+np.float32(theta_bias)
+        for k in range(1,n):
+            alpha[k]=alpha[k-1]+np.float32(alpha_step)
+            theta[k]=theta[k-1]+np.float32(theta_step)
+        # Keep the remaining calculation in the original double precision.
+        alpha=alpha.astype(np.float64); theta=theta.astype(np.float64)
     A = (-np.cos(beta)*np.sin(xi) + np.sin(beta)*np.cos(xi)*np.sin(alpha))*distance + b
     B = np.cos(alpha)*np.cos(xi)*distance
     C = (np.sin(beta)*np.sin(xi) + np.cos(beta)*np.cos(xi)*np.sin(alpha))*distance

@@ -1,5 +1,7 @@
 # 2026-10-08：实际数据上的首轮定位基线
 
+**后续更新：** [第二轮诊断](DIAGNOSTICS_ROUND2.zh-CN.md)已完成角度 float 对照、整段官方原生解码、KISS-ICP 静止基线及主分支 DUFOMap 接口实测。本文件保留首轮结果。
+
 设备接收已经确认，定位按算法单独验收。相机实际型号是 **D435，没有 IMU**；L2 通过 USB 转串口收流。此次使用用户确认固定后的 60 秒会话，跳过约前 2 秒，得到约 58 秒有效算法输入。没有尺量距离、独立位姿真值或运动会话；不报告 ATE／RPE、移动测距精度或回环成功。
 
 ## 实测与预期
@@ -57,10 +59,10 @@ python3 scripts/render_odometry_video.py data/l2-clouds-new data/icp-run-new
 
 轻量证据：`evidence/rtabmap-stereo-static.json`、`rtabmap-stereo-parameters.yaml`、`rtabmap-icp-18line-short.json`、`rtabmap-icp-50line-static.json`、`rtabmap-icp-parameters.yaml`、`sdk-paced-system-clock.json`、`imu-frequency-resampled.json`。几何原始 UART SHA-256 与录制 SHA-256 记录于结果中。
 
-补充核查：跨 60 秒均匀抽取 20 个线包，Python 与官方 SDK 的点数、强度、ring 全部一致，逐点 dt 最大差约 7.3 ns；XYZ 最大分量差 **0.1274 mm**。新加的 **0.1 mm 严格实现一致性门槛未通过**，原结果保存在 `evidence/sdk-geometry-20packets.json`，未通过放宽门槛改写成成功。Python 使用双精度角度索引、SDK 使用逐步 float 累加，这可能造成数值差异，但此处尚未完成因果验证；不将其当实际测距误差。该扩展检查也限定了早先单包 4.53 μm 对照的适用范围。
+补充核查：跨 60 秒均匀抽取 20 个线包，Python 与官方 SDK 的点数、强度、ring 全部一致，逐点 dt 最大差约 7.3 ns；XYZ 最大分量差 **0.1274 mm**。新加的 **0.1 mm 严格实现一致性门槛未通过**，原结果保存在 `evidence/sdk-geometry-20packets.json`，未通过放宽门槛改写成成功。Python 使用双精度角度索引、SDK 使用逐步 float 累加；首轮当时尚未完成因果验证。后续同一门槛的 float 角度对照将最大差降至 **0.000954 mm**，见第二轮报告；实现差值不是实际测距误差。扩展检查也限定了早先单包 4.53 μm 对照的适用范围。
 
 结束前另录 5 秒双设备收流，见 `evidence/final-receipt.json`：相机四路约 29.98 fps、无帧号缺失；L2 1076 线包、1249 IMU 包，CRC、序号缺失、时间倒退均为 0。相机原始录制再次全量回放并匹配计数。此短段只验收仍能接收，不用于静止精度。
 
-下一阶段：相机移开约 15 cm 的近物，朝向 1–3 m 纹理场景；L2 底座固定且周围无遮挡，视野包含墙角和箱子。先重做受控静止／测距，再由用户按指引完成 2 m 平移、90°转动、5–10 m 回路。运动前端通过后，按 `MAIN_INTEGRATION.zh-CN.md` 接入主分支；当前主分支四个地图核心没有实物测试成绩。本任务没有合并。
+下一阶段：相机移开约 15 cm 的近物，朝向 1–3 m 纹理场景；L2 底座固定且周围无遮挡，视野包含墙角和箱子。先重做受控静止／测距，再由用户按指引完成 2 m 平移、90°转动、5–10 m 回路。运动前端通过后，按 `MAIN_INTEGRATION.zh-CN.md` 扩展主分支实物测试；第二轮 DUFOMap 已有接口执行成绩，其余核心和正式实物指标仍待测试。本任务没有合并。
 
 接口依据：[RTAB-Map odometry 官方说明](https://github.com/introlab/rtabmap_ros/tree/ros2/rtabmap_odom)、[Unitree SDK2 固定版本](https://github.com/unitreerobotics/unilidar_sdk2/tree/0e3c51f512e6b8ff60b8c32f160b412cb48445c2)。实际可复现参数以本机已安装版本的保存文件为准。
