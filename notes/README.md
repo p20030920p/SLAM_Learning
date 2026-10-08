@@ -24,6 +24,7 @@ Start with the evidence boundaries, run DUFOMap once, then inspect RViz. Run met
 | Check related work, safeguards and counterexamples | [Literature](../docs/LITERATURE.md); additional papers were read, not all reproduced |
 | Connect reproduction to H1 | [Independent analysis](../docs/STUDY.md) |
 | Interpret the new complete author workflows | [Four public releases and hypothesis limits](AUTHOR_RESULTS_ANALYSIS.md); keep new runs distinct from older subsets |
+| Download missing original paper data | [KITTI intervals, preprocessing and ScanNet access steps](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DATA_ACCESS.zh-CN.md) |
 | Compare paper and measured results | [LiDAR results](../docs/RESULTS.md), [semantic scope](../docs/SEMANTIC.md) |
 | Understand the perturbation construction | [Paired protocol](../docs/PAIRED_PROTOCOL.md) |
 | Inspect 76 main cells, 21 exploratory controls and simple baselines | [Paired results](../docs/PAIRED_RESULTS.md), [analysis record](../results/reference/paired-pose/record.json) |

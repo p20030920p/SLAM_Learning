@@ -24,6 +24,7 @@
 | 对照近期工作、已有解决机制与反例 | [文献分析](../docs/LITERATURE.zh-CN.md)；其中其余工作属于阅读比较，不能说都复现过 |
 | 理解复现与 H1 的关系 | [独立研究分析](../docs/STUDY.zh-CN.md) |
 | 看新增完整作者流程怎样改变判断 | [四份公开数据与假设边界](AUTHOR_RESULTS_ANALYSIS.zh-CN.md)；新运行与旧子集记录分开阅读 |
+| 补下载论文原始数据 | [KITTI 帧段、原始预处理与 ScanNet 本人申请步骤](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DATA_ACCESS.zh-CN.md) |
 | 看作者表格与我们的数值差距 | [LiDAR 结果](../docs/RESULTS.zh-CN.md)、[语义范围](../docs/SEMANTIC.zh-CN.md) |
 | 理解零误差／打乱／漂移如何构造 | [配对协议](../docs/PAIRED_PROTOCOL.zh-CN.md) |
 | 看 76 主单元、21 探索对照和强基线 | [配对结果](../docs/PAIRED_RESULTS.zh-CN.md)、[分析记录](../results/reference/paired-pose/record.json) |

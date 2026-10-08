@@ -32,6 +32,12 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 
 这批基线没有施加迟到位姿修正、没有运行 H1，也没有测对象变化后的过期时长。它们支持继续研究接口及评价取舍，尚未证明四篇论文有共同主导失效原因。
 
+资源问题应单列。代码检查提示一个待测因素：HOV-SG 的 [合并函数](https://github.com/hovsg/HOV-SG/blob/d6e65a53c8be6faec3f01f00d1644d967f89e605/hovsg/utils/graph_utils.py#L373)接受 `voxel_size`，但该函数内没有执行体素下采样，而是追加点再运行 DBSCAN。这可能增加后续邻域计算成本；需要逐轮点数、内存/交换空间峰值和阶段耗时才能验证，当前不能断言它是全部 OOM 的原因，更不能当作 H1 的有效性证据。SAM 微批量解决的是显存压力，不保证 CPU 合并阶段可容纳完整地图。
+
+新增原始 KITTI 下载也暴露了协议差异：当前作者 50 m 预处理重建的 00 与旧发布包，141 帧点数均不同，提供的位姿也不完全相同。[下载、预处理与对照记录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DATA_ACCESS.zh-CN.md)。因此，新 01/02 结果与旧发布包分开报告；差异本身不能证明算法退化或反驳论文，也不能当作 H1 的效果。
+
+在同一份新 02 输入上，DUFOMap 的 SA/DA 为 68.6114/89.2862%，BeautyMap 默认为 83.4254/84.6594%。[原始评分与三组网格结果](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/KITTI_SELECTED_RESULTS.zh-CN.md)。这里出现了更明显的静态保留问题，可作为配对干预候选；仍须固定观测与评价协议，分别干预位姿、可见性和参数，不能从跨场景分数直接确定原因。
+
 新增 [60 秒作者三维窗口实录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/videos/conceptgraphs-room0-original-window.mp4)，展示同一份验证地图的 RGB／实例颜色与视角操作。颜色差异来自查看器切换，不是语义准确率对照。HOV-SG 的完整特征图重试正在运行。
 
 ## 可以怎样简洁地写
