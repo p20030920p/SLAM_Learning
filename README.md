@@ -15,7 +15,7 @@ English | [中文](README.zh-CN.md)
 
 </div>
 
-> **Experimental branch only:** [room2 identity-budget v2](docs/IDENTITY_BUDGET.md) uses a separately declared AI-only exploratory protocol after the owner waived manual review. Native execution is queued behind the other window; H1 remains unverified. [Commit-bound implementation review](docs/reviews/IDENTITY_BUDGET_3740e51.md). No main merge is authorized.
+> **In progress:** [room2 identity-budget study](docs/IDENTITY_BUDGET.md), with AI-only labels. Native runs are queued; H1 remains unverified.
 
 ![Measured author-map replay](docs/figures/replication_hero.gif)
 

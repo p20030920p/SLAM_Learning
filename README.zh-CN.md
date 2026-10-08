@@ -15,7 +15,7 @@
 
 </div>
 
-> **仅实验分支：** 用户不再人工复核后，[room2 对象身份与候选预算 v2](docs/IDENTITY_BUDGET.zh-CN.md) 使用单独声明的 AI-only 探索协议。原生执行排队等待另一窗口资源；H1 未验证。[绑定提交的实现审核](docs/reviews/IDENTITY_BUDGET_3740e51.zh-CN.md)。未授权合并 main。
+> **进行中：** [room2 身份与候选预算实验](docs/IDENTITY_BUDGET.zh-CN.md)使用 AI 标注。原生运行排队中；H1 未验证。
 
 ![作者地图实测回放](docs/figures/replication_hero.gif)
 
