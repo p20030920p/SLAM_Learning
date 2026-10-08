@@ -21,6 +21,8 @@ def main():
     ap.add_argument("--speed",type=float,default=1)
     ap.add_argument("--domain",type=int,default=83)
     ap.add_argument("--limit",type=int,default=0)
+    ap.add_argument("--session-type",choices=("stationary","motion"),default="stationary",
+                    help="motion reports trajectory extent and endpoint separation, never a static drift pass/fail")
     args=ap.parse_args()
     if args.speed<=0 or not 0<=args.domain<=232:
         ap.error("Invalid replay options")
@@ -63,6 +65,10 @@ def main():
             "base_frame":frame+(": x right, y down, z forward" if args.mode=="stereo" else ": official SDK XYZ"),
             "ground_truth":"User-confirmed stationary; no external pose or metric range reference",
             "scope":"Static stability only, not moving SLAM or loop closure validation"}
+    result["session_type"]=args.session_type
+    if args.session_type=="motion":
+        result.update(ground_truth="Operator-selected motion session; no independent pose or metric reference",
+                      scope="Moving stereo/ICP odometry replay only; no loop-closure node or motion accuracy acceptance")
     rows=[]; poses=[]; sent={}; published=0; last_map=None
     log=(args.output/"node.log").open("w")
     process=None; node=None; executor=None; spin_thread=None
@@ -192,18 +198,32 @@ def main():
         result["pose_filter_note"]="Initial/high-covariance discontinuity poses excluded; lost status separately counted"
         if valid:
             xyz=np.asarray([p["xyz"] for p in valid]); delta=xyz-xyz[0]
-            result["static_translation_max_m"]=float(np.linalg.norm(delta,axis=1).max())
-            result["static_translation_final_m"]=float(np.linalg.norm(delta[-1]))
             q=np.asarray([p["xyzw"] for p in valid]); q/=np.linalg.norm(q,axis=1)[:,None]
             angles=np.degrees(2*np.arccos(np.clip(np.abs(q@q[0]),0,1)))
-            result["static_rotation_max_deg"]=float(angles.max())
-            result["static_rotation_final_deg"]=float(angles[-1])
-        result["static_gate"]={"max_translation_m":0.05,"max_rotation_deg":2.0,
-                               "loss_fraction":0.0,"minimum_output_fraction":0.99,
-                               "note":"Project engineering target, not device specification or ATE"}
-        result["static_gate_passed"]=bool(result["status"]=="evaluated" and valid and
-            result["observed_output_fraction"]>=0.99 and result["lost_status_fraction"]==0 and
-            result["static_translation_max_m"]<=0.05 and result["static_rotation_max_deg"]<=2)
+            result.update(translation_excursion_max_m=float(np.linalg.norm(delta,axis=1).max()),
+                          translation_endpoint_separation_m=float(np.linalg.norm(delta[-1])),
+                          rotation_excursion_max_deg=float(angles.max()),
+                          rotation_endpoint_separation_deg=float(angles[-1]),
+                          estimated_path_length_m=float(np.linalg.norm(np.diff(xyz,axis=0),axis=1).sum()))
+            if args.session_type=="stationary":
+                result.update(static_translation_max_m=result["translation_excursion_max_m"],
+                              static_translation_final_m=result["translation_endpoint_separation_m"],
+                              static_rotation_max_deg=result["rotation_excursion_max_deg"],
+                              static_rotation_final_deg=result["rotation_endpoint_separation_deg"])
+        if args.session_type=="stationary":
+            result["static_gate"]={"max_translation_m":0.05,"max_rotation_deg":2.0,
+                                   "loss_fraction":0.0,"minimum_output_fraction":0.99,
+                                   "note":"Project engineering target, not device specification or ATE"}
+            result["static_gate_passed"]=bool(result["status"]=="evaluated" and valid and
+                result["observed_output_fraction"]>=0.99 and result["lost_status_fraction"]==0 and
+                result["static_translation_max_m"]<=0.05 and result["static_rotation_max_deg"]<=2)
+        else:
+            result.update(static_gate=None,static_gate_passed=None,
+                          trajectory_metrics_note="Estimated trajectory extent/path/endpoint separation; not drift, ATE or motion error without independent physical references")
+            result["motion_tracking_summary"]={
+                "valid_pose_fraction":len(valid)/published if published else 0,
+                "minimum_available_fraction_target":0.95,
+                "note":"Availability target only; inspect lost/output coverage separately. No motion precision gate was evaluated."}
         period=result["input_duration_s"]/max(1,len(pairs)-1)
         result["timing_gate"]={"input_period_s":period,"compute_p95_below_period":bool(rows and result["time_estimation_s"]["p95"]<period),
                                "callback_latency_p95_below_two_periods":bool(rows and result["latency_s"]["p95"]<period*2),

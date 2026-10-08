@@ -36,13 +36,15 @@ def main():
     args=ap.parse_args()
     result=json.loads((args.run/"result.json").read_text())
     stereo=result["mode"]=="stereo"
+    motion=result.get("session_type")=="motion"
     dataset=json.loads((args.dataset/("stereo.json" if stereo else "clouds.json")).read_text())
     rows=dataset["pairs"][:result["published_pairs"]]
     statuses={r["stamp_ns"]:r for r in json.loads((args.run/"status.json").read_text())}
     poses={p["stamp_ns"]:p for p in json.loads((args.run/"poses.json").read_text())}
     valid=[p for p in poses.values() if p["covariance0"]<9999]
     origin=np.asarray(valid[0]["xyz"]) if valid else np.zeros(3)
-    plot_scale=120/max(0.05,result.get("static_translation_max_m",0)*1.1)
+    plot_scale=120/max(0.05,result.get("translation_excursion_max_m",result.get("static_translation_max_m",0))*1.1)
+    plot_axes=(0,2) if motion and stereo else (0,1)
     last_map=np.load(args.run/"last_local_map.npz")["xyz"] if (args.run/"last_local_map.npz").exists() else np.zeros((0,3))
     fps=(len(rows)-1)/(rows[-1]["stamp_s"]-rows[0]["stamp_s"])
     if Path(args.name).name!=args.name or not args.name:
@@ -88,21 +90,25 @@ def main():
                      f"ICP inlier ratio {status['icp_inliers_ratio']:.3f}" if status['icp_inliers_ratio'] is not None else
                      f"registration source points {status['source_points']}; no tracking flag exposed")
             label(canvas,f"t={elapsed:.1f}s | {quality} | compute {status['time_estimation_s']*1000:.1f}ms",(15,540))
-        label(canvas,"STATIONARY: EXPECT TRAJECTORY NEAR ORIGIN",(15,585),0.55)
+        label(canvas,"MOTION: EXPECT SMOOTH PATH FOLLOWING ACTUAL MOVEMENT" if motion else
+              "STATIONARY: EXPECT TRAJECTORY NEAR ORIGIN",(15,585),0.55)
         panel=canvas[600:870,:640]
         cv2.line(panel,(320,0),(320,270),(70,70,70),1); cv2.line(panel,(0,135),(640,135),(70,70,70),1)
-        cv2.circle(panel,(320,135),round(0.05*plot_scale),(50,100,50),1)
+        if not motion:
+            cv2.circle(panel,(320,135),round(0.05*plot_scale),(50,100,50),1)
         if pose and pose["covariance0"]<9999:
             delta=np.asarray(pose["xyz"])-origin
             trail.append(delta)
             history.append([elapsed,*delta])
             label(canvas,f"displacement from first registered pose: {np.linalg.norm(delta)*1000:.3f} mm",(15,890),0.5)
         if trail:
-            uv=np.asarray([[320+p[0]*plot_scale,135-p[1]*plot_scale] for p in trail]).astype(np.int32)
+            uv=np.asarray([[320+p[plot_axes[0]]*plot_scale,135-p[plot_axes[1]]*plot_scale] for p in trail]).astype(np.int32)
             uv[:,0]=np.clip(uv[:,0],0,639); uv[:,1]=np.clip(uv[:,1],0,269)
             cv2.polylines(panel,[uv],False,(80,210,250),2)
             cv2.circle(panel,tuple(uv[-1]),4,(60,255,80),-1)
-        label(canvas,f"X/Y: half-width {320/plot_scale*100:.1f}cm | green circle = 5cm target",(15,920),0.48)
+        axes_name="X/Z" if plot_axes==(0,2) else "X/Y"
+        suffix="initial camera frame; no static drift gate" if motion else "green circle = 5cm target"
+        label(canvas,f"{axes_name}: half-width {320/plot_scale*100:.1f}cm | {suffix}",(15,920),0.48)
         if stereo:
             pane=canvas[570:935,660:1280]
             project(pane,last_map,(310,320),(0,2),75,color=(110,220,120))
@@ -114,7 +120,8 @@ def main():
             project(pane,world,(310,180),(0,1),45,color=(110,220,120))
             label(pane,"ACCUMULATED USING ESTIMATED POSES",(5,25),0.5)
             label(pane,"Top X/Y; recent 100 clouds; not ground truth",(5,350),0.45)
-        footer=("DIAGNOSTIC CONTROL: modified prediction or repeated input; not a new default hardware baseline"
+        footer=("MOTION ODOMETRY REPLAY | No external ground truth / ATE | No loop-closure node"
+                if motion else "DIAGNOSTIC CONTROL: modified prediction or repeated input; not a new default hardware baseline"
                 if result.get("is_diagnostic_control") else
                 "Static stability only | No external ground truth / ATE | This is offline output playback")
         label(canvas,footer,(15,950),0.5)

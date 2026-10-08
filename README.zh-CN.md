@@ -4,6 +4,8 @@
 
 **自己操作从这里开始：[一步一步使用本机测试流程](docs/USAGE.zh-CN.md)。** 按“固定设备 → 同时录制 → 核验原始数据 → 导出 → 定位 → 主分支接口测试”执行，文中给出命令、输出文件和正常判据。
 
+**只测试相机、准备手持移动：[从打开 WSL 开始的相机教程](docs/CAMERA_WALKTHROUGH.zh-CN.md)。** 新增 `--session-type motion`，正常走动按轨迹范围统计，不再作为静止漂移打分。
+
 **最新算法实测：** 双目静止基线通过本段目标（0.286 mm／0.093°），尚未验移动。原生 L2 点云上的 RTAB-Map ICP、KISS-ICP 均静止失败；KISS 关闭速度外推的诊断对照降至 13.23 cm／8.23°，仍未通过。主分支 DUFOMap 原适配器已处理 40 次实测观测。BeautyMap 原入口遇到小地图边界错误，局部空白网格扩域对照可处理全部 40 次观测，但还不是主分支修复或质量验收。SA／DA 均无标注依据。[第三轮结果、实际效果与复现命令](docs/DIAGNOSTICS_ROUND3.zh-CN.md)；[第二轮](docs/DIAGNOSTICS_ROUND2.zh-CN.md)；[首轮完整基线](docs/BASELINE_RESULTS.zh-CN.md)。
 
 本分支为独立工作树中的 **orphan 分支**，没有复制主分支内容。主仓库为 `../SLAM_Learning`，检查时主分支提交为 `354b02d69ccc90304174f6d36010d25043d739ca`。现按用户要求推送到同一仓库的独立分支 [`Personal-Learning-Physical`](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)，不合并、不改主分支。它与 `notes/personal-study-guide-20261008` 是不同分支。
