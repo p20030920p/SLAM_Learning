@@ -12,7 +12,6 @@ import json
 import os
 import secrets
 import shlex
-import signal
 import socket
 import subprocess
 import sys
@@ -122,6 +121,10 @@ def main():
             spec["watch_prefix"] = method + "-"
     (directory / "command.json").write_text(json.dumps(spec, indent=2) + "\n")
     recorder = terminal = server = None
+    capture_stop = threading.Event()
+    capture_errors = []
+    capture_stats = {"frames": 0, "held_frames": 0}
+    capture_thread = None
     try:
         # WSLg's /tmp/.X11-unix is a read-only mount. Use a separate authenticated
         # X server over TCP, without modifying WSLg or the user's display.
@@ -206,13 +209,15 @@ def main():
                 "-nostdin",
                 "-y",
                 "-f",
-                "x11grab",
+                "rawvideo",
+                "-pixel_format",
+                "rgb24",
                 "-framerate",
                 str(args.fps),
                 "-video_size",
                 "1280x800",
                 "-i",
-                display + ".0",
+                "pipe:0",
                 "-c:v",
                 "libx264",
                 "-preset",
@@ -232,7 +237,40 @@ def main():
             stdout=ffmpeg_log,
             stderr=ffmpeg_log,
             env=env,
+            stdin=subprocess.PIPE,
         )
+        os.environ["XAUTHORITY"] = str(authority)
+
+        def capture():
+            from PIL import ImageGrab
+
+            started = time.monotonic()
+            last = None
+            try:
+                while not capture_stop.is_set():
+                    # WSL wall time may jump; MP4 timing follows the monotonic clock.
+                    # If capture is late, hold the last real frame instead of speeding up.
+                    expected = int((time.monotonic() - started) * args.fps)
+                    while last is not None and capture_stats["frames"] < expected:
+                        recorder.stdin.write(last)
+                        capture_stats["frames"] += 1
+                        capture_stats["held_frames"] += 1
+                    frame = ImageGrab.grab(xdisplay=display).convert("RGB")
+                    if frame.size != (1280, 800):
+                        raise RuntimeError("Private X capture size changed")
+                    last = frame.tobytes()
+                    recorder.stdin.write(last)
+                    capture_stats["frames"] += 1
+                    target = started + capture_stats["frames"] / args.fps
+                    capture_stop.wait(max(0, target - time.monotonic()))
+            except Exception as error:
+                capture_errors.append(str(error))
+            finally:
+                capture_stats["elapsed_seconds"] = time.monotonic() - started
+                recorder.stdin.close()
+
+        capture_thread = threading.Thread(target=capture, daemon=True)
+        capture_thread.start()
         deadline = time.monotonic() + 20
         while time.monotonic() < deadline:
             progress = directory / "encoder-progress.txt"
@@ -240,6 +278,8 @@ def main():
                 break
             if recorder.poll() is not None or terminal.poll() is not None:
                 raise RuntimeError("Recorder or terminal failed before command start")
+            if capture_errors:
+                raise RuntimeError(str(capture_errors))
             time.sleep(0.1)
         else:
             raise RuntimeError("No encoded frame before command start")
@@ -251,8 +291,13 @@ def main():
                 raise RuntimeError("Video encoder stopped during command; session is incomplete")
             if terminal.poll() is not None:
                 raise RuntimeError("Terminal closed before the command completion marker")
+            if capture_errors:
+                raise RuntimeError(str(capture_errors))
             time.sleep(0.5)
-        recorder.send_signal(signal.SIGINT)
+        capture_stop.set()
+        capture_thread.join(timeout=20)
+        if capture_thread.is_alive() or capture_errors:
+            raise RuntimeError(f"Capture did not finish cleanly: {capture_errors}")
         recorder.wait(timeout=60)
         result = json.loads((directory / "exit.json").read_text())
         video = directory / "full-session.mp4"
@@ -292,6 +337,7 @@ def main():
             status="executed",
             command=spec,
             duration_seconds=duration,
+            monotonic_capture=capture_stats,
             scope="Actual private X terminal captured live; no speedup, cuts or desktop capture",
             recorder_script_sha256=spec["recorder_script_sha256"],
             full_video_decoded=True,
@@ -309,6 +355,7 @@ def main():
         )
         return result["command_exit_code"]
     finally:
+        capture_stop.set()
         for process in (recorder, terminal, server):
             if process is not None and process.poll() is None:
                 process.terminate()
