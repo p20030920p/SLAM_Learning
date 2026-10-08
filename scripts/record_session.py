@@ -86,6 +86,7 @@ def child(directory):
         flush=True,
     )
     time.sleep(3)  # Retain the exit result visibly at the end of the real recording.
+    (directory / "DONE").write_text(now())
     return rc
 
 
@@ -171,6 +172,7 @@ def main():
         terminal = subprocess.Popen(
             [
                 "xterm",
+                "-hold",
                 "-geometry",
                 "158x48+0+0",
                 "-fa",
@@ -214,6 +216,8 @@ def main():
                 "libx264",
                 "-preset",
                 "veryfast",
+                "-tune",
+                "zerolatency",
                 "-crf",
                 "26",
                 "-pix_fmt",
@@ -240,10 +244,12 @@ def main():
             raise RuntimeError("No encoded frame before command start")
         (directory / "GO").write_text(now())
         print(f"Recording full session locally: {directory}", flush=True)
-        while terminal.poll() is None:
+        while not (directory / "DONE").exists():
             if recorder.poll() is not None:
                 terminal.terminate()
                 raise RuntimeError("Video encoder stopped during command; session is incomplete")
+            if terminal.poll() is not None:
+                raise RuntimeError("Terminal closed before the command completion marker")
             time.sleep(0.5)
         recorder.send_signal(signal.SIGINT)
         recorder.wait(timeout=60)
@@ -256,7 +262,7 @@ def main():
             )
         )
         duration = float(probe["format"]["duration"])
-        if duration < result["command_elapsed_seconds"]:
+        if duration < result["command_elapsed_seconds"] + 1:
             raise RuntimeError("Recording duration does not cover the command")
         subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-f", "null", "-"], check=True)
         for label, moment in (("start", 1), ("middle", duration / 2), ("end", max(0, duration - 1))):
@@ -275,6 +281,11 @@ def main():
                 ],
                 check=True,
             )
+            from PIL import Image, ImageStat
+
+            with Image.open(directory / f"review-{label}.png") as review_image:
+                if max(ImageStat.Stat(review_image).stddev) < 3:
+                    raise RuntimeError(f"Nearly blank {label} review frame; recording not accepted")
         result.update(
             kind="full_terminal_recording",
             status="executed",
