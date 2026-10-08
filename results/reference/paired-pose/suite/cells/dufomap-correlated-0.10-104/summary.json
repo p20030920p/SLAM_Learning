@@ -1,0 +1,45 @@
+{
+  "mapping": {
+    "frames": 141,
+    "author_api": "dufomap 1.1.1; integration, propagation, outputMap and segment",
+    "integration_range_m": [
+      0.2,
+      50
+    ]
+  },
+  "metrics": {
+    "counts": {
+      "kept_static": 16901096,
+      "removed_static": 365151,
+      "removed_dynamic": 94751,
+      "kept_dynamic": 1232
+    },
+    "SA": 97.88517446785049,
+    "DA": 98.71643936947167,
+    "AA": 98.29992823255631,
+    "HA": 98.29904955430588
+  },
+  "direct_point_metrics": {
+    "counts": {
+      "kept_static": 15956789,
+      "removed_static": 1309458,
+      "removed_dynamic": 95008,
+      "kept_dynamic": 975
+    },
+    "SA": 92.416082081995,
+    "DA": 98.98419511788546,
+    "AA": 95.64377397841803,
+    "HA": 95.58744255403226
+  },
+  "input_points": 17362230,
+  "input_has_labels": false,
+  "parameters": {
+    "resolution": 0.1,
+    "d_s": 0.2,
+    "d_p": 1,
+    "threads": 2,
+    "min_range": 0.2,
+    "max_range": 50.0
+  },
+  "evaluation": "Original point identities/labels, evaluated at their own perturbed XYZ against cleaned map, 5cm NN. Not a paper-table score or unperturbed-world alignment score."
+}

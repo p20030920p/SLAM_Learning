@@ -1,0 +1,2606 @@
+{
+  "schema_version": 1,
+  "kind": "paired_pose_analysis",
+  "status": "executed",
+  "started_at": "2026-10-08T15:54:18+00:00",
+  "finished_at": "2026-10-08T15:54:34+00:00",
+  "exit_code": 0,
+  "summary": {
+    "primary_cells": 76,
+    "parameter_control_cells": 21,
+    "paired_differences": [
+      {
+        "method": "dufomap",
+        "rms_m": 0.03,
+        "paired_seeds": 3,
+        "SA": {
+          "mean": 0.06687035115389979,
+          "min": 0.0601578327936636,
+          "max": 0.07922393326123256
+        },
+        "DA": {
+          "mean": 0.011460362772576596,
+          "min": 0.0,
+          "max": 0.03438108831772979
+        },
+        "direct_SA": {
+          "mean": 0.2278337228312163,
+          "min": 0.1581235343152514,
+          "max": 0.30144362002928915
+        },
+        "direct_DA": {
+          "mean": 0.012849497654092564,
+          "min": -0.0031255534834429,
+          "max": 0.028129981350858202
+        }
+      },
+      {
+        "method": "dufomap",
+        "rms_m": 0.1,
+        "paired_seeds": 3,
+        "SA": {
+          "mean": 1.9987898933682544,
+          "min": 1.9647813447821108,
+          "max": 2.037362259441778
+        },
+        "DA": {
+          "mean": 0.007640241848378082,
+          "min": -0.017711469739438712,
+          "max": 0.02708813018971057
+        },
+        "direct_SA": {
+          "mean": 3.404474637713681,
+          "min": 3.361141538169818,
+          "max": 3.46779470952778
+        },
+        "direct_DA": {
+          "mean": 0.01805875345981652,
+          "min": -0.014585916255995812,
+          "max": 0.056259962701730615
+        }
+      },
+      {
+        "method": "dufomap",
+        "rms_m": 0.3,
+        "paired_seeds": 3,
+        "SA": {
+          "mean": 10.463449295032092,
+          "min": 9.965877355976659,
+          "max": 10.773192344578419
+        },
+        "DA": {
+          "mean": -0.05591267898134807,
+          "min": -0.08230624173030776,
+          "max": -0.039590344123439536
+        },
+        "direct_SA": {
+          "mean": 12.012261070206321,
+          "min": 11.787112740828974,
+          "max": 12.167120046411938
+        },
+        "direct_DA": {
+          "mean": -0.03403380459734725,
+          "min": -0.08647364637488408,
+          "max": -0.005209255805723956
+        }
+      },
+      {
+        "method": "beautymap",
+        "rms_m": 0.03,
+        "paired_seeds": 3,
+        "SA": {
+          "mean": 0.31911393367649526,
+          "min": 0.21149934898997458,
+          "max": 0.4018997295706441
+        },
+        "DA": {
+          "mean": -0.03681207436038866,
+          "min": -0.053134409218301926,
+          "max": -0.005209255805709745
+        }
+      },
+      {
+        "method": "beautymap",
+        "rms_m": 0.1,
+        "paired_seeds": 3,
+        "SA": {
+          "mean": 0.5560328194077092,
+          "min": 0.3818200909554861,
+          "max": 0.7120424027294376
+        },
+        "DA": {
+          "mean": 0.020837023222857926,
+          "min": -0.06563662315201668,
+          "max": 0.14169175791545285
+        }
+      },
+      {
+        "method": "beautymap",
+        "rms_m": 0.3,
+        "paired_seeds": 3,
+        "SA": {
+          "mean": 2.5768290391459487,
+          "min": 2.2489774413629107,
+          "max": 2.9079857365645125
+        },
+        "DA": {
+          "mean": -0.20142455782100419,
+          "min": -0.30213683673150626,
+          "max": -0.13856620443203838
+        }
+      },
+      {
+        "method": "conceptgraphs",
+        "rms_m": 0.03,
+        "paired_seeds": 3,
+        "query_hit_fraction": {
+          "mean": 0.11111111111111112,
+          "min": 0.0,
+          "max": 0.33333333333333337
+        },
+        "target_recovery_fraction": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "mean_best_surface_coverage": {
+          "mean": 9.885330170030422e-05,
+          "min": 0.0,
+          "max": 0.0002965599051009127
+        },
+        "objects": {
+          "mean": 1.6666666666666667,
+          "min": 0.0,
+          "max": 3.0
+        }
+      },
+      {
+        "method": "conceptgraphs",
+        "rms_m": 0.1,
+        "paired_seeds": 3,
+        "query_hit_fraction": {
+          "mean": 0.11111111111111112,
+          "min": 0.0,
+          "max": 0.33333333333333337
+        },
+        "target_recovery_fraction": {
+          "mean": -0.16666666666666666,
+          "min": -0.25,
+          "max": 0.0
+        },
+        "mean_best_surface_coverage": {
+          "mean": -0.11665022306487664,
+          "min": -0.19610683322893618,
+          "max": -0.004429133858267709
+        },
+        "objects": {
+          "mean": -2.6666666666666665,
+          "min": -6.0,
+          "max": 1.0
+        }
+      },
+      {
+        "method": "conceptgraphs",
+        "rms_m": 0.3,
+        "paired_seeds": 3,
+        "query_hit_fraction": {
+          "mean": -0.22222222222222224,
+          "min": -0.6666666666666667,
+          "max": 0.33333333333333337
+        },
+        "target_recovery_fraction": {
+          "mean": -0.16666666666666666,
+          "min": -0.5,
+          "max": 0.25
+        },
+        "mean_best_surface_coverage": {
+          "mean": -0.20062728178214517,
+          "min": -0.5039509220441492,
+          "max": 0.10005883747892119
+        },
+        "objects": {
+          "mean": -2.0,
+          "min": -4.0,
+          "max": 0.0
+        }
+      },
+      {
+        "method": "hovsg",
+        "rms_m": 0.03,
+        "paired_seeds": 3,
+        "query_hit_fraction": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "target_recovery_fraction": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "mean_best_surface_coverage": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "objects": {
+          "mean": -1.6666666666666667,
+          "min": -5.0,
+          "max": 5.0
+        }
+      },
+      {
+        "method": "hovsg",
+        "rms_m": 0.1,
+        "paired_seeds": 3,
+        "query_hit_fraction": {
+          "mean": 0.3333333333333333,
+          "min": 0.0,
+          "max": 0.6666666666666667
+        },
+        "target_recovery_fraction": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "mean_best_surface_coverage": {
+          "mean": -0.003184390729839485,
+          "min": -0.0071701720841300665,
+          "max": 0.0
+        },
+        "objects": {
+          "mean": -1.0,
+          "min": -3.0,
+          "max": 2.0
+        }
+      },
+      {
+        "method": "hovsg",
+        "rms_m": 0.3,
+        "paired_seeds": 3,
+        "query_hit_fraction": {
+          "mean": -0.3333333333333333,
+          "min": -0.6666666666666667,
+          "max": 0.0
+        },
+        "target_recovery_fraction": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "mean_best_surface_coverage": {
+          "mean": 0.007513559724405261,
+          "min": -0.01828393881453161,
+          "max": 0.039629589307059065
+        },
+        "objects": {
+          "mean": -1.3333333333333333,
+          "min": -5.0,
+          "max": 1.0
+        }
+      }
+    ],
+    "references": [
+      {
+        "id": "dufomap-reference",
+        "method": "dufomap",
+        "mode": "reference",
+        "seed": null,
+        "rms_m": 0.0,
+        "lag1_correlation": null,
+        "elapsed_seconds": 30.00101125399999,
+        "SA": 97.97979838930834,
+        "DA": 98.70289530437681,
+        "AA": 98.34068223458615,
+        "HA": 98.34001762682132,
+        "direct_SA": 92.6340912417157,
+        "direct_DA": 98.96544179698488,
+        "adjacent_translation_difference_rms_m": 0.0
+      },
+      {
+        "id": "beautymap-reference",
+        "method": "beautymap",
+        "mode": "reference",
+        "seed": null,
+        "rms_m": 0.0,
+        "lag1_correlation": null,
+        "elapsed_seconds": 34.86508006600002,
+        "SA": 96.95294524629469,
+        "DA": 98.33824739797673,
+        "AA": 97.64313962379855,
+        "HA": 97.6406829872703,
+        "adjacent_translation_difference_rms_m": 0.0
+      },
+      {
+        "id": "conceptgraphs-reference",
+        "method": "conceptgraphs",
+        "mode": "reference",
+        "seed": null,
+        "rms_m": 0.0,
+        "lag1_correlation": null,
+        "elapsed_seconds": 11.562870352000118,
+        "query_hit_fraction": 0.6666666666666666,
+        "target_recovery_fraction": 1.0,
+        "mean_best_surface_coverage": 0.9255641226792203,
+        "objects": 25,
+        "adjacent_translation_difference_rms_m": 0.0
+      },
+      {
+        "id": "hovsg-reference",
+        "method": "hovsg",
+        "mode": "reference",
+        "seed": null,
+        "rms_m": 0.0,
+        "lag1_correlation": null,
+        "elapsed_seconds": 62.003410046000226,
+        "query_hit_fraction": 0.6666666666666666,
+        "target_recovery_fraction": 1.0,
+        "mean_best_surface_coverage": 0.9255641226792203,
+        "objects": 50,
+        "adjacent_translation_difference_rms_m": 0.0
+      }
+    ],
+    "scope": "Exploratory, already inspected room0 and KITTI teaser. Not held-out confirmation or a dynamic semantic benchmark.",
+    "hypothesis_status": "candidate; no matched-delay or dynamic-semantic validation",
+    "annotation_status": "AI-assisted visual polygons; not independently human-reviewed; partial visible surfaces",
+    "statistical_unit": "one KITTI teaser and one static Replica scene; seed ranges are not scene confidence intervals",
+    "controls_scope": "Exploratory follow-up selected after initial DUFOMap paired cells were seen; not a held-out test or H1 validation."
+  },
+  "repository": {
+    "commit": "13f80389f72bcdd841db03c98fee7a641367d84e",
+    "dirty": true
+  },
+  "script_sha256": "534d2f6bc095152f3e6fb8600e332d45686bb4a976e37153a1996489ab0445ff",
+  "artifacts": {
+    "measurements.csv": {
+      "sha256": "22f3424a8f5369e8c515707d321deeb7e5236b618e39042eac39e31b023bcf5c",
+      "bytes": 14290,
+      "availability": "portable"
+    },
+    "paired-differences.csv": {
+      "sha256": "2b24dd42feb8c7cd9a829c2d12ece2330d61617f302d39ed6c46d8a5cbd08fce",
+      "bytes": 2628,
+      "availability": "portable"
+    },
+    "summary.json": {
+      "sha256": "c111c955814f06121b3c551a66d204262f13fe32cbd00c246c61d14dea65451c",
+      "bytes": 8742,
+      "availability": "portable"
+    },
+    "targets.csv": {
+      "sha256": "4626c3e5826d222b3fa969b6e1bd25d8e15bb9433334c185695a9d2db23e3d07",
+      "bytes": 37739,
+      "availability": "portable"
+    },
+    "controls.csv": {
+      "sha256": "2ecc096d3fe946fffb841ed140296fe69215251c2d1a7687c3586f03777510a6",
+      "bytes": 4673,
+      "availability": "portable"
+    },
+    "suite/hovsg-independent-0.30-104.log": {
+      "sha256": "ccaa3e75f91e10b2d4b2ed432a89cc0b150b3970e39a3e2ee09a649aa32b47e0",
+      "bytes": 492,
+      "availability": "portable"
+    },
+    "suite/dufomap-independent-0.30-205.log": {
+      "sha256": "ec7f6c9b8a20fb8ad30ae11383d385fe348f662c91392202c983b401a60acc66",
+      "bytes": 531,
+      "availability": "portable"
+    },
+    "suite/hovsg-correlated-0.03-306.log": {
+      "sha256": "efe2256edfc44030529a05e34731b78cd157c51d8dea8a6b33f0377d50aa9946",
+      "bytes": 491,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-correlated-0.30-205.log": {
+      "sha256": "f9cbe635ebff6c10e16b6c1f1fc3aa732a7d8096b6613bab1dc1bde0e21bb3e9",
+      "bytes": 200,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-independent-0.03-205.log": {
+      "sha256": "4338c101df2f558d782aeb4938f950416097d7967974045fa7a8038dbfdf6a76",
+      "bytes": 201,
+      "availability": "portable"
+    },
+    "suite/hovsg-correlated-0.03-205.log": {
+      "sha256": "93c648b7dc58e3bd30526258ae743ff97dd3c09d01085ae707712fce8e62b4fe",
+      "bytes": 491,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-correlated-0.10-306.log": {
+      "sha256": "443ebbbf3724e26976a31074fe73f8d65dca727fe38c50944c42a88ee2738432",
+      "bytes": 200,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-correlated-0.03-104.log": {
+      "sha256": "e5a3c643a4d49fe231cb3e1ccc58b836170a0967238f5136e7b2fe6df051fc80",
+      "bytes": 200,
+      "availability": "portable"
+    },
+    "suite/beautymap-correlated-0.10-104.log": {
+      "sha256": "0fb9602de282a04e5e87a9d07b2a2d902964e1c59107ebe59cec00acea875627",
+      "bytes": 13380,
+      "availability": "portable"
+    },
+    "suite/dufomap-correlated-0.10-205.log": {
+      "sha256": "026d802304fa9adfc3a4deff6db06b6a8739e6f74f7720162cb199240e9fce51",
+      "bytes": 530,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-correlated-0.10-104.log": {
+      "sha256": "e0b42fb835d6b900da5f8348438141cf5c385e77b042d6045265f9cad7a76a05",
+      "bytes": 200,
+      "availability": "portable"
+    },
+    "suite/beautymap-reference.log": {
+      "sha256": "3d97f4d1a2855de2c253a8abb1d2d050e39eede4893372fbfd9ce23c97513076",
+      "bytes": 14138,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-correlated-0.30-104.log": {
+      "sha256": "d10032e9969153c3496bd97fef3de97296b23efac8c4c246f5fa66172bb526f0",
+      "bytes": 200,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-correlated-0.03-205.log": {
+      "sha256": "60772141e51584782981f61b60f9a18e58e655bd3b6194d8793dad1d9831df2b",
+      "bytes": 200,
+      "availability": "portable"
+    },
+    "suite/dufomap-correlated-0.10-104.log": {
+      "sha256": "fce1ca0dbecac4e5a61e4d1034430db9bd850cf153cc135dfd71797244cebea7",
+      "bytes": 530,
+      "availability": "portable"
+    },
+    "suite/hovsg-independent-0.03-104.log": {
+      "sha256": "c90888781959b61d8661cdd67b2d3f027957bda316f321b72aaff8341c382c74",
+      "bytes": 492,
+      "availability": "portable"
+    },
+    "suite/hovsg-independent-0.10-205.log": {
+      "sha256": "b176c05e32066c5842f5ebf21616fb43eac2e7471b920da86a691d42b737e8a7",
+      "bytes": 492,
+      "availability": "portable"
+    },
+    "suite/dufomap-independent-0.03-104.log": {
+      "sha256": "8843d207c9c321b7b5d357568ca225d13b898d4b750a050d11d655c044099769",
+      "bytes": 531,
+      "availability": "portable"
+    },
+    "suite/hovsg-correlated-0.10-104.log": {
+      "sha256": "4485ac7aec90e3a3cbcf54f124f16b75065480464b13524c14a3d0625f5b6638",
+      "bytes": 491,
+      "availability": "portable"
+    },
+    "suite/hovsg-independent-0.10-306.log": {
+      "sha256": "9996a88f41c5b2cb574ae990fb65d08a4bc16e9867464e57861d6e947c714093",
+      "bytes": 492,
+      "availability": "portable"
+    },
+    "suite/hovsg-correlated-0.03-104.log": {
+      "sha256": "be5ced3719320cb0f70a40a27c686470342eb02b9c4cc04ca508ab596a98f5e7",
+      "bytes": 491,
+      "availability": "portable"
+    },
+    "suite/beautymap-independent-0.10-205.log": {
+      "sha256": "a85e7147ad059cb7cf1a1d51c9a54519b0e736803ec9692ec8712dfd2249a358",
+      "bytes": 14765,
+      "availability": "portable"
+    },
+    "suite/beautymap-independent-0.30-104.log": {
+      "sha256": "16a2788d00d0f2f849488c89a07295e3ad3f63fb65f0378d22f0f73da5f86ba1",
+      "bytes": 18419,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-independent-0.03-104.log": {
+      "sha256": "11bc9e02239b954f048fe97b2de78fe347ce59240c969d537ff653802e07f08c",
+      "bytes": 201,
+      "availability": "portable"
+    },
+    "suite/dufomap-correlated-0.30-104.log": {
+      "sha256": "b7b6e9cf07adc86681f8b1c592a8653aff135e3607f258676b1b1dfb8023f15f",
+      "bytes": 530,
+      "availability": "portable"
+    },
+    "suite/hovsg-independent-0.10-104.log": {
+      "sha256": "0021e8e8a58b8f9f615acbca2deea96f3ebee5eb9d946dcd0c0766b203d91264",
+      "bytes": 492,
+      "availability": "portable"
+    },
+    "suite/beautymap-correlated-0.03-306.log": {
+      "sha256": "792283e32c055b0e540862a0d0045477dd86749eb33e013eea8839ed8f9c36a8",
+      "bytes": 14390,
+      "availability": "portable"
+    },
+    "suite/beautymap-independent-0.30-205.log": {
+      "sha256": "4da6b6f389a42db0ea4e6bfa75764c224e5bddd3d777b2700ebc280fb1642064",
+      "bytes": 17901,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-independent-0.10-306.log": {
+      "sha256": "a7891996798a7d290574d9bc3566262defe624d6a899d080de705cc224fec18e",
+      "bytes": 201,
+      "availability": "portable"
+    },
+    "suite/dufomap-correlated-0.03-104.log": {
+      "sha256": "e0a3a57650f44a6a61b95c3c8f48547255d3fa1c8f566e191acb9e060cdeab65",
+      "bytes": 530,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-correlated-0.30-306.log": {
+      "sha256": "421fba109672ed02b3467f19e162e2c2ee605f361782c202bbeb5c645e693892",
+      "bytes": 200,
+      "availability": "portable"
+    },
+    "suite/dufomap-independent-0.03-306.log": {
+      "sha256": "b8db155d1ab902d211cbff36baeb3af06c733233d0c7e7ce3fe51816bfe10335",
+      "bytes": 531,
+      "availability": "portable"
+    },
+    "suite/beautymap-correlated-0.30-205.log": {
+      "sha256": "a8dda3d568f3534601679e593c8887150a91a295f54ab5818efd43b019e37180",
+      "bytes": 14498,
+      "availability": "portable"
+    },
+    "suite/hovsg-correlated-0.10-205.log": {
+      "sha256": "3cfa810d4b19b6b92add11187000a2a59af9f9a8ce009640994918bd5b909538",
+      "bytes": 491,
+      "availability": "portable"
+    },
+    "suite/dufomap-correlated-0.30-205.log": {
+      "sha256": "21409c28bc38771b802025dc57d35dbea5d142407b8a5de8778c6ee8c0a4ff8c",
+      "bytes": 530,
+      "availability": "portable"
+    },
+    "suite/beautymap-correlated-0.10-306.log": {
+      "sha256": "3c27233b50bcc89c7e85713d790ea0b3ce8b41733da5c2d6653e434aa3bd9558",
+      "bytes": 15226,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-reference.log": {
+      "sha256": "e9b66a60aa8aad54665451721811c845d8d61b56aabfee61be543c49427ebe5d",
+      "bytes": 190,
+      "availability": "portable"
+    },
+    "suite/beautymap-correlated-0.30-104.log": {
+      "sha256": "66ef9ef57609bf548bcffca8b3e7ca810371a9a6a47e4f2c5224ceeda12d36d8",
+      "bytes": 16938,
+      "availability": "portable"
+    },
+    "suite/hovsg-reference.log": {
+      "sha256": "b03209f8866665a95cd78326a2261b78e266e6dd0f6c9db6eaf6e89bee38027c",
+      "bytes": 481,
+      "availability": "portable"
+    },
+    "suite/hovsg-correlated-0.30-306.log": {
+      "sha256": "220a9e6a9ae18778dd14edb418073a2162818732b7b8f63e2380cf0d1c5307b7",
+      "bytes": 491,
+      "availability": "portable"
+    },
+    "suite/hovsg-independent-0.03-205.log": {
+      "sha256": "b59d7d3d6e6052d62a7e9bddde32dc945c1e37677ae22c3e1dd43bbd56cbc836",
+      "bytes": 492,
+      "availability": "portable"
+    },
+    "suite/hovsg-independent-0.30-306.log": {
+      "sha256": "f3faa2da31b874ad3e5a423be5e7e7185800cecfab8ec3385443b9ba251d3d54",
+      "bytes": 492,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-independent-0.30-306.log": {
+      "sha256": "1b2cfc6a800dcefdd33cb34ab464eba5ef2360f0a959dad0af0efd22c1eb4c7b",
+      "bytes": 201,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-correlated-0.10-205.log": {
+      "sha256": "814108349e05e88aa4e83e44f5641cd9cdcf7bae2b67cb70a9be0e037c56e637",
+      "bytes": 200,
+      "availability": "portable"
+    },
+    "suite/beautymap-correlated-0.30-306.log": {
+      "sha256": "b9ed098e1e9ee5e5b06f7624d53076259137c5fe9a5da8df7340c5ae0170ef35",
+      "bytes": 14572,
+      "availability": "portable"
+    },
+    "suite/beautymap-independent-0.03-205.log": {
+      "sha256": "0fec10e185363c4e41ef044f145d6c1628d8976122b4030ef44c8bfefa9fa850",
+      "bytes": 13838,
+      "availability": "portable"
+    },
+    "suite/dufomap-independent-0.10-306.log": {
+      "sha256": "677ff53002f81f22b38bd1c4bf4935320fdf05eb9972bd1b31615ce664d00fd5",
+      "bytes": 531,
+      "availability": "portable"
+    },
+    "suite/beautymap-correlated-0.03-104.log": {
+      "sha256": "b1222ecc22e723ab1bd301f714322e2893e3092fced1c28bd6a0e40898088de5",
+      "bytes": 14122,
+      "availability": "portable"
+    },
+    "suite/beautymap-independent-0.03-104.log": {
+      "sha256": "456a3ddc593a6d11a89e2e612e6015bc3d22ea5b028e710714d21e80c1642b9e",
+      "bytes": 14075,
+      "availability": "portable"
+    },
+    "suite/dufomap-independent-0.10-205.log": {
+      "sha256": "1d6d90f1c3e356079e76c5130d307990631864c3d2fcfb9aa560a5ab05240601",
+      "bytes": 531,
+      "availability": "portable"
+    },
+    "suite/dufomap-independent-0.30-306.log": {
+      "sha256": "cf4c537f845275cbebcdf0ada279860d05482c1adbfc2f46b9b59811e4b6e784",
+      "bytes": 531,
+      "availability": "portable"
+    },
+    "suite/hovsg-correlated-0.30-205.log": {
+      "sha256": "3b215bcfe023a6a23ef81d7e1ed046dff6cc0329b44308b850c2c7e6de34c10c",
+      "bytes": 491,
+      "availability": "portable"
+    },
+    "suite/dufomap-independent-0.30-104.log": {
+      "sha256": "c6c4ff1d001bd66722b3edb72f843295446a3c4efce81cff58097fe91c276929",
+      "bytes": 531,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-correlated-0.03-306.log": {
+      "sha256": "2e73a6c449ef0f45d23b2d829a75f27849869a1536264530f02940527b747251",
+      "bytes": 200,
+      "availability": "portable"
+    },
+    "suite/hovsg-correlated-0.30-104.log": {
+      "sha256": "560f89a479c2b65cba23c84fdf9001492f689e142e8e0f73dcfe67b9f5298f35",
+      "bytes": 491,
+      "availability": "portable"
+    },
+    "suite/hovsg-independent-0.03-306.log": {
+      "sha256": "2f0e4d70fb567f15695938485f95de64091fbf8aa8e2afc18985a4530d7d5e0c",
+      "bytes": 492,
+      "availability": "portable"
+    },
+    "suite/dufomap-reference.log": {
+      "sha256": "f542a09b47f61f8cab31ed4328019ee87ca82fe4d6660964b93a268f23c4fc79",
+      "bytes": 520,
+      "availability": "portable"
+    },
+    "suite/beautymap-independent-0.03-306.log": {
+      "sha256": "a031b3d2f41eb538f9f9ae946e2182b9ac1c3d81e8d753219e3e73767e2f95ce",
+      "bytes": 14018,
+      "availability": "portable"
+    },
+    "suite/dufomap-independent-0.10-104.log": {
+      "sha256": "61df3e1203832efa832a756d47d894bc349c80fc1c690ae80b549d09bbe45f59",
+      "bytes": 531,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-independent-0.03-306.log": {
+      "sha256": "2a1aeae1934114b31cd808c14a5082e4d5e4ab1ed90bc55e6297c1c23d708772",
+      "bytes": 201,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-independent-0.30-205.log": {
+      "sha256": "b01f0c10bbfe5987ae1aac540f2d3e40df2606dd067cff449a49ff00331e7bf8",
+      "bytes": 201,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-independent-0.30-104.log": {
+      "sha256": "da3d4c488f3d3fc83b57397e14c7a328fb97f91bf3a725e00b606cb24d1a47a1",
+      "bytes": 201,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-independent-0.10-205.log": {
+      "sha256": "7ecf64306f96f30a8938e67fe0cc36bd04be86c321545cbc9ca952b98e1c36ff",
+      "bytes": 201,
+      "availability": "portable"
+    },
+    "suite/dufomap-correlated-0.10-306.log": {
+      "sha256": "a2a2160ed1e642c88183cf8ba93fe9480e5832d90ce65a78a668be79fc0c7070",
+      "bytes": 530,
+      "availability": "portable"
+    },
+    "suite/hovsg-independent-0.30-205.log": {
+      "sha256": "9a2d4f9a7b6f8e14c9b54c8a9f1b4ae07310beb153c485e4456e49f7dbe84f7a",
+      "bytes": 492,
+      "availability": "portable"
+    },
+    "suite/hovsg-correlated-0.10-306.log": {
+      "sha256": "7f8797b22edfbfdcf92d82978270044478cb578d20378371084eee6e317b4832",
+      "bytes": 491,
+      "availability": "portable"
+    },
+    "suite/beautymap-correlated-0.10-205.log": {
+      "sha256": "dd9c36f6c0c2b54979c9c8f614473c2a2742fe36ab3fd6bc23e85f62becc507a",
+      "bytes": 13143,
+      "availability": "portable"
+    },
+    "suite/cells.csv": {
+      "sha256": "7eebf928c6bae9c5e39aa08aa8f8dcf0e9047414e966e6a0c611b8e3db8d8db7",
+      "bytes": 12796,
+      "availability": "portable"
+    },
+    "suite/beautymap-independent-0.10-104.log": {
+      "sha256": "835ebc96bf4e6b04411e67d7f5cf735d8ea45dd2fa790e7f00cfbf55c8d70f04",
+      "bytes": 13641,
+      "availability": "portable"
+    },
+    "suite/conceptgraphs-independent-0.10-104.log": {
+      "sha256": "d78cd3625a8f38f022b23507d088d18f7993bf4ee9e40f9b0b86a969cce14347",
+      "bytes": 201,
+      "availability": "portable"
+    },
+    "suite/beautymap-independent-0.10-306.log": {
+      "sha256": "4dea01847b4375eb70d0eb82a5d1b6e84a97a8ae083858dab057efec10766c01",
+      "bytes": 15573,
+      "availability": "portable"
+    },
+    "suite/dufomap-correlated-0.03-306.log": {
+      "sha256": "ddc45d674bae5309fb0e5677cb061c3c3c3a7e7f15c6437b5ad05554ba334fe8",
+      "bytes": 530,
+      "availability": "portable"
+    },
+    "suite/dufomap-correlated-0.03-205.log": {
+      "sha256": "bad76adcf3f82b4865f41e171ddf48d16be9b210c9a55a899807c202d4aa7b85",
+      "bytes": 530,
+      "availability": "portable"
+    },
+    "suite/beautymap-independent-0.30-306.log": {
+      "sha256": "713273f77e55dbb33b8c566f9c75cb60648af254c977ccfc475d901c7a41b1fd",
+      "bytes": 16342,
+      "availability": "portable"
+    },
+    "suite/beautymap-correlated-0.03-205.log": {
+      "sha256": "3720c96b11ed2eeb27fdce37c33be9221874e3cc15581e8f17db52a5e2647682",
+      "bytes": 13405,
+      "availability": "portable"
+    },
+    "suite/record.json": {
+      "sha256": "41e2b7eafc73f85dd2b33be8511e5e50843eeaff5d95a8e882b3fcf6b827c771",
+      "bytes": 91569,
+      "availability": "portable"
+    },
+    "suite/dufomap-independent-0.03-205.log": {
+      "sha256": "e8d36f0a43ba824b54723756b39084477d05bf7b4548483ab718b4fcfad1daa5",
+      "bytes": 531,
+      "availability": "portable"
+    },
+    "suite/dufomap-correlated-0.30-306.log": {
+      "sha256": "fac4e90f512ee457e2bd22aaacbca8f85b4ade5f28607e2ffdba96a0892c08b5",
+      "bytes": 530,
+      "availability": "portable"
+    },
+    "suite/attempts/hovsg-thread-count-wrapper.log": {
+      "sha256": "e713d8b2c4cbbd018adcf27ef49e0b46923c19684c2ebf27afce974ececfdbec",
+      "bytes": 1001,
+      "availability": "portable"
+    },
+    "suite/attempts/conceptgraphs-reference-import-failure.log": {
+      "sha256": "d3c056300631ed71e896f9d3245f79205f4fada46d457f9f0dc5fcfba5b0af45",
+      "bytes": 255,
+      "availability": "portable"
+    },
+    "suite/attempts/conceptgraphs-reference-metadata-failure.log": {
+      "sha256": "4d6d65cd1f91ccf7428cdb8b27e88d44bc7a681d1ce24d96e49ad7821fc89375",
+      "bytes": 1586,
+      "availability": "portable"
+    },
+    "suite/attempts/hovsg-pose-text-precision-wrapper.log": {
+      "sha256": "cd84911e71c58d280b6bc85724c76ea5fae7235ecd3e61938d4d4094f63da836",
+      "bytes": 1002,
+      "availability": "portable"
+    },
+    "suite/attempts/conceptgraphs-missing-native-metadata/native.log": {
+      "sha256": "7c699720f25b19915118890d2a19996f88a9fb09ff90d9374c207d980aea6948",
+      "bytes": 1555,
+      "availability": "portable"
+    },
+    "suite/attempts/conceptgraphs-missing-native-metadata/record.json": {
+      "sha256": "e25b5863e0a27b3df1e16045a13e0a6d48db2dd9c8c185f24bd9dcfacd3c24dc",
+      "bytes": 3649,
+      "availability": "portable"
+    },
+    "suite/attempts/hovsg-thread-count/native.log": {
+      "sha256": "52b70c69ce1c1a2b72a76f30323adf872f7d66f8c2143bd56f4b1e14f235f3aa",
+      "bytes": 2566,
+      "availability": "portable"
+    },
+    "suite/attempts/hovsg-thread-count/record.json": {
+      "sha256": "df6d361a8edc54824973ce35e750b5e89dc615601e74e263c1b7b823096a6517",
+      "bytes": 2270,
+      "availability": "portable"
+    },
+    "suite/attempts/hovsg-pose-text-precision/native.log": {
+      "sha256": "b062b421f3e12c9c528bc44724fb6dedd6c7080951d5118a67e5cc657e6275c9",
+      "bytes": 2566,
+      "availability": "portable"
+    },
+    "suite/attempts/hovsg-pose-text-precision/record.json": {
+      "sha256": "13b580d69dda39c08a2f83331165052c9572f2fbc0976a162476af1546085673",
+      "bytes": 2272,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.30-205/summary.json": {
+      "sha256": "366840e154947aae6238309377aa4c26e8903b59a51455d7632c146ee840af44",
+      "bytes": 4611,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.30-205/native.log": {
+      "sha256": "c373c07883e3024ed8ff00e80c24992657912231460dd5fd1cd7a8237a08eafc",
+      "bytes": 1324,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.30-205/record.json": {
+      "sha256": "31fcbba84baeca1079e9c047e112c7edb8a66ac52d9d2353650974dc19b9db0a",
+      "bytes": 6566,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.10-104/summary.json": {
+      "sha256": "a3d829b031102efc66b3a029b7414297468633537c9a5d18d5336ad0ecbf1d63",
+      "bytes": 4607,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.10-104/native.log": {
+      "sha256": "13b957bcb3ff8f998dc32601279301a0fb12640ef87a867cde9ab0e410e887f5",
+      "bytes": 1326,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.10-104/record.json": {
+      "sha256": "a2f369b12a4b65dddb0b1880079b2b50bb7934c5fb17dedc5950f601a727c188",
+      "bytes": 6565,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.03-205/summary.json": {
+      "sha256": "a5e080308ec1f7f2969cd9e4692fcbee1a6bc02d9087f913f10cf09f8c8c5ba0",
+      "bytes": 2956,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.03-205/native.log": {
+      "sha256": "4921eb670dcd11533739cdca11c1610cd1c022aa62ff86fbf4dd5e25c01017ac",
+      "bytes": 2689,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.03-205/record.json": {
+      "sha256": "394e6e8c13d3c11a3f4d0a7e73c68d951dd63d7afaa0b4d28ff56c5fa4ad8835",
+      "bytes": 5118,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-306/summary.json": {
+      "sha256": "e1ec1592ca3c765f90ff82e23a7546fc37a6714848bf79d3e09f7188a395f37f",
+      "bytes": 1755,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-306/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-306/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-306/record.json": {
+      "sha256": "fec0b0e0b6651a0865f2be6538afe59fdad86214f92043da948bfb28f75198e8",
+      "bytes": 3646,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.30-104/summary.json": {
+      "sha256": "d47838b8b3e05e4899f12a38d4148024ed451ccbb17d54fd22a98758550d801c",
+      "bytes": 2961,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.30-104/native.log": {
+      "sha256": "e80973b6c8b716109228f67f4dec630401d92eab728c73b75320f6b3c02c51c0",
+      "bytes": 2804,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.30-104/record.json": {
+      "sha256": "7c4528999c89f33639e0ebf34c492d529be9655f19a9948dcb4b33a4d317a241",
+      "bytes": 5125,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.30-306/summary.json": {
+      "sha256": "4d151063e1db2a79479b0867961e7e0034626272e277259d39eb938c328ecbbb",
+      "bytes": 1131,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.30-306/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.30-306/record.json": {
+      "sha256": "7b110c202f92c9eb7538c99133329ed24405b4541df49f92a20f351ec9ebeeb5",
+      "bytes": 3016,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.03-306/summary.json": {
+      "sha256": "ae88a116e3a5fe410c5587855f2bc91f2ae7e0431759dc6a1ed458fe0080840b",
+      "bytes": 4622,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.03-306/native.log": {
+      "sha256": "2730b91ab6e2154b9153645a425c92ba2c8cfe27cd63ed1b044b94b2cae4a45b",
+      "bytes": 1326,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.03-306/record.json": {
+      "sha256": "7084f0c7fb3e269d7b424aba8825c03081795cf5388034751272e1484bc9317c",
+      "bytes": 6580,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-205/summary.json": {
+      "sha256": "69afd7f0d31a6e5c58afd20c52f374905064b0af126a61de301090dba2352128",
+      "bytes": 1756,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-205/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-205/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-205/record.json": {
+      "sha256": "0c1f1337cb3f0ec2f00e8c6a988eb3e09ed218747361a2ef68efa5f1a670860b",
+      "bytes": 3647,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-306/summary.json": {
+      "sha256": "f1034f1ba853037ae67b081a8c2d0285aa99e1b029c9d2f0af012d0ddd3a2c7c",
+      "bytes": 1756,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-306/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-306/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-306/record.json": {
+      "sha256": "906afa3e6f805cc7ef741c93cc7fbcb3cb4313ad904459f65a4288b73edbf850",
+      "bytes": 3648,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-306/summary.json": {
+      "sha256": "ddeb341eb9bf443246caa9ca4077988ae2e0d39ef21a41711bfab8e5d80a964a",
+      "bytes": 1756,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-306/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-306/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-306/record.json": {
+      "sha256": "5902dd11c2c50bf8f6bfdffdaf7d2f883a6d862405501cea39e5d4b651d4acb7",
+      "bytes": 3646,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-reference/summary.json": {
+      "sha256": "ed5cce43aef044d797b4473a303a1f46344e1c8fde90070b9d9f217e94d3df8a",
+      "bytes": 1735,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-reference/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-reference/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-reference/record.json": {
+      "sha256": "1644a5d8e856c5b46b2a0bc0d8deb4851ca5a8dfcf0e5155ad88a5a3d5e65af4",
+      "bytes": 3605,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.30-205/summary.json": {
+      "sha256": "4d4e9e095ec575431008b7e5be5539a84b296b2fa126a236ed096f6d54904aa5",
+      "bytes": 2957,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.30-205/native.log": {
+      "sha256": "3a461ed398ef8dcf0c486f055381cbe4e9d7a24f5232b2c7de42c51b661cbb97",
+      "bytes": 2767,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.30-205/record.json": {
+      "sha256": "4f191075ce2baba3558949b2af5aac8934a21461abee378ad2bf7d5bb4c4a139",
+      "bytes": 5122,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.03-104/summary.json": {
+      "sha256": "dc95ba458863eefaab0d250f4ed799bf4597c8a40b3c531a28ffcf9cd8cb78c3",
+      "bytes": 2983,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.03-104/native.log": {
+      "sha256": "ad7225b024394e769b3fd38eaf7d38690998ec3c41461de65a135eb5b70cbe4f",
+      "bytes": 2476,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.03-104/record.json": {
+      "sha256": "a3da36deb3f3f786dfe94557961761165839712f2c8c611f452f5ffc30d31f45",
+      "bytes": 5147,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-205/summary.json": {
+      "sha256": "bda1bab1a08a477ce827ac48f97c7ba10d77901576958a193ebc89cb20e12388",
+      "bytes": 1756,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-205/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-205/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-205/record.json": {
+      "sha256": "e87e7b9bcd141d3ffb14ecc50f73366215ba7fe955d21500f4fc72cfec4f642d",
+      "bytes": 3647,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.10-104/summary.json": {
+      "sha256": "c8c6999d0b8a667fecab9315444b3352e51a700631cb5325b944f45e06679623",
+      "bytes": 1129,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.10-104/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.10-104/record.json": {
+      "sha256": "6bca8edf92b2836fe7fd30983eb096e854b304754eb86f12eca45064f27ef8d8",
+      "bytes": 3013,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.03-104/summary.json": {
+      "sha256": "8c34b0ee3e65e1701b115ba6f5cad07c311637f91c85fef422846323d38ce038",
+      "bytes": 2986,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.03-104/native.log": {
+      "sha256": "0049492c3fa2e417b56feb1bbf127bac2ed5963cfd51f25bb9ee2b1eae09eb64",
+      "bytes": 2599,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.03-104/record.json": {
+      "sha256": "57cfd18bfedef85c263352577a6f8315ca0e4d0eacf8dd32ed058b744b3c2b6c",
+      "bytes": 5148,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.10-306/summary.json": {
+      "sha256": "a78e4d696a9449db4ab3566214c2cfb81ba1b2ad0ddccfc0daa0ae1edeb6f095",
+      "bytes": 1130,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.10-306/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.10-306/record.json": {
+      "sha256": "2e5e0a9bfc44b40b4e20efe7c0a8d458eda1cd12350687abc060d25c2ffd994c",
+      "bytes": 3015,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-104/summary.json": {
+      "sha256": "b42182e03cacfeb56462f9f1c69dbd40c0d8f6029754ac20346b95392a1db319",
+      "bytes": 1758,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-104/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-104/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-104/record.json": {
+      "sha256": "e63c6f95629ecbab522823b3315ef84a9d1d6982d4e6ada2758a3b284a495ce6",
+      "bytes": 3650,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.30-205/summary.json": {
+      "sha256": "a42306359edecacc3ee229df68965ae4b4bbe56bb45c042c4d07e48654e9a6dc",
+      "bytes": 1128,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.30-205/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.30-205/record.json": {
+      "sha256": "8ee1639e5a671294ee6f50ffa5cbf4fa01494fb0e18cf1059fc3c805d8be2bd4",
+      "bytes": 3012,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.03-104/summary.json": {
+      "sha256": "11dd62001c7516cd346b2a6222d6b49d8cc44da7d9beac73a63eb3c4b5705718",
+      "bytes": 1130,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.03-104/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.03-104/record.json": {
+      "sha256": "5c337e6244c2a586f325d4ec539fe8a34f774e01b6b11ce618e21fc6ecbae936",
+      "bytes": 3015,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.30-205/summary.json": {
+      "sha256": "3427cd42a074966ed9ef0c3f64b804ca26bf5f876ebc64380daf49bf8f40bd36",
+      "bytes": 4618,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.30-205/native.log": {
+      "sha256": "004e54d693b19e856aca3428a8b87d608f52f3bacc1dfee7ba5d164b6083abbe",
+      "bytes": 1271,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.30-205/record.json": {
+      "sha256": "2362c60ee4353267ecac7f17f71c240c6e7ce9b97ea141207d9f80ddc05d4928",
+      "bytes": 6576,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.10-205/summary.json": {
+      "sha256": "bf01d43bb65ea0a8b3e510e3e23257979cff18a1a7143ea256a5c4102cadf2f0",
+      "bytes": 1127,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.10-205/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.10-205/record.json": {
+      "sha256": "f2bac5abc3e527e5acacc593cd64039530b5391ac3e6c668664d594bd3eab002",
+      "bytes": 3010,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.30-306/summary.json": {
+      "sha256": "a2cacb03f02b351ef59231f436d221987a261ce62062925ecdba8e0456848cbd",
+      "bytes": 4646,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.30-306/native.log": {
+      "sha256": "961c76893ff7e671c79178b5b725fd9e7f25712a52b45583d07c8f3d7c730c7c",
+      "bytes": 1262,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.30-306/record.json": {
+      "sha256": "b1374180b21d2b57da0e7f7921eda87ce60b041d5a6c1d8a82b967a5df81aea3",
+      "bytes": 6602,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.30-104/summary.json": {
+      "sha256": "824cc915c5e51c111dd7d902b489d02a38c4bf6a60f34f284e1fadab4fae1206",
+      "bytes": 4639,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.30-104/native.log": {
+      "sha256": "76688f1b86ad006384f7f8ea72f871e1edfcbd4714600294b20b6dbf158b8227",
+      "bytes": 1327,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.30-104/record.json": {
+      "sha256": "e8ac5061a66da0c94f522ab7fb0d97c2d99b75b897a312ff49514b102844b59a",
+      "bytes": 6597,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.03-306/summary.json": {
+      "sha256": "95e86e05f47ea2dfffdcc240a49050a120d4445f383a15f4d63177f5d34eee78",
+      "bytes": 1129,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.03-306/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.03-306/record.json": {
+      "sha256": "45ee7bf50da030bc5004d3ecacabdd6db765878f567252c18a2a8b72caf17cc8",
+      "bytes": 3013,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.30-205/summary.json": {
+      "sha256": "3328e34a1c7c0efc0d6d754017c0d5c0389077fafe5663ab0d9e8a924ca2dcd9",
+      "bytes": 2977,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.30-205/native.log": {
+      "sha256": "7b489dd096d7554a19dc07b19bbd075fddf7036010888c65f264d214ae05635c",
+      "bytes": 2725,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.30-205/record.json": {
+      "sha256": "5adb2f59819de0d447f22097e821101d729bbd6e15c4563ae4deb16ad6eb3c53",
+      "bytes": 5140,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.03-306/summary.json": {
+      "sha256": "27c32b2f4b199ffe22eb283a8d8be9fb2fef17b22c2a29a0f0a214aee5ce7879",
+      "bytes": 4591,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.03-306/native.log": {
+      "sha256": "33c19769e16559a128866cbb889c97c073c931ae59e9de1fc48f5aa452a1a583",
+      "bytes": 1271,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.03-306/record.json": {
+      "sha256": "a0ffa62c4a57c986161342242c354aa24d27ed9839c4b951fdbdfc5b58210028",
+      "bytes": 6541,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.03-205/summary.json": {
+      "sha256": "949e84f88e1ce2680a224f68300036c51851d9b3dbe76457ea62ac798d8954ee",
+      "bytes": 1128,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.03-205/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.03-205/record.json": {
+      "sha256": "9c542ce6a346c448c3f68e4d693751f3776ad558b7f29de1d4a2ce5aee8259df",
+      "bytes": 3012,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.10-205/summary.json": {
+      "sha256": "1ab344a1ed52af26ad80dfcd6f71278c26bf5114e0baf286d1183c9ff775fd0f",
+      "bytes": 4621,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.10-205/native.log": {
+      "sha256": "e31ec7f00f9548bb50d956c5b3abdcb6df1d5dd562cc41f154c38fd26c4da64b",
+      "bytes": 1324,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.10-205/record.json": {
+      "sha256": "b165ed30443ae9d284ec32554d78c1abc31ad7aa3115cf1824d795a3aee2d4f3",
+      "bytes": 6577,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.10-306/summary.json": {
+      "sha256": "be209ed624f816e65b0df66c43c5ee16f690ffea726cbd193a2bce28fa64896f",
+      "bytes": 2989,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.10-306/native.log": {
+      "sha256": "be5c4304e386434f5b5a526728afeeb49aaedc172a688add93546ef9d9706235",
+      "bytes": 2852,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.10-306/record.json": {
+      "sha256": "97259d0a5dd5bfd854fce0e3d2503e3d05137235faa1b3a8f965d244face6fbb",
+      "bytes": 5153,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.10-104/summary.json": {
+      "sha256": "b457825bcaadefcf2c3755cf690f3057cb2f93bd3375355865dd10c7a9849b78",
+      "bytes": 1128,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.10-104/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.10-104/record.json": {
+      "sha256": "537cadc8abb8e35d33c9e6a480f5ffd51521d74ec8085a014461c40fba6c05f8",
+      "bytes": 3010,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.30-306/summary.json": {
+      "sha256": "94c824f7bbf4aa70681168eb76495624b63aa285e14a430377a3edddd3cb8ba6",
+      "bytes": 1130,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.30-306/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.30-306/record.json": {
+      "sha256": "23085bea476fad6052b22a8e7589544d2aff7edbd9e5f1b728efe5bf8c0126eb",
+      "bytes": 3012,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.10-306/summary.json": {
+      "sha256": "d0947532a209c8622c886955b4e8e4df69518e60b16499c4fcae1caaaff6ff77",
+      "bytes": 1129,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.10-306/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.10-306/record.json": {
+      "sha256": "a14cd530cf48cf4a908b35b867b63a0578c4a9ad90ae11f13720b22ef95e4054",
+      "bytes": 3012,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-reference/summary.json": {
+      "sha256": "986d278ab3cff887aca364ce097eabf86e7f7eba7ef8d33eeb24d3e9d7396d92",
+      "bytes": 1128,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-reference/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-reference/record.json": {
+      "sha256": "36638f0ad4b0eb7d891b6a9ab78e2dd77a1958e3bd271c3d9ed20b8fe7d45623",
+      "bytes": 2990,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-104/summary.json": {
+      "sha256": "44816aa24110d3a3c71466ff38a6d2c9c1c9b99adec444b3e2ae9daf983134f0",
+      "bytes": 1756,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-104/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-104/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.10-104/record.json": {
+      "sha256": "e131032542bcdbb5425805eaa789d870ae41dda674c694f66117fe5f0d150734",
+      "bytes": 3647,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.10-205/summary.json": {
+      "sha256": "d5acb6a1ebef96753fe8d6e6872847053fb269179b2a056ff30d9d5de8fe47a3",
+      "bytes": 1128,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.10-205/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.10-205/record.json": {
+      "sha256": "cc0ffc0b105bc6d7b5f908ed4cde6c3597098dc29dd598a887991c54c192e406",
+      "bytes": 3013,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-reference/summary.json": {
+      "sha256": "f697a29955301589de7f39ccb8335fddf7aaf95a7d0c1cb4f8bfb355fdd23e45",
+      "bytes": 3036,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-reference/native.log": {
+      "sha256": "7c8574ae4951e0608eb76ec0baee727551a04641f4ab595e27bbfb036acb9491",
+      "bytes": 2566,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-reference/record.json": {
+      "sha256": "08c77249d6de6ef13c196d29dc83102934d3853e39342b3d3b7eb11353fe6d8f",
+      "bytes": 5185,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-205/summary.json": {
+      "sha256": "3e4a5be5e719ba6ed22af8cd5d6b7909aed9d928000023c75cbe8118db2a6cd8",
+      "bytes": 1756,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-205/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-205/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-205/record.json": {
+      "sha256": "d5faf7b2438434033c48311f25b7acceb5901d135fb8c3424be1be892d45d9ac",
+      "bytes": 3648,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.10-205/summary.json": {
+      "sha256": "915f4bc1d277bd77bd7510d53d1e6365693e88eeffe0c0b11c8ae24439593f93",
+      "bytes": 2971,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.10-205/native.log": {
+      "sha256": "cf73ae492e0818ac42be41298b565fd7643c4903f0c6ff29615a04e0a9d06d72",
+      "bytes": 2640,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.10-205/record.json": {
+      "sha256": "3ab3b4747837d2f855c71b32ab3a6176de4a7c9fc03968366ac320da2295ca9e",
+      "bytes": 5133,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-306/summary.json": {
+      "sha256": "7fb1305fb3f01892043815bd342fa101f64adfd09d5cc8f934c21b8940172eea",
+      "bytes": 1758,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-306/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-306/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-306/record.json": {
+      "sha256": "327ddd9dc97f19b629ca06a0bbf62794e79554dd77f41f7147b92f20199812a7",
+      "bytes": 3650,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.30-306/summary.json": {
+      "sha256": "a5fe05fdced459cae4003542cdf083d79187999ce96f0229f3cd498d07f68fd2",
+      "bytes": 4644,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.30-306/native.log": {
+      "sha256": "5ec9f3accdd2750507ea609281c95b4aa5cac0148c6e16810a85b2727bca6223",
+      "bytes": 1327,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.30-306/record.json": {
+      "sha256": "47c21c7abe68680d2b351bd90d55c17743d9c2230e5833ce2c9727e2f6a49dba",
+      "bytes": 6602,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.10-104/summary.json": {
+      "sha256": "5327aa3d4599714786b722d0719f1887391ca02bd27f4291e1d2bfc62581a66f",
+      "bytes": 4574,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.10-104/native.log": {
+      "sha256": "2f0598db9502f4a67c94cfca08b1cf7cf4b7644f0ab04fc8e493b0ef97d8a2a5",
+      "bytes": 1324,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.10-104/record.json": {
+      "sha256": "dcadbaa7b880dba36ccb509e40406ecdc357683a96091cb0f29ea848b6374ce0",
+      "bytes": 6530,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.03-205/summary.json": {
+      "sha256": "ece0acd016c6279a0a2619d753ba96e69dacd7f4c885171d252a24d904c0a67e",
+      "bytes": 4590,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.03-205/native.log": {
+      "sha256": "8747e4f1877a7d2019ebb0c7cbf710ca0bc35d467267669ea6db8d5bad91383c",
+      "bytes": 1326,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.03-205/record.json": {
+      "sha256": "bfd973544f03d5034a0b57ebd871ceed5667f39577e155ef7ee08eb0c42d611d",
+      "bytes": 6548,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.30-306/summary.json": {
+      "sha256": "3a68c97294fc74f1043e99496e5f2707bb8273f966b3a2563bdd0592f06f3f3e",
+      "bytes": 2977,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.30-306/native.log": {
+      "sha256": "1a8b402e8104ff4a570568eab53a0a7e858915f88dac4f9a573bb79d3bed724d",
+      "bytes": 2849,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.30-306/record.json": {
+      "sha256": "6fc15dedf3a8e30b60b6577673868239fcdc804a07478f347d549cac168cc9be",
+      "bytes": 5141,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-205/summary.json": {
+      "sha256": "7028c25605b3fa326f6e09ed5de03561e95d6b98a7e9ef099461057959d98854",
+      "bytes": 1759,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-205/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-205/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-205/record.json": {
+      "sha256": "c0c312211d4ed0d6398db2c7bd715a772f00d63eee0494d2668b50561dcd204a",
+      "bytes": 3651,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.10-306/summary.json": {
+      "sha256": "888dda601930ebbaede7f0c4eee430c05dbedd45a43732db3e37d3fe56909b2f",
+      "bytes": 4625,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.10-306/native.log": {
+      "sha256": "c913fb01e98add0b929bf8778245169b0c68a6635bf08bcc728bec98f0edec9d",
+      "bytes": 1222,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.10-306/record.json": {
+      "sha256": "85617d1190284a8428a160de93ff4b913841d6dc7eebff1e00269cffcbfc4789",
+      "bytes": 6581,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.30-104/summary.json": {
+      "sha256": "fa37c521f20c21bd6bb544bbf9ce57f69f0d1145036b5ad898c3eeb625d78837",
+      "bytes": 2948,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.30-104/native.log": {
+      "sha256": "dbf10a3009bfa29e9eba3ae9a0288a4e297420268b05a062a262a96e5513346d",
+      "bytes": 2763,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.30-104/record.json": {
+      "sha256": "979c4c92367ea9b21ce480359ef27af19e3e56dc61e4f32fec79b922e90a4336",
+      "bytes": 5110,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-104/summary.json": {
+      "sha256": "1b64a6b0e6508943b5bec7a61268c261fae23614f5d68494936c2c1b395b7f23",
+      "bytes": 1758,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-104/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-104/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-104/record.json": {
+      "sha256": "734479dfdf0a696726f033fc5fce379c50b5cfea5a3c1219bed6398b338343de",
+      "bytes": 3651,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.10-306/summary.json": {
+      "sha256": "3d4a209410c4606af2914715ec97bc5c354c1115b7a57b4023b91647d59c557b",
+      "bytes": 4620,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.10-306/native.log": {
+      "sha256": "7ee6dd4c1af18efc281c445616d44d484ebea1e03de567aa0e772e2a033f82a8",
+      "bytes": 1327,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.10-306/record.json": {
+      "sha256": "c947e5dc3e7b2a8dfe966f389483bbd77699034e73d364526b08bb234bcac0b2",
+      "bytes": 6578,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.03-205/summary.json": {
+      "sha256": "78f6c682b6ad1642d961ed5b81f3e484532e7ca2793cbdd8b8a3d3586259a6ff",
+      "bytes": 2961,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.03-205/native.log": {
+      "sha256": "6653ac4e353e30087b3d5c10e380eeb25a0b05b3f2b4e903be951cc3c90b710e",
+      "bytes": 2473,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.03-205/record.json": {
+      "sha256": "a4e5f9ee891c311e1822a3d89349218cb46ff1e10dfa7b24b5478a14fe68b6a7",
+      "bytes": 5125,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-205/summary.json": {
+      "sha256": "8ff1187946b3cbb52c01f7992b8dc603184081c7f848e625d806a56ebd7e4225",
+      "bytes": 1754,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-205/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-205/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-205/record.json": {
+      "sha256": "edb4eb18f24280ae8c12d5551c3be7133e497512e13a654ac2c7b0b022248066",
+      "bytes": 3644,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.10-205/summary.json": {
+      "sha256": "f7426d92c3ab00e4c719bd83de41e683f0a8306b4c8678fd4de438efacbbf391",
+      "bytes": 2958,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.10-205/native.log": {
+      "sha256": "44fb732b1991028368771a8bc20406dff0327c72b020f89144307a6d24f047ad",
+      "bytes": 2681,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.10-205/record.json": {
+      "sha256": "df20143856f13e235645e975afebd5c6c04bd3ccb7b33a5b013b948fe102a6a9",
+      "bytes": 5122,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.03-104/summary.json": {
+      "sha256": "d572c3e813ee3a5bc3b20fa35ebd918a5a4eb9f35eddfafb6137809bb5b47a1f",
+      "bytes": 4611,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.03-104/native.log": {
+      "sha256": "31ded3d096aab7f6a2c146a6880fa53ef305bd9022300f3f4badd7f8116063cf",
+      "bytes": 1326,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.03-104/record.json": {
+      "sha256": "de25e466d9307f3a72a81fb6f4418d956f09a789bb4b3b777e262804bf301e8a",
+      "bytes": 6569,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.10-306/summary.json": {
+      "sha256": "db1a54f4eb546056a177b44f6f5203a32e4ca27e77d18af43d253a7c399e715d",
+      "bytes": 2954,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.10-306/native.log": {
+      "sha256": "2fb0b8de644b39ccd6dff475c3f4849e9bc92b4636870e27e8558c3798603428",
+      "bytes": 2730,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.10-306/record.json": {
+      "sha256": "67f03f3da0fe53fd4f39b63109cfde40b1b1a7280204127c4fcaac82970ab148",
+      "bytes": 5117,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.03-104/summary.json": {
+      "sha256": "a06f6eee987d7d7a271a9966997b608b95cbcd5ddcdcdd9e93ef9db97e0698dd",
+      "bytes": 4608,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.03-104/native.log": {
+      "sha256": "657e57660d0c84611fd3288fe635ff9eeb706e3a24035131b703122cccf3bb37",
+      "bytes": 1323,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.03-104/record.json": {
+      "sha256": "6cd77cf0ac43f66da43fa058cf5ae4c156bc9b2d59e3d859633d24840f92b24f",
+      "bytes": 6563,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-104/summary.json": {
+      "sha256": "85dc294a2457a1f9cacaf809ec9c9313c6787b1831147bd56d86a80ece735249",
+      "bytes": 1753,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-104/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-104/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-104/record.json": {
+      "sha256": "fe7782717027b449fdcf1371715b2ac32bad08a9c0f4e0a4c8531d7c442f01f9",
+      "bytes": 3643,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.03-104/summary.json": {
+      "sha256": "06b5e52a887ffd90b11e7a309d5d098d12ffb7464b01f7e10fd182cfc40b1dee",
+      "bytes": 1129,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.03-104/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.03-104/record.json": {
+      "sha256": "dc19356e9b1d7df6d352940a8c131a0b4721b9ccaabf47aef3adb7f563c2a0de",
+      "bytes": 3011,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.03-306/summary.json": {
+      "sha256": "0cebef5859d9aa36e8bc7207d62fc3e6653723b85439f2e1f114f9f33b4ad9f8",
+      "bytes": 2975,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.03-306/native.log": {
+      "sha256": "b545f68088433e0f7937beda9f37f3f7178322b0f86653e898fa320fc7dd9916",
+      "bytes": 2558,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.03-306/record.json": {
+      "sha256": "cf75a8bd66445f3404e46b041b91e5dbe3fa79146804345979c9f71ebc07fef9",
+      "bytes": 5138,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.30-104/summary.json": {
+      "sha256": "3b66f20db04fe09c73f735e0d34450be171ec66d9b6393010978bce899ec8b00",
+      "bytes": 1131,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.30-104/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-independent-0.30-104/record.json": {
+      "sha256": "17327f4032c8cc94f516b12ea8b226cc523cea8808dfedd3c516f8a8d808f807",
+      "bytes": 3015,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-reference/summary.json": {
+      "sha256": "ff7835c9d812e4999595c2e1a584b5f4b45fe9fd68c33ae359c5e6aa81986c6c",
+      "bytes": 4600,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-reference/native.log": {
+      "sha256": "54894e54745d46dc87aa715bf1b21128f609a49b1cced0bfad10861fb0fb15d2",
+      "bytes": 1241,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-reference/record.json": {
+      "sha256": "11818cd04f6d5ec9cfe88b543b7604489ddde59ed3238a0dfc5aa673a119f883",
+      "bytes": 6536,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.03-205/summary.json": {
+      "sha256": "485aefb82b9afcdf316405ce78e758340f0f5bce050d4fcc886f2e111e99806c",
+      "bytes": 1129,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.03-205/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.03-205/record.json": {
+      "sha256": "0eac69e859f26e74b6a69f97c874006d77db678e9807e5d0dc57a05ea8f484b3",
+      "bytes": 3012,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.03-306/summary.json": {
+      "sha256": "be4fb60ed522885ccdfd918305151ab0d5674cea893d56fc3a623fda0256d6b1",
+      "bytes": 2961,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.03-306/native.log": {
+      "sha256": "8ef10a51b79808a99509e596cc45f1599cb6fb7ca97214768f827dd7adc6e1b2",
+      "bytes": 2517,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.03-306/record.json": {
+      "sha256": "14fb992c3e5a2b4a92602291f009fb88d8ecd30d10679cd20f04cfebdbc57270",
+      "bytes": 5120,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-104/summary.json": {
+      "sha256": "2cb4bb45d94efe8a8a60098c2ba4196596ababc86abba361b000a585e84e5c8c",
+      "bytes": 1756,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-104/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-104/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.30-104/record.json": {
+      "sha256": "49832bd366da48d2b340ebf58732adfe3a5abcbbd2eeccd4983472e926208bf5",
+      "bytes": 3646,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-306/summary.json": {
+      "sha256": "6b9cf8137a0c25b77c7173f7efdfced1f751e50981a18ed1c0ec60e56683224c",
+      "bytes": 1759,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-306/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-306/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.30-306/record.json": {
+      "sha256": "8350a042a400a144279e1ee9b4db7ab154e9e5a9db2db4fade307a64d9813c36",
+      "bytes": 3651,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.30-104/summary.json": {
+      "sha256": "8c81db479516d32b3af8bfec03f123846617a3453a5f4af26eb56861884093ce",
+      "bytes": 1130,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.30-104/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.30-104/record.json": {
+      "sha256": "4755849ac3c7d53665f395c750bacc6ec128993c734fa48d8dd502bc68349734",
+      "bytes": 3012,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.30-205/summary.json": {
+      "sha256": "5aafd461dc9d4e6577fb65e2c31b03c8066e4cf9539d7fcdd67ccfe6ea10e1ae",
+      "bytes": 1131,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.30-205/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.30-205/record.json": {
+      "sha256": "1c5a2ea18797b656d353dfbbd15b7512450a1317a107ce9dff9d49e39ab67847",
+      "bytes": 3014,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.03-306/summary.json": {
+      "sha256": "0ff25fd74fcf066255587152669a3866a08790ac6ad12e064c5125e429565414",
+      "bytes": 1130,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.03-306/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "suite/cells/dufomap-correlated-0.03-306/record.json": {
+      "sha256": "1df7c0784dbd8f9bb14cbfeca769f409f2587273e96ebdc24f0067ca082a994e",
+      "bytes": 3013,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.10-104/summary.json": {
+      "sha256": "02b9d61d61e4c903ed827a9418e88c5e97f301a48521d7be9687a6544061306a",
+      "bytes": 2973,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.10-104/native.log": {
+      "sha256": "9cbfe2cae36e4dc9ab299cf4de6a4e2bfcfd48d8750fc9f954c62c24ce6d382d",
+      "bytes": 2599,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.10-104/record.json": {
+      "sha256": "073d3d1731adb17b9b9503acbebe212ffbd1562824e980b8b479af9f328580f0",
+      "bytes": 5137,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.30-104/summary.json": {
+      "sha256": "561e8d165423a181f5eef9653c4ddd8f85036ad53d9c0966943b9ad3372cd925",
+      "bytes": 4617,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.30-104/native.log": {
+      "sha256": "ee8fb5d668a87a26f8cda36a77ab5a447d6da1c85ca556d6bd645ebcbfa9455f",
+      "bytes": 1324,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.30-104/record.json": {
+      "sha256": "ed8585ae46dc735cbeca6a083d99b0749536c35316fbd1eb37a3e24effce17c9",
+      "bytes": 6572,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-104/summary.json": {
+      "sha256": "6c8800e953f3e7507c64d9d7f85071d7fd6a2f32198c51a7654958871453565c",
+      "bytes": 1758,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-104/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-104/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.03-104/record.json": {
+      "sha256": "350d2a6c97e829bcd8b614f9d7c9ad7135f62f6f8025f44a35a5ea5f6ac9e5a8",
+      "bytes": 3650,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.03-205/summary.json": {
+      "sha256": "cefdfdff8ad2626524ec09f0b5d75ced4f0da7e0c86c9389c97270664dca3df9",
+      "bytes": 4592,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.03-205/native.log": {
+      "sha256": "12264df38d2d68f240a784a935c76385c16fa081ade802244c69c1175dd629fa",
+      "bytes": 1323,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-correlated-0.03-205/record.json": {
+      "sha256": "4a3fd094de2162fbae03fac4726705f2ad4875bc9a40ae05059210b90ce3e1a1",
+      "bytes": 6548,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-306/summary.json": {
+      "sha256": "05efaab7742eb6d5712b1976d1845c8c0e578eea05994faf64f7009b5802f906",
+      "bytes": 1754,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-306/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-306/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-correlated-0.03-306/record.json": {
+      "sha256": "e257b6da48075ec483aa7eb793fb71a438455359fc15f49875cd9b45bd75b407",
+      "bytes": 3645,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.10-104/summary.json": {
+      "sha256": "80a03e0d9a47ef912e846313d8430e35351142e5af557604f8ab2a4be2aa4d54",
+      "bytes": 2957,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.10-104/native.log": {
+      "sha256": "7f797f1517ba786f1af6c40ee4806faee899cdec148e16d91d92e7a9151c8e05",
+      "bytes": 2602,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-correlated-0.10-104/record.json": {
+      "sha256": "d9b0d988d7ac49e04bb2f411a1f03ca713b754b9bbc966c24994a9f3babea91c",
+      "bytes": 5119,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.30-306/summary.json": {
+      "sha256": "81fea1e6a2da3c5d465d795f13414aab37f667d024ace96fe61fa9b378a6a230",
+      "bytes": 2961,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.30-306/native.log": {
+      "sha256": "2f6dbbd706f9a6496bbe64f243d3375df78320e8def7d45c3a57f266503f8b74",
+      "bytes": 2849,
+      "availability": "portable"
+    },
+    "suite/cells/hovsg-independent-0.30-306/record.json": {
+      "sha256": "6814318b92efe0ceea92f443fd6b8e670bfb0b4585c8817ba5f23f85353f2137",
+      "bytes": 5126,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-205/summary.json": {
+      "sha256": "2351f1ac61a3230fe0f3472333015d53001b20ebd31d0244510321b7fcaef141",
+      "bytes": 1757,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-205/native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-205/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "suite/cells/beautymap-independent-0.10-205/record.json": {
+      "sha256": "15e4042c4c0b257cd67238ea448135dfe0543938151034ecef85c9e88b71ba91",
+      "bytes": 3650,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.10-205/summary.json": {
+      "sha256": "4ec621d412cfa77cb3d0ca818fc16cb3e893d7f38ddb5162f38a7620814dc0b7",
+      "bytes": 4616,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.10-205/native.log": {
+      "sha256": "f29301cee2a2a53c64f6f74b538215d9cce73a23b651a3672e2461d6871b7875",
+      "bytes": 1270,
+      "availability": "portable"
+    },
+    "suite/cells/conceptgraphs-independent-0.10-205/record.json": {
+      "sha256": "153bfc7c73de94e1984a9922ccca97e85976e70a7c70fe86bddb2a676d3865e0",
+      "bytes": 6573,
+      "availability": "portable"
+    },
+    "suite/inputs/src/slam_learning/paired_pose.py": {
+      "sha256": "619ae938c932255457648228e63d59c2acb660851097e3ab417f41771ac0107f",
+      "bytes": 7234,
+      "availability": "portable"
+    },
+    "suite/inputs/configs/paired_pose.json": {
+      "sha256": "aa2fe87d02f652ab9c1bcfbf7d558b710c45e7887d799de5733349d251fd0788",
+      "bytes": 1190,
+      "availability": "portable"
+    },
+    "suite/inputs/annotations/room0/targets.json": {
+      "sha256": "a069799a2007f9ca252012fe04174b43997e2e09ee42afdd71d7a9318b5880f4",
+      "bytes": 1830,
+      "availability": "portable"
+    },
+    "suite/inputs/scripts/run_paired_cell.py": {
+      "sha256": "071c495beac56906cd3916a331c9568f6bab2ada26fbd0a58931d81a2e1b04eb",
+      "bytes": 16381,
+      "availability": "portable"
+    },
+    "suite/inputs/scripts/run_paired_suite.py": {
+      "sha256": "2bb8388cf85d0a6a35b70c2ca0c377fa72fb24e674de276adad6f6e4c4b0e667",
+      "bytes": 10288,
+      "availability": "portable"
+    },
+    "suite/inputs/executed-code/071c495beac56906cd3916a331c9568f6bab2ada26fbd0a58931d81a2e1b04eb.py": {
+      "sha256": "071c495beac56906cd3916a331c9568f6bab2ada26fbd0a58931d81a2e1b04eb",
+      "bytes": 16381,
+      "availability": "portable"
+    },
+    "suite/inputs/executed-code/a7d6e332b7970e6315cd888f4d4035a6a07843c611a384fb79092cd30bb402ad.py": {
+      "sha256": "a7d6e332b7970e6315cd888f4d4035a6a07843c611a384fb79092cd30bb402ad",
+      "bytes": 17072,
+      "availability": "portable"
+    },
+    "suite/inputs/executed-code/5e4f6e271e3ddfcd53931b584bfb4f61bd40004a36cfb9f4c806ecaafc230395.py": {
+      "sha256": "5e4f6e271e3ddfcd53931b584bfb4f61bd40004a36cfb9f4c806ecaafc230395",
+      "bytes": 16911,
+      "availability": "portable"
+    },
+    "suite/inputs/executed-code/6444239f6a99885b527661c071bbccc067e847ef2a43498905283d1d79a1269d.py": {
+      "sha256": "6444239f6a99885b527661c071bbccc067e847ef2a43498905283d1d79a1269d",
+      "bytes": 16536,
+      "availability": "portable"
+    },
+    "suite/inputs/executed-code/e14ce0f27709b8700ab1c7a066dcffda14eb884e264bd6b9d86584829f3f2a04.py": {
+      "sha256": "e14ce0f27709b8700ab1c7a066dcffda14eb884e264bd6b9d86584829f3f2a04",
+      "bytes": 16386,
+      "availability": "portable"
+    },
+    "suite/inputs/executed-code/122b13ca7b44a1eafaa3527051a9d7ed7dec773b70933917d0ef546786efc4f4.py": {
+      "sha256": "122b13ca7b44a1eafaa3527051a9d7ed7dec773b70933917d0ef546786efc4f4",
+      "bytes": 16995,
+      "availability": "portable"
+    },
+    "suite/inputs/executed-code/manifest.json": {
+      "sha256": "5509dc264bff49b6a1e1bfe4280a1e3d9a625e6ac62077c9ef7ab72cbeccf34a",
+      "bytes": 1060,
+      "availability": "portable"
+    },
+    "controls/protocol.json": {
+      "sha256": "376c841fa7541ca90c410bfddc2153f3ccec9015642d6480346139d28a5a6cf4",
+      "bytes": 544,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-independent-0.30-205-threshold-1.0.log": {
+      "sha256": "b7a136dab69b554ab5dd7643f8ee41956dcca4ba900bd4e9446ef67aec0d8b31",
+      "bytes": 219,
+      "availability": "portable"
+    },
+    "controls/dufomap-correlated-0.30-104-threshold-2.log": {
+      "sha256": "207298d5692201aaf059ecb69720f1ade45996b9a584aeb0ec0e0cae87d969b5",
+      "bytes": 546,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-reference-threshold-1.0.log": {
+      "sha256": "4fc8001737ad0b25cf6b11cd16c918a8033a39786998d80c64254ca34cb61f95",
+      "bytes": 208,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-independent-0.30-104-threshold-1.4.log": {
+      "sha256": "7f0bb40909765de685e61b59a92b5cd6a91b5f112461c8ae0227a591b071f0c0",
+      "bytes": 219,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-correlated-0.30-306-threshold-1.4.log": {
+      "sha256": "5fc5b3e59924dedf78e15fb765aeaaeb8eca0e7ffb2b2e406eafb676c0a1f542",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-independent-0.30-104-threshold-1.0.log": {
+      "sha256": "e65f7dd72ffca5bc27de731b7d1e46ebca9efd397e15097ce19f1bdd17eeb9ca",
+      "bytes": 219,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-correlated-0.30-205-threshold-1.4.log": {
+      "sha256": "79ac38ad7a6731b7003a22193ac670d61a1d4bdc7471556d1f78f86fab4515d5",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/dufomap-independent-0.30-306-threshold-2.log": {
+      "sha256": "66697bb1172e9008258f20128f39021eee65782b1f15f912a3a171df0c1aa42e",
+      "bytes": 547,
+      "availability": "portable"
+    },
+    "controls/dufomap-independent-0.30-104-threshold-2.log": {
+      "sha256": "cfe530ec0f2c998999b253e9395e84267359609abfdcb3ed83ebdb8d7588a854",
+      "bytes": 547,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-independent-0.30-306-threshold-1.0.log": {
+      "sha256": "135c22ae57f78c96dddf8a4c58cfec3524c11bc92a90f5fb8796b6ee4f7d3869",
+      "bytes": 219,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-reference-threshold-1.4.log": {
+      "sha256": "8c8153a42794cec41d4383b73554b26916384fecc93118a306b9eb352bfeb4a5",
+      "bytes": 208,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-independent-0.30-205-threshold-1.4.log": {
+      "sha256": "28d45810d0cbbd6063becccd2ff4f4dbaaf038d93ba1aa138aca78b8ec160bb5",
+      "bytes": 219,
+      "availability": "portable"
+    },
+    "controls/dufomap-correlated-0.30-205-threshold-2.log": {
+      "sha256": "f7ccb240e1344e335570367f53ad2ae3da9f130534e8ae0cf2cf613964f817fb",
+      "bytes": 546,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-independent-0.30-306-threshold-1.4.log": {
+      "sha256": "cb446c5dcfefc5ac1dab3f93333aac3c8f139b3a1a840076c1d8024a9a62a345",
+      "bytes": 219,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-correlated-0.30-104-threshold-1.4.log": {
+      "sha256": "ab37689acdf0904bb7d5c96b9fa3364de6c3f52b18f60801ae6afa816dca15f6",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-correlated-0.30-205-threshold-1.0.log": {
+      "sha256": "12016413f6768caa65ea0ae59e5b6b4365b5c266b4969dd97a8323186d10a2b1",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/dufomap-correlated-0.30-306-threshold-2.log": {
+      "sha256": "b61909826a175768fc077b449e0f1082d8d82ebc49b931ad618cb4ce82b747a8",
+      "bytes": 546,
+      "availability": "portable"
+    },
+    "controls/dufomap-independent-0.30-205-threshold-2.log": {
+      "sha256": "6429885722b0a3114222043f79ce52bd4815c4452abed67677e1e7c1fa6ed236",
+      "bytes": 547,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-correlated-0.30-104-threshold-1.0.log": {
+      "sha256": "f61c13b918a8c30fc4e1726a9c29f49a07a99f6c3cc7f4fc8ec2f3c7097529d6",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/conceptgraphs-correlated-0.30-306-threshold-1.0.log": {
+      "sha256": "6fca2406533c49ee856903281920e0e418ee14e8d1ce85622a5b557c09e9ee65",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/dufomap-reference-threshold-2.log": {
+      "sha256": "1b869fc4ef828fc9504f52e8a689bf787f3f9859e61f4e0899103e7d40fb2b87",
+      "bytes": 536,
+      "availability": "portable"
+    },
+    "controls/record.json": {
+      "sha256": "ee5481867038511905e4c11c23eed90bc2e0c60747815a97abff798fe282bca3",
+      "bytes": 106054,
+      "availability": "portable"
+    },
+    "controls/attempts/conceptgraphs-reference-metadata-failure.log": {
+      "sha256": "23672b4b09358df57492e209543a3b5374b43f22acaf1a7f6a9410bc8fef6672",
+      "bytes": 1622,
+      "availability": "portable"
+    },
+    "controls/attempts/pre-resume-record.json": {
+      "sha256": "c531cc2a5bf18695cd17e5059ce57c6df11ca9d2ec4a62837616adbe30248f13",
+      "bytes": 14835,
+      "availability": "portable"
+    },
+    "controls/attempts/conceptgraphs-missing-native-metadata/native.log": {
+      "sha256": "3f1dd6c945d9f66619875c751f5aa314b5fcc40e5edbfad0f82c8382383681ea",
+      "bytes": 1591,
+      "availability": "portable"
+    },
+    "controls/attempts/conceptgraphs-missing-native-metadata/record.json": {
+      "sha256": "bbfc94089e34ac9b5627a800591c3a2d2a9c83de4dab7147c25e307141a25376",
+      "bytes": 3700,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-205-threshold-1.0/summary.json": {
+      "sha256": "afd1590386ac5787f4c50477cc832ade3e73b210a269914ebf417d4c19afaab9",
+      "bytes": 4635,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-205-threshold-1.0/native.log": {
+      "sha256": "3d542526b26d91a8e23a21a2ec2a7de8d2a6cd9dd7327c0c24cef0005df69dfb",
+      "bytes": 1324,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-205-threshold-1.0/record.json": {
+      "sha256": "f9d5861726a6291a84eb7ad0fbe6b0f14e42431171b44f3e9d091696b121c375",
+      "bytes": 6606,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-205-threshold-1.0/summary.json": {
+      "sha256": "f521bf7e48b72272fdf112f2e187c3dfa2728cb0485a9938fe03f1350a5be603",
+      "bytes": 4630,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-205-threshold-1.0/native.log": {
+      "sha256": "0ce1468ef85ee76f2fc9782ba82c7bc0bcdcc192d7bccf1c4f9e27171e76e5c8",
+      "bytes": 1381,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-205-threshold-1.0/record.json": {
+      "sha256": "722e797d83a2ae5901938602444b04e564ed62014a0ce20fed29b3f63f9e549b",
+      "bytes": 6603,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-306-threshold-1.4/summary.json": {
+      "sha256": "9c95ed104e3c0a1419d378cccc603b40992cf62450688e9cf8a0c2e28db3a804",
+      "bytes": 4660,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-306-threshold-1.4/native.log": {
+      "sha256": "9753446f834b1b3475bd05257c84ccb9c742a7a0cd9b484f0911c1cd2f449683",
+      "bytes": 1378,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-306-threshold-1.4/record.json": {
+      "sha256": "24861a362539945c39092f561f3f9f9a36484709ded1f41cbcc906d31190fbca",
+      "bytes": 6631,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-reference-threshold-1.0/summary.json": {
+      "sha256": "91c459f8b719cff7a5d9e668d957964943a23ffb17fa5b8d77a674a0b248dd40",
+      "bytes": 4618,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-reference-threshold-1.0/native.log": {
+      "sha256": "05eaf783f1367c295cedc27d6de394cfadf4c699a485d1a7a9840049dc52152e",
+      "bytes": 1347,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-reference-threshold-1.0/record.json": {
+      "sha256": "1a50561784a4bd81878fed3318a504f7c76af12b90f638da3c8f1d7f991a4833",
+      "bytes": 6569,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-correlated-0.30-205-threshold-2/summary.json": {
+      "sha256": "0aef1e9222c8a70b569bae1c54203e34c819d856ccddc1bf5f1fdd61c22b5a3b",
+      "bytes": 1130,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-correlated-0.30-205-threshold-2/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-correlated-0.30-205-threshold-2/record.json": {
+      "sha256": "0481e271868f3feb743728b7b84abc4aa514e37b72434f3e7533631751d5acd5",
+      "bytes": 3024,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-104-threshold-1.4/summary.json": {
+      "sha256": "f5fff3cf56374b0bf9339180b61e31e407dd2a9dec1e8e2b75f5e50b60fc6887",
+      "bytes": 4638,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-104-threshold-1.4/native.log": {
+      "sha256": "74b44b5fc3d26ed731074e1a633ed8051f6a3868d04a27925147e0906c072b80",
+      "bytes": 1378,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-104-threshold-1.4/record.json": {
+      "sha256": "e25b5c7b53a5981a53c1981a892837932d0f0b362e13e9165f969a991793bae4",
+      "bytes": 6609,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-independent-0.30-104-threshold-2/summary.json": {
+      "sha256": "1b475089971a1a1f8cca776a840d4c69d6b5a465e1a7664f0fa28999cc64fa18",
+      "bytes": 1130,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-independent-0.30-104-threshold-2/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-independent-0.30-104-threshold-2/record.json": {
+      "sha256": "c5e3305f2387e6c7f7b0c43859b175eae41532aebde7dbca7fa18a33748e5a81",
+      "bytes": 3025,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-reference-threshold-1.4/summary.json": {
+      "sha256": "166f97ca8e41756b2237b66cc888fa9606950154134d540b26afdbfcb61637a8",
+      "bytes": 4618,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-reference-threshold-1.4/native.log": {
+      "sha256": "2195b0e92fc6b1e1315387a4b26608278a8c22469c3efcc0699efe4eeafa8f4f",
+      "bytes": 1347,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-reference-threshold-1.4/record.json": {
+      "sha256": "eee39a47be57339f767b766fedd520f2a37a715bac9d509f5cad63e7e8d0cf77",
+      "bytes": 6569,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-306-threshold-1.0/summary.json": {
+      "sha256": "084533092c736d1f5067058f6cdb64cd457774ff50a9f2b0ebb12e0909b9e0c6",
+      "bytes": 4638,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-306-threshold-1.0/native.log": {
+      "sha256": "27efc4fb04a3ce8ff0c06214485a301bd4e2480985414bb7f26adcc9e9f74c37",
+      "bytes": 1378,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-306-threshold-1.0/record.json": {
+      "sha256": "8770192b5c65105efb29241db656b30828c06c7639d368afa3ae6097b269faee",
+      "bytes": 6608,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-correlated-0.30-104-threshold-2/summary.json": {
+      "sha256": "4bab1158bcf89a48ce1abaed0f4aa67da600f5a5015dd136edc1ad843275ff84",
+      "bytes": 1128,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-correlated-0.30-104-threshold-2/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-correlated-0.30-104-threshold-2/record.json": {
+      "sha256": "16c001379335880f1ebf152b00adf3b31954c38dbec06c3f8842ccbd49e4c52a",
+      "bytes": 3022,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-correlated-0.30-306-threshold-2/summary.json": {
+      "sha256": "45b7cfc433b1fb86c7b158551d00f196ac0e8357f2669d3e6f8a078af87f0886",
+      "bytes": 1128,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-correlated-0.30-306-threshold-2/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-correlated-0.30-306-threshold-2/record.json": {
+      "sha256": "37e9c97a8c473a0c7401a641cc85f75352317b5ed67accf94386b7f3a2160c0c",
+      "bytes": 3022,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-205-threshold-1.4/summary.json": {
+      "sha256": "9a3a2cb3e9fe63f2e2b206f63906abf0454ab7fb64efc257343f526e2708cd83",
+      "bytes": 4622,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-205-threshold-1.4/native.log": {
+      "sha256": "352e6cf9125b04edcc178163a09449547a651dda78e3cb393e5529cd7644d13d",
+      "bytes": 1381,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-205-threshold-1.4/record.json": {
+      "sha256": "32fc84e91b72067acfe9a71fee08d4a923682cf23559966445798c13406e0906",
+      "bytes": 6595,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-306-threshold-1.0/summary.json": {
+      "sha256": "8e989f61b2d88e9f2c1e001c3bce96de4a85a0fb4d8e45444acdc67e3d83c294",
+      "bytes": 4661,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-306-threshold-1.0/native.log": {
+      "sha256": "38ff0aa0436f072638448377b76f3196555fa1d994d38dd2b6e945c94496a13a",
+      "bytes": 1381,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-306-threshold-1.0/record.json": {
+      "sha256": "d79669f5672390ac2ef0e8746abdb4cee58f6ba5f43fd2b9f582405353e97363",
+      "bytes": 6634,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-reference-threshold-2/summary.json": {
+      "sha256": "666e34ab53eb57f39e55fa30ee9d6a67685a17498a87c4cca4b09aca1338b6c2",
+      "bytes": 1127,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-reference-threshold-2/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-reference-threshold-2/record.json": {
+      "sha256": "dca9bbcda64a0cb2fca0a73125e2f14f2572b42bd5905bffc27ee73ef83fc39a",
+      "bytes": 3001,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-104-threshold-1.0/summary.json": {
+      "sha256": "91ce44d2b0580059c13afc27f94ac8a2acd651eb6ae75ef0902288dfd04cbd0b",
+      "bytes": 4635,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-104-threshold-1.0/native.log": {
+      "sha256": "6efcf21d29b3f8f0350327973e306dd41ffd414d8a13af21db1e5b7ad32d951c",
+      "bytes": 1381,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-104-threshold-1.0/record.json": {
+      "sha256": "974b2fe7f4fc6d98bc25a7c8853d6eaa79b541a9ffe86051de72acd7ca9c011f",
+      "bytes": 6608,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-306-threshold-1.4/summary.json": {
+      "sha256": "c3d102bb60b650d18c3326166ceb9fb97986bc782c4f5ce4991c51c8f935f7f5",
+      "bytes": 4695,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-306-threshold-1.4/native.log": {
+      "sha256": "a848ed983478fc35b0ee9efc99d4f9179aff056837bad808d5e2560d0a612c9a",
+      "bytes": 1381,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-306-threshold-1.4/record.json": {
+      "sha256": "c66fa0f572181deebeb691e41cf13b727aab7a2f2e9882ec1836a6bb7715895e",
+      "bytes": 6668,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-205-threshold-1.4/summary.json": {
+      "sha256": "7bd5ac1588e9316ee163f1ba5e39818a2a3b895d5048bc8a1fd0e92e60b7bcd9",
+      "bytes": 4629,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-205-threshold-1.4/native.log": {
+      "sha256": "d78cc1adbdc900186805fe619499ea0b65e494c3497c1a2dd19169f7726a03a5",
+      "bytes": 1378,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-205-threshold-1.4/record.json": {
+      "sha256": "5a03c7ab0d61c87a3e43f8ea49b1360ae1954c4986f2ec53c35a786f79408218",
+      "bytes": 6600,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-104-threshold-1.0/summary.json": {
+      "sha256": "891b2c6fa59bcab334bb8a4e1e597b94f565c4009e6126a7106fba4f0189a373",
+      "bytes": 4636,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-104-threshold-1.0/native.log": {
+      "sha256": "bf7c5a2623246d76d1aa2c7d3b449701bab451289187cf4dc125573587f5d38e",
+      "bytes": 1378,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-correlated-0.30-104-threshold-1.0/record.json": {
+      "sha256": "70632d2d20cf9b30abba0ff7bacd57bfbbe07a52e8b71536a1afca38a15717be",
+      "bytes": 6607,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-104-threshold-1.4/summary.json": {
+      "sha256": "e067db0934364c56a9af382ae1155fbb3387d4d9b5c3268b5a594bc1bb013597",
+      "bytes": 4611,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-104-threshold-1.4/native.log": {
+      "sha256": "c03c68c3c88a56787aadd90b048ebf56f38500a32f30fb80c6cee34908810e8f",
+      "bytes": 1381,
+      "availability": "portable"
+    },
+    "controls/cells/conceptgraphs-independent-0.30-104-threshold-1.4/record.json": {
+      "sha256": "6d42e22eeb121863724d21e3141bbc0832f3c564692a6c619c6583fb3c6b615f",
+      "bytes": 6584,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-independent-0.30-205-threshold-2/summary.json": {
+      "sha256": "935824be78ee572a6f04dc504d3bf44b2771aaa4389774624c68c6781cf23552",
+      "bytes": 1131,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-independent-0.30-205-threshold-2/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-independent-0.30-205-threshold-2/record.json": {
+      "sha256": "ba803a957a94191d81e0d4372fa1aab7ba5e2b87e853cfd3151851a1e3e280ac",
+      "bytes": 3027,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-independent-0.30-306-threshold-2/summary.json": {
+      "sha256": "503698b358ca71e6d0a4d71d8d431c29ac073a5af63be847a44a7dd13104b592",
+      "bytes": 1131,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-independent-0.30-306-threshold-2/native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    },
+    "controls/cells/dufomap-independent-0.30-306-threshold-2/record.json": {
+      "sha256": "736cbee51339ad486c310d029e01d5119f23a1f98baca58c0c200a2f933b3a24",
+      "bytes": 3027,
+      "availability": "portable"
+    },
+    "figures/paired-results.png": {
+      "sha256": "56e4e41eee4e6172fc07479db84879002cccd9bb649203e6d7ae3210f211c006",
+      "bytes": 312911,
+      "availability": "portable"
+    },
+    "figures/paired-errors.png": {
+      "sha256": "1660fb5403510036e85d4899160aacc0b5fd7955b9ee36e33ad033479cfb7a3e",
+      "bytes": 175411,
+      "availability": "portable"
+    },
+    "figures/target-query-audit.png": {
+      "sha256": "911843c96e773ece8954d26370bd99b5facbec21f372ab493ebf2fc65ae35772",
+      "bytes": 2606133,
+      "availability": "portable"
+    },
+    "figures/dynamic-recall.png": {
+      "sha256": "788f52c9d420a166ab385c25c6ad58f1767ee6d1d6d78328394c0b5a63a40273",
+      "bytes": 135615,
+      "availability": "portable"
+    },
+    "annotations/reference-targets.json": {
+      "sha256": "0c75603670ca454b82ccbc29d0f523c1898ae685fd39be1e1f957354c3206ad2",
+      "bytes": 4834,
+      "availability": "portable"
+    },
+    "annotations/annotation-000000.png": {
+      "sha256": "9415e918401bdd28b826fac773f7ff0a342fcf4296d7cf6c98d8ec500c0c2465",
+      "bytes": 293074,
+      "availability": "portable"
+    },
+    "annotations/reference-points.npz": {
+      "sha256": "7a2a26834d89cf45c6563b366d2552225ccfb1963fa567710d83ebf566e8660e",
+      "bytes": 206854,
+      "availability": "local_only"
+    },
+    "annotations/annotation-000150.png": {
+      "sha256": "ae17935fa2202962ba14d9921c59d6c51d082174658a1ff5f5dd72bf8978cb10",
+      "bytes": 297346,
+      "availability": "portable"
+    }
+  }
+}

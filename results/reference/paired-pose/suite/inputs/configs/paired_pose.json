@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "paired-translation-exploration-v1",
+  "scope": "Exploratory, already inspected room0 and KITTI teaser. Not held-out confirmation or a dynamic semantic benchmark.",
+  "translation_rms_m": [0.03, 0.10, 0.30],
+  "seeds": [104, 205, 306],
+  "semantic_source_frames": [0, 25, 50, 75, 100, 125, 150, 175],
+  "lidar_frames": 141,
+  "perturbation": "World x translation only, first pose fixed. Correlated order rank-sorts the nonfirst iid samples. The exact scalar multiset, mean, RMS and marginal histogram match each pair. No rotations. Deliberate monotone drift stress, not a deployment noise model.",
+  "semantic_matching_distance_m": 0.10,
+  "semantic_reference_coverage_min": 0.20,
+  "semantic_prediction_precision_min": 0.50,
+  "semantic_queries": ["cabinet", "ottoman", "floor lamp"],
+  "lidar_map_matching_distance_m": 0.05,
+  "decision": "Report per-seed paired differences, static loss/change recall, reference-surface coverage/query correctness. A common adverse effect is not assumed. Same scene seeds are not independent scenes. No significance or generalization claim. H1 remains candidate; these tests do not evaluate its matched-delay benefit."
+}

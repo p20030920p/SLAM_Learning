@@ -6,6 +6,7 @@
 
 | 顺序 | 中文 | English |
 | --- | --- | --- |
+| Paired pose / 配对位姿 | [Protocol](PAIRED_PROTOCOL.md), [results](PAIRED_RESULTS.md) | [协议](PAIRED_PROTOCOL.zh-CN.md)、[结果](PAIRED_RESULTS.zh-CN.md) |
 | 1. 已执行输出 | [结果](RESULTS.zh-CN.md) | [Results](RESULTS.md) |
 | 2. 来源假设 | [文献](LITERATURE.zh-CN.md) | [Literature](LITERATURE.md) |
 | 3. 候选解释 | [研究](RESEARCH.zh-CN.md) | [Research](RESEARCH.md) |

@@ -50,6 +50,16 @@ All 141 scans and 17,362,230 labeled points are evaluated with 5 cm map proximit
 
 Changing only the scoring of the same DUFOMap retained points, from original identities to map proximity, raises SA by **5.347532 pp**. This is a measurement effect, not an algorithm gain. The actual ConceptGraphs mapper uses absolute poses; 39 saved camera matrices verify the coordinate convention. These audits matter before drawing a research conclusion.
 
+## Paired evidence: 97 native-core cells
+
+Four partial-surface targets now accompany **76 paired pose cells + 21 parameter controls**. At 30 cm RMS, monotone drift preserves more static LiDAR points than shuffled errors, while ConceptGraphs loses more reference coverage. This rejects “correlation is always worse”; it does not establish a universal shared-uncertainty bottleneck. H1 remains a candidate. Annotations are AI-assisted and await independent human review.
+
+![Paired measurements, mean and seed range](results/reference/paired-pose/figures/paired-results.png)
+
+[Protocol](docs/PAIRED_PROTOCOL.md) · [Results, revised hypothesis and falsification plan](docs/PAIRED_RESULTS.md) · [EN PDF](output/pdf/paired-study.en.pdf) / [中文 PDF](output/pdf/paired-study.zh-CN.pdf).
+
+Four **complete live terminal recordings** are also retained locally, from startup through exit 0: 36.6 / 42.0 / 256.6 / 168.8 seconds. Open `D:/workspace/be2/SLAM_Recordings/2026-10-08/VIDEO_INDEX.md` on the collection machine. [Recording evidence and commands](docs/RECORDING.md#complete-local-execution-recordings); large MP4s stay outside Git.
+
 ## Research question
 
 **Can map updates remain reliable under temporally correlated pose errors, at equal change recall, query coverage and update delay, when stable anchors exist?**

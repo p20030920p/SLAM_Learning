@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "kind": "paired_author_mapping_cell",
+  "method": "hovsg",
+  "status": "failed",
+  "started_at": "2026-10-08T15:31:04+00:00",
+  "artifacts": {
+    "segment_features.npy": {
+      "sha256": "53a671bfdaf74844a3f72fa6775e8fe34cfa2d64a97ddb97890b5538cd6f7ba3",
+      "bytes": 204928,
+      "availability": "local_only"
+    },
+    "map.ply": {
+      "sha256": "0c13aab3cf8cbb787ec0ea7fe13a8a5dde528f7dc474480d483631d8bdc8a0de",
+      "bytes": 4503188,
+      "availability": "local_only"
+    },
+    "native.log": {
+      "sha256": "b062b421f3e12c9c528bc44724fb6dedd6c7080951d5118a67e5cc657e6275c9",
+      "bytes": 2566,
+      "availability": "portable"
+    }
+  },
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/scripts/run_paired_cell.py",
+    "--method",
+    "hovsg",
+    "--output",
+    "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/cells/hovsg-reference",
+    "--errors",
+    "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/inputs/semantic/reference.npy",
+    "--source",
+    "/home/qzl/projects/SLAM_Learning/results/runs/hovsg-0206da9f0145",
+    "--text-features",
+    "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/inputs/text_features.npy"
+  ],
+  "errors_sha256": "0f4bf97c6139f78d65cae2952008b4b44a4e2d2c5cb778a23d8916d4423cc625",
+  "script_sha256": "5e4f6e271e3ddfcd53931b584bfb4f61bd40004a36cfb9f4c806ecaafc230395",
+  "annotations_sha256": "a069799a2007f9ca252012fe04174b43997e2e09ee42afdd71d7a9318b5880f4",
+  "exit_code": 1,
+  "error": "HOV zero-error cached replay differs from native execution: {'map.ply': False, 'segment_features.npy': False}",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/qzl/projects/SLAM_Learning/scripts/run_paired_cell.py\", line 333, in main\n    clouds, features, details = mapper(root, output, args.source, errors, args.threshold)\n  File \"/home/qzl/projects/SLAM_Learning/scripts/run_paired_cell.py\", line 187, in hovsg\n    raise ValueError(f\"HOV zero-error cached replay differs from native execution: {equivalent}\")\nValueError: HOV zero-error cached replay differs from native execution: {'map.ply': False, 'segment_features.npy': False}\n",
+  "finished_at": "2026-10-08T15:32:08+00:00",
+  "elapsed_seconds": 65.06235947300001
+}

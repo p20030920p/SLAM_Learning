@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "kind": "paired_author_mapping_cell",
+  "method": "beautymap",
+  "status": "executed",
+  "started_at": "2026-10-08T15:19:21+00:00",
+  "artifacts": {
+    "summary.json": {
+      "sha256": "69afd7f0d31a6e5c58afd20c52f374905064b0af126a61de301090dba2352128",
+      "bytes": 1756,
+      "availability": "portable"
+    },
+    "cleaned.pcd": {
+      "sha256": "c5981392dfdf449ff718f95da538db8a63e9a54fa2ba015b28157bfd5fe03228",
+      "bytes": 198546615,
+      "availability": "local_only"
+    },
+    "point_predictions.npy": {
+      "sha256": "c7c0f8ac42d065ebc28c8adc9c420c121a343d35e7e74f019a84583eb7bce46e",
+      "bytes": 17362358,
+      "availability": "local_only"
+    },
+    "native.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    }
+  },
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/scripts/run_paired_cell.py",
+    "--method",
+    "beautymap",
+    "--output",
+    "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/cells/beautymap-correlated-0.10-205",
+    "--errors",
+    "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/inputs/lidar/correlated-0.10-205.npy"
+  ],
+  "errors_sha256": "9ea5861688b0c5dde4607df09b78f8ff16985d0033e8773f5cad1fefae0244fc",
+  "script_sha256": "071c495beac56906cd3916a331c9568f6bab2ada26fbd0a58931d81a2e1b04eb",
+  "annotations_sha256": "a069799a2007f9ca252012fe04174b43997e2e09ee42afdd71d7a9318b5880f4",
+  "exit_code": 0,
+  "summary": {
+    "mapping": {
+      "frames": 141,
+      "compatibility_patch": {
+        "iterator": {
+          "metadata[key] = map(int, value.split())": "metadata[key] = list(map(int, value.split()))",
+          "metadata[key] = map(float, value.split())": "metadata[key] = list(map(float, value.split()))"
+        },
+        "bitmask_width": {
+          "main.py": {
+            "replacement": "dtype=int -> dtype=np.int64",
+            "count": 2
+          },
+          "lib/bee_tree.py": {
+            "replacement": "dtype=int -> dtype=np.int64",
+            "count": 12
+          }
+        }
+      },
+      "author_command": [
+        "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+        "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/cells/beautymap-correlated-0.10-205/author-code/main.py",
+        "--data_dir",
+        "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/cells/beautymap-correlated-0.10-205/input",
+        "--dis_range",
+        "40",
+        "--xy_resolution",
+        "1.0",
+        "--h_res",
+        "0.5"
+      ],
+      "algorithm_input": "Only XYZ and VIEWPOINT in both map/scans; all intensity annotations stripped"
+    },
+    "metrics": {
+      "counts": {
+        "kept_static": 16724441,
+        "removed_static": 541806,
+        "removed_dynamic": 94310,
+        "kept_dynamic": 1673
+      },
+      "SA": 96.86205114521992,
+      "DA": 98.25698300740756,
+      "AA": 97.55702390621865,
+      "HA": 97.55453079983745
+    },
+    "direct_point_metrics": null,
+    "input_points": 17362230,
+    "input_has_labels": false,
+    "parameters": {
+      "dis_range": 40,
+      "xy_resolution": 1.0,
+      "h_res": 0.5
+    },
+    "evaluation": "Original point identities/labels, evaluated at their own perturbed XYZ against cleaned map, 5cm NN. Not a paper-table score or unperturbed-world alignment score."
+  },
+  "finished_at": "2026-10-08T15:19:57+00:00",
+  "elapsed_seconds": 36.044199444000014
+}

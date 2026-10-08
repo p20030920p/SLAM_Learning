@@ -1,0 +1,11 @@
+Native ConceptGraphs mapping from frozen SAM/CLIP detections
+Traceback (most recent call last):
+  File "/home/qzl/projects/SLAM_Learning/scripts/run_paired_cell.py", line 327, in main
+    clouds, features, details = mapper(root, output, args.source, errors, args.threshold)
+  File "/home/qzl/projects/SLAM_Learning/scripts/run_paired_cell.py", line 78, in conceptgraphs
+    subprocess.run(
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python', '/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/author-code/conceptgraph/slam/cfslam_pipeline_batch.py', 'dataset_root=/home/qzl/projects/SLAM_Learning/results/runs/paired-controls-v1/cells/conceptgraphs-reference-threshold-1.0/input/Replica', 'dataset_config=/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/author-code/conceptgraph/dataset/dataconfigs/replica/replica.yaml', 'scene_id=room0', 'stride=1', 'image_height=480', 'image_width=640', 'spatial_sim_type=overlap', 'mask_conf_threshold=0.95', 'match_method=sim_sum', 'sim_threshold=1.0', 'dbscan_eps=0.1', 'gsa_variant=none', 'class_agnostic=true', 'skip_bg=true', 'max_bbox_area_ratio=0.5', 'save_suffix=paired', 'merge_interval=20', 'merge_visual_sim_thresh=0.8', 'merge_text_sim_thresh=0.8', 'save_objects_all_frames=true']' returned non-zero exit status 1.
+
+conceptgraphs failed -> /home/qzl/projects/SLAM_Learning/results/runs/paired-controls-v1/cells/conceptgraphs-reference-threshold-1.0/record.json

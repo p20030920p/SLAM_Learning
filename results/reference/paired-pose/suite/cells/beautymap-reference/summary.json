@@ -1,0 +1,55 @@
+{
+  "mapping": {
+    "frames": 141,
+    "compatibility_patch": {
+      "iterator": {
+        "metadata[key] = map(int, value.split())": "metadata[key] = list(map(int, value.split()))",
+        "metadata[key] = map(float, value.split())": "metadata[key] = list(map(float, value.split()))"
+      },
+      "bitmask_width": {
+        "main.py": {
+          "replacement": "dtype=int -> dtype=np.int64",
+          "count": 2
+        },
+        "lib/bee_tree.py": {
+          "replacement": "dtype=int -> dtype=np.int64",
+          "count": 12
+        }
+      }
+    },
+    "author_command": [
+      "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+      "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/cells/beautymap-reference/author-code/main.py",
+      "--data_dir",
+      "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/cells/beautymap-reference/input",
+      "--dis_range",
+      "40",
+      "--xy_resolution",
+      "1.0",
+      "--h_res",
+      "0.5"
+    ],
+    "algorithm_input": "Only XYZ and VIEWPOINT in both map/scans; all intensity annotations stripped"
+  },
+  "metrics": {
+    "counts": {
+      "kept_static": 16740135,
+      "removed_static": 526112,
+      "removed_dynamic": 94388,
+      "kept_dynamic": 1595
+    },
+    "SA": 96.95294524629469,
+    "DA": 98.33824739797673,
+    "AA": 97.64313962379855,
+    "HA": 97.6406829872703
+  },
+  "direct_point_metrics": null,
+  "input_points": 17362230,
+  "input_has_labels": false,
+  "parameters": {
+    "dis_range": 40,
+    "xy_resolution": 1.0,
+    "h_res": 0.5
+  },
+  "evaluation": "Original point identities/labels, evaluated at their own perturbed XYZ against cleaned map, 5cm NN. Not a paper-table score or unperturbed-world alignment score."
+}

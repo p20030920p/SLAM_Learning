@@ -2,6 +2,8 @@
 
 English | [中文](RESEARCH.zh-CN.md)
 
+Current extension: [paired results](PAIRED_RESULTS.md) adds restricted annotations, 97 mapping cells, simple controls and a narrower candidate H1. Earlier baseline PDFs retain their recorded source snapshot; the paired-study PDF is the current extension.
+
 The research order is **reproduction → observations → structural bottleneck → candidate hypothesis → held-out experiments**. Existing controlled results are exploratory: they helped select the question and cannot serve as independent confirmation of that selected hypothesis. This order is a workflow, not a rewritten history of when earlier runs occurred.
 
 ## 1. Start with the measured outputs
@@ -22,7 +24,7 @@ The [literature matrix](LITERATURE.md) traces how poses establish spatial corres
 
 [Khronos](https://arxiv.org/html/2402.13817v2) already jointly optimizes poses and structure. [SuperMap](https://arxiv.org/html/2608.22896v1) has visibility/disappearance states; [PerSeM](https://arxiv.org/html/2609.19542v2) has persistent semantic memory and acknowledges correlated geometric limitations. These are constraints on the claim. “Add memory,” “use visibility” or “jointly optimize” cannot be presented as the new idea.
 
-The present cross-field argument is partly inferred. The first ConceptGraphs RGB-D subset now executes, but annotated pose-error controls are still needed before claiming that the same empirical failure is common to fields 1 and 2.
+The cross-field argument remains partly inferred. Annotated paired controls now show metric-specific effects rather than one universal failure; the [paired study](PAIRED_RESULTS.md) narrows the question. Shared uncertainty as the dominant common cause is not established.
 
 ## 3. Minimal mechanism
 
@@ -56,7 +58,7 @@ Common-mode correction plus supplied visibility helps in the minority-motion syn
 
 ## 6. What would count as a test?
 
-First finish evaluator reconciliation and one semantic frontend. Then freeze factors, validation/held-out scenes, thresholds, decision budgets and rejection criteria before the confirmatory run. Keep the existing exploratory seeds out of the confirmation set. [Staged experiment plan](PLAN.md).
+Evaluator reconciliation, semantic cores and restricted paired-target exploration are complete. Independently review labels and add new scenes, actual changes and correction delays; freeze factors, validation/held-out scenes, thresholds, budgets and rejection criteria before confirmation. Keep the existing exploratory seeds out of the confirmation set. [Staged experiment plan](PLAN.md).
 
 Reject or narrow H1 if a swept threshold performs equally well at matched coverage/latency; an independent-noise model does equally well under correlated drift; estimated covariance removes the benefit; or fewer deletions merely leave stale objects longer. A system with no stable reference is outside the identifiable case. Negative results should revise the hypothesis, not trigger a new scoring rule.
 

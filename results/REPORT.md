@@ -17,10 +17,14 @@ Generated from run records. Execution, paper agreement and hypothesis validation
 | dufomap | full_teaser | executed | mismatch | 97.9798 | 98.7029 | 98.3407 | 98.3400 | [dufomap-wsl](reference/dufomap-wsl/record.json) |
 | map evaluator cross check | full_teaser | executed | not evaluated | — | — | — | — | [evaluation-check-wsl](reference/evaluation-check-wsl/record.json) |
 | controlled synthetic calibration test | controlled_synthetic_calibration_test | executed | not evaluated | — | — | — | — | [evidence-stress](reference/evidence-stress/record.json) |
+| full terminal recordings | full_terminal_recordings | executed | not evaluated | — | — | — | — | [full-recordings](reference/full-recordings/record.json) |
 | HOV-SG | semantic_frontend_baseline | executed | not evaluated | — | — | — | — | [hovsg-wsl](reference/hovsg-wsl/record.json) |
 | HOV-SG | semantic_frontend_baseline | failed | not evaluated | — | — | — | — | [hovsg-wsl-interrupted](reference/hovsg-wsl-interrupted/record.json) |
 | HOV-SG | semantic_frontend_baseline | executed | not evaluated | — | — | — | — | [hovsg-wsl-resolved](reference/hovsg-wsl-resolved/record.json) |
 | controlled synthetic mechanism test | controlled_synthetic_mechanism_test | executed | not evaluated | — | — | — | — | [mechanism](reference/mechanism/record.json) |
+| paired pose analysis | paired_pose_analysis | executed | not evaluated | — | — | — | — | [paired-pose](reference/paired-pose/record.json) |
+| report layout review | report_layout_review | executed | not evaluated | — | — | — | — | [paired-report-review](reference/paired-report-review/record.json) |
+| bilingual paired reports | Two reading reports; candidate hypothesis remains unvalidated. All pages require separate rendered visual review. | executed | not evaluated | — | — | — | — | [paired-study-pdfs](reference/paired-study-pdfs/record.json) |
 | beautymap | paper_reproduction_media | executed | not evaluated | — | — | — | — | [paper-media-beautymap](reference/paper-media-beautymap/record.json) |
 | conceptgraphs | paper_reproduction_media | executed | not evaluated | — | — | — | — | [paper-media-conceptgraphs](reference/paper-media-conceptgraphs/record.json) |
 | dufomap | paper_reproduction_media | executed | not evaluated | — | — | — | — | [paper-media-dufomap](reference/paper-media-dufomap/record.json) |

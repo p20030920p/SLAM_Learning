@@ -17,10 +17,14 @@
 | dufomap | 完整 teaser | 已执行 | 有差异 | 97.9798 | 98.7029 | 98.3407 | 98.3400 | [dufomap-wsl](reference/dufomap-wsl/record.json) |
 | 地图评价器对照 | 完整 teaser | 已执行 | 未比较 | — | — | — | — | [evaluation-check-wsl](reference/evaluation-check-wsl/record.json) |
 | 探索性合成校准实验 | 探索性合成校准实验 | 已执行 | 未比较 | — | — | — | — | [evidence-stress](reference/evidence-stress/record.json) |
+| 全过程终端录制 | 全过程终端录制 | 已执行 | 未比较 | — | — | — | — | [full-recordings](reference/full-recordings/record.json) |
 | HOV-SG | 语义前端基线 | 已执行 | 未比较 | — | — | — | — | [hovsg-wsl](reference/hovsg-wsl/record.json) |
 | HOV-SG | 语义前端基线 | 失败 | 未比较 | — | — | — | — | [hovsg-wsl-interrupted](reference/hovsg-wsl-interrupted/record.json) |
 | HOV-SG | 语义前端基线 | 已执行 | 未比较 | — | — | — | — | [hovsg-wsl-resolved](reference/hovsg-wsl-resolved/record.json) |
 | 探索性合成机制实验 | 探索性合成机制实验 | 已执行 | 未比较 | — | — | — | — | [mechanism](reference/mechanism/record.json) |
+| 配对位姿探索分析 | 配对位姿探索分析 | 已执行 | 未比较 | — | — | — | — | [paired-pose](reference/paired-pose/record.json) |
+| 报告排版检查 | 报告排版检查 | 已执行 | 未比较 | — | — | — | — | [paired-report-review](reference/paired-report-review/record.json) |
+| 中英文配对研究报告 | Two reading reports; candidate hypothesis remains unvalidated. All pages require separate rendered visual review. | 已执行 | 未比较 | — | — | — | — | [paired-study-pdfs](reference/paired-study-pdfs/record.json) |
 | beautymap | 论文复现实测回放 | 已执行 | 未比较 | — | — | — | — | [paper-media-beautymap](reference/paper-media-beautymap/record.json) |
 | conceptgraphs | 论文复现实测回放 | 已执行 | 未比较 | — | — | — | — | [paper-media-conceptgraphs](reference/paper-media-conceptgraphs/record.json) |
 | dufomap | 论文复现实测回放 | 已执行 | 未比较 | — | — | — | — | [paper-media-dufomap](reference/paper-media-dufomap/record.json) |

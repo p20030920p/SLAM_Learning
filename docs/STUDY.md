@@ -2,6 +2,8 @@
 
 English | [中文](STUDY.zh-CN.md)
 
+Current extension: [paired results](PAIRED_RESULTS.md) adds restricted annotations, 97 mapping cells, simple controls and a narrower candidate H1. Earlier baseline PDFs retain their recorded source snapshot; the paired-study PDF is the current extension.
+
 The core set is **DUFOMap (2024), BeautyMap (2024), ConceptGraphs (ICRA 2024) and HOV-SG (RSS 2024)**. They connect the two selected themes through a common interface: posed observations become spatial correspondences, then a map decision. The LiDAR methods remove points; the RGB-D methods associate and fuse semantic segments. They solve different tasks, so one aggregate leaderboard would be misleading.
 
 ## What each paper establishes, and what remains

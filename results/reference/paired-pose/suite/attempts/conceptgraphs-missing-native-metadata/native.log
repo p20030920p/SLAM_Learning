@@ -1,0 +1,11 @@
+Setting image height and width to 480 x 640
+Done! Execution time of get_dataset function: 0.00 seconds
+Error executing job with overrides: ['dataset_root=/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/cells/conceptgraphs-reference/input/Replica', 'dataset_config=/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/author-code/conceptgraph/dataset/dataconfigs/replica/replica.yaml', 'scene_id=room0', 'stride=1', 'image_height=480', 'image_width=640', 'spatial_sim_type=overlap', 'mask_conf_threshold=0.95', 'match_method=sim_sum', 'sim_threshold=1.2', 'dbscan_eps=0.1', 'gsa_variant=none', 'class_agnostic=true', 'skip_bg=true', 'max_bbox_area_ratio=0.5', 'save_suffix=paired', 'merge_interval=20', 'merge_visual_sim_thresh=0.8', 'merge_text_sim_thresh=0.8', 'save_objects_all_frames=true']
+Traceback (most recent call last):
+  File "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/author-code/conceptgraph/slam/cfslam_pipeline_batch.py", line 138, in main
+    classes, class_colors = create_or_load_colors(cfg, cfg.color_file_name)
+  File "/home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007/author-code/conceptgraph/slam/utils.py", line 43, in create_or_load_colors
+    with open(classes_fp, "r") as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/cells/conceptgraphs-reference/input/Replica/room0/gsa_classes_none.json'
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

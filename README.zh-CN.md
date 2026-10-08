@@ -50,6 +50,16 @@
 
 只把相同 DUFOMap 保留点从直接身份改成地图近邻评分，SA 就增加 **5.347532 百分点**。这是测量效应，并非算法改进。实际 ConceptGraphs 入口使用绝对位姿，39 个保存相机矩阵确认坐标约定。在研究结论前完成这些核查十分必要。
 
+## 配对证据：97 个原生核心单元
+
+补充了四个部分表面目标标注，以及 **76 个配对位姿单元 + 21 个参数对照**。30 cm RMS 下，单调漂移比打乱误差保留更多 LiDAR 静态点，ConceptGraphs 的参考覆盖却更差。这否定“相关性总是更坏”，没有证明普遍的共享不确定性瓶颈；H1 保持候选。标注由 AI 辅助，仍需人工独立审核。
+
+![配对测量：均值及种子范围](results/reference/paired-pose/figures/paired-results.png)
+
+[协议](docs/PAIRED_PROTOCOL.zh-CN.md) · [结果、修订假设与否证方案](docs/PAIRED_RESULTS.zh-CN.md) · [EN PDF](output/pdf/paired-study.en.pdf) / [中文 PDF](output/pdf/paired-study.zh-CN.pdf)。
+
+另有四份**真实终端全过程视频**在本地留存，覆盖启动至退出码 0，时长依次 36.6／42.0／256.6／168.8 秒。在采集机器打开 `D:/workspace/be2/SLAM_Recordings/2026-10-08/VIDEO_INDEX.md`；[证据与重新录制命令](docs/RECORDING.zh-CN.md#本地全过程执行录制)。大 MP4 保留在 Git 目录外。
+
 ## 研究问题
 
 **存在静态锚点时，地图更新能否在时间相关位姿误差下保持可靠，同时匹配变化召回、查询覆盖率与更新延迟？**

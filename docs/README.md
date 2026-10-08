@@ -6,6 +6,7 @@ Read the measured reproduction before the proposed explanation. The independent 
 
 | Order | English | Chinese |
 | --- | --- | --- |
+| Paired pose / 配对位姿 | [Protocol](PAIRED_PROTOCOL.md), [results](PAIRED_RESULTS.md) | [协议](PAIRED_PROTOCOL.zh-CN.md)、[结果](PAIRED_RESULTS.zh-CN.md) |
 | 1. Executed outputs | [Results](RESULTS.md) | [结果](RESULTS.zh-CN.md) |
 | 2. Source assumptions | [Literature](LITERATURE.md) | [文献](LITERATURE.zh-CN.md) |
 | 3. Candidate explanation | [Research](RESEARCH.md) | [研究](RESEARCH.zh-CN.md) |

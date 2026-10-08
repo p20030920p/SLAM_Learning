@@ -1,0 +1,341 @@
+{
+  "primary_cells": 76,
+  "parameter_control_cells": 21,
+  "paired_differences": [
+    {
+      "method": "dufomap",
+      "rms_m": 0.03,
+      "paired_seeds": 3,
+      "SA": {
+        "mean": 0.06687035115389979,
+        "min": 0.0601578327936636,
+        "max": 0.07922393326123256
+      },
+      "DA": {
+        "mean": 0.011460362772576596,
+        "min": 0.0,
+        "max": 0.03438108831772979
+      },
+      "direct_SA": {
+        "mean": 0.2278337228312163,
+        "min": 0.1581235343152514,
+        "max": 0.30144362002928915
+      },
+      "direct_DA": {
+        "mean": 0.012849497654092564,
+        "min": -0.0031255534834429,
+        "max": 0.028129981350858202
+      }
+    },
+    {
+      "method": "dufomap",
+      "rms_m": 0.1,
+      "paired_seeds": 3,
+      "SA": {
+        "mean": 1.9987898933682544,
+        "min": 1.9647813447821108,
+        "max": 2.037362259441778
+      },
+      "DA": {
+        "mean": 0.007640241848378082,
+        "min": -0.017711469739438712,
+        "max": 0.02708813018971057
+      },
+      "direct_SA": {
+        "mean": 3.404474637713681,
+        "min": 3.361141538169818,
+        "max": 3.46779470952778
+      },
+      "direct_DA": {
+        "mean": 0.01805875345981652,
+        "min": -0.014585916255995812,
+        "max": 0.056259962701730615
+      }
+    },
+    {
+      "method": "dufomap",
+      "rms_m": 0.3,
+      "paired_seeds": 3,
+      "SA": {
+        "mean": 10.463449295032092,
+        "min": 9.965877355976659,
+        "max": 10.773192344578419
+      },
+      "DA": {
+        "mean": -0.05591267898134807,
+        "min": -0.08230624173030776,
+        "max": -0.039590344123439536
+      },
+      "direct_SA": {
+        "mean": 12.012261070206321,
+        "min": 11.787112740828974,
+        "max": 12.167120046411938
+      },
+      "direct_DA": {
+        "mean": -0.03403380459734725,
+        "min": -0.08647364637488408,
+        "max": -0.005209255805723956
+      }
+    },
+    {
+      "method": "beautymap",
+      "rms_m": 0.03,
+      "paired_seeds": 3,
+      "SA": {
+        "mean": 0.31911393367649526,
+        "min": 0.21149934898997458,
+        "max": 0.4018997295706441
+      },
+      "DA": {
+        "mean": -0.03681207436038866,
+        "min": -0.053134409218301926,
+        "max": -0.005209255805709745
+      }
+    },
+    {
+      "method": "beautymap",
+      "rms_m": 0.1,
+      "paired_seeds": 3,
+      "SA": {
+        "mean": 0.5560328194077092,
+        "min": 0.3818200909554861,
+        "max": 0.7120424027294376
+      },
+      "DA": {
+        "mean": 0.020837023222857926,
+        "min": -0.06563662315201668,
+        "max": 0.14169175791545285
+      }
+    },
+    {
+      "method": "beautymap",
+      "rms_m": 0.3,
+      "paired_seeds": 3,
+      "SA": {
+        "mean": 2.5768290391459487,
+        "min": 2.2489774413629107,
+        "max": 2.9079857365645125
+      },
+      "DA": {
+        "mean": -0.20142455782100419,
+        "min": -0.30213683673150626,
+        "max": -0.13856620443203838
+      }
+    },
+    {
+      "method": "conceptgraphs",
+      "rms_m": 0.03,
+      "paired_seeds": 3,
+      "query_hit_fraction": {
+        "mean": 0.11111111111111112,
+        "min": 0.0,
+        "max": 0.33333333333333337
+      },
+      "target_recovery_fraction": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "mean_best_surface_coverage": {
+        "mean": 9.885330170030422e-05,
+        "min": 0.0,
+        "max": 0.0002965599051009127
+      },
+      "objects": {
+        "mean": 1.6666666666666667,
+        "min": 0.0,
+        "max": 3.0
+      }
+    },
+    {
+      "method": "conceptgraphs",
+      "rms_m": 0.1,
+      "paired_seeds": 3,
+      "query_hit_fraction": {
+        "mean": 0.11111111111111112,
+        "min": 0.0,
+        "max": 0.33333333333333337
+      },
+      "target_recovery_fraction": {
+        "mean": -0.16666666666666666,
+        "min": -0.25,
+        "max": 0.0
+      },
+      "mean_best_surface_coverage": {
+        "mean": -0.11665022306487664,
+        "min": -0.19610683322893618,
+        "max": -0.004429133858267709
+      },
+      "objects": {
+        "mean": -2.6666666666666665,
+        "min": -6.0,
+        "max": 1.0
+      }
+    },
+    {
+      "method": "conceptgraphs",
+      "rms_m": 0.3,
+      "paired_seeds": 3,
+      "query_hit_fraction": {
+        "mean": -0.22222222222222224,
+        "min": -0.6666666666666667,
+        "max": 0.33333333333333337
+      },
+      "target_recovery_fraction": {
+        "mean": -0.16666666666666666,
+        "min": -0.5,
+        "max": 0.25
+      },
+      "mean_best_surface_coverage": {
+        "mean": -0.20062728178214517,
+        "min": -0.5039509220441492,
+        "max": 0.10005883747892119
+      },
+      "objects": {
+        "mean": -2.0,
+        "min": -4.0,
+        "max": 0.0
+      }
+    },
+    {
+      "method": "hovsg",
+      "rms_m": 0.03,
+      "paired_seeds": 3,
+      "query_hit_fraction": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "target_recovery_fraction": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "mean_best_surface_coverage": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "objects": {
+        "mean": -1.6666666666666667,
+        "min": -5.0,
+        "max": 5.0
+      }
+    },
+    {
+      "method": "hovsg",
+      "rms_m": 0.1,
+      "paired_seeds": 3,
+      "query_hit_fraction": {
+        "mean": 0.3333333333333333,
+        "min": 0.0,
+        "max": 0.6666666666666667
+      },
+      "target_recovery_fraction": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "mean_best_surface_coverage": {
+        "mean": -0.003184390729839485,
+        "min": -0.0071701720841300665,
+        "max": 0.0
+      },
+      "objects": {
+        "mean": -1.0,
+        "min": -3.0,
+        "max": 2.0
+      }
+    },
+    {
+      "method": "hovsg",
+      "rms_m": 0.3,
+      "paired_seeds": 3,
+      "query_hit_fraction": {
+        "mean": -0.3333333333333333,
+        "min": -0.6666666666666667,
+        "max": 0.0
+      },
+      "target_recovery_fraction": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "mean_best_surface_coverage": {
+        "mean": 0.007513559724405261,
+        "min": -0.01828393881453161,
+        "max": 0.039629589307059065
+      },
+      "objects": {
+        "mean": -1.3333333333333333,
+        "min": -5.0,
+        "max": 1.0
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "dufomap-reference",
+      "method": "dufomap",
+      "mode": "reference",
+      "seed": null,
+      "rms_m": 0.0,
+      "lag1_correlation": null,
+      "elapsed_seconds": 30.00101125399999,
+      "SA": 97.97979838930834,
+      "DA": 98.70289530437681,
+      "AA": 98.34068223458615,
+      "HA": 98.34001762682132,
+      "direct_SA": 92.6340912417157,
+      "direct_DA": 98.96544179698488,
+      "adjacent_translation_difference_rms_m": 0.0
+    },
+    {
+      "id": "beautymap-reference",
+      "method": "beautymap",
+      "mode": "reference",
+      "seed": null,
+      "rms_m": 0.0,
+      "lag1_correlation": null,
+      "elapsed_seconds": 34.86508006600002,
+      "SA": 96.95294524629469,
+      "DA": 98.33824739797673,
+      "AA": 97.64313962379855,
+      "HA": 97.6406829872703,
+      "adjacent_translation_difference_rms_m": 0.0
+    },
+    {
+      "id": "conceptgraphs-reference",
+      "method": "conceptgraphs",
+      "mode": "reference",
+      "seed": null,
+      "rms_m": 0.0,
+      "lag1_correlation": null,
+      "elapsed_seconds": 11.562870352000118,
+      "query_hit_fraction": 0.6666666666666666,
+      "target_recovery_fraction": 1.0,
+      "mean_best_surface_coverage": 0.9255641226792203,
+      "objects": 25,
+      "adjacent_translation_difference_rms_m": 0.0
+    },
+    {
+      "id": "hovsg-reference",
+      "method": "hovsg",
+      "mode": "reference",
+      "seed": null,
+      "rms_m": 0.0,
+      "lag1_correlation": null,
+      "elapsed_seconds": 62.003410046000226,
+      "query_hit_fraction": 0.6666666666666666,
+      "target_recovery_fraction": 1.0,
+      "mean_best_surface_coverage": 0.9255641226792203,
+      "objects": 50,
+      "adjacent_translation_difference_rms_m": 0.0
+    }
+  ],
+  "scope": "Exploratory, already inspected room0 and KITTI teaser. Not held-out confirmation or a dynamic semantic benchmark.",
+  "hypothesis_status": "candidate; no matched-delay or dynamic-semantic validation",
+  "annotation_status": "AI-assisted visual polygons; not independently human-reviewed; partial visible surfaces",
+  "statistical_unit": "one KITTI teaser and one static Replica scene; seed ranges are not scene confidence intervals",
+  "controls_scope": "Exploratory follow-up selected after initial DUFOMap paired cells were seen; not a held-out test or H1 validation."
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "kind": "paired_author_mapping_cell",
+  "method": "dufomap",
+  "status": "executed",
+  "started_at": "2026-10-08T15:26:01+00:00",
+  "artifacts": {
+    "summary.json": {
+      "sha256": "0aef1e9222c8a70b569bae1c54203e34c819d856ccddc1bf5f1fdd61c22b5a3b",
+      "bytes": 1130,
+      "availability": "portable"
+    },
+    "cleaned.pcd": {
+      "sha256": "bd266c119aa759ee101ed2800c83169f5fc1bf62fcffaa16994f974ae70ef28f",
+      "bytes": 202468522,
+      "availability": "local_only"
+    },
+    "direct_point_predictions.npy": {
+      "sha256": "bf56e8d7c0d1ef968750b7c12c0e8a9b8c1bbff94a96052228eac08cc15e03ea",
+      "bytes": 17362358,
+      "availability": "local_only"
+    },
+    "point_predictions.npy": {
+      "sha256": "89ba65d9d03b89567973779a40f5e8092b83065fdab75f1ac9609db3cdb623f3",
+      "bytes": 17362358,
+      "availability": "local_only"
+    },
+    "native.log": {
+      "sha256": "2cfc15bc7d0407f54ef940692541fe9289afd957630bf915dd9b6755e222ae63",
+      "bytes": 218,
+      "availability": "portable"
+    }
+  },
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/scripts/run_paired_cell.py",
+    "--method",
+    "dufomap",
+    "--output",
+    "results/runs/paired-controls-v1/cells/dufomap-correlated-0.30-205-threshold-2",
+    "--errors",
+    "/home/qzl/projects/SLAM_Learning/results/runs/paired-pose-v1/inputs/lidar/correlated-0.30-205.npy",
+    "--threshold",
+    "2"
+  ],
+  "errors_sha256": "f8a4a968c50a8258f7406d9fcaa44e3ffb00c5a38b42081cf0e0b86f295ad7eb",
+  "script_sha256": "6444239f6a99885b527661c071bbccc067e847ef2a43498905283d1d79a1269d",
+  "annotations_sha256": "a069799a2007f9ca252012fe04174b43997e2e09ee42afdd71d7a9318b5880f4",
+  "exit_code": 0,
+  "summary": {
+    "mapping": {
+      "frames": 141,
+      "author_api": "dufomap 1.1.1; integration, propagation, outputMap and segment",
+      "integration_range_m": [
+        0.2,
+        50
+      ]
+    },
+    "metrics": {
+      "counts": {
+        "kept_static": 16971695,
+        "removed_static": 294552,
+        "removed_dynamic": 91946,
+        "kept_dynamic": 4037
+      },
+      "SA": 98.29405892316959,
+      "DA": 95.79404686246522,
+      "AA": 97.03600201362391,
+      "HA": 97.02795180234004
+    },
+    "direct_point_metrics": {
+      "counts": {
+        "kept_static": 16868693,
+        "removed_static": 397554,
+        "removed_dynamic": 92275,
+        "kept_dynamic": 3708
+      },
+      "SA": 97.69750774444499,
+      "DA": 96.13681589448132,
+      "AA": 96.91402022090183,
+      "HA": 96.91087872417636
+    },
+    "input_points": 17362230,
+    "input_has_labels": false,
+    "parameters": {
+      "resolution": 0.1,
+      "d_s": 0.2,
+      "d_p": 2,
+      "threads": 2,
+      "min_range": 0.2,
+      "max_range": 50.0
+    },
+    "evaluation": "Original point identities/labels, evaluated at their own perturbed XYZ against cleaned map, 5cm NN. Not a paper-table score or unperturbed-world alignment score."
+  },
+  "finished_at": "2026-10-08T15:26:29+00:00",
+  "elapsed_seconds": 29.411449386999948
+}
