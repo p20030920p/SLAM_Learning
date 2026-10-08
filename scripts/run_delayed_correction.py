@@ -104,32 +104,34 @@ def main():
                          ("executed-adapter.py", Path(__file__)),
                          ("executed-metrics.py", root / "src/slam_learning/delayed_pose.py")):
         (args.output / name).write_bytes(source.read_bytes())
-    record = {"kind": "delayed_pose_correction", "status": "running",
+    record = {"kind": "posthoc_support_control" if args.support_control_from else "delayed_pose_correction",
+              "status": "running",
               "started_at": datetime.now(timezone.utc).isoformat(), "configuration": config,
               "freeze_sha256": sha(args.freeze), "cells": [], "gates": {}, "artifacts": {}}
     record_path = args.output / "record.json"
     write(record_path, record)
-    if args.support_control_from:
-        parent = json.loads((args.support_control_from / "record.json").read_text())
-        if parent["status"] != "executed" or not all(g["passed"] for g in parent["gates"].values()):
-            raise ValueError("Post-hoc control requires a completed validated primary suite")
-        if parent["freeze_sha256"] != sha(args.freeze) or parent["configuration"] != config:
-            raise ValueError("Post-hoc control changed frozen primary inputs")
-        for name in ("protocol.json", "annotations.json", "source-manifest.json", "frontend-record.json",
-                     "executed-metrics.py"):
-            if sha(args.output / name) != sha(args.support_control_from / name):
-                raise ValueError(f"Post-hoc input differs from primary: {name}")
-        parent_semantic = args.support_control_from / "semantic-config.json"
-        if not parent_semantic.is_file():
-            # The original v1 primary archived this input in its adjacent source audit.
-            parent_semantic = args.support_control_from.parent / "source-audit/semantic-config.json"
-        if not parent_semantic.is_file() or sha(parent_semantic) != sha(root / "configs/semantic.json"):
-            raise ValueError("Post-hoc control requires unchanged recorded native mapping settings")
-        record.update(kind="posthoc_support_control", primary_parent_sha256=sha(
-            args.support_control_from / "record.json"), inherited_parent_gates=parent["gates"],
-            execution_subset={"arms": ["fixed_association"], "obj_min_detections": 1,
-                              "declared_after_primary_inspection": True})
     try:
+        if args.support_control_from:
+            parent = json.loads((args.support_control_from / "record.json").read_text())
+            if (parent["status"] != "executed" or len(parent["gates"]) != 7 or
+                    not all(g["passed"] for g in parent["gates"].values())):
+                raise ValueError("Post-hoc control requires a completed validated primary suite")
+            if parent["freeze_sha256"] != sha(args.freeze) or parent["configuration"] != config:
+                raise ValueError("Post-hoc control changed frozen primary inputs")
+            for name in ("protocol.json", "annotations.json", "source-manifest.json", "frontend-record.json",
+                         "executed-metrics.py"):
+                if sha(args.output / name) != sha(args.support_control_from / name):
+                    raise ValueError(f"Post-hoc input differs from primary: {name}")
+            parent_semantic = args.support_control_from / "semantic-config.json"
+            if not parent_semantic.is_file():
+                # The original v1 primary archived this input in its adjacent source audit.
+                parent_semantic = args.support_control_from.parent / "source-audit/semantic-config.json"
+            if not parent_semantic.is_file() or sha(parent_semantic) != sha(root / "configs/semantic.json"):
+                raise ValueError("Post-hoc control requires unchanged recorded native mapping settings")
+            record.update(primary_parent_sha256=sha(
+                args.support_control_from / "record.json"), inherited_parent_gates=parent["gates"],
+                execution_subset={"arms": ["fixed_association"], "obj_min_detections": 1,
+                                  "declared_after_primary_inspection": True})
         import torch
         from omegaconf import OmegaConf
 
