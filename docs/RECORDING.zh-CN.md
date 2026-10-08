@@ -2,6 +2,33 @@
 
 [English](RECORDING.md) | 中文
 
+## 本地全过程执行录制
+
+另外录制了四份**真实终端全过程视频**，覆盖命令启动、作者流程运行、可见的退出码 0 和结尾停留。按正常经过时间录制独立 Linux 终端；原有 GIF 仍是地图输出回放。全过程视频展示执行日志，不是实时三维建图界面或实物导航。
+
+| 方法 | 视频时长（秒） | 作者命令（秒） |
+| --- | ---: | ---: |
+| DUFOMap | 36.6 | 32.631 |
+| BeautyMap | 42.0 | 38.164 |
+| ConceptGraphs，40 次观测 | 256.6 | 253.019 |
+| HOV-SG，8 次观测 | 168.8 | 165.134 |
+
+在采集机器打开 `D:/workspace/be2/SLAM_Recordings/2026-10-08/VIDEO_INDEX.md`。索引内每个目录都有 `full-session.mp4`、`terminal.raw`、`terminal.time`、命令、退出／录制 JSON 及首／中／尾检查帧。视频在 Git 目录外本地留存；[轻量证据及原生运行记录](../results/reference/full-recordings/record.json) 绑定视频字节、日志与检查帧。未通过检查的早期录制保留在本地，不列入交付索引。
+
+`scripts/record_session.py` 使用 Xvfb、xterm、util-linux `script`、随机 Xauthority cookie 和单调时钟帧调度。录制开始后才放行命令，刷新 PTY，只追踪当前方法的新日志，检查整段解码、时长及非空白帧；捕获独立画面，不录用户桌面。`scripts/import_full_recordings.py` 将大视频记为仅本地资产。
+
+```bash
+sudo apt-get install xvfb xterm xauth ffmpeg util-linux
+# 录制环境需有支持 XCB 的 Pillow。
+.venv/bin/python scripts/record_session.py \
+  --output /mnt/d/workspace/be2/SLAM_Recordings/new-dufomap \
+  -- .venv/bin/python -m slam_learning.cli run --method dufomap
+# ConceptGraphs 命令：.venv-semantic/bin/python scripts/run_conceptgraphs.py
+# HOV-SG 命令：.venv-hovsg/bin/python scripts/run_hovsg.py
+```
+
+## 主页 GIF、回放视频与 PDF
+
 参考你给的 [Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench)，固定快照 `53324d40def0dd753b4a99021b8fe596955a1ecd`：每个方法有 MP4、轻量 GIF 和机器可读元数据，并检查输出完整与面板空白；没有复制其源码。
 
 这些视频是**作者实测输出的回放**。LiDAR 视频按选定原始扫描展示最终地图的 PCL 标签；语义视频把原生 SAM 观测与最终地图、查询候选并排展示。它们不表示实时导航、在线地图演变或算法 FPS。真值标签不输入作者流程。

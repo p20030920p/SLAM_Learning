@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from slam_learning.provenance import digest, git_state, utc_now, write_json
+from slam_learning.paired_pose import reference_targets
 from slam_learning.runner import export_record, verify_record
 
 
@@ -41,6 +42,43 @@ def flatten(spec, record):
     if "objects" in summary:
         result["objects"] = summary["objects"]
     return result
+
+
+def query_audit(root, suite, target):
+    """Project retrieved map geometry into raw annotated views; no predicted-mask GT."""
+    from PIL import Image
+
+    references = reference_targets(root)
+    fig, axes = plt.subplots(2, 2, figsize=(11, 6.5), layout="constrained")
+    for row, method in enumerate(("conceptgraphs", "hovsg")):
+        cell = suite / "cells" / f"{method}-reference"
+        summary = json.loads((cell / "summary.json").read_text())
+        with np.load(cell / "objects.npz") as saved:
+            for col, name in enumerate(("cabinet", "ottoman_right")):
+                ref = next(t for t in references if t["id"] == name)
+                result = next(t for t in summary["metrics"]["targets"] if t["target"] == name)
+                points = saved[f"cloud_{result['top1_segment']:04d}"]
+                camera = (points - ref["pose"][:3, 3]) @ ref["pose"][:3, :3]
+                camera = camera[camera[:, 2] > 0.01]
+                k, depth = ref["camera_k"], ref["depth"]
+                uv = np.rint(camera[:, :2] / camera[:, 2, None] * [k[0, 0], k[1, 1]] + [k[0, 2], k[1, 2]]).astype(int)
+                valid = (uv[:, 0] >= 0) & (uv[:, 0] < depth.shape[1]) & (uv[:, 1] >= 0) & (uv[:, 1] < depth.shape[0])
+                uv, camera = uv[valid], camera[valid]
+                uv = uv[np.abs(camera[:, 2] - depth[uv[:, 1], uv[:, 0]]) <= 0.1]
+                ax = axes[row, col]
+                image = root / f".cache/semantic-data/Replica/room0/results/frame{ref['source_frame']:06d}.jpg"
+                ax.imshow(Image.open(image))
+                ax.scatter(uv[:, 0], uv[:, 1], s=0.35, c="#ed584d", alpha=0.6, label="Top-1 visible geometry")
+                for other in references:
+                    if other["source_frame"] != ref["source_frame"]:
+                        continue
+                    polygon = np.vstack([other["polygon_original"], other["polygon_original"][0]])
+                    ax.plot(polygon[:, 0], polygon[:, 1], color="#00d7ef", linewidth=1.4)
+                ax.set_title(f"{method} | query: {ref['query']} | zero pose error")
+                ax.axis("off")
+    fig.suptitle("Red: retrieved visible geometry | cyan: partial reference polygons | unmatched is not open-world false")
+    fig.savefig(target, dpi=180)
+    plt.close(fig)
 
 
 def main():
@@ -203,6 +241,7 @@ def main():
         ax.legend()
     fig.savefig(figure_dir / "paired-errors.png", dpi=180)
     plt.close(fig)
+    query_audit(root, args.suite, figure_dir / "target-query-audit.png")
     subprocess.run(
         [
             str(root / ".venv/bin/python"),

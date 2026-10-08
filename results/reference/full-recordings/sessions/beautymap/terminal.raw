@@ -1,0 +1,66 @@
+Script started on 2026-10-08 18:09:02+03:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="158" LINES="48"]
+SLAM Learning | FULL TERMINAL SESSION | normal elapsed time
+Started UTC: 2026-10-08T15:09:02+00:00
+Working directory: /home/qzl/projects/SLAM_Learning
+$ .venv/bin/python -m slam_learning.cli run --method beautymap
+Running beautymap; log: /home/qzl/projects/SLAM_Learning/results/runs/beautymap-6e5490666c11/run.log
+
+[live log: beautymap-6e5490666c11/run.log]
+We will process the data in folder: [1m /home/qzl/projects/SLAM_Learning/results/runs/beautymap-6e5490666c11/input [0m
+
+[live log: beautymap-6e5490666c11/run.log]
+[LOG] Min xyz: -88.87890625, -73.41474914550781, -20.8034725189209 
+
+[live log: beautymap-6e5490666c11/run.log]
+[LOG] Max/Min value on x: 250.10372924804688/0.0, y: 156.6040802001953/0.0
+[LOG] Matrix order: 251
+
+[live log: beautymap-6e5490666c11/run.log]
+Generating Map Binary tree:   0%|                                         | 0/10711 [00:00<?, ?it/s]Generating Map Binary tree:   6%|█▊                           | 651/10711 [00:00<00:01, 6508.94it/s]Generating Map Binary tree:  12%|███▍                        | 1302/10711 [00:00<00:01, 5459.16it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Generating Map Binary tree:  17%|████▊                       | 1859/10711 [00:00<00:01, 4652.33it/s]Generating Map Binary tree:  22%|██████▏                     | 2353/10711 [00:00<00:01, 4746.60it/s]Generating Map Binary tree:  26%|███████▍                    | 2838/10711 [00:00<00:02, 3695.01it/s]Generating Map Binary tree:  30%|████████▍                   | 3240/10711 [00:00<00:02, 2839.70it/s]Generating Map Binary tree:  33%|█████████▎                  | 3566/10711 [00:01<00:02, 2395.90it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Generating Map Binary tree:  36%|██████████                  | 3838/10711 [00:01<00:03, 1817.11it/s]Generating Map Binary tree:  38%|██████████▌                 | 4055/10711 [00:01<00:04, 1445.72it/s]Generating Map Binary tree:  39%|███████████                 | 4230/10711 [00:01<00:05, 1218.58it/s]Generating Map Binary tree:  41%|███████████▍                | 4374/10711 [00:02<00:05, 1145.22it/s]Generating Map Binary tree:  42%|███████████▊                | 4501/10711 [00:02<00:05, 1091.87it/s]Generating Map Binary tree:  43%|████████████                | 4617/10711 [00:02<00:05, 1032.23it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Generating Map Binary tree:  53%|██████████████▊             | 5644/10711 [00:02<00:01, 2863.28it/s]Generating Map Binary tree:  56%|███████████████▋            | 6021/10711 [00:02<00:01, 2533.12it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Generating Map Binary tree:  59%|████████████████▌           | 6343/10711 [00:02<00:01, 2255.98it/s]Generating Map Binary tree:  62%|█████████████████▎          | 6619/10711 [00:02<00:01, 2133.20it/s]Generating Map Binary tree:  64%|█████████████████▉          | 6867/10711 [00:03<00:01, 2003.57it/s]Generating Map Binary tree:  66%|██████████████████▌         | 7098/10711 [00:03<00:01, 2053.85it/s]Generating Map Binary tree:  68%|███████████████████▏        | 7322/10711 [00:03<00:01, 2050.62it/s]Generating Map Binary tree:  70%|███████████████████▋        | 7540/10711 [00:03<00:01, 2008.15it/s]Generating Map Binary tree:  72%|████████████████████▎       | 7750/10711 [00:03<00:01, 1971.86it/s]Generating Map Binary tree:  74%|████████████████████▊       | 7953/10711 [00:03<00:01, 1913.87it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Generating Map Binary tree:  76%|█████████████████████▎      | 8148/10711 [00:03<00:01, 1708.25it/s]Generating Map Binary tree:  78%|█████████████████████▊      | 8324/10711 [00:03<00:01, 1435.72it/s]Generating Map Binary tree:  79%|██████████████████████▏     | 8477/10711 [00:04<00:01, 1383.07it/s]Generating Map Binary tree:  82%|██████████████████████▉     | 8754/10711 [00:04<00:01, 1710.21it/s]Generating Map Binary tree:  87%|████████████████████████▍   | 9347/10711 [00:04<00:00, 2774.88it/s]Generating Map Binary tree:  90%|█████████████████████████▎  | 9678/10711 [00:04<00:00, 2910.57it/s]Generating Map Binary tree:  93%|█████████████████████████▏ | 10014/10711 [00:04<00:00, 3031.13it/s]Generating Map Binary tree:  98%|██████████████████████████▌| 10524/10711 [00:04<00:00, 3612.83it/s]Generating Map Binary tree: 100%|███████████████████████████| 10711/10711 [00:04<00:00, 2303.53it/s]
+Processing Frames:   0%|                                                    | 0/141 [00:00<?, ?it/s][elapsed 15s | UTC 2026-10-08T15:09:17+00:00]
+
+[live log: beautymap-6e5490666c11/run.log]
+Processing Frames:   1%|▌                                           | 2/141 [00:00<00:07, 18.38it/s]Processing Frames:   3%|█▏                                          | 4/141 [00:00<00:07, 18.40it/s]Processing Frames:   5%|██▏                                         | 7/141 [00:00<00:07, 19.02it/s]Processing Frames:   6%|██▊                                         | 9/141 [00:00<00:06, 19.12it/s]Processing Frames:   8%|███▎                                       | 11/141 [00:00<00:06, 19.22it/s]Processing Frames:   9%|███▉                                       | 13/141 [00:00<00:06, 19.29it/s]Processing Frames:  11%|████▌                                      | 15/141 [00:00<00:06, 18.76it/s]Processing Frames:  12%|█████▏                                     | 17/141 [00:00<00:06, 18.84it/s]Processing Frames:  13%|█████▊                                     | 19/141 [00:01<00:06, 18.87it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Processing Frames:  15%|██████▍                                    | 21/141 [00:01<00:06, 18.61it/s]Processing Frames:  16%|███████                                    | 23/141 [00:01<00:06, 18.74it/s]Processing Frames:  18%|███████▌                                   | 25/141 [00:01<00:06, 18.68it/s]Processing Frames:  19%|████████▏                                  | 27/141 [00:01<00:06, 18.56it/s]Processing Frames:  21%|████████▊                                  | 29/141 [00:01<00:06, 18.40it/s]Processing Frames:  23%|█████████▊                                 | 32/141 [00:01<00:05, 19.25it/s]Processing Frames:  24%|██████████▎                                | 34/141 [00:01<00:05, 19.08it/s]Processing Frames:  26%|██████████▉                                | 36/141 [00:01<00:05, 19.18it/s]Processing Frames:  27%|███████████▌                               | 38/141 [00:02<00:05, 18.93it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Processing Frames:  28%|████████████▏                              | 40/141 [00:02<00:05, 18.43it/s]Processing Frames:  30%|████████████▊                              | 42/141 [00:02<00:05, 18.49it/s]Processing Frames:  31%|█████████████▍                             | 44/141 [00:02<00:05, 18.23it/s]Processing Frames:  33%|██████████████                             | 46/141 [00:02<00:05, 18.13it/s]Processing Frames:  34%|██████████████▋                            | 48/141 [00:02<00:05, 18.05it/s]Processing Frames:  35%|███████████████▏                           | 50/141 [00:02<00:04, 18.20it/s]Processing Frames:  38%|████████████████▏                          | 53/141 [00:02<00:04, 19.10it/s]Processing Frames:  39%|████████████████▊                          | 55/141 [00:02<00:04, 18.10it/s]Processing Frames:  40%|█████████████████▍                         | 57/141 [00:03<00:04, 18.30it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Processing Frames:  42%|█████████████████▉                         | 59/141 [00:03<00:04, 18.52it/s]Processing Frames:  44%|██████████████████▉                        | 62/141 [00:03<00:04, 19.38it/s]Processing Frames:  46%|███████████████████▊                       | 65/141 [00:03<00:03, 20.25it/s]Processing Frames:  48%|████████████████████▋                      | 68/141 [00:03<00:03, 20.25it/s]Processing Frames:  50%|█████████████████████▋                     | 71/141 [00:03<00:03, 20.56it/s]Processing Frames:  52%|██████████████████████▌                    | 74/141 [00:03<00:03, 20.94it/s]Processing Frames:  55%|███████████████████████▍                   | 77/141 [00:04<00:02, 21.40it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Processing Frames:  57%|████████████████████████▍                  | 80/141 [00:04<00:02, 21.56it/s]Processing Frames:  59%|█████████████████████████▎                 | 83/141 [00:04<00:02, 21.89it/s]Processing Frames:  61%|██████████████████████████▏                | 86/141 [00:04<00:02, 22.27it/s]Processing Frames:  63%|███████████████████████████▏               | 89/141 [00:04<00:02, 22.13it/s]Processing Frames:  65%|████████████████████████████               | 92/141 [00:04<00:02, 21.98it/s]Processing Frames:  67%|████████████████████████████▉              | 95/141 [00:04<00:02, 22.39it/s]Processing Frames:  70%|█████████████████████████████▉             | 98/141 [00:04<00:01, 22.67it/s]Processing Frames:  72%|██████████████████████████████            | 101/141 [00:05<00:01, 23.25it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Processing Frames:  74%|██████████████████████████████▉           | 104/141 [00:05<00:01, 23.90it/s]Processing Frames:  76%|███████████████████████████████▊          | 107/141 [00:05<00:01, 23.63it/s]Processing Frames:  78%|████████████████████████████████▊         | 110/141 [00:05<00:01, 23.46it/s]Processing Frames:  80%|█████████████████████████████████▋        | 113/141 [00:05<00:01, 23.30it/s]Processing Frames:  82%|██████████████████████████████████▌       | 116/141 [00:05<00:01, 23.28it/s]Processing Frames:  84%|███████████████████████████████████▍      | 119/141 [00:05<00:00, 23.36it/s]Processing Frames:  87%|████████████████████████████████████▎     | 122/141 [00:05<00:00, 23.40it/s]Processing Frames:  89%|█████████████████████████████████████▏    | 125/141 [00:06<00:00, 23.38it/s]
+[live log: beautymap-6e5490666c11/run.log]
+Processing Frames:  91%|██████████████████████████████████████▏   | 128/141 [00:06<00:00, 23.82it/s]Processing Frames:  93%|███████████████████████████████████████   | 131/141 [00:06<00:00, 24.36it/s]Processing Frames:  95%|███████████████████████████████████████▉  | 134/141 [00:06<00:00, 25.09it/s]Processing Frames:  97%|████████████████████████████████████████▊ | 137/141 [00:06<00:00, 24.65it/s]Processing Frames:  99%|█████████████████████████████████████████▋| 140/141 [00:06<00:00, 25.09it/s]Processing Frames: 100%|██████████████████████████████████████████| 141/141 [00:06<00:00, 21.03it/s]
+shape: (32, 251, 251)
+len print: 32
+There are 809798 pts to remove
+
+[live log: beautymap-6e5490666c11/run.log]
+BeautyMap Timings in seconds (s)
+       Component       	 Total 	 Last  	 Mean  	StDev 	  Min  	  Max  	Steps
+[1m[31mTotal                  	20.4351	20.4351	20.4351	nan   	20.4351	20.4351	1    [0m
+[1m[32m  0. Map Generation    	11.6702	11.6702	11.6702	nan   	11.6702	11.6702	1    [0m
+[1m[33m  1. Query Generation  	4.7712 	0.0327 	0.0338 	0.0047	0.0258 	0.0598 	141  [0m
+[1m[34m  2. Matrix Comparison 	0.0020 	0.0000 	0.0000 	0.0000	0.0000 	0.0000 	141  [0m
+[1m[35m  3. Static Restoration	1.5899 	0.0061 	0.0113 	0.0021	0.0061 	0.0173 	141  [0m
+[1m[36m  4. Fine Ground Seg   	0.3307 	0.0009 	0.0023 	0.0007	0.0009 	0.0060 	141  [0m
+[1m[37m  5. One Scan Cost     	6.6950 	0.0397 	0.0475 	0.0065	0.0360 	0.0729 	141  [0m
+main.py: All codes run successfully, Close now..
+[elapsed 30s | UTC 2026-10-08T15:09:32+00:00]
+beautymap: executed; record: /home/qzl/projects/SLAM_Learning/results/runs/beautymap-6e5490666c11/record.json
+
+Command finished: exit 0; elapsed 38.16s; UTC 2026-10-08T15:09:40+00:00
+
+Script done on 2026-10-08 18:09:43+03:00 [COMMAND_EXIT_CODE="0"]
