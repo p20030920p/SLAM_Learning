@@ -20,6 +20,10 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from slam_learning.delayed_pose import measure_map, prefix_errors, reference_instances
+from slam_learning.identity_budget import (
+    check_resources, load_snapshot, metric_cache, restore_fixed_semantics, save_snapshot, scan_readouts,
+    validate_freeze,
+)
 
 
 def sha(path):
@@ -78,14 +82,24 @@ def main():
     parser.add_argument("--freeze", type=Path, required=True)
     parser.add_argument("--weights", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--protocol", type=Path, help="Defaults to the unchanged v1 protocol")
+    parser.add_argument("--annotations", type=Path, help="Defaults to the unchanged room1 v1 labels")
+    parser.add_argument("--identity-budget", action="store_true", help="Use the gated v2 four-arm adapter")
+    parser.add_argument("--exploratory", action="store_true")
     parser.add_argument("--support-control-from", type=Path,
                         help="Post-hoc six-cell min-support=1 control; does not alter the primary suite")
     args = parser.parse_args()
     root = args.root
-    config_path = root / "configs/delayed_pose.json"
-    annotation_path = root / "annotations/room1/targets.json"
+    config_path = args.protocol or root / "configs/delayed_pose.json"
+    annotation_path = args.annotations or root / "annotations/room1/targets.json"
     config = json.loads(config_path.read_text())
     seal = json.loads(args.freeze.read_text())
+    if args.identity_budget:
+        if args.support_control_from:
+            raise ValueError("v2 is not a post-hoc support-control run")
+        validate_freeze(config_path, annotation_path, args.data, seal, exploratory=args.exploratory)
+    elif config.get("schema_version") == 2 or config.get("requires_human_review"):
+        raise ValueError("Use run_identity_budget.py for v2; legacy entry cannot bypass the review gate")
     for key, path in (("protocol_sha256", config_path), ("annotations_sha256", annotation_path),
                       ("source_manifest_sha256", args.data / "manifest.json")):
         if seal[key] != sha(path):
@@ -109,8 +123,16 @@ def main():
               "started_at": datetime.now(timezone.utc).isoformat(), "configuration": config,
               "freeze_sha256": sha(args.freeze), "cells": [], "gates": {}, "artifacts": {}}
     record_path = args.output / "record.json"
+    if args.identity_budget:
+        record["kind"] = "identity_budget_v2"
+        record["analysis_type"] = config.get("analysis_type", "human_reviewed_confirmation")
+        (args.output / "executed-budget-metrics.py").write_bytes(
+            (Path(__file__).resolve().parents[1] / "src/slam_learning/identity_budget.py").read_bytes())
     write(record_path, record)
     try:
+        if args.identity_budget:
+            record["resource_preflight"] = check_resources()
+            write(record_path, record)
         if args.support_control_from:
             parent = json.loads((args.support_control_from / "record.json").read_text())
             if (parent["status"] != "executed" or len(parent["gates"]) != 7 or
@@ -217,6 +239,7 @@ def main():
                     np.mean(detection["mask"][0][uv[:, 1], uv[:, 0]]) >= config["visibility_min_support"])
 
         def step(objects, index, offset, arm, forced=None):
+            arm = arm.removesuffix("_fixed") if args.identity_budget else arm
             detections, view = observations(index, offset)
             keys = [int(d["mask_idx"][0]) for d in detections]
             if forced is not None and keys != forced["mask_keys"]:
@@ -267,6 +290,16 @@ def main():
         zero_stages = {}
 
         def evaluate(objects, stage, cell_dir, trace):
+            if args.identity_budget:
+                path = cell_dir / f"stage-{stage:02d}-complete.npz"
+                snapshot(objects, path, stage, "after_exact_correction_before_readout_filter")
+                state = load_snapshot(path)
+                cache = metric_cache(state, text, instances, config, config["mapping_frames"][stage - 1])
+                metric = {"observation": stage, "native_state_objects": len(objects),
+                          "snapshot_sha256": sha(path), "snapshot_bytes": path.stat().st_size,
+                          "readouts": scan_readouts(state, cache, config)}
+                write(cell_dir / f"stage-{stage:02d}.json", metric)
+                return metric
             exposed = MapObjectList([o for o in objects if o["num_detections"] >= cfg.obj_min_detections])
             clouds, features = arrays(exposed)
             payload = {f"pcd_{i:04d}": p for i, p in enumerate(clouds)}
@@ -277,6 +310,17 @@ def main():
             metric["native_state_objects"] = len(objects)
             write(cell_dir / f"stage-{stage:02d}.json", metric)
             return metric
+
+        def snapshot(objects, path, stage, meaning):
+            clouds, features = arrays(objects)
+            object_text = np.asarray([o["text_ft"].detach().cpu().numpy() for o in objects])
+            save_snapshot(path, clouds, features, [members(o) for o in objects],
+                          [int(o["num_detections"]) for o in objects],
+                          colors=[np.asarray(o["pcd"].colors).copy() for o in objects],
+                          text_features=object_text, metadata={"observation": stage, "meaning": meaning,
+                          "protocol_sha256": sha(config_path), "freeze_sha256": sha(args.freeze),
+                          "source_frame": config["mapping_frames"][stage - 1],
+                          "native_periodic_postprocessing_retained": True})
 
         settings = [(rms, seed) for rms in config["translation_rms_m"] for seed in config["seeds"]]
         arms = ["fixed_association"] if args.support_control_from else config["arms"]
@@ -302,29 +346,51 @@ def main():
                             np.savez_compressed(cell_dir / "before-correction.npz", features=before_features,
                                                 **{f"pcd_{j:04d}": p for j, p in enumerate(before_clouds)})
                             correction_start = time.monotonic()
-                            if arm == "fixed_association":
+                            if args.identity_budget:
+                                snapshot(objects, cell_dir / "before-correction-complete.npz", split,
+                                         "before_historical_pose_correction")
+                                correction_start = time.monotonic()
+                            if arm == "fixed_association" or (args.identity_budget and arm.endswith("_fixed")):
                                 original = objects
                                 objects = prefix(trace)
                                 if [members(o) for o in objects] != [members(o) for o in original]:
                                     raise ValueError("Coordinate control changed historical memberships")
-                                for rebuilt, old in zip(objects, original):
-                                    rebuilt["clip_ft"], rebuilt["text_ft"] = old["clip_ft"].clone(), old["text_ft"].clone()
+                                if args.identity_budget:
+                                    objects = restore_fixed_semantics(objects, original, members)
+                                else:
+                                    for rebuilt, old in zip(objects, original):
+                                        rebuilt["clip_ft"], rebuilt["text_ft"] = old["clip_ft"].clone(), old["text_ft"].clone()
+                                if args.identity_budget:
+                                    cell["fixed_members_and_features_preserved"] = all(
+                                        members(a) == members(b) and torch.equal(a["clip_ft"], b["clip_ft"]) and
+                                        torch.equal(a["text_ft"], b["text_ft"]) for a, b in zip(objects, original))
+                                    if not cell["fixed_members_and_features_preserved"]:
+                                        raise ValueError("Fixed arm changed membership or semantic features")
+                                    if rms == 0:
+                                        gate = compare_maps(original, objects)
+                                        record["gates"][f"zero-own-policy-{arm}"] = gate
+                                        if not gate["passed"]:
+                                            raise ValueError(f"Zero-error fixed-policy parity failed: {gate}")
                             elif arm == "oracle_replay":
                                 objects = prefix()
                             cell["correction_compute_seconds"] = time.monotonic() - correction_start
-                        if index + 1 == len(dataset):
+                        if index + 1 == len(dataset) and not args.identity_budget:
                             objects = finish(objects)
                         if index + 1 in config["evaluation_observations"]:
                             stage = index + 1
                             cell["stages"].append(evaluate(objects, stage, cell_dir, trace))
-                            if rms == 0 and arm == "native":
+                            if rms == 0 and arm == ("native_fixed" if args.identity_budget else "native"):
                                 zero_stages[stage] = copy.deepcopy(objects)
-                            elif rms == 0 and arm in ("fixed_association", "oracle_replay"):
+                            elif rms == 0 and arm in (("oracle_replay",) if args.identity_budget else
+                                                     ("fixed_association", "oracle_replay")):
                                 gate = compare_maps(zero_stages[stage], objects)
                                 record["gates"][f"zero-{arm}-{stage}"] = gate
                                 if not gate["passed"]:
                                     raise ValueError(f"Zero-error correction gate failed: {gate}")
-                    if rms == 0 and arm == "native":
+                    if args.identity_budget:
+                        objects = finish(objects)
+                        snapshot(objects, cell_dir / "stage-16-finalized.npz", 16, "after_native_final_postprocessing")
+                    if rms == 0 and arm == ("native_fixed" if args.identity_budget else "native"):
                         # Run the original batch script with only the identical per-frame RNG wrapper.
                         original_script = work / "conceptgraph/slam/cfslam_pipeline_batch.py"
                         source = original_script.read_text()
@@ -366,12 +432,17 @@ def main():
                     cell.update(status="failed", error=str(error), traceback=traceback.format_exc())
                 cell["finished_at"] = datetime.now(timezone.utc).isoformat()
                 write(cell_dir / "decision-trace.json", trace)
+                if args.identity_budget:
+                    cell["artifacts"] = {p.name: {"sha256": sha(p), "bytes": p.stat().st_size}
+                                         for p in cell_dir.iterdir() if p.is_file() and p.name != "record.json"}
                 write(cell_dir / "record.json", cell)
                 record["cells"].append({"name": name, "status": cell["status"], "record_sha256": sha(cell_dir / "record.json")})
                 write(record_path, record)
                 print(f"{name}: {cell['status']} ({time.monotonic() - started:.1f}s)", flush=True)
                 if cell["status"] != "executed":
                     raise RuntimeError(f"Stop on failed cell: {name}: {cell.get('error')}")
+        if args.identity_budget and len(record["cells"]) != config["expected_mapping_cells"]:
+            raise ValueError("Incomplete v2 cell matrix")
         record["status"] = "executed"
     except Exception as error:
         record.update(status="failed", error=str(error), traceback=traceback.format_exc())

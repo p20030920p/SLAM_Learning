@@ -20,6 +20,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--archive", type=Path,
+                        help="Read an existing official ZIP without changing its owner/cache")
     args = parser.parse_args()
     config = json.loads(args.protocol.read_text(encoding="utf-8"))
     scene = config["scene"]
@@ -35,9 +37,9 @@ def main():
         print("Existing new-scene source manifest verified", flush=True)
         return 0
     url = "https://cvg-data.inf.ethz.ch/nice-slam/data/Replica.zip"
-    remote = RangeFile(url)
+    remote = None if args.archive else RangeFile(url)
     entries = []
-    with zipfile.ZipFile(remote) as archive:
+    with zipfile.ZipFile(args.archive if args.archive else remote) as archive:
         trajectory = next(n for n in archive.namelist() if n.endswith(f"{scene}/traj.txt"))
         prefix = trajectory[:-len("traj.txt")]
         full = archive.read(trajectory)
@@ -59,8 +61,11 @@ def main():
             target.write_bytes(content)
             entries.append({"path": target.relative_to(args.output).as_posix(),
                             "bytes": len(content), "sha256": sha(target)})
-    manifest = {"scene": scene, "source_url": url, "archive_etag": remote.etag,
-                "archive_bytes": remote.size, "whole_archive_sha256": None,
+    manifest = {"scene": scene, "source_url": url,
+                "archive_etag": remote.etag if remote else None,
+                "archive_bytes": remote.size if remote else args.archive.stat().st_size,
+                "source_access": "local_archive_read_only" if args.archive else "http_ranges",
+                "whole_archive_sha256": None,
                 "member_crc_verified": True, "protocol_sha256": sha(args.protocol),
                 "mapping_frames": config["mapping_frames"], "reference_frames": config["reference_frames"],
                 "fetched_at": datetime.now(timezone.utc).isoformat(), "files": entries}

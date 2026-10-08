@@ -1,0 +1,40 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Identity v2 — 人工复核 / Human review</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;background:#f3f5f8;color:#172337;max-width:1280px;margin:24px auto;padding:0 18px}h1{font-size:28px}h2{margin-top:36px}section,.card{background:white;padding:18px;border-radius:12px;margin:16px 0}button,select,input{font:inherit;padding:8px;margin:5px}button{cursor:pointer}img{max-width:100%;height:auto} .views{display:grid;grid-template-columns:1fr 1fr;gap:16px}textarea{width:98%;min-height:400px;font:13px/1.4 monospace}label{display:block;margin:10px 0}.pending{background:#fff1ce;padding:14px;border-left:5px solid #c77800}#status{white-space:pre-wrap}table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #ddd;padding:8px;text-align:left}@media(max-width:800px){.views{grid-template-columns:1fr}}</style>
+<h1>对象身份与边界复核 / Identity and boundary review</h1>
+<p class="pending">当前状态：人工复核未完成。此页面只有原始 RGB-D 和 AI 边界草稿；没有 room2 前端或建图结果。<br>Status: pending human review. These are raw references and AI proposals, not official instance GT.</p>
+<section><p>1. 逐帧查看原图、草稿与深度。确认物理 ID 跨视图一致、类别查询、部件归属和排除项。<br>Inspect every raw RGB, proposed polygon and depth preview; verify physical identity, category queries, parts and exclusions.</p>
+<p>2. 下方 JSON 可编辑。坐标采用 1200×680 原图像素；可右键另存原图放大。若不足四个合格目标，请不要批准，记录原因即可。<br>Edit the JSON below (1200×680 pixels). Stop without approval if fewer than four instances qualify.</p>
+<p>3. 先复核 room1 的花瓶／植物与重复碎片定义。旧标注和旧分数不变，任何修改只作为新版本事后分析。<br>Review room1 vase/plant parts and fragment definitions first. Later changes are post-hoc; v1 evidence stays unchanged.</p></section>
+<h2>room2 — 五个候选物理实例 / Five draft instances</h2>
+<table><thead><tr><th>ID</th><th>查询 / Query</th><th>复核重点 / Check</th></tr></thead><tbody>
+<tr><td>blue_vase</td><td>vase</td><td>瓶体；62 帧顶部截断 / Vessel body; frame62 clipped at top</td></tr>
+<tr><td>bird_figurine</td><td>bird figurine</td><td>鸟体及连接底座，不含架子 / Bird and attached base; exclude shelf</td></tr>
+<tr><td>brown_jar</td><td>jar</td><td>整只陶罐，不含旁边盒子 / Whole jar; exclude neighboring boxes</td></tr>
+<tr><td>fish_figurine</td><td>fish figurine</td><td>鱼及连接底座；小目标是否合格 / Fish and attached base; is it sufficiently identifiable?</td></tr>
+<tr><td>chair</td><td>chair</td><td>可见椅背、座面；遮挡与截断 / Visible back and seat; occlusion and clipping</td></tr>
+</tbody></table>
+<label>room2 参考帧 / Reference frame <select id="frame"><option>12</option><option>62</option><option>112</option><option>162</option></select></label>
+<div class="views"><div class="card"><b>原始 RGB / Raw RGB</b><img id="raw2"></div><div class="card"><b>原始草稿（编辑后不自动重绘） / Initial proposal (not redrawn after edits)</b><img id="proposal2"></div></div>
+<details><summary>深度预览 / Depth preview — 0–6m 绿→红，黑色无效 / green→red, invalid black</summary><img id="depth2"></details>
+<h2>room1 — 原始标注的事后复核 / Post-hoc audit of original labels</h2>
+<label>room1 参考帧 / Reference frame <select id="frame1"><option>12</option><option>137</option><option>262</option><option>387</option></select></label>
+<div class="views"><div class="card"><b>原始 RGB / Raw RGB</b><img id="raw1"></div><div class="card"><b>v1 边界 / v1 polygons</b><img id="proposal1"></div></div>
+<details><summary>深度预览 / Depth preview</summary><img id="depth1"></details>
+<section><label>room1 花瓶／植物与重复碎片复核意见 / Vase/plant and fragment audit notes<textarea id="room1notes" style="min-height:100px" placeholder="例如：保留花瓶体为单独物理 ID；植物排除。或说明修改及理由。 / State your decision and reasons."></textarea></label>
+<p>重复指标：同一物理 ID 的多个达标地图对象，超出第一个的数量。分裂但均未达标的碎片不能称为多个完整目标。<br>Duplicate excess counts qualifying objects beyond the first for one physical ID. Subthreshold fragments are not multiple complete recovered targets.</p></section>
+<h2>编辑 room2 标注 / Edit room2 annotations</h2><textarea id="annotations" spellcheck="false"></textarea>
+<section><label>复核者 / Human reviewer <input id="reviewer" placeholder="姓名或 owner / name or owner"></label>
+<div id="checks"></div><button id="export">批准并导出复核文件 / Approve and export reviewed files</button>
+<p>仅在你实际完成复核后点击。导出下载到浏览器默认下载目录；本页不会运行模型、修改仓库或合并分支。<br>Click only after actual human review. Files download locally; this page does not run models or merge branches.</p><pre id="status" role="status"></pre></section>
+<script id="draft" type="application/json">__ANNOTATIONS__</script><script id="receipt" type="application/json">__RECEIPT__</script>
+<script>
+const draft=JSON.parse(document.getElementById('draft').textContent),receipt=JSON.parse(document.getElementById('receipt').textContent);
+document.getElementById('annotations').value=JSON.stringify(draft,null,2);
+const labels={identities:'物理身份 / Physical IDs',boundaries:'对象边界 / Boundaries',category_queries:'类别查询 / Category queries',parts:'部件归属 / Parts',exclusions:'排除项 / Exclusions',all_reference_views:'逐帧可见性 / Every reference view',room1_ontology:'room1 花瓶／植物与重复定义 / room1 ontology'};
+for(const key of Object.keys(receipt.checks)){const label=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.id='check-'+key;label.append(box,document.createTextNode(labels[key]||key));document.getElementById('checks').append(label);}
+function show(scene,select,suffix){const f=String(document.getElementById(select).value).padStart(6,'0');for(const kind of ['raw','proposal','depth']){document.getElementById(kind+suffix).src=scene+'/'+kind+'-'+f+(kind==='raw'?'.jpg':'.png');}}
+document.getElementById('frame').onchange=()=>show('room2','frame','2');document.getElementById('frame1').onchange=()=>show('room1','frame1','1');show('room2','frame','2');show('room1','frame1','1');
+function download(name,content){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type:'application/json'}));a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+document.getElementById('export').onclick=async()=>{const status=document.getElementById('status');try{const reviewer=document.getElementById('reviewer').value.trim(),notes=document.getElementById('room1notes').value.trim();if(!reviewer||!notes)throw Error('请填写复核者和 room1 意见 / Reviewer and room1 notes required');for(const key of Object.keys(receipt.checks)){if(!document.getElementById('check-'+key).checked)throw Error('尚有未复核项目 / All checks required');}const ann=JSON.parse(document.getElementById('annotations').value);if(ann.scene!=='room2'||ann.instances.length<4||ann.instances.length>6)throw Error('需有4–6个 room2 实例 / Need 4–6 room2 instances');ann.human_reviewed=true;ann.version='v2-human-reviewed-1';const serialized=JSON.stringify(ann,null,2)+'\n',hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(serialized));receipt.annotations_sha256=Array.from(new Uint8Array(hash)).map(x=>x.toString(16).padStart(2,'0')).join('');receipt.reviewer=reviewer;receipt.reviewed_at_utc=new Date().toISOString();receipt.approved=true;receipt.room1_ontology_notes=notes;for(const key of Object.keys(receipt.checks))receipt.checks[key]=true;download('room2.targets.reviewed.json',serialized);download('room2.human-review.json',JSON.stringify(receipt,null,2)+'\n');status.textContent='已导出两份文件；请交回本窗口。尚未封存或运行模型。 / Two files exported; return them to this task. No seal or model execution yet.';}catch(error){status.textContent=String(error);}};
+</script></html>

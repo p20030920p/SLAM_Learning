@@ -13,6 +13,9 @@ import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from slam_learning.identity_budget import check_resources, validate_freeze
+
 
 def sha(path):
     h = hashlib.sha256()
@@ -35,9 +38,12 @@ def main():
     parser.add_argument("--native-source", type=Path, required=True)
     parser.add_argument("--weights", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--exploratory", action="store_true")
     args = parser.parse_args()
     cfg = json.loads(args.protocol.read_text())
     seal = json.loads(args.freeze.read_text())
+    if cfg.get("schema_version") == 2:
+        validate_freeze(args.protocol, args.annotations, args.data, seal, exploratory=args.exploratory)
     for key, path in (("protocol_sha256", args.protocol), ("annotations_sha256", args.annotations),
                       ("source_manifest_sha256", args.data / "manifest.json")):
         if seal[key] != sha(path):
@@ -46,6 +52,8 @@ def main():
     record = {"kind": "sealed_new_scene_frontend", "status": "running", "started_at": now(),
               "freeze_sha256": sha(args.freeze), "protocol_sha256": sha(args.protocol),
               "scene": cfg["scene"], "frames": cfg["mapping_frames"], "artifacts": {}}
+    record["analysis_type"] = cfg.get("analysis_type", "legacy_v1" if cfg.get("schema_version") == 1
+                                      else "human_reviewed_confirmation")
     record_path = args.output / "record.json"
 
     def save():
@@ -53,6 +61,9 @@ def main():
 
     save()
     try:
+        if cfg.get("schema_version") == 2:
+            record["resource_preflight"] = check_resources()
+            save()
         data_root = args.output / "input/Replica"
         target = data_root / cfg["scene"]
         (target / "results").mkdir(parents=True)
