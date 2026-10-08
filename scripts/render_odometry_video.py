@@ -62,7 +62,8 @@ def main():
                 cv2.rectangle(canvas,(x,0),(x+640,40),(15,15,15),-1)
                 label(canvas,f"ACTUAL {side.upper()} IR | 640x480",(x+10,27))
         else:
-            with np.load(args.dataset/row["cloud"]) as cloud:
+            source_row=dataset["pairs"][0] if result.get("repeat_first_cloud_control") else row
+            with np.load(args.dataset/source_row["cloud"]) as cloud:
                 xyz=cloud["xyzi"][:,:3]
             for x,axes,title in ((0,(0,1),"RAW CLOUD TOP X/Y"),(640,(0,2),"RAW CLOUD SIDE X/Z")):
                 pane=canvas[:480,x:x+640]
@@ -75,7 +76,11 @@ def main():
         cv2.rectangle(canvas,(0,480),(1280,555),(30,30,30),-1)
         state="MISSING OUTPUT" if status is None else status.get("quality_state",("LOST" if status["lost"] else "TRACKING"))
         algorithm="KISS-ICP" if result["algorithm"]=="KISS-ICP" else f"RTAB-Map {'STEREO' if stereo else 'ICP'}"
-        label(canvas,f"SAVED ALGORITHM OUTPUT REPLAY | {algorithm} | {state}",(15,510),0.55,
+        if result.get("prediction_policy")=="zero_delta_control":
+            algorithm+=" / ZERO-DELTA CONTROL"
+        if result.get("repeat_first_cloud_control"):
+            algorithm+=" / SYNTHETIC IDENTICAL-CLOUD CONTROL"
+        label(canvas,f"SAVED ALGORITHM OUTPUT REPLAY | {algorithm} | {state}",(15,510),0.48,
               (80,220,80) if state=="TRACKING" else (70,70,255))
         elapsed=row["stamp_s"]-rows[0]["stamp_s"]
         if status:
@@ -109,7 +114,10 @@ def main():
             project(pane,world,(310,180),(0,1),45,color=(110,220,120))
             label(pane,"ACCUMULATED USING ESTIMATED POSES",(5,25),0.5)
             label(pane,"Top X/Y; recent 100 clouds; not ground truth",(5,350),0.45)
-        label(canvas,"Static stability only | No external ground truth / ATE | This is offline output playback",(15,950),0.5)
+        footer=("DIAGNOSTIC CONTROL: modified prediction or repeated input; not a new default hardware baseline"
+                if result.get("is_diagnostic_control") else
+                "Static stability only | No external ground truth / ATE | This is offline output playback")
+        label(canvas,footer,(15,950),0.5)
         writer.write(canvas)
         if i==len(rows)//2:
             cv2.imwrite(str(args.run/f"{args.name}.png"),canvas)

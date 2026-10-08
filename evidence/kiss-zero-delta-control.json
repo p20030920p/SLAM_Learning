@@ -1,0 +1,61 @@
+{
+  "status": "evaluated",
+  "algorithm": "KISS-ICP",
+  "mode": "lidar",
+  "package_version": "1.3.0",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "source_sha256": "c79cc1fd24c7e01566416a2867f603229e9a948c32ad26304da3188b817c1749",
+  "dataset": "/mnt/d/workspace/be2/Personal-Learning-Physical/data/l2-official-static-50",
+  "decoder": "official Unitree SDK2 parseFromPacketToPointCloud (unchanged)",
+  "configuration": {
+    "out_dir": "results",
+    "data": {
+      "max_range": 20.0,
+      "min_range": 0.2,
+      "deskew": false
+    },
+    "registration": {
+      "max_num_iterations": 500,
+      "convergence_criterion": 0.0001,
+      "max_num_threads": 2
+    },
+    "mapping": {
+      "voxel_size": 0.08,
+      "max_points_per_voxel": 20
+    },
+    "adaptive_threshold": {
+      "fixed_threshold": null,
+      "initial_threshold": 0.3,
+      "min_motion_th": 0.1
+    }
+  },
+  "input_duration_s": 57.76453161239624,
+  "ground_truth": "User-confirmed stationary original session; no independent metric pose reference",
+  "scope": "Diagnostic control: not an unchanged KISS-ICP hardware baseline; output poses still estimated",
+  "quality_limitation": "KISS-ICP API does not report a tracking-lost flag; finite pose is not proof of correct registration",
+  "deskewing": false,
+  "imu_used": false,
+  "prediction_policy": "zero_delta_control",
+  "repeat_first_cloud_control": false,
+  "is_diagnostic_control": true,
+  "wall_execution_s": 10.537308996999855,
+  "published_pairs": 250,
+  "odometry_messages": 250,
+  "valid_pose_count": 249,
+  "observed_output_fraction": 1.0,
+  "lost_status_fraction": null,
+  "static_translation_max_m": 0.1322902415910474,
+  "static_translation_final_m": 0.12028788702186712,
+  "static_rotation_max_deg": 8.225172008899738,
+  "static_rotation_final_deg": 2.795602679185451,
+  "time_estimation_s": {
+    "median": 0.0289117424995311,
+    "p95": 0.06603225544986342
+  },
+  "static_gate_passed": false,
+  "static_gate": {
+    "max_translation_m": 0.05,
+    "max_rotation_deg": 2,
+    "note": "Project static stability gate; no tracking-lost state is available"
+  }
+}

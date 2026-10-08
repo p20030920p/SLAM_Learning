@@ -2,7 +2,7 @@
 
 从空白分支开始的本机实物传感器学习与验证。目录：`D:\workspace\be2\Personal-Learning-Physical`。
 
-**最新算法实测：** 双目静止基线通过本段目标（0.286 mm／0.093°），尚未验移动。L2 改用官方原生解码后，RTAB-Map ICP 仍偏离 20.00 cm／13.40°；独立 KISS-ICP 偏离 41.54 cm／179.71°，均静止失败。主分支 DUFOMap 原适配器已处理 40 次实测观测并生成有效地图，暂只有接口执行成绩，没有 SA／DA。[本轮结果、视频、预期与复现命令](docs/DIAGNOSTICS_ROUND2.zh-CN.md)；[首轮完整基线](docs/BASELINE_RESULTS.zh-CN.md)。
+**最新算法实测：** 双目静止基线通过本段目标（0.286 mm／0.093°），尚未验移动。原生 L2 点云上的 RTAB-Map ICP、KISS-ICP 均静止失败；KISS 关闭速度外推的诊断对照降至 13.23 cm／8.23°，仍未通过。主分支 DUFOMap 原适配器已处理 40 次实测观测。BeautyMap 原入口遇到小地图边界错误，局部空白网格扩域对照可处理全部 40 次观测，但还不是主分支修复或质量验收。SA／DA 均无标注依据。[第三轮结果、实际效果与复现命令](docs/DIAGNOSTICS_ROUND3.zh-CN.md)；[第二轮](docs/DIAGNOSTICS_ROUND2.zh-CN.md)；[首轮完整基线](docs/BASELINE_RESULTS.zh-CN.md)。
 
 本分支为独立工作树中的 **orphan 分支**，没有复制主分支内容。主仓库为 `../SLAM_Learning`，检查时主分支提交为 `354b02d69ccc90304174f6d36010d25043d739ca`。当前只做本地提交，不推送、不合并。
 

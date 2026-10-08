@@ -1,0 +1,59 @@
+{
+  "kind": "hardware_main_adapter_smoke",
+  "method": "BeautyMap",
+  "status": "failed",
+  "started_at": "2026-10-08T20:39:40.812211+00:00",
+  "main_commit": "354b02d69ccc90304174f6d36010d25043d739ca",
+  "exit_code": 1,
+  "fixed_sensor_session_acknowledged": true,
+  "pose_source": "Identity relative pose from user-confirmed fixed sensor session; not estimated odometry",
+  "scope": "Reuse same 40 actual observations as DUFOMap; interface execution only",
+  "map_input_note": "Legacy gt_cloud.pcd is unlabeled raw XYZ union, not ground truth",
+  "evaluation": {
+    "SA": null,
+    "DA": null,
+    "reason": "No point-level annotation or controlled dynamic events"
+  },
+  "source_blobs": {
+    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
+    "src/slam_learning/adapters.py": "0d79fc212d6ab682e9d53e411b7da7d18073d4e2b5c1361f877594dd6a332f04",
+    "src/slam_learning/pcd.py": "ce37303693339309cf4d5f55d8bf7c4457973c0eb83392c581d4a5579634b034",
+    "configs/methods.json": "5a177d8e100109a5e5639070d8186c26651cf1a9fcf8e0a2e0dacaa66ac8f51f",
+    "configs/upstreams.json": "fbf09ad8ac99d166c198d8ab310c05728e5974c75a702cb79e9bb71f1467400b"
+  },
+  "upstream_commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e",
+  "source_sha256": "c79cc1fd24c7e01566416a2867f603229e9a948c32ad26304da3188b817c1749",
+  "source_observations_sha256": "69cc95348f5ee3b9d39d1079bdc46eadce7ca1ad1ebf61a33c0c2ba8130fa96a",
+  "input_frames": 40,
+  "input_points": 545371,
+  "parameters": {
+    "dis_range": 40,
+    "xy_resolution": 1.0,
+    "h_res": 0.5
+  },
+  "package_versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.14.1",
+    "fire": "0.7.0",
+    "dztimer": "1.1.1",
+    "tqdm": "4.66.5"
+  },
+  "worker_wall_s": 1.5488777700002174,
+  "error": "RuntimeError('Frozen main adapter failed; see worker.log')",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/d/workspace/be2/Personal-Learning-Physical/scripts/run_main_beautymap.py\", line 108, in main\n    raise RuntimeError(\"Frozen main adapter failed; see worker.log\")\nRuntimeError: Frozen main adapter failed; see worker.log\n",
+  "wall_execution_s": 2.8703268039998875,
+  "artifacts": {
+    "worker.log": {
+      "sha256": "8b7fdf2affb6af7158a4a0056cd69a73fe666e9bd6163a8c5b8166c366937f66",
+      "bytes": 2940
+    },
+    "compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366
+    },
+    "source-sequence/gt_cloud.pcd": {
+      "sha256": "eb41626908df86708d3f503b77be239d8dd162bd788c237518087746e9a759c8",
+      "bytes": 6544582
+    }
+  }
+}

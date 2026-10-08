@@ -14,6 +14,10 @@ from kiss_icp.kiss_icp import KissICP
 ap=argparse.ArgumentParser()
 ap.add_argument("dataset",type=Path)
 ap.add_argument("--output",type=Path,required=True)
+ap.add_argument("--prediction",choices=("constant_velocity","zero_delta_control"),default="constant_velocity",
+                help="zero_delta_control disables velocity extrapolation; diagnostic, does not fix the output pose")
+ap.add_argument("--repeat-first-cloud-control",action="store_true",
+                help="Repeat identical first cloud at original timestamps; synthetic zero-motion input control")
 args=ap.parse_args()
 dataset=json.loads((args.dataset/"clouds.json").read_text())
 args.output.mkdir(parents=True,exist_ok=False)
@@ -31,14 +35,23 @@ result={"status":"running","algorithm":"KISS-ICP","mode":"lidar","package_versio
         "ground_truth":"User-confirmed stationary original session; no independent metric pose reference",
         "scope":"Exploratory static control, direct offline execution, not live sensor latency or moving SLAM",
         "quality_limitation":"KISS-ICP API does not report a tracking-lost flag; finite pose is not proof of correct registration",
-        "deskewing":False,"imu_used":False}
+        "deskewing":False,"imu_used":False,"prediction_policy":args.prediction,
+        "repeat_first_cloud_control":args.repeat_first_cloud_control,
+        "is_diagnostic_control":args.prediction!="constant_velocity" or args.repeat_first_cloud_control}
+if result["is_diagnostic_control"]:
+    result["scope"]="Diagnostic control: not an unchanged KISS-ICP hardware baseline; output poses still estimated"
+if args.repeat_first_cloud_control:
+    result["ground_truth"]="Synthetic identical first-cloud repetition; not a new real sensor session"
 poses=[]; statuses=[]; matrices=[]; durations=[]; start=time.perf_counter()
 try:
     odom=KissICP(config)
     for i,row in enumerate(dataset["pairs"]):
-        with np.load(args.dataset/row["cloud"]) as archive:
+        source_row=dataset["pairs"][0] if args.repeat_first_cloud_control else row
+        with np.load(args.dataset/source_row["cloud"]) as archive:
             xyz=np.asarray(archive["xyzi"][:,:3],dtype=np.float64)
         then=time.perf_counter()
+        if args.prediction=="zero_delta_control":
+            odom.last_delta=np.eye(4)
         _,source=odom.register_frame(xyz,np.zeros(len(xyz),dtype=np.float64))
         duration=time.perf_counter()-then
         matrix=odom.last_pose.copy()
