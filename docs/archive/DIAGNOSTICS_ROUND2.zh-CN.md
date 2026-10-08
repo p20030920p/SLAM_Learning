@@ -1,3 +1,5 @@
+> 历史记录（2026-10-08/09）。其中的设备状态和运行方式以当时为准；当前操作见[相机指南](../CAMERA_GUIDE.zh-CN.md)与[雷达指南](../LIDAR_GUIDE.zh-CN.md)。保留失败及复现命令。
+
 # 官方解码、第二条雷达定位基线与主分支接口实测
 
 后续诊断见 [第三轮：运动预测对照与 BeautyMap 室内边界](DIAGNOSTICS_ROUND3.zh-CN.md)。本报告保留第二轮的原始成绩与失败。
@@ -17,10 +19,10 @@
 
 KISS 的 179.71°为标准旋转角距，范围为 0–180°；展开 yaw 后实际持续旋转约两圈，拟合 **12.27°/s**、RMSE 1.35°。处理速度足够快，位置仍错误。耗时是当前有其他任务负载时的离线观测，不是实时硬件延迟或空载性能。
 
-- [双目静止输出视频](../data/rtabmap-stereo-static-02/preview.mp4)：左右 IR、状态、轨迹；右下为最终稀疏局部地图参考，没有回环节点。
-- [KISS-ICP 失败视频](../data/kiss-official-static-50-01/preview.mp4)：原始点云、估计轨迹与依估计位姿累积的近期地图同屏，绿色圆为 5 cm 目标。标注为保存输出回放、质量未验证。
-- [配准诊断图](../data/l2-registration-control-02/diagnostic.png)：展开 yaw、平移、参考扫描距离和局部法向分布。
-- [DUFOMap 输入／输出图](../data/main-dufomap-hardware-smoke-01/comparison.png)：共享坐标范围、按高度着色；固定会话没有受控动态事件。
+- [双目静止输出视频](../../data/rtabmap-stereo-static-02/preview.mp4)：左右 IR、状态、轨迹；右下为最终稀疏局部地图参考，没有回环节点。
+- [KISS-ICP 失败视频](../../data/kiss-official-static-50-01/preview.mp4)：原始点云、估计轨迹与依估计位姿累积的近期地图同屏，绿色圆为 5 cm 目标。标注为保存输出回放、质量未验证。
+- [配准诊断图](../../data/l2-registration-control-02/diagnostic.png)：展开 yaw、平移、参考扫描距离和局部法向分布。
+- [DUFOMap 输入／输出图](../../data/main-dufomap-hardware-smoke-01/comparison.png)：共享坐标范围、按高度着色；固定会话没有受控动态事件。
 
 ## 解码差异的因果对照
 
@@ -48,7 +50,7 @@ L2 原始设备时间仍约以主机一半速度增长。SDK 主机时间路径�
 
 40 份不同观测跨约 39 秒，XYZ binary PCD、单位米、VIEWPOINT 单位姿态。`T_world_sensor=I` 来自用户确认固定的明确假设，没有使用失败的雷达轨迹，也没有当作定位成绩。只读取现有 DUFOMap 环境；主分支代码、原数据集和原结果未覆盖。脚本现要求显式 `--fixed-sensor-session`，避免误把移动记录当固定。加上该输入约束后复跑约 0.760 s，输出 PCD SHA-256 与首次完全一致，见 `main-dufomap-fixed-session-recheck.json`。
 
-输出／输入点数比 **99.33%只是描述性计数，不是 SA**。无点级静／动态标注和事件时间，SA／DA 为空。BeautyMap、ConceptGraphs、HOV-SG 的本次实物适配和正式指标仍待做。预期画面、事件、指标分母和合入流程见 [主分支计划](MAIN_INTEGRATION.zh-CN.md)。
+输出／输入点数比 **99.33%只是描述性计数，不是 SA**。无点级静／动态标注和事件时间，SA／DA 为空。BeautyMap、ConceptGraphs、HOV-SG 的本次实物适配和正式指标仍待做。预期画面、事件、指标分母和合入流程见 [主分支计划](../MAIN_INTEGRATION.zh-CN.md)。
 
 ## 相机设置与下一步
 

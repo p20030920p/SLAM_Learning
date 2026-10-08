@@ -1,3 +1,5 @@
+> 历史记录（2026-10-08/09）。其中的设备状态和运行方式以当时为准；当前操作见[相机指南](../CAMERA_GUIDE.zh-CN.md)与[雷达指南](../LIDAR_GUIDE.zh-CN.md)。保留失败及复现命令。
+
 # 本机实物验证状态：2026-10-08
 
 本机工作目录 `D:\workspace\be2\Personal-Learning-Physical`，分支 `Personal-Learning-Physical`。已有静止定位基线、主分支 DUFOMap 实物接口执行成绩与 BeautyMap 边界诊断；尚无移动／回环／地图算法正式质量验收成绩。最新诊断见 [第三轮报告](DIAGNOSTICS_ROUND3.zh-CN.md)。

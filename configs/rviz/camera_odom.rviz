@@ -1,0 +1,249 @@
+{
+  "Panels": [
+    {
+      "Class": "rviz_common/Displays",
+      "Name": "Displays"
+    },
+    {
+      "Class": "rviz_common/Views",
+      "Name": "Views"
+    }
+  ],
+  "Visualization Manager": {
+    "Class": "",
+    "Name": "root",
+    "Enabled": true,
+    "Global Options": {
+      "Fixed Frame": "odom",
+      "Frame Rate": 20,
+      "Background Color": "28; 28; 32"
+    },
+    "Displays": [
+      {
+        "Class": "rviz_default_plugins/Grid",
+        "Name": "Grid (1m)",
+        "Enabled": true,
+        "Value": true,
+        "Cell Size": 1,
+        "Plane": "XZ",
+        "Plane Cell Count": 20
+      },
+      {
+        "Class": "rviz_default_plugins/TF",
+        "Name": "Frames",
+        "Enabled": false,
+        "Value": false
+      },
+      {
+        "Class": "rviz_default_plugins/PointCloud2",
+        "Name": "Current cloud",
+        "Enabled": true,
+        "Value": true,
+        "Topic": {
+          "Value": "/physical/camera/points",
+          "Depth": 5,
+          "History Policy": "Keep Last",
+          "Reliability Policy": "Reliable",
+          "Durability Policy": "Volatile"
+        },
+        "Color Transformer": "RGB8",
+        "Position Transformer": "XYZ",
+        "Style": "Points",
+        "Size (Pixels)": 2,
+        "Size (m)": 0.01,
+        "Decay Time": 0,
+        "Queue Size": 5,
+        "Channel Name": "intensity",
+        "Use Fixed Frame": true
+      },
+      {
+        "Class": "rviz_default_plugins/Path",
+        "Name": "Odometry trajectory",
+        "Enabled": true,
+        "Value": true,
+        "Topic": {
+          "Value": "/physical/trajectory",
+          "Depth": 5,
+          "History Policy": "Keep Last",
+          "Reliability Policy": "Reliable",
+          "Durability Policy": "Volatile"
+        },
+        "Color": "255; 180; 0",
+        "Line Style": "Lines",
+        "Line Width": 0.03,
+        "Buffer Length": 1
+      },
+      {
+        "Class": "rviz_default_plugins/Marker",
+        "Name": "Tracking status",
+        "Enabled": true,
+        "Value": true,
+        "Topic": {
+          "Value": "/physical/tracking",
+          "Depth": 5,
+          "History Policy": "Keep Last",
+          "Reliability Policy": "Reliable",
+          "Durability Policy": "Volatile"
+        },
+        "Queue Size": 10
+      },
+      {
+        "Class": "rviz_default_plugins/Image",
+        "Name": "RGB",
+        "Enabled": true,
+        "Value": true,
+        "Topic": {
+          "Value": "/physical/camera/color/image",
+          "Depth": 5,
+          "History Policy": "Keep Last",
+          "Reliability Policy": "Reliable",
+          "Durability Policy": "Volatile"
+        },
+        "Transport Hint": "raw",
+        "Normalize Range": true,
+        "Min Value": 0,
+        "Max Value": 1,
+        "Median window": 5
+      },
+      {
+        "Class": "rviz_default_plugins/Image",
+        "Name": "Depth 0-5m",
+        "Enabled": true,
+        "Value": true,
+        "Topic": {
+          "Value": "/physical/camera/depth_color/image",
+          "Depth": 5,
+          "History Policy": "Keep Last",
+          "Reliability Policy": "Reliable",
+          "Durability Policy": "Volatile"
+        },
+        "Transport Hint": "raw",
+        "Normalize Range": true,
+        "Min Value": 0,
+        "Max Value": 1,
+        "Median window": 5
+      },
+      {
+        "Class": "rviz_default_plugins/Image",
+        "Name": "Left IR",
+        "Enabled": false,
+        "Value": false,
+        "Topic": {
+          "Value": "/physical/camera/left/image",
+          "Depth": 5,
+          "History Policy": "Keep Last",
+          "Reliability Policy": "Reliable",
+          "Durability Policy": "Volatile"
+        },
+        "Transport Hint": "raw",
+        "Normalize Range": true,
+        "Min Value": 0,
+        "Max Value": 1,
+        "Median window": 5
+      },
+      {
+        "Class": "rviz_default_plugins/Image",
+        "Name": "Right IR",
+        "Enabled": false,
+        "Value": false,
+        "Topic": {
+          "Value": "/physical/camera/right/image",
+          "Depth": 5,
+          "History Policy": "Keep Last",
+          "Reliability Policy": "Reliable",
+          "Durability Policy": "Volatile"
+        },
+        "Transport Hint": "raw",
+        "Normalize Range": true,
+        "Min Value": 0,
+        "Max Value": 1,
+        "Median window": 5
+      },
+      {
+        "Class": "rtabmap_rviz_plugins/MapCloud",
+        "Name": "RGB-D global map",
+        "Enabled": false,
+        "Value": false,
+        "Topic": {
+          "Value": "/rtabmap/mapData",
+          "Depth": 5,
+          "History Policy": "Keep Last",
+          "Reliability Policy": "Reliable",
+          "Durability Policy": "Volatile"
+        },
+        "Cloud decimation": 4,
+        "Cloud from scan": false,
+        "Cloud max depth (m)": 5,
+        "Cloud min depth (m)": 0.2,
+        "Cloud voxel size (m)": 0.03,
+        "Color Transformer": "RGB8",
+        "Position Transformer": "XYZ",
+        "Style": "Points",
+        "Size (Pixels)": 2,
+        "Size (m)": 0.02,
+        "Use Fixed Frame": true,
+        "Download graph": false,
+        "Download map": false,
+        "Download namespace": "rtabmap"
+      },
+      {
+        "Class": "rviz_default_plugins/PointCloud2",
+        "Name": "Odometry local map",
+        "Enabled": false,
+        "Value": false,
+        "Topic": {
+          "Value": "/odom_local_map",
+          "Depth": 5,
+          "History Policy": "Keep Last",
+          "Reliability Policy": "Reliable",
+          "Durability Policy": "Volatile"
+        },
+        "Color Transformer": "FlatColor",
+        "Position Transformer": "XYZ",
+        "Style": "Points",
+        "Size (Pixels)": 2,
+        "Size (m)": 0.01,
+        "Decay Time": 0,
+        "Queue Size": 5,
+        "Channel Name": "intensity",
+        "Use Fixed Frame": true
+      }
+    ],
+    "Views": {
+      "Current": {
+        "Class": "rviz_default_plugins/Orbit",
+        "Name": "Current View",
+        "Distance": 5.0,
+        "Pitch": 0.0,
+        "Yaw": 4.712389,
+        "Focal Point": {
+          "X": 0,
+          "Y": 0,
+          "Z": 1.5
+        },
+        "Target Frame": "odom"
+      },
+      "Saved": []
+    },
+    "Tools": [
+      {
+        "Class": "rviz_default_plugins/Interact"
+      },
+      {
+        "Class": "rviz_default_plugins/MoveCamera"
+      }
+    ]
+  },
+  "Window Geometry": {
+    "Width": 1400,
+    "Height": 900,
+    "X": 60,
+    "Y": 40,
+    "Displays": {
+      "collapsed": false
+    },
+    "Views": {
+      "collapsed": false
+    }
+  }
+}
