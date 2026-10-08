@@ -117,7 +117,7 @@ def main():
         if digest(root / relative) != digest(output / "inputs" / relative):
             raise ValueError("Protocol/annotations changed after preparation")
     text_path = output / "inputs/text_features.npy"
-    if not text_path.exists():
+    if not text_path.exists() and set(args.methods) & {"conceptgraphs", "hovsg"}:
         code = (
             "import numpy as np,torch,open_clip; "
             "m,_,_=open_clip.create_model_and_transforms('ViT-H-14',"
