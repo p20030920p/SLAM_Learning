@@ -8,8 +8,8 @@
 | --- | --- | --- |
 | D435 | 四路收流；旧原始文件逐路 SDK 回放核验；一段确认固定的双目里程计基线通过 | 没有 IMU；尺量测距、手持移动与回环精度未验 |
 | 相机新实时入口 | RViz 四图/点云能显示；stereo、RGB-D、RGB-D SLAM 能输出，建图有 MapData | 当前近距离桌面 RGB-D 场景曾大量 LOST；实时桥接约 4–6 Hz，不能称 30 Hz 实时算法 |
-| L2 | USB 串口重新发现；原始点云/IMU 有效；新 ICP/KISS 实时输出 | 旧确认固定会话的两种雷达里程计均漂移超标；时间比例仍约 2，LIO 未验 |
-| 主分支 | DUFOMap 固定实测输入处理 40 次观测；BeautyMap 局部网格扩域对照跑通 | BeautyMap 原入口边界错误保留；无 SA/DA 标签；ConceptGraphs/HOV-SG 实物入口未完成 |
+| L2 | 历史点云/IMU 有效，ICP/KISS 曾实时输出 | 最新实时与独立串口复查均仅 32 字节、0 有效点，先恢复供电/接线与收流；旧固定 ICP/KISS 漂移超标，时间比例约 2、LIO 未验 |
+| 主分支 | DUFOMap 固定实测输入处理 40 次观测；BeautyMap 局部网格扩域对照跑通 | BeautyMap 原入口边界错误保留；无 SA/DA 标签；真实 RGB-D 及两套作者加载器各 8/8 帧通过，ConceptGraphs/HOV-SG 实物语义核心仍未运行 |
 
 新入口实测细节见[实时检查报告](LIVE_VALIDATION.zh-CN.md)。原结果在[历史报告](archive/DIAGNOSTICS_ROUND3.zh-CN.md)，不能用这次“能实时输出”覆盖过去失败。
 

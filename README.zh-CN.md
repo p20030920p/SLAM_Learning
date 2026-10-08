@@ -10,6 +10,7 @@
 | 打开雷达，实时看点云，运行 ICP/KISS，了解 Point-LIO 条件 | [雷达操作](docs/LIDAR_GUIDE.zh-CN.md) |
 | 按步骤拿着设备测试，知道正常画面和合格指标 | [测试计划与预期](docs/TEST_PLAN.zh-CN.md) |
 | 测主分支 DUFOMap/BeautyMap/ConceptGraphs/HOV-SG，以后准备合入 | [主分支适配与合入门槛](docs/MAIN_INTEGRATION.zh-CN.md) |
+| 复现真实 RGB-D 导出和两套作者加载器检查 | [RGB-D 实物输入](docs/RGBD_MAIN_INPUT.zh-CN.md) |
 | 环境丢失、Shell/串口/RViz 出错 | [环境与排错](docs/ENVIRONMENT.zh-CN.md) |
 | 查本次确实运行了什么 | [实时入口验证](docs/LIVE_VALIDATION.zh-CN.md) |
 | 查相机固定对照、动态干扰与最新雷达收流复查 | [实物第四轮](docs/CAMERA_TEST_ROUND4.zh-CN.md) |
@@ -40,8 +41,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Persona
 | --- | --- |
 | 相机 | SDK 实测 **D435，没有 IMU**；四路收流正常。旧确认固定双目基线通过初期目标，移动精度未验 |
 | 相机实时 | 四图与点云及定位入口可运行，桥接约 4–6 Hz。前景干扰段曾超标；最新固定相机、动态背景段 RGB-D 2.06 mm/0.387°、双目 1.66 mm/0.249°，数值在目标内，完全静态对照仍待完成 |
-| L2 | 历史点云／IMU及 ICP/KISS 已运行；最新复查实体串口仍在，但仅收到 32 字节、无有效点云，待检查独立供电／接线 |
+| L2 | 历史点云／IMU及 ICP/KISS 已运行；最新实时及独立串口复查均只收到 32 字节、无有效点云，待检查独立供电／接线 |
 | L2 定位 | 旧确认固定的 ICP/KISS 漂移均超标；原始设备时间比例约 2，IMU/Point-LIO 尚未验收 |
-| 主分支算法 | DUFOMap 固定输入接口已跑；BeautyMap 原边界失败、局部扩域对照保留；语义实物接口和 SA/DA 等正式质量指标未验 |
+| 主分支算法 | DUFOMap 固定输入接口已跑；BeautyMap 原边界失败、局部扩域对照保留；真实 RGB-D 导出及 ConceptGraphs/HOV-SG 原生加载器各 8/8 帧通过；语义核心及 SA/DA 等正式质量指标未验 |
 
 目录分工：`scripts/` 可执行采集/算法/诊断；`configs/rviz/` 实时显示配置；`docs/` 当前指南；`docs/archive/` 历史实验；`evidence/` 轻量数字证据。`data/` 原始录制/视频、`.venv/`、`.cache/` 留本机，不上传；新克隆不能直接播放旧本地媒体。

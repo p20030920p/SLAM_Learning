@@ -12,11 +12,11 @@
 - 时间：相机本次报告 `system_time`，雷达原始为设备时间，尚不是共享时钟。未经校验不能直接关联。软件主机接收时间也不能被命名为硬件同步时间。
 - 事件：记录开始、动作、动作完成、恢复时刻；椅子／箱子有独立物理 ID，尺量参考和不确定性单独保存。
 
-**固定会话的 L2→主分支 DUFOMap 接口已实现并实际执行。** `run_main_dufomap.py` 从固定 Git 提交读取原适配器与参数，用 40 份官方解码观测生成 PCD、manifest 和有限地图输出。`run_main_beautymap.py` 复用同一输入：原样 BeautyMap 入口在小地图查询边界越界；每次运行的作者副本做空白网格扩域后可处理 40/40 观测，内部窗口合成回归通过。这个局部诊断控制还需要全面边界与原 KITTI 回归，不能称主分支已修复。固定传感器使用明确标注的单位位姿假设；这些只有接口与软件对照成绩，SA／DA 仍为空。主分支 RGB-D 入口仍需深度对齐和专用 manifest。双目静止通过，RTAB-Map ICP 与 KISS-ICP 雷达静止失败，均未验移动位姿。[最新结果](archive/DIAGNOSTICS_ROUND3.zh-CN.md)。所有适配在本分支及冻结副本中进行，主分支未修改。
+**固定会话的 L2→主分支 DUFOMap 接口已实现并实际执行。** `run_main_dufomap.py` 从固定 Git 提交读取原适配器与参数，用 40 份官方解码观测生成 PCD、manifest 和有限地图输出。`run_main_beautymap.py` 复用同一输入：原样 BeautyMap 入口在小地图查询边界越界；每次运行的作者副本做空白网格扩域后可处理 40/40 观测，内部窗口合成回归通过。这个局部诊断控制还需要全面边界与原 KITTI 回归，不能称主分支已修复。固定传感器使用明确标注的单位位姿假设；这些只有接口与软件对照成绩，SA／DA 仍为空。真实 RGB-D 已实现 SDK 深度对齐、专用 manifest 和作者文件布局；两套原生加载器各 8/8 帧通过，语义核心尚未运行。详见[RGB-D 输入检查](RGBD_MAIN_INPUT.zh-CN.md)。双目静止通过，RTAB-Map ICP 与 KISS-ICP 雷达静止失败，均未验移动位姿。[最新结果](archive/DIAGNOSTICS_ROUND3.zh-CN.md)。所有适配在本分支及冻结副本中进行，主分支未修改。
 
 ## 当前可复现的固定输入入口
 
-实时操作先看[相机指南](CAMERA_GUIDE.zh-CN.md)和[雷达指南](LIDAR_GUIDE.zh-CN.md)。RTAB-Map/KISS 负责前端定位，下面的主分支核心消费给定位姿和观测，角色不同。实时桥接已对齐相机深度并读出 SDK 外参，但还没有为主分支 RGB-D 算法实现专用 manifest/掩码/特征适配，不能直接把实时话题当成已经接通 ConceptGraphs/HOV-SG。
+实时操作先看[相机指南](CAMERA_GUIDE.zh-CN.md)和[雷达指南](LIDAR_GUIDE.zh-CN.md)。RTAB-Map/KISS 负责前端定位，下面的主分支核心消费给定位姿和观测，角色不同。实时桥接已对齐相机深度并读出 SDK 外参；离线 RGB-D manifest 及原生加载/几何接口检查现已完成。掩码、特征和对象地图还需执行语义核心，不能把输入加载通过当作已完成 ConceptGraphs/HOV-SG 建图。复现命令见[实物 RGB-D 操作](RGBD_MAIN_INPUT.zh-CN.md)。
 
 本机已有用户确认固定的旧会话，已导出原生 SDK 点云 `data/l2-official-static-50`。可在 Ubuntu 终端复现固定输入接口；这不是新场景或移动精度验收。每块一行，输出目录若已存在就换新后缀，保留原失败。
 
