@@ -11,7 +11,9 @@ Dynamic robust mapping · Semantic mapping and localization
 
 English | [中文](docs/HOME.zh-CN.md)
 
-[Analysis](docs/papers/README.md) · [Evidence](docs/README.md) · [Setup](docs/guides/REPRODUCE.md) · [Structure](docs/guides/STRUCTURE.md)
+[Directions](#directions-analysis) · [Related works](#related-works) · [Questions](#open-questions) · [Results](#reproduction-results)
+
+[Evidence](#evidence) · [Hardware tests](#hardware-tests) · [Hypothesis](#hypothesis) · [Branches](#branches)
 
 </div>
 

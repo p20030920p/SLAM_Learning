@@ -11,7 +11,9 @@
 
 [English](../README.md) | 中文
 
-[分析](papers/README.zh-CN.md) · [证据](README.zh-CN.md) · [安装](guides/REPRODUCE.zh-CN.md) · [结构](guides/STRUCTURE.zh-CN.md)
+[方向分析](#方向分析) · [相关工作](#相关工作) · [开放问题](#开放问题) · [复现结果](#复现结果)
+
+[实验证据](#实验证据) · [实物测试](#实物测试) · [假设](#假设) · [分支](#分支)
 
 </div>
 
