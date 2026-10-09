@@ -24,7 +24,8 @@
 | 搞清四篇各自做了什么 | [四篇论文卡](../docs/papers/README.zh-CN.md) |
 | 对照近期工作、已有解决机制与反例 | [文献分析](../docs/LITERATURE.zh-CN.md)；其中其余工作属于阅读比较，不能说都复现过 |
 | 理解复现与 H1 的关系 | [独立研究分析](../docs/STUDY.zh-CN.md) |
-| 看新增完整作者流程怎样改变判断 | [四份公开数据与假设边界](AUTHOR_RESULTS_ANALYSIS.zh-CN.md)；新运行与旧子集记录分开阅读 |
+| 看新增作者流程怎样改变判断 | [作者评分、协议与假设边界](AUTHOR_RESULTS_ANALYSIS.zh-CN.md)；新运行与旧子集记录分开阅读 |
+| 查看首次完成的原生语义评分与家用地图 | [CG room0：指标与分母](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)、[HOV-SG：20 帧地图及待重试评分](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/HOVSG_HOME_RESULTS.zh-CN.md) |
 | 补下载论文原始数据 | [KITTI 帧段、原始预处理与 ScanNet 本人申请步骤](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DATA_ACCESS.zh-CN.md) |
 | 核对新增消融与评价协议 | [BeautyMap 表 III：9 项匹配及历史协议](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/KITTI_PAPER_PROTOCOL.zh-CN.md)、[DUFOMap Python 输出／阈值对照](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DUFOMAP_OUTPUT_AUDIT.zh-CN.md) |
 | 看作者表格与我们的数值差距 | [LiDAR 结果](../docs/RESULTS.zh-CN.md)、[语义范围](../docs/SEMANTIC.zh-CN.md) |

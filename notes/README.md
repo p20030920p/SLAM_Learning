@@ -24,7 +24,8 @@ Start with the evidence boundaries, run DUFOMap once, then inspect RViz. Run met
 | Understand each selected paper | [Four paper cards](../docs/papers/README.md) |
 | Check related work, safeguards and counterexamples | [Literature](../docs/LITERATURE.md); additional papers were read, not all reproduced |
 | Connect reproduction to H1 | [Independent analysis](../docs/STUDY.md) |
-| Interpret the new complete author workflows | [Four public releases and hypothesis limits](AUTHOR_RESULTS_ANALYSIS.md); keep new runs distinct from older subsets |
+| Interpret new author workflows | [Author scores, protocols and hypothesis limits](AUTHOR_RESULTS_ANALYSIS.md); keep new runs distinct from older subsets |
+| Inspect the first native semantic score and home map | [CG room0: metrics and denominators](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md), [HOV-SG: 20-frame map with evaluation retry pending](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/HOVSG_HOME_RESULTS.zh-CN.md) |
 | Download missing original paper data | [KITTI intervals, preprocessing and ScanNet access steps](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DATA_ACCESS.zh-CN.md) |
 | Check new ablations and evaluation protocols | [BeautyMap Table III: nine matches and historical protocol](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/KITTI_PAPER_PROTOCOL.zh-CN.md), [DUFOMap Python representation/threshold audit](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/DUFOMAP_OUTPUT_AUDIT.zh-CN.md) |
 | Compare paper and measured results | [LiDAR results](../docs/RESULTS.md), [semantic scope](../docs/SEMANTIC.md) |
