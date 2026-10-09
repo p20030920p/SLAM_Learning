@@ -124,26 +124,7 @@ All three values match at two decimals. All nine accuracy entries across XY=0.5/
 
 ### ConceptGraphs
 
-The paper reports Replica benchmark results; our completed result below covers **room0 only, 400 observations**, with the disclosed SAM batch-16 variant. These scopes differ, so the paper values are reference values, without a reproduction-gap calculation. [Original repository](https://github.com/concept-graphs/concept-graphs/tree/93277a02bd89171f8121e84203121cf7af9ebb5d) · [Paper Table II](https://arxiv.org/html/2309.16650v1#S3.T2) · [Our room0 results](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md).
-
-| Metric | Paper benchmark % | Our room0 % |
-| --- | ---: | ---: |
-| mAcc | 40.63 | 38.3156 |
-| F-mIoU | 35.95 | 50.1379 |
-
-In the author's evaluation confusion matrix, $n_c$ counts reference labels for class $c$, $p_c$ predicted labels and $t_c$ correct matches; $C$ is the evaluated class count and $N=\sum_c n_c$.
-
-$$
-\begin{aligned}
-\mathrm{IoU}_c &= \frac{t_c}{n_c+p_c-t_c}, &
-\mathrm{mAcc} &= \frac{100}{C}\sum_c\frac{t_c}{n_c},\\
-\mathrm{mIoU} &= \frac{100}{C}\sum_c\mathrm{IoU}_c, &
-\text{F-mIoU} &= 100\sum_c\frac{n_c}{N}\mathrm{IoU}_c.
-\end{aligned}
-$$
-
-Zero-denominator terms are 0. The author's `mrecall` is mAcc; F-mIoU is frequency-weighted, whereas our macro mIoU is 21.3460%. [Scoring code](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/utils/eval.py#L57-L84).
-
+TBD
 
 ## Hardware tests
 

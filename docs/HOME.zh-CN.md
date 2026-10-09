@@ -124,26 +124,7 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 ### ConceptGraphs
 
-论文报告 Replica benchmark；下列已完成结果仅覆盖 **room0，400 次观测**，使用已披露的 SAM batch-16 变体。覆盖范围不同，论文值仅供参考，不计算复现差距。[作者源库](https://github.com/concept-graphs/concept-graphs/tree/93277a02bd89171f8121e84203121cf7af9ebb5d) · [论文表 II](https://arxiv.org/html/2309.16650v1#S3.T2) · [我们的 room0 结果](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)。
-
-| 指标 | 论文 benchmark % | 我们的 room0 % |
-| --- | ---: | ---: |
-| mAcc | 40.63 | 38.3156 |
-| F-mIoU | 35.95 | 50.1379 |
-
-在作者的评估混淆矩阵中，$n_c$ 为类别 $c$ 的真值标签数，$p_c$ 为预测标签数，$t_c$ 为正确匹配数；$C$ 为评估类别数，$N=\sum_c n_c$。
-
-$$
-\begin{aligned}
-\mathrm{IoU}_c &= \frac{t_c}{n_c+p_c-t_c}, &
-\mathrm{mAcc} &= \frac{100}{C}\sum_c\frac{t_c}{n_c},\\
-\mathrm{mIoU} &= \frac{100}{C}\sum_c\mathrm{IoU}_c, &
-\text{F-mIoU} &= 100\sum_c\frac{n_c}{N}\mathrm{IoU}_c.
-\end{aligned}
-$$
-
-分母为零的项记为 0。作者的 `mrecall` 即 mAcc；F-mIoU 按类别点数加权，而我们的宏平均 mIoU 为 21.3460%。[评分代码](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/utils/eval.py#L57-L84)。
-
+TBD（待定）
 
 ## 实物测试
 
