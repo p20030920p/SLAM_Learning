@@ -48,7 +48,7 @@ The first direction emphasizes reliable motion and geometry. The second adds obj
 
 ## Related works
 
-These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing. DUFOMap/BeautyMap hold each selected observation for eight frames at 12 fps; ConceptGraphs uses the complete 5 fps RViz recording. [Preview timing](results/reference/media-previews-v3/record.json) · [Complete ConceptGraphs](results/reference/conceptgraphs-full-media/record.json).
+These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing; each selected map observation is held for eight frames at 12 fps. [GIF timing and sources](results/reference/media-previews-v3/record.json).
 
 ### [DUFOMap](docs/papers/dufomap.md)
 
@@ -64,9 +64,9 @@ These are saved-result replays from supplied-pose mapping runs. GIFs preserve th
 
 ### [ConceptGraphs](docs/papers/conceptgraphs.md)
 
-![ConceptGraphs complete RViz recording](results/reference/conceptgraphs-full-media/conceptgraphs-rviz.gif)
+![ConceptGraphs core replay](results/reference/media-previews-v3/conceptgraphs.gif)
 
-**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The complete **69.6-second GIF (348 frames, 5 fps)** shows five saved mapping snapshots (observations 1/10/20/30/39), then four text-query stages. It includes the recording's opening, transitions and ending. Candidate correctness is unverified. [Full MP4](docs/media/rviz/conceptgraphs.mp4).
+**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](docs/media/conceptgraphs/replay.mp4).
 
 ### [HOV-SG](docs/papers/hovsg.md)
 

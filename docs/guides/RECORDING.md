@@ -27,12 +27,13 @@ Four separate complete xterm/PTY recordings span fresh command startup through e
 
 The original per-paper GIFs/MP4s are rendered replays of measured final maps. LiDAR input/removed/retained views use original PCL classifications; semantic panels combine native observations, final maps and candidates. ConceptGraphs coordinates are checked against its actual absolute-pose entrypoint and 39 saved camera matrices, without applying the first-frame transform again.
 
-The homepage uses [v3 GIFs with verified timing](../../results/reference/media-previews-v3/record.json) for DUFOMap/BeautyMap and [complete recordings](../../results/reference/conceptgraphs-full-media/record.json) for ConceptGraphs. The former hero played 21 snapshots in 2.52 seconds; v3 displays them over 13.99 seconds, matching the 14-second companion replay. ConceptGraphs now retains the **complete 69.6-second RViz video (348 frames, 5 fps)** and **complete 60-second author-viewer video (900 frames, 15 fps)**, including source opening/ending frames. These replace the 13.33-second summary, 59-second RViz excerpt and 48-second viewer excerpt in the delivery. The two recordings inspect separate 40- and 400-observation runs, respectively.
+The homepage's primary previews use [v3 GIFs with verified timing](../../results/reference/media-previews-v3/record.json). ConceptGraphs has returned to the original **13.33-second summary of 20 selected observations**. The former hero played 21 snapshots in 2.52 seconds; v3 displays them over 13.99 seconds, matching the 14-second companion replay. The [complete ConceptGraphs recordings](../../results/reference/conceptgraphs-full-media/record.json) remain available as supplements: **69.6-second RViz (348 frames, 5 fps)** and **60-second author viewer (900 frames, 15 fps)**, including source opening/ending frames. They inspect separate 40- and 400-observation runs, respectively; the viewer remains in the homepage's expandable recordings section.
 
 | GIF | Source/display rate | Encoded frames | GIF seconds |
 | --- | --- | ---: | ---: |
 | dufomap | 12/1 | 168 | 14.01 |
 | beautymap | 12/1 | 168 | 14.01 |
+| conceptgraphs (primary summary) | 12/1 | 160 | 13.33 |
 | dufomap-rviz | 5/1 | 120 | 24.00 |
 | beautymap-rviz | 5/1 | 120 | 24.00 |
 | conceptgraphs-rviz (complete) | 5/1 | 348 | 69.60 |

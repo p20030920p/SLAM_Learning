@@ -48,7 +48,7 @@
 
 ## 相关工作
 
-以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序。DUFOMap／BeautyMap 在 12 fps 下将每个选定观测保持八帧；ConceptGraphs 使用完整的 5 fps RViz 录像。[预览时序](../results/reference/media-previews-v3/record.json) · [完整 ConceptGraphs](../results/reference/conceptgraphs-full-media/record.json)。
+以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序；每个选定地图观测在 12 fps 下保持八帧。[GIF 时序与来源](../results/reference/media-previews-v3/record.json)。
 
 ### [DUFOMap](papers/dufomap.zh-CN.md)
 
@@ -64,9 +64,9 @@
 
 ### [ConceptGraphs](papers/conceptgraphs.zh-CN.md)
 
-![ConceptGraphs 完整 RViz 录像](../results/reference/conceptgraphs-full-media/conceptgraphs-rviz.gif)
+![ConceptGraphs 核心回放](../results/reference/media-previews-v3/conceptgraphs.gif)
 
-**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。完整 **69.6 秒 GIF（348 帧，5 fps）**展示五个建图快照（第 1／10／20／30／39 次观测）及之后的四个文本查询阶段，保留录像开头、阶段切换与结尾。候选正确性未验证。[完整 MP4](media/rviz/conceptgraphs.mp4)。
+**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](media/conceptgraphs/replay.mp4)。
 
 ### [HOV-SG](papers/hovsg.zh-CN.md)
 

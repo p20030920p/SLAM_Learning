@@ -4,11 +4,11 @@ English | [中文](conceptgraphs.zh-CN.md) | [PDF](../pdf/conceptgraphs.en.pdf)
 
 **Executed:** author class-agnostic SAM/CLIP frontend and native object association/fusion on 40 posed Replica room0 observations. This is a core subset, not complete paper evaluation.
 
-![ConceptGraphs complete RViz recording](../../results/reference/conceptgraphs-full-media/conceptgraphs-rviz.gif)
+![ConceptGraphs observations and final map](../../results/reference/media-previews-v3/conceptgraphs.gif)
 
-**Complete recording: 69.6 seconds, 348 frames at the original 5 fps.** It shows five saved mapping snapshots (observations 1/10/20/30/39), followed by four text-query stages, including the opening, transitions and ending. This is inspection of saved results; highlighted candidates have not been independently verified.
+**Summary replay: 13.33 seconds, 160 video frames at 12 fps.** Twenty selected observations show native image segments beside the final map and text-query candidates. The map is final, not an online mapping timeline; candidate correctness is unverified.
 
-[Full MP4](../media/rviz/conceptgraphs.mp4) · [GIF](../../results/reference/conceptgraphs-full-media/conceptgraphs-rviz.gif) · [Run](../../results/reference/conceptgraphs-wsl/record.json) · [Timing and sources](../../results/reference/conceptgraphs-full-media/record.json)
+[MP4](../media/conceptgraphs/replay.mp4) · [GIF](../../results/reference/media-previews-v3/conceptgraphs.gif) · [Run](../../results/reference/conceptgraphs-wsl/record.json) · [Timing](../../results/reference/media-previews-v3/record.json)
 
 ## Method
 
@@ -43,12 +43,13 @@ The open question is whether later pose corrections can recover identity and tar
 
 This method directly connects semantic mapping and visual localization to geometric reliability. LLaVA captions, LLM graph reasoning, complete semantic metrics and navigation are outside this run. [Setup and limitations](../guides/SEMANTIC.md) · [Shared question](../research/STUDY.md).
 
-## Author viewer
-
-![ConceptGraphs complete author viewer](../../results/reference/conceptgraphs-full-media/conceptgraphs-author-viewer.gif)
-
-**Complete recording: 60 seconds, 900 frames at the original 15 fps.** This is a separate [400-observation room0 run](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md). The author viewer rotates the saved map and switches RGB/instance colors. It does not display queries or scene-graph relations. [Full MP4](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4).
-
 ## Playback
 
-The former primary GIF came from a separate **13.33-second summary**, showing only 20 selected observations beside the final world-XZ map and a red query candidate. It was not the complete RViz or author-viewer recording. The complete recordings above now replace that summary in the delivery. [Historical summary MP4](../media/conceptgraphs/replay.mp4) · [Historical media record](../../results/reference/paper-media-conceptgraphs/record.json).
+The original summary is restored as the main display. Its renderer selects 20 of the 40 observations; a same-layout replay of all 40 has not been exported. [Media record](../../results/reference/paper-media-conceptgraphs/record.json).
+
+Longer recordings remain available separately:
+
+- **RViz:** complete 69.6-second recording, 348 frames at 5 fps; five saved mapping snapshots and four query stages, including opening and ending. [MP4](../media/rviz/conceptgraphs.mp4) · [GIF](../../results/reference/conceptgraphs-full-media/conceptgraphs-rviz.gif).
+- **Author viewer:** complete 60-second recording, 900 frames at 15 fps, from a separate [400-observation room0 run](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md). It rotates the saved map and switches RGB/instance colors, without queries or scene-graph relations. [MP4](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [GIF](../../results/reference/conceptgraphs-full-media/conceptgraphs-author-viewer.gif).
+
+[Complete-recording timing and sources](../../results/reference/conceptgraphs-full-media/record.json). These are saved-result inspections, not continuous recordings of all mapping updates.
