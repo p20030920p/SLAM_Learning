@@ -4,7 +4,7 @@
 
 This is an exploratory extension on already inspected KITTI teaser and Replica room0, not a held-out confirmation. H1 remains a candidate. The protocol, annotation coordinates and code are committed before collecting paired results. Failed attempts are retained rather than silently overwritten.
 
-## Frozen factors
+## 1. Frozen factors
 
 `configs/paired_pose.json` specifies 141 LiDAR scans and eight RGB-D observations at original indexes 0,25,...175. All four author cores get a zero-error control and 18 perturbations: translation RMS 3/10/30 cm, three seeds, two temporal orders. There are 76 primary cells. Only world-x translation changes; rotation is not tested.
 
@@ -12,7 +12,7 @@ The first pose is fixed. Normal samples for later poses are centred and rescaled
 
 Raw RGB/depth, masks, CLIP features, calibration and native mapping settings remain fixed within each method. The two semantic methods use the same eight source indexes with their previously disclosed native resolution adaptations. ConceptGraphs uses its original batch mapper from frozen detections. HOV-SG reconstitutes native pixel features from saved F_p using the same CUDA accumulation/normalization/cast, then calls the original `Graph.create_feature_map()`. Zero-error `map.ply` and `segment_features.npy` must match the previous native HOV run byte for byte before interpreting perturbations.
 
-## Objects and targets
+## 2. Objects and targets
 
 `annotations/room0/targets.json` contains four visually labelled instances/parts: cabinet, lamp shade and two ottomans, using raw source frames 0 and 150. These are AI-assisted polygons inspected by Codex, not human-reviewed labels or official Replica semantic ground truth. Annotation overlays are reviewable. No model mask is used as ground truth, and annotations never enter a mapper.
 
@@ -22,11 +22,11 @@ For each map, report best 10 cm reference-surface coverage, the number of qualif
 
 Query hit is restricted to these labelled targets. An unmatched top-1 might be a valid unlabelled instance elsewhere; it is not automatically an open-world semantic false positive. Anchors measure distance to the returned geometry, not complete-object centres. No unobserved object is labelled absent.
 
-## LiDAR evaluation
+## 3. LiDAR evaluation
 
 Translate both world XYZ and sensor origin, preserving original point identities and original dynamic/static labels outside the algorithm. Raw map and scan files passed to author code contain only XYZ and VIEWPOINT. Evaluate cleaned-map membership at each point's **own perturbed coordinates**, using a fixed 5 cm nearest-neighbour rule; do not score shifted maps against unshifted GT. This isolates decisions from a trivial global-coordinate penalty, although the correspondence rule can still affect scores. Also report DUFOMap's direct per-point segment labels to expose that measurement effect.
 
-## Decision and limits
+## 4. Decision and limits
 
 Report every seed and paired difference, alongside zero-error controls; seed repetition on one scene is not independent-scene replication. A correlation effect may improve, worsen or leave results unchanged. Opposite effects across methods weaken a universal-bottleneck claim. Static Replica scenes cannot measure semantic motion/change recall, and offline final maps cannot measure update latency or recoverability after delayed correction. These results can motivate or narrow H1 but cannot establish its matched-recall/coverage/delay benefit.
 

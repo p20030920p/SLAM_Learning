@@ -4,7 +4,7 @@ English | [中文](STUDY.zh-CN.md)
 
 **Spatial correspondence affects map decisions; a common dominant shared-pose-uncertainty bottleneck has not been established.** All four cores ran, but optimize different tasks. Author mechanisms, measurements and our inferences are separated below. [Full paired report](PAIRED_RESULTS.md) · [Raw evidence](../results/reference/paired-pose/record.json).
 
-## What each reproduction achieved
+## 1. What each reproduction achieved
 
 | Core and connection to the hypothesis | Achieved scope and metrics | Remaining gap or counterevidence |
 | --- | --- | --- |
@@ -15,7 +15,7 @@ English | [中文](STUDY.zh-CN.md)
 
 Achievement here means execution and measurement within the stated scope, not reproduction of every paper result. [Paper cards](papers/README.md) retain settings, sources and failures.
 
-## What is empirically shared
+## 2. What is empirically shared
 
 The shared dependency is **posed observation → spatial correspondence → map decision**. Losses and assumptions differ: DUFOMap has tolerances, BeautyMap restores hidden geometry, ConceptGraphs supports updates, and HOV-SG states a static-scene limitation.
 
@@ -33,13 +33,13 @@ Thus **“correlation is always worse” is rejected by counterexamples**. Local
 
 Simple controls are strong competitors. Increasing DUFOMap d_p from 1 to 2 raises reference SA from 92.6341% to 99.7817% while DA falls to 96.3900%. Lowering ConceptGraphs association threshold from 1.2 to 1.0 makes all three 30 cm drift seeds hit all three restricted queries. Any new mechanism must improve on these inexpensive choices.
 
-## What the metrics cannot establish
+## 3. What the metrics cannot establish
 
 SA/DA measure static retention and dynamic removal. Semantic coverage measures support for annotated partial surfaces; recovery also requires visible projection precision. Restricted query hits check top-1 correspondence to annotated targets. Surface distance is neither full-object center error nor navigation error. Baseline query misses cannot be attributed to injected poses, and an unannotated instance may still be valid.
 
 The four surfaces are AI-assisted annotations without independent human review; reference images are also mapping inputs, and the exact first pose protects some geometry. Three seeds are not three scenes and their range is not a confidence interval. Both arrangements share pose error across all points in a frame; **shared-variable and independent-variance estimators were not compared**. Static room0 cannot measure real change recall, and final offline maps cannot measure staleness or delayed-correction recovery.
 
-## Open question and candidate H1
+## 4. Open question and candidate H1
 
 **When a later pose correction changes historical correspondence, how can object identity and query coordinates recover, with a measurable bound on exposure to stale results?** Pose sensitivity and the separation between geometry and retrieval motivate the question. They do not yet demonstrate that a recovery mechanism is necessary or beneficial.
 

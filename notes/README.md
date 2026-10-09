@@ -1,10 +1,14 @@
+<div align="center">
+
 # Personal study, operation and analysis index
+
+</div>
 
 English | [中文](README.zh-CN.md)
 
 Use `notes/personal-study-guide-20261008` to walk through the workflow, compare author code and develop your own research argument. The reviewer entry remains [main](https://github.com/p20030920p/SLAM_Learning/tree/main). These guides are kept off main. A published branch is still publicly accessible; full recordings and raw device data remain local.
 
-## Reading order
+## 1. Reading order
 
 | Order | Guide | Purpose |
 | --- | --- | --- |
@@ -12,11 +16,11 @@ Use `notes/personal-study-guide-20261008` to walk through the workflow, compare 
 | 2 | [Start from Windows](WINDOWS_START.md) | Which application, directory, shell and command to use; where outputs go |
 | 3 | [Author repositories versus this repository](UPSTREAM_COMPARISON.md) | Original repositories, pinned versions, entry points, adaptations and missing scope |
 | 4 | [Manual reproduction and recording](MANUAL_RECORDING.md) | Run the native cores, inspect saved outputs in RViz, record the graphical side |
-| 5 | [Home device runbook](HOME_RUNBOOK.md) | Connect D435i/L2, capture four events, check playback and identify pending adapters |
+| 5 | [Home device runbook](HOME_RUNBOOK.md) | Connect D435/L2, capture four events, check playback and identify pending adapters |
 
 Start with the evidence boundaries, run DUFOMap once, then inspect RViz. Run methods serially, especially the SAM/CLIP workloads on the 12 GiB GPU.
 
-## Research navigation
+## 2. Research navigation
 
 | Need | Entry |
 | --- | --- |
@@ -36,7 +40,7 @@ Start with the evidence boundaries, run DUFOMap once, then inspect RViz. Run met
 | Extend with home hardware | [Public protocol](../docs/REAL_WORLD.md) plus [device steps](HOME_RUNBOOK.md) |
 | Check attribution and AI use | [Attribution](../docs/ATTRIBUTION.md), [disclosure](../docs/DISCLOSURE.md) |
 
-## Machine paths
+## 3. Machine paths
 
 | Path | Role |
 | --- | --- |

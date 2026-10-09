@@ -6,13 +6,13 @@ Numbers below retain the earlier subset and exploratory records. See [new author
 
 The supplied email asks for an argued open research question and a testable hypothesis, based on relevant work from roughly the past 3–5 years. Reproduction, numbers and figures should substantiate the reasoning. Deliver a carefully organized GitHub repository link by October 9 inclusive. The email does not specify a timezone or an exact final hour.
 
-## Connecting topics 1 and 2
+## 1. Connecting topics 1 and 2
 
 Topic 1 covers robust localization/SLAM in dynamic environments; topic 2 covers semantic mapping, visual localization and navigation. This project studies a narrower interface: **poses establish spatial correspondences, which affect dynamic-point decisions, object fusion and language-query coordinates.**
 
 DUFOMap, BeautyMap, ConceptGraphs and HOV-SG are 2024 papers; the ConceptGraphs preprint began in 2023. The first pair addresses dynamic map cleaning, the second open-vocabulary 3D representations. They provide a tractable entry into the selected topics, rather than full coverage. The executed cores use supplied poses; trajectory estimation, visual-localization benchmarks and robot navigation were not evaluated.
 
-## Requirements and evidence
+## 2. Requirements and evidence
 
 | Requirement | Current material | Your remaining judgment |
 | --- | --- | --- |
@@ -25,7 +25,7 @@ DUFOMap, BeautyMap, ConceptGraphs and HOV-SG are 2024 papers; the ConceptGraphs 
 
 The email assigns no numerical weights and does not require training a new model, completing every paper experiment or obtaining positive results. Practical execution supports the argument; it does not replace it.
 
-## What each reproduction contributes
+## 3. What each reproduction contributes
 
 | Method | Achieved evidence | Missing scope or challenged claim |
 | --- | --- | --- |
@@ -36,7 +36,7 @@ The email assigns no numerical weights and does not require training a new model
 
 Perturbation values are means across three seeds. Semantic comparisons use eight common observations. SA/DA, partial-surface coverage and restricted top-1 are different tasks and cannot form a common leaderboard. See [the report](../docs/PAIRED_RESULTS.md) for definitions and denominators.
 
-## Build the argument
+## 4. Build the argument
 
 1. **Observation:** correspondence affects decisions differently across tasks. LiDAR retains static points better under drift than shuffled errors; HOV-SG can retain annotated geometry while retrieval degrades.
 2. **Boundary:** sorting/shuffling changes both local consistency and assignment to viewpoints. Four partial surfaces have AI-assisted annotations without independent human review; reference frames enter mapping. Three seeds are not three scenes.
@@ -49,7 +49,7 @@ DUFOMap `d_p=2` and ConceptGraphs threshold `1.0` are already strong simple cont
 
 Khronos already includes joint optimization, history and map reconciliation. Memory/rollback alone is not novelty. Even the narrower bounded pose-correction/open-vocabulary validity interface remains a candidate contribution pending prior-work checks. [Original paper](https://arxiv.org/html/2402.13817v2), [literature comparison](../docs/LITERATURE.md).
 
-## Match claims to measurements
+## 5. Match claims to measurements
 
 | Claim | Measurement | Pitfall |
 | --- | --- | --- |
@@ -60,7 +60,7 @@ Khronos already includes joint optimization, history and map reconciliation. Mem
 | Stop exposing stale coordinates | Event/correction-to-invalidation/update times, including abstention coverage loss | A final offline map cannot measure stale exposure |
 | Justify H1 cost | Risk curves at matched recall/coverage/latency, peak memory and replay time | Budgets are not measurements; selecting one favorable operating point is insufficient |
 
-## Completed short draft
+## 6. Completed short draft
 
 Filled on 2026-10-09. First-person prose is an editable argument, not a claim that the applicant personally read every source or manually executed these runs. See the [full Chinese draft](OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md) for sources, component controls and rejection rules.
 
@@ -85,6 +85,6 @@ Filled on 2026-10-09. First-person prose is an editable argument, not a claim th
 | 2026-10-09; `dufomap-table4-ablation-01` | All 15 SA/DA/AA entries match paper rounding | Existing compensation is a strong baseline | No delayed corrections or H1 result |
 | 2026-10-09; `beautymap-table3-historical-01` | All nine SA/DA/HA entries match Table III rounding | Existing parameter tradeoffs matter; AA differs from HA | 00/01 gaps remain; not all historical settings are identified |
 | 2026-10-09; `dufo-python-output-audit-01` | Voxel SA depends strongly on representation/NN threshold | Freeze scoring before attributing errors | Low voxel SA does not imply equivalent deletion |
-| Applicant manual rerun / D435i and L2 sessions | Not yet performed or collected | Operation and experiment protocols are available | Adapters, reference annotations and recovery module remain unverified |
+| Controlled D435/L2 H1 sessions | Unfinished; [basic hardware trials](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical) recorded separately | Operation protocols exist | Semantic quality, independent references and recovery module remain unverified |
 
 Automated author-run records do not establish personal manual observations. Keep these new originals distinct from older exploratory subsets. The proposed hypothesis experiment has not started.

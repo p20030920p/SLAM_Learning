@@ -165,7 +165,9 @@ python3 scripts/view_measured_rviz.py \
 
 此时 RViz 显示点云，旁边来源面板显示观测和阶段。左键拖动旋转、滚轮缩放；仔细看对象是否碎裂、查询高亮是否合理。`--cycles 0` 表示循环，按 `Ctrl+C` 停止发布，再关闭 RViz。
 
-如果本机旧 `.rviz` 文件被移动，直接运行 `rviz2`，设置 Fixed Frame 为 `map`，通过 Add 添加 PointCloud2 `/study/cloud`，设 Color Transformer 为 RGB8；另加 Marker `/study/label`。让发布器运行后调整视角，再通过 File → Save Config As 保存自己的配置。四种方法的准备命令及如何绑定新结果见[录屏手册](MANUAL_RECORDING.zh-CN.md)。
+如果本机旧 `.rviz` 文件被移动，直接运行 `rviz2`，设置 Fixed Frame 为 `map`，通过 Add 添加 PointCloud2 `/study/cloud`，设 Color Transformer 为 RGB8；另加 Marker `/study/label`。让发布器运行后调整视角，再通过 File → Save Config As 保存自己的配置。
+
+四种方法的准备命令及如何绑定新结果见[录屏手册](MANUAL_RECORDING.zh-CN.md)。
 
 从 PowerShell 可直接打开已录视频目录：
 
@@ -179,7 +181,7 @@ explorer.exe 'D:\workspace\be2\SLAM_Recordings\2026-10-08\rviz-review-v3'
 
 读[原库对照](UPSTREAM_COMPARISON.zh-CN.md)，依次打开固定 README、实际入口、`compatibility.patch`、本次 `record.json`。不要直接改缓存源码。
 
-居家测试先读[公开实验设计](../docs/REAL_WORLD.zh-CN.md)，再按[设备操作手册](HOME_RUNBOOK.zh-CN.md)连接 D435i／L2。第一阶段只做固定传感器四事件采集和回放。设备数据适配与 H1 模块尚未实现，不能把采到 bag 等同于完成假设检验。
+居家测试先读[公开实验设计](../docs/REAL_WORLD.zh-CN.md)，再按[设备操作手册](HOME_RUNBOOK.zh-CN.md)连接 D435／L2。第一阶段只做固定传感器四事件采集和回放。设备数据适配与 H1 模块尚未实现，不能把采到 bag 等同于完成假设检验。
 
 ## 7. 遇到问题先定位在哪层
 
@@ -212,4 +214,6 @@ bash scripts/setup_semantic.sh
 bash scripts/setup_hovsg.sh
 ```
 
-先确认 `uv --version` 可用。若换成全新 Windows，没有 WSL 时在管理员 PowerShell 执行 `wsl --install -d Ubuntu-22.04`，按提示重启／创建账户，再依[微软安装说明](https://learn.microsoft.com/windows/wsl/install)配置；新的账户和路径不会自动叫 qzl。`uv` 缺失时用[官方安装说明](https://docs.astral.sh/uv/getting-started/installation/)。新机器的 CUDA、RViz 和设备驱动仍需另验，不能沿用本机成功状态。
+先确认 `uv --version` 可用。若换成全新 Windows，没有 WSL 时在管理员 PowerShell 执行 `wsl --install -d Ubuntu-22.04`，按提示重启／创建账户，再依[微软安装说明](https://learn.microsoft.com/windows/wsl/install)配置；新的账户和路径不会自动叫 qzl。
+
+`uv` 缺失时用[官方安装说明](https://docs.astral.sh/uv/getting-started/installation/)。新机器的 CUDA、RViz 和设备驱动仍需另验，不能沿用本机成功状态。

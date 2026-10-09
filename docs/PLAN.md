@@ -17,27 +17,27 @@ The hypothesis remains a candidate until the reproduction gates below are met. T
 | E2 | Update and query risk | Compare at matched coverage, recall and latency; record stale duration | Planned; current toy alone cannot decide |
 | V0 | Publish animation/video | Render from scored labels and bind camera/run/frame metadata | Four per-paper MP4/GIFs and bilingual reports published; drift/held-out comparisons reserved |
 
-## First semantic reproduction
+## 1. First semantic reproduction
 
 Start with the author's offline object-map construction and query interface, not a navigation stack. [ConceptGraphs code](https://github.com/concept-graphs/concept-graphs) is a candidate because geometry/semantic association is inspectable. Before installing it, pin a runnable revision and record its dataset, checkpoints and depth/pose sources. Check GPU memory against the actual pipeline; the current CPU lockfile is not a ConceptGraphs environment.
 
 The baseline deliverable is a map built with recorded author settings and explicit adaptations, object association traces, and queries returning world coordinates. If known poses fail to reproduce that baseline, fix setup before injecting drift. ConceptGraphs and HOV-SG subset cores have both executed; see the scoped [semantic baselines](SEMANTIC.md).
 
-## Candidate confirmation factors
+## 2. Candidate confirmation factors
 
 Hold the frontend fixed. Sweep translation and rotation, stable-anchor fraction, mover fraction, occlusion and pose-correction delay. Separate error magnitude from temporal correlation. Include unchanged and genuinely removed objects; hidden is not removed.
 
 Compare swept thresholds/margins, visibility gating, independent pose variance and shared-latent inference. Joint systems such as Khronos provide an informed counterexample where integration is feasible. Use validation scenes for all parameters; keep held-out environments and seeds unseen until H0 is committed.
 
-## Decision variables
+## 3. Decision variables
 
 Measure static false deletion, change recall, identity fragmentation, probability calibration, current-target coordinate error, query coverage, stale duration, latency and compute. Publish risk–coverage and risk–latency curves rather than one favorable operating point. Keep world-coordinate query error separate from SLAM ATE and executed navigation success.
 
-## Media tied to the stages
+## 4. Media tied to the stages
 
 R0/R2 feed the raw–removed–retained animation; R1 feeds the correspondence figure; R3 feeds the semantic-map query video; E0 feeds the pose-drift animation; E2 feeds risk curves. The [media index](figures/README.md) contains filenames, captions and evidence requirements. A reserved filename is not a result.
 
-## Stop or revise
+## 5. Stop or revise
 
 Do not advance to a confirmatory claim if the baseline measurement is unresolved. Revise H1 if simple threshold sweeps match its benefit, independent variance is sufficient, covariance estimates are uncalibrated, or reduced deletion increases stale-target time. Report majority-motion failure as an information boundary rather than excluding the scene.
 

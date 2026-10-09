@@ -8,7 +8,7 @@ English | [中文](dufomap.zh-CN.md) | [PDF](../../output/pdf/dufomap.en.pdf)
 
 [MP4](../media/dufomap/replay.mp4) · [GIF](../media/dufomap/preview.gif) · [Run](../../results/reference/dufomap-wsl/record.json) · [Media provenance](../../results/reference/paper-media-dufomap/record.json)
 
-## Method and execution
+## 1. Method and execution
 
 [DUFOMap (2024)](https://arxiv.org/html/2403.01449v1) accumulates occupied and observed void space. A point is classified using whether its location was observed empty. Pose/range tolerances protect against registration and measurement errors. The author implementation is DUFOMap 1.1.1; exact dependencies and upstream revisions are pinned in the repository.
 
@@ -20,7 +20,7 @@ uv run slam-study run --method dufomap
 
 The full archive checksum is verified. GT annotations enter evaluation and coloring only. A 10-frame smoke run deliberately produces no paper score. Windows, fresh Ubuntu CI and local WSL runs yield identical full-teaser confusion counts.
 
-## Measured output
+## 2. Measured output
 
 | Metric | Measured % | Paper Table I % | Difference, pp |
 | --- | ---: | ---: | ---: |
@@ -32,7 +32,7 @@ Evaluation uses 17,362,230 labeled points and a 5 cm map nearest-neighbor rule. 
 
 The same-instance diagnostic increases SA by 5.347532 pp when scoring the same retained points using map proximity instead of original identities. This is a scoring effect, not an algorithm improvement. [Controls and raw counts](../RESULTS.md).
 
-## Limitation and research relevance
+## 3. Limitation and research relevance
 
 The authors discuss pose sensitivity, sparse returns and regions never observed empty (III-B, V-C/E). This method already models uncertainty margins; calling it noise-unaware would be inaccurate. Enlarging a margin trades static preservation against dynamic removal, as our direct-label sensitivity shows.
 
@@ -40,6 +40,6 @@ Our open question is whether temporally correlated registration errors can be se
 
 A shared-pose/provisional-update sidecar is plausible when stable anchors exist. It must outperform margin sweeps at equal recall and delay; otherwise reject the extra mechanism. A region never seen empty is an information limitation, not a reason to invent a confident deletion. [Cross-paper argument](../STUDY.md).
 
-## Video interpretation
+## 4. Video interpretation
 
 The clip shows 21 named scans with raw, removed and retained points against the final offline map. Green means removed dynamic, red removed static and blue retained dynamic. Metrics use all declared points before display thinning. Playback speed is unrelated to runtime. The remaining full-sequence, trajectory and real-hardware evaluations are not completed.

@@ -22,7 +22,7 @@ bash scripts/setup_hovsg.sh
 
 Each invocation creates a new run folder and prints record/log paths. LiDAR `--frames 10` is a smoke check without paper scores. Normal exit 0 means execution completed, not paper-table agreement; `--strict-paper` returns 2 on mismatch.
 
-## Evaluation and integrity
+## 1. Evaluation and integrity
 
 ```bash
 uv run pytest -q

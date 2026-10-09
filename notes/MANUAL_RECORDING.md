@@ -4,7 +4,7 @@ English | [中文](MANUAL_RECORDING.zh-CN.md) | [Index](README.md)
 
 This is a personal-branch runbook. Research conclusions are in [STUDY](../docs/STUDY.md); hardware steps in [HOME_RUNBOOK](HOME_RUNBOOK.md).
 
-## What the existing videos show
+## 1. What the existing videos show
 
 | Media | Actual content | Evidential scope |
 | --- | --- | --- |
@@ -16,7 +16,7 @@ Terminal originals: `D:\workspace\be2\SLAM_Recordings\2026-10-08\VIDEO_INDEX.md`
 
 The original pipeline had no Gazebo scene and no automatic RViz publisher. Gazebo is a simulator; a newly invented scene would not reproduce these recorded papers. The added RViz viewer inspects real saved outputs.
 
-## Native execution
+## 2. Native execution
 
 From **PowerShell**, `wsl -d Ubuntu-22.04 -u qzl`; then **WSL Bash**, run individually:
 
@@ -32,7 +32,7 @@ nvidia-smi
 
 Keep each fresh run path. Watch its actual log from another terminal; verify exit/status, scope and outputs. Do not overwrite paired v1. ConceptGraphs40 and HOV-SG8 are supplied-pose subsets, not complete SLAM/navigation. See [Windows steps](WINDOWS_START.md) for exit codes and artifact checks.
 
-## Inspect saved maps
+## 3. Inspect saved maps
 
 The [Windows guide](WINDOWS_START.md) gives a complete two-terminal ConceptGraphs RViz workflow using an existing audited baseline. Preparation uses each method's Python; ROS publication uses system Python after Humble setup, with both terminals on ROS domain71/local-only.
 
@@ -65,7 +65,7 @@ Replace both placeholders with your new complete run records, **WSL Bash**:
 
 Pass its new printed `evaluation-check-.../record.json` to LiDAR visual preparation. Semantic preparation takes your own complete native record directly.
 
-## Your manual recording
+## 4. Your manual recording
 
 Use a familiar recorder. OBS is optional and was not found in common installation locations during preparation; that is not a complete installed-app inventory. Start with a ten-second clip and replay it to check WSLg capture and text.
 
@@ -77,7 +77,7 @@ Suggested output:1920×1080,30fps,H.264, or1280×720 if needed. Give about70% of
 
 Bind graphics to the actual source run. The viewer does not update while the mapper is inferring; live snapshot watching would require another interface.
 
-## How automated GUI capture worked
+## 5. How automated GUI capture worked
 
 `prepare_visual_review.py` verifies local records, reads measured outputs, deterministically thins display points and binds source hashes; ConceptGraphs snapshot poses are checked. `view_measured_rviz.py` publishes PointCloud2 and opens a source/observation panel. `record_visual_review.sh` opens RViz on `record_session.py`'s private Xvfb screen, so the right-hand graphical window is captured without recording the user's desktop.
 

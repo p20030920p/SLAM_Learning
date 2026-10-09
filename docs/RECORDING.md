@@ -2,7 +2,7 @@
 
 English | [中文](RECORDING.zh-CN.md)
 
-## Actual RViz graphical windows
+## 1. Actual RViz graphical windows
 
 These clips capture a running RViz 3D window, not just terminal text. An evidence panel identifies method, stage, provenance and observations; RViz shows real saved point clouds. **This is measured-output inspection, not new inference or a live mapping performance demonstration.**
 
@@ -17,13 +17,15 @@ Each uses a private Xvfb screen and software OpenGL, avoiding CUDA contention. A
 
 [Sources, per-stage review frames, logs and source snapshots](../results/reference/visual-review/record.json) bind published bytes. `prepare_visual_review.py` verifies native outputs; `view_measured_rviz.py` publishes ROS2 PointCloud2 and displays observations; `record_visual_review.sh` opens actual RViz. HOV-SG final geometry is not presented as progressive mapping. None of these author entry points runs Gazebo.
 
-## Complete local execution recordings
+<a id="complete-local-execution-recordings"></a>
+
+## 2. Complete local execution recordings
 
 Four separate complete xterm/PTY recordings span fresh command startup through exit 0: DUFOMap 36.6 s, BeautyMap 42.0 s, ConceptGraphs 256.6 s and HOV-SG 168.8 s. They document command execution, primarily through terminal content. Large originals stay local; [portable evidence](../results/reference/full-recordings/record.json) retains commands, logs, timing and hashes.
 
 `record_session.py` creates private Xvfb/xterm, releases the actual command after capture starts and records pixels on a monotonic clock. The older clips did not open a map GUI; these graphical clips capture RViz as a real child process on that private screen. Neither recording duration is an FPS measure or a controlled runtime benchmark.
 
-## Homepage replays and PDFs
+## 3. Homepage replays and PDFs
 
 The original per-paper GIFs/MP4s are rendered replays of measured final maps. LiDAR input/removed/retained views use original PCL classifications; semantic panels combine native observations, final maps and candidates. ConceptGraphs coordinates are checked against its actual absolute-pose entrypoint and 39 saved camera matrices, without applying the first-frame transform again.
 

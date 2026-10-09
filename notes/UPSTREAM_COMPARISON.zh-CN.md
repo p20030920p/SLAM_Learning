@@ -6,7 +6,7 @@
 
 本库是**作者核心的运行、适配、评价与证据组织层**。它没有重写四个算法，也没有完成四篇全部实验。对照时看固定快照与每次运行的实际副本，作者仓库当前默认分支可能已经改变。
 
-## 原库入口与固定版本
+## 1. 原库入口与固定版本
 
 | 原库 | 本库固定源码快照 | 版本记录 |
 | --- | --- | --- |
@@ -19,7 +19,7 @@
 
 SAM、CLIP 权重的仓库、revision、SHA256 同样在 `semantic.json`。CPU／语义／HOV 使用不同环境，不能混装锁定依赖。
 
-## 真正调用了作者的哪一段
+## 2. 真正调用了作者的哪一段
 
 | 方法 | 作者源码入口 | 本库入口与不变的核心 |
 | --- | --- | --- |
@@ -28,7 +28,9 @@ SAM、CLIP 权重的仓库、revision、SHA256 同样在 `semantic.json`。CPU�
 | ConceptGraphs | [generate_gsa_results.py](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/scripts/generate_gsa_results.py)、[cfslam_pipeline_batch.py](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/slam/cfslam_pipeline_batch.py) | [run_conceptgraphs.py](../scripts/run_conceptgraphs.py)：作者 class-agnostic SAM／CLIP 前端、空间／语义关联和融合 |
 | HOV-SG | [application/semantic_segmentation.py](https://github.com/hovsg/HOV-SG/blob/d6e65a53c8be6faec3f01f00d1644d967f89e605/application/semantic_segmentation.py)、[hovsg/graph/graph.py](https://github.com/hovsg/HOV-SG/blob/d6e65a53c8be6faec3f01f00d1644d967f89e605/hovsg/graph/graph.py) | [run_hovsg.py](../scripts/run_hovsg.py)：载入作者配置，构造 `Graph`，调用 `create_feature_map()`；保存原生分段点云和特征 |
 
-作者 README 中 ConceptGraphs 有无检测器两条路径；本次只走 `class_set=none`。HOV-SG 的层级图 `application/create_graph.py` 是另一条更完整路径，本次没有执行它。[ConceptGraphs 固定 README](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/README.md) · [HOV-SG 固定 README](https://github.com/hovsg/HOV-SG/blob/d6e65a53c8be6faec3f01f00d1644d967f89e605/README.md)。
+作者 README 中 ConceptGraphs 有无检测器两条路径；本次只走 `class_set=none`。HOV-SG 的层级图 `application/create_graph.py` 是另一条更完整路径，本次没有执行它。
+
+[ConceptGraphs 固定 README](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/README.md) · [HOV-SG 固定 README](https://github.com/hovsg/HOV-SG/blob/d6e65a53c8be6faec3f01f00d1644d967f89e605/README.md)。
 
 作者 README 的命令形式如下，便于与包装器的实际 `commands` 对照；其工作目录分别是作者 checkout、数据和权重需按各 README 准备。这些不是在本库根目录直接运行的命令。
 
@@ -39,7 +41,7 @@ SAM、CLIP 权重的仓库、revision、SHA256 同样在 `semantic.json`。CPU�
 | ConceptGraphs | `python scripts/generate_gsa_results.py ... --class_set none --stride 5`，再 `python slam/cfslam_pipeline_batch.py ... stride=5` | 原库先 `cd conceptgraph`；本库已先按源索引每5帧暂存40观测，内部 `stride=1` 避免再次每5帧采样 |
 | HOV-SG | `python application/semantic_segmentation.py main.dataset=replica main.dataset_path=Replica/office0 main.save_path=data/sem_seg/office0` | 本库直接调用同一 `Graph.create_feature_map()` 核心，记录 room0 子集、适配和产物；未执行后续官方语义评分 |
 
-## 我们改动或选择了什么
+## 3. 我们改动或选择了什么
 
 | 方法 | 适配／设置 | 为什么；对比较有什么限制 |
 | --- | --- | --- |
@@ -50,7 +52,7 @@ SAM、CLIP 权重的仓库、revision、SHA256 同样在 `semantic.json`。CPU�
 
 补丁：[BeautyMap](../results/reference/beautymap-wsl/compatibility.patch) · [ConceptGraphs](../results/reference/conceptgraphs-wsl/compatibility.patch) · [HOV-SG](../results/reference/hovsg-wsl/compatibility.patch)。BeautyMap 的 `.patch` 是替换摘要和计数，不是可直接交给 `git apply` 的完整 unified diff；实际副本可以用下面的命令逐文件比对。
 
-## 复现程度与结果差距
+## 4. 复现程度与结果差距
 
 | 项目 | 原论文／原库完整目标 | 本库达到的范围与差距 |
 | --- | --- | --- |
@@ -63,7 +65,7 @@ LiDAR 使用 5 cm 地图近邻评价，原作者 PCL 与本库 SciPy 对已保�
 
 语义对象／分段数只证明产物存在，不是准确率。本库新增的四个部分表面、受限查询、位姿扰动、来源记录和 RViz 回放属于自己的诊断层；它们不替代作者官方 benchmark，也不代表 H1 已实现。[详细成绩](../docs/RESULTS.zh-CN.md) · [语义边界](../docs/SEMANTIC.zh-CN.md) · [研究关联](../docs/STUDY.zh-CN.md)。
 
-## 本机怎样打开原库和实际运行副本
+## 5. 本机怎样打开原库和实际运行副本
 
 **PowerShell**：打开 WSL 源码目录，选原库 README 或源码查看；当前个人分支没有复制这些大缓存。
 
@@ -92,6 +94,8 @@ diff -u .cache/upstream/conceptgraphs/conceptgraph/scripts/generate_gsa_results.
 cat results/runs/conceptgraphs-7795d7b47007/record.json
 ```
 
-`diff` 返回 1 表示有差异，正常；2 才是读取等错误。运行记录的 `commands` 给实际完整命令，不要用 README 的占位数据路径冒充该次运行。BeautyMap 比 `utils/pcdpy3.py`、`main.py`、`lib/bee_tree.py`；HOV 比 `hovsg/utils/clip_utils.py`，同时看 `effective-config.yaml`、`derived-input.json` 和 `frame_observations.json`。
+`diff` 返回 1 表示有差异，正常；2 才是读取等错误。运行记录的 `commands` 给实际完整命令，不要用 README 的占位数据路径冒充该次运行。
+
+BeautyMap 比 `utils/pcdpy3.py`、`main.py`、`lib/bee_tree.py`；HOV 比 `hovsg/utils/clip_utils.py`，同时看 `effective-config.yaml`、`derived-input.json` 和 `frame_observations.json`。
 
 **实际运行命令只用[Windows 操作手册](WINDOWS_START.zh-CN.md)的包装入口**；直接照原库 README 重跑需要另备数据、权重和环境，会失去本库自动记录与隔离。先读对照，再决定是否单独做作者原配方实验。

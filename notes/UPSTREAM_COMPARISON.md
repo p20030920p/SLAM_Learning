@@ -6,7 +6,7 @@ This compares the earlier execution layer and subsets. New independent pins, ful
 
 This repository runs, adapts, evaluates and records **author cores**. It does not reimplement all four algorithms or reproduce every paper experiment. Compare pinned snapshots and actual per-run copies; current author default branches may differ.
 
-## Original repositories and pins
+## 1. Original repositories and pins
 
 | Original | Pinned source | Record |
 | --- | --- | --- |
@@ -19,7 +19,7 @@ This repository runs, adapts, evaluates and records **author cores**. It does no
 
 SAM/CLIP repositories, revisions and weight hashes are also fixed in `semantic.json`. CPU, ConceptGraphs and HOV-SG use separate environments.
 
-## Native entry points and adaptations
+## 2. Native entry points and adaptations
 
 | Core | Author entry | This repository and adaptations |
 | --- | --- | --- |
@@ -41,7 +41,7 @@ Author command forms, for comparison with actual run `commands`, are below. Each
 
 Patches: [BeautyMap](../results/reference/beautymap-wsl/compatibility.patch), [ConceptGraphs](../results/reference/conceptgraphs-wsl/compatibility.patch), [HOV-SG](../results/reference/hovsg-wsl/compatibility.patch). BeautyMap's file is a replacement/count summary, not a directly applicable unified diff. Author caches remain clean; compare actual runtime files for exact differences.
 
-## Reproduction coverage and result gaps
+## 3. Reproduction coverage and result gaps
 
 | Method | Executed coverage | Gap to the complete paper |
 | --- | --- | --- |
@@ -54,7 +54,7 @@ At the 5 cm map-neighbor threshold, native PCL and SciPy agree pointwise on save
 
 Our partial-surface annotations, restricted queries, pose perturbations, provenance and RViz review are additional diagnostics, not official paper benchmarks or an implemented H1. [Results](../docs/RESULTS.md), [semantic boundaries](../docs/SEMANTIC.md), [research connection](../docs/STUDY.md).
 
-## Inspect on this machine
+## 4. Inspect on this machine
 
 **PowerShell:**
 

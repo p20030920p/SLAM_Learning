@@ -157,7 +157,7 @@ The [public clips](../docs/media/rviz) have full local `capture/full-session.mp4
 
 Use [the upstream comparison](UPSTREAM_COMPARISON.md) to read fixed READMEs, entry points, patches and run records. Do not edit author caches directly.
 
-For D435i/L2, read [the public experimental protocol](../docs/REAL_WORLD.md) and [device runbook](HOME_RUNBOOK.md). Start with fixed-sensor capture/playback. Hardware adapters and H1 remain pending; recording a bag is not hypothesis validation.
+For D435/L2, read [the public experimental protocol](../docs/REAL_WORLD.md) and [device runbook](HOME_RUNBOOK.md). Start with fixed-sensor capture/playback. Hardware adapters and H1 remain pending; recording a bag is not hypothesis validation.
 
 ## 7. Locate failures
 
