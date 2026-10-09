@@ -2,6 +2,8 @@
 
 English | [中文](PAIRED_RESULTS.zh-CN.md)
 
+> Historical measurements/analysis; current question and next decision: [STUDY](STUDY.md) · [PLAN](PLAN.md).
+
 **Decision: keep H1 as a candidate and narrow the claim.** The completed exploratory study tests downstream map decisions under controlled pose errors. It does not establish a universal failure caused specifically by shared uncertainty, and it does not validate a new method. Temporal ordering can help one map objective and hurt another; simple parameter changes already explain part of the apparent improvement opportunity.
 
 ## Evidence and scope

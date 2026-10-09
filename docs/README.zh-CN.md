@@ -1,21 +1,17 @@
-# 研究材料索引
+# 提交证据索引
 
 [English](README.md) | 中文
 
-按“结论 → 测量 → 来源”阅读；个人操作和申请准备手册留在本地。
+main 是提交入口，按“问题 → 四篇复现 → 反证 → 下一项决策”阅读。
 
-| 材料 | 用途 |
+| 入口 | 用途 |
 | --- | --- |
-| [研究分析](STUDY.zh-CN.md) | 复现效果、共性依赖、反例、指标和候选 H1 |
-| [四篇论文卡](papers/README.zh-CN.md) | 实际执行范围、视频、报告与失败 |
-| [配对结果](PAIRED_RESULTS.zh-CN.md) | 97 单元、目标标注、参数对照与证据限制 |
-| [配对协议](PAIRED_PROTOCOL.zh-CN.md) | 控制变量、适配和评价定义 |
-| [迟到修正结果](DELAYED_RESULTS.zh-CN.md) | 新场景 35 个冻结单元、6 个事后支持门槛对照与 H1 修订决策 |
-| [迟到修正协议](DELAYED_PROTOCOL.zh-CN.md) | 独立参考视图、原核心等价与历史关联干预 |
-| [原始复现结果](RESULTS.zh-CN.md) | 论文差值、PCL 一致性与评分效应 |
-| [居家验证设计](REAL_WORLD.zh-CN.md) | 固定传感器事件与迟到修正实验 |
-| [复现入口](REPRODUCE.zh-CN.md) | 最少命令与独立依赖 |
-| [可视化范围](RECORDING.zh-CN.md) | 结果回放、终端执行与真实 RViz 查看 |
-| [来源分析](LITERATURE.zh-CN.md) | 先验工作与新颖性边界 |
-| [AI 披露](DISCLOSURE.zh-CN.md) | 参与方式与证据等级 |
-| [来源与许可](ATTRIBUTION.zh-CN.md) | 数据、权重和媒体来源 |
+| [研究分析](STUDY.zh-CN.md) | 共同接口、各论文已有保护、为何选 ConceptGraphs、候选 H1 |
+| [四篇核心快照](papers/README.zh-CN.md) · [后续作者运行](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.zh-CN.md) | 实际范围、评分、失败、GIF／视频与历史 PDF |
+| [room0 配对结果](PAIRED_RESULTS.zh-CN.md) · [协议](PAIRED_PROTOCOL.zh-CN.md) | 97 单元，位姿对照与限制 |
+| [room1 迟到修正](DELAYED_RESULTS.zh-CN.md) · [协议](DELAYED_PROTOCOL.zh-CN.md) | 35 冻结单元与另列的六个事后对照，保留反证 |
+| [room2 探索](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.zh-CN.md) · [下一项决策](PLAN.zh-CN.md) | 28 建图单元已运行，身份／预算分析待完成 |
+| [安装](REPRODUCE.zh-CN.md) · [录制范围](RECORDING.zh-CN.md) | 命令，以及执行录像、三维查看、保存地图回放的区分 |
+| [文献](LITERATURE.zh-CN.md) · [AI 使用](DISCLOSURE.zh-CN.md) · [来源／许可](ATTRIBUTION.zh-CN.md) | 先验工作、声明边界与来源 |
+
+补充：[实物协议](REAL_WORLD.zh-CN.md)与[设备尝试](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)。早期[推理](RESEARCH.zh-CN.md)、[重构核查](AUDIT.zh-CN.md)和[基线测量](RESULTS.zh-CN.md)保留供追溯。

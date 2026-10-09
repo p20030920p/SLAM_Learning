@@ -2,6 +2,8 @@
 
 English | [中文](DELAYED_RESULTS.zh-CN.md)
 
+> Historical measurements/analysis; current question and next decision: [STUDY](STUDY.md) · [PLAN](PLAN.md).
+
 **The frozen experiment passes its historical-decision prerequisite, but a simpler support-gate control removes the selected target deficit without reassociation. H1 remains a candidate; a bounded replay prototype is not justified yet.** This is a new-scene ConceptGraphs diagnostic, not a SLAM, navigation or four-method benchmark.
 
 ## What was frozen and checked

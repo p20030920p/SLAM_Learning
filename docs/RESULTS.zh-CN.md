@@ -2,6 +2,8 @@
 
 [English](RESULTS.md) | 中文
 
+> 历史测量／分析；当前问题与下一项决策统一见 [STUDY](STUDY.zh-CN.md) · [PLAN](PLAN.zh-CN.md)。
+
 本轮扩展：[配对结果](PAIRED_RESULTS.zh-CN.md) 补受限标注、97 个建图单元、简单对照及收窄的候选 H1。先前基线 PDF 保留其记录的源快照，配对研究 PDF 是本轮扩展。
 
 实测日期为 2026 年 10 月 7 日。可发布记录绑定命令、版本、源码／数据／产物哈希。Windows 作者方法与受控实验使用 Python 3.10.19；两种作者方法和六组真实敏感性实验，也在干净 GitHub Ubuntu 22.04 环境成功执行。[Linux 运行](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701)、[元数据](../results/ci/linux-run.json)。Docker 未在本机构建。10 月 8 日，本机 WSL2 作者方法、PCL 对照与语义子集已完成，见第 5–6 节。

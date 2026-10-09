@@ -2,8 +2,8 @@
 
 English | [中文](DISCLOSURE.zh-CN.md)
 
-AI contributed to literature discovery and analysis, implementation, debugging, annotation assistance and writing. Measurements come from executed runs; generated explanations do not replace experiments. Room0 and room1 partial-surface annotations were visually checked but await independent human review. Room1 references are excluded from mapping; its six support-gate controls are explicitly post-hoc and separate from 35 frozen cells.
+AI assisted literature analysis, implementation, debugging, annotation and writing. Numbers come from recorded execution; generated explanations do not replace experiments. Room0/room1 partial-surface labels lack independent human review. Room2 uses an explicitly AI-only exploratory protocol after the owner waived manual review; this does not constitute confirmation.
 
-Measurements, exploratory interpretations and candidate mechanisms are labeled separately. The applicant should read sources, review annotations and personally walk through at least one reproduction. This repository does not claim independent authorship or complete applicant understanding of every implementation.
+Primary protocols, post-hoc controls and candidate mechanisms are distinguished. Room1 references are held out from mapping; its six support controls are separate from 35 frozen cells. Room2's 28 mapping cells ran, but analysis remains pending. Original labels and evidence are preserved.
 
-All current mapping runs use supplied poses. Complete SLAM trajectories, semantic benchmarks, navigation and physical validation remain unfinished. Failures and adverse evidence are retained in public records.
+The four research cores use supplied poses. Later original-code runs include scoped semantic scoring; the full benchmarks, complete SLAM, navigation and physical H1 validation remain incomplete. Failures and adverse evidence are public. The applicant should personally read sources and run a reproduction; the repository does not claim independent authorship or complete understanding of every implementation.

@@ -1,4 +1,4 @@
-# Four related paper reproductions
+# Four early core reproduction snapshots
 
 English | [中文](README.zh-CN.md)
 
@@ -11,6 +11,8 @@ The common interface is posed observation → spatial correspondence → map dec
 | ConceptGraphs | 40 posed Replica observations; SAM/CLIP and object fusion | [Card](conceptgraphs.md) | [MP4](../media/conceptgraphs/replay.mp4) / [GIF](../media/conceptgraphs/preview.gif) | [EN](../../output/pdf/conceptgraphs.en.pdf) / [中文](../../output/pdf/conceptgraphs.zh-CN.pdf) |
 | HOV-SG | 8 posed observations; segment feature-map core | [Card](hovsg.md) | [MP4](../media/hovsg/replay.mp4) / [GIF](../media/hovsg/preview.gif) | [EN](../../output/pdf/hovsg.en.pdf) / [中文](../../output/pdf/hovsg.zh-CN.pdf) |
 
-All use supplied poses. Full SLAM, semantic paper benchmarks, scene-graph reasoning and navigation are not completed. Failed runs and resource adaptations are retained. The [cross-paper analysis](../STUDY.md) and [D435i/L2 protocol](../REAL_WORLD.md) have separate bilingual PDFs in [output/pdf](../../output/pdf).
+These GIFs, cards and PDFs describe earlier supplied-pose subsets. Later original-code runs include paper-table checks and scoped semantic scoring: [author scope at 535a278](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md). Full SLAM, complete benchmarks, scene-graph reasoning and navigation remain incomplete.
+
+PDFs in [output/pdf](../../output/pdf) retain their recorded generation snapshots, including earlier study/hardware text; they are not the current submission narrative. Read [STUDY](../STUDY.md) and [PLAN](../PLAN.md) for the current question and decision. Failures and resource adaptations remain recorded.
 
 Follow [RECORDING](../RECORDING.md) to regenerate media/reports from verified local outputs. [paper_suite.json](../../configs/paper_suite.json) binds this selection to native records, commands and language editions.

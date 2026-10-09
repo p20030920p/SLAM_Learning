@@ -2,6 +2,8 @@
 
 English | [中文](AUDIT.zh-CN.md)
 
+> Historical measurements/analysis; current question and next decision: [STUDY](STUDY.md) · [PLAN](PLAN.md).
+
 Baseline inspected: `af1e58b`. Original files remain recoverable in Git; a local sibling backup was preserved. Historical scores are **unverified inherited claims**, not inputs to the new ledger.
 
 | Finding | Consequence | Replacement |
