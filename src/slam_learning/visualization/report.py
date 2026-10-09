@@ -4,7 +4,7 @@ import json
 import os
 from pathlib import Path
 
-from .runner import verify_record
+from slam_learning.runtime.runner import verify_record
 
 
 def render_report(paths: list[Path], base: Path | None = None, lang: str = "en") -> str:

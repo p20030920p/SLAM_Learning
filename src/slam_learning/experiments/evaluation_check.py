@@ -13,10 +13,10 @@ from pathlib import Path
 import numpy as np
 from scipy.spatial import cKDTree
 
-from .metrics import confusion_metrics
-from .pcd import read_pcd
-from .provenance import digest, environment, git_state, source_hashes, utc_now, write_json
-from .runner import MissingRequirement, execute, validate_inputs, verify_record
+from slam_learning.core.metrics import confusion_metrics
+from slam_learning.core.pcd import read_pcd
+from slam_learning.core.provenance import digest, environment, git_state, source_hashes, utc_now, write_json
+from slam_learning.runtime.runner import MissingRequirement, execute, validate_inputs, verify_record
 
 
 def pcl_modules() -> list[str]:

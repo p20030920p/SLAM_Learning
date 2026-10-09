@@ -18,9 +18,9 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageSequence
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from slam_learning.provenance import digest, environment, git_state, utc_now, write_json
-from slam_learning.runner import verify_record
-from slam_learning.pose_audit import audit_camera_snapshots
+from slam_learning.core.provenance import digest, environment, git_state, utc_now, write_json
+from slam_learning.runtime.runner import verify_record
+from slam_learning.core.pose_audit import audit_camera_snapshots
 
 
 def semantic_frames(method, record_path, record, output):

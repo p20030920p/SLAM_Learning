@@ -19,7 +19,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from slam_learning.delayed_pose import measure_map, prefix_errors, reference_instances
+from slam_learning.core.delayed_pose import measure_map, prefix_errors, reference_instances
 
 
 def sha(path):
@@ -102,7 +102,7 @@ def main():
                          ("frontend-record.json", args.frontend / "record.json"),
                          ("semantic-config.json", root / "configs/semantic.json"),
                          ("executed-adapter.py", Path(__file__)),
-                         ("executed-metrics.py", root / "src/slam_learning/delayed_pose.py")):
+                         ("executed-metrics.py", root / "src/slam_learning/core/delayed_pose.py")):
         (args.output / name).write_bytes(source.read_bytes())
     record = {"kind": "posthoc_support_control" if args.support_control_from else "delayed_pose_correction",
               "status": "running",

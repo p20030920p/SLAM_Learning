@@ -1,6 +1,6 @@
 import pytest
 
-from slam_learning.evidence_stress import change_probability
+from slam_learning.experiments.evidence_stress import change_probability
 
 
 def test_single_reading_independent_and_shared_models_agree():

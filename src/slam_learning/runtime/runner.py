@@ -10,9 +10,9 @@ import uuid
 import tempfile
 from pathlib import Path
 
-from .metrics import compare_paper, score_map
-from .pcd import read_pcd
-from .provenance import digest, environment, git_state, source_hashes, utc_now, write_json
+from slam_learning.core.metrics import compare_paper, score_map
+from slam_learning.core.pcd import read_pcd
+from slam_learning.core.provenance import digest, environment, git_state, source_hashes, utc_now, write_json
 
 
 class MissingRequirement(RuntimeError):

@@ -9,8 +9,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw
 
-from slam_learning.paired_pose import reference_targets
-from slam_learning.provenance import digest, write_json
+from slam_learning.core.paired_pose import reference_targets
+from slam_learning.core.provenance import digest, write_json
 
 
 def main():

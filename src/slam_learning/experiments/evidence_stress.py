@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.special import expit, logit
 
-from .provenance import digest, environment, git_state, source_hashes, utc_now, write_json
+from slam_learning.core.provenance import digest, environment, git_state, source_hashes, utc_now, write_json
 
 
 def change_probability(mean: float, count: int, sensor_sigma: float, pose_sigma: float,

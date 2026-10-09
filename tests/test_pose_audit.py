@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 import pytest
 
-from slam_learning.pose_audit import audit_camera_snapshots
+from slam_learning.core.pose_audit import audit_camera_snapshots
 
 
 def test_absolute_mapper_poses_reject_loader_normalization(tmp_path):

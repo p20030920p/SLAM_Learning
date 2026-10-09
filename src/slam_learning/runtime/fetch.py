@@ -7,7 +7,7 @@ import urllib.request
 import zipfile
 from pathlib import Path, PurePosixPath
 
-from .provenance import digest, utc_now, write_json
+from slam_learning.core.provenance import digest, utc_now, write_json
 
 
 def safe_extract(archive: Path, destination: Path) -> None:

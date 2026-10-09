@@ -2,7 +2,7 @@ import importlib.util
 import json
 from pathlib import Path
 
-from slam_learning.provenance import digest, write_json
+from slam_learning.core.provenance import digest, write_json
 
 
 def test_published_copy_is_bound_to_exact_source_artifact(tmp_path):

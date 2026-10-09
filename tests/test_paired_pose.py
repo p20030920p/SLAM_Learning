@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from slam_learning.paired_pose import paired_translations, error_description
+from slam_learning.core.paired_pose import paired_translations, error_description
 
 
 def test_pairs_preserve_marginal_and_gauge():

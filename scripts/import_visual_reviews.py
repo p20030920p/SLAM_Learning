@@ -11,7 +11,7 @@ from pathlib import Path
 from PIL import Image, ImageStat
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from slam_learning.provenance import digest, utc_now
+from slam_learning.core.provenance import digest, utc_now
 
 
 def main():

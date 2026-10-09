@@ -14,9 +14,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-from slam_learning.provenance import digest, git_state, utc_now, write_json
-from slam_learning.paired_pose import reference_targets
-from slam_learning.runner import export_record, verify_record
+from slam_learning.core.provenance import digest, git_state, utc_now, write_json
+from slam_learning.core.paired_pose import reference_targets
+from slam_learning.runtime.runner import export_record, verify_record
 
 
 def csv_write(path, rows):

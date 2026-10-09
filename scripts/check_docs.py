@@ -6,8 +6,8 @@ import re
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from slam_learning.provenance import digest
-from slam_learning.runner import verify_record
+from slam_learning.core.provenance import digest
+from slam_learning.runtime.runner import verify_record
 
 
 def check(root: Path) -> list[str]:

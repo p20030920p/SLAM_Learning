@@ -8,8 +8,8 @@ import re
 import shutil
 from pathlib import Path
 
-from slam_learning.provenance import digest, utc_now, write_json
-from slam_learning.runner import export_record
+from slam_learning.core.provenance import digest, utc_now, write_json
+from slam_learning.runtime.runner import export_record
 
 
 def main():

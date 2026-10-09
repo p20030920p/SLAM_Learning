@@ -10,9 +10,9 @@ from pathlib import Path
 
 import numpy as np
 
-from slam_learning.paired_pose import paired_translations
-from slam_learning.provenance import digest
-from slam_learning.runner import verify_record
+from slam_learning.core.paired_pose import paired_translations
+from slam_learning.core.provenance import digest
+from slam_learning.runtime.runner import verify_record
 
 
 def main():

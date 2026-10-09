@@ -4,9 +4,9 @@ import zipfile
 
 import pytest
 
-from slam_learning.fetch import safe_extract
-from slam_learning.provenance import digest, write_json
-from slam_learning.runner import execute, export_record, verify_record
+from slam_learning.runtime.fetch import safe_extract
+from slam_learning.core.provenance import digest, write_json
+from slam_learning.runtime.runner import execute, export_record, verify_record
 
 
 def test_failed_process_cannot_reuse_a_stale_score(tmp_path):
@@ -87,7 +87,7 @@ def test_export_failure_does_not_publish_partial_evidence(tmp_path, monkeypatch)
     record = run / "record.json"
     write_json(record, {"schema_version": 1, "kind": "mechanism", "status": "executed", "artifacts": {
         "run.log": {"sha256": digest(artifact), "availability": "portable"}}})
-    import slam_learning.runner as runner
+    import slam_learning.runtime.runner as runner
     original_copy = runner.shutil.copy2
 
     def fail_on_artifact(source, destination):

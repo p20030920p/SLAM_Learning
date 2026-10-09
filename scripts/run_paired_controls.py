@@ -8,8 +8,8 @@ import os
 import subprocess
 from pathlib import Path
 
-from slam_learning.provenance import digest, git_state, utc_now, write_json
-from slam_learning.runner import verify_record
+from slam_learning.core.provenance import digest, git_state, utc_now, write_json
+from slam_learning.runtime.runner import verify_record
 
 
 def main():

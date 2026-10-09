@@ -12,9 +12,9 @@ from pathlib import Path
 
 import numpy as np
 
-from slam_learning.paired_pose import paired_translations, error_description
-from slam_learning.provenance import digest, git_state, utc_now, write_json
-from slam_learning.runner import verify_record
+from slam_learning.core.paired_pose import paired_translations, error_description
+from slam_learning.core.provenance import digest, git_state, utc_now, write_json
+from slam_learning.runtime.runner import verify_record
 
 
 def prepare(root, output, semantic_sources):
@@ -28,7 +28,7 @@ def prepare(root, output, semantic_sources):
         "annotations/room0/targets.json",
         "scripts/run_paired_cell.py",
         "scripts/run_paired_suite.py",
-        "src/slam_learning/paired_pose.py",
+        "src/slam_learning/core/paired_pose.py",
     ):
         destination = inputs / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
@@ -90,7 +90,7 @@ def prepare(root, output, semantic_sources):
             for name in (
                 "scripts/run_paired_cell.py",
                 "scripts/run_paired_suite.py",
-                "src/slam_learning/paired_pose.py",
+                "src/slam_learning/core/paired_pose.py",
             )
         },
     }

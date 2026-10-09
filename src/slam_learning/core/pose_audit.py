@@ -7,7 +7,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .provenance import digest
+from slam_learning.core.provenance import digest
 
 
 def audit_camera_snapshots(snapshots: list[Path], poses: np.ndarray,

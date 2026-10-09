@@ -10,10 +10,10 @@ from pathlib import Path
 
 import numpy as np
 
-from .metrics import confusion_metrics, score_map
-from .pcd import read_pcd, write_pcd
-from .provenance import digest, environment, git_state, source_hashes, utc_now, write_json
-from .runner import execute, validate_inputs
+from slam_learning.core.metrics import confusion_metrics, score_map
+from slam_learning.core.pcd import read_pcd, write_pcd
+from slam_learning.core.provenance import digest, environment, git_state, source_hashes, utc_now, write_json
+from slam_learning.runtime.runner import execute, validate_inputs
 
 
 def worker(root: Path, output: Path):
@@ -69,7 +69,7 @@ def run_api_check(root: Path, timeout: float = 3600) -> Path:
     write_json(output / "record.json", record)
     try:
         record.update(validate_inputs(root, "dufomap"))
-        command = [sys.executable, "-m", "slam_learning.api_check", str(root), str(output)]
+        command = [sys.executable, "-m", "slam_learning.experiments.api_check", str(root), str(output)]
         record["command"] = command
         record["exit_code"] = execute(command, output, output / "run.log", timeout)
         record["summary"] = json.loads((output / "summary.json").read_text())

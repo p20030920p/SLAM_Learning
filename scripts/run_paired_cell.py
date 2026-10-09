@@ -20,8 +20,8 @@ import numpy as np
 # CUDA environments intentionally do not install the separate CPU project lock.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from slam_learning.paired_pose import reference_targets, target_metrics
-from slam_learning.provenance import digest, utc_now, write_json
+from slam_learning.core.paired_pose import reference_targets, target_metrics
+from slam_learning.core.provenance import digest, utc_now, write_json
 
 
 def semantic_inputs(root, output, source, method, errors):
@@ -200,9 +200,9 @@ def hovsg(root, output, source, errors, threshold):
 
 
 def lidar(root, output, method, errors, threshold):
-    from slam_learning.pcd import read_pcd, write_pcd
-    from slam_learning.adapters import beautymap_run
-    from slam_learning.metrics import confusion_metrics
+    from slam_learning.core.pcd import read_pcd, write_pcd
+    from slam_learning.runtime.adapters import beautymap_run
+    from slam_learning.core.metrics import confusion_metrics
     from scipy.spatial import cKDTree
 
     config = json.loads((root / "configs/methods.json").read_text())[method]

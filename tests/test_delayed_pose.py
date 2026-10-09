@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from slam_learning.delayed_pose import prefix_errors
+from slam_learning.core.delayed_pose import prefix_errors
 
 
 def test_late_intervention_is_reproducible_and_fixes_first_pose():
@@ -37,7 +37,7 @@ def test_mismatched_followup_fails_before_cuda_and_archives_failure(tmp_path):
         path = root / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(data))
-    metrics = root / "src/slam_learning/delayed_pose.py"
+    metrics = root / "src/slam_learning/core/delayed_pose.py"
     metrics.parent.mkdir(parents=True)
     metrics.write_text("# This failure must not execute any mapper or CUDA code\n")
     seal = {key: hashlib.sha256((root / name).read_bytes()).hexdigest() for key, name in (

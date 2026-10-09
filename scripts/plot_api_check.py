@@ -10,8 +10,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from slam_learning.provenance import digest, environment, git_state, utc_now, write_json
-from slam_learning.runner import verify_record
+from slam_learning.core.provenance import digest, environment, git_state, utc_now, write_json
+from slam_learning.runtime.runner import verify_record
 
 
 def main():

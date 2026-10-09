@@ -9,7 +9,7 @@ from pathlib import Path
 
 import numpy as np
 
-from .pcd import read_pcd
+from slam_learning.core.pcd import read_pcd
 
 
 def dufomap_run(sequence: Path, output: Path, parameters: dict, frames: int) -> dict:
@@ -73,7 +73,7 @@ def beautymap_run(sequence: Path, output: Path, upstream: Path, parameters: dict
     # Avoid GT labels reaching the algorithm: convert GT geometry to unlabeled XYZ raw_map.
     staged = output.parent / "input"
     staged.mkdir()
-    from .pcd import write_pcd
+    from slam_learning.core.pcd import write_pcd
     write_pcd(staged / "raw_map.pcd", read_pcd(sequence / "gt_cloud.pcd").xyz())
     (staged / "pcd").mkdir()
     paths = sorted((sequence / "pcd").glob("*.pcd"))
@@ -105,5 +105,5 @@ def worker(root: Path, method: str, output_dir: Path, frames: int) -> None:
     else:
         details = beautymap_run(sequence, output, root / ".cache/upstream/beautymap",
                                 specification["parameters"], frames)
-    from .provenance import write_json
+    from slam_learning.core.provenance import write_json
     write_json(output_dir / "worker.json", details)

@@ -1,6 +1,6 @@
 import numpy as np
 
-from slam_learning.synthetic import classify_change, normalize_residual
+from slam_learning.experiments.synthetic import classify_change, normalize_residual
 
 
 def test_occlusion_is_unknown_not_deletion():

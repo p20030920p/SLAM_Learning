@@ -11,7 +11,11 @@ uv run slam-study run --method dufomap
 uv run slam-study run --method beautymap
 ```
 
-On Linux/WSL, `bash scripts/setup_linux.sh` prepares CPU native dependencies. Execute semantic methods sequentially:
+On Linux/WSL, `bash scripts/setup_linux.sh` prepares CPU native dependencies.
+
+After setup, `bash launch/reproduce.sh --smoke` runs both LiDAR methods on ten frames; Windows has `powershell -File launch/reproduce.ps1 -Smoke`. The older `scripts/run_reproduction.sh` entry remains compatible. [Directory roles and launch scope](STRUCTURE.md).
+
+Execute semantic methods sequentially:
 
 ```bash
 bash scripts/setup_semantic.sh
@@ -48,8 +52,9 @@ Configs, source snapshots and run records pin data/weight checksums, author revi
 ## Maintenance
 
 ```text
-src/slam_learning/   CPU package: CLI → orchestration → geometry/scoring/I/O
-scripts/            Experiment, viewer and export entry points
+src/slam_learning/   CLI → visualization → experiments → runtime → core
+launch/             PowerShell/Bash reproduction entry points
+scripts/            Preparation, analysis, viewer and export tools
 configs/            Frozen inputs and protocols
 environments/       Separate CUDA environment snapshots
 results/reference/  Immutable evidence and executed source snapshots

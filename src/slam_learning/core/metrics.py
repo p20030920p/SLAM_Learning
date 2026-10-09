@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 from scipy.spatial import cKDTree
 
-from .pcd import read_pcd
+from slam_learning.core.pcd import read_pcd
 
 
 def confusion_metrics(gt: np.ndarray, removed: np.ndarray) -> dict:

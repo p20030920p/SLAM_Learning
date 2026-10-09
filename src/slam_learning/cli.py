@@ -6,7 +6,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from .provenance import environment
+from slam_learning.core.provenance import environment
 
 
 def find_root(value: str | None) -> Path:
@@ -64,10 +64,10 @@ def main(argv: list[str] | None = None) -> int:
                   "nvidia_smi": shutil.which("nvidia-smi"),
                   "note": "CUDA is optional for the active CPU experiments; capability is detected, not hardcoded."}, indent=2))
         elif args.action == "fetch":
-            from .fetch import fetch
+            from slam_learning.runtime.fetch import fetch
             fetch(root, args.direct)
         elif args.action == "_worker":
-            from .adapters import worker
+            from slam_learning.runtime.adapters import worker
             worker(root, args.method, Path(args.output).resolve(), args.frames)
         elif args.action == "run":
             if bool(args.method) == bool(args.experiment):
@@ -76,21 +76,21 @@ def main(argv: list[str] | None = None) -> int:
                 if args.frames or args.strict_paper:
                     parser.error("--frames/--strict-paper only apply to author methods")
                 if args.experiment == "mechanism":
-                    from .synthetic import run_synthetic
+                    from slam_learning.experiments.synthetic import run_synthetic
                     run_synthetic(root)
                 elif args.experiment == "evidence-stress":
-                    from .evidence_stress import run_evidence_stress
+                    from slam_learning.experiments.evidence_stress import run_evidence_stress
                     run_evidence_stress(root)
                 elif args.experiment == "api-check":
-                    from .api_check import run_api_check
+                    from slam_learning.experiments.api_check import run_api_check
                     record_path = run_api_check(root, args.timeout)
                     return int(json.loads(record_path.read_text(encoding="utf-8"))["status"] != "executed")
                 else:
-                    from .pose_stress import run_pose_stress
+                    from slam_learning.experiments.pose_stress import run_pose_stress
                     record_path = run_pose_stress(root)
                     return int(json.loads(record_path.read_text(encoding="utf-8"))["status"] != "executed")
             else:
-                from .runner import run_method
+                from slam_learning.runtime.runner import run_method
                 record_path = run_method(root, args.method, args.frames, args.timeout)
                 record = json.loads(record_path.read_text(encoding="utf-8"))
                 if record["status"] in ("failed", "blocked"):
@@ -98,30 +98,30 @@ def main(argv: list[str] | None = None) -> int:
                 if args.strict_paper and (not record.get("paper_comparison") or not record["paper_comparison"]["matched"]):
                     return 2
         elif args.action == "cross-check":
-            from .evaluation_check import run_evaluation_check
+            from slam_learning.experiments.evaluation_check import run_evaluation_check
             records = [Path(p) if Path(p).is_absolute() else root / p for p in args.records]
             path = run_evaluation_check(root, records, args.timeout)
             return int(json.loads(path.read_text(encoding="utf-8"))["status"] != "executed")
         elif args.action == "render-reproduction":
-            from .render_reproduction import render_reproduction
+            from slam_learning.visualization.render_reproduction import render_reproduction
             value = Path(args.record)
             path = render_reproduction(root, value if value.is_absolute() else root / value)
             return int(json.loads(path.read_text(encoding="utf-8"))["status"] != "executed")
         elif args.action == "verify":
-            from .runner import verify_record
+            from slam_learning.runtime.runner import verify_record
             path = Path(args.record)
             errors = verify_record(path if path.is_absolute() else root / path, args.full)
             print("\n".join(errors) if errors else "Evidence integrity verified" + (" (including local maps)" if args.full else " (portable files)"))
             return int(bool(errors))
         elif args.action == "export":
-            from .runner import export_record
+            from slam_learning.runtime.runner import export_record
             if not args.name or Path(args.name).name != args.name or args.name in (".", "..") or ":" in args.name:
                 raise ValueError("Export name must be one directory component")
             path = Path(args.record)
             export_record(path if path.is_absolute() else root / path, root / "results/reference" / args.name)
             print(root / "results/reference" / args.name)
         elif args.action == "report":
-            from .report import render_report
+            from slam_learning.visualization.report import render_report
             runs = Path(args.runs)
             runs = runs if runs.is_absolute() else root / runs
             paths = list(runs.glob("*/record.json"))

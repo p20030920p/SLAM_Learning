@@ -14,10 +14,10 @@ from matplotlib.lines import Line2D
 import numpy as np
 from PIL import Image
 
-from .evaluation_check import check_point_order
-from .pcd import read_pcd
-from .provenance import digest, environment, git_state, source_hashes, utc_now, write_json
-from .runner import verify_record
+from slam_learning.experiments.evaluation_check import check_point_order
+from slam_learning.core.pcd import read_pcd
+from slam_learning.core.provenance import digest, environment, git_state, source_hashes, utc_now, write_json
+from slam_learning.runtime.runner import verify_record
 
 
 def render_reproduction(root: Path, cross_record: Path) -> Path:

@@ -11,7 +11,11 @@ uv run slam-study run --method dufomap
 uv run slam-study run --method beautymap
 ```
 
-Linux／WSL 首次准备 CPU 原生依赖使用 `bash scripts/setup_linux.sh`。语义核心依次执行，避免争用 GPU：
+Linux／WSL 首次准备 CPU 原生依赖使用 `bash scripts/setup_linux.sh`。
+
+准备好环境后，`bash launch/reproduce.sh --smoke` 在十帧上运行两种 LiDAR 方法；Windows 使用 `powershell -File launch/reproduce.ps1 -Smoke`。旧入口 `scripts/run_reproduction.sh` 仍兼容。[目录职责与启动范围](STRUCTURE.zh-CN.md)。
+
+语义核心依次执行，避免争用 GPU：
 
 ```bash
 bash scripts/setup_semantic.sh
@@ -48,8 +52,9 @@ LiDAR 地图近邻阈值 5 cm；SA／DA 的分母及 DUFOMap 直接标签与地�
 ## 维护
 
 ```text
-src/slam_learning/   CPU 包：CLI → 运行编排 → 几何／评分／读写
-scripts/            实验、查看器与导出入口
+src/slam_learning/   CLI → 可视化 → 实验 → 运行编排 → 核心
+launch/             PowerShell／Bash 复现启动入口
+scripts/            准备、分析、查看器与导出工具
 configs/            固定输入与协议
 environments/       独立 CUDA 环境快照
 results/reference/  不可改写的证据与已执行源码快照

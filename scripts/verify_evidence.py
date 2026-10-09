@@ -1,7 +1,7 @@
 """Verify published evidence after checkout, including preservation of byte hashes."""
 from pathlib import Path
 
-from slam_learning.runner import verify_record
+from slam_learning.runtime.runner import verify_record
 
 
 def main() -> int:

@@ -11,7 +11,7 @@
 
 [English](README.md) | 中文
 
-[分析](docs/STUDY.zh-CN.md) · [证据](docs/README.zh-CN.md) · [安装](docs/REPRODUCE.zh-CN.md)
+[分析](docs/STUDY.zh-CN.md) · [证据](docs/README.zh-CN.md) · [安装](docs/REPRODUCE.zh-CN.md) · [结构](docs/STRUCTURE.zh-CN.md)
 
 </div>
 

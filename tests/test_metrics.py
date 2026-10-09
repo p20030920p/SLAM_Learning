@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-from slam_learning.metrics import compare_paper, confusion_metrics, score_map
-from slam_learning.pcd import read_pcd, write_pcd
+from slam_learning.core.metrics import compare_paper, confusion_metrics, score_map
+from slam_learning.core.pcd import read_pcd, write_pcd
 
 
 def test_keep_everything_and_delete_everything_are_not_good_maps():

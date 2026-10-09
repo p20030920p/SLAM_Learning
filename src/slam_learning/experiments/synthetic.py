@@ -11,7 +11,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .provenance import digest, environment, git_state, source_hashes, utc_now, write_json
+from slam_learning.core.provenance import digest, environment, git_state, source_hashes, utc_now, write_json
 
 METHODS = ("raw_residual", "visibility_only", "common_mode_only", "combined")
 
