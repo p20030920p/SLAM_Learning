@@ -48,29 +48,29 @@ The first direction emphasizes reliable motion and geometry. The second adds obj
 
 ## Related works
 
-These are saved-result replays from supplied-pose mapping runs.
+These are saved-result replays from supplied-pose mapping runs. [GIF sources](results/reference/media-previews-v2/record.json).
 
 ### [DUFOMap](docs/papers/dufomap.md)
 
-![DUFOMap core replay](docs/media/dufomap/preview.gif)
+![DUFOMap core replay](results/reference/media-previews-v2/dufomap.gif)
 
 **KITTI-00 outdoor scene, 141 LiDAR scans.** Observed empty space identifies dynamic points; pose margins protect static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](docs/media/dufomap/replay.mp4).
 
 ### [BeautyMap](docs/papers/beautymap.md)
 
-![BeautyMap core replay](docs/media/beautymap/preview.gif)
+![BeautyMap core replay](results/reference/media-previews-v2/beautymap.gif)
 
 **KITTI-00 outdoor scene, 141 LiDAR scans.** Occupancy comparisons remove dynamic traces; restoration protects static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](docs/media/beautymap/replay.mp4).
 
 ### [ConceptGraphs](docs/papers/conceptgraphs.md)
 
-![ConceptGraphs core replay](docs/media/conceptgraphs/preview.gif)
+![ConceptGraphs core replay](results/reference/media-previews-v2/conceptgraphs.gif)
 
 **Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](docs/media/conceptgraphs/replay.mp4).
 
 ### [HOV-SG](docs/papers/hovsg.md)
 
-![HOV-SG core replay](docs/media/hovsg/preview.gif)
+![HOV-SG core replay](results/reference/media-previews-v2/hovsg.gif)
 
 **Replica room0 indoor scene, 8 RGB-D frames.** Multiview segment/CLIP fusion produces 50 3D segments. The GIF shows input segments, the final feature map and a red query candidate, whose correctness is unverified. This run covers segment mapping; the paper's floor/room hierarchy and navigation are not reproduced. [MP4](docs/media/hovsg/replay.mp4).
 
@@ -104,31 +104,31 @@ Each clip records a 3D viewer displaying saved results. No new inference; query 
 
 **DUFOMap · RViz**
 
-![DUFOMap recorded RViz](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/dufomap-rviz.gif)
+![DUFOMap recorded RViz](results/reference/media-previews-v2/dufomap-rviz.gif)
 
 **KITTI-00, 141-scan run.** RViz switches between input, removed and retained point clouds to inspect dynamic-point removal. [MP4](docs/media/rviz/dufomap.mp4).
 
 **BeautyMap · RViz**
 
-![BeautyMap recorded RViz](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/beautymap-rviz.gif)
+![BeautyMap recorded RViz](results/reference/media-previews-v2/beautymap-rviz.gif)
 
 **KITTI-00, 141-scan run.** RViz compares input, removed and retained point clouds in the same 3D view. [MP4](docs/media/rviz/beautymap.mp4).
 
 **ConceptGraphs · RViz**
 
-![ConceptGraphs recorded RViz](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-rviz.gif)
+![ConceptGraphs recorded RViz](results/reference/media-previews-v2/conceptgraphs-rviz.gif)
 
-**Replica room0, 40 RGB-D frames.** RViz replays maps saved at observations 1/10/20/30/39, then shows image segments and text-query candidates. [MP4](docs/media/rviz/conceptgraphs.mp4).
+**Replica room0, 40 RGB-D frames.** The GIF takes chronological excerpts from five saved maps (observations 1/10/20/30/39) and four text-query stages. [MP4](docs/media/rviz/conceptgraphs.mp4).
 
 **HOV-SG · RViz**
 
-![HOV-SG recorded RViz](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/hovsg-rviz.gif)
+![HOV-SG recorded RViz](results/reference/media-previews-v2/hovsg-rviz.gif)
 
 **Replica room0, 8 RGB-D frames.** RViz shows the final 50-segment feature map and text-query candidates. [MP4](docs/media/rviz/hovsg.mp4).
 
 **ConceptGraphs · Author viewer**
 
-![ConceptGraphs original author viewer](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-author-viewer.gif)
+![ConceptGraphs original author viewer](results/reference/media-previews-v2/conceptgraphs-author-viewer.gif)
 
 **Replica room0, 400 RGB-D frames.** The original author viewer rotates the saved map and switches RGB/instance colors. Queries and scene-graph relations are not displayed. [60-second video](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [Sources](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json).
 

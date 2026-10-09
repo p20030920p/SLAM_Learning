@@ -48,29 +48,29 @@
 
 ## 相关工作
 
-以下回放给定位姿建图后的保存结果。
+以下回放给定位姿建图后的保存结果。[GIF 来源](results/reference/media-previews-v2/record.json)。
 
 ### [DUFOMap](docs/papers/dufomap.zh-CN.md)
 
-![DUFOMap 核心回放](docs/media/dufomap/preview.gif)
+![DUFOMap 核心回放](results/reference/media-previews-v2/dufomap.gif)
 
 **KITTI-00 户外场景，141 帧激光雷达扫描。**用已观测的空区域识别动态点，位姿容差保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](docs/media/dufomap/replay.mp4)。
 
 ### [BeautyMap](docs/papers/beautymap.zh-CN.md)
 
-![BeautyMap 核心回放](docs/media/beautymap/preview.gif)
+![BeautyMap 核心回放](results/reference/media-previews-v2/beautymap.gif)
 
 **KITTI-00 户外场景，141 帧激光雷达扫描。**通过占据比较清理动态残影，用恢复机制保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](docs/media/beautymap/replay.mp4)。
 
 ### [ConceptGraphs](docs/papers/conceptgraphs.zh-CN.md)
 
-![ConceptGraphs 核心回放](docs/media/conceptgraphs/preview.gif)
+![ConceptGraphs 核心回放](results/reference/media-previews-v2/conceptgraphs.gif)
 
 **Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](docs/media/conceptgraphs/replay.mp4)。
 
 ### [HOV-SG](docs/papers/hovsg.zh-CN.md)
 
-![HOV-SG 核心回放](docs/media/hovsg/preview.gif)
+![HOV-SG 核心回放](results/reference/media-previews-v2/hovsg.gif)
 
 **Replica room0 室内场景，8 帧 RGB-D。**融合多视角分割与 CLIP 特征，得到 50 个三维分段。GIF 展示输入分割、最终特征地图和红色查询候选；候选正确性未验证。本次仅运行分段建图，未复现论文的楼层／房间层级与导航。[MP4](docs/media/hovsg/replay.mp4)。
 
@@ -104,31 +104,31 @@ SA／DA 为静态保留／动态剔除；语义评分使用场景 GT 类别，�
 
 **DUFOMap · RViz**
 
-![DUFOMap RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/dufomap-rviz.gif)
+![DUFOMap RViz 录像](results/reference/media-previews-v2/dufomap-rviz.gif)
 
 **KITTI-00，141 扫描运行结果。**在 RViz 中切换原始、剔除与保留点云，检查动态点清理效果。[MP4](docs/media/rviz/dufomap.mp4)。
 
 **BeautyMap · RViz**
 
-![BeautyMap RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/beautymap-rviz.gif)
+![BeautyMap RViz 录像](results/reference/media-previews-v2/beautymap-rviz.gif)
 
 **KITTI-00，141 扫描运行结果。**在同一三维视角中对比原始、剔除与保留点云。[MP4](docs/media/rviz/beautymap.mp4)。
 
 **ConceptGraphs · RViz**
 
-![ConceptGraphs RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-rviz.gif)
+![ConceptGraphs RViz 录像](results/reference/media-previews-v2/conceptgraphs-rviz.gif)
 
-**Replica room0，40 帧 RGB-D。**回放第 1／10／20／30／39 次观测保存的地图，再展示图像分割与文本查询候选。[MP4](docs/media/rviz/conceptgraphs.mp4)。
+**Replica room0，40 帧 RGB-D。**GIF 按原顺序节选五个建图快照（第 1／10／20／30／39 次观测）与四个文本查询阶段。[MP4](docs/media/rviz/conceptgraphs.mp4)。
 
 **HOV-SG · RViz**
 
-![HOV-SG RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/hovsg-rviz.gif)
+![HOV-SG RViz 录像](results/reference/media-previews-v2/hovsg-rviz.gif)
 
 **Replica room0，8 帧 RGB-D。**查看最终的 50 分段特征地图与文本查询候选。[MP4](docs/media/rviz/hovsg.mp4)。
 
 **ConceptGraphs · 作者查看器**
 
-![ConceptGraphs 作者原版查看器](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-author-viewer.gif)
+![ConceptGraphs 作者原版查看器](results/reference/media-previews-v2/conceptgraphs-author-viewer.gif)
 
 **Replica room0，400 帧 RGB-D。**在作者原版查看器中旋转保存地图，切换 RGB／实例颜色。未展示查询或场景图关系。[60 秒视频](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [来源](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json)。
 

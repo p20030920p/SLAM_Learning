@@ -1,0 +1,1086 @@
+{
+  "schema_version": 1,
+  "kind": "recorded_media_preview_export",
+  "status": "executed",
+  "created_at": "2026-10-09T15:18:28+00:00",
+  "exit_code": 0,
+  "generator_sha256": "1e729aaff6bb26a9139c2c8f1ab48c2f0790cbe6f1ea0623b45bda1f1fd8d7c9",
+  "ffmpeg": "ffmpeg version 4.4.2-0ubuntu0.22.04.1 Copyright (c) 2000-2021 the FFmpeg developers",
+  "clips": [
+    {
+      "name": "dufomap",
+      "sha256": "ab4ea8289e5387b19f75e0253a7b24b67c3dc1f839a148669b50008af97fccc0",
+      "source_record": "results/reference/paper-media-dufomap/record.json",
+      "record_sha256": "b08e14c3db27509d58a2d7f7bc171293fa1479365ee016531592f237c4d2bfd5",
+      "fps": 1.5,
+      "start_seconds": 0,
+      "end_seconds": null,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1200,
+            "height": 440,
+            "avg_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "14.000000"
+        }
+      },
+      "duration_seconds": 14.0,
+      "dimensions": [
+        1200,
+        440
+      ],
+      "source_intervals_seconds": [
+        [
+          0,
+          14.0
+        ]
+      ],
+      "sampling_filter": "fps=1.5",
+      "preview_duration_seconds": 14.0,
+      "source_video": "docs/media/dufomap/replay.mp4",
+      "decoded_frames": 21,
+      "gif_duration_seconds": 13.99,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "14.0",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/dufomap/replay.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "fps=1.5,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/dufomap.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "14.0",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/dufomap/replay.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/dufomap.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "fps=1.5[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/dufomap.gif"
+        ]
+      ]
+    },
+    {
+      "name": "beautymap",
+      "sha256": "9e563c937a9149ef769be520130efd5a64fac6cb49391382733e369331f88475",
+      "source_record": "results/reference/paper-media-beautymap/record.json",
+      "record_sha256": "ed9bfa361cae53befd0725b20a8a8965cf4187daf44b4f403af82be5db7398ea",
+      "fps": 1.5,
+      "start_seconds": 0,
+      "end_seconds": null,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1200,
+            "height": 440,
+            "avg_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "14.000000"
+        }
+      },
+      "duration_seconds": 14.0,
+      "dimensions": [
+        1200,
+        440
+      ],
+      "source_intervals_seconds": [
+        [
+          0,
+          14.0
+        ]
+      ],
+      "sampling_filter": "fps=1.5",
+      "preview_duration_seconds": 14.0,
+      "source_video": "docs/media/beautymap/replay.mp4",
+      "decoded_frames": 21,
+      "gif_duration_seconds": 13.99,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "14.0",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/beautymap/replay.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "fps=1.5,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/beautymap.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "14.0",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/beautymap/replay.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/beautymap.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "fps=1.5[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/beautymap.gif"
+        ]
+      ]
+    },
+    {
+      "name": "conceptgraphs",
+      "sha256": "a524ba34528f4d1ec8ea2a161ef74eff3a9204ae7d03d38522e7cf44af70dbb9",
+      "source_record": "results/reference/paper-media-conceptgraphs/record.json",
+      "record_sha256": "1476b6b75187a78755007aa29ca2f5e1fcca7cc8f14ad828fc4cb036dd9232a6",
+      "fps": 1.5,
+      "start_seconds": 0,
+      "end_seconds": null,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 650,
+            "avg_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "13.334000"
+        }
+      },
+      "duration_seconds": 13.334,
+      "dimensions": [
+        1280,
+        650
+      ],
+      "source_intervals_seconds": [
+        [
+          0,
+          13.334
+        ]
+      ],
+      "sampling_filter": "fps=1.5",
+      "preview_duration_seconds": 13.334,
+      "source_video": "docs/media/conceptgraphs/replay.mp4",
+      "decoded_frames": 20,
+      "gif_duration_seconds": 13.34,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "13.334",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/conceptgraphs/replay.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "fps=1.5,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/conceptgraphs.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "13.334",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/conceptgraphs/replay.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/conceptgraphs.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "fps=1.5[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/conceptgraphs.gif"
+        ]
+      ]
+    },
+    {
+      "name": "hovsg",
+      "sha256": "8f3ad596dc24dd42b83e77c5eb06acdf59cf5f4cfbf71c5a2ecc03dd42839e17",
+      "source_record": "results/reference/paper-media-hovsg/record.json",
+      "record_sha256": "0ceb9c33d74e378a093d43b4b53257486bc986ba140a108df1125b640c23bb32",
+      "fps": 1.5,
+      "start_seconds": 0,
+      "end_seconds": null,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 650,
+            "avg_frame_rate": "12/1"
+          }
+        ],
+        "format": {
+          "duration": "5.334000"
+        }
+      },
+      "duration_seconds": 5.334,
+      "dimensions": [
+        1280,
+        650
+      ],
+      "source_intervals_seconds": [
+        [
+          0,
+          5.334
+        ]
+      ],
+      "sampling_filter": "fps=1.5",
+      "preview_duration_seconds": 5.334,
+      "source_video": "docs/media/hovsg/replay.mp4",
+      "decoded_frames": 8,
+      "gif_duration_seconds": 5.34,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "5.334",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/hovsg/replay.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "fps=1.5,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/hovsg.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "5.334",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/hovsg/replay.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/hovsg.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "fps=1.5[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/hovsg.gif"
+        ]
+      ]
+    },
+    {
+      "name": "dufomap-rviz",
+      "sha256": "d8e0e1cbc66ac0a2a8795d1915328e75f0b1bb440bbd64307d0ae60520d31881",
+      "source_record": "results/reference/visual-review/record.json",
+      "record_sha256": "27aec8b50a8bd265cd75ce84a40b4ca4e33de9c91221326d4f779f1a5b5baf70",
+      "fps": 5,
+      "start_seconds": 5,
+      "end_seconds": 29,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 800,
+            "avg_frame_rate": "5/1"
+          }
+        ],
+        "format": {
+          "duration": "34.400000"
+        }
+      },
+      "duration_seconds": 24,
+      "dimensions": [
+        1280,
+        800
+      ],
+      "source_intervals_seconds": [
+        [
+          5,
+          29
+        ]
+      ],
+      "sampling_filter": "fps=5",
+      "preview_duration_seconds": 24,
+      "source_video": "docs/media/rviz/dufomap.mp4",
+      "decoded_frames": 120,
+      "gif_duration_seconds": 24.0,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "24",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/dufomap.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "fps=5,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/dufomap-rviz.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "24",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/dufomap.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/dufomap-rviz.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "fps=5[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/dufomap-rviz.gif"
+        ]
+      ]
+    },
+    {
+      "name": "beautymap-rviz",
+      "sha256": "1015682d4c62d13ee8c6bf48ca7a67788e51617b015f49c1b7e0fa7a97f0b8da",
+      "source_record": "results/reference/visual-review/record.json",
+      "record_sha256": "27aec8b50a8bd265cd75ce84a40b4ca4e33de9c91221326d4f779f1a5b5baf70",
+      "fps": 5,
+      "start_seconds": 5,
+      "end_seconds": 29,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 800,
+            "avg_frame_rate": "5/1"
+          }
+        ],
+        "format": {
+          "duration": "34.400000"
+        }
+      },
+      "duration_seconds": 24,
+      "dimensions": [
+        1280,
+        800
+      ],
+      "source_intervals_seconds": [
+        [
+          5,
+          29
+        ]
+      ],
+      "sampling_filter": "fps=5",
+      "preview_duration_seconds": 24,
+      "source_video": "docs/media/rviz/beautymap.mp4",
+      "decoded_frames": 120,
+      "gif_duration_seconds": 24.0,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "24",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/beautymap.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "fps=5,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/beautymap-rviz.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "24",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/beautymap.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/beautymap-rviz.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "fps=5[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/beautymap-rviz.gif"
+        ]
+      ]
+    },
+    {
+      "name": "conceptgraphs-rviz",
+      "sha256": "bb28408dfc19c2484e549047ebf884ac2494739eb38f1a95d25e57a0e47cc96f",
+      "source_record": "results/reference/visual-review/record.json",
+      "record_sha256": "27aec8b50a8bd265cd75ce84a40b4ca4e33de9c91221326d4f779f1a5b5baf70",
+      "fps": 5,
+      "start_seconds": 5,
+      "end_seconds": 64,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 800,
+            "avg_frame_rate": "5/1"
+          }
+        ],
+        "format": {
+          "duration": "69.600000"
+        }
+      },
+      "duration_seconds": 59,
+      "dimensions": [
+        1280,
+        800
+      ],
+      "source_intervals_seconds": [
+        [
+          5,
+          8
+        ],
+        [
+          12,
+          15
+        ],
+        [
+          19,
+          22
+        ],
+        [
+          26,
+          29
+        ],
+        [
+          33,
+          36
+        ],
+        [
+          40,
+          43
+        ],
+        [
+          47,
+          50
+        ],
+        [
+          54,
+          57
+        ],
+        [
+          61,
+          64
+        ]
+      ],
+      "sampling_filter": "select='gte(t,0)*lt(t,3)+gte(t,7)*lt(t,10)+gte(t,14)*lt(t,17)+gte(t,21)*lt(t,24)+gte(t,28)*lt(t,31)+gte(t,35)*lt(t,38)+gte(t,42)*lt(t,45)+gte(t,49)*lt(t,52)+gte(t,56)*lt(t,59)',setpts=N/(5*TB),fps=5",
+      "preview_duration_seconds": 27,
+      "source_video": "docs/media/rviz/conceptgraphs.mp4",
+      "decoded_frames": 135,
+      "gif_duration_seconds": 27.0,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "59",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/conceptgraphs.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "select='gte(t,0)*lt(t,3)+gte(t,7)*lt(t,10)+gte(t,14)*lt(t,17)+gte(t,21)*lt(t,24)+gte(t,28)*lt(t,31)+gte(t,35)*lt(t,38)+gte(t,42)*lt(t,45)+gte(t,49)*lt(t,52)+gte(t,56)*lt(t,59)',setpts=N/(5*TB),fps=5,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/conceptgraphs-rviz.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "59",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/conceptgraphs.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/conceptgraphs-rviz.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "select='gte(t,0)*lt(t,3)+gte(t,7)*lt(t,10)+gte(t,14)*lt(t,17)+gte(t,21)*lt(t,24)+gte(t,28)*lt(t,31)+gte(t,35)*lt(t,38)+gte(t,42)*lt(t,45)+gte(t,49)*lt(t,52)+gte(t,56)*lt(t,59)',setpts=N/(5*TB),fps=5[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/conceptgraphs-rviz.gif"
+        ]
+      ]
+    },
+    {
+      "name": "hovsg-rviz",
+      "sha256": "8c0cdbc920979b8df0a79802df55c19ae0664392b90ad03507e12828c0e0f132",
+      "source_record": "results/reference/visual-review/record.json",
+      "record_sha256": "27aec8b50a8bd265cd75ce84a40b4ca4e33de9c91221326d4f779f1a5b5baf70",
+      "fps": 5,
+      "start_seconds": 5,
+      "end_seconds": 29,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 800,
+            "avg_frame_rate": "5/1"
+          }
+        ],
+        "format": {
+          "duration": "34.400000"
+        }
+      },
+      "duration_seconds": 24,
+      "dimensions": [
+        1280,
+        800
+      ],
+      "source_intervals_seconds": [
+        [
+          5,
+          29
+        ]
+      ],
+      "sampling_filter": "fps=5",
+      "preview_duration_seconds": 24,
+      "source_video": "docs/media/rviz/hovsg.mp4",
+      "decoded_frames": 120,
+      "gif_duration_seconds": 24.0,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "24",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/hovsg.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "fps=5,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/hovsg-rviz.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "24",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/hovsg.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/hovsg-rviz.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "fps=5[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/hovsg-rviz.gif"
+        ]
+      ]
+    },
+    {
+      "name": "conceptgraphs-author-viewer",
+      "sha256": "2eb0bc99c6319ebac785eaccc444a3a8fe9db1701775ab30c2ea6888af3883b3",
+      "source_record": "https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json",
+      "source_url": "https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4",
+      "fps": 5,
+      "start_seconds": 5,
+      "end_seconds": 53,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 720,
+            "avg_frame_rate": "15/1"
+          }
+        ],
+        "format": {
+          "duration": "60.000000"
+        }
+      },
+      "duration_seconds": 48,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "source_intervals_seconds": [
+        [
+          5,
+          53
+        ]
+      ],
+      "sampling_filter": "fps=5",
+      "preview_duration_seconds": 48,
+      "source_video": "https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4",
+      "decoded_frames": 240,
+      "gif_duration_seconds": 48.0,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "48",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Recordings/author-originals/conceptgraphs-room0-original-window.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "fps=5,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/conceptgraphs-author-viewer.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "5",
+          "-t",
+          "48",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Recordings/author-originals/conceptgraphs-room0-original-window.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/conceptgraphs-author-viewer.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "fps=5[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/runs/media-previews-v2-002/conceptgraphs-author-viewer.gif"
+        ]
+      ]
+    }
+  ],
+  "scope": "Existing measured MP4s, native dimensions, palette optimization only. No new inference, interpolated frames or algorithm-runtime claim.",
+  "artifacts": {
+    "beautymap-rviz.gif": {
+      "sha256": "ae1f469a6b1ea49c40697145fabfbefad7433570f4f807f05491432357c214e2",
+      "bytes": 2912621,
+      "availability": "portable"
+    },
+    "beautymap.gif": {
+      "sha256": "a4e9be3dbe66b1fbded75e08d8da90b6a6e71b94b357f103590c0403065d7e0a",
+      "bytes": 878975,
+      "availability": "portable"
+    },
+    "conceptgraphs-author-viewer.gif": {
+      "sha256": "2a251f221b566328ab247cd8865b87bfd97b02f8e00687adc15f0b43418aa665",
+      "bytes": 1424073,
+      "availability": "portable"
+    },
+    "conceptgraphs-rviz.gif": {
+      "sha256": "bbf0390cf36b16fd288b13883483c026459829ca0990d2723af8c47a3692779f",
+      "bytes": 4404028,
+      "availability": "portable"
+    },
+    "conceptgraphs.gif": {
+      "sha256": "e5564157a0183af01026db96a92014113ac266e9e217ab5503fbc11041667bb7",
+      "bytes": 2053022,
+      "availability": "portable"
+    },
+    "dufomap-rviz.gif": {
+      "sha256": "9e0a5d621faa596cc2010555a929a945e6410c320134c7e3b780ef85ade287d3",
+      "bytes": 2846634,
+      "availability": "portable"
+    },
+    "dufomap.gif": {
+      "sha256": "da62a54da987ef745c1b86f98847374cedc165bde28966382bf055238d653931",
+      "bytes": 869847,
+      "availability": "portable"
+    },
+    "export_media_previews.source.py": {
+      "sha256": "1e729aaff6bb26a9139c2c8f1ab48c2f0790cbe6f1ea0623b45bda1f1fd8d7c9",
+      "bytes": 9535,
+      "availability": "portable"
+    },
+    "hovsg-rviz.gif": {
+      "sha256": "cf1ca66207a10c341659bf894f23e5a6c154f6fe0c8349edf5b17dd51ad51063",
+      "bytes": 3687819,
+      "availability": "portable"
+    },
+    "hovsg.gif": {
+      "sha256": "dac824c878ab3a750a714695d0c003cf00e722ebe1a1a50c720d93dd8d3fed00",
+      "bytes": 827998,
+      "availability": "portable"
+    },
+    "before-after.png": {
+      "sha256": "b1bcbbaebce5be6dbad822523d50e9fd4ba53471ee55417391b943d98fcc2f60",
+      "bytes": 825793,
+      "availability": "portable"
+    },
+    "conceptgraphs-nine-stages.png": {
+      "sha256": "3ca89deda5d37f869812ae86ff5886e1cf7e43df5c930f6418a2d3aec6317ef6",
+      "bytes": 1033674,
+      "availability": "portable"
+    }
+  },
+  "visual_review": {
+    "reviewer": "AI",
+    "independent_human_review": false,
+    "checks": [
+      "First, middle and last frame of every GIF inspected",
+      "All nine ConceptGraphs RViz stages inspected in recorded order",
+      "Before/after native-scale text and point-cloud crops inspected"
+    ],
+    "negative_checks": [
+      "Mismatched source rejected before output creation",
+      "Existing output directory rejected without changing GIF hashes"
+    ]
+  },
+  "comparison_source_gif": {
+    "url": "https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/dufomap-rviz.gif",
+    "sha256": "e43648071bd384aeb0ebcd4535293f725876a63ba1a0f60a79c43a1caea94f94"
+  }
+}
