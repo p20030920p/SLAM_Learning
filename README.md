@@ -15,13 +15,52 @@ English | [中文](README.zh-CN.md)
 
 </div>
 
-> **In progress:** [room2 identity-budget study](docs/IDENTITY_BUDGET.md), with AI-only labels. Native runs are queued; H1 remains unverified.
+> **In progress:** [room2 identity-budget study](docs/IDENTITY_BUDGET.md), with AI-only labels. All 28 native cells have run; analysis is pending. H1 remains unverified.
 
 ![Measured author-map replay](docs/figures/replication_hero.gif)
 
-*Replay of measured final maps; GT is used only for evaluation and coloring. Playback is not live inference. [Source](results/reference/reproduction-media-wsl/record.json).*
+*Saved-map replay, not live inference; GT is used for evaluation and coloring. [Source](results/reference/reproduction-media-wsl/record.json).*
 
-Starting from four 2024 papers, this study examines the shared dependency **posed observations → spatial correspondence → map decision**. Author cores are reproduced before controlled experiments revise the hypothesis. These supplied-pose runs do not estimate a SLAM trajectory.
+Four 2024 mapping cores, followed by controlled pose-error experiments. These runs use supplied poses; they do not estimate trajectories.
+
+## Direction choice and analysis
+
+**I choose:**
+
+- Robust localization and SLAM in dynamic environments;
+- Semantic mapping, visual anchoring and navigation.
+
+**Analysis:**
+
+SLAM means **Simultaneous Localization and Mapping**: *an agent uses sensor data to build a map of an initially unknown environment while estimating its own motion.*
+
+The two coupled tasks are localization and mapping. Real-time processing is a goal of online SLAM; practical systems may also use prior information.
+
+```text
+Sensor data → Front end → Back end (optimization) → Map
+                  │              ↑
+                  └─ Loop closure ┘
+```
+
+**Direction 1:**
+
+<!-- Dynamic environments: to be completed. -->
+
+**Direction 2:**
+
+<!-- Semantic mapping, visual anchoring and navigation: to be completed. -->
+
+## Open research question
+
+<!-- To be completed. -->
+
+## Related works
+
+<!-- To be completed. -->
+
+## Hypothesis
+
+<!-- To be completed. -->
 
 ## Reproduction scope
 
