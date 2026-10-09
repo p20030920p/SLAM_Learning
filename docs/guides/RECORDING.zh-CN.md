@@ -27,7 +27,7 @@
 
 论文卡原有 GIF／MP4 是已测最终地图的绘制回放。LiDAR 原始／移除／保留来自原 PCL 分类；语义面板显示原生观测、最终地图和查询候选。ConceptGraphs 世界坐标按实际绝对位姿入口及 39 个相机矩阵核查，不额外乘第一帧变换。
 
-首页主预览使用[经过时序核对的 v3 GIF](../../results/reference/media-previews-v3/record.json)。ConceptGraphs 已恢复原来的 **13.33 秒摘要，展示 20 个选定观测**。原顶部动图将 21 个快照压在 2.52 秒内；v3 播放 13.99 秒，与对应 14 秒回放一致。[完整 ConceptGraphs 录像](../../results/reference/conceptgraphs-full-media/record.json)作为补充保留：**69.6 秒 RViz（348 帧，5 fps）**与**60 秒作者查看器（900 帧，15 fps）**，包括原片开头与结尾。两份录像分别查看独立的 40 观测与 400 观测运行结果；作者查看器仍在首页的折叠录像区。
+首页主预览使用[经过时序核对的 v3 GIF](../../results/reference/media-previews-v3/record.json)。ConceptGraphs 已恢复原来的 **13.33 秒摘要，展示 20 个选定观测**。原顶部动图将 21 个快照压在 2.52 秒内；v3 播放 13.99 秒，与对应 14 秒回放一致。[完整 ConceptGraphs 录像](../../results/reference/conceptgraphs-full-media/record.json)作为补充保留：**69.6 秒 RViz（348 帧，5 fps）**与**60 秒作者查看器（900 帧，15 fps）**，包括原片开头与结尾。两份录像分别查看独立的 40 观测与 400 观测运行结果；均在 [ConceptGraphs 论文卡](../papers/conceptgraphs.zh-CN.md#回放说明)中提供链接。
 
 | GIF | 原片／显示帧率 | 编码帧数 | GIF 秒数 |
 | --- | --- | ---: | ---: |

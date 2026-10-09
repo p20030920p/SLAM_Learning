@@ -36,13 +36,13 @@
            回环检测 ──┘
 ```
 
-| SLAM 要素 | 改进带来的效果 | 动态方向侧重点 | 语义方向侧重点 |
+| 要素 | 收益 | 动态 SLAM | 语义建图 |
 | --- | --- | --- | --- |
-| 传感器数据 | 观测更干净、同步更准确 | 观察运动与遮挡 | 对齐 RGB 与深度 |
-| 前端 | 对应关系更可靠 | 匹配稳定结构 | 提取掩码／特征，关联观测 |
-| 后端 | 位姿更一致 | 排除错误运动约束 | 对齐对象坐标 |
-| 回环检测 | 重访约束帮助减少漂移 | 环境变化后仍能认出地点 | 支持重定位 |
-| 地图构建 | 地图更可用 | 消除动态残影 | 维护身份与查询目标 |
+| 传感器数据 | 干净输入 | 运动线索 | RGB-D 对齐 |
+| 前端 | 稳定匹配 | 静态特征 | 对象关联 |
+| 后端 | 一致位姿 | 异常约束剔除 | 对象对齐 |
+| 回环检测 | 减少漂移 | 地点识别 | 重定位 |
+| 地图构建 | 稳定地图 | 动态剔除 | 对象身份 |
 
 第一个方向重在可靠运动与几何。第二个方向增加物体含义与目标检索。已完成的建图实验使用给定位姿，单独检查**地图构建**；完整 SLAM 与导航不在这些实验范围内。
 
@@ -78,41 +78,12 @@
 
 ## 复现结果
 
-后续作者原代码运行使用独立协议，固定快照 **535a278**：
-
-| 工作 | 范围 | 状态 |
+| 工作 | 数据 | 结果 |
 | --- | --- | --- |
-| [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.zh-CN.md) | KITTI-00，141 扫描公开数据 | 表 IV 准确率复现完成 |
-| [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.zh-CN.md) | 历史 KITTI-02，第 860–950 帧，91 扫描 | 表 III 准确率复现完成 |
-| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md) | Replica room0，400 观测 | 单场景建图与语义评分已执行 |
+| [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.zh-CN.md) | KITTI-00，141 扫描 | 表 IV 准确率匹配 |
+| [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.zh-CN.md) | 历史 KITTI-02，91 扫描 | 表 III 准确率匹配 |
+| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md) | room0，400 观测 | 单场景已评分 |
 | [HOV-SG](papers/hovsg.zh-CN.md) | | 在复现中 |
-
-下方证据逐篇对照各方法自身的论文结果及明确的复现范围。不同方法的任务、数据集和计分位置不同。[实验协议](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.zh-CN.md)。
-
-<details>
-<summary>窗口录像</summary>
-
-每段均录制真实三维窗口，查看保存结果。RViz 保留原录制 5 fps，作者查看器保留 15 fps。未重新推理；查询高亮未验证正确性。
-
-**DUFOMap RViz**
-
-![DUFOMap RViz 录像](../results/reference/media-previews-v3/dufomap-rviz.gif)
-
-**KITTI-00，141 扫描运行结果。**在 RViz 中切换原始、剔除与保留点云，检查动态点清理效果。[MP4](media/rviz/dufomap.mp4)。
-
-**BeautyMap RViz**
-
-![BeautyMap RViz 录像](../results/reference/media-previews-v3/beautymap-rviz.gif)
-
-**KITTI-00，141 扫描运行结果。**在同一三维视角中对比原始、剔除与保留点云。[MP4](media/rviz/beautymap.mp4)。
-
-**ConceptGraphs 查看器**
-
-![ConceptGraphs 完整作者查看器](../results/reference/conceptgraphs-full-media/conceptgraphs-author-viewer.gif)
-
-**Replica room0，独立的 400 观测运行。**完整 **60 秒 GIF（900 帧，15 fps）**在作者原版查看器中旋转保存地图，切换 RGB／实例颜色。未展示查询或场景图关系。[完整视频](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [时序与来源](../results/reference/conceptgraphs-full-media/record.json)。
-
-</details>
 
 ## 实验证据
 

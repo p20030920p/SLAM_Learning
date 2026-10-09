@@ -36,13 +36,13 @@ Sensor data → Front end → Back end (optimize) → Map build
              Loop detection ─────┘
 ```
 
-| SLAM element | Effect of improving it | Dynamic direction | Semantic direction |
+| Element | Benefit | Dynamic SLAM | Semantic mapping |
 | --- | --- | --- | --- |
-| Sensor data | Cleaner, synchronized observations | Observe motion and occlusion | Align RGB and depth |
-| Front end | More reliable matches | Match stable structure | Extract masks/features; associate observations |
-| Back end | More consistent poses | Reject bad motion constraints | Align object coordinates |
-| Loop detection | Revisit constraints help reduce drift | Recognize places despite changes | Support relocalization |
-| Map build | A more usable map | Remove dynamic traces | Maintain identities and query targets |
+| Sensor data | Cleaner input | Motion cues | RGB-D alignment |
+| Front end | Stable matches | Static features | Object association |
+| Back end | Consistent poses | Outlier rejection | Object alignment |
+| Loop detection | Less drift | Place recognition | Relocalization |
+| Map build | Stable maps | Dynamic removal | Object identities |
 
 The first direction emphasizes reliable motion and geometry. The second adds object meaning and target retrieval. The completed mapping experiments use supplied poses to isolate **map construction**. Complete SLAM and navigation remain outside these experiments.
 
@@ -78,41 +78,12 @@ How can multi-frame mapping prevent localization errors from causing persistent 
 
 ## Reproduction results
 
-Later original-code runs use separate protocols, pinned at **535a278**:
-
-| Work | Scope | Status |
+| Work | Data | Result |
 | --- | --- | --- |
-| [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md) | KITTI-00, 141 released scans | Table IV accuracy reproduced |
-| [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md) | Historical KITTI-02, frames 860–950, 91 scans | Table III accuracy reproduced |
-| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md) | Replica room0, 400 observations | Single-scene mapping and semantic scoring executed |
+| [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md) | KITTI-00, 141 scans | Table IV accuracy matched |
+| [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md) | Historical KITTI-02, 91 scans | Table III accuracy matched |
+| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md) | room0, 400 observations | Single-scene scored |
 | [HOV-SG](docs/papers/hovsg.md) | | In progress |
-
-The following evidence compares each method with its own paper under the stated scope. The methods use different tasks, datasets and scoring supports. [Protocols](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md).
-
-<details>
-<summary>Recorded GIFs</summary>
-
-Each clip records a 3D viewer displaying saved results. RViz retains its recorded 5 fps; the author viewer retains 15 fps. No new inference; query highlights are unverified.
-
-**DUFOMap RViz**
-
-![DUFOMap recorded RViz](results/reference/media-previews-v3/dufomap-rviz.gif)
-
-**KITTI-00, 141-scan run.** RViz switches between input, removed and retained point clouds to inspect dynamic-point removal. [MP4](docs/media/rviz/dufomap.mp4).
-
-**BeautyMap RViz**
-
-![BeautyMap recorded RViz](results/reference/media-previews-v3/beautymap-rviz.gif)
-
-**KITTI-00, 141-scan run.** RViz compares input, removed and retained point clouds in the same 3D view. [MP4](docs/media/rviz/beautymap.mp4).
-
-**ConceptGraphs viewer**
-
-![ConceptGraphs complete author viewer](results/reference/conceptgraphs-full-media/conceptgraphs-author-viewer.gif)
-
-**Replica room0, separate 400-observation run.** The complete **60-second GIF (900 frames, 15 fps)** rotates the saved map and switches RGB/instance colors in the original author viewer. Queries and scene-graph relations are not displayed. [Full video](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [Timing and sources](results/reference/conceptgraphs-full-media/record.json).
-
-</details>
 
 ## Evidence
 
