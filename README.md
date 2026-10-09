@@ -58,16 +58,7 @@ The selected four papers mainly occupy **map building and its correspondence int
 
 ## Open research question
 
-**After a late pose correction, is moving map geometry enough to recover object identity and query coordinates, or must earlier associations be reconsidered?**
-
-| Work | Existing protection and remaining issue |
-| --- | --- |
-| [DUFOMap, III-B / V-C / V-E](https://arxiv.org/html/2403.01449v1) | Already tolerates pose/range error. Pose quality and never-observed empty space still limit classification. |
-| [BeautyMap, III / our cell-size reproduction](https://arxiv.org/html/2405.07283v1) | Already restores out-of-view static regions. Occupancy correspondence and the static-retention/removal trade-off still matter. |
-| [ConceptGraphs, II-A / III-H](https://arxiv.org/html/2309.16650v1) | Supports map updates, but reports thin-object misses, duplicates and caption errors. Association recovery after pose revision is our question, not a reported universal failure. |
-| [HOV-SG, III-A / V](https://arxiv.org/html/2403.17846v2) | Projects using accurate odometry; explicitly assumes static scenes and reports slow construction. Online semantic recovery remains outside our reproduced core. |
-
-Their common dependency is **pose → spatial correspondence → map decision**, not an established common failure. [Khronos](https://arxiv.org/html/2402.13817v2) already reconciles maps after optimization; [DovSG](https://arxiv.org/html/2410.11989v2) updates local semantic memory. Both are literature comparisons, not reproduced baselines. History or dynamic updates alone are not our novelty claim.
+**After a late pose correction, does recomputing historical associations recover object identities and target coordinates more reliably than geometry correction alone at the same candidate cap?**
 
 ## Related works
 
@@ -82,6 +73,20 @@ Four related 2024 papers; ConceptGraphs first appeared as a 2023 preprint. These
 | --- | --- |
 | ![ConceptGraphs core replay](docs/media/conceptgraphs/preview.gif) | ![HOV-SG core replay](docs/media/hovsg/preview.gif) |
 | **Idea:** lift SAM/CLIP observations, then associate and fuse objects. **Seen:** masks beside a final object map and text-query candidate. 40 posed frames, 39 representations; not 39 verified identities. [Core + video](docs/papers/conceptgraphs.md). | **Idea:** merge 3D segments and select semantic features before hierarchy construction. **Seen:** segmentation and a queried final feature map. Eight posed frames, 50 segments; hierarchy/navigation not run. [Core + video](docs/papers/hovsg.md). |
+
+<details>
+<summary>Paper evidence behind the question</summary>
+
+| Work | Existing protection and remaining issue |
+| --- | --- |
+| [DUFOMap, III-B / V-C / V-E](https://arxiv.org/html/2403.01449v1) | Already tolerates pose/range error. Pose quality and never-observed empty space still limit classification. |
+| [BeautyMap, III / our cell-size reproduction](https://arxiv.org/html/2405.07283v1) | Already restores out-of-view static regions. Occupancy correspondence and the static-retention/removal trade-off still matter. |
+| [ConceptGraphs, II-A / III-H](https://arxiv.org/html/2309.16650v1) | Supports map updates, but reports thin-object misses, duplicates and caption errors. Association recovery after pose revision is our question, not a reported universal failure. |
+| [HOV-SG, III-A / V](https://arxiv.org/html/2403.17846v2) | Projects using accurate odometry; explicitly assumes static scenes and reports slow construction. Online semantic recovery remains outside our reproduced core. |
+
+Their common dependency is **pose → spatial correspondence → map decision**, not an established common failure. [Khronos](https://arxiv.org/html/2402.13817v2) already reconciles maps after optimization; [DovSG](https://arxiv.org/html/2410.11989v2) updates local semantic memory. Both are literature comparisons, not reproduced baselines. History or dynamic updates alone are not our novelty claim.
+
+</details>
 
 The separate [`reproduce/author-originals`](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) branch runs pinned official repositories. Snapshot **`3b0b9a8`** adds:
 

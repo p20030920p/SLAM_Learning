@@ -58,16 +58,7 @@ SLAM 即 **同时定位与建图（Simultaneous Localization and Mapping）**：
 
 ## 开放研究问题
 
-**历史位姿迟到修正后，只移动地图几何，能否恢复对象身份和查询坐标，还是必须重新考虑此前的关联？**
-
-| 工作 | 已有保护与剩余问题 |
-| --- | --- |
-| [DUFOMap，III-B／V-C／V-E](https://arxiv.org/html/2403.01449v1) | 已考虑位姿与测距容差；位姿质量和从未观测为空的空间仍限制分类。 |
-| [BeautyMap，III／我们的网格复现](https://arxiv.org/html/2405.07283v1) | 已恢复视野外的静态区域；占据对应，以及静态保留与动态剔除的取舍仍然重要。 |
-| [ConceptGraphs，II-A／III-H](https://arxiv.org/html/2309.16650v1) | 支持地图更新，但报告薄小物体漏检、重复和描述错误。位姿修正后的关联恢复是我们提出的问题，不能写成作者报告的普遍失效。 |
-| [HOV-SG，III-A／V](https://arxiv.org/html/2403.17846v2) | 使用准确里程计投影；明确假设静态场景，并指出建图耗时。在线语义恢复不在当前复现核心中。 |
-
-共性依赖是**位姿 → 空间对应 → 地图决策**，尚非已证实的共同失效。[Khronos](https://arxiv.org/html/2402.13817v2)已有优化后的地图协调，[DovSG](https://arxiv.org/html/2410.11989v2)已有局部语义记忆更新；两者仅作文献对照，未复现为实验基线。“保存历史”或“支持动态更新”本身不构成我们的新颖性主张。
+**在相同候选上限下，迟到位姿修正后重算历史关联，能否比仅修正几何更可靠地恢复对象身份与目标坐标？**
 
 ## 相关工作
 
@@ -82,6 +73,20 @@ SLAM 即 **同时定位与建图（Simultaneous Localization and Mapping）**：
 | --- | --- |
 | ![ConceptGraphs 核心回放](docs/media/conceptgraphs/preview.gif) | ![HOV-SG 核心回放](docs/media/hovsg/preview.gif) |
 | **思路：**把 SAM／CLIP 观测投到三维，再关联融合对象。**看到：**掩码、最终对象地图与文本查询候选。40 个给定位姿帧、39 个表示，不等于 39 个正确身份。[核心与视频](docs/papers/conceptgraphs.zh-CN.md)。 | **思路：**先合并三维分段、筛选语义特征，再构建层级。**看到：**分割与最终特征地图中的查询候选。8 个给定位姿帧、50 分段，未运行层级／导航。[核心与视频](docs/papers/hovsg.zh-CN.md)。 |
+
+<details>
+<summary>问题的论文依据</summary>
+
+| 工作 | 已有保护与剩余问题 |
+| --- | --- |
+| [DUFOMap，III-B／V-C／V-E](https://arxiv.org/html/2403.01449v1) | 已考虑位姿与测距容差；位姿质量和从未观测为空的空间仍限制分类。 |
+| [BeautyMap，III／我们的网格复现](https://arxiv.org/html/2405.07283v1) | 已恢复视野外的静态区域；占据对应，以及静态保留与动态剔除的取舍仍然重要。 |
+| [ConceptGraphs，II-A／III-H](https://arxiv.org/html/2309.16650v1) | 支持地图更新，但报告薄小物体漏检、重复和描述错误。位姿修正后的关联恢复是我们提出的问题，不能写成作者报告的普遍失效。 |
+| [HOV-SG，III-A／V](https://arxiv.org/html/2403.17846v2) | 使用准确里程计投影；明确假设静态场景，并指出建图耗时。在线语义恢复不在当前复现核心中。 |
+
+共性依赖是**位姿 → 空间对应 → 地图决策**，尚非已证实的共同失效。[Khronos](https://arxiv.org/html/2402.13817v2)已有优化后的地图协调，[DovSG](https://arxiv.org/html/2410.11989v2)已有局部语义记忆更新；两者仅作文献对照，未复现为实验基线。“保存历史”或“支持动态更新”本身不构成我们的新颖性主张。
+
+</details>
 
 独立的 [`reproduce/author-originals`](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) 分支运行固定版本的作者原库。快照 **`3b0b9a8`** 新增：
 
