@@ -17,7 +17,6 @@ English | [中文](docs/HOME.zh-CN.md)
 
 </div>
 
-Four related papers → selected mapping reproductions → an open question and hypothesis. 
 
 ## Directions analysis
 
