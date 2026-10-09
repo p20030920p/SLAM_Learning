@@ -48,17 +48,31 @@
 
 ## 相关工作
 
-GIF 展示早期核心子集；语义高亮为未验证的查询候选。
+以下回放给定位姿建图后的保存结果。
 
-| [DUFOMap](docs/papers/dufomap.zh-CN.md) | [BeautyMap](docs/papers/beautymap.zh-CN.md) |
-| --- | --- |
-| ![DUFOMap 核心回放](docs/media/dufomap/preview.gif) | ![BeautyMap 核心回放](docs/media/beautymap/preview.gif) |
-| **地图构建。**自由空间判定移除动态点，位姿容差保护静态几何。**GIF：141 扫描。** | **地图构建。**二进制占据识别动态残影，恢复机制保护静态几何。**GIF：141 扫描。** |
+### [DUFOMap](docs/papers/dufomap.zh-CN.md)
 
-| [ConceptGraphs](docs/papers/conceptgraphs.zh-CN.md) | [HOV-SG](docs/papers/hovsg.zh-CN.md) |
-| --- | --- |
-| ![ConceptGraphs 核心回放](docs/media/conceptgraphs/preview.gif) | ![HOV-SG 核心回放](docs/media/hovsg/preview.gif) |
-| **关联与语义地图。**几何／CLIP 匹配融合对象观测，支持文本查询。**GIF：40 帧、39 个表示。** | **语义地图层级。**论文组织楼层、房间与物体，支持语言查询。**GIF：仅分段核心，8 帧、50 分段。** |
+![DUFOMap 核心回放](docs/media/dufomap/preview.gif)
+
+**KITTI-00 户外场景，141 帧激光雷达扫描。**用已观测的空区域识别动态点，位姿容差保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](docs/media/dufomap/replay.mp4)。
+
+### [BeautyMap](docs/papers/beautymap.zh-CN.md)
+
+![BeautyMap 核心回放](docs/media/beautymap/preview.gif)
+
+**KITTI-00 户外场景，141 帧激光雷达扫描。**通过占据比较清理动态残影，用恢复机制保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](docs/media/beautymap/replay.mp4)。
+
+### [ConceptGraphs](docs/papers/conceptgraphs.zh-CN.md)
+
+![ConceptGraphs 核心回放](docs/media/conceptgraphs/preview.gif)
+
+**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](docs/media/conceptgraphs/replay.mp4)。
+
+### [HOV-SG](docs/papers/hovsg.zh-CN.md)
+
+![HOV-SG 核心回放](docs/media/hovsg/preview.gif)
+
+**Replica room0 室内场景，8 帧 RGB-D。**融合多视角分割与 CLIP 特征，得到 50 个三维分段。GIF 展示输入分割、最终特征地图和红色查询候选；候选正确性未验证。本次仅运行分段建图，未复现论文的楼层／房间层级与导航。[MP4](docs/media/hovsg/replay.mp4)。
 
 ## 共同依赖与开放问题
 
@@ -86,19 +100,37 @@ SA／DA 为静态保留／动态剔除；语义评分使用场景 GT 类别，�
 <details>
 <summary>另外五个 GIF：真实三维窗口录像</summary>
 
-| DUFOMap RViz | BeautyMap RViz |
-| --- | --- |
-| ![DUFOMap RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/dufomap-rviz.gif) | ![BeautyMap RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/beautymap-rviz.gif) |
+每段均录制真实三维窗口，查看保存结果，未重新推理；查询高亮未验证正确性。
 
-| ConceptGraphs RViz | HOV-SG RViz |
-| --- | --- |
-| ![ConceptGraphs RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-rviz.gif) | ![HOV-SG RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/hovsg-rviz.gif) |
+**DUFOMap · RViz**
 
-RViz 查看早期核心的保存地图，未重新推理。完整视频：[DUFOMap](docs/media/rviz/dufomap.mp4) · [BeautyMap](docs/media/rviz/beautymap.mp4) · [ConceptGraphs](docs/media/rviz/conceptgraphs.mp4) · [HOV-SG](docs/media/rviz/hovsg.mp4)。
+![DUFOMap RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/dufomap-rviz.gif)
+
+**KITTI-00，141 扫描运行结果。**在 RViz 中切换原始、剔除与保留点云，检查动态点清理效果。[MP4](docs/media/rviz/dufomap.mp4)。
+
+**BeautyMap · RViz**
+
+![BeautyMap RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/beautymap-rviz.gif)
+
+**KITTI-00，141 扫描运行结果。**在同一三维视角中对比原始、剔除与保留点云。[MP4](docs/media/rviz/beautymap.mp4)。
+
+**ConceptGraphs · RViz**
+
+![ConceptGraphs RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-rviz.gif)
+
+**Replica room0，40 帧 RGB-D。**回放第 1／10／20／30／39 次观测保存的地图，再展示图像分割与文本查询候选。[MP4](docs/media/rviz/conceptgraphs.mp4)。
+
+**HOV-SG · RViz**
+
+![HOV-SG RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/hovsg-rviz.gif)
+
+**Replica room0，8 帧 RGB-D。**查看最终的 50 分段特征地图与文本查询候选。[MP4](docs/media/rviz/hovsg.mp4)。
+
+**ConceptGraphs · 作者查看器**
 
 ![ConceptGraphs 作者原版查看器](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-author-viewer.gif)
 
-400 帧作者地图：RGB／实例颜色与旋转，未展示查询／关系图。[60 秒视频](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [来源](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json)。
+**Replica room0，400 帧 RGB-D。**在作者原版查看器中旋转保存地图，切换 RGB／实例颜色。未展示查询或场景图关系。[60 秒视频](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [来源](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json)。
 
 </details>
 
