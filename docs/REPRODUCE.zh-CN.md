@@ -44,3 +44,29 @@ LiDAR 地图近邻阈值 5 cm；SA／DA 的分母及 DUFOMap 直接标签与地�
 新 room1 实验含 35 个冻结迟到修正单元和 6 个独立事后支持门槛对照。[协议与新运行步骤](DELAYED_PROTOCOL.zh-CN.md#复现状态) · [结果与 H1 修订决策](DELAYED_RESULTS.zh-CN.md)。
 
 数据／权重校验、作者提交和资源适配在配置、源码快照和运行记录内固定；[来源与许可](ATTRIBUTION.zh-CN.md)可追溯。完整安装、个人录制和本机排错手册留在本地。公开 PDF 为记录绑定的生成快照，修改当前研究文字不会静默改写旧报告。
+
+## 维护
+
+```text
+src/slam_learning/   CPU 包：CLI → 运行编排 → 几何／评分／读写
+scripts/            实验、查看器与导出入口
+configs/            固定输入与协议
+environments/       独立 CUDA 环境快照
+results/reference/  不可改写的证据与已执行源码快照
+```
+
+仅检查 CPU 代码，无需下载数据或使用 GPU：
+
+```bash
+uv sync --frozen --python 3.10 --extra dev --extra audit
+uv run --no-sync deptry src
+uv run --no-sync lint-imports --no-cache
+uv run --no-sync vulture
+uv run --no-sync pytest -q
+```
+
+[deptry](https://deptry.com/usage/) 检查包内依赖。Pillow 显式声明；四项 DEP002 例外对应 BeautyMap 子进程使用的 `fire`／`dztimer`／`tqdm` 和可选 Open3D 查看器。[Import Linter](https://import-linter.readthedocs.io/en/stable/contract_types/) 检查循环依赖、分层方向及 CUDA／ROS 隔离。
+
+[Vulture](https://github.com/jendrikseipp/vulture) 以 100% 置信度检查现行源码、脚本与测试。低置信度结果需人工判断，框架属性和文件接口可能被外部调用。冻结源码快照和 CUDA 依赖清单不纳入此次清理。
+
+[IWYU](https://github.com/include-what-you-use/include-what-you-use) 用于上游 C++ 构建。单独准备匹配的 Clang 与编译数据库，再运行 `iwyu_tool.py -p /path/to/build`。本工作区没有自有 C++ 构建目标，此处不声称已通过 IWYU。

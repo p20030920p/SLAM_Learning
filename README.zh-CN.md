@@ -11,7 +11,7 @@
 
 [English](README.md) | 中文
 
-[分析](docs/STUDY.zh-CN.md) · [结果](docs/PAIRED_RESULTS.zh-CN.md) · [实物计划](docs/REAL_WORLD.zh-CN.md)
+[分析](docs/STUDY.zh-CN.md) · [结果](docs/PAIRED_RESULTS.zh-CN.md) · [实物计划](docs/REAL_WORLD.zh-CN.md) · [安装](docs/REPRODUCE.zh-CN.md)
 
 </div>
 

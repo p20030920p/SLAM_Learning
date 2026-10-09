@@ -11,7 +11,7 @@ Dynamic robust mapping · Semantic mapping and localization
 
 English | [中文](README.zh-CN.md)
 
-[Analysis](docs/STUDY.md) · [Results](docs/PAIRED_RESULTS.md) · [Hardware plan](docs/REAL_WORLD.md)
+[Analysis](docs/STUDY.md) · [Results](docs/PAIRED_RESULTS.md) · [Hardware plan](docs/REAL_WORLD.md) · [Setup](docs/REPRODUCE.md)
 
 </div>
 
