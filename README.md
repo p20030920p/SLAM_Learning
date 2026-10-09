@@ -48,7 +48,7 @@ The first direction emphasizes reliable motion and geometry. The second adds obj
 
 ## Related works
 
-These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing; each map observation is held for eight frames in the 12 fps source. [GIF timing and sources](results/reference/media-previews-v3/record.json).
+These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing. DUFOMap/BeautyMap hold each selected observation for eight frames at 12 fps; ConceptGraphs uses the complete 5 fps RViz recording. [Preview timing](results/reference/media-previews-v3/record.json) · [Complete ConceptGraphs](results/reference/conceptgraphs-full-media/record.json).
 
 ### [DUFOMap](docs/papers/dufomap.md)
 
@@ -64,9 +64,9 @@ These are saved-result replays from supplied-pose mapping runs. GIFs preserve th
 
 ### [ConceptGraphs](docs/papers/conceptgraphs.md)
 
-![ConceptGraphs core replay](results/reference/media-previews-v3/conceptgraphs.gif)
+![ConceptGraphs complete RViz recording](results/reference/conceptgraphs-full-media/conceptgraphs-rviz.gif)
 
-**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](docs/media/conceptgraphs/replay.mp4).
+**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The complete **69.6-second GIF (348 frames, 5 fps)** shows five saved mapping snapshots (observations 1/10/20/30/39), then four text-query stages. It includes the recording's opening, transitions and ending. Candidate correctness is unverified. [Full MP4](docs/media/rviz/conceptgraphs.mp4).
 
 ### [HOV-SG](docs/papers/hovsg.md)
 
@@ -106,17 +106,11 @@ Each clip records a 3D viewer displaying saved results. RViz retains its recorde
 
 **KITTI-00, 141-scan run.** RViz compares input, removed and retained point clouds in the same 3D view. [MP4](docs/media/rviz/beautymap.mp4).
 
-**ConceptGraphs RViz**
-
-![ConceptGraphs recorded RViz](results/reference/media-previews-v3/conceptgraphs-rviz.gif)
-
-**Replica room0, 40 RGB-D frames.** A continuous 59-second excerpt shows all five saved maps (observations 1/10/20/30/39) and four text-query stages, without cutting stage transitions. [MP4](docs/media/rviz/conceptgraphs.mp4).
-
 **ConceptGraphs viewer**
 
-![ConceptGraphs original author viewer](results/reference/media-previews-v3/conceptgraphs-author-viewer.gif)
+![ConceptGraphs complete author viewer](results/reference/conceptgraphs-full-media/conceptgraphs-author-viewer.gif)
 
-**Replica room0, 400 RGB-D frames.** The original author viewer rotates the saved map and switches RGB/instance colors. Queries and scene-graph relations are not displayed. [60-second video](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [Sources](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json).
+**Replica room0, separate 400-observation run.** The complete **60-second GIF (900 frames, 15 fps)** rotates the saved map and switches RGB/instance colors in the original author viewer. Queries and scene-graph relations are not displayed. [Full video](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [Timing and sources](results/reference/conceptgraphs-full-media/record.json).
 
 </details>
 

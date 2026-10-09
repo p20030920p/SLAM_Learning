@@ -27,20 +27,19 @@
 
 论文卡原有 GIF／MP4 是已测最终地图的绘制回放。LiDAR 原始／移除／保留来自原 PCL 分类；语义面板显示原生观测、最终地图和查询候选。ConceptGraphs 世界坐标按实际绝对位姿入口及 39 个相机矩阵核查，不额外乘第一帧变换。
 
-首页使用[经过时序核对的 v3 GIF](../../results/reference/media-previews-v3/record.json)。原顶部动图将 21 个快照压在 2.52 秒内；新版播放 13.99 秒，与对应 14 秒回放一致。作者查看器原先从 15 fps 降为 5 fps，丢掉三分之二帧；新版保留 48 秒片段的全部 720 帧。ConceptGraphs RViz 改为连续 59 秒，保留全部九阶段之间的切换过程。
+首页的 DUFOMap／BeautyMap 使用[经过时序核对的 v3 GIF](../../results/reference/media-previews-v3/record.json)，ConceptGraphs 使用[完整录像](../../results/reference/conceptgraphs-full-media/record.json)。原顶部动图将 21 个快照压在 2.52 秒内；v3 播放 13.99 秒，与对应 14 秒回放一致。ConceptGraphs 现保留**完整 69.6 秒 RViz 视频（348 帧，5 fps）**与**完整 60 秒作者查看器视频（900 帧，15 fps）**，包括原片开头与结尾。它们在交付展示中替换了 13.33 秒摘要、59 秒 RViz 节选及 48 秒查看器节选。两份录像分别查看独立的 40 观测与 400 观测运行结果。
 
 | GIF | 原片／显示帧率 | 编码帧数 | GIF 秒数 |
 | --- | --- | ---: | ---: |
 | dufomap | 12/1 | 168 | 14.01 |
 | beautymap | 12/1 | 168 | 14.01 |
-| conceptgraphs | 12/1 | 160 | 13.33 |
 | dufomap-rviz | 5/1 | 120 | 24.00 |
 | beautymap-rviz | 5/1 | 120 | 24.00 |
-| conceptgraphs-rviz | 5/1 | 295 | 59.00 |
-| conceptgraphs-author-viewer | 15/1 | 720 | 47.99 |
+| conceptgraphs-rviz（完整） | 5/1 | 348 | 69.60 |
+| conceptgraphs-author-viewer（完整） | 15/1 | 900 | 59.99 |
 | replication-hero | 1.5 快照／秒 | 21 | 13.99 |
 
-全部帧完整解码。帧数与所选原片区间一致，累计时间误差不超过 20 毫秒，包含 GIF 百分之一秒量化误差。地图 MP4 原本就是 12 fps、每个观测保持八帧：稀疏观测仍逐次切换，保留视频时序不会生成更密的传感器运动。RViz 原录制只有 5 fps；不添加插值帧，不声称实时性能。HOV-SG 论文复现未完成，因此不再导出其交付预览。早期媒体与记录保持原样。
+全部帧完整解码。帧数与所选原片区间一致，累计时间误差不超过 20 毫秒，包含 GIF 百分之一秒量化误差。完整 ConceptGraphs 导出还将首帧、中间帧、尾帧与源视频对照；RViz 开头在原片中就是黑屏，予以保留。地图 MP4 原本就是 12 fps、每个观测保持八帧：稀疏观测仍逐次切换，保留视频时序不会生成更密的传感器运动。RViz 原录制只有 5 fps；不添加插值帧，不声称实时性能。HOV-SG 论文复现未完成，因此不再导出其交付预览。早期媒体与记录保持原样。
 
 
 使用现有 `ffmpeg` 与 `ffprobe` 重新导出；Windows 添加 `--wsl Ubuntu-22.04`。脚本校验源视频哈希，拒绝覆盖已有输出目录。
@@ -50,6 +49,8 @@ uv run --project src python src/scripts/media/export_media_previews.py \
   --author-video /path/to/conceptgraphs-room0-original-window.mp4 \
   --output results/runs/my-previews
 ```
+
+添加 `--conceptgraphs-full` 可仅导出两份完整 ConceptGraphs 录像，不截取片段。
 
 16 份双语 PDF 保留各自生成源快照、字节哈希和逐页检查证据；当前文字修订不静默覆盖历史报告。[论文媒体与报告](../papers/README.zh-CN.md) · [配对报告及检查](../../results/reference/paired-report-review/record.json)。完整手动录制、安装与本机操作步骤放个人本地手册。
 

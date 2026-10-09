@@ -27,20 +27,19 @@ Four separate complete xterm/PTY recordings span fresh command startup through e
 
 The original per-paper GIFs/MP4s are rendered replays of measured final maps. LiDAR input/removed/retained views use original PCL classifications; semantic panels combine native observations, final maps and candidates. ConceptGraphs coordinates are checked against its actual absolute-pose entrypoint and 39 saved camera matrices, without applying the first-frame transform again.
 
-The homepage uses [v3 GIFs with verified timing](../../results/reference/media-previews-v3/record.json). The former hero played 21 snapshots in 2.52 seconds; the replacement displays them over 13.99 seconds, matching the 14-second companion replay. The author viewer previously lost two-thirds of its frames (15 → 5 fps); v3 retains all 720 frames of the 48-second excerpt. ConceptGraphs RViz now keeps one continuous 59-second interval, including transitions between all nine stages.
+The homepage uses [v3 GIFs with verified timing](../../results/reference/media-previews-v3/record.json) for DUFOMap/BeautyMap and [complete recordings](../../results/reference/conceptgraphs-full-media/record.json) for ConceptGraphs. The former hero played 21 snapshots in 2.52 seconds; v3 displays them over 13.99 seconds, matching the 14-second companion replay. ConceptGraphs now retains the **complete 69.6-second RViz video (348 frames, 5 fps)** and **complete 60-second author-viewer video (900 frames, 15 fps)**, including source opening/ending frames. These replace the 13.33-second summary, 59-second RViz excerpt and 48-second viewer excerpt in the delivery. The two recordings inspect separate 40- and 400-observation runs, respectively.
 
 | GIF | Source/display rate | Encoded frames | GIF seconds |
 | --- | --- | ---: | ---: |
 | dufomap | 12/1 | 168 | 14.01 |
 | beautymap | 12/1 | 168 | 14.01 |
-| conceptgraphs | 12/1 | 160 | 13.33 |
 | dufomap-rviz | 5/1 | 120 | 24.00 |
 | beautymap-rviz | 5/1 | 120 | 24.00 |
-| conceptgraphs-rviz | 5/1 | 295 | 59.00 |
-| conceptgraphs-author-viewer | 15/1 | 720 | 47.99 |
+| conceptgraphs-rviz (complete) | 5/1 | 348 | 69.60 |
+| conceptgraphs-author-viewer (complete) | 15/1 | 900 | 59.99 |
 | replication-hero | 1.5 snapshots/s | 21 | 13.99 |
 
-All frames fully decode. Frame counts match the selected source intervals and cumulative timestamps differ by at most 20 ms, allowing GIF's centisecond quantization. Map MP4s hold each observation for eight frames at 12 fps: sparse observations still change in steps, and preserving video timing does not create denser sensor motion. RViz was recorded at 5 fps; no interpolated frames or live-performance claim is added. HOV-SG previews are excluded because its paper reproduction is incomplete. Earlier media and records remain unchanged.
+All frames fully decode. Frame counts match the selected source intervals and cumulative timestamps differ by at most 20 ms, allowing GIF's centisecond quantization. Complete ConceptGraphs exports also compare the first, middle and last frames against the source video; the RViz opening is already black in the source and is retained. Map MP4s hold each observation for eight frames at 12 fps: sparse observations still change in steps, and preserving video timing does not create denser sensor motion. RViz was recorded at 5 fps; no interpolated frames or live-performance claim is added. HOV-SG previews are excluded because its paper reproduction is incomplete. Earlier media and records remain unchanged.
 
 
 Regenerate with existing `ffmpeg` and `ffprobe`; add `--wsl Ubuntu-22.04` on Windows. Sources are hash-checked and an existing output directory is rejected.
@@ -50,6 +49,8 @@ uv run --project src python src/scripts/media/export_media_previews.py \
   --author-video /path/to/conceptgraphs-room0-original-window.mp4 \
   --output results/runs/my-previews
 ```
+
+Add `--conceptgraphs-full` to export only both complete ConceptGraphs recordings without trimming.
 
 Sixteen bilingual PDFs retain their own generation snapshots, byte hashes and page-review evidence. Current prose edits do not silently overwrite historical reports. [Paper media and reports](../papers/README.md) · [Paired report review](../../results/reference/paired-report-review/record.json). Detailed manual recording, installation and host-operation notes stay in personal local documentation.
 

@@ -48,7 +48,7 @@
 
 ## 相关工作
 
-以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序；原 12 fps 地图视频每个观测保持八帧。[GIF 时序与来源](../results/reference/media-previews-v3/record.json)。
+以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序。DUFOMap／BeautyMap 在 12 fps 下将每个选定观测保持八帧；ConceptGraphs 使用完整的 5 fps RViz 录像。[预览时序](../results/reference/media-previews-v3/record.json) · [完整 ConceptGraphs](../results/reference/conceptgraphs-full-media/record.json)。
 
 ### [DUFOMap](papers/dufomap.zh-CN.md)
 
@@ -64,9 +64,9 @@
 
 ### [ConceptGraphs](papers/conceptgraphs.zh-CN.md)
 
-![ConceptGraphs 核心回放](../results/reference/media-previews-v3/conceptgraphs.gif)
+![ConceptGraphs 完整 RViz 录像](../results/reference/conceptgraphs-full-media/conceptgraphs-rviz.gif)
 
-**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](media/conceptgraphs/replay.mp4)。
+**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。完整 **69.6 秒 GIF（348 帧，5 fps）**展示五个建图快照（第 1／10／20／30／39 次观测）及之后的四个文本查询阶段，保留录像开头、阶段切换与结尾。候选正确性未验证。[完整 MP4](media/rviz/conceptgraphs.mp4)。
 
 ### [HOV-SG](papers/hovsg.zh-CN.md)
 
@@ -106,17 +106,11 @@ SA／DA 为静态保留／动态剔除；语义评分使用场景 GT 类别，�
 
 **KITTI-00，141 扫描运行结果。**在同一三维视角中对比原始、剔除与保留点云。[MP4](media/rviz/beautymap.mp4)。
 
-**ConceptGraphs RViz**
-
-![ConceptGraphs RViz 录像](../results/reference/media-previews-v3/conceptgraphs-rviz.gif)
-
-**Replica room0，40 帧 RGB-D。**连续 59 秒片段展示五个建图快照（第 1／10／20／30／39 次观测）与四个文本查询阶段，保留阶段切换过程。[MP4](media/rviz/conceptgraphs.mp4)。
-
 **ConceptGraphs 查看器**
 
-![ConceptGraphs 作者原版查看器](../results/reference/media-previews-v3/conceptgraphs-author-viewer.gif)
+![ConceptGraphs 完整作者查看器](../results/reference/conceptgraphs-full-media/conceptgraphs-author-viewer.gif)
 
-**Replica room0，400 帧 RGB-D。**在作者原版查看器中旋转保存地图，切换 RGB／实例颜色。未展示查询或场景图关系。[60 秒视频](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [来源](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json)。
+**Replica room0，独立的 400 观测运行。**完整 **60 秒 GIF（900 帧，15 fps）**在作者原版查看器中旋转保存地图，切换 RGB／实例颜色。未展示查询或场景图关系。[完整视频](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [时序与来源](../results/reference/conceptgraphs-full-media/record.json)。
 
 </details>
 

@@ -8,7 +8,7 @@ The common interface is posed observation → spatial correspondence → map dec
 | --- | --- | --- | --- | --- |
 | DUFOMap | Full 141-scan public teaser; dynamic point removal | [Card](dufomap.md) | [MP4](../media/dufomap/replay.mp4) / [GIF](../../results/reference/media-previews-v3/dufomap.gif) | [EN](../pdf/dufomap.en.pdf) / [中文](../pdf/dufomap.zh-CN.pdf) |
 | BeautyMap | Full same teaser; author map cleaning | [Card](beautymap.md) | [MP4](../media/beautymap/replay.mp4) / [GIF](../../results/reference/media-previews-v3/beautymap.gif) | [EN](../pdf/beautymap.en.pdf) / [中文](../pdf/beautymap.zh-CN.pdf) |
-| ConceptGraphs | 40 posed Replica observations; SAM/CLIP and object fusion | [Card](conceptgraphs.md) | [MP4](../media/conceptgraphs/replay.mp4) / [GIF](../../results/reference/media-previews-v3/conceptgraphs.gif) | [EN](../pdf/conceptgraphs.en.pdf) / [中文](../pdf/conceptgraphs.zh-CN.pdf) |
+| ConceptGraphs | 40 posed Replica observations; SAM/CLIP and object fusion | [Card](conceptgraphs.md) | Full 69.6 s [MP4](../media/rviz/conceptgraphs.mp4) / [GIF](../../results/reference/conceptgraphs-full-media/conceptgraphs-rviz.gif) | [EN](../pdf/conceptgraphs.en.pdf) / [中文](../pdf/conceptgraphs.zh-CN.pdf) |
 | HOV-SG | **Not reproduced**; default 200-frame run and complete paper experiments unfinished | [Status](hovsg.md) | Removed from delivery showcase | Historical subset PDFs only |
 
 These GIFs, cards and PDFs describe earlier supplied-pose subsets. Later original-code runs include paper-table checks and scoped semantic scoring: [author scope at 535a278](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md). Full SLAM, complete benchmarks, scene-graph reasoning and navigation remain incomplete.
