@@ -1,5 +1,7 @@
 # 摔落后检查、弱光对照与双设备并行测试（2026-10-09）
 
+[English](POSTFALL_LOWLIGHT.md) | 中文
+
 **相机基础功能初检通过，尚不能证明摔落后测距精度完全无损；L2 已恢复有效点云和 IMU。** 已完成四路原始回放、双目几何抽查、投射器开—关—开，以及两组双设备同时运行和 RViz 录像。所有原始数据、室内画面留在本机 `data/`；[数字证据](../evidence/postfall-dual-lowlight-20261009.json)随分支保存。
 
 本轮照明条件来自操作者“关灯”的说明，画面仍有屏幕/键盘等光源，没有照度计。摔落后没有新的“已固定”确认，也没有尺量距离、共同标定或刚性安装验证；因此下面的位姿范围不是静止误差、ATE/RPE 或融合精度。
@@ -105,7 +107,9 @@ Set-Location -LiteralPath D:\workspace\be2\Personal-Learning-Physical
 
 三段共同稳态区间各约 22.3 秒，深度帧匹配最近 L2 **线包接收时刻**的绝对差 p95 约 2.20–2.22 ms。按 50 线组末端接收时间匹配时，p95 约 110 ms。后者与每组约 0.23 秒的跨度相关，说明最近一条线很近不等于整个点云同步。
 
-新版原始采集记录 Windows Python 3.12 的 `perf_counter`/`QueryPerformanceCounter`，分辨率记录为 100 ns；这只是时钟分辨率，不是传感器时间精度。第一份使用较粗 `GetTickCount64` 的试录保留在本机，新审核会拒绝将其混入精细关联。跨进程计时依据 [Python 3.12 官方说明](https://docs.python.org/3.12/library/time.html#time.perf_counter)；没有拿 Windows/WSL 两套时钟直接相减。
+新版原始采集记录 Windows Python 3.12 的 `perf_counter`/`QueryPerformanceCounter`，分辨率记录为 100 ns；这只是时钟分辨率，不是传感器时间精度。第一份使用较粗 `GetTickCount64` 的试录保留在本机，新审核会拒绝将其混入精细关联。
+
+跨进程计时依据 [Python 3.12 官方说明](https://docs.python.org/3.12/library/time.html#time.perf_counter)；没有拿 Windows/WSL 两套时钟直接相减。
 
 ## 4. 下一步及预期目标
 

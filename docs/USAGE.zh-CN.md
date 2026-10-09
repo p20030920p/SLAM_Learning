@@ -1,5 +1,7 @@
 # 使用入口
 
+[English](USAGE.md) | 中文
+
 当前实时操作已整理为两份指南，旧重复教程归档：
 
 - [相机：打开、切换图像、实时里程计与 RGB-D 建图](CAMERA_GUIDE.zh-CN.md)

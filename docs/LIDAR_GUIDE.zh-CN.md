@@ -1,5 +1,7 @@
 # L2 雷达：实时点云、定位对照与后续惯性定位
 
+[English](LIDAR_GUIDE.md) | 中文
+
 适用本机已单独供电、通过 CH343 USB 转串口连接的 **宇树 YS-L2**。当前链路为 Windows 串口接收→本机回环 TCP→WSL ROS2→RViz/算法。SDK 和原生解码交叉核验过程保留在[历史诊断](archive/DIAGNOSTICS_ROUND3.zh-CN.md)。
 
 2026-10-09 重新供电后已恢复点云与 IMU，已完成关灯条件下双设备共存和 ICP/KISS 有效 RViz 录像；旧的 32 字节无点云会话仍保留。最新指标、异常及录像位置见[摔落与弱光实测](POSTFALL_LOWLIGHT.zh-CN.md)。

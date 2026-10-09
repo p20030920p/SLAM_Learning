@@ -1,5 +1,7 @@
 # 简单场地的自动录像
 
+[English](SIMPLE_RECORDING.md) | 中文
+
 纸巾、盒子和饮料这类桌面物品就可以先做数据/跟踪状态演示。物体不必摆成标准实验台，但镜头尽量把目标都拍全，保留一些背景纹理和距离层次。新摆放单独记录，不把以前的位置当本次坐标真值。
 
 在 Windows PowerShell 中执行一行，录 30 秒后自动打开视频：
@@ -20,7 +22,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Persona
 
 录像自动启动 Xvfb 和 RViz，结束时先关闭编码器以写完 MP4，再清理自己启动的视图/显示服务；不录整个 Windows 桌面。当前 WSLg 的 X11 目录使自动显示号探测失败，入口已采用空闲显式显示号和本机 UNIX socket，未修改系统目录权限或其它任务。
 
-## 本次已录制的示例
+## 1. 本次已录制的示例
 
 ### 最新：调整朝向后，三样物品进入画面
 
@@ -44,6 +46,6 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Persona
 
 录像和原始室内画面留本机 data，不推送到 GitHub；可复用脚本、说明和轻量数字记录随本分支保存。
 
-## 无需现场操作的后续对照
+## 2. 无需现场操作的后续对照
 
 已有录像可以直接重复算法并保存视频，不必重新摆放或手持相机。[无人值守回放](OFFLINE_REPLAY.zh-CN.md)给出了 SDK 对齐 RGB-D 导出、Linux 输入暂存、5/10 Hz 实际送帧与覆盖率检查。新实机短录像为 `data/live-camera-20261009-021748-685/rviz-live.mp4`，约 19.5 秒，预览级，不评移动精度。

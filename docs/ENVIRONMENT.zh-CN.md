@@ -1,8 +1,10 @@
 # 本机环境和重建范围
 
+[English](ENVIRONMENT.md) | 中文
+
 本项目操作目录是 `D:\workspace\be2\Personal-Learning-Physical`，独立分支同名。下面是当前电脑的环境说明，不是可移植镜像。仓库保存代码/配置/轻量证据；原始录制、环境、SDK 缓存和模型不随 GitHub 克隆下载。
 
-## 当前环境
+## 1. 当前环境
 
 | 位置 | 用途 |
 | --- | --- |
@@ -26,7 +28,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Persona
 
 CheckOnly 检查环境，不声称设备在线。实时启动另检查实体设备、端口、数据和算法消息。若当前端口缺失，应插接并供电；不自动改驱动、关闭虚拟串口或附加 USB 到 WSL。
 
-## 另机/环境丢失时
+## 2. 另机/环境丢失时
 
 先安装匹配的 Windows Python 3.12、WSL Ubuntu 22.04/WSLg、ROS2 Humble，再安装 `rtabmap_odom`、`rtabmap_slam`、`rtabmap_msgs`、`rtabmap_rviz_plugins`、`rviz2`、Python 科学计算依赖和 ffmpeg。用各项目官方安装流程确认发行版兼容；本仓库不提供全机无人值守安装器。
 
@@ -60,7 +62,7 @@ python3 -m venv .cache/kiss-venv
 
 原生 Unitree 解码对照需要 g++ 和固定 SDK；新实时入口使用经过对照的 Python 解码，不依赖每次编译 SDK。旧数据导出/原生比对命令见[第二轮报告](archive/DIAGNOSTICS_ROUND2.zh-CN.md)。主分支作者环境/权重另依主分支复现说明配置，不能用这些命令覆盖它。
 
-## 常见启动故障
+## 3. 常见启动故障
 
 | 提示/现象 | 处理 |
 | --- | --- |
