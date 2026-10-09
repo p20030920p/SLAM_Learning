@@ -7,11 +7,12 @@ name = "slam-learning"
 version = "0.2.0"
 description = "Evidence-first experiments on changing maps and semantic localization"
 requires-python = ">=3.10,<3.12"
-dependencies = ["numpy==1.26.4", "scipy==1.14.1", "matplotlib==3.9.2"]
+dependencies = ["numpy==1.26.4", "scipy==1.14.1", "matplotlib==3.9.2", "pillow==12.3.0"]
 
 [project.optional-dependencies]
 methods = ["dufomap==1.1.1", "open3d==0.18.0", "fire==0.7.0", "dztimer==1.1.1", "tqdm==4.66.5"]
 dev = ["pytest==8.3.3", "ruff==0.7.3"]
+audit = ["deptry==0.25.1", "import-linter==2.15", "vulture==2.16"]
 
 [project.scripts]
 slam-study = "slam_learning.cli:main"
@@ -28,3 +29,42 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F"]
+
+[tool.deptry]
+optional_dependencies_dev_groups = ["dev", "audit"]
+package_module_name_map = { pillow = "PIL", dufomap = "dufomap", open3d = "open3d", fire = "fire", dztimer = "dztimer", tqdm = "tqdm" }
+
+[tool.deptry.per_rule_ignores]
+# BeautyMap subprocess imports fire/dztimer/tqdm; Open3D serves the optional viewers.
+# See docs/REPRODUCE.md#maintenance; these are outside the packaged src scan.
+DEP002 = ["open3d", "fire", "dztimer", "tqdm"]
+
+[tool.importlinter]
+root_package = "slam_learning"
+include_external_packages = true
+
+[[tool.importlinter.contracts]]
+name = "No module cycles"
+type = "acyclic_siblings"
+ancestors = ["slam_learning"]
+
+[[tool.importlinter.contracts]]
+name = "CLI above orchestration above reusable foundations"
+type = "layers"
+containers = ["slam_learning"]
+exhaustive = true
+layers = [
+    "cli",
+    "adapters : api_check : evaluation_check : evidence_stress : fetch : pose_stress : render_reproduction : report : runner : synthetic",
+    "delayed_pose : metrics : paired_pose : pcd : pose_audit : provenance",
+]
+
+[[tool.importlinter.contracts]]
+name = "CUDA and ROS stay in separate experiment environments"
+type = "forbidden"
+source_modules = ["slam_learning"]
+forbidden_modules = ["torch", "conceptgraph", "hovsg", "rclpy"]
+
+[tool.vulture]
+paths = ["src", "scripts", "tests"]
+min_confidence = 100

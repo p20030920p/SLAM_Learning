@@ -27,6 +27,16 @@ Four separate complete xterm/PTY recordings span fresh command startup through e
 
 The original per-paper GIFs/MP4s are rendered replays of measured final maps. LiDAR input/removed/retained views use original PCL classifications; semantic panels combine native observations, final maps and candidates. ConceptGraphs coordinates are checked against its actual absolute-pose entrypoint and 39 saved camera matrices, without applying the first-frame transform again.
 
+The homepage now uses [native-size GIFs](../results/reference/media-previews-v2/record.json): 1200/1280 pixels wide, a 256-color palette, and 5 fps for recorded viewers. The ConceptGraphs RViz GIF samples all nine stages in chronological order; the MP4 remains complete. [Before/after](../results/reference/media-previews-v2/before-after.png).
+
+Regenerate with existing `ffmpeg` and `ffprobe`; add `--wsl Ubuntu-22.04` on Windows. Sources are hash-checked and an existing output directory is rejected.
+
+```bash
+uv run python scripts/export_media_previews.py \
+  --author-video /path/to/conceptgraphs-room0-original-window.mp4 \
+  --output results/runs/my-previews
+```
+
 Sixteen bilingual PDFs retain their own generation snapshots, byte hashes and page-review evidence. Current prose edits do not silently overwrite historical reports. [Paper media and reports](papers/README.md) · [Paired report review](../results/reference/paired-report-review/record.json). Detailed manual recording, installation and host-operation notes stay in personal local documentation.
 
 The room1 delayed-correction study adds three complete local terminal recordings: frontend 82.4 s, 35-cell suite 509.4 s and six post-hoc controls 189.8 s. The last recording held one frame; all MP4s were fully decoded. [Hashes, commands, logs and review frames](../results/reference/delayed-recordings/record.json) bind them to the corresponding scientific records. These are execution recordings; the separate RViz clips above inspect saved baseline outputs. [Study results](DELAYED_RESULTS.md).

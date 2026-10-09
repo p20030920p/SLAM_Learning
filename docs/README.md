@@ -1,21 +1,17 @@
-# Study materials
+# Submission evidence
 
 English | [中文](README.zh-CN.md)
 
-Read from claims to measurements and sources. Personal operating and application notes stay local.
+Main is the submission entry. Read the question, four reproductions, counterevidence, then the next decision.
 
-| Material | Purpose |
+| Read | Purpose |
 | --- | --- |
-| [Research analysis](STUDY.md) | Achievements, shared dependencies, counterexamples, metrics and candidate H1 |
-| [Four paper cards](papers/README.md) | Executed scope, videos, reports and failures |
-| [Paired results](PAIRED_RESULTS.md) | 97 cells, annotations, parameter controls and limits |
-| [Paired protocol](PAIRED_PROTOCOL.md) | Controls, adapters and metric definitions |
-| [Delayed correction results](DELAYED_RESULTS.md) | 35 frozen new-scene cells, six post-hoc support controls and revised H1 decision |
-| [Delayed correction protocol](DELAYED_PROTOCOL.md) | Held-out references, native parity and historical association intervention |
-| [Reproduction results](RESULTS.md) | Paper gaps, PCL agreement and scoring effects |
-| [Home validation design](REAL_WORLD.md) | Fixed-sensor events and delayed corrections |
-| [Reproduction](REPRODUCE.md) | Minimal commands and separate dependencies |
-| [Visualization scope](RECORDING.md) | Output replay, terminal execution and actual RViz inspection |
-| [Source analysis](LITERATURE.md) | Prior work and novelty boundaries |
-| [AI disclosure](DISCLOSURE.md) | Contributions and evidence levels |
-| [Sources and licenses](ATTRIBUTION.md) | Data, weights and media origins |
+| [Research analysis](STUDY.md) | Shared interface, paper-specific protections, why ConceptGraphs, candidate H1 |
+| [Four core snapshots](papers/README.md) · [later author runs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md) | Executed scopes, scores, failures, GIFs/videos and historical PDFs |
+| [room0 paired results](PAIRED_RESULTS.md) · [protocol](PAIRED_PROTOCOL.md) | 97 cells; pose controls and limitations |
+| [room1 delayed results](DELAYED_RESULTS.md) · [protocol](DELAYED_PROTOCOL.md) | 35 frozen cells plus six separate post-hoc controls; counterevidence |
+| [room2 exploration](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md) · [next decision](PLAN.md) | 28 mapping cells executed; identity/budget analysis pending |
+| [Setup](REPRODUCE.md) · [recording scope](RECORDING.md) | Commands and separation of execution, 3D viewing and saved-map replay |
+| [Literature](LITERATURE.md) · [AI use](DISCLOSURE.md) · [sources/licenses](ATTRIBUTION.md) | Prior work, claim boundaries and provenance |
+
+Optional: [hardware protocol](REAL_WORLD.md) and [device trials](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical). Earlier [reasoning](RESEARCH.md), [refactor audit](AUDIT.md) and [baseline measurements](RESULTS.md) remain available for traceability.

@@ -11,28 +11,24 @@ Dynamic robust mapping · Semantic mapping and localization
 
 English | [中文](README.zh-CN.md)
 
-[Analysis](docs/STUDY.md) · [Results](docs/PAIRED_RESULTS.md) · [Hardware plan](docs/REAL_WORLD.md)
+[Analysis](docs/STUDY.md) · [Evidence](docs/README.md) · [Setup](docs/REPRODUCE.md)
 
 </div>
-
-> **room2:** 28 cells executed; analysis pending. AI-only labels; H1 unverified. [Study](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
 
 ![Measured author-map replay](docs/figures/replication_hero.gif)
 
 *Saved-map replay; GT only for evaluation/coloring. [Source](results/reference/reproduction-media-wsl/record.json).*
 
-Four 2024 mapping cores using supplied poses. Trajectory estimation and navigation are outside these runs.
+Four 2024 mapping works → pose-error controls → a candidate recovery hypothesis. **H1 remains unverified.**
 
-## 1. Open research question
+## SLAM and our two directions
 
-At the same candidate cap, does reassociation improve target recovery after a late pose correction?
+**SLAM — Simultaneous Localization and Mapping:** estimate sensor motion while building a map from its observations.
 
-## 2. How I arrived at this question
+- **Robust localization and SLAM in dynamic environments:** estimate motion and maintain a stable map despite moving objects.
+- **Semantic mapping, visual localization and navigation:** describe objects and their locations, estimate pose from images, and reach a target.
 
-- **Dynamic SLAM:** preserve stable geometry when objects move.
-- **Semantic mapping, visual localization and navigation:** connect objects to reliable coordinates.
-
-SLAM jointly estimates motion and builds a map.
+Five elements organize this process:
 
 ```text
 Sensor data → Front end → Back end (optimize) → Map build
@@ -40,108 +36,130 @@ Sensor data → Front end → Back end (optimize) → Map build
              Loop detection ─────┘
 ```
 
-| SLAM element | Dynamic robustness | Semantic grounding |
+| SLAM element | Effect of improving it | Dynamic direction | Semantic direction |
+| --- | --- | --- | --- |
+| Sensor data | Cleaner, synchronized observations | Observe motion and occlusion | Align RGB and depth |
+| Front end | More reliable matches | Match stable structure | Extract masks/features; associate observations |
+| Back end | More consistent poses | Reject bad motion constraints | Align object coordinates |
+| Loop detection | Revisit constraints help reduce drift | Recognize places despite changes | Support relocalization |
+| Map build | A more usable map | Remove dynamic traces | Maintain identities and query targets |
+
+The first direction emphasizes reliable motion and geometry. The second adds object meaning and target retrieval. Our four reproductions use supplied poses to isolate **map construction**, not complete SLAM or navigation.
+
+## Related works
+
+These are saved-result replays from supplied-pose mapping runs. [GIF sources](results/reference/media-previews-v2/record.json).
+
+### [DUFOMap](docs/papers/dufomap.md)
+
+![DUFOMap core replay](results/reference/media-previews-v2/dufomap.gif)
+
+**KITTI-00 outdoor scene, 141 LiDAR scans.** Observed empty space identifies dynamic points; pose margins protect static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](docs/media/dufomap/replay.mp4).
+
+### [BeautyMap](docs/papers/beautymap.md)
+
+![BeautyMap core replay](results/reference/media-previews-v2/beautymap.gif)
+
+**KITTI-00 outdoor scene, 141 LiDAR scans.** Occupancy comparisons remove dynamic traces; restoration protects static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](docs/media/beautymap/replay.mp4).
+
+### [ConceptGraphs](docs/papers/conceptgraphs.md)
+
+![ConceptGraphs core replay](results/reference/media-previews-v2/conceptgraphs.gif)
+
+**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](docs/media/conceptgraphs/replay.mp4).
+
+### [HOV-SG](docs/papers/hovsg.md)
+
+![HOV-SG core replay](results/reference/media-previews-v2/hovsg.gif)
+
+**Replica room0 indoor scene, 8 RGB-D frames.** Multiview segment/CLIP fusion produces 50 3D segments. The GIF shows input segments, the final feature map and a red query candidate, whose correctness is unverified. This run covers segment mapping; the paper's floor/room hierarchy and navigation are not reproduced. [MP4](docs/media/hovsg/replay.mp4).
+
+## Common dependency and open question
+
+DUFOMap and BeautyMap remove dynamic traces while retaining static geometry. ConceptGraphs and HOV-SG organize objects and semantics for language queries.
+
+All four depend on **pose alignment → correspondence → map decisions**. Misalignment can affect point removal, object fusion or feature assignment. Pose margins, static restoration and association rules already provide protection.
+
+**After pose correction, how can a map repair decisions made under the earlier poses?**
+
+For example, corrected coordinates may still leave one object split or two objects merged. This is a candidate failure mode, not a proven shared defect. We first test ConceptGraphs association under identical pose corrections and candidate caps. [Test and limits](docs/STUDY.md).
+
+## Reproduction results
+
+Later original-code runs use separate protocols, pinned at **535a278**:
+
+| Work | Scored scope | Result |
 | --- | --- | --- |
-| Sensor data | Motion, occlusion | RGB-D alignment |
-| Front end | Stable correspondences | Masks, features, association |
-| Back end | Robust pose constraints | Consistent coordinates |
-| Loop detection | Recognize changed places | Refresh object anchors |
-| Map build | Remove dynamic traces | Maintain identities and targets |
+| [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md) | Table IV, 141 released scans | SA 97.9635%, DA 98.7196%; 15 entries match paper rounding |
+| [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md) | Historical KITTI-02, 91 scans | At XY=1 m: SA 83.3978%, DA 82.4092%; 9 Table III entries match rounding |
+| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md) | room0, 400 observations | mIoU 21.3460%, frequency-weighted IoU 50.1379% |
+| [HOV-SG](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/HOVSG_HOME_RESULTS.md) | room0, 20-frame resource variant | mIoU 34.7500%, F-mIoU 62.8725%; default 200-frame run incomplete |
 
-The four cores depend on **pose → correspondence → map decisions**. DUFOMap and BeautyMap filter geometry; ConceptGraphs and HOV-SG associate semantic evidence. This motivates a shared question, without establishing a shared failure. [Analysis](docs/STUDY.md).
-
-## 3. Hypothesis
-
-Retaining observation sources and pose versions, then replaying affected associations within a bounded cache, will recover more valid targets than fixed-history guards. **H1 remains a candidate.**
-
-The current study tests whether reassociation is needed; it does not test the bounded-cache implementation.
-
-## 4. Why this seems plausible
-
-In the fixed-history control, corrected coordinates retain the old object memberships and fused features. Those decisions may need revision, but threshold and support controls may already suffice.
-
-[Khronos](https://arxiv.org/html/2402.13817v2) and [DovSG](https://arxiv.org/html/2410.11989v2) already reconcile maps or update memory. Replay alone is not a novelty claim.
-
-## 5. Method comparisons
-
-These GIFs replay core outputs. LiDAR colors show removal outcomes; semantic highlights are unverified query candidates. [Media scope](docs/RECORDING.md).
-
-| [DUFOMap](docs/papers/dufomap.md) | [BeautyMap](docs/papers/beautymap.md) |
-| --- | --- |
-| ![DUFOMap core replay](docs/media/dufomap/preview.gif) | ![BeautyMap core replay](docs/media/beautymap/preview.gif) |
-| Void-space filtering removes dynamic returns. **141 scans.** | Binary occupancy and restoration clean the map. **141 scans.** |
-
-| [ConceptGraphs](docs/papers/conceptgraphs.md) | [HOV-SG](docs/papers/hovsg.md) |
-| --- | --- |
-| ![ConceptGraphs core replay](docs/media/conceptgraphs/preview.gif) | ![HOV-SG core replay](docs/media/hovsg/preview.gif) |
-| SAM/CLIP association produces objects and query candidates. **40 frames, 39 representations.** | Segment fusion produces a queryable feature map. **8 frames, 50 segments; no hierarchy/navigation.** |
-
-Larger official runs live on [`reproduce/author-originals`](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals), snapshot **`3b0b9a8`**; the four GIFs above show the earlier subsets.
-
-| Work | Official-run evidence | Remaining issue |
-| --- | --- | --- |
-| DUFOMap | 1,997 scans; [Table IV](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/docs/DUFOMAP_TABLE4.zh-CN.md): 15 accuracy entries match two decimals | Pose sensitivity despite tolerances; needs observed empty space |
-| BeautyMap | 1,997 scans; historical KITTI-02 [Table III](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/docs/KITTI_PAPER_PROTOCOL.zh-CN.md): 9 entries match two decimals | Alignment and grid-size trade-offs despite restoration |
-| ConceptGraphs | [room0](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md): 400 frames, semantic scoring complete | Missed/duplicate objects and caption errors |
-| HOV-SG | [20-frame variant](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/docs/HOVSG_HOME_RESULTS.zh-CN.md): 156 segments, scoring pending; 200-frame fusion timed out | Static-scene assumption, slow construction |
+SA/DA measure static retention/dynamic removal. Semantic scoring uses scene-GT classes and different supports/exclusions, not identity recovery or open-world query success. These scores cannot rank the four methods; complete trajectories and robot navigation remain untested. [Scope](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md).
 
 <details>
 <summary>Five more GIFs: recorded 3D viewing</summary>
 
-| DUFOMap RViz | BeautyMap RViz |
-| --- | --- |
-| ![DUFOMap recorded RViz](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/dufomap-rviz.gif) | ![BeautyMap recorded RViz](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/beautymap-rviz.gif) |
+Each clip records a 3D viewer displaying saved results. No new inference; query highlights are unverified.
 
-| ConceptGraphs RViz | HOV-SG RViz |
-| --- | --- |
-| ![ConceptGraphs recorded RViz](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-rviz.gif) | ![HOV-SG recorded RViz](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/hovsg-rviz.gif) |
+**DUFOMap · RViz**
 
-Earlier core outputs in RViz; saved-map viewing, no new inference. Full videos: [DUFOMap](docs/media/rviz/dufomap.mp4) · [BeautyMap](docs/media/rviz/beautymap.mp4) · [ConceptGraphs](docs/media/rviz/conceptgraphs.mp4) · [HOV-SG](docs/media/rviz/hovsg.mp4).
+![DUFOMap recorded RViz](results/reference/media-previews-v2/dufomap-rviz.gif)
 
-![ConceptGraphs original author viewer](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-author-viewer.gif)
+**KITTI-00, 141-scan run.** RViz switches between input, removed and retained point clouds to inspect dynamic-point removal. [MP4](docs/media/rviz/dufomap.mp4).
 
-400-frame author map: RGB/instance colors and orbit controls, without query/graph display. [60-second video](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [Sources](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json).
+**BeautyMap · RViz**
+
+![BeautyMap recorded RViz](results/reference/media-previews-v2/beautymap-rviz.gif)
+
+**KITTI-00, 141-scan run.** RViz compares input, removed and retained point clouds in the same 3D view. [MP4](docs/media/rviz/beautymap.mp4).
+
+**ConceptGraphs · RViz**
+
+![ConceptGraphs recorded RViz](results/reference/media-previews-v2/conceptgraphs-rviz.gif)
+
+**Replica room0, 40 RGB-D frames.** The GIF takes chronological excerpts from five saved maps (observations 1/10/20/30/39) and four text-query stages. [MP4](docs/media/rviz/conceptgraphs.mp4).
+
+**HOV-SG · RViz**
+
+![HOV-SG recorded RViz](results/reference/media-previews-v2/hovsg-rviz.gif)
+
+**Replica room0, 8 RGB-D frames.** RViz shows the final 50-segment feature map and text-query candidates. [MP4](docs/media/rviz/hovsg.mp4).
+
+**ConceptGraphs · Author viewer**
+
+![ConceptGraphs original author viewer](results/reference/media-previews-v2/conceptgraphs-author-viewer.gif)
+
+**Replica room0, 400 RGB-D frames.** The original author viewer rotates the saved map and switches RGB/instance colors. Queries and scene-graph relations are not displayed. [60-second video](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [Sources](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json).
 
 </details>
 
-## 6. Observations that motivate the question
-
-![Separate LiDAR core and original semantic measurements](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/baseline-metrics.png)
-
-| Run | Metric | Result |
-| --- | --- | ---: |
-| DUFOMap, 141 scans | Static retention SA / dynamic removal DA | 97.9798% / 98.7029% |
-| BeautyMap, same inputs | SA / DA | 96.9529% / 98.3382% |
-| ConceptGraphs, author room0 | mIoU / frequency-weighted IoU | 21.3460% / 50.1379% |
-| HOV-SG, author 20 frames | Semantic accuracy | Pending |
-
-Separate protocols: LiDAR uses 5 cm map-neighbor scoring; room0 uses 23 classes and 4,085,377 scoring points. Counts are not accuracy. [Definitions/sources](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json) · [Renderer](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/scripts/build_homepage_media.py).
+## Evidence that narrowed the question
 
 ![Recovery and exposed-candidate cost](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/recovery-cost.png)
 
-room1, immediate correction at 30 cm: fixed-history recovery **11.1%**, oracle **66.7%**, post-hoc support-1 **100%**; candidates **8.3 / 25 / 117**, respectively. Three-seed means, partial AI labels, unequal caps. [Results](docs/DELAYED_RESULTS.md).
+room1, immediately after 30 cm correction: fixed-history recovery **11.1%**, oracle **66.7%**, post-hoc support-1 **100%**; candidates **8.3 / 25 / 117**. Three-seed means, partial AI labels, unequal caps. [Results](docs/DELAYED_RESULTS.md).
 
-Lowering the support gate removes the selected recovery deficit while exposing more candidates. Later observations also repair part of the loss. These results motivate an equal-cap test, not a claim of irreversible association loss.
+A lower support gate closes this selected recovery gap while exposing more fragments; later observations also repair part of it. **Reassociation is not yet shown necessary.** The next test matches candidate caps and checks identities separately.
 
-## 7. Minimum hypothesis test
+## Candidate H1 and next test
 
-On room2, freeze the frontend and five AI-labelled instances. Give fixed history, threshold-1.0, visibility guards and oracle replay the same exact historical pose correction after observation eight.
+Retain observation sources and pose versions, then replay affected associations within a bounded cache to recover more valid targets than simple guards. The bounded implementation is **not built or tested**.
 
-Compare support thresholds 1/2/3 at candidate caps 25/50/100/unlimited. Report recovery, query hits, duplicates/mixes and correction cost. Equal caps do not match memory.
+room2 freezes one frontend, five AI-labelled instances and exact correction after observation eight. Four arms compare fixed history, threshold-1.0, visibility guards and oracle reassociation at support 1/2/3 and caps 25/50/100/unlimited. **All 28 mapping cells ran; analysis remains pending.** [Protocol](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
 
-At matched RMS and support, consider a prototype only if oracle gains ≥10 percentage points over every simple control at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Matching simple controls weakens H1. [Frozen protocol and decision rule](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
+Only plan a prototype if oracle gains ≥10 percentage points over every simple control at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Otherwise narrow or stop H1. Equal caps do not match memory; AI-only labels cannot confirm H1. [Decision and remaining work](docs/PLAN.md).
 
-All 28 mapping cells ran; independent analysis remains pending. AI-only labels cannot confirm H1.
+[Khronos](https://arxiv.org/html/2402.13817v2) and [DovSG](https://arxiv.org/html/2410.11989v2) already reconcile/update maps. A contribution must demonstrate a recovery–cost benefit over existing protections; replay alone is not novel.
 
 ## Branches
 
-| Branch | Focus |
+| Branch | Role |
 | --- | --- |
-| [`study/identity-budget-v2`](https://github.com/p20030920p/SLAM_Learning/tree/study/identity-budget-v2) | Late pose correction and candidate-budget experiments; H1 unverified. |
-| [`reproduce/author-originals`](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | Four official pipelines, metric checks and recordings. |
-| [`notes/personal-study-guide-20261008`](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | [Research notes: H1 and rejection controls](https://github.com/p20030920p/SLAM_Learning/blob/71a2e7556e231c1d0e6814febb085bea9d225f44/notes/OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md). |
-| [`Personal-Learning-Physical`](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical) | [D435/L2 capture, mapping trials and eight-frame semantic-loader checks](https://github.com/p20030920p/SLAM_Learning/blob/4e5a5e8b703e5072ca5e11cf6893d03bca244473/README.zh-CN.md). |
+| main | Curated submission: question, four reproductions, counterevidence and candidate H1. |
+| [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | Original pipelines, paper-table/semantic scoring and recordings. |
+| [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | Personal study notes and hardware trials under `physical/`, including operations and failures. |
 
-D435 has no IMU. LiDAR odometry failed the drift check; fusion and semantic quality remain unvalidated.
+Late-correction and candidate-budget experiments remain in a [pinned snapshot](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11); they are exploratory and H1 remains unverified.
 
 [AI use](docs/DISCLOSURE.md) · [Sources/licenses](docs/ATTRIBUTION.md) · [Citation](CITATION.cff) · [License](LICENSE)

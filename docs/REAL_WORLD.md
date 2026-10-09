@@ -1,81 +1,28 @@
-# Home validation with D435i and Unitree L2
+# Optional physical validation
 
 English | [中文](REAL_WORLD.zh-CN.md)
 
-**No hardware data has been collected yet.** Use this Windows/WSL computer, D435i, L2, tripods, a chair, boxes, an occlusion board, tape measure and a phone to test map decisions and target validity. Test each fixed sensor separately before handheld revisits; no mobile robot is required.
+Hardware is a follow-up to the room2 decision, not evidence confirming H1. Current acquisition, failed trials and operating instructions live on the [hardware branch](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical). The connected depth device was identified as D435 without IMU; L2 is tested separately. No mobile robot is required.
 
-## Three distinguishable questions
+## One fixed-sensor session
 
-| Question | Intervention | Main criterion |
+Use a stable background, a chair, two similar boxes, an occlusion board and a fixed phone showing the event timeline. Assign physical IDs and measured positions before running algorithms. Keep annotation-only markers out of algorithm inputs.
+
+| Event | Controlled change | Evaluate |
 | --- | --- | --- |
-| Is visibility mistaken for change? | Fixed sensor; static, occluded, removed and moved target | False static removal, visible-removal recall and stale-coordinate duration |
-| Is pose correction sufficient? | Same observations/features; correct history with associations fixed or recomputed | Surface coverage, identity fragments, coordinate error and recovery time |
-| Is bounded H1 worth its cost? | Independent-variance versus shared-pose protection at matched recall, coverage and delay | Risk frontier, memory, replay time and stale-result exposure |
+| Static | Repeat the same view | False removal and baseline identity/query errors |
+| Occluded | Hide one unchanged object | Wrong deletion and unsupported stale answers |
+| Removed | Remove an object, observe its former space | Removal recall and stale-coordinate duration |
+| Moved | Move one marked object | Old/new target coordinates, duplicates and mixed IDs |
 
-Raw collection can begin immediately. The second and third questions still require hardware-data adapters and candidate modules; current Replica entry points cannot directly consume device recordings. A sensor image or RViz cloud proves acquisition/viewing, not H1.
+Record raw observations, calibration, depth scale, timestamps, SDK versions and event timing. Sensor images and point clouds establish acquisition, not semantic quality. The [branch recording guide](https://github.com/p20030920p/SLAM_Learning/blob/30ccf1b4299e1d301740423661abaa91bb047573/docs/SIMPLE_RECORDING.md) covers full execution and same-recording replay.
 
-## Room and independent reference
+## Test the same correction question
 
-Include a wall, floor and another plane orientation. Full pose estimation needs independently measured multiple markers or sufficiently observable background; one plane does not constrain all degrees of freedom. Fix markers to the background, not moving targets.
+After the baseline works, reuse identical observations/features and compare exact geometry correction with fixed versus recomputed associations, including threshold and visibility controls. An injected correction tests controlled sensitivity; actual odometry-error claims require an independent reference. Do not equate the two.
 
-Fix the sensor and initially place targets around 1.5–3 m away, subject to measured depth validity and L2 return density. Assign physical IDs to the chair and two similar boxes. Mark initial and 30 cm translated locations with tape and record measurement uncertainty. A separate fixed phone should see the objects, sensor and session label.
+Score physical-instance recovery and category queries separately, along with identity errors, actual candidates/points, correction latency and peak memory. Unlabelled candidates are unknown. Fixed sensors need no IMU; handheld and cross-device fusion require separate pose/calibration validation.
 
-Algorithm-visible anchors are auxiliary inputs shared by applicable baselines. Evaluation-only markers must not leak into inputs. D435i IMU is not position GT. Use identity relative poses for the fixed sensor and record origin/axes per session.
+Only design bounded replay if the [room2 decision gate](PLAN.md) supports it. Independent labels and real change events are still needed for confirmation. Preserve full collection/execution videos; label saved-map viewing as replay. [Main recording scope](RECORDING.md).
 
-## A Fixed-sensor events
-
-Collect four event types separately for each sensor. Each session lasts 80 seconds: static baseline 0–20, event action 20–25, hold 25–60, restoration and static observation 60–80. Log actual times; moving transitions are separate from completed states.
-
-| Event | Action | Required interpretation |
-| --- | --- | --- |
-| Static | Nothing moves | Observation noise should not delete or split targets |
-| Occluded | Hide the stationary chair behind a board | Hidden/unknown is not absent; restore the same physical ID afterwards |
-| Removed | Remove the chair while old space/background remains visible | Evaluate visible-removal recall only with rays/depth reaching the old space |
-| Moved | Translate the chair 30 cm along tape | New coordinates become valid; old coordinates become stale |
-
-Add out-of-view and failure controls with most similar boxes moving together while stable background is hidden. Unseen old space is not visible removal. Without anchors, coherent object motion and camera drift may be unidentifiable.
-
-Start with one four-event demonstration per sensor: 5 min 20 s each, for pipeline checking only. For formal exploration, use three validation sessions per event, then freeze and collect five test sessions with a changed layout: 32 sessions or 42 min 40 s per sensor. This does not guarantee statistical power. Do not inspect test outcomes before freezing; statistical units are sessions, not pixels or random seeds.
-
-## B Delayed corrections on identical observations
-
-Extract 40 timestamped observations from a fixed-sensor recording. Hold RGB, depth, calibration, masks and per-mask features fixed. Identity poses are the reference. Observations 0–7 are exact; 8–15 receive a world-x bias ramping from 0 to 10 cm; the remainder are exact. This is a deterministic recovery stress test, not a deployment noise model. Report achieved RMS, extrema and ordering; do not claim sorting isolates correlation.
-
-Deliver the same historical correction at observation 16, 24 or 36, restoring reference poses for 8–15. With a 16-observation cache, the first correction is inside the window; the others include expired provenance. Fall back to full reconstruction or explicitly return unrecoverable. Cross event conditions with delay, debugging on static clips before freezing test settings. Rotation and handheld estimated poses are later separate factors.
-
-| Comparison | Intervention |
-| --- | --- |
-| B0 Native core | Preserve original association/fusion and historical decisions |
-| B1 Simple protection | Select thresholds/visibility on validation; retain ConceptGraphs threshold 1.0 as a competitor |
-| B2 Correct geometry, freeze association | Reproject the same cached observations with corrected poses but retain previous object membership, isolating geometry correction from reassociation |
-| B3 Independent variance | Same provenance cache, budget and commit policy; independent uncertainty controls tentative/committed updates |
-| B4 Candidate shared pose | Add shared-pose handling and affected-association replay without stronger front ends or additional labels |
-| B5 Oracle full replay | Rebuild all history under corrected poses; report actual time and memory |
-
-Run B0/B1/B2/B5 first to determine whether replay adds value beyond geometry correction. Compare B3/B4 only after uncertainty estimation is implemented and calibrated. Known injected errors/covariance are separate oracle conditions. Provenance and pose versions alone are not demonstrated novelty.
-
-## C Handheld and dual-sensor extensions
-
-After fixed-sensor validation, separately walk a slow 1–2 minute revisit loop with each sensor, starting and ending stationary. Keep estimated odometry separate from independent background/marker reference and report reprojection, depth and reference errors. Preserve L2 point time/ring for deskewing; scanning distortion is not automatically scene motion.
-
-Combine devices only after rigid mounting, extrinsic calibration, timestamp-offset/drift measurement and other-device on/off interference controls. USB/network timestamps and two IMUs do not automatically provide a shared clock or fusion system.
-
-## Metrics and rejection rules
-
-| Metric | Definition |
-| --- | --- |
-| False static removal / real-removal recall | Lost independently annotated visible static support / detected visible-removal events; point and event denominators remain separate |
-| Coverage and identity | Annotated visible-surface coverage within 10 cm; recovery requires at least 20% coverage and 50% visible projection precision; count segments per physical ID |
-| Target coordinate error | Distance to an independently measured designated surface anchor, with reference uncertainty; not full-object center or navigation error |
-| Staleness and delay | Completed event to old-coordinate invalidation; delivered correction to updated query; log valid, tentative, stale and unrecoverable states |
-| Resources | Serial runs on this computer; 16 observations / 512 MiB is a proposed provenance-cache budget only. Measure process RSS, GPU peak and replay time separately |
-
-Select operating points on validation, then report test risk–coverage–delay curves with matched change recall. Reject the corresponding H1 benefit if simple protection reaches the same frontier, B2 explains all recovery, uncertainty is uncalibrated, or fewer deletions merely retain stale targets longer. Abstention reduces coverage; retain out-of-window failures.
-
-## Acquisition and video evidence
-
-Use official RealSense Viewer to record raw RGB/depth/IMU, calibration, depth scale, SDK/firmware versions and hashes. Current documentation uses `.db3`; legacy versions use `.bag`. Choose the installed SDK's format and inspect playback; the extension does not establish IMU completeness. [Official record/playback](https://github.com/realsenseai/librealsense/blob/master/doc/record-and-playback.md).
-
-For L2 pin SDK2/ROS2 and retain all PointCloud2 fields, IMU, point time/ring, actual topics and TF. Official defaults are `unilidar/cloud`, `unilidar/imu` and lidar frame `unilidar_lidar`. The published ROS2 validation environment is Foxy; this host's Humble hardware connection remains unverified. [Official SDK2](https://github.com/unitreerobotics/unilidar_sdk2).
-
-Each session retains raw files, `capture.json`, calibration, `events.csv`, object/visibility labels, reference measurements, logs, screen capture and phone event video. RGB-D/3D clouds and map/target outputs occupy the main screen area; terminal text establishes commands and exit status. Label inference and offline inspection separately. Publish verified lightweight evidence and short clips on main; keep large files local.
+The [earlier detailed protocol](https://github.com/p20030920p/SLAM_Learning/blob/dfd4a05f02352d32b4f0a2bf522e189708c9e2b2/docs/REAL_WORLD.md) remains in Git history; current device operations are maintained on the hardware branch.

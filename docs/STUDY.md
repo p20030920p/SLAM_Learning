@@ -1,52 +1,48 @@
-# How the reproductions support and limit the hypothesis
+# From four reproductions to one testable question
 
 English | [中文](STUDY.zh-CN.md)
 
-**Spatial correspondence affects map decisions; a common dominant shared-pose-uncertainty bottleneck has not been established.** All four cores ran, but optimize different tasks. Author mechanisms, measurements and our inferences are separated below. [Full paired report](PAIRED_RESULTS.md) · [Raw evidence](../results/reference/paired-pose/record.json).
+**At the same candidate cap, does reassociation recover more targets after a late pose correction than coordinate correction and simple guards?** H1 remains a candidate.
 
-## What each reproduction achieved
+## The common interface, and its limits
 
-| Core and connection to the hypothesis | Achieved scope and metrics | Remaining gap or counterevidence |
+The two directions meet at **pose → correspondence → map decisions**. Dynamic mapping decides which geometry to retain; semantic mapping decides which observations belong to an object and where a query points. Correcting coordinates need not revise decisions made under the earlier alignment. This is our inference, not an observed common dominant defect.
+
+| Reproduced work | Pose-dependent decision | Existing protection / unresolved boundary |
 | --- | --- | --- |
-| DUFOMap: poses determine ray paths and free-space evidence; the author already models pose/measurement tolerances | Full teaser: map-proximity SA 97.9798%, DA 98.7029%; PCL and SciPy agree pointwise | Not all paper values match within 0.01 pp; no trajectory evaluation. Direct identity and proximity scoring differ by 5.347532 pp, not an algorithm benefit |
-| BeautyMap: global occupancy comparisons depend on alignment; hidden static geometry has a recovery mechanism | Same teaser: SA 96.9529%, DA 98.3382%; GT physically excluded from algorithm inputs | Paper gaps remain. “Unseen means deleted” is inaccurate; ground structure and visibility remain separate failure sources |
-| ConceptGraphs: geometric and semantic similarity determine association/fusion, connecting pose to identity and query coordinates | 40 observations, 39 objects; 39 saved camera matrices confirm absolute poses. The paired eight-observation reference recovers all four annotated surfaces | Reference restricted queries hit only 2/3. Object count is not association accuracy; complete identity GT, LLM reasoning and dynamic-update evaluation remain unfinished |
-| HOV-SG: poses assign pixel features to reference geometry before segment merging | Eight observations, 50 segments and 166,777 points; reference cache replay matches map/features bytewise. All paired tests recover the four surfaces | The 40-observation attempt exited 137 for an unconfirmed reason. Full hierarchy, navigation and online recovery are unfinished; more segments do not imply better semantics |
+| [DUFOMap](papers/dufomap.md) | Rays establish void regions used for point classification | Pose/measurement margins already exist; never-observed empty space remains ambiguous |
+| [BeautyMap](papers/beautymap.md) | Registered occupancy drives removal/restoration | Static restoration already exists; alignment and grid/ground assumptions still matter |
+| [ConceptGraphs](papers/conceptgraphs.md) | Geometric/semantic similarity drives object fusion | Thresholds and later observations may suffice; corrected geometry does not itself reassign fixed members/features |
+| [HOV-SG](papers/hovsg.md) | Poses attach features to geometry before segment fusion | External odometry is a safeguard; static-scene and hierarchy limits differ from object-map association |
 
-Achievement here means execution and measurement within the stated scope, not reproduction of every paper result. [Paper cards](papers/README.md) retain settings, sources and failures.
+These are mapping-core reproductions, using supplied poses. Larger original-code runs and scoped semantic scores are [pinned separately](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md). They do not establish trajectory accuracy or navigation success.
 
-## What is empirically shared
+## Why start with ConceptGraphs?
 
-The shared dependency is **posed observation → spatial correspondence → map decision**. Losses and assumptions differ: DUFOMap has tolerances, BeautyMap restores hidden geometry, ConceptGraphs supports updates, and HOV-SG states a static-scene limitation.
+Its association traces expose observation membership, support counts and fused features. With one frozen frontend and identical exact historical correction, fixed membership can be compared with reassociation. This separates coordinate error, low-support filtering and association history. DUFOMap/BeautyMap motivate the geometric interface; HOV-SG checks that semantic coverage and retrieval can differ. None is silently counted as another delayed-correction replication.
 
-The following are means over three seeds at 30 cm RMS. Both semantic cores use the same eight source observations. Metrics describe different tasks and cannot rank methods.
+## What the experiments established
 
-| Metric | Reference | Shuffled | Monotone drift | Interpretation |
-| --- | ---: | ---: | ---: | --- |
-| DUFOMap direct-label SA % | 92.6341 | 76.5854 | 88.5977 | Pose sensitivity, but drift preserves more static points; DA is 98.9654 / 98.9571 / 98.9231% |
-| BeautyMap proximity SA % | 96.9529 | 93.2688 | 95.8456 | Same direction; DA is 98.3382 / 98.1861 / 97.9847%, so deletion recall also matters |
-| ConceptGraphs partial-surface coverage | 0.9256 | 0.5991 | 0.3984 | Drift harms fixed-world reference coverage more; target recovery is 1 / 0.6667 / 0.5 |
-| HOV-SG partial-surface coverage | 0.9256 | 0.9061 | 0.9136 | Annotated geometry remains relatively stable; no common geometric collapse is established |
-| HOV-SG restricted query hit | 0.6667 | 0.6667 | 0.3333 | Retrieval can degrade while surfaces remain; geometry and query validity need separate checks |
+Early room0 controls use three seeds at 30 cm RMS; the semantic cores share eight observations. [Full paired study](PAIRED_RESULTS.md).
 
-Thus **“correlation is always worse” is rejected by counterexamples**. Local consistency might protect relative geometry while world coordinates drift. This explanation fits the results but is not uniquely identified: sorting also changes which view receives each error.
+| Metric | Zero error | Shuffled error | Monotone drift |
+| --- | ---: | ---: | ---: |
+| DUFOMap direct-label SA % | 92.6341 | 76.5854 | 88.5977 |
+| BeautyMap proximity SA % | 96.9529 | 93.2688 | 95.8456 |
+| ConceptGraphs partial-surface coverage | 0.9256 | 0.5991 | 0.3984 |
+| HOV-SG partial-surface coverage | 0.9256 | 0.9061 | 0.9136 |
+| HOV-SG restricted query hit | 0.6667 | 0.6667 | 0.3333 |
 
-Simple controls are strong competitors. Increasing DUFOMap d_p from 1 to 2 raises reference SA from 92.6341% to 99.7817% while DA falls to 96.3900%. Lowering ConceptGraphs association threshold from 1.2 to 1.0 makes all three 30 cm drift seeds hit all three restricted queries. Any new mechanism must improve on these inexpensive choices.
+Correlation is not uniformly worse; geometry and retrieval are different outcomes. These metrics do not rank methods. Three seeds are not three scenes, and these controls do not compare shared-latent versus independent-variance estimators.
 
-## What the metrics cannot establish
+room1 then tested late correction. At observation eight and 30 cm, fixed history recovers 11.1%, oracle 66.7%, while a post-hoc support-1 control reaches 100% with 117 candidates versus oracle's 25. Later observations also repair part of the deficit. **This counterevidence weakens the necessity of reassociation.** Partial plant/vase labels and unlabelled fragments prevent a full identity conclusion. [35 frozen cells and six separate post-hoc controls](DELAYED_RESULTS.md).
 
-SA/DA measure static retention and dynamic removal. Semantic coverage measures support for annotated partial surfaces; recovery also requires visible projection precision. Restricted query hits check top-1 correspondence to annotated targets. Surface distance is neither full-object center error nor navigation error. Baseline query misses cannot be attributed to injected poses, and an unannotated instance may still be valid.
+## Candidate H1 and its decision gate
 
-The four surfaces are AI-assisted annotations without independent human review; reference images are also mapping inputs, and the exact first pose protects some geometry. Three seeds are not three scenes and their range is not a confidence interval. Both arrangements share pose error across all points in a frame; **shared-variable and independent-variance estimators were not compared**. Static room0 cannot measure real change recall, and final offline maps cannot measure staleness or delayed-correction recovery.
+H1 retains observation sources and pose versions, then replays affected associations within a bounded cache to recover more valid targets than simple guards. The current oracle test asks whether reassociation is worth pursuing; it does not test bounded storage.
 
-## Open question and candidate H1
+room2 fixes five AI-labelled instances, held-out reference frames and one frontend. All 28 mapping cells ran; analysis remains pending. Support 1/2/3 and caps 25/50/100/unlimited are readouts of complete pre-filter snapshots. Category-query hits and physical identities are separate; unlabelled candidates are unknown. [Frozen exploratory protocol](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
 
-**When a later pose correction changes historical correspondence, how can object identity and query coordinates recover, with a measurable bound on exposure to stale results?** Pose sensitivity and the separation between geometry and retrieval motivate the question. They do not yet demonstrate that a recovery mechanism is necessary or beneficial.
+At matched RMS, support and endpoint, oracle must beat every simple control by ≥10 mean percentage points at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Only then propose a bounded prototype. Matching controls weaken H1. Equal caps do not match points or memory; AI-only labels cannot confirm H1. [Next steps](PLAN.md).
 
-Candidate H1 retains observation provenance, shared pose versions, tentative associations and a pre-window checkpoint. After correction it replays every contributor to affected components; queries return coordinates, pose version, validity and timestamp. Start with ConceptGraphs and a proposed 16-observation / 512 MiB budget. Neither the budget nor benefit is measured yet.
-
-The [new-scene delayed-correction study](DELAYED_RESULTS.md) now compares these controls in 35 frozen cells. Oracle initially improves selected-target recovery over full corrected geometry with fixed associations, but six post-hoc controls remove that deficit by lowering the support gate, at the cost of exposing many more fragments. Later observations also repair much of the primary deficit. This supports a support/exposure tradeoff rather than a demonstrated need for historical reassociation. Hold H1 implementation until independent labels and equal-budget identity/change evaluation resolve that cheaper explanation. Shared-variable versus independent-variance estimators remain untested.
-
-Freeze new scenes and independent annotations before inspecting results. Measure coverage, identity fragments, current coordinate error, change recall, stale duration, update latency, replay time and peak memory. Reject the corresponding H1 benefit if simple protection reaches the same frontier, pose correction explains all gains, or lower deletion risk merely retains stale objects longer. Without stable anchors, camera drift and coherent object motion may be unidentifiable.
-
-[Khronos](https://arxiv.org/html/2402.13817v2) already provides joint optimization and map reconciliation; memory or rollback alone is not novel. A bounded interface between pose correction and open-vocabulary target validity is only a potential contribution, pending a broader prior-work check. [Source analysis](LITERATURE.md) · [Next experiment design](REAL_WORLD.md).
+[Khronos](https://arxiv.org/html/2402.13817v2) already reconciles maps; [DovSG](https://arxiv.org/html/2410.11989v2) already updates scene graphs. The potential contribution is a measured recovery–cost benefit over existing protections, not memory/replay alone. Shared uncertainty as a universal cause, dynamic change recall and hardware H1 validation remain unestablished.

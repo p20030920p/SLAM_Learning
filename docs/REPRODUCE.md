@@ -44,3 +44,29 @@ The 76 primary and 21 exploratory control cells have a separate [protocol](PAIRE
 The new room1 study has 35 frozen delayed-correction cells and six separate post-hoc support controls. [Protocol and fresh-run sequence](DELAYED_PROTOCOL.md#reproduction-status) · [Results and revised H1 decision](DELAYED_RESULTS.md).
 
 Configs, source snapshots and run records pin data/weight checksums, author revisions and resource adaptations. [Sources and licenses](ATTRIBUTION.md) remain traceable. Detailed personal installation/recording/troubleshooting notes stay local. Public PDFs are record-bound generation snapshots; editing current research text does not silently rewrite them.
+
+## Maintenance
+
+```text
+src/slam_learning/   CPU package: CLI → orchestration → geometry/scoring/I/O
+scripts/            Experiment, viewer and export entry points
+configs/            Frozen inputs and protocols
+environments/       Separate CUDA environment snapshots
+results/reference/  Immutable evidence and executed source snapshots
+```
+
+CPU checks only; no dataset download or GPU required:
+
+```bash
+uv sync --frozen --python 3.10 --extra dev --extra audit
+uv run --no-sync deptry src
+uv run --no-sync lint-imports --no-cache
+uv run --no-sync vulture
+uv run --no-sync pytest -q
+```
+
+[deptry](https://deptry.com/usage/) checks packaged dependencies. Pillow is direct; the four DEP002 exceptions cover BeautyMap's subprocess imports (`fire`, `dztimer`, `tqdm`) and optional Open3D viewers. [Import Linter](https://import-linter.readthedocs.io/en/stable/contract_types/) enforces acyclic imports, layer direction and separation from CUDA/ROS.
+
+[Vulture](https://github.com/jendrikseipp/vulture) checks active source, scripts and tests at 100% confidence. Lower-confidence results require review: framework attributes and file-interface methods may be called externally. Frozen source snapshots and CUDA dependency lists are outside this cleanup scope.
+
+[IWYU](https://github.com/include-what-you-use/include-what-you-use) applies to upstream C++ builds. Use matching Clang and a compilation database in a separate build, then run `iwyu_tool.py -p /path/to/build`. No IWYU result is claimed here; this checkout owns no C++ target.

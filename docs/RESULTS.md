@@ -2,6 +2,8 @@
 
 English | [中文](RESULTS.zh-CN.md)
 
+> Historical measurements/analysis; current question and next decision: [STUDY](STUDY.md) · [PLAN](PLAN.md).
+
 Current extension: [paired results](PAIRED_RESULTS.md) adds restricted annotations, 97 mapping cells, simple controls and a narrower candidate H1. Earlier baseline PDFs retain their recorded source snapshot; the paired-study PDF is the current extension.
 
 Measured on 7 October 2026. Portable records bind commands, versions, source hashes, data checksums and output hashes. Windows author/controlled experiments use Python 3.10.19. Both author methods and all six real-data sensitivity cells also **executed successfully on GitHub Actions Ubuntu 22.04**, with a fresh download and environment. [Linux run](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701), [execution metadata](../results/ci/linux-run.json). Docker was not locally built. On 8 October, local WSL2 author, PCL and semantic-subset runs completed; see sections 5–6 and [WSL](REPRODUCE.md).
