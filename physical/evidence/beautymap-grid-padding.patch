@@ -1,0 +1,18 @@
+--- author/main.py
++++ control/main.py
+@@ -50,7 +50,15 @@
+     Mpts.set_points_from_file(raw_map_path)
+     Mpts.set_unit_params(xy_resolution, xy_resolution, h_res)
+     Mpts.non_negatification_all_map_points()
++    # PHYSICAL DIAGNOSTIC: pad empty XY domain by half the query width + 1 cell.
++    # No geometry is created; integer cell shift preserves the original bins.
++    padding_cells = int(np.ceil(dis_range / (2.0 * xy_resolution))) + 1
++    padding_m = padding_cells * xy_resolution
++    Mpts.coordinate_offset[:2] -= padding_m
++    Mpts.non_negtive_points[:, :2] += padding_m
++    Mpts.non_negtive_center[:2] += padding_m
+     Mpts.calculate_matrix_order()
++    Mpts.matrix_order += 2 * padding_cells
+     Mpts.generate_map_binary_tree()
+     Mpts.get_binary_matrix()
+     Mpts.get_minz_matrix()

@@ -1,0 +1,80 @@
+{
+  "sensor": "Unitree L2",
+  "started_at": "2026-10-08T19:25:33.513074+00:00",
+  "port": "\\\\?\\GLOBALROOT\\Device\\Serial2",
+  "baud": 4000000,
+  "status": "received",
+  "evaluation_completed": false,
+  "sdk_reference_commit": "0e3c51f512e6b8ff60b8c32f160b412cb48445c2",
+  "clock": "device uptime; host receive time is separately recorded; not cross-sensor synchronized",
+  "requested_driver_rx_buffer_bytes": 1048576,
+  "transmitted": {
+    "purpose": "read device version only",
+    "hex": "55aa050a640000002000000003000000000000008ad8adeb00000000000000ff"
+  },
+  "device_version": {
+    "hardware": "2.2.1.1",
+    "firmware": "2.8.8.1",
+    "name": "YS-L2",
+    "date": "250403"
+  },
+  "last_inside_state": {
+    "sys_rotation_period": 4642,
+    "com_rotation_period": 229288,
+    "dirty_index": 0.0,
+    "packet_lost_up": 0.0,
+    "packet_lost_down": 0.0,
+    "apd_temperature": 54.08558654785156,
+    "apd_voltage": 160.85382080078125,
+    "laser_voltage": 50.71001434326172,
+    "imu_temperature": 63.791015625
+  },
+  "elapsed_seconds": 10.02345749999995,
+  "raw_bytes": 2448953,
+  "valid_points": 600319,
+  "crc_errors": 0,
+  "discarded_bytes": 0,
+  "trailing_bytes": 513,
+  "packet_counts": {
+    "102": 2154,
+    "105": 1,
+    "101": 1,
+    "104": 2494
+  },
+  "packet_sizes": {
+    "102:1044": 2154,
+    "105:104": 1,
+    "101:40": 1,
+    "104:80": 2494
+  },
+  "102": {
+    "count": 2154,
+    "sensor_hz": 430.65187890924403,
+    "sequence_missing": 0,
+    "sequence_duplicates": 0,
+    "timestamp_non_increasing": 0,
+    "max_sensor_gap_s": 0.0027142899999716974,
+    "host_hz": 215.43879428882707,
+    "sequence_modulus": 1024,
+    "clock_host_seconds_per_device_second": 1.9989335022057622,
+    "clock_affine_residual_p95_s": 0.00030478511068974254
+  },
+  "104": {
+    "count": 2494,
+    "sensor_hz": 498.59998903079156,
+    "sequence_missing": 0,
+    "sequence_duplicates": 0,
+    "timestamp_non_increasing": 0,
+    "max_sensor_gap_s": 0.0040001200000006065,
+    "host_hz": 249.43805897688446,
+    "sequence_modulus": 1024,
+    "clock_host_seconds_per_device_second": 1.9989349928564828,
+    "clock_affine_residual_p95_s": 0.0016308462259796426
+  },
+  "imu_summary": {
+    "acceleration_norm_median": 9.752043076937383,
+    "gyro_norm_median": 0.306531083630009,
+    "quaternion_norm_median": 0.9983124166175384
+  },
+  "raw_sha256": "5dc0c0c537530ef0adb9783bf396c82e8e92a05b6a7b2c612dad15eee2459ba9"
+}

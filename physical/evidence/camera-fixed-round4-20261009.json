@@ -1,0 +1,591 @@
+{
+  "date": "2026-10-09",
+  "scope": "Operator-declared fixed camera; dynamic human foreground observed. Recorded threshold failures, not a clean static scene baseline or moving precision evaluation.",
+  "session": "data/live-camera-20261009-013502-642",
+  "branch": "Personal-Learning-Physical",
+  "code_commit_at_capture": "55cda023549ea36b6887e13094dd77c75fde8b3c",
+  "main_commit_unchanged": "354b02d69ccc90304174f6d36010d25043d739ca",
+  "commands": [
+    "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/start_live.ps1 -Sensor camera -Algorithm rgbd -SessionType stationary -Seconds 60 -Video -Record -NoGui",
+    ".venv/Scripts/python.exe scripts/verify_camera_recording.py data/live-camera-20261009-013502-642/raw.db3",
+    ".venv/Scripts/python.exe scripts/export_stereo.py data/live-camera-20261009-013502-642/raw.db3 --output data/live-camera-20261009-013502-642/stereo",
+    "python3 scripts/run_odometry_baseline.py data/live-camera-20261009-013502-642/stereo --session-type stationary --output data/live-camera-20261009-013502-642/stereo-odometry",
+    "python3 scripts/render_odometry_video.py data/live-camera-20261009-013502-642/stereo data/live-camera-20261009-013502-642/stereo-odometry"
+  ],
+  "configuration": {
+    "fps": 10,
+    "seconds": 60,
+    "no_gui": true,
+    "session_type": "stationary",
+    "sensor": "camera",
+    "emitter": "default",
+    "serial_port": null,
+    "domain": 83,
+    "algorithm": "rgbd",
+    "lines": 50,
+    "port": 17635,
+    "video": true,
+    "record": true
+  },
+  "capture": {
+    "started_at": "2026-10-08T22:35:05.791004+00:00",
+    "sensor": "camera",
+    "status": "streamed",
+    "scope": "Live receipt; preview is not precision acceptance",
+    "device": {
+      "name": "RealSense D435",
+      "serial": "831612073355",
+      "usb": "3.2",
+      "firmware": "5.17.0.10"
+    },
+    "depth_scale_m": 0.0010000000474974513,
+    "emitter_before": 1.0,
+    "emitter_during": 1.0,
+    "calibration": {
+      "left": {
+        "width": 640,
+        "height": 480,
+        "fx": 386.3125915527344,
+        "fy": 386.3125915527344,
+        "ppx": 314.95684814453125,
+        "ppy": 233.64193725585938
+      },
+      "right": {
+        "width": 640,
+        "height": 480,
+        "fx": 386.3125915527344,
+        "fy": 386.3125915527344,
+        "ppx": 314.95684814453125,
+        "ppy": 233.64193725585938
+      },
+      "color": {
+        "width": 640,
+        "height": 480,
+        "fx": 614.6063842773438,
+        "fy": 615.578125,
+        "ppx": 323.0701904296875,
+        "ppy": 251.8853759765625
+      },
+      "baseline_m": 0.05004335567355156,
+      "sdk_left_to_color": {
+        "rotation_column_major": [
+          0.9999877214431763,
+          0.004955935757607222,
+          -0.00021392074995674193,
+          -0.004954231902956963,
+          0.9999607801437378,
+          0.007341783028095961,
+          0.00025029777316376567,
+          -0.0073406328447163105,
+          0.9999729990959167
+        ],
+        "translation_m": [
+          0.015406528487801552,
+          -0.0001232208451256156,
+          -0.00025224441196769476
+        ]
+      }
+    },
+    "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+    "framesets_acquired": 455,
+    "frames_sent": 268,
+    "stereo_skew_rejected": 0,
+    "stereo_skew_rejected_first_ms": [],
+    "elapsed_seconds": 60.20299999999952,
+    "temporary_options_restored": true,
+    "raw": {
+      "bytes": 2186276864,
+      "sha256": "8295de56b7e5db530914caf3999730d46fb679ba8f42964c099b9b0a0ac0e1e8"
+    },
+    "streams": {
+      "stream.depth:0": {
+        "unique_frames": 453
+      },
+      "stream.infrared:1": {
+        "unique_frames": 452
+      },
+      "stream.infrared:2": {
+        "unique_frames": 452
+      },
+      "stream.color:0": {
+        "unique_frames": 453
+      }
+    }
+  },
+  "raw_audit": {
+    "status": "verified",
+    "observer_version": 2,
+    "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+    "raw_sha256": "8295de56b7e5db530914caf3999730d46fb679ba8f42964c099b9b0a0ac0e1e8",
+    "duration_s": 60.05161,
+    "eof_reached": true,
+    "raw_image_message_counts": {
+      "stream.infrared:1": 1794,
+      "stream.infrared:2": 1794,
+      "stream.depth:0": 1793,
+      "stream.color:0": 1792
+    },
+    "sdk_frame_callbacks": {
+      "stream.infrared:1": 1794,
+      "stream.infrared:2": 1794,
+      "stream.depth:0": 1793,
+      "stream.color:0": 1792
+    },
+    "decoded_unique_frames": {
+      "stream.infrared:1": 1794,
+      "stream.infrared:2": 1794,
+      "stream.depth:0": 1793,
+      "stream.color:0": 1792
+    },
+    "sdk_counts_match_raw_file": {
+      "stream.infrared:1": true,
+      "stream.infrared:2": true,
+      "stream.depth:0": true,
+      "stream.color:0": true
+    },
+    "live_frame_numbers_missing_from_recording": {
+      "stream.color:0": [],
+      "stream.depth:0": [],
+      "stream.infrared:1": [],
+      "stream.infrared:2": []
+    },
+    "raw_minus_live_unique_counts": {
+      "stream.color:0": 1339,
+      "stream.depth:0": 1340,
+      "stream.infrared:1": 1342,
+      "stream.infrared:2": 1342
+    },
+    "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+  },
+  "scene_note": {
+    "session_type": "stationary",
+    "fixed_sensor_declared_by_operator": true,
+    "objects_fixed_declared_by_operator": true,
+    "requested_seconds": 60,
+    "user_reported_objects": [
+      "纸巾",
+      "盒子",
+      "可乐"
+    ],
+    "observed_foreground_interference": true,
+    "pure_static_scene_eligible": false,
+    "independent_range_reference": false,
+    "no_motion_accuracy_or_semantic_claim": true
+  },
+  "live_rgbd": {
+    "status": "streamed",
+    "sensor": "camera",
+    "algorithm": "rgbd",
+    "session_type": "stationary",
+    "quality_claim": false,
+    "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+    "video": {
+      "status": "saved",
+      "output": "rviz-live.mp4",
+      "content": "Actual independent RViz view of live ROS topics; no synthetic poses",
+      "frame_rate": 10,
+      "size": [
+        1440,
+        1000
+      ],
+      "audio": false,
+      "display": ":90",
+      "elapsed_seconds": 67.36584732800111,
+      "forced_shutdown_pids": [],
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1440,
+            "height": 1000,
+            "nb_frames": "663"
+          }
+        ],
+        "format": {
+          "duration": "66.300000"
+        }
+      },
+      "bytes": 6367335
+    },
+    "source_observations": 268,
+    "odometry_messages": 267,
+    "status_messages": 267,
+    "map_data_updates": 0,
+    "graph_global_closure_links": [],
+    "native_calibration": {
+      "left": {
+        "width": 640,
+        "height": 480,
+        "fx": 386.3125915527344,
+        "fy": 386.3125915527344,
+        "ppx": 314.95684814453125,
+        "ppy": 233.64193725585938
+      },
+      "right": {
+        "width": 640,
+        "height": 480,
+        "fx": 386.3125915527344,
+        "fy": 386.3125915527344,
+        "ppx": 314.95684814453125,
+        "ppy": 233.64193725585938
+      },
+      "color": {
+        "width": 640,
+        "height": 480,
+        "fx": 614.6063842773438,
+        "fy": 615.578125,
+        "ppx": 323.0701904296875,
+        "ppy": 251.8853759765625
+      },
+      "baseline_m": 0.05004335567355156,
+      "sdk_left_to_color": {
+        "rotation_column_major": [
+          0.9999877214431763,
+          0.004955935757607222,
+          -0.00021392074995674193,
+          -0.004954231902956963,
+          0.9999607801437378,
+          0.007341783028095961,
+          0.00025029777316376567,
+          -0.0073406328447163105,
+          0.9999729990959167
+        ],
+        "translation_m": [
+          0.015406528487801552,
+          -0.0001232208451256156,
+          -0.00025224441196769476
+        ]
+      }
+    },
+    "pose_output_fraction": 0.996268656716418,
+    "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+    "lost_status_fraction": 0.003745318352059925,
+    "pose_output_fraction_after_first_2s": 0.9961240310077519,
+    "ros_input_hz": 4.358203942890289,
+    "ros_input_gap_p95_ms": 280.8608004,
+    "odometry_compute_ms": {
+      "p50": 39.460182189941406,
+      "p95": 53.67608070373535
+    },
+    "valid_pose_output_fraction": 0.9888059701492538,
+    "valid_pose_output_fraction_after_first_2s": 0.9922480620155039,
+    "translation_excursion_max_m": 0.07769579137315784,
+    "translation_endpoint_separation_m": 0.0042209458084869,
+    "rotation_excursion_max_deg": 11.63014160062341,
+    "estimated_path_length_m": 0.5179794359051911,
+    "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+  },
+  "live_rgbd_evaluation": {
+    "session_type": "stationary",
+    "operator_declaration": "User explicitly confirmed camera and objects fixed before this 60-second recording",
+    "ground_truth_scope": "Physical fixed-state declaration only; no independently measured pose or distance reference",
+    "scene_observation": "Human arms/body enter the foreground in inspected video frames; camera and tabletop objects were operator-declared fixed",
+    "pure_static_scene_eligible": false,
+    "interpretation": "Thresholds exceeded under foreground interference. This session cannot establish a clean fully static baseline or isolate the cause of the pose spike.",
+    "source_observations": 268,
+    "matched_valid_nonlost_inputs": 265,
+    "usable_fraction": 0.9888059701492538,
+    "steady_inputs": 259,
+    "steady_matched_valid_nonlost_inputs": 257,
+    "steady_usable_fraction": 0.9922779922779923,
+    "translation_excursion_max_m": 0.07769579137315784,
+    "rotation_excursion_max_deg": 11.63014160062341,
+    "lost_status_fraction": 0.003745318352059925,
+    "lost_events": [
+      {
+        "elapsed_s": 8.519789907,
+        "stamp_ns": 1791498914782571893,
+        "lost": true,
+        "inliers": 14,
+        "features": 745,
+        "compute_s": 0.08373308181762695
+      }
+    ],
+    "threshold_exceeding_valid_poses": [
+      {
+        "elapsed_s": 44.239241274,
+        "xyz": [
+          0.06997400522232056,
+          -0.019613614305853844,
+          0.002274452243000269
+        ],
+        "translation_from_first_valid_m": 0.07769579137315784,
+        "rotation_from_first_valid_deg": 11.63014160062341,
+        "covariance0": 5.804265667011351e-06
+      }
+    ],
+    "gate": {
+      "max_translation_m": 0.05,
+      "max_rotation_deg": 2,
+      "min_steady_usable_fraction": 0.95,
+      "max_lost_fraction": 0.05
+    },
+    "static_gate_passed": false,
+    "metric_note": "All finite poses below the native failed-covariance marker retained; no spike removal. Startup first 2 seconds reported separately for coverage only; excursion includes every valid pose."
+  },
+  "stereo_export": {
+    "status": "exported",
+    "source_recording": "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\live-camera-20261009-013502-642\\raw.db3",
+    "sdk": "2.58.4.10922",
+    "stride": 3,
+    "skip_seconds": 2,
+    "left": {
+      "width": 640,
+      "height": 480,
+      "fx": 386.3125915527344,
+      "fy": 386.3125915527344,
+      "ppx": 314.95684814453125,
+      "ppy": 233.64193725585938,
+      "coeffs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "model": "distortion.brown_conrady"
+    },
+    "right": {
+      "width": 640,
+      "height": 480,
+      "fx": 386.3125915527344,
+      "fy": 386.3125915527344,
+      "ppx": 314.95684814453125,
+      "ppy": 233.64193725585938,
+      "coeffs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "model": "distortion.brown_conrady"
+    },
+    "left_to_right": {
+      "rotation_column_major": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "translation_m": [
+        -0.050043001770973206,
+        -0.0,
+        -0.0
+      ]
+    },
+    "baseline_m": 0.050043001770973206,
+    "decoded_unique_left_frames": 1789,
+    "source_sha256": "8295de56b7e5db530914caf3999730d46fb679ba8f42964c099b9b0a0ac0e1e8",
+    "duration_s": 57.64348864555359
+  },
+  "stereo_export_pairs": 577,
+  "stereo_result": {
+    "status": "evaluated",
+    "algorithm": "RTAB-Map stereo odometry (F2M)",
+    "mode": "stereo",
+    "observer_version": 2,
+    "dataset": "/mnt/d/workspace/be2/Personal-Learning-Physical/data/live-camera-20261009-013502-642/stereo",
+    "source_sha256": "8295de56b7e5db530914caf3999730d46fb679ba8f42964c099b9b0a0ac0e1e8",
+    "input_duration_s": 57.64348864555359,
+    "requested_pairs": 577,
+    "replay_speed": 1,
+    "command": [
+      "ros2",
+      "run",
+      "rtabmap_odom",
+      "stereo_odometry",
+      "--ros-args",
+      "-r",
+      "__node:=physical_stereo_odometry",
+      "--params-file",
+      "data/live-camera-20261009-013502-642/stereo-odometry/requested-parameters.yaml"
+    ],
+    "base_frame": "camera_left_optical: x right, y down, z forward",
+    "ground_truth": "User-confirmed stationary; no external pose or metric range reference",
+    "scope": "Static stability only, not moving SLAM or loop closure validation",
+    "session_type": "stationary",
+    "wall_replay_s": 57.81566635800118,
+    "published_pairs": 577,
+    "status_messages": 577,
+    "odometry_messages": 577,
+    "lost_status_fraction": 0.0,
+    "status_output_fraction": 1.0,
+    "pose_output_fraction": 1.0,
+    "observed_output_fraction": 1.0,
+    "features": {
+      "median": 963.0,
+      "p95": 987.0
+    },
+    "inliers": {
+      "median": 320.0,
+      "p95": 373.19999999999993
+    },
+    "time_estimation_s": {
+      "median": 0.04470109939575195,
+      "p95": 0.05635433197021483
+    },
+    "latency_s": {
+      "median": 0.1458229529998789,
+      "p95": 0.165582264400291
+    },
+    "icp_inliers_ratio": {
+      "median": 0.0,
+      "p95": 0.0
+    },
+    "icp_correspondences": {
+      "median": 0.0,
+      "p95": 0.0
+    },
+    "icp_structural_complexity": {
+      "median": 0.0,
+      "p95": 0.0
+    },
+    "icp_structural_distribution": {
+      "median": 0.0,
+      "p95": 0.0
+    },
+    "valid_pose_count": 576,
+    "high_covariance_pose_count": 1,
+    "pose_filter_note": "Initial/high-covariance discontinuity poses excluded; lost status separately counted",
+    "translation_excursion_max_m": 0.01373705860443051,
+    "translation_endpoint_separation_m": 0.00279427698581365,
+    "rotation_excursion_max_deg": 2.1458526712131714,
+    "rotation_endpoint_separation_deg": 0.4175900599992727,
+    "estimated_path_length_m": 0.3855487742143415,
+    "static_translation_max_m": 0.01373705860443051,
+    "static_translation_final_m": 0.00279427698581365,
+    "static_rotation_max_deg": 2.1458526712131714,
+    "static_rotation_final_deg": 0.4175900599992727,
+    "static_gate": {
+      "max_translation_m": 0.05,
+      "max_rotation_deg": 2.0,
+      "loss_fraction": 0.0,
+      "minimum_output_fraction": 0.99,
+      "note": "Project engineering target, not device specification or ATE"
+    },
+    "static_gate_passed": false,
+    "timing_gate": {
+      "input_period_s": 0.10007550112075275,
+      "compute_p95_below_period": true,
+      "callback_latency_p95_below_two_periods": true,
+      "note": "Observed software replay, not sensor acquisition latency or an unloaded benchmark"
+    }
+  },
+  "stereo_requested_parameters": {
+    "physical_stereo_odometry": {
+      "ros__parameters": {
+        "use_sim_time": true,
+        "frame_id": "camera_left_optical",
+        "odom_frame_id": "physical_odom",
+        "publish_tf": false,
+        "wait_imu_to_init": false,
+        "qos": 1,
+        "publish_null_when_lost": true,
+        "approx_sync": false,
+        "qos_camera_info": 1,
+        "topic_queue_size": 20,
+        "sync_queue_size": 20
+      }
+    }
+  },
+  "code_hashes_at_capture": {
+    "configs/rviz/lidar_odom.rviz": "9a1f24bc709de478b38dc1b07e0cc1b435a8b48a7121a3a22028a0018cde39c9",
+    "configs/rviz/camera_map.rviz": "e5ae4f92b5523b2125d3526514e1bdb2a6821243dcd2e625479f21e6a873a2e8",
+    "configs/rviz/lidar_raw.rviz": "5c0dc607823a5fabcdf23429dcec05eba01dc3ad8b732abdfb93408d5209277a",
+    "scripts/live_transport.py": "34075e84568f816726edb8438f6690b51790a3627119b23e691666eabe389b44",
+    "scripts/live_windows.py": "f6f1846c4055b526f5f00102531ac2e848a38a2b6259349c09abfd34718ded45",
+    "scripts/live_metrics.py": "31934295a6351b84de6c7281b6228099c3189a1484c30f785390a87e27dc88e3",
+    "scripts/live_kiss_worker.py": "8bf0ae2629c472999a7394f24747ccf87b37cb420fbf3fa0e2d9c83f91ef55be",
+    "configs/rviz/camera_raw.rviz": "ffb97fedf2c840a6824ba6dcf9965312c4b6f9cd1c6c7c3a329244f13a28da7a",
+    "scripts/protocol_l2.py": "c9085c194135e01b8592dbdc90e541a6ab726710476a48432dff4e7b4f3df494",
+    "configs/rviz/camera_odom.rviz": "18dfd179ae5e8a1f331280f75884ab180ee3aca57ce4aebaceebf2b91e7ccc8a",
+    "scripts/record_rviz.py": "5ad85872d28b0c4e37a16fef77b7b8c42c97c7f51e77450ae765234665ce7c57",
+    "scripts/start_live.ps1": "08f79173ece4511b7acc6d133d06e3e8b168c3ef577255703604d3bf2b838187",
+    "scripts/live_ros.py": "de5593e4fb44139748589efaaddc74b8b16d995c46a63d899eae4f354541f553"
+  },
+  "analysis_method": {
+    "valid_pose": "covariance0 < 9999 and finite position/quaternion; no valid spike removal",
+    "displacement": "max Euclidean distance from first valid estimated position",
+    "angle": "max degrees(2 acos(abs(dot(normalized q, first normalized q))))",
+    "steady_joint_coverage": "First input earliest RGB/depth candidate + 2 seconds; valid pose and non-lost status within 1 microsecond, then one-to-one input matching with live_metrics.match_observations",
+    "comparison": "Same raw capture, distinct modalities/sampling/replay paths; not a fair algorithm ranking"
+  },
+  "observed_issue": {
+    "visual_check": "Human arms/body visible in the encoded RGB previews at 15 and 47 seconds; pure static scene eligibility rejected",
+    "rgbd_spike_elapsed_s": 44.239241274,
+    "rgbd_spike_status": {
+      "lost": false,
+      "inliers": 22,
+      "features": 532
+    },
+    "causal_claim": false
+  },
+  "media": {
+    "rgbd_video": {
+      "status": "saved",
+      "output": "rviz-live.mp4",
+      "content": "Actual independent RViz view of live ROS topics; no synthetic poses",
+      "frame_rate": 10,
+      "size": [
+        1440,
+        1000
+      ],
+      "audio": false,
+      "display": ":90",
+      "elapsed_seconds": 67.36584732800111,
+      "forced_shutdown_pids": [],
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1440,
+            "height": 1000,
+            "nb_frames": "663"
+          }
+        ],
+        "format": {
+          "duration": "66.300000"
+        }
+      },
+      "bytes": 6367335
+    },
+    "rgbd_video_sha256": "c4382ebed288939546fb71638deb4b795d12c81e4c729c5cc18869d702c5b21c",
+    "stereo_video": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 960,
+          "nb_frames": "577"
+        }
+      ],
+      "format": {
+        "duration": "57.747000"
+      }
+    },
+    "stereo_video_sha256": "b8377a0649ad4489782a9f0e829461c9b9a74b8a46338c98368aca1bf4305a46",
+    "comparison_sha256": "77d4655bbb0a30007dbec6406b437530cd3910d128cc0bdcfb32e97c0135f4d5",
+    "inspected_frames_sha256": {
+      "video-preview.png": "bd7d38e9927850c1f22bc58df9fc029408da7adae896d9067773ead3d14820c1",
+      "video-preview-47s.png": "123023d834f88a6258bcbe89552357a6fca87ec4d14a671254b5aae01ab678af"
+    },
+    "storage": "All raw data, videos, images and indoor foreground stay in ignored local data/; metadata only pushed"
+  },
+  "next_test": "Await operator confirmation that human foreground has left the view, then collect a new 60-second fixed session with unchanged settings",
+  "not_evaluated": [
+    "Independent range accuracy",
+    "Moving trajectory/loop closure accuracy",
+    "Semantic object identity or changed object coordinates",
+    "Lidar static/moving retest",
+    "Cross-device synchronization or fusion"
+  ]
+}

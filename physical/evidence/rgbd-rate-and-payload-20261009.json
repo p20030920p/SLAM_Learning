@@ -1,0 +1,1577 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-08T23:21:59.706385+00:00",
+  "scope": "Unattended recorded RGB-D feed/odometry controls and short live receipt; not independent accuracy acceptance",
+  "source": {
+    "schema_version": 1,
+    "kind": "physical_rgbd_input",
+    "status": "exported",
+    "started_at": "2026-10-08T23:02:12.686244+00:00",
+    "source_recording": "D:\\workspace\\be2\\Personal-Learning-Physical\\data\\live-camera-20261009-014327-492\\raw.db3",
+    "source_session_note": {
+      "session_type": "stationary",
+      "camera_fixed_declared_by_operator": true,
+      "objects_fixed_declared_by_operator": true,
+      "observed_dynamic_background": true,
+      "pure_static_scene_eligible": false,
+      "scene_review_sampling_hz": 1,
+      "inter_sample_motion_not_excluded": true,
+      "independent_range_reference": false
+    },
+    "script_sha256": "68d7dbec360afd10279b65780399c98c4e550c685964bc21a4e1de55052154bc",
+    "sdk": "2.58.4.10922",
+    "pose_source": "Identity T_world_color from operator-declared fixed camera; not odometry or independent GT",
+    "world_frame": "First color optical frame: +x right, +y down, +z forward; meters",
+    "alignment": "rs.align(rs.stream.color); no temporal/spatial/hole-filling filters",
+    "timestamp_policy": "Native stream times; SDK association, not hardware synchronization",
+    "replica_note": "File layout compatibility only; observations are physical RealSense data",
+    "jpeg_quality": 95,
+    "original_rgb_png_retained": true,
+    "sampling": {
+      "frames": 500,
+      "skip_seconds": 3.0,
+      "interval_s": 0.1,
+      "max_skew_ms": 25
+    },
+    "semantic_algorithm_executed": false,
+    "quality_metrics_evaluated": false,
+    "skew_rejected": 0,
+    "source_sha256": "35cfdca0dc208f65a004b00fc3f8d9e7d142042099753d8a0ec2a8c4c8c9047b",
+    "device": {
+      "name": "RealSense D435",
+      "serial": "831612073355",
+      "usb": "3.2",
+      "firmware": "5.17.0.10"
+    },
+    "color_intrinsics": {
+      "width": 640,
+      "height": 480,
+      "fx": 614.6063842773438,
+      "fy": 615.578125,
+      "ppx": 323.0701904296875,
+      "ppy": 251.8853759765625,
+      "coeffs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "model": "distortion.inverse_brown_conrady"
+    },
+    "raw_depth_intrinsics": {
+      "width": 640,
+      "height": 480,
+      "fx": 386.3125915527344,
+      "fy": 386.3125915527344,
+      "ppx": 314.95684814453125,
+      "ppy": 233.64193725585938,
+      "coeffs": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "model": "distortion.brown_conrady"
+    },
+    "depth_unit_m": 0.0010000000474974513,
+    "depth_aligned_to": "color",
+    "sdk_depth_to_color": {
+      "rotation_column_major": [
+        0.9999880194664001,
+        0.00495600001886487,
+        -0.00021399999968707561,
+        -0.004954000003635883,
+        0.9999610185623169,
+        0.007342000026255846,
+        0.0002500000118743628,
+        -0.007340999785810709,
+        0.9999729990959167
+      ],
+      "translation_m": [
+        0.015407009981572628,
+        -0.00012299545051064342,
+        -0.00025200576055794954
+      ]
+    },
+    "configuration_files": {
+      "replica-layout/cam_params.json": "4c32cb017127b767bcd25bd832609fcfeaef34d519a0e89b348f0c116e5d13d8",
+      "conceptgraphs-camera.json": "f5db49465a9c36d8da999e73da7679f5863517f642c96991f1983f6cc6f0d1b0",
+      "replica-layout/physical/traj.txt": "ff9949b8323c9c4e22f11fa3d4c626925c76dc813cc88b9e771f4a7485c0d640"
+    }
+  },
+  "exported_observations": 500,
+  "input_manifest_sha256": "36205c62f1315b2f4d8f50d28afb807b1a0fe662298210ffdef75c6014d1c62c",
+  "staging": {
+    "status": "verified",
+    "source": "/mnt/d/workspace/be2/Personal-Learning-Physical/data/rgbd-replay-input-20261009-01",
+    "target": "/home/qzl/.cache/personal-learning-physical/rgbd-replay-input-20261009-01",
+    "verify_existing": true,
+    "checked_files": 1504,
+    "bytes": 354414403,
+    "input_manifest_sha256": "36205c62f1315b2f4d8f50d28afb807b1a0fe662298210ffdef75c6014d1c62c",
+    "wall_s": 7.6219793090003805
+  },
+  "trials": {
+    "odom-10hz": {
+      "result": {
+        "status": "evaluated",
+        "algorithm": "RTAB-Map RGB-D odometry (F2M)",
+        "mode": "rgbd",
+        "observer_version": 2,
+        "dataset": "/mnt/d/workspace/be2/Personal-Learning-Physical/data/rgbd-replay-input-20261009-01",
+        "source_sha256": "35cfdca0dc208f65a004b00fc3f8d9e7d142042099753d8a0ec2a8c4c8c9047b",
+        "input_duration_s": 49.904372692108154,
+        "requested_pairs": 500,
+        "replay_speed": 1,
+        "input_stride": 1,
+        "command": [
+          "ros2",
+          "run",
+          "rtabmap_odom",
+          "rgbd_odometry",
+          "--ros-args",
+          "-r",
+          "__node:=physical_rgbd_odometry",
+          "--params-file",
+          "data/rgbd-replay-input-20261009-01/odom-10hz/requested-parameters.yaml"
+        ],
+        "base_frame": "camera_color_optical: x right, y down, z forward",
+        "ground_truth": "User-confirmed stationary; no external pose or metric range reference",
+        "scope": "Static stability only, not moving SLAM or loop closure validation",
+        "session_type": "stationary",
+        "source_session_note": {
+          "session_type": "stationary",
+          "camera_fixed_declared_by_operator": true,
+          "objects_fixed_declared_by_operator": true,
+          "observed_dynamic_background": true,
+          "pure_static_scene_eligible": false,
+          "scene_review_sampling_hz": 1,
+          "inter_sample_motion_not_excluded": true,
+          "independent_range_reference": false
+        },
+        "timestamp_policy": "SDK-associated RGB/depth re-stamped to color time for exact ROS replay; native ~10ms skew retained in rgbd.json, not hardware synchronization",
+        "depth_policy": "Native uint16 converted to 32FC1 meters with recorded depth_unit_m; invalid zero retained",
+        "quality_claim": false,
+        "wall_replay_s": 96.49790228799975,
+        "published_pairs": 500,
+        "status_messages": 495,
+        "odometry_messages": 495,
+        "lost_status_fraction": 0.0,
+        "status_output_fraction": 0.99,
+        "pose_output_fraction": 0.99,
+        "observed_output_fraction": 0.99,
+        "features": {
+          "median": 852.0,
+          "p95": 867.0
+        },
+        "inliers": {
+          "median": 321.0,
+          "p95": 355.29999999999995
+        },
+        "time_estimation_s": {
+          "median": 0.0278778076171875,
+          "p95": 0.03378372192382812
+        },
+        "latency_s": {
+          "median": 0.2216752969998197,
+          "p95": 0.25675313460014876
+        },
+        "icp_inliers_ratio": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_correspondences": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_structural_complexity": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_structural_distribution": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "valid_pose_count": 494,
+        "high_covariance_pose_count": 1,
+        "pose_filter_note": "Initial/high-covariance discontinuity poses excluded; lost status separately counted",
+        "valid_tracking_input_fraction": 0.988,
+        "coverage_policy": "One-to-one native output matching to actual input within 1us; valid pose AND non-lost status",
+        "translation_excursion_max_m": 0.000893648283759765,
+        "translation_endpoint_separation_m": 0.00039042889067381466,
+        "rotation_excursion_max_deg": 0.15883039648432173,
+        "rotation_endpoint_separation_deg": 0.06657554951351523,
+        "estimated_path_length_m": 0.189403291000022,
+        "static_translation_max_m": 0.000893648283759765,
+        "static_translation_final_m": 0.00039042889067381466,
+        "static_rotation_max_deg": 0.15883039648432173,
+        "static_rotation_final_deg": 0.06657554951351523,
+        "static_gate": {
+          "max_translation_m": 0.05,
+          "max_rotation_deg": 2.0,
+          "loss_fraction": 0.0,
+          "minimum_output_fraction": 0.99,
+          "note": "Project engineering target, not device specification or ATE"
+        },
+        "static_gate_passed": false,
+        "clean_static_acceptance": null,
+        "timing_gate": {
+          "input_period_s": 0.10000876291003638,
+          "compute_p95_below_period": true,
+          "callback_latency_p95_below_two_periods": false,
+          "note": "Observed software replay, not sensor acquisition latency or an unloaded benchmark"
+        }
+      },
+      "missing_output_indexes": [
+        431,
+        432,
+        433,
+        434,
+        435
+      ],
+      "ffprobe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 960,
+            "r_frame_rate": "10/1",
+            "nb_frames": "500"
+          }
+        ],
+        "format": {
+          "duration": "50.000000"
+        }
+      }
+    },
+    "odom-5hz": {
+      "result": {
+        "status": "evaluated",
+        "algorithm": "RTAB-Map RGB-D odometry (F2M)",
+        "script_sha256": "e349f68180612127e38438887ee82ba5891355384a8d0b5ac1e34d23f5b723ce",
+        "mode": "rgbd",
+        "observer_version": 2,
+        "dataset": "/mnt/d/workspace/be2/Personal-Learning-Physical/data/rgbd-replay-input-20261009-01",
+        "source_sha256": "35cfdca0dc208f65a004b00fc3f8d9e7d142042099753d8a0ec2a8c4c8c9047b",
+        "input_duration_s": 49.80423140525818,
+        "requested_pairs": 250,
+        "replay_speed": 1,
+        "input_stride": 2,
+        "command": [
+          "ros2",
+          "run",
+          "rtabmap_odom",
+          "rgbd_odometry",
+          "--ros-args",
+          "-r",
+          "__node:=physical_rgbd_odometry",
+          "--params-file",
+          "data/rgbd-replay-input-20261009-01/odom-5hz/requested-parameters.yaml"
+        ],
+        "base_frame": "camera_color_optical: x right, y down, z forward",
+        "ground_truth": "User-confirmed stationary; no external pose or metric range reference",
+        "scope": "Static stability only, not moving SLAM or loop closure validation",
+        "session_type": "stationary",
+        "source_session_note": {
+          "session_type": "stationary",
+          "camera_fixed_declared_by_operator": true,
+          "objects_fixed_declared_by_operator": true,
+          "observed_dynamic_background": true,
+          "pure_static_scene_eligible": false,
+          "scene_review_sampling_hz": 1,
+          "inter_sample_motion_not_excluded": true,
+          "independent_range_reference": false
+        },
+        "timestamp_policy": "SDK-associated RGB/depth re-stamped to color time for exact ROS replay; native ~10ms skew retained in rgbd.json, not hardware synchronization",
+        "depth_policy": "Native uint16 converted to 32FC1 meters with recorded depth_unit_m; invalid zero retained",
+        "quality_claim": false,
+        "wall_publish_s": 49.95932580800036,
+        "actual_publish_hz": 5.001112397932902,
+        "publish_interval_s": {
+          "median": 0.19972835000044142,
+          "p95": 0.2106995319998532
+        },
+        "publish_deadline_lateness_max_s": 0.19842659517962602,
+        "wall_replay_s": 50.01006437800061,
+        "published_pairs": 250,
+        "status_messages": 250,
+        "odometry_messages": 250,
+        "lost_status_fraction": 0.0,
+        "status_output_fraction": 1.0,
+        "pose_output_fraction": 1.0,
+        "observed_output_fraction": 1.0,
+        "features": {
+          "median": 851.0,
+          "p95": 865.0
+        },
+        "inliers": {
+          "median": 313.0,
+          "p95": 342.0
+        },
+        "time_estimation_s": {
+          "median": 0.025992393493652344,
+          "p95": 0.029583775997161863
+        },
+        "latency_s": {
+          "median": 0.1967076539995105,
+          "p95": 0.21355959290058307
+        },
+        "icp_inliers_ratio": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_correspondences": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_structural_complexity": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_structural_distribution": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "valid_pose_count": 249,
+        "high_covariance_pose_count": 1,
+        "pose_filter_note": "Initial/high-covariance discontinuity poses excluded; lost status separately counted",
+        "valid_tracking_input_fraction": 0.996,
+        "coverage_policy": "One-to-one native output matching to actual input within 1us; valid pose AND non-lost status",
+        "translation_excursion_max_m": 0.000797220005452558,
+        "translation_endpoint_separation_m": 0.0002625454274909682,
+        "rotation_excursion_max_deg": 0.13507219955981567,
+        "rotation_endpoint_separation_deg": 0.048700085133199046,
+        "estimated_path_length_m": 0.09424180698841624,
+        "static_translation_max_m": 0.000797220005452558,
+        "static_translation_final_m": 0.0002625454274909682,
+        "static_rotation_max_deg": 0.13507219955981567,
+        "static_rotation_final_deg": 0.048700085133199046,
+        "static_gate": {
+          "max_translation_m": 0.05,
+          "max_rotation_deg": 2.0,
+          "loss_fraction": 0.0,
+          "minimum_output_fraction": 0.99,
+          "note": "Project engineering target, not device specification or ATE"
+        },
+        "static_gate_passed": true,
+        "clean_static_acceptance": null,
+        "timing_gate": {
+          "input_period_s": 0.20001699359541436,
+          "compute_p95_below_period": true,
+          "callback_latency_p95_below_two_periods": true,
+          "note": "Observed software replay, not sensor acquisition latency or an unloaded benchmark"
+        }
+      },
+      "missing_output_indexes": [],
+      "ffprobe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 960,
+            "r_frame_rate": "5/1",
+            "nb_frames": "250"
+          }
+        ],
+        "format": {
+          "duration": "50.000000"
+        }
+      }
+    },
+    "odom-linux-10hz": {
+      "result": {
+        "status": "evaluated",
+        "algorithm": "RTAB-Map RGB-D odometry (F2M)",
+        "script_sha256": "e349f68180612127e38438887ee82ba5891355384a8d0b5ac1e34d23f5b723ce",
+        "mode": "rgbd",
+        "observer_version": 2,
+        "dataset": "/home/qzl/.cache/personal-learning-physical/rgbd-replay-input-20261009-01",
+        "source_sha256": "35cfdca0dc208f65a004b00fc3f8d9e7d142042099753d8a0ec2a8c4c8c9047b",
+        "input_duration_s": 49.904372692108154,
+        "requested_pairs": 500,
+        "replay_speed": 1,
+        "input_stride": 1,
+        "command": [
+          "ros2",
+          "run",
+          "rtabmap_odom",
+          "rgbd_odometry",
+          "--ros-args",
+          "-r",
+          "__node:=physical_rgbd_odometry",
+          "--params-file",
+          "data/rgbd-replay-input-20261009-01/odom-linux-10hz/requested-parameters.yaml"
+        ],
+        "base_frame": "camera_color_optical: x right, y down, z forward",
+        "ground_truth": "User-confirmed stationary; no external pose or metric range reference",
+        "scope": "Static stability only, not moving SLAM or loop closure validation",
+        "session_type": "stationary",
+        "source_session_note": {
+          "session_type": "stationary",
+          "camera_fixed_declared_by_operator": true,
+          "objects_fixed_declared_by_operator": true,
+          "observed_dynamic_background": true,
+          "pure_static_scene_eligible": false,
+          "scene_review_sampling_hz": 1,
+          "inter_sample_motion_not_excluded": true,
+          "independent_range_reference": false
+        },
+        "timestamp_policy": "SDK-associated RGB/depth re-stamped to color time for exact ROS replay; native ~10ms skew retained in rgbd.json, not hardware synchronization",
+        "depth_policy": "Native uint16 converted to 32FC1 meters with recorded depth_unit_m; invalid zero retained",
+        "quality_claim": false,
+        "wall_publish_s": 70.49993455500044,
+        "actual_publish_hz": 7.090891685143159,
+        "publish_interval_s": {
+          "median": 0.13771816000007675,
+          "p95": 0.14785170440027287
+        },
+        "publish_deadline_lateness_max_s": 20.595509252891134,
+        "wall_replay_s": 70.55056987200078,
+        "published_pairs": 500,
+        "status_messages": 500,
+        "odometry_messages": 500,
+        "lost_status_fraction": 0.0,
+        "status_output_fraction": 1.0,
+        "pose_output_fraction": 1.0,
+        "observed_output_fraction": 1.0,
+        "features": {
+          "median": 851.5,
+          "p95": 867.0
+        },
+        "inliers": {
+          "median": 315.0,
+          "p95": 344.0
+        },
+        "time_estimation_s": {
+          "median": 0.023914098739624023,
+          "p95": 0.028200340270996088
+        },
+        "latency_s": {
+          "median": 0.1953011260011408,
+          "p95": 0.20751671655079917
+        },
+        "icp_inliers_ratio": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_correspondences": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_structural_complexity": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_structural_distribution": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "valid_pose_count": 499,
+        "high_covariance_pose_count": 1,
+        "pose_filter_note": "Initial/high-covariance discontinuity poses excluded; lost status separately counted",
+        "valid_tracking_input_fraction": 0.998,
+        "coverage_policy": "One-to-one native output matching to actual input within 1us; valid pose AND non-lost status",
+        "translation_excursion_max_m": 0.0018323315237926702,
+        "translation_endpoint_separation_m": 0.0005256216212720733,
+        "rotation_excursion_max_deg": 0.29277230558753453,
+        "rotation_endpoint_separation_deg": 0.04915820630383202,
+        "estimated_path_length_m": 0.1951091606863824,
+        "static_translation_max_m": 0.0018323315237926702,
+        "static_translation_final_m": 0.0005256216212720733,
+        "static_rotation_max_deg": 0.29277230558753453,
+        "static_rotation_final_deg": 0.04915820630383202,
+        "static_gate": {
+          "max_translation_m": 0.05,
+          "max_rotation_deg": 2.0,
+          "loss_fraction": 0.0,
+          "minimum_output_fraction": 0.99,
+          "note": "Project engineering target, not device specification or ATE"
+        },
+        "static_gate_passed": true,
+        "clean_static_acceptance": null,
+        "timing_gate": {
+          "input_period_s": 0.10000876291003638,
+          "compute_p95_below_period": true,
+          "callback_latency_p95_below_two_periods": false,
+          "note": "Observed software replay, not sensor acquisition latency or an unloaded benchmark"
+        }
+      },
+      "missing_output_indexes": [],
+      "ffprobe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 960,
+            "r_frame_rate": "10/1",
+            "nb_frames": "500"
+          }
+        ],
+        "format": {
+          "duration": "50.000000"
+        }
+      }
+    },
+    "odom-typed-10hz": {
+      "result": {
+        "status": "evaluated",
+        "algorithm": "RTAB-Map RGB-D odometry (F2M)",
+        "script_sha256": "0865dc4b58b904c61895acb3019f3ad6a03c5cda4c451cc7c038c48935f1a628",
+        "mode": "rgbd",
+        "observer_version": 2,
+        "dataset": "/home/qzl/.cache/personal-learning-physical/rgbd-replay-input-20261009-01",
+        "source_sha256": "35cfdca0dc208f65a004b00fc3f8d9e7d142042099753d8a0ec2a8c4c8c9047b",
+        "input_duration_s": 49.904372692108154,
+        "requested_pairs": 500,
+        "replay_speed": 1,
+        "input_stride": 1,
+        "command": [
+          "ros2",
+          "run",
+          "rtabmap_odom",
+          "rgbd_odometry",
+          "--ros-args",
+          "-r",
+          "__node:=physical_rgbd_odometry",
+          "--params-file",
+          "data/rgbd-replay-input-20261009-01/odom-typed-10hz/requested-parameters.yaml"
+        ],
+        "base_frame": "camera_color_optical: x right, y down, z forward",
+        "ground_truth": "User-confirmed stationary; no external pose or metric range reference",
+        "scope": "Static stability only, not moving SLAM or loop closure validation",
+        "session_type": "stationary",
+        "source_session_note": {
+          "session_type": "stationary",
+          "camera_fixed_declared_by_operator": true,
+          "objects_fixed_declared_by_operator": true,
+          "observed_dynamic_background": true,
+          "pure_static_scene_eligible": false,
+          "scene_review_sampling_hz": 1,
+          "inter_sample_motion_not_excluded": true,
+          "independent_range_reference": false
+        },
+        "timestamp_policy": "SDK-associated RGB/depth re-stamped to color time for exact ROS replay; native ~10ms skew retained in rgbd.json, not hardware synchronization",
+        "depth_policy": "Native uint16 converted to 32FC1 meters with recorded depth_unit_m; invalid zero retained",
+        "quality_claim": false,
+        "wall_publish_s": 49.913374359000954,
+        "actual_publish_hz": 10.00024622269582,
+        "publish_interval_s": {
+          "median": 0.10018107500036422,
+          "p95": 0.1012918925996928
+        },
+        "publish_deadline_lateness_max_s": 0.015270565327227814,
+        "wall_replay_s": 59.93434498800161,
+        "published_pairs": 500,
+        "status_messages": 495,
+        "odometry_messages": 495,
+        "lost_status_fraction": 0.0,
+        "status_output_fraction": 0.99,
+        "pose_output_fraction": 0.99,
+        "observed_output_fraction": 0.99,
+        "features": {
+          "median": 852.0,
+          "p95": 867.0
+        },
+        "inliers": {
+          "median": 315.0,
+          "p95": 344.0
+        },
+        "time_estimation_s": {
+          "median": 0.02277207374572754,
+          "p95": 0.025813031196594234
+        },
+        "latency_s": {
+          "median": 0.047670830999777536,
+          "p95": 0.05354962209967198
+        },
+        "icp_inliers_ratio": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_correspondences": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_structural_complexity": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "icp_structural_distribution": {
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "valid_pose_count": 494,
+        "high_covariance_pose_count": 1,
+        "pose_filter_note": "Initial/high-covariance discontinuity poses excluded; lost status separately counted",
+        "valid_tracking_input_fraction": 0.988,
+        "coverage_policy": "One-to-one native output matching to actual input within 1us; valid pose AND non-lost status",
+        "translation_excursion_max_m": 0.000951339413109488,
+        "translation_endpoint_separation_m": 0.0002283466813449123,
+        "rotation_excursion_max_deg": 0.1653778643100778,
+        "rotation_endpoint_separation_deg": 0.008331575402490169,
+        "estimated_path_length_m": 0.19078741631925808,
+        "static_translation_max_m": 0.000951339413109488,
+        "static_translation_final_m": 0.0002283466813449123,
+        "static_rotation_max_deg": 0.1653778643100778,
+        "static_rotation_final_deg": 0.008331575402490169,
+        "static_gate": {
+          "max_translation_m": 0.05,
+          "max_rotation_deg": 2.0,
+          "loss_fraction": 0.0,
+          "minimum_output_fraction": 0.99,
+          "note": "Project engineering target, not device specification or ATE"
+        },
+        "static_gate_passed": false,
+        "clean_static_acceptance": null,
+        "timing_gate": {
+          "input_period_s": 0.10000876291003638,
+          "compute_p95_below_period": true,
+          "callback_latency_p95_below_two_periods": true,
+          "note": "Observed software replay, not sensor acquisition latency or an unloaded benchmark"
+        }
+      },
+      "missing_output_indexes": [
+        365,
+        366,
+        367,
+        368,
+        369
+      ],
+      "ffprobe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 960,
+            "r_frame_rate": "10/1",
+            "nb_frames": "500"
+          }
+        ],
+        "format": {
+          "duration": "50.000000"
+        }
+      }
+    }
+  },
+  "synthetic_payload_check": {
+    "scope": "Synthetic message data-setter microbenchmark; no sensor/SLAM performance claim",
+    "status": "passed",
+    "cases": [
+      {
+        "case": "mono",
+        "payload_bytes": 307200,
+        "deserialized_fields_identical": true,
+        "payload_identical": true,
+        "cdr_bytes_equal_in_this_call": true,
+        "serialized_sha256": "845392a46ef7a8a783a581a7ab085bf1fba75eb1278ff6debbd5db68a0928966",
+        "setter_timings": {
+          "bytes": {
+            "median_ms": 17.931872000190197,
+            "max_ms": 19.827321999400738
+          },
+          "typed_array": {
+            "median_ms": 0.012863998563261703,
+            "max_ms": 0.03282200123067014
+          }
+        }
+      },
+      {
+        "case": "rgb",
+        "payload_bytes": 921600,
+        "deserialized_fields_identical": true,
+        "payload_identical": true,
+        "cdr_bytes_equal_in_this_call": true,
+        "serialized_sha256": "5d30f20314acaf953fc1dfe9d3abaafb1941a90027970185b6a70b3e933cf0d3",
+        "setter_timings": {
+          "bytes": {
+            "median_ms": 55.08090299917967,
+            "max_ms": 56.41239499891526
+          },
+          "typed_array": {
+            "median_ms": 0.03085899879806675,
+            "max_ms": 0.09433999912289437
+          }
+        }
+      },
+      {
+        "case": "depth",
+        "payload_bytes": 1228800,
+        "deserialized_fields_identical": true,
+        "payload_identical": true,
+        "cdr_bytes_equal_in_this_call": true,
+        "serialized_sha256": "45804494e90c13e141a85afa66c05fc2650f5c9b927ea23f654f60cc3ead4b84",
+        "setter_timings": {
+          "bytes": {
+            "median_ms": 78.54079699973227,
+            "max_ms": 90.22542099955899
+          },
+          "typed_array": {
+            "median_ms": 0.20242299979145173,
+            "max_ms": 0.21712100169679616
+          }
+        }
+      },
+      {
+        "case": "cloud",
+        "payload_bytes": 2880000,
+        "deserialized_fields_identical": true,
+        "payload_identical": true,
+        "cdr_bytes_equal_in_this_call": true,
+        "serialized_sha256": "81a351e620c6044f71edf491aab0af0e42bbe374609d3d102b180094fa806cc9",
+        "setter_timings": {
+          "bytes": {
+            "median_ms": 171.84535799970035,
+            "max_ms": 185.53274199985026
+          },
+          "typed_array": {
+            "median_ms": 0.5037930004618829,
+            "max_ms": 0.5290710014378419
+          }
+        }
+      }
+    ]
+  },
+  "initial_payload_check_draft_failure": {
+    "scope": "Synthetic message data-setter microbenchmark; no sensor/SLAM performance claim",
+    "status": "failed",
+    "cases": [
+      {
+        "case": "mono",
+        "payload_bytes": 307200,
+        "serialized_identical": true,
+        "serialized_sha256": "2910c0193c1d789705696ad40a2953615aab73e8fe198d2b6ed94687bd00c91f",
+        "setter_timings": {
+          "bytes": {
+            "median_ms": 16.764962001616368,
+            "max_ms": 17.023076999976183
+          },
+          "typed_array": {
+            "median_ms": 0.015098999938345514,
+            "max_ms": 0.033493000955786556
+          }
+        }
+      },
+      {
+        "case": "rgb",
+        "payload_bytes": 921600,
+        "serialized_identical": true,
+        "serialized_sha256": "5d30f20314acaf953fc1dfe9d3abaafb1941a90027970185b6a70b3e933cf0d3",
+        "setter_timings": {
+          "bytes": {
+            "median_ms": 49.95006500030286,
+            "max_ms": 54.57299900081125
+          },
+          "typed_array": {
+            "median_ms": 0.02140099968528375,
+            "max_ms": 0.07610600005136803
+          }
+        }
+      }
+    ],
+    "error": "ValueError('ROS serialized content mismatch: depth')"
+  },
+  "payload_check_note": "Final check compares all deserialized fields and exact payload; raw CDR envelope equality also recorded, no unknown alignment bytes used as payload accuracy",
+  "regressions": {
+    "stereo-regression": {
+      "status": "evaluated",
+      "algorithm": "RTAB-Map stereo odometry (F2M)",
+      "script_sha256": "e349f68180612127e38438887ee82ba5891355384a8d0b5ac1e34d23f5b723ce",
+      "mode": "stereo",
+      "observer_version": 2,
+      "dataset": "/mnt/d/workspace/be2/Personal-Learning-Physical/data/live-camera-20261009-014327-492/stereo",
+      "source_sha256": "35cfdca0dc208f65a004b00fc3f8d9e7d142042099753d8a0ec2a8c4c8c9047b",
+      "input_duration_s": 1.9015119075775146,
+      "requested_pairs": 20,
+      "replay_speed": 1,
+      "input_stride": 1,
+      "command": [
+        "ros2",
+        "run",
+        "rtabmap_odom",
+        "stereo_odometry",
+        "--ros-args",
+        "-r",
+        "__node:=physical_stereo_odometry",
+        "--params-file",
+        "data/rgbd-replay-input-20261009-01/stereo-regression/requested-parameters.yaml"
+      ],
+      "base_frame": "camera_left_optical: x right, y down, z forward",
+      "ground_truth": "User-confirmed stationary; no external pose or metric range reference",
+      "scope": "Static stability only, not moving SLAM or loop closure validation",
+      "session_type": "stationary",
+      "wall_publish_s": 1.961156822000703,
+      "actual_publish_hz": 10.007608442326056,
+      "publish_interval_s": {
+        "median": 0.0998121889988397,
+        "p95": 0.10326624710014584
+      },
+      "publish_deadline_lateness_max_s": 0.06438937691018509,
+      "wall_replay_s": 2.0116257810004754,
+      "published_pairs": 20,
+      "status_messages": 20,
+      "odometry_messages": 20,
+      "lost_status_fraction": 0.0,
+      "status_output_fraction": 1.0,
+      "pose_output_fraction": 1.0,
+      "observed_output_fraction": 1.0,
+      "features": {
+        "median": 936.5,
+        "p95": 939.05
+      },
+      "inliers": {
+        "median": 452.5,
+        "p95": 462.05
+      },
+      "time_estimation_s": {
+        "median": 0.019411563873291016,
+        "p95": 0.021325564384460458
+      },
+      "latency_s": {
+        "median": 0.08556129099997634,
+        "p95": 0.09185462595023637
+      },
+      "icp_inliers_ratio": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "icp_correspondences": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "icp_structural_complexity": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "icp_structural_distribution": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "valid_pose_count": 19,
+      "high_covariance_pose_count": 1,
+      "pose_filter_note": "Initial/high-covariance discontinuity poses excluded; lost status separately counted",
+      "valid_tracking_input_fraction": 0.95,
+      "coverage_policy": "One-to-one native output matching to actual input within 1us; valid pose AND non-lost status",
+      "translation_excursion_max_m": 0.00014178752525951442,
+      "translation_endpoint_separation_m": 3.594455826938405e-05,
+      "rotation_excursion_max_deg": 0.01877441059703117,
+      "rotation_endpoint_separation_deg": 0.0027654333339187168,
+      "estimated_path_length_m": 0.001209916045123283,
+      "static_translation_max_m": 0.00014178752525951442,
+      "static_translation_final_m": 3.594455826938405e-05,
+      "static_rotation_max_deg": 0.01877441059703117,
+      "static_rotation_final_deg": 0.0027654333339187168,
+      "static_gate": {
+        "max_translation_m": 0.05,
+        "max_rotation_deg": 2.0,
+        "loss_fraction": 0.0,
+        "minimum_output_fraction": 0.99,
+        "note": "Project engineering target, not device specification or ATE"
+      },
+      "static_gate_passed": false,
+      "timing_gate": {
+        "input_period_s": 0.10007957408302709,
+        "compute_p95_below_period": true,
+        "callback_latency_p95_below_two_periods": true,
+        "note": "Observed software replay, not sensor acquisition latency or an unloaded benchmark"
+      }
+    },
+    "stereo-typed-regression": {
+      "status": "evaluated",
+      "algorithm": "RTAB-Map stereo odometry (F2M)",
+      "script_sha256": "0865dc4b58b904c61895acb3019f3ad6a03c5cda4c451cc7c038c48935f1a628",
+      "mode": "stereo",
+      "observer_version": 2,
+      "dataset": "/mnt/d/workspace/be2/Personal-Learning-Physical/data/live-camera-20261009-014327-492/stereo",
+      "source_sha256": "35cfdca0dc208f65a004b00fc3f8d9e7d142042099753d8a0ec2a8c4c8c9047b",
+      "input_duration_s": 1.9015119075775146,
+      "requested_pairs": 20,
+      "replay_speed": 1,
+      "input_stride": 1,
+      "command": [
+        "ros2",
+        "run",
+        "rtabmap_odom",
+        "stereo_odometry",
+        "--ros-args",
+        "-r",
+        "__node:=physical_stereo_odometry",
+        "--params-file",
+        "data/rgbd-replay-input-20261009-01/stereo-typed-regression/requested-parameters.yaml"
+      ],
+      "base_frame": "camera_left_optical: x right, y down, z forward",
+      "ground_truth": "User-confirmed stationary; no external pose or metric range reference",
+      "scope": "Static stability only, not moving SLAM or loop closure validation",
+      "session_type": "stationary",
+      "wall_publish_s": 1.9296517470011167,
+      "actual_publish_hz": 9.991482408495227,
+      "publish_interval_s": {
+        "median": 0.09983916200144449,
+        "p95": 0.1019163540988302
+      },
+      "publish_deadline_lateness_max_s": 0.029058563553917338,
+      "wall_replay_s": 1.98013981800068,
+      "published_pairs": 20,
+      "status_messages": 20,
+      "odometry_messages": 20,
+      "lost_status_fraction": 0.0,
+      "status_output_fraction": 1.0,
+      "pose_output_fraction": 1.0,
+      "observed_output_fraction": 1.0,
+      "features": {
+        "median": 936.5,
+        "p95": 939.05
+      },
+      "inliers": {
+        "median": 451.5,
+        "p95": 461.1
+      },
+      "time_estimation_s": {
+        "median": 0.022258996963500977,
+        "p95": 0.027525055408477793
+      },
+      "latency_s": {
+        "median": 0.05829910250031389,
+        "p95": 0.0627123579495674
+      },
+      "icp_inliers_ratio": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "icp_correspondences": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "icp_structural_complexity": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "icp_structural_distribution": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "valid_pose_count": 19,
+      "high_covariance_pose_count": 1,
+      "pose_filter_note": "Initial/high-covariance discontinuity poses excluded; lost status separately counted",
+      "valid_tracking_input_fraction": 0.95,
+      "coverage_policy": "One-to-one native output matching to actual input within 1us; valid pose AND non-lost status",
+      "translation_excursion_max_m": 0.0005146091511278268,
+      "translation_endpoint_separation_m": 3.912987246272208e-05,
+      "rotation_excursion_max_deg": 0.07712757290111869,
+      "rotation_endpoint_separation_deg": 0.0038137188620201786,
+      "estimated_path_length_m": 0.0032634237837676316,
+      "static_translation_max_m": 0.0005146091511278268,
+      "static_translation_final_m": 3.912987246272208e-05,
+      "static_rotation_max_deg": 0.07712757290111869,
+      "static_rotation_final_deg": 0.0038137188620201786,
+      "static_gate": {
+        "max_translation_m": 0.05,
+        "max_rotation_deg": 2.0,
+        "loss_fraction": 0.0,
+        "minimum_output_fraction": 0.99,
+        "note": "Project engineering target, not device specification or ATE"
+      },
+      "static_gate_passed": false,
+      "timing_gate": {
+        "input_period_s": 0.10007957408302709,
+        "compute_p95_below_period": true,
+        "callback_latency_p95_below_two_periods": true,
+        "note": "Observed software replay, not sensor acquisition latency or an unloaded benchmark"
+      }
+    },
+    "lidar-regression": {
+      "status": "evaluated",
+      "algorithm": "RTAB-Map ICP odometry (F2M)",
+      "script_sha256": "0865dc4b58b904c61895acb3019f3ad6a03c5cda4c451cc7c038c48935f1a628",
+      "mode": "lidar",
+      "observer_version": 2,
+      "dataset": "/mnt/d/workspace/be2/Personal-Learning-Physical/data/l2-official-static-50",
+      "source_sha256": "c79cc1fd24c7e01566416a2867f603229e9a948c32ad26304da3188b817c1749",
+      "input_duration_s": 2.08841609954834,
+      "requested_pairs": 10,
+      "replay_speed": 1,
+      "input_stride": 1,
+      "command": [
+        "ros2",
+        "run",
+        "rtabmap_odom",
+        "icp_odometry",
+        "--ros-args",
+        "-r",
+        "__node:=physical_icp_odometry",
+        "--params-file",
+        "data/rgbd-replay-input-20261009-01/lidar-regression/requested-parameters.yaml"
+      ],
+      "base_frame": "lidar: official SDK XYZ",
+      "ground_truth": "User-confirmed stationary; no external pose or metric range reference",
+      "scope": "Static stability only, not moving SLAM or loop closure validation",
+      "session_type": "stationary",
+      "wall_publish_s": 2.095241196000643,
+      "actual_publish_hz": 4.317515693872186,
+      "publish_interval_s": {
+        "median": 0.231579507000788,
+        "p95": 0.23317294040061826
+      },
+      "publish_deadline_lateness_max_s": 0.010695804001443321,
+      "wall_replay_s": 2.2959075329999905,
+      "published_pairs": 10,
+      "status_messages": 10,
+      "odometry_messages": 10,
+      "lost_status_fraction": 0.0,
+      "status_output_fraction": 1.0,
+      "pose_output_fraction": 1.0,
+      "observed_output_fraction": 1.0,
+      "features": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "inliers": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "time_estimation_s": {
+        "median": 0.1388559341430664,
+        "p95": 0.14787092208862304
+      },
+      "latency_s": {
+        "median": 0.15116883999962738,
+        "p95": 0.15984218375060663
+      },
+      "icp_inliers_ratio": {
+        "median": 0.6769117712974548,
+        "p95": 0.7155863881111145
+      },
+      "icp_correspondences": {
+        "median": 2523.5,
+        "p95": 2731.3999999999996
+      },
+      "icp_structural_complexity": {
+        "median": 0.22823341190814972,
+        "p95": 0.23791772425174712
+      },
+      "icp_structural_distribution": {
+        "median": 0.0,
+        "p95": 0.0
+      },
+      "valid_pose_count": 9,
+      "high_covariance_pose_count": 1,
+      "pose_filter_note": "Initial/high-covariance discontinuity poses excluded; lost status separately counted",
+      "valid_tracking_input_fraction": 0.9,
+      "coverage_policy": "One-to-one native output matching to actual input within 1us; valid pose AND non-lost status",
+      "translation_excursion_max_m": 0.063127543883326,
+      "translation_endpoint_separation_m": 0.063127543883326,
+      "rotation_excursion_max_deg": 1.2753963151910102,
+      "rotation_endpoint_separation_deg": 1.2753963151910102,
+      "estimated_path_length_m": 0.15748821927492276,
+      "static_translation_max_m": 0.063127543883326,
+      "static_translation_final_m": 0.063127543883326,
+      "static_rotation_max_deg": 1.2753963151910102,
+      "static_rotation_final_deg": 1.2753963151910102,
+      "static_gate": {
+        "max_translation_m": 0.05,
+        "max_rotation_deg": 2.0,
+        "loss_fraction": 0.0,
+        "minimum_output_fraction": 0.99,
+        "note": "Project engineering target, not device specification or ATE"
+      },
+      "static_gate_passed": false,
+      "timing_gate": {
+        "input_period_s": 0.23204623328314888,
+        "compute_p95_below_period": true,
+        "callback_latency_p95_below_two_periods": true,
+        "note": "Observed software replay, not sensor acquisition latency or an unloaded benchmark"
+      }
+    }
+  },
+  "live": {
+    "capture": {
+      "started_at": "2026-10-08T23:17:50.594305+00:00",
+      "sensor": "camera",
+      "status": "streamed",
+      "scope": "Live receipt; preview is not precision acceptance",
+      "device": {
+        "name": "RealSense D435",
+        "serial": "831612073355",
+        "usb": "3.2",
+        "firmware": "5.17.0.10"
+      },
+      "depth_scale_m": 0.0010000000474974513,
+      "emitter_before": 1.0,
+      "emitter_during": 1.0,
+      "calibration": {
+        "left": {
+          "width": 640,
+          "height": 480,
+          "fx": 386.3125915527344,
+          "fy": 386.3125915527344,
+          "ppx": 314.95684814453125,
+          "ppy": 233.64193725585938
+        },
+        "right": {
+          "width": 640,
+          "height": 480,
+          "fx": 386.3125915527344,
+          "fy": 386.3125915527344,
+          "ppx": 314.95684814453125,
+          "ppy": 233.64193725585938
+        },
+        "color": {
+          "width": 640,
+          "height": 480,
+          "fx": 614.6063842773438,
+          "fy": 615.578125,
+          "ppx": 323.0701904296875,
+          "ppy": 251.8853759765625
+        },
+        "baseline_m": 0.05004335567355156,
+        "sdk_left_to_color": {
+          "rotation_column_major": [
+            0.9999877214431763,
+            0.004955935757607222,
+            -0.00021392074995674193,
+            -0.004954231902956963,
+            0.9999607801437378,
+            0.007341783028095961,
+            0.00025029777316376567,
+            -0.0073406328447163105,
+            0.9999729990959167
+          ],
+          "translation_m": [
+            0.015406528487801552,
+            -0.0001232208451256156,
+            -0.00025224441196769476
+          ]
+        }
+      },
+      "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+      "framesets_acquired": 438,
+      "frames_sent": 119,
+      "stereo_skew_rejected": 0,
+      "stereo_skew_rejected_first_ms": [],
+      "elapsed_seconds": 15.0,
+      "temporary_options_restored": true,
+      "raw": {
+        "bytes": 532406272,
+        "sha256": "ef2fc4cf3a37ad63d5deff55c270079d8e606f1d57390a16c839aa5935d99095"
+      },
+      "streams": {
+        "stream.depth:0": {
+          "unique_frames": 438
+        },
+        "stream.infrared:1": {
+          "unique_frames": 437
+        },
+        "stream.infrared:2": {
+          "unique_frames": 437
+        },
+        "stream.color:0": {
+          "unique_frames": 437
+        }
+      }
+    },
+    "result": {
+      "status": "streamed",
+      "sensor": "camera",
+      "algorithm": "rgbd",
+      "session_type": "preview",
+      "quality_claim": false,
+      "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+      "video": {
+        "status": "saved",
+        "output": "rviz-live.mp4",
+        "content": "Actual independent RViz view of live ROS topics; no synthetic poses",
+        "frame_rate": 10,
+        "size": [
+          1440,
+          1000
+        ],
+        "audio": false,
+        "display": ":90",
+        "elapsed_seconds": 20.795160706000388,
+        "forced_shutdown_pids": [],
+        "probe": {
+          "programs": [],
+          "streams": [
+            {
+              "codec_name": "h264",
+              "width": 1440,
+              "height": 1000,
+              "nb_frames": "195"
+            }
+          ],
+          "format": {
+            "duration": "19.500000"
+          }
+        },
+        "bytes": 2816775
+      },
+      "source_observations": 119,
+      "odometry_messages": 117,
+      "status_messages": 117,
+      "map_data_updates": 0,
+      "graph_global_closure_links": [],
+      "native_calibration": {
+        "left": {
+          "width": 640,
+          "height": 480,
+          "fx": 386.3125915527344,
+          "fy": 386.3125915527344,
+          "ppx": 314.95684814453125,
+          "ppy": 233.64193725585938
+        },
+        "right": {
+          "width": 640,
+          "height": 480,
+          "fx": 386.3125915527344,
+          "fy": 386.3125915527344,
+          "ppx": 314.95684814453125,
+          "ppy": 233.64193725585938
+        },
+        "color": {
+          "width": 640,
+          "height": 480,
+          "fx": 614.6063842773438,
+          "fy": 615.578125,
+          "ppx": 323.0701904296875,
+          "ppy": 251.8853759765625
+        },
+        "baseline_m": 0.05004335567355156,
+        "sdk_left_to_color": {
+          "rotation_column_major": [
+            0.9999877214431763,
+            0.004955935757607222,
+            -0.00021392074995674193,
+            -0.004954231902956963,
+            0.9999607801437378,
+            0.007341783028095961,
+            0.00025029777316376567,
+            -0.0073406328447163105,
+            0.9999729990959167
+          ],
+          "translation_m": [
+            0.015406528487801552,
+            -0.0001232208451256156,
+            -0.00025224441196769476
+          ]
+        }
+      },
+      "pose_output_fraction": 0.9831932773109243,
+      "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+      "lost_status_fraction": 0.0,
+      "pose_output_fraction_after_first_2s": 0.9803921568627451,
+      "ros_input_hz": 8.193632947606314,
+      "ros_input_gap_p95_ms": 135.4572754,
+      "odometry_compute_ms": {
+        "p50": 36.463022232055664,
+        "p95": 40.789604187011705
+      },
+      "valid_pose_output_fraction": 0.9747899159663865,
+      "valid_pose_output_fraction_after_first_2s": 0.9803921568627451,
+      "translation_excursion_max_m": 0.0023070211365482166,
+      "translation_endpoint_separation_m": 0.0019673197150277804,
+      "rotation_excursion_max_deg": 0.3545715776966718,
+      "estimated_path_length_m": 0.08643184249903822,
+      "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+    },
+    "raw_playback": {
+      "status": "verified",
+      "observer_version": 2,
+      "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+      "raw_sha256": "ef2fc4cf3a37ad63d5deff55c270079d8e606f1d57390a16c839aa5935d99095",
+      "duration_s": 14.835868,
+      "eof_reached": true,
+      "raw_image_message_counts": {
+        "stream.infrared:1": 441,
+        "stream.infrared:2": 441,
+        "stream.depth:0": 440,
+        "stream.color:0": 437
+      },
+      "sdk_frame_callbacks": {
+        "stream.infrared:1": 441,
+        "stream.infrared:2": 441,
+        "stream.depth:0": 440,
+        "stream.color:0": 437
+      },
+      "decoded_unique_frames": {
+        "stream.infrared:1": 441,
+        "stream.infrared:2": 441,
+        "stream.depth:0": 440,
+        "stream.color:0": 437
+      },
+      "sdk_counts_match_raw_file": {
+        "stream.infrared:1": true,
+        "stream.infrared:2": true,
+        "stream.depth:0": true,
+        "stream.color:0": true
+      },
+      "live_frame_numbers_missing_from_recording": {
+        "stream.color:0": [],
+        "stream.depth:0": [],
+        "stream.infrared:1": [],
+        "stream.infrared:2": []
+      },
+      "raw_minus_live_unique_counts": {
+        "stream.color:0": 0,
+        "stream.depth:0": 2,
+        "stream.infrared:1": 4,
+        "stream.infrared:2": 4
+      },
+      "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+    },
+    "visual_review": "Viewed full encoded frame at video 8s: RGB/depth/actual point cloud/TRACKING visible; view/lighting differ from old fixed recording, no fixed-camera accuracy claim"
+  },
+  "visual_review": {
+    "offline_midpoint_viewed": true,
+    "dynamic_background_present": true,
+    "all_four_videos_ffprobe_verified": true,
+    "plot_reviewed": true,
+    "identity_or_query_claim": false
+  },
+  "controls": {
+    "first-pilot": {
+      "patch": "evidence\\rgbd-replay-first-pilot-control.patch",
+      "current_source_sha256": "0865dc4b58b904c61895acb3019f3ad6a03c5cda4c451cc7c038c48935f1a628",
+      "control_source_sha256": "68856a4b0b36db78f004e01b17330b83953ae9bf7e6073ca5e6b9027d4a6d609"
+    },
+    "old-payload": {
+      "patch": "evidence\\rgbd-replay-old-payload-control.patch",
+      "current_source_sha256": "0865dc4b58b904c61895acb3019f3ad6a03c5cda4c451cc7c038c48935f1a628",
+      "control_source_sha256": "e349f68180612127e38438887ee82ba5891355384a8d0b5ac1e34d23f5b723ce"
+    }
+  },
+  "artifacts": {
+    "data/rgbd-replay-input-20261009-01/odom-10hz/result.json": {
+      "bytes": 3802,
+      "sha256": "d665aecc2304ba94104933e1e19336c38682aee51c4a500e97407dac9bffc7e8",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-10hz/status.json": {
+      "bytes": 1915211,
+      "sha256": "c842f38c5ce79531a433af2c5bfbbe293ef4c721030e407b32cbe20ba1719cdd",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-10hz/poses.json": {
+      "bytes": 164026,
+      "sha256": "a8f344de36e5fbb918a9b64ff889ca2d7b39243f172350af5ce04bc2f52266fb",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-10hz/requested-parameters.yaml": {
+      "bytes": 407,
+      "sha256": "55bfea904aebcaa3cbedd64a25d5dd8187e068999267694d8915cd0f4b5210a6",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-10hz/preview.mp4": {
+      "bytes": 8415556,
+      "sha256": "04ed69ff330659c9fecd2f7cb648d4e2a365632e3989d9797cec550f193ce020",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-10hz/preview.png": {
+      "bytes": 642093,
+      "sha256": "584559803a1ffbe8d9d8afd8ec83da6605b6165d9089519e12c425995533efe0",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-10hz/video.json": {
+      "bytes": 268,
+      "sha256": "9ca60ebe494ed6bfde5034d677dc321a57e42a020ca8fbc5361a234ae1199e39",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-10hz/node.log": {
+      "bytes": 75200,
+      "sha256": "1065630dca534b50e15253c5e85518ce9c5bde6ba337f2248fa17da8fda5287b",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-5hz/result.json": {
+      "bytes": 4109,
+      "sha256": "c39b533df3de1e16b034391ec6204db1205ca8b25a476e695788a5ebc809f0b2",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-5hz/status.json": {
+      "bytes": 941207,
+      "sha256": "a6d0c1e0d9969b709eea6ce22996096e60a3262961981fd7eaba1e781109fee2",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-5hz/poses.json": {
+      "bytes": 82800,
+      "sha256": "5f9be128e74ae227e33e0746231ac2f0329bd20ff53a9645c069df3b1e331721",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-5hz/requested-parameters.yaml": {
+      "bytes": 407,
+      "sha256": "55bfea904aebcaa3cbedd64a25d5dd8187e068999267694d8915cd0f4b5210a6",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-5hz/preview.mp4": {
+      "bytes": 6368156,
+      "sha256": "83330ff401b5b5b72943178ac80163dfeabcb77507ee3ca14cf6f9858469952c",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-5hz/preview.png": {
+      "bytes": 642377,
+      "sha256": "b2a7e3d1721ef8510ca31b1a50053e8d09101fd5d7b820ec3490bb108acd8e4d",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-5hz/video.json": {
+      "bytes": 265,
+      "sha256": "724b5e23e4dbb379657c06b042b1e5d1d4dc0cbd52018c21d20305f6d758e604",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-5hz/publish-timing.json": {
+      "bytes": 52762,
+      "sha256": "bae99761d67e02470bf10ebceb8692b20b1b09f7bee8c5c8c62bd6c4f03eec6a",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-5hz/node.log": {
+      "bytes": 39919,
+      "sha256": "d4326e86b9756e72ed48696b8def6f22811ff954c6da3bab9105538be3feb883",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-linux-10hz/result.json": {
+      "bytes": 4108,
+      "sha256": "dde7be934db6cfc6d940428eff70b33a8ee46fd9adada94ff391af918b4d517c",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-linux-10hz/status.json": {
+      "bytes": 1896613,
+      "sha256": "a472a1d394f144d33953113ad426b43ce72e4dc2aae09ecd83f4257ab357f35c",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-linux-10hz/poses.json": {
+      "bytes": 165751,
+      "sha256": "60da560c5f6a1c036e47d5f8e141aaf1f0f3b77f842c4c67a9c274e43313c119",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-linux-10hz/requested-parameters.yaml": {
+      "bytes": 407,
+      "sha256": "55bfea904aebcaa3cbedd64a25d5dd8187e068999267694d8915cd0f4b5210a6",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-linux-10hz/preview.mp4": {
+      "bytes": 8409115,
+      "sha256": "092fafae5b1228d5e98e77c772054d487f4c2a548f2ce69902dd5105703ae25c",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-linux-10hz/preview.png": {
+      "bytes": 643555,
+      "sha256": "b5bb9767a4e14b95bd326b562059d163234b119d3b8d302328aa5fa8955892ad",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-linux-10hz/video.json": {
+      "bytes": 280,
+      "sha256": "590a115a7fed487e97ff1ac10ef577b42031897367e90cb03b9930b3c77f1d12",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-linux-10hz/publish-timing.json": {
+      "bytes": 104980,
+      "sha256": "fe43f0f6ff229ac0c2d44e00880d39e37dd0e926b4ac8a3333cd5e00ab1fb315",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-linux-10hz/node.log": {
+      "bytes": 75926,
+      "sha256": "35294ccc21f7a04b3be46d394dac06572c3e9e9d7cc1b61ae31e663bf6092960",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-typed-10hz/result.json": {
+      "bytes": 4113,
+      "sha256": "a285b82f282dceffa52848411ae58a25e04a7eeea9880e16b483ce66bc2792a6",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-typed-10hz/status.json": {
+      "bytes": 1877889,
+      "sha256": "e70877c32c795f3937d4c63751c492e0baf142bda5a1e12d082908926921f23b",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-typed-10hz/poses.json": {
+      "bytes": 163682,
+      "sha256": "0416ba0add9151cbd4969adace88923aff97b1bb71e4125bc98d9b62b8944361",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-typed-10hz/requested-parameters.yaml": {
+      "bytes": 407,
+      "sha256": "55bfea904aebcaa3cbedd64a25d5dd8187e068999267694d8915cd0f4b5210a6",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-typed-10hz/preview.mp4": {
+      "bytes": 8414663,
+      "sha256": "fdd82303d13f0cf8920a532aa7107835c1f220a53286928e08ba1b12bd03d32a",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-typed-10hz/preview.png": {
+      "bytes": 643507,
+      "sha256": "bf708efb3d7b746eea3c93998d921a396a437d64dd3aa4e156681cc1f7a1bf08",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-typed-10hz/video.json": {
+      "bytes": 280,
+      "sha256": "b80ca43b71cc9f0ca622fd04bdb93374aca79681436a1dfc70f0e0e9f44064b4",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-typed-10hz/publish-timing.json": {
+      "bytes": 106231,
+      "sha256": "fbd0787794eff0a6739991ce951f5ec2fea3d4c462ee94e07c21ee8cd39567ba",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/odom-typed-10hz/node.log": {
+      "bytes": 75206,
+      "sha256": "99e1511ef541f9b27ffcdf90f0129c76102a1736b287fe3c7dcadef0844ba39e",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/rgbd.json": {
+      "bytes": 687672,
+      "sha256": "36205c62f1315b2f4d8f50d28afb807b1a0fe662298210ffdef75c6014d1c62c",
+      "availability": "local_only"
+    },
+    "data/rgbd-replay-input-20261009-01/rate-comparison.png": {
+      "bytes": 345623,
+      "sha256": "ad13bfc93bcfda5aedb2a5d3de088e23992d25980df69110fc0a3e086906900c",
+      "availability": "local_only"
+    },
+    "data/live-camera-20261009-021748-685/rviz-live.mp4": {
+      "bytes": 2816775,
+      "sha256": "82a0ad861114525f21afbaec1bed75a1852d99ca2948530bc554ffe1f5304d97",
+      "availability": "local_only"
+    },
+    "data/live-camera-20261009-021748-685/raw.db3": {
+      "bytes": 532406272,
+      "sha256": "ef2fc4cf3a37ad63d5deff55c270079d8e606f1d57390a16c839aa5935d99095",
+      "availability": "local_only"
+    },
+    "data/live-camera-20261009-021748-685/playback-v2.json": {
+      "bytes": 1404,
+      "sha256": "143be34be62deac39158bb674a06d168e61ea7cdbe45995073fab5ee37e799e7",
+      "availability": "local_only"
+    },
+    "data/live-camera-20261009-021748-685/video-preview.png": {
+      "bytes": 220923,
+      "sha256": "f3d118e293db462926886da2f2e6b9ab5ecbdebac4d52a7a266d858c8fcd36ae",
+      "availability": "local_only"
+    }
+  },
+  "script_sha256": {
+    "scripts\\run_odometry_baseline.py": "0865dc4b58b904c61895acb3019f3ad6a03c5cda4c451cc7c038c48935f1a628",
+    "scripts\\render_odometry_video.py": "aba4b035fa1bddf3f67a8876b8f0e75541649d9de6d60efda83b80cfcc61dcb1",
+    "scripts\\live_ros.py": "23d8f8b698c1cc30e3ea2e421d4c4f9983c2ae10e90c340dfb2ec2c6d178f97b",
+    "scripts\\stage_rgbd.py": "312fa9df28df7e100b36b1d6398533734c334dfcea855d3811da016dae4def57",
+    "scripts\\check_ros_payloads.py": "d66ef18cb6fb5b24bfaf98af5f4a71b0bdf99869a47a4819e8b8cbb107d8f321"
+  },
+  "validation": {
+    "existing_unit_tests_passed": 8,
+    "payload_cases_passed": 4,
+    "raw_live_playback_verified": true,
+    "main_commit": "354b02d69ccc90304174f6d36010d25043d739ca",
+    "main_modified": false,
+    "merge_performed": false
+  },
+  "not_evaluated": [
+    "Independent depth range accuracy",
+    "Handheld displacement and loop closure",
+    "ATE/RPE",
+    "Physical semantic object mapping",
+    "Camera-L2 fusion"
+  ],
+  "remaining": "Typed-array replay fed 10.000Hz but five consecutive outputs absent; strict 99% valid output gate failed. L2 still no valid device packets; no unattended hardware mode changes."
+}

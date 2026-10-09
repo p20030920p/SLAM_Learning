@@ -1,0 +1,120 @@
+{
+  "kind": "hardware_main_adapter_smoke",
+  "method": "BeautyMap",
+  "status": "smoke_passed",
+  "started_at": "2026-10-08T20:41:06.230810+00:00",
+  "main_commit": "354b02d69ccc90304174f6d36010d25043d739ca",
+  "exit_code": 0,
+  "fixed_sensor_session_acknowledged": true,
+  "pose_source": "Identity relative pose from user-confirmed fixed sensor session; not estimated odometry",
+  "scope": "Per-run author grid-padding diagnostic; frozen main adapter, modified author copy; no quality acceptance",
+  "map_input_note": "Legacy gt_cloud.pcd is unlabeled raw XYZ union, not ground truth",
+  "evaluation": {
+    "SA": null,
+    "DA": null,
+    "reason": "No point-level annotation or controlled dynamic events"
+  },
+  "source_blobs": {
+    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
+    "src/slam_learning/adapters.py": "0d79fc212d6ab682e9d53e411b7da7d18073d4e2b5c1361f877594dd6a332f04",
+    "src/slam_learning/pcd.py": "ce37303693339309cf4d5f55d8bf7c4457973c0eb83392c581d4a5579634b034",
+    "configs/methods.json": "5a177d8e100109a5e5639070d8186c26651cf1a9fcf8e0a2e0dacaa66ac8f51f",
+    "configs/upstreams.json": "fbf09ad8ac99d166c198d8ab310c05728e5974c75a702cb79e9bb71f1467400b"
+  },
+  "upstream_commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e",
+  "source_sha256": "c79cc1fd24c7e01566416a2867f603229e9a948c32ad26304da3188b817c1749",
+  "source_observations_sha256": "69cc95348f5ee3b9d39d1079bdc46eadce7ca1ad1ebf61a33c0c2ba8130fa96a",
+  "input_frames": 40,
+  "input_points": 545371,
+  "parameters": {
+    "dis_range": 40,
+    "xy_resolution": 1.0,
+    "h_res": 0.5
+  },
+  "package_versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.14.1",
+    "fire": "0.7.0",
+    "dztimer": "1.1.1",
+    "tqdm": "4.66.5"
+  },
+  "diagnostic_modification": {
+    "kind": "empty_grid_domain_padding_control",
+    "original_main_py_sha256": "7f6f9ac6f675bf200cd931f338b2c3a89f8be637296d7ec8fa129cac18036976",
+    "patched_main_py_sha256": "ea5ca392bac2d38a6ee7270f625f72a429feb64e0754dd37aaceb6206999f12c",
+    "assumption": "Fixed sensor origin inside raw map XY extent",
+    "geometry_added": false,
+    "query_parameters_changed": false
+  },
+  "worker_wall_s": 1.8636892589993295,
+  "worker": {
+    "frames": 40,
+    "compatibility_patch": {
+      "iterator": {
+        "metadata[key] = map(int, value.split())": "metadata[key] = list(map(int, value.split()))",
+        "metadata[key] = map(float, value.split())": "metadata[key] = list(map(float, value.split()))"
+      },
+      "bitmask_width": {
+        "main.py": {
+          "replacement": "dtype=int -> dtype=np.int64",
+          "count": 2
+        },
+        "lib/bee_tree.py": {
+          "replacement": "dtype=int -> dtype=np.int64",
+          "count": 12
+        }
+      }
+    },
+    "author_command": [
+      "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+      "/mnt/d/workspace/be2/Personal-Learning-Physical/data/main-beautymap-padded-control-01/author-code/main.py",
+      "--data_dir",
+      "/mnt/d/workspace/be2/Personal-Learning-Physical/data/main-beautymap-padded-control-01/input",
+      "--dis_range",
+      "40",
+      "--xy_resolution",
+      "1.0",
+      "--h_res",
+      "0.5"
+    ],
+    "algorithm_input": "Only XYZ and VIEWPOINT in both map/scans; all intensity annotations stripped"
+  },
+  "skipped_frame_indices": [],
+  "observed_processed_frames": 40,
+  "output_points": 532472,
+  "output_finite": true,
+  "output_fields": [
+    "x",
+    "y",
+    "z"
+  ],
+  "output_input_point_ratio": 0.9763482106676006,
+  "ratio_note": "Point count ratio only, not static retention or dynamic removal accuracy",
+  "wall_execution_s": 3.2036352979994263,
+  "artifacts": {
+    "cleaned.pcd": {
+      "sha256": "763e2c974170ae61c444b304d5134423c5c68fc5d6bc0b02ae34b3641d9b4e3b",
+      "bytes": 6389795
+    },
+    "worker.log": {
+      "sha256": "d62b910c5881d9b7cd44040d455d7346ecca6b4bc0ef72684580c8491591fb50",
+      "bytes": 2286
+    },
+    "worker.json": {
+      "sha256": "ea9c804a46b6ff6b618e1363c658dc6be0515ae02008746d754345bf44cd4beb",
+      "bytes": 1017
+    },
+    "compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366
+    },
+    "grid-padding.patch": {
+      "sha256": "a411ba0ae4821bf72189a06dd227fcade0ac701ae73af82effc6145cc0a953fa",
+      "bytes": 807
+    },
+    "source-sequence/gt_cloud.pcd": {
+      "sha256": "eb41626908df86708d3f503b77be239d8dd162bd788c237518087746e9a759c8",
+      "bytes": 6544582
+    }
+  }
+}

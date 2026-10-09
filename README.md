@@ -1,23 +1,23 @@
 <div align="center">
 
-# Personal study and analysis branch
+# Personal Learning
 
 </div>
 
 English | [中文](README.zh-CN.md)
 
-Branch: `notes/personal-study-guide-20261008`. The reviewer-facing research presentation remains on [main](https://github.com/p20030920p/SLAM_Learning/tree/main). This branch adds personal guides only; runtime code matches main `6deb08a`.
-
-**Start with the [complete documentation index](notes/README.md).**
+Study notes and D435 / Unitree L2 hardware trials share `notes/personal-study-guide-20261008`. See [main](https://github.com/p20030920p/SLAM_Learning/tree/main) for the research delivery and [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) for original-code reproductions.
 
 | Task | Entry |
 | --- | --- |
-| Interpret the lab brief and develop your argument | [Analysis outline and writing space](notes/LAB_ANALYSIS.md) |
-| Start in Windows and execute four reproduced cores | [Windows → WSL → commands → outputs](notes/WINDOWS_START.md) |
-| Compare the author repositories and our adaptations | [Original code, pins, patches and scope](notes/UPSTREAM_COMPARISON.md) |
-| Open RViz and manually repeat the recording workflow | [Reproduction and recording](notes/MANUAL_RECORDING.md) |
-| Capture home events with D435i and Unitree L2 | [Device runbook](notes/HOME_RUNBOOK.md) |
+| Read analysis, study notes and Windows instructions | [Notes index](notes/README.md) |
+| Operate the sensors and inspect hardware trials and failures | [Hardware learning](physical/README.md) |
+| Develop the open question and hypothesis from the lab brief | [Analysis outline](notes/LAB_ANALYSIS.md) |
+| Repeat the four reproductions and recordings manually | [Windows operations](notes/WINDOWS_START.md) · [Recording](notes/MANUAL_RECORDING.md) |
+| Inspect the frozen room2 protocol, code and evidence | [Pinned study snapshot](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11) |
 
-See [the study](docs/STUDY.md) for research reasoning, [paired results](docs/PAIRED_RESULTS.md) for measurements and [the home protocol](docs/REAL_WORLD.md) for planned experiments. Hardware adapters and H1 remain pending; capture demonstrations and hypothesis tests are reported separately.
+Existing notes and reproduction cores remain at the root. The complete hardware project lives under `physical/`, with its own scripts, configuration and dependencies; use that directory as its project root. The existing local device worktree at `D:/workspace/be2/Personal-Learning-Physical` remains usable. Environments and run data are not moved.
 
-Full recordings and raw device data remain local. A published branch is publicly accessible.
+The SDK reports **D435 without IMU**. Streaming, odometry trials and native-loader checks do not establish complete SLAM, navigation or H1. Research limits and adverse results remain; raw device data, full recordings and environments stay local.
+
+[Merge sources and pinned commits](notes/merge-sources.json)

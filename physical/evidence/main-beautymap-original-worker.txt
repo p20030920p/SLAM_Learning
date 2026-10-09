@@ -1,0 +1,27 @@
+We will process the data in folder: [1m /mnt/d/workspace/be2/Personal-Learning-Physical/data/main-beautymap-hardware-smoke-01/input [0m
+[LOG] Min xyz: -5.298373699188232, -1.3220200538635254, -0.1431809961795807
+[LOG] Max/Min value on x: 8.30264663696289/0.0, y: 9.019229888916016/0.0
+[LOG] Matrix order: 10
+Generating Map Binary tree:   0%|                                            | 0/50 [00:00<?, ?it/s]Generating Map Binary tree:  62%|█████████████████████             | 31/50 [00:00<00:00, 309.00it/s]Generating Map Binary tree: 100%|██████████████████████████████████| 50/50 [00:00<00:00, 401.80it/s]
+Processing Frames:   0%|                                                     | 0/40 [00:00<?, ?it/s]Processing Frames:   0%|                                                     | 0/40 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/mnt/d/workspace/be2/Personal-Learning-Physical/data/main-beautymap-hardware-smoke-01/author-code/main.py", line 142, in <module>
+    fire.Fire(main)
+  File "/home/qzl/projects/SLAM_Learning/.venv/lib/python3.10/site-packages/fire/core.py", line 135, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/home/qzl/projects/SLAM_Learning/.venv/lib/python3.10/site-packages/fire/core.py", line 468, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+  File "/home/qzl/projects/SLAM_Learning/.venv/lib/python3.10/site-packages/fire/core.py", line 684, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/mnt/d/workspace/be2/Personal-Learning-Physical/data/main-beautymap-hardware-smoke-01/author-code/main.py", line 84, in main
+    is_valid_frame = Qpts.generate_query_binary_tree(minz_matrix_roi)
+  File "/mnt/d/workspace/be2/Personal-Learning-Physical/data/main-beautymap-hardware-smoke-01/author-code/lib/bee_tree.py", line 191, in generate_query_binary_tree
+    self.root_matrix[idx][idy].min_z = minz_matrix_ori[idx][idy]
+IndexError: index 15 is out of bounds for axis 0 with size 10
+Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+  File "/mnt/d/workspace/be2/Personal-Learning-Physical/data/main-beautymap-hardware-smoke-01/main-source/src/slam_learning/adapters.py", line 89, in beautymap_run
+    subprocess.run(command, cwd=work, check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/qzl/projects/SLAM_Learning/.venv/bin/python', '/mnt/d/workspace/be2/Personal-Learning-Physical/data/main-beautymap-hardware-smoke-01/author-code/main.py', '--data_dir', '/mnt/d/workspace/be2/Personal-Learning-Physical/data/main-beautymap-hardware-smoke-01/input', '--dis_range', '40', '--xy_resolution', '1.0', '--h_res', '0.5']' returned non-zero exit status 1.

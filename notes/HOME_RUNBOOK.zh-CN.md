@@ -1,6 +1,6 @@
 # 在这台电脑上采集和手动录制居家实验
 
-基础设备检查见[实物分支](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)；本页四事件研究协议尚未完成。SDK 实测为 D435，无 IMU。
+基础设备检查见[实物分支](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical)；本页四事件研究协议尚未完成。SDK 实测为 D435，无 IMU。
 
 [English](HOME_RUNBOOK.md) | [索引](README.zh-CN.md)
 

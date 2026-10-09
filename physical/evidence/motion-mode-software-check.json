@@ -1,0 +1,34 @@
+{
+  "kind": "motion_mode_software_compatibility_check",
+  "physical_motion_test": false,
+  "input": "First 30 pairs of the previously user-confirmed static stereo recording",
+  "source_sha256": "2ea32c2ad4f5508c89b6087870abec9ad9aef64879ef1095f30bfdd08d19a1f6",
+  "algorithm_status": "evaluated",
+  "requested_pairs": 30,
+  "status_messages": 30,
+  "odometry_messages": 30,
+  "static_gate_not_applied": true,
+  "trajectory_fields_present": true,
+  "artifacts": {
+    "result.json": {
+      "bytes": 2906,
+      "sha256": "1411369dde3a58e37e29ff8bfa5715de8d356e8110489a1913c0f578a72ccd99"
+    },
+    "preview.mp4": {
+      "bytes": 244663,
+      "sha256": "5a50d3505063e26a175eee1b8195ebe9f76b0b30cc44d0cd68965d98bc3946ed"
+    },
+    "preview.png": {
+      "bytes": 754656,
+      "sha256": "e0a4c24239629148c96fcc93aba5528d0af38d396d9c4553ef2aebd174b4b15c"
+    }
+  },
+  "default_stationary_compatibility": {
+    "input": "Same old stationary 30-pair subset; no new physical session",
+    "status": "evaluated",
+    "static_gate_passed": true,
+    "status_messages": 30,
+    "odometry_messages": 30,
+    "result_sha256": "54bc730d362a4b9c8b2aa2c1fa3a90593654aafd5a666d8e32cbbe57b4f8698b"
+  }
+}

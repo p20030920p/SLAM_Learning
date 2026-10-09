@@ -1,0 +1,1389 @@
+{
+  "date": "2026-10-09",
+  "scope": "Short live receipt/interface/display checks only; no operator declaration of fixed sensor, no independent trajectory ground truth, no precision acceptance.",
+  "main_commit": "354b02d69ccc90304174f6d36010d25043d739ca",
+  "software_tests": {
+    "command": ".venv/Scripts/python.exe -m unittest discover -s tests -v",
+    "passed": 8
+  },
+  "gui": {
+    "visible_wslg_profiles_tested": [
+      "camera_map",
+      "camera_odom",
+      "lidar_odom",
+      "lidar_raw"
+    ],
+    "xvfb_pixel_check": "RGB, depth and point cloud rendered; marker topic corrected and visible; initial four IR/RGB/depth panels also rendered.",
+    "local_screenshot": ".cache/rviz-camera-raw.png",
+    "screenshot_sha256": "daa5309ffefe2431dbd6c53d5a965278a5990a51acf2119cd410a71b1af650ff"
+  },
+  "raw_camera_audit": {
+    "status": "verified",
+    "observer_version": 2,
+    "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+    "raw_sha256": "5e9c42d1ae6aab5c02257b55c874560872f2f4b62b98af1d011589decf5bf15d",
+    "duration_s": 11.848475,
+    "eof_reached": true,
+    "raw_image_message_counts": {
+      "stream.infrared:1": 351,
+      "stream.infrared:2": 351,
+      "stream.depth:0": 350,
+      "stream.color:0": 347
+    },
+    "sdk_frame_callbacks": {
+      "stream.infrared:1": 351,
+      "stream.infrared:2": 351,
+      "stream.depth:0": 350,
+      "stream.color:0": 347
+    },
+    "decoded_unique_frames": {
+      "stream.infrared:1": 351,
+      "stream.infrared:2": 351,
+      "stream.depth:0": 350,
+      "stream.color:0": 347
+    },
+    "sdk_counts_match_raw_file": {
+      "stream.infrared:1": true,
+      "stream.infrared:2": true,
+      "stream.depth:0": true,
+      "stream.color:0": true
+    },
+    "live_frame_numbers_missing_from_recording": {
+      "stream.color:0": [],
+      "stream.depth:0": [],
+      "stream.infrared:1": [],
+      "stream.infrared:2": []
+    },
+    "raw_minus_live_unique_counts": {
+      "stream.color:0": 209,
+      "stream.depth:0": 212,
+      "stream.infrared:1": 213,
+      "stream.infrared:2": 213
+    },
+    "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+  },
+  "raw_lidar_audit": {
+    "status": "received",
+    "packet_counts": {
+      "102": 2594,
+      "105": 1,
+      "101": 1,
+      "104": 2997
+    },
+    "crc_errors": 0,
+    "valid_points": 744435,
+    "crc_reject_fraction": 0.0,
+    "clock_policy": "report raw timing discrepancy; no timestamp scaling applied",
+    "102": {
+      "sequence_modulus": 1024,
+      "sequence_wraps": 3,
+      "missing_packets": 0,
+      "duplicates": 0,
+      "raw_sensor_hz": 433.07833047678963,
+      "timestamp_non_increasing": 0
+    },
+    "104": {
+      "sequence_modulus": 1024,
+      "sequence_wraps": 3,
+      "missing_packets": 0,
+      "duplicates": 0,
+      "raw_sensor_hz": 500.36513544519283,
+      "timestamp_non_increasing": 0
+    }
+  },
+  "issues": [
+    "Initial IR timestamp mismatch was recorded and now rejected with counters, not mislabeled as a valid stereo pair.",
+    "Initial wrapper falsely treated a missing Windows Process.ExitCode as failure; now checks the written result.",
+    "Early RGB-D exact color-only coverage was wrong when output used depth stamp; alternatives and 1us one-to-one matching are now tested.",
+    "Camera LOST fractions vary significantly with current close scene; no controlled movement/fixed acceptance here.",
+    "L2 native clock ratio remains about 2; no LIO/deskew/fusion claim.",
+    "Main static lidar odometry failures and BeautyMap original boundary failure remain preserved."
+  ],
+  "calibration_deduplication": {
+    "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f": {
+      "left": {
+        "width": 640,
+        "height": 480,
+        "fx": 386.3125915527344,
+        "fy": 386.3125915527344,
+        "ppx": 314.95684814453125,
+        "ppy": 233.64193725585938
+      },
+      "right": {
+        "width": 640,
+        "height": 480,
+        "fx": 386.3125915527344,
+        "fy": 386.3125915527344,
+        "ppx": 314.95684814453125,
+        "ppy": 233.64193725585938
+      },
+      "color": {
+        "width": 640,
+        "height": 480,
+        "fx": 614.6063842773438,
+        "fy": 615.578125,
+        "ppx": 323.0701904296875,
+        "ppy": 251.8853759765625
+      },
+      "baseline_m": 0.05004335567355156,
+      "sdk_left_to_color": {
+        "rotation_column_major": [
+          0.9999877214431763,
+          0.004955935757607222,
+          -0.00021392074995674193,
+          -0.004954231902956963,
+          0.9999607801437378,
+          0.007341783028095961,
+          0.00025029777316376567,
+          -0.0073406328447163105,
+          0.9999729990959167
+        ],
+        "translation_m": [
+          0.015406528487801552,
+          -0.0001232208451256156,
+          -0.00025224441196769476
+        ]
+      }
+    }
+  },
+  "configuration_format_note": "RViz configs were normalized from CRLF to LF after GUI tests; property values unchanged. Session code-hashes retain actual bytes used at startup.",
+  "runs": [
+    {
+      "session": "data/live-camera-20261009-003854-120",
+      "capture_sha256": "4ed3b5143fae07dfb7c73ca13219c4c8d3ff949528e4be5b6bac8f389c21486b",
+      "result_sha256": "9d1acefccfcbbc512cc408515094ee96850238f9e8ecbc39aa36f95071115185",
+      "capture": {
+        "started_at": "2026-10-08T21:38:57.381623+00:00",
+        "sensor": "camera",
+        "status": "failed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 1,
+        "frames_sent": 0,
+        "elapsed_seconds": 0.5,
+        "temporary_options_restored": true,
+        "raw": {
+          "bytes": 1339392,
+          "sha256": "f9336916c6a59d0032b0d7a39eb25345451500518239e05ddbf2751274afcf8a"
+        },
+        "streams": {
+          "stream.depth:0": {
+            "unique_frames": 1
+          },
+          "stream.infrared:1": {
+            "unique_frames": 1
+          },
+          "stream.infrared:2": {
+            "unique_frames": 1
+          },
+          "stream.color:0": {
+            "unique_frames": 1
+          }
+        },
+        "error": "ValueError('IR stereo timestamps differ by more than 1 ms')",
+        "traceback": "Traceback (most recent call last):\n  File \"D:\\workspace\\be2\\Personal-Learning-Physical\\scripts\\live_windows.py\", line 240, in main\n    (camera if config[\"sensor\"] == \"camera\" else lidar)(config, connection, record)\n  File \"D:\\workspace\\be2\\Personal-Learning-Physical\\scripts\\live_windows.py\", line 84, in camera\n    raise ValueError(\"IR stereo timestamps differ by more than 1 ms\")\nValueError: IR stereo timestamps differ by more than 1 ms\n",
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "stereo",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "Host receipt + retained native per-stream offsets; no cross-device hardware synchronization",
+        "source_observations": 0,
+        "odometry_messages": 0,
+        "status_messages": 0,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": null,
+        "pose_output_fraction": null,
+        "lost_status_fraction": null,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 10,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "stereo",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": true
+      },
+      "code_hashes": null,
+      "interface_received": false
+    },
+    {
+      "session": "data/live-camera-20261009-003915-630",
+      "capture_sha256": "486ac829df395390f717f1852f755bd0daa9b43b7e4a689f11e9393469a9c726",
+      "result_sha256": "ea454feb709488b0fd677654c55acfaa6ba5982ecfbafef51a4f6b134b599d88",
+      "capture": {
+        "started_at": "2026-10-08T21:39:17.827230+00:00",
+        "sensor": "camera",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 138,
+        "frames_sent": 67,
+        "stereo_skew_rejected": 0,
+        "stereo_skew_rejected_first_ms": [],
+        "elapsed_seconds": 12.0,
+        "temporary_options_restored": true,
+        "raw": {
+          "bytes": 401620992,
+          "sha256": "5e9c42d1ae6aab5c02257b55c874560872f2f4b62b98af1d011589decf5bf15d"
+        },
+        "streams": {
+          "stream.depth:0": {
+            "unique_frames": 138
+          },
+          "stream.infrared:1": {
+            "unique_frames": 138
+          },
+          "stream.infrared:2": {
+            "unique_frames": 138
+          },
+          "stream.color:0": {
+            "unique_frames": 138
+          }
+        },
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "stereo",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "Host receipt + retained native per-stream offsets; no cross-device hardware synchronization",
+        "source_observations": 67,
+        "odometry_messages": 67,
+        "status_messages": 67,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "pose_output_fraction": 1.0,
+        "lost_status_fraction": 0.0,
+        "translation_excursion_max_m": 0.003136173337913735,
+        "translation_endpoint_separation_m": 0.002087869216324247,
+        "rotation_excursion_max_deg": 0.8410437463633432,
+        "estimated_path_length_m": 0.020633676653989273,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses.",
+        "native_calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 12,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "stereo",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": true
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-camera-20261009-004541-710",
+      "capture_sha256": "628b9fcf81bed64d736bc2d243d45d5a350dde949161c281bae93715ab481e08",
+      "result_sha256": "0f814a213fefeb9c89db533f79f40a1d0908f6ca99be69f85fd2ead02c9d8cee",
+      "capture": {
+        "started_at": "2026-10-08T21:45:43.983763+00:00",
+        "sensor": "camera",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 102,
+        "frames_sent": 70,
+        "stereo_skew_rejected": 0,
+        "stereo_skew_rejected_first_ms": [],
+        "elapsed_seconds": 14.188000000000102,
+        "temporary_options_restored": true,
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "rgbd-slam",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 70,
+        "odometry_messages": 60,
+        "status_messages": 60,
+        "map_data_updates": 13,
+        "graph_global_closure_links": [],
+        "pose_output_fraction": 0.04285714285714286,
+        "lost_status_fraction": 0.0,
+        "pose_output_fraction_after_first_2s": 0.03225806451612903,
+        "ros_input_hz": 4.761029290433039,
+        "ros_input_gap_p95_ms": 327.9744864,
+        "odometry_compute_ms": {
+          "p50": 40.97342491149902,
+          "p95": 48.810374736785874
+        },
+        "translation_excursion_max_m": 0.027090212984885,
+        "translation_endpoint_separation_m": 0.01407062052957567,
+        "rotation_excursion_max_deg": 0.595177834094587,
+        "estimated_path_length_m": 0.5805228958470252,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses.",
+        "native_calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 14,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "rgbd-slam",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": false
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-camera-20261009-004656-161",
+      "capture_sha256": "37809f778bb93ee7be5c1cecd3cb6fb2088d0b7083264773153cf467915ee859",
+      "result_sha256": "1e527c7f679d2e4036b62dbb70c3b13eb3cc8f174db727ef535e94ad09702327",
+      "capture": {
+        "started_at": "2026-10-08T21:46:58.021922+00:00",
+        "sensor": "camera",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 116,
+        "frames_sent": 60,
+        "stereo_skew_rejected": 0,
+        "stereo_skew_rejected_first_ms": [],
+        "elapsed_seconds": 12.04700000000048,
+        "temporary_options_restored": true,
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "rgbd-slam",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 60,
+        "odometry_messages": 59,
+        "status_messages": 59,
+        "map_data_updates": 4,
+        "graph_global_closure_links": [],
+        "pose_output_fraction": 0.9833333333333333,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.711864406779661,
+        "pose_output_fraction_after_first_2s": 0.98,
+        "ros_input_hz": 4.32394015022433,
+        "ros_input_gap_p95_ms": 262.85994350000004,
+        "odometry_compute_ms": {
+          "p50": 64.11910057067871,
+          "p95": 86.77237033843993
+        },
+        "translation_excursion_max_m": 0.013272164121245504,
+        "translation_endpoint_separation_m": 0.013272164121245504,
+        "rotation_excursion_max_deg": 1.9847688102414807,
+        "estimated_path_length_m": 0.0443441259976895,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses.",
+        "native_calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 12,
+        "no_gui": false,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "rgbd-slam",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": false
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-camera-20261009-004747-896",
+      "capture_sha256": "0c8dac98a6ced3a8f90d3400cb8adbc2c3a54aab4fa61198a29bf88746703437",
+      "result_sha256": "02652f1bcd3f40a588acd24dec9866eca780f2f09986262f160e485483a6a1cf",
+      "capture": {
+        "started_at": "2026-10-08T21:47:50.162104+00:00",
+        "sensor": "camera",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 253,
+        "frames_sent": 112,
+        "stereo_skew_rejected": 0,
+        "stereo_skew_rejected_first_ms": [],
+        "elapsed_seconds": 22.139999999999418,
+        "temporary_options_restored": true,
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "sensor",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 112,
+        "odometry_messages": 0,
+        "status_messages": 0,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "pose_output_fraction": 0.0,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": null,
+        "pose_output_fraction_after_first_2s": 0.0,
+        "ros_input_hz": 4.905508713854818,
+        "ros_input_gap_p95_ms": 245.9906545,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses.",
+        "native_calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 22,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "sensor",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": false
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-camera-20261009-005806-013",
+      "capture_sha256": "1b81ae2a6eb31632aae527c924528f4b040576c3764d985bda83833ba3644d7c",
+      "result_sha256": "9964f39bb7135b0efe9fd7385cca87f5b514a4ff53b8435312e03cc05bfa44ae",
+      "capture": {
+        "started_at": "2026-10-08T21:58:08.384347+00:00",
+        "sensor": "camera",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 90,
+        "frames_sent": 49,
+        "stereo_skew_rejected": 0,
+        "stereo_skew_rejected_first_ms": [],
+        "elapsed_seconds": 10.015999999999622,
+        "temporary_options_restored": true,
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "stereo",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 49,
+        "odometry_messages": 49,
+        "status_messages": 49,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "pose_output_fraction": 1.0,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.3673469387755102,
+        "pose_output_fraction_after_first_2s": 1.0,
+        "ros_input_hz": 4.21046176239322,
+        "ros_input_gap_p95_ms": 330.4376723,
+        "odometry_compute_ms": {
+          "p50": 45.12500762939453,
+          "p95": 75.4998207092285
+        },
+        "translation_excursion_max_m": 0.00028325698367430175,
+        "translation_endpoint_separation_m": 0.00012120123674938311,
+        "rotation_excursion_max_deg": 0.07701869184936062,
+        "estimated_path_length_m": 0.0030117768847359775,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses.",
+        "native_calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 10,
+        "no_gui": false,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "stereo",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": false
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-camera-20261009-005908-557",
+      "capture_sha256": "cd167cb9ab66267bfb147b38b8f261929ad94f24df3c5b09569f6e4144ad43dc",
+      "result_sha256": "4f7a7bacf32c1befad71aad5c79ef0d00ad06845cd972516fd21460fa908fc2e",
+      "capture": {
+        "started_at": "2026-10-08T21:59:11.727753+00:00",
+        "sensor": "camera",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 133,
+        "frames_sent": 98,
+        "stereo_skew_rejected": 0,
+        "stereo_skew_rejected_first_ms": [],
+        "elapsed_seconds": 20.188000000000102,
+        "temporary_options_restored": true,
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "rgbd",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 98,
+        "odometry_messages": 97,
+        "status_messages": 97,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "pose_output_fraction": 0.9897959183673469,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.010309278350515464,
+        "pose_output_fraction_after_first_2s": 0.9886363636363636,
+        "ros_input_hz": 4.6744559093252995,
+        "ros_input_gap_p95_ms": 248.86759919999986,
+        "odometry_compute_ms": {
+          "p50": 37.74595260620117,
+          "p95": 44.69261169433594
+        },
+        "translation_excursion_max_m": 0.016402240245352917,
+        "translation_endpoint_separation_m": 0.012350557124511528,
+        "rotation_excursion_max_deg": 2.7586356183022867,
+        "estimated_path_length_m": 0.22353877350124784,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses.",
+        "native_calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 20,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "rgbd",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": false
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-camera-20261009-010135-719",
+      "capture_sha256": "46288a7a039fdcc07ee4cf9bfe86ccd4c20138309ef1f619eace7770c2dda72a",
+      "result_sha256": "0ce3ff67d8d3cb724f01aaea3aa91649cc93f317f71936261a494c379853d246",
+      "capture": {
+        "started_at": "2026-10-08T22:01:37.965401+00:00",
+        "sensor": "camera",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 75,
+        "frames_sent": 31,
+        "stereo_skew_rejected": 0,
+        "stereo_skew_rejected_first_ms": [],
+        "elapsed_seconds": 6.063000000000102,
+        "temporary_options_restored": true,
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "stereo",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 31,
+        "odometry_messages": 30,
+        "status_messages": 30,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "pose_output_fraction": 0.967741935483871,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.7333333333333333,
+        "pose_output_fraction_after_first_2s": 0.9523809523809523,
+        "ros_input_hz": 4.471797880224797,
+        "ros_input_gap_p95_ms": 255.3857746,
+        "odometry_compute_ms": {
+          "p50": 44.42095756530762,
+          "p95": 70.46031951904297
+        },
+        "valid_pose_output_fraction": 0.22580645161290322,
+        "valid_pose_output_fraction_after_first_2s": 0.0,
+        "translation_excursion_max_m": 0.038225989630485305,
+        "translation_endpoint_separation_m": 0.038225989630485305,
+        "rotation_excursion_max_deg": 36.53742227180749,
+        "estimated_path_length_m": 0.051314294373686446,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses.",
+        "native_calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 6,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "stereo",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": false
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-camera-20261009-010301-314",
+      "capture_sha256": "c403ccf920775b7c15bd8da5ba8a7418efb8c3932c93307246362b8fbc52a500",
+      "result_sha256": "d0af0a9f56e6e7350a8f04d19ac3a534d232e6083bed4e7c81c465e2a92d8d4e",
+      "capture": {
+        "started_at": "2026-10-08T22:03:04.717229+00:00",
+        "sensor": "camera",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 68,
+        "frames_sent": 38,
+        "stereo_skew_rejected": 0,
+        "stereo_skew_rejected_first_ms": [],
+        "elapsed_seconds": 8.015999999999622,
+        "temporary_options_restored": true,
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "rgbd",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 38,
+        "odometry_messages": 37,
+        "status_messages": 37,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "pose_output_fraction": 0.9736842105263158,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.0,
+        "pose_output_fraction_after_first_2s": 0.9655172413793104,
+        "ros_input_hz": 4.202141895755823,
+        "ros_input_gap_p95_ms": 286.30140000000006,
+        "odometry_compute_ms": {
+          "p50": 42.738914489746094,
+          "p95": 62.76369094848632
+        },
+        "valid_pose_output_fraction": 0.9473684210526315,
+        "valid_pose_output_fraction_after_first_2s": 0.9655172413793104,
+        "translation_excursion_max_m": 0.004477585995818838,
+        "translation_endpoint_separation_m": 0.0036301339874154712,
+        "rotation_excursion_max_deg": 0.675134192608104,
+        "estimated_path_length_m": 0.030943051021330506,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses.",
+        "native_calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 8,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "rgbd",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": false
+      },
+      "code_hashes": {
+        "configs/rviz/lidar_raw.rviz": "6db7fcbedb771e8d8cfe6c180a41b69429d920412a31cab32689b42ac383c390",
+        "scripts/live_windows.py": "eef3e3575db5ea25d83d91aafe2b3f0c94b16c50963ee0ef2f6a65b6eafc5174",
+        "configs/rviz/camera_odom.rviz": "06ee819b13186a012d9501be4659dab27165e6277e19d3ece0725b21311cbf1e",
+        "scripts/live_ros.py": "34eeed4ba21964d23f0548e3613365598900a98f64754ae0fa962d7e8af9f8e1",
+        "scripts/start_live.ps1": "21eda41b0fbd628157f1658bb20f7136f2aa4b3558bf3067ea68cfbb257f40dc",
+        "configs/rviz/camera_map.rviz": "37def855cc463cdfacc9a7b7aee01afc15ea9b5e1bc448da93547a129d7e2bc1",
+        "configs/rviz/lidar_odom.rviz": "28026e826b5ef6e7d8df9d6cbbfc768d2d4d9dee2d3e12c1a8519c445d1d53dc",
+        "scripts/live_kiss_worker.py": "8bf0ae2629c472999a7394f24747ccf87b37cb420fbf3fa0e2d9c83f91ef55be",
+        "scripts/protocol_l2.py": "c9085c194135e01b8592dbdc90e541a6ab726710476a48432dff4e7b4f3df494",
+        "configs/rviz/camera_raw.rviz": "2cc5829163486376cebbf14d09ce4708834a21802063d2942f8f0b6491e09a78",
+        "scripts/live_transport.py": "34075e84568f816726edb8438f6690b51790a3627119b23e691666eabe389b44",
+        "scripts/live_metrics.py": "31934295a6351b84de6c7281b6228099c3189a1484c30f785390a87e27dc88e3"
+      },
+      "interface_received": true
+    },
+    {
+      "session": "data/live-camera-20261009-010800-508",
+      "capture_sha256": "a39a297deca9b6ad9b19352895251a30874bd11db6fea984037588cf98a98a06",
+      "result_sha256": "a41d303f9ee04ec0feddad67d545c3d2a8969a6b683a9ea1db11ba4de0552015",
+      "capture": {
+        "started_at": "2026-10-08T22:08:03.686236+00:00",
+        "sensor": "camera",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "device": {
+          "name": "RealSense D435",
+          "serial": "831612073355",
+          "usb": "3.2",
+          "firmware": "5.17.0.10"
+        },
+        "depth_scale_m": 0.0010000000474974513,
+        "emitter_before": 1.0,
+        "emitter_during": 1.0,
+        "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+        "framesets_acquired": 70,
+        "frames_sent": 32,
+        "stereo_skew_rejected": 0,
+        "stereo_skew_rejected_first_ms": [],
+        "elapsed_seconds": 6.125,
+        "temporary_options_restored": true,
+        "raw": {
+          "bytes": 195383296,
+          "sha256": "cd95063888c2146e061ab4ebd6f9729f234aee3096ac2aee777cfbc005f36d3a"
+        },
+        "streams": {
+          "stream.depth:0": {
+            "unique_frames": 69
+          },
+          "stream.infrared:1": {
+            "unique_frames": 70
+          },
+          "stream.infrared:2": {
+            "unique_frames": 70
+          },
+          "stream.color:0": {
+            "unique_frames": 69
+          }
+        },
+        "calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "camera",
+        "algorithm": "stereo",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 32,
+        "odometry_messages": 32,
+        "status_messages": 32,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "pose_output_fraction": 1.0,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.0,
+        "pose_output_fraction_after_first_2s": 1.0,
+        "ros_input_hz": 4.451453884980896,
+        "ros_input_gap_p95_ms": 256.427721,
+        "odometry_compute_ms": {
+          "p50": 45.569539070129395,
+          "p95": 57.43614435195923
+        },
+        "valid_pose_output_fraction": 0.96875,
+        "valid_pose_output_fraction_after_first_2s": 1.0,
+        "translation_excursion_max_m": 0.000488274870587878,
+        "translation_endpoint_separation_m": 0.00010959494997407722,
+        "rotation_excursion_max_deg": 0.1204437018964947,
+        "estimated_path_length_m": 0.002724481435081708,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses.",
+        "native_calibration_ref_sha256": "eed24c3dd84bcb9de51d8da1affa6309b6c7123beb8897c8f4d4730ab670bb2f"
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 6,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "camera",
+        "emitter": "default",
+        "serial_port": null,
+        "algorithm": "stereo",
+        "lines": 50,
+        "port": 17635,
+        "domain": 83,
+        "record": true
+      },
+      "code_hashes": {
+        "configs/rviz/lidar_raw.rviz": "5c0dc607823a5fabcdf23429dcec05eba01dc3ad8b732abdfb93408d5209277a",
+        "scripts/live_windows.py": "f6f1846c4055b526f5f00102531ac2e848a38a2b6259349c09abfd34718ded45",
+        "configs/rviz/camera_odom.rviz": "18dfd179ae5e8a1f331280f75884ab180ee3aca57ce4aebaceebf2b91e7ccc8a",
+        "scripts/live_ros.py": "34eeed4ba21964d23f0548e3613365598900a98f64754ae0fa962d7e8af9f8e1",
+        "scripts/start_live.ps1": "21eda41b0fbd628157f1658bb20f7136f2aa4b3558bf3067ea68cfbb257f40dc",
+        "configs/rviz/camera_map.rviz": "e5ae4f92b5523b2125d3526514e1bdb2a6821243dcd2e625479f21e6a873a2e8",
+        "configs/rviz/lidar_odom.rviz": "9a1f24bc709de478b38dc1b07e0cc1b435a8b48a7121a3a22028a0018cde39c9",
+        "scripts/live_kiss_worker.py": "8bf0ae2629c472999a7394f24747ccf87b37cb420fbf3fa0e2d9c83f91ef55be",
+        "scripts/protocol_l2.py": "c9085c194135e01b8592dbdc90e541a6ab726710476a48432dff4e7b4f3df494",
+        "configs/rviz/camera_raw.rviz": "ffb97fedf2c840a6824ba6dcf9965312c4b6f9cd1c6c7c3a329244f13a28da7a",
+        "scripts/live_transport.py": "34075e84568f816726edb8438f6690b51790a3627119b23e691666eabe389b44",
+        "scripts/live_metrics.py": "31934295a6351b84de6c7281b6228099c3189a1484c30f785390a87e27dc88e3"
+      },
+      "interface_received": true
+    },
+    {
+      "session": "data/live-lidar-20261009-004838-832",
+      "capture_sha256": "cd46f64673ebaac84a38b67d42a1398f6c03a55a0db28e480f23d1f3009fd678",
+      "result_sha256": "c668a441826d065dfe9f6095b2c404e12225cdf7afe07ea564afa91e156ce80c",
+      "capture": {
+        "started_at": "2026-10-08T21:48:40.688916+00:00",
+        "sensor": "lidar",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "clouds_sent": 51,
+        "imu_sent": 2997,
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "decoder": "Python SDK-based conversion with float angle accumulation; not native SDK binary",
+        "timestamp_policy": "Host UART receive time; raw device and per-point times preserved; no IMU fusion or deskew",
+        "device": {
+          "name": "YS-L2",
+          "firmware": "2.8.8.1"
+        },
+        "raw_sha256": "67233c6fcee0c91ddbf6005e94c10a4d8819b8813dd4e03e16a9d3f8a7cd141b",
+        "elapsed_seconds": 12.01600000000144,
+        "crc_errors": 0,
+        "packet_counts": {
+          "102": 2594,
+          "105": 1,
+          "101": 1,
+          "104": 2997
+        },
+        "discarded_bytes": 0,
+        "102": {
+          "count": 2594,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 216.3537755527638,
+          "host_seconds_per_device_second": 2.001030581708444
+        },
+        "104": {
+          "count": 2997,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 250.3133093825896,
+          "host_seconds_per_device_second": 2.001017199408842
+        }
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "lidar",
+        "algorithm": "icp",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 51,
+        "odometry_messages": 51,
+        "status_messages": 51,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": null,
+        "pose_output_fraction": 1.0,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.0,
+        "pose_output_fraction_after_first_2s": 1.0,
+        "ros_input_hz": 4.328864966537538,
+        "ros_input_gap_p95_ms": 232.32910310000003,
+        "odometry_compute_ms": {
+          "p50": 150.6509780883789,
+          "p95": 190.76502323150635
+        },
+        "translation_excursion_max_m": 0.10582081587781744,
+        "translation_endpoint_separation_m": 0.10582081587781744,
+        "rotation_excursion_max_deg": 4.273940465753769,
+        "estimated_path_length_m": 0.5857708823157841,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 12,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "lidar",
+        "emitter": "default",
+        "serial_port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "algorithm": "icp",
+        "lines": 50,
+        "port": 17636,
+        "domain": 84,
+        "record": true
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-lidar-20261009-004914-290",
+      "capture_sha256": "ed1e1637c7d8154731ad6ad2e2af037761a9d937df4f4d40a2ff2ffee642c8dc",
+      "result_sha256": "28ccfbbd62bb11fe365260a5bbc07571f25e3355d4212711da81ce166d16ca15",
+      "capture": {
+        "started_at": "2026-10-08T21:49:15.590874+00:00",
+        "sensor": "lidar",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "clouds_sent": 51,
+        "imu_sent": 3000,
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "decoder": "Python SDK-based conversion with float angle accumulation; not native SDK binary",
+        "timestamp_policy": "Host UART receive time; raw device and per-point times preserved; no IMU fusion or deskew",
+        "device": {
+          "name": "YS-L2",
+          "firmware": "2.8.8.1",
+          "hardware": "2.2.1.1"
+        },
+        "elapsed_seconds": 12.015999999999622,
+        "crc_errors": 0,
+        "packet_counts": {
+          "105": 1,
+          "101": 1,
+          "102": 2592,
+          "104": 3000
+        },
+        "discarded_bytes": 0,
+        "102": {
+          "count": 2592,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 216.1869002920212,
+          "host_seconds_per_device_second": 1.9976418530211055
+        },
+        "104": {
+          "count": 3000,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 250.2294534835089,
+          "host_seconds_per_device_second": 1.997664916369965
+        }
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "lidar",
+        "algorithm": "kiss",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 51,
+        "odometry_messages": 51,
+        "status_messages": 0,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": null,
+        "pose_output_fraction": 1.0,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": null,
+        "pose_output_fraction_after_first_2s": 1.0,
+        "ros_input_hz": 4.323082672167655,
+        "ros_input_gap_p95_ms": 273.9915448,
+        "translation_excursion_max_m": 0.633523434780622,
+        "translation_endpoint_separation_m": 0.633523434780622,
+        "rotation_excursion_max_deg": 156.83486648924014,
+        "estimated_path_length_m": 0.7595186886620742,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 12,
+        "no_gui": false,
+        "session_type": "preview",
+        "sensor": "lidar",
+        "emitter": "default",
+        "serial_port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "algorithm": "kiss",
+        "lines": 50,
+        "port": 17636,
+        "domain": 84,
+        "record": false
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-lidar-20261009-005818-667",
+      "capture_sha256": "3b80186457492f39e5d11176152e8511f1c94108ca6d5cc653d9df87c7d91042",
+      "result_sha256": "a93f914d92ca5856cf301c3d844b2d130c1d13e5ed9edb15505abe45e81615bd",
+      "capture": {
+        "started_at": "2026-10-08T21:58:21.785358+00:00",
+        "sensor": "lidar",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "clouds_sent": 43,
+        "imu_sent": 2495,
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "decoder": "Python SDK-based conversion with float angle accumulation; not native SDK binary",
+        "timestamp_policy": "Host UART receive time; raw device and per-point times preserved; no IMU fusion or deskew",
+        "device": {
+          "name": "YS-L2",
+          "firmware": "2.8.8.1",
+          "hardware": "2.2.1.1"
+        },
+        "elapsed_seconds": 10.015999999999622,
+        "crc_errors": 0,
+        "packet_counts": {
+          "104": 2495,
+          "105": 1,
+          "101": 1,
+          "102": 2153
+        },
+        "discarded_bytes": 29,
+        "102": {
+          "count": 2153,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 215.890850722295,
+          "host_seconds_per_device_second": 1.9976768453085878
+        },
+        "104": {
+          "count": 2495,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 250.20064205455566,
+          "host_seconds_per_device_second": 1.9976890271690126
+        }
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "lidar",
+        "algorithm": "kiss",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 43,
+        "odometry_messages": 43,
+        "status_messages": 0,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": null,
+        "pose_output_fraction": 1.0,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": null,
+        "pose_output_fraction_after_first_2s": 1.0,
+        "ros_input_hz": 4.313965390335071,
+        "ros_input_gap_p95_ms": 242.51233689999998,
+        "kiss_worker_compute_ms": {
+          "p50": 34.530583001469495,
+          "p95": 132.5134270993657
+        },
+        "translation_excursion_max_m": 0.06157494944103802,
+        "translation_endpoint_separation_m": 0.007518890051091286,
+        "rotation_excursion_max_deg": 13.708561819649242,
+        "estimated_path_length_m": 1.1570457907190965,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 10,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "lidar",
+        "emitter": "default",
+        "serial_port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "algorithm": "kiss",
+        "lines": 50,
+        "port": 17636,
+        "domain": 84,
+        "record": false
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-lidar-20261009-010124-459",
+      "capture_sha256": "079e06515a4ade92d656765c1406c089faf0698fe00afee0233a2d592db007d1",
+      "result_sha256": "f1d6ea867486755768472e8957b54b915dd8d4e61ca46e9b9afe0540c9afcc44",
+      "capture": {
+        "started_at": "2026-10-08T22:01:25.735785+00:00",
+        "sensor": "lidar",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "clouds_sent": 25,
+        "imu_sent": 1494,
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "decoder": "Python SDK-based conversion with float angle accumulation; not native SDK binary",
+        "timestamp_policy": "Host UART receive time; raw device and per-point times preserved; no IMU fusion or deskew",
+        "device": {
+          "name": "YS-L2",
+          "firmware": "2.8.8.1",
+          "hardware": "2.2.1.1"
+        },
+        "elapsed_seconds": 6.015999999999622,
+        "crc_errors": 0,
+        "packet_counts": {
+          "105": 1,
+          "101": 1,
+          "102": 1291,
+          "104": 1494
+        },
+        "discarded_bytes": 0,
+        "102": {
+          "count": 1291,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 215.5748663101468,
+          "host_seconds_per_device_second": 1.998236169537759
+        },
+        "104": {
+          "count": 1494,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 250.1675603216841,
+          "host_seconds_per_device_second": 1.998138849189637
+        }
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "lidar",
+        "algorithm": "sensor",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 25,
+        "odometry_messages": 0,
+        "status_messages": 0,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": null,
+        "pose_output_fraction": 0.0,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": null,
+        "pose_output_fraction_after_first_2s": 0.0,
+        "ros_input_hz": 4.3120520687474055,
+        "ros_input_gap_p95_ms": 273.1091008,
+        "valid_pose_output_fraction": null,
+        "valid_pose_output_fraction_after_first_2s": null,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 6,
+        "no_gui": false,
+        "session_type": "preview",
+        "sensor": "lidar",
+        "emitter": "default",
+        "serial_port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "algorithm": "sensor",
+        "lines": 50,
+        "port": 17636,
+        "domain": 84,
+        "record": false
+      },
+      "code_hashes": null,
+      "interface_received": true
+    },
+    {
+      "session": "data/live-lidar-20261009-010301-739",
+      "capture_sha256": "65cf6b3d9b51190d3c19e3a81341a34c1d1f77ec75a86975721463594885a9d6",
+      "result_sha256": "263f58826e2276de8930a9ac4408ff526b02cf661eb447e00b793384dedee949",
+      "capture": {
+        "started_at": "2026-10-08T22:03:03.603494+00:00",
+        "sensor": "lidar",
+        "status": "streamed",
+        "scope": "Live receipt; preview is not precision acceptance",
+        "clouds_sent": 34,
+        "imu_sent": 2000,
+        "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "decoder": "Python SDK-based conversion with float angle accumulation; not native SDK binary",
+        "timestamp_policy": "Host UART receive time; raw device and per-point times preserved; no IMU fusion or deskew",
+        "device": {
+          "name": "YS-L2",
+          "firmware": "2.8.8.1",
+          "hardware": "2.2.1.1"
+        },
+        "elapsed_seconds": 8.015999999999622,
+        "crc_errors": 1,
+        "packet_counts": {
+          "105": 1,
+          "101": 1,
+          "102": 1722,
+          "104": 2000
+        },
+        "discarded_bytes": 915,
+        "102": {
+          "count": 1722,
+          "missing": 1,
+          "duplicates": 0,
+          "host_hz": 215.5561122244387,
+          "host_seconds_per_device_second": 1.9979541408893784
+        },
+        "104": {
+          "count": 2000,
+          "missing": 0,
+          "duplicates": 0,
+          "host_hz": 250.37575150299415,
+          "host_seconds_per_device_second": 1.99793175454026
+        }
+      },
+      "result": {
+        "status": "streamed",
+        "sensor": "lidar",
+        "algorithm": "icp",
+        "session_type": "preview",
+        "quality_claim": false,
+        "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+        "source_observations": 34,
+        "odometry_messages": 34,
+        "status_messages": 34,
+        "map_data_updates": 0,
+        "graph_global_closure_links": [],
+        "native_calibration": null,
+        "pose_output_fraction": 1.0,
+        "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+        "lost_status_fraction": 0.0,
+        "pose_output_fraction_after_first_2s": 1.0,
+        "ros_input_hz": 4.309505367912834,
+        "ros_input_gap_p95_ms": 273.84562980000004,
+        "odometry_compute_ms": {
+          "p50": 142.54319667816162,
+          "p95": 169.5024251937866
+        },
+        "valid_pose_output_fraction": 0.9705882352941176,
+        "valid_pose_output_fraction_after_first_2s": 1.0,
+        "translation_excursion_max_m": 0.03677316240274376,
+        "translation_endpoint_separation_m": 0.030541025394078235,
+        "rotation_excursion_max_deg": 1.8910271152919025,
+        "estimated_path_length_m": 0.4116814780136232,
+        "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+      },
+      "configuration": {
+        "fps": 10,
+        "seconds": 8,
+        "no_gui": true,
+        "session_type": "preview",
+        "sensor": "lidar",
+        "emitter": "default",
+        "serial_port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+        "algorithm": "icp",
+        "lines": 50,
+        "port": 17636,
+        "domain": 84,
+        "record": false
+      },
+      "code_hashes": {
+        "configs/rviz/lidar_raw.rviz": "6db7fcbedb771e8d8cfe6c180a41b69429d920412a31cab32689b42ac383c390",
+        "scripts/live_windows.py": "eef3e3575db5ea25d83d91aafe2b3f0c94b16c50963ee0ef2f6a65b6eafc5174",
+        "configs/rviz/camera_odom.rviz": "06ee819b13186a012d9501be4659dab27165e6277e19d3ece0725b21311cbf1e",
+        "scripts/live_ros.py": "34eeed4ba21964d23f0548e3613365598900a98f64754ae0fa962d7e8af9f8e1",
+        "scripts/start_live.ps1": "21eda41b0fbd628157f1658bb20f7136f2aa4b3558bf3067ea68cfbb257f40dc",
+        "configs/rviz/camera_map.rviz": "37def855cc463cdfacc9a7b7aee01afc15ea9b5e1bc448da93547a129d7e2bc1",
+        "configs/rviz/lidar_odom.rviz": "28026e826b5ef6e7d8df9d6cbbfc768d2d4d9dee2d3e12c1a8519c445d1d53dc",
+        "scripts/live_kiss_worker.py": "8bf0ae2629c472999a7394f24747ccf87b37cb420fbf3fa0e2d9c83f91ef55be",
+        "scripts/protocol_l2.py": "c9085c194135e01b8592dbdc90e541a6ab726710476a48432dff4e7b4f3df494",
+        "configs/rviz/camera_raw.rviz": "2cc5829163486376cebbf14d09ce4708834a21802063d2942f8f0b6491e09a78",
+        "scripts/live_transport.py": "34075e84568f816726edb8438f6690b51790a3627119b23e691666eabe389b44",
+        "scripts/live_metrics.py": "31934295a6351b84de6c7281b6228099c3189a1484c30f785390a87e27dc88e3"
+      },
+      "interface_received": true
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+# 如何测试主分支算法，以及以后怎样合入
+
+[English](MAIN_INTEGRATION.md) | 中文
+
+检查基准：主分支 `354b02d69ccc90304174f6d36010d25043d739ca`。当前主分支代码使用给定位姿，**不是直接连接相机／雷达就会输出轨迹的 SLAM 系统**。当前入口固定了 KITTI teaser、Replica room0／room1 等数据；不能把 `.db3` 或 UART 文件传给现有命令就宣称实物测试完成。
+
+## 1. 数据适配要先做到什么
+
+硬件记录统一生成一个独立 session manifest：设备型号、固件、SDK／作者提交、原始文件哈希、采集配置、单位、坐标约定、逐帧时间、内外参、位姿来源、事件记录、适配器版本、失败记录与输出目录。
+
+- 相机：原始 RGB、深度、左右 IR保留；用 SDK 将深度对齐到明确选择的相机坐标系，配套正确内参、深度米制标尺、畸变约定和无效值。没有对齐的 RGB／深度不能按像素直接混用。
+- 雷达：保存原始 UART 和校验结果，再生成逐扫描点云；保留 XYZ、强度、逐点 time、ring 与每扫描起时刻。单线官方转换 `ring=1`，若按 18 线聚合须明确它是软件聚合，不伪造物理多线雷达。
+- 位姿：统一定义 `T_world_sensor` 或明确相反方向；先用人工确认固定的会话，固定传感器相对位姿可设为单位矩阵。移动会话使用经过验证的定位前端；独立参考只用于评价，不偷偷作为算法输入。
+- 时间：相机本次报告 `system_time`，雷达原始为设备时间，尚不是共享时钟。未经校验不能直接关联。软件主机接收时间也不能被命名为硬件同步时间。
+- 事件：记录开始、动作、动作完成、恢复时刻；椅子／箱子有独立物理 ID，尺量参考和不确定性单独保存。
+
+**固定会话的 L2→主分支 DUFOMap 接口已实现并实际执行。** `run_main_dufomap.py` 从固定 Git 提交读取原适配器与参数，用 40 份官方解码观测生成 PCD、manifest 和有限地图输出。`run_main_beautymap.py` 复用同一输入：原样 BeautyMap 入口在小地图查询边界越界；每次运行的作者副本做空白网格扩域后可处理 40/40 观测，内部窗口合成回归通过。这个局部诊断控制还需要全面边界与原 KITTI 回归，不能称主分支已修复。固定传感器使用明确标注的单位位姿假设；这些只有接口与软件对照成绩，SA／DA 仍为空。真实 RGB-D 已实现 SDK 深度对齐、专用 manifest 和作者文件布局；两套原生加载器各 8/8 帧通过，语义核心尚未运行。详见[RGB-D 输入检查](RGBD_MAIN_INPUT.zh-CN.md)。双目静止通过，RTAB-Map ICP 与 KISS-ICP 雷达静止失败，均未验移动位姿。[最新结果](archive/DIAGNOSTICS_ROUND3.zh-CN.md)。所有适配在本分支及冻结副本中进行，主分支未修改。
+
+## 2. 当前可复现的固定输入入口
+
+实时操作先看[相机指南](CAMERA_GUIDE.zh-CN.md)和[雷达指南](LIDAR_GUIDE.zh-CN.md)。RTAB-Map/KISS 负责前端定位，下面的主分支核心消费给定位姿和观测，角色不同。
+
+实时桥接已对齐相机深度并读出 SDK 外参；离线 RGB-D manifest 及原生加载/几何接口检查现已完成。掩码、特征和对象地图还需执行语义核心，不能把输入加载通过当作已完成 ConceptGraphs/HOV-SG 建图。
+
+复现命令见[实物 RGB-D 操作](RGBD_MAIN_INPUT.zh-CN.md)。
+
+本机已有用户确认固定的旧会话，已导出原生 SDK 点云 `data/l2-official-static-50`。可在 Ubuntu 终端复现固定输入接口；这不是新场景或移动精度验收。每块一行，输出目录若已存在就换新后缀，保留原失败。
+
+先从 Windows PowerShell 进入 Ubuntu：
+
+```powershell
+wsl -d Ubuntu-22.04
+```
+
+然后在 `qzl@...$` 中进入本分支：
+
+```bash
+cd /mnt/d/workspace/be2/Personal-Learning-Physical
+```
+
+DUFOMap：
+
+```bash
+OPENBLAS_NUM_THREADS=2 /home/qzl/projects/SLAM_Learning/.venv/bin/python scripts/run_main_dufomap.py data/l2-official-static-50 --main-repo /mnt/d/workspace/be2/SLAM_Learning --fixed-sensor-session --output data/manual-dufomap-01
+```
+
+预期处理 40 次实测观测，生成 PCD、manifest 和结果。图中应保留静态主体；没有受控动态标签时不评价 SA/DA。生成三列对照图：
+
+```bash
+python3 scripts/render_dufomap_smoke.py data/manual-dufomap-01
+```
+
+BeautyMap 原入口复查（当前已知会遇到小地图边界错误；失败需保存）：
+
+```bash
+OPENBLAS_NUM_THREADS=2 /home/qzl/projects/SLAM_Learning/.venv/bin/python scripts/run_main_beautymap.py data/manual-dufomap-01 --main-repo /mnt/d/workspace/be2/SLAM_Learning --upstream /home/qzl/projects/SLAM_Learning/.cache/upstream/beautymap --fixed-sensor-session --output data/manual-beautymap-original-01
+```
+
+显式局部扩域诊断对照，另存新目录：
+
+```bash
+OPENBLAS_NUM_THREADS=2 /home/qzl/projects/SLAM_Learning/.venv/bin/python scripts/run_main_beautymap.py data/manual-dufomap-01 --main-repo /mnt/d/workspace/be2/SLAM_Learning --upstream /home/qzl/projects/SLAM_Learning/.cache/upstream/beautymap --fixed-sensor-session --pad-small-map-control --output data/manual-beautymap-control-01
+```
+
+预期该固定小地图对照可处理 40 次，但不是原实现通过；不往作者缓存或 main 写补丁。生成比较图：
+
+```bash
+python3 scripts/render_dufomap_smoke.py data/manual-beautymap-control-01
+```
+
+Windows 文件管理器打开本分支 data 下相应输出的 `comparison.png`：原始云/输出云/缺失坐标。红色“缺失”可能包含误删，不能直接叫正确动态清除。要测试新原始录制，先依旧教程导出、核验哈希和位姿来源；仅整段确实固定才允许 `--fixed-sensor-session`。
+
+## 3. 先固定传感器，测试四类事件
+
+每类 80 秒：0–20 秒静止，20–25 秒执行事件，25–60 秒保持，60–80 秒恢复；实际事件完成时间另记。先各拍一次检查流程；之后每类至少 3 次验证会话，冻结参数后换布局做至少 5 次测试会话。会话是统计单位，不能把百万点当百万个独立实验。
+
+| 算法 | 输入和视频预期 | 指标与正确解释 |
+| --- | --- | --- |
+| DUFOMap | 已知扫描位姿的 L2 点云；对比原始累积地图和静态保留地图，按保留／删除着色；移动人的拖影应减少，墙和家具应保留 | 静态保留率 SA、动态清除率 DA；固定评分对应与距离阈值、分开说明点级和事件级分母。不能把它当定位前端或保证“物体一移走就立即删除” |
+| BeautyMap | 同一批扫描和相同位姿构成的地图，显示清理前后；动态拖影减少，墙面和静态细结构尽量保留 | 同样的 SA／DA、静态误删、覆盖与耗时；输入移除 GT 标签但保留几何和 VIEWPOINT。KITTI 的范围、栅格与分辨率不能不说明就套到小房间 |
+| ConceptGraphs 核心 | D435 对齐 RGB-D + 给定位姿；显示 SAM 掩码、对象点云、ID、文本查询候选 | 同一物理物体反复看到应尽量关联一致；允许分割边界误差、漏检与错误查询候选。记录身份碎片、错误合并、表面覆盖、人工审核的查询准确率、目标坐标误差和延迟；红色高亮只是候选，不等于判对 |
+| HOV-SG 当前核心 | 同样 RGB-D、位姿和固定输入观测；显示分段／特征地图和文本候选 | 当前主分支只复现限定的特征建图核心，不自动产生完整楼层／房间导航；记录分段稳定性、覆盖、查询效果、内存和时延。静态语义建图算法不保证自动理解物体被移走 |
+
+四事件与正常判据：
+
+- 静止：背景不应因为测量抖动不断被删除或对象 ID 分裂。
+- 遮挡：椅子保持原位，用挡板遮住；“看不到”应与“已经移除”区分。评测可指出原算法在此失败，不能默认为原算法支持正确可见性推理。
+- 移除：移走椅子，旧位置及后方背景须可见；有证据穿过旧位置才计入可见移除召回。
+- 移动：沿地面胶带移动 30 cm；新位置应被定位，旧目标坐标的过期时长要单独统计。不能永久保留旧目标来换取漂亮的静态保留率。
+
+先用验证集选择参数并冻结；正式测试报告风险—覆盖—延迟曲线。建议初期排查目标为可见静态支持误删 <5%、可见移除事件召回 >80%、独立表面锚点位置误差 <10 cm，并报告区间和参考误差。它们只是项目目标；现有四个核心都没有在本次实物上达到或验证这些门槛。遮挡不误删、身份恢复等超出原核心能力的现象应作为失败或后续扩展，不补写成已有功能。
+
+## 4. 再接主分支的迟到位姿修正实验
+
+固定采集 40 个有时间戳的观测；如果选择 1 Hz 就需要至少 40 秒有效数据。已有 60 秒静止记录在时长上满足，但当前近物／过曝场景不适合直接做语义与地图验收。保持 RGB、深度、掩码、特征和输入观测相同。
+
+按主分支 REAL_WORLD 设计，观测 8–15 注入 x 方向 0→10 cm 漂移，在第 16／24／36 观测交付相同历史修正；16 观测缓存区分窗口内外。比较原核心、简单阈值、仅修正几何但冻结关联、正确历史全量重建；共享不确定性 H1 尚未实现，不先假设会胜出。
+
+视频同时显示：历史修正交付时刻、旧地图／对象与修正后地图、ID 与查询坐标状态。仅几何修正可能对齐墙面但保留错误对象归属；全量重建是正确性参考。只在身份指标和相同候选预算证明必要性后，再实现有界关联重放。
+
+沿用主分支当前的表面恢复定义：10 cm 内覆盖，投影精度至少 50%且覆盖至少 20%才算恢复；同时报告身份碎片、候选数量、位置误差、恢复延迟、CPU／显存／RSS。缓存外无法恢复要明确显示，不能静默使用完整历史而声称满足 16 帧预算。
+
+## 5. 合并前的门槛与可执行步骤
+
+当前只准备流程，**不执行以下合入命令**。
+
+1. 设备型号、原始回放、同时采集、时间与标定验收通过；故障与未通过项都有记录。
+2. 适配器用固定小样本验证单位、位姿方向、内外参、无效值、时间关联；原始输入哈希一致且没有评价标签泄漏。
+3. 在从最新 main 创建的临时验证工作树中集成经过筛选的硬件模块；主分支原有测试、lint、证据检查通过，原 KITTI／Replica 参考结果不被覆盖。
+4. 真正运行实物算法，记录作者提交、命令、配置、退出码、原始数据定位与失败；视频清楚区分算法执行与输出回放。采集预览或退出码 0 不等于研究验收。
+5. 为 PR 整理 `hardware/` 之类独立目录下的适配器、配置、测试、文档与可审查的轻量数字证据。原始录制、环境、模型权重、室内人员画面、设备私有路径不加入公共仓库。
+
+本分支为用户要求的空白 orphan 历史，与 main **没有共同祖先**。以后不要直接对 main 执行整分支 `merge --allow-unrelated-histories`。更合适的是以 main 为基底创建集成分支，按模块导入或移植经过筛选的提交；先调整目录避免 README／scripts 冲突，再做 PR。
+
+示意流程（最终路径和提交须在审查后确定）：
+
+```powershell
+git -C D:\workspace\be2\SLAM_Learning worktree add -b integrate/physical-sensors D:\workspace\be2\Physical-Integration main
+# 在新工作树内导入审核通过的 hardware/ 模块和轻量证据。
+# 按主分支 docs/REPRODUCE.zh-CN.md 执行测试与证据检查。
+# 审阅 diff、创建 PR，等待用户决定是否合并。
+```
+
+没有得到之后明确的合并指令，不执行 merge。若用户决定只保留个人实验，也可以长期维持本分支，不要求合入所有学习笔记。

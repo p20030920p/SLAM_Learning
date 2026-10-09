@@ -2,7 +2,7 @@
 
 English | [中文](HOME_RUNBOOK.zh-CN.md) | [Index](README.md)
 
-The [public protocol](../docs/REAL_WORLD.md) defines comparisons and rejection rules. This guide covers operations. Basic hardware checks are on the [physical branch](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical); this controlled H1 protocol remains unfinished. The SDK-reported D435 has no IMU. Begin with capture/playback and four exploratory events. Captured video alone is not hypothesis validation.
+The [public protocol](../docs/REAL_WORLD.md) defines comparisons and rejection rules. This guide covers operations. Basic hardware checks are on the [physical branch](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical); this controlled H1 protocol remains unfinished. The SDK-reported D435 has no IMU. Begin with capture/playback and four exploratory events. Captured video alone is not hypothesis validation.
 
 ## 1. Minimum session
 

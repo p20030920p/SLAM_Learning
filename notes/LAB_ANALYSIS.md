@@ -85,6 +85,6 @@ Filled on 2026-10-09. First-person prose is an editable argument, not a claim th
 | 2026-10-09; `dufomap-table4-ablation-01` | All 15 SA/DA/AA entries match paper rounding | Existing compensation is a strong baseline | No delayed corrections or H1 result |
 | 2026-10-09; `beautymap-table3-historical-01` | All nine SA/DA/HA entries match Table III rounding | Existing parameter tradeoffs matter; AA differs from HA | 00/01 gaps remain; not all historical settings are identified |
 | 2026-10-09; `dufo-python-output-audit-01` | Voxel SA depends strongly on representation/NN threshold | Freeze scoring before attributing errors | Low voxel SA does not imply equivalent deletion |
-| Controlled D435/L2 H1 sessions | Unfinished; [basic hardware trials](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical) recorded separately | Operation protocols exist | Semantic quality, independent references and recovery module remain unverified |
+| Controlled D435/L2 H1 sessions | Unfinished; [basic hardware trials](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical) recorded separately | Operation protocols exist | Semantic quality, independent references and recovery module remain unverified |
 
 Automated author-run records do not establish personal manual observations. Keep these new originals distinct from older exploratory subsets. The proposed hypothesis experiment has not started.

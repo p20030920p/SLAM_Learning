@@ -1,0 +1,21 @@
+{
+  "physical_icp_odometry": {
+    "ros__parameters": {
+      "use_sim_time": true,
+      "frame_id": "lidar",
+      "odom_frame_id": "physical_odom",
+      "publish_tf": false,
+      "wait_imu_to_init": false,
+      "qos": 1,
+      "publish_null_when_lost": true,
+      "Icp/Strategy": "0",
+      "Icp/VoxelSize": "0.08",
+      "Icp/PointToPlane": "true",
+      "Icp/PointToPlaneK": "20",
+      "Icp/MaxCorrespondenceDistance": "0.3",
+      "Icp/Iterations": "30",
+      "Odom/Deskewing": "false",
+      "Odom/GuessMotion": "true"
+    }
+  }
+}

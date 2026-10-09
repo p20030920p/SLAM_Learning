@@ -1,0 +1,96 @@
+{
+  "session": "data/receipt-final-20261008-224513",
+  "scope": "Final 5-second receipt check, not a user-confirmed static test",
+  "camera": {
+    "status": "received",
+    "device": {
+      "name": "RealSense D435",
+      "serial_number": "831612073355",
+      "firmware_version": "5.17.0.10",
+      "usb_type_descriptor": "3.2"
+    },
+    "streams": {
+      "stream.depth:0": {
+        "unique_frames": 138,
+        "sensor_hz": 29.976422264386777,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 34.225830078125,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      },
+      "stream.infrared:1": {
+        "unique_frames": 137,
+        "sensor_hz": 29.976809860335024,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 33.806884765625,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      },
+      "stream.infrared:2": {
+        "unique_frames": 137,
+        "sensor_hz": 29.976809860335024,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 33.806884765625,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      },
+      "stream.color:0": {
+        "unique_frames": 138,
+        "sensor_hz": 29.981989498673965,
+        "sequence_missing": 0,
+        "timestamp_non_increasing": 0,
+        "max_sensor_gap_ms": 33.579833984375,
+        "timestamp_domains": [
+          "timestamp_domain.system_time"
+        ]
+      }
+    },
+    "raw": {
+      "bytes": 150028288,
+      "sha256": "93a90e3845a85725038c0a18154b8264b67e0ea8937487e0f852cd75143f4b37"
+    }
+  },
+  "l2": {
+    "status": "received",
+    "packet_counts": {
+      "104": 1249,
+      "105": 1,
+      "101": 1,
+      "102": 1076
+    },
+    "crc_errors": 0,
+    "valid_points": 316229,
+    "crc_reject_fraction": 0.0,
+    "clock_policy": "report raw timing discrepancy; no timestamp scaling applied",
+    "104": {
+      "sequence_modulus": 1024,
+      "sequence_wraps": 1,
+      "missing_packets": 0,
+      "duplicates": 0,
+      "raw_sensor_hz": 499.23034122322287,
+      "timestamp_non_increasing": 0,
+      "host_receive_hz": 249.7296296561742,
+      "host_per_device_second": 1.999467522716759,
+      "residual_p95_ms": 1.656795303073899,
+      "ready_for_inertial_odometry": false
+    },
+    "102": {
+      "sequence_modulus": 1024,
+      "sequence_wraps": 1,
+      "missing_packets": 0,
+      "duplicates": 0,
+      "raw_sensor_hz": 430.4891269118595,
+      "timestamp_non_increasing": 0,
+      "host_receive_hz": 215.30536760287612,
+      "host_per_device_second": 1.9994715720195897,
+      "residual_p95_ms": 0.18019584342054973,
+      "ready_for_inertial_odometry": false
+    }
+  }
+}

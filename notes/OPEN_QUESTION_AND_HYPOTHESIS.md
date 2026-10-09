@@ -2,7 +2,7 @@
 
 English | [中文](OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md)
 
-This is a candidate research design, not a completed recovery module. The current frozen implementation/protocol is on [identity-budget-v2](https://github.com/p20030920p/SLAM_Learning/blob/study/identity-budget-v2/docs/IDENTITY_BUDGET.md). Hardware execution is recorded on the separate [physical branch](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical).
+This is a candidate research design, not a completed recovery module. The current frozen implementation/protocol is on [identity-budget-v2](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md). Hardware execution is recorded on the separate [physical branch](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical).
 
 ## 1. Question and motivation
 

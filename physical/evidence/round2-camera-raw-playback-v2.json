@@ -1,0 +1,45 @@
+{
+  "status": "verified",
+  "observer_version": 2,
+  "scope": "Raw sensor callback playback, SQLite image counts and live frame-number coverage; no SLAM evaluation",
+  "raw_sha256": "117b91311176a882a33a2c1da555ddfa89c4bb8e335bc80f316f741012348366",
+  "duration_s": 4.872852,
+  "eof_reached": true,
+  "raw_image_message_counts": {
+    "stream.infrared:1": 142,
+    "stream.infrared:2": 142,
+    "stream.depth:0": 138,
+    "stream.color:0": 138
+  },
+  "sdk_frame_callbacks": {
+    "stream.infrared:1": 142,
+    "stream.infrared:2": 142,
+    "stream.depth:0": 138,
+    "stream.color:0": 138
+  },
+  "decoded_unique_frames": {
+    "stream.infrared:1": 142,
+    "stream.infrared:2": 142,
+    "stream.depth:0": 138,
+    "stream.color:0": 138
+  },
+  "sdk_counts_match_raw_file": {
+    "stream.infrared:1": true,
+    "stream.infrared:2": true,
+    "stream.depth:0": true,
+    "stream.color:0": true
+  },
+  "live_frame_numbers_missing_from_recording": {
+    "stream.color:0": [],
+    "stream.depth:0": [],
+    "stream.infrared:1": [],
+    "stream.infrared:2": []
+  },
+  "raw_minus_live_unique_counts": {
+    "stream.color:0": 0,
+    "stream.depth:0": 0,
+    "stream.infrared:1": 4,
+    "stream.infrared:2": 4
+  },
+  "coverage_note": "Recording may include startup frames omitted by live frameset synchronization; every live frame must still exist in raw playback."
+}

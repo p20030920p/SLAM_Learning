@@ -2,7 +2,7 @@
 
 [English](REAL_WORLD.md) | 中文
 
-本研究协议尚未完成；基础收流与原生加载检查见[实物分支](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)。使用 D435（SDK 实测，无 IMU）、L2、三脚架和尺量事件检验地图与目标有效性，不需要移动机器人。
+本研究协议尚未完成；基础收流与原生加载检查见[实物分支](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical)。使用 D435（SDK 实测，无 IMU）、L2、三脚架和尺量事件检验地图与目标有效性，不需要移动机器人。
 
 ## 1. 要区分的三个问题
 

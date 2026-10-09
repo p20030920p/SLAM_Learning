@@ -87,6 +87,6 @@ Khronos 已包含联合优化、历史与地图协调，记忆／回滚不能单
 | 2026-10-09 核对；`dufomap-table4-ablation-01` | SA/DA/AA 共 15 项匹配论文两位小数 | 作者误差补偿是必须比较的强基线 | 没有迟到修正、身份恢复或 H1 收益 |
 | 2026-10-09；`beautymap-table3-historical-01` | 三组网格的 SA/DA/HA 共 9 项匹配论文 | 参数取舍是已有机制，AA 与 HA 不能混写 | 00/01 差距仍未解释，不能推定全部历史设置一致 |
 | 2026-10-09；`dufo-python-output-audit-01` | 体素 SA 对输出表示／近邻阈值高度敏感 | 先锁定评价协议，再判断算法错误 | 低体素 SA 不等于同量静态误删 |
-| D435／L2 受控 H1 会话 | 尚未完成；[基础实物试跑](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)另有记录 | 已有操作协议 | 语义质量、独立参考和恢复模块未验证 |
+| D435／L2 受控 H1 会话 | 尚未完成；[基础实物试跑](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical)另有记录 | 已有操作协议 | 语义质量、独立参考和恢复模块未验证 |
 
 这些作者运行由自动执行记录支撑，不冒充本人手动观察。新原流程与上方旧探索子集分别解读；完整假设实验尚未开始。

@@ -1,0 +1,62 @@
+{
+  "kind": "hardware_main_adapter_smoke",
+  "method": "DUFOMap",
+  "status": "smoke_passed",
+  "started_at": "2026-10-08T20:16:48.371115+00:00",
+  "main_commit": "354b02d69ccc90304174f6d36010d25043d739ca",
+  "source_sha256": "c79cc1fd24c7e01566416a2867f603229e9a948c32ad26304da3188b817c1749",
+  "source_blobs": {
+    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
+    "src/slam_learning/adapters.py": "0d79fc212d6ab682e9d53e411b7da7d18073d4e2b5c1361f877594dd6a332f04",
+    "src/slam_learning/pcd.py": "ce37303693339309cf4d5f55d8bf7c4457973c0eb83392c581d4a5579634b034",
+    "configs/methods.json": "5a177d8e100109a5e5639070d8186c26651cf1a9fcf8e0a2e0dacaa66ac8f51f"
+  },
+  "exit_code": 0,
+  "pose_source": "Identity relative pose from user-confirmed fixed sensor session; not estimated odometry",
+  "scope": "40 observations at approximately 1Hz; execution/interface smoke only",
+  "fixed_sensor_session_acknowledged": true,
+  "evaluation": {
+    "SA": null,
+    "DA": null,
+    "reason": "No point-level static/dynamic annotation or event ground truth"
+  },
+  "parameters": {
+    "resolution": 0.1,
+    "d_s": 0.2,
+    "d_p": 1,
+    "threads": 2,
+    "min_range": 0.2,
+    "max_range": 50.0
+  },
+  "package_versions": {
+    "dufomap": "1.1.1",
+    "numpy": "1.26.4"
+  },
+  "input_points": 545371,
+  "input_frames": 40,
+  "worker": {
+    "frames": 40,
+    "compatibility_patch": null,
+    "integration_filter": "0.2 < range < 50 m, per current author demo"
+  },
+  "output_points": 541723,
+  "output_finite": true,
+  "output_fields": [
+    "x",
+    "y",
+    "z"
+  ],
+  "output_input_point_ratio": 0.9933109754644086,
+  "ratio_note": "Descriptive count ratio only, not static retention or dynamic removal accuracy",
+  "wall_execution_s": 0.7599477530002332,
+  "artifacts": {
+    "cleaned.pcd": {
+      "sha256": "ced6bb904a8ba5259a433bbcf54043592767e72c662c25231cd2adb74f41ff49",
+      "bytes": 6500850
+    },
+    "observations.json": {
+      "sha256": "69cc95348f5ee3b9d39d1079bdc46eadce7ca1ad1ebf61a33c0c2ba8130fa96a",
+      "bytes": 20161
+    }
+  }
+}

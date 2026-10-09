@@ -4,7 +4,7 @@
 
 [个人索引](README.zh-CN.md) · [实验室要求与简稿](LAB_ANALYSIS.zh-CN.md) · [原始复现结果分析](AUTHOR_RESULTS_ANALYSIS.zh-CN.md)
 
-2026-10-09。本文是已填写的研究论证稿，供阅读原文、手动复跑和面试准备时修改。作者基线和探索实验已经执行；下文提出的恢复模块与新验证实验尚未实现或运行。基础设备检查见[实物分支](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)；本页恢复与四事件研究试验未完成。
+2026-10-09。本文是已填写的研究论证稿，供阅读原文、手动复跑和面试准备时修改。作者基线和探索实验已经执行；下文提出的恢复模块与新验证实验尚未实现或运行。基础设备检查见[实物分支](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical)；本页恢复与四事件研究试验未完成。
 
 ## 1. 可以直接使用的简洁版本
 

@@ -2,7 +2,7 @@
 
 English | [中文](REAL_WORLD.zh-CN.md)
 
-This controlled research protocol is unfinished. Basic capture and native-loader trials are recorded on the [hardware branch](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical). Use D435 (SDK-reported, no IMU), L2, a tripod and measured object events; no mobile robot is required.
+This controlled research protocol is unfinished. Basic capture and native-loader trials are recorded on the [hardware branch](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical). Use D435 (SDK-reported, no IMU), L2, a tripod and measured object events; no mobile robot is required.
 
 ## 1. Three distinguishable questions
 
