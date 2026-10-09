@@ -1,0 +1,9 @@
+Running scope as unit: slam-author-public-semantic-benchmark-06-office0-cg-stages-evaluation.scope
+Excluding classes:  [(0, 'other'), (23, 'floor'), (48, 'wall'), (19, 'ceiling'), (22, 'door'), (50, 'window')]
+Evaluating on: office0 office_0
+Using only the classes that exists in GT of this scene:  25
+20 classes remains. They are:  [(4, 'bin'), (6, 'blinds'), (11, 'camera'), (14, 'chair'), (15, 'clock'), (21, 'desk-organizer'), (24, 'indoor-plant'), (25, 'lamp'), (28, 'panel'), (30, 'pillar'), (33, 'plant-stand'), (38, 'sofa'), (40, 'switch'), (41, 'table'), (42, 'tablet'), (43, 'tissue-paper'), (44, 'tv-screen'), (47, 'vent'), (49, 'wall-plug'), (51, 'rug')]
+Loading mapping result from /home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz
+/home/qzl/projects/SLAM_Author_Originals/dependencies/gradslam/gradslam/structures/pointclouds.py:319: UserWarning: Could not find pointcloud embeddings: /home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office0/rgb_cloud/pointclouds/pc_embeddings.h5. Skipping
+  warnings.warn(
+52

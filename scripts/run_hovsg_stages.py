@@ -43,7 +43,12 @@ def fail(stage,code):
 save()
 while True:
     previous=json.loads(args.wait_outcomes.read_text())
-    if previous['status'] in ['executed_single_scene','failed','frontend_not_complete']:break
+    if previous.get('boot_id') and previous['boot_id']!=state['boot_id']:
+        raise RuntimeError('Prerequisite belongs to a previous WSL boot; recover it before retrying')
+    if previous['status']=='interrupted':
+        raise RuntimeError('Prerequisite is interrupted; inspect and resume its remaining stages first')
+    if previous['status'] in ['executed_single_scene','executed_eight_scene_evaluations',
+                              'finished_with_recorded_outcomes','failed','frontend_not_complete']:break
     time.sleep(10)
 state['previous_chain_status']=previous['status'];state['status']='waiting_for_gpu';save();wait_gpu()
 feature_name=args.name+'-features'

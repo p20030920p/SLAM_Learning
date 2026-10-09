@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-mapping",
+  "scope": "Full 2000-frame office0; stride 5 (400 frames); exact README detect mapping parameters; optional animation checkpoints=False; RAM/swap cgroup 12G/48G. Frontend provenance: /home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-frontend/record.json",
+  "status": "executed",
+  "started_at": "2026-10-09T01:34:04.276267+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-public-semantic-benchmark-06-office0-detect-stages-mapping",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "slam/cfslam_pipeline_batch.py",
+    "dataset_root=/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "dataset_config=/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "stride=5",
+    "scene_id=office0",
+    "spatial_sim_type=overlap",
+    "mask_conf_threshold=0.25",
+    "match_method=sim_sum",
+    "sim_threshold=1.2",
+    "dbscan_eps=0.1",
+    "gsa_variant=ram_withbg_allclasses",
+    "skip_bg=False",
+    "max_bbox_area_ratio=0.5",
+    "save_suffix=overlap_maskconf0.25_simsum1.2_dbscan.1",
+    "save_objects_all_frames=False",
+    "hydra.run.dir=/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/mapping-hydra"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "e51f73d07f76b7df18b1cfb4f028fada340cbcda49fd3b357665cf5f9fad55c1",
+      "bytes": 24852
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office0/pcd_saves/full_pcd_ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1_post.pkl.gz": {
+      "sha256": "fe558c726ca4f99f707d25c339da1a45beb07de9e048e445b59db3c8c11394d8",
+      "bytes": 18699714
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "DISPLAY": ":0"
+  },
+  "pid": 246152,
+  "elapsed_seconds": 187.91746335900098,
+  "source_dirty_after": ""
+}

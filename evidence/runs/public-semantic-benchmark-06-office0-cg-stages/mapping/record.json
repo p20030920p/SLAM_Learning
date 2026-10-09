@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-mapping",
+  "scope": "Full 2000-frame office0; stride 5 (400 frames); exact README none mapping parameters; optional animation checkpoints=False; RAM/swap cgroup 12G/48G. Frontend provenance: /home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-frontend/record.json",
+  "status": "executed",
+  "started_at": "2026-10-09T00:56:35.983412+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-public-semantic-benchmark-06-office0-cg-stages-mapping",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "slam/cfslam_pipeline_batch.py",
+    "dataset_root=/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "dataset_config=/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "stride=5",
+    "scene_id=office0",
+    "spatial_sim_type=overlap",
+    "mask_conf_threshold=0.95",
+    "match_method=sim_sum",
+    "sim_threshold=1.2",
+    "dbscan_eps=0.1",
+    "gsa_variant=none",
+    "skip_bg=True",
+    "max_bbox_area_ratio=0.5",
+    "save_suffix=overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub",
+    "save_objects_all_frames=False",
+    "hydra.run.dir=/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages/mapping-hydra",
+    "class_agnostic=True",
+    "merge_interval=20",
+    "merge_visual_sim_thresh=0.8",
+    "merge_text_sim_thresh=0.8"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "105c945b4332773a6c2df7f5f947fd20488beacdcd8fd411d8473e95a056476e",
+      "bytes": 25906
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office0/pcd_saves/full_pcd_none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub_post.pkl.gz": {
+      "sha256": "bb2c6a4caff23a8272cefd38240a27d8b2ebc2786123ba1746b9cb5c4821e334",
+      "bytes": 24514286
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "DISPLAY": ":0"
+  },
+  "pid": 245924,
+  "elapsed_seconds": 830.7028007920017,
+  "source_dirty_after": ""
+}

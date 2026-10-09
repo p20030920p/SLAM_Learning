@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-mapping",
+  "scope": "Full 2000-frame room0; stride 5 (400 frames); exact README detect mapping parameters; optional animation checkpoints=False; RAM/swap cgroup 12G/48G. Frontend provenance: /home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-detect-frontend/record.json",
+  "status": "executed",
+  "started_at": "2026-10-09T00:17:08.903215+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-public-semantic-benchmark-06-room0-detect-stages-mapping",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "slam/cfslam_pipeline_batch.py",
+    "dataset_root=/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "dataset_config=/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "stride=5",
+    "scene_id=room0",
+    "spatial_sim_type=overlap",
+    "mask_conf_threshold=0.25",
+    "match_method=sim_sum",
+    "sim_threshold=1.2",
+    "dbscan_eps=0.1",
+    "gsa_variant=ram_withbg_allclasses",
+    "skip_bg=False",
+    "max_bbox_area_ratio=0.5",
+    "save_suffix=overlap_maskconf0.25_simsum1.2_dbscan.1",
+    "save_objects_all_frames=False",
+    "hydra.run.dir=/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-detect-stages/mapping-hydra"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "c92d0e4b5e4cdce76ccc180bdf0b116b4637a2d3d825994fcaa9effbf1a920d7",
+      "bytes": 25147
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/pcd_saves/full_pcd_ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1_post.pkl.gz": {
+      "sha256": "da00a7f91b0baf489208c6f93add907ad7ff548996692ca5ba1d8e9e1505c2a3",
+      "bytes": 29540238
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "DISPLAY": ":0"
+  },
+  "pid": 245753,
+  "elapsed_seconds": 697.3424971659988,
+  "source_dirty_after": ""
+}

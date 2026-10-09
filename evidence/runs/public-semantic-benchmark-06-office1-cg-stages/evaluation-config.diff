@@ -1,0 +1,13 @@
+--- author/eval_replica_semseg.py
++++ configured/eval_replica_semseg_scene.py
+@@ -24,6 +24,10 @@
+ from conceptgraph.utils.vis import get_random_colors
+ from conceptgraph.utils.eval import compute_confmatrix, compute_pred_gt_associations, compute_metrics
+ 
++
++# Explicit single-scene evaluation configuration (not eight-scene benchmark).
++REPLICA_SCENE_IDS = ['office1']
++REPLICA_SCENE_IDS_ = ['office_1']
+ 
+ def get_parser():
+     parser = argparse.ArgumentParser()

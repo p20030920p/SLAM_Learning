@@ -11,6 +11,7 @@ import numpy as np
 parser = argparse.ArgumentParser()
 parser.add_argument('--run-root', type=Path, required=True)
 parser.add_argument('--output', type=Path, help='Fresh audit path; never overwrite the original audit')
+parser.add_argument('--matrix-sha256', help='First-audit binding for older records that captured CSV only; hash captured separately from the completed local output')
 args = parser.parse_args()
 root = args.run_root.resolve()
 record = json.loads((root / 'evaluation/record.json').read_text())
@@ -28,11 +29,14 @@ for path in [csv_path, matrix_path]:
     actual = identity(path)
     expected = record['artifacts'].get(str(path))
     if expected is None:
-        # This run's recorder selected CSV artifacts only. Repeat audits bind the
-        # local matrix to the archived original audit before deserializing it.
-        original_audit = json.loads((root / 'evaluation-audit/validation.json').read_text())
-        expected = original_audit['confusion_matrices']
-        assert expected['path'] == str(path)
+        if args.matrix_sha256:
+            assert path == matrix_path and len(args.matrix_sha256) == 64
+            expected = {'sha256': args.matrix_sha256, 'bytes': path.stat().st_size}
+        else:
+            # Repeat audits bind older CSV-only recordings to the first audit.
+            original_audit = json.loads((root / 'evaluation-audit/validation.json').read_text())
+            expected = original_audit['confusion_matrices']
+            assert expected['path'] == str(path)
     assert actual['sha256'] == expected['sha256'] and actual['bytes'] == expected['bytes']
 with matrix_path.open('rb') as stream:
     matrices = pickle.load(stream)  # This local file was produced by the completed author command.
@@ -67,6 +71,7 @@ for row in rows:
         'max_csv_recalculation_difference_pp': max(differences.values()),
         'standard_macro_f1_percent_supplemental': float(standard_f1.mean() * 100)})
 report = {'status': 'validated_original_csv_against_confusion_matrices',
+    'matrix_binding': 'explicit first-audit SHA-256 of completed local output' if args.matrix_sha256 else 'completed recorder or original audit',
     'csv': csv_identity, 'confusion_matrices': identity(matrix_path), 'rows': results,
     'scope': 'Single-scene author evaluation. CSV and formulas unchanged. '
              'Float64 recalculation tolerance 1e-5 percentage points accounts for original float32 rounding. '

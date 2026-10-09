@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-rgb-fusion",
+  "scope": "Original RGB PointFusion; author sanity-check dimensions/stride; GT odometry; needed as evaluator reference surface",
+  "status": "executed",
+  "started_at": "2026-10-09T01:10:51.773481+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-public-semantic-benchmark-06-office0-cg-stages-rgb-fusion",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "scripts/run_slam_rgb.py",
+    "--dataset_root",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "--dataset_config",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "--scene_id",
+    "office0",
+    "--image_height",
+    "480",
+    "--image_width",
+    "640",
+    "--stride",
+    "5",
+    "--save_pcd"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "ae8ca8853d5de38e3d7f1b0a372b7df31c5e6bf0280f237e44768fd3c8f569f8",
+      "bytes": 19404
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office0/rgb_cloud/pointclouds/pc_points.h5": {
+      "sha256": "1b69f7860fad47b86ac3331f018c37b198429ac957745bfb3b71628a55545c0d",
+      "bytes": 118018088
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office0/rgb_cloud/pointcloud.pcd": {
+      "sha256": "ebb852d4fbd73b2f178922e338b1d1300b2dc92691c4a32503903120f9521c56",
+      "bytes": 157354906
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "DISPLAY": ":0"
+  },
+  "pid": 245980,
+  "elapsed_seconds": 54.52586530500048,
+  "source_dirty_after": ""
+}

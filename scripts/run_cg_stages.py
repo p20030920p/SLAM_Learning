@@ -168,7 +168,7 @@ if args.check_chamfer_cuda:
     run('cuda-preflight',[python,scripts/'check_chamfer_cuda.py'],[],cwd=root,
         scope='Tiny real CUDA KNN forward test before original evaluator; no semantic score')
 run('evaluation', [python, copy, '--replica_root', scene.parent, '--replica_semantic_root', r / 'data/Replica-semantic',
-    '--n_exclude', '6', '--pred_exp_name', experiment], [csv], cwd=root,
+    '--n_exclude', '6', '--pred_exp_name', experiment], [csv, csv.with_name('replica_ex6_conf_matrices.pkl')], cwd=root,
     scope='Original semantic evaluator and exact author HDF5 GT; ONLY '+args.scene+' selected in explicit configuration copy; n_exclude=6')
 subprocess.run([sys.executable,str(scripts/'summarize_cg_evaluation.py'),'--run-root',str(root),'--scene',args.scene],check=True)
 state['status'] = 'executed_single_scene';save()

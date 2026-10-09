@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-SAM-microbatch",
+  "scope": "Full 2000-frame office1, stride 5 = 400 frames; original source copy with ONLY SAM points_per_batch=144->16; all 12x12 prompts, weights and thresholds retained. Explicit resource compatibility variant; not original batch-default result.",
+  "status": "executed",
+  "started_at": "2026-10-09T01:38:46.736333+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-public-semantic-benchmark-06-office1-cg-frontend",
+    "-p",
+    "MemoryMax=14G",
+    "-p",
+    "MemorySwapMax=2G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/variants/public-semantic-benchmark-06-office1-cg-frontend/generate_gsa_results.py",
+    "--dataset_root",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "--dataset_config",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "--scene_id",
+    "office1",
+    "--class_set",
+    "none",
+    "--stride",
+    "5"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "c49f840410f0082fa970831867857f73047260f9f87a35ee89dabf2d8078e84e",
+      "bytes": 24553
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/variants/public-semantic-benchmark-06-office1-cg-frontend/generate_gsa_results.py": {
+      "sha256": "ff8a05c9a8ce04dd3166589be58bddbd016597c585f65af3b69555bc99a93dd4",
+      "bytes": 24246
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/variants/public-semantic-benchmark-06-office1-cg-frontend/sam-batch-compatibility.diff": {
+      "sha256": "d8e1ebb003436e5bd4649ab9249f8af05c46a3de4cffc77e4b4ab822ea86ed54",
+      "bytes": 383
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office1/gsa_classes_none.json": {
+      "sha256": "259a3e1f10ddc8c33777eb7b00023eb4c175c99090cbf821a15c41678eacaee0",
+      "bytes": 8
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "DISPLAY": ":0"
+  },
+  "pid": 246259,
+  "elapsed_seconds": 1102.3543680600014,
+  "source_dirty_after": ""
+}

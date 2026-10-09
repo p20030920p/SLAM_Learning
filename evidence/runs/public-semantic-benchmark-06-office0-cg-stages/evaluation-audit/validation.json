@@ -1,0 +1,88 @@
+{
+  "status": "validated_original_csv_against_confusion_matrices",
+  "matrix_binding": "explicit first-audit SHA-256 of completed local output",
+  "csv": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_results.csv",
+    "bytes": 240,
+    "sha256": "fa768bcee20375228799ea2293539edc046f9e322b5d0555b15b23b84c70713e"
+  },
+  "confusion_matrices": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_conf_matrices.pkl",
+    "bytes": 23122,
+    "sha256": "dca472f7d386e7a1973d111530bacfc9b86874aa12c24325754fe7b2c44c0b2f"
+  },
+  "rows": [
+    {
+      "scene_id": "office0",
+      "evaluated_classes": 20,
+      "class_indices": [
+        4,
+        6,
+        11,
+        14,
+        15,
+        21,
+        24,
+        25,
+        28,
+        30,
+        33,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        47,
+        49,
+        51
+      ],
+      "scored_reconstructed_points": 4079895,
+      "author_csv_percent": {
+        "miou": 20.41567514766939,
+        "mrecall": 38.07556116255,
+        "mprecision": 24.77834988036193,
+        "mf1score": 24.16957213607066,
+        "fmiou": 33.05455365043174
+      },
+      "max_csv_recalculation_difference_pp": 2.145828617017287e-07,
+      "standard_macro_f1_percent_supplemental": 24.53286642697278
+    },
+    {
+      "scene_id": "all",
+      "evaluated_classes": 19,
+      "class_indices": [
+        4,
+        6,
+        11,
+        14,
+        15,
+        21,
+        24,
+        28,
+        30,
+        33,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        47,
+        49,
+        51
+      ],
+      "scored_reconstructed_points": 4079895,
+      "author_csv_percent": {
+        "miou": 21.490184365967778,
+        "mrecall": 40.07953806584211,
+        "mprecision": 26.082473558275716,
+        "mf1score": 25.441654880074378,
+        "fmiou": 33.05455365043175
+      },
+      "max_csv_recalculation_difference_pp": 2.2587669690210532e-07,
+      "standard_macro_f1_percent_supplemental": 25.824069923129244
+    }
+  ],
+  "scope": "Single-scene author evaluation. CSV and formulas unchanged. Float64 recalculation tolerance 1e-5 percentage points accounts for original float32 rounding. Author F1 uses max(1, precision+recall), unlike standard harmonic F1 for small sums; supplemental standard F1 is explicitly separate and never replaces the original CSV. The aggregate all row uses its original nonzero-GT-support class subset."
+}

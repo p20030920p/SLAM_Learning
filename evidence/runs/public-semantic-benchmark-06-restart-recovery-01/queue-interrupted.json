@@ -1,0 +1,34 @@
+{
+  "status": "interrupted",
+  "pid": 233558,
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "scope": "All 8 public Replica scenes, local computation; SAM-only microbatch16 compatibility; optional unchanged RAM+DINO Detect; no API/HM3D/LLaVA",
+  "scenes": {
+    "room0": {
+      "conceptgraphs": "executed_single_scene",
+      "hovsg": "failed",
+      "hovsg_home_variant": {
+        "exit_code": 1,
+        "run": "public-semantic-benchmark-06-room0-hov-home",
+        "skip_frames": 100,
+        "sampled_frames": 20,
+        "scope": "Additional home sampling configuration only; excluded from default eight-scene HOV completion"
+      },
+      "detect_frontend_exit": 0,
+      "detect_stages_exit": 0
+    },
+    "office0": {
+      "cg_frontend_exit": 0,
+      "cg_stages_exit": 0,
+      "detect_frontend_exit": 0,
+      "detect_stages_exit": 0,
+      "hovsg_exit": "not run; unresolved first HOV failure"
+    },
+    "office1": {
+      "cg_frontend_exit": 0,
+      "cg_stages_exit": 0
+    }
+  },
+  "recovered_at": "2026-10-09T12:21:11.093134+00:00",
+  "interruption_reason": "Previous WSL boot; old process cannot still be running. No algorithm-failure or successful-exit claim."
+}

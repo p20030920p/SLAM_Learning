@@ -1,0 +1,24 @@
+{
+  "status": "validated",
+  "artifacts_verified": 165,
+  "original_feature_record": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home-features/record.json",
+  "feature_validation": {
+    "status": "validated",
+    "mask_feature_shape": [
+      156,
+      1024
+    ],
+    "full_feature_shape": [
+      399663,
+      1024
+    ],
+    "object_pointcloud_files": 156,
+    "full_points": 399663,
+    "feature_dimension": 1024,
+    "scope": "Saved-feature contract only; no semantic-accuracy or hierarchy-completion claim"
+  },
+  "author_palette": "/home/qzl/projects/SLAM_Author_Originals/upstream/hovsg/hovsg/labels/class_id_colors.json",
+  "palette_sha256": "e51d6b284fcebf8c8c10a62db17a3ea6ed55dc5b4686c24f1b30a83fe35235c3",
+  "source_commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605",
+  "scope": "Source/map unchanged; author palette includes background and ignored class colors."
+}

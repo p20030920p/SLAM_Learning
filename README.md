@@ -2,7 +2,7 @@
 
 This independent, orphan branch runs the official DUFOMap, BeautyMap, ConceptGraphs and HOV-SG repositories. Pinned Git submodules preserve author sources. Execution uses a separate Linux-native WSL workspace on this computer.
 
-**Status: both original LiDAR entries and author evaluation completed all four public labeled releases (1,997 scans per method). ConceptGraphs room0 original semantic evaluation completed. HOV-SG's 20-frame home map completed, with evaluation queued for retry. Full-paper reproduction is not complete.**
+**Status: both original LiDAR entries and author evaluation completed all four public labeled releases (1,997 scans per method). CG SAM-only completed original scoring on 3 scenes, Detect on 2 scenes. HOV-SG's 20-frame home map and original semantic evaluation completed. Full-paper reproduction is not complete.**
 
 The new [DUFOMap Table IV reproduction](docs/DUFOMAP_TABLE4.zh-CN.md) matches all five SA/DA/AA rows at the paper's two-decimal precision.
 
@@ -12,7 +12,7 @@ The completed [Python raw/voxel output audit](docs/DUFOMAP_OUTPUT_AUDIT.zh-CN.md
 
 The missing original KITTI inputs (333 selected frames) are downloaded and verified. Both methods and three BeautyMap XY cell sizes have completed original scoring on 01/02. [Results and paper differences](docs/KITTI_SELECTED_RESULTS.zh-CN.md) remain separate because the current preprocessing differs from the older released benchmark.
 
-ConceptGraphs room0 [original semantic evaluation](docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md) gives mIoU 21.3460% and frequency-weighted IoU 50.1379%, with an independent confusion-matrix recalculation. This is one scene. HOV-SG's [20-frame home sampling map](docs/HOVSG_HOME_RESULTS.zh-CN.md) has 156 segments and 399,663 global points; a wrapper palette-path error is fixed and evaluation-only retry is queued. Its default 200-frame run remains timed out. A [60-second original viewer recording](evidence/videos/conceptgraphs-room0-original-window.mp4) shows RGB/instance colors and orbit controls.
+ConceptGraphs' [completed scene table and figure](docs/CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md) report both frontend variants, independent confusion-matrix audits, and the differing class subsets of scene versus `all` rows. HOV-SG's [20-frame home result](docs/HOVSG_HOME_RESULTS.zh-CN.md) gives mIoU 34.7500% and frequency-weighted IoU 62.8725%; its default 200-frame run remains incomplete. A [60-second original viewer recording](evidence/videos/conceptgraphs-room0-original-window.mp4) shows RGB/instance colors and orbit controls.
 
 [中文入口](README.zh-CN.md) · [Results and limitations](docs/STATUS.zh-CN.md) · [Windows/WSL commands](docs/RUNBOOK.zh-CN.md) · [Data downloads and ScanNet access](docs/DATA_ACCESS.zh-CN.md) · [Coverage and upstream comparison](docs/SCOPE.zh-CN.md) · [Execution evidence](evidence/README.md)
 

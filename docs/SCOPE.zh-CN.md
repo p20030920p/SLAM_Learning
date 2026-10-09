@@ -6,8 +6,8 @@
 |---|---|---|---|
 | DUFOMap | 读取带位姿点云 → 动态清理 → 点云输出 → DynamicMap 评价 | 四份公开标注数据完成原始 C++ 与作者评价；论文表 IV 五组 SA/DA/AA 匹配两位小数；两份无标注 campus/twofloor 全部 3323 帧运行成功；新增当前预处理的 01/02 原始方法和评分 | 新 01 与论文的数据/位姿版本核对；在线 DUFOMap⋆、性能、位姿来源对照及其余定性数据 |
 | BeautyMap | 先验全局地图 + 位姿/扫描 → 二进制地面矩阵 → 清理 → 同一评价 | 四份公开数据共 1997 帧；AV2 为补充迁移；当前与历史预处理 01/02 均完成；历史 02 的 XY=0.5/1/2m 三组 SA/DA/HA 共 9 项匹配论文两位小数 | 01 数据/位姿版本、未报告参数核对；表 IV 模块消融、运行时间对照；先验与稀疏性实验属于额外分析 |
-| ConceptGraphs | RGB-D/位姿 → SAM 或 RAM+DINO+SAM → CLIP → 对象关联/融合 → LLaVA 描述 → GPT-4 精炼/关系 → 语义/规划评价 | room0 的 400 帧 SAM 前端、原始映射、RGB 表面与原语义评价完成；mIoU 21.3460%、F-mIoU 50.1379%；77 对象；真实窗口实录；Detect 前端运行 | 其余 7 场景及完整两种前端、LLaVA 基础权重、原始 GPT-4、规划任务 |
-| HOV-SG | RGB-D/位姿 → SAM+CLIP → 融合语义地图 → 楼层/房间/对象图 → 查询/导航/评价 | 默认采样 200 帧融合超时，无最终图；另取 20 帧完成 156 分段、399,663 点的家用特征图；首次评分配置错误，修正路径后排队重试 | 默认采样完成、完整 Replica/ScanNet 语义评价；8 个 HM3DSem 场景及完整层级评价；导航 |
+| ConceptGraphs | RGB-D/位姿 → SAM 或 RAM+DINO+SAM → CLIP → 对象关联/融合 → LLaVA 描述 → GPT-4 精炼/关系 → 语义/规划评价 | SAM-only 的 room0/office0/office1，以及 Detect 的 room0/office0，均完成 400 帧链路与原评分；矩阵复算通过；真实窗口实录 | SAM-only 余 5 场景、Detect 余 6 场景及原八场景评价；LLaVA 基础权重、原始 GPT-4、规划任务 |
+| HOV-SG | RGB-D/位姿 → SAM+CLIP → 融合语义地图 → 楼层/房间/对象图 → 查询/导航/评价 | 默认采样 200 帧融合超时，无最终图；另取 20 帧完成 156 分段、399,663 点及原评分：mIoU 34.7500%、F-mIoU 62.8725% | 默认采样完成、完整 Replica/ScanNet 语义评价；8 个 HM3DSem 场景及完整层级评价；导航 |
 
 “论文完整复现”须按论文实际使用的选定帧段核对，不能把整条 KITTI 序列当成这些表格的完成条件。DUFOMap 定量表包含 00、01、AV2、半室内；BeautyMap 的表格及消融还涉及 01/02。作者 Zenodo 发布包不含 01/02。本轮已从 KITTI 官方 S3 下载 00/01/02 所需的 333 帧，核对原始 ZIP CRC、SHA-256 与对应标签点数，标签/SuMa 位姿及标定归档也已完整通过 CRC。作者原始提取与评分已接入运行；当前预处理与旧发布包存在输入版本差异，详情见 [数据文档](DATA_ACCESS.zh-CN.md)。论文来源：[DUFOMap §IV/V](https://arxiv.org/html/2403.01449v1#S4)、[BeautyMap §IV](https://arxiv.org/html/2405.07283v1#S4)；已完成的 [DUFOMap 表 IV 对照](DUFOMAP_TABLE4.zh-CN.md)。
 

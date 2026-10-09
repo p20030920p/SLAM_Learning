@@ -1,0 +1,28 @@
+{
+  "status": "documented_interruption_and_preserved_outputs",
+  "interrupted_frontend_frames_saved": 400,
+  "original_exit_code_unknown": true,
+  "artifacts": {
+    "queue-interrupted.json": {
+      "bytes": 1193,
+      "sha256": "3a236da4c428c356ebfc12e7d0a5aca3ce75fb27b3ad4eab6c057f8f6f07dfa5"
+    },
+    "frontend-interrupted.json": {
+      "bytes": 2014,
+      "sha256": "99b66202a15b014eea54194753aa93cd24d03e7ca2d538659f04c9cb68e22e85"
+    },
+    "frontend-original.log": {
+      "bytes": 52299,
+      "sha256": "9a30c3ae29a2b4c7b8219aeb7e8357f771d8880e4532f09336d5dc4e7428eb91"
+    },
+    "preservation.json": {
+      "bytes": 153497,
+      "sha256": "77a4655381883cd9c9a6551f89181672befd99845d4d6e8acb01ac962e028a01"
+    },
+    "swap-reenabled.json": {
+      "bytes": 917,
+      "sha256": "e269dd0169928e330379659eecbff80a1f66dfb33ba2028ad1130c698516cac0"
+    }
+  },
+  "scope": "Terminal old-boot records, original log and checked preservation manifest only. The old 400/400 log does not establish successful exit. New author frontend reruns all 400 frames in queue 07. Existing Git launch/waiting snapshots remain historical; no live 07 queue state is promoted as a result."
+}

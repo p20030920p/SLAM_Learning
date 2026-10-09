@@ -5,9 +5,10 @@
 | 当前阶段 | 完成情况 |
 |---|---|
 | DUFOMap / BeautyMap 公开标注数据 | 两种原始入口与原评分完成，各 1997 帧；两张论文消融表的 24 项匹配 |
-| ConceptGraphs SAM-only，room0 | 前端、对象地图、RGB 表面与原始语义评分完成；mIoU 21.3460%，F-mIoU 50.1379% |
-| HOV-SG 家用采样，room0 | 20 帧特征地图完成；156 分段、399,663 点；首次评分配置错误，评价重试排队 |
-| 仍在推进 | CG Detect 前端运行；其余场景排队；HOV 默认采样未完成，HM3D/ScanNet/LLaVA 依赖仍缺 |
+| ConceptGraphs SAM-only | room0、office0、office1 原始链路与语义评分完成；mIoU 分别 21.3460%、20.4157%、14.9755% |
+| ConceptGraphs Detect | room0、office0 原始链路与语义评分完成；mIoU 分别 25.5987%、17.5151% |
+| HOV-SG 家用采样，room0 | 20 帧地图及原评分完成；mIoU 34.7500%、F-mIoU 62.8725% |
+| 仍在推进 | 队列 07 重跑 office1 Detect，随后继续其余 5 场景；HOV 默认采样 04 等待 CG 队列后重试；HM3D/ScanNet/LLaVA 仍缺依赖 |
 
 ## 已实际执行
 
@@ -88,9 +89,13 @@ HOV-SG `hovsg-room0-batch16-stages-03` 完成 200/200 个原生帧提取后，�
 
 启动限额为 12G RAM / 48G swap，融合期间将该特征任务 RAM 限额提高至 16G；中途开始的资源采样分别观察到最多 16.00 GiB RAM 和 27.34 GiB swap，不能相加当同时峰值，也不是完整运行峰值。[调整记录](../evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/resource-adjustment.json)。新版包装脚本允许显式配置较长超时，不能追改本次已加载的 7200 秒记录。另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间会影响耗时，不能用本轮时间比较论文效率。
 
-`public-semantic-benchmark-06` 已收到 CG room0 的完成结果，当前运行 ConceptGraphs-Detect 前端：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。05 仅等待、未启动作者阶段时被替换，记录保留；06 为最终八场景评价也加上 12G/48G 限额。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
+默认采样重试 `hovsg-room0-batch16-stages-04` 已在本机等待 CG 队列 07 结束；使用相同 `skip_frames=10`、SAM 批量 16，16G RAM / 48G swap，特征阶段显式时限 21600 秒、评价 7200 秒。它仍未开始特征计算，不算完成结果；其运行中状态暂不上传。旧 03 的超时状态不变。
 
-HOV-SG 另用作者公开的 `pipeline.skip_frames=100` 均匀取 20/2000 个原生帧、SAM 批量 16，**已成功保存并验证 156 个分段、399,663 个全局点及对应 1024 维特征**。首次原评价因我们的包装脚本误选缺少类 0 的生成颜色表而退出 1；已改用作者提交的完整颜色表，复用已核验地图排队重试评分。等待期间只暂停本任务调度器，正在执行的 Detect 前端继续，释放 GPU 后先评分再恢复后续队列。[地图、失败原因与状态](HOVSG_HOME_RESULTS.zh-CN.md)。该家用配置不计作默认采样或完整八场景 HOV benchmark。
+队列 06 在重启前另完成了 CG SAM-only 的 office0、office1，以及 Detect 的 room0、office0。原版 Detect 使用 RAM + GroundingDINO + 逐框提示 SAM 及对应 README 映射参数，不套用 SAM-only 的批量 16 变体。新增四份混淆矩阵独立复算通过；原始场景行与 `all` 行的类别集合不同，不能平均部分场景的 `all` 行来冒充完整 benchmark。[五条链路的指标、分母与图表](CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md)。
+
+WSL 重启后，旧队列 06 与 office1 Detect 前端标为 `interrupted`。前端虽保存 400 帧且日志达到 400/400，缺少原退出码，不能记成功。新队列 `public-semantic-benchmark-07` 核验复用上述五条完成链路，保留该中断前端的产物后从头重跑；随后继续其余 5 场景。各自 8 场景成功后才运行未经修改的原八场景评价脚本，最终评价限额 12G/48G。[中断诊断](../evidence/runs/public-semantic-benchmark-06-restart-recovery-01/diagnosis.json)。
+
+HOV-SG 另用作者公开的 `pipeline.skip_frames=100` 均匀取 20/2000 个原生帧、SAM 批量 16，已保存并验证 156 个分段、399,663 个全局点及对应 1024 维特征。首次原评价因我们的包装脚本误选缺少类 0 的生成颜色表而退出 1；改用作者提交的完整颜色表后，仅重试原评价并成功退出 0：**mIoU 34.7500%、F-mIoU 62.8725%、mAcc 43.7114%、pAcc 72.1861%**。指标与绑定日志逐项核对，未声称独立矩阵复算。评价完成后已恢复队列。[地图、原日志与评分边界](HOVSG_HOME_RESULTS.zh-CN.md)。该家用配置不计作默认采样或完整八场景 HOV benchmark。
 
 完整前端另导出 40 秒、400 帧 RGB／SAM 对照回放，源图与已验证分割逐一匹配。它展示实际二维产物，不代表三维窗口操作或语义准确率。查看和重做命令见 [运行手册](RUNBOOK.zh-CN.md)。
 
@@ -102,7 +107,7 @@ HOV-SG 另用作者公开的 `pipeline.skip_frames=100` 均匀取 20/2000 个原
 
 ## 待完成
 
-完整 Replica RGB-D 已下载并通过 CRC 校验，8 场景各有 2000 组 RGB-D/位姿；归档大小 12,442,855,671 字节，SHA-256 见 evidence。CG 其余场景与 Detect 链路、HOV-SG 家用地图评分和默认采样仍未完成。HOV-SG 更早的重启中断记录仍为 interrupted；不能与后续已确认的 OOM、超时或配置错误混记。
+完整 Replica RGB-D 已下载并通过 CRC 校验，8 场景各有 2000 组 RGB-D/位姿；归档大小 12,442,855,671 字节，SHA-256 见 evidence。CG SAM-only 尚余 5 场景、Detect 尚余 6 场景；HOV-SG 默认采样未完成。HOV-SG 更早的重启中断记录仍为 interrupted；不能与后续已确认的 OOM、超时或配置错误混记。
 
 HOV-SG 的楼层/房间/对象层级评价需要获授权的 HM3D/HM3DSem；尚未提供路径。ConceptGraphs 的原版 LLaVA-7B-v0 需要 LLaMA-7B 基础权重，用户确认本机没有，原始节点描述和关系图因此未完成。
 

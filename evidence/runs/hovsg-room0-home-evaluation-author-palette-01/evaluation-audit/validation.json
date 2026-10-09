@@ -1,0 +1,27 @@
+{
+  "status": "validated_metrics_against_original_log",
+  "source_commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605",
+  "original_record": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-home-evaluation-author-palette-01/evaluation/record.json",
+    "bytes": 2070,
+    "sha256": "00407650510138d6aa8f230df164a1c488bdf88b4fe84e06611995421d724839"
+  },
+  "original_log": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-home-evaluation-author-palette-01/evaluation/run.log",
+    "bytes": 2507,
+    "sha256": "956efc75ceaa4fdbbb68585d5d31a90d6c4946e2e244be84e98094511642c316"
+  },
+  "metrics_json": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-home-evaluation-author-palette-01/metrics.json",
+    "bytes": 371,
+    "sha256": "88cdef5492acd8a1b90002979b8bde82552a56923477d9fd257d38eaa67c0823"
+  },
+  "metrics_fraction": {
+    "miou": 0.34749998212375693,
+    "fmiou": 0.628725319296474,
+    "macc": 0.43711407407257175,
+    "pacc": 0.7218608514499825
+  },
+  "skip_frames": 100,
+  "scope": "Exact parsing and hash verification of the completed original HOV-SG evaluation log. No independent confusion-matrix recalculation: author evaluator did not save a confusion matrix. 20-frame home sampling only; not default 200-frame or eight-scene benchmark."
+}

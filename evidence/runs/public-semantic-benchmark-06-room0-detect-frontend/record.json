@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "method": "cg-detect",
+  "scope": "Full 2000-frame Replica room0, author cg-detect entry; RAM/swap cgroup 12G/48G; timeout 7200s; original RAM+DINO and box-prompted SAM",
+  "status": "executed",
+  "started_at": "2026-10-08T23:49:50.002928+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-public-semantic-benchmark-06-room0-detect-frontend",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "scripts/generate_gsa_results.py",
+    "--dataset_root",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "--dataset_config",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "--scene_id",
+    "room0",
+    "--class_set",
+    "ram",
+    "--stride",
+    "5",
+    "--box_threshold",
+    "0.2",
+    "--text_threshold",
+    "0.2",
+    "--add_bg_classes",
+    "--accumu_classes",
+    "--exp_suffix",
+    "withbg_allclasses"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "1f5649dc39345558dfe95d21832324bb7d6392700533d831b6c6498c1a8fecef",
+      "bytes": 57459
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/gsa_classes_ram_withbg_allclasses.json": {
+      "sha256": "9dedb93297dc27c4d08083722436f4026512766cfd8501d5c3db22464e2fa279",
+      "bytes": 444
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/gsa_detections_ram_withbg_allclasses/frame001995.pkl.gz": {
+      "sha256": "246fef8656a219b4bb54945aec547dbfeed94491ceaa4f4e4516e13e15177dec",
+      "bytes": 3606014
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0/gsa_vis_ram_withbg_allclasses/frame001995.jpg": {
+      "sha256": "269e2a852f474e2bce1b2888614097de35ffe5a979e4406c7adff67b4961a082",
+      "bytes": 229185
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "DISPLAY": ":0"
+  },
+  "pid": 244951,
+  "elapsed_seconds": 1516.7793834139993,
+  "source_dirty_after": ""
+}

@@ -1,0 +1,35 @@
+{
+  "status": "summarized_original_csv",
+  "scene": "office0",
+  "units": "percent",
+  "rows": [
+    {
+      "scene_id": "office0",
+      "miou": 17.51511874375865,
+      "mrecall": 29.19620156288147,
+      "mprecision": 17.846343617420644,
+      "mf1score": 19.686956199737516,
+      "fmiou": 30.472924925168186
+    },
+    {
+      "scene_id": "all",
+      "miou": 18.436967098693312,
+      "mrecall": 30.732843750401546,
+      "mprecision": 18.78562486044278,
+      "mf1score": 20.723111789197386,
+      "fmiou": 30.472924925168186
+    }
+  ],
+  "csv": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/results/ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1/replica_ex6_results.csv",
+  "csv_sha256": "bf81d2ce22e94b6ed447ba59fa80ad47b0396873e770a1b85241f102e4e842f2",
+  "record": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/evaluation/record.json",
+  "excluded_classes": [
+    "other",
+    "floor",
+    "wall",
+    "ceiling",
+    "door",
+    "window"
+  ],
+  "scope": "Original single-scene evaluator; all aggregates only this selected scene, not the eight-scene benchmark. Frontend/resource scope follows stage records. Native author GT support and interpolation; not a cross-method ranking or H1 test."
+}

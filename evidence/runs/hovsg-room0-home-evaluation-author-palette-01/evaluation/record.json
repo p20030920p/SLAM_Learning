@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "method": "HOV-SG-semantic-evaluation",
+  "scope": "Evaluation only; original author palette and evaluator. Reuses 20-frame skip=100 map; not default benchmark.",
+  "status": "executed",
+  "started_at": "2026-10-09T00:15:10.781031+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-hovsg-room0-home-evaluation-author-palette-01-evaluation",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/hovsg/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/hovsg/application/eval/evaluate_sem_seg.py",
+    "main.dataset=replica",
+    "main.scene_name=room_0",
+    "main.feature_map_path=/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica",
+    "main.replica_dataset_gt_path=/home/qzl/projects/SLAM_Author_Originals/data/replica-original",
+    "main.replica_color_map=/home/qzl/projects/SLAM_Author_Originals/upstream/hovsg/hovsg/labels/class_id_colors.json",
+    "models.clip.checkpoint=/home/qzl/projects/SLAM_Author_Originals/weights/laion2b_s32b_b79k.bin",
+    "hydra.run.dir=/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-home-evaluation-author-palette-01/evaluation-work/hydra"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-home-evaluation-author-palette-01/evaluation-work",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/hovsg",
+  "source_commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "956efc75ceaa4fdbbb68585d5d31a90d6c4946e2e244be84e98094511642c316",
+      "bytes": 2507
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "DISPLAY": ":0"
+  },
+  "pid": 245692,
+  "elapsed_seconds": 82.48040044700247,
+  "source_dirty_after": ""
+}

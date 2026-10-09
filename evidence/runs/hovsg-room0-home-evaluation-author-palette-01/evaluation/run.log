@@ -1,0 +1,31 @@
+Running scope as unit: slam-author-hovsg-room0-home-evaluation-author-palette-01-evaluation.scope
+[2026-10-09 03:15:17,798][root][INFO] - Parsing model identifier. Schema: None, Identifier: ViT-H-14
+[2026-10-09 03:15:17,798][root][INFO] - Loaded built-in ViT-H-14 model config.
+[2026-10-09 03:15:17,798][root][INFO] - `pretrained` specifies file path: /home/qzl/projects/SLAM_Author_Originals/weights/laion2b_s32b_b79k.bin
+[2026-10-09 03:15:17,798][root][INFO] - Instantiating model architecture: CLIP
+[2026-10-09 03:15:25,032][root][INFO] - Loading full pretrained weights from: /home/qzl/projects/SLAM_Author_Originals/weights/laion2b_s32b_b79k.bin
+[2026-10-09 03:15:32,105][root][INFO] - Final image preprocessing configuration set: {'size': (224, 224), 'mode': 'RGB', 'mean': (0.48145466, 0.4578275, 0.40821073), 'std': (0.26862954, 0.26130258, 0.27577711), 'interpolation': 'bicubic', 'resize_mode': 'shortest', 'fill_color': 0}
+[2026-10-09 03:15:32,106][root][INFO] - Model ViT-H-14 creation process complete.
+full pcd feats loaded from disk with shape (156, 1024)
+number of masked pcds loaded from disk 156
+number of mask_feats loaded from disk 156
+label_indices:  [ 77  39  46  58  36  90   4  77  96  17   4  96  75  17  39  17  14  39
+  92  77  92  39  30  30  30  30 101  30  30  30   4  39  30  30  30  30
+  92  30  64  60  10  92  77  46  11  92  30  75  30  96  30  30  96  30
+  36  17  30  39  36  36  28  92  97  11  30  30  19  30  30  92  30  30
+  30  30  30  30  30  30  30  30  30  19  30 101  30 101  30  30  30  30
+  90  28  30  75  79  92  30  75 101  90  22  58  30  30  11  46  11  28
+  28  30  30  75  30  92  19  49  11  92  30  92  79  10  28  19  30  30
+  30  30  79  60  19  92  75   4 101  92 101  11  30  30  12  49  58  75
+ 101  39  92  11  11  64  39  39  98  79  60  39]
+class_ids:  (3814588,)
+knn_classes:  (3814588, 5)
+Number of unique labels in the GT pcd:  30
+Number of unique labels in the pred pcd  26
+################ room_0 ################
+per class iou:  [0, 0, 0.0, 0.0, 0.5335873139917293, 0.8306282319236455, 0.08524709892071736, 0.0, 0.8104376028895058, 0.0, 0.8346895046797771, 0.0, 0.39881597216924275, 0, 0, 0, 0, 0.34186162269785964, 0.0, 0.9532971405329891, 0.0, 0.0, 0.0, 0.0, 0.0, 0.6095036305614652, 0.5885576794546183, 0.0, 0.510821125584372, 0.24086530700102243, 0.0, 0, 0, 0, 0.5591873941919521, 0.0]
+miou:  0.34749998212375693
+fmiou:  0.628725319296474
+macc:  0.43711407407257175
+pacc:  0.7218608514499825
+#######################################

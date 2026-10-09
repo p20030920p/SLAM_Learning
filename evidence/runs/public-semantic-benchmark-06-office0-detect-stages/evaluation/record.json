@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-evaluation",
+  "scope": "Original semantic evaluator and exact author HDF5 GT; ONLY office0 selected in explicit configuration copy; n_exclude=6",
+  "status": "executed",
+  "started_at": "2026-10-09T01:37:22.626251+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-public-semantic-benchmark-06-office0-detect-stages-evaluation",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/eval_replica_semseg_scene.py",
+    "--replica_root",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "--replica_semantic_root",
+    "/home/qzl/projects/SLAM_Author_Originals/data/Replica-semantic",
+    "--n_exclude",
+    "6",
+    "--pred_exp_name",
+    "ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "4377b63915ff5ddbfc8e7c8daf51e8f7245dc38a787af4d03a81e5778b36852a",
+      "bytes": 1165
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/results/ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1/replica_ex6_results.csv": {
+      "sha256": "bf81d2ce22e94b6ed447ba59fa80ad47b0396873e770a1b85241f102e4e842f2",
+      "bytes": 247
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "DISPLAY": ":0"
+  },
+  "pid": 246206,
+  "elapsed_seconds": 85.56736266900043,
+  "source_dirty_after": ""
+}

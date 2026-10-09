@@ -1,0 +1,236 @@
+{
+  "status": "descriptive_summary_of_audited_completed_scene_rows",
+  "rows": [
+    {
+      "scene": "room0",
+      "frontend": "SAM-only (batch 16)",
+      "miou": 21.346026114643674,
+      "mrecall": 38.31561819306049,
+      "mprecision": 29.362398989336647,
+      "mf1score": 25.26609633939175,
+      "fmiou": 50.137903046155195,
+      "evaluated_classes": 23,
+      "scored_reconstructed_points": 4085377,
+      "zero_gt_support_classes": 0,
+      "zero_iou_classes": 10,
+      "zero_predicted_classes": 7
+    },
+    {
+      "scene": "room0",
+      "frontend": "Detect",
+      "miou": 25.598740294251755,
+      "mrecall": 39.396488666534424,
+      "mprecision": 29.561414253776487,
+      "mf1score": 29.437408110610136,
+      "fmiou": 45.65413148519881,
+      "evaluated_classes": 23,
+      "scored_reconstructed_points": 4085377,
+      "zero_gt_support_classes": 0,
+      "zero_iou_classes": 12,
+      "zero_predicted_classes": 8
+    },
+    {
+      "scene": "office0",
+      "frontend": "SAM-only (batch 16)",
+      "miou": 20.41567514766939,
+      "mrecall": 38.07556116255,
+      "mprecision": 24.77834988036193,
+      "mf1score": 24.16957213607066,
+      "fmiou": 33.05455365043174,
+      "evaluated_classes": 20,
+      "scored_reconstructed_points": 4079895,
+      "zero_gt_support_classes": 1,
+      "zero_iou_classes": 10,
+      "zero_predicted_classes": 9
+    },
+    {
+      "scene": "office0",
+      "frontend": "Detect",
+      "miou": 17.51511874375865,
+      "mrecall": 29.19620156288147,
+      "mprecision": 17.846343617420644,
+      "mf1score": 19.686956199737516,
+      "fmiou": 30.472924925168186,
+      "evaluated_classes": 20,
+      "scored_reconstructed_points": 4079895,
+      "zero_gt_support_classes": 1,
+      "zero_iou_classes": 14,
+      "zero_predicted_classes": 11
+    },
+    {
+      "scene": "office1",
+      "frontend": "SAM-only (batch 16)",
+      "miou": 14.975492945975727,
+      "mrecall": 26.245392113924026,
+      "mprecision": 16.534381359815598,
+      "mf1score": 17.092493485374487,
+      "fmiou": 14.712788088019717,
+      "evaluated_classes": 18,
+      "scored_reconstructed_points": 3662360,
+      "zero_gt_support_classes": 1,
+      "zero_iou_classes": 12,
+      "zero_predicted_classes": 10
+    }
+  ],
+  "sources": [
+    {
+      "run": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05",
+      "audit": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/evaluation-audit/validation.json",
+        "bytes": 2709,
+        "sha256": "db2c09f473b4af64f8ad4196f4077d3196810a56e5a12d6901604778ae36b26c"
+      },
+      "original_csv": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_results.csv",
+        "bytes": 244,
+        "sha256": "cc15189793c805f58dc54da10eecffa271ec304e34394aaf599a0f0156760141"
+      },
+      "confusion_matrices": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_conf_matrices.pkl",
+        "bytes": 23176,
+        "sha256": "cc672da3895e9ec3e03f51be5f360f674aa4692f984114f848a378fe7c88a848"
+      },
+      "original_log": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/evaluation/run.log",
+        "bytes": 1173,
+        "sha256": "e7b4321938d628fe70a0b4cbe48ee8e74caf747942392aceec49ced8c18dba01"
+      },
+      "evaluation_record": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/evaluation/record.json",
+        "bytes": 2536,
+        "sha256": "d85a4100906d01aaaaeb0c4513142480a48bbc2d6e2ef551eb3f64bd1bb8c32c"
+      }
+    },
+    {
+      "run": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-detect-stages",
+      "audit": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-detect-stages/evaluation-audit/validation.json",
+        "bytes": 2809,
+        "sha256": "c007c71c72436428011a11b0fbc059a90891c8d9e69416a0b14eafb239bfaa69"
+      },
+      "original_csv": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-detect-stages/results/ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1/replica_ex6_results.csv",
+        "bytes": 246,
+        "sha256": "6014e53da5cb957f2507a073c2adf66b6362110c204be853960e993b677edf5f"
+      },
+      "confusion_matrices": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-detect-stages/results/ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1/replica_ex6_conf_matrices.pkl",
+        "bytes": 23170,
+        "sha256": "4298403acef494d327a3be3d9f3e7870a45f909149d9c86d66b77560be5380e5"
+      },
+      "original_log": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-detect-stages/evaluation/run.log",
+        "bytes": 1184,
+        "sha256": "7c63b8da47e71dc8bcac4ad706631bb0711b536bcfb868a2a9f8b3aeb30d3da2"
+      },
+      "evaluation_record": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-detect-stages/evaluation/record.json",
+        "bytes": 2266,
+        "sha256": "b8d6efc38604068798ebc045e904bf1ce197f3a7fb7c9909656bd6e9432aa361"
+      }
+    },
+    {
+      "run": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages",
+      "audit": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages/evaluation-audit/validation.json",
+        "bytes": 2717,
+        "sha256": "682124367b497520cc51d7d0c01f0b119c30b1ea36cf3aadc5273e65264af4df"
+      },
+      "original_csv": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_results.csv",
+        "bytes": 240,
+        "sha256": "fa768bcee20375228799ea2293539edc046f9e322b5d0555b15b23b84c70713e"
+      },
+      "confusion_matrices": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_conf_matrices.pkl",
+        "bytes": 23122,
+        "sha256": "dca472f7d386e7a1973d111530bacfc9b86874aa12c24325754fe7b2c44c0b2f"
+      },
+      "original_log": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages/evaluation/run.log",
+        "bytes": 1160,
+        "sha256": "613eb8868d1f9379db137f5ec9a1cda981d0ad426f8e48b92654acf5fb5a27c5"
+      },
+      "evaluation_record": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages/evaluation/record.json",
+        "bytes": 2258,
+        "sha256": "1f658408511e66f8193b7d0929bfa55d0db52ded2c6d403f5274e7f9368e720c"
+      }
+    },
+    {
+      "run": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages",
+      "audit": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/evaluation-audit/validation.json",
+        "bytes": 2733,
+        "sha256": "b23bb02561283bc66e4b98a6d6bd9a1feacff8601583e340236e78448a74bf6e"
+      },
+      "original_csv": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/results/ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1/replica_ex6_results.csv",
+        "bytes": 247,
+        "sha256": "bf81d2ce22e94b6ed447ba59fa80ad47b0396873e770a1b85241f102e4e842f2"
+      },
+      "confusion_matrices": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/results/ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1/replica_ex6_conf_matrices.pkl",
+        "bytes": 23122,
+        "sha256": "0c757607254f7ea68903dc49ab7a616722a57fc2ed0c43728660fb7799864067"
+      },
+      "original_log": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/evaluation/run.log",
+        "bytes": 1165,
+        "sha256": "4377b63915ff5ddbfc8e7c8daf51e8f7245dc38a787af4d03a81e5778b36852a"
+      },
+      "evaluation_record": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages/evaluation/record.json",
+        "bytes": 2275,
+        "sha256": "1f19c44a5e6b5f68c04214be2e0f5680a3644a3cb6b74b08392330c6460bf2ce"
+      }
+    },
+    {
+      "run": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office1-cg-stages",
+      "audit": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office1-cg-stages/evaluation-audit/validation.json",
+        "bytes": 2673,
+        "sha256": "90c8aa1898549517aa7c12480359f45e7400c4ad784a8d1dce764e7251f689e1"
+      },
+      "original_csv": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office1-cg-stages/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_results.csv",
+        "bytes": 248,
+        "sha256": "e2f4c0bba2a5d7e53f7b1c37650cbd7c63ef8180c723a1bf8ae1c381c1446477"
+      },
+      "confusion_matrices": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office1-cg-stages/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_conf_matrices.pkl",
+        "bytes": 23090,
+        "sha256": "61bd8f7d9576179aa23b5430136569635f7232e79ca62cf25373197f49e506ef"
+      },
+      "original_log": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office1-cg-stages/evaluation/run.log",
+        "bytes": 1117,
+        "sha256": "8271f2939af33a64a3401d5b3341433285473ac14d85f81b873caa2cf9867595"
+      },
+      "evaluation_record": {
+        "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office1-cg-stages/evaluation/record.json",
+        "bytes": 2256,
+        "sha256": "feca3753395630b46f3fa408f7755c4ed4ae5cbdcca55fb7f9d87643c1dc2372"
+      }
+    }
+  ],
+  "artifacts": {
+    "class-metrics.csv": {
+      "bytes": 6070,
+      "sha256": "74fccaa8061ef6a6fc7e0791c3680d2c5fe382b4c3f49a22df1f49efbb31b514"
+    },
+    "scene-metrics.csv": {
+      "bytes": 834,
+      "sha256": "530b20888e0f7ac161a1cfd4de224c2e0a4d85e25ac27de626d62e31527c44ee"
+    },
+    "scene-metrics.png": {
+      "bytes": 79336,
+      "sha256": "e0e6c7ff82ccc673493f3703be8db522a8b6ad92ab1c067299d566fddf3338f2"
+    },
+    "scene-metrics.svg": {
+      "bytes": 67483,
+      "sha256": "3817f2a6c4ebd280c29e85d22f990629337bb489f4d055769ea20e7a28453666"
+    }
+  },
+  "scope": "No averaging of single-scene all rows, no full benchmark claim. Scene class subsets can include classes with zero reconstructed GT support. Macro IoU counts those zero-IoU classes; the original all row uses another subset. Different author frontend/mapping configurations do not isolate one component or establish causality."
+}
