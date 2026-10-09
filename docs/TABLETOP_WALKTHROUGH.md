@@ -1,12 +1,14 @@
-# Box cup and paper notebook experiment walkthrough
+# Box cup paper notebook and mouse experiment walkthrough
 
 English | [中文](TABLETOP_WALKTHROUGH.zh-CN.md)
 
-For this configured Windows/WSL computer and its D435/L2. First collect four fixed-sensor events per modality, then test odometry and author inputs separately. Paste one command block at a time. The [Chinese walkthrough](TABLETOP_WALKTHROUGH.zh-CN.md) includes every command for native loader and LiDAR-core checks; this companion covers the complete capture workflow and its evaluation boundaries.
+For this configured Windows/WSL computer and its D435/L2. First collect five fixed-sensor trials per modality: the original four events plus a separate mouse movement, totaling 6 min 40 s of timed events per modality before setup/shutdown. Then test odometry and author inputs separately. Paste one command block at a time. The [Chinese walkthrough](TABLETOP_WALKTHROUGH.zh-CN.md) includes every command for native loader and LiDAR-core checks; this companion covers the complete capture workflow and its evaluation boundaries.
 
 ## 1. Arrange the scene
 
 Use B01 for the central box, C01 for the cup on its left, and N01 for the paper notebook on its right. Leave a wall corner, table and textured background visible. Start with the camera roughly 1–2 m away, adjusted for valid depth; hold placement and parameters constant within a modality. Prefer an opaque empty cup. Record transparent/reflective depth holes as a separate condition.
+
+Add M01, a computer mouse in a separate visible space beside the box. Mark M_A/M_B, independently measuring 30 cm if possible; otherwise leave displacement unmeasured. Keep the mouse fixed in the original four trials. During recording use Alt+Tab and the keyboard instead of this mouse to control the computer. Leave wired-mouse cable slack so movement does not pull the sensor or other objects.
 
 Face the notebook cover toward the sensor if it can stand securely; otherwise lay it flat and evaluate visible cover support. Do not lean it against the box, which will move separately. Thin edges may provide few L2 returns. Mark box positions A and B. Measure 30 cm if a ruler is available; otherwise label displacement unmeasured and retain a qualitative movement trial. Photograph the layout and record independent event video when possible.
 
@@ -24,7 +26,7 @@ Set-Location -LiteralPath D:\workspace\be2\Personal-Learning-Physical
 [math]::Round((Get-PSDrive D).Free / 1GB, 1)
 ```
 
-Allow roughly 30 GiB for four camera trials and checks, then review actual usage. Four-stream raw recording is much larger than MP4. Approximately 71 GiB was available when preparing this guide.
+Allow roughly 30 GiB for five camera trials and checks, then review actual usage. Four-stream raw recording is much larger than MP4. Approximately 71 GiB was available when preparing this guide.
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\start_live.ps1 -Sensor camera -Video -CheckOnly
@@ -36,7 +38,7 @@ Expect `Environment check passed. Sensors were not opened.` Then preview:
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\start_live.ps1 -Sensor camera
 ```
 
-The script opens WSL and RViz. Show RGB, Depth 0-5m, Left/Right IR and Current cloud from Displays. Check that all three objects fit, stationary text is readable and the box has valid depth. Black depth means invalid; reflective cup holes and projector dots in IR can occur. Drag/zoom the 3D view. A raw preview has no trajectory. Once arranged, keep the sensor fixed, Ctrl+C in A and wait for `Saved session`.
+The script opens WSL and RViz. Show RGB, Depth 0-5m, Left/Right IR and Current cloud from Displays. Check that all four objects fit, stationary text is readable and the box has valid depth. Black depth means invalid; reflective cup holes and projector dots in IR can occur. Drag/zoom the 3D view. A raw preview has no trajectory. Once arranged, keep the sensor fixed, Ctrl+C in A and wait for `Saved session`.
 
 ## 3. Capture each camera event
 
@@ -83,7 +85,15 @@ Confirm B's SESSION matches A. The timer counts down five seconds, then runs thi
 | 65–80 s | Hold the restored state |
 | 80 s | Ctrl+C in A and wait for capture/video finalization |
 
-Static: touch nothing throughout. Occlusion: place the notebook before the box without moving the box, then return the notebook; label partial occlusion honestly if the notebook cannot cover it. Removal: remove the box and expose its former space/background, then return it to A. Movement: move the box A→B, then back A, keeping cup/notebook fixed.
+Static: touch nothing throughout. Occlusion: place the notebook before the box without moving the box, then return the notebook; label partial occlusion honestly if the notebook cannot cover it. Removal: remove the box and expose its former space/background, then return it to A. Movement: move the box A→B, then back A, keeping cup/notebook/mouse fixed.
+
+Add a fresh capture in A for mouse-only movement. In B:
+
+```powershell
+.venv\Scripts\python.exe scripts\scene_timeline.py --latest camera --event move --target mouse --fixed-sensor
+```
+
+At 20 s move M01 M_A→M_B and press SPACE; at 60 s return it to M_A and press SPACE. Keep box, cup and notebook fixed. At 80 s stop A. Without `--target`, the default remains box. Evaluate small-target depth support, query hits, stale support and coordinates separately from the box.
 
 The timer does not stop capture. A keypress is an operator completion report, including keyboard-return delay, not detected motion. Cues do not establish actual completion. Missing marks remain missing. If the sensor is bumped or an action fails, press Q in B, stop A and start a fresh session. Aborted trials retain data and withdraw the fixed-export declaration.
 
@@ -106,6 +116,8 @@ Get-Content -LiteralPath (Join-Path $taskCameraStatic 'trial-scene.json')
 ```
 
 Expect `timeline_completed`; nonstatic events require both completion marks. Physical verification remains false and measured displacement remains null until independently documented. If B was closed, set the variable to the verified static session path rather than assuming the latest session is static.
+
+Mouse movement records use target `M01` in both annotation files; box records use `B01`. Existing recordings are not relabeled.
 
 After capture stops:
 
@@ -150,6 +162,14 @@ In B, run one matching command per new session:
 ```powershell
 .venv\Scripts\python.exe scripts\scene_timeline.py --latest lidar --event move --fixed-sensor
 ```
+
+Restart A again for mouse-only movement, then in B:
+
+```powershell
+.venv\Scripts\python.exe scripts\scene_timeline.py --latest lidar --event move --target mouse --fixed-sensor
+```
+
+A low mouse close to the tabletop may have insufficient separate L2 returns. Inspect baseline support first; label unobservable conditions rather than counting missing returns as successful removal or localization. Apply the same eligibility rule to all methods.
 
 Follow the same actions and SPACE marks, then stop A after 80 s and wait for saving. Immediately after the static session:
 
@@ -197,8 +217,8 @@ Enable RGB-D global map. Keyframes accumulate; loop closure is conditional. This
 
 ## 7. Author inputs and quality goals
 
-The [Chinese walkthrough section 10](TABLETOP_WALKTHROUGH.zh-CN.md#10-真正接入四个作者核心) gives full Windows export, WSL loader, official L2 decoding, DUFOMap, BeautyMap and rendering commands. Export eight static RGB-D frames first, then expect each native loader to pass 8/8. These commands do not run SAM/CLIP mapping. Freeze query texts before outcomes: `a box`, `a cup`, `a paper notebook`.
+The [Chinese walkthrough section 10](TABLETOP_WALKTHROUGH.zh-CN.md#10-真正接入四个作者核心) gives full Windows export, WSL loader, official L2 decoding, DUFOMap, BeautyMap and rendering commands. Export eight static RGB-D frames first, then expect each native loader to pass 8/8. These commands do not run SAM/CLIP mapping. Freeze query texts before outcomes: `a box`, `a cup`, `a paper notebook`, `a computer mouse`.
 
 Actual physical semantic cores and full-event time-aligned adapters remain pending. Existing LiDAR input smoke consumes approximately 40 s, not the full 80 s event. Original BeautyMap boundary failures and padded diagnostics remain separate. Do not invent unsupported `-Algorithm conceptgraphs` options or quality scores from loader success.
 
-Four pilots per modality establish raw replay, video and event records. Formal goals are static deletion <5%, visible-removal recall >80% and independently referenced surface-anchor error <10 cm; missing labels/measurements leave scores empty. Follow the [comparison protocol](../METHOD_COMPARISON.md) for common inputs, validation/test sessions, low-light factors and delayed pose correction. Raw indoor media stays in ignored `data/`; main remains untouched and unmerged.
+Five pilots per modality establish raw replay, video and event records. Formal goals are static deletion <5%, visible-removal recall >80% and independently referenced surface-anchor error <10 cm; missing labels/measurements leave scores empty. Report mouse and box separately. Follow the [comparison protocol](../METHOD_COMPARISON.md) for common inputs, validation/test sessions, low-light factors and delayed pose correction. Raw indoor media stays in ignored `data/`; main remains untouched and unmerged.

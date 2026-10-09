@@ -21,18 +21,23 @@ FIELDS = ("kind", "label", "planned_s", "elapsed_s", "host_monotonic_ns",
           "host_perf_counter_ns", "utc")
 
 
-def schedule(event):
+def schedule(event, target="box"):
+    if target not in ("box", "mouse") or (target == "mouse" and event != "move"):
+        raise ValueError("Mouse target currently supports only --event move")
+    moved = "mouse" if target == "mouse" else "box"
+    marks = ("M_A", "M_B") if target == "mouse" else ("A", "B")
+    others = "Box, cup and notebook" if target == "mouse" else "Cup, notebook and mouse"
     action = {
         "static": "Keep all objects and sensor still.",
         "occlusion": "Place notebook in front of box. Do not move the box.",
         "removal": "Remove box; expose its former space and background.",
-        "move": "Move box from mark A to mark B. Cup and notebook stay put.",
+        "move": f"Move {moved} from mark {marks[0]} to mark {marks[1]}. {others} stay put.",
     }[event]
     restore = {
         "static": "Continue keeping everything still.",
         "occlusion": "Return notebook to its marked original position.",
         "removal": "Return box to mark A, with its original orientation.",
-        "move": "Return box to mark A, with its original orientation.",
+        "move": f"Return {moved} to mark {marks[0]}, with its original orientation.",
     }[event]
     return [(0, "baseline", "Keep all objects and sensor still."),
             (20, "action", action),
@@ -49,10 +54,10 @@ def completion_label(event, elapsed):
 
 
 def drive_timeline(event, emit, announce, read_key, *, clock=time.monotonic,
-                   sleep=time.sleep, active=lambda: True):
+                   sleep=time.sleep, active=lambda: True, target="box"):
     """Timing loop with injectable I/O for abort and annotation tests."""
     start = clock()
-    pending = iter(schedule(event))
+    pending = iter(schedule(event, target))
     cue = next(pending)
     while True:
         elapsed = clock() - start
@@ -114,13 +119,16 @@ def utc_now():
     return datetime.now(timezone.utc).isoformat()
 
 
-def annotate(session, config, event):
+def annotate(session, config, event, target="box"):
+    schedule(event, target)  # Validate before creating any annotation files.
     record = {
-        "schema_version": 1, "status": "starting", "event": event,
+        "schema_version": 2, "status": "starting", "event": event,
         "sensor": config["sensor"], "session": str(session), "started_at": utc_now(),
         "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-        "objects": {"B01": "box", "C01": "cup", "N01": "paper notebook"},
-        "target": "B01", "occluder": "N01" if event == "occlusion" else None,
+        "objects": {"B01": "box", "C01": "cup", "N01": "paper notebook", "M01": "computer mouse"},
+        "target": "M01" if target == "mouse" else "B01", "target_name": target,
+        "movement_marks": ["M_A", "M_B"] if target == "mouse" else ["A", "B"],
+        "occluder": "N01" if event == "occlusion" else None,
         "nominal_move_m": 0.30 if event == "move" else None,
         "measured_move_m": None, "reference_uncertainty_m": None,
         "illumination": "not_measured", "planned_duration_s": 80,
@@ -133,7 +141,7 @@ def annotate(session, config, event):
         "camera_fixed_declared_by_operator": config["sensor"] == "camera",
         "lidar_fixed_declared_by_operator": config["sensor"] == "lidar",
         "declaration_source": "Operator invoked scene_timeline.py --fixed-sensor",
-        "event": event, "objects": record["objects"],
+        "event": event, "objects": record["objects"], "target": record["target"],
         "pure_static_scene_eligible": None,
         "note": "Sensor fixed does not mean all scene objects are static or independently verified",
     }
@@ -142,6 +150,7 @@ def annotate(session, config, event):
             json.dump(data, stream, indent=2, allow_nan=False)
             stream.write("\n")
     print(f"SESSION: {session}", flush=True)
+    print(f"TARGET: {record['target']} ({target})", flush=True)
     print("SPACE = actual action/restore completed; Q = mark trial aborted.", flush=True)
     print("This tool does not stop capture. Keep sensor fixed. Countdown:", flush=True)
     status = "aborted"
@@ -168,7 +177,7 @@ def annotate(session, config, event):
                 time.sleep(1)
             record["timeline_start_host_monotonic_ns"] = time.monotonic_ns()
             status = drive_timeline(event, emit, lambda s: print(s, flush=True),
-                                    keyboard_key, active=active)
+                                    keyboard_key, active=active, target=target)
         except KeyboardInterrupt:
             emit("operator_abort", "ctrl_c", None, None)
         except Exception as error:
@@ -198,14 +207,20 @@ def annotate(session, config, event):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--event", choices=EVENTS, required=True)
+    parser.add_argument("--target", choices=("box", "mouse"), default="box",
+                        help="Default box; mouse adds a separate small-target movement trial")
     source = parser.add_mutually_exclusive_group()
     source.add_argument("--session", type=Path)
     source.add_argument("--latest", choices=("camera", "lidar"))
     parser.add_argument("--fixed-sensor", action="store_true")
     parser.add_argument("--dry-run", action="store_true", help="Print schedule; no files or devices")
     args = parser.parse_args()
+    try:
+        cues = schedule(args.event, args.target)
+    except ValueError as error:
+        parser.error(str(error))
     if args.dry_run:
-        for seconds, label, message in schedule(args.event):
+        for seconds, label, message in cues:
             print(f"{seconds:02d}s {label}: {message}")
         return 0
     if os.name != "nt":
@@ -216,7 +231,7 @@ def main():
         session, config = resolve_session(ROOT, args.session, args.latest)
     except (ValueError, KeyError, OSError) as error:
         parser.error(str(error))
-    return annotate(session, config, args.event)
+    return annotate(session, config, args.event, args.target)
 
 
 if __name__ == "__main__":

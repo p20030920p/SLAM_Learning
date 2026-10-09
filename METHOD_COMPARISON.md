@@ -30,7 +30,7 @@ It studies humanoid calibration and control, so it is not a D435/L2 SLAM baselin
 
 ## 3. Physical setting and shared input
 
-Start with fixed sensors, a wall corner, table and stable background. Current objects are a box, cup and paper notebook; follow the [walkthrough](docs/TABLETOP_WALKTHROUGH.md). Add two similar boxes with independent physical IDs for identity confusion. Start around 1–2 m, subject to valid depth, LiDAR returns and object resolution. Record reflective/transparent cups, illumination and exposure. Exclude the notebook from static support while it serves as the occluder.
+Start with fixed sensors, a wall corner, table and stable background. Current objects are a box, cup, paper notebook and computer mouse; follow the [walkthrough](docs/TABLETOP_WALKTHROUGH.md). Record four event types plus a separate mouse-only movement. Add two similar boxes with independent physical IDs for identity confusion. Start around 1–2 m, subject to valid depth, LiDAR returns and object resolution. Record reflective/transparent cups, illumination and exposure. Exclude the notebook from static support while it serves as the occluder.
 
 Require a genuine fixed-sensor declaration, layout photos, object positions and actual event times. Formal geometry evaluation needs independently measured anchors and measurement uncertainty. An independent phone recording can document the sensor and events. Algorithm estimates are not ground truth; unreferenced ranges are readings only.
 
@@ -56,10 +56,13 @@ Record each event separately for 80 seconds: baseline 0–20 s, action 20–25 s
 | Occlusion | Hide a stationary box behind a board | Confusing hidden with removed; recovery after uncovering |
 | Removal | Remove the box while exposing its former space and background | Map update and stale query location |
 | Movement | Move a box along an independently measured 30 cm mark | New location, stale location and identity |
+| Mouse movement condition | In a separate trial move only the mouse 30 cm; box/cup/notebook stay fixed | Small-target support, queries and stale coordinates; score separately from box |
 
 Out-of-view former space and a blocked stable background are failure controls, excluded from visible-removal denominators. Hold illumination fixed first; normal/low light and projector settings become separate paired factors.
 
-Pilot: one session per event, four sessions and 5 min 20 s per modality. Formal exploration: three validation and five test sessions per event, 32 sessions and 42 min 40 s per modality, excluding pilots. This size does not guarantee statistical power. Change test layouts and split whole acquisitions; adjacent frames from one recording cannot straddle validation and test.
+Pilot: original four events plus mouse movement, five sessions and 6 min 40 s per modality. Formal exploration: three validation and five test sessions for each original event, 32 sessions and 42 min 40 s; adding mouse movement at the same scale gives 40 sessions and 53 min 20 s per modality, excluding pilots. This size does not guarantee statistical power. Change test layouts and split whole acquisitions; adjacent frames from one recording cannot straddle validation and test.
+
+Use physical ID M01 for the mouse and B01 for the box; do not move both in a single-target trial. Report support, query hits and residuals per target. Freeze eligibility before algorithm outcomes. Insufficient separate L2 returns from a low mouse indicate an unobservable condition, not successful removal.
 
 First run both semantic cores on the same eight frames and inspect actual outputs and memory. Then attempt 40 observations per event at `t=0,2,…,78 s`. Select the nearest valid frame/complete LiDAR group and retain actual timestamps and offsets. If either method cannot process 40, freeze a common feasible subset and disclose the reduction. Report larger native runs separately. Never silently remove difficult observations or treat eight loaded frames as a quality result.
 

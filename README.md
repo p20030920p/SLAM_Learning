@@ -18,7 +18,7 @@ Replay one room recording within each task group: DUFOMap/BeautyMap for map clea
 
 | Task | Guide |
 | --- | --- |
-| Box, cup and paper notebook: terminal, timed events and checks | [Step-by-step experiments](docs/TABLETOP_WALKTHROUGH.md) |
+| Box, cup, paper notebook and mouse: terminal, timed events and checks | [Step-by-step experiments](docs/TABLETOP_WALKTHROUGH.md) |
 | Shared research question and cross-repository experiments | [Comparison design](METHOD_COMPARISON.md) |
 | Camera preview, stereo/RGB-D and mapping | [Camera](docs/CAMERA_GUIDE.md) |
 | L2 preview, ICP/KISS and LIO prerequisites | [LiDAR](docs/LIDAR_GUIDE.md) |

@@ -71,6 +71,28 @@ class SceneTimelineTests(unittest.TestCase):
             self.assertFalse(record["required_completion_keys_present"])
             self.assertFalse(record["independent_event_verification"])
 
+    def test_mouse_trial_has_distinct_provenance_without_measured_displacement(self):
+        with tempfile.TemporaryDirectory() as folder:
+            session = Path(folder)
+            with patch("scene_timeline.time.sleep"), patch("builtins.print"), \
+                    patch("scene_timeline.drive_timeline", return_value="timeline_completed") as driver:
+                annotate(session, {"sensor": "camera"}, "move", target="mouse")
+            record = json.loads((session / "trial-scene.json").read_text())
+            note = json.loads((session / "session-note.json").read_text())
+            self.assertEqual(record["target"], "M01")
+            self.assertEqual(note["target"], "M01")
+            self.assertEqual(record["movement_marks"], ["M_A", "M_B"])
+            self.assertEqual(driver.call_args.kwargs["target"], "mouse")
+            self.assertIsNone(record["measured_move_m"])
+            self.assertFalse(record["independent_event_verification"])
+
+    def test_unsupported_mouse_event_creates_no_annotations(self):
+        with tempfile.TemporaryDirectory() as folder:
+            session = Path(folder)
+            with self.assertRaises(ValueError):
+                annotate(session, {"sensor": "camera"}, "removal", target="mouse")
+            self.assertEqual(list(session.iterdir()), [])
+
     def test_completed_unrecorded_and_existing_sessions_are_rejected(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

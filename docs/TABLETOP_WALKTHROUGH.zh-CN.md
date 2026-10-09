@@ -1,10 +1,10 @@
-# 盒子水杯和纸质笔记本实验操作指南
+# 盒子水杯纸质笔记本和鼠标实验操作指南
 
 [English](TABLETOP_WALKTHROUGH.md) | 中文
 
 使用本机已经配置的 D435、L2、Windows PowerShell、Ubuntu-22.04、ROS2 Humble 和 RViz。先固定设备，记录物体变化；后面再单独测设备移动。每个代码块只有一条命令，**粘贴一个块，回车，等待，再执行下一个块**。
 
-第一轮目标是得到两台传感器各四段可回放原始数据、真实预览视频和事件记录；第二轮才做定位对照与作者建图核心。计时工具已做软件检查，本指南中的新物体摆放与新录制尚未执行。
+第一轮目标是得到每台传感器各五段可回放原始数据、真实预览视频和事件记录：原四事件加一段单独移动鼠标，每台有效计时共 6 分 40 秒，不含准备与收尾。第二轮才做定位对照与作者建图核心。计时工具已做软件检查，本指南中的新物体摆放与新录制尚未执行。
 
 ## 1. 摆放与目标
 
@@ -13,10 +13,13 @@
 | 盒子 | B01，中央，较大正面朝设备；标记初始位置 A | 主要目标；遮挡、移除和移动都针对它 |
 | 水杯 | C01，盒子左侧，分开约一个杯宽，保持原位 | 静态对照、语义查询目标。先用空杯；透明／亮面杯的深度空洞单列，优先使用不透明杯 |
 | 纸质笔记本 | N01，盒子右侧，封面朝设备，放稳 | 静态语义目标；仅遮挡实验把它移到盒子前方作挡板 |
+| 鼠标 | M01，放在盒子旁的独立空位，不被其他物品遮住，标记 M_A／M_B | 第二个移动目标；另录一段只移动鼠标，原四事件中保持不动 |
 
-背景留墙角、桌面与纹理，三个物体不要占满画面。相机先离物体约 1–2 m，稍向下看桌面；实际按深度有效性调整，之后同模态四段保持设备位置和参数一致。笔记本能稳立就立放，不能稳立就平放；不要靠盒子支撑，以免搬盒子时一起移动。平放时只评价可见封面，不期待 L2 给薄纸书脊很多回波。
+背景留墙角、桌面与纹理，四个物体不要占满画面。相机先离物体约 1–2 m，稍向下看桌面；实际按深度有效性调整，之后同模态四段保持设备位置和参数一致。笔记本能稳立就立放，不能稳立就平放；不要靠盒子支撑，以免搬盒子时一起移动。平放时只评价可见封面，不期待 L2 给薄纸书脊很多回波。
 
 给盒子标 A、B 两个位置，有尺时量 **30 cm**，并记录误差；没有尺就记“约一个盒宽、未测量”，只作定性移动实验，不能计算厘米级准确率。手机拍一张完整布局，正式事件评价可用独立手机视频核对动作。测量与参考不确定性记录在额外场景说明中，不覆盖原始采集文件。
+
+鼠标另设 M_A、M_B，有尺时同样量 30 cm，位置与盒子移动路径分开。它是实验物体，倒计时后不要拿它操作电脑，改用 Alt+Tab 切换 A／B 窗口、键盘空格标记。有线鼠标预留松弛线缆，移动时不牵动设备或其他物品。
 
 遮挡时笔记本本身在移动，所以它不属于该段的静态评价对象；稳定对照用水杯、墙面和桌面。分别从相机画面与 L2 点云确认盒子确实被遮住；两台的视场不同，遮挡布置可分别调整并记下。
 
@@ -40,7 +43,7 @@ Set-Location -LiteralPath D:\workspace\be2\Personal-Learning-Physical
 [math]::Round((Get-PSDrive D).Free / 1GB, 1)
 ```
 
-本次准备时约 71 GiB 可用。原始四路相机录制很大，先预留约 30 GiB 做四段及检查，录完复查空间；这不是固定文件大小承诺。
+本次准备时约 71 GiB 可用。原始四路相机录制很大，先预留约 30 GiB 做五段及检查，录完复查空间；这不是固定文件大小承诺。
 
 检查相机入口及录像依赖，**不打开设备**：
 
@@ -58,7 +61,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\start_live.ps1 -
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\start_live.ps1 -Sensor camera
 ```
 
-脚本自动启动 WSL 和 RViz。确认三个物体都入镜，RGB 静止时封面／盒面文字清楚；Depth 中盒面有连续深度，黑色表示无效。杯子反光／透明处黑洞可发生，不能只看杯子判断相机损坏。左右 IR 的投射亮点正常。
+脚本自动启动 WSL 和 RViz。确认四个物体都入镜，RGB 静止时封面／盒面文字清楚；Depth 中盒面有连续深度，黑色表示无效。杯子反光／透明处黑洞可发生，不能只看杯子判断相机损坏。左右 IR 的投射亮点正常。
 
 在 RViz 左侧 Displays 勾选 RGB、Depth 0-5m、Left IR、Right IR、Current cloud；只想看某项就取消其余项。3D 视图滚轮缩放、鼠标拖动；改变屏幕视角不算移动设备。弱光彩色点云偏暗时，点云 `Color Transformer` 可切 `FlatColor`，它只改变显示。
 
@@ -115,11 +118,23 @@ Set-Location -LiteralPath D:\workspace\be2\Personal-Learning-Physical
 .venv\Scripts\python.exe scripts\scene_timeline.py --latest camera --event removal --fixed-sensor
 ```
 
-**移动：**20 s 把盒子从 A 移到 B；水杯与笔记本不动。60 s 放回 A。
+**移动：**20 s 把盒子从 A 移到 B；水杯、笔记本与鼠标不动。60 s 放回 A。
 
 ```powershell
 .venv\Scripts\python.exe scripts\scene_timeline.py --latest camera --event move --fixed-sensor
 ```
+
+### 新增一段只移动鼠标
+
+恢复全部物品初始位置，在 A 按第 4 节重新启动采集，等 RViz 更新；B 执行：
+
+```powershell
+.venv\Scripts\python.exe scripts\scene_timeline.py --latest camera --event move --target mouse --fixed-sensor
+```
+
+20 s 把鼠标从 M_A 移到 M_B，完成后空格；盒子、水杯、笔记本都不动。60 s 把鼠标按原朝向移回 M_A，再按空格。80 s 去 A 停止并保存。未指定 `--target` 时默认盒子，不要把两者一起移动后记成单目标实验。
+
+鼠标是小目标，先看静止 0–20 s 中 RGB 是否清楚、鼠标表面是否有有效深度。分别记录盒子与鼠标的深度支持、查询命中、旧位置残留和坐标更新，不用大盒子的结果平均掉小鼠标的失败。目标参考不足时保留定性结果。
 
 空格记录的是操作者报告的完成时刻，包含回到键盘的延迟，不是自动检测到的真实物理时刻；提示时间也不等于动作已完成。忘按键会保留缺失标记。碰到设备、动作做错或录制异常时在 B 按 Q 中止本段，再去 A 停止；原数据保留，新开一段重做。中止段会撤销固定导出声明，不能用于单位位姿导出。
 
@@ -145,7 +160,9 @@ Invoke-Item -LiteralPath $taskCameraStatic
 Get-Content -LiteralPath (Join-Path $taskCameraStatic 'trial-scene.json')
 ```
 
-预期 `status=timeline_completed`。静止段不要求按空格；其余三段应有 `action_complete` 与 `restore_complete`。这些是按键记录，独立事件验证仍为 false；尺量位移初值为 null，要根据真实测量补充参考说明。
+预期 `status=timeline_completed`。静止段不要求按空格；其余四段应有 `action_complete` 与 `restore_complete`。这些是按键记录，独立事件验证仍为 false；尺量位移初值为 null，要根据真实测量补充参考说明。
+
+鼠标移动段同样应有两个完成标记，`trial-scene.json` 与 `session-note.json` 的 `target` 应为 `M01`；盒子段为 `B01`。鼠标与盒子的新旧位置分别评价，已有录制不会被脚本重新标注。
 
 录制已停止后，核验四路原始回放：
 
@@ -196,6 +213,14 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\start_live.ps1 -
 ```powershell
 .venv\Scripts\python.exe scripts\scene_timeline.py --latest lidar --event move --fixed-sensor
 ```
+
+再新开一段 A 的雷达采集，只移动鼠标；B 执行：
+
+```powershell
+.venv\Scripts\python.exe scripts\scene_timeline.py --latest lidar --event move --target mouse --fixed-sensor
+```
+
+鼠标贴近桌面且较小，L2 可能没有足够独立回波。先在静止区间检查目标支持；不可分辨就标记“该条件下不可观测”，不能把没扫到当作成功剔除或定位成功。每种方法使用同一资格判定和原始记录。
 
 每段只执行一条计时命令，80 s 后去 A 停止、等待保存，再开始下一段。不要手写 COM3，入口会找实体串口。
 
@@ -253,7 +278,7 @@ rviz2 -d /mnt/d/workspace/be2/Personal-Learning-Physical/configs/rviz/camera_raw
 
 ## 9. 单独查看定位算法
 
-先完成上述四事件，再恢复静态布局。每次在 A 运行一条，设备与物体整段保持固定 60 s，不运行事件计时工具；命令自动停止保存。
+先完成上述四类事件及鼠标移动段，再恢复静态布局。每次在 A 运行一条，设备与物体整段保持固定 60 s，不运行事件计时工具；命令自动停止保存。
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\start_live.ps1 -Sensor camera -Algorithm stereo -SessionType stationary -Seconds 60 -Record -Video
@@ -273,7 +298,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\start_live.ps1 -
 
 RViz 默认显示轨迹和跟踪状态。正常目标：固定时轨迹在原点附近，最大平移偏离 <5 cm、转角 <2°，稳态有效覆盖 >95%；KISS 没有原生 LOST 指标，该项不填 0。旧 L2 固定结果没有达到这些目标，新运行也可能失败，完整保存。四次实采不同，不能据此公平排名；严格定位对照需重放同一录制。
 
-要看 RTAB-Map 全局建图，另开一次，保持三物体不动，起点静止 5 s，缓慢移动相机看墙角与物体，再回起点：
+要看 RTAB-Map 全局建图，另开一次，保持四个物体不动，起点静止 5 s，缓慢移动相机看墙角与物体，再回起点：
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\start_live.ps1 -Sensor camera -Algorithm rgbd-slam -SessionType motion -Record -Video
@@ -311,7 +336,7 @@ CUDA_VISIBLE_DEVICES= PYTHONDONTWRITEBYTECODE=1 OPENBLAS_NUM_THREADS=2 OMP_NUM_T
 CUDA_VISIBLE_DEVICES= PYTHONDONTWRITEBYTECODE=1 OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 /home/qzl/projects/SLAM_Learning/.venv-hovsg/bin/python scripts/check_main_rgbd.py data/tabletop-static-input-01 --method hovsg --main-repo /mnt/d/workspace/be2/SLAM_Learning --runtime /home/qzl/projects/SLAM_Learning --output data/tabletop-static-input-01/check-hovsg
 ```
 
-预期各 `loader_check_passed`、8 帧。**此处没有 SAM／CLIP 推理、文本查询或语义地图窗口。** 真正语义核心的实物入口仍需适配；不要直接把启动参数改成不存在的 `-Algorithm conceptgraphs`。查询文本在看结果前固定为 `a box`、`a cup`、`a paper notebook`；真实 SAM 掩码、候选与坐标必须由算法输出后独立核对。
+预期各 `loader_check_passed`、8 帧。**此处没有 SAM／CLIP 推理、文本查询或语义地图窗口。** 真正语义核心的实物入口仍需适配；不要直接把启动参数改成不存在的 `-Algorithm conceptgraphs`。查询文本在看结果前固定为 `a box`、`a cup`、`a paper notebook`、`a computer mouse`；真实 SAM 掩码、候选与坐标必须由算法输出后独立核对。
 
 输入 `exit` 回 PowerShell。雷达静止段使用本机已有官方 SDK 解码器，先转换路径：
 
@@ -357,11 +382,11 @@ Invoke-Item -LiteralPath .\data\tabletop-dufomap-01\comparison.png
 
 | 阶段 | 预期结果 | 还不能据此宣称什么 |
 | --- | --- | --- |
-| 本轮四事件 | 每模态四个独立目录；视频能看到实际变化，原始数据可回放；事件有真实完成标记 | 尚无独立标签时不报 SA／DA、查询准确率或位置准确率 |
+| 本轮五段 | 每模态五个独立目录；盒子与鼠标分开移动，原始数据可回放；事件有真实完成标记 | 尚无独立标签时不报 SA／DA、查询准确率或位置准确率 |
 | 固定定位 | 轨迹贴近原点；同时检查有效覆盖、漂移和状态 | 有位姿输出不等于准确，分开实采不是同输入排名 |
 | 作者输入 | RGB-D 两加载器各 8/8；L2 官方解码与 DUFOMap 输入成功；BeautyMap 失败单列 | 加载成功不等于语义建图，扩域诊断不等于原实现通过 |
 | 正式质量 | 地图保留稳定背景、减少运动支持；查询命中正确物体与有效表面坐标 | 原生核心不保证自动理解遮挡／移除，须真实执行与标注 |
 
-质量初期目标：静态支持误删 <5%、可见移除召回 >80%、独立指定锚点误差 <10 cm；尺量／标注缺失则对应指标留空。先用四段试拍完善可见性和输入，再按对比协议采验证／测试会话；弱光与迟到位姿修正放在之后，逐项改变因素。
+质量初期目标：静态支持误删 <5%、可见移除召回 >80%、独立指定锚点误差 <10 cm；尺量／标注缺失则对应指标留空。先用五段试拍完善可见性和输入，再按对比协议采验证／测试会话；弱光与迟到位姿修正放在之后，逐项改变因素。
 
 原始数据、室内视频和计时记录都留忽略目录 `data/`；脚本与指南推送个人分支。当前不改主分支、不合并。
