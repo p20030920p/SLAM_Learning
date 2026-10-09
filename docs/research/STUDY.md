@@ -4,7 +4,7 @@ English | [中文](STUDY.zh-CN.md)
 
 ## open questions:
 
-- How can multi-frame mapping prevent localization errors from causing persistent mistakes in static-structure filtering and object association?
+How can multi-frame mapping prevent localization errors from causing persistent mistakes in static-structure filtering and object association?
 
 ## Shared interface
 
@@ -15,33 +15,23 @@ The two directions meet at **pose → correspondence → map decisions**. Dynami
 | [DUFOMap](../papers/dufomap.md) | Rays establish void regions used for point classification | Pose/measurement margins already exist; never-observed empty space remains ambiguous |
 | [BeautyMap](../papers/beautymap.md) | Registered occupancy drives removal/restoration | Static restoration already exists; alignment and grid/ground assumptions still matter |
 | [ConceptGraphs](../papers/conceptgraphs.md) | Geometric/semantic similarity drives object fusion | Thresholds and later observations may suffice; corrected geometry does not itself reassign fixed members/features |
-| [HOV-SG](../papers/hovsg.md) | Poses attach features to geometry before segment fusion | External odometry is a safeguard; static-scene and hierarchy limits differ from object-map association |
+| [HOV-SG](../papers/hovsg.md) | | In progress |
 
-The executed mapping experiments use supplied poses. **HOV-SG is not reproduced:** its limited subsets do not establish completion of the default run or paper experiments. Larger original-code runs and scoped semantic scores are [pinned separately](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md). They do not establish trajectory accuracy or navigation success.
+The executed mapping experiments use supplied poses. Larger original-code runs and scoped semantic scores are [pinned separately](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md). They do not establish trajectory accuracy or navigation success.
 
 ## ConceptGraphs
 
-Its association traces expose observation membership, support counts and fused features. With one frozen frontend and identical exact historical correction, fixed membership can be compared with reassociation. This separates coordinate error, low-support filtering and association history. DUFOMap/BeautyMap motivate the geometric interface; HOV-SG checks that semantic coverage and retrieval can differ. None is silently counted as another delayed-correction replication.
+Its association traces expose observation membership, support counts and fused features. With one frozen frontend and identical exact historical correction, fixed membership can be compared with reassociation. This separates coordinate error, low-support filtering and association history. DUFOMap/BeautyMap motivate the geometric interface; their reproduction scores do not test this delayed-correction hypothesis.
 
 ## Evidence
 
-Early room0 controls use three seeds at 30 cm RMS; the semantic cores share eight observations. [Full paired study](PAIRED_RESULTS.md).
+The [delivery evidence](../../README.md#evidence) compares each reproduced method only with its own paper: DUFOMap Table IV, BeautyMap Table III and ConceptGraphs Table II. Dataset, sequence, frame count and metric definitions are stated beside the values. ConceptGraphs room0 has different coverage from the paper benchmark and is labelled as reference-only.
 
-| Metric | Zero error | Shuffled error | Monotone drift |
-| --- | ---: | ---: | ---: |
-| DUFOMap direct-label SA % | 92.6341 | 76.5854 | 88.5977 |
-| BeautyMap proximity SA % | 96.9529 | 93.2688 | 95.8456 |
-| ConceptGraphs partial-surface coverage | 0.9256 | 0.5991 | 0.3984 |
-| HOV-SG partial-surface coverage | 0.9256 | 0.9061 | 0.9136 |
-| HOV-SG restricted query hit | 0.6667 | 0.6667 | 0.3333 |
-
-Correlation is not uniformly worse; geometry and retrieval are different outcomes. These metrics do not rank methods. HOV-SG rows are historical subset diagnostics, not paper-reproduction results. Three seeds are not three scenes, and these controls do not compare shared-latent versus independent-variance estimators.
-
-room1 then tested late correction. At observation eight and 30 cm, fixed history recovers 11.1%, oracle 66.7%, while a post-hoc support-1 control reaches 100% with 117 candidates versus oracle's 25. Later observations also repair part of the deficit. **This counterevidence weakens the necessity of reassociation.** Partial plant/vase labels and unlabelled fragments prevent a full identity conclusion. [35 frozen cells and six separate post-hoc controls](DELAYED_RESULTS.md).
+Earlier [room0 pose controls](PAIRED_RESULTS.md) and [room1 delayed-correction controls](DELAYED_RESULTS.md) remain exploratory records, separate from paper reproduction. They show that simple safeguards and later observations can also recover selected targets; they do not establish the necessity of reassociation.
 
 ## Hypothesis
 
-- We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and preserve more consistent geometric and semantic maps
+We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and preserve more consistent geometric and semantic maps
 
 This research hypothesis remains unverified. Existing exploratory experiments diagnose object association after supplied pose corrections; they do not yet test revisiting static-structure filtering or establish a benefit across methods. Object annotations have not been independently reviewed, and this wording does not turn historical experiments into confirmatory tests.
 

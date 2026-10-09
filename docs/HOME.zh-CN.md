@@ -19,7 +19,7 @@
 
 *21 个保存地图快照播放 14 秒；显示速度不代表算法运行速度。GT 仅用于评价／着色。[时序核对](../results/reference/media-previews-v3/record.json)。*
 
-四篇相关论文 → 部分建图实验 → 位姿误差对照 → 候选恢复假设。**HOV-SG 未复现，H1 尚未验证。**
+四篇相关论文 → 部分建图实验 → 位姿误差对照 → 候选恢复假设。**H1 尚未验证。**
 
 ## 方向分析
 
@@ -44,7 +44,7 @@
 | 回环检测 | 重访约束帮助减少漂移 | 环境变化后仍能认出地点 | 支持重定位 |
 | 地图构建 | 地图更可用 | 消除动态残影 | 维护身份与查询目标 |
 
-第一个方向重在可靠运动与几何。第二个方向增加物体含义与目标检索。已完成的建图实验使用给定位姿，单独检查**地图构建**；完整 SLAM 与导航未复现，HOV-SG 仍未完成。
+第一个方向重在可靠运动与几何。第二个方向增加物体含义与目标检索。已完成的建图实验使用给定位姿，单独检查**地图构建**；完整 SLAM 与导航不在这些实验范围内。
 
 ## 相关工作
 
@@ -70,24 +70,24 @@
 
 ### [HOV-SG](papers/hovsg.zh-CN.md)
 
-**本次交付标记为未复现。** 默认 200 帧运行、完整 benchmark、楼层／房间层级及导航均未完成。已完成的 8／20 帧缩小子集仅作为有限诊断尝试保留，不作为论文复现完成的证据。[状态与保留记录](papers/hovsg.zh-CN.md)。
+在复现中
 
 ## 开放问题
 
-- 多帧建图如何避免定位误差在静态结构过滤和物体关联中造成持续性错误？
+多帧建图如何避免定位误差在静态结构过滤和物体关联中造成持续性错误？
 
 ## 复现结果
 
 后续作者原代码运行使用独立协议，固定快照 **535a278**：
 
-| 工作 | 评分范围 | 结果 |
+| 工作 | 范围 | 状态 |
 | --- | --- | --- |
-| [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.zh-CN.md) | 表 IV，141 扫描公开数据 | SA 97.9635%、DA 98.7196%；15 项匹配论文两位小数 |
-| [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.zh-CN.md) | 历史 KITTI-02，91 扫描 | XY=1 m 时 SA 83.3978%、DA 82.4092%；表 III 共 9 项匹配 |
-| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md) | room0，400 观测 | mIoU 21.3460%、类别频率加权 IoU 50.1379% |
-| [HOV-SG](papers/hovsg.zh-CN.md) | 未复现 | 默认 200 帧及论文完整实验未完成；缩小子集诊断记录单独保留 |
+| [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.zh-CN.md) | KITTI-00，141 扫描公开数据 | 表 IV 准确率复现完成 |
+| [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.zh-CN.md) | 历史 KITTI-02，第 860–950 帧，91 扫描 | 表 III 准确率复现完成 |
+| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md) | Replica room0，400 观测 | 单场景建图与语义评分已执行 |
+| [HOV-SG](papers/hovsg.zh-CN.md) | | 在复现中 |
 
-SA／DA 为静态保留／动态剔除；语义评分使用场景 GT 类别，计分位置／排除项不同，不测身份恢复或开放世界查询。分数不横向排名，完整轨迹与机器人导航仍未测试。[范围](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.zh-CN.md)。
+下方证据逐篇对照各方法自身的论文结果及明确的复现范围。不同方法的任务、数据集和计分位置不同。[实验协议](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.zh-CN.md)。
 
 <details>
 <summary>窗口录像</summary>
@@ -116,17 +116,46 @@ SA／DA 为静态保留／动态剔除；语义评分使用场景 GT 类别，�
 
 ## 实验证据
 
-![恢复率与暴露候选代价](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/recovery-cost.png)
+以下数值取自作者源库链接的论文及我们保存的作者代码运行结果。每张表仅对照同一种方法，不作跨方法排名。
 
-room1，30 cm 修正刚发生时：固定关联恢复率 **11.1%**，oracle **66.7%**，事后 support-1 **100%**；候选数为 **8.3／25／117**。三个种子均值、部分 AI 标注、候选上限不等。[结果](research/DELAYED_RESULTS.zh-CN.md)。
+### DUFOMap
 
-降低支持门槛即可消除这组目标的恢复缺口，同时暴露更多碎片；后续观测也能修复部分损失。**尚未证明必须重算关联。** 下一项实验匹配候选上限，并单独检查身份。
+KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_p=1。[作者源库](https://github.com/KTH-RPL/dufomap/tree/9e239ddd5995136e14f5212f33382a6ebc59e518) · [论文表 IV](https://arxiv.org/html/2403.01449v1#S5.T4) · [我们的结果](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.zh-CN.md)。
 
-room2 的 **28 个建图单元已运行，身份／预算分析待完成**。当前物体标注未经独立复核，有界重放尚未实现。[后续分析](research/PLAN.zh-CN.md)。
+| 指标 | 论文 % | 复现 % |
+| --- | ---: | ---: |
+| SA | 97.96 | 97.9635 |
+| DA | 98.72 | 98.7196 |
+| AA | 98.34 | 98.3408 |
+
+完整设置的三项数值保留两位小数后均与论文一致。表 IV 五组设置共 15 项准确率均匹配；本表不包含运行时间和在线实验。
+
+### BeautyMap
+
+历史 KITTI-02，第 860–950 帧，共 91 扫描；XY=1 m、Z=0.5 m、范围 40 m。[作者源库](https://github.com/MKJia/BeautyMap/tree/98bce4a97db96ddd0d5342e31425c7679f58ba2e) · [论文表 III](https://arxiv.org/html/2405.07283v1#S4.T3) · [我们的结果](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.zh-CN.md)。
+
+| 指标 | 论文 % | 复现 % |
+| --- | ---: | ---: |
+| SA | 83.40 | 83.3978 |
+| DA | 82.41 | 82.4092 |
+| HA | 82.90 | 82.9006 |
+
+三项数值保留两位小数后均一致。XY=0.5／1／2 m 的九项准确率全部匹配。使用历史预处理／GT 与作者 HA 评分器；论文当时的精确方法提交尚未确定。其他序列及运行时间不在本表范围内。
+
+### ConceptGraphs
+
+论文报告 Replica benchmark；下列已完成结果仅覆盖 **room0，400 次观测**，使用已披露的 SAM batch-16 变体。覆盖范围不同，论文值仅供参考，不计算复现差距。[作者源库](https://github.com/concept-graphs/concept-graphs/tree/93277a02bd89171f8121e84203121cf7af9ebb5d) · [论文表 II](https://arxiv.org/html/2309.16650v1#S3.T2) · [我们的 room0 结果](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)。
+
+| 指标 | 论文 benchmark % | 我们的 room0 % |
+| --- | ---: | ---: |
+| mAcc | 40.63 | 38.3156 |
+| F-mIoU | 35.95 | 50.1379 |
+
+作者评分器将 `mrecall` 对应 mAcc、`fmiou` 对应 F-mIoU。我们的宏平均 mIoU 21.3460% 是另一项指标，不拿它替代 F-mIoU。[指标定义](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/README.md#evaluate-semantic-segmentation-from-the-object-based-mapping-results-on-replica-datasets)。
 
 ## 假设
 
-- 我们假设，保留地图更新背后的观测证据，并随着位姿估计的改善重新审视这些更新，能够减少持续性建图错误，保持更加一致的几何与语义地图。
+我们假设，保留地图更新背后的观测证据，并随着位姿估计的改善重新审视这些更新，能够减少持续性建图错误，保持更加一致的几何与语义地图。
 
 ## 分支
 

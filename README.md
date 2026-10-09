@@ -19,7 +19,7 @@ English | [中文](docs/HOME.zh-CN.md)
 
 *21 saved-map snapshots over 14 seconds; display timing is not algorithm runtime. GT only for evaluation/coloring. [Timing audit](results/reference/media-previews-v3/record.json).*
 
-Four related papers → selected mapping experiments → pose-error controls → a candidate recovery hypothesis. **HOV-SG is not reproduced; H1 remains unverified.**
+Four related papers → selected mapping experiments → pose-error controls → a candidate recovery hypothesis. **H1 remains unverified.**
 
 ## Directions analysis
 
@@ -44,7 +44,7 @@ Sensor data → Front end → Back end (optimize) → Map build
 | Loop detection | Revisit constraints help reduce drift | Recognize places despite changes | Support relocalization |
 | Map build | A more usable map | Remove dynamic traces | Maintain identities and query targets |
 
-The first direction emphasizes reliable motion and geometry. The second adds object meaning and target retrieval. The completed mapping experiments use supplied poses to isolate **map construction**. Complete SLAM and navigation are not reproduced; HOV-SG remains incomplete.
+The first direction emphasizes reliable motion and geometry. The second adds object meaning and target retrieval. The completed mapping experiments use supplied poses to isolate **map construction**. Complete SLAM and navigation remain outside these experiments.
 
 ## Related works
 
@@ -70,24 +70,24 @@ These are saved-result replays from supplied-pose mapping runs. GIFs preserve th
 
 ### [HOV-SG](docs/papers/hovsg.md)
 
-**Not reproduced for this delivery.** The default 200-frame run, full benchmark, floor/room hierarchy and navigation are incomplete. Completed 8/20-frame subsets are retained as limited diagnostic attempts, not a completed paper reproduction. [Status and retained evidence](docs/papers/hovsg.md).
+In progress
 
 ## open questions:
 
-- How can multi-frame mapping prevent localization errors from causing persistent mistakes in static-structure filtering and object association?
+How can multi-frame mapping prevent localization errors from causing persistent mistakes in static-structure filtering and object association?
 
 ## Reproduction results
 
 Later original-code runs use separate protocols, pinned at **535a278**:
 
-| Work | Scored scope | Result |
+| Work | Scope | Status |
 | --- | --- | --- |
-| [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md) | Table IV, 141 released scans | SA 97.9635%, DA 98.7196%; 15 entries match paper rounding |
-| [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md) | Historical KITTI-02, 91 scans | At XY=1 m: SA 83.3978%, DA 82.4092%; 9 Table III entries match rounding |
-| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md) | room0, 400 observations | mIoU 21.3460%, frequency-weighted IoU 50.1379% |
-| [HOV-SG](docs/papers/hovsg.md) | Not reproduced | Default 200-frame run and complete paper experiments unfinished; reduced-subset diagnostics retained separately |
+| [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md) | KITTI-00, 141 released scans | Table IV accuracy reproduced |
+| [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md) | Historical KITTI-02, frames 860–950, 91 scans | Table III accuracy reproduced |
+| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md) | Replica room0, 400 observations | Single-scene mapping and semantic scoring executed |
+| [HOV-SG](docs/papers/hovsg.md) | | In progress |
 
-SA/DA measure static retention/dynamic removal. Semantic scoring uses scene-GT classes and different supports/exclusions, not identity recovery or open-world query success. These scores cannot rank the four methods; complete trajectories and robot navigation remain untested. [Scope](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md).
+The following evidence compares each method with its own paper under the stated scope. The methods use different tasks, datasets and scoring supports. [Protocols](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md).
 
 <details>
 <summary>Recorded GIFs</summary>
@@ -116,17 +116,46 @@ Each clip records a 3D viewer displaying saved results. RViz retains its recorde
 
 ## Evidence
 
-![Recovery and exposed-candidate cost](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/recovery-cost.png)
+Values below come from the papers linked by the original repositories and our recorded author-code runs. Each table concerns one method; no cross-method ranking is implied.
 
-room1, immediately after 30 cm correction: fixed-history recovery **11.1%**, oracle **66.7%**, post-hoc support-1 **100%**; candidates **8.3 / 25 / 117**. Three-seed means, partial AI labels, unequal caps. [Results](docs/research/DELAYED_RESULTS.md).
+### DUFOMap
 
-A lower support gate closes this selected recovery gap while exposing more fragments; later observations also repair part of it. **Reassociation is not yet shown necessary.** The next test matches candidate caps and checks identities separately.
+KITTI-00, 141 released scans; full setting: voxel 0.1 m, d_s=0.2 m, d_p=1. [Original repository](https://github.com/KTH-RPL/dufomap/tree/9e239ddd5995136e14f5212f33382a6ebc59e518) · [Paper Table IV](https://arxiv.org/html/2403.01449v1#S5.T4) · [Our results](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md).
 
-room2 has **28 completed mapping cells; identity/budget analysis remains pending**. Object annotations have not been independently reviewed; bounded replay is not implemented. [Further analysis](docs/research/PLAN.md).
+| Metric | Paper % | Reproduced % |
+| --- | ---: | ---: |
+| SA | 97.96 | 97.9635 |
+| DA | 98.72 | 98.7196 |
+| AA | 98.34 | 98.3408 |
+
+All three full-setting values match the paper at two decimals. Across all five Table IV settings, all 15 accuracy entries match; runtime and online experiments are outside this comparison.
+
+### BeautyMap
+
+Historical KITTI-02, frames 860–950, 91 scans; XY=1 m, Z=0.5 m, range=40 m. [Original repository](https://github.com/MKJia/BeautyMap/tree/98bce4a97db96ddd0d5342e31425c7679f58ba2e) · [Paper Table III](https://arxiv.org/html/2405.07283v1#S4.T3) · [Our results](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md).
+
+| Metric | Paper % | Reproduced % |
+| --- | ---: | ---: |
+| SA | 83.40 | 83.3978 |
+| DA | 82.41 | 82.4092 |
+| HA | 82.90 | 82.9006 |
+
+All three values match at two decimals. All nine accuracy entries across XY=0.5/1/2 m match. This uses historical preprocessing/GT and the author's HA scorer; the exact paper method commit remains unidentified. Other sequences and runtime are outside this comparison.
+
+### ConceptGraphs
+
+The paper reports Replica benchmark results; our completed result below covers **room0 only, 400 observations**, with the disclosed SAM batch-16 variant. These scopes differ, so the paper values are reference values, without a reproduction-gap calculation. [Original repository](https://github.com/concept-graphs/concept-graphs/tree/93277a02bd89171f8121e84203121cf7af9ebb5d) · [Paper Table II](https://arxiv.org/html/2309.16650v1#S3.T2) · [Our room0 results](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md).
+
+| Metric | Paper benchmark % | Our room0 % |
+| --- | ---: | ---: |
+| mAcc | 40.63 | 38.3156 |
+| F-mIoU | 35.95 | 50.1379 |
+
+The author's evaluator defines `mrecall` as mAcc and `fmiou` as F-mIoU. Our macro mIoU of 21.3460% is a different metric and is not substituted for F-mIoU. [Metric definitions](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/README.md#evaluate-semantic-segmentation-from-the-object-based-mapping-results-on-replica-datasets).
 
 ## Hypothesis
 
-- We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and preserve more consistent geometric and semantic maps
+We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and preserve more consistent geometric and semantic maps
 
 ## Branches
 
