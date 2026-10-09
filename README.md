@@ -23,7 +23,11 @@ English | [中文](README.zh-CN.md)
 
 Four 2024 mapping cores using supplied poses. Trajectory estimation and navigation are outside these runs.
 
-## Direction choice and analysis
+## 1. Open research question
+
+At the same candidate cap, does reassociation improve target recovery after a late pose correction?
+
+## 2. How I arrived at this question
 
 - **Dynamic SLAM:** preserve stable geometry when objects move.
 - **Semantic mapping, visual localization and navigation:** connect objects to reliable coordinates.
@@ -44,13 +48,21 @@ Sensor data → Front end → Back end (optimize) → Map build
 | Loop detection | Recognize changed places | Refresh object anchors |
 | Map build | Remove dynamic traces | Maintain identities and targets |
 
-Our four cores study **pose → correspondence → map decisions**; a common failure mechanism remains unproven.
+The four cores depend on **pose → correspondence → map decisions**. DUFOMap and BeautyMap filter geometry; ConceptGraphs and HOV-SG associate semantic evidence. This motivates a shared question, without establishing a shared failure. [Analysis](docs/STUDY.md).
 
-## Open research question
+## 3. Hypothesis
 
-**At the same candidate cap, does reassociation improve target recovery after a late pose correction?**
+Retaining observation sources and pose versions, then replaying affected associations within a bounded cache, will recover more valid targets than fixed-history guards. **H1 remains a candidate.**
 
-## Related works
+The current study tests whether reassociation is needed; it does not test the bounded-cache implementation.
+
+## 4. Why this seems plausible
+
+In the fixed-history control, corrected coordinates retain the old object memberships and fused features. Those decisions may need revision, but threshold and support controls may already suffice.
+
+[Khronos](https://arxiv.org/html/2402.13817v2) and [DovSG](https://arxiv.org/html/2410.11989v2) already reconcile maps or update memory. Replay alone is not a novelty claim.
+
+## 5. Method comparisons
 
 These GIFs replay core outputs. LiDAR colors show removal outcomes; semantic highlights are unverified query candidates. [Media scope](docs/RECORDING.md).
 
@@ -92,7 +104,7 @@ Earlier core outputs in RViz; saved-map viewing, no new inference. Full videos: 
 
 </details>
 
-**Metrics:**
+## 6. Observations that motivate the question
 
 ![Separate LiDAR core and original semantic measurements](results/reference/homepage-media/baseline-metrics.png)
 
@@ -105,15 +117,21 @@ Earlier core outputs in RViz; saved-map viewing, no new inference. Full videos: 
 
 Separate protocols: LiDAR uses 5 cm map-neighbor scoring; room0 uses 23 classes and 4,085,377 scoring points. Counts are not accuracy. [Definitions/sources](results/reference/homepage-media/record.json) · [Renderer](scripts/build_homepage_media.py).
 
-## Hypothesis
-
-**H1, untested:** version observation sources, mark affected targets stale, then replay associations within a bounded cache after pose correction.
-
 ![Recovery and exposed-candidate cost](results/reference/homepage-media/recovery-cost.png)
 
 room1, immediate correction at 30 cm: fixed-history recovery **11.1%**, oracle **66.7%**, post-hoc support-1 **100%**; candidates **8.3 / 25 / 117**, respectively. Three-seed means, partial AI labels, unequal caps. [Results](docs/DELAYED_RESULTS.md).
 
-room2 compares fixed history, threshold/visibility guards and full replay at equal caps; equal caps do not match memory. Simple controls matching oracle would weaken H1. [Protocol and decision rule](docs/IDENTITY_BUDGET.md). Map reconciliation and memory updates already exist in [Khronos](https://arxiv.org/html/2402.13817v2) and [DovSG](https://arxiv.org/html/2410.11989v2).
+Lowering the support gate removes the selected recovery deficit while exposing more candidates. Later observations also repair part of the loss. These results motivate an equal-cap test, not a claim of irreversible association loss.
+
+## 7. Minimum hypothesis test
+
+On room2, freeze the frontend and five AI-labelled instances. Give fixed history, threshold-1.0, visibility guards and oracle replay the same exact historical pose correction after observation eight.
+
+Compare support thresholds 1/2/3 at candidate caps 25/50/100/unlimited. Report recovery, query hits, duplicates/mixes and correction cost. Equal caps do not match memory.
+
+At matched RMS and support, consider a prototype only if oracle gains ≥10 percentage points over every simple control at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Matching simple controls weakens H1. [Frozen protocol and decision rule](docs/IDENTITY_BUDGET.md).
+
+All 28 mapping cells ran; independent analysis remains pending. AI-only labels cannot confirm H1.
 
 ## Branches
 
