@@ -87,6 +87,17 @@ In progress
 
 Values below come from the papers linked by the original repositories and our recorded author-code runs. Each table concerns one method; no cross-method ranking is implied.
 
+**Shared metrics.** DUFOMap and BeautyMap use the same SA/DA definitions. $S,D$ count ground-truth static/dynamic points; $S_k,D_r$ count correctly kept static and removed dynamic points. AA (DUFOMap) is the geometric mean; HA (BeautyMap) is the harmonic mean. [DUFOMap definition](https://arxiv.org/html/2403.01449v1#S4.SS2) · [BeautyMap definition](https://arxiv.org/html/2405.07283v1#S4).
+
+$$
+\begin{aligned}
+\mathrm{SA} &= 100\frac{S_k}{S}, &
+\mathrm{DA} &= 100\frac{D_r}{D},\\
+\mathrm{AA} &= \sqrt{\mathrm{SA}\,\mathrm{DA}}, &
+\mathrm{HA} &= \frac{2\,\mathrm{SA}\,\mathrm{DA}}{\mathrm{SA}+\mathrm{DA}}.
+\end{aligned}
+$$
+
 ### DUFOMap
 
 KITTI-00, 141 released scans; full setting: voxel 0.1 m, d_s=0.2 m, d_p=1. [Original repository](https://github.com/KTH-RPL/dufomap/tree/9e239ddd5995136e14f5212f33382a6ebc59e518) · [Paper Table IV](https://arxiv.org/html/2403.01449v1#S5.T4) · [Our results](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md).
@@ -96,14 +107,6 @@ KITTI-00, 141 released scans; full setting: voxel 0.1 m, d_s=0.2 m, d_p=1. [Orig
 | SA | 97.96 | 97.9635 |
 | DA | 98.72 | 98.7196 |
 | AA | 98.34 | 98.3408 |
-
-Let $S,D$ count ground-truth static/dynamic points, and $S_k,D_r$ count correctly kept static and removed dynamic points. [Metric definitions](https://arxiv.org/html/2403.01449v1#S4.SS2).
-
-$$
-\mathrm{SA}=100\frac{S_k}{S},\qquad
-\mathrm{DA}=100\frac{D_r}{D},\qquad
-\mathrm{AA}=\sqrt{\mathrm{SA}\,\mathrm{DA}}.
-$$
 
 All three full-setting values match the paper at two decimals. Across all five Table IV settings, all 15 accuracy entries match; runtime and online experiments are outside this comparison.
 
@@ -116,12 +119,6 @@ Historical KITTI-02, frames 860–950, 91 scans; XY=1 m, Z=0.5 m, range=40 m. [O
 | SA | 83.40 | 83.3978 |
 | DA | 82.41 | 82.4092 |
 | HA | 82.90 | 82.9006 |
-
-SA and DA use the same point-count definitions above; HA is their harmonic mean. [Paper definition](https://arxiv.org/html/2405.07283v1#S4).
-
-$$
-\mathrm{HA}=\frac{2\,\mathrm{SA}\,\mathrm{DA}}{\mathrm{SA}+\mathrm{DA}}.
-$$
 
 All three values match at two decimals. All nine accuracy entries across XY=0.5/1/2 m match. This uses historical preprocessing/GT and the author's HA scorer; the exact paper method commit remains unidentified. Other sequences and runtime are outside this comparison.
 

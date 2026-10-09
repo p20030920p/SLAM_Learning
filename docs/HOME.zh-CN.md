@@ -87,6 +87,17 @@
 
 以下数值取自作者源库链接的论文及我们保存的作者代码运行结果。每张表仅对照同一种方法，不作跨方法排名。
 
+**共用指标。** DUFOMap 和 BeautyMap 的 SA、DA 定义相同。$S,D$ 为真值中的静态／动态点数；$S_k,D_r$ 为正确保留的静态点数／正确剔除的动态点数。AA（DUFOMap）为几何平均，HA（BeautyMap）为调和平均。[DUFOMap 定义](https://arxiv.org/html/2403.01449v1#S4.SS2) · [BeautyMap 定义](https://arxiv.org/html/2405.07283v1#S4)。
+
+$$
+\begin{aligned}
+\mathrm{SA} &= 100\frac{S_k}{S}, &
+\mathrm{DA} &= 100\frac{D_r}{D},\\
+\mathrm{AA} &= \sqrt{\mathrm{SA}\,\mathrm{DA}}, &
+\mathrm{HA} &= \frac{2\,\mathrm{SA}\,\mathrm{DA}}{\mathrm{SA}+\mathrm{DA}}.
+\end{aligned}
+$$
+
 ### DUFOMap
 
 KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_p=1。[作者源库](https://github.com/KTH-RPL/dufomap/tree/9e239ddd5995136e14f5212f33382a6ebc59e518) · [论文表 IV](https://arxiv.org/html/2403.01449v1#S5.T4) · [我们的结果](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.zh-CN.md)。
@@ -96,14 +107,6 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | SA | 97.96 | 97.9635 |
 | DA | 98.72 | 98.7196 |
 | AA | 98.34 | 98.3408 |
-
-$S,D$ 为真值中的静态／动态点数，$S_k,D_r$ 为正确保留的静态点数／正确剔除的动态点数。[指标定义](https://arxiv.org/html/2403.01449v1#S4.SS2)。
-
-$$
-\mathrm{SA}=100\frac{S_k}{S},\qquad
-\mathrm{DA}=100\frac{D_r}{D},\qquad
-\mathrm{AA}=\sqrt{\mathrm{SA}\,\mathrm{DA}}.
-$$
 
 完整设置的三项数值保留两位小数后均与论文一致。表 IV 五组设置共 15 项准确率均匹配；本表不包含运行时间和在线实验。
 
@@ -116,12 +119,6 @@ $$
 | SA | 83.40 | 83.3978 |
 | DA | 82.41 | 82.4092 |
 | HA | 82.90 | 82.9006 |
-
-SA、DA 沿用上面的点数定义；HA 为二者的调和平均。[论文定义](https://arxiv.org/html/2405.07283v1#S4)。
-
-$$
-\mathrm{HA}=\frac{2\,\mathrm{SA}\,\mathrm{DA}}{\mathrm{SA}+\mathrm{DA}}.
-$$
 
 三项数值保留两位小数后均一致。XY=0.5／1／2 m 的九项准确率全部匹配。使用历史预处理／GT 与作者 HA 评分器；论文当时的精确方法提交尚未确定。其他序列及运行时间不在本表范围内。
 
