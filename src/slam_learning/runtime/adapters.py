@@ -97,7 +97,7 @@ def beautymap_run(sequence: Path, output: Path, upstream: Path, parameters: dict
 
 
 def worker(root: Path, method: str, output_dir: Path, frames: int) -> None:
-    specification = json.loads((root / "configs/methods.json").read_text(encoding="utf-8"))[method]
+    specification = json.loads((root / "src/configs/methods.json").read_text(encoding="utf-8"))[method]
     sequence = root / ".cache/datasets/00"
     output = output_dir / "cleaned.pcd"
     if method == "dufomap":

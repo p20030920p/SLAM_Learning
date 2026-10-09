@@ -20,7 +20,7 @@
 
 ## 对象标注与测量
 
-在原始帧 0、150 上标柜子、灯罩及两个圆凳，边界腐蚀及抽样后参考表面分别为 3,372／2,032／1,914／2,092 点。它们是 **AI 辅助、经视觉检查但未经人工独立审核的部分表面标注**，不是 Replica 官方语义真值。[坐标文件](../../configs/annotations/room0/targets.json) 和叠加图可检查；预测不定义真值，也不参与其构造。
+在原始帧 0、150 上标柜子、灯罩及两个圆凳，边界腐蚀及抽样后参考表面分别为 3,372／2,032／1,914／2,092 点。它们是 **AI 辅助、经视觉检查但未经人工独立审核的部分表面标注**，不是 Replica 官方语义真值。[坐标文件](../../src/configs/annotations/room0/targets.json) 和叠加图可检查；预测不定义真值，也不参与其构造。
 
 语义恢复要求参考覆盖至少 20%、可见投影精度至少 50%，距离容差 10 cm。三个类别查询为 cabinet、ottoman、floor lamp，任一已标圆凳都可满足 ottoman。小规模参考未命中的结果，可能仍是其他位置的有效未标实例。因此这里测受限目标诊断，不能称开放世界精度、完整物体 IoU 或导航成功率。
 
@@ -107,13 +107,13 @@ ConceptGraphs 关联阈值从 1.2 降到 1.0，改善了若干目标结果。30 
 
 ```bash
 # Run native semantic baselines first; use complete local run folders.
-.venv/bin/python scripts/experiments/run_paired_suite.py \
+src/.venv/bin/python src/scripts/experiments/run_paired_suite.py \
   --conceptgraphs-source results/runs/CG_NATIVE_ID \
   --hovsg-source results/runs/HOV_NATIVE_ID \
   --output results/runs/paired-new
-.venv/bin/python scripts/experiments/run_paired_controls.py results/runs/paired-new \
+src/.venv/bin/python src/scripts/experiments/run_paired_controls.py results/runs/paired-new \
   --output results/runs/controls-new
-.venv/bin/python scripts/experiments/analyze_paired.py results/runs/paired-new \
+src/.venv/bin/python src/scripts/experiments/analyze_paired.py results/runs/paired-new \
   --controls results/runs/controls-new --output results/runs/analysis-new
 ```
 

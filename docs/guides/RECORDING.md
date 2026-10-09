@@ -32,7 +32,7 @@ The homepage now uses [native-size GIFs](../../results/reference/media-previews-
 Regenerate with existing `ffmpeg` and `ffprobe`; add `--wsl Ubuntu-22.04` on Windows. Sources are hash-checked and an existing output directory is rejected.
 
 ```bash
-uv run python scripts/media/export_media_previews.py \
+uv run --project src python src/scripts/media/export_media_previews.py \
   --author-video /path/to/conceptgraphs-room0-original-window.mp4 \
   --output results/runs/my-previews
 ```

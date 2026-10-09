@@ -6,7 +6,7 @@
 
 ## 冻结与独立参考
 
-[机器可读设计](../../configs/delayed_pose.json) 已在下载本次新 Replica `room1` 子集前提交。建图使用源帧 0,25,...375，参考视角 12,137,262,387 不进入建图或前端提取。实例多边形与部分可见表面来自原始 RGB-D，预测掩码不定义真值。标注身份、排除项、查询及哈希必须在查看 SAM／CLIP 或地图结果之前封存。AI 辅助多边形仍需独立人工复核；复核之前，目标结论保持暂定。
+[机器可读设计](../../src/configs/delayed_pose.json) 已在下载本次新 Replica `room1` 子集前提交。建图使用源帧 0,25,...375，参考视角 12,137,262,387 不进入建图或前端提取。实例多边形与部分可见表面来自原始 RGB-D，预测掩码不定义真值。标注身份、排除项、查询及哈希必须在查看 SAM／CLIP 或地图结果之前封存。AI 辅助多边形仍需独立人工复核；复核之前，目标结论保持暂定。
 
 数据采用 NICE-SLAM 发布的渲染 Replica，标定及 camera-to-world 位姿遵循固定版本的 ConceptGraphs loader。RGB-D 文件校验 ZIP CRC，并记录 SHA-256。源清单和独立标注冻结记录绑定输入。新场景提供证据分离，不等于多个独立场景的确认；已有 `room0` 结果参与了全部设计选择。
 
@@ -46,23 +46,23 @@
 study_dir="$PWD/results/runs/delayed-local-v2"
 native_run="$PWD/results/runs/conceptgraphs-YOUR_RUN_ID"
 weights="$PWD/.cache/semantic-weights"
-.venv-semantic/bin/python scripts/experiments/fetch_delayed_scene.py --protocol configs/delayed_pose.json --output "$study_dir/data"
-.venv-semantic/bin/python scripts/experiments/seal_delayed_annotations.py --protocol configs/delayed_pose.json --annotations configs/annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation"
+.venv-semantic/bin/python src/scripts/experiments/fetch_delayed_scene.py --protocol src/configs/delayed_pose.json --output "$study_dir/data"
+.venv-semantic/bin/python src/scripts/experiments/seal_delayed_annotations.py --protocol src/configs/delayed_pose.json --annotations src/configs/annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation"
 ```
 
 对照原始 RGB-D 检查四张标注叠图后再封存。复跑不变文件可使用已发布多边形；人工审核后若修改标注，须另建标注／协议版本并保留旧版。检查完成后：
 
 ```bash
-.venv-semantic/bin/python scripts/experiments/seal_delayed_annotations.py --protocol configs/delayed_pose.json --annotations configs/annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation" --seal
-.venv-semantic/bin/python scripts/experiments/prepare_delayed_frontend.py --protocol configs/delayed_pose.json --annotations configs/annotations/room1/targets.json --freeze "$study_dir/annotation/freeze.json" --data "$study_dir/data" --native-source "$native_run" --weights "$weights" --output "$study_dir/frontend"
-.venv-semantic/bin/python scripts/experiments/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/primary"
-.venv/bin/python scripts/experiments/analyze_delayed_correction.py "$study_dir/primary" --annotations-review "$study_dir/annotation" --frontend "$study_dir/frontend" --output "$study_dir/primary-export"
-.venv/bin/python scripts/evidence/verify_delayed_evidence.py --record "$study_dir/primary-export/record.json" --raw-suite "$study_dir/primary"
-.venv-semantic/bin/python scripts/experiments/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/support-control" --support-control-from "$study_dir/primary"
-.venv/bin/python scripts/experiments/analyze_delayed_support.py "$study_dir/support-control" --primary "$study_dir/primary-export" --output "$study_dir/support-export"
-.venv/bin/python scripts/evidence/verify_delayed_support.py --record "$study_dir/support-export/record.json" --primary "$study_dir/primary-export" --raw-followup "$study_dir/support-control"
+.venv-semantic/bin/python src/scripts/experiments/seal_delayed_annotations.py --protocol src/configs/delayed_pose.json --annotations src/configs/annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation" --seal
+.venv-semantic/bin/python src/scripts/experiments/prepare_delayed_frontend.py --protocol src/configs/delayed_pose.json --annotations src/configs/annotations/room1/targets.json --freeze "$study_dir/annotation/freeze.json" --data "$study_dir/data" --native-source "$native_run" --weights "$weights" --output "$study_dir/frontend"
+.venv-semantic/bin/python src/scripts/experiments/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/primary"
+src/.venv/bin/python src/scripts/experiments/analyze_delayed_correction.py "$study_dir/primary" --annotations-review "$study_dir/annotation" --frontend "$study_dir/frontend" --output "$study_dir/primary-export"
+src/.venv/bin/python src/scripts/evidence/verify_delayed_evidence.py --record "$study_dir/primary-export/record.json" --raw-suite "$study_dir/primary"
+.venv-semantic/bin/python src/scripts/experiments/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/support-control" --support-control-from "$study_dir/primary"
+src/.venv/bin/python src/scripts/experiments/analyze_delayed_support.py "$study_dir/support-control" --primary "$study_dir/primary-export" --output "$study_dir/support-export"
+src/.venv/bin/python src/scripts/evidence/verify_delayed_support.py --record "$study_dir/support-export/record.json" --primary "$study_dir/primary-export" --raw-followup "$study_dir/support-control"
 ```
 
-CPU 命令使用另行安装的项目环境。用 `scripts/media/record_session.py` 包装原生命令可留存完整实时终端录像；本次实际命令及录制元数据已在[新实验](DELAYED_RESULTS.zh-CN.md)留档。前端提取与建图是两个录制阶段。脚本顺序执行，不修改旧实验输出。
+CPU 命令使用另行安装的项目环境。用 `src/scripts/media/record_session.py` 包装原生命令可留存完整实时终端录像；本次实际命令及录制元数据已在[新实验](DELAYED_RESULTS.zh-CN.md)留档。前端提取与建图是两个录制阶段。脚本顺序执行，不修改旧实验输出。
 
 来源：[NICE-SLAM 数据准备](https://github.com/cvg/nice-slam#replica-1)、[固定 ConceptGraphs batch mapper](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/slam/cfslam_pipeline_batch.py)。

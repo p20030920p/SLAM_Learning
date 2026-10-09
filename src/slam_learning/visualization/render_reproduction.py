@@ -61,7 +61,7 @@ def render_reproduction(root: Path, cross_record: Path) -> Path:
             cloud = read_pcd(cross_record.parent / method / "eval/cleaned_exportGT.pcd")
             check_point_order(gt, cloud)
             predictions[method] = np.asarray(cloud.records["intensity"])
-        config_path = root / "configs/rendering.json"
+        config_path = root / "src/configs/rendering.json"
         config = json.loads(config_path.read_text(encoding="utf-8"))
         palette = config["palette"]
         colors = {"static": palette["static"], "true_positive": palette["correct_dynamic_removal"],

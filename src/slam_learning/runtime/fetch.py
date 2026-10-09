@@ -25,7 +25,7 @@ def safe_extract(archive: Path, destination: Path) -> None:
 
 def fetch(root: Path, direct: bool = False) -> None:
     cache = root / ".cache"
-    config = json.loads((root / "configs/dataset.json").read_text(encoding="utf-8"))
+    config = json.loads((root / "src/configs/dataset.json").read_text(encoding="utf-8"))
     archive = cache / "downloads" / config["filename"]
     archive.parent.mkdir(parents=True, exist_ok=True)
     if not archive.exists():
@@ -64,7 +64,7 @@ def fetch(root: Path, direct: bool = False) -> None:
             "downloaded_at": utc_now(), "source": config, "archive_sha256": digest(archive),
             "files": {p.relative_to(target / "00").as_posix(): digest(p) for p in files},
         })
-    sources = json.loads((root / "configs/upstreams.json").read_text(encoding="utf-8"))
+    sources = json.loads((root / "src/configs/upstreams.json").read_text(encoding="utf-8"))
     for name, spec in sources.items():
         checkout = cache / "upstream" / name
         git = ["git", "-c", "http.proxy=", "-c", "https.proxy="] if direct else ["git"]

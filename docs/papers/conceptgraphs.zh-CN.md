@@ -13,8 +13,8 @@
 [ConceptGraphs（ICRA 2024）](https://arxiv.org/html/2309.16650v1)把二维分割及特征提升至三维，按几何和语义相似度匹配，再增量融合对象表示。论文已展示定位及动态更新，不能笼统描述为只支持静态世界。
 
 ```bash
-bash scripts/setup/setup_semantic.sh
-.venv-semantic/bin/python scripts/methods/run_conceptgraphs.py
+bash src/scripts/setup/setup_semantic.sh
+.venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py
 ```
 
 独立 CUDA 环境固定 PyTorch 2.0.1+cu118、PyTorch3D 0.7.4。数据为 NICE-SLAM Replica 归档的源帧 0,5,...195。范围下载清单记录 CRC 和解压文件 SHA-256，不声称完整归档校验。加载前校验 SAM／CLIP 完整权重哈希。

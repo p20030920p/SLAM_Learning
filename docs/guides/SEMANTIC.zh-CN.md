@@ -13,11 +13,11 @@
 在 `~/projects/SLAM_Learning` 中完成 [Linux 环境](REPRODUCE.zh-CN.md)后：
 
 ```bash
-bash scripts/setup/setup_semantic.sh
-.venv-semantic/bin/python scripts/methods/run_conceptgraphs.py
+bash src/scripts/setup/setup_semantic.sh
+.venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py
 ```
 
-CPU 的 `uv.lock` 环境与语义环境分开。[语义依赖](../../configs/environments/semantic/requirements.txt)固定已安装发行版，[semantic.json](../../configs/semantic.json)固定作者提交、权重、PyTorch3D 二进制和参数。实测 Python 3.10.12、PyTorch 2.0.1+cu118、PyTorch3D 0.7.4。脚本校验作者推荐的 Linux 二进制 SHA-256，只安装到项目语义环境，不要求系统 CUDA 工具链。这套安装步骤已实际执行。
+CPU 的 `src/uv.lock` 环境与语义环境分开。[语义依赖](../../src/configs/environments/semantic/requirements.txt)固定已安装发行版，[semantic.json](../../src/configs/semantic.json)固定作者提交、权重、PyTorch3D 二进制和参数。实测 Python 3.10.12、PyTorch 2.0.1+cu118、PyTorch3D 0.7.4。脚本校验作者推荐的 Linux 二进制 SHA-256，只安装到项目语义环境，不要求系统 CUDA 工具链。这套安装步骤已实际执行。
 
 ## 数据与位姿
 
@@ -43,7 +43,7 @@ Meta 下载停滞后，SAM ViT-H 从固定修订的 Hugging Face 镜像获取；
 
 ## HOV-SG：第四篇建图核心
 
-`bash scripts/setup/setup_hovsg.sh` 准备独立 `.venv-hovsg`，再运行 `.venv-hovsg/bin/python scripts/methods/run_hovsg.py`。它共享已经校验的 Replica 子集／权重，安装固定的 [HOV-SG 依赖](../../configs/environments/hovsg/requirements.txt)，无需 PyTorch3D。
+`bash src/scripts/setup/setup_hovsg.sh` 准备独立 `.venv-hovsg`，再运行 `.venv-hovsg/bin/python src/scripts/methods/run_hovsg.py`。它共享已经校验的 Replica 子集／权重，安装固定的 [HOV-SG 依赖](../../src/configs/environments/hovsg/requirements.txt)，无需 PyTorch3D。
 
 原安装快照含 HF Hub 2.x／OpenAI 1.3.7 依赖冲突。安装配方改用 HF Hub 0.23.5 加载本地权重，移除未用且不兼容的 httpx2，并运行 `uv pip check`。历史运行环境记录保持原样。
 

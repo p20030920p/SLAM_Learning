@@ -15,4 +15,4 @@ These GIFs, cards and PDFs describe earlier supplied-pose subsets. Later origina
 
 PDFs in [docs/pdf](../pdf) retain their recorded generation snapshots, including earlier study/hardware text; they are not the current submission narrative. Read [STUDY](../research/STUDY.md) and [PLAN](../research/PLAN.md) for the current question and decision. Failures and resource adaptations remain recorded.
 
-Follow [RECORDING](../guides/RECORDING.md) to regenerate media/reports from verified local outputs. [paper_suite.json](../../configs/paper_suite.json) binds this selection to native records, commands and language editions.
+Follow [RECORDING](../guides/RECORDING.md) to regenerate media/reports from verified local outputs. [paper_suite.json](../../src/configs/paper_suite.json) binds this selection to native records, commands and language editions.

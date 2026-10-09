@@ -30,7 +30,7 @@
 
 1. 完成 [PLAN](../research/PLAN.zh-CN.md) 的对应阶段，保存运行／帧号与数据清单。本机已有两种最终离线清理图，但不能把它们演成在线逐帧决策。
 2. 使用**声明的评价器**生成点结果：地图最近邻仍用 5 cm；直接标签用精确身份。真值进评价器／渲染器，不进算法。不同 API 对应独立命名的图和表。
-3. 在 [rendering.json](../../configs/rendering.json) 中一次固定空间范围、视角、帧列表和显示采样；各方法／真值共用。抽稀只用于显示，数值按完整声明范围计算。选定 teaser 的帧号不能证明完整 KITTI 连续采样。
+3. 在 [rendering.json](../../src/configs/rendering.json) 中一次固定空间范围、视角、帧列表和显示采样；各方法／真值共用。抽稀只用于显示，数值按完整声明范围计算。选定 teaser 的帧号不能证明完整 KITTI 连续采样。
 4. 渲染原始／移除／保留面板，写运行号和每个数值的**范围**；用实际哈希与生成命令填写 [media_record.template.json](media_record.template.json)。蓝色漏检和红色误删必须可见。
 5. 发布 PNG／SVG，或紧凑 GIF 预览加 MP4 链接。GitHub 首页使用 GIF／PNG，不依赖 HTML video 元素。8 MiB GIF 是我们的展示目标，不是平台限制。
 
@@ -41,8 +41,8 @@
 把产物放到约定路径，更新 [slots.json](slots.json) 的来源与状态，再将首页注释改成真实图片。两种语言共用资产、分别翻译图注；需要中文画内标签时，从同一输入／配置生成，不做两套独立选图。
 
 ```bash
-uv run python scripts/evidence/check_docs.py
-uv run python scripts/evidence/verify_evidence.py
+uv run --project src python src/scripts/evidence/check_docs.py
+uv run --project src python src/scripts/evidence/verify_evidence.py
 ```
 
 不在图片编辑器里改掩码或成绩，失败案例也要公开。原扫描、模型权重、数据文件不放本目录。PNG／SVG 用清楚标签和不透明背景，兼容 GitHub 明暗主题。

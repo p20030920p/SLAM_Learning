@@ -14,11 +14,11 @@ def find_root(value: str | None) -> Path:
         root = Path(value).resolve()
     else:
         root = Path.cwd().resolve()
-        while not (root / "configs/methods.json").is_file():
+        while not (root / "src/configs/methods.json").is_file():
             if root == root.parent:
                 raise ValueError("Run from the repository checkout or pass --root")
             root = root.parent
-    if not (root / "configs/methods.json").is_file():
+    if not (root / "src/configs/methods.json").is_file():
         raise ValueError(f"No experiment configuration at {root}")
     return root
 

@@ -41,7 +41,7 @@ def reference_targets(root: Path):
     """Reference is visible RGB-D geometry, never predicted SAM masks."""
     from PIL import Image
 
-    annotation = json.loads((root / "configs/annotations/room0/targets.json").read_text())
+    annotation = json.loads((root / "src/configs/annotations/room0/targets.json").read_text())
     data = root / ".cache/semantic-data/Replica/room0"
     poses = np.loadtxt(data / "traj.full.txt").reshape(-1, 4, 4)
     # Pinned rendered Replica calibration, matching the existing two adapters.

@@ -83,7 +83,7 @@ def plot(summary: list[dict], output: Path) -> None:
 
 
 def run_synthetic(root: Path) -> Path:
-    config_path = root / "configs/synthetic.json"
+    config_path = root / "src/configs/synthetic.json"
     config = json.loads(config_path.read_text(encoding="utf-8"))
     output = root / "results/runs" / f"mechanism-{uuid.uuid4().hex[:12]}"
     output.mkdir(parents=True)

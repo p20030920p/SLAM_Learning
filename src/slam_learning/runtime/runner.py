@@ -33,7 +33,7 @@ def validate_inputs(root: Path, method: str) -> dict:
     if not provenance.is_file():
         raise MissingRequirement("Verified dataset missing. Run: slam-study fetch")
     metadata = json.loads(provenance.read_text(encoding="utf-8"))
-    spec = json.loads((root / "configs/dataset.json").read_text(encoding="utf-8"))
+    spec = json.loads((root / "src/configs/dataset.json").read_text(encoding="utf-8"))
     if metadata["source"] != spec:
         raise ValueError("Dataset manifest differs from current configuration; refetch required")
     files = sorted(sequence.rglob("*.pcd"))
@@ -46,7 +46,7 @@ def validate_inputs(root: Path, method: str) -> dict:
         raise ValueError("Wrong frame count")
     if len(read_pcd(sequence / "gt_cloud.pcd").records) != spec["gt_points"]:
         raise ValueError("Wrong GT point count")
-    upstreams = json.loads((root / "configs/upstreams.json").read_text(encoding="utf-8"))
+    upstreams = json.loads((root / "src/configs/upstreams.json").read_text(encoding="utf-8"))
     states = {}
     for name in {"dynamicmap", method}:
         checkout = root / ".cache/upstream" / name
@@ -71,7 +71,7 @@ def validate_inputs(root: Path, method: str) -> dict:
 def run_method(root: Path, method: str, frames: int = 0, timeout: float = 3600) -> Path:
     if frames < 0 or timeout <= 0:
         raise ValueError("Frames must be nonnegative and timeout positive")
-    specifications = json.loads((root / "configs/methods.json").read_text(encoding="utf-8"))
+    specifications = json.loads((root / "src/configs/methods.json").read_text(encoding="utf-8"))
     if method not in specifications:
         raise ValueError(f"Unknown method {method}")
     spec = specifications[method]
@@ -81,7 +81,7 @@ def run_method(root: Path, method: str, frames: int = 0, timeout: float = 3600) 
               "started_at": utc_now(), "scope": "smoke" if frames else "full_teaser",
               "requested_frames": frames, "specification": spec, "environment": environment(),
               "repository": git_state(root), "source_sha256": source_hashes(root),
-              "config_sha256": {p.name: digest(p) for p in sorted((root / "configs").glob("*.json"))},
+              "config_sha256": {p.name: digest(p) for p in sorted((root / "src/configs").glob("*.json"))},
               "artifacts": {}, "command": [], "exit_code": None}
     write_json(output / "record.json", record)
     try:

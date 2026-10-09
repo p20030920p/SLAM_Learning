@@ -20,7 +20,7 @@ The fixed first pose creates an initial jump before the sorted tail. For seed 10
 
 ## Target annotation and measurement
 
-Four raw-image polygons cover a cabinet, lamp shade and two ottomans in source frames 0 and 150. After boundary erosion and subsampling, their reference surfaces contain 3,372 / 2,032 / 1,914 / 2,092 points. They are **AI-assisted, visually inspected, partial-surface annotations, without independent human review**, not official Replica semantics. [Annotation coordinates](../../configs/annotations/room0/targets.json) and review overlays remain inspectable. Predictions never define the reference or enter its construction.
+Four raw-image polygons cover a cabinet, lamp shade and two ottomans in source frames 0 and 150. After boundary erosion and subsampling, their reference surfaces contain 3,372 / 2,032 / 1,914 / 2,092 points. They are **AI-assisted, visually inspected, partial-surface annotations, without independent human review**, not official Replica semantics. [Annotation coordinates](../../src/configs/annotations/room0/targets.json) and review overlays remain inspectable. Predictions never define the reference or enter its construction.
 
 Semantic recovery requires at least 20% reference coverage and 50% visible projected precision at 10 cm tolerance. The three category queries are cabinet, ottoman and floor lamp; either labelled ottoman can satisfy its query. A miss against this small reference may still be a valid unlabelled instance elsewhere. These are restricted target diagnostics, not open-world precision, full-object IoU or navigation success.
 
@@ -107,13 +107,13 @@ Reject an H1 gain if a simple guard matches the frontier, if gains vanish after 
 
 ```bash
 # First run both native semantic baselines; use their full local output directories.
-.venv/bin/python scripts/experiments/run_paired_suite.py \
+src/.venv/bin/python src/scripts/experiments/run_paired_suite.py \
   --conceptgraphs-source results/runs/CG_NATIVE_ID \
   --hovsg-source results/runs/HOV_NATIVE_ID \
   --output results/runs/paired-new
-.venv/bin/python scripts/experiments/run_paired_controls.py results/runs/paired-new \
+src/.venv/bin/python src/scripts/experiments/run_paired_controls.py results/runs/paired-new \
   --output results/runs/controls-new
-.venv/bin/python scripts/experiments/analyze_paired.py results/runs/paired-new \
+src/.venv/bin/python src/scripts/experiments/analyze_paired.py results/runs/paired-new \
   --controls results/runs/controls-new --output results/runs/analysis-new
 ```
 

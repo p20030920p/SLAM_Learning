@@ -13,9 +13,9 @@ English | [中文](dufomap.zh-CN.md) | [PDF](../pdf/dufomap.en.pdf)
 [DUFOMap (2024)](https://arxiv.org/html/2403.01449v1) accumulates occupied and observed void space. A point is classified using whether its location was observed empty. Pose/range tolerances protect against registration and measurement errors. The author implementation is DUFOMap 1.1.1; exact dependencies and upstream revisions are pinned in the repository.
 
 ```bash
-bash scripts/setup/setup_linux.sh
-uv run slam-study fetch
-uv run slam-study run --method dufomap
+bash src/scripts/setup/setup_linux.sh
+uv run --project src slam-study fetch
+uv run --project src slam-study run --method dufomap
 ```
 
 The full archive checksum is verified. GT annotations enter evaluation and coloring only. A 10-frame smoke run deliberately produces no paper score. Windows, fresh Ubuntu CI and local WSL runs yield identical full-teaser confusion counts.

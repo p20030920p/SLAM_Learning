@@ -18,7 +18,7 @@ from slam_learning.runtime.runner import execute, validate_inputs
 
 def worker(root: Path, output: Path):
     from dufomap import dufomap
-    config = json.loads((root / "configs/methods.json").read_text())["dufomap"]["parameters"]
+    config = json.loads((root / "src/configs/methods.json").read_text())["dufomap"]["parameters"]
     mapper = dufomap(config["resolution"], config["d_s"], config["d_p"], num_threads=config["threads"])
     sequence = root / ".cache/datasets/00"
     gt = read_pcd(sequence / "gt_cloud.pcd")

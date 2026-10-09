@@ -13,9 +13,9 @@ English | [中文](beautymap.zh-CN.md) | [PDF](../pdf/beautymap.en.pdf)
 [BeautyMap (2024)](https://arxiv.org/html/2405.07283v1) uses global binary occupancy matrices, ground adaptation and refinement/restoration to clean a point map. Restoration protects static geometry hidden from some viewpoints. It is not simply a rule that absent means dynamic.
 
 ```bash
-bash scripts/setup/setup_linux.sh
-uv run slam-study fetch
-uv run slam-study run --method beautymap
+bash src/scripts/setup/setup_linux.sh
+uv run --project src slam-study fetch
+uv run --project src slam-study run --method beautymap
 ```
 
 The pinned author source, executable compatibility patch and dataset hash are recorded. The Windows integer-overflow failure is preserved; explicit 64-bit masks fix compatibility. No threshold is tuned to match the paper. GT intensity is physically stripped from both scan and map inputs before the final runs; annotations remain available only to scoring.

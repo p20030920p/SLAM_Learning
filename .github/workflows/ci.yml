@@ -22,26 +22,26 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           version: '0.9.2'
-      - run: uv sync --frozen --python 3.10 --extra dev --extra audit
-      - run: uv run ruff check src tests scripts
-      - run: uv run --no-sync deptry src
-      - run: uv run --no-sync lint-imports --no-cache
-      - run: uv run --no-sync vulture
-      - run: uv run pytest -q
-      - run: uv run python scripts/evidence/verify_evidence.py
-      - run: uv run python scripts/evidence/verify_paired_evidence.py
-      - run: uv run python scripts/evidence/verify_delayed_evidence.py
-      - run: uv run python scripts/evidence/verify_delayed_support.py
-      - run: uv run python scripts/evidence/check_docs.py
+      - run: uv sync --project src --frozen --python 3.10 --extra dev --extra audit
+      - run: uv run --project src ruff check --config src/pyproject.toml src/slam_learning src/scripts src/tests
+      - run: uv run --project src --no-sync deptry src/slam_learning --config src/pyproject.toml
+      - run: uv run --project src --no-sync lint-imports --config src/pyproject.toml --no-cache
+      - run: uv run --project src --no-sync vulture --config src/pyproject.toml
+      - run: uv run --project src pytest -q src/tests
+      - run: uv run --project src python src/scripts/evidence/verify_evidence.py
+      - run: uv run --project src python src/scripts/evidence/verify_paired_evidence.py
+      - run: uv run --project src python src/scripts/evidence/verify_delayed_evidence.py
+      - run: uv run --project src python src/scripts/evidence/verify_delayed_support.py
+      - run: uv run --project src python src/scripts/evidence/check_docs.py
       - if: runner.os == 'Linux'
-        run: bash -n launch/reproduce.sh scripts/setup/setup_linux.sh scripts/run_reproduction.sh scripts/setup/setup_semantic.sh scripts/setup/setup_hovsg.sh
+        run: bash -n src/launch/reproduce.sh src/scripts/setup/setup_linux.sh src/scripts/run_reproduction.sh src/scripts/setup/setup_semantic.sh src/scripts/setup/setup_hovsg.sh
       - if: runner.os == 'Linux'
-        run: bash launch/reproduce.sh --help && bash scripts/run_reproduction.sh --help
+        run: bash src/launch/reproduce.sh --help && bash src/scripts/run_reproduction.sh --help
       - if: runner.os == 'Windows'
-        run: powershell -NoProfile -File launch/reproduce.ps1 -Help
-      - run: uv run slam-study run --experiment mechanism
-      - run: uv run slam-study run --experiment evidence-stress
-      - run: uv run slam-study report --runs results/runs --output results/ci-report.md
+        run: powershell -NoProfile -File src/launch/reproduce.ps1 -Help
+      - run: uv run --project src slam-study run --experiment mechanism
+      - run: uv run --project src slam-study run --experiment evidence-stress
+      - run: uv run --project src slam-study report --runs results/runs --output results/ci-report.md
       - uses: actions/upload-artifact@v4
         with:
           name: core-evidence-${{ matrix.os }}
@@ -56,12 +56,12 @@ jobs:
         with:
           version: '0.9.2'
       - run: sudo apt-get update && sudo apt-get install -y libgl1 libgomp1 libglib2.0-0
-      - run: uv sync --frozen --python 3.10 --extra methods --extra dev
-      - run: uv run slam-study fetch
-      - run: uv run slam-study run --method dufomap
-      - run: uv run slam-study run --method beautymap
-      - run: uv run slam-study run --experiment pose-stress
-      - run: uv run slam-study report --runs results/runs --output results/linux-report.md
+      - run: uv sync --project src --frozen --python 3.10 --extra methods --extra dev
+      - run: uv run --project src slam-study fetch
+      - run: uv run --project src slam-study run --method dufomap
+      - run: uv run --project src slam-study run --method beautymap
+      - run: uv run --project src slam-study run --experiment pose-stress
+      - run: uv run --project src slam-study report --runs results/runs --output results/linux-report.md
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -76,3 +76,10 @@ jobs:
             results/runs/**/*.csv
             results/runs/**/*.png
             results/linux-report.md
+  container:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --file src/docker/Dockerfile --tag slam-learning-ci .
+      - run: docker run --rm slam-learning-ci doctor

@@ -6,7 +6,7 @@ This is an exploratory extension on already inspected KITTI teaser and Replica r
 
 ## Frozen factors
 
-`configs/paired_pose.json` specifies 141 LiDAR scans and eight RGB-D observations at original indexes 0,25,...175. All four author cores get a zero-error control and 18 perturbations: translation RMS 3/10/30 cm, three seeds, two temporal orders. There are 76 primary cells. Only world-x translation changes; rotation is not tested.
+`src/configs/paired_pose.json` specifies 141 LiDAR scans and eight RGB-D observations at original indexes 0,25,...175. All four author cores get a zero-error control and 18 perturbations: translation RMS 3/10/30 cm, three seeds, two temporal orders. There are 76 primary cells. Only world-x translation changes; rotation is not tested.
 
 The first pose is fixed. Normal samples for later poses are centred and rescaled to the requested RMS over all frames. The correlated version sorts the same scalar samples in time. Every pair therefore has identical mean, RMS, extrema and marginal histogram. We report measured lag-one correlation. This is deliberate monotone-drift stress, including an initial jump; it is not a realistic stochastic deployment model. The shuffled samples are conditioned by centring and RMS normalization, so strict iid independence is not claimed.
 
@@ -14,7 +14,7 @@ Raw RGB/depth, masks, CLIP features, calibration and native mapping settings rem
 
 ## Objects and targets
 
-`configs/annotations/room0/targets.json` contains four visually labelled instances/parts: cabinet, lamp shade and two ottomans, using raw source frames 0 and 150. These are AI-assisted polygons inspected by Codex, not human-reviewed labels or official Replica semantic ground truth. Annotation overlays are reviewable. No model mask is used as ground truth, and annotations never enter a mapper.
+`src/configs/annotations/room0/targets.json` contains four visually labelled instances/parts: cabinet, lamp shade and two ottomans, using raw source frames 0 and 150. These are AI-assisted polygons inspected by Codex, not human-reviewed labels or official Replica semantic ground truth. Annotation overlays are reviewable. No model mask is used as ground truth, and annotations never enter a mapper.
 
 Provided rendered depth and camera-to-world poses backproject visible surface samples. A two-canvas-pixel boundary band is removed to reduce mixed-depth pixels. These are partial visible surfaces, not complete 3D objects or exact object centres. Each target has an independent visible-surface anchor.
 

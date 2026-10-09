@@ -49,4 +49,6 @@ def utc_now() -> str:
 
 
 def source_hashes(root: Path) -> dict:
-    return {p.relative_to(root).as_posix(): digest(p) for p in sorted((root / "src").rglob("*.py"))}
+    sources = (root / "src/slam_learning", root / "src/scripts")
+    return {p.relative_to(root).as_posix(): digest(p)
+            for p in sorted(path for source in sources for path in source.rglob("*.py"))}

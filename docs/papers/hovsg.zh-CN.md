@@ -13,8 +13,8 @@
 [HOV-SG（RSS 2024）](https://arxiv.org/html/2403.17846v2)把 SAM 分段、CLIP 特征投影至参考几何，合并多次观测、筛选稳健特征，再构造楼层／房间／对象层级。本次调用作者 Graph.create_feature_map()，包括原生几何合并及特征筛选，版本 d6e65a53c8be6faec3f01f00d1644d967f89e605。
 
 ```bash
-bash scripts/setup/setup_hovsg.sh
-.venv-hovsg/bin/python scripts/methods/run_hovsg.py
+bash src/scripts/setup/setup_hovsg.sh
+.venv-hovsg/bin/python src/scripts/methods/run_hovsg.py
 ```
 
 独立环境与 ConceptGraphs 共享经过校验的权重及 40 观测 Replica 子集。skip_frames=5 处理源索引 0,25,...175。RGB／深度缩放为 640×360，两个内参轴分别从固定的 1200×680 标定缩放。SAM 批量 36、CLIP 批量 4 属于资源适配，作者分割／合并阈值不变；未声称与原始分辨率掩码完全相同。

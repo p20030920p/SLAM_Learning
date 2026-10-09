@@ -32,7 +32,7 @@
 使用现有 `ffmpeg` 与 `ffprobe` 重新导出；Windows 添加 `--wsl Ubuntu-22.04`。脚本校验源视频哈希，拒绝覆盖已有输出目录。
 
 ```bash
-uv run python scripts/media/export_media_previews.py \
+uv run --project src python src/scripts/media/export_media_previews.py \
   --author-video /path/to/conceptgraphs-room0-original-window.mp4 \
   --output results/runs/my-previews
 ```

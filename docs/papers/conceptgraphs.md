@@ -13,8 +13,8 @@ English | [中文](conceptgraphs.zh-CN.md) | [PDF](../pdf/conceptgraphs.en.pdf)
 [ConceptGraphs (ICRA 2024)](https://arxiv.org/html/2309.16650v1) lifts 2D segments/features into 3D, matches them using geometric and semantic similarity, and incrementally fuses object representations. The paper also demonstrates localization and dynamic updates; it must not be described as universally static.
 
 ```bash
-bash scripts/setup/setup_semantic.sh
-.venv-semantic/bin/python scripts/methods/run_conceptgraphs.py
+bash src/scripts/setup/setup_semantic.sh
+.venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py
 ```
 
 The isolated CUDA environment pins PyTorch 2.0.1+cu118 and PyTorch3D 0.7.4. Dataset source frames are 0,5,...195 from the NICE-SLAM Replica archive. The range-download manifest records CRC and extracted SHA-256, not a whole-archive checksum. Full SAM/CLIP checkpoint hashes are verified.

@@ -30,7 +30,7 @@ This is the single media index. Selected homepage positions carry captions and c
 
 1. Complete the relevant stage in [PLAN](../research/PLAN.md), then save run/frame IDs and the dataset manifest. The two offline author maps already exist locally; their final map cannot be presented as an online per-frame decision.
 2. Produce point outcomes using the **declared evaluator**. For map NN use the same 5 cm rule; for segment labels use exact point identity. GT labels enter the evaluator/renderer, not the method. A different API needs a separately named figure and table.
-3. Fix world bounds, camera, frame list and display sample once in [rendering.json](../../configs/rendering.json). All methods and GT use them. Point thinning is for display only; metrics use the full declared evaluation population. Frame numbers from the selected teaser are not evidence of uninterrupted KITTI sampling.
+3. Fix world bounds, camera, frame list and display sample once in [rendering.json](../../src/configs/rendering.json). All methods and GT use them. Point thinning is for display only; metrics use the full declared evaluation population. Frame numbers from the selected teaser are not evidence of uninterrupted KITTI sampling.
 4. Render raw / removed / retained panels, add run IDs and the **scope** of any displayed number, and save [media_record.template.json](media_record.template.json) with actual hashes and generator command. Blue misses and red false removals must remain visible.
 5. Publish PNG/SVG or a compact GIF preview plus an MP4 link. GitHub homepages should use the GIF/PNG preview, not depend on an HTML video element. The suggested 8 MiB GIF budget is our presentation target, not a platform limit.
 
@@ -41,8 +41,8 @@ The map replay and API diagnostic have tested renderers; the remaining reserved 
 Place the generated file at the reserved path, update the source evidence and status in [slots.json](slots.json), and replace the corresponding homepage comment with a live image. Apply the same asset to both language editions; translate captions. If localized overlays are needed, generate them from the same input/config, not two independent selections.
 
 ```bash
-uv run python scripts/evidence/check_docs.py
-uv run python scripts/evidence/verify_evidence.py
+uv run --project src python src/scripts/evidence/check_docs.py
+uv run --project src python src/scripts/evidence/verify_evidence.py
 ```
 
 Do not retouch masks or change metric numbers in an editor. Publish failure cases too. Raw scans, model weights and dataset files stay outside this directory. PNG/SVG figures should have readable labels and a solid background for both GitHub themes.

@@ -13,11 +13,11 @@ This establishes an executable RGB-D segmentation, object association/fusion and
 In `~/projects/SLAM_Learning`, after [Linux setup](REPRODUCE.md):
 
 ```bash
-bash scripts/setup/setup_semantic.sh
-.venv-semantic/bin/python scripts/methods/run_conceptgraphs.py
+bash src/scripts/setup/setup_semantic.sh
+.venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py
 ```
 
-The CPU `uv.lock` environment stays separate. [Semantic requirements](../../configs/environments/semantic/requirements.txt) pin the installed distributions; [semantic.json](../../configs/semantic.json) pins author commits, checkpoints, the PyTorch3D binary and method settings. Tested Python is 3.10.12, PyTorch 2.0.1+cu118 and PyTorch3D 0.7.4. The script installs the author-recommended Linux binary with a SHA-256 check into this project's semantic environment, without requiring a system CUDA toolkit. Setup was executed, not merely drafted.
+The CPU `src/uv.lock` environment stays separate. [Semantic requirements](../../src/configs/environments/semantic/requirements.txt) pin the installed distributions; [semantic.json](../../src/configs/semantic.json) pins author commits, checkpoints, the PyTorch3D binary and method settings. Tested Python is 3.10.12, PyTorch 2.0.1+cu118 and PyTorch3D 0.7.4. The script installs the author-recommended Linux binary with a SHA-256 check into this project's semantic environment, without requiring a system CUDA toolkit. Setup was executed, not merely drafted.
 
 ## Data and poses
 
@@ -43,7 +43,7 @@ The paired extension adds four partial-surface targets, fixed-feature pose-error
 
 ## HOV-SG: fourth mapping core
 
-`bash scripts/setup/setup_hovsg.sh` prepares independent `.venv-hovsg`; then run `.venv-hovsg/bin/python scripts/methods/run_hovsg.py`. It shares verified Replica data/checkpoints, installs [pinned HOV-SG dependencies](../../configs/environments/hovsg/requirements.txt), and needs no PyTorch3D.
+`bash src/scripts/setup/setup_hovsg.sh` prepares independent `.venv-hovsg`; then run `.venv-hovsg/bin/python src/scripts/methods/run_hovsg.py`. It shares verified Replica data/checkpoints, installs [pinned HOV-SG dependencies](../../src/configs/environments/hovsg/requirements.txt), and needs no PyTorch3D.
 
 The original installed-distribution snapshot included an HF Hub 2.x / OpenAI 1.3.7 dependency conflict. The install recipe resolves this with HF Hub 0.23.5 for local-checkpoint loading, removes the unused incompatible httpx2 distribution, and runs `uv pip check`. Original run environments remain recorded unchanged.
 

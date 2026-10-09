@@ -5,38 +5,45 @@ English | [中文](REPRODUCE.zh-CN.md)
 CPU cores use Python 3.10 and locked project dependencies; CUDA cores have separate environments. Do not install the CPU lock into CUDA environments. [Paper cards](../papers/README.md) and [semantic scope](SEMANTIC.md) specify settings, inputs and adapters.
 
 ```bash
-uv sync --frozen --python 3.10 --extra methods --extra dev
-uv run slam-study fetch
-uv run slam-study run --method dufomap
-uv run slam-study run --method beautymap
+uv sync --project src --frozen --python 3.10 --extra methods --extra dev
+uv run --project src slam-study fetch
+uv run --project src slam-study run --method dufomap
+uv run --project src slam-study run --method beautymap
 ```
 
-On Linux/WSL, `bash scripts/setup/setup_linux.sh` prepares CPU native dependencies.
+On Linux/WSL, `bash src/scripts/setup/setup_linux.sh` prepares CPU native dependencies.
 
-After setup, `bash launch/reproduce.sh --smoke` runs both LiDAR methods on ten frames; Windows has `powershell -File launch/reproduce.ps1 -Smoke`. The older `scripts/run_reproduction.sh` entry remains compatible. [Directory roles and launch scope](STRUCTURE.md).
+After setup, `bash src/launch/reproduce.sh --smoke` runs both LiDAR methods on ten frames; Windows has `powershell -File src/launch/reproduce.ps1 -Smoke`. The older `src/scripts/run_reproduction.sh` entry remains compatible. [Directory roles and launch scope](STRUCTURE.md).
 
 Execute semantic methods sequentially:
 
 ```bash
-bash scripts/setup/setup_semantic.sh
-.venv-semantic/bin/python scripts/methods/run_conceptgraphs.py
-bash scripts/setup/setup_hovsg.sh
-.venv-hovsg/bin/python scripts/methods/run_hovsg.py
+bash src/scripts/setup/setup_semantic.sh
+.venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py
+bash src/scripts/setup/setup_hovsg.sh
+.venv-hovsg/bin/python src/scripts/methods/run_hovsg.py
 ```
 
 Each invocation creates a new run folder and prints record/log paths. LiDAR `--frames 10` is a smoke check without paper scores. Normal exit 0 means execution completed, not paper-table agreement; `--strict-paper` returns 2 on mismatch.
 
+The project manifest and lock live in `src/`. Run uv from the repository root with `--project src`. CPU/method container:
+
+```bash
+docker build --file src/docker/Dockerfile --tag slam-learning .
+docker run --rm slam-learning doctor
+```
+
 ## Evaluation and integrity
 
 ```bash
-uv run pytest -q
-uv run ruff check src tests scripts
-uv run python scripts/evidence/verify_evidence.py
-uv run python scripts/evidence/verify_paired_evidence.py
-uv run python scripts/evidence/verify_delayed_evidence.py
-uv run python scripts/evidence/verify_delayed_support.py
-uv run python scripts/evidence/check_docs.py
-uv run slam-study verify results/runs/RUN_ID/record.json --full
+uv run --project src pytest -q src/tests
+uv run --project src ruff check --config src/pyproject.toml src/slam_learning src/scripts src/tests
+uv run --project src python src/scripts/evidence/verify_evidence.py
+uv run --project src python src/scripts/evidence/verify_paired_evidence.py
+uv run --project src python src/scripts/evidence/verify_delayed_evidence.py
+uv run --project src python src/scripts/evidence/verify_delayed_support.py
+uv run --project src python src/scripts/evidence/check_docs.py
+uv run --project src slam-study verify results/runs/RUN_ID/record.json --full
 ```
 
 Replace `RUN_ID` with the actual folder. Portable `results/reference` exports lack full maps and cannot replace native caches. CI checks code, lightweight evidence and documentation, not all CUDA paper experiments.
@@ -53,20 +60,20 @@ Configs, source snapshots and run records pin data/weight checksums, author revi
 
 ```text
 src/slam_learning/   CLI → visualization → experiments → runtime → core
-launch/             PowerShell/Bash reproduction entry points
-scripts/            Preparation, analysis, viewer and export tools
-configs/            Frozen inputs, annotations and separate environment snapshots
+src/launch/             PowerShell/Bash reproduction entry points
+src/scripts/            Preparation, analysis, viewer and export tools
+src/configs/            Frozen inputs, annotations and separate environment snapshots
 results/reference/  Immutable evidence and executed source snapshots
 ```
 
 CPU checks only; no dataset download or GPU required:
 
 ```bash
-uv sync --frozen --python 3.10 --extra dev --extra audit
-uv run --no-sync deptry src
-uv run --no-sync lint-imports --no-cache
-uv run --no-sync vulture
-uv run --no-sync pytest -q
+uv sync --project src --frozen --python 3.10 --extra dev --extra audit
+uv run --project src --no-sync deptry src/slam_learning --config src/pyproject.toml
+uv run --project src --no-sync lint-imports --config src/pyproject.toml --no-cache
+uv run --project src --no-sync vulture --config src/pyproject.toml
+uv run --project src --no-sync pytest -q src/tests
 ```
 
 [deptry](https://deptry.com/usage/) checks packaged dependencies. Pillow is direct; the four DEP002 exceptions cover BeautyMap's subprocess imports (`fire`, `dztimer`, `tqdm`) and optional Open3D viewers. [Import Linter](https://import-linter.readthedocs.io/en/stable/contract_types/) enforces acyclic imports, layer direction and separation from CUDA/ROS.

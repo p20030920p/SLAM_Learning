@@ -22,7 +22,7 @@ from slam_learning.runtime.runner import MissingRequirement, validate_inputs
 def run_pose_stress(root: Path) -> Path:
     output = root / "results/runs" / f"pose-stress-{uuid.uuid4().hex[:12]}"
     output.mkdir(parents=True)
-    config_path = root / "configs/pose_stress.json"
+    config_path = root / "src/configs/pose_stress.json"
     config = json.loads(config_path.read_text(encoding="utf-8"))
     record = {"schema_version": 1, "kind": "real_data_pose_sensitivity", "status": "running",
               "started_at": utc_now(), "environment": environment(), "repository": git_state(root),

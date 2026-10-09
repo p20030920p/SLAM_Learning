@@ -13,9 +13,9 @@
 [BeautyMap（2024）](https://arxiv.org/html/2405.07283v1)使用全局二进制占据矩阵、地面自适应及细化／恢复步骤清理点地图。恢复机制保护部分视角被遮挡的静态几何，因此不能将其概括为“没看到就是动态”。
 
 ```bash
-bash scripts/setup/setup_linux.sh
-uv run slam-study fetch
-uv run slam-study run --method beautymap
+bash src/scripts/setup/setup_linux.sh
+uv run --project src slam-study fetch
+uv run --project src slam-study run --method beautymap
 ```
 
 作者版本、可执行兼容补丁与数据哈希均已记录。保留 Windows 整数溢出的首次失败，以显式 64 位掩码修复兼容问题。未为对齐论文调阈值。最终运行在扫描和地图输入中物理移除 GT intensity，标注仅供评价。

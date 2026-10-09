@@ -33,7 +33,7 @@ def change_probability(mean: float, count: int, sensor_sigma: float, pose_sigma:
 
 
 def run_evidence_stress(root: Path) -> Path:
-    config_path = root / "configs/evidence_stress.json"
+    config_path = root / "src/configs/evidence_stress.json"
     config = json.loads(config_path.read_text(encoding="utf-8"))
     output = root / "results/runs" / f"evidence-stress-{uuid.uuid4().hex[:12]}"
     output.mkdir(parents=True)

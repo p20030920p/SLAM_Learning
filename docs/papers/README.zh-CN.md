@@ -15,4 +15,4 @@
 
 [docs/pdf](../pdf) 保留录制时的生成快照，包括早期研究／实物文本，不代替当前提交叙述。当前问题与决策见 [STUDY](../research/STUDY.zh-CN.md) 和 [PLAN](../research/PLAN.zh-CN.md)。失败与资源适配继续保留。
 
-依据[录制说明](../guides/RECORDING.zh-CN.md)从校验后的本地输出重新生成媒体／报告。[paper_suite.json](../../configs/paper_suite.json)绑定所选论文、原生记录、命令及语言版本。
+依据[录制说明](../guides/RECORDING.zh-CN.md)从校验后的本地输出重新生成媒体／报告。[paper_suite.json](../../src/configs/paper_suite.json)绑定所选论文、原生记录、命令及语言版本。

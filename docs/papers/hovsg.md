@@ -13,8 +13,8 @@ English | [中文](hovsg.zh-CN.md) | [PDF](../pdf/hovsg.en.pdf)
 [HOV-SG (RSS 2024)](https://arxiv.org/html/2403.17846v2) lifts SAM segments and CLIP features to reference geometry, merges observations, selects robust features, and constructs a floor/room/object hierarchy. This run calls the author Graph.create_feature_map(), including native geometric merging and feature selection, at source commit d6e65a53c8be6faec3f01f00d1644d967f89e605.
 
 ```bash
-bash scripts/setup/setup_hovsg.sh
-.venv-hovsg/bin/python scripts/methods/run_hovsg.py
+bash src/scripts/setup/setup_hovsg.sh
+.venv-hovsg/bin/python src/scripts/methods/run_hovsg.py
 ```
 
 The separate environment shares verified checkpoints and the 40-observation Replica subset with ConceptGraphs. Source indices 0,25,...175 are processed by skip_frames=5. RGB/depth are resized to 640×360; both intrinsic axes are rescaled from the pinned original 1200×680 calibration. SAM batch 36 and CLIP batch 4 are resource adaptations. Native segmentation/merging thresholds remain fixed; identical original-resolution masks are not claimed.

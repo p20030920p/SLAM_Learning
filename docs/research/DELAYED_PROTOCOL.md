@@ -6,7 +6,7 @@ This experiment tests a prerequisite of candidate H1: whether correcting geometr
 
 ## Freeze and independent reference
 
-The [machine-readable design](../../configs/delayed_pose.json) was committed before downloading this study's new Replica `room1` subset. Mapping uses source frames 0,25,...375. Reference views 12,137,262,387 never enter mapping or frontend extraction. Raw reference RGB-D supplies instance polygons and partial visible surfaces; predicted masks do not define truth. Annotation identity, exclusions, queries and hashes must be sealed before SAM/CLIP or mapper results are inspected. AI-assisted polygons still require independent human review; until then all target conclusions remain provisional.
+The [machine-readable design](../../src/configs/delayed_pose.json) was committed before downloading this study's new Replica `room1` subset. Mapping uses source frames 0,25,...375. Reference views 12,137,262,387 never enter mapping or frontend extraction. Raw reference RGB-D supplies instance polygons and partial visible surfaces; predicted masks do not define truth. Annotation identity, exclusions, queries and hashes must be sealed before SAM/CLIP or mapper results are inspected. AI-assisted polygons still require independent human review; until then all target conclusions remain provisional.
 
 The dataset uses the NICE-SLAM rendered Replica archive; calibration and camera-to-world poses follow the pinned ConceptGraphs Replica loader. RGB-D members are CRC-checked and SHA-256 recorded. A source manifest and a separate annotation freeze record bind the exact inputs. A new scene is useful evidence separation, not a claim of independent multi-scene confirmation. Existing `room0` results informed all design choices.
 
@@ -46,23 +46,23 @@ For a fresh native rerun, first complete the ConceptGraphs baseline in the [repr
 study_dir="$PWD/results/runs/delayed-local-v2"
 native_run="$PWD/results/runs/conceptgraphs-YOUR_RUN_ID"
 weights="$PWD/.cache/semantic-weights"
-.venv-semantic/bin/python scripts/experiments/fetch_delayed_scene.py --protocol configs/delayed_pose.json --output "$study_dir/data"
-.venv-semantic/bin/python scripts/experiments/seal_delayed_annotations.py --protocol configs/delayed_pose.json --annotations configs/annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation"
+.venv-semantic/bin/python src/scripts/experiments/fetch_delayed_scene.py --protocol src/configs/delayed_pose.json --output "$study_dir/data"
+.venv-semantic/bin/python src/scripts/experiments/seal_delayed_annotations.py --protocol src/configs/delayed_pose.json --annotations src/configs/annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation"
 ```
 
 Inspect the four overlays against raw RGB-D before sealing. An unchanged-file reproduction can use the published polygons; a human-reviewed revision needs a new annotation/protocol version and should preserve the old one. After review:
 
 ```bash
-.venv-semantic/bin/python scripts/experiments/seal_delayed_annotations.py --protocol configs/delayed_pose.json --annotations configs/annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation" --seal
-.venv-semantic/bin/python scripts/experiments/prepare_delayed_frontend.py --protocol configs/delayed_pose.json --annotations configs/annotations/room1/targets.json --freeze "$study_dir/annotation/freeze.json" --data "$study_dir/data" --native-source "$native_run" --weights "$weights" --output "$study_dir/frontend"
-.venv-semantic/bin/python scripts/experiments/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/primary"
-.venv/bin/python scripts/experiments/analyze_delayed_correction.py "$study_dir/primary" --annotations-review "$study_dir/annotation" --frontend "$study_dir/frontend" --output "$study_dir/primary-export"
-.venv/bin/python scripts/evidence/verify_delayed_evidence.py --record "$study_dir/primary-export/record.json" --raw-suite "$study_dir/primary"
-.venv-semantic/bin/python scripts/experiments/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/support-control" --support-control-from "$study_dir/primary"
-.venv/bin/python scripts/experiments/analyze_delayed_support.py "$study_dir/support-control" --primary "$study_dir/primary-export" --output "$study_dir/support-export"
-.venv/bin/python scripts/evidence/verify_delayed_support.py --record "$study_dir/support-export/record.json" --primary "$study_dir/primary-export" --raw-followup "$study_dir/support-control"
+.venv-semantic/bin/python src/scripts/experiments/seal_delayed_annotations.py --protocol src/configs/delayed_pose.json --annotations src/configs/annotations/room1/targets.json --data "$study_dir/data" --output "$study_dir/annotation" --seal
+.venv-semantic/bin/python src/scripts/experiments/prepare_delayed_frontend.py --protocol src/configs/delayed_pose.json --annotations src/configs/annotations/room1/targets.json --freeze "$study_dir/annotation/freeze.json" --data "$study_dir/data" --native-source "$native_run" --weights "$weights" --output "$study_dir/frontend"
+.venv-semantic/bin/python src/scripts/experiments/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/primary"
+src/.venv/bin/python src/scripts/experiments/analyze_delayed_correction.py "$study_dir/primary" --annotations-review "$study_dir/annotation" --frontend "$study_dir/frontend" --output "$study_dir/primary-export"
+src/.venv/bin/python src/scripts/evidence/verify_delayed_evidence.py --record "$study_dir/primary-export/record.json" --raw-suite "$study_dir/primary"
+.venv-semantic/bin/python src/scripts/experiments/run_delayed_correction.py --frontend "$study_dir/frontend" --data "$study_dir/data" --freeze "$study_dir/annotation/freeze.json" --weights "$weights" --output "$study_dir/support-control" --support-control-from "$study_dir/primary"
+src/.venv/bin/python src/scripts/experiments/analyze_delayed_support.py "$study_dir/support-control" --primary "$study_dir/primary-export" --output "$study_dir/support-export"
+src/.venv/bin/python src/scripts/evidence/verify_delayed_support.py --record "$study_dir/support-export/record.json" --primary "$study_dir/primary-export" --raw-followup "$study_dir/support-control"
 ```
 
-The CPU commands use the separate installed project environment. Wrap native commands with `scripts/media/record_session.py` to retain a complete real-time terminal video; the actual invocation and recording metadata are archived in the [new study](DELAYED_RESULTS.md). Frontend extraction and the mapper are distinct recording stages. These scripts run sequentially and leave prior study outputs untouched.
+The CPU commands use the separate installed project environment. Wrap native commands with `src/scripts/media/record_session.py` to retain a complete real-time terminal video; the actual invocation and recording metadata are archived in the [new study](DELAYED_RESULTS.md). Frontend extraction and the mapper are distinct recording stages. These scripts run sequentially and leave prior study outputs untouched.
 
 Sources: [NICE-SLAM data preparation](https://github.com/cvg/nice-slam#replica-1), [pinned ConceptGraphs batch mapper](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/slam/cfslam_pipeline_batch.py).

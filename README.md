@@ -7,9 +7,9 @@
 Dynamic robust mapping · Semantic mapping and localization
 
 [![CPU reproducibility](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml)
-[![Python](https://img.shields.io/badge/Python-3.10-3776AB)](pyproject.toml)
+[![Python](https://img.shields.io/badge/Python-3.10-3776AB)](src/pyproject.toml)
 
-English | [中文](README.zh-CN.md)
+English | [中文](docs/HOME.zh-CN.md)
 
 [Analysis](docs/research/STUDY.md) · [Evidence](docs/README.md) · [Setup](docs/guides/REPRODUCE.md) · [Structure](docs/guides/STRUCTURE.md)
 
@@ -162,4 +162,4 @@ Only plan a prototype if oracle gains ≥10 percentage points over every simple 
 
 Late-correction and candidate-budget experiments remain in a [pinned snapshot](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11); they are exploratory and H1 remains unverified.
 
-[AI use](docs/guides/DISCLOSURE.md) · [Sources/licenses](docs/guides/ATTRIBUTION.md) · [Citation](CITATION.cff) · [License](LICENSE)
+[AI use](docs/guides/DISCLOSURE.md) · [Sources/licenses](docs/guides/ATTRIBUTION.md) · [Citation](docs/CITATION.cff) · [License](src/LICENSE)

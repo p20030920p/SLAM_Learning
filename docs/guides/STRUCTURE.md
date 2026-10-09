@@ -2,41 +2,39 @@
 
 English | [中文](STRUCTURE.zh-CN.md)
 
-Seven top-level working directories keep the delivery small. Start ordinary tasks through `launch/` and `slam-study`; other tools are grouped by purpose.
+The root holds one README and three working directories. `src/` contains the complete runnable Python project, `docs/` contains the Chinese homepage, guides, research, media, PDFs and citation, and `results/` contains recorded evidence.
 
 ```text
 SLAM_Learning/
-├── src/slam_learning/      Python package and slam-study CLI
-├── configs/               Parameters, protocols, annotations/, environments/
-├── launch/                PowerShell / Bash reproduction entry points
-├── scripts/               setup/, methods/, experiments/, evidence/, media/
-├── tests/                 Unit and command integration tests
-├── docs/                  guides/, research/, papers/, figures/, media/, pdf/, archive/
-└── results/               Published reference/; ignored local runs/
+├── README.md
+├── src/
+│   ├── slam_learning/
+│   ├── configs/
+│   ├── launch/
+│   ├── scripts/
+│   ├── tests/
+│   ├── docker/
+│   ├── pyproject.toml
+│   ├── uv.lock
+│   └── LICENSE
+├── docs/
+└── results/
 ```
 
-Project manifests, locks, README, license, citation and Docker files stay at the root; `.github/` holds CI. Start documentation from its [index](../README.md) and scripts from the [tool index](../../scripts/README.md). Local environments, caches and build products are ignored by Git.
+Required hidden Git configuration stays at the root: `.gitignore`, `.gitattributes` and `.github/`. Generated environments, caches and build output are ignored.
 
-Package dependencies flow **CLI → visualization → experiments → runtime → core**. Import Linter checks layer direction, cycles and the CUDA/ROS boundary.
-
-`runtime/adapters.py` implements the supplied-pose LiDAR adapters. `runtime/runner.py` starts and records executions; `core/provenance.py` handles hashes and strict JSON. Published `record.json` manifests remain the evidence interface. Existing ROS viewing tools use standard messages in a separate environment.
-
-## Start and verify
+From the repository root:
 
 ```bash
-bash launch/reproduce.sh --help
-bash launch/reproduce.sh --smoke
-uv run slam-study run --experiment mechanism
+uv sync --project src --frozen --python 3.10 --extra dev --extra audit
+uv run --project src slam-study doctor
+bash src/launch/reproduce.sh --help
 ```
 
-On Windows: `powershell -File launch/reproduce.ps1 -Help` or `-Smoke`. The smoke launch executes both author LiDAR methods on ten frames and may fetch their existing inputs; it is separate from the dataset-free synthetic check. Environment installation lives in `scripts/setup/`; semantic/CUDA commands remain in [Setup](REPRODUCE.md).
+Windows: `powershell -File src/launch/reproduce.ps1 -Help`. Use `--smoke` / `-Smoke` for the ten-frame author LiDAR run; this may fetch data. The dataset-free check is `uv run --project src slam-study run --experiment mechanism`.
 
-The old `bash scripts/run_reproduction.sh [--smoke]` forwards to the launch entry, and `slam-study` arguments stay unchanged. Other tools keep their filenames and arguments under their new groups. Active documentation and commands use the new paths; historical records retain recorded paths, source snapshots and result bytes.
+`slam-study` arguments stay unchanged. Scripts and launchers use paths under `src/`; `src/scripts/run_reproduction.sh` forwards to the launcher. Historical records retain their recorded paths and original bytes. [Setup](REPRODUCE.md) · [Tool groups](../../src/scripts/README.md) · [Reading index](../README.md).
 
-## What we borrow from ROS 2
+Inside the package, dependencies flow from CLI through visualization, experiments and runtime to core. Import Linter checks direction, cycles and CUDA/ROS isolation. Source hashing covers owned package/tool code and excludes installed environments.
 
-[SLAM Toolbox](https://github.com/SteveMacenski/slam_toolbox/tree/ros2) separates functional libraries from node executables. [Nav2](https://github.com/ros-navigation/navigation2) and [ros2_control](https://github.com/ros-controls/ros2_control) split stable responsibilities; [TurtleBot3](https://github.com/ROBOTIS-GIT/turtlebot3) gives bringup and configuration their own place. Here those principles guide the package layers and `launch/` entry points.
-
-This checkout is a Python reproduction project. It has no owned C++ build, custom ROS messages/services or colcon package, so it does not add empty `include/`, `msg/`, `srv/` or `package.xml` files. A future real ROS integration needs a sibling package with its own manifest and tests.
-
-In a ROS workspace, repository and package are different levels: workspace `src/` contains repositories; each actual ROS package owns its manifest. Packages must not contain nested packages; `build/`, `install/` and `log/` are generated workspace outputs. [ROS 2 package guide](https://github.com/ros2/ros2_documentation/blob/jazzy/source/Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.rst).
+This follows the separation of implementation, startup and configuration in [SLAM Toolbox](https://github.com/SteveMacenski/slam_toolbox/tree/ros2) and stable responsibilities in [Nav2](https://github.com/ros-navigation/navigation2). It remains one Python project; actual ROS integration needs a sibling ROS package with its own manifest. [ROS 2 package guide](https://github.com/ros2/ros2_documentation/blob/jazzy/source/Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.rst).

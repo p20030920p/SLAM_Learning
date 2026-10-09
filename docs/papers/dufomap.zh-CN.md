@@ -13,9 +13,9 @@
 [DUFOMap（2024）](https://arxiv.org/html/2403.01449v1)累计占据空间和已观察到的空域，依据一个位置是否曾被观测为空来分类点；位姿／量测容差用于保护配准与传感误差。使用作者 DUFOMap 1.1.1 实现，依赖及上游版本均已固定。
 
 ```bash
-bash scripts/setup/setup_linux.sh
-uv run slam-study fetch
-uv run slam-study run --method dufomap
+bash src/scripts/setup/setup_linux.sh
+uv run --project src slam-study fetch
+uv run --project src slam-study run --method dufomap
 ```
 
 下载验证完整归档校验和。GT 只进入评价及着色；10 帧 smoke 不输出论文成绩。Windows、全新 Ubuntu CI 与本机 WSL 的完整 teaser 混淆计数一致。
