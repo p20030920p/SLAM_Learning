@@ -1,8 +1,8 @@
-# Next decision, not a wider roadmap
+# Next decision
 
 English | [中文](PLAN.zh-CN.md)
 
-Finish the existing equal-cap analysis of identity errors and query hits before building a bounded replay prototype or adding methods. The primary hypothesis compares reassociation with fixed associations; simple controls separately inform the prototype decision. [Current question](STUDY.md).
+Finish the existing equal-cap analysis of identity errors and query hits before building a bounded replay prototype or adding methods. The current research hypothesis concerns retained observation evidence and revisiting pose-dependent map updates. Existing exploration compares reassociation with fixed associations; static-filtering revision is untested, and simple controls separately inform the prototype decision. [Current question](STUDY.md).
 
 | Stage | Status / required output |
 | --- | --- |

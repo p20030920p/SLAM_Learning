@@ -2,7 +2,7 @@
 
 # SLAM Learning
 
-**Does correcting poses also repair the map?**
+**Map repair?**
 
 Dynamic robust mapping · Semantic mapping and localization
 
@@ -21,7 +21,7 @@ English | [中文](docs/HOME.zh-CN.md)
 
 Four related papers → selected mapping experiments → pose-error controls → a candidate recovery hypothesis. **HOV-SG is not reproduced; H1 remains unverified.**
 
-## SLAM and our two directions
+## Directions analysis
 
 **SLAM — Simultaneous Localization and Mapping:** estimate sensor motion while building a map from its observations.
 
@@ -68,16 +68,13 @@ These are saved-result replays from supplied-pose mapping runs. GIFs preserve th
 
 **Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](docs/media/conceptgraphs/replay.mp4).
 
-### [HOV-SG — not reproduced](docs/papers/hovsg.md)
+### [HOV-SG](docs/papers/hovsg.md)
 
 **Not reproduced for this delivery.** The default 200-frame run, full benchmark, floor/room hierarchy and navigation are incomplete. Completed 8/20-frame subsets are retained as limited diagnostic attempts, not a completed paper reproduction. [Status and retained evidence](docs/papers/hovsg.md).
 
-## Common dependency and open question
+## open questions:
 
-- **Common dependency:** the four papers rely on pose alignment, spatial correspondence and map decisions. Existing pose margins, static restoration and association rules provide some protection; a shared defect has not been established.
-- **Mapping question:** when previously estimated camera poses are corrected, does recomputing historical observation-to-object associations reduce fragmentation and false merges compared with updating geometry while keeping the original associations unchanged?
-- **Retrieval question:** if reassociation reduces these errors, does it also improve text-based object retrieval, so that a query such as “chair” is more likely to return a correctly mapped chair as its top-ranked result?
-- **Test scope:** first evaluate ConceptGraphs under matched inputs and candidate limits. HOV-SG is related work with an incomplete reproduction. [Test and limits](docs/research/STUDY.md).
+- How can multi-frame mapping prevent localization errors from causing persistent mistakes in static-structure filtering and object association?
 
 ## Reproduction results
 
@@ -93,29 +90,29 @@ Later original-code runs use separate protocols, pinned at **535a278**:
 SA/DA measure static retention/dynamic removal. Semantic scoring uses scene-GT classes and different supports/exclusions, not identity recovery or open-world query success. These scores cannot rank the four methods; complete trajectories and robot navigation remain untested. [Scope](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md).
 
 <details>
-<summary>Four more GIFs: recorded 3D viewing</summary>
+<summary>Recorded GIFs</summary>
 
 Each clip records a 3D viewer displaying saved results. RViz retains its recorded 5 fps; the author viewer retains 15 fps. No new inference; query highlights are unverified.
 
-**DUFOMap · RViz**
+**DUFOMap RViz**
 
 ![DUFOMap recorded RViz](results/reference/media-previews-v3/dufomap-rviz.gif)
 
 **KITTI-00, 141-scan run.** RViz switches between input, removed and retained point clouds to inspect dynamic-point removal. [MP4](docs/media/rviz/dufomap.mp4).
 
-**BeautyMap · RViz**
+**BeautyMap RViz**
 
 ![BeautyMap recorded RViz](results/reference/media-previews-v3/beautymap-rviz.gif)
 
 **KITTI-00, 141-scan run.** RViz compares input, removed and retained point clouds in the same 3D view. [MP4](docs/media/rviz/beautymap.mp4).
 
-**ConceptGraphs · RViz**
+**ConceptGraphs RViz**
 
 ![ConceptGraphs recorded RViz](results/reference/media-previews-v3/conceptgraphs-rviz.gif)
 
 **Replica room0, 40 RGB-D frames.** A continuous 59-second excerpt shows all five saved maps (observations 1/10/20/30/39) and four text-query stages, without cutting stage transitions. [MP4](docs/media/rviz/conceptgraphs.mp4).
 
-**ConceptGraphs · Author viewer**
+**ConceptGraphs viewer**
 
 ![ConceptGraphs original author viewer](results/reference/media-previews-v3/conceptgraphs-author-viewer.gif)
 
@@ -123,7 +120,7 @@ Each clip records a 3D viewer displaying saved results. RViz retains its recorde
 
 </details>
 
-## Evidence that narrowed the question
+## Evidence
 
 ![Recovery and exposed-candidate cost](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/recovery-cost.png)
 
@@ -131,15 +128,11 @@ room1, immediately after 30 cm correction: fixed-history recovery **11.1%**, ora
 
 A lower support gate closes this selected recovery gap while exposing more fragments; later observations also repair part of it. **Reassociation is not yet shown necessary.** The next test matches candidate caps and checks identities separately.
 
-## Hypothesis and next test
+room2 has **28 completed mapping cells; identity/budget analysis remains pending**. Object annotations have not been independently reviewed; bounded replay is not implemented. [Further analysis](docs/research/PLAN.md).
 
-- **Mapping hypothesis:** after delayed pose correction, reprocessing historical observations to recompute associations and fusion will reduce duplicate fragments and mixed objects among annotated instances compared with rebuilding geometry while keeping the original observation-to-object associations unchanged.
-- **Retrieval hypothesis:** reassociation will improve category-query top-1 hit rate within the annotated evaluation set compared with the same fixed-association baseline. Identity errors and query hits are evaluated separately.
-- **Controlled inputs:** identical RGB-D observations, segmentation masks, frontend semantic features, corrected poses, minimum detections per object and candidate limits.
-- **Current status:** **unverified; annotations have not been independently reviewed.** Bounded replay is a possible later implementation, **not built or tested**.
-- **Next analysis:** room2 uses one frozen frontend and five AI-labelled instances. Four arms compare fixed history, threshold-1.0, visibility guards and oracle reassociation at support 1/2/3 and caps 25/50/100/unlimited. **28 mapping cells ran; analysis remains pending.** [Protocol](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
-- **Prototype decision:** require ≥10 mean percentage-point gains over every simple control at two finite caps, ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. This is separate from the fixed-association hypothesis comparison. Equal caps do not match memory. [Decision and remaining work](docs/research/PLAN.md).
-- **Prior work:** [Khronos](https://arxiv.org/html/2402.13817v2) and [DovSG](https://arxiv.org/html/2410.11989v2) already reconcile/update maps; a contribution needs a measured recovery–cost benefit over existing protections.
+## Hypothesis
+
+- We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and preserve more consistent geometric and semantic maps
 
 ## Branches
 

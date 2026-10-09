@@ -2,7 +2,7 @@
 
 # SLAM Learning
 
-**位姿修正后，地图也修复了吗？**
+**地图修复？**
 
 动态环境稳健建图 · 语义建图与定位
 
@@ -21,7 +21,7 @@
 
 四篇相关论文 → 部分建图实验 → 位姿误差对照 → 候选恢复假设。**HOV-SG 未复现，H1 尚未验证。**
 
-## SLAM 与两个方向
+## 方向分析
 
 **SLAM — Simultaneous Localization and Mapping，同步定位与建图：**利用传感器观测，同时估计自身运动并构建地图。
 
@@ -68,16 +68,13 @@
 
 **Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](media/conceptgraphs/replay.mp4)。
 
-### [HOV-SG — 未复现](papers/hovsg.zh-CN.md)
+### [HOV-SG](papers/hovsg.zh-CN.md)
 
 **本次交付标记为未复现。** 默认 200 帧运行、完整 benchmark、楼层／房间层级及导航均未完成。已完成的 8／20 帧缩小子集仅作为有限诊断尝试保留，不作为论文复现完成的证据。[状态与保留记录](papers/hovsg.zh-CN.md)。
 
-## 共同依赖与开放问题
+## 开放问题
 
-- **共同依赖：**四篇论文都涉及位姿对齐、空间对应与地图判断。位姿容差、静态恢复和关联规则已有部分保护，尚未证明存在共同缺陷。
-- **建图问题：**先前估计的相机位姿被修正后，重算历史观测与物体的关联，相比仅更新几何、保持原有关联不变，能否减少碎片化和错误合并？
-- **检索问题：**若重关联减少了这些错误，是否也能改善文本物体检索，使“椅子”这样的查询更可能返回一个正确建图的椅子作为排名第一的结果？
-- **检验范围：**先在输入与候选上限一致的 ConceptGraphs 对照中检验。HOV-SG 保留为相关工作，复现未完成。[检验与边界](research/STUDY.zh-CN.md)。
+- 多帧建图如何避免定位误差在静态结构过滤和物体关联中造成持续性错误？
 
 ## 复现结果
 
@@ -93,29 +90,29 @@
 SA／DA 为静态保留／动态剔除；语义评分使用场景 GT 类别，计分位置／排除项不同，不测身份恢复或开放世界查询。分数不横向排名，完整轨迹与机器人导航仍未测试。[范围](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.zh-CN.md)。
 
 <details>
-<summary>另外四个 GIF：真实三维窗口录像</summary>
+<summary>窗口录像</summary>
 
 每段均录制真实三维窗口，查看保存结果。RViz 保留原录制 5 fps，作者查看器保留 15 fps。未重新推理；查询高亮未验证正确性。
 
-**DUFOMap · RViz**
+**DUFOMap RViz**
 
 ![DUFOMap RViz 录像](../results/reference/media-previews-v3/dufomap-rviz.gif)
 
 **KITTI-00，141 扫描运行结果。**在 RViz 中切换原始、剔除与保留点云，检查动态点清理效果。[MP4](media/rviz/dufomap.mp4)。
 
-**BeautyMap · RViz**
+**BeautyMap RViz**
 
 ![BeautyMap RViz 录像](../results/reference/media-previews-v3/beautymap-rviz.gif)
 
 **KITTI-00，141 扫描运行结果。**在同一三维视角中对比原始、剔除与保留点云。[MP4](media/rviz/beautymap.mp4)。
 
-**ConceptGraphs · RViz**
+**ConceptGraphs RViz**
 
 ![ConceptGraphs RViz 录像](../results/reference/media-previews-v3/conceptgraphs-rviz.gif)
 
 **Replica room0，40 帧 RGB-D。**连续 59 秒片段展示五个建图快照（第 1／10／20／30／39 次观测）与四个文本查询阶段，保留阶段切换过程。[MP4](media/rviz/conceptgraphs.mp4)。
 
-**ConceptGraphs · 作者查看器**
+**ConceptGraphs 查看器**
 
 ![ConceptGraphs 作者原版查看器](../results/reference/media-previews-v3/conceptgraphs-author-viewer.gif)
 
@@ -123,7 +120,7 @@ SA／DA 为静态保留／动态剔除；语义评分使用场景 GT 类别，�
 
 </details>
 
-## 让问题收窄的证据
+## 实验证据
 
 ![恢复率与暴露候选代价](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/recovery-cost.png)
 
@@ -131,15 +128,11 @@ room1，30 cm 修正刚发生时：固定关联恢复率 **11.1%**，oracle **66
 
 降低支持门槛即可消除这组目标的恢复缺口，同时暴露更多碎片；后续观测也能修复部分损失。**尚未证明必须重算关联。** 下一项实验匹配候选上限，并单独检查身份。
 
-## 假设与下一项检验
+room2 的 **28 个建图单元已运行，身份／预算分析待完成**。当前物体标注未经独立复核，有界重放尚未实现。[后续分析](research/PLAN.zh-CN.md)。
 
-- **建图假设：**迟到位姿修正后，重新处理历史观测、重算关联与融合，相比重建几何但保持原有观测—物体关联不变，能减少已标注实例中的重复碎片和混合物体。
-- **检索假设：**相比同一固定关联基线，重关联能提高已标注评价范围内类别查询的 top-1 命中率。身份错误与查询命中分别评价。
-- **控制条件：**相同的 RGB-D 观测、分割掩码、前端语义特征、修正后位姿、每个物体的最少检测次数及候选上限。
-- **当前状态：** 尚未验证，标注未经独立复核。有界重放是后续可能的实现方向，**尚未编写或测试**。
-- **下一项分析：**room2 固定一个前端和五个 AI 标注实例。固定关联、阈值 1.0、可见性保护、oracle 重关联四组，比较支持门槛 1／2／3 与候选上限 25／50／100／不限。**28 个建图单元已运行，分析待完成。**[协议](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.zh-CN.md)。
-- **原型判据：**在两个有限上限下比所有简单对照平均提升至少 10 个百分点、至少 2／3 配对种子同向，且没有种子增加已标重复／混合身份。这与固定关联基线的假设比较分开；相同候选上限不等于相同内存。[判据与待办](research/PLAN.zh-CN.md)。
-- **已有研究：**[Khronos](https://arxiv.org/html/2402.13817v2) 与 [DovSG](https://arxiv.org/html/2410.11989v2) 已有地图协调／更新，贡献需体现相对已有保护可测的恢复—成本收益。
+## 假设
+
+- 我们假设，保留地图更新背后的观测证据，并随着位姿估计的改善重新审视这些更新，能够减少持续性建图错误，保持更加一致的几何与语义地图。
 
 ## 分支
 

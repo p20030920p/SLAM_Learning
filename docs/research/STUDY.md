@@ -1,14 +1,12 @@
-# From four related papers to one testable question
+# Research analysis
 
 English | [中文](STUDY.zh-CN.md)
 
-## Open question
+## open questions:
 
-In object-centric semantic mapping, when previously estimated camera poses are corrected, does recomputing the associations between past observations and map objects reduce object fragmentation and false merges compared with updating the map geometry while keeping the original associations unchanged?
+- How can multi-frame mapping prevent localization errors from causing persistent mistakes in static-structure filtering and object association?
 
-If reassociation reduces these mapping errors, does it also improve text-based object retrieval, so that a query such as “chair” is more likely to return a correctly mapped chair as its top-ranked result?
-
-## The common interface, and its limits
+## Shared interface
 
 The two directions meet at **pose → correspondence → map decisions**. Dynamic mapping decides which geometry to retain; semantic mapping decides which observations belong to an object and where a query points. Correcting coordinates need not revise decisions made under the earlier alignment. This is our inference, not an observed common dominant defect.
 
@@ -21,11 +19,11 @@ The two directions meet at **pose → correspondence → map decisions**. Dynami
 
 The executed mapping experiments use supplied poses. **HOV-SG is not reproduced:** its limited subsets do not establish completion of the default run or paper experiments. Larger original-code runs and scoped semantic scores are [pinned separately](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md). They do not establish trajectory accuracy or navigation success.
 
-## Why start with ConceptGraphs?
+## ConceptGraphs
 
 Its association traces expose observation membership, support counts and fused features. With one frozen frontend and identical exact historical correction, fixed membership can be compared with reassociation. This separates coordinate error, low-support filtering and association history. DUFOMap/BeautyMap motivate the geometric interface; HOV-SG checks that semantic coverage and retrieval can differ. None is silently counted as another delayed-correction replication.
 
-## What the experiments established
+## Evidence
 
 Early room0 controls use three seeds at 30 cm RMS; the semantic cores share eight observations. [Full paired study](PAIRED_RESULTS.md).
 
@@ -43,11 +41,9 @@ room1 then tested late correction. At observation eight and 30 cm, fixed history
 
 ## Hypothesis
 
-For the delayed pose corrections studied here, we hypothesize that reprocessing historical observations with corrected poses to recompute object associations and fusion will reduce duplicate fragments and mixed objects among the annotated instances compared with rebuilding map geometry while keeping the original observation-to-object associations unchanged.
+- We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and preserve more consistent geometric and semantic maps
 
-We further hypothesize that reassociation will improve the top-1 hit rate of text-based category queries within the annotated evaluation set compared with the same fixed-association baseline. Both comparisons use the same RGB-D observations, segmentation masks, frontend semantic features, corrected poses, minimum detections per object, and candidate limit.
-
-Identity errors and query hits are evaluated separately: improvement in one does not establish improvement in the other. These hypotheses remain unverified, and the current object annotations have not been independently reviewed. The existing experiments are exploratory; this wording does not make them a new confirmatory test.
+This research hypothesis remains unverified. Existing exploratory experiments diagnose object association after supplied pose corrections; they do not yet test revisiting static-structure filtering or establish a benefit across methods. Object annotations have not been independently reviewed, and this wording does not turn historical experiments into confirmatory tests.
 
 ## Next decision
 
