@@ -14,4 +14,4 @@ Main is the submission entry. Read the question, four reproductions, counterevid
 | [Setup](REPRODUCE.md) · [recording scope](RECORDING.md) | Commands and separation of execution, 3D viewing and saved-map replay |
 | [Literature](LITERATURE.md) · [AI use](DISCLOSURE.md) · [sources/licenses](ATTRIBUTION.md) | Prior work, claim boundaries and provenance |
 
-Optional: [hardware protocol](REAL_WORLD.md) and [device trials](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical). Earlier [reasoning](RESEARCH.md), [refactor audit](AUDIT.md) and [baseline measurements](RESULTS.md) remain available for traceability.
+Optional: [hardware protocol](REAL_WORLD.md) and [device trials](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical). Earlier [reasoning](RESEARCH.md), [refactor audit](AUDIT.md) and [baseline measurements](RESULTS.md) remain available for traceability.

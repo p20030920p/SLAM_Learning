@@ -2,7 +2,7 @@
 
 English | [中文](REAL_WORLD.zh-CN.md)
 
-Hardware is a follow-up to the room2 decision, not evidence confirming H1. Current acquisition, failed trials and operating instructions live on the [hardware branch](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical). The connected depth device was identified as D435 without IMU; L2 is tested separately. No mobile robot is required.
+Hardware is a follow-up to the room2 decision, not evidence confirming H1. Current acquisition, failed trials and operating instructions live on the [hardware branch](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical). The connected depth device was identified as D435 without IMU; L2 is tested separately. No mobile robot is required.
 
 ## One fixed-sensor session
 

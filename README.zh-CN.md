@@ -158,8 +158,8 @@ room2 固定一个前端、五个 AI 标注实例，第八次观测后交付精�
 | --- | --- |
 | main | 提交展示：问题、四篇复现、反证与候选 H1。 |
 | [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | 作者原流程、论文表格／语义评分与录制。 |
-| [study/identity-budget-v2](https://github.com/p20030920p/SLAM_Learning/tree/study/identity-budget-v2) | 迟到修正、相同候选上限与身份实验；探索阶段。 |
+| [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | 个人学习笔记与 `physical/` 实物实验，保留操作说明和失败记录。 |
 
-补充：[个人学习笔记](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008)解释 H1 与否定对照；[实物分支](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)保存 D435／L2 尝试，与 H1 验证分开。
+迟到修正与候选预算实验保留为[固定快照](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11)；仍属探索，H1 尚未验证。
 
 [AI 使用](docs/DISCLOSURE.zh-CN.md) · [来源／许可](docs/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [许可](LICENSE)

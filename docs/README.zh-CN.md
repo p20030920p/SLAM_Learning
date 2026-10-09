@@ -14,4 +14,4 @@ main 是提交入口，按“问题 → 四篇复现 → 反证 → 下一项决
 | [安装](REPRODUCE.zh-CN.md) · [录制范围](RECORDING.zh-CN.md) | 命令，以及执行录像、三维查看、保存地图回放的区分 |
 | [文献](LITERATURE.zh-CN.md) · [AI 使用](DISCLOSURE.zh-CN.md) · [来源／许可](ATTRIBUTION.zh-CN.md) | 先验工作、声明边界与来源 |
 
-补充：[实物协议](REAL_WORLD.zh-CN.md)与[设备尝试](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)。早期[推理](RESEARCH.zh-CN.md)、[重构核查](AUDIT.zh-CN.md)和[基线测量](RESULTS.zh-CN.md)保留供追溯。
+补充：[实物协议](REAL_WORLD.zh-CN.md)与[设备尝试](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical)。早期[推理](RESEARCH.zh-CN.md)、[重构核查](AUDIT.zh-CN.md)和[基线测量](RESULTS.zh-CN.md)保留供追溯。

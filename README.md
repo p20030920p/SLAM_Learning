@@ -158,8 +158,8 @@ Only plan a prototype if oracle gains ≥10 percentage points over every simple 
 | --- | --- |
 | main | Curated submission: question, four reproductions, counterevidence and candidate H1. |
 | [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | Original pipelines, paper-table/semantic scoring and recordings. |
-| [study/identity-budget-v2](https://github.com/p20030920p/SLAM_Learning/tree/study/identity-budget-v2) | Exploratory late-correction and equal-cap identity experiments. |
+| [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | Personal study notes and hardware trials under `physical/`, including operations and failures. |
 
-Optional: [personal learning notes](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) explain H1 and rejection controls; [hardware branch](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical) contains D435/L2 trials, separate from H1 validation.
+Late-correction and candidate-budget experiments remain in a [pinned snapshot](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11); they are exploratory and H1 remains unverified.
 
 [AI use](docs/DISCLOSURE.md) · [Sources/licenses](docs/ATTRIBUTION.md) · [Citation](CITATION.cff) · [License](LICENSE)
