@@ -1,0 +1,281 @@
+{
+  "source_record": "https://github.com/p20030920p/SLAM_Learning/blob/bdc45710ab99075a6b961a9bbed1278f845bbcbd/results/reference/conceptgraphs-full-media/record.json",
+  "source_record_sha256": "4bd1a45438d16db419fdd042264d87d3da4cba23439199e49a8a49c2bb4fdc6c",
+  "clips": [
+    {
+      "name": "conceptgraphs-rviz",
+      "sha256": "bb28408dfc19c2484e549047ebf884ac2494739eb38f1a95d25e57a0e47cc96f",
+      "source_record": "results/reference/visual-review/record.json",
+      "record_sha256": "27aec8b50a8bd265cd75ce84a40b4ca4e33de9c91221326d4f779f1a5b5baf70",
+      "start_seconds": 0,
+      "end_seconds": null,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 800,
+            "r_frame_rate": "5/1",
+            "avg_frame_rate": "5/1",
+            "nb_frames": "348"
+          }
+        ],
+        "format": {
+          "duration": "69.600000"
+        }
+      },
+      "duration_seconds": 69.6,
+      "dimensions": [
+        1280,
+        800
+      ],
+      "source_intervals_seconds": [
+        [
+          0,
+          69.6
+        ]
+      ],
+      "source_fps": "5/1",
+      "sampling_filter": "setpts=PTS-STARTPTS",
+      "preview_duration_seconds": 69.6,
+      "timing_policy": "Complete source video, original frame timestamps; no trimming or FPS downsampling",
+      "expected_frames": 348,
+      "source_video": "docs/media/rviz/conceptgraphs.mp4",
+      "decoded_frames": 348,
+      "gif_duration_seconds": 69.6,
+      "gif_delay_counts_ms": {
+        "200": 348
+      },
+      "frame_count_and_timing_passed": true,
+      "source_frame_checks": [
+        {
+          "frame": 0,
+          "source_seconds": 0.0,
+          "mean_absolute_rgb_error": 0.0,
+          "source_blank": true
+        },
+        {
+          "frame": 174,
+          "source_seconds": 34.8,
+          "mean_absolute_rgb_error": 1.3355,
+          "source_blank": false
+        },
+        {
+          "frame": 347,
+          "source_seconds": 69.4,
+          "mean_absolute_rgb_error": 0.6699,
+          "source_blank": false
+        }
+      ],
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "69.6",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/conceptgraphs.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "setpts=PTS-STARTPTS,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/reference/conceptgraphs-full-media/conceptgraphs-rviz.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "69.6",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/rviz/conceptgraphs.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/reference/conceptgraphs-full-media/conceptgraphs-rviz.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "setpts=PTS-STARTPTS[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-vsync",
+          "0",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/reference/conceptgraphs-full-media/conceptgraphs-rviz.gif"
+        ]
+      ]
+    },
+    {
+      "name": "conceptgraphs-author-viewer",
+      "sha256": "2eb0bc99c6319ebac785eaccc444a3a8fe9db1701775ab30c2ea6888af3883b3",
+      "source_record": "https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json",
+      "source_url": "https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4",
+      "start_seconds": 0,
+      "end_seconds": null,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 720,
+            "r_frame_rate": "15/1",
+            "avg_frame_rate": "15/1",
+            "nb_frames": "900"
+          }
+        ],
+        "format": {
+          "duration": "60.000000"
+        }
+      },
+      "duration_seconds": 60.0,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "source_intervals_seconds": [
+        [
+          0,
+          60.0
+        ]
+      ],
+      "source_fps": "15/1",
+      "sampling_filter": "setpts=PTS-STARTPTS",
+      "preview_duration_seconds": 60.0,
+      "timing_policy": "Complete source video, original frame timestamps; no trimming or FPS downsampling",
+      "expected_frames": 900,
+      "source_video": "https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4",
+      "decoded_frames": 900,
+      "gif_duration_seconds": 59.99,
+      "gif_delay_counts_ms": {
+        "60": 301,
+        "70": 599
+      },
+      "frame_count_and_timing_passed": true,
+      "source_frame_checks": [
+        {
+          "frame": 0,
+          "source_seconds": 0.0,
+          "mean_absolute_rgb_error": 0.3554,
+          "source_blank": false
+        },
+        {
+          "frame": 450,
+          "source_seconds": 30.0,
+          "mean_absolute_rgb_error": 0.3518,
+          "source_blank": false
+        },
+        {
+          "frame": 899,
+          "source_seconds": 59.93333333333333,
+          "mean_absolute_rgb_error": 0.373,
+          "source_blank": false
+        }
+      ],
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "60.0",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Author_Originals/evidence/videos/conceptgraphs-room0-original-window.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "setpts=PTS-STARTPTS,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/reference/conceptgraphs-full-media/conceptgraphs-author-viewer.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "60.0",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Author_Originals/evidence/videos/conceptgraphs-room0-original-window.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/reference/conceptgraphs-full-media/conceptgraphs-author-viewer.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "setpts=PTS-STARTPTS[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-vsync",
+          "0",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/reference/conceptgraphs-full-media/conceptgraphs-author-viewer.gif"
+        ]
+      ]
+    }
+  ]
+}

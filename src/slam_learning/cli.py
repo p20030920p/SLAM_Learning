@@ -24,7 +24,7 @@ def find_root(value: str | None) -> Path:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Evidence-first SLAM/semantic mapping experiments")
+    parser = argparse.ArgumentParser(description="Four-method mapping reproduction")
     sub = parser.add_subparsers(dest="action", required=True)
     for action in ("doctor", "fetch", "run", "report", "verify", "export", "cross-check", "render-reproduction", "_worker"):
         p = sub.add_parser(action)
@@ -37,10 +37,9 @@ def main(argv: list[str] | None = None) -> int:
         if action == "fetch":
             p.add_argument("--direct", action="store_true", help="Bypass broken proxy only for these fetches")
         if action in ("run", "_worker"):
-            p.add_argument("--method", choices=("dufomap", "beautymap"), required=action == "_worker")
+            p.add_argument("--method", choices=("dufomap", "beautymap"), required=True)
             p.add_argument("--frames", type=int, default=0, help="0=full teaser; positive=smoke, no paper score")
         if action == "run":
-            p.add_argument("--experiment", choices=("mechanism", "pose-stress", "evidence-stress", "api-check"))
             p.add_argument("--timeout", type=float, default=3600)
             p.add_argument("--strict-paper", action="store_true", help="Exit nonzero on paper mismatch")
         if action == "_worker":
@@ -62,7 +61,7 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps({**environment(), "root": str(root), "git": shutil.which("git"),
                   "verified_dataset": (root / ".cache/datasets/00/provenance.json").exists(),
                   "nvidia_smi": shutil.which("nvidia-smi"),
-                  "note": "CUDA is optional for the active CPU experiments; capability is detected, not hardcoded."}, indent=2))
+                  "note": "CUDA is optional for the LiDAR reproduction; capability is detected, not hardcoded."}, indent=2))
         elif args.action == "fetch":
             from slam_learning.runtime.fetch import fetch
             fetch(root, args.direct)
@@ -70,35 +69,15 @@ def main(argv: list[str] | None = None) -> int:
             from slam_learning.runtime.adapters import worker
             worker(root, args.method, Path(args.output).resolve(), args.frames)
         elif args.action == "run":
-            if bool(args.method) == bool(args.experiment):
-                parser.error("Choose exactly one of --method and --experiment")
-            if args.experiment:
-                if args.frames or args.strict_paper:
-                    parser.error("--frames/--strict-paper only apply to author methods")
-                if args.experiment == "mechanism":
-                    from slam_learning.experiments.synthetic import run_synthetic
-                    run_synthetic(root)
-                elif args.experiment == "evidence-stress":
-                    from slam_learning.experiments.evidence_stress import run_evidence_stress
-                    run_evidence_stress(root)
-                elif args.experiment == "api-check":
-                    from slam_learning.experiments.api_check import run_api_check
-                    record_path = run_api_check(root, args.timeout)
-                    return int(json.loads(record_path.read_text(encoding="utf-8"))["status"] != "executed")
-                else:
-                    from slam_learning.experiments.pose_stress import run_pose_stress
-                    record_path = run_pose_stress(root)
-                    return int(json.loads(record_path.read_text(encoding="utf-8"))["status"] != "executed")
-            else:
-                from slam_learning.runtime.runner import run_method
-                record_path = run_method(root, args.method, args.frames, args.timeout)
-                record = json.loads(record_path.read_text(encoding="utf-8"))
-                if record["status"] in ("failed", "blocked"):
-                    return 1
-                if args.strict_paper and (not record.get("paper_comparison") or not record["paper_comparison"]["matched"]):
-                    return 2
+            from slam_learning.runtime.runner import run_method
+            record_path = run_method(root, args.method, args.frames, args.timeout)
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+            if record["status"] in ("failed", "blocked"):
+                return 1
+            if args.strict_paper and (not record.get("paper_comparison") or not record["paper_comparison"]["matched"]):
+                return 2
         elif args.action == "cross-check":
-            from slam_learning.experiments.evaluation_check import run_evaluation_check
+            from slam_learning.runtime.evaluation import run_evaluation_check
             records = [Path(p) if Path(p).is_absolute() else root / p for p in args.records]
             path = run_evaluation_check(root, records, args.timeout)
             return int(json.loads(path.read_text(encoding="utf-8"))["status"] != "executed")

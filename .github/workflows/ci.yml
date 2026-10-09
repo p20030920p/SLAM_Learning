@@ -28,10 +28,8 @@ jobs:
       - run: uv run --project src --no-sync lint-imports --config src/pyproject.toml --no-cache
       - run: uv run --project src --no-sync vulture --config src/pyproject.toml
       - run: uv run --project src pytest -q src/tests
+      - run: uv run --project src slam-study doctor
       - run: uv run --project src python src/scripts/evidence/verify_evidence.py
-      - run: uv run --project src python src/scripts/evidence/verify_paired_evidence.py
-      - run: uv run --project src python src/scripts/evidence/verify_delayed_evidence.py
-      - run: uv run --project src python src/scripts/evidence/verify_delayed_support.py
       - run: uv run --project src python src/scripts/evidence/check_docs.py
       - if: runner.os == 'Linux'
         run: bash -n src/launch/reproduce.sh src/scripts/setup/setup_linux.sh src/scripts/run_reproduction.sh src/scripts/setup/setup_semantic.sh src/scripts/setup/setup_hovsg.sh
@@ -39,13 +37,11 @@ jobs:
         run: bash src/launch/reproduce.sh --help && bash src/scripts/run_reproduction.sh --help
       - if: runner.os == 'Windows'
         run: powershell -NoProfile -File src/launch/reproduce.ps1 -Help
-      - run: uv run --project src slam-study run --experiment mechanism
-      - run: uv run --project src slam-study run --experiment evidence-stress
-      - run: uv run --project src slam-study report --runs results/runs --output results/ci-report.md
+      - run: uv run --project src slam-study report --runs results/reference --output results/ci-report.md
       - uses: actions/upload-artifact@v4
         with:
           name: core-evidence-${{ matrix.os }}
-          path: results/runs/
+          path: results/ci-report.md
   author-methods:
     if: (github.event_name == 'workflow_dispatch' && inputs.real_data) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[real-data]'))
     runs-on: ubuntu-22.04
@@ -60,7 +56,6 @@ jobs:
       - run: uv run --project src slam-study fetch
       - run: uv run --project src slam-study run --method dufomap
       - run: uv run --project src slam-study run --method beautymap
-      - run: uv run --project src slam-study run --experiment pose-stress
       - run: uv run --project src slam-study report --runs results/runs --output results/linux-report.md
       - uses: actions/upload-artifact@v4
         if: always()
@@ -84,4 +79,4 @@ jobs:
       - run: docker build --file src/docker/Dockerfile --tag slam-learning-ci .
       - run: docker run --rm slam-learning-ci doctor
       - run: docker run --rm --entrypoint python slam-learning-ci -c "import open3d; print(open3d.__version__)"
-      - run: docker run --rm slam-learning-ci run --experiment mechanism
+      - run: docker run --rm slam-learning-ci --help

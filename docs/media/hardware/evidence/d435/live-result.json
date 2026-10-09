@@ -1,0 +1,104 @@
+{
+  "status": "streamed",
+  "sensor": "camera",
+  "algorithm": "rgbd",
+  "session_type": "preview",
+  "quality_claim": false,
+  "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+  "video": {
+    "status": "saved",
+    "output": "rviz-live.mp4",
+    "content": "Actual independent RViz view of live ROS topics; no synthetic poses",
+    "frame_rate": 10,
+    "size": [
+      1440,
+      1000
+    ],
+    "audio": false,
+    "display": ":90",
+    "elapsed_seconds": 46.26133935699909,
+    "forced_shutdown_pids": [],
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1440,
+          "height": 1000,
+          "nb_frames": "449"
+        }
+      ],
+      "format": {
+        "duration": "44.900000"
+      }
+    },
+    "bytes": 7491555
+  },
+  "source_observations": 321,
+  "odometry_messages": 314,
+  "status_messages": 314,
+  "map_data_updates": 0,
+  "graph_global_closure_links": [],
+  "native_calibration": {
+    "left": {
+      "width": 640,
+      "height": 480,
+      "fx": 386.3125915527344,
+      "fy": 386.3125915527344,
+      "ppx": 314.95684814453125,
+      "ppy": 233.64193725585938
+    },
+    "right": {
+      "width": 640,
+      "height": 480,
+      "fx": 386.3125915527344,
+      "fy": 386.3125915527344,
+      "ppx": 314.95684814453125,
+      "ppy": 233.64193725585938
+    },
+    "color": {
+      "width": 640,
+      "height": 480,
+      "fx": 614.6063842773438,
+      "fy": 615.578125,
+      "ppx": 323.0701904296875,
+      "ppy": 251.8853759765625
+    },
+    "baseline_m": 0.05004335567355156,
+    "sdk_left_to_color": {
+      "rotation_column_major": [
+        0.9999877214431763,
+        0.004955935757607222,
+        -0.00021392074995674193,
+        -0.004954231902956963,
+        0.9999607801437378,
+        0.007341783028095961,
+        0.00025029777316376567,
+        -0.0073406328447163105,
+        0.9999729990959167
+      ],
+      "translation_m": [
+        0.015406528487801552,
+        -0.0001232208451256156,
+        -0.00025224441196769476
+      ]
+    }
+  },
+  "pose_output_fraction": 0.9781931464174455,
+  "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+  "lost_status_fraction": 0.0,
+  "pose_output_fraction_after_first_2s": 0.9770491803278688,
+  "ros_input_hz": 8.110394988716582,
+  "ros_input_gap_p95_ms": 140.38324275,
+  "odometry_compute_ms": {
+    "p50": 40.04800319671631,
+    "p95": 50.83849430084228
+  },
+  "valid_pose_output_fraction": 0.9750778816199377,
+  "valid_pose_output_fraction_after_first_2s": 0.9770491803278688,
+  "translation_excursion_max_m": 0.007801666111738633,
+  "translation_endpoint_separation_m": 0.0036985159203163144,
+  "rotation_excursion_max_deg": 1.504770150578367,
+  "estimated_path_length_m": 0.3104456538359861,
+  "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+}

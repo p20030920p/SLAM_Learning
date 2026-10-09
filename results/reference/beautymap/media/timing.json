@@ -1,0 +1,125 @@
+{
+  "source_record": "https://github.com/p20030920p/SLAM_Learning/blob/bdc45710ab99075a6b961a9bbed1278f845bbcbd/results/reference/media-previews-v3/record.json",
+  "source_record_sha256": "8bbd04847146ef0b2bd445601bebf47bbbb1ea435301aba61255445a6eef2120",
+  "clips": [
+    {
+      "name": "beautymap",
+      "sha256": "9e563c937a9149ef769be520130efd5a64fac6cb49391382733e369331f88475",
+      "source_record": "results/reference/paper-media-beautymap/record.json",
+      "record_sha256": "ed9bfa361cae53befd0725b20a8a8965cf4187daf44b4f403af82be5db7398ea",
+      "start_seconds": 0,
+      "end_seconds": null,
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1200,
+            "height": 440,
+            "r_frame_rate": "12/1",
+            "avg_frame_rate": "12/1",
+            "nb_frames": "168"
+          }
+        ],
+        "format": {
+          "duration": "14.000000"
+        }
+      },
+      "duration_seconds": 14.0,
+      "dimensions": [
+        1200,
+        440
+      ],
+      "source_intervals_seconds": [
+        [
+          0,
+          14.0
+        ]
+      ],
+      "source_fps": "12/1",
+      "sampling_filter": "setpts=PTS-STARTPTS",
+      "preview_duration_seconds": 14.0,
+      "timing_policy": "Continuous excerpt, original frame timestamps; no FPS downsampling or cuts",
+      "expected_frames": 168,
+      "source_video": "docs/media/beautymap/replay.mp4",
+      "decoded_frames": 168,
+      "gif_duration_seconds": 14.01,
+      "gif_delay_counts_ms": {
+        "80": 111,
+        "90": 57
+      },
+      "frame_count_and_timing_passed": true,
+      "palette_colors": 256,
+      "dither": "sierra2_4a",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "14.0",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/beautymap/replay.mp4",
+          "-filter_threads",
+          "1",
+          "-vf",
+          "setpts=PTS-STARTPTS,palettegen=max_colors=256:reserve_transparent=1:stats_mode=diff",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/reference/media-previews-v3/beautymap.palette.png"
+        ],
+        [
+          "wsl",
+          "-d",
+          "Ubuntu-22.04",
+          "--exec",
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "0",
+          "-t",
+          "14.0",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/docs/media/beautymap/replay.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/reference/media-previews-v3/beautymap.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-lavfi",
+          "setpts=PTS-STARTPTS[a];[a][1:v]paletteuse=dither=sierra2_4a:diff_mode=rectangle",
+          "-threads",
+          "1",
+          "-vsync",
+          "0",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/SLAM_Dependency_Audit/results/reference/media-previews-v3/beautymap.gif"
+        ]
+      ]
+    }
+  ],
+  "note": "Selected-observation replay; original timing and recorded source retained."
+}

@@ -6,52 +6,56 @@
       "name": "DUFOMap",
       "year": 2024,
       "paper": "https://arxiv.org/html/2403.01449v1",
-      "record": "results/reference/dufomap-wsl/record.json",
+      "record": "results/reference/dufomap/runs/dufomap-wsl/record.json",
       "command": "uv run --project src slam-study run --method dufomap",
-      "media_record": "results/reference/paper-media-dufomap/record.json",
+      "media_record": "results/reference/dufomap/media/replay/record.json",
       "cards": {
         "en": "docs/papers/dufomap.md",
         "zh": "docs/papers/dufomap.zh-CN.md"
-      }
+      },
+      "status": "partial_reproduction"
     },
     {
       "id": "beautymap",
       "name": "BeautyMap",
       "year": 2024,
       "paper": "https://arxiv.org/html/2405.07283v1",
-      "record": "results/reference/beautymap-wsl/record.json",
+      "record": "results/reference/beautymap/runs/beautymap-wsl/record.json",
       "command": "uv run --project src slam-study run --method beautymap",
-      "media_record": "results/reference/paper-media-beautymap/record.json",
+      "media_record": "results/reference/beautymap/media/replay/record.json",
       "cards": {
         "en": "docs/papers/beautymap.md",
         "zh": "docs/papers/beautymap.zh-CN.md"
-      }
+      },
+      "status": "partial_reproduction"
     },
     {
       "id": "conceptgraphs",
       "name": "ConceptGraphs",
       "year": 2024,
       "paper": "https://arxiv.org/html/2309.16650v1",
-      "record": "results/reference/conceptgraphs-wsl/record.json",
+      "record": "results/reference/conceptgraphs/runs/conceptgraphs-wsl/record.json",
       "command": ".venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py",
-      "media_record": "results/reference/paper-media-conceptgraphs/record.json",
+      "media_record": "results/reference/conceptgraphs/media/replay/record.json",
       "cards": {
         "en": "docs/papers/conceptgraphs.md",
         "zh": "docs/papers/conceptgraphs.zh-CN.md"
-      }
+      },
+      "status": "partial_reproduction"
     },
     {
       "id": "hovsg",
       "name": "HOV-SG",
       "year": 2024,
       "paper": "https://arxiv.org/html/2403.17846v2",
-      "record": "results/reference/hovsg-wsl/record.json",
+      "record": "results/reference/hovsg/runs/hovsg-wsl-resolved/record.json",
       "command": ".venv-hovsg/bin/python src/scripts/methods/run_hovsg.py",
-      "media_record": "results/reference/paper-media-hovsg/record.json",
+      "media_record": null,
       "cards": {
         "en": "docs/papers/hovsg.md",
         "zh": "docs/papers/hovsg.zh-CN.md"
-      }
+      },
+      "status": "in_progress"
     }
   ]
 }

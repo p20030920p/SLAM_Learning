@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from slam_learning.experiments.evaluation_check import check_point_order
+from slam_learning.runtime.evaluation import check_point_order
 from slam_learning.core.pcd import Cloud
 
 

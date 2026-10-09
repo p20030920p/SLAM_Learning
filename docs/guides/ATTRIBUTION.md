@@ -16,7 +16,3 @@ The repository's [MIT license](../../src/LICENSE) covers its own study code. Ups
 | Recording presentation | Sim2Real-AlgoBench conventions credited in [RECORDING](RECORDING.md); no source copied |
 
 Replica's [research terms](https://github.com/facebookresearch/Replica-Dataset/blob/main/LICENSE) limit dataset use/publication to noncommercial or nonprofit research/education and specify access conditions. The semantic GIF/MP4/posters contain derived Replica observations for this research study; they are not offered as newly MIT-licensed datasets. Download data/checkpoints from their original documented sources under their terms.
-
-PDFs embed a subset of the licensed local Chinese font; font files are not distributed separately. AI involvement and the applicant's review responsibilities are stated in [AI disclosure](DISCLOSURE.md). Each figure links to measured run evidence, or is explicitly reserved for an unexecuted experiment.
-
-Annotation polygons and query-audit figures in the paired extension derive from the same Replica renders under the terms above. They are AI-assisted study labels, not official or independently reviewed ground truth.

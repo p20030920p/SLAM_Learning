@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "kind": "hardware_preview",
+  "status": "recorded",
+  "scope": "Basic sensor and odometry display; no accuracy or fusion claim",
+  "items": [
+    {
+      "device": "RealSense D435",
+      "algorithm": "rgbd",
+      "session": "data\\live-camera-20261009-023303-779",
+      "hash_bound_at": "original evidence",
+      "source_sha256": "b7b40a9f0ece29fac8b76a7a33b29ea036aa8f6c58fdad552b5789b46eb25152",
+      "source_frames": 449,
+      "source_fps": 10.0,
+      "duration_seconds": 44.9,
+      "gif_frames": 449,
+      "gif_duration_seconds": 44.9,
+      "gif_fps": 10,
+      "trimmed": false,
+      "speed_multiplier": 1,
+      "qa_times_seconds": [
+        2,
+        22.45,
+        42.9
+      ],
+      "full_video_decoded": true,
+      "quality_claim": false
+    },
+    {
+      "device": "Unitree L2",
+      "algorithm": "icp",
+      "session": "data\\live-lidar-20261009-023307-581",
+      "hash_bound_at": "original evidence",
+      "source_sha256": "9bfb7567a87227c4514753d1cec223794430e8a5dc6d5e86371e26d86e9b7abd",
+      "source_frames": 422,
+      "source_fps": 10.0,
+      "duration_seconds": 42.2,
+      "gif_frames": 422,
+      "gif_duration_seconds": 42.2,
+      "gif_fps": 10,
+      "trimmed": false,
+      "speed_multiplier": 1,
+      "qa_times_seconds": [
+        2,
+        21.1,
+        40.2
+      ],
+      "full_video_decoded": true,
+      "quality_claim": false
+    },
+    {
+      "device": "RealSense D435",
+      "algorithm": "four-stream capture",
+      "session": "data\\dark-on-qpc-a-20261009-023004/camera",
+      "hash_bound_at": "publication",
+      "source_sha256": "2bda7d4c11463c4273b2c218948c2377546af6c81e0cd66f31605ba99ae120ba",
+      "source_frames": 739,
+      "source_fps": 30.0,
+      "duration_seconds": 24.634,
+      "gif_frames": 246,
+      "gif_duration_seconds": 24.6,
+      "gif_fps": 10,
+      "trimmed": false,
+      "speed_multiplier": 1,
+      "qa_times_seconds": [
+        2,
+        12.32,
+        22.63
+      ],
+      "full_video_decoded": true,
+      "quality_claim": false
+    }
+  ],
+  "photo": {
+    "source": "User-provided device photograph",
+    "edited": false
+  },
+  "artifacts": {
+    "d435-input-qa-0.png": {
+      "sha256": "6b2bdd4269d6e983dd8bbbc8210650c8107d7ae29b98a35d5f3662f5380190ad",
+      "availability": "portable"
+    },
+    "d435-input-qa-1.png": {
+      "sha256": "1884f4cb5075296dfb45b6205f296ca078059bd9c37d2e236bc5af3074684bd1",
+      "availability": "portable"
+    },
+    "d435-input-qa-2.png": {
+      "sha256": "cf10c5e1bdb6f5a257f125666a47230d21ef17b9d51c4bff75e5e92327b49f88",
+      "availability": "portable"
+    },
+    "d435-input.gif": {
+      "sha256": "ab4d93274fcec3633c78dd48947ebf2dfedc77852c9ddcd4ba3b1c0b42e3acdf",
+      "availability": "portable"
+    },
+    "d435-input.mp4": {
+      "sha256": "2bda7d4c11463c4273b2c218948c2377546af6c81e0cd66f31605ba99ae120ba",
+      "availability": "portable"
+    },
+    "d435-qa-0.png": {
+      "sha256": "7b50a2636f5732b4ed73c207bde51880e0d700431ecd417933bf0d9ed81f095c",
+      "availability": "portable"
+    },
+    "d435-qa-1.png": {
+      "sha256": "cd58fcc9763674c0760f50ac51157244849e1a543c956e16dcacb031ef66513d",
+      "availability": "portable"
+    },
+    "d435-qa-2.png": {
+      "sha256": "4cc052b3d73540d1ef45da3767cf7af3cab60714f5e5b835ebabd1df1072bb5b",
+      "availability": "portable"
+    },
+    "d435.gif": {
+      "sha256": "d2368e62596dd5823e43198d064266604c265f71ae60e89980f16ce8dad866ff",
+      "availability": "portable"
+    },
+    "d435.mp4": {
+      "sha256": "b7b40a9f0ece29fac8b76a7a33b29ea036aa8f6c58fdad552b5789b46eb25152",
+      "availability": "portable"
+    },
+    "devices.jpg": {
+      "sha256": "c19d205d500ec3a2d490ee3fd7f3d4ee1581fe2f773eeddde121feafa6617fa5",
+      "availability": "portable"
+    },
+    "evidence/d435/capture.json": {
+      "sha256": "7801d2283445132b9c8493d99298d7c0236475a2f753b3daf8f9f64e5950d6dd",
+      "availability": "portable"
+    },
+    "evidence/d435/code-hashes.json": {
+      "sha256": "092105fc64c821ba02d4d8498f7a654dd9e283de72ef9313a526e14edb5d3aad",
+      "availability": "portable"
+    },
+    "evidence/d435/config.json": {
+      "sha256": "f0cb9ffd7ddc212ce2e86f69ac15b9a69f9614cf23538aa0f9dad5c9cb95741a",
+      "availability": "portable"
+    },
+    "evidence/d435/live-result.json": {
+      "sha256": "609ba94a04af2cfe4c281f5680304e1f9097c1fdebdd88380f56e933fe7a9ec9",
+      "availability": "portable"
+    },
+    "evidence/d435/video.json": {
+      "sha256": "52f9e25c8a65ea6bb513174721611142cacd1a440111fc2a531b9736a83b94de",
+      "availability": "portable"
+    },
+    "evidence/d435-input/capture.json": {
+      "sha256": "7ee747d4e2905095f2c0550341a86b404a0f24afd3ad33c201d480f2a3870168",
+      "availability": "portable"
+    },
+    "evidence/l2/capture.json": {
+      "sha256": "a6ad12c6a352471578acf062dc0ff597584eb5cce4b4aedd78ff9cc597ddd848",
+      "availability": "portable"
+    },
+    "evidence/l2/code-hashes.json": {
+      "sha256": "092105fc64c821ba02d4d8498f7a654dd9e283de72ef9313a526e14edb5d3aad",
+      "availability": "portable"
+    },
+    "evidence/l2/config.json": {
+      "sha256": "871b4c9e300216a8546c1d988b015b748827c7c90c028bcc1d4bc8de915b8b91",
+      "availability": "portable"
+    },
+    "evidence/l2/live-result.json": {
+      "sha256": "a4ed61a9a5b925e900702d79b5ab249b1407b351be9bc4d9881a490ff2658c06",
+      "availability": "portable"
+    },
+    "evidence/l2/video.json": {
+      "sha256": "7173fa032eafe067d934cef72b6a98ca9bc4300a3fdd9f8a85994b7445a9c0a8",
+      "availability": "portable"
+    },
+    "evidence/postfall-dual-lowlight-20261009.json": {
+      "sha256": "d151fd2ab844a793a828fa56099a9fae7e1594b3f192c029530229fde2935723",
+      "availability": "portable"
+    },
+    "l2-qa-0.png": {
+      "sha256": "c27e98f3c1f6c607c6bf1b2934a01e382bd16077cff8eab27e8ce719a6188651",
+      "availability": "portable"
+    },
+    "l2-qa-1.png": {
+      "sha256": "ac3d4db3e1468431de7a1bdc9f393f28ade0d9a430210b5c0faa05222c962a65",
+      "availability": "portable"
+    },
+    "l2-qa-2.png": {
+      "sha256": "773b91046dbdd162f0dd36b8f9306f8820b29b3d0aac13d2d1732e9c29050712",
+      "availability": "portable"
+    },
+    "l2.gif": {
+      "sha256": "cc31b9634aef4c1d59a9fe4b77dbcf09212fc2a7332ed52d63bac0451bd3fd58",
+      "availability": "portable"
+    },
+    "l2.mp4": {
+      "sha256": "9bfb7567a87227c4514753d1cec223794430e8a5dc6d5e86371e26d86e9b7abd",
+      "availability": "portable"
+    },
+    "export_hardware_previews.source.py": {
+      "sha256": "5292dbf5049c5a64001594d6fc06ce1d491fdb905c8e9488c175c8d40ae41e32",
+      "availability": "portable"
+    }
+  },
+  "generator_sha256": "5292dbf5049c5a64001594d6fc06ce1d491fdb905c8e9488c175c8d40ae41e32"
+}

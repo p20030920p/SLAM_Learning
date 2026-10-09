@@ -50,17 +50,16 @@ include_external_packages = true
 [[tool.importlinter.contracts]]
 name = "No module cycles"
 type = "acyclic_siblings"
-ancestors = ["slam_learning", "slam_learning.core", "slam_learning.runtime", "slam_learning.experiments", "slam_learning.visualization"]
+ancestors = ["slam_learning", "slam_learning.core", "slam_learning.runtime", "slam_learning.visualization"]
 
 [[tool.importlinter.contracts]]
-name = "CLI above visualization above experiments above runtime above core"
+name = "CLI above visualization above runtime above core"
 type = "layers"
 containers = ["slam_learning"]
 exhaustive = true
 layers = [
     "cli",
     "visualization",
-    "experiments",
     "runtime",
     "core",
 ]

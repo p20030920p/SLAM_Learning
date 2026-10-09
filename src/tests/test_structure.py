@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 @pytest.mark.parametrize("script", [
-    "experiments/run_paired_cell.py",
-    "experiments/run_delayed_correction.py",
-    "evidence/snapshot_cell_sources.py",
+    "media/record_session.py",
+    "media/prepare_visual_review.py",
+    "media/export_hardware_previews.py",
 ])
 def test_grouped_script_entrypoints_work_outside_checkout(script, tmp_path):
     result = subprocess.run([sys.executable, str(ROOT / "src/scripts" / script), "--help"],

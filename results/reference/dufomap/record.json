@@ -1,184 +1,159 @@
 {
   "schema_version": 1,
-  "kind": "author_method",
+  "kind": "method_delivery",
   "method": "dufomap",
-  "status": "executed",
-  "started_at": "2026-10-07T12:23:51+00:00",
-  "scope": "full_teaser",
-  "requested_frames": 0,
-  "specification": {
-    "upstream": "dufomap",
-    "mode": "offline point-level map cleaning via authors' PyPI binding 1.1.1",
-    "parameters": {
-      "resolution": 0.1,
-      "d_s": 0.2,
-      "d_p": 1,
-      "threads": 2,
-      "min_range": 0.2,
-      "max_range": 50.0
-    },
-    "paper_target": {
-      "source": "https://arxiv.org/html/2403.01449v1",
-      "table": "Table I, KITTI small town 00, offline DUFOMap; Section IV-C parameters",
-      "values": {
-        "SA": 97.96,
-        "DA": 98.72,
-        "AA": 98.34
-      },
-      "absolute_tolerance_pp": 0.01
-    },
-    "scope_note": "Author demo uses d_p=2 whereas the paper states d_p=1. We explicitly run paper setting. Newer binding may differ from paper implementation."
-  },
-  "environment": {
-    "python": "3.10.19 (main, Oct 10 2025, 12:44:43) [MSC v.1944 64 bit (AMD64)]",
-    "platform": "Windows-10-10.0.26200-SP0",
-    "packages": {
-      "slam-learning": "0.2.0",
-      "numpy": "1.26.4",
-      "scipy": "1.14.1",
-      "matplotlib": "3.9.2",
-      "dufomap": "1.1.1",
-      "open3d": "0.18.0",
-      "dztimer": "1.1.1"
-    }
-  },
-  "repository": {
-    "commit": "01e2105aeb8a26bf5cdbe7420b56c0dddf81272c",
-    "dirty": true
-  },
-  "source_sha256": {
-    "src/slam_learning/__init__.py": "cec70b010096c6a9b38c77e679dd78fc35792b8efcd19c67d5565002da9c9c71",
-    "src/slam_learning/adapters.py": "dbc421d7d06cc6c7342a7f3a3f89f8de6d5faef735a8ec87c4d7a449002cb123",
-    "src/slam_learning/cli.py": "1c68a88efac1a9e4dd5d300e451ceba1f612419254dba203d3fc30c80f1478f6",
-    "src/slam_learning/evidence_stress.py": "9957fe5974b3e8308d7287433279aedb8dbac0a89fd2511ca871a2f922e29c60",
-    "src/slam_learning/fetch.py": "fcce0e0fd024030d4f1b19ab1d63abdf1b0d7e5333dc89254520747ee03d03cd",
-    "src/slam_learning/metrics.py": "bd0f6408133cbe909f7e5dcf1d2e03199a582cc5c3ce9b0df990dc8526307eed",
-    "src/slam_learning/pcd.py": "9fc61d5f38920578bb98feb4df0a0967da80cec7187d7299de0d11aee521214d",
-    "src/slam_learning/pose_stress.py": "18f096b34da22a09d729ed141552d7dd49f5abc33c8a8cd61275d27cd6fdbfa6",
-    "src/slam_learning/provenance.py": "7cc155e7ae1e67e8313844217abcc36905f85427417d537e545af8f4a1880a9c",
-    "src/slam_learning/report.py": "5c36a37c48e1104baa6b77d40fdea721aff746e72a64e46b393b11e7a4d49561",
-    "src/slam_learning/runner.py": "addc4555f83f6f9d4d6ff74129daca8ac3e2133f512cb6332a2088c64555a13f",
-    "src/slam_learning/synthetic.py": "f836619ef1b05ade5a1ac0489de832061c0ddee717f1cfeb90a6b99dbee314cd"
-  },
-  "config_sha256": {
-    "dataset.json": "f105feb63c1aad0b0fa620554a437b9db394449db774c9ec3900193d60495742",
-    "evidence_stress.json": "dba18e38c39d103ef77b7aba012538029707657a007b64944d85592d7eb2775d",
-    "methods.json": "5a177d8e100109a5e5639070d8186c26651cf1a9fcf8e0a2e0dacaa66ac8f51f",
-    "pose_stress.json": "23f4a7eaca27fcacd7ddc1ec7e9ca4cb250682ca7f0c41c381feba812158b124",
-    "synthetic.json": "afecd70fd8bc7c41293fb5e992b1565bea16b7c13bd8f1f62b77634dce5d0c88",
-    "upstreams.json": "fbf09ad8ac99d166c198d8ab310c05728e5974c75a702cb79e9bb71f1467400b"
-  },
+  "status": "recorded",
+  "scope": "KITTI-00: 141 supplied-pose scans",
+  "primary_record": "runs/dufomap-wsl/record.json",
+  "note": "Curated index of existing evidence; no new mapping run. HOV-SG records are incomplete-reproduction diagnostics.",
   "artifacts": {
-    "cleaned.pcd": {
-      "sha256": "747357a383465721f7235a2639d26c7223e9398878e5268c41cd950b4a37b04d",
-      "bytes": 191944966,
-      "availability": "local_only"
-    },
-    "run.log": {
-      "sha256": "dab75090938f6c74aea5be1159cceac1a8f7d626ed0f8069e227c5da84061359",
-      "bytes": 350,
+    "media/preview.gif": {
+      "sha256": "ff5b8e6950c51c2e4bc88c1dd05ea52c2822c0b38447d5589904811b92a37ad0",
       "availability": "portable"
     },
-    "worker.json": {
-      "sha256": "4754b0e5def34ae844550eb4d195a6cee10733c1dc6e85bc82980e650bbaa6a5",
-      "bytes": 127,
+    "media/replay/input-record.json": {
+      "sha256": "bb35aed8bb119f2a6e44168202c01adcc40e924e3d34a4c90a541421c616ea4d",
       "availability": "portable"
     },
-    "metrics.json": {
+    "media/replay/poster.png": {
+      "sha256": "e72fbdf87ca3465d37ba73a8b247eea3ced77a33e2ba5dc256952965cb2ac95a",
+      "availability": "portable"
+    },
+    "media/replay/preview.gif": {
+      "sha256": "944506b36f70ee50d92120f07832cfb740c3f3d56200faad5e858173b0079f28",
+      "availability": "portable"
+    },
+    "media/replay/record.json": {
+      "sha256": "b08e14c3db27509d58a2d7f7bc171293fa1479365ee016531592f237c4d2bfd5",
+      "availability": "portable"
+    },
+    "media/replay/render.json": {
+      "sha256": "584832df02f9660d7967575edb8711fa505c5f3dfff0f951f5b1dbe1dd4bc217",
+      "availability": "portable"
+    },
+    "media/replay/replay.mp4": {
+      "sha256": "ab4ea8289e5387b19f75e0253a7b24b67c3dc1f839a148669b50008af97fccc0",
+      "availability": "portable"
+    },
+    "media/rviz/command.json": {
+      "sha256": "afd73cdf6ed264949a2eea8e9446d4bb7d5486c7db0daee66c7b909875ba1d2a",
+      "availability": "portable"
+    },
+    "media/rviz/exit.json": {
+      "sha256": "72ca0d0e2eaa38c95b71ff5c6fae9db929352479cf88408180b23f623a6ea8fd",
+      "availability": "portable"
+    },
+    "media/rviz/manifest.json": {
+      "sha256": "17ab722790b8ab4eab35dd65902b6a73ab807207db82a7d5f16b9a2687d829be",
+      "availability": "portable"
+    },
+    "media/rviz/poster.png": {
+      "sha256": "f7da192a24e7e66110477e3217785670ea1b116166adc3a88dce7fe1e562f5b2",
+      "availability": "portable"
+    },
+    "media/rviz/prepare_visual_review.source.py": {
+      "sha256": "4879554d00c8968d2645e0285692c101ab28c64226514d1a47c2062d038d0a3f",
+      "availability": "portable"
+    },
+    "media/rviz/qa-00.png": {
+      "sha256": "3ca67d29ef0f409ed071440e8cc4097536503a7cdedc91ae18002eee45e532bb",
+      "availability": "portable"
+    },
+    "media/rviz/qa-01.png": {
+      "sha256": "3f2f31556dc844fcb12c958fee588bd5f2ff09f93c4f4e330f8374bab3224b56",
+      "availability": "portable"
+    },
+    "media/rviz/qa-02.png": {
+      "sha256": "f7da192a24e7e66110477e3217785670ea1b116166adc3a88dce7fe1e562f5b2",
+      "availability": "portable"
+    },
+    "media/rviz/qa-03.png": {
+      "sha256": "7d8300b955121f435a6d8aa47f41d0dba46bfcc93801077e9d2f6e9f99f05e00",
+      "availability": "portable"
+    },
+    "media/rviz/record_visual_review.source.sh": {
+      "sha256": "8260e848ec82169e705ffc3a695211f07a413bcc3554da2cf7d9d793179817b6",
+      "availability": "portable"
+    },
+    "media/rviz/recording.json": {
+      "sha256": "408e8b2a866afa1fd6fe73c049d1d9fc5230292f0d096c8bd5904182723b5d50",
+      "availability": "portable"
+    },
+    "media/rviz/review.mp4": {
+      "sha256": "d8e0e1cbc66ac0a2a8795d1915328e75f0b1bb440bbd64307d0ae60520d31881",
+      "availability": "portable"
+    },
+    "media/rviz/review.rviz": {
+      "sha256": "56cf69c6f37029d650a04ae4cd0217e77f5e7696d0fe65e011bfafbb989e5aae",
+      "availability": "portable"
+    },
+    "media/rviz/rviz.log": {
+      "sha256": "1643ebbf70f967f14d477d0746c36e9787b6132706dd4903e2d229636d5d6af9",
+      "availability": "portable"
+    },
+    "media/rviz/terminal.raw": {
+      "sha256": "1f83bb3e3776859e11e67792c4aabce9729ebf8161809a9851bae0ded1d8dca0",
+      "availability": "portable"
+    },
+    "media/rviz/terminal.time": {
+      "sha256": "ae8f9dcdf1a54461ae8171b052713b5dd660aeeda50adbbd74e0d596204f927f",
+      "availability": "portable"
+    },
+    "media/rviz/view_measured_rviz.source.py": {
+      "sha256": "b360e45a0e5f320f1f478e6b62700cea7b751631a6d69faec358abe1c4baaeb8",
+      "availability": "portable"
+    },
+    "media/timing.json": {
+      "sha256": "ce94db66483bed512b5246f6f0c4d3a1aa63cf0b29f687a9d5da3e92e458003a",
+      "availability": "portable"
+    },
+    "runs/dufomap/metrics.json": {
       "sha256": "4837ac8fbfd489b6c8c6b08d972449bf8745af4fbf3796cb925267287c9f05d7",
-      "bytes": 448,
+      "availability": "portable"
+    },
+    "runs/dufomap/record.json": {
+      "sha256": "3a809aa7499886940a30dad9381d955d4506539854b0c1c571276cbaad527c3d",
+      "availability": "portable"
+    },
+    "runs/dufomap/run.log": {
+      "sha256": "dab75090938f6c74aea5be1159cceac1a8f7d626ed0f8069e227c5da84061359",
+      "availability": "portable"
+    },
+    "runs/dufomap/worker.json": {
+      "sha256": "4754b0e5def34ae844550eb4d195a6cee10733c1dc6e85bc82980e650bbaa6a5",
+      "availability": "portable"
+    },
+    "runs/dufomap-linux/metrics.json": {
+      "sha256": "e43b3371a9b3f15923f177b41b66194b05a717c3ea702b20640a1050b5e4e676",
+      "availability": "portable"
+    },
+    "runs/dufomap-linux/record.json": {
+      "sha256": "501e859707084bee452ccd46ab562c50f40e8b6f1ee925c668f2d3b5021f7702",
+      "availability": "portable"
+    },
+    "runs/dufomap-linux/run.log": {
+      "sha256": "1c39565d915aec485d2c37f7d43197b85a922971b2fec81a7287ad0a0cd250dc",
+      "availability": "portable"
+    },
+    "runs/dufomap-linux/worker.json": {
+      "sha256": "9da8a7c8682672c1ed7d3209ebd52ea177fbc326f7ffc39bee57118029f5b061",
+      "availability": "portable"
+    },
+    "runs/dufomap-wsl/metrics.json": {
+      "sha256": "e43b3371a9b3f15923f177b41b66194b05a717c3ea702b20640a1050b5e4e676",
+      "availability": "portable"
+    },
+    "runs/dufomap-wsl/record.json": {
+      "sha256": "fbf0ffbc2f16fd05bc6b8f42a04fca102bc2d0085dda9a918a02384a7b18d87a",
+      "availability": "portable"
+    },
+    "runs/dufomap-wsl/run.log": {
+      "sha256": "595ff870c57af1b09ace595c83299c3e4447cd6262d0b0c3b014eeb69e1ec821",
+      "availability": "portable"
+    },
+    "runs/dufomap-wsl/worker.json": {
+      "sha256": "9da8a7c8682672c1ed7d3209ebd52ea177fbc326f7ffc39bee57118029f5b061",
       "availability": "portable"
     }
-  },
-  "command": [
-    "D:\\workspace\\be2\\SLAM_Learning\\.venv\\Scripts\\python.exe",
-    "-m",
-    "slam_learning.cli",
-    "_worker",
-    "--root",
-    "D:\\workspace\\be2\\SLAM_Learning",
-    "--method",
-    "dufomap",
-    "--output",
-    "D:\\workspace\\be2\\SLAM_Learning\\results\\runs\\dufomap-e12aecebc914",
-    "--frames",
-    "0"
-  ],
-  "exit_code": 0,
-  "dataset": {
-    "manifest_sha256": "2ab94255b4ec657f601b9f57936b2592e327f505267835e708f41e5bb21896b4",
-    "archive_sha256": "14e30a0ddc19f275477aa0e72e6ba713f0f6a6a29dcf7ded8a92ce0c421109fd",
-    "configuration": {
-      "id": "dynamicmap-kitti00-teaser",
-      "record": "https://zenodo.org/records/10886629",
-      "url": "https://zenodo.org/records/10886629/files/00.zip?download=1",
-      "filename": "00.zip",
-      "md5": "87f856c4dd1ad05d0ffd4171f92780a0",
-      "frames": 141,
-      "gt_points": 17362230,
-      "coordinate_frame": "world; sensor origins stored in PCD VIEWPOINT",
-      "scope": "Selected frames, not the full KITTI odometry sequence. Poses supplied by benchmark, not estimated here.",
-      "license_note": "Original KITTI/SemanticKITTI terms apply; data is not redistributed."
-    }
-  },
-  "upstreams": {
-    "dufomap": {
-      "url": "https://github.com/KTH-RPL/dufomap.git",
-      "commit": "9e239ddd5995136e14f5212f33382a6ebc59e518",
-      "dirty": false
-    },
-    "dynamicmap": {
-      "url": "https://github.com/KTH-RPL/DynamicMap_Benchmark.git",
-      "commit": "8b60f36a735a910b8c54b7eb12438db76fb32460",
-      "dirty": false
-    }
-  },
-  "worker": {
-    "frames": 141,
-    "compatibility_patch": null,
-    "integration_filter": "0.2 < range < 50 m, per current author demo"
-  },
-  "metrics": {
-    "counts": {
-      "kept_static": 16917434,
-      "removed_static": 348813,
-      "removed_dynamic": 94738,
-      "kept_dynamic": 1245
-    },
-    "SA": 97.97979838930834,
-    "DA": 98.70289530437681,
-    "AA": 98.34068223458615,
-    "HA": 98.34001762682132,
-    "gt_points": 17362230,
-    "map_points": 15995399,
-    "threshold_m": 0.05,
-    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
-  },
-  "paper_comparison": {
-    "source": "https://arxiv.org/html/2403.01449v1",
-    "table": "Table I, KITTI small town 00, offline DUFOMap; Section IV-C parameters",
-    "absolute_tolerance_pp": 0.01,
-    "matched": false,
-    "metrics": {
-      "SA": {
-        "measured": 97.97979838930834,
-        "reported": 97.96,
-        "difference_pp": 0.019798389308348874,
-        "within_tolerance": false
-      },
-      "DA": {
-        "measured": 98.70289530437681,
-        "reported": 98.72,
-        "difference_pp": -0.01710469562318906,
-        "within_tolerance": false
-      },
-      "AA": {
-        "measured": 98.34068223458615,
-        "reported": 98.34,
-        "difference_pp": 0.0006822345861507983,
-        "within_tolerance": true
-      }
-    }
-  },
-  "finished_at": "2026-10-07T12:24:53+00:00"
+  }
 }

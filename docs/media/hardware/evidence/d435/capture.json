@@ -1,0 +1,85 @@
+{
+  "started_at": "2026-10-08T23:33:06.208847+00:00",
+  "sensor": "camera",
+  "status": "streamed",
+  "scope": "Live receipt; preview is not precision acceptance",
+  "device": {
+    "name": "RealSense D435",
+    "serial": "831612073355",
+    "usb": "3.2",
+    "firmware": "5.17.0.10"
+  },
+  "depth_scale_m": 0.0010000000474974513,
+  "emitter_before": 1.0,
+  "emitter_during": 1.0,
+  "calibration": {
+    "left": {
+      "width": 640,
+      "height": 480,
+      "fx": 386.3125915527344,
+      "fy": 386.3125915527344,
+      "ppx": 314.95684814453125,
+      "ppy": 233.64193725585938
+    },
+    "right": {
+      "width": 640,
+      "height": 480,
+      "fx": 386.3125915527344,
+      "fy": 386.3125915527344,
+      "ppx": 314.95684814453125,
+      "ppy": 233.64193725585938
+    },
+    "color": {
+      "width": 640,
+      "height": 480,
+      "fx": 614.6063842773438,
+      "fy": 615.578125,
+      "ppx": 323.0701904296875,
+      "ppy": 251.8853759765625
+    },
+    "baseline_m": 0.05004335567355156,
+    "sdk_left_to_color": {
+      "rotation_column_major": [
+        0.9999877214431763,
+        0.004955935757607222,
+        -0.00021392074995674193,
+        -0.004954231902956963,
+        0.9999607801437378,
+        0.007341783028095961,
+        0.00025029777316376567,
+        -0.0073406328447163105,
+        0.9999729990959167
+      ],
+      "translation_m": [
+        0.015406528487801552,
+        -0.0001232208451256156,
+        -0.00025224441196769476
+      ]
+    }
+  },
+  "timestamp_policy": "Host frameset arrival; native per-stream timestamps/skews retained; not hardware synchronization",
+  "framesets_acquired": 1192,
+  "frames_sent": 321,
+  "stereo_skew_rejected": 0,
+  "stereo_skew_rejected_first_ms": [],
+  "elapsed_seconds": 40.01600000000326,
+  "temporary_options_restored": true,
+  "raw": {
+    "bytes": 1411997696,
+    "sha256": "477cb1b18a1be653d6372fd26e81d3b82b0ccc94bc928b4d497c97fe60039aa2"
+  },
+  "streams": {
+    "stream.depth:0": {
+      "unique_frames": 1184
+    },
+    "stream.infrared:1": {
+      "unique_frames": 1184
+    },
+    "stream.infrared:2": {
+      "unique_frames": 1184
+    },
+    "stream.color:0": {
+      "unique_frames": 1185
+    }
+  }
+}

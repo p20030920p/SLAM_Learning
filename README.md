@@ -11,15 +11,11 @@ Dynamic robust mapping · Semantic mapping and localization
 
 English | [中文](docs/HOME.zh-CN.md)
 
-[Analysis](docs/research/STUDY.md) · [Evidence](docs/README.md) · [Setup](docs/guides/REPRODUCE.md) · [Structure](docs/guides/STRUCTURE.md)
+[Analysis](docs/papers/README.md) · [Evidence](docs/README.md) · [Setup](docs/guides/REPRODUCE.md) · [Structure](docs/guides/STRUCTURE.md)
 
 </div>
 
-![Measured author-map replay](results/reference/media-previews-v3/replication-hero.gif)
-
-*21 saved-map snapshots over 14 seconds; display timing is not algorithm runtime. GT only for evaluation/coloring. [Timing audit](results/reference/media-previews-v3/record.json).*
-
-Four related papers → selected mapping experiments → pose-error controls → a candidate recovery hypothesis. **H1 remains unverified.**
+Four related papers → selected mapping reproductions → an open question and hypothesis. **H1 remains unverified.**
 
 ## Directions analysis
 
@@ -48,25 +44,25 @@ The first direction emphasizes reliable motion and geometry. The second adds obj
 
 ## Related works
 
-These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing; each selected map observation is held for eight frames at 12 fps. [GIF timing and sources](results/reference/media-previews-v3/record.json).
+These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing; each selected map observation is held for eight frames at 12 fps. [GIF timing and sources](results/reference/conceptgraphs/media/timing.json).
 
 ### [DUFOMap](docs/papers/dufomap.md)
 
-![DUFOMap core replay](results/reference/media-previews-v3/dufomap.gif)
+![DUFOMap core replay](results/reference/dufomap/media/preview.gif)
 
-**KITTI-00 outdoor scene, 141 LiDAR scans.** Observed empty space identifies dynamic points; pose margins protect static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](docs/media/dufomap/replay.mp4).
+**KITTI-00 outdoor scene, 141 LiDAR scans.** Observed empty space identifies dynamic points; pose margins protect static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](results/reference/dufomap/media/replay/replay.mp4).
 
 ### [BeautyMap](docs/papers/beautymap.md)
 
-![BeautyMap core replay](results/reference/media-previews-v3/beautymap.gif)
+![BeautyMap core replay](results/reference/beautymap/media/preview.gif)
 
-**KITTI-00 outdoor scene, 141 LiDAR scans.** Occupancy comparisons remove dynamic traces; restoration protects static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](docs/media/beautymap/replay.mp4).
+**KITTI-00 outdoor scene, 141 LiDAR scans.** Occupancy comparisons remove dynamic traces; restoration protects static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](results/reference/beautymap/media/replay/replay.mp4).
 
 ### [ConceptGraphs](docs/papers/conceptgraphs.md)
 
-![ConceptGraphs core replay](results/reference/media-previews-v3/conceptgraphs.gif)
+![ConceptGraphs core replay](results/reference/conceptgraphs/media/preview.gif)
 
-**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](docs/media/conceptgraphs/replay.mp4).
+**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](results/reference/conceptgraphs/media/replay/replay.mp4).
 
 ### [HOV-SG](docs/papers/hovsg.md)
 
@@ -124,6 +120,24 @@ The paper reports Replica benchmark results; our completed result below covers *
 
 The author's evaluator defines `mrecall` as mAcc and `fmiou` as F-mIoU. Our macro mIoU of 21.3460% is a different metric and is not substituted for F-mIoU. [Metric definitions](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/README.md#evaluate-semantic-segmentation-from-the-object-based-mapping-results-on-replica-datasets).
 
+
+## Hardware tests
+
+![D435 / Unitree L2](docs/media/hardware/devices.jpg)
+
+Desktop setup: RealSense D435 depth camera (without IMU) and Unitree L2 LiDAR.
+
+| Device | Basic test | Full video |
+| --- | --- | --- |
+| D435 | RGB / depth / stereo IR capture | [24.6 s](docs/media/hardware/d435-input.mp4) |
+| L2 | Point cloud / ICP display | [42.2 s](docs/media/hardware/l2.mp4) |
+
+![D435 input](docs/media/hardware/d435-input.gif)
+
+![L2 display](docs/media/hardware/l2.gif)
+
+Supplement: [D435 RGB-D odometry, 44.9 s](docs/media/hardware/d435.mp4). These are recorded acquisition and display checks; hardware accuracy, full SLAM and cross-sensor fusion remain unverified. [Timing and sources](docs/media/hardware/record.json).
+
 ## Hypothesis
 
 We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and preserve more consistent geometric and semantic maps
@@ -132,10 +146,9 @@ We hypothesize that retaining the observation evidence behind map updates and re
 
 | Branch | Role |
 | --- | --- |
-| main | Curated submission: question, selected mapping experiments, counterevidence and candidate H1. |
+| main | Curated submission: question, four mapping reproductions, open question and hypothesis. |
 | [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | Original pipelines, paper-table/semantic scoring and recordings. |
-| [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | Personal study notes and hardware trials under `physical/`, including operations and failures. |
+| [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | Personal study notes and hardware trials under `src/physical/`, including operations and failures. |
 
-Late-correction and candidate-budget experiments remain in a [pinned snapshot](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11); they are exploratory and H1 remains unverified.
 
 [AI use](docs/guides/DISCLOSURE.md) · [Sources/licenses](docs/guides/ATTRIBUTION.md) · [Citation](docs/CITATION.cff) · [License](src/LICENSE)

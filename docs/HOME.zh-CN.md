@@ -11,15 +11,11 @@
 
 [English](../README.md) | 中文
 
-[分析](research/STUDY.zh-CN.md) · [证据](README.zh-CN.md) · [安装](guides/REPRODUCE.zh-CN.md) · [结构](guides/STRUCTURE.zh-CN.md)
+[分析](papers/README.zh-CN.md) · [证据](README.zh-CN.md) · [安装](guides/REPRODUCE.zh-CN.md) · [结构](guides/STRUCTURE.zh-CN.md)
 
 </div>
 
-![作者地图实测回放](../results/reference/media-previews-v3/replication-hero.gif)
-
-*21 个保存地图快照播放 14 秒；显示速度不代表算法运行速度。GT 仅用于评价／着色。[时序核对](../results/reference/media-previews-v3/record.json)。*
-
-四篇相关论文 → 部分建图实验 → 位姿误差对照 → 候选恢复假设。**H1 尚未验证。**
+四篇相关论文 → 部分建图复现 → 开放问题与假设。**H1 尚未验证。**
 
 ## 方向分析
 
@@ -48,25 +44,25 @@
 
 ## 相关工作
 
-以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序；每个选定地图观测在 12 fps 下保持八帧。[GIF 时序与来源](../results/reference/media-previews-v3/record.json)。
+以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序；每个选定地图观测在 12 fps 下保持八帧。[GIF 时序与来源](../results/reference/conceptgraphs/media/timing.json)。
 
 ### [DUFOMap](papers/dufomap.zh-CN.md)
 
-![DUFOMap 核心回放](../results/reference/media-previews-v3/dufomap.gif)
+![DUFOMap 核心回放](../results/reference/dufomap/media/preview.gif)
 
-**KITTI-00 户外场景，141 帧激光雷达扫描。**用已观测的空区域识别动态点，位姿容差保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](media/dufomap/replay.mp4)。
+**KITTI-00 户外场景，141 帧激光雷达扫描。**用已观测的空区域识别动态点，位姿容差保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](../results/reference/dufomap/media/replay/replay.mp4)。
 
 ### [BeautyMap](papers/beautymap.zh-CN.md)
 
-![BeautyMap 核心回放](../results/reference/media-previews-v3/beautymap.gif)
+![BeautyMap 核心回放](../results/reference/beautymap/media/preview.gif)
 
-**KITTI-00 户外场景，141 帧激光雷达扫描。**通过占据比较清理动态残影，用恢复机制保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](media/beautymap/replay.mp4)。
+**KITTI-00 户外场景，141 帧激光雷达扫描。**通过占据比较清理动态残影，用恢复机制保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](../results/reference/beautymap/media/replay/replay.mp4)。
 
 ### [ConceptGraphs](papers/conceptgraphs.zh-CN.md)
 
-![ConceptGraphs 核心回放](../results/reference/media-previews-v3/conceptgraphs.gif)
+![ConceptGraphs 核心回放](../results/reference/conceptgraphs/media/preview.gif)
 
-**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](media/conceptgraphs/replay.mp4)。
+**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](../results/reference/conceptgraphs/media/replay/replay.mp4)。
 
 ### [HOV-SG](papers/hovsg.zh-CN.md)
 
@@ -124,6 +120,24 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 作者评分器将 `mrecall` 对应 mAcc、`fmiou` 对应 F-mIoU。我们的宏平均 mIoU 21.3460% 是另一项指标，不拿它替代 F-mIoU。[指标定义](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/README.md#evaluate-semantic-segmentation-from-the-object-based-mapping-results-on-replica-datasets)。
 
+
+## 实物测试
+
+![D435 / Unitree L2](media/hardware/devices.jpg)
+
+桌面设备：RealSense D435 深度相机（不带 IMU）与宇树 L2 激光雷达。
+
+| 设备 | 简单测试 | 完整视频 |
+| --- | --- | --- |
+| D435 | RGB／深度／左右红外采集 | [24.6 s](media/hardware/d435-input.mp4) |
+| L2 | 点云与 ICP 显示 | [42.2 s](media/hardware/l2.mp4) |
+
+![D435 input](media/hardware/d435-input.gif)
+
+![L2 display](media/hardware/l2.gif)
+
+补充：[D435 RGB-D odometry, 44.9 s](media/hardware/d435.mp4). 以上为已有采集和显示测试，硬件精度、SLAM 与跨传感器融合未验证。 [时间与来源](media/hardware/record.json).
+
 ## 假设
 
 我们假设，保留地图更新背后的观测证据，并随着位姿估计的改善重新审视这些更新，能够减少持续性建图错误，保持更加一致的几何与语义地图。
@@ -132,10 +146,9 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 | 分支 | 用途 |
 | --- | --- |
-| main | 提交展示：问题、部分建图实验、反证与候选 H1。 |
+| main | 提交展示：四方法复现、开放问题与假设。 |
 | [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | 作者原流程、论文表格／语义评分与录制。 |
-| [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | 个人学习笔记与 `physical/` 实物实验，保留操作说明和失败记录。 |
+| [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | 个人学习笔记与 `src/physical/` 实物实验，保留操作说明和失败记录。 |
 
-迟到修正与候选预算实验保留为[固定快照](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11)；仍属探索，H1 尚未验证。
 
 [AI 使用](guides/DISCLOSURE.zh-CN.md) · [来源／许可](guides/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [许可](../src/LICENSE)

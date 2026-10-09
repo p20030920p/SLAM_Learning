@@ -5,7 +5,7 @@ from slam_learning.runtime.runner import verify_record
 
 
 def main() -> int:
-    paths = sorted(Path("results/reference").glob("*/record.json"))
+    paths = sorted(Path("results/reference").rglob("record.json"))
     if not paths:
         raise ValueError("No published reference evidence")
     errors = [f"{path}: {issue}" for path in paths for issue in verify_record(path)]

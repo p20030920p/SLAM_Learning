@@ -1,43 +1,23 @@
-# BeautyMap — author pipeline reproduction
+# BeautyMap
 
-English | [中文](beautymap.zh-CN.md) | [PDF](../pdf/beautymap.en.pdf)
+English | [中文](beautymap.zh-CN.md)
 
-**Executed:** complete 141-scan KITTI-00 teaser, supplied poses and author map-cleaning code. No trajectory or navigation evaluation is claimed.
+**KITTI-00, 141 LiDAR scans.** Occupancy comparisons remove dynamic traces; restoration protects static geometry.
 
-![BeautyMap measured replay](../media/beautymap/poster.png)
+![BeautyMap](../../results/reference/beautymap/media/preview.gif)
 
-[MP4](../media/beautymap/replay.mp4) · [GIF](../../results/reference/media-previews-v3/beautymap.gif) · [Run](../../results/reference/beautymap-wsl/record.json) · [Media provenance](../../results/reference/paper-media-beautymap/record.json)
+[MP4](../../results/reference/beautymap/media/replay/replay.mp4) · [Run](../../results/reference/beautymap/runs/beautymap-wsl/record.json) · [Timing](../../results/reference/beautymap/media/timing.json)
 
-## Method and execution
+## Results
 
-[BeautyMap (2024)](https://arxiv.org/html/2405.07283v1) uses global binary occupancy matrices, ground adaptation and refinement/restoration to clean a point map. Restoration protects static geometry hidden from some viewpoints. It is not simply a rule that absent means dynamic.
+The retained wrapper run gives SA / DA / HA = 96.9529 / 98.3382 / 97.6407%. The separate historical KITTI-02 Table III experiment matches all nine paper accuracy values at two decimals.
 
-```bash
-bash src/scripts/setup/setup_linux.sh
-uv run --project src slam-study fetch
-uv run --project src slam-study run --method beautymap
-```
+[Original-code paper protocol](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md)
 
-The pinned author source, executable compatibility patch and dataset hash are recorded. The Windows integer-overflow failure is preserved; explicit 64-bit masks fix compatibility. No threshold is tuned to match the paper. GT intensity is physically stripped from both scan and map inputs before the final runs; annotations remain available only to scoring.
+## Usage
 
-## Measured output
+[Setup and commands](../guides/REPRODUCE.md) · [Sources](../guides/ATTRIBUTION.md)
 
-| Metric | Measured % | Paper Table I % | Difference, pp |
-| --- | ---: | ---: | ---: |
-| SA: static retention | 96.952945 | 96.76 | +0.192945 |
-| DA: dynamic removal | 98.338247 | 98.38 | -0.041753 |
-| HA: harmonic mean | 97.640683 | 97.56 | +0.080683 |
+## Scope
 
-All 141 scans are processed; 17,362,230 GT points are scored using 5 cm map proximity. Windows, Ubuntu and WSL counts agree. Original PCL/SciPy labels agree on every point for the stored map. The 0.01 pp paper tolerance is not met. Evaluator equivalence on these maps excludes that implementation as the cause, while paper-era source/settings remain unresolved. HA must not be ranked as though it were DUFOMap's geometric AA.
-
-## Limitation and research relevance
-
-The paper's global coordinates make occupancy comparisons efficient, but registration still determines which cells correspond. Ground adaptation introduces a separate geometry assumption; out-of-view restoration is already an explicit safeguard (III-A/C, V).
-
-Our inference is that a coherent registration error may create apparent occupancy changes across many cells. The current teaser success and parameter sensitivity do not prove this failure. The relevant open problem is whether a shared registration gate plus reversible decisions improves static retention at equal dynamic recall and delay, beyond the method's existing restoration and threshold choices.
-
-This connects dynamic robust mapping to semantic maps: removing a persistent surface can erase the geometric support for an object or target. Known pose error is an oracle diagnostic; physical tests must separately evaluate estimated uncertainty. Static camera controls isolate visibility from pose error. [Shared hypothesis and rejection controls](../research/STUDY.md).
-
-## Video interpretation
-
-Twenty-one selected scans use fixed world bounds and the measured final map. Raw/removed/retained panels show green correct removal, red static loss and blue missed dynamic points. This is offline replay, not an evolving online map or algorithm FPS. [Full results and retained failure](../research/RESULTS.md).
+Supplied poses isolate the declared mapping stages. Videos replay saved outputs; complete SLAM, navigation and hardware accuracy remain unverified.

@@ -1,0 +1,40 @@
+{
+  "started_at": "2026-10-08T23:33:09.462895+00:00",
+  "sensor": "lidar",
+  "status": "streamed",
+  "scope": "Live receipt; preview is not precision acceptance",
+  "clouds_sent": 172,
+  "imu_sent": 10002,
+  "port": "\\\\?\\GLOBALROOT\\Device\\Serial3",
+  "decoder": "Python SDK-based conversion with float angle accumulation; not native SDK binary",
+  "timestamp_policy": "Host UART receive time; raw device and per-point times preserved; no IMU fusion or deskew",
+  "device": {
+    "name": "YS-L2",
+    "firmware": "2.8.8.1",
+    "hardware": "2.2.1.1"
+  },
+  "raw_sha256": "4d7b87e88bc0d9b5a0b8fcf2c8cdbcd2e7d899e60dce462986513cb501af336e",
+  "elapsed_seconds": 40.03200000000288,
+  "crc_errors": 1,
+  "packet_counts": {
+    "105": 1,
+    "101": 1,
+    "102": 8614,
+    "104": 10002
+  },
+  "discarded_bytes": 1073,
+  "102": {
+    "count": 8614,
+    "missing": 1,
+    "duplicates": 0,
+    "host_hz": 215.4057771664343,
+    "host_seconds_per_device_second": 1.9983315436823907
+  },
+  "104": {
+    "count": 10002,
+    "missing": 0,
+    "duplicates": 0,
+    "host_hz": 250.11879454795184,
+    "host_seconds_per_device_second": 1.998324572772963
+  }
+}

@@ -1,201 +1,0 @@
-Script started on 2026-10-08 18:16:47+03:00 [TERM="xterm" TTY="/dev/pts/3" COLUMNS="158" LINES="48"]
-SLAM Learning | FULL TERMINAL SESSION | normal elapsed time
-Started UTC: 2026-10-08T15:16:47+00:00
-Working directory: /home/qzl/projects/SLAM_Learning
-$ .venv-semantic/bin/python scripts/run_conceptgraphs.py
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
-/home/qzl/projects/SLAM_Learning/.venv-semantic/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
-  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
-[elapsed 15s | UTC 2026-10-08T15:17:01+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
-Done! Execution time of get_dataset function: 0.16 seconds
-There are total 1 classes to detect. 
-  0%|          | 0/40 [00:00<?, ?it/s][elapsed 31s | UTC 2026-10-08T15:17:17+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
-/home/qzl/projects/SLAM_Learning/.venv-semantic/lib/python3.10/site-packages/torch/nn/modules/conv.py:459: UserWarning: Applied workaround for CuDNN issue, install nvrtc.so (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:80.)
-  return F.conv2d(input, weight, bias, self.stride,
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
-  2%|▎         | 1/40 [00:04<02:52,  4.42s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
-  5%|▌         | 2/40 [00:08<02:32,  4.01s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
-  8%|▊         | 3/40 [00:11<02:21,  3.81s/it][elapsed 46s | UTC 2026-10-08T15:17:31+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 10%|█         | 4/40 [00:15<02:21,  3.94s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 12%|█▎        | 5/40 [00:19<02:19,  4.00s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 15%|█▌        | 6/40 [00:24<02:20,  4.14s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 18%|█▊        | 7/40 [00:28<02:14,  4.08s/it][elapsed 61s | UTC 2026-10-08T15:17:46+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 20%|██        | 8/40 [00:32<02:07,  4.00s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 22%|██▎       | 9/40 [00:35<01:55,  3.72s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 25%|██▌       | 10/40 [00:39<01:55,  3.85s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 28%|██▊       | 11/40 [00:43<01:52,  3.86s/it][elapsed 76s | UTC 2026-10-08T15:18:01+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 30%|███       | 12/40 [00:47<01:47,  3.85s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 32%|███▎      | 13/40 [00:50<01:44,  3.86s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 35%|███▌      | 14/40 [00:55<01:46,  4.10s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 38%|███▊      | 15/40 [00:59<01:42,  4.09s/it][elapsed 92s | UTC 2026-10-08T15:18:16+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 40%|████      | 16/40 [01:03<01:36,  4.03s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 42%|████▎     | 17/40 [01:07<01:33,  4.06s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 45%|████▌     | 18/40 [01:10<01:20,  3.68s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 48%|████▊     | 19/40 [01:13<01:15,  3.60s/it][elapsed 107s | UTC 2026-10-08T15:18:31+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 50%|█████     | 20/40 [01:17<01:11,  3.58s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 52%|█████▎    | 21/40 [01:21<01:10,  3.70s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 55%|█████▌    | 22/40 [01:25<01:05,  3.67s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 57%|█████▊    | 23/40 [01:28<01:03,  3.75s/it][elapsed 122s | UTC 2026-10-08T15:18:46+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 60%|██████    | 24/40 [01:32<01:00,  3.77s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 62%|██████▎   | 25/40 [01:36<00:56,  3.80s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 65%|██████▌   | 26/40 [01:40<00:53,  3.85s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 68%|██████▊   | 27/40 [01:44<00:49,  3.79s/it][elapsed 137s | UTC 2026-10-08T15:19:01+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 70%|███████   | 28/40 [01:47<00:43,  3.66s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 72%|███████▎  | 29/40 [01:51<00:39,  3.62s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 75%|███████▌  | 30/40 [01:54<00:36,  3.61s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 78%|███████▊  | 31/40 [01:57<00:29,  3.25s/it][elapsed 153s | UTC 2026-10-08T15:19:16+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 80%|████████  | 32/40 [02:00<00:25,  3.21s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 82%|████████▎ | 33/40 [02:03<00:23,  3.35s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 85%|████████▌ | 34/40 [02:07<00:20,  3.38s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 88%|████████▊ | 35/40 [02:10<00:17,  3.44s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 90%|█████████ | 36/40 [02:14<00:13,  3.33s/it][elapsed 168s | UTC 2026-10-08T15:19:31+00:00]
-
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 92%|█████████▎| 37/40 [02:17<00:09,  3.27s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 95%|█████████▌| 38/40 [02:20<00:06,  3.27s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
- 98%|█████████▊| 39/40 [02:23<00:03,  3.20s/it]
-[live log: conceptgraphs-93324ed61ece/segmentation.log]
-100%|██████████| 40/40 [02:26<00:00,  3.19s/it]100%|██████████| 40/40 [02:26<00:00,  3.67s/it]
-[elapsed 183s | UTC 2026-10-08T15:19:46+00:00]
-
-[live log: conceptgraphs-93324ed61ece/mapping.log]
-Setting image height and width to 480 x 640
-Done! Execution time of get_dataset function: 0.02 seconds
-Saved class colors to  /home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-93324ed61ece/input/Replica/room0/gsa_classes_none_colors.json
-  0%|          | 0/40 [00:00<?, ?it/s]  2%|▎         | 1/40 [00:00<00:18,  2.08it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
-  5%|▌         | 2/40 [00:01<00:24,  1.53it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
-  8%|▊         | 3/40 [00:01<00:24,  1.51it/s] 10%|█         | 4/40 [00:02<00:23,  1.52it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 12%|█▎        | 5/40 [00:03<00:22,  1.57it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 15%|█▌        | 6/40 [00:03<00:21,  1.58it/s] 18%|█▊        | 7/40 [00:04<00:20,  1.64it/s][elapsed 199s | UTC 2026-10-08T15:20:01+00:00]
-
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 20%|██        | 8/40 [00:05<00:21,  1.51it/s] 22%|██▎       | 9/40 [00:05<00:20,  1.50it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 25%|██▌       | 10/40 [00:06<00:21,  1.39it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 28%|██▊       | 11/40 [00:07<00:20,  1.39it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 30%|███       | 12/40 [00:08<00:20,  1.38it/s] 32%|███▎      | 13/40 [00:08<00:20,  1.35it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 35%|███▌      | 14/40 [00:09<00:19,  1.31it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 38%|███▊      | 15/40 [00:10<00:20,  1.21it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 40%|████      | 16/40 [00:11<00:20,  1.15it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 42%|████▎     | 17/40 [00:12<00:20,  1.13it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 45%|████▌     | 18/40 [00:13<00:18,  1.20it/s] 48%|████▊     | 19/40 [00:13<00:16,  1.27it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
-Before merging: 53
-After merging: 43
- 50%|█████     | 20/40 [00:15<00:20,  1.00s/it]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 52%|█████▎    | 21/40 [00:16<00:17,  1.11it/s] 55%|█████▌    | 22/40 [00:16<00:14,  1.21it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 57%|█████▊    | 23/40 [00:17<00:14,  1.20it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 60%|██████    | 24/40 [00:18<00:13,  1.18it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 62%|██████▎   | 25/40 [00:19<00:12,  1.22it/s] 65%|██████▌   | 26/40 [00:20<00:11,  1.23it/s][elapsed 214s | UTC 2026-10-08T15:20:16+00:00]
-
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 68%|██████▊   | 27/40 [00:20<00:10,  1.27it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 70%|███████   | 28/40 [00:21<00:09,  1.29it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 72%|███████▎  | 29/40 [00:22<00:08,  1.33it/s] 75%|███████▌  | 30/40 [00:22<00:07,  1.37it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 78%|███████▊  | 31/40 [00:23<00:06,  1.41it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 80%|████████  | 32/40 [00:24<00:05,  1.45it/s] 82%|████████▎ | 33/40 [00:25<00:05,  1.38it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 85%|████████▌ | 34/40 [00:25<00:04,  1.35it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 88%|████████▊ | 35/40 [00:26<00:03,  1.32it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 90%|█████████ | 36/40 [00:27<00:03,  1.25it/s] 92%|█████████▎| 37/40 [00:28<00:02,  1.27it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 95%|█████████▌| 38/40 [00:28<00:01,  1.31it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
- 98%|█████████▊| 39/40 [00:29<00:00,  1.29it/s]
-[live log: conceptgraphs-93324ed61ece/mapping.log]
-Before merging: 54
-After merging: 49
-100%|██████████| 40/40 [00:31<00:00,  1.01it/s]100%|██████████| 40/40 [00:31<00:00,  1.28it/s]
-
-[live log: conceptgraphs-93324ed61ece/mapping.log]
-Saved full point cloud to /home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-93324ed61ece/input/Replica/room0/pcd_saves/full_pcd_none_replica_subset_baseline.pkl.gz
-Before filtering: 49
-After filtering: 39
-
-[live log: conceptgraphs-93324ed61ece/mapping.log]
-Before merging: 39
-After merging: 39
-[elapsed 229s | UTC 2026-10-08T15:20:32+00:00]
-
-[live log: conceptgraphs-93324ed61ece/mapping.log]
-Saved full point cloud after post-processing to /home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-93324ed61ece/input/Replica/room0/pcd_saves/full_pcd_none_replica_subset_baseline_post.pkl.gz
-/home/qzl/projects/SLAM_Learning/.venv-semantic/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
-  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
-[elapsed 245s | UTC 2026-10-08T15:20:47+00:00]
-ConceptGraphs: executed -> /home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-93324ed61ece/record.json
-
-Command finished: exit 0; elapsed 253.02s; UTC 2026-10-08T15:20:55+00:00
-
-Script done on 2026-10-08 18:20:58+03:00 [COMMAND_EXIT_CODE="0"]

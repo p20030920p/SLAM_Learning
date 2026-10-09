@@ -1,3 +1,3 @@
-"""Reusable geometry, scoring, pose controls and evidence primitives."""
+"""Reusable geometry, scoring, coordinate audits and evidence primitives."""
 
-__all__ = ["delayed_pose", "metrics", "paired_pose", "pcd", "pose_audit", "provenance"]
+__all__ = ["metrics", "pcd", "pose_audit", "provenance"]

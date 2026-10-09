@@ -1,0 +1,60 @@
+{
+  "status": "streamed",
+  "sensor": "lidar",
+  "algorithm": "icp",
+  "session_type": "preview",
+  "quality_claim": false,
+  "timestamp_policy": "ROS stamps use WSL receipt + native per-stream offsets; Windows receipt and device times retained at source. No cross-device hardware synchronization or measured transport latency.",
+  "video": {
+    "status": "saved",
+    "output": "rviz-live.mp4",
+    "content": "Actual independent RViz view of live ROS topics; no synthetic poses",
+    "frame_rate": 10,
+    "size": [
+      1440,
+      1000
+    ],
+    "audio": false,
+    "display": ":91",
+    "elapsed_seconds": 43.00947358100166,
+    "forced_shutdown_pids": [],
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1440,
+          "height": 1000,
+          "nb_frames": "422"
+        }
+      ],
+      "format": {
+        "duration": "42.200000"
+      }
+    },
+    "bytes": 10746937
+  },
+  "source_observations": 172,
+  "odometry_messages": 170,
+  "status_messages": 170,
+  "map_data_updates": 0,
+  "graph_global_closure_links": [],
+  "native_calibration": null,
+  "pose_output_fraction": 0.9883720930232558,
+  "pose_matching_policy": "One output per input; RGB-D color or depth stamp, stereo/lidar stamp; tolerance 1 microsecond. Coverage includes lost poses; lost separately reported.",
+  "lost_status_fraction": 0.0,
+  "pose_output_fraction_after_first_2s": 0.9877300613496932,
+  "ros_input_hz": 4.320669996017635,
+  "ros_input_gap_p95_ms": 275.86039100000005,
+  "odometry_compute_ms": {
+    "p50": 134.91594791412354,
+    "p95": 170.42928934097287
+  },
+  "valid_pose_output_fraction": 0.9825581395348837,
+  "valid_pose_output_fraction_after_first_2s": 0.9877300613496932,
+  "translation_excursion_max_m": 0.45705038521153124,
+  "translation_endpoint_separation_m": 0.4521295974481723,
+  "rotation_excursion_max_deg": 12.846461109969237,
+  "estimated_path_length_m": 1.866212362961317,
+  "metric_note": "Excursion is static deviation only for an operator-declared fixed session. No ATE/RPE; no precision pass inferred from finite poses."
+}
