@@ -1,6 +1,6 @@
 # ConceptGraphs — mapping core reproduction
 
-English | [中文](conceptgraphs.zh-CN.md) | [PDF](../../output/pdf/conceptgraphs.en.pdf)
+English | [中文](conceptgraphs.zh-CN.md) | [PDF](../pdf/conceptgraphs.en.pdf)
 
 **Executed:** author class-agnostic SAM/CLIP frontend and native object association/fusion on 40 posed Replica room0 observations. This is a core subset, not complete paper evaluation.
 
@@ -13,8 +13,8 @@ English | [中文](conceptgraphs.zh-CN.md) | [PDF](../../output/pdf/conceptgraph
 [ConceptGraphs (ICRA 2024)](https://arxiv.org/html/2309.16650v1) lifts 2D segments/features into 3D, matches them using geometric and semantic similarity, and incrementally fuses object representations. The paper also demonstrates localization and dynamic updates; it must not be described as universally static.
 
 ```bash
-bash scripts/setup_semantic.sh
-.venv-semantic/bin/python scripts/run_conceptgraphs.py
+bash scripts/setup/setup_semantic.sh
+.venv-semantic/bin/python scripts/methods/run_conceptgraphs.py
 ```
 
 The isolated CUDA environment pins PyTorch 2.0.1+cu118 and PyTorch3D 0.7.4. Dataset source frames are 0,5,...195 from the NICE-SLAM Replica archive. The range-download manifest records CRC and extracted SHA-256, not a whole-archive checksum. Full SAM/CLIP checkpoint hashes are verified.
@@ -39,7 +39,7 @@ The authors report missed thin objects, duplicates and caption errors (III-H). A
 
 The open question is whether later pose corrections can recover identity and target coordinates after an association/fusion decision. A sidecar retaining frame ID, pose version, masks/features and provisional correspondences is implementable without rebuilding the entire backend. It needs annotations and threshold/visibility controls at equal coverage and delay. Khronos already has joint optimization and reconciliation, so memory/replay alone is not novel.
 
-This method directly connects semantic mapping and visual localization to geometric reliability. LLaVA captions, LLM graph reasoning, complete semantic metrics and navigation are outside this run. [Setup and limitations](../SEMANTIC.md) · [Shared question](../STUDY.md).
+This method directly connects semantic mapping and visual localization to geometric reliability. LLaVA captions, LLM graph reasoning, complete semantic metrics and navigation are outside this run. [Setup and limitations](../guides/SEMANTIC.md) · [Shared question](../research/STUDY.md).
 
 ## Video interpretation
 

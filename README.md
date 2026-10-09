@@ -11,7 +11,7 @@ Dynamic robust mapping · Semantic mapping and localization
 
 English | [中文](README.zh-CN.md)
 
-[Analysis](docs/STUDY.md) · [Evidence](docs/README.md) · [Setup](docs/REPRODUCE.md) · [Structure](docs/STRUCTURE.md)
+[Analysis](docs/research/STUDY.md) · [Evidence](docs/README.md) · [Setup](docs/guides/REPRODUCE.md) · [Structure](docs/guides/STRUCTURE.md)
 
 </div>
 
@@ -82,7 +82,7 @@ All four depend on **pose alignment → correspondence → map decisions**. Misa
 
 **After pose correction, how can a map repair decisions made under the earlier poses?**
 
-For example, corrected coordinates may still leave one object split or two objects merged. This is a candidate failure mode, not a proven shared defect. We first test ConceptGraphs association under identical pose corrections and candidate caps. [Test and limits](docs/STUDY.md).
+For example, corrected coordinates may still leave one object split or two objects merged. This is a candidate failure mode, not a proven shared defect. We first test ConceptGraphs association under identical pose corrections and candidate caps. [Test and limits](docs/research/STUDY.md).
 
 ## Reproduction results
 
@@ -138,7 +138,7 @@ Each clip records a 3D viewer displaying saved results. No new inference; query 
 
 ![Recovery and exposed-candidate cost](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/recovery-cost.png)
 
-room1, immediately after 30 cm correction: fixed-history recovery **11.1%**, oracle **66.7%**, post-hoc support-1 **100%**; candidates **8.3 / 25 / 117**. Three-seed means, partial AI labels, unequal caps. [Results](docs/DELAYED_RESULTS.md).
+room1, immediately after 30 cm correction: fixed-history recovery **11.1%**, oracle **66.7%**, post-hoc support-1 **100%**; candidates **8.3 / 25 / 117**. Three-seed means, partial AI labels, unequal caps. [Results](docs/research/DELAYED_RESULTS.md).
 
 A lower support gate closes this selected recovery gap while exposing more fragments; later observations also repair part of it. **Reassociation is not yet shown necessary.** The next test matches candidate caps and checks identities separately.
 
@@ -148,7 +148,7 @@ Retain observation sources and pose versions, then replay affected associations 
 
 room2 freezes one frontend, five AI-labelled instances and exact correction after observation eight. Four arms compare fixed history, threshold-1.0, visibility guards and oracle reassociation at support 1/2/3 and caps 25/50/100/unlimited. **All 28 mapping cells ran; analysis remains pending.** [Protocol](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
 
-Only plan a prototype if oracle gains ≥10 percentage points over every simple control at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Otherwise narrow or stop H1. Equal caps do not match memory; AI-only labels cannot confirm H1. [Decision and remaining work](docs/PLAN.md).
+Only plan a prototype if oracle gains ≥10 percentage points over every simple control at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Otherwise narrow or stop H1. Equal caps do not match memory; AI-only labels cannot confirm H1. [Decision and remaining work](docs/research/PLAN.md).
 
 [Khronos](https://arxiv.org/html/2402.13817v2) and [DovSG](https://arxiv.org/html/2410.11989v2) already reconcile/update maps. A contribution must demonstrate a recovery–cost benefit over existing protections; replay alone is not novel.
 
@@ -162,4 +162,4 @@ Only plan a prototype if oracle gains ≥10 percentage points over every simple 
 
 Late-correction and candidate-budget experiments remain in a [pinned snapshot](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11); they are exploratory and H1 remains unverified.
 
-[AI use](docs/DISCLOSURE.md) · [Sources/licenses](docs/ATTRIBUTION.md) · [Citation](CITATION.cff) · [License](LICENSE)
+[AI use](docs/guides/DISCLOSURE.md) · [Sources/licenses](docs/guides/ATTRIBUTION.md) · [Citation](CITATION.cff) · [License](LICENSE)

@@ -1,6 +1,6 @@
 # DUFOMap — author pipeline reproduction
 
-English | [中文](dufomap.zh-CN.md) | [PDF](../../output/pdf/dufomap.en.pdf)
+English | [中文](dufomap.zh-CN.md) | [PDF](../pdf/dufomap.en.pdf)
 
 **Executed:** the complete 141-scan public KITTI-00 teaser, with supplied poses. This reproduces dynamic-point removal and map scoring; trajectory estimation is outside the experiment.
 
@@ -13,7 +13,7 @@ English | [中文](dufomap.zh-CN.md) | [PDF](../../output/pdf/dufomap.en.pdf)
 [DUFOMap (2024)](https://arxiv.org/html/2403.01449v1) accumulates occupied and observed void space. A point is classified using whether its location was observed empty. Pose/range tolerances protect against registration and measurement errors. The author implementation is DUFOMap 1.1.1; exact dependencies and upstream revisions are pinned in the repository.
 
 ```bash
-bash scripts/setup_linux.sh
+bash scripts/setup/setup_linux.sh
 uv run slam-study fetch
 uv run slam-study run --method dufomap
 ```
@@ -30,7 +30,7 @@ The full archive checksum is verified. GT annotations enter evaluation and color
 
 Evaluation uses 17,362,230 labeled points and a 5 cm map nearest-neighbor rule. Original PCL and SciPy agree pointwise, with zero disagreements. Execution succeeds, but not every paper value meets the predeclared 0.01 pp tolerance. A newer binding or parameter difference remains possible; its cause is not established.
 
-The same-instance diagnostic increases SA by 5.347532 pp when scoring the same retained points using map proximity instead of original identities. This is a scoring effect, not an algorithm improvement. [Controls and raw counts](../RESULTS.md).
+The same-instance diagnostic increases SA by 5.347532 pp when scoring the same retained points using map proximity instead of original identities. This is a scoring effect, not an algorithm improvement. [Controls and raw counts](../research/RESULTS.md).
 
 ## Limitation and research relevance
 
@@ -38,7 +38,7 @@ The authors discuss pose sensitivity, sparse returns and regions never observed 
 
 Our open question is whether temporally correlated registration errors can be separated from genuine scene change at matched removal recall and observation budget. Rays sharing one pose error do not automatically supply independent evidence. This is relevant to robust mapping in dynamic environments, and to preserving geometry that later supports semantic localization.
 
-A shared-pose/provisional-update sidecar is plausible when stable anchors exist. It must outperform margin sweeps at equal recall and delay; otherwise reject the extra mechanism. A region never seen empty is an information limitation, not a reason to invent a confident deletion. [Cross-paper argument](../STUDY.md).
+A shared-pose/provisional-update sidecar is plausible when stable anchors exist. It must outperform margin sweeps at equal recall and delay; otherwise reject the extra mechanism. A region never seen empty is an information limitation, not a reason to invent a confident deletion. [Cross-paper argument](../research/STUDY.md).
 
 ## Video interpretation
 

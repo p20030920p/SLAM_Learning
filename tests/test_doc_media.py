@@ -6,7 +6,7 @@ from slam_learning.core.provenance import digest, write_json
 
 
 def test_published_copy_is_bound_to_exact_source_artifact(tmp_path):
-    spec = importlib.util.spec_from_file_location("check_docs", Path(__file__).parents[1] / "scripts/check_docs.py")
+    spec = importlib.util.spec_from_file_location("check_docs", Path(__file__).parents[1] / "scripts/evidence/check_docs.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     (tmp_path / "configs").mkdir()

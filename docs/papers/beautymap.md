@@ -1,6 +1,6 @@
 # BeautyMap — author pipeline reproduction
 
-English | [中文](beautymap.zh-CN.md) | [PDF](../../output/pdf/beautymap.en.pdf)
+English | [中文](beautymap.zh-CN.md) | [PDF](../pdf/beautymap.en.pdf)
 
 **Executed:** complete 141-scan KITTI-00 teaser, supplied poses and author map-cleaning code. No trajectory or navigation evaluation is claimed.
 
@@ -13,7 +13,7 @@ English | [中文](beautymap.zh-CN.md) | [PDF](../../output/pdf/beautymap.en.pdf
 [BeautyMap (2024)](https://arxiv.org/html/2405.07283v1) uses global binary occupancy matrices, ground adaptation and refinement/restoration to clean a point map. Restoration protects static geometry hidden from some viewpoints. It is not simply a rule that absent means dynamic.
 
 ```bash
-bash scripts/setup_linux.sh
+bash scripts/setup/setup_linux.sh
 uv run slam-study fetch
 uv run slam-study run --method beautymap
 ```
@@ -36,8 +36,8 @@ The paper's global coordinates make occupancy comparisons efficient, but registr
 
 Our inference is that a coherent registration error may create apparent occupancy changes across many cells. The current teaser success and parameter sensitivity do not prove this failure. The relevant open problem is whether a shared registration gate plus reversible decisions improves static retention at equal dynamic recall and delay, beyond the method's existing restoration and threshold choices.
 
-This connects dynamic robust mapping to semantic maps: removing a persistent surface can erase the geometric support for an object or target. Known pose error is an oracle diagnostic; physical tests must separately evaluate estimated uncertainty. Static camera controls isolate visibility from pose error. [Shared hypothesis and rejection controls](../STUDY.md).
+This connects dynamic robust mapping to semantic maps: removing a persistent surface can erase the geometric support for an object or target. Known pose error is an oracle diagnostic; physical tests must separately evaluate estimated uncertainty. Static camera controls isolate visibility from pose error. [Shared hypothesis and rejection controls](../research/STUDY.md).
 
 ## Video interpretation
 
-Twenty-one selected scans use fixed world bounds and the measured final map. Raw/removed/retained panels show green correct removal, red static loss and blue missed dynamic points. This is offline replay, not an evolving online map or algorithm FPS. [Full results and retained failure](../RESULTS.md).
+Twenty-one selected scans use fixed world bounds and the measured final map. Raw/removed/retained panels show green correct removal, red static loss and blue missed dynamic points. This is offline replay, not an evolving online map or algorithm FPS. [Full results and retained failure](../research/RESULTS.md).

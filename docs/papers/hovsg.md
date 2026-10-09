@@ -1,6 +1,6 @@
 # HOV-SG — segment feature-map reproduction
 
-English | [中文](hovsg.zh-CN.md) | [PDF](../../output/pdf/hovsg.en.pdf)
+English | [中文](hovsg.zh-CN.md) | [PDF](../pdf/hovsg.en.pdf)
 
 **Executed:** original 3D segment-level feature mapping on 8 supplied-pose Replica observations. This is the fourth related paper's mapping core; floor/room hierarchy and navigation are not reproduced.
 
@@ -13,8 +13,8 @@ English | [中文](hovsg.zh-CN.md) | [PDF](../../output/pdf/hovsg.en.pdf)
 [HOV-SG (RSS 2024)](https://arxiv.org/html/2403.17846v2) lifts SAM segments and CLIP features to reference geometry, merges observations, selects robust features, and constructs a floor/room/object hierarchy. This run calls the author Graph.create_feature_map(), including native geometric merging and feature selection, at source commit d6e65a53c8be6faec3f01f00d1644d967f89e605.
 
 ```bash
-bash scripts/setup_hovsg.sh
-.venv-hovsg/bin/python scripts/run_hovsg.py
+bash scripts/setup/setup_hovsg.sh
+.venv-hovsg/bin/python scripts/methods/run_hovsg.py
 ```
 
 The separate environment shares verified checkpoints and the 40-observation Replica subset with ConceptGraphs. Source indices 0,25,...175 are processed by skip_frames=5. RGB/depth are resized to 640×360; both intrinsic axes are rescaled from the pinned original 1200×680 calibration. SAM batch 36 and CLIP batch 4 are resource adaptations. Native segmentation/merging thresholds remain fixed; identical original-resolution masks are not claimed.
@@ -37,7 +37,7 @@ The 50 segments cannot be ranked against ConceptGraphs' 39 objects: observation 
 
 The paper explicitly identifies static-scene, processing-time and parameter limitations (V), and assumes accurate odometry for projection (III-A). A persistent static feature map lacks a moved target's temporal validity. A geometric error can assign a pixel's semantic evidence to the wrong reference point before a language query occurs.
 
-Our open question is how to retain enough observation provenance to reconsider semantic assignments after a pose correction, without unlimited storage or delaying every query. A shared-pose/provisional-update sidecar is feasible for segments; extending it to full floor/room hierarchy is additional work. Test static/moved/removed/occluded cases and compare threshold and visibility controls at matched query coverage, recall and delay. [Common bottleneck and counterexamples](../STUDY.md).
+Our open question is how to retain enough observation provenance to reconsider semantic assignments after a pose correction, without unlimited storage or delaying every query. A shared-pose/provisional-update sidecar is feasible for segments; extending it to full floor/room hierarchy is additional work. Test static/moved/removed/occluded cases and compare threshold and visibility controls at matched query coverage, recall and delay. [Common bottleneck and counterexamples](../research/STUDY.md).
 
 ## Video interpretation
 

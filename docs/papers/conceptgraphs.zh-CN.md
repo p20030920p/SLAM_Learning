@@ -1,6 +1,6 @@
 # ConceptGraphs：建图核心复现
 
-[English](conceptgraphs.md) | 中文 | [PDF](../../output/pdf/conceptgraphs.zh-CN.pdf)
+[English](conceptgraphs.md) | 中文 | [PDF](../pdf/conceptgraphs.zh-CN.pdf)
 
 **已执行：**40 次给定位姿的 Replica room0 观测，运行作者无类别 SAM／CLIP 前端及原生对象关联／融合。属于核心子集，不是完整论文评价。
 
@@ -13,8 +13,8 @@
 [ConceptGraphs（ICRA 2024）](https://arxiv.org/html/2309.16650v1)把二维分割及特征提升至三维，按几何和语义相似度匹配，再增量融合对象表示。论文已展示定位及动态更新，不能笼统描述为只支持静态世界。
 
 ```bash
-bash scripts/setup_semantic.sh
-.venv-semantic/bin/python scripts/run_conceptgraphs.py
+bash scripts/setup/setup_semantic.sh
+.venv-semantic/bin/python scripts/methods/run_conceptgraphs.py
 ```
 
 独立 CUDA 环境固定 PyTorch 2.0.1+cu118、PyTorch3D 0.7.4。数据为 NICE-SLAM Replica 归档的源帧 0,5,...195。范围下载清单记录 CRC 和解压文件 SHA-256，不声称完整归档校验。加载前校验 SAM／CLIP 完整权重哈希。
@@ -39,7 +39,7 @@ SAM 保留 12×12 提示网格，把批量从 144 改为 36。首次大批量运
 
 开放问题是：关联／融合后，迟到的位姿修正能否恢复身份及目标坐标？保留帧号、位姿版本、掩码／特征和暂定对应的附加模块具有实现可行性，需标注、阈值／可见性基线及相同覆盖率／延迟控制。Khronos 已有联合优化和修复，不能仅以记忆／重放作为创新。
 
-该方法直接联系语义建图、视觉定位与几何可信度。LLaVA 描述、LLM 图推理、完整语义指标及导航不在本次范围。[环境与限制](../SEMANTIC.zh-CN.md) · [共享问题](../STUDY.zh-CN.md)。
+该方法直接联系语义建图、视觉定位与几何可信度。LLaVA 描述、LLM 图推理、完整语义指标及导航不在本次范围。[环境与限制](../guides/SEMANTIC.zh-CN.md) · [共享问题](../research/STUDY.zh-CN.md)。
 
 ## 视频如何解读
 

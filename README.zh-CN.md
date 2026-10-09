@@ -11,7 +11,7 @@
 
 [English](README.md) | 中文
 
-[分析](docs/STUDY.zh-CN.md) · [证据](docs/README.zh-CN.md) · [安装](docs/REPRODUCE.zh-CN.md) · [结构](docs/STRUCTURE.zh-CN.md)
+[分析](docs/research/STUDY.zh-CN.md) · [证据](docs/README.zh-CN.md) · [安装](docs/guides/REPRODUCE.zh-CN.md) · [结构](docs/guides/STRUCTURE.zh-CN.md)
 
 </div>
 
@@ -82,7 +82,7 @@ DUFOMap、BeautyMap 减少动态残影，保留静态几何。ConceptGraphs、HO
 
 **位姿修正后，基于旧位姿做出的地图判断如何修复？**
 
-例如，坐标已经正确，一个物体仍可能被拆开，两个物体仍可能被合并。这是候选失效机制，尚未证明是共同缺陷。先在相同位姿修正与候选上限下，检验 ConceptGraphs 的关联恢复。[检验与边界](docs/STUDY.zh-CN.md)。
+例如，坐标已经正确，一个物体仍可能被拆开，两个物体仍可能被合并。这是候选失效机制，尚未证明是共同缺陷。先在相同位姿修正与候选上限下，检验 ConceptGraphs 的关联恢复。[检验与边界](docs/research/STUDY.zh-CN.md)。
 
 ## 复现结果
 
@@ -138,7 +138,7 @@ SA／DA 为静态保留／动态剔除；语义评分使用场景 GT 类别，�
 
 ![恢复率与暴露候选代价](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/recovery-cost.png)
 
-room1，30 cm 修正刚发生时：固定关联恢复率 **11.1%**，oracle **66.7%**，事后 support-1 **100%**；候选数为 **8.3／25／117**。三个种子均值、部分 AI 标注、候选上限不等。[结果](docs/DELAYED_RESULTS.zh-CN.md)。
+room1，30 cm 修正刚发生时：固定关联恢复率 **11.1%**，oracle **66.7%**，事后 support-1 **100%**；候选数为 **8.3／25／117**。三个种子均值、部分 AI 标注、候选上限不等。[结果](docs/research/DELAYED_RESULTS.zh-CN.md)。
 
 降低支持门槛即可消除这组目标的恢复缺口，同时暴露更多碎片；后续观测也能修复部分损失。**尚未证明必须重算关联。** 下一项实验匹配候选上限，并单独检查身份。
 
@@ -148,7 +148,7 @@ room1，30 cm 修正刚发生时：固定关联恢复率 **11.1%**，oracle **66
 
 room2 固定一个前端、五个 AI 标注实例，第八次观测后交付精确修正。固定关联、阈值 1.0、可见性保护、oracle 重关联四组，比较支持门槛 1／2／3 与候选上限 25／50／100／不限。**28 个建图单元已运行，分析待完成。**[协议](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.zh-CN.md)。
 
-只有 oracle 在两个有限上限下比所有简单对照提升至少 10 个百分点、至少 2／3 配对种子同向，且没有种子增加已标重复／混合身份，才计划原型；否则收窄或停止 H1。相同候选上限不等于相同内存，AI 标注不能确认 H1。[判据与待办](docs/PLAN.zh-CN.md)。
+只有 oracle 在两个有限上限下比所有简单对照提升至少 10 个百分点、至少 2／3 配对种子同向，且没有种子增加已标重复／混合身份，才计划原型；否则收窄或停止 H1。相同候选上限不等于相同内存，AI 标注不能确认 H1。[判据与待办](docs/research/PLAN.zh-CN.md)。
 
 [Khronos](https://arxiv.org/html/2402.13817v2) 与 [DovSG](https://arxiv.org/html/2410.11989v2) 已有地图协调／更新。贡献须体现相对已有保护的恢复—成本收益，重放本身不构成创新。
 
@@ -162,4 +162,4 @@ room2 固定一个前端、五个 AI 标注实例，第八次观测后交付精�
 
 迟到修正与候选预算实验保留为[固定快照](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11)；仍属探索，H1 尚未验证。
 
-[AI 使用](docs/DISCLOSURE.zh-CN.md) · [来源／许可](docs/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [许可](LICENSE)
+[AI 使用](docs/guides/DISCLOSURE.zh-CN.md) · [来源／许可](docs/guides/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [许可](LICENSE)

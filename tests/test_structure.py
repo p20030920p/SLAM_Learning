@@ -4,8 +4,22 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+@pytest.mark.parametrize("script", [
+    "experiments/run_paired_cell.py",
+    "experiments/run_delayed_correction.py",
+    "evidence/snapshot_cell_sources.py",
+])
+def test_grouped_script_entrypoints_work_outside_checkout(script, tmp_path):
+    result = subprocess.run([sys.executable, str(ROOT / "scripts" / script), "--help"],
+                            cwd=tmp_path, capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+    assert "usage:" in result.stdout.lower()
 
 
 def test_cli_finds_checkout_from_nested_working_directory():

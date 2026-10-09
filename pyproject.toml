@@ -36,7 +36,7 @@ package_module_name_map = { pillow = "PIL", dufomap = "dufomap", open3d = "open3
 
 [tool.deptry.per_rule_ignores]
 # BeautyMap subprocess imports fire/dztimer/tqdm; Open3D serves the optional viewers.
-# See docs/REPRODUCE.md#maintenance; these are outside the packaged src scan.
+# See docs/guides/REPRODUCE.md#maintenance; these are outside the packaged src scan.
 DEP002 = ["open3d", "fire", "dztimer", "tqdm"]
 
 [tool.importlinter]
