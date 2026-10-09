@@ -6,7 +6,7 @@ English | [中文](conceptgraphs.zh-CN.md) | [PDF](../pdf/conceptgraphs.en.pdf)
 
 ![ConceptGraphs native observations and final map](../media/conceptgraphs/poster.png)
 
-[MP4](../media/conceptgraphs/replay.mp4) · [GIF](../media/conceptgraphs/preview.gif) · [Run](../../results/reference/conceptgraphs-wsl/record.json) · [Media provenance](../../results/reference/paper-media-conceptgraphs/record.json)
+[MP4](../media/conceptgraphs/replay.mp4) · [GIF](../../results/reference/media-previews-v3/conceptgraphs.gif) · [Run](../../results/reference/conceptgraphs-wsl/record.json) · [Media provenance](../../results/reference/paper-media-conceptgraphs/record.json)
 
 ## Method and execution
 

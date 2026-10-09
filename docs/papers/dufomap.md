@@ -6,7 +6,7 @@ English | [中文](dufomap.zh-CN.md) | [PDF](../pdf/dufomap.en.pdf)
 
 ![DUFOMap measured replay](../media/dufomap/poster.png)
 
-[MP4](../media/dufomap/replay.mp4) · [GIF](../media/dufomap/preview.gif) · [Run](../../results/reference/dufomap-wsl/record.json) · [Media provenance](../../results/reference/paper-media-dufomap/record.json)
+[MP4](../media/dufomap/replay.mp4) · [GIF](../../results/reference/media-previews-v3/dufomap.gif) · [Run](../../results/reference/dufomap-wsl/record.json) · [Media provenance](../../results/reference/paper-media-dufomap/record.json)
 
 ## Method and execution
 

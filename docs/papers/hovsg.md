@@ -1,12 +1,13 @@
-# HOV-SG — segment feature-map reproduction
+# HOV-SG — not reproduced
 
-English | [中文](hovsg.zh-CN.md) | [PDF](../pdf/hovsg.en.pdf)
+English | [中文](hovsg.zh-CN.md) | [Historical subset PDF](../pdf/hovsg.en.pdf)
 
-**Executed:** original 3D segment-level feature mapping on 8 supplied-pose Replica observations. This is the fourth related paper's mapping core; floor/room hierarchy and navigation are not reproduced.
+**Delivery status: not reproduced.** No completed default 200-frame run or complete paper benchmark is available. Floor/room hierarchy and navigation are also not reproduced. HOV-SG is excluded from the homepage's completed reproduction showcase.
 
-![HOV-SG native observations and final feature map](../media/hovsg/poster.png)
-
-[MP4](../media/hovsg/replay.mp4) · [GIF](../media/hovsg/preview.gif) · [Run](../../results/reference/hovsg-wsl/record.json) · [Media provenance](../../results/reference/paper-media-hovsg/record.json)
+- **Completed limited attempts:** an 8-observation segment map and a separate 20-frame resource variant with original semantic scoring. These do not reproduce the default paper experiment.
+- **Incomplete attempts:** the 40-observation merge exited with code 137; the default 200-frame run did not produce a completed result. A killed process alone does not establish its cause.
+- **Unverified outputs:** text-query candidates are not independently annotated; saved segments are not proof of correct physical object identities or navigation success.
+- **Retained evidence:** [8-frame run](../../results/reference/hovsg-wsl/record.json), [40-frame failure](../../results/reference/hovsg-wsl-interrupted/record.json), and [20-frame diagnostic/scoring scope](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/HOVSG_HOME_RESULTS.md). Historical media/PDF bytes remain available for traceability, not as a completed-reproduction claim.
 
 ## Method and execution
 
@@ -19,7 +20,7 @@ bash src/scripts/setup/setup_hovsg.sh
 
 The separate environment shares verified checkpoints and the 40-observation Replica subset with ConceptGraphs. Source indices 0,25,...175 are processed by skip_frames=5. RGB/depth are resized to 640×360; both intrinsic axes are rescaled from the pinned original 1200×680 calibration. SAM batch 36 and CLIP batch 4 are resource adaptations. Native segmentation/merging thresholds remain fixed; identical original-resolution masks are not claimed.
 
-## Measured output and retained failure
+## Retained 8-frame output and failure
 
 | Item | Observed result |
 | --- | --- |

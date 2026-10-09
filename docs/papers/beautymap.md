@@ -6,7 +6,7 @@ English | [中文](beautymap.zh-CN.md) | [PDF](../pdf/beautymap.en.pdf)
 
 ![BeautyMap measured replay](../media/beautymap/poster.png)
 
-[MP4](../media/beautymap/replay.mp4) · [GIF](../media/beautymap/preview.gif) · [Run](../../results/reference/beautymap-wsl/record.json) · [Media provenance](../../results/reference/paper-media-beautymap/record.json)
+[MP4](../media/beautymap/replay.mp4) · [GIF](../../results/reference/media-previews-v3/beautymap.gif) · [Run](../../results/reference/beautymap-wsl/record.json) · [Media provenance](../../results/reference/paper-media-beautymap/record.json)
 
 ## Method and execution
 

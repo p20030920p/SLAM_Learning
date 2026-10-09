@@ -1,4 +1,4 @@
-# From four reproductions to one testable question
+# From four related papers to one testable question
 
 English | [中文](STUDY.zh-CN.md)
 
@@ -12,14 +12,14 @@ If reassociation reduces these mapping errors, does it also improve text-based o
 
 The two directions meet at **pose → correspondence → map decisions**. Dynamic mapping decides which geometry to retain; semantic mapping decides which observations belong to an object and where a query points. Correcting coordinates need not revise decisions made under the earlier alignment. This is our inference, not an observed common dominant defect.
 
-| Reproduced work | Pose-dependent decision | Existing protection / unresolved boundary |
+| Related paper | Pose-dependent decision | Existing protection / unresolved boundary |
 | --- | --- | --- |
 | [DUFOMap](../papers/dufomap.md) | Rays establish void regions used for point classification | Pose/measurement margins already exist; never-observed empty space remains ambiguous |
 | [BeautyMap](../papers/beautymap.md) | Registered occupancy drives removal/restoration | Static restoration already exists; alignment and grid/ground assumptions still matter |
 | [ConceptGraphs](../papers/conceptgraphs.md) | Geometric/semantic similarity drives object fusion | Thresholds and later observations may suffice; corrected geometry does not itself reassign fixed members/features |
 | [HOV-SG](../papers/hovsg.md) | Poses attach features to geometry before segment fusion | External odometry is a safeguard; static-scene and hierarchy limits differ from object-map association |
 
-These are mapping-core reproductions, using supplied poses. Larger original-code runs and scoped semantic scores are [pinned separately](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md). They do not establish trajectory accuracy or navigation success.
+The executed mapping experiments use supplied poses. **HOV-SG is not reproduced:** its limited subsets do not establish completion of the default run or paper experiments. Larger original-code runs and scoped semantic scores are [pinned separately](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md). They do not establish trajectory accuracy or navigation success.
 
 ## Why start with ConceptGraphs?
 
@@ -37,7 +37,7 @@ Early room0 controls use three seeds at 30 cm RMS; the semantic cores share eigh
 | HOV-SG partial-surface coverage | 0.9256 | 0.9061 | 0.9136 |
 | HOV-SG restricted query hit | 0.6667 | 0.6667 | 0.3333 |
 
-Correlation is not uniformly worse; geometry and retrieval are different outcomes. These metrics do not rank methods. Three seeds are not three scenes, and these controls do not compare shared-latent versus independent-variance estimators.
+Correlation is not uniformly worse; geometry and retrieval are different outcomes. These metrics do not rank methods. HOV-SG rows are historical subset diagnostics, not paper-reproduction results. Three seeds are not three scenes, and these controls do not compare shared-latent versus independent-variance estimators.
 
 room1 then tested late correction. At observation eight and 30 cm, fixed history recovers 11.1%, oracle 66.7%, while a post-hoc support-1 control reaches 100% with 117 candidates versus oracle's 25. Later observations also repair part of the deficit. **This counterevidence weakens the necessity of reassociation.** Partial plant/vase labels and unlabelled fragments prevent a full identity conclusion. [35 frozen cells and six separate post-hoc controls](DELAYED_RESULTS.md).
 

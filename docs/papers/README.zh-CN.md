@@ -1,4 +1,4 @@
-# 四篇早期核心复现快照
+# 论文复现状态与保留子集
 
 [English](README.md) | 中文
 
@@ -6,10 +6,10 @@
 
 | 论文 | 已执行范围 | 报告 | 录制 | PDF |
 | --- | --- | --- | --- | --- |
-| DUFOMap | 完整 141 扫描公开 teaser，动态点移除 | [论文卡](dufomap.zh-CN.md) | [MP4](../media/dufomap/replay.mp4) / [GIF](../media/dufomap/preview.gif) | [EN](../pdf/dufomap.en.pdf) / [中文](../pdf/dufomap.zh-CN.pdf) |
-| BeautyMap | 相同完整 teaser，作者地图清理 | [论文卡](beautymap.zh-CN.md) | [MP4](../media/beautymap/replay.mp4) / [GIF](../media/beautymap/preview.gif) | [EN](../pdf/beautymap.en.pdf) / [中文](../pdf/beautymap.zh-CN.pdf) |
-| ConceptGraphs | 40 次给定位姿 Replica 观测，SAM／CLIP 及对象融合 | [论文卡](conceptgraphs.zh-CN.md) | [MP4](../media/conceptgraphs/replay.mp4) / [GIF](../media/conceptgraphs/preview.gif) | [EN](../pdf/conceptgraphs.en.pdf) / [中文](../pdf/conceptgraphs.zh-CN.pdf) |
-| HOV-SG | 8 次给定位姿观测，分段特征建图核心 | [论文卡](hovsg.zh-CN.md) | [MP4](../media/hovsg/replay.mp4) / [GIF](../media/hovsg/preview.gif) | [EN](../pdf/hovsg.en.pdf) / [中文](../pdf/hovsg.zh-CN.pdf) |
+| DUFOMap | 完整 141 扫描公开 teaser，动态点移除 | [论文卡](dufomap.zh-CN.md) | [MP4](../media/dufomap/replay.mp4) / [GIF](../../results/reference/media-previews-v3/dufomap.gif) | [EN](../pdf/dufomap.en.pdf) / [中文](../pdf/dufomap.zh-CN.pdf) |
+| BeautyMap | 相同完整 teaser，作者地图清理 | [论文卡](beautymap.zh-CN.md) | [MP4](../media/beautymap/replay.mp4) / [GIF](../../results/reference/media-previews-v3/beautymap.gif) | [EN](../pdf/beautymap.en.pdf) / [中文](../pdf/beautymap.zh-CN.pdf) |
+| ConceptGraphs | 40 次给定位姿 Replica 观测，SAM／CLIP 及对象融合 | [论文卡](conceptgraphs.zh-CN.md) | [MP4](../media/conceptgraphs/replay.mp4) / [GIF](../../results/reference/media-previews-v3/conceptgraphs.gif) | [EN](../pdf/conceptgraphs.en.pdf) / [中文](../pdf/conceptgraphs.zh-CN.pdf) |
+| HOV-SG | **未复现**；默认 200 帧及论文完整实验未完成 | [状态](hovsg.zh-CN.md) | 已撤下交付展示 | 仅保留历史子集 PDF |
 
 这些 GIF、论文卡和 PDF 对应早期给定位姿子集。后续作者原流程已有论文表格核查和限定语义评分，见 [535a278 范围](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.zh-CN.md)。完整 SLAM、完整 benchmark、场景图推理和导航仍未完成。
 

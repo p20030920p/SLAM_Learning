@@ -6,7 +6,7 @@
 
 ![ConceptGraphs 原生观测与最终地图](../media/conceptgraphs/poster.png)
 
-[MP4](../media/conceptgraphs/replay.mp4) · [GIF](../media/conceptgraphs/preview.gif) · [运行记录](../../results/reference/conceptgraphs-wsl/record.json) · [媒体来源](../../results/reference/paper-media-conceptgraphs/record.json)
+[MP4](../media/conceptgraphs/replay.mp4) · [GIF](../../results/reference/media-previews-v3/conceptgraphs.gif) · [运行记录](../../results/reference/conceptgraphs-wsl/record.json) · [媒体来源](../../results/reference/paper-media-conceptgraphs/record.json)
 
 ## 方法与执行
 

@@ -27,7 +27,21 @@ Four separate complete xterm/PTY recordings span fresh command startup through e
 
 The original per-paper GIFs/MP4s are rendered replays of measured final maps. LiDAR input/removed/retained views use original PCL classifications; semantic panels combine native observations, final maps and candidates. ConceptGraphs coordinates are checked against its actual absolute-pose entrypoint and 39 saved camera matrices, without applying the first-frame transform again.
 
-The homepage now uses [native-size GIFs](../../results/reference/media-previews-v2/record.json): 1200/1280 pixels wide, a 256-color palette, and 5 fps for recorded viewers. The ConceptGraphs RViz GIF samples all nine stages in chronological order; the MP4 remains complete. [Before/after](../../results/reference/media-previews-v2/before-after.png).
+The homepage uses [v3 GIFs with verified timing](../../results/reference/media-previews-v3/record.json). The former hero played 21 snapshots in 2.52 seconds; the replacement displays them over 13.99 seconds, matching the 14-second companion replay. The author viewer previously lost two-thirds of its frames (15 → 5 fps); v3 retains all 720 frames of the 48-second excerpt. ConceptGraphs RViz now keeps one continuous 59-second interval, including transitions between all nine stages.
+
+| GIF | Source/display rate | Encoded frames | GIF seconds |
+| --- | --- | ---: | ---: |
+| dufomap | 12/1 | 168 | 14.01 |
+| beautymap | 12/1 | 168 | 14.01 |
+| conceptgraphs | 12/1 | 160 | 13.33 |
+| dufomap-rviz | 5/1 | 120 | 24.00 |
+| beautymap-rviz | 5/1 | 120 | 24.00 |
+| conceptgraphs-rviz | 5/1 | 295 | 59.00 |
+| conceptgraphs-author-viewer | 15/1 | 720 | 47.99 |
+| replication-hero | 1.5 snapshots/s | 21 | 13.99 |
+
+All frames fully decode. Frame counts match the selected source intervals and cumulative timestamps differ by at most 20 ms, allowing GIF's centisecond quantization. Map MP4s hold each observation for eight frames at 12 fps: sparse observations still change in steps, and preserving video timing does not create denser sensor motion. RViz was recorded at 5 fps; no interpolated frames or live-performance claim is added. HOV-SG previews are excluded because its paper reproduction is incomplete. Earlier media and records remain unchanged.
+
 
 Regenerate with existing `ffmpeg` and `ffprobe`; add `--wsl Ubuntu-22.04` on Windows. Sources are hash-checked and an existing output directory is rejected.
 

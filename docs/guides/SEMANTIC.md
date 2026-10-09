@@ -41,7 +41,7 @@ The original mapping log contains object additions, filtering and merging; these
 
 The paired extension adds four partial-surface targets, fixed-feature pose-error pairs and threshold controls. Full identity ground truth, dynamic-semantic recall and matched coverage/latency remain open. [Results and limitations](../research/PAIRED_RESULTS.md). H1 remains a candidate; held-out confirmation has not started.
 
-## HOV-SG: fourth mapping core
+## HOV-SG: not reproduced; retained subset attempts
 
 `bash src/scripts/setup/setup_hovsg.sh` prepares independent `.venv-hovsg`; then run `.venv-hovsg/bin/python src/scripts/methods/run_hovsg.py`. It shares verified Replica data/checkpoints, installs [pinned HOV-SG dependencies](../../src/configs/environments/hovsg/requirements.txt), and needs no PyTorch3D.
 

@@ -6,7 +6,7 @@
 
 ![BeautyMap 实测回放](../media/beautymap/poster.png)
 
-[MP4](../media/beautymap/replay.mp4) · [GIF](../media/beautymap/preview.gif) · [运行记录](../../results/reference/beautymap-wsl/record.json) · [媒体来源](../../results/reference/paper-media-beautymap/record.json)
+[MP4](../media/beautymap/replay.mp4) · [GIF](../../results/reference/media-previews-v3/beautymap.gif) · [运行记录](../../results/reference/beautymap-wsl/record.json) · [媒体来源](../../results/reference/paper-media-beautymap/record.json)
 
 ## 方法与执行
 

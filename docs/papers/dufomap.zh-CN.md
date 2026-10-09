@@ -6,7 +6,7 @@
 
 ![DUFOMap 实测回放](../media/dufomap/poster.png)
 
-[MP4](../media/dufomap/replay.mp4) · [GIF](../media/dufomap/preview.gif) · [运行记录](../../results/reference/dufomap-wsl/record.json) · [媒体来源](../../results/reference/paper-media-dufomap/record.json)
+[MP4](../media/dufomap/replay.mp4) · [GIF](../../results/reference/media-previews-v3/dufomap.gif) · [运行记录](../../results/reference/dufomap-wsl/record.json) · [媒体来源](../../results/reference/paper-media-dufomap/record.json)
 
 ## 方法与执行
 

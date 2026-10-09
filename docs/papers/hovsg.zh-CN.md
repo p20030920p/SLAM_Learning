@@ -1,12 +1,13 @@
-# HOV-SG：分段特征地图复现
+# HOV-SG — 未复现
 
-[English](hovsg.md) | 中文 | [PDF](../pdf/hovsg.zh-CN.pdf)
+[English](hovsg.md) | 中文 | [历史子集 PDF](../pdf/hovsg.zh-CN.pdf)
 
-**已执行：**8 次给定位姿 Replica 观测上的作者三维分段特征建图。属于第四篇相关论文的建图核心；楼层／房间层级及导航未复现。
+**交付状态：未复现。** 没有完成的默认 200 帧运行或论文完整 benchmark；楼层／房间层级和导航也未复现。HOV-SG 不计入首页的已完成复现展示。
 
-![HOV-SG 原生观测与最终特征地图](../media/hovsg/poster.png)
-
-[MP4](../media/hovsg/replay.mp4) · [GIF](../media/hovsg/preview.gif) · [运行记录](../../results/reference/hovsg-wsl/record.json) · [媒体来源](../../results/reference/paper-media-hovsg/record.json)
+- **已完成的有限尝试：**8 次观测的分段地图，以及另一次带作者语义评分的 20 帧资源变体；两者均不能替代默认论文实验。
+- **未完成的尝试：**40 次观测的合并阶段退出码为 137，默认 200 帧运行没有完成结果。进程被终止本身不足以确认原因。
+- **未经验证的输出：**文本查询候选未独立标注；保存分段不能证明物理物体身份正确或导航成功。
+- **保留记录：**[8 帧运行](../../results/reference/hovsg-wsl/record.json)、[40 帧失败](../../results/reference/hovsg-wsl-interrupted/record.json)、[20 帧诊断与评分范围](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/HOVSG_HOME_RESULTS.zh-CN.md)。历史媒体／PDF 原始字节保留供追溯，不代表复现完成。
 
 ## 方法与执行
 
@@ -19,7 +20,7 @@ bash src/scripts/setup/setup_hovsg.sh
 
 独立环境与 ConceptGraphs 共享经过校验的权重及 40 观测 Replica 子集。skip_frames=5 处理源索引 0,25,...175。RGB／深度缩放为 640×360，两个内参轴分别从固定的 1200×680 标定缩放。SAM 批量 36、CLIP 批量 4 属于资源适配，作者分割／合并阈值不变；未声称与原始分辨率掩码完全相同。
 
-## 实测输出及保留失败
+## 保留的 8 帧输出及失败
 
 | 项目 | 实测结果 |
 | --- | --- |

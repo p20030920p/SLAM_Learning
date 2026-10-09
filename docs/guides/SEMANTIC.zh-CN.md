@@ -41,7 +41,7 @@ Meta 下载停滞后，SAM ViT-H 从固定修订的 Hugging Face 镜像获取；
 
 配对扩展已补四个部分表面目标、固定特征位姿误差对及阈值对照。完整身份真值、动态语义召回、匹配覆盖／延迟仍待完成。[结果与限制](../research/PAIRED_RESULTS.zh-CN.md)。H1 保持候选，留出确认尚未开始。
 
-## HOV-SG：第四篇建图核心
+## HOV-SG：未复现，保留子集尝试
 
 `bash src/scripts/setup/setup_hovsg.sh` 准备独立 `.venv-hovsg`，再运行 `.venv-hovsg/bin/python src/scripts/methods/run_hovsg.py`。它共享已经校验的 Replica 子集／权重，安装固定的 [HOV-SG 依赖](../../src/configs/environments/hovsg/requirements.txt)，无需 PyTorch3D。
 

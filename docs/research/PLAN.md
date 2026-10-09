@@ -6,7 +6,7 @@ Finish the existing equal-cap analysis of identity errors and query hits before 
 
 | Stage | Status / required output |
 | --- | --- |
-| Four reproductions | Core outputs published; larger [author runs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md) include scoped scoring, adaptations and failures |
+| Selected mapping experiments | DUFOMap, BeautyMap and ConceptGraphs outputs published; HOV-SG not reproduced, limited attempts retained. Larger [author runs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.md) record exact scopes and failures |
 | Counterevidence | room0: correlation is not uniformly worse; room1: lower support closes the selected recovery deficit |
 | room2 mapping | 28 cells executed; one frozen frontend and AI-only labels |
 | room2 analysis | Pending: recalculate all seeds/readouts, zero-error parity, identities, query hits and correction cost |

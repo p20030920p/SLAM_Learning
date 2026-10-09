@@ -6,7 +6,7 @@
 
 | 阶段 | 状态／必要交付 |
 | --- | --- |
-| 四篇复现 | 核心产物已发布；更大的[作者原流程](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.zh-CN.md)另有限定评分、适配与失败 |
+| 部分建图实验 | DUFOMap、BeautyMap、ConceptGraphs 产物已发布；HOV-SG 未复现，有限尝试保留。更大的[作者原流程](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/SCOPE.zh-CN.md)记录确切范围与失败 |
 | 反证 | room0：相关性并非总有害；room1：降低支持门槛消除所选目标恢复缺口 |
 | room2 建图 | 28 单元已运行；一个冻结前端、AI 标注 |
 | room2 分析 | 待完成：全种子／读出复算、零误差等价、身份、查询命中与修正成本 |
