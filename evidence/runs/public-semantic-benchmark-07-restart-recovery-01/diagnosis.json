@@ -1,0 +1,37 @@
+{
+  "status": "documented_second_reboot_interruption",
+  "last_detect_progress": "152/400 [24:07<17:57,  4.35s/it]",
+  "author_exit_code_unknown": true,
+  "hov_author_stages_started": false,
+  "artifacts": {
+    "queue-interrupted.json": {
+      "bytes": 1557,
+      "sha256": "3d3de4ad5ab08ab6edf0788c6d0135f07907284c1d9a6592c95db3ed710fadd5"
+    },
+    "frontend-interrupted.json": {
+      "bytes": 2011,
+      "sha256": "89d6fef796753c2106beadad74cf87a0a900aeedb8d90028bd45ff253f81effc"
+    },
+    "frontend-original.log": {
+      "bytes": 15766,
+      "sha256": "c32836a146399d0c598fb07ef5c9132b47a5a04184f1180301fba69fc37e4129"
+    },
+    "hov-default-wait-interrupted.json": {
+      "bytes": 640,
+      "sha256": "9a75406d328916bd1b75676f6ee97f1823457c19951a6e2a9bcb7664db8132e2"
+    },
+    "hov-followup-wait-interrupted.json": {
+      "bytes": 686,
+      "sha256": "c887769a590a01883be1e108ab046b4fe7c435d7026ab89175944141f58b98f3"
+    },
+    "preservation.json": {
+      "bytes": 60038,
+      "sha256": "0e8aefc7b1c55093de62d6008fba86ca6d2b76e5a9e0a2194a79fef57456d82c"
+    },
+    "swap-reenabled.json": {
+      "bytes": 915,
+      "sha256": "ac1d05ea45621ee1efe336ac694e7e1c194e8e29a640dbe586326b203f0c0e0f"
+    }
+  },
+  "scope": "Old queue 07 and its partial office1 frontend interrupted by restart. HOV 04/06 supervisors had only waited. Queue 08 verifies referenced completed 06 chains instead of recomputing them, preserves partial 07 outputs, and reruns the author frontend. Default HOV 05 and follower 07 replace interrupted waiting supervisors; live state stays local."
+}

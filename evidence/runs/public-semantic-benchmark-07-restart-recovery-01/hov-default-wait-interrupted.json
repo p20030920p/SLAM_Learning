@@ -1,0 +1,18 @@
+{
+  "status": "interrupted",
+  "wait_outcomes": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-07/outcomes.json",
+  "sam_batch": 16,
+  "boot_id": "2d1d6413-462c-4bd4-9a3e-c7486d85b48b",
+  "pid": 688,
+  "stages": {},
+  "skip_frames": 10,
+  "sampling_scope": "author default",
+  "resource_config": {
+    "memory_max": "16G",
+    "swap_max": "48G",
+    "feature_timeout_seconds": 21600,
+    "evaluation_timeout_seconds": 7200
+  },
+  "recovered_at": "2026-10-09T13:00:03.291471+00:00",
+  "interruption_reason": "Previous WSL boot; old process cannot still be running. No algorithm-failure or successful-exit claim."
+}

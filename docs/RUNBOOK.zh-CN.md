@@ -211,20 +211,20 @@ cat "$RUNTIME/runs/hovsg-room0-batch16-stages-03/outcomes.json"
 
 03 特征任务融合期间将 RAM 限额从 12G 临时提高到 16G，原有 7200 秒超时不变。新版 `run_hovsg_stages.py` 提供 `--feature-timeout`（默认 21600 秒）和 `--evaluation-timeout`（默认 7200 秒）；它们只影响新启动任务，并记录到 outcomes。已有任务未结束时不要重复启动。
 
-默认 04 已等待 CG 队列 07 结束，采用 16G/48G、特征 21600 秒和评价 7200 秒；可只读查看，不再重复启动：
+默认 05 已等待 CG 队列 08 结束，采用 16G/48G、特征 21600 秒和评价 7200 秒；可只读查看，不再重复启动：
 
 ```bash
-cat "$RUNTIME/runs/hovsg-room0-batch16-stages-04/outcomes.json"
-cat "$RUNTIME/runs/hovsg-replica-default-06/outcomes.json"
+cat "$RUNTIME/runs/hovsg-room0-batch16-stages-05/outcomes.json"
+cat "$RUNTIME/runs/hovsg-replica-default-07/outcomes.json"
 ```
 
 后者只在默认 room0 成功且通过原始产物哈希／日志检查后，才继续剩余七场景；每场景仍为 200 帧、SAM 批量 16，沿用 16G/48G 与 21600 秒特征时限。出现未解决失败即停止，不重复套用失败设置。源入口为 `scripts/run_hovsg_public_scenes.py`。全部通过后只汇总八个原单场景分数，不冒充另一个未经修改的八场景评价器。
 
-当前 CG 串行队列为 `public-semantic-benchmark-07`：核验复用 SAM-only 的 room0/office0/office1 和 Detect 的 room0/office0；重跑旧队列 06 中断的 office1 Detect，再继续其余 5 场景。只在对应方法的 8 场景全部成功后，调用未经修改的作者八场景评价入口，限额 12G/48G。旧队列与中断输出均保留，不能直接启动同名任务覆盖。
+当前 CG 串行队列为 `public-semantic-benchmark-08`：核验复用 SAM-only 的 room0/office0/office1 和 Detect 的 room0/office0；重跑旧队列 06 中断的 office1 Detect，再继续其余 5 场景。只在对应方法的 8 场景全部成功后，调用未经修改的作者八场景评价入口，限额 12G/48G。旧队列与中断输出均保留，不能直接启动同名任务覆盖。
 
 ```bash
-cat "$RUNTIME/runs/public-semantic-benchmark-07/outcomes.json"
-tail -c 1500 "$RUNTIME/runs/public-semantic-benchmark-07/orchestration.log"
+cat "$RUNTIME/runs/public-semantic-benchmark-08/outcomes.json"
+tail -c 1500 "$RUNTIME/runs/public-semantic-benchmark-08/orchestration.log"
 ```
 
 06 曾开启 `--hov-home-fallback`：默认采样失败后，另用 `pipeline.skip_frames=100` 均匀取 20/2000 帧，保留原分辨率和 SAM 批量 16。地图及修正颜色表路径后的原评价均已完成，mIoU 34.7500%、F-mIoU 62.8725%。输出与首次失败分别保存在 `public-semantic-benchmark-06-room0-hov-home` 和 `hovsg-room0-home-evaluation-author-palette-01`，不计作默认采样或八场景 HOV benchmark。[结果与只读命令](HOVSG_HOME_RESULTS.zh-CN.md)。队列正在运行时不要手动并发启动 GPU 任务。
@@ -237,7 +237,7 @@ Detect 的原始命令保留 `--class_set ram --box_threshold 0.2 --text_thresho
 python3 "$DOCS/scripts/recover_after_restart.py" --runtime "$RUNTIME"
 ```
 
-它只根据不同的 WSL boot_id 标记中断，保留所有文件，不推断运行成功。07 的恢复入口为 `scripts/resume_public_semantics.py`；此次对缺少退出码的前端保留全部旧输出后从头重跑，未把 400/400 日志当成功。完成结果按记录与全部输出 SHA-256 复用。[详细状态与中断证据](CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md)。
+它只根据不同的 WSL boot_id 标记中断，保留所有文件，不推断运行成功。08 的恢复入口为 `scripts/resume_public_semantics.py`；此次对缺少退出码的前端保留全部旧输出后从头重跑，未把 400/400 日志当成功。完成结果按记录与全部输出 SHA-256 复用。[详细状态与中断证据](CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md)。
 
 临时交换文件不会跨重启自动启用。恢复重任务前检查；如果缺少任务目录的交换文件，退出 qzl shell 后从 PowerShell 运行下面已有文件复用命令。它不修改 `fstab` 或 WSL 全局配置。
 

@@ -114,6 +114,10 @@ try:
         for variant in ['none', 'detect']:
             suffix = 'cg' if variant == 'none' else 'detect'
             prior = args.room0_cg if scene == 'room0' and variant == 'none' else r / 'runs' / (old.name + '-' + scene + '-' + suffix + '-stages')
+            previous_stage = previous.get('scenes', {}).get(scene, {}).get(suffix)
+            if isinstance(previous_stage, dict) and previous_stage.get('chain'):
+                prior = Path(previous_stage['chain']).resolve()
+                assert prior.is_relative_to(r / 'runs'), 'Completed references must stay in this runtime'
             if completed(prior, scene):
                 row[suffix] = {'status': 'verified_reuse', 'chain': str(prior)}; save()
                 continue
