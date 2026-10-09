@@ -91,6 +91,8 @@ HOV-SG `hovsg-room0-batch16-stages-03` 完成 200/200 个原生帧提取后，�
 
 默认采样重试 `hovsg-room0-batch16-stages-04` 已在本机等待 CG 队列 07 结束；使用相同 `skip_frames=10`、SAM 批量 16，16G RAM / 48G swap，特征阶段显式时限 21600 秒、评价 7200 秒。它仍未开始特征计算，不算完成结果；其运行中状态暂不上传。旧 03 的超时状态不变。
 
+`hovsg-replica-default-06` 等待默认 04 的 room0 通过，再核验原记录、地图哈希与日志分数，串行运行其余七个 Replica 场景；任一未解决失败会停止后续 HOV 场景。不会用 20 帧家用图替代默认输入，完成前不生成八场景结果。05 调度器仅在等待阶段因路径解析修正被替换，没有启动作者阶段。
+
 队列 06 在重启前另完成了 CG SAM-only 的 office0、office1，以及 Detect 的 room0、office0。原版 Detect 使用 RAM + GroundingDINO + 逐框提示 SAM 及对应 README 映射参数，不套用 SAM-only 的批量 16 变体。新增四份混淆矩阵独立复算通过；原始场景行与 `all` 行的类别集合不同，不能平均部分场景的 `all` 行来冒充完整 benchmark。[五条链路的指标、分母与图表](CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md)。
 
 WSL 重启后，旧队列 06 与 office1 Detect 前端标为 `interrupted`。前端虽保存 400 帧且日志达到 400/400，缺少原退出码，不能记成功。新队列 `public-semantic-benchmark-07` 核验复用上述五条完成链路，保留该中断前端的产物后从头重跑；随后继续其余 5 场景。各自 8 场景成功后才运行未经修改的原八场景评价脚本，最终评价限额 12G/48G。[中断诊断](../evidence/runs/public-semantic-benchmark-06-restart-recovery-01/diagnosis.json)。

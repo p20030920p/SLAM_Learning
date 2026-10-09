@@ -215,7 +215,10 @@ cat "$RUNTIME/runs/hovsg-room0-batch16-stages-03/outcomes.json"
 
 ```bash
 cat "$RUNTIME/runs/hovsg-room0-batch16-stages-04/outcomes.json"
+cat "$RUNTIME/runs/hovsg-replica-default-06/outcomes.json"
 ```
+
+后者只在默认 room0 成功且通过原始产物哈希／日志检查后，才继续剩余七场景；每场景仍为 200 帧、SAM 批量 16，沿用 16G/48G 与 21600 秒特征时限。出现未解决失败即停止，不重复套用失败设置。源入口为 `scripts/run_hovsg_public_scenes.py`。全部通过后只汇总八个原单场景分数，不冒充另一个未经修改的八场景评价器。
 
 当前 CG 串行队列为 `public-semantic-benchmark-07`：核验复用 SAM-only 的 room0/office0/office1 和 Detect 的 room0/office0；重跑旧队列 06 中断的 office1 Detect，再继续其余 5 场景。只在对应方法的 8 场景全部成功后，调用未经修改的作者八场景评价入口，限额 12G/48G。旧队列与中断输出均保留，不能直接启动同名任务覆盖。
 
