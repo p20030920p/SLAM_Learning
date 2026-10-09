@@ -145,7 +145,7 @@ A lower support gate closes this selected recovery gap while exposing more fragm
 
 | Branch | Role |
 | --- | --- |
-| main | Curated submission: question, four reproductions, counterevidence and candidate H1. |
+| main | Curated submission: question, selected mapping experiments, counterevidence and candidate H1. |
 | [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | Original pipelines, paper-table/semantic scoring and recordings. |
 | [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | Personal study notes and hardware trials under `physical/`, including operations and failures. |
 

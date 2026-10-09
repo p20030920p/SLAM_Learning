@@ -145,7 +145,7 @@ room1，30 cm 修正刚发生时：固定关联恢复率 **11.1%**，oracle **66
 
 | 分支 | 用途 |
 | --- | --- |
-| main | 提交展示：问题、四篇复现、反证与候选 H1。 |
+| main | 提交展示：问题、部分建图实验、反证与候选 H1。 |
 | [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | 作者原流程、论文表格／语义评分与录制。 |
 | [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | 个人学习笔记与 `physical/` 实物实验，保留操作说明和失败记录。 |
 
