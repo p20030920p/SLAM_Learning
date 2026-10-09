@@ -22,8 +22,11 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           version: '0.9.2'
-      - run: uv sync --frozen --python 3.10 --extra dev
+      - run: uv sync --frozen --python 3.10 --extra dev --extra audit
       - run: uv run ruff check src tests scripts
+      - run: uv run --no-sync deptry src
+      - run: uv run --no-sync lint-imports --no-cache
+      - run: uv run --no-sync vulture
       - run: uv run pytest -q
       - run: uv run python scripts/verify_evidence.py
       - run: uv run python scripts/verify_paired_evidence.py
