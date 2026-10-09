@@ -8192,8 +8192,8 @@
     "bytes": 124079146
   },
   "runs/conceptgraphs-room0-evaluation-cuda-05/cuda-preflight/run.log": {
-    "sha256": "edb5c2fabf4add6486c4f03ff4a5df414cdf6c5ad4b190367dbff21fa8775a8f",
-    "bytes": 576
+    "bytes": 576,
+    "sha256": "edb5c2fabf4add6486c4f03ff4a5df414cdf6c5ad4b190367dbff21fa8775a8f"
   },
   "runs/conceptgraphs-room0-original-gui-01/run.log": {
     "sha256": "fe3c42f9c8a61440a9f8ce3ade112c2ae4cab3601d55d37061e5924d3c15ea58",
@@ -15082,5 +15082,785 @@
   "runs/room0-frontend-playback-02/room0-rgb-and-sam-playback.mp4": {
     "bytes": 24332503,
     "sha256": "b4d37025408b0b643c220ab7b26ea69078600c3f4b80d04fe1b3eabb043623f9"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/evaluation/diagnostics/memory-observations.json": {
+    "bytes": 6478,
+    "sha256": "5a7bd69405c40f393cb2c21c9cc34578a4f17a5a349991cc29e8c85f90c8c8ba"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/evaluation/diagnostics/resource-adjustment.json": {
+    "bytes": 978,
+    "sha256": "44d961d27de5a4ddc181d2e5368f8c1767993f33baa4b0a32b3738da86033ab8"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/evaluation/run.log": {
+    "bytes": 1173,
+    "sha256": "e7b4321938d628fe70a0b4cbe48ee8e74caf747942392aceec49ced8c18dba01"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_results.csv": {
+    "bytes": 244,
+    "sha256": "cc15189793c805f58dc54da10eecffa271ec304e34394aaf599a0f0156760141"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/cuda-preflight/record.json": {
+    "bytes": 1536,
+    "sha256": "ce5a54abb1ee1a8ce3644a98bf41c96b053bb0355160d6daf84434b21f3cabc5"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/diagnostics/memory-observations-final.json": {
+    "bytes": 6487,
+    "sha256": "fc69ce541185b8d76fcf46fafc6cc91881e41ed58b05704de64bdc2bb10dab94"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/diagnostics/monitor-snapshot-preservation.json": {
+    "bytes": 1113,
+    "sha256": "1fee8629adf43db83f347c0e1718b55cb9416e0c639cd303ac3a68c832b67a00"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/evaluation/record.json": {
+    "bytes": 2536,
+    "sha256": "d85a4100906d01aaaaeb0c4513142480a48bbc2d6e2ef551eb3f64bd1bb8c32c"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/evaluation-audit/input-metadata.json": {
+    "bytes": 3166,
+    "sha256": "25acdc7c49f8c970fce832be795e673f5440b43f9edca6edec24ec16d1daeca4"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/evaluation-audit/validation.json": {
+    "bytes": 2709,
+    "sha256": "db2c09f473b4af64f8ad4196f4077d3196810a56e5a12d6901604778ae36b26c"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/map-validation/validation.json": {
+    "bytes": 891,
+    "sha256": "428c709edee048c1de0ed4614972885141c966072e3606ca201b2eb55782f23f"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/metrics.json": {
+    "bytes": 1293,
+    "sha256": "336c67e7e75223b820eecb3e985d6b9fb28248d19ad863a74047fec88a7196b9"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/outcomes.json": {
+    "bytes": 1090,
+    "sha256": "7245db54cfc8b8719ef5f048d082e148f84732e351be3f6ce35936447d0ab470"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_conf_matrices.pkl": {
+    "bytes": 23176,
+    "sha256": "cc672da3895e9ec3e03f51be5f360f674aa4692f984114f848a378fe7c88a848"
+  },
+  "runs/conceptgraphs-room0-evaluation-cuda-05/validation.json": {
+    "bytes": 184055,
+    "sha256": "a199ea82ce9e1b8a717d41566cb505e1690f90016053f6ee2a4e9f63b8c42a89"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/full_feats.pt": {
+    "sha256": "d08d8c5bbe1cf1f6ef5b7cd149e9de454e1e68da16932d6018b83330022276e1",
+    "bytes": 1637021246
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/full_pcd.ply": {
+    "sha256": "b5a599c3811064fa6fdfa3d4af119edff48154f41ec56e0af4ba1e47c672d62e",
+    "bytes": 10791110
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/mask_feats.pt": {
+    "sha256": "a6039fbf4e2fb5d76d76304316cf38e54e9d423b2a41733de5496979e4e10265",
+    "bytes": 640574
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/masked_pcd.ply": {
+    "sha256": "814e47c7d37741ee0e8364d128701036d378bdfde0fec390a9568298d12fe0eb",
+    "bytes": 66834390
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_0.ply": {
+    "sha256": "5880c7388ace0f5d724fd6f5fad930efd28cf5187be44b34367fe7f18d2c935c",
+    "bytes": 181350
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_1.ply": {
+    "sha256": "64017e8614322df917a3372174aa2625810718c83fad7dfe0376f2d0fff10b0c",
+    "bytes": 3502649
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_10.ply": {
+    "sha256": "0ae7eda75c76e10b278242b1f2a59d6a92ac450cc17f1743a49cf3668e9c43c2",
+    "bytes": 4310
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_100.ply": {
+    "sha256": "e4b639309ee4188b1ca6a656eb95fe8228f12c4718a99684349cfcbfbc9a854f",
+    "bytes": 12572
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_101.ply": {
+    "sha256": "b034dcb2ed502f91a59375faccd428b7b796bca0236eaa9dc84f6b97826bc120",
+    "bytes": 26693
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_102.ply": {
+    "sha256": "e58e7b6f2b4bc0d2898f78858b2dc42b91a6c031d398f76c4c85f9dd31535823",
+    "bytes": 9332
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_103.ply": {
+    "sha256": "27b69fc9dcbe13389810b8b79e1d07331c99bef0ca18888a5f70e8341e7362cb",
+    "bytes": 48753
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_104.ply": {
+    "sha256": "b99c1b016dcbc382aaade2da5537eeecce4b5eb49aafb5219cbee98448907184",
+    "bytes": 74376
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_105.ply": {
+    "sha256": "5f07e27831dfdd9be842938c82931d949b2320ebde24a04330197c16d87d3aaf",
+    "bytes": 81585
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_106.ply": {
+    "sha256": "935d1756e2323783d28cc0a2f9c3d0eaa03f1eeb82d690b6aec4b09082d42eb9",
+    "bytes": 14894
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_107.ply": {
+    "sha256": "41f75211f3e4b72c4be8da47ba5691993a9c85b9b90c8b807c7e2bdcee62f36d",
+    "bytes": 46161
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_108.ply": {
+    "sha256": "95108d9fc2d20815e1de0dbc6761b3978b7fce01ad50a99ed09d94981590d7e2",
+    "bytes": 42840
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_109.ply": {
+    "sha256": "0ffb662676948c1720a506d8f0b4c89d5cb2384195c9d90dec00af431efbed00",
+    "bytes": 33714
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_11.ply": {
+    "sha256": "c149a368f886c3147b6cc53b4f7fda40539af9a595467611240644d6499b39b9",
+    "bytes": 314515
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_110.ply": {
+    "sha256": "ff313f2ddc4a4d16b9b797c6e3cde68157c00817fa8178d165ebde4ca23f6586",
+    "bytes": 24587
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_111.ply": {
+    "sha256": "cd458d1725378552538bc2a0b2bd6cd90fa9af319c26b2bed0b9a6ed3f358553",
+    "bytes": 148464
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_112.ply": {
+    "sha256": "2bf69cc1c936d508743193ea9c3308272cc182402a7006b0d011bc0ce52f0121",
+    "bytes": 24128
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_113.ply": {
+    "sha256": "a31e507739fbeabf875d60f764fa52339a90cb8aceb80c140fa3accb52557793",
+    "bytes": 540046
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_114.ply": {
+    "sha256": "8f92a9fa93387adec2f62cca15f0e9dc9ea5a367a76a410d5fc055da2396a7cb",
+    "bytes": 32796
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_115.ply": {
+    "sha256": "7c9552ba934c6acceec7c5a21e71585910493beda764c3721584dda219b56b51",
+    "bytes": 570745
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_116.ply": {
+    "sha256": "012f55215899d4c2dfef6a1248c8fedb5563a26978afbb540de5c6e3eb8cdf4b",
+    "bytes": 10250
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_117.ply": {
+    "sha256": "0ff33ddda54a80fc56190fb8475ff6d9a5efd0a682b4f28c41a2529883924152",
+    "bytes": 255006
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_118.ply": {
+    "sha256": "7d1f04edb040207678f929e823b8f0855290c0dba16b4c98b3e4e38a41aba781",
+    "bytes": 59202
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_119.ply": {
+    "sha256": "37a5f814dfff84abc6c5b71d412df4944935cd3503bcfbb959c69433389673ba",
+    "bytes": 10061
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_12.ply": {
+    "sha256": "22ebab1f28cfaaa3df1789ee5e85af8c132866339b73202badf0d7369d42bbac",
+    "bytes": 2105371
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_120.ply": {
+    "sha256": "de713de605ce62a4de2c40a3dfda9ceb0ee534285b899a814471d687bbbf3cda",
+    "bytes": 1582
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_121.ply": {
+    "sha256": "732c5e4ab03b80c8c54c08faa10dec186f27815c8352bdecc49f637f7cb1a5fb",
+    "bytes": 15299
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_122.ply": {
+    "sha256": "bf71a9ea1e48218dac420fd125a3b5c35b5ae465e3b92b7e17ad822ddeae7508",
+    "bytes": 4877
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_123.ply": {
+    "sha256": "8e901e4e6e94c33cc45b5145a9b9ec3187d89cd9556d8171a5a6f85ff041afbe",
+    "bytes": 21401
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_124.ply": {
+    "sha256": "e58622787db65ada0bdb512fb6c22edfd655c16249050b657ac599ac089983b4",
+    "bytes": 84771
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_125.ply": {
+    "sha256": "39ac66f8f339681b649b2ffc6c7f48676547eedcac401d5b7d4719254c169faa",
+    "bytes": 68571
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_126.ply": {
+    "sha256": "193b2a80c70291e60ba85a78c0adf95f823e57c3ac581f00ef5be231531fdbde",
+    "bytes": 20267
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_127.ply": {
+    "sha256": "e05f9a21293f07cc445712638e049a9d11c06cd953cf233cac3b5156978b5121",
+    "bytes": 4472
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_128.ply": {
+    "sha256": "8af81f99e05998024142703fa5c24de68834b081d870bf086ab74094713bfa3b",
+    "bytes": 6443
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_129.ply": {
+    "sha256": "3528498e3a4a0e014a4b9c2586cdbc6631988ecd9d1e155a7277d54c4e9ad6c1",
+    "bytes": 3662
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_13.ply": {
+    "sha256": "85e2cd48957d7f39276912f88da6532601374008125c72be62bc940e9917c464",
+    "bytes": 190665
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_130.ply": {
+    "sha256": "db3159ab291daf9ce070d0be3f954daa3fc6d393d236b60b7b0fad15ed5f41ec",
+    "bytes": 4229
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_131.ply": {
+    "sha256": "d1d28420d7b4178bd3c2592995f0f9f16013db499ac633b023f45c65b3b6dda1",
+    "bytes": 16028
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_132.ply": {
+    "sha256": "43799a167ae113783563a5ce95cae73a214ccca1db584e514e2cb9737f03ec9e",
+    "bytes": 5012
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_133.ply": {
+    "sha256": "aade7e1299831c8601aad2407fa439017246bff29c7e93330d67750155f8121e",
+    "bytes": 8198
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_134.ply": {
+    "sha256": "49a243416db7b5daf6d02ca22eaf81ad072156ff3a5533263e24c1ec421c2939",
+    "bytes": 13706
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_135.ply": {
+    "sha256": "0772701266714e8de4adb6d6c96a92797605389247457aa153a9398c13441a02",
+    "bytes": 15110
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_136.ply": {
+    "sha256": "04e63a31f743dab0f28754fd28d81de832a99a917769d2cf05418751cff038a5",
+    "bytes": 159966
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_137.ply": {
+    "sha256": "922454f8232d2cc6c3329d8cd2e1150d6fff3bd8906f4d546d1d06c9dee31218",
+    "bytes": 24614
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_138.ply": {
+    "sha256": "28e45e888bf3d6560fc9a3f080092b217ff63cc8500ecf34a98fa37533f345fb",
+    "bytes": 9116
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_139.ply": {
+    "sha256": "db58b73b37007693d019b877f522a5c37b00d033ca7420ff4f391110edb56dfa",
+    "bytes": 17054
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_14.ply": {
+    "sha256": "0976497cf31a261c246ff9ed206e7a2e9655fc2fc75b641b2b88c028fc177f08",
+    "bytes": 9197
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_140.ply": {
+    "sha256": "df2df12a56af5a800f9fffa372a72eee75f30ea7f5aa78c0b1296fe7344194d1",
+    "bytes": 5984
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_141.ply": {
+    "sha256": "7b5f334a7cd532341027aad9e5094a34edc2eb10bc3c55c18a8fbc5d5933cecc",
+    "bytes": 2933
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_142.ply": {
+    "sha256": "f7d5136b471874e846d9fd4155a4d0ba14d4b1b49049e3b4b9eb0863027e3800",
+    "bytes": 9386
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_143.ply": {
+    "sha256": "65d377cc1fb958fa5a72ecb4484886b775d573fd82e5a99a8e4126a092a25f07",
+    "bytes": 3959
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_144.ply": {
+    "sha256": "6c96c343cf7d80fa701d16fa62bc5df1f43ee490b82322952f9da162747b4c1f",
+    "bytes": 8225
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_145.ply": {
+    "sha256": "50181b96b8f66929cbff3e584836f8d7fe5f50cc0edcc4c0f059f1c668b49fd7",
+    "bytes": 48483
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_146.ply": {
+    "sha256": "5a94cc955f8b29250edf0a5ae3b2fcc885b94811f616eebb6e110e5ec7b42cb9",
+    "bytes": 64764
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_147.ply": {
+    "sha256": "48eaf0b05ef6706310de481d7ef0f666515fd4ab75c99f0c4523e5c1f6012b2a",
+    "bytes": 6335
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_148.ply": {
+    "sha256": "6ba58cde764a0cb30dbd2b695345eb28c4de4880eda1a41f3faa4bd26d7ad45d",
+    "bytes": 6092
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_149.ply": {
+    "sha256": "73f56b564382135ece733508e9044d2d97041daafead358330d48f272dab96fe",
+    "bytes": 17783
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_15.ply": {
+    "sha256": "99efd9f1638b934c4a2ebc788a665b44d001ab909314ee0bb1b0503a98509c4e",
+    "bytes": 112635
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_150.ply": {
+    "sha256": "9404724f5c92a3814254798d40a7a6447fe3d901411d435bf9171eb744606f0d",
+    "bytes": 274933
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_151.ply": {
+    "sha256": "c36375e4e30403deff73dfd260dd28112d42ff46aa1f27c16a266863b8bf58f6",
+    "bytes": 21185
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_152.ply": {
+    "sha256": "9486f0a372528d08cf63011cb6e731110a93f7f3228abf6c8400ab0e7367f829",
+    "bytes": 46728
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_153.ply": {
+    "sha256": "6bc578f0b194cf56c2988945ba51ac457b0a58daeb7b1bfde5ad152acc6dcd40",
+    "bytes": 3176
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_154.ply": {
+    "sha256": "c8f0337d522adfe9dc1ed2059a4f54cd7794144c7ea7b4ac80b2ec6d5b8a9211",
+    "bytes": 4391
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_155.ply": {
+    "sha256": "d3b08c85b79ee92d9f6b57e2ca8790bbfd3db6583d31f6cef137fe5cf2ef5535",
+    "bytes": 3986
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_16.ply": {
+    "sha256": "d215cd1f3e8312698abdaebe24e241a0d1fe29a6d4959f4db22abb6691a05fc6",
+    "bytes": 17810
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_17.ply": {
+    "sha256": "5793808083b97191945f8d6e16d63b37714cf1ad7e0632e93760b3c2d105a400",
+    "bytes": 36792
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_18.ply": {
+    "sha256": "af2cee6750ce490155a7eabab42d6ef364ae734483476a1dcfaf97eb0f87c795",
+    "bytes": 215397
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_19.ply": {
+    "sha256": "100d04b33583b3fb164ab2be249d8e748d4986792ba3b884c789e35413dc8090",
+    "bytes": 208728
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_2.ply": {
+    "sha256": "81697f94430bf0905eda7a4acea57767c5f35a5b4cf4e42b52c6966556f78b2f",
+    "bytes": 111933
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_20.ply": {
+    "sha256": "5474677fb45bedfda5ccaa8d12dcf16876f38d654cef3a4b34a93174f86164f2",
+    "bytes": 8380091
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_21.ply": {
+    "sha256": "332c603a89c666e83919c9b3d7e03dbbfa16b1abdd41283879c3dafdbebc7f42",
+    "bytes": 240345
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_22.ply": {
+    "sha256": "bcfe48a79b5c6353eb19746e44ddb8d38c11cbc3f24f4a47d8ab67b8d4e4d340",
+    "bytes": 136044
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_23.ply": {
+    "sha256": "c775f35271b485af796bd96561f7f8129ba1053eaea8e905dfdce32732d787ec",
+    "bytes": 29232
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_24.ply": {
+    "sha256": "ba424eac0ce315db9c44b33add3d3165836fce0191ed2b3dd07e848f5185389f",
+    "bytes": 48186
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_25.ply": {
+    "sha256": "7d38e90d0904be7aa82979a24ece9828c6049ebf2a1d7f3d524b8672266a300f",
+    "bytes": 25262
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_26.ply": {
+    "sha256": "b15fb3c585aa58129e925e7471d79aac504f0493e9e31c5bf7718088aaedea8a",
+    "bytes": 46539
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_27.ply": {
+    "sha256": "5770a83acc0e3fb1d71e49558875ff80d073e29d61d114f6b1e921e3965f814c",
+    "bytes": 1374292
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_28.ply": {
+    "sha256": "e8e9c2e8c9cb9bb7c5138af78bd8f8489ee16c1b4844b953d17ea5277d353a96",
+    "bytes": 49455
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_29.ply": {
+    "sha256": "dae880e26bb6da0866c7036477d907b7866dbb321f746eb906c342af190e5138",
+    "bytes": 32283
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_3.ply": {
+    "sha256": "290fd4475b41fe100dfeba08a5f36afacd596fef5489aea3881711a6a59af4ae",
+    "bytes": 1078642
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_30.ply": {
+    "sha256": "88188760f759077aa4043603dcf4ccadd1f49646ecf9ffdb07c5250731b94fa5",
+    "bytes": 10601
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_31.ply": {
+    "sha256": "c0dbb449cb91f6f5fc435fac4a490c1ebbb2f3135e7590ebe9427331269ed557",
+    "bytes": 72324
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_32.ply": {
+    "sha256": "58369c6f2e7618263f13134c5ff1eb5f673b0a7f7c48219447dcf69751447c67",
+    "bytes": 96651
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_33.ply": {
+    "sha256": "1b14f67b69c779ad5e85a6b59fd64d126b767cc482de187556f32e5c02ae8b2f",
+    "bytes": 50103
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_34.ply": {
+    "sha256": "72c790cc1cc5f09ce326cb2a63655c699e4a455e5b580740b98cc5b25bfb7b1b",
+    "bytes": 5822
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_35.ply": {
+    "sha256": "86ea5a3004aa5a27063d8798526ce8e3720dfa92889711f719b78ce3597325c3",
+    "bytes": 38034
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_36.ply": {
+    "sha256": "5e3adb4fda0cff0aa8a5ef6e36fd6b8f02545f12964a56cbd1d9629527133937",
+    "bytes": 453538
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_37.ply": {
+    "sha256": "cfa08ddfda00ed5bce751fd96488947ccfa3faad6fef85cdd17a453a8ce1753d",
+    "bytes": 24101
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_38.ply": {
+    "sha256": "6e6b9c4e0b3975105cad811329d1491aff0df2e6a6cd19850ae1134f9eda10a1",
+    "bytes": 10574
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_39.ply": {
+    "sha256": "cc38b0915701cf3cfc49cf1c2c79a8ecf840e358cd926301f0ca9ffaaf06a0ae",
+    "bytes": 6956
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_4.ply": {
+    "sha256": "4456537837570799cac714dea814cfc8ba2478c2b74f3aa4711471c9a90ccbee",
+    "bytes": 2219716
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_40.ply": {
+    "sha256": "9feb321fc7bc1eaacef98397a00bc11987ba90558660be0491a8c0a535d41f7b",
+    "bytes": 387604
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_41.ply": {
+    "sha256": "d316c08ae71092f6362d1bd50483bbc537e8bd7934af15f0f7580f5b7f978a48",
+    "bytes": 119817
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_42.ply": {
+    "sha256": "a78294414a01e1ac91efe44c05bd919ab2c8fb6c1c751c45ccf1a3980f39fc57",
+    "bytes": 1798
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_43.ply": {
+    "sha256": "bf85ef8ab1b302326104499d690c3d05324cd9349b631ea5a1af9dd542a2d4d3",
+    "bytes": 5147
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_44.ply": {
+    "sha256": "211a78ea08ed7edfc755fecea6cfe79d64066d9f101e887ad567108fbfed6ec8",
+    "bytes": 6600305
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_45.ply": {
+    "sha256": "2cd28a8b63cf2b5d94d53825a1c8d3918a2fd2242b5de2416986ed86387b98e2",
+    "bytes": 1443358
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_46.ply": {
+    "sha256": "a12226a886e9434b3e59b73c20da0bb734a25550c802192e133bac491ad396cb",
+    "bytes": 10277
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_47.ply": {
+    "sha256": "f402819b5d3bca1307281cd79732921adede453913d3a090a3b49b1e9aa19ecf",
+    "bytes": 6173
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_48.ply": {
+    "sha256": "f40e754416906ee485441ee235155de3c385687aceb2fb54cecc9e8f0589bc78",
+    "bytes": 66600
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_49.ply": {
+    "sha256": "d518f5524346b6b8f1445a0de4f201581fb1e073ac5a8d47a7e2296d03647ee0",
+    "bytes": 5849
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_5.ply": {
+    "sha256": "029d752c4dcea2e55a54195101c65cc76e2495a9dbeae2375720b238edb36710",
+    "bytes": 26369
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_50.ply": {
+    "sha256": "9953ac7d883e41b934b927159a1c45955bbbb5bf1fe71ac4ca3965fe0c63aee8",
+    "bytes": 24209
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_51.ply": {
+    "sha256": "abe46a2003635241a1249d178470df778889e3b55d3f0addc4027711a2b8ca8d",
+    "bytes": 21293
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_52.ply": {
+    "sha256": "da7b54cd220389e085f43e64db29f25ab8a10f9982bfa54c9883591f504b4569",
+    "bytes": 2095
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_53.ply": {
+    "sha256": "9964e31d8cdd47a3e0209fe9df5e528c51137d533d9e75b2bc29e0d3e5021247",
+    "bytes": 24101
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_54.ply": {
+    "sha256": "3bccb61bf9d5c04e4f3eda5df276135dd28d2ea1151cc2bd497e7c2439403394",
+    "bytes": 3068
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_55.ply": {
+    "sha256": "9e594ca85e0d8d01a13708374d7a1c13e160eca85ecdd25e7bfd51361b4b337a",
+    "bytes": 4364
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_56.ply": {
+    "sha256": "887ac9b3e22027c42ea3ccfaae20faf6cbfc6c091c0080170bf24a8c04a42c88",
+    "bytes": 7280
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_57.ply": {
+    "sha256": "53089dbc00d8a68fd3b7c3ceb03b67d2f039d3b286445b68596f900ce25c63fc",
+    "bytes": 32715
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_58.ply": {
+    "sha256": "01e60725c415e864911a71b86f001d0512622d633d688098a0de7505990c19f6",
+    "bytes": 3770
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_59.ply": {
+    "sha256": "9d11876c1edc60a00004a758bbc30478c937a29facc8d23a698d8235469b7337",
+    "bytes": 31716
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_6.ply": {
+    "sha256": "79658ac9d7b96d3ddce247a6b63fa794de251c812b144248096663fde212c74d",
+    "bytes": 200061
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_60.ply": {
+    "sha256": "e32952325087f826c350d78dd3689977f402d749d6bb72a10d4ed6848a2bfee4",
+    "bytes": 373591
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_61.ply": {
+    "sha256": "05a76a291594cd4e57e03de2d1de201c2f3eac52c1e3a2b16741481ec616d4b2",
+    "bytes": 8529563
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_62.ply": {
+    "sha256": "bb2cec0a60f6365cd30438ef268baab9996171ced90a65b0d83eb3d28a30e7c8",
+    "bytes": 2784422
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_63.ply": {
+    "sha256": "a76ad3fe8d1b74d5ae8993b9666c6ea83a7651d5fbc6a2b81cf59ed0a08f6a75",
+    "bytes": 9719237
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_64.ply": {
+    "sha256": "61e4fc1ce2d5009b447b2f7b3f3bd462cbc11f1e4bc835c535359550f0ab58f7",
+    "bytes": 194499
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_65.ply": {
+    "sha256": "723fd648a0ea5253b3042658d934830f351483256a278e6854ba06a50d8e7692",
+    "bytes": 10736
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_66.ply": {
+    "sha256": "6d4194afcf40780d91799a9e090bb81768b4cf914a55a9998e1e735b690ca320",
+    "bytes": 1243153
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_67.ply": {
+    "sha256": "6f5515f1c2bd3e4507096b9422fc6da092ce456765fecfe39123870c33f35528",
+    "bytes": 4904
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_68.ply": {
+    "sha256": "d39e1dcd8a80cfa522c37fa059ad29a8470018963cf3944792df66857e3d75a0",
+    "bytes": 4634
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_69.ply": {
+    "sha256": "c368fd973117da8fa63f0b1692035d162264add235301f65aac83a8738f638b7",
+    "bytes": 94680
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_7.ply": {
+    "sha256": "d0985b35853de10cab081fd764dd7f61ebfe4ab0602a485d4e2289702759728e",
+    "bytes": 148599
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_70.ply": {
+    "sha256": "d508e700c9416224fab8e92ef6558f0b7fc447f045c1944d154ed4b2d2ff8e2e",
+    "bytes": 48618
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_71.ply": {
+    "sha256": "9dd559d04e44cb4d2a44843d2a996b7175f3de9bb21a100457be09f9babb2894",
+    "bytes": 147978
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_72.ply": {
+    "sha256": "7b087c7e79cf2800daae606121611bab9dbf9f140447b6f12322d3599488390a",
+    "bytes": 27207
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_73.ply": {
+    "sha256": "a205acb162b41f487ab797d0397bea1337791c050c2402ee0fa5419b1398fa31",
+    "bytes": 142362
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_74.ply": {
+    "sha256": "79bb0f850003f00d5554e1976b3f03ec60e02e57523278c54e9782add62abc23",
+    "bytes": 96813
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_75.ply": {
+    "sha256": "ce06a4f0db1d49de2abad6b67670df5d74e2822c820aca0fcf2013d7b22d180a",
+    "bytes": 95517
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_76.ply": {
+    "sha256": "21eb1e296df015bdb4e2819feedd9402d45a64f420b733d0eeae4bbba461dabe",
+    "bytes": 81936
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_77.ply": {
+    "sha256": "67697a97d53716308cf46dd383903d7c7e0f2f2e8936bdd85fe3af013096e11c",
+    "bytes": 7226
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_78.ply": {
+    "sha256": "0e130a13a36bf3ced3b6cd9fb8088dece26b03b5ca95c9c0341cd910769bb031",
+    "bytes": 44784
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_79.ply": {
+    "sha256": "da6ce6e541c77614f3485b52500827e5f5831bc8d594a46b0806667c027ccb7f",
+    "bytes": 6956
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_8.ply": {
+    "sha256": "d26809bfffe77114be19e8ea1270cc961d20ed96cd4bd84b705bb74b8ea0a33e",
+    "bytes": 1825
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_80.ply": {
+    "sha256": "d2fa5b3f161360b316ef7b63615ff9ffcc526ee3beb9dfc545a2bbe356f3684f",
+    "bytes": 7172
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_81.ply": {
+    "sha256": "72fa912edc8db5ff236655752b4046ff4c76b64a4567168ef731d73ac96835fa",
+    "bytes": 1371970
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_82.ply": {
+    "sha256": "ef244f5569e70a8fe3807025bf26557f8282b9957173d6d07a164da38807eb3a",
+    "bytes": 100269
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_83.ply": {
+    "sha256": "90d5e7e97417cdae68a389a43a3403498d9642dc52ac5ba11ac1d6759676b757",
+    "bytes": 24371
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_84.ply": {
+    "sha256": "efe324390af49e80222cb05dd95cfec5924822cb2184b44b248280f7b7bd33c0",
+    "bytes": 36819
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_85.ply": {
+    "sha256": "fc970ca22227f496efe057644cce4fd7d43ce9f40e34191f882d14188c6a3981",
+    "bytes": 18566
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_86.ply": {
+    "sha256": "c7178e0024bac168af4bffa344ad1963889a7470d128d36063352e95047e7b5c",
+    "bytes": 2870525
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_87.ply": {
+    "sha256": "0e23daffaff336a4f370126d5982a613ab87e2546f195194d6b9dcb34874784f",
+    "bytes": 47781
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_88.ply": {
+    "sha256": "cf76150acaa4d25132bf85175b20c0e297766f498dc47dfbf3f088b51b9f1d14",
+    "bytes": 29205
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_89.ply": {
+    "sha256": "57e39183e5727e38d9ef18666e62801fbbe0be4ed2e20d7737c4368498c5ba70",
+    "bytes": 184617
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_9.ply": {
+    "sha256": "e95529d142796e4e826690426674cb47468a66eed3499d0a08d3668f9f6c8047",
+    "bytes": 838207
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_90.ply": {
+    "sha256": "3eae3e1797a240e33b52b97371bed2db4f7e0bca76bcd9d48845cf4d03c01f7a",
+    "bytes": 50238
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_91.ply": {
+    "sha256": "da1c8365f4f6daa811316d0072d48cb726d4ec551a244a9668d62211cd3d54b5",
+    "bytes": 168066
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_92.ply": {
+    "sha256": "e4672225c1d18475862e0a600111ae893b99748e74ec950bdfc31723f77692ac",
+    "bytes": 116172
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_93.ply": {
+    "sha256": "f18f4b337a0516f3005afd95ba1745ed77c1fdfbac26f9c7a71b735742827357",
+    "bytes": 68544
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_94.ply": {
+    "sha256": "c4ada8069bbd4d872211de1395e8c29c175cd09eb21110a3fab4e90973eae38f",
+    "bytes": 476056
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_95.ply": {
+    "sha256": "5fa3fa3b5b0ce6d9cca327cf55c564766ef455837ee72cbfb7010710bc838833",
+    "bytes": 1050562
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_96.ply": {
+    "sha256": "c75cdcc51b5e250e15fd9e2a6f6cffbd5413c4363ddc833357ff54bffd920b6b",
+    "bytes": 145332
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_97.ply": {
+    "sha256": "655683ca19ea7c6e0365600069e02e28731da95391a41ef41cf800862eb8b139",
+    "bytes": 1818577
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_98.ply": {
+    "sha256": "30266f31aa98932e099dc197b4d8932bb480c2c0d93df9923e7967b47326c967",
+    "bytes": 30231
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica/objects/pcd_99.ply": {
+    "sha256": "931e610862daa44ad09bc4ed4496fb85dd5120cddcd60633dc58d26153ab8aad",
+    "bytes": 36873
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/hydra/.hydra/config.yaml": {
+    "bytes": 1082,
+    "sha256": "a2b942919dd3602b89d9d7853e9bafd846a6a8c31c3c4e02afae0d3227f37723"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/hydra/.hydra/hydra.yaml": {
+    "bytes": 4617,
+    "sha256": "e8e11505767983ebef72ccadcdfd7f8016d82aae7f375eb6f2c406cde39e7936"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/hydra/.hydra/overrides.yaml": {
+    "bytes": 514,
+    "sha256": "3b6c11fad0f58d5464a28eab03f9017be0ff342a27d63f6216e7c05051607a17"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/hydra/semantic_segmentation.log": {
+    "bytes": 918,
+    "sha256": "c9e5affefadcd735f5be246d45c2c75bc71dd1a6e968519247fbb02e4dcd69e0"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/run.log": {
+    "bytes": 6755,
+    "sha256": "e7885cc58cd530d1fb4861c5fdb3660273665d8965b0c160e087fca2e6896707"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/evaluation/run.log": {
+    "bytes": 2656,
+    "sha256": "efc4c69825307d4991120184c38ba48bb887a1acbdd18ee53d82dc6176e9e1ab"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/diagnostics/evaluation-palette-path.json": {
+    "bytes": 1741,
+    "sha256": "8148443b1baff807a0b5a08e01b683d8d0ccf2a17ddcbbf111ad219ce8c09cbf"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/evaluation/record.json": {
+    "bytes": 2198,
+    "sha256": "ffe660b05ac5ae5b3587dea16bea828253aa0502d4d17453a3bfa0cb1e0a0257"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/evaluation-work/class_id_colors.json": {
+    "bytes": 6922,
+    "sha256": "075be9f25e99651ce7913faea2e8af510525c9c943c1d7acf21c6d7087365eba"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/evaluation-work/hydra/.hydra/config.yaml": {
+    "bytes": 651,
+    "sha256": "8e28db830355eb676b9c49ec41d9c0bcffc9a01c9f7e482faf9cad4664ede063"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/evaluation-work/hydra/.hydra/hydra.yaml": {
+    "bytes": 4704,
+    "sha256": "55966e05ecbb39eb65b0867af60652942bb98a2618ad4fbd299ad3506dc51fe5"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/evaluation-work/hydra/.hydra/overrides.yaml": {
+    "bytes": 531,
+    "sha256": "1fe38011f32e5614fa3606810e0e978a2757cffe5c8c02954be2bcbb7cb3bbd3"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/evaluation-work/hydra/evaluate_sem_seg.log": {
+    "bytes": 918,
+    "sha256": "cf28d6d955874836aaf8df6c629e50e6ec3d8ac1b032329533c48dba6faa5c5b"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/outcomes.json": {
+    "bytes": 730,
+    "sha256": "ee28d8cbf36e8a7bb8a904765e7affb0cddd08f0f4b17ed5e8af43e591fcad3b"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home/validation.json": {
+    "bytes": 311,
+    "sha256": "f592e77f5daf85b8450a4e3d815743b53e199920e77ff6ccbba44bff48a6ceea"
+  },
+  "runs/public-semantic-benchmark-06-room0-hov-home-features/record.json": {
+    "bytes": 29271,
+    "sha256": "652c5775c97028488b3097c335ea1ccf091b6584051efb7568e3bb07f7dec263"
+  },
+  "runs/conceptgraphs-room0-class-analysis-01/summary.json": {
+    "bytes": 10243,
+    "sha256": "f0d3f2ac22f8de675edcd21a63d4e9a6189729738cf5a8c8087057465709a95e"
+  },
+  "runs/conceptgraphs-room0-class-analysis-01/room0-class-metrics.csv": {
+    "bytes": 2299,
+    "sha256": "2b210ffcc8d0f08fc4e75bef30aa704fb416bfdd97fccd404a76e1ff4c340325"
+  },
+  "runs/conceptgraphs-room0-class-analysis-01/room0-class-metrics.png": {
+    "bytes": 115138,
+    "sha256": "26370b37768e2db2c2cc13fb11d7cddca1505f044d386e0eb5c79a322bcae19e"
+  },
+  "runs/conceptgraphs-room0-class-analysis-01/room0-class-metrics.svg": {
+    "bytes": 85101,
+    "sha256": "2bb17ecafbca9c890acce8f31067913cbcc5955ac162f10a12c4b085ec6c4c9e"
   }
 }

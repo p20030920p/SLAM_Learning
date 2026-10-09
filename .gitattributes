@@ -4,4 +4,5 @@
 *.json text eol=lf
 *.txt text eol=lf
 *.diff text eol=lf
-evidence/**/*.log -text
+# Preserve author output bytes and their hashes on Windows as well as Linux.
+evidence/** -text

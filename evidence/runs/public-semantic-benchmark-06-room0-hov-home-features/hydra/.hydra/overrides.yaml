@@ -1,0 +1,8 @@
+- main.dataset=replica
+- main.scene_id=room0
+- main.dataset_path=/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/room0
+- main.save_path=/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts
+- models.clip.checkpoint=/home/qzl/projects/SLAM_Author_Originals/weights/laion2b_s32b_b79k.bin
+- models.sam.checkpoint=/home/qzl/projects/SLAM_Author_Originals/weights/sam_vit_h_4b8939.pth
+- pipeline.skip_frames=100
+- models.sam.points_per_batch=16

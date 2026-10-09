@@ -2,7 +2,7 @@
   "schema_version": 1,
   "method": "ConceptGraphs-evaluation",
   "scope": "Original semantic evaluator and exact author HDF5 GT; ONLY room0 selected in explicit configuration copy; n_exclude=6",
-  "status": "running",
+  "status": "executed",
   "started_at": "2026-10-08T23:30:33.088886+00:00",
   "command": [
     "systemd-run",
@@ -29,8 +29,25 @@
   "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
   "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
   "source_dirty_before": "",
-  "exit_code": null,
-  "artifacts": {},
+  "exit_code": 0,
+  "artifacts": {
+    "diagnostics/memory-observations.json": {
+      "sha256": "5a7bd69405c40f393cb2c21c9cc34578a4f17a5a349991cc29e8c85f90c8c8ba",
+      "bytes": 6478
+    },
+    "diagnostics/resource-adjustment.json": {
+      "sha256": "44d961d27de5a4ddc181d2e5368f8c1767993f33baa4b0a32b3738da86033ab8",
+      "bytes": 978
+    },
+    "run.log": {
+      "sha256": "e7b4321938d628fe70a0b4cbe48ee8e74caf747942392aceec49ced8c18dba01",
+      "bytes": 1173
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_results.csv": {
+      "sha256": "cc15189793c805f58dc54da10eecffa271ec304e34394aaf599a0f0156760141",
+      "bytes": 244
+    }
+  },
   "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
   "environment": {
     "OMP_NUM_THREADS": "8",
@@ -41,5 +58,7 @@
     "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
     "DISPLAY": ":0"
   },
-  "pid": 235105
+  "pid": 235105,
+  "elapsed_seconds": 690.6462870659998,
+  "source_dirty_after": ""
 }

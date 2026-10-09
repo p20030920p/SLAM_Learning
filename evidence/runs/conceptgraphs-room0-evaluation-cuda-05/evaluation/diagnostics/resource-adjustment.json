@@ -1,0 +1,9 @@
+{
+  "status": "applied_and_verified",
+  "utc": "2026-10-08T23:34:34.170599+00:00",
+  "unit": "slam-author-conceptgraphs-room0-evaluation-cuda-05-evaluation.scope",
+  "before": "ControlGroup=/user.slice/user-1000.slice/user@1000.service/app.slice/slam-author-conceptgraphs-room0-evaluation-cuda-05-evaluation.scope\nMemoryCurrent=12842463232\nMemoryMax=12884901888\nMemorySwapMax=51539607552",
+  "after": "ControlGroup=/user.slice/user-1000.slice/user@1000.service/app.slice/slam-author-conceptgraphs-room0-evaluation-cuda-05-evaluation.scope\nMemoryCurrent=12842315776\nMemoryMax=17179869184\nMemorySwapMax=51539607552",
+  "reason": "Reduce paging for this evaluator on the 19.5 GiB WSL instance; leave approximately 3.5 GiB outside this task cap. Swap cap stays 48G.",
+  "scope": "Runtime cgroup resource-only adjustment from 12G to 16G. Original sources, model, map, labels and evaluation formulas are unchanged. Timing includes paging and is not a paper speed comparison."
+}

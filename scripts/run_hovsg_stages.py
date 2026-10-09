@@ -73,7 +73,7 @@ source=r/'upstream/hovsg'
 os.environ.update(OMP_NUM_THREADS='8',OPENBLAS_NUM_THREADS='8',MKL_NUM_THREADS='8',WANDB_MODE='disabled')
 command=[python,source/'application/eval/evaluate_sem_seg.py','main.dataset=replica','main.scene_name='+alias,
     'main.feature_map_path='+str(artifacts),'main.replica_dataset_gt_path='+gt['root'],
-    'main.replica_color_map='+str(work/'class_id_colors.json'),
+    'main.replica_color_map='+str(source/'hovsg/labels/class_id_colors.json'),
     'models.clip.checkpoint='+str(r/'weights/laion2b_s32b_b79k.bin'),
     'hydra.run.dir='+str(work/'hydra')]
 limited=['systemd-run','--user','--scope','--unit','slam-author-'+args.name+'-evaluation',

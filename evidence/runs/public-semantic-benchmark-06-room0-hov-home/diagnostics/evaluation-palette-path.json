@@ -1,0 +1,30 @@
+{
+  "status": "failed_evaluation_wrapper_configuration",
+  "source_commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605",
+  "failure": "KeyError: 0 in unchanged author evaluator at colors_map[label]",
+  "original_record": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home/evaluation/record.json",
+    "bytes": 2198,
+    "sha256": "ffe660b05ac5ae5b3587dea16bea828253aa0502d4d17453a3bfa0cb1e0a0257"
+  },
+  "original_log": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home/evaluation/run.log",
+    "bytes": 2656,
+    "sha256": "efc4c69825307d4991120184c38ba48bb887a1acbdd18ee53d82dc6176e9e1ab"
+  },
+  "wrong_palette": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home/evaluation-work/class_id_colors.json",
+    "bytes": 6922,
+    "sha256": "075be9f25e99651ce7913faea2e8af510525c9c943c1d7acf21c6d7087365eba",
+    "contains_background_zero": false
+  },
+  "author_committed_palette": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/upstream/hovsg/hovsg/labels/class_id_colors.json",
+    "bytes": 6995,
+    "sha256": "e51d6b284fcebf8c8c10a62db17a3ea6ed55dc5b4686c24f1b30a83fe35235c3",
+    "contains_background_zero": true
+  },
+  "cause": "Our wrapper selected the generated 1..101 color file. The original evaluator later inserts class 0 and indexes its color.",
+  "fix": "Select the author committed palette (includes -1 and 0) for an evaluation-only retry; keep saved map, labels, scoring and canonical source unchanged.",
+  "scope": "20-frame skip=100 home sampling variant; feature map validated, initial evaluation failed. No semantic score or default benchmark claim."
+}

@@ -2,6 +2,13 @@
 
 更新日期：2026-10-09（莫斯科）。实际工作区：`/home/qzl/projects/SLAM_Author_Originals`。
 
+| 当前阶段 | 完成情况 |
+|---|---|
+| DUFOMap / BeautyMap 公开标注数据 | 两种原始入口与原评分完成，各 1997 帧；两张论文消融表的 24 项匹配 |
+| ConceptGraphs SAM-only，room0 | 前端、对象地图、RGB 表面与原始语义评分完成；mIoU 21.3460%，F-mIoU 50.1379% |
+| HOV-SG 家用采样，room0 | 20 帧特征地图完成；156 分段、399,663 点；首次评分配置错误，评价重试排队 |
+| 仍在推进 | CG Detect 前端运行；其余场景排队；HOV 默认采样未完成，HM3D/ScanNet/LLaVA 依赖仍缺 |
+
 ## 已实际执行
 
 DUFOMap 原始 C++、BeautyMap 原始 Python、DynamicMap 作者 PCL 导出与 Python 评分均已在四份公开标注数据执行成功。00 / 05 / AV2 / 半室内分别为 141 / 321 / 575 / 960 帧，共 1997 帧，每个方法均使用全部已发布扫描。00 是 teaser；这些公开数据包不等于 KITTI 全序列或论文全部消融。输入保留作者提供的位姿和 GT，不用于证明定位鲁棒性。
@@ -75,15 +82,15 @@ HOV-SG `hovsg-room0-batch16-stages-02` 完成了 200/200 个原生 1200×680 帧
 
 `conceptgraphs-room0-batch16-stages-04` 的原始映射已成功退出，最终后处理地图通过检查：77 个对象记录，357,134 个点记录（对象之间可能重复，不是唯一点数），几何与 1024 维特征均有限。原始 RGB PointFusion 的 400 帧也已完成，参考 HDF5／PCD 已保存。[地图检查](../evidence/runs/conceptgraphs-room0-batch16-stages-04/map-validation/validation.json)。映射总耗时约 1043 秒，其中包含序列化与换页；资源采样起于运行中途，不能当完整峰值或论文性能比较。
 
-原始语义评价在 CUDA 最近邻处失败：此前 chamferdist 只编译了 CPU 支持。已按同一份依赖源码重新编译 CUDA 11.8 扩展，并检查 CUDA 专用绑定与二进制哈希；[真实 GPU KNN 测试](../evidence/runs/chamferdist-cuda-probe-01/run.log)已通过。`conceptgraphs-room0-evaluation-cuda-05` 在 HOV-SG 退出后也通过了实际 CUDA 预检查，开始原始 room0 语义评价。该重试只在重新核对 SHA-256 后复用已成功的地图和 RGB 表面，没有重新建图或改评价公式。**当前仍无完成的语义分数。** [前次失败诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-04/diagnostics/evaluation-failure.json)。
+原始语义评价此前因 chamferdist 缺少 CUDA 支持失败；同一份依赖源码已重编，真实 GPU KNN 检查通过。`conceptgraphs-room0-evaluation-cuda-05` 现已执行成功：**room0 mIoU 21.3460%、F-mIoU 50.1379%**。复用地图／RGB 前重新核对 SHA-256，未重新建图或改评分；独立混淆矩阵复算通过。CSV 的 `all` 只汇总 room0，原 mF1 定义与标准调和 F1 不同。[完整指标、分母与复查命令](CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)。[前次失败诊断](../evidence/runs/conceptgraphs-room0-batch16-stages-04/diagnostics/evaluation-failure.json)保留。
 
 HOV-SG `hovsg-room0-batch16-stages-03` 完成 200/200 个原生帧提取后，在层级掩码融合中达到记录器的 7200 秒上限，于莫斯科时间 2026-10-09 02:29 超时结束；记录状态为 `timed_out`，父阶段返回 124，最终四份 PLY/PT 均未保存。[超时诊断](../evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/timeout-diagnosis.json)绑定原记录和日志哈希。这次是设定的墙钟超时，不能改写成 OOM 或语义准确率失败。
 
 启动限额为 12G RAM / 48G swap，融合期间将该特征任务 RAM 限额提高至 16G；中途开始的资源采样分别观察到最多 16.00 GiB RAM 和 27.34 GiB swap，不能相加当同时峰值，也不是完整运行峰值。[调整记录](../evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/resource-adjustment.json)。新版包装脚本允许显式配置较长超时，不能追改本次已加载的 7200 秒记录。另启用任务目录内 48 GiB 临时交换文件；未改 WSL 全局配置或作者算法。[交换空间记录](../evidence/swap-manifest.json)。交换空间会影响耗时，不能用本轮时间比较论文效率。
 
-`public-semantic-benchmark-06` 等待首个完整链路，再串行推进其余 7 个公开 Replica 场景及 ConceptGraphs-Detect：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。05 仅等待、未启动作者阶段时被替换，记录保留；06 为最终八场景评价也加上 12G/48G 限额。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
+`public-semantic-benchmark-06` 已收到 CG room0 的完成结果，当前运行 ConceptGraphs-Detect 前端：原版 RAM + GroundingDINO + 逐框提示的 SAM，使用作者 Detect 参数，不套用 SAM-only 的批量 16 变体。05 仅等待、未启动作者阶段时被替换，记录保留；06 为最终八场景评价也加上 12G/48G 限额。完整 8 场景成功后才运行未经修改的作者八场景评价脚本。某方法首场景失败时不会在另外 7 个场景盲目重复同一失败。
 
-若 HOV-SG 默认采样的 room0 失败，06 另尝试作者公开的 `pipeline.skip_frames=100`：在原生 2000 帧输入中均匀取 20 帧，SAM 批量 16，其余作者方法不改。该家用配置独立记录，尚未执行；无论成功与否都不计作默认采样或完整八场景 HOV benchmark。
+HOV-SG 另用作者公开的 `pipeline.skip_frames=100` 均匀取 20/2000 个原生帧、SAM 批量 16，**已成功保存并验证 156 个分段、399,663 个全局点及对应 1024 维特征**。首次原评价因我们的包装脚本误选缺少类 0 的生成颜色表而退出 1；已改用作者提交的完整颜色表，复用已核验地图排队重试评分。等待期间只暂停本任务调度器，正在执行的 Detect 前端继续，释放 GPU 后先评分再恢复后续队列。[地图、失败原因与状态](HOVSG_HOME_RESULTS.zh-CN.md)。该家用配置不计作默认采样或完整八场景 HOV benchmark。
 
 完整前端另导出 40 秒、400 帧 RGB／SAM 对照回放，源图与已验证分割逐一匹配。它展示实际二维产物，不代表三维窗口操作或语义准确率。查看和重做命令见 [运行手册](RUNBOOK.zh-CN.md)。
 
@@ -95,7 +102,7 @@ HOV-SG `hovsg-room0-batch16-stages-03` 完成 200/200 个原生帧提取后，�
 
 ## 待完成
 
-完整 Replica RGB-D 已下载并通过 CRC 校验，8 场景各有 2000 组 RGB-D/位姿；归档大小 12,442,855,671 字节，SHA-256 见 evidence。HOV-SG 原始配置进入 room0 特征提取后被用户确认的电脑/应用重启中断；旧记录标为 interrupted，不当作算法失败。语义前端、建图和原始语义 GT 评价仍在推进。
+完整 Replica RGB-D 已下载并通过 CRC 校验，8 场景各有 2000 组 RGB-D/位姿；归档大小 12,442,855,671 字节，SHA-256 见 evidence。CG 其余场景与 Detect 链路、HOV-SG 家用地图评分和默认采样仍未完成。HOV-SG 更早的重启中断记录仍为 interrupted；不能与后续已确认的 OOM、超时或配置错误混记。
 
 HOV-SG 的楼层/房间/对象层级评价需要获授权的 HM3D/HM3DSem；尚未提供路径。ConceptGraphs 的原版 LLaVA-7B-v0 需要 LLaMA-7B 基础权重，用户确认本机没有，原始节点描述和关系图因此未完成。
 

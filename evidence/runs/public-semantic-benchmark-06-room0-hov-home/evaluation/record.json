@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "method": "HOV-SG-semantic-evaluation",
+  "scope": "Original semantic evaluator, original Replica room_0 mesh/info; single scene; frontend SAM batch 16 compatibility config; full RGB-D 1200x680, skip_frames=100; additional sampling variant, not paper default",
+  "status": "failed",
+  "started_at": "2026-10-08T23:49:29.271941+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-public-semantic-benchmark-06-room0-hov-home-evaluation",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/hovsg/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/hovsg/application/eval/evaluate_sem_seg.py",
+    "main.dataset=replica",
+    "main.scene_name=room_0",
+    "main.feature_map_path=/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home-features/artifacts/replica",
+    "main.replica_dataset_gt_path=/home/qzl/projects/SLAM_Author_Originals/data/replica-original",
+    "main.replica_color_map=/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home/evaluation-work/class_id_colors.json",
+    "models.clip.checkpoint=/home/qzl/projects/SLAM_Author_Originals/weights/laion2b_s32b_b79k.bin",
+    "hydra.run.dir=/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home/evaluation-work/hydra"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-hov-home/evaluation-work",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/hovsg",
+  "source_commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605",
+  "source_dirty_before": "",
+  "exit_code": 1,
+  "artifacts": {
+    "run.log": {
+      "sha256": "efc4c69825307d4991120184c38ba48bb887a1acbdd18ee53d82dc6176e9e1ab",
+      "bytes": 2656
+    }
+  },
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "DISPLAY": ":0"
+  },
+  "pid": 244880,
+  "elapsed_seconds": 20.365437511998607,
+  "source_dirty_after": ""
+}

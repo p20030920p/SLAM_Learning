@@ -207,7 +207,7 @@ HOV-SG 串行任务进度：
 cat "$RUNTIME/runs/hovsg-room0-batch16-stages-03/outcomes.json"
 ```
 
-该任务先运行完整 2000 帧输入的原始特征图入口（skip_frames=10、SAM 批量 16），检查 PLY 与 1024 维特征对应关系，再运行作者语义评价。评价工作目录独立，作者生成的颜色 JSON 不写进源码。单场景结果、资源配置和未完成阶段都分别记录。
+该默认采样任务使用 2000 帧输入中的 200 帧（skip_frames=10、SAM 批量 16），已在融合阶段超时，没有最终地图。原始评价的颜色表应选择作者提交的 `upstream/hovsg/hovsg/labels/class_id_colors.json`，包含 -1 与 0；不要选择运行时生成的 1..101 颜色表。评价工作目录独立，生成文件不写进源码。
 
 03 特征任务融合期间将 RAM 限额从 12G 临时提高到 16G，原有 7200 秒超时不变。新版 `run_hovsg_stages.py` 提供 `--feature-timeout`（默认 21600 秒）和 `--evaluation-timeout`（默认 7200 秒）；它们只影响新启动任务，并记录到 outcomes。已有任务未结束时不要重复启动。
 
@@ -218,7 +218,7 @@ cat "$RUNTIME/runs/public-semantic-benchmark-06/outcomes.json"
 tail -n 20 "$RUNTIME/runs/public-semantic-benchmark-06/orchestration.log"
 ```
 
-06 开启了 `--hov-home-fallback`：若 HOV 默认采样失败，在 CG 首场景原评价完成后单独测试 `pipeline.skip_frames=100`，均匀取 20/2000 帧；保留原分辨率、SAM 批量 16 和作者原始建图／评价。输出记在 `public-semantic-benchmark-06-room0-hov-home`，不计作默认采样或八场景 HOV benchmark。该配置尚未执行，不能先写成功。
+06 开启了 `--hov-home-fallback`：默认采样失败后，另用 `pipeline.skip_frames=100` 均匀取 20/2000 帧，保留原分辨率和 SAM 批量 16。该地图已完成；首次评价因颜色表路径错误失败，已修正包装脚本，评价重试等待 Detect 释放 GPU。输出记在 `public-semantic-benchmark-06-room0-hov-home`，不计作默认采样或八场景 HOV benchmark。[地图检查与只读命令](HOVSG_HOME_RESULTS.zh-CN.md)。后台调度器由评价重试临时接管时，不要手动并发启动新任务。
 
 Detect 的原始命令保留 `--class_set ram --box_threshold 0.2 --text_threshold 0.2 --stride 5 --add_bg_classes --accumu_classes --exp_suffix withbg_allclasses`。其映射使用 `mask_conf_threshold=0.25`、`skip_bg=False`，沿用作者命令生成的后缀 `ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1`。README 的评价示例额外写了 `_masksub`，与映射命令不一致；这里显式传入实际文件名，不复制或伪造结果。Detect 复用同场景原始 RGB PointFusion 表面前，必须提供成功的记录并重新核对文件 SHA-256。
 
@@ -271,12 +271,14 @@ cd "$RUNTIME/upstream/conceptgraphs/conceptgraph"
 
 新增 KITTI 原始帧段下载、作者预处理重做命令及 ScanNet 本人申请步骤见 [数据文档](DATA_ACCESS.zh-CN.md)。任务已在运行时，先检查 `runs/kitti-selected-inputs-01/outcomes.json` 与 `runs/kitti-author-selected-02/outcomes.json`，不要重复启动同一任务。
 
-本机第三次建图与 RGB 参考表面已成功，第一次原评价因 chamferdist 缺少 CUDA 支持退出。扩展已补编，独立的真实 GPU KNN 检查已通过；`conceptgraphs-room0-evaluation-cuda-05` 等待 HOV-SG 后再检查该运算并重跑原评价。它用 `--reuse-chain` 对原地图／RGB 文件重新核对 SHA-256，原失败记录保持原样。自动队列仍在运行时不要重复启动评价。
+本机第三次建图、RGB 表面及修复 CUDA 依赖后的原始评价均已成功，`conceptgraphs-room0-evaluation-cuda-05` 保存 room0 原评分。[五项指标与独立 CPU 复查命令](CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)。重试前用 `--reuse-chain` 核对地图／RGB 的 SHA-256，原失败记录保持原样。自动队列仍在运行时不要重复启动 GPU 评价。
 
 直接执行作者入口时可加外层记录器；它不导入算法、不替换算法函数。输出目录必须新建，`--artifact` 可要求关键输出存在，`--timeout` 会记录超时。
 
 ```bash
-python3 "$DOCS/scripts/collect_evidence.py" --runtime "$RUNTIME" --output "$DOCS/evidence"
+python3 "$DOCS/scripts/collect_evidence.py" --runtime "$RUNTIME" --output "$RUNTIME/local/evidence-review-01"
 ```
+
+先收集到 Git 之外的本机审阅目录。收集器可能包含运行中的状态，只把已结束、哈希已核对的轻量证据挑选进分支；不要直接向 Git 工作目录持续写入后台日志。大地图、权重和设备原片留在运行目录，完整提交一次已验证的阶段后检查 `git status --short`。
 
 DeepSeek 设置文件为 `config/deepseek-budget.json`，本轮总上限 1 美元。密钥仅从本地环境变量 `DEEPSEEK_API_KEY` 读取；所有调用必须共享同一 `DEEPSEEK_BUDGET_LEDGER` 账本。预算模块不会自动接管原版 GPT-4 调用，必须在单独的替代实验副本中显式接入，不能直接运行原版关系图入口而误调用其他服务。

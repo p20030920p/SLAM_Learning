@@ -1,0 +1,328 @@
+{
+  "status": "descriptive_decomposition_of_validated_author_matrix",
+  "scene": "room0",
+  "source_matrix": {
+    "path": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/results/none_overlap_maskconf0.95_simsum1.2_dbscan.1_merge20_masksub/replica_ex6_conf_matrices.pkl",
+    "bytes": 23176,
+    "sha256": "cc672da3895e9ec3e03f51be5f360f674aa4692f984114f848a378fe7c88a848"
+  },
+  "source_log_sha256": "e7b4321938d628fe70a0b4cbe48ee8e74caf747942392aceec49ced8c18dba01",
+  "class_count": 23,
+  "scored_reconstructed_points": 4085377,
+  "macro_iou_percent": 21.346026062775287,
+  "frequency_weighted_iou_percent": 50.137902921289545,
+  "zero_iou_classes": [
+    "basket",
+    "cabinet",
+    "candle",
+    "chair",
+    "plate",
+    "pot",
+    "table",
+    "vase",
+    "wall-plug",
+    "rug"
+  ],
+  "zero_predicted_classes": [
+    "basket",
+    "cabinet",
+    "chair",
+    "plate",
+    "table",
+    "wall-plug",
+    "rug"
+  ],
+  "rows": [
+    {
+      "class_index": 1,
+      "class_name": "basket",
+      "gt_support_reconstructed_points": 25834,
+      "predicted_points": 0,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 0.6323529015804417
+    },
+    {
+      "class_index": 5,
+      "class_name": "blanket",
+      "gt_support_reconstructed_points": 87424,
+      "predicted_points": 4649,
+      "intersection": 79,
+      "iou_percent": 0.08587516577168076,
+      "recall_percent": 0.09036420204978038,
+      "precision_percent": 1.6992901699290168,
+      "author_f1_percent": 0.003071100005133427,
+      "gt_support_percent": 2.139924907786968
+    },
+    {
+      "class_index": 6,
+      "class_name": "blinds",
+      "gt_support_reconstructed_points": 912279,
+      "predicted_points": 962647,
+      "intersection": 912277,
+      "iou_percent": 94.76735549509738,
+      "recall_percent": 99.99978076882182,
+      "precision_percent": 94.76755238420729,
+      "author_f1_percent": 97.31338730168552,
+      "gt_support_percent": 22.33035041808871
+    },
+    {
+      "class_index": 7,
+      "class_name": "book",
+      "gt_support_reconstructed_points": 24546,
+      "predicted_points": 21395,
+      "intersection": 8237,
+      "iou_percent": 21.846488436240186,
+      "recall_percent": 33.55740242809419,
+      "precision_percent": 38.49964945080626,
+      "author_f1_percent": 25.83896459922522,
+      "gt_support_percent": 0.6008258234184997
+    },
+    {
+      "class_index": 12,
+      "class_name": "cabinet",
+      "gt_support_reconstructed_points": 87488,
+      "predicted_points": 0,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 2.1414914706770025
+    },
+    {
+      "class_index": 13,
+      "class_name": "candle",
+      "gt_support_reconstructed_points": 3447,
+      "predicted_points": 717,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 0.08437409815544562
+    },
+    {
+      "class_index": 14,
+      "class_name": "chair",
+      "gt_support_reconstructed_points": 123449,
+      "predicted_points": 0,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 3.021728472060228
+    },
+    {
+      "class_index": 18,
+      "class_name": "cushion",
+      "gt_support_reconstructed_points": 290931,
+      "predicted_points": 217131,
+      "intersection": 197618,
+      "iou_percent": 63.65656930074345,
+      "recall_percent": 67.92607181771622,
+      "precision_percent": 91.01325927665786,
+      "author_f1_percent": 77.79286779959928,
+      "gt_support_percent": 7.121276690009269
+    },
+    {
+      "class_index": 24,
+      "class_name": "indoor-plant",
+      "gt_support_reconstructed_points": 36011,
+      "predicted_points": 796341,
+      "intersection": 35746,
+      "iou_percent": 4.487287316439996,
+      "recall_percent": 99.26411374302296,
+      "precision_percent": 4.488780560086696,
+      "author_f1_percent": 8.589154588443352,
+      "gt_support_percent": 0.8814608786410655
+    },
+    {
+      "class_index": 25,
+      "class_name": "lamp",
+      "gt_support_reconstructed_points": 142169,
+      "predicted_points": 83656,
+      "intersection": 80494,
+      "iou_percent": 55.38666905202606,
+      "recall_percent": 56.61853146607206,
+      "precision_percent": 96.22023524911543,
+      "author_f1_percent": 71.28882984611978,
+      "gt_support_percent": 3.4799481173952858
+    },
+    {
+      "class_index": 29,
+      "class_name": "picture",
+      "gt_support_reconstructed_points": 288612,
+      "predicted_points": 470683,
+      "intersection": 284542,
+      "iou_percent": 59.934745014776105,
+      "recall_percent": 98.58980222582568,
+      "precision_percent": 60.453001276867866,
+      "author_f1_percent": 74.94899874225432,
+      "gt_support_percent": 7.06451326279068
+    },
+    {
+      "class_index": 30,
+      "class_name": "pillar",
+      "gt_support_reconstructed_points": 59037,
+      "predicted_points": 6077,
+      "intersection": 6076,
+      "iou_percent": 10.291676547308514,
+      "recall_percent": 10.291850873181225,
+      "precision_percent": 99.98354451209478,
+      "author_f1_percent": 18.66265319286175,
+      "gt_support_percent": 1.4450808334212484
+    },
+    {
+      "class_index": 33,
+      "class_name": "plant-stand",
+      "gt_support_reconstructed_points": 8284,
+      "predicted_points": 336936,
+      "intersection": 3629,
+      "iou_percent": 1.062381620124652,
+      "recall_percent": 43.80733944954128,
+      "precision_percent": 1.0770591447633973,
+      "author_f1_percent": 0.9436619112376554,
+      "gt_support_percent": 0.20277198407882552
+    },
+    {
+      "class_index": 34,
+      "class_name": "plate",
+      "gt_support_reconstructed_points": 1688,
+      "predicted_points": 0,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 0.04131809622465687
+    },
+    {
+      "class_index": 35,
+      "class_name": "pot",
+      "gt_support_reconstructed_points": 23897,
+      "predicted_points": 4291,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 0.5849398966117447
+    },
+    {
+      "class_index": 38,
+      "class_name": "sofa",
+      "gt_support_reconstructed_points": 788600,
+      "predicted_points": 859418,
+      "intersection": 705135,
+      "iou_percent": 74.78499453272569,
+      "recall_percent": 89.41605376616789,
+      "precision_percent": 82.04796734534301,
+      "author_f1_percent": 85.57370125811732,
+      "gt_support_percent": 19.30299211064242
+    },
+    {
+      "class_index": 39,
+      "class_name": "stool",
+      "gt_support_reconstructed_points": 158578,
+      "predicted_points": 174259,
+      "intersection": 157995,
+      "iou_percent": 90.3644433259743,
+      "recall_percent": 99.63235757797425,
+      "precision_percent": 90.66676613546502,
+      "author_f1_percent": 94.93836322283882,
+      "gt_support_percent": 3.881600155873008
+    },
+    {
+      "class_index": 40,
+      "class_name": "switch",
+      "gt_support_reconstructed_points": 1617,
+      "predicted_points": 17198,
+      "intersection": 1327,
+      "iou_percent": 7.588060384263495,
+      "recall_percent": 82.06555349412493,
+      "precision_percent": 7.71601348994069,
+      "author_f1_percent": 12.664378356402345,
+      "gt_support_percent": 0.039580190518524974
+    },
+    {
+      "class_index": 41,
+      "class_name": "table",
+      "gt_support_reconstructed_points": 259834,
+      "predicted_points": 0,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 6.360098468268657
+    },
+    {
+      "class_index": 46,
+      "class_name": "vase",
+      "gt_support_reconstructed_points": 4348,
+      "predicted_points": 25608,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 0.10642836634171093
+    },
+    {
+      "class_index": 47,
+      "class_name": "vent",
+      "gt_support_reconstructed_points": 6995,
+      "predicted_points": 104371,
+      "intersection": 6995,
+      "iou_percent": 6.702053252340209,
+      "recall_percent": 100.0,
+      "precision_percent": 6.702053252340209,
+      "author_f1_percent": 12.562182353680656,
+      "gt_support_percent": 0.17122042837172677
+    },
+    {
+      "class_index": 49,
+      "class_name": "wall-plug",
+      "gt_support_reconstructed_points": 1122,
+      "predicted_points": 0,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 0.027463805665915286
+    },
+    {
+      "class_index": 51,
+      "class_name": "rug",
+      "gt_support_reconstructed_points": 749187,
+      "predicted_points": 0,
+      "intersection": 0,
+      "iou_percent": 0.0,
+      "recall_percent": 0.0,
+      "precision_percent": 0.0,
+      "author_f1_percent": 0.0,
+      "gt_support_percent": 18.338258623377964
+    }
+  ],
+  "artifacts": {
+    "room0-class-metrics.csv": {
+      "bytes": 2299,
+      "sha256": "2b210ffcc8d0f08fc4e75bef30aa704fb416bfdd97fccd404a76e1ff4c340325"
+    },
+    "room0-class-metrics.png": {
+      "bytes": 115138,
+      "sha256": "26370b37768e2db2c2cc13fb11d7cddca1505f044d386e0eb5c79a322bcae19e"
+    },
+    "room0-class-metrics.svg": {
+      "bytes": 85101,
+      "sha256": "2bb17ecafbca9c890acce8f31067913cbcc5955ac162f10a12c4b085ec6c4c9e"
+    }
+  },
+  "scope": "Descriptive only. Support counts are reconstructed points after original author exclusions, not unique GT mesh points or independent observations. Class imbalance alone does not identify frontend, association or pose causes."
+}

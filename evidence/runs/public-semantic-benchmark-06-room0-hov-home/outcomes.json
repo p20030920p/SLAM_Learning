@@ -1,0 +1,23 @@
+{
+  "status": "failed",
+  "wait_outcomes": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05/outcomes.json",
+  "sam_batch": 16,
+  "boot_id": "d3e01b75-0cd1-4d9f-b48d-7170b3737981",
+  "pid": 236123,
+  "stages": {
+    "feature_map": 0,
+    "evaluation": 1
+  },
+  "skip_frames": 100,
+  "sampling_scope": "additional sampling variant, not default paper benchmark",
+  "resource_config": {
+    "memory_max": "12G",
+    "swap_max": "48G",
+    "feature_timeout_seconds": 21600,
+    "evaluation_timeout_seconds": 7200
+  },
+  "previous_chain_status": "executed_single_scene",
+  "failed_stage": "evaluation",
+  "error_type": "RuntimeError",
+  "error": "Author HOV-SG stage did not complete: evaluation"
+}
