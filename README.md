@@ -80,9 +80,11 @@ DUFOMap and BeautyMap remove dynamic traces while retaining static geometry. Con
 
 All four depend on **pose alignment → correspondence → map decisions**. Misalignment can affect point removal, object fusion or feature assignment. Pose margins, static restoration and association rules already provide protection.
 
-**After pose correction, how can a map repair decisions made under the earlier poses?**
+In object-centric semantic mapping, when previously estimated camera poses are corrected, does recomputing the associations between past observations and map objects reduce object fragmentation and false merges compared with updating the map geometry while keeping the original associations unchanged?
 
-For example, corrected coordinates may still leave one object split or two objects merged. This is a candidate failure mode, not a proven shared defect. We first test ConceptGraphs association under identical pose corrections and candidate caps. [Test and limits](docs/research/STUDY.md).
+If reassociation reduces these mapping errors, does it also improve text-based object retrieval, so that a query such as “chair” is more likely to return a correctly mapped chair as its top-ranked result?
+
+We first test this question in ConceptGraphs. It is a candidate failure mechanism, not a proven shared defect across the four pipelines. [Test and limits](docs/research/STUDY.md).
 
 ## Reproduction results
 
@@ -142,13 +144,17 @@ room1, immediately after 30 cm correction: fixed-history recovery **11.1%**, ora
 
 A lower support gate closes this selected recovery gap while exposing more fragments; later observations also repair part of it. **Reassociation is not yet shown necessary.** The next test matches candidate caps and checks identities separately.
 
-## Candidate H1 and next test
+## Hypothesis and next test
 
-Retain observation sources and pose versions, then replay affected associations within a bounded cache to recover more valid targets than simple guards. The bounded implementation is **not built or tested**.
+For the delayed pose corrections studied here, we hypothesize that reprocessing historical observations with corrected poses to recompute object associations and fusion will reduce duplicate fragments and mixed objects among the annotated instances compared with rebuilding map geometry while keeping the original observation-to-object associations unchanged.
+
+We further hypothesize that reassociation will improve the top-1 hit rate of text-based category queries within the annotated evaluation set compared with the same fixed-association baseline. Both comparisons use the same RGB-D observations, segmentation masks, frontend semantic features, corrected poses, minimum detections per object, and candidate limit.
+
+Identity errors and query hits are evaluated separately. **These hypotheses remain unverified; the current object annotations have not been independently reviewed.** Bounded replay is a possible later implementation, **not built or tested**.
 
 room2 freezes one frontend, five AI-labelled instances and exact correction after observation eight. Four arms compare fixed history, threshold-1.0, visibility guards and oracle reassociation at support 1/2/3 and caps 25/50/100/unlimited. **All 28 mapping cells ran; analysis remains pending.** [Protocol](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
 
-Only plan a prototype if oracle gains ≥10 percentage points over every simple control at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Otherwise narrow or stop H1. Equal caps do not match memory; AI-only labels cannot confirm H1. [Decision and remaining work](docs/research/PLAN.md).
+Only plan a bounded prototype if oracle gains ≥10 percentage points over every simple control at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Otherwise narrow or stop the prototype proposal. This gate is separate from testing reassociation against the fixed-association baseline. Equal caps do not match memory; AI-only labels cannot confirm H1. [Decision and remaining work](docs/research/PLAN.md).
 
 [Khronos](https://arxiv.org/html/2402.13817v2) and [DovSG](https://arxiv.org/html/2410.11989v2) already reconcile/update maps. A contribution must demonstrate a recovery–cost benefit over existing protections; replay alone is not novel.
 

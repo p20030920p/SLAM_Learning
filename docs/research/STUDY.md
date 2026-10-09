@@ -2,7 +2,11 @@
 
 English | [中文](STUDY.zh-CN.md)
 
-**At the same candidate cap, does reassociation recover more targets after a late pose correction than coordinate correction and simple guards?** H1 remains a candidate.
+## Open question
+
+In object-centric semantic mapping, when previously estimated camera poses are corrected, does recomputing the associations between past observations and map objects reduce object fragmentation and false merges compared with updating the map geometry while keeping the original associations unchanged?
+
+If reassociation reduces these mapping errors, does it also improve text-based object retrieval, so that a query such as “chair” is more likely to return a correctly mapped chair as its top-ranked result?
 
 ## The common interface, and its limits
 
@@ -37,12 +41,20 @@ Correlation is not uniformly worse; geometry and retrieval are different outcome
 
 room1 then tested late correction. At observation eight and 30 cm, fixed history recovers 11.1%, oracle 66.7%, while a post-hoc support-1 control reaches 100% with 117 candidates versus oracle's 25. Later observations also repair part of the deficit. **This counterevidence weakens the necessity of reassociation.** Partial plant/vase labels and unlabelled fragments prevent a full identity conclusion. [35 frozen cells and six separate post-hoc controls](DELAYED_RESULTS.md).
 
-## Candidate H1 and its decision gate
+## Hypothesis
 
-H1 retains observation sources and pose versions, then replays affected associations within a bounded cache to recover more valid targets than simple guards. The current oracle test asks whether reassociation is worth pursuing; it does not test bounded storage.
+For the delayed pose corrections studied here, we hypothesize that reprocessing historical observations with corrected poses to recompute object associations and fusion will reduce duplicate fragments and mixed objects among the annotated instances compared with rebuilding map geometry while keeping the original observation-to-object associations unchanged.
+
+We further hypothesize that reassociation will improve the top-1 hit rate of text-based category queries within the annotated evaluation set compared with the same fixed-association baseline. Both comparisons use the same RGB-D observations, segmentation masks, frontend semantic features, corrected poses, minimum detections per object, and candidate limit.
+
+Identity errors and query hits are evaluated separately: improvement in one does not establish improvement in the other. These hypotheses remain unverified, and the current object annotations have not been independently reviewed. The existing experiments are exploratory; this wording does not make them a new confirmatory test.
+
+## Next decision
+
+Simple threshold, visibility and support controls test whether any reassociation benefit warrants additional complexity. Bounded replay is a possible later implementation, not the hypothesis tested by the current full-history oracle experiments; no bounded implementation has been built or tested.
 
 room2 fixes five AI-labelled instances, held-out reference frames and one frontend. All 28 mapping cells ran; analysis remains pending. Support 1/2/3 and caps 25/50/100/unlimited are readouts of complete pre-filter snapshots. Category-query hits and physical identities are separate; unlabelled candidates are unknown. [Frozen exploratory protocol](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
 
-At matched RMS, support and endpoint, oracle must beat every simple control by ≥10 mean percentage points at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Only then propose a bounded prototype. Matching controls weaken H1. Equal caps do not match points or memory; AI-only labels cannot confirm H1. [Next steps](PLAN.md).
+At matched RMS, support and endpoint, oracle must beat every simple control by ≥10 mean percentage points at two finite caps, with ≥2/3 positive paired seeds and no seed increasing labelled duplicates/mixes. Only then propose a bounded prototype. Matching controls weaken the case for that prototype; this gate is separate from testing reassociation against the fixed-association baseline. Equal caps do not match points or memory; AI-only labels cannot confirm H1. [Next steps](PLAN.md).
 
 [Khronos](https://arxiv.org/html/2402.13817v2) already reconciles maps; [DovSG](https://arxiv.org/html/2410.11989v2) already updates scene graphs. The potential contribution is a measured recovery–cost benefit over existing protections, not memory/replay alone. Shared uncertainty as a universal cause, dynamic change recall and hardware H1 validation remain unestablished.

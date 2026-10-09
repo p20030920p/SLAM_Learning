@@ -2,7 +2,7 @@
 
 English | [中文](PLAN.zh-CN.md)
 
-Finish the existing equal-cap analysis before building H1 or adding methods. [Current question](STUDY.md).
+Finish the existing equal-cap analysis of identity errors and query hits before building a bounded replay prototype or adding methods. The primary hypothesis compares reassociation with fixed associations; simple controls separately inform the prototype decision. [Current question](STUDY.md).
 
 | Stage | Status / required output |
 | --- | --- |
@@ -13,7 +13,7 @@ Finish the existing equal-cap analysis before building H1 or adding methods. [Cu
 | Prototype decision | Apply the frozen oracle-versus-simple-controls gate below; publish ties and failures |
 | Confirmation | Independent label review and broader scenes/events remain necessary; AI-only exploration cannot confirm H1 |
 
-At matched RMS, support and endpoint, oracle needs ≥10 mean percentage-point improvement over every simple control at two finite caps, ≥2/3 positive paired seeds, and no seed increasing labelled duplicates/mixes. Passing permits a prototype plan; failing narrows or stops H1. [Exact protocol](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
+At matched RMS, support and endpoint, oracle needs ≥10 mean percentage-point improvement over every simple control at two finite caps, ≥2/3 positive paired seeds, and no seed increasing labelled duplicates/mixes. Passing permits a prototype plan; failing narrows or stops that proposal. This gate is separate from testing reassociation against the fixed-association baseline. [Exact protocol](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.md).
 
 If justified, compare bounded replay with full replay and the strongest simple controls, measuring recovery/query quality, identity errors, peak memory and correction latency. No budget benefit is established by matching candidate caps alone.
 
