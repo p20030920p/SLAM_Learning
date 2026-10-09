@@ -76,7 +76,7 @@ uv run --project src --no-sync vulture --config src/pyproject.toml
 uv run --project src --no-sync pytest -q src/tests
 ```
 
-[deptry](https://deptry.com/usage/) checks packaged dependencies. Pillow is direct; the four DEP002 exceptions cover BeautyMap's subprocess imports (`fire`, `dztimer`, `tqdm`) and optional Open3D viewers. [Import Linter](https://import-linter.readthedocs.io/en/stable/contract_types/) enforces acyclic imports, layer direction and separation from CUDA/ROS.
+[deptry](https://deptry.com/usage/) checks packaged dependencies. Pillow is direct; the five DEP002 exceptions cover BeautyMap's subprocess imports (`fire`, `dztimer`, `tqdm`) and optional Open3D/ipywidgets viewers. The methods extra explicitly pins Linux-only ipywidgets because Open3D 0.18 wheel metadata differs across platforms. The container checks the hashed dependency lock with `pip check`. [Import Linter](https://import-linter.readthedocs.io/en/stable/contract_types/) enforces acyclic imports, layer direction and separation from CUDA/ROS.
 
 [Vulture](https://github.com/jendrikseipp/vulture) checks active source, scripts and tests at 100% confidence. Lower-confidence results require review: framework attributes and file-interface methods may be called externally. Frozen source snapshots and CUDA dependency lists are outside this cleanup scope.
 

@@ -76,7 +76,7 @@ uv run --project src --no-sync vulture --config src/pyproject.toml
 uv run --project src --no-sync pytest -q src/tests
 ```
 
-[deptry](https://deptry.com/usage/) 检查包内依赖。Pillow 显式声明；四项 DEP002 例外对应 BeautyMap 子进程使用的 `fire`／`dztimer`／`tqdm` 和可选 Open3D 查看器。[Import Linter](https://import-linter.readthedocs.io/en/stable/contract_types/) 检查循环依赖、分层方向及 CUDA／ROS 隔离。
+[deptry](https://deptry.com/usage/) 检查包内依赖。Pillow 显式声明；五项 DEP002 例外对应 BeautyMap 子进程使用的 `fire`／`dztimer`／`tqdm` 和可选 Open3D／ipywidgets 查看器。Open3D 0.18 的各平台 wheel 依赖元数据不同，因此 methods 额外固定 Linux 所需的 ipywidgets；容器安装时保留哈希校验，并运行 `pip check`。[Import Linter](https://import-linter.readthedocs.io/en/stable/contract_types/) 检查循环依赖、分层方向及 CUDA／ROS 隔离。
 
 [Vulture](https://github.com/jendrikseipp/vulture) 以 100% 置信度检查现行源码、脚本与测试。低置信度结果需人工判断，框架属性和文件接口可能被外部调用。冻结源码快照和 CUDA 依赖清单不纳入此次清理。
 

@@ -4,7 +4,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends git libgomp1 li
 WORKDIR /study
 COPY src/configs/environments/cpu/requirements.lock /tmp/requirements.lock
 RUN python -m pip install --no-cache-dir setuptools==75.3.0 \
-    && python -m pip install --no-cache-dir --require-hashes -r /tmp/requirements.lock
+    && python -m pip install --no-cache-dir --require-hashes -r /tmp/requirements.lock \
+    && python -m pip check
 COPY src ./src
 RUN python -m pip install --no-deps --no-build-isolation -e ./src
 ENTRYPOINT ["slam-study"]

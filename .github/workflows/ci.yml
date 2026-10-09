@@ -83,3 +83,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: docker build --file src/docker/Dockerfile --tag slam-learning-ci .
       - run: docker run --rm slam-learning-ci doctor
+      - run: docker run --rm --entrypoint python slam-learning-ci -c "import open3d; print(open3d.__version__)"
+      - run: docker run --rm slam-learning-ci run --experiment mechanism
