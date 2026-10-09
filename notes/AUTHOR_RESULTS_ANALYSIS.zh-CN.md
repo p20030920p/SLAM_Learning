@@ -58,7 +58,7 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 
 新增 [60 秒作者三维窗口实录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/videos/conceptgraphs-room0-original-window.mp4)，展示同一份验证地图的 RGB／实例颜色与视角操作。颜色差异来自查看器切换，不是语义准确率对照。HOV-SG 默认采样 03 重试已超时；[20 帧家用结果](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/HOVSG_HOME_RESULTS.zh-CN.md)修正包装脚本后已完成原评分：mIoU 34.7500%、F-mIoU 62.8725%、mAcc 43.7114%、pAcc 72.1861%。审计只核对绑定日志，作者未保存混淆矩阵，不声称独立复算。采样改变观测和融合规模，不能把成功单独归因某个内存机制，也不能算默认 benchmark。[超时记录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/timeout-diagnosis.json)。
 
-默认 04 已排队等 CG 队列结束，沿用 200 帧采样和原算法，显式延长特征阶段至 6 小时、配置 16G/48G；尚未开始计算，不预填成功或分数。重启中断的 office1 Detect 虽有 400/400 日志，缺退出码，已保留后从头重跑；完成标记要求退出记录与产物契约一起通过。
+默认 05 已排队等 CG 队列结束，沿用 200 帧采样和原算法，显式延长特征阶段至 6 小时、配置 16G/48G；尚未开始计算，不预填成功或分数。重启中断的 office1 Detect 虽有 400/400 日志，缺退出码，已保留后从头重跑；完成标记要求退出记录与产物契约一起通过。
 
 ## 可以怎样简洁地写
 
@@ -67,3 +67,5 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 上段是问题动机的写法示例，不是创新已成立的结论。若只修正几何已达到全量回放效果，关联恢复的额外机制就缺少依据；若低误删仅靠保留更多过期目标，也应否定相应收益。[已填写的分析简稿](LAB_ANALYSIS.zh-CN.md)与[完整开放问题／假设稿](OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md)分别给出短版和可否证实验。
 
 比较 ConceptGraphs 与 HOV-SG 时还要保留各自的 GT 支持面、类别排除项和插值规则；原作者同名 mIoU 不能直接用于跨方法排名。[原始评价协议对照](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/SCOPE.zh-CN.md)。
+
+后续重启又使 CG 07 的 office1 Detect 在 152/400 中断；当前队列 08 继续，完成结果不变。原退出码未知的部分输出继续单列，HOV 旧等待任务没有启动作者阶段。[第二次重启证据](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/runs/public-semantic-benchmark-07-restart-recovery-01/diagnosis.json)。
