@@ -782,6 +782,104 @@
         "zh": "真实 RViz 窗口查看固定 30cm／种子417 下四组实测保存状态；地图回放，不是实时推理。全程视频留本地，待运行。"
       },
       "source_records": []
+    },
+    {
+      "id": "homepage-baseline-metrics-png",
+      "path": "results/reference/homepage-media/baseline-metrics.png",
+      "stage": "README",
+      "status": "published",
+      "caption": {
+        "en": "Separate 141-scan mapping-core SA/DA and 400-frame author ConceptGraphs semantic metrics; no cross-task ranking.",
+        "zh": "分开呈现 141 扫描建图核心 SA/DA 和 400 帧作者 ConceptGraphs 语义指标，不作跨任务排名。"
+      },
+      "source_records": [
+        "results/reference/homepage-media/record.json"
+      ],
+      "source_artifact": "baseline-metrics.png"
+    },
+    {
+      "id": "homepage-recovery-cost-png",
+      "path": "results/reference/homepage-media/recovery-cost.png",
+      "stage": "README",
+      "status": "published",
+      "caption": {
+        "en": "room1 immediate correction, 30 cm RMS, three-seed means and partial AI labels; support-1 post-hoc, unequal candidate caps.",
+        "zh": "room1 修正刚发生时，30 cm RMS，三个种子均值与部分 AI 标注；门槛 1 为事后分析，候选上限不同。"
+      },
+      "source_records": [
+        "results/reference/homepage-media/record.json"
+      ],
+      "source_artifact": "recovery-cost.png"
+    },
+    {
+      "id": "homepage-conceptgraphs-author-viewer-gif",
+      "path": "results/reference/homepage-media/conceptgraphs-author-viewer.gif",
+      "stage": "README",
+      "status": "published",
+      "caption": {
+        "en": "Excerpt of the 400-frame author-map Open3D window recording; saved-map viewing, no new inference.",
+        "zh": "400 帧作者地图的原版 Open3D 窗口录像片段；查看已保存地图，非新推理。"
+      },
+      "source_records": [
+        "results/reference/homepage-media/record.json"
+      ],
+      "source_artifact": "conceptgraphs-author-viewer.gif"
+    },
+    {
+      "id": "homepage-dufomap-rviz-gif",
+      "path": "results/reference/homepage-media/dufomap-rviz.gif",
+      "stage": "README",
+      "status": "published",
+      "caption": {
+        "en": "Recorded RViz viewing of the earlier dufomap core output; saved-map replay, no new inference.",
+        "zh": "早期 dufomap 核心输出的 RViz 窗口录像；保存地图回放，非新推理。"
+      },
+      "source_records": [
+        "results/reference/homepage-media/record.json"
+      ],
+      "source_artifact": "dufomap-rviz.gif"
+    },
+    {
+      "id": "homepage-beautymap-rviz-gif",
+      "path": "results/reference/homepage-media/beautymap-rviz.gif",
+      "stage": "README",
+      "status": "published",
+      "caption": {
+        "en": "Recorded RViz viewing of the earlier beautymap core output; saved-map replay, no new inference.",
+        "zh": "早期 beautymap 核心输出的 RViz 窗口录像；保存地图回放，非新推理。"
+      },
+      "source_records": [
+        "results/reference/homepage-media/record.json"
+      ],
+      "source_artifact": "beautymap-rviz.gif"
+    },
+    {
+      "id": "homepage-conceptgraphs-rviz-gif",
+      "path": "results/reference/homepage-media/conceptgraphs-rviz.gif",
+      "stage": "README",
+      "status": "published",
+      "caption": {
+        "en": "Recorded RViz viewing of the earlier conceptgraphs core output; saved-map replay, no new inference.",
+        "zh": "早期 conceptgraphs 核心输出的 RViz 窗口录像；保存地图回放，非新推理。"
+      },
+      "source_records": [
+        "results/reference/homepage-media/record.json"
+      ],
+      "source_artifact": "conceptgraphs-rviz.gif"
+    },
+    {
+      "id": "homepage-hovsg-rviz-gif",
+      "path": "results/reference/homepage-media/hovsg-rviz.gif",
+      "stage": "README",
+      "status": "published",
+      "caption": {
+        "en": "Recorded RViz viewing of the earlier hovsg core output; saved-map replay, no new inference.",
+        "zh": "早期 hovsg 核心输出的 RViz 窗口录像；保存地图回放，非新推理。"
+      },
+      "source_records": [
+        "results/reference/homepage-media/record.json"
+      ],
+      "source_artifact": "hovsg-rviz.gif"
     }
   ]
 }

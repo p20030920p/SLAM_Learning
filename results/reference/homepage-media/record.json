@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "kind": "homepage_evidence_render",
+  "status": "executed",
+  "exit_code": 0,
+  "finished_at": "2026-10-09T11:54:39+00:00",
+  "generator": "scripts/build_homepage_media.py",
+  "generator_sha256": "3f4a6ffb3d24505ede118aa986505032ef29c222bca87e09e4215ccaa75f2a5f",
+  "environment": {
+    "python": "3.10.19 (main, Oct 10 2025, 12:44:43) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "slam-learning": "0.2.0",
+      "numpy": "1.26.4",
+      "scipy": "1.14.1",
+      "matplotlib": "3.9.2",
+      "dufomap": "1.1.1",
+      "open3d": "0.18.0",
+      "dztimer": "1.1.1"
+    }
+  },
+  "input_sha256": {
+    "results/reference/dufomap-wsl/metrics.json": "e43b3371a9b3f15923f177b41b66194b05a717c3ea702b20640a1050b5e4e676",
+    "results/reference/beautymap-wsl/metrics.json": "8942b872a404af8203fe0c2601d4f4a9b53acbb5ac1c818b86472c4b4c124fd0",
+    "results/reference/homepage-media/inputs/conceptgraphs-room0-metrics.json": "336c67e7e75223b820eecb3e985d6b9fb28248d19ad863a74047fec88a7196b9",
+    "results/reference/delayed-support-control/summary.json": "b97c45624401dd78ebd3280474b456b48fe1647d9bd936eee2783fe5aaf5ed0d",
+    "results/reference/homepage-media/inputs/origins.json": "73c9effba5e50bc954a57240e91f0db3bbe4ddf75d67664c855c6f4ec0bf504e",
+    "docs/media/rviz/dufomap.mp4": "d8e0e1cbc66ac0a2a8795d1915328e75f0b1bb440bbd64307d0ae60520d31881",
+    "docs/media/rviz/beautymap.mp4": "1015682d4c62d13ee8c6bf48ca7a67788e51617b015f49c1b7e0fa7a97f0b8da",
+    "docs/media/rviz/conceptgraphs.mp4": "bb28408dfc19c2484e549047ebf884ac2494739eb38f1a95d25e57a0e47cc96f",
+    "docs/media/rviz/hovsg.mp4": "8c0cdbc920979b8df0a79802df55c19ae0664392b90ad03507e12828c0e0f132",
+    "results/reference/homepage-media/inputs/conceptgraphs-room0-original-window.mp4": "2eb0bc99c6319ebac785eaccc444a3a8fe9db1701775ab30c2ea6888af3883b3"
+  },
+  "external_origins": {
+    "conceptgraphs-room0-metrics.json": {
+      "repository_commit": "3b0b9a88ac7c77431268b6c869c369e01bd19b3e",
+      "path": "evidence/runs/conceptgraphs-room0-evaluation-cuda-05/metrics.json",
+      "url": "https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/runs/conceptgraphs-room0-evaluation-cuda-05/metrics.json",
+      "sha256": "336c67e7e75223b820eecb3e985d6b9fb28248d19ad863a74047fec88a7196b9"
+    },
+    "conceptgraphs-room0-original-window.mp4": {
+      "repository_commit": "3b0b9a88ac7c77431268b6c869c369e01bd19b3e",
+      "path": "evidence/videos/conceptgraphs-room0-original-window.mp4",
+      "url": "https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4",
+      "sha256": "2eb0bc99c6319ebac785eaccc444a3a8fe9db1701775ab30c2ea6888af3883b3"
+    }
+  },
+  "clips": [
+    {
+      "name": "dufomap-rviz",
+      "start_seconds": 5,
+      "duration_seconds": 24,
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu-22.04",
+        "--exec",
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-threads",
+        "1",
+        "-ss",
+        "5",
+        "-t",
+        "24",
+        "-i",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/docs/media/rviz/dufomap.mp4",
+        "-filter_complex_threads",
+        "1",
+        "-filter_complex",
+        "fps=2,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer",
+        "-loop",
+        "0",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/results/runs/homepage-media-final-003/dufomap-rviz.gif"
+      ]
+    },
+    {
+      "name": "beautymap-rviz",
+      "start_seconds": 5,
+      "duration_seconds": 24,
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu-22.04",
+        "--exec",
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-threads",
+        "1",
+        "-ss",
+        "5",
+        "-t",
+        "24",
+        "-i",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/docs/media/rviz/beautymap.mp4",
+        "-filter_complex_threads",
+        "1",
+        "-filter_complex",
+        "fps=2,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer",
+        "-loop",
+        "0",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/results/runs/homepage-media-final-003/beautymap-rviz.gif"
+      ]
+    },
+    {
+      "name": "conceptgraphs-rviz",
+      "start_seconds": 5,
+      "duration_seconds": 24,
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu-22.04",
+        "--exec",
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-threads",
+        "1",
+        "-ss",
+        "5",
+        "-t",
+        "24",
+        "-i",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/docs/media/rviz/conceptgraphs.mp4",
+        "-filter_complex_threads",
+        "1",
+        "-filter_complex",
+        "fps=2,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer",
+        "-loop",
+        "0",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/results/runs/homepage-media-final-003/conceptgraphs-rviz.gif"
+      ]
+    },
+    {
+      "name": "hovsg-rviz",
+      "start_seconds": 5,
+      "duration_seconds": 24,
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu-22.04",
+        "--exec",
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-threads",
+        "1",
+        "-ss",
+        "5",
+        "-t",
+        "24",
+        "-i",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/docs/media/rviz/hovsg.mp4",
+        "-filter_complex_threads",
+        "1",
+        "-filter_complex",
+        "fps=2,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer",
+        "-loop",
+        "0",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/results/runs/homepage-media-final-003/hovsg-rviz.gif"
+      ]
+    },
+    {
+      "name": "conceptgraphs-author-viewer",
+      "start_seconds": 5,
+      "duration_seconds": 48,
+      "command": [
+        "wsl",
+        "-d",
+        "Ubuntu-22.04",
+        "--exec",
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-nostdin",
+        "-threads",
+        "1",
+        "-ss",
+        "5",
+        "-t",
+        "48",
+        "-i",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/results/reference/homepage-media/inputs/conceptgraphs-room0-original-window.mp4",
+        "-filter_complex_threads",
+        "1",
+        "-filter_complex",
+        "fps=2,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer",
+        "-loop",
+        "0",
+        "/mnt/d/workspace/be2/SLAM_Identity_Budget/results/runs/homepage-media-final-003/conceptgraphs-author-viewer.gif"
+      ]
+    }
+  ],
+  "artifacts": {
+    "baseline-metrics.png": {
+      "sha256": "06bdc16a8740bf208caf3ee4ccdb307784ea0a6df2477b4748fc46b3d7e2ab65",
+      "bytes": 78947,
+      "availability": "portable"
+    },
+    "beautymap-rviz.gif": {
+      "sha256": "c4c07be7d2ea82665511a2a6cc017819f8adb7e1c21056f6f9f8eff9ab49f0a0",
+      "bytes": 437467,
+      "availability": "portable"
+    },
+    "conceptgraphs-author-viewer.gif": {
+      "sha256": "df213b93e622bb48812a5796a30d18c625209cfe9c9363ca6cdff87daaba5137",
+      "bytes": 130017,
+      "availability": "portable"
+    },
+    "conceptgraphs-rviz.gif": {
+      "sha256": "620c178e4c796879d9d289265fcfecd7c6ade589b5ad1b4aea6f9f44eb93cf6d",
+      "bytes": 526938,
+      "availability": "portable"
+    },
+    "dufomap-rviz.gif": {
+      "sha256": "e43648071bd384aeb0ebcd4535293f725876a63ba1a0f60a79c43a1caea94f94",
+      "bytes": 453164,
+      "availability": "portable"
+    },
+    "hovsg-rviz.gif": {
+      "sha256": "497dbb12bf95388af0112b3a789e9951fdf807252e5e73653845f2a470338223",
+      "bytes": 285642,
+      "availability": "portable"
+    },
+    "recovery-cost.png": {
+      "sha256": "5a72bfd4c27ea783648df01b9d692252980f537a68a485406a139353790c76d8",
+      "bytes": 82488,
+      "availability": "portable"
+    }
+  },
+  "scope": "Existing measurements and saved-map viewer recordings. No new inference, runtime or H1 claim.",
+  "plots": {
+    "baseline-metrics.png": "Separate LiDAR core and single-scene author semantic protocols; no common ranking.",
+    "recovery-cost.png": "30 cm, correction at observation 8; three-seed descriptive means, partial AI surfaces; support-1 post-hoc; unequal candidate budgets."
+  }
+}
