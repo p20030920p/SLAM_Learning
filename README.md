@@ -1,4 +1,8 @@
+<div align="center">
+
 # Author-method reproduction
+
+</div>
 
 This independent, orphan branch runs the official DUFOMap, BeautyMap, ConceptGraphs and HOV-SG repositories. Pinned Git submodules preserve author sources. Execution uses a separate Linux-native WSL workspace on this computer.
 

@@ -1,10 +1,18 @@
 # 语义环境与兼容性
 
-本机 WSL 约 19 GiB RAM，RTX 4070 SUPER 12 GB。完整语义流程已遇到经内核确认的 cgroup OOM；当前单任务限额为 12G RAM / 48G swap，任务目录另有 48 GiB 临时交换文件，总交换空间约 64 GiB。没有修改 WSL 配置或作者算法。这属于资源兼容配置，不用于论文耗时／内存性能对比。[资源清单](../evidence/swap-manifest.json)、[启用与清理命令](RUNBOOK.zh-CN.md)。
+[English](ENVIRONMENT.md) | 中文
 
-本机已经建立两个独立环境：`$RUNTIME/envs/conceptgraphs`（Python 3.10.12）和 `$RUNTIME/envs/hovsg`（Python 3.9）。打开作者入口的命令见 [运行手册](RUNBOOK.zh-CN.md)。精确已安装版本保存在 [ConceptGraphs 清单](../evidence/conceptgraphs-environment.txt) 与 [HOV-SG 清单](../evidence/hovsg-environment.txt)；环境安装日志保留在 evidence/setup-logs。
+本机 WSL 约 19 GiB RAM，RTX 4070 SUPER 12 GB。完整语义流程已遇到经内核确认的 cgroup OOM；当前单任务限额为 12G RAM / 48G swap，任务目录另有 48 GiB 临时交换文件，总交换空间约 64 GiB。
 
-## HOV-SG
+没有修改 WSL 配置或作者算法。这属于资源兼容配置，不用于论文耗时／内存性能对比。
+
+[资源清单](../evidence/swap-manifest.json)、[启用与清理命令](RUNBOOK.zh-CN.md)。
+
+本机已经建立两个独立环境：`$RUNTIME/envs/conceptgraphs`（Python 3.10.12）和 `$RUNTIME/envs/hovsg`（Python 3.9）。打开作者入口的命令见 [运行手册](RUNBOOK.zh-CN.md)。
+
+精确已安装版本保存在 [ConceptGraphs 清单](../evidence/conceptgraphs-environment.txt) 与 [HOV-SG 清单](../evidence/hovsg-environment.txt)；环境安装日志保留在 evidence/setup-logs。
+
+## 1. HOV-SG
 
 本轮首先直接使用固定版本作者 YAML。作者未固定的 pip 依赖解析到 Torch 2.8.0 / OpenCLIP 3.3.0 等版本；这只是本轮环境，不等于论文当年的完整锁定环境。原始语义入口已经通过导入，实际运行另见状态文档。
 
@@ -20,7 +28,7 @@ tar -xjf "$RUNTIME/downloads/micromamba.tar.bz2" -C "$RUNTIME/tooling" bin/micro
 
 HM3D 数据生成还需按原 README 安装 habitat-sim；它不属于本轮已完成部分。不要覆盖已有环境来重做安装。
 
-## ConceptGraphs
+## 2. ConceptGraphs
 
 作者规定的关键组合是 Torch 2.0.1 + CUDA 11.8、PyTorch3D 0.7.4、Faiss 1.7.4。新环境先装这些，再安装固定依赖源码。以下摘出关键命令；完整原始安装顺序见 [固定版 README](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/README.md)。
 
@@ -47,7 +55,9 @@ uv pip install --python "$CGPY" --no-deps --no-build-isolation -e "$RUNTIME/depe
 uv pip install --python "$CGPY" --no-build-isolation -e "$RUNTIME/upstream/conceptgraphs"
 ```
 
-当前固定 ConceptGraphs 的 `ram` 导入与推荐旧 GSA 的 Tag2Text 子模块布局不一致。本轮安装 [RAM 作者的 Python 包](https://github.com/xinyu1205/recognize-anything)，统一 Transformers 4.31 / timm 0.6.13 的依赖配置；兼容修改 diff 保留，四个方法源码不修改。不能把“源码未改”误写成“整个依赖环境与论文完全一致”。
+当前固定 ConceptGraphs 的 `ram` 导入与推荐旧 GSA 的 Tag2Text 子模块布局不一致。本轮安装 [RAM 作者的 Python 包](https://github.com/xinyu1205/recognize-anything)，统一 Transformers 4.31 / timm 0.6.13 的依赖配置；兼容修改 diff 保留，四个方法源码不修改。
+
+不能把“源码未改”误写成“整个依赖环境与论文完全一致”。
 
 GroundingDINO 要编译 CUDA 算子；仅安装可导入的 CPU 占位包不能完成 Detect 分支。独立 NVIDIA 开发环境的实际安装与构建：
 
@@ -67,9 +77,11 @@ uv --no-cache pip install --python "$CGPY" --reinstall --no-deps --no-build-isol
 
 RTX 4070 SUPER 使用 8.9 架构；其他 GPU 应按设备调整。扩展验证需要先导入 Torch，直接单独导入 `_C` 的 `libc10.so` 错误不代表编译未成功。首次缺失 CUDA 头文件的失败日志也已保留。
 
-## 数据与权重
+## 3. 数据与权重
 
-原始评价实际调用 chamferdist 的 CUDA KNN，只有 CPU 扩展可以导入仍会在这里失败。本机已用同一份源码、CUDA 11.8、gcc11 和 `FORCE_CUDA=1` 补编；[编译记录](../evidence/runs/chamferdist-cuda-build-02/build/record.json) 与 [扩展哈希／绑定检查](../evidence/runs/chamferdist-cuda-build-02/compile-preflight.log) 保留。实际 GPU KNN 测试由评分重试在 GPU 空闲后执行，不把绑定存在当作完整评分通过。
+原始评价实际调用 chamferdist 的 CUDA KNN，只有 CPU 扩展可以导入仍会在这里失败。本机已用同一份源码、CUDA 11.8、gcc11 和 `FORCE_CUDA=1` 补编；[编译记录](../evidence/runs/chamferdist-cuda-build-02/build/record.json) 与 [扩展哈希／绑定检查](../evidence/runs/chamferdist-cuda-build-02/compile-preflight.log) 保留。
+
+实际 GPU KNN 测试由评分重试在 GPU 空闲后执行，不把绑定存在当作完整评分通过。
 
 新环境在上述 CUDA 工具链准备好后执行；本机已有编译产物，不需重复安装：
 

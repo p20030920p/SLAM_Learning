@@ -1,5 +1,7 @@
 # 从 Windows 到作者入口
 
+[English](RUNBOOK.md) | 中文
+
 本机使用 Windows + WSL Ubuntu-22.04。文档分支在 `D:\workspace\be2\SLAM_Author_Originals`，实际编译和执行在 `/home/qzl/projects/SLAM_Author_Originals`。不要在已有主分支缓存里覆盖源代码或重跑输出。
 
 ## 1. 打开工作区
@@ -174,7 +176,9 @@ python3 "$DOCS/scripts/run_cg_stages.py" --runtime "$RUNTIME" --scene room1 \
 
 脚本拒绝覆盖已有前端或三维结果。后续阶段先检查全部 400 个预期输出、1024 维特征及有限数值，再调用作者原始三维融合、RGB PointFusion 和评价。评价副本只显式选择当前场景，保留 diff，不能拿单场景结果当八场景均值。
 
-首次映射的 14 GiB cgroup OOM 记录在 `conceptgraphs-room0-batch16-stages-02/diagnostics/`，294 个部分动画检查点保存在该运行的 `partial-outputs/`。第二次关闭动画后完成 400 帧，但仍在最终序列化触发 17G/10G 限制；截断文件已归档，不能评价。当前重试保留作者默认 `save_objects_all_frames=False`，显式使用每任务 12G RAM / 48G swap。
+首次映射的 14 GiB cgroup OOM 记录在 `conceptgraphs-room0-batch16-stages-02/diagnostics/`，294 个部分动画检查点保存在该运行的 `partial-outputs/`。第二次关闭动画后完成 400 帧，但仍在最终序列化触发 17G/10G 限制；截断文件已归档，不能评价。
+
+当前重试保留作者默认 `save_objects_all_frames=False`，显式使用每任务 12G RAM / 48G swap。
 
 本机已启用 48 GiB 的任务专用临时交换文件。重启 WSL 后需要重新启用；既有文件会核对清单，不重新格式化。在 Windows PowerShell 执行：
 
@@ -220,16 +224,24 @@ cat "$RUNTIME/runs/hovsg-replica-default-08/outcomes.json"
 
 后者只在默认 room0 成功且通过原始产物哈希／日志检查后，才继续剩余七场景；每场景仍为 200 帧、SAM 批量 16，沿用 16G/48G 与 21600 秒特征时限。出现未解决失败即停止，不重复套用失败设置。源入口为 `scripts/run_hovsg_public_scenes.py`。全部通过后只汇总八个原单场景分数，不冒充另一个未经修改的八场景评价器。
 
-当前 CG 串行队列为 `public-semantic-benchmark-09`：核验复用 SAM-only 的 room0/office0/office1 和 Detect 的 room0/office0；保留旧中断和主动取消记录，从头重跑 office1 Detect，再继续其余 5 场景。新 Detect 显式采用分阶段 GPU 驻留，16G/48G、前端时限 14400 秒；[三帧检查与完整 diff](CG_GPU_RECOVERY.zh-CN.md)。只在对应方法的 8 场景全部成功后，调用未经修改的作者八场景评价入口，限额 12G/48G。旧队列与中断输出均保留，不能直接启动同名任务覆盖。
+当前 CG 串行队列为 `public-semantic-benchmark-09`：核验复用 SAM-only 的 room0/office0/office1 和 Detect 的 room0/office0；保留旧中断和主动取消记录，从头重跑 office1 Detect，再继续其余 5 场景。新 Detect 显式采用分阶段 GPU 驻留，16G/48G、前端时限 14400 秒；[三帧检查与完整 diff](CG_GPU_RECOVERY.zh-CN.md)。
+
+只在对应方法的 8 场景全部成功后，调用未经修改的作者八场景评价入口，限额 12G/48G。旧队列与中断输出均保留，不能直接启动同名任务覆盖。
 
 ```bash
 cat "$RUNTIME/runs/public-semantic-benchmark-09/outcomes.json"
 tail -c 1500 "$RUNTIME/runs/public-semantic-benchmark-09/orchestration.log"
 ```
 
-06 曾开启 `--hov-home-fallback`：默认采样失败后，另用 `pipeline.skip_frames=100` 均匀取 20/2000 帧，保留原分辨率和 SAM 批量 16。地图及修正颜色表路径后的原评价均已完成，mIoU 34.7500%、F-mIoU 62.8725%。输出与首次失败分别保存在 `public-semantic-benchmark-06-room0-hov-home` 和 `hovsg-room0-home-evaluation-author-palette-01`，不计作默认采样或八场景 HOV benchmark。[结果与只读命令](HOVSG_HOME_RESULTS.zh-CN.md)。队列正在运行时不要手动并发启动 GPU 任务。
+06 曾开启 `--hov-home-fallback`：默认采样失败后，另用 `pipeline.skip_frames=100` 均匀取 20/2000 帧，保留原分辨率和 SAM 批量 16。地图及修正颜色表路径后的原评价均已完成，mIoU 34.7500%、F-mIoU 62.8725%。
 
-Detect 的原始命令保留 `--class_set ram --box_threshold 0.2 --text_threshold 0.2 --stride 5 --add_bg_classes --accumu_classes --exp_suffix withbg_allclasses`。其映射使用 `mask_conf_threshold=0.25`、`skip_bg=False`，沿用作者命令生成的后缀 `ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1`。README 的评价示例额外写了 `_masksub`，与映射命令不一致；这里显式传入实际文件名，不复制或伪造结果。Detect 复用同场景原始 RGB PointFusion 表面前，必须提供成功的记录并重新核对文件 SHA-256。
+输出与首次失败分别保存在 `public-semantic-benchmark-06-room0-hov-home` 和 `hovsg-room0-home-evaluation-author-palette-01`，不计作默认采样或八场景 HOV benchmark。[结果与只读命令](HOVSG_HOME_RESULTS.zh-CN.md)。
+
+队列正在运行时不要手动并发启动 GPU 任务。
+
+Detect 的原始命令保留 `--class_set ram --box_threshold 0.2 --text_threshold 0.2 --stride 5 --add_bg_classes --accumu_classes --exp_suffix withbg_allclasses`。其映射使用 `mask_conf_threshold=0.25`、`skip_bg=False`，沿用作者命令生成的后缀 `ram_withbg_allclasses_overlap_maskconf0.25_simsum1.2_dbscan.1`。
+
+README 的评价示例额外写了 `_masksub`，与映射命令不一致；这里显式传入实际文件名，不复制或伪造结果。Detect 复用同场景原始 RGB PointFusion 表面前，必须提供成功的记录并重新核对文件 SHA-256。
 
 重启后先检查旧进程，避免把遗留的 running 当作当前仍在执行：
 
@@ -272,7 +284,11 @@ python3 "$DOCS/scripts/open_cg_gui.py" --runtime "$RUNTIME" \
   --name cg-gui-manual-01 --software-rendering
 ```
 
-已完成的原版窗口实录：[60 秒视频](../evidence/videos/conceptgraphs-room0-original-window.mp4)。本机 Windows 文件在 `D:\workspace\be2\SLAM_Recordings\author-originals\conceptgraphs-room0-original-window.mp4`。录制内容为 RGB → `i` 实例颜色 → 左键拖动旋转 → `r` RGB → 鼠标滚轮。查看器只对显示点云做作者原代码的 0.05 m 下采样；无文本查询或关系图。`q` 关闭窗口，`v` 保存相机参数到本次工作目录。
+已完成的原版窗口实录：[60 秒视频](../evidence/videos/conceptgraphs-room0-original-window.mp4)。本机 Windows 文件在 `D:\workspace\be2\SLAM_Recordings\author-originals\conceptgraphs-room0-original-window.mp4`。
+
+录制内容为 RGB → `i` 实例颜色 → 左键拖动旋转 → `r` RGB → 鼠标滚轮。查看器只对显示点云做作者原代码的 0.05 m 下采样；无文本查询或关系图。
+
+`q` 关闭窗口，`v` 保存相机参数到本次工作目录。
 
 直接调用作者查看器的等价命令：
 
@@ -284,13 +300,17 @@ cd "$RUNTIME/upstream/conceptgraphs/conceptgraph"
 
 窗口内按 `r` 看 RGB、`i` 看实例，鼠标旋转/缩放查看结构。要使用 `f` 输入文本查询，去掉 `--no_clip`，并先确认 GPU 空闲。none 分支不提供背景类别或关系图；`g` 只有真实关系文件存在时才有意义。
 
-作者 `scripts/animate_mapping_save.py --input_folder <objects_all_frames 下本次运行文件夹>` 可以导出 RGB、二维分割、三维 RGB 和三维实例动画，但需要另一次成功启用 `save_objects_all_frames=True` 的运行。当前重试关闭了这个高内存可选项。前次失败的部分检查点缺少完整元数据，不能用来伪装完整视频；原脚本还按列表顺序配 RGB，导出前需检查检查点索引与源帧对齐。最终地图成功后可先按上面的窗口命令手动录制 RGB／实例视图。
+作者 `scripts/animate_mapping_save.py --input_folder <objects_all_frames 下本次运行文件夹>` 可以导出 RGB、二维分割、三维 RGB 和三维实例动画，但需要另一次成功启用 `save_objects_all_frames=True` 的运行。当前重试关闭了这个高内存可选项。
+
+前次失败的部分检查点缺少完整元数据，不能用来伪装完整视频；原脚本还按列表顺序配 RGB，导出前需检查检查点索引与源帧对齐。最终地图成功后可先按上面的窗口命令手动录制 RGB／实例视图。
 
 ## 5. 证据和预算
 
 新增 KITTI 原始帧段下载、作者预处理重做命令及 ScanNet 本人申请步骤见 [数据文档](DATA_ACCESS.zh-CN.md)。任务已在运行时，先检查 `runs/kitti-selected-inputs-01/outcomes.json` 与 `runs/kitti-author-selected-02/outcomes.json`，不要重复启动同一任务。
 
-本机第三次建图、RGB 表面及修复 CUDA 依赖后的原始评价均已成功，`conceptgraphs-room0-evaluation-cuda-05` 保存 room0 原评分。[五项指标与独立 CPU 复查命令](CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)。重试前用 `--reuse-chain` 核对地图／RGB 的 SHA-256，原失败记录保持原样。自动队列仍在运行时不要重复启动 GPU 评价。
+本机第三次建图、RGB 表面及修复 CUDA 依赖后的原始评价均已成功，`conceptgraphs-room0-evaluation-cuda-05` 保存 room0 原评分。[五项指标与独立 CPU 复查命令](CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)。
+
+重试前用 `--reuse-chain` 核对地图／RGB 的 SHA-256，原失败记录保持原样。自动队列仍在运行时不要重复启动 GPU 评价。
 
 直接执行作者入口时可加外层记录器；它不导入算法、不替换算法函数。输出目录必须新建，`--artifact` 可要求关键输出存在，`--timeout` 会记录超时。
 

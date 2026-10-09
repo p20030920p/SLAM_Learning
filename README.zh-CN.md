@@ -1,4 +1,8 @@
+<div align="center">
+
 # 作者原始方法复现
+
+</div>
 
 本分支 `reproduce/author-originals` 从空白历史建立，单独运行 DUFOMap、BeautyMap、ConceptGraphs 和 HOV-SG 的作者仓库。原库以固定提交的 Git 子模块保存；实际执行和大文件在这台电脑的 WSL 独立目录。主分支的展示与简化实验不作为这里的复现结果。
 
@@ -12,12 +16,14 @@
 
 已补下载原始 KITTI 所需 333 帧并完成 01/02 两种原始方法及三组网格参数的评分。[新增结果与论文差距](docs/KITTI_SELECTED_RESULTS.zh-CN.md)。当前预处理与旧发布包存在版本差异，新结果单列。
 
-ConceptGraphs 的[已完成场景表与图](docs/CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md)给出两种前端的原始分数、混淆矩阵复算及场景行／`all` 行差别。HOV-SG 的[20 帧家用结果](docs/HOVSG_HOME_RESULTS.zh-CN.md)为 mIoU 34.7500%、F-mIoU 62.8725%；默认 200 帧仍未完成。这里有 [60 秒作者三维窗口实录](evidence/videos/conceptgraphs-room0-original-window.mp4)，可查看 RGB、实例颜色和视角操作。
+ConceptGraphs 的[已完成场景表与图](docs/CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md)给出两种前端的原始分数、混淆矩阵复算及场景行／`all` 行差别。HOV-SG 的[20 帧家用结果](docs/HOVSG_HOME_RESULTS.zh-CN.md)为 mIoU 34.7500%、F-mIoU 62.8725%；默认 200 帧仍未完成。
+
+这里有 [60 秒作者三维窗口实录](evidence/videos/conceptgraphs-room0-original-window.mp4)，可查看 RGB、实例颜色和视角操作。
 
 [English](README.md) · [运行与结果](docs/STATUS.zh-CN.md) · [Windows 起步和命令](docs/RUNBOOK.zh-CN.md) · [数据下载与 ScanNet 申请](docs/DATA_ACCESS.zh-CN.md) · [环境](docs/ENVIRONMENT.zh-CN.md) · [原库和复现范围](docs/SCOPE.zh-CN.md) · [执行证据](evidence/README.md)
 
 | 方法 | 作者原库 | 本分支固定提交 |
-|---|---|---|
+| --- | --- | --- |
 | DUFOMap | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) | `9e239ddd` |
 | BeautyMap | [MKJia/BeautyMap](https://github.com/MKJia/BeautyMap) | `98bce4a9` |
 | ConceptGraphs | [concept-graphs/concept-graphs](https://github.com/concept-graphs/concept-graphs) | `93277a02` |
