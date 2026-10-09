@@ -30,7 +30,7 @@ It studies humanoid calibration and control, so it is not a D435/L2 SLAM baselin
 
 ## 3. Physical setting and shared input
 
-Start with fixed sensors, a wall corner, table and stable background. Tissue, a box and cola support a demonstration; add two similar boxes with independent physical IDs for identity confusion. Start around 1.5–3 m, subject to valid depth, LiDAR returns and object resolution. Record reflective packaging, illumination and exposure.
+Start with fixed sensors, a wall corner, table and stable background. Current objects are a box, cup and paper notebook; follow the [walkthrough](docs/TABLETOP_WALKTHROUGH.md). Add two similar boxes with independent physical IDs for identity confusion. Start around 1–2 m, subject to valid depth, LiDAR returns and object resolution. Record reflective/transparent cups, illumination and exposure. Exclude the notebook from static support while it serves as the occluder.
 
 Require a genuine fixed-sensor declaration, layout photos, object positions and actual event times. Formal geometry evaluation needs independently measured anchors and measurement uncertainty. An independent phone recording can document the sensor and events. Algorithm estimates are not ground truth; unreferenced ranges are readings only.
 

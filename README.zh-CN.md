@@ -20,6 +20,7 @@
 
 | 你现在想做什么 | 指南 |
 | --- | --- |
+| 用盒子、水杯、纸质笔记本，从开终端到逐段录制与检查 | [逐步实验操作](docs/TABLETOP_WALKTHROUGH.zh-CN.md) |
 | 明确研究问题，在相同背景与输入上比较不同仓库 | [对比实验设计](METHOD_COMPARISON.zh-CN.md) |
 | 打开相机，实时切 RGB/深度/IR/点云，运行双目、RGB-D 与建图 | [相机操作](docs/CAMERA_GUIDE.zh-CN.md) |
 | 打开雷达，实时看点云，运行 ICP/KISS，了解 Point-LIO 条件 | [雷达操作](docs/LIDAR_GUIDE.zh-CN.md) |
