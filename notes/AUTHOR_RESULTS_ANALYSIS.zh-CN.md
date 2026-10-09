@@ -30,11 +30,21 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 | BeautyMap 用先验地图的 XYZ，GT 标签未参与清理决策 | 必须交代先验几何来源，避免把 GT 文件名和使用标签混为一谈 | 有先验地图的离线结果不能直接代表无先验在线建图 |
 | DUFOMap 同一 Python 参数：0.05 m 下原始点／体素 SA 为 99.8860/51.6256%；体素阈值改为 0.10 m 后 SA 为 98.9436% | 输出表示与评价阈值强烈影响评分；同时观察 DA，放宽阈值也改变动态点匹配 | 不能将体素低 SA 当作同等静态结构被删；Python d_p=2，与 C++ 默认 d_p=1 不同，不能把二者差异归为单一因素 |
 | room0 的 400 帧 ConceptGraphs 原始链路完成，mIoU 21.3460%、频率加权 IoU 50.1379%；混淆矩阵复算通过 | 现在可以检查原始语义分类；宏平均与常见类别加权的差距提示需要逐类分析 | 单场景、场景 GT 词表与原支持面；不是开放世界检索、对象身份准确率或 H1 恢复性证据 |
-| HOV-SG 默认 200 帧融合先 OOM、后超时；另取 20 帧的原始家用地图保存 156 分段、399,663 点；首次评价因包装脚本颜色表路径错误失败 | 地图保存、资源失败和配置错误分别判定；已有地图可复用评价 | 20 帧不能代表默认 benchmark；点数不是语义准确率，Replica 不能代替 HM3D 层级评价 |
+| HOV-SG 默认 200 帧融合先 OOM、后超时；另取 20 帧地图完成，修正包装脚本后原评价 mIoU 34.7500%、F-mIoU 62.8725% | 已有可复查的家用语义基线；地图保存、资源失败和配置错误分别判定 | 20 帧不能代表默认 benchmark；原生分数不能与 CG 直接排名，也不能代替 HM3D 层级评价 |
 
 这批基线没有施加迟到位姿修正、没有运行 H1，也没有测对象变化后的过期时长。它们支持继续研究接口及评价取舍，尚未证明四篇论文有共同主导失效原因。
 
 新增 [CG room0 原评分与分母](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)：23 个有效类别、4,085,377 个重建点计入混淆矩阵。对象标签先用 1NN 填充 RGB 表面，不能将这项语义分数解释为几何准确率；`all` 只含 room0。作者 mF1 为 25.2661%，其分母使用 `max(1,p+r)`；标准调和宏 F1 的补充值为 25.8221%，不替换原 CSV。原生分数与本分支旧八观测探索指标分别报告。
+
+现在另完成了 office0/office1 SAM-only，以及 room0/office0 Detect，新增四份混淆矩阵独立复算通过。下表均取原 CSV 的场景行，非部分 benchmark 均值。
+
+| 场景 | SAM-only mIoU / F-mIoU % | Detect mIoU / F-mIoU % | 对研究判断的限制 |
+|---|---:|---:|---|
+| room0 | 21.3460 / 50.1379 | 25.5987 / 45.6541 | Detect 宏平均提高、加权平均下降；零 IoU 类还从 10/23 增至 12/23 |
+| office0 | 20.4157 / 33.0546 | 17.5151 / 30.4729 | Detect 两项均下降，不能从 room0 推出前端普遍更好 |
+| office1 | 14.9755 / 14.7128 | 尚未完成 | 先保留失败模式，不能补出缺失结果 |
+
+[原 CSV、图表与协议解释](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md)。两种原流程的检测与映射参数同时不同，不能隔离单一组件原因。场景行按 GT 出现类别计分，`all` 按矩阵非零 GT 支持类别裁行、裁列；office1 SAM-only 的两行 mIoU 为 14.9755/16.3958%，加权 IoU 也不同。room0 两行相同只是特例，不能平均单场景 `all` 来冒充原八场景评分。后续 H1 继续固定同一前端、支持面与类别集合，以免把这些协议差异当成恢复收益。
 
 逐类拆分进一步限制归因：blinds / sofa 的 IoU 为 94.77 / 74.78%，而 rug / table 均为 0，后两类分别占计分表面 GT 的 18.34 / 6.36%，却没有对应类别预测点。23 类中 10 类 IoU 为 0，不能只解释为稀有类别拖低宏平均。这说明语义分类基线本身仍有明确缺口；零预测不等于没有几何，也没有确定是 CLIP、掩码、关联或位姿造成。后续 H1 实验须固定前端，单独检查对象身份与坐标恢复，不能把原始语义缺口一并当作恢复模块收益。[图表、逐类 CSV 与来源哈希](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/runs/conceptgraphs-room0-class-analysis-01/summary.json)。
 
@@ -46,7 +56,9 @@ DUFOMap C++ 和 BeautyMap Python 均完成作者公开的四份标注数据，�
 
 在同一份新 02 输入上，DUFOMap 的 SA/DA 为 68.6114/89.2862%，BeautyMap 默认为 83.4254/84.6594%。[原始评分与三组网格结果](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/KITTI_SELECTED_RESULTS.zh-CN.md)。这里出现了更明显的静态保留问题，可作为配对干预候选；仍须固定观测与评价协议，分别干预位姿、可见性和参数，不能从跨场景分数直接确定原因。
 
-新增 [60 秒作者三维窗口实录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/videos/conceptgraphs-room0-original-window.mp4)，展示同一份验证地图的 RGB／实例颜色与视角操作。颜色差异来自查看器切换，不是语义准确率对照。HOV-SG 默认采样 03 重试已超时；[20 帧家用地图](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/HOVSG_HOME_RESULTS.zh-CN.md)已完成，修正包装脚本后等待 Detect 释放 GPU 重试评分。采样改变观测和融合规模，不能把成功单独归因某个内存机制，也不能算默认 benchmark。[超时记录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/timeout-diagnosis.json)。
+新增 [60 秒作者三维窗口实录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/videos/conceptgraphs-room0-original-window.mp4)，展示同一份验证地图的 RGB／实例颜色与视角操作。颜色差异来自查看器切换，不是语义准确率对照。HOV-SG 默认采样 03 重试已超时；[20 帧家用结果](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/HOVSG_HOME_RESULTS.zh-CN.md)修正包装脚本后已完成原评分：mIoU 34.7500%、F-mIoU 62.8725%、mAcc 43.7114%、pAcc 72.1861%。审计只核对绑定日志，作者未保存混淆矩阵，不声称独立复算。采样改变观测和融合规模，不能把成功单独归因某个内存机制，也不能算默认 benchmark。[超时记录](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/evidence/runs/hovsg-room0-batch16-stages-03-features/diagnostics/timeout-diagnosis.json)。
+
+默认 04 已排队等 CG 队列结束，沿用 200 帧采样和原算法，显式延长特征阶段至 6 小时、配置 16G/48G；尚未开始计算，不预填成功或分数。重启中断的 office1 Detect 虽有 400/400 日志，缺退出码，已保留后从头重跑；完成标记要求退出记录与产物契约一起通过。
 
 ## 可以怎样简洁地写
 
