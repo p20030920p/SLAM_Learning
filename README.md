@@ -1,25 +1,35 @@
-<div align="center">
+# Author Reproduction
 
-# Author-method reproduction
+English | [中文](docs/HOME.zh-CN.md)
 
-</div>
+Official mapping code, pinned sources and recorded experiments.
 
-This independent, orphan branch runs the official DUFOMap, BeautyMap, ConceptGraphs and HOV-SG repositories. Pinned Git submodules preserve author sources. Execution uses a separate Linux-native WSL workspace on this computer.
+## Results
 
-**Status: both original LiDAR entries and author evaluation completed all four public labeled releases (1,997 scans per method). CG SAM-only completed original scoring on 3 scenes, Detect on 2 scenes. HOV-SG's 20-frame home map and original semantic evaluation completed. Full-paper reproduction is not complete.**
+| Method | Reproduction | Paper comparison |
+| --- | --- | --- |
+| DUFOMap | KITTI 00 | [Table IV: 15/15 accuracy values match](docs/reports/DUFOMAP_TABLE4.md) |
+| BeautyMap | KITTI 02 | [Table III: 9/9 accuracy values match](docs/reports/KITTI_PAPER_PROTOCOL.md) |
+| ConceptGraphs | 3 SAM-only / 2 Detect scenes | [Partial coverage](docs/reports/CONCEPTGRAPHS_SCENE_RESULTS.md) |
+| HOV-SG | In progress | |
 
-The new [DUFOMap Table IV reproduction](docs/DUFOMAP_TABLE4.zh-CN.md) matches all five SA/DA/AA rows at the paper's two-decimal precision.
+Matches refer to each paper's two-decimal accuracy values. ConceptGraphs coverage differs from its paper benchmark. [Protocols and limits](docs/reports/SCOPE.md).
 
-[BeautyMap Table III](docs/KITTI_PAPER_PROTOCOL.zh-CN.md) now matches all nine SA/DA/HA values for three cell sizes using historical original preprocessing and author scoring. Current and historical protocols remain separate.
+## Usage
 
-The completed [Python raw/voxel output audit](docs/DUFOMAP_OUTPUT_AUDIT.zh-CN.md) shows strong score sensitivity to representation and nearest-neighbor threshold; low voxel-output SA cannot directly establish static-point deletion.
+```bash
+git submodule update --init --recursive
+python3 src/scripts/prepare_runtime.py --runtime /path/to/new/runtime --cache src/upstream
+```
 
-The missing original KITTI inputs (333 selected frames) are downloaded and verified. Both methods and three BeautyMap XY cell sizes have completed original scoring on 01/02. [Results and paper differences](docs/KITTI_SELECTED_RESULTS.zh-CN.md) remain separate because the current preprocessing differs from the older released benchmark.
+Use Linux / WSL for execution. [Environment](docs/guides/ENVIRONMENT.md) · [Runbook](docs/guides/RUNBOOK.md) · [Data](docs/guides/DATA_ACCESS.md).
 
-ConceptGraphs' [completed scene table and figure](docs/CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md) report both frontend variants, independent confusion-matrix audits, and the differing class subsets of scene versus `all` rows. HOV-SG's [20-frame home result](docs/HOVSG_HOME_RESULTS.zh-CN.md) gives mIoU 34.7500% and frequency-weighted IoU 62.8725%; its default 200-frame run remains incomplete. A [60-second original viewer recording](evidence/videos/conceptgraphs-room0-original-window.mp4) shows RGB/instance colors and orbit controls.
+## Structure
 
-[中文入口](README.zh-CN.md) · [Results and limitations](docs/STATUS.zh-CN.md) · [Windows/WSL commands](docs/RUNBOOK.zh-CN.md) · [Data downloads and ScanNet access](docs/DATA_ACCESS.zh-CN.md) · [Coverage and upstream comparison](docs/SCOPE.zh-CN.md) · [Execution evidence](evidence/README.md)
+```text
+docs/      # guides and reports
+results/   # logs, hashes and media
+src/       # configs, scripts and upstream submodules
+```
 
-Upstream URLs and exact commits are in [the source manifest](config/upstreams.json) and [.gitmodules](.gitmodules). Canonical author checkouts remain unchanged. Explicit compatibility variants are separate copies with diffs, including a SAM microbatch adjustment for this 12GB GPU. Compiler/dependency changes and optional API-provider substitutions are also recorded separately. Existing main-branch wrapper results are not imported as new execution evidence.
-
-The [Detect GPU diagnosis and residency variant](docs/CG_GPU_RECOVERY.zh-CN.md) preserves the cancelled first-frame stall and failed allocator probe. Three isolated frames passed output checks; queue 09 now reruns the full scene with explicitly disclosed CPU/GPU model transfers. This adds no semantic score yet.
+[Source pins](src/configs/upstreams.json) · [Evidence](results/README.md) · [Delivery](https://github.com/p20030920p/SLAM_Learning/tree/main) · [Personal study](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008)

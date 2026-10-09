@@ -5,4 +5,6 @@
 *.txt text eol=lf
 *.diff text eol=lf
 # Preserve author output bytes and their hashes on Windows as well as Linux.
-evidence/** -text
+results/** -text
+
+.gitmodules text eol=lf
