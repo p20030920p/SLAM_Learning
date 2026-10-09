@@ -115,7 +115,16 @@ room1，30 cm 修正刚发生时：固定关联恢复 **11.1%**，oracle **66.7%
 
 room2 在相同候选上限下比较固定关联、阈值／可见性保护、全量回放；相同上限不等于相同内存。简单方法若达到 oracle 表现，将削弱 H1。[协议与决策门槛](docs/IDENTITY_BUDGET.zh-CN.md)。[Khronos](https://arxiv.org/html/2402.13817v2) 与 [DovSG](https://arxiv.org/html/2410.11989v2) 已有地图协调及记忆更新。
 
-**个人分支：**[研究笔记](https://github.com/p20030920p/SLAM_Learning/blob/71a2e7556e231c1d0e6814febb085bea9d225f44/notes/OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md)整理 H1 与否定条件；[硬件](https://github.com/p20030920p/SLAM_Learning/blob/4e5a5e8b703e5072ca5e11cf6893d03bca244473/README.zh-CN.md)完成 D435（无 IMU）／L2 收流、RTAB-Map／ICP／KISS 试跑、8 帧语义加载检查与录像。雷达里程计漂移超标，融合与语义质量未验收。
+## 分支导航
+
+| 分支 | 做了什么 |
+| --- | --- |
+| [`study/identity-budget-v2`](https://github.com/p20030920p/SLAM_Learning/tree/study/identity-budget-v2) | 迟到位姿修正与候选预算对照；H1 未验证。 |
+| [`reproduce/author-originals`](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | 四篇论文的作者原库复现、指标核对与录像。 |
+| [`notes/personal-study-guide-20261008`](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | [研究笔记：H1 与否定条件](https://github.com/p20030920p/SLAM_Learning/blob/71a2e7556e231c1d0e6814febb085bea9d225f44/notes/OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md)。 |
+| [`Personal-Learning-Physical`](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical) | [D435／L2 收流、建图试跑与 8 帧语义加载检查](https://github.com/p20030920p/SLAM_Learning/blob/4e5a5e8b703e5072ca5e11cf6893d03bca244473/README.zh-CN.md)。 |
+
+D435 无 IMU；雷达里程计漂移超标，融合与语义质量未验收。
 
 ## 核查与复现
 

@@ -115,7 +115,16 @@ room1, immediate correction at 30 cm: fixed-history recovery **11.1%**, oracle *
 
 room2 compares fixed history, threshold/visibility guards and full replay at equal caps; equal caps do not match memory. Simple controls matching oracle would weaken H1. [Protocol and decision rule](docs/IDENTITY_BUDGET.md). Map reconciliation and memory updates already exist in [Khronos](https://arxiv.org/html/2402.13817v2) and [DovSG](https://arxiv.org/html/2410.11989v2).
 
-**Personal branches:** [Research notes](https://github.com/p20030920p/SLAM_Learning/blob/71a2e7556e231c1d0e6814febb085bea9d225f44/notes/OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md) develop H1 and rejection controls. [Hardware](https://github.com/p20030920p/SLAM_Learning/blob/4e5a5e8b703e5072ca5e11cf6893d03bca244473/README.zh-CN.md) records D435 (no IMU)/L2 capture, RTAB-Map/ICP/KISS trials and eight-frame semantic-loader checks. LiDAR odometry failed the drift check; fusion and semantic quality remain unvalidated.
+## Branches
+
+| Branch | Focus |
+| --- | --- |
+| [`study/identity-budget-v2`](https://github.com/p20030920p/SLAM_Learning/tree/study/identity-budget-v2) | Late pose correction and candidate-budget experiments; H1 unverified. |
+| [`reproduce/author-originals`](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | Four official pipelines, metric checks and recordings. |
+| [`notes/personal-study-guide-20261008`](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | [Research notes: H1 and rejection controls](https://github.com/p20030920p/SLAM_Learning/blob/71a2e7556e231c1d0e6814febb085bea9d225f44/notes/OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md). |
+| [`Personal-Learning-Physical`](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical) | [D435/L2 capture, mapping trials and eight-frame semantic-loader checks](https://github.com/p20030920p/SLAM_Learning/blob/4e5a5e8b703e5072ca5e11cf6893d03bca244473/README.zh-CN.md). |
+
+D435 has no IMU. LiDAR odometry failed the drift check; fusion and semantic quality remain unvalidated.
 
 ## Inspect and reproduce
 
