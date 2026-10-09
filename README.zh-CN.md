@@ -10,10 +10,17 @@
 
 独立 orphan 分支；主分支未修改、未合并。推送到 [SLAM_Learning / Personal-Learning-Physical](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical)，不是 `notes/personal-study-guide-20261008`。
 
-## 1. 从这里开始
+## 1. 测试背景与目标
+
+盒子被遮住、搬走或换位置，以及历史位姿被修正，都会影响地图中的空间对应。我们要测稳定几何是否保留、查询目标坐标是否有效，以及简单保护与重新关联各自能恢复多少目标。
+
+同一房间录制一次，在同任务方法间重放：DUFOMap／BeautyMap 比较地图清理，ConceptGraphs／HOV-SG 比较语义目标；固定输入、位姿、事件和预算，分开评分。[同场景跨仓库对比设计](METHOD_COMPARISON.zh-CN.md)列出背景、四事件、视频预期、指标、预算和失败判据。它是待执行协议；现有收流与加载检查尚未完成质量比较。
+
+## 2. 从这里开始
 
 | 你现在想做什么 | 指南 |
 | --- | --- |
+| 明确研究问题，在相同背景与输入上比较不同仓库 | [对比实验设计](METHOD_COMPARISON.zh-CN.md) |
 | 打开相机，实时切 RGB/深度/IR/点云，运行双目、RGB-D 与建图 | [相机操作](docs/CAMERA_GUIDE.zh-CN.md) |
 | 打开雷达，实时看点云，运行 ICP/KISS，了解 Point-LIO 条件 | [雷达操作](docs/LIDAR_GUIDE.zh-CN.md) |
 | 按步骤拿着设备测试，知道正常画面和合格指标 | [测试计划与预期](docs/TEST_PLAN.zh-CN.md) |
@@ -27,7 +34,7 @@
 | 查摔落后检查、关灯对照、双设备并行算法和录像 | [摔落与弱光实测](docs/POSTFALL_LOWLIGHT.zh-CN.md) |
 | 查整理范围、旧实验和脚本用途 | [清理记录](docs/CLEANUP.zh-CN.md)、[历史资料](docs/archive/INDEX.zh-CN.md) |
 
-## 2. 最短启动方式
+## 3. 最短启动方式
 
 按 Win+X 打开 Windows PowerShell，确认提示符 `PS ...>`。每次执行一行；同一设备只运行一个会话。脚本自动打开 WSL 和 RViz，回到 PowerShell 按 Ctrl+C 停止。
 
@@ -45,7 +52,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\Persona
 
 图像/点云预览没有定位。按指南换 `-Algorithm stereo`、`rgbd`、`rgbd-slam`、`icp`、`kiss`；算法切换需先停止再重启。`-Record` 保存原始录制，`-Seconds 60` 自动停止，`-SessionType stationary/motion` 记录你的实际动作声明。
 
-## 3. 当前结论
+## 4. 当前结论
 
 | 设备/算法 | 状态 |
 | --- | --- |
