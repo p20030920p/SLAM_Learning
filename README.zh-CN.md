@@ -2,7 +2,7 @@
 
 # SLAM Learning
 
-**地图什么时候应该相信世界发生了变化？**
+**位姿修正后，地图也修复了吗？**
 
 动态环境稳健建图 · 语义建图与定位
 
@@ -11,55 +11,137 @@
 
 [English](README.md) | 中文
 
-[研究分析](docs/STUDY.zh-CN.md) · [实验结果](docs/PAIRED_RESULTS.zh-CN.md) · [居家验证设计](docs/REAL_WORLD.zh-CN.md)
+[分析](docs/STUDY.zh-CN.md) · [结果](docs/PAIRED_RESULTS.zh-CN.md) · [实物计划](docs/REAL_WORLD.zh-CN.md)
 
 </div>
 
+> **room2：**28 单元已运行，分析待完成。使用 AI 标注，H1 未验证。[实验](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.zh-CN.md)。
+
 ![作者地图实测回放](docs/figures/replication_hero.gif)
 
-*实测最终地图的回放，GT 仅用于评价与着色；不是实时算法演示。[来源](results/reference/reproduction-media-wsl/record.json)。*
+*保存地图回放；GT 仅用于评价／着色。[来源](results/reference/reproduction-media-wsl/record.json)。*
 
-本研究从四篇 2024 年工作出发，分析 **给定位姿观测 → 空间对应 → 地图决策** 的共同依赖。先复现作者核心，再用受控实验修订假设。当前运行使用给定位姿，不估计 SLAM 轨迹。
+复现四篇 2024 年工作的建图核心，使用给定位姿；当前运行不含轨迹估计与导航。
 
-## 复现了什么
+## 1. 开放研究问题
 
-| 工作 | 实际完成范围 | 查看结果 | 双语报告 |
-| --- | --- | --- | --- |
-| DUFOMap | 作者 1.1.1；KITTI teaser 全部 141 扫描、17,362,230 点 | [论文卡](docs/papers/dufomap.zh-CN.md) · [视频](docs/media/dufomap/replay.mp4) · [RViz](docs/media/rviz/dufomap.mp4) | [EN](output/pdf/dufomap.en.pdf) / [中文](output/pdf/dufomap.zh-CN.pdf) |
-| BeautyMap | 同一 teaser 的作者地图清理；GT 不输入算法 | [论文卡](docs/papers/beautymap.zh-CN.md) · [视频](docs/media/beautymap/replay.mp4) · [RViz](docs/media/rviz/beautymap.mp4) | [EN](output/pdf/beautymap.en.pdf) / [中文](output/pdf/beautymap.zh-CN.pdf) |
-| ConceptGraphs | Replica room0，40 次观测的 SAM／CLIP 与关联融合，39 对象 | [论文卡](docs/papers/conceptgraphs.zh-CN.md) · [视频](docs/media/conceptgraphs/replay.mp4) · [RViz](docs/media/rviz/conceptgraphs.mp4) | [EN](output/pdf/conceptgraphs.en.pdf) / [中文](output/pdf/conceptgraphs.zh-CN.pdf) |
-| HOV-SG | 同场景 8 次观测的分段特征建图，50 分段 | [论文卡](docs/papers/hovsg.zh-CN.md) · [视频](docs/media/hovsg/replay.mp4) · [RViz](docs/media/rviz/hovsg.mp4) | [EN](output/pdf/hovsg.en.pdf) / [中文](output/pdf/hovsg.zh-CN.pdf) |
+相同候选上限下，重算关联能否改善迟到位姿修正后的目标恢复？
 
-语义部分是明确限定的核心子集；完整语义 benchmark、LLM 图推理、楼层／房间层级与导航未完成。HOV-SG 的 40 观测中断尝试保留。[范围与失败](docs/SEMANTIC.zh-CN.md)。
+## 2. 问题是如何形成的
 
-| ConceptGraphs 对象地图 | HOV-SG 分段地图 |
+- **动态环境 SLAM：**物体运动时，保留稳定几何。
+- **语义建图、视觉定位与导航：**把对象连接到可靠坐标。
+
+SLAM 同时估计运动与构建地图。
+
+```text
+传感器数据 → 前端 → 后端（优化） → 地图构建
+              ↓       ↑
+           回环检测 ──┘
+```
+
+| SLAM 要素 | 动态鲁棒性 | 语义锚定 |
+| --- | --- | --- |
+| 传感器数据 | 运动、遮挡 | RGB-D 对齐 |
+| 前端 | 稳定对应 | 掩码、特征、关联 |
+| 后端 | 鲁棒位姿约束 | 一致坐标 |
+| 回环检测 | 变化后识别重访 | 刷新对象锚点 |
+| 地图构建 | 消除动态残影 | 维护身份与目标 |
+
+四个核心都依赖**位姿 → 对应 → 地图决策**。DUFOMap 与 BeautyMap 过滤几何，ConceptGraphs 与 HOV-SG 关联语义证据。这引出共同问题，尚未证明共同失效。[分析](docs/STUDY.zh-CN.md)。
+
+## 3. 假设
+
+记录观测来源与位姿版本，修正后在有界缓存内重放受影响的关联，将比固定关联保护恢复更多有效目标。**H1 仍是候选假设。**
+
+当前实验先检验是否需要重算关联，尚未测试有界缓存实现。
+
+## 4. 为什么可能成立
+
+固定关联对照修正坐标后，仍保留旧对象成员与融合特征。这些决策可能需要重算，但阈值与支持门槛也可能已经足够。
+
+[Khronos](https://arxiv.org/html/2402.13817v2) 与 [DovSG](https://arxiv.org/html/2410.11989v2) 已有地图协调或记忆更新；重放本身不构成创新。
+
+## 5. 方法对照
+
+GIF 回放核心输出：LiDAR 颜色表示移除结果，语义高亮为未验证的查询候选。[媒体说明](docs/RECORDING.zh-CN.md)。
+
+| [DUFOMap](docs/papers/dufomap.zh-CN.md) | [BeautyMap](docs/papers/beautymap.zh-CN.md) |
 | --- | --- |
-| ![ConceptGraphs](docs/media/conceptgraphs/preview.gif) | ![HOV-SG](docs/media/hovsg/preview.gif) |
+| ![DUFOMap 核心回放](docs/media/dufomap/preview.gif) | ![BeautyMap 核心回放](docs/media/beautymap/preview.gif) |
+| 自由空间判定，移除动态回波。**141 扫描。** | 二进制占据与静态恢复，清理地图。**141 扫描。** |
 
-*红色表示文本查询候选，不表示已判正确。均为保存输出的回放。*
+| [ConceptGraphs](docs/papers/conceptgraphs.zh-CN.md) | [HOV-SG](docs/papers/hovsg.zh-CN.md) |
+| --- | --- |
+| ![ConceptGraphs 核心回放](docs/media/conceptgraphs/preview.gif) | ![HOV-SG 核心回放](docs/media/hovsg/preview.gif) |
+| SAM／CLIP 关联，生成对象与查询候选。**40 帧、39 个表示。** | 分段融合，生成可查询特征地图。**8 帧、50 分段；未运行层级／导航。** |
 
-## 结果怎样改变了问题
+更大规模作者运行位于 [`reproduce/author-originals`](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals)，快照 **`3b0b9a8`**；以上四个 GIF 对应早期子集。
 
-![配对测量与种子范围](results/reference/paired-pose/figures/paired-results.png)
+| 工作 | 作者运行证据 | 剩余问题 |
+| --- | --- | --- |
+| DUFOMap | 1,997 扫描；[表 IV](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/docs/DUFOMAP_TABLE4.zh-CN.md)：15 项精度匹配两位小数 | 已有容差仍受位姿影响；需要观测到空域 |
+| BeautyMap | 1,997 扫描；历史 KITTI-02 [表 III](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/docs/KITTI_PAPER_PROTOCOL.zh-CN.md)：9 项匹配两位小数 | 已有恢复仍有配准与网格尺度取舍 |
+| ConceptGraphs | [room0](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)：400 帧，语义评分完成 | 漏检／重复对象、描述错误 |
+| HOV-SG | [20 帧变体](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/docs/HOVSG_HOME_RESULTS.zh-CN.md)：156 分段，待评分；200 帧融合超时 | 静态场景假设、建图耗时 |
 
-**76 个主单元 + 21 个探索参数对照**表明：30 cm RMS 下，单调漂移比打乱误差保留更多 LiDAR 静态点，但 ConceptGraphs 的部分表面覆盖更低。“时间相关误差总是更坏”被这组结果否定；“共享位姿不确定性是共同主导瓶颈”仍未证实。简单阈值变化已改善部分结果。
+<details>
+<summary>另外五个 GIF：真实三维窗口录像</summary>
 
-同一 DUFOMap 输出仅改变评分对应方式，SA 就相差 **5.347532 个百分点**。该差值属于测量定义，不能当算法提升。一个 teaser、一个静态房间与未经独立人工审核的四个部分表面，限制了结论范围。
+| DUFOMap RViz | BeautyMap RViz |
+| --- | --- |
+| ![DUFOMap RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/dufomap-rviz.gif) | ![BeautyMap RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/beautymap-rviz.gif) |
 
-**收窄后的开放问题：** 后续位姿修正改变历史对应时，怎样让对象身份与查询坐标恢复有效，并明确告知用户哪些结果仍然过期？候选 H1 保留观测来源、位姿版本和有界重放；尚未实现或验证收益。
+| ConceptGraphs RViz | HOV-SG RViz |
+| --- | --- |
+| ![ConceptGraphs RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-rviz.gif) | ![HOV-SG RViz 录像](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/hovsg-rviz.gif) |
 
-[独立分析：达到什么、未达到什么、指标与 H1 的关系](docs/STUDY.zh-CN.md) · [完整配对结果](docs/PAIRED_RESULTS.zh-CN.md) · [协议](docs/PAIRED_PROTOCOL.zh-CN.md) · [配对报告 EN](output/pdf/paired-study.en.pdf) / [中文](output/pdf/paired-study.zh-CN.pdf)
+RViz 查看早期核心的保存地图，未重新推理。完整视频：[DUFOMap](docs/media/rviz/dufomap.mp4) · [BeautyMap](docs/media/rviz/beautymap.mp4) · [ConceptGraphs](docs/media/rviz/conceptgraphs.mp4) · [HOV-SG](docs/media/rviz/hovsg.mp4)。
 
-## 新场景的迟到修正实验
+![ConceptGraphs 作者原版查看器](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/conceptgraphs-author-viewer.gif)
 
-**35 个冻结 room1 主单元 + 6 个独立事后对照**改变了诊断。30 cm 下，修正刚发生时，固定历史关联的几何修正恢复率为 11.1%，oracle 重新关联为 66.7%；支持门槛从 3 降至 1 后，固定历史组恢复率升至 100%，同时暴露候选从 8.3 增至 117.0。标注是部分表面，尚待独立人工复核。重新关联的必要性仍未证实；先比较身份质量与相同候选预算，再决定是否实现 H1。[新结果与决策](docs/DELAYED_RESULTS.zh-CN.md) · [报告 EN](output/pdf/delayed-study.en.pdf) / [中文](output/pdf/delayed-study.zh-CN.pdf)。
+400 帧作者地图：RGB／实例颜色与旋转，未展示查询／关系图。[60 秒视频](https://github.com/p20030920p/SLAM_Learning/blob/3b0b9a88ac7c77431268b6c869c369e01bd19b3e/evidence/videos/conceptgraphs-room0-original-window.mp4) · [来源](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json)。
 
-D435i／Unitree L2 的[居家实验设计](docs/REAL_WORLD.zh-CN.md)从固定传感器的静止、遮挡、移动、移除开始，再测试手持重访。**尚无实物验证成绩。**
+</details>
 
-## 核查与复现
+## 6. 引出问题的观察
 
-[最少复现命令](docs/REPRODUCE.zh-CN.md) · [论文与原始结果](docs/papers/README.zh-CN.md) · [可视化说明](docs/RECORDING.zh-CN.md) · [文档索引](docs/README.zh-CN.md)
+![分开的 LiDAR 核心与原始语义指标](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/baseline-metrics.png)
 
-`src/`、`scripts/`、`configs/` 提供研究代码和固定设置；`results/reference/` 提供轻量原始证据与失败记录；`output/pdf/` 提供 16 份报告快照。完整数据、权重、地图和个人操作手册不进入主分支。
+| 运行 | 指标 | 结果 |
+| --- | --- | ---: |
+| DUFOMap，141 扫描 | 静态保留 SA／动态剔除 DA | 97.9798%／98.7029% |
+| BeautyMap，同输入 | SA／DA | 96.9529%／98.3382% |
+| ConceptGraphs，作者 room0 | mIoU／类别频率加权 IoU | 21.3460%／50.1379% |
+| HOV-SG，作者 20 帧 | 语义精度 | 待完成 |
 
-[AI 使用与研究边界](docs/DISCLOSURE.zh-CN.md) · [来源与许可](docs/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [License](LICENSE)
+协议分开：LiDAR 使用 5 cm 地图近邻；room0 使用 23 类、4,085,377 计分点。数量不等于精度。[定义／来源](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/record.json) · [生成脚本](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/scripts/build_homepage_media.py)。
+
+![恢复表现与暴露候选代价](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/recovery-cost.png)
+
+room1，30 cm 修正刚发生时：固定关联恢复 **11.1%**，oracle **66.7%**，事后支持门槛 1 为 **100%**；对应候选 **8.3／25／117**。三个种子均值、部分 AI 标注、上限未匹配。[结果](docs/DELAYED_RESULTS.zh-CN.md)。
+
+降低支持门槛消除了所选目标的恢复缺口，但暴露更多候选；后续观测也能修复部分损失。因此需要相同上限对照，不能宣称关联损失不可逆。
+
+## 7. 最小假设检验
+
+在 room2 固定前端与五个 AI 标注实例。第八次观测后，向固定关联、阈值 1.0、可见性保护与 oracle 回放四组交付相同精确历史位姿修正。
+
+离线比较支持门槛 1／2／3、候选上限 25／50／100／不限，报告恢复、查询命中、重复／混合及修正成本。相同上限不等于相同内存。
+
+同一 RMS 与支持门槛下，仅当 oracle 在两个有限上限均比所有简单对照高至少 10 个百分点、至少 2／3 配对种子同向且每个种子均不增加已标重复／混合，才考虑原型。简单方法追平将削弱 H1。[冻结协议与完整决策规则](https://github.com/p20030920p/SLAM_Learning/blob/4361d4f353a7449c7d6964887643915d2fc72a11/docs/IDENTITY_BUDGET.zh-CN.md)。
+
+28 个建图单元已运行，独立分析待完成；AI 标注不能确认 H1。
+
+## 分支导航
+
+| 分支 | 做了什么 |
+| --- | --- |
+| [`study/identity-budget-v2`](https://github.com/p20030920p/SLAM_Learning/tree/study/identity-budget-v2) | 迟到位姿修正与候选预算对照；H1 未验证。 |
+| [`reproduce/author-originals`](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | 四篇论文的作者原库复现、指标核对与录像。 |
+| [`notes/personal-study-guide-20261008`](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | [研究笔记：H1 与否定条件](https://github.com/p20030920p/SLAM_Learning/blob/71a2e7556e231c1d0e6814febb085bea9d225f44/notes/OPEN_QUESTION_AND_HYPOTHESIS.zh-CN.md)。 |
+| [`Personal-Learning-Physical`](https://github.com/p20030920p/SLAM_Learning/tree/Personal-Learning-Physical) | [D435／L2 收流、建图试跑与 8 帧语义加载检查](https://github.com/p20030920p/SLAM_Learning/blob/4e5a5e8b703e5072ca5e11cf6893d03bca244473/README.zh-CN.md)。 |
+
+D435 无 IMU；雷达里程计漂移超标，融合与语义质量未验收。
+
+[AI 使用](docs/DISCLOSURE.zh-CN.md) · [来源／许可](docs/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [License](LICENSE)
