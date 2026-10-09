@@ -2,6 +2,7 @@
   "schema_version": 1,
   "kind": "hardware_preview",
   "status": "recorded",
+  "generator_sha256": "364839976b544989867464a030d51b3a98ee52c0b68857922e1c8da01ba0a59d",
   "scope": "Basic sensor and odometry display; no accuracy or fusion claim",
   "items": [
     {
@@ -23,6 +24,8 @@
         22.45,
         42.9
       ],
+      "transcoded_for_delivery": false,
+      "delivered_video_sha256": "b7b40a9f0ece29fac8b76a7a33b29ea036aa8f6c58fdad552b5789b46eb25152",
       "full_video_decoded": true,
       "quality_claim": false
     },
@@ -45,6 +48,8 @@
         21.1,
         40.2
       ],
+      "transcoded_for_delivery": false,
+      "delivered_video_sha256": "9bfb7567a87227c4514753d1cec223794430e8a5dc6d5e86371e26d86e9b7abd",
       "full_video_decoded": true,
       "quality_claim": false
     },
@@ -67,6 +72,8 @@
         12.32,
         22.63
       ],
+      "transcoded_for_delivery": true,
+      "delivered_video_sha256": "6d5810614ff093b00a31ca4a962c0a271dea3e75ada6e355b26c7f1edf0027fe",
       "full_video_decoded": true,
       "quality_claim": false
     }
@@ -89,11 +96,11 @@
       "availability": "portable"
     },
     "d435-input.gif": {
-      "sha256": "ab4d93274fcec3633c78dd48947ebf2dfedc77852c9ddcd4ba3b1c0b42e3acdf",
+      "sha256": "f617a6038068708efaa4224a58cbefbb02c37214ce3b947c8682bd11c28cf2dc",
       "availability": "portable"
     },
     "d435-input.mp4": {
-      "sha256": "2bda7d4c11463c4273b2c218948c2377546af6c81e0cd66f31605ba99ae120ba",
+      "sha256": "6d5810614ff093b00a31ca4a962c0a271dea3e75ada6e355b26c7f1edf0027fe",
       "availability": "portable"
     },
     "d435-qa-0.png": {
@@ -168,6 +175,10 @@
       "sha256": "d151fd2ab844a793a828fa56099a9fae7e1594b3f192c029530229fde2935723",
       "availability": "portable"
     },
+    "export_hardware_previews.source.py": {
+      "sha256": "364839976b544989867464a030d51b3a98ee52c0b68857922e1c8da01ba0a59d",
+      "availability": "portable"
+    },
     "l2-qa-0.png": {
       "sha256": "c27e98f3c1f6c607c6bf1b2934a01e382bd16077cff8eab27e8ce719a6188651",
       "availability": "portable"
@@ -187,11 +198,6 @@
     "l2.mp4": {
       "sha256": "9bfb7567a87227c4514753d1cec223794430e8a5dc6d5e86371e26d86e9b7abd",
       "availability": "portable"
-    },
-    "export_hardware_previews.source.py": {
-      "sha256": "5292dbf5049c5a64001594d6fc06ce1d491fdb905c8e9488c175c8d40ae41e32",
-      "availability": "portable"
     }
-  },
-  "generator_sha256": "5292dbf5049c5a64001594d6fc06ce1d491fdb905c8e9488c175c8d40ae41e32"
+  }
 }

@@ -70,10 +70,26 @@ def main() -> None:
         source_fps = float(Fraction(probe["streams"][0]["avg_frame_rate"]))
         if source_fps not in (10, 30):
             raise ValueError("Unexpected source frame rate")
-        shutil.copy2(video, output / f"{name}.mp4")
+        delivered = output / f"{name}.mp4"
+        if key:
+            shutil.copy2(video, delivered)
+        else:
+            run("ffmpeg", ["-v", "error", "-i", media_path(video), "-map", "0:v:0",
+                           "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p",
+                           "-vsync", "0", "-an", "-movflags", "+faststart", media_path(delivered)])
+            encoded = json.loads(run("ffprobe", ["-v", "error", "-show_entries",
+                                                 "stream=avg_frame_rate,nb_frames:format=duration",
+                                                 "-of", "json", media_path(delivered)]))
+            if (int(encoded["streams"][0]["nb_frames"]) != frames
+                    or abs(float(encoded["format"]["duration"]) - duration) > 0.04
+                    or encoded["streams"][0]["avg_frame_rate"] != probe["streams"][0]["avg_frame_rate"]):
+                raise ValueError("Delivery compression changed frames or timing")
+            run("ffmpeg", ["-v", "error", "-i", media_path(delivered), "-f", "null", "-"])
         run("ffmpeg", ["-v", "error", "-i", media_path(video), "-f", "null", "-"])
         gif = output / f"{name}.gif"
         graph = "fps=10,scale=720:-1:flags=lanczos,split[a][b];[a]palettegen=stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=3"
+        if not key:
+            graph = "fps=10,scale=640:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=none"
         run("ffmpeg", ["-v", "error", "-i", media_path(video), "-filter_complex", graph,
                        "-loop", "0", media_path(gif)])
         qa = [2, round(duration / 2, 2), round(duration - 2, 2)]
@@ -96,9 +112,13 @@ def main() -> None:
                       "duration_seconds": duration, "gif_frames": gif_frames,
                       "gif_duration_seconds": gif_duration, "gif_fps": 10,
                       "trimmed": False, "speed_multiplier": 1, "qa_times_seconds": qa,
+                      "transcoded_for_delivery": not bool(key), "delivered_video_sha256": digest(delivered),
                       "full_video_decoded": True, "quality_claim": False})
         print(f"{name}: full {duration:.1f}s, {frames} source frames, GIF {gif_duration:.1f}s", flush=True)
+    generator = output / "export_hardware_previews.source.py"
+    shutil.copy2(Path(__file__), generator)
     record = {"schema_version": 1, "kind": "hardware_preview", "status": "recorded",
+              "generator_sha256": digest(generator),
               "scope": "Basic sensor and odometry display; no accuracy or fusion claim",
               "items": items, "photo": {"source": "User-provided device photograph", "edited": False},
               "artifacts": {path.relative_to(output).as_posix(): {"sha256": digest(path), "availability": "portable"}
