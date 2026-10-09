@@ -4,7 +4,7 @@ English | [中文](PAIRED_RESULTS.zh-CN.md)
 
 **Decision: keep H1 as a candidate and narrow the claim.** The completed exploratory study tests downstream map decisions under controlled pose errors. It does not establish a universal failure caused specifically by shared uncertainty, and it does not validate a new method. Temporal ordering can help one map objective and hurt another; simple parameter changes already explain part of the apparent improvement opportunity.
 
-## Evidence and scope
+## 1. Evidence and scope
 
 The core papers remain [DUFOMap](https://arxiv.org/html/2403.01449v1), [BeautyMap](https://arxiv.org/html/2405.07283v1), [ConceptGraphs](https://arxiv.org/html/2309.16650v1) and [HOV-SG](https://arxiv.org/html/2403.17846v2). The first two connect to robust localization through dynamic-point filtering; the latter two connect to semantic maps and localization through posed observation fusion and target queries. Our runs estimate no trajectory and execute no navigation.
 
@@ -16,7 +16,7 @@ Sorting changes both adjacent-frame consistency and which viewpoint receives eac
 
 The fixed first pose creates an initial jump before the sorted tail. For seed 104 at 30 cm, lag-one correlation changes from -0.0029 to 0.9778 for LiDAR, and from -0.0220 to 0.4369 for the eight-view semantic sequence. Adjacent-error RMS changes from 0.4237 to 0.0634 m and from 0.3712 to 0.3055 m respectively. These are substantially different temporal stresses despite equal global RMS.
 
-## Target annotation and measurement
+## 2. Target annotation and measurement
 
 Four raw-image polygons cover a cabinet, lamp shade and two ottomans in source frames 0 and 150. After boundary erosion and subsampling, their reference surfaces contain 3,372 / 2,032 / 1,914 / 2,092 points. They are **AI-assisted, visually inspected, partial-surface annotations, without independent human review**, not official Replica semantics. [Annotation coordinates](../annotations/room0/targets.json) and review overlays remain inspectable. Predictions never define the reference or enter its construction.
 
@@ -28,7 +28,7 @@ LiDAR static retention SA and dynamic removal DA are scored at each original poi
 
 ![Paired temporal error samples with identical marginal distributions](../results/reference/paired-pose/figures/paired-errors.png)
 
-## Measurements
+## 3. Measurements
 
 The following values are means over three seeds at 30 cm RMS. Seed ranges and every individual cell are published; three seeds on one scene are not three independent scenes or a confidence interval.
 
@@ -57,7 +57,7 @@ ConceptGraphs instead loses 0.2006 mean partial coverage under drift compared wi
 
 ![Zero-error query audit: red retrieved visible geometry, cyan reference polygons](../results/reference/paired-pose/figures/target-query-audit.png)
 
-## Simple controls matter
+## 4. Simple controls matter
 
 These controls were declared after initial DUFOMap results were inspected; they are exploratory, not a validation-selected operating point or a held-out comparison.
 
@@ -65,7 +65,7 @@ Increasing DUFOMap d_p from 1 to 2 improves static retention but decreases dynam
 
 Lowering ConceptGraphs association threshold from 1.2 to 1.0 improves several of these target outcomes. At 30 cm, all three drift seeds hit all three restricted queries. Threshold 1.4 often loses surface support. A future uncertainty method must beat this inexpensive baseline at matched recovery, query coverage and delay; baseline parameter sensitivity is not evidence for H1.
 
-## Is shared localization error the common bottleneck?
+## 5. Is shared localization error the common bottleneck?
 
 | Proposition | Evidence-based decision |
 | --- | --- |
@@ -77,7 +77,7 @@ Lowering ConceptGraphs association threshold from 1.2 to 1.0 improves several of
 
 The narrower problem is **how to keep target/map validity accountable when locally consistent observations can still have wrong world coordinates, and when a later pose correction changes previous correspondences**. It joins the two selected themes without pretending that map cleaning and semantic retrieval have the same loss function. Visibility, frontend semantics and numerical execution remain separate sources of failure.
 
-## Candidate H1: concrete implementation boundary
+## 6. Candidate H1: concrete implementation boundary
 
 Keep a shared pose version, source-observation provenance and provisional map edits. Use stable background anchors to estimate a common registration residual, then replay affected observations after correction. Compare a joint pose/association guard with an independent-variance guard. Neither a cosine score nor an arbitrary residual margin is a calibrated probability.
 
@@ -89,17 +89,19 @@ Exact undo is not automatically available in the other native APIs. A DUFOMap vo
 
 [Khronos](https://arxiv.org/html/2402.13817v2) already jointly optimizes and reconciles maps. Memory, joint optimization and rollback are not novelty claims. A possible contribution is a measured, bounded interface between pose corrections and open-vocabulary target validity; novelty still needs a broader prior-art check.
 
-## Falsifiable next experiment
+## 7. Falsifiable next experiment
 
 Freeze new scenes/sessions, annotations, correction schedules and budgets before viewing results. Use the existing subsets only for debugging and tuning. Compare the original core, threshold/visibility guards, independent-variance guard, candidate shared-pose guard and an oracle full replay. Report estimated pose uncertainty separately from an oracle supplied pose/covariance.
 
-With the [D435i/L2 physical protocol](REAL_WORLD.md), first fix the D435i on a tripod and record unchanged, occluded, moved and removed targets. A fixed pose isolates visibility and semantic failures. Then use a handheld loop with independently surveyed fiducials/background anchors; separate estimated odometry from the reference. The L2 supplies an additional geometric observation only after extrinsics and time offset are measured. Hardware data has not yet been collected; no robot navigation claim is needed.
+With the [D435/L2 physical protocol](REAL_WORLD.md), first fix the D435 on a tripod and record unchanged, occluded, moved and removed targets. A fixed pose isolates visibility and semantic failures. Then use a handheld loop with independently surveyed fiducials/background anchors; separate estimated odometry from the reference. The L2 supplies an additional geometric observation only after extrinsics and time offset are measured. Basic capture and loader checks exist on the hardware branch; this controlled protocol and semantic/H1 evaluation remain incomplete.
 
 Measure false static removal, actual change recall, restricted target coverage, identity fragmentation, target-coordinate error, stale duration, update latency, replay time and peak memory. Use scenes or capture sessions as units. Match recall, query coverage and delay before comparing risk. Sweep correction delays and include errors older than the buffer. No stable anchors is an explicit information-boundary case.
 
 Reject an H1 gain if a simple guard matches the frontier, if gains vanish after pose correction alone, if the estimated shared uncertainty is uncalibrated, or if less deletion means longer stale-target duration. This completes the reasoning chain from author reproduction to controlled evidence, revised problem, candidate mechanism and a test that can disprove it; it does not turn the candidate into a validated result.
 
-## Reproduce, inspect and defend
+<a id="reproduce-inspect-and-defend"></a>
+
+## 8. Reproduce, inspect and defend
 
 [Analysis record](../results/reference/paired-pose/record.json) binds measurements, targets, paired differences, controls, annotations, figures, all 97 cell records/logs and retained failed attempts. Large maps and error arrays remain local. Adapter changes, exact source versions and native HOV zero-error byte checks are disclosed. This is the audit trail for the tables above.
 

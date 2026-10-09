@@ -2,7 +2,7 @@
 
 English | [中文](RESULTS.zh-CN.md)
 
-Current extension: [paired results](PAIRED_RESULTS.md) adds restricted annotations, 97 mapping cells, simple controls and a narrower candidate H1. Earlier baseline PDFs retain their recorded source snapshot; the paired-study PDF is the current extension.
+[Paired results](PAIRED_RESULTS.md) add 97 cells and simple controls. Baseline PDFs retain their original source snapshots.
 
 Measured on 7 October 2026. Portable records bind commands, versions, source hashes, data checksums and output hashes. Windows author/controlled experiments use Python 3.10.19. Both author methods and all six real-data sensitivity cells also **executed successfully on GitHub Actions Ubuntu 22.04**, with a fresh download and environment. [Linux run](https://github.com/p20030920p/SLAM_Learning/actions/runs/37622082701), [execution metadata](../results/ci/linux-run.json). Docker was not locally built. On 8 October, local WSL2 author, PCL and semantic-subset runs completed; see sections 5–6 and [WSL](REPRODUCE.md).
 
@@ -106,7 +106,7 @@ The [21-frame replay](../docs/figures/replication_hero.gif) uses original PCL la
 
 ConceptGraphs class-agnostic SAM/CLIP segmentation and native 3D association/fusion completed on **40 posed Replica `room0` observations**, producing **39 postprocessed objects**. Four text queries return candidate coordinates in the supplied world frame. Correct retrieval, semantic benchmark accuracy and navigation success have not been evaluated. The SAM batch adaptation and interrupted first run are disclosed in [SEMANTIC](SEMANTIC.md), with exact setup and raw records.
 
-## Verification and remaining work
+## 7. Verification and remaining work
 
 Local checks: **40 passed**, Ruff clean; Matplotlib dependencies emit deprecation warnings without failing the checks. Portable evidence hashes were verified before export and against committed Git bytes. Most Windows measurements use snapshot `01e2105aeb8a26bf5cdbe7420b56c0dddf81272c`; the final BeautyMap run uses `17591fa` after physically stripping scan intensity annotations while preserving VIEWPOINT. Its metrics are unchanged. Earlier failures remain separately retained. Per-record source hashes specify each executed snapshot.
 
@@ -114,7 +114,7 @@ PCL/SciPy cross-checking and an executable semantic subset with text-coordinate 
 
 Next: independently review annotations, add new scenes and test actual changes/correction delays before freezing a confirmatory hypothesis. [Stage gates](PLAN.md).
 
-## 7. Four-paper media and HOV-SG core — 8 October
+## 8. Four-paper media and HOV-SG core — 8 October
 
 HOV-SG's author segment-level feature mapper processes 8 supplied-pose observations (source 0,25,...175), producing 50 segments and 166,777 reference points. Peak mapper PyTorch allocation is 10,030,088,704 bytes, excluding driver allocations. Four CLIP texts return candidate coordinates; accuracy is not annotated. The first 40-observation merge was killed with exit 137 after extraction; cause remains unconfirmed. [Success](../results/reference/hovsg-wsl/record.json), [failure](../results/reference/hovsg-wsl-interrupted/record.json), [resource adaptations](papers/hovsg.md).
 

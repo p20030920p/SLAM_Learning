@@ -4,7 +4,7 @@ English | [中文](LITERATURE.zh-CN.md)
 
 Literature cutoff: **7 October 2026**. “Active direction” means several recent representative works pursue it; this is not a bibliometric popularity ranking. The eight core works are chosen for comparable map-update decisions, not a leaderboard across incompatible tasks.
 
-## Active directions within fields 1–2
+## 1. Active directions within fields 1–2
 
 | Direction | Primary sources | Opportunity / deadline tradeoff |
 | --- | --- | --- |
@@ -15,7 +15,7 @@ Literature cutoff: **7 October 2026**. “Active direction” means several rece
 
 [AnyLoc](https://arxiv.org/abs/2308.00688) and [Revisit Anything](https://arxiv.org/abs/2409.18049) are adjacent visual place recognition examples. Recall depends on dataset and positive-match definitions; historical scores are not reused. No fresh VPR run is claimed.
 
-## Eight core works
+## 2. Eight core works
 
 | Work | Paper evidence | Structural implication (our inference) | Existing protection / boundary |
 | --- | --- | --- | --- |
@@ -30,7 +30,7 @@ Literature cutoff: **7 October 2026**. “Active direction” means several rece
 
 The recurring interface is narrow: establish spatial correspondence, then interpret map evidence. These papers do not implement one algorithm, and several already mitigate errors. The candidate question concerns residual shared geometric uncertainty in destructive-update confidence; an empirical cross-field claim still needs annotated pose-error controls beyond the first semantic subset.
 
-## Code accessibility and scope
+## 3. Code accessibility and scope
 
 DUFOMap and BeautyMap have executable author implementations and small labeled public data. Their exact commits are in [upstreams.json](../configs/upstreams.json). A class-agnostic ConceptGraphs frontend now executed on 40 posed Replica observations; [source/settings](../configs/semantic.json), [scope](SEMANTIC.md). HOV-SG now executes its 8-observation segment feature-map core; [paper card](papers/hovsg.md). The remaining four works were read, not freshly reproduced. [Four-paper structural analysis](STUDY.md).
 

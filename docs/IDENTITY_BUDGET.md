@@ -4,13 +4,13 @@
 
 **In progress · AI-only exploratory labels · H1 unverified.**
 
-## Question
+## 1. Question
 
 After exact historical pose correction, does reassociation recover more valid targets than fixed associations at the same candidate cap? This separates association loss from coordinate error and low-support filtering. One scene cannot establish a common bottleneck across methods; equal caps do not match actual candidate counts, points or memory.
 
 References cover partial visible surfaces, not official Replica instance GT. Physical-instance recovery and category-query hits are scored separately; a query may hit any annotated same-class instance. Unlabelled candidates are unknown, not automatic false positives. Duplicate excess counts qualifying fragments after the first per physical ID; a mixed object supports two annotated IDs. Both depend on label boundaries and visibility.
 
-## Frozen design
+## 2. Frozen design
 
 | Item | Setting |
 | --- | --- |
@@ -24,7 +24,7 @@ References cover partial visible surfaces, not official Replica instance GT. Phy
 
 All arms share one frozen frontend. Fixed arms rebuild geometry from their own association traces, preserving members, supports and CLIP/text features; oracle reruns native association. Complete snapshots retain provenance, geometry, colors and features before readout filtering. Observation16 is also saved before final filtering; finalized output is separate. Readouts cannot modify maps. Zero-error own-policy, native/oracle and original-batch parity must pass. Correction time includes prefix reconstruction but excludes snapshot I/O; snapshot bytes are not runtime memory. These controls do not demonstrate a deployable low-memory correction method.
 
-## Run and record
+## 3. Run and record
 
 The [exploratory protocol](../configs/identity_budget_v2_exploratory.json) follows the owner's 2026-10-08 waiver of manual review. Labels remain `human_reviewed: false`. The [confirmation protocol](../configs/identity_budget_v2.json) still requires a human receipt; the [raw-view review package](../annotations/review/identity-v2/index.html) and room1 evidence remain unchanged. Later re-scoring must be versioned as post-hoc.
 
@@ -43,7 +43,7 @@ python scripts/run_identity_pipeline.py \
 
 Resource-check exit 2 means defer. The pipeline waits up to three hours per phase without changing other jobs or environments. It copies the source and runs frontend → 28 cells → recalculation → bilingual plots/report → actual RViz saved-map replay. Failures need new directories; preserve old attempts. Full terminal videos, transcripts, commands and exit records stay local. RViz replay is labelled as replay. GIFs need source hashes; scientific result PDFs need page-by-page inspection. Neither is complete yet. [Recording scope](RECORDING.md).
 
-## Decision
+## 4. Decision
 
 At the same RMS, support and endpoint (recovery or category-query hit), oracle must beat every simple control by ≥10 mean percentage points at two finite caps, with ≥2/3 positive paired seeds and no seed increasing annotated duplicates or mixed objects. Passing permits only a bounded-replay prototype plan; ties mean narrow or stop H1. AI-only labels cannot confirm H1.
 

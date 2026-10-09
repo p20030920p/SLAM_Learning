@@ -2,15 +2,15 @@
 
 English | [中文](RESEARCH.zh-CN.md)
 
-Current extension: [paired results](PAIRED_RESULTS.md) adds restricted annotations, 97 mapping cells, simple controls and a narrower candidate H1. Earlier baseline PDFs retain their recorded source snapshot; the paired-study PDF is the current extension.
+[Paired results](PAIRED_RESULTS.md) add 97 cells and simple controls. Baseline PDFs retain their original source snapshots.
 
-The research order is **reproduction → observations → structural bottleneck → candidate hypothesis → held-out experiments**. Existing controlled results are exploratory: they helped select the question and cannot serve as independent confirmation of that selected hypothesis. This order is a workflow, not a rewritten history of when earlier runs occurred.
+**Reproduction → observations → question → candidate hypothesis → held-out test.** Existing runs helped select the question; they are exploratory, not independent confirmation.
 
 ## 1. Start with the measured outputs
 
 DUFOMap and BeautyMap completed the same 141-frame teaser on Windows and Ubuntu. Their map-level scores agree across those platforms, but both differ from the corresponding paper targets. DUFOMap's direct-label sensitivity diagnostic also yields a different zero-perturbation score from the output-map nearest-neighbor evaluation. A same-instance control now localizes most of the SA gap to map correspondence; a small native-export remainder is still unresolved. [Numbers, artifacts and exact limits](RESULTS.md).
 
-The first unresolved task is therefore a **measurement question**: which points are being judged, under which correspondence rule and implementation path? Before claiming a method fails, reconcile those protocols. Small injected pose errors sometimes improve scores in the current diagnostic; the observations do not justify universal degradation claims.
+First reconcile which points, correspondence rule and implementation are scored. Small injected errors sometimes improve these scores; pose error does not universally degrade every metric.
 
 ## 2. What might be shared across methods?
 

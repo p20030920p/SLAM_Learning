@@ -22,7 +22,7 @@ bash scripts/setup_hovsg.sh
 
 每次创建新运行目录；命令打印 `record.json` 和日志位置。`--frames 10` 只作 LiDAR 冒烟，不输出论文成绩。普通退出码 0 表示执行完成，不代表论文表格一致；`--strict-paper` 对不一致返回 2。
 
-## 评价与完整性
+## 1. 评价与完整性
 
 ```bash
 uv run pytest -q

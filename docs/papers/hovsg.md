@@ -8,7 +8,7 @@ English | [中文](hovsg.zh-CN.md) | [PDF](../../output/pdf/hovsg.en.pdf)
 
 [MP4](../media/hovsg/replay.mp4) · [GIF](../media/hovsg/preview.gif) · [Run](../../results/reference/hovsg-wsl/record.json) · [Media provenance](../../results/reference/paper-media-hovsg/record.json)
 
-## Method and execution
+## 1. Method and execution
 
 [HOV-SG (RSS 2024)](https://arxiv.org/html/2403.17846v2) lifts SAM segments and CLIP features to reference geometry, merges observations, selects robust features, and constructs a floor/room/object hierarchy. This run calls the author Graph.create_feature_map(), including native geometric merging and feature selection, at source commit d6e65a53c8be6faec3f01f00d1644d967f89e605.
 
@@ -19,7 +19,7 @@ bash scripts/setup_hovsg.sh
 
 The separate environment shares verified checkpoints and the 40-observation Replica subset with ConceptGraphs. Source indices 0,25,...175 are processed by skip_frames=5. RGB/depth are resized to 640×360; both intrinsic axes are rescaled from the pinned original 1200×680 calibration. SAM batch 36 and CLIP batch 4 are resource adaptations. Native segmentation/merging thresholds remain fixed; identical original-resolution masks are not claimed.
 
-## Measured output and retained failure
+## 2. Measured output and retained failure
 
 | Item | Observed result |
 | --- | --- |
@@ -33,12 +33,12 @@ The first 40-observation attempt completed frontend extraction, then the hierarc
 
 The 50 segments cannot be ranked against ConceptGraphs' 39 objects: observation count, image settings and association/merging definitions differ. Cosine scores are not calibrated probabilities. No semantic mIoU or complete graph/navigation metric is reported.
 
-## Limitation and research relevance
+## 3. Limitation and research relevance
 
 The paper explicitly identifies static-scene, processing-time and parameter limitations (V), and assumes accurate odometry for projection (III-A). A persistent static feature map lacks a moved target's temporal validity. A geometric error can assign a pixel's semantic evidence to the wrong reference point before a language query occurs.
 
 Our open question is how to retain enough observation provenance to reconsider semantic assignments after a pose correction, without unlimited storage or delaying every query. A shared-pose/provisional-update sidecar is feasible for segments; extending it to full floor/room hierarchy is additional work. Test static/moved/removed/occluded cases and compare threshold and visibility controls at matched query coverage, recall and delay. [Common bottleneck and counterexamples](../STUDY.md).
 
-## Video interpretation
+## 4. Video interpretation
 
 All eight native SAM observations are replayed beside the final world-XZ segment map. A red segment is a query candidate, not verified ground truth. The supplied absolute camera-to-world matrices determine coordinates. This is measured final-map replay, not live navigation, incremental hierarchy growth or a runtime benchmark.
