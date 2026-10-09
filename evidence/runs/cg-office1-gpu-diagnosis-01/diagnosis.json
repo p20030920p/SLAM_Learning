@@ -1,0 +1,7 @@
+{
+  "status": "cancelled_stalled_first_frame_for_isolated_gpu_probe",
+  "boot_id": "ec2611a8-bbe1-4c8a-9602-803bbf9bc5ec",
+  "exit_code": -15,
+  "author_failure_proven": false,
+  "scope": "Nonblocking snapshots minutes apart showed SAM get_rel_pos; no output frames. Our explicit cancellation caused this nonzero exit, not a confirmed algorithm/CUDA error. Waiting HOV supervisors were cancelled before any author stage to isolate a tiny GPU check. This systemd accepts --kill-who=all; --kill-whom=all was rejected without terminating the author task."
+}

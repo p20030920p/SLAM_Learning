@@ -1,0 +1,11 @@
+{
+  "status": "cancelled_before_author_stage_for_gpu_diagnosis",
+  "pid": 380,
+  "boot_id": "ec2611a8-bbe1-4c8a-9602-803bbf9bc5ec",
+  "source_commit": "d6e65a53c8be6faec3f01f00d1644d967f89e605",
+  "wait_first": "/home/qzl/projects/SLAM_Author_Originals/runs/hovsg-room0-batch16-stages-05/outcomes.json",
+  "scenes": {},
+  "scope": "Eight original single-scene Replica semantic evaluations; default skip=10, SAM microbatch16 compatibility. First default scene must succeed; no home-map substitution, API calls or HM3D hierarchy claim.",
+  "cancelled_at": "2026-10-09T13:10:31.912243+00:00",
+  "reason": "Only waiting supervisor terminated to keep GPU diagnosis isolated; no HOV author stage started."
+}

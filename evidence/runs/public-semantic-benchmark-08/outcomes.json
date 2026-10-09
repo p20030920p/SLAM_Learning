@@ -1,0 +1,38 @@
+{
+  "status": "failed",
+  "pid": 267,
+  "boot_id": "ec2611a8-bbe1-4c8a-9602-803bbf9bc5ec",
+  "previous_queue": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-07",
+  "scenes": {
+    "room0": {
+      "cg": {
+        "status": "verified_reuse",
+        "chain": "/home/qzl/projects/SLAM_Author_Originals/runs/conceptgraphs-room0-evaluation-cuda-05"
+      },
+      "detect": {
+        "status": "verified_reuse",
+        "chain": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-room0-detect-stages"
+      }
+    },
+    "office0": {
+      "cg": {
+        "status": "verified_reuse",
+        "chain": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-cg-stages"
+      },
+      "detect": {
+        "status": "verified_reuse",
+        "chain": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office0-detect-stages"
+      }
+    },
+    "office1": {
+      "cg": {
+        "status": "verified_reuse",
+        "chain": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-06-office1-cg-stages"
+      }
+    }
+  },
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "scope": "Resume all eight CG SAM-only and author Detect scenes; preserve prior completed stages and interrupted outputs. No HOV default substitution or API calls.",
+  "error_type": "RuntimeError",
+  "error": "run_semantic_entry.py exited 241"
+}

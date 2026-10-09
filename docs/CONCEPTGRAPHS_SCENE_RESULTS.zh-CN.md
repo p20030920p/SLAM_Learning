@@ -45,13 +45,13 @@ room0 的 Detect mIoU 比 SAM-only 高 4.25 个百分点，但 F-mIoU 低 4.48 �
 
 ## 中断与后续队列
 
-WSL 重启使旧队列 06 停在 office1 Detect 前端。其日志虽有 400/400，缺少原进程退出码，仍记为 `interrupted`。[中断诊断与输出保留记录](../evidence/runs/public-semantic-benchmark-06-restart-recovery-01/diagnosis.json)绑定旧日志和产物清单。新队列 08 核验复用上述五条已完成链路，完整重跑该前端后继续 office2/3/4、room1/2 的两种流程；只有各自八场景全部成功，才执行未经修改的原八场景评价入口。
+WSL 重启使旧队列 06 停在 office1 Detect 前端。其日志虽有 400/400，缺少原进程退出码，仍记为 `interrupted`。[中断诊断与输出保留记录](../evidence/runs/public-semantic-benchmark-06-restart-recovery-01/diagnosis.json)绑定旧日志和产物清单。之后队列 08 在首帧停滞，主动取消并保留真实 exit -15。三帧显存兼容检查通过后，新队列 09 核验复用上述五条链路，以明确披露的分阶段 GPU 驻留方案重跑 office1 Detect，再继续 office2/3/4、room1/2 的两种流程；只有各自八场景全部成功，才执行未经修改的原八场景评价入口。
 
 在[运行手册](RUNBOOK.zh-CN.md)设置 `RUNTIME` 后只读检查：
 
 ```bash
-cat "$RUNTIME/runs/public-semantic-benchmark-08/outcomes.json"
-tail -c 1500 "$RUNTIME/runs/public-semantic-benchmark-08/orchestration.log"
+cat "$RUNTIME/runs/public-semantic-benchmark-09/outcomes.json"
+tail -c 1500 "$RUNTIME/runs/public-semantic-benchmark-09/orchestration.log"
 ```
 
 08 还处理了后续重启：旧 07 的 office1 Detect 在 152/400 中断，部分输出另行保留；HOV 的等待任务没有启动作者阶段。[终态记录与保留清单](../evidence/runs/public-semantic-benchmark-07-restart-recovery-01/diagnosis.json)。

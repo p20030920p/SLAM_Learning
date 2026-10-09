@@ -17,3 +17,5 @@ ConceptGraphs' [completed scene table and figure](docs/CONCEPTGRAPHS_SCENE_RESUL
 [中文入口](README.zh-CN.md) · [Results and limitations](docs/STATUS.zh-CN.md) · [Windows/WSL commands](docs/RUNBOOK.zh-CN.md) · [Data downloads and ScanNet access](docs/DATA_ACCESS.zh-CN.md) · [Coverage and upstream comparison](docs/SCOPE.zh-CN.md) · [Execution evidence](evidence/README.md)
 
 Upstream URLs and exact commits are in [the source manifest](config/upstreams.json) and [.gitmodules](.gitmodules). Canonical author checkouts remain unchanged. Explicit compatibility variants are separate copies with diffs, including a SAM microbatch adjustment for this 12GB GPU. Compiler/dependency changes and optional API-provider substitutions are also recorded separately. Existing main-branch wrapper results are not imported as new execution evidence.
+
+The [Detect GPU diagnosis and residency variant](docs/CG_GPU_RECOVERY.zh-CN.md) preserves the cancelled first-frame stall and failed allocator probe. Three isolated frames passed output checks; queue 09 now reruns the full scene with explicitly disclosed CPU/GPU model transfers. This adds no semantic score yet.

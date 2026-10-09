@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "method": "isolated-CUDA-sanity-after-stall",
+  "scope": "Tiny CUDA KNN probe after stopping only owned stalled Detect task; no semantic score or paper performance claim",
+  "status": "executed",
+  "started_at": "2026-10-09T13:10:57.462437+00:00",
+  "command": [
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "/mnt/d/workspace/be2/SLAM_Author_Originals/scripts/check_chamfer_cuda.py"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "543272ea83f05065760585eafd488f66804cff4a6f29fd7ee66428b7e69202e4",
+      "bytes": 481
+    }
+  },
+  "boot_id": "ec2611a8-bbe1-4c8a-9602-803bbf9bc5ec",
+  "environment": {
+    "DISPLAY": ":0"
+  },
+  "pid": 908,
+  "elapsed_seconds": 2.0180428109999866,
+  "source_dirty_after": ""
+}

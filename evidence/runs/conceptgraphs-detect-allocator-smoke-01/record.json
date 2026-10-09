@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-Detect-one-frame-allocator-probe",
+  "scope": "Only office1 frame0 via original --end=5,stride=5; symlinked read-only original RGB-D/poses, isolated output tree. Original RAM+DINO+SAM/CLIP, thresholds/weights unchanged. Explicit PYTORCH_CUDA_ALLOC_CONF=garbage_collection_threshold:0.7; no semantic score or full-chain claim.",
+  "status": "timed_out",
+  "started_at": "2026-10-09T13:12:39.430560+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-cg-office1-allocator-smoke-01",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "scripts/generate_gsa_results.py",
+    "--dataset_root",
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-allocator-smoke-01/dataset",
+    "--dataset_config",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "--scene_id",
+    "office1",
+    "--class_set",
+    "ram",
+    "--stride",
+    "5",
+    "--end",
+    "5",
+    "--box_threshold",
+    "0.2",
+    "--text_threshold",
+    "0.2",
+    "--add_bg_classes",
+    "--accumu_classes",
+    "--exp_suffix",
+    "withbg_allclasses"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": null,
+  "artifacts": {
+    "run.log": {
+      "sha256": "1cde94e3954cfd636b3ce02122ef623ca73004a1b67bc897c3385f4bf964dc22",
+      "bytes": 1291
+    }
+  },
+  "boot_id": "ec2611a8-bbe1-4c8a-9602-803bbf9bc5ec",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "PYTORCH_CUDA_ALLOC_CONF": "garbage_collection_threshold:0.7",
+    "DISPLAY": ":0"
+  },
+  "pid": 338,
+  "timeout_seconds": 300.0,
+  "elapsed_seconds": 300.56587264099994,
+  "source_dirty_after": "",
+  "missing_artifacts": [
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-allocator-smoke-01/dataset/office1/gsa_detections_ram_withbg_allclasses/frame000000.pkl.gz",
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-allocator-smoke-01/dataset/office1/gsa_vis_ram_withbg_allclasses/frame000000.jpg",
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-allocator-smoke-01/dataset/office1/gsa_classes_ram_withbg_allclasses.json"
+  ]
+}

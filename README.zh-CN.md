@@ -27,3 +27,5 @@ ConceptGraphs 的[已完成场景表与图](docs/CONCEPTGRAPHS_SCENE_RESULTS.zh-
 作者源码保持原样。依赖、编译器、数据路径或 API 模型的变化必须单独记录。DeepSeek 只属于替代模型实验，不能算原论文 GPT-4 的复现；本轮费用上限为 1 美元，密钥和大文件不提交 Git。
 
 个人阅读、假设分析、家中测试与手动录制的索引在另一个 [学习文档分支](https://github.com/p20030920p/SLAM_Learning/blob/notes/personal-study-guide-20261008/notes/README.zh-CN.md)。本分支专门保留作者流程与执行证据。
+
+[Detect 显存诊断与兼容方案](docs/CG_GPU_RECOVERY.zh-CN.md)：保留首帧停滞的主动取消和缓存试验超时；分阶段驻留的三帧检查已通过，队列 09 正重跑完整场景。尚无新增语义分数。

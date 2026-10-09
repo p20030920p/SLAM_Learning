@@ -1,0 +1,18 @@
+{
+  "status": "cancelled_before_author_stage_for_gpu_diagnosis",
+  "wait_outcomes": "/home/qzl/projects/SLAM_Author_Originals/runs/public-semantic-benchmark-08/outcomes.json",
+  "sam_batch": 16,
+  "boot_id": "ec2611a8-bbe1-4c8a-9602-803bbf9bc5ec",
+  "pid": 357,
+  "stages": {},
+  "skip_frames": 10,
+  "sampling_scope": "author default",
+  "resource_config": {
+    "memory_max": "16G",
+    "swap_max": "48G",
+    "feature_timeout_seconds": 21600,
+    "evaluation_timeout_seconds": 7200
+  },
+  "cancelled_at": "2026-10-09T13:10:32.413263+00:00",
+  "reason": "Only waiting supervisor terminated to keep GPU diagnosis isolated; no HOV author stage started."
+}

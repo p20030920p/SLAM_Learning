@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "method": "cg-detect",
+  "scope": "Full 2000-frame Replica office1, author cg-detect entry; RAM/swap cgroup 12G/48G; timeout 7200s; original RAM+DINO and box-prompted SAM",
+  "status": "failed",
+  "started_at": "2026-10-09T13:00:57.352060+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-public-semantic-benchmark-08-office1-detect-frontend",
+    "-p",
+    "MemoryMax=12G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "scripts/generate_gsa_results.py",
+    "--dataset_root",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica",
+    "--dataset_config",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "--scene_id",
+    "office1",
+    "--class_set",
+    "ram",
+    "--stride",
+    "5",
+    "--box_threshold",
+    "0.2",
+    "--text_threshold",
+    "0.2",
+    "--add_bg_classes",
+    "--accumu_classes",
+    "--exp_suffix",
+    "withbg_allclasses"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": -15,
+  "artifacts": {
+    "run.log": {
+      "sha256": "508b842b408ba3e5063a0eefa14327a56c3a025679c146ef01c06b64e90d78b7",
+      "bytes": 1316
+    }
+  },
+  "boot_id": "ec2611a8-bbe1-4c8a-9602-803bbf9bc5ec",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "DISPLAY": ":0"
+  },
+  "pid": 366,
+  "elapsed_seconds": 587.141548835,
+  "source_dirty_after": "",
+  "missing_artifacts": [
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office1/gsa_classes_ram_withbg_allclasses.json",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office1/gsa_detections_ram_withbg_allclasses/frame001995.pkl.gz",
+    "/home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica/office1/gsa_vis_ram_withbg_allclasses/frame001995.jpg"
+  ]
+}

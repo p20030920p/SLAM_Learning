@@ -1,4 +1,4 @@
-"""Resume completed author stages after a WSL reboot; never infer old exit codes."""
+"""Reuse completed author stages after a reboot or explicit failed-frontend retry."""
 import argparse
 import hashlib
 import json
@@ -14,13 +14,20 @@ parser.add_argument('--runtime', type=Path, required=True)
 parser.add_argument('--previous-queue', type=Path, required=True)
 parser.add_argument('--room0-cg', type=Path, required=True)
 parser.add_argument('--name', required=True)
+parser.add_argument('--retry-failed-frontend', action='store_true', help='Explicitly retry a failed frontend after diagnosing its cause; preserve its real exit code')
+parser.add_argument('--detect-allocator-conf', default='', help='Explicit PyTorch allocator environment for new Detect runs only')
+parser.add_argument('--detect-model-offload', action='store_true', help='Disclosed sequential GPU model-residency variant for new Detect frontends')
+parser.add_argument('--detect-timeout', type=int, default=7200, help='Recorded wall-time limit for each new Detect frontend')
 args = parser.parse_args()
+assert not (args.detect_allocator_conf and args.detect_model_offload), 'Isolate resource variants'
+assert args.detect_timeout > 0
 r = args.runtime.resolve()
 old = args.previous_queue.resolve()
 assert old.is_relative_to(r / 'runs')
 previous = json.loads((old / 'outcomes.json').read_text())
 boot = Path('/proc/sys/kernel/random/boot_id').read_text().strip()
-assert previous['status'] == 'interrupted' and previous['boot_id'] != boot
+assert ((previous['status'] == 'interrupted' and previous['boot_id'] != boot)
+        or (args.retry_failed_frontend and previous['status'] == 'failed'))
 root = r / 'runs' / args.name
 assert root.resolve().parent == r / 'runs', 'Use a single new run-directory name inside this runtime'
 root.mkdir(parents=True, exist_ok=False)
@@ -31,6 +38,10 @@ assert commit == json.loads((scripts.parent / 'config/upstreams.json').read_text
 assert not subprocess.check_output(['git', '-C', str(source), 'status', '--porcelain'], text=True).strip()
 state = {'status': 'validating_prior_results', 'pid': os.getpid(), 'boot_id': boot,
          'previous_queue': str(old), 'scenes': {}, 'source_commit': commit,
+         'retry_failed_frontend_enabled': args.retry_failed_frontend,
+         'detect_allocator_conf': args.detect_allocator_conf,
+         'detect_model_offload': args.detect_model_offload,
+         'detect_timeout_seconds': args.detect_timeout,
          'scope': 'Resume all eight CG SAM-only and author Detect scenes; preserve prior completed stages and interrupted outputs. No HOV default substitution or API calls.'}
 checked = {}
 def save():
@@ -84,7 +95,12 @@ def run(script, arguments):
         raise RuntimeError(script + ' exited ' + str(code))
 def preserve_interrupted(scene, variant, record_path):
     item = json.loads(record_path.read_text())
-    assert item['status'] == 'interrupted' and item['boot_id'] != boot and item['source_commit'] == commit
+    assert item['source_commit'] == commit
+    if item['status'] == 'interrupted':
+        assert item['boot_id'] != boot and item['exit_code'] is None
+    else:
+        assert args.retry_failed_frontend and item['status'] == 'failed' and item['exit_code'] != 0
+        assert not item['source_dirty_before'] and not item['source_dirty_after']
     scene_root = (r / 'data/replica-full/Replica' / scene).resolve()
     target = root / 'preserved-interrupted' / (scene + '-' + variant)
     target.mkdir(parents=True, exist_ok=False)
@@ -102,10 +118,12 @@ def preserve_interrupted(scene, variant, record_path):
         for key, expected in bindings.items():
             assert identity(target / key) == expected
         entries.append({'original_path': str(path), 'preserved_path': str(destination), 'artifacts': bindings})
-    (target / 'preservation.json').write_text(json.dumps({'status': 'preserved_interrupted_outputs_before_fresh_full_frontend',
+    (target / 'preservation.json').write_text(json.dumps({'status': 'preserved_unsuccessful_outputs_before_fresh_full_frontend',
         'old_record': str(record_path), 'old_record_identity': identity(record_path), 'old_boot_id': item['boot_id'],
-        'current_boot_id': boot, 'exit_code_unknown': True, 'entries': entries,
-        'scope': 'Even 400 saved frames do not establish the missing original exit code. Fresh author frontend reruns all 400 frames.'}, indent=2) + '\n')
+        'current_boot_id': boot, 'old_status': item['status'], 'old_exit_code': item['exit_code'],
+        'exit_code_unknown': item['exit_code'] is None, 'entries': entries,
+        'scope': 'Neither partial outputs nor a 400/400 log replace a successful exit receipt. '
+                 'Preserve any known nonzero exit as recorded. Fresh author frontend reruns all 400 frames.'}, indent=2) + '\n')
 save()
 try:
     wait_gpu()
@@ -136,7 +154,13 @@ try:
                 if variant == 'none':
                     run('run_cg_resource_frontend.py', ['--runtime', r, '--scene', scene, '--name', frontend.name, '--sam-batch', '16'])
                 else:
-                    run('run_semantic_entry.py', ['--runtime', r, '--scene', scene, '--mode', 'cg-detect', '--name', frontend.name])
+                    options = ['--runtime', r, '--scene', scene, '--name', frontend.name, '--timeout', str(args.detect_timeout)]
+                    entry = 'run_cg_offloaded_frontend.py' if args.detect_model_offload else 'run_semantic_entry.py'
+                    if not args.detect_model_offload:
+                        options += ['--mode', 'cg-detect']
+                    if args.detect_allocator_conf:
+                        options += ['--allocator-conf', args.detect_allocator_conf]
+                    run(entry, options)
             state['status'] = 'running_' + scene + '_' + suffix + '_stages'; save()
             chain = r / 'runs' / (name + '-stages')
             arguments = ['--runtime', r, '--scene', scene, '--variant', variant, '--wait-record', frontend / 'record.json', '--name', chain.name]

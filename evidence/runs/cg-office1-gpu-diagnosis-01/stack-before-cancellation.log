@@ -1,0 +1,24 @@
+Process 366: /home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python scripts/generate_gsa_results.py --dataset_root /home/qzl/projects/SLAM_Author_Originals/data/replica-full/Replica --dataset_config /home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml --scene_id office1 --class_set ram --stride 5 --box_threshold 0.2 --text_threshold 0.2 --add_bg_classes --accumu_classes --exp_suffix withbg_allclasses
+Python v3.10.12 (/usr/bin/python3.10)
+
+Thread 0x73A649B04000 (active): "MainThread"
+    get_rel_pos (segment_anything/modeling/image_encoder.py:325)
+    add_decomposed_rel_pos (segment_anything/modeling/image_encoder.py:352)
+    forward (segment_anything/modeling/image_encoder.py:237)
+    _call_impl (torch/nn/modules/module.py:1501)
+    forward (segment_anything/modeling/image_encoder.py:177)
+    _call_impl (torch/nn/modules/module.py:1501)
+    forward (segment_anything/modeling/image_encoder.py:113)
+    _call_impl (torch/nn/modules/module.py:1501)
+    set_torch_image (segment_anything/predictor.py:91)
+    decorate_context (torch/utils/_contextlib.py:115)
+    set_image (segment_anything/predictor.py:62)
+    get_sam_segmentation_from_xyxy (conceptgraph/scripts/generate_gsa_results.py:143)
+    main (conceptgraph/scripts/generate_gsa_results.py:562)
+    <module> (conceptgraph/scripts/generate_gsa_results.py:618)
+Thread 0x73A517CFF640 (idle): "tqdm_monitor"
+    wait (threading.py:324)
+    wait (threading.py:607)
+    run (tqdm/_monitor.py:69)
+    _bootstrap_inner (threading.py:1016)
+    _bootstrap (threading.py:973)

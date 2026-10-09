@@ -1,0 +1,92 @@
+--- author/generate_gsa_results.py
++++ compatibility/generate_gsa_results.py
+@@ -301,13 +301,23 @@
+     return classes
+     
+     
++def _resource_place(module, device):
++    module.to(device)
++    if str(device) == "cpu":
++        torch.cuda.empty_cache()
++
++
+ def main(args: argparse.Namespace):
++    assert args.class_set == "ram" and args.detector == "dino" and args.sam_variant == "sam"
++    assert str(args.device).startswith("cuda")
++    print("RESOURCE VARIANT: sequential GPU residency; original CUDA forwards/weights/settings retained", flush=True)
+     ### Initialize the Grounding DINO model ###
+     grounding_dino_model = Model(
+         model_config_path=GROUNDING_DINO_CONFIG_PATH, 
+         model_checkpoint_path=GROUNDING_DINO_CHECKPOINT_PATH, 
+         device=args.device
+     )
++    _resource_place(grounding_dino_model.model, "cpu")
+ 
+     ### Initialize the SAM model ###
+     if args.class_set == "none":
+@@ -320,7 +330,7 @@
+     clip_model, _, clip_preprocess = open_clip.create_model_and_transforms(
+         "ViT-H-14", "laion2b_s32b_b79k"
+     )
+-    clip_model = clip_model.to(args.device)
++    clip_model = clip_model.to("cpu")
+     clip_tokenizer = open_clip.get_tokenizer("ViT-H-14")
+     
+     # Initialize the dataset
+@@ -383,7 +393,7 @@
+                                          image_size=384,
+                                          vit='swin_l')
+             
+-        tagging_model = tagging_model.eval().to(args.device)
++        tagging_model = tagging_model.eval().to("cpu")
+         
+         # initialize Tag2Text
+         tagging_transform = TS.Compose([
+@@ -444,7 +454,10 @@
+             raw_image = tagging_transform(raw_image).unsqueeze(0).to(args.device)
+             
+             if args.class_set == "ram":
++                if idx < 3: print(f"residency frame={idx} RAM begin", flush=True)
++                _resource_place(tagging_model, args.device)
+                 res = inference_ram(raw_image , tagging_model)
++                _resource_place(tagging_model, "cpu")
+                 caption="NA"
+             elif args.class_set == "tag2text":
+                 res = inference_tag2text.inference(raw_image , tagging_model, specified_tags)
+@@ -506,12 +519,15 @@
+         else:
+             if args.detector == "dino":
+                 # Using GroundingDINO to detect and SAM to segment
++                if idx < 3: print(f"residency frame={idx} DINO begin", flush=True)
++                _resource_place(grounding_dino_model.model, args.device)
+                 detections = grounding_dino_model.predict_with_classes(
+                     image=image, # This function expects a BGR image...
+                     classes=classes,
+                     box_threshold=args.box_threshold,
+                     text_threshold=args.text_threshold,
+                 )
++                _resource_place(grounding_dino_model.model, "cpu")
+             
+                 if len(detections.class_id) > 0:
+                     ### Non-maximum suppression ###
+@@ -559,15 +575,19 @@
+             if len(detections.class_id) > 0:
+                 
+                 ### Segment Anything ###
++                if idx < 3: print(f"residency frame={idx} SAM begin", flush=True)
+                 detections.mask = get_sam_segmentation_from_xyxy(
+                     sam_predictor=sam_predictor,
+                     image=image_rgb,
+                     xyxy=detections.xyxy
+                 )
+ 
+-                # Compute and save the clip features of detections  
++                # Compute and save the clip features of detections
++                if idx < 3: print(f"residency frame={idx} CLIP begin", flush=True)
++                _resource_place(clip_model, args.device)
+                 image_crops, image_feats, text_feats = compute_clip_features(
+                     image_rgb, detections, clip_model, clip_preprocess, clip_tokenizer, classes, args.device)
++                _resource_place(clip_model, "cpu")
+             else:
+                 image_crops, image_feats, text_feats = [], [], []
+             

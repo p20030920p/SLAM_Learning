@@ -1,0 +1,73 @@
+{
+  "status": "validated_three_frame_contract",
+  "frames": [
+    {
+      "frame": "frame000000.pkl.gz",
+      "detections": 12,
+      "classes": 9,
+      "feature_dimension": 1024,
+      "image_shape": [
+        680,
+        1200,
+        3
+      ]
+    },
+    {
+      "frame": "frame000005.pkl.gz",
+      "detections": 12,
+      "classes": 11,
+      "feature_dimension": 1024,
+      "image_shape": [
+        680,
+        1200,
+        3
+      ]
+    },
+    {
+      "frame": "frame000010.pkl.gz",
+      "detections": 14,
+      "classes": 15,
+      "feature_dimension": 1024,
+      "image_shape": [
+        680,
+        1200,
+        3
+      ]
+    }
+  ],
+  "artifacts": {
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_detections_ram_withbg_allclasses/frame000000.pkl.gz": {
+      "bytes": 1764065,
+      "sha256": "56ce3fd7b0b6f76a41e14705371d357fab6a58c5eb635e048046a3d114fd91d1"
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_vis_ram_withbg_allclasses/frame000000.jpg": {
+      "bytes": 134505,
+      "sha256": "8dc78c9cc15ad2260a3b481428514bb8f83ab6f1c8b5b3ef030ff26388d1b9db"
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_detections_ram_withbg_allclasses/frame000005.pkl.gz": {
+      "bytes": 1961326,
+      "sha256": "b7e649e578b4daa68eb5b66287e4868f437cdf723979533387d7358d4b940395"
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_vis_ram_withbg_allclasses/frame000005.jpg": {
+      "bytes": 157082,
+      "sha256": "da7a34cfeac50281ee8ae24d1ab29b61250f0258ddf68970d685b468ec7dbdd8"
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_detections_ram_withbg_allclasses/frame000010.pkl.gz": {
+      "bytes": 1062727,
+      "sha256": "6937f5b9085802a8e4ae66c2485d1d630c4b323d0fcaedcfddcdf824a0915cff"
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_vis_ram_withbg_allclasses/frame000010.jpg": {
+      "bytes": 149938,
+      "sha256": "c5da8ea701f5627a380d8459029018ebbcc911d5d62384a247cdbd763f267d93"
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_classes_ram_withbg_allclasses.json": {
+      "bytes": 152,
+      "sha256": "5fb9d622b91c59635dc268dcffebae510e1985b7d209cca4e3af08303368683c"
+    }
+  },
+  "record_identity": {
+    "bytes": 3756,
+    "sha256": "465219fbba5cc1f03a202ec006012c510899dde1323335851a597ef610a5af67"
+  },
+  "scope": "Three isolated author frames with sequential GPU residency; original forward passes, weights and parameters. Not full frontend completion, semantic accuracy, peak-resource measurement or numerical equivalence proof."
+}

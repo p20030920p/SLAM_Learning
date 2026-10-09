@@ -144,12 +144,12 @@ finally:
     # Stop only this retry's unique scope before releasing the queue on cancellation.
     # Let the recorder finish so the original stage receives a truthful terminal record.
     if recorder is not None and recorder.poll() is None:
-        subprocess.run(['systemctl', '--user', 'kill', '--kill-whom=all', '--signal=TERM', evaluation_unit + '.scope'],
+        subprocess.run(['systemctl', '--user', 'kill', '--kill-who=all', '--signal=TERM', evaluation_unit + '.scope'],
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         try:
             recorder.wait(timeout=15)
         except subprocess.TimeoutExpired:
-            subprocess.run(['systemctl', '--user', 'kill', '--kill-whom=all', '--signal=KILL', evaluation_unit + '.scope'],
+            subprocess.run(['systemctl', '--user', 'kill', '--kill-who=all', '--signal=KILL', evaluation_unit + '.scope'],
                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             recorder.wait(timeout=15)
     if held is not None:

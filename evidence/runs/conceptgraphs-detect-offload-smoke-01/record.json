@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "method": "ConceptGraphs-Detect-sequential-GPU-residency",
+  "scope": "Replica office1, start=0,end=15,stride=5: 3 frames; generated source copy explicitly offloads RAM, DINO and CLIP to CPU between their original CUDA forward passes; SAM stays CUDA-resident. No weights, dtypes, prompts, thresholds, masks, classes or frame-selection changes. Unified diff and generated entry recorded. Resource compatibility variant; numerical equivalence and default memory behavior unproven. RAM/swap bounds 16G/48G; no semantic evaluation in this frontend entry.",
+  "status": "executed",
+  "started_at": "2026-10-09T13:18:41.252162+00:00",
+  "command": [
+    "systemd-run",
+    "--user",
+    "--scope",
+    "--unit",
+    "slam-author-conceptgraphs-detect-offload-smoke-01",
+    "-p",
+    "MemoryMax=16G",
+    "-p",
+    "MemorySwapMax=48G",
+    "/home/qzl/projects/SLAM_Author_Originals/envs/conceptgraphs/bin/python",
+    "/home/qzl/projects/SLAM_Author_Originals/variants/conceptgraphs-detect-offload-smoke-01/generate_gsa_results.py",
+    "--dataset_root",
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset",
+    "--dataset_config",
+    "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph/dataset/dataconfigs/replica/replica.yaml",
+    "--scene_id",
+    "office1",
+    "--class_set",
+    "ram",
+    "--stride",
+    "5",
+    "--end",
+    "15",
+    "--box_threshold",
+    "0.2",
+    "--text_threshold",
+    "0.2",
+    "--add_bg_classes",
+    "--accumu_classes",
+    "--exp_suffix",
+    "withbg_allclasses"
+  ],
+  "cwd": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs/conceptgraph",
+  "source": "/home/qzl/projects/SLAM_Author_Originals/upstream/conceptgraphs",
+  "source_commit": "93277a02bd89171f8121e84203121cf7af9ebb5d",
+  "source_dirty_before": "",
+  "exit_code": 0,
+  "artifacts": {
+    "run.log": {
+      "sha256": "eb8b265cb2a1ea9fecc29a3a914f7f64a624a78fe8dfe435915f84f2de1a044f",
+      "bytes": 1981
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/variants/conceptgraphs-detect-offload-smoke-01/generate_gsa_results.py": {
+      "sha256": "0856df6d53a24fcaa032e882897871a3398ab18c86bbf70ac6bff02214cf3e27",
+      "bytes": 25361
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/variants/conceptgraphs-detect-offload-smoke-01/model-residency-compatibility.diff": {
+      "sha256": "b15302d5017d70c3d78fc6686efe28396949c1285f036ad63d6eacb799b9782b",
+      "bytes": 4049
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_classes_ram_withbg_allclasses.json": {
+      "sha256": "5fb9d622b91c59635dc268dcffebae510e1985b7d209cca4e3af08303368683c",
+      "bytes": 152
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_detections_ram_withbg_allclasses/frame000010.pkl.gz": {
+      "sha256": "6937f5b9085802a8e4ae66c2485d1d630c4b323d0fcaedcfddcdf824a0915cff",
+      "bytes": 1062727
+    },
+    "/home/qzl/projects/SLAM_Author_Originals/local/cg-office1-offload-smoke-01/dataset/office1/gsa_vis_ram_withbg_allclasses/frame000010.jpg": {
+      "sha256": "c5da8ea701f5627a380d8459029018ebbcc911d5d62384a247cdbd763f267d93",
+      "bytes": 149938
+    }
+  },
+  "boot_id": "ec2611a8-bbe1-4c8a-9602-803bbf9bc5ec",
+  "environment": {
+    "OMP_NUM_THREADS": "8",
+    "OPENBLAS_NUM_THREADS": "8",
+    "MKL_NUM_THREADS": "8",
+    "WANDB_MODE": "disabled",
+    "HF_HUB_CACHE": "/home/qzl/projects/SLAM_Author_Originals/cache/huggingface/hub",
+    "GSA_PATH": "/home/qzl/projects/SLAM_Author_Originals/dependencies/Grounded-Segment-Anything",
+    "DISPLAY": ":0"
+  },
+  "pid": 357,
+  "elapsed_seconds": 91.35141161000001,
+  "source_dirty_after": ""
+}

@@ -29170,5 +29170,113 @@
   "runs/public-semantic-benchmark-07-restart-recovery-01/diagnosis.json": {
     "bytes": 1589,
     "sha256": "06ba1788cea48ae193e916c55dafd22c1dc9d14527614582690f4f98f10596cf"
+  },
+  "runs/cg-office1-gpu-diagnosis-01/diagnosis.json": {
+    "bytes": 555,
+    "sha256": "3e2f2b365259b497e966e6578bcb7ce40260e1a6e69a5e88122e52c5b976e995"
+  },
+  "runs/cg-office1-gpu-diagnosis-01/hovsg-replica-default-07-cancelled.json": {
+    "bytes": 702,
+    "sha256": "181538de0b4d77a408d92edc71113761f89aea8a9b2d63c6c1a9fdec59426d26"
+  },
+  "runs/cg-office1-gpu-diagnosis-01/hovsg-room0-batch16-stages-05-cancelled.json": {
+    "bytes": 656,
+    "sha256": "fdf9aeeb6ab47be8b3315ccf4e51b19b20f01115992d8b35f656b454191b3e17"
+  },
+  "runs/cg-office1-gpu-diagnosis-01/record-after-cancellation.json": {
+    "bytes": 2430,
+    "sha256": "7f57decb487721055e38f13a089e4c9beb58348263bb09f30f61d4af0f55808a"
+  },
+  "runs/cg-office1-gpu-diagnosis-01/record-before-cancellation.json": {
+    "bytes": 1822,
+    "sha256": "1afd50a707cfc56c1b96d78fae6b566dd21172065264ce61d7236b4cdd1a2ae8"
+  },
+  "runs/cg-office1-gpu-diagnosis-01/stack-before-cancellation.log": {
+    "bytes": 1614,
+    "sha256": "ad690939d3ac55052f616b6d5c75a52f071e65ffb3cb62e52419e3562bac7e5b"
+  },
+  "runs/public-semantic-benchmark-08/orchestration.log": {
+    "bytes": 263,
+    "sha256": "d906aa62a884c9e4fc54f633772211630f960c06941ad2203cd38177d5974c8c"
+  },
+  "runs/public-semantic-benchmark-08/outcomes.json": {
+    "bytes": 1446,
+    "sha256": "2ab7e46b31cc4dd92f1d64ea4f375e97b647c5d489c073bc2ef0ed157b200fb2"
+  },
+  "runs/public-semantic-benchmark-08/preserved-interrupted/office1-ram_withbg_allclasses/preservation.json": {
+    "bytes": 60038,
+    "sha256": "0e8aefc7b1c55093de62d6008fba86ca6d2b76e5a9e0a2194a79fef57456d82c"
+  },
+  "runs/public-semantic-benchmark-08-office1-detect-frontend/record.json": {
+    "bytes": 2430,
+    "sha256": "7f57decb487721055e38f13a089e4c9beb58348263bb09f30f61d4af0f55808a"
+  },
+  "runs/public-semantic-benchmark-08-office1-detect-frontend/run.log": {
+    "sha256": "508b842b408ba3e5063a0eefa14327a56c3a025679c146ef01c06b64e90d78b7",
+    "bytes": 1316
+  },
+  "runs/conceptgraphs-detect-allocator-smoke-01/record.json": {
+    "bytes": 2785,
+    "sha256": "e0b7fa29bf0591e35d4b163cff05853b7a31cc5095b0fb91da0ce7f66c9fc289"
+  },
+  "runs/conceptgraphs-detect-allocator-smoke-01/run.log": {
+    "sha256": "1cde94e3954cfd636b3ce02122ef623ca73004a1b67bc897c3385f4bf964dc22",
+    "bytes": 1291
+  },
+  "runs/chamferdist-cuda-probe-02/record.json": {
+    "bytes": 1023,
+    "sha256": "93836866235694f1a1580691295f190154e0bd8161e5c6d78c3afbdb2b6aac2c"
+  },
+  "runs/chamferdist-cuda-probe-02/run.log": {
+    "sha256": "543272ea83f05065760585eafd488f66804cff4a6f29fd7ee66428b7e69202e4",
+    "bytes": 481
+  },
+  "runs/conceptgraphs-detect-offload-smoke-01/record.json": {
+    "bytes": 3756,
+    "sha256": "465219fbba5cc1f03a202ec006012c510899dde1323335851a597ef610a5af67"
+  },
+  "runs/conceptgraphs-detect-offload-smoke-01/run.log": {
+    "sha256": "eb8b265cb2a1ea9fecc29a3a914f7f64a624a78fe8dfe435915f84f2de1a044f",
+    "bytes": 1981
+  },
+  "runs/conceptgraphs-detect-offload-smoke-01/validation.json": {
+    "bytes": 2869,
+    "sha256": "f4af49c10e10218bd23af00a75286de37b60871d920d60f07c8d2a1fc358967d"
+  },
+  "variants/conceptgraphs-detect-offload-smoke-01/generate_gsa_results.py": {
+    "sha256": "0856df6d53a24fcaa032e882897871a3398ab18c86bbf70ac6bff02214cf3e27",
+    "bytes": 25361
+  },
+  "variants/conceptgraphs-detect-offload-smoke-01/model-residency-compatibility.diff": {
+    "sha256": "b15302d5017d70c3d78fc6686efe28396949c1285f036ad63d6eacb799b9782b",
+    "bytes": 4049
+  },
+  "local/cg-office1-offload-smoke-01/dataset/office1/gsa_classes_ram_withbg_allclasses.json": {
+    "bytes": 152,
+    "sha256": "5fb9d622b91c59635dc268dcffebae510e1985b7d209cca4e3af08303368683c"
+  },
+  "local/cg-office1-offload-smoke-01/dataset/office1/gsa_detections_ram_withbg_allclasses/frame000010.pkl.gz": {
+    "bytes": 1062727,
+    "sha256": "6937f5b9085802a8e4ae66c2485d1d630c4b323d0fcaedcfddcdf824a0915cff"
+  },
+  "local/cg-office1-offload-smoke-01/dataset/office1/gsa_vis_ram_withbg_allclasses/frame000010.jpg": {
+    "bytes": 149938,
+    "sha256": "c5da8ea701f5627a380d8459029018ebbcc911d5d62384a247cdbd763f267d93"
+  },
+  "local/cg-office1-offload-smoke-01/dataset/office1/gsa_detections_ram_withbg_allclasses/frame000000.pkl.gz": {
+    "bytes": 1764065,
+    "sha256": "56ce3fd7b0b6f76a41e14705371d357fab6a58c5eb635e048046a3d114fd91d1"
+  },
+  "local/cg-office1-offload-smoke-01/dataset/office1/gsa_vis_ram_withbg_allclasses/frame000000.jpg": {
+    "bytes": 134505,
+    "sha256": "8dc78c9cc15ad2260a3b481428514bb8f83ab6f1c8b5b3ef030ff26388d1b9db"
+  },
+  "local/cg-office1-offload-smoke-01/dataset/office1/gsa_detections_ram_withbg_allclasses/frame000005.pkl.gz": {
+    "bytes": 1961326,
+    "sha256": "b7e649e578b4daa68eb5b66287e4868f437cdf723979533387d7358d4b940395"
+  },
+  "local/cg-office1-offload-smoke-01/dataset/office1/gsa_vis_ram_withbg_allclasses/frame000005.jpg": {
+    "bytes": 157082,
+    "sha256": "da7a34cfeac50281ee8ae24d1ab29b61250f0258ddf68970d685b468ec7dbdd8"
   }
 }
