@@ -1,7 +1,5 @@
 # Measured experiment ledger
 
-English | [中文](REPORT.zh-CN.md)
-
 Generated from run records. Execution, paper agreement and hypothesis validation are distinct.
 
 | Experiment | Scope | Execution | Paper table | SA % | DA % | AA % | HA % | Evidence |

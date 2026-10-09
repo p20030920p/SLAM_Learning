@@ -1,0 +1,201 @@
+{
+  "kind": "posthoc_support_control",
+  "status": "executed",
+  "started_at": "2026-10-08T18:01:23.253080+00:00",
+  "configuration": {
+    "schema_version": 1,
+    "id": "conceptgraphs-room1-delayed-correction-v1",
+    "design_frozen_at_utc": "2026-10-08T17:28:00Z",
+    "status": "design_frozen_annotations_pending",
+    "scene": "room1",
+    "mapping_frames": [
+      0,
+      25,
+      50,
+      75,
+      100,
+      125,
+      150,
+      175,
+      200,
+      225,
+      250,
+      275,
+      300,
+      325,
+      350,
+      375
+    ],
+    "reference_frames": [
+      12,
+      137,
+      262,
+      387
+    ],
+    "correction_after_observations": 8,
+    "evaluation_observations": [
+      8,
+      12,
+      16
+    ],
+    "translation_rms_m": [
+      0.1,
+      0.3
+    ],
+    "seeds": [
+      417,
+      518,
+      619
+    ],
+    "mapping_seed": 7,
+    "error_model": "Prefix world-x Gaussian random walk, first pose fixed, normalized to prefix RMS. One exact correction of all eight historical poses after observation eight; subsequent observations use exact supplied poses. No rotations, estimated uncertainty or object motion.",
+    "arms": [
+      "native",
+      "threshold",
+      "visibility",
+      "fixed_association",
+      "oracle_replay"
+    ],
+    "native_threshold": 1.2,
+    "simple_threshold": 1.0,
+    "visibility_min_support": 0.2,
+    "visibility_min_pixels": 16,
+    "visibility_depth_tolerance_m": 0.1,
+    "reference_distance_m": 0.1,
+    "reference_coverage_min": 0.2,
+    "reference_precision_min": 0.5,
+    "annotation_policy": "Select up to four identifiable static object instances from the four raw reference RGB-D views, prioritizing cross-view identity and excluding wall/floor/ceiling. Record every visible selected instance in all reference views. Polygons, instance IDs, class queries and exclusions must be frozen before SAM/CLIP and mapper outputs are inspected. AI-assisted labels require independent human audit and do not constitute official Replica GT.",
+    "coordinate_control": "Rebuild corrected geometry using the complete native add/merge/denoise/filter event trace while forcing all historical association and postprocess membership decisions; retain original fused semantic features. This is a strong oracle geometry control, not a deployable low-memory method. Never infer irrecoverable association loss from a single rigid centroid shift.",
+    "primary_comparison": "Immediately after correction, compare fixed-association corrected geometry with native full replay at the same exact poses and frozen frontend. Use identity support/contamination, partial-surface coverage and restricted top-1 retrieval separately. Continue four and eight observations to measure persistence.",
+    "decision_rule": "A loss attributable to historical decisions requires oracle replay to improve independently annotated target recovery/identity or restricted query correctness over fixed-association geometry in at least two of three seeds at an RMS level, with no zero-error adapter mismatch. Smaller coordinate distance alone is insufficient. If simple guards match recovery, scope is narrowed; no benefit means do not implement H1 yet. One new scene and seeded interventions do not establish generalization or a common four-method bottleneck.",
+    "freeze_gate": "No native mapping until the annotation file and source RGB-D manifest hashes are bound in a second immutable freeze record. Later code repairs are logged, not silently substituted for frozen inputs."
+  },
+  "freeze_sha256": "939f87efd1b59136642817a0110f635603bfec15d9e5f41448442a0d0642c49a",
+  "cells": [
+    {
+      "name": "fixed_association-0.10-417",
+      "status": "executed",
+      "record_sha256": "c96d3ca29663f5519a068e5c6bb4d1026fab07e3f24eb750cdc8d5e2d64f194f"
+    },
+    {
+      "name": "fixed_association-0.10-518",
+      "status": "executed",
+      "record_sha256": "83ef49a10346f6cd2117324a27255c20de62f14d0af2e97be1395245bc1cc2d6"
+    },
+    {
+      "name": "fixed_association-0.10-619",
+      "status": "executed",
+      "record_sha256": "75951ec8d785eed26567e7fbc68b25c8c9496299e62592966b8eb13838c3a81b"
+    },
+    {
+      "name": "fixed_association-0.30-417",
+      "status": "executed",
+      "record_sha256": "1312f9c2b9d293173ed21adf1ddea02af7a7cd5b6c70c7c70761b2783f8b49bf"
+    },
+    {
+      "name": "fixed_association-0.30-518",
+      "status": "executed",
+      "record_sha256": "a47a0e473cb24edd58f76b1783cbc6d4183bfb14f06876a39c8e264815e09c7c"
+    },
+    {
+      "name": "fixed_association-0.30-619",
+      "status": "executed",
+      "record_sha256": "3e0ddd058a19f409f620bbab3ee9de33f4a2bace78a162c5b4843136a68f985f"
+    }
+  ],
+  "gates": {},
+  "artifacts": {
+    "protocol.json": {
+      "sha256": "2326035a4fcaf22695b08c28ba87fb94b1bcbebe83471dff3549424fadfc1640",
+      "bytes": 3095
+    },
+    "frontend-record.json": {
+      "sha256": "32b51db651435f24ae9b27b3ca3c8edbdbe6f45d7156c9482ca4250ad2845d56",
+      "bytes": 4823
+    },
+    "text_features.npy": {
+      "sha256": "7ab8ceda896a73b31f7165e2e786a82c6cc1b51218ee0e578422ab456cd14b22",
+      "bytes": 16512
+    },
+    "executed-metrics.py": {
+      "sha256": "259970e76499941ec1041f3c93f3dcb15b095d825f8239f298ab4a01aae9c606",
+      "bytes": 5793
+    },
+    "executed-adapter.py": {
+      "sha256": "20917f587de34c0f457526e3af685a4b9228682a3bbb367644cd17129674e0e8",
+      "bytes": 21552
+    },
+    "annotations.json": {
+      "sha256": "d8238220c27f29dccf073454196c54b01dfb2ece93cea34ecbcb876ba5b5b3c9",
+      "bytes": 1614
+    },
+    "source-manifest.json": {
+      "sha256": "683a603dcb5d554367e879e9b45e8ec6ee6a320b91785ca58f70efdf232990ae",
+      "bytes": 10925
+    },
+    "freeze.json": {
+      "sha256": "939f87efd1b59136642817a0110f635603bfec15d9e5f41448442a0d0642c49a",
+      "bytes": 558
+    }
+  },
+  "primary_parent_sha256": "15979d875430ea2318de51b8d9707bea6c29dbaab5386cd95d35849ad2435aed",
+  "inherited_parent_gates": {
+    "extracted-loop-vs-native-batch": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 36
+    },
+    "zero-fixed_association-8": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 53
+    },
+    "zero-fixed_association-12": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 68
+    },
+    "zero-fixed_association-16": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 36
+    },
+    "zero-oracle_replay-8": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 53
+    },
+    "zero-oracle_replay-12": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 68
+    },
+    "zero-oracle_replay-16": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 36
+    }
+  },
+  "execution_subset": {
+    "arms": [
+      "fixed_association"
+    ],
+    "obj_min_detections": 1,
+    "declared_after_primary_inspection": true
+  },
+  "finished_at": "2026-10-08T18:04:21.312713+00:00"
+}

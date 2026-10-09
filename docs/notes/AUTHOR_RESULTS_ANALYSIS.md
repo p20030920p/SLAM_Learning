@@ -1,0 +1,66 @@
+# New author-workflow evidence and its research limits
+
+English · [中文](AUTHOR_RESULTS_ANALYSIS.zh-CN.md) · [Index](README.md)
+
+Updated 2026-10-09. This addition concerns the independent [author-originals branch](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals). Earlier tables in this study-guide branch remain historical subset and exploratory records. Do not concatenate the two experiments. Consult the [live scope](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/STATUS.zh-CN.md) for completed versus queued stages.
+
+Both original LiDAR entries and the author's PCL export/scoring finished all four public labeled releases: 1997 scans per method. These are single runs, percentages, without repeatability intervals.
+
+| Release | DUFOMap SA / DA | BeautyMap SA / DA |
+| --- | ---: | ---: |
+| 00, 141 scans | 97.9635 / 98.7196 | 96.9529 / 98.3382 |
+| 05, 321 scans | 97.3035 / 96.7986 | 96.7933 / 98.2248 |
+| AV2, 575 scans | 96.6651 / 88.8985 | 92.4013 / 85.1671 |
+| Semi-indoor, 960 scans | 99.6373 / 83.0049 | 94.7785 / 90.4048 |
+
+[Immutable scoring log](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/evidence/runs/released-lidar-01/scores/run.log), [parameters and figure](https://github.com/p20030920p/SLAM_Learning/blob/cf21494/docs/STATUS.zh-CN.md). The paper tables use selected KITTI intervals rather than full sequences. BeautyMap AV2 transfers the outdoor example parameters as an additional experiment outside that paper's reported scenes.
+
+The new [DUFOMap Table IV ablation](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/DUFOMAP_TABLE4.zh-CN.md) matches all five SA/DA/AA rows at the paper's two-decimal precision. SA changes from 14.89% without the error margins to 97.96% with full settings. Error compensation is therefore an existing strong baseline, not a new contribution. This does not test H1: recovery of object correspondence and query coordinates after delayed correction still needs its own experiment.
+
+The new [BeautyMap Table III and historical-protocol audit](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/KITTI_PAPER_PROTOCOL.zh-CN.md) matches all nine SA/DA/HA values for 0.5/1/2m cells on 02 at two decimals. Coarser cells increase DA and reduce SA here: an existing author parameter tradeoff, not H1 effectiveness. The historical scorer prints AA; the original current HA scorer was run separately on verified original exports to avoid confusing AA with HA. The 01 gap remains, and matching 02 does not establish all historical settings or inputs as identical.
+
+Semi-indoor results expose a static-preservation/dynamic-removal tradeoff. Compare false deletion at matched change recall; a composite score conceals error types.
+
+Both methods consume supplied poses, so these runs establish no ATE/RPE or online localization gain. BeautyMap consumes prior XYZ geometry; the GT label channel is not used in cleaning decisions.
+
+The completed [DUFOMap Python output audit](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/DUFOMAP_OUTPUT_AUDIT.zh-CN.md) gives raw/voxel SA of 99.8860/51.6256% at 0.05m; voxel SA rises to 98.9436% at 0.10m. Representation and threshold strongly affect scoring, including DA.
+
+The 0.10m sensitivity analysis does not replace the paper metric or support H1. Python also hardcodes d_p=2, whereas C++ defaults to 1; their score difference cannot isolate representation alone.
+
+ConceptGraphs' complete room0 frontend, original mapping, RGB reference fusion and original semantic evaluation have succeeded. [Native results and denominators](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md): mIoU 21.3460%, frequency-weighted IoU 50.1379%; 23 classes and 4,085,377 reconstructed points enter the confusion matrix. Independent recalculation passed. This is one scene; `all` means room0 only. Scene-GT vocabulary and 1NN filling of the RGB surface do not establish open-world retrieval or geometry accuracy. Original mF1 is 25.2661% using `max(1,p+r)`; standard harmonic macro-F1 is a separate 25.8221% supplement. The 77 object records are not instance accuracy. These scores stay separate from earlier eight-observation exploratory metrics and do not test H1.
+
+Four additional original CG scene evaluations and independent matrix audits have completed. The table uses original scene rows, without a partial-benchmark average.
+
+| Scene | SAM-only mIoU / F-mIoU % | Detect mIoU / F-mIoU % |
+| --- | ---: | ---: |
+| room0 | 21.3460 / 50.1379 | 25.5987 / 45.6541 |
+| office0 | 20.4157 / 33.0546 | 17.5151 / 30.4729 |
+| office1 | 14.9755 / 14.7128 | Incomplete |
+
+Detect improves room0 macro IoU while reducing weighted IoU; zero-IoU classes increase from 10/23 to 12/23. Both IoUs decrease on office0. The original frontend and mapping configurations differ together, so this is not a one-component ablation or evidence of general Detect superiority. Scene rows use GT-present classes, while `all` slices both matrix axes using nonzero reconstructed GT support. Even a single-scene run can therefore have different rows: office1 macro IoU is 14.9755% versus 16.3958%. Do not average individual `all` rows into an eight-scene result. H1 experiments must freeze the frontend, support and class subset. [Original CSVs, figure and protocol explanation](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/CONCEPTGRAPHS_SCENE_RESULTS.zh-CN.md).
+
+HOV-SG default 200-frame fusion previously hit confirmed OOM, then timed out in retry 03 without saving a final map. The additional [20-frame home result](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/HOVSG_HOME_RESULTS.zh-CN.md) completed with 156 segments, 399,663 global points, and original evaluation: mIoU 34.7500%, frequency-weighted IoU 62.8725%, mAcc 43.7114%, pAcc 72.1861%.
+
+Its first evaluation failed because our wrapper selected a palette missing class 0. The retry changes only the palette path and verifies the saved map.
+
+The audit checks the hash-bound original log; no independently recomputed confusion matrix is claimed. Sampling changes observations and fusion size together, so success cannot isolate an individual memory mechanism.
+
+This does not complete default sampling or HM3D hierarchy evaluation, and the native score cannot rank against CG's different protocol.
+
+The [per-class decomposition](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md) shows blinds/sofa IoU of 94.77/74.78%, but rug/table have zero predictions despite GT scored-surface shares of 18.34/6.36%. Ten of 23 classes have zero IoU. This is not only a rare-class issue. Zero semantic predictions do not establish missing geometry or identify the responsible frontend, naming, association or pose mechanism. H1 experiments must keep the frontend fixed and measure identity/coordinate recovery separately from these native semantic errors.
+
+A [60-second original viewer recording](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/results/videos/conceptgraphs-room0-original-window.mp4) now shows the verified map with RGB/instance colors and orbit controls. Display color changes are not an accuracy comparison.
+
+Keep resource issues separate. The pinned HOV-SG [merge function](https://github.com/hovsg/HOV-SG/blob/d6e65a53c8be6faec3f01f00d1644d967f89e605/hovsg/utils/graph_utils.py#L373) accepts `voxel_size` but appends points and runs DBSCAN without voxel downsampling inside that function. This suggests a factor to investigate using per-round point counts, RAM/swap peaks and stage time; it does not establish the sole OOM cause or support H1. SAM microbatching reduces GPU pressure without guaranteeing that CPU mask fusion fits.
+
+New original KITTI inputs expose another protocol issue: all 141 scans reconstructed by the current author's 50m preprocessing differ in point count from the older 00 release, and the supplied poses differ too. [Download and protocol records](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/guides/DATA_ACCESS.zh-CN.md). Historical extraction restores all 141 point counts but not byte identity or the 00/01 paper scores. Keep current preprocessing, historical reconstruction and released inputs separate; these differences alone establish neither algorithm degradation, a refutation of the paper, nor H1 effectiveness.
+
+On the same new 02 input, DUFOMap SA/DA is 68.6114/89.2862%, versus default BeautyMap 83.4254/84.6594%. [Original scores and three cell sizes](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/KITTI_SELECTED_RESULTS.zh-CN.md). This makes static preservation a useful target for paired interventions, keeping observations/evaluation fixed and varying poses, visibility or parameters separately. Cross-scene scores alone do not identify the cause.
+
+A concise motivation is: original cleaning works, with scene-dependent tradeoffs; what remains untested is recovery of object correspondence and query coordinates after delayed pose correction. Test geometry correction, reassociation and bounded replay on identical observations, measuring change recall, query coverage, stale duration, latency and memory. Reject an additional reassociation mechanism if geometry-only correction matches full replay; reject apparent deletion gains obtained by retaining stale targets. These new baselines did not run H1 or prove a shared dominant failure mechanism.
+
+Keep each semantic method's native GT support, ignored classes and interpolation protocol explicit; their native mIoU numbers do not support direct cross-method ranking. [Protocol comparison](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/reports/SCOPE.zh-CN.md), [existing analysis and rejection controls](LAB_ANALYSIS.md).
+
+At 02:29 Moscow on 2026-10-09, HOV-SG default-sampling retry 03 reached its configured 7200-second wall-time limit during hierarchical fusion. All 200 native frames were extracted, but no final PLY/PT map was saved. This is distinct from the previous OOM. [Bound timeout record/log hashes](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/results/runs/hovsg-room0-batch16-stages-03-features/diagnostics/timeout-diagnosis.json). The home variant later completed evaluation; it does not repair the default run's incomplete status.
+
+The [GPU diagnosis](https://github.com/p20030920p/SLAM_Learning/blob/reproduce/author-originals/docs/guides/CG_GPU_RECOVERY.zh-CN.md) records a deliberately cancelled first-frame stall, an unsuccessful allocator probe, and three valid frames from explicitly disclosed sequential model residency. Queue 09 uses this resource variant for new Detect frontends; default numerical equivalence is unproven. HOV default 06/follower 08 wait. These diagnostics add no semantic score or H1-R/H1-U evidence.

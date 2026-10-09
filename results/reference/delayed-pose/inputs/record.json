@@ -1,0 +1,349 @@
+{
+  "kind": "delayed_pose_correction",
+  "status": "executed",
+  "started_at": "2026-10-08T17:48:02.377034+00:00",
+  "configuration": {
+    "schema_version": 1,
+    "id": "conceptgraphs-room1-delayed-correction-v1",
+    "design_frozen_at_utc": "2026-10-08T17:28:00Z",
+    "status": "design_frozen_annotations_pending",
+    "scene": "room1",
+    "mapping_frames": [
+      0,
+      25,
+      50,
+      75,
+      100,
+      125,
+      150,
+      175,
+      200,
+      225,
+      250,
+      275,
+      300,
+      325,
+      350,
+      375
+    ],
+    "reference_frames": [
+      12,
+      137,
+      262,
+      387
+    ],
+    "correction_after_observations": 8,
+    "evaluation_observations": [
+      8,
+      12,
+      16
+    ],
+    "translation_rms_m": [
+      0.1,
+      0.3
+    ],
+    "seeds": [
+      417,
+      518,
+      619
+    ],
+    "mapping_seed": 7,
+    "error_model": "Prefix world-x Gaussian random walk, first pose fixed, normalized to prefix RMS. One exact correction of all eight historical poses after observation eight; subsequent observations use exact supplied poses. No rotations, estimated uncertainty or object motion.",
+    "arms": [
+      "native",
+      "threshold",
+      "visibility",
+      "fixed_association",
+      "oracle_replay"
+    ],
+    "native_threshold": 1.2,
+    "simple_threshold": 1.0,
+    "visibility_min_support": 0.2,
+    "visibility_min_pixels": 16,
+    "visibility_depth_tolerance_m": 0.1,
+    "reference_distance_m": 0.1,
+    "reference_coverage_min": 0.2,
+    "reference_precision_min": 0.5,
+    "annotation_policy": "Select up to four identifiable static object instances from the four raw reference RGB-D views, prioritizing cross-view identity and excluding wall/floor/ceiling. Record every visible selected instance in all reference views. Polygons, instance IDs, class queries and exclusions must be frozen before SAM/CLIP and mapper outputs are inspected. AI-assisted labels require independent human audit and do not constitute official Replica GT.",
+    "coordinate_control": "Rebuild corrected geometry using the complete native add/merge/denoise/filter event trace while forcing all historical association and postprocess membership decisions; retain original fused semantic features. This is a strong oracle geometry control, not a deployable low-memory method. Never infer irrecoverable association loss from a single rigid centroid shift.",
+    "primary_comparison": "Immediately after correction, compare fixed-association corrected geometry with native full replay at the same exact poses and frozen frontend. Use identity support/contamination, partial-surface coverage and restricted top-1 retrieval separately. Continue four and eight observations to measure persistence.",
+    "decision_rule": "A loss attributable to historical decisions requires oracle replay to improve independently annotated target recovery/identity or restricted query correctness over fixed-association geometry in at least two of three seeds at an RMS level, with no zero-error adapter mismatch. Smaller coordinate distance alone is insufficient. If simple guards match recovery, scope is narrowed; no benefit means do not implement H1 yet. One new scene and seeded interventions do not establish generalization or a common four-method bottleneck.",
+    "freeze_gate": "No native mapping until the annotation file and source RGB-D manifest hashes are bound in a second immutable freeze record. Later code repairs are logged, not silently substituted for frozen inputs."
+  },
+  "freeze_sha256": "939f87efd1b59136642817a0110f635603bfec15d9e5f41448442a0d0642c49a",
+  "cells": [
+    {
+      "name": "native-0.00-0",
+      "status": "executed",
+      "record_sha256": "12d2ebc868bcc21998f0ccd6a80a3c8308e8229d76e5a6ccdbf06183ce70de81"
+    },
+    {
+      "name": "threshold-0.00-0",
+      "status": "executed",
+      "record_sha256": "73867f958af8bc8d070d1f2ec2a62c49e84352f0ce3f2ef69c6bf08e65d3a06a"
+    },
+    {
+      "name": "visibility-0.00-0",
+      "status": "executed",
+      "record_sha256": "e172227b9170f283cd63b751bd36efbe1de452d3edb88cfc615a9a1a40ea06c1"
+    },
+    {
+      "name": "fixed_association-0.00-0",
+      "status": "executed",
+      "record_sha256": "70924abe0a34196e6cf1ae88cfe59a9ef3dff181c601dcc4881dfe67ea481a74"
+    },
+    {
+      "name": "oracle_replay-0.00-0",
+      "status": "executed",
+      "record_sha256": "f85887d4bb3f8a9cf23940c9b9dcf3d40efae540d0a1fee7a4292b43d083c0d5"
+    },
+    {
+      "name": "native-0.10-417",
+      "status": "executed",
+      "record_sha256": "3142e3238f813ae41aca5dd96c35e2cd61e0b9dcdbffe7be1aa0161824c1e0e1"
+    },
+    {
+      "name": "threshold-0.10-417",
+      "status": "executed",
+      "record_sha256": "16345330c7ea4bbd5311e06808daee657b31058a4c36ce8f7b3d566992cdc0ca"
+    },
+    {
+      "name": "visibility-0.10-417",
+      "status": "executed",
+      "record_sha256": "29428b4f9ca66f3e8392a664f4e52141ec73b996f7fb2d6af0c1875b7324dc94"
+    },
+    {
+      "name": "fixed_association-0.10-417",
+      "status": "executed",
+      "record_sha256": "5f988a5337154d135a969e267bfa6b68a3a18f33943ba73e0ad6d542651abca7"
+    },
+    {
+      "name": "oracle_replay-0.10-417",
+      "status": "executed",
+      "record_sha256": "2f93cba77dc1e84a9bdf6a941b070e282ee848be0a856324fabc5d8c50b2ea75"
+    },
+    {
+      "name": "native-0.10-518",
+      "status": "executed",
+      "record_sha256": "e99e30b41bd3475f27e57a6a7ec34670ff136eddfdf46b634eab5d0b06fd8cdc"
+    },
+    {
+      "name": "threshold-0.10-518",
+      "status": "executed",
+      "record_sha256": "5813dc85de5241035cdd34ed966433baf670e37618722e0d43e261b586b7486d"
+    },
+    {
+      "name": "visibility-0.10-518",
+      "status": "executed",
+      "record_sha256": "6c8095ba01c131c643046b39cbbf8c8c6a182759f0e01969d5408956b65e6ae8"
+    },
+    {
+      "name": "fixed_association-0.10-518",
+      "status": "executed",
+      "record_sha256": "b36ec322c8c20b14ea4b58b5553f2355574bd9ade503352a76ba0e42dde158e7"
+    },
+    {
+      "name": "oracle_replay-0.10-518",
+      "status": "executed",
+      "record_sha256": "b92085b62d8caab33a712a4310bfe78fbed2114ef3d2d145992d8b9f85f6a31c"
+    },
+    {
+      "name": "native-0.10-619",
+      "status": "executed",
+      "record_sha256": "fffb37d913a7123131c98a73869e564535d8e8c50bbdab41f17628cdc047372c"
+    },
+    {
+      "name": "threshold-0.10-619",
+      "status": "executed",
+      "record_sha256": "61722afd7c99145f5f80d69901c1d9103b3490d47ff5d3ae49ac95a828e38451"
+    },
+    {
+      "name": "visibility-0.10-619",
+      "status": "executed",
+      "record_sha256": "e248a77a7d3e44717836fde939100651987f6da2e85ed219bea71457010ae8b2"
+    },
+    {
+      "name": "fixed_association-0.10-619",
+      "status": "executed",
+      "record_sha256": "62c6c1955f3721adcc43160766975f783878168a23c0d622a69669e9696bd0a9"
+    },
+    {
+      "name": "oracle_replay-0.10-619",
+      "status": "executed",
+      "record_sha256": "2d6a5c9592754be24121db765781c2b442eb1b80935a6cc796413e2dec43eea9"
+    },
+    {
+      "name": "native-0.30-417",
+      "status": "executed",
+      "record_sha256": "03d7b6521a3cb1a9cae927f67b6a085108669852e3e22cae0a4a57064b5e2300"
+    },
+    {
+      "name": "threshold-0.30-417",
+      "status": "executed",
+      "record_sha256": "8ba595d35fbd19b3deabc2c6e378f2901bddc39746fac47d32767d1ad338f257"
+    },
+    {
+      "name": "visibility-0.30-417",
+      "status": "executed",
+      "record_sha256": "250223f8d16187a29fbecee6102ac49ecb97a363d37a3c11c10a21ca581a4508"
+    },
+    {
+      "name": "fixed_association-0.30-417",
+      "status": "executed",
+      "record_sha256": "095b02ddb1ca531c273bee3da434442c6c209a5857e6c229e382b7dcb75875dd"
+    },
+    {
+      "name": "oracle_replay-0.30-417",
+      "status": "executed",
+      "record_sha256": "d33c327415e92245a590ff66a8d3c8d382d6b02d93cf13be01de31f190c4ea84"
+    },
+    {
+      "name": "native-0.30-518",
+      "status": "executed",
+      "record_sha256": "dd356591d160a94639e11a28c757748fc4a7e9eb779fafee9fbe98fd4dafce94"
+    },
+    {
+      "name": "threshold-0.30-518",
+      "status": "executed",
+      "record_sha256": "49b9e488ad1caf65b3cbcd8bea7508f8f440d7de081c491943ca140dae8d1a0b"
+    },
+    {
+      "name": "visibility-0.30-518",
+      "status": "executed",
+      "record_sha256": "beab8e583eca42ada248da72fb815b7d6497cfa95bb8b2d97390c0d6ba20dfbc"
+    },
+    {
+      "name": "fixed_association-0.30-518",
+      "status": "executed",
+      "record_sha256": "42fc2d89f177bbc4b52d5d3f93775f683a55daab230889929e6274d53099ba85"
+    },
+    {
+      "name": "oracle_replay-0.30-518",
+      "status": "executed",
+      "record_sha256": "b43bb9941eecc9973530f36192bfa6e27f3dccccf5f1de1eb2242d7895a43da9"
+    },
+    {
+      "name": "native-0.30-619",
+      "status": "executed",
+      "record_sha256": "b0343a93f9f81f4ab65f6dfdadb70d54751bc1ff38ebfeac43489c70f24960bf"
+    },
+    {
+      "name": "threshold-0.30-619",
+      "status": "executed",
+      "record_sha256": "e3e5bb00104babf6ca6e45cd713b268f26505439a2e203e3d50ede588bac43d1"
+    },
+    {
+      "name": "visibility-0.30-619",
+      "status": "executed",
+      "record_sha256": "e9b16c2a01b4a1086db8651baaf56fd4c8f3477b46e10877a2f816dc4c728b41"
+    },
+    {
+      "name": "fixed_association-0.30-619",
+      "status": "executed",
+      "record_sha256": "113c6c6b7e0ab6d7b467f2ed42aedf00212f766d0424b3ddc7b72bb6cd9d64f8"
+    },
+    {
+      "name": "oracle_replay-0.30-619",
+      "status": "executed",
+      "record_sha256": "86a0e73b7833d31731b2cec6750d6296663b34fcbb3a5baf7eeaae7a109b69f3"
+    }
+  ],
+  "gates": {
+    "extracted-loop-vs-native-batch": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 36
+    },
+    "zero-fixed_association-8": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 53
+    },
+    "zero-fixed_association-12": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 68
+    },
+    "zero-fixed_association-16": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 36
+    },
+    "zero-oracle_replay-8": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 53
+    },
+    "zero-oracle_replay-12": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 68
+    },
+    "zero-oracle_replay-16": {
+      "passed": true,
+      "max_coordinate_difference_m": 0.0,
+      "max_feature_difference": 0.0,
+      "memberships_equal": true,
+      "objects": 36
+    }
+  },
+  "artifacts": {
+    "protocol.json": {
+      "sha256": "2326035a4fcaf22695b08c28ba87fb94b1bcbebe83471dff3549424fadfc1640",
+      "bytes": 3095
+    },
+    "native-zero-gate.py": {
+      "sha256": "2b12a059884777880e0bead35dd24a3756d870319caca7262b979eb9a4b7fda6",
+      "bytes": 16843
+    },
+    "native-zero-command.json": {
+      "sha256": "6387fc42f1be08809d8b7ed1206beae4a98de3d87c20abc8d8a2f95674033eee",
+      "bytes": 1034
+    },
+    "frontend-record.json": {
+      "sha256": "32b51db651435f24ae9b27b3ca3c8edbdbe6f45d7156c9482ca4250ad2845d56",
+      "bytes": 4823
+    },
+    "text_features.npy": {
+      "sha256": "7ab8ceda896a73b31f7165e2e786a82c6cc1b51218ee0e578422ab456cd14b22",
+      "bytes": 16512
+    },
+    "executed-metrics.py": {
+      "sha256": "259970e76499941ec1041f3c93f3dcb15b095d825f8239f298ab4a01aae9c606",
+      "bytes": 5793
+    },
+    "native-zero.log": {
+      "sha256": "4fc9e0ad07709e9535753e52a58bdc3213f7cd6f746841aa057956280be7d33e",
+      "bytes": 1621
+    },
+    "executed-adapter.py": {
+      "sha256": "3345e8e51e52ae04330b3f9b4cab92f0c33dc308c7cb04362fd0267f852516ed",
+      "bytes": 20507
+    },
+    "annotations.json": {
+      "sha256": "d8238220c27f29dccf073454196c54b01dfb2ece93cea34ecbcb876ba5b5b3c9",
+      "bytes": 1614
+    },
+    "source-manifest.json": {
+      "sha256": "683a603dcb5d554367e879e9b45e8ec6ee6a320b91785ca58f70efdf232990ae",
+      "bytes": 10925
+    },
+    "freeze.json": {
+      "sha256": "939f87efd1b59136642817a0110f635603bfec15d9e5f41448442a0d0642c49a",
+      "bytes": 558
+    }
+  },
+  "finished_at": "2026-10-08T17:56:10.884637+00:00"
+}

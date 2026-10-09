@@ -1,0 +1,16 @@
+Script started on 2026-10-08 20:37:30+03:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="158" LINES="48"]
+SLAM Learning | FULL TERMINAL SESSION | normal elapsed time
+Started UTC: 2026-10-08T17:37:30+00:00
+Working directory: /mnt/d/workspace/be2/SLAM_DelayedCorrection
+$ /home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python /mnt/d/workspace/be2/SLAM_DelayedCorrection/scripts/prepare_delayed_frontend.py --protocol /mnt/d/workspace/be2/SLAM_DelayedCorrection/configs/delayed_pose.json --annotations /mnt/d/workspace/be2/SLAM_DelayedCorrection/annotations/room1/targets.json --freeze /mnt/d/workspace/be2/SLAM_DelayedCorrection/results/runs/annotation-preparation/freeze.json --data /home/qzl/projects/slam-delayed-correction/data/Replica --native-source /home/qzl/projects/SLAM_Learning/results/runs/conceptgraphs-7795d7b47007 --weights /home/qzl/projects/SLAM_Learning/.cache/semantic-weights --output /home/qzl/projects/slam-delayed-correction/frontend-v1
+New-scene SAM/CLIP begins only after independent-reference seal
+[elapsed 15s | UTC 2026-10-08T17:37:46+00:00]
+[elapsed 30s | UTC 2026-10-08T17:38:01+00:00]
+[elapsed 45s | UTC 2026-10-08T17:38:15+00:00]
+[elapsed 61s | UTC 2026-10-08T17:38:30+00:00]
+[elapsed 76s | UTC 2026-10-08T17:38:44+00:00]
+Frontend executed: /home/qzl/projects/slam-delayed-correction/frontend-v1/record.json
+
+Command finished: exit 0; elapsed 78.58s; UTC 2026-10-08T17:38:47+00:00
+
+Script done on 2026-10-08 20:38:50+03:00 [COMMAND_EXIT_CODE="0"]

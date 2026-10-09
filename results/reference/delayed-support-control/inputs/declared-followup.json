@@ -1,0 +1,11 @@
+{
+  "id": "room1-support-threshold-followup-v1",
+  "scope": "Post-hoc exploration declared after inspecting all 35 primary cells; not a frozen primary comparison or independent confirmation.",
+  "parent": "conceptgraphs-room1-delayed-correction-v1",
+  "change": "Only lower obj_min_detections from 3 to 1 in the fixed-association corrected-geometry arm; keep all source frames, features, poses, associations and queries.",
+  "cells": 6,
+  "rms_m": [0.10, 0.30],
+  "seeds": [417, 518, 619],
+  "purpose": "Determine whether the immediate target gap can be explained by support-based exposure/filtering without historical reassociation.",
+  "limits": "More candidate fragments may restore partial surfaces while harming retrieval or retaining false objects. Partial labels cannot establish the full false-positive cost or a matched risk frontier. At final postprocessing the changed filter also changes which objects enter the native final object merge."
+}

@@ -1,23 +1,30 @@
-<div align="center">
-
 # Personal Learning
 
-</div>
+English | [中文](docs/HOME.zh-CN.md)
 
-English | [中文](README.zh-CN.md)
+Reading notes, reproduction practice and D435 / Unitree L2 experiments.
 
-Study notes and D435 / Unitree L2 hardware trials share `notes/personal-study-guide-20261008`. See [main](https://github.com/p20030920p/SLAM_Learning/tree/main) for the research delivery and [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) for original-code reproductions.
+## Start here
 
-| Task | Entry |
+| Purpose | Entry |
 | --- | --- |
-| Read analysis, study notes and Windows instructions | [Notes index](notes/README.md) |
-| Operate the sensors and inspect hardware trials and failures | [Hardware learning](physical/README.md) |
-| Develop the open question and hypothesis from the lab brief | [Analysis outline](notes/LAB_ANALYSIS.md) |
-| Repeat the four reproductions and recordings manually | [Windows operations](notes/WINDOWS_START.md) · [Recording](notes/MANUAL_RECORDING.md) |
-| Inspect the frozen room2 protocol, code and evidence | [Pinned study snapshot](https://github.com/p20030920p/SLAM_Learning/tree/4361d4f353a7449c7d6964887643915d2fc72a11) |
+| Study and analysis | [Learning guides](docs/notes/README.md) |
+| Hardware practice | [D435 / L2](src/physical/README.md) |
+| Mapping workflows | [Runbook](docs/guides/REPRODUCE.md) |
+| Recorded results | [Reports](docs/README.md) · [Evidence](results/reference) |
 
-Existing notes and reproduction cores remain at the root. The complete hardware project lives under `physical/`, with its own scripts, configuration and dependencies; use that directory as its project root. The existing local device worktree at `D:/workspace/be2/Personal-Learning-Physical` remains usable. Environments and run data are not moved.
+## Status
 
-The SDK reports **D435 without IMU**. Streaming, odometry trials and native-loader checks do not establish complete SLAM, navigation or H1. Research limits and adverse results remain; raw device data, full recordings and environments stay local.
+Camera/LiDAR capture and RGB-D loader checks are recorded. Hardware semantic mapping and controlled recovery tests remain in progress. The D435 has no IMU.
 
-[Merge sources and pinned commits](notes/merge-sources.json)
+## Structure
+
+```text
+docs/      # notes, papers and guides
+results/   # recorded results and media
+src/       # mapping code, scripts, configs and physical/
+```
+
+Run mapping commands from the repository root; hardware commands use `src/physical/` as their project root. [Setup](docs/guides/STRUCTURE.md) · [Hardware setup](src/physical/docs/ENVIRONMENT.md).
+
+[Delivery](https://github.com/p20030920p/SLAM_Learning/tree/main) · [Author reproduction](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals)

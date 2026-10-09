@@ -1,0 +1,222 @@
+Script started on 2026-10-08 20:48:01+03:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="158" LINES="48"]
+SLAM Learning | FULL TERMINAL SESSION | normal elapsed time
+Started UTC: 2026-10-08T17:48:01+00:00
+Working directory: /mnt/d/workspace/be2/SLAM_DelayedCorrection
+$ /home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python /mnt/d/workspace/be2/SLAM_DelayedCorrection/scripts/run_delayed_correction.py --frontend /home/qzl/projects/slam-delayed-correction/frontend-v1 --data /home/qzl/projects/slam-delayed-correction/data/Replica --freeze /mnt/d/workspace/be2/SLAM_DelayedCorrection/results/runs/annotation-preparation/freeze.json --weights /home/qzl/projects/SLAM_Learning/.cache/semantic-weights --output /home/qzl/projects/slam-delayed-correction/suite-attempt-2
+Done! Execution time of get_dataset function: 0.03 seconds
+Saved class colors to  /home/qzl/projects/slam-delayed-correction/frontend-v1/input/Replica/room1/gsa_classes_none_colors.json
+/home/qzl/projects/SLAM_Learning/.venv-semantic/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+[elapsed 15s | UTC 2026-10-08T17:48:16+00:00]
+Before filtering: 88
+After filtering: 36
+Before merging: 36
+After merging: 36
+[elapsed 30s | UTC 2026-10-08T17:48:32+00:00]
+native-0.00-0: executed (24.3s)
+[elapsed 45s | UTC 2026-10-08T17:48:46+00:00]
+Before filtering: 74
+After filtering: 37
+Before merging: 37
+After merging: 37
+threshold-0.00-0: executed (14.8s)
+[elapsed 61s | UTC 2026-10-08T17:49:01+00:00]
+Before filtering: 91
+After filtering: 39
+Before merging: 39
+After merging: 37
+visibility-0.00-0: executed (14.6s)
+[elapsed 76s | UTC 2026-10-08T17:49:15+00:00]
+Before filtering: 88
+After filtering: 36
+Before merging: 36
+After merging: 36
+fixed_association-0.00-0: executed (16.9s)
+[elapsed 91s | UTC 2026-10-08T17:49:30+00:00]
+Before filtering: 88
+After filtering: 36
+Before merging: 36
+After merging: 36
+oracle_replay-0.00-0: executed (16.5s)
+[elapsed 106s | UTC 2026-10-08T17:49:44+00:00]
+Before filtering: 152
+After filtering: 25
+Before merging: 25
+After merging: 25
+native-0.10-417: executed (12.9s)
+[elapsed 121s | UTC 2026-10-08T17:49:59+00:00]
+Before filtering: 126
+After filtering: 34
+Before merging: 34
+After merging: 34
+threshold-0.10-417: executed (15.3s)
+[elapsed 136s | UTC 2026-10-08T17:50:13+00:00]
+Before filtering: 139
+After filtering: 29
+Before merging: 29
+After merging: 28
+visibility-0.10-417: executed (11.2s)
+[elapsed 152s | UTC 2026-10-08T17:50:28+00:00]
+Before filtering: 144
+After filtering: 27
+Before merging: 27
+After merging: 27
+fixed_association-0.10-417: executed (14.6s)
+[elapsed 167s | UTC 2026-10-08T17:50:43+00:00]
+Before filtering: 88
+After filtering: 36
+Before merging: 36
+After merging: 36
+oracle_replay-0.10-417: executed (17.1s)
+[elapsed 182s | UTC 2026-10-08T17:50:58+00:00]
+Before filtering: 123
+After filtering: 31
+Before merging: 31
+After merging: 31
+native-0.10-518: executed (12.9s)
+[elapsed 197s | UTC 2026-10-08T17:51:12+00:00]
+Before filtering: 101
+After filtering: 33
+Before merging: 33
+After merging: 33
+threshold-0.10-518: executed (13.5s)
+Before filtering: 121
+After filtering: 33
+Before merging: 33
+After merging: 32
+[elapsed 212s | UTC 2026-10-08T17:51:27+00:00]
+visibility-0.10-518: executed (12.7s)
+Before filtering: 121
+After filtering: 33
+Before merging: 33
+After merging: 33
+[elapsed 227s | UTC 2026-10-08T17:51:42+00:00]
+fixed_association-0.10-518: executed (15.5s)
+[elapsed 242s | UTC 2026-10-08T17:51:56+00:00]
+Before filtering: 88
+After filtering: 36
+Before merging: 36
+After merging: 36
+oracle_replay-0.10-518: executed (17.1s)
+Before filtering: 143
+After filtering: 31
+Before merging: 31
+After merging: 30
+[elapsed 257s | UTC 2026-10-08T17:52:11+00:00]
+native-0.10-619: executed (11.2s)
+Before filtering: 121
+After filtering: 33
+Before merging: 33
+After merging: 33
+threshold-0.10-619: executed (11.8s)
+[elapsed 273s | UTC 2026-10-08T17:52:25+00:00]
+Before filtering: 134
+After filtering: 31
+Before merging: 31
+After merging: 30
+visibility-0.10-619: executed (9.7s)
+[elapsed 288s | UTC 2026-10-08T17:52:40+00:00]
+Before filtering: 141
+After filtering: 30
+Before merging: 30
+After merging: 28
+fixed_association-0.10-619: executed (14.7s)
+[elapsed 303s | UTC 2026-10-08T17:52:55+00:00]
+Before filtering: 88
+After filtering: 36
+Before merging: 36
+After merging: 36
+oracle_replay-0.10-619: executed (17.0s)
+[elapsed 318s | UTC 2026-10-08T17:53:10+00:00]
+Before filtering: 165
+After filtering: 21
+Before merging: 21
+After merging: 21
+native-0.30-417: executed (12.0s)
+Before filtering: 149
+After filtering: 26
+Before merging: 26
+After merging: 26
+[elapsed 333s | UTC 2026-10-08T17:53:24+00:00]
+threshold-0.30-417: executed (11.7s)
+Before filtering: 158
+After filtering: 22
+Before merging: 22
+After merging: 21
+visibility-0.30-417: executed (10.0s)
+[elapsed 348s | UTC 2026-10-08T17:53:39+00:00]
+Before filtering: 154
+After filtering: 24
+Before merging: 24
+After merging: 24
+fixed_association-0.30-417: executed (14.3s)
+[elapsed 363s | UTC 2026-10-08T17:53:53+00:00]
+Before filtering: 88
+After filtering: 36
+Before merging: 36
+After merging: 36
+oracle_replay-0.30-417: executed (17.0s)
+[elapsed 379s | UTC 2026-10-08T17:54:08+00:00]
+Before filtering: 152
+After filtering: 22
+Before merging: 22
+After merging: 22
+native-0.30-518: executed (11.9s)
+[elapsed 394s | UTC 2026-10-08T17:54:22+00:00]
+Before filtering: 127
+After filtering: 28
+Before merging: 28
+After merging: 28
+threshold-0.30-518: executed (13.8s)
+[elapsed 409s | UTC 2026-10-08T17:54:37+00:00]
+Before filtering: 143
+After filtering: 28
+Before merging: 28
+After merging: 27
+visibility-0.30-518: executed (11.9s)
+[elapsed 424s | UTC 2026-10-08T17:54:52+00:00]
+Before filtering: 141
+After filtering: 27
+Before merging: 27
+After merging: 26
+fixed_association-0.30-518: executed (15.2s)
+[elapsed 439s | UTC 2026-10-08T17:55:07+00:00]
+Before filtering: 88
+After filtering: 36
+Before merging: 36
+After merging: 36
+oracle_replay-0.30-518: executed (17.4s)
+Before filtering: 169
+After filtering: 21
+[elapsed 454s | UTC 2026-10-08T17:55:22+00:00]
+Before merging: 21
+After merging: 21
+native-0.30-619: executed (9.3s)
+Before filtering: 154
+After filtering: 24
+Before merging: 24
+After merging: 24
+threshold-0.30-619: executed (9.4s)
+[elapsed 469s | UTC 2026-10-08T17:55:36+00:00]
+Before filtering: 162
+After filtering: 22
+Before merging: 22
+After merging: 21
+visibility-0.30-619: executed (7.6s)
+Before filtering: 161
+After filtering: 22
+Before merging: 22
+After merging: 22
+[elapsed 485s | UTC 2026-10-08T17:55:51+00:00]
+fixed_association-0.30-619: executed (13.8s)
+Before filtering: 88
+After filtering: 36
+Before merging: 36
+After merging: 36
+[elapsed 500s | UTC 2026-10-08T17:56:05+00:00]
+oracle_replay-0.30-619: executed (17.3s)
+Delayed correction executed: /home/qzl/projects/slam-delayed-correction/suite-attempt-2/record.json
+
+Command finished: exit 0; elapsed 505.82s; UTC 2026-10-08T17:56:11+00:00
+
+Script done on 2026-10-08 20:56:14+03:00 [COMMAND_EXIT_CODE="0"]

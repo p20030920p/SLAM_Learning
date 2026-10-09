@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/.venv-semantic/bin/python",
+    "/mnt/d/workspace/be2/SLAM_DelayedCorrection/scripts/run_delayed_correction.py",
+    "--frontend",
+    "/home/qzl/projects/slam-delayed-correction/frontend-v1",
+    "--data",
+    "/home/qzl/projects/slam-delayed-correction/data/Replica",
+    "--freeze",
+    "/mnt/d/workspace/be2/SLAM_DelayedCorrection/results/runs/annotation-preparation/freeze.json",
+    "--weights",
+    "/home/qzl/projects/SLAM_Learning/.cache/semantic-weights",
+    "--output",
+    "/home/qzl/projects/slam-delayed-correction/support-followup-v1",
+    "--support-control-from",
+    "/home/qzl/projects/slam-delayed-correction/suite-attempt-2"
+  ],
+  "cwd": "/mnt/d/workspace/be2/SLAM_DelayedCorrection",
+  "prepared_at": "2026-10-08T18:01:21+00:00",
+  "prepared_epoch": 1791482481.7029543,
+  "fps": 5,
+  "size": [
+    1280,
+    800
+  ],
+  "recorder_script_sha256": "665da86cb14df9afc4748b0540875dedf45abc88ab076e4a026c51eb8d175cf9",
+  "watch_prefix": null
+}

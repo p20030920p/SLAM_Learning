@@ -1,0 +1,65 @@
+{
+  "eligible_targets": 4,
+  "map_objects": 15,
+  "targets": [
+    {
+      "target": "dresser",
+      "query": "dresser",
+      "reference_points": 6170,
+      "best_coverage": 0.34505672609400323,
+      "recovered": true,
+      "qualifying_fragments": 2,
+      "top1_object": 10,
+      "restricted_top1_hit": true,
+      "top1_coverage": 0.26304700162074557,
+      "top1_visible_precision": 0.9882697947214076,
+      "top1_surface_distance_m": 0.32524565017049445
+    },
+    {
+      "target": "tall_vase",
+      "query": "vase",
+      "reference_points": 611,
+      "best_coverage": 0.7888707037643208,
+      "recovered": false,
+      "qualifying_fragments": 0,
+      "top1_object": 5,
+      "restricted_top1_hit": false,
+      "top1_coverage": 0.7888707037643208,
+      "top1_visible_precision": 0.14136125654450263,
+      "top1_surface_distance_m": 0.014832507996276407
+    },
+    {
+      "target": "wicker_basket",
+      "query": "wicker basket",
+      "reference_points": 1001,
+      "best_coverage": 0.8161838161838162,
+      "recovered": true,
+      "qualifying_fragments": 2,
+      "top1_object": 8,
+      "restricted_top1_hit": true,
+      "top1_coverage": 0.6883116883116883,
+      "top1_visible_precision": 0.7490196078431373,
+      "top1_surface_distance_m": 0.03491161194293846
+    },
+    {
+      "target": "bed",
+      "query": "bed",
+      "reference_points": 53327,
+      "best_coverage": 0.0,
+      "recovered": false,
+      "qualifying_fragments": 0,
+      "top1_object": 14,
+      "restricted_top1_hit": false,
+      "top1_coverage": 0.0,
+      "top1_visible_precision": 0.0,
+      "top1_surface_distance_m": 1.6456947648127787
+    }
+  ],
+  "mean_coverage": 0.48752781151053504,
+  "recovery": 0.5,
+  "restricted_query_hit": 0.5,
+  "annotated_mixed_objects": 0,
+  "fragment_count": 4,
+  "observation": 12,
+  "native_state_objects": 134
+}

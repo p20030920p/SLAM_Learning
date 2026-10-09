@@ -4,7 +4,7 @@
 
 这里是唯一媒体索引。首页的关键预留位置放图注和注释中的图片行，全部预留资产在此列出，不渲染缺失图片。`slots.json` 区分已有探索／诊断图、未来作者对照，以及确认性结果。
 
-## 1. 已发布图
+## 已发布图
 
 | 资产 | 阶段 | 图注 |
 | --- | --- | --- |
@@ -15,7 +15,7 @@
 | [mechanism-ambiguity](../../results/reference/mechanism/mechanism.png) | exploratory E1 | 已知身份／可见性，少数与多数运动；保留中位数失败。 |
 | [evidence-calibration](../../results/reference/evidence-stress/calibration.png) | exploratory E0 | 已知尺度的高斯共享偏差；同时报告误删、Brier 与变化召回。 |
 
-## 2. 预留位置
+## 预留位置
 
 | 文件 | 阶段 | 展示要求 |
 | --- | --- | --- |
@@ -26,37 +26,33 @@
 | `docs/figures/risk_coverage.png` | E2 after H0 | 留出风险—覆盖率／延迟曲线；参数只由验证集选取，带不确定性区间。 |
 | `docs/figures/failure_gallery.gif` | R2/E1/E2 | 不变、移动、移除、遮挡、缺锚点情形；不只挑成功序列。 |
 
-## 3. 从评分证据渲染
+## 从评分证据渲染
 
-1. 完成 [PLAN](../PLAN.zh-CN.md) 的对应阶段，保存运行／帧号与数据清单。本机已有两种最终离线清理图，但不能把它们演成在线逐帧决策。
+1. 完成 [PLAN](../research/PLAN.zh-CN.md) 的对应阶段，保存运行／帧号与数据清单。本机已有两种最终离线清理图，但不能把它们演成在线逐帧决策。
 2. 使用**声明的评价器**生成点结果：地图最近邻仍用 5 cm；直接标签用精确身份。真值进评价器／渲染器，不进算法。不同 API 对应独立命名的图和表。
-3. 在 [rendering.json](../../configs/rendering.json) 中一次固定空间范围、视角、帧列表和显示采样；各方法／真值共用。抽稀只用于显示，数值按完整声明范围计算。选定 teaser 的帧号不能证明完整 KITTI 连续采样。
+3. 在 [rendering.json](../../src/configs/rendering.json) 中一次固定空间范围、视角、帧列表和显示采样；各方法／真值共用。抽稀只用于显示，数值按完整声明范围计算。选定 teaser 的帧号不能证明完整 KITTI 连续采样。
 4. 渲染原始／移除／保留面板，写运行号和每个数值的**范围**；用实际哈希与生成命令填写 [media_record.template.json](media_record.template.json)。蓝色漏检和红色误删必须可见。
 5. 发布 PNG／SVG，或紧凑 GIF 预览加 MP4 链接。GitHub 首页使用 GIF／PNG，不依赖 HTML video 元素。8 MiB GIF 是我们的展示目标，不是平台限制。
 
-## 4. 发布
+## 发布
 
 地图回放与接口诊断已有实测生成器；其余预留资产尚未生成，不创建空图，也不把计划中的生成器标成已测试。实际渲染器完成后，记录命令／版本，将输出哈希绑定到媒体生成记录；`check_docs.py` 会核对已发布图的哈希。
 
 把产物放到约定路径，更新 [slots.json](slots.json) 的来源与状态，再将首页注释改成真实图片。两种语言共用资产、分别翻译图注；需要中文画内标签时，从同一输入／配置生成，不做两套独立选图。
 
 ```bash
-uv run python scripts/check_docs.py
-uv run python scripts/verify_evidence.py
+uv run --project src python src/scripts/evidence/check_docs.py
+uv run --project src python src/scripts/evidence/verify_evidence.py
 ```
 
 不在图片编辑器里改掩码或成绩，失败案例也要公开。原扫描、模型权重、数据文件不放本目录。PNG／SVG 用清楚标签和不透明背景，兼容 GitHub 明暗主题。
 
-## 5. 四篇各自录制
+## 四篇各自录制
 
-[论文索引](../papers/README.zh-CN.md)连接原生结果、MP4、GIF、封面及双语 PDF。12 项新增媒体在 `slots.json` 中绑定哈希。[录制命令](../RECORDING.zh-CN.md)披露最终地图回放及坐标核查。`docs/figures/physical_capture.mp4` 预留至实物采集完成。
+[论文索引](../papers/README.zh-CN.md)连接原生结果、MP4、GIF、封面及双语 PDF。12 项新增媒体在 `slots.json` 中绑定哈希。[录制命令](../guides/RECORDING.zh-CN.md)披露最终地图回放及坐标核查。`docs/figures/physical_capture.mp4` 预留至实物采集完成。
 
 12 份双语 PDF 绑定[生成证据](../../results/reference/paper-pdfs/record.json)，另有[32 页排版检查](../../results/reference/paper-report-review/qa.json)。索引现有 38 个已发布资产、7 个预留位置。
 
-## 6. 配对探索与全过程
+## 配对探索与全过程
 
-新增六张实测 PNG：配对结果／误差、动态移除、受限查询投影及两张原帧标注叠加。[配对报告](../PAIRED_RESULTS.zh-CN.md)解释不同损失与候选状态。
-
-新增双语 PDF 有[生成证据](../../results/reference/paired-study-pdfs/record.json)和[11 页视觉检查](../../results/reference/paired-report-review/qa.json)。合计 14 份 PDF，先前 12 份基线报告保留原快照。
-
-四份全过程 MP4 在本地保存；[索引与录制约定](../RECORDING.zh-CN.md#本地全过程执行录制)。
+新增六张实测 PNG：配对结果／误差、动态移除、受限查询投影及两张原帧标注叠加。[配对报告](../research/PAIRED_RESULTS.zh-CN.md)解释不同损失与候选状态。新增双语 PDF 有[生成证据](../../results/reference/paired-study-pdfs/record.json)和[11 页视觉检查](../../results/reference/paired-report-review/qa.json)。合计 14 份 PDF，先前 12 份基线报告保留原快照。四份全过程 MP4 在本地保存；[索引与录制约定](../guides/RECORDING.zh-CN.md#本地全过程执行录制)。
