@@ -11,7 +11,7 @@
 
 [English](../README.md) | 中文
 
-[方向分析](#方向分析) · [相关工作](#相关工作) · [开放问题](#开放问题) · [复现结果](#复现结果)
+[方向分析](#方向分析) · [开放问题](#开放问题) · [相关工作](#相关工作) · [复现结果](#复现结果)
 
 [实验证据](#实验证据) · [实物测试](#实物测试) · [假设](#假设) · [分支](#分支)
 
@@ -42,7 +42,11 @@
 | 回环检测 | 减少漂移 | 地点识别 | 重定位 |
 | 地图构建 | 稳定地图 | 动态剔除 | 对象身份 |
 
-第一个方向重在可靠运动与几何。第二个方向增加物体含义与目标检索。已完成的建图实验使用给定位姿，单独检查**地图构建**；完整 SLAM 与导航不在这些实验范围内。
+第一个方向重在可靠运动与几何。第二个方向增加物体含义与目标检索。已完成的建图实验使用给定位姿，单独检查**地图构建**；完整 SLAM 与导航不在这些实验范围内。两个方向都依赖多帧对齐：位姿误差可能误导静态结构过滤和物体关联，因此引出下面的开放问题。
+
+## 开放问题
+
+多帧建图如何避免定位误差在静态结构过滤和物体关联中造成持续性错误？
 
 ## 相关工作
 
@@ -70,10 +74,6 @@
 
 在复现中
 
-## 开放问题
-
-多帧建图如何避免定位误差在静态结构过滤和物体关联中造成持续性错误？
-
 ## 复现结果
 
 | 工作 | 数据 | 结果 |
@@ -97,6 +97,14 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | DA | 98.72 | 98.7196 |
 | AA | 98.34 | 98.3408 |
 
+$S,D$ 为真值中的静态／动态点数，$S_k,D_r$ 为正确保留的静态点数／正确剔除的动态点数。[指标定义](https://arxiv.org/html/2403.01449v1#S4.SS2)。
+
+$$
+\mathrm{SA}=100\frac{S_k}{S},\qquad
+\mathrm{DA}=100\frac{D_r}{D},\qquad
+\mathrm{AA}=\sqrt{\mathrm{SA}\,\mathrm{DA}}.
+$$
+
 完整设置的三项数值保留两位小数后均与论文一致。表 IV 五组设置共 15 项准确率均匹配；本表不包含运行时间和在线实验。
 
 ### BeautyMap
@@ -109,6 +117,12 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | DA | 82.41 | 82.4092 |
 | HA | 82.90 | 82.9006 |
 
+SA、DA 沿用上面的点数定义；HA 为二者的调和平均。[论文定义](https://arxiv.org/html/2405.07283v1#S4)。
+
+$$
+\mathrm{HA}=\frac{2\,\mathrm{SA}\,\mathrm{DA}}{\mathrm{SA}+\mathrm{DA}}.
+$$
+
 三项数值保留两位小数后均一致。XY=0.5／1／2 m 的九项准确率全部匹配。使用历史预处理／GT 与作者 HA 评分器；论文当时的精确方法提交尚未确定。其他序列及运行时间不在本表范围内。
 
 ### ConceptGraphs
@@ -120,7 +134,18 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | mAcc | 40.63 | 38.3156 |
 | F-mIoU | 35.95 | 50.1379 |
 
-作者评分器将 `mrecall` 对应 mAcc、`fmiou` 对应 F-mIoU。我们的宏平均 mIoU 21.3460% 是另一项指标，不拿它替代 F-mIoU。[指标定义](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/README.md#evaluate-semantic-segmentation-from-the-object-based-mapping-results-on-replica-datasets)。
+在作者的评估混淆矩阵中，$n_c$ 为类别 $c$ 的真值标签数，$p_c$ 为预测标签数，$t_c$ 为正确匹配数；$C$ 为评估类别数，$N=\sum_c n_c$。
+
+$$
+\begin{aligned}
+\mathrm{IoU}_c &= \frac{t_c}{n_c+p_c-t_c}, &
+\mathrm{mAcc} &= \frac{100}{C}\sum_c\frac{t_c}{n_c},\\
+\mathrm{mIoU} &= \frac{100}{C}\sum_c\mathrm{IoU}_c, &
+\text{F-mIoU} &= 100\sum_c\frac{n_c}{N}\mathrm{IoU}_c.
+\end{aligned}
+$$
+
+分母为零的项记为 0。作者的 `mrecall` 即 mAcc；F-mIoU 按类别点数加权，而我们的宏平均 mIoU 为 21.3460%。[评分代码](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/utils/eval.py#L57-L84)。
 
 
 ## 实物测试

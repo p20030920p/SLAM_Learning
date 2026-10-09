@@ -11,7 +11,7 @@ Dynamic robust mapping · Semantic mapping and localization
 
 English | [中文](docs/HOME.zh-CN.md)
 
-[Directions](#directions-analysis) · [Related works](#related-works) · [Questions](#open-questions) · [Results](#reproduction-results)
+[Directions](#directions-analysis) · [Questions](#open-questions) · [Related works](#related-works) · [Results](#reproduction-results)
 
 [Evidence](#evidence) · [Hardware tests](#hardware-tests) · [Hypothesis](#hypothesis) · [Branches](#branches)
 
@@ -42,7 +42,11 @@ Sensor data → Front end → Back end (optimize) → Map build
 | Loop detection | Less drift | Place recognition | Relocalization |
 | Map build | Stable maps | Dynamic removal | Object identities |
 
-The first direction emphasizes reliable motion and geometry. The second adds object meaning and target retrieval. The completed mapping experiments use supplied poses to isolate **map construction**. Complete SLAM and navigation remain outside these experiments.
+The first direction emphasizes reliable motion and geometry. The second adds object meaning and target retrieval. The completed mapping experiments use supplied poses to isolate **map construction**. Complete SLAM and navigation remain outside these experiments. Both directions rely on multi-frame alignment: pose errors can corrupt static-structure filtering and object association, motivating the following open question.
+
+## open questions:
+
+How can multi-frame mapping prevent localization errors from causing persistent mistakes in static-structure filtering and object association?
 
 ## Related works
 
@@ -70,10 +74,6 @@ These are saved-result replays from supplied-pose mapping runs. GIFs preserve th
 
 In progress
 
-## open questions:
-
-How can multi-frame mapping prevent localization errors from causing persistent mistakes in static-structure filtering and object association?
-
 ## Reproduction results
 
 | Work | Data | Result |
@@ -97,6 +97,14 @@ KITTI-00, 141 released scans; full setting: voxel 0.1 m, d_s=0.2 m, d_p=1. [Orig
 | DA | 98.72 | 98.7196 |
 | AA | 98.34 | 98.3408 |
 
+Let $S,D$ count ground-truth static/dynamic points, and $S_k,D_r$ count correctly kept static and removed dynamic points. [Metric definitions](https://arxiv.org/html/2403.01449v1#S4.SS2).
+
+$$
+\mathrm{SA}=100\frac{S_k}{S},\qquad
+\mathrm{DA}=100\frac{D_r}{D},\qquad
+\mathrm{AA}=\sqrt{\mathrm{SA}\,\mathrm{DA}}.
+$$
+
 All three full-setting values match the paper at two decimals. Across all five Table IV settings, all 15 accuracy entries match; runtime and online experiments are outside this comparison.
 
 ### BeautyMap
@@ -109,6 +117,12 @@ Historical KITTI-02, frames 860–950, 91 scans; XY=1 m, Z=0.5 m, range=40 m. [O
 | DA | 82.41 | 82.4092 |
 | HA | 82.90 | 82.9006 |
 
+SA and DA use the same point-count definitions above; HA is their harmonic mean. [Paper definition](https://arxiv.org/html/2405.07283v1#S4).
+
+$$
+\mathrm{HA}=\frac{2\,\mathrm{SA}\,\mathrm{DA}}{\mathrm{SA}+\mathrm{DA}}.
+$$
+
 All three values match at two decimals. All nine accuracy entries across XY=0.5/1/2 m match. This uses historical preprocessing/GT and the author's HA scorer; the exact paper method commit remains unidentified. Other sequences and runtime are outside this comparison.
 
 ### ConceptGraphs
@@ -120,7 +134,18 @@ The paper reports Replica benchmark results; our completed result below covers *
 | mAcc | 40.63 | 38.3156 |
 | F-mIoU | 35.95 | 50.1379 |
 
-The author's evaluator defines `mrecall` as mAcc and `fmiou` as F-mIoU. Our macro mIoU of 21.3460% is a different metric and is not substituted for F-mIoU. [Metric definitions](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/README.md#evaluate-semantic-segmentation-from-the-object-based-mapping-results-on-replica-datasets).
+In the author's evaluation confusion matrix, $n_c$ counts reference labels for class $c$, $p_c$ predicted labels and $t_c$ correct matches; $C$ is the evaluated class count and $N=\sum_c n_c$.
+
+$$
+\begin{aligned}
+\mathrm{IoU}_c &= \frac{t_c}{n_c+p_c-t_c}, &
+\mathrm{mAcc} &= \frac{100}{C}\sum_c\frac{t_c}{n_c},\\
+\mathrm{mIoU} &= \frac{100}{C}\sum_c\mathrm{IoU}_c, &
+\text{F-mIoU} &= 100\sum_c\frac{n_c}{N}\mathrm{IoU}_c.
+\end{aligned}
+$$
+
+Zero-denominator terms are 0. The author's `mrecall` is mAcc; F-mIoU is frequency-weighted, whereas our macro mIoU is 21.3460%. [Scoring code](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/utils/eval.py#L57-L84).
 
 
 ## Hardware tests
