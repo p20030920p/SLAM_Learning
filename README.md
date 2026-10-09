@@ -21,16 +21,14 @@ English | [中文](README.zh-CN.md)
 
 Four 2024 mapping works → pose-error controls → a candidate recovery hypothesis. **H1 remains unverified.**
 
-## 1. Open research question
+## SLAM and our two directions
 
-At the same candidate cap, does reassociation recover more targets after a late pose correction than coordinate correction and simple guards?
+**SLAM — Simultaneous Localization and Mapping:** estimate sensor motion while building a map from its observations.
 
-## 2. Direction and common interface
+- **Robust localization and SLAM in dynamic environments:** estimate motion and maintain a stable map despite moving objects.
+- **Semantic mapping, visual localization and navigation:** describe objects and their locations, estimate pose from images, and reach a target.
 
-- **Dynamic SLAM:** retain stable geometry despite moving objects.
-- **Semantic mapping, visual localization and navigation:** attach identities and queries to reliable coordinates.
-
-SLAM estimates motion while building a map. Our reproductions isolate mapping with supplied poses.
+Five elements organize this process:
 
 ```text
 Sensor data → Front end → Back end (optimize) → Map build
@@ -38,29 +36,41 @@ Sensor data → Front end → Back end (optimize) → Map build
              Loop detection ─────┘
 ```
 
-| SLAM element | Dynamic robustness | Semantic grounding |
-| --- | --- | --- |
-| Sensor data | Motion and occlusion | RGB-D alignment |
-| Front end | Stable correspondences | Masks, features, association |
-| Back end | Robust pose constraints | Consistent coordinates |
-| Loop detection | Recognize changed places | Supply revisit constraints |
-| Map build | Remove dynamic traces | Maintain identities and targets |
+| SLAM element | Effect of improving it | Dynamic direction | Semantic direction |
+| --- | --- | --- | --- |
+| Sensor data | Cleaner, synchronized observations | Observe motion and occlusion | Align RGB and depth |
+| Front end | More reliable matches | Match stable structure | Extract masks/features; associate observations |
+| Back end | More consistent poses | Reject bad motion constraints | Align object coordinates |
+| Loop detection | Revisit constraints help reduce drift | Recognize places despite changes | Support relocalization |
+| Map build | A more usable map | Remove dynamic traces | Maintain identities and query targets |
 
-All four use **pose → correspondence → map decisions**. Corrected coordinates may leave earlier deletion/fusion/association decisions unresolved. This is our candidate failure mode, not a demonstrated shared failure. We first test **ConceptGraphs association and map exposure**, keeping pose correction fixed. [Why this test](docs/STUDY.md).
+The first direction emphasizes reliable motion and geometry. The second adds object meaning and target retrieval. Our four reproductions use supplied poses to isolate **map construction**, not complete SLAM or navigation.
 
-## 3. Related works and reproductions
+## Related works
 
 The GIFs show earlier core subsets; semantic highlights are unverified query candidates.
 
 | [DUFOMap](docs/papers/dufomap.md) | [BeautyMap](docs/papers/beautymap.md) |
 | --- | --- |
 | ![DUFOMap core replay](docs/media/dufomap/preview.gif) | ![BeautyMap core replay](docs/media/beautymap/preview.gif) |
-| Void-space tests with pose tolerances remove dynamic returns. **141 scans.** | Binary occupancy and static restoration clean the map. **141 scans.** |
+| **Map build.** Void-space tests remove dynamic points; pose margins protect static geometry. **GIF: 141 scans.** | **Map build.** Binary occupancy finds dynamic traces; restoration protects static geometry. **GIF: 141 scans.** |
 
 | [ConceptGraphs](docs/papers/conceptgraphs.md) | [HOV-SG](docs/papers/hovsg.md) |
 | --- | --- |
 | ![ConceptGraphs core replay](docs/media/conceptgraphs/preview.gif) | ![HOV-SG core replay](docs/media/hovsg/preview.gif) |
-| Geometry/CLIP association fuses object observations. **40 frames, 39 representations.** | Posed feature fusion produces queryable segments. **8 frames, 50 segments.** |
+| **Association and semantic map.** Geometry/CLIP matching fuses object observations for text queries. **GIF: 40 frames, 39 representations.** | **Semantic map hierarchy.** The paper organizes floors, rooms and objects for language queries. **GIF: segment core only, 8 frames, 50 segments.** |
+
+## Common dependency and open question
+
+DUFOMap and BeautyMap remove dynamic traces while retaining static geometry. ConceptGraphs and HOV-SG organize objects and semantics for language queries.
+
+All four depend on **pose alignment → correspondence → map decisions**. Misalignment can affect point removal, object fusion or feature assignment. Pose margins, static restoration and association rules already provide protection.
+
+**After pose correction, how can a map repair decisions made under the earlier poses?**
+
+For example, corrected coordinates may still leave one object split or two objects merged. This is a candidate failure mode, not a proven shared defect. We first test ConceptGraphs association under identical pose corrections and candidate caps. [Test and limits](docs/STUDY.md).
+
+## Reproduction results
 
 Later original-code runs use separate protocols, pinned at **535a278**:
 
@@ -92,7 +102,7 @@ Earlier core outputs in RViz; saved-map viewing, no new inference. Full videos: 
 
 </details>
 
-## 4. Evidence that narrowed the question
+## Evidence that narrowed the question
 
 ![Recovery and exposed-candidate cost](https://raw.githubusercontent.com/p20030920p/SLAM_Learning/4361d4f353a7449c7d6964887643915d2fc72a11/results/reference/homepage-media/recovery-cost.png)
 
@@ -100,7 +110,7 @@ room1, immediately after 30 cm correction: fixed-history recovery **11.1%**, ora
 
 A lower support gate closes this selected recovery gap while exposing more fragments; later observations also repair part of it. **Reassociation is not yet shown necessary.** The next test matches candidate caps and checks identities separately.
 
-## 5. Candidate H1 and next test
+## Candidate H1 and next test
 
 Retain observation sources and pose versions, then replay affected associations within a bounded cache to recover more valid targets than simple guards. The bounded implementation is **not built or tested**.
 
