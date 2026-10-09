@@ -14,4 +14,4 @@ main 是提交入口，按“问题 → 部分建图实验 → 反证 → 下一
 | [安装](guides/REPRODUCE.zh-CN.md) · [结构](guides/STRUCTURE.zh-CN.md) · [录制范围](guides/RECORDING.zh-CN.md) | 命令，以及执行录像、三维查看、保存地图回放的区分 |
 | [文献](research/LITERATURE.zh-CN.md) · [AI 使用](guides/DISCLOSURE.zh-CN.md) · [来源／许可](guides/ATTRIBUTION.zh-CN.md) | 先验工作、声明边界与来源 |
 
-补充：[实物协议](guides/REAL_WORLD.zh-CN.md)与[设备尝试](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical)。早期[推理](research/RESEARCH.zh-CN.md)、[重构核查](guides/AUDIT.zh-CN.md)和[基线测量](research/RESULTS.zh-CN.md)保留供追溯。
+补充：[实物协议](guides/REAL_WORLD.zh-CN.md)与[设备尝试](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/src/physical)。早期[推理](research/RESEARCH.zh-CN.md)、[重构核查](guides/AUDIT.zh-CN.md)和[基线测量](research/RESULTS.zh-CN.md)保留供追溯。

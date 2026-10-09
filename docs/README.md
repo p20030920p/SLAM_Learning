@@ -14,4 +14,4 @@ Main is the submission entry. Read the question, selected mapping experiments, c
 | [Setup](guides/REPRODUCE.md) · [structure](guides/STRUCTURE.md) · [recording scope](guides/RECORDING.md) | Commands and separation of execution, 3D viewing and saved-map replay |
 | [Literature](research/LITERATURE.md) · [AI use](guides/DISCLOSURE.md) · [sources/licenses](guides/ATTRIBUTION.md) | Prior work, claim boundaries and provenance |
 
-Optional: [hardware protocol](guides/REAL_WORLD.md) and [device trials](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical). Earlier [reasoning](research/RESEARCH.md), [refactor audit](guides/AUDIT.md) and [baseline measurements](research/RESULTS.md) remain available for traceability.
+Optional: [hardware protocol](guides/REAL_WORLD.md) and [device trials](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/src/physical). Earlier [reasoning](research/RESEARCH.md), [refactor audit](guides/AUDIT.md) and [baseline measurements](research/RESULTS.md) remain available for traceability.

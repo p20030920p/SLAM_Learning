@@ -2,7 +2,7 @@
 
 [English](REAL_WORLD.md) | 中文
 
-实物是 room2 决策后的补充，不是 H1 确认证据。当前采集、失败尝试与操作说明见[实物分支](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/physical)。已连接深度设备被识别为无 IMU 的 D435；L2 单独测试，不需要移动机器人。
+实物是 room2 决策后的补充，不是 H1 确认证据。当前采集、失败尝试与操作说明见[实物分支](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008/src/physical)。已连接深度设备被识别为无 IMU 的 D435；L2 单独测试，不需要移动机器人。
 
 ## 一次固定传感器会话
 
