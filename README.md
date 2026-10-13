@@ -17,6 +17,10 @@ English | [中文](docs/HOME.zh-CN.md)
 
 </div>
 
+## Live experiments and local demos
+
+[**SLAM-Physical**](https://github.com/p20030920p/SLAM-Physical) contains native BeautyMap pose-revision C1/C2/C4 experiments, a first Gazebo object-departure scenario, measured results and live RViz demos of BeautyMap, DUFOMap, ConceptGraphs and HOV-SG. On the prepared local machine, double-click scripts in [demo/](demo/README.md); missing sibling code is cloned automatically. Each demo executes the native pipeline again. Small demo subsets do not replace the paper benchmarks below.
+
 ## Directions analysis
 
 **SLAM — Simultaneous Localization and Mapping:** estimate sensor motion while building a map from its observations.
