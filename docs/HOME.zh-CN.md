@@ -37,6 +37,36 @@
 
 平面位置 RMSE 包含初始化，按全部保留的原生更新计算；每种条件当前一次运行。[计算公式与数值对照表](testing/LIVE.zh-CN.md#误差如何测算) · [录像名称／模块／算法对照](../demo/recording-index.json)。
 
+### 退化梯度：实时分屏
+
+左边是仿真自身的俯瞰实时画面，右边是正在在线构建的地图；两半来自同一次 1920x1080 录制，因此是同一瞬间。每一次成片都由五道判据对**编码后的文件**裁定：左侧渲染、右侧出画面、地图在增长（定位级则要求**不**增长）、机器人确实移动、显示全程存活。右半是订阅**相同主题**的自建查看器，不是 RViz 窗口——RViz 的地图着色器在 llvmpipe 下链接失败。[录制条件、管线与已知限制](../results/localization/self-recovery/README.md)。
+
+#### S1 静态
+
+![S1 静态：实时分屏](../results/localization/self-recovery/S1_static.gif)
+
+[MP4](../results/localization/self-recovery/S1_static.mp4) · [验收](../results/localization/self-recovery/S1_static_check.json) · 170 秒 · 地图从 216x143 网格长到 293x143 网格（宽 4.65 米到 14.65 米）· 机器人轨迹 +265 像素。
+
+#### S2 动态
+
+![S2 动态：实时分屏](../results/localization/self-recovery/S2_dynamic.gif)
+
+[MP4](../results/localization/self-recovery/S2_dynamic.mp4) · [验收](../results/localization/self-recovery/S2_dynamic_check.json) · 80 秒 · 三个运动障碍入镜；右半画面在两次采样间变化 6.5%。
+
+#### S3 大变动
+
+![S3 大变动：实时分屏](../results/localization/self-recovery/S3_large_change.gif)
+
+[MP4](../results/localization/self-recovery/S3_large_change.mp4) · [验收](../results/localization/self-recovery/S3_large_change_check.json) · 70 秒 · 该级拿到一张已建好的地图，因此**不该**增长；机器人轨迹 +578 像素。这里最先失败的是**判据**而不是定位：`map -> base_footprint` 在变、`amcl_pose` 跟着变。
+
+#### S4 退化
+
+![S4 退化：实时分屏](../results/localization/self-recovery/S4_degradation.gif)
+
+[MP4](../results/localization/self-recovery/S4_degradation.mp4) · [验收](../results/localization/self-recovery/S4_degradation_check.json) · 70 秒 · 直走廊里的 72 束、±120°、3.5 米激光；机器人轨迹 +229 像素。地图并不增长，而这正是该级要展示的东西——验收文件如实记录了这一点，没有去蹭弱判据。
+
+### 早期录制（由保存数据重建）
+
 ### 纯静态
 
 小初值偏移，本路线未失效。
