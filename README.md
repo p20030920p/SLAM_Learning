@@ -198,7 +198,47 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 [Keyboard demos](demo/README.md) · [Video gallery](demo/gallery.html) · [Code Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb).
 
-Each scene starts with a compact table. Single Gazebo runs, RMSE includes initialization; small differences do not establish a ranking.
+**Localization error with different maps.** Raw / DUFOMap / BeautyMap select the map; all use AMCL. Tables report XY RMSE in cm, including initialization, from one Gazebo run per condition.
+
+**Pure static** · 290 updates/map · [record](results/reference/robot-live-static/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 2D projection | RMSE 7.28 cm; no loss |
+| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 7.28 cm; same as Raw |
+| BeautyMap | Offline-cleaned 2D projection | RMSE 6.89 cm; slightly below Raw |
+
+Raw and DUFOMap are equal; BeautyMap is 0.39 cm lower in this run. Recovery was not tested.
+
+**Dynamic obstacles** · 288 updates/map · [record](results/reference/robot-live-dynamic/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 2D projection | RMSE 7.41 cm; no loss |
+| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 7.35 cm; close to Raw |
+| BeautyMap | Offline-cleaned 2D projection | RMSE 7.14 cm; close to Raw |
+
+DUFOMap / BeautyMap reduce RMSE against Raw by only 0.06 / 0.27 cm; a consistent advantage is not established.
+
+**Persistent change** · 290 updates/map · [record](results/reference/robot-live-large-change/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 2D projection | RMSE 6.84 cm; no loss |
+| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 6.84 cm; same as Raw |
+| BeautyMap | Offline-cleaned 2D projection | RMSE 6.39 cm; no loss |
+
+BeautyMap is 0.45 cm below Raw, while DUFOMap is equal to Raw. This route did not induce loss, so recovery was not tested.
+
+**Corridor degradation** · 508 updates/map · [record](results/reference/robot-corridor-v2/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 2D projection | RMSE 72.53 cm; recovery delay 13.3 s |
+| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 72.53 cm; recovery delay 13.3 s |
+| BeautyMap | Offline-cleaned 2D projection | RMSE 72.53 cm; recovery delay 13.3 s |
+
+All three projected maps are identical, so these scores cannot distinguish the map cleaners. The 13.3 s recovery corrects an offset initial belief.
 
 ## Measured result calculation
 
@@ -259,12 +299,6 @@ NDT also produced 34.43 cm in its first trial with the same estimator parameters
 
 Localizer: AMCL; 290 updates per case, position RMSE includes initialization.
 
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | RMSE 7.28 cm; no loss |
-| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 7.28 cm; same as Raw |
-| BeautyMap | Offline-cleaned 2D projection | RMSE 6.89 cm; slightly below Raw |
-
 This route did not induce loss; recovery remains untested.
 
 #### Raw map + AMCL
@@ -313,12 +347,6 @@ This route did not induce loss; recovery remains untested.
 
 Localizer: AMCL; 288 updates per case, position RMSE includes initialization.
 
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | RMSE 7.41 cm; no loss |
-| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 7.35 cm; close to Raw |
-| BeautyMap | Offline-cleaned 2D projection | RMSE 7.14 cm; close to Raw |
-
 #### Raw map + AMCL
 
 **Live execution — Raw RViz**
@@ -364,12 +392,6 @@ Localizer: AMCL; 288 updates per case, position RMSE includes initialization.
 ### Persistent change
 
 Localizer: AMCL; 290 updates per case, position RMSE includes initialization.
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | RMSE 6.84 cm; no loss |
-| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 6.84 cm; same as Raw |
-| BeautyMap | Offline-cleaned 2D projection | RMSE 6.39 cm; no loss |
 
 This route did not induce loss; recovery remains untested.
 
@@ -418,12 +440,6 @@ This route did not induce loss; recovery remains untested.
 ### Corridor degradation
 
 AMCL, 508 updates; RMSE includes a 1 m initial offset. All three projected maps are identical.
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | RMSE 72.53 cm; recovery delay 13.3 s |
-| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 72.53 cm; recovery delay 13.3 s |
-| BeautyMap | Offline-cleaned 2D projection | RMSE 72.53 cm; recovery delay 13.3 s |
 
 Full-scan control: 71.60 cm, sustained convergence 6.6 s after the same reference event. This corrects an offset initial belief. [Recovery criterion and record](results/reference/robot-corridor-v2/record.json).
 

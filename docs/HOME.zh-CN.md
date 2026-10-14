@@ -198,7 +198,47 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 [键盘演示](../demo/README.md) · [视频目录](../demo/gallery.html) · [代码 Notebook](../notebooks/presentation/SLAM_实验逐步展示.ipynb)。
 
-各场景视频前分别列简表。Gazebo单次运行，RMSE含初始化；小差异不构成方法排名。
+**不同地图下的定位误差。**Raw／DUFOMap／BeautyMap表示地图来源，定位器统一为AMCL。以下为Gazebo单次结果，XY RMSE单位cm，包含初始化。
+
+**纯静态** · 每图290次更新 · [record](../results/reference/robot-live-static/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | RMSE 7.28 cm；未失效 |
+| DUFOMap | 去动态点二维投影图 | RMSE 7.28 cm；与Raw相同 |
+| BeautyMap | 离线清理二维投影图 | RMSE 6.89 cm；比Raw略低 |
+
+Raw与DUFOMap相同；BeautyMap本次低0.39 cm。恢复能力未测试。
+
+**运动障碍物** · 每图288次更新 · [record](../results/reference/robot-live-dynamic/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | RMSE 7.41 cm；未失效 |
+| DUFOMap | 去动态点二维投影图 | RMSE 7.35 cm；接近Raw |
+| BeautyMap | 离线清理二维投影图 | RMSE 7.14 cm；接近Raw |
+
+DUFOMap／BeautyMap相对Raw仅低0.06／0.27 cm，尚未证明稳定优势。
+
+**持久结构变化** · 每图290次更新 · [record](../results/reference/robot-live-large-change/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | RMSE 6.84 cm；未失效 |
+| DUFOMap | 去动态点二维投影图 | RMSE 6.84 cm；与Raw相同 |
+| BeautyMap | 离线清理二维投影图 | RMSE 6.39 cm；未失效 |
+
+BeautyMap比Raw低0.45 cm，DUFOMap与Raw相同；本路线未诱发失效，未验证恢复。
+
+**走廊退化** · 每图508次更新 · [record](../results/reference/robot-corridor-v2/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
+| DUFOMap | 去动态点二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
+| BeautyMap | 离线清理二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
+
+三张投影地图相同，无法区分清理方法；13.3 s恢复对应初始位姿偏移纠正。
 
 ## 实测结果如何计算
 
@@ -259,12 +299,6 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 定位器：AMCL；每组290次更新，位置RMSE含初始化。
 
-| 方法 | 地图类型 | 指标效果 |
-| --- | --- | --- |
-| Raw | 原始二维投影图 | RMSE 7.28 cm；未失效 |
-| DUFOMap | 去动态点二维投影图 | RMSE 7.28 cm；与Raw相同 |
-| BeautyMap | 离线清理二维投影图 | RMSE 6.89 cm；比Raw略低 |
-
 本路线未诱发定位失效，恢复能力未验证。
 
 #### Raw map + AMCL
@@ -313,12 +347,6 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 定位器：AMCL；每组288次更新，位置RMSE含初始化。
 
-| 方法 | 地图类型 | 指标效果 |
-| --- | --- | --- |
-| Raw | 原始二维投影图 | RMSE 7.41 cm；未失效 |
-| DUFOMap | 去动态点二维投影图 | RMSE 7.35 cm；接近Raw |
-| BeautyMap | 离线清理二维投影图 | RMSE 7.14 cm；接近Raw |
-
 #### Raw map + AMCL
 
 **现场执行 · Live execution — Raw RViz**
@@ -364,12 +392,6 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 ### 持久结构变化
 
 定位器：AMCL；每组290次更新，位置RMSE含初始化。
-
-| 方法 | 地图类型 | 指标效果 |
-| --- | --- | --- |
-| Raw | 原始二维投影图 | RMSE 6.84 cm；未失效 |
-| DUFOMap | 去动态点二维投影图 | RMSE 6.84 cm；与Raw相同 |
-| BeautyMap | 离线清理二维投影图 | RMSE 6.39 cm；未失效 |
 
 本路线未诱发定位失效，恢复能力未验证。
 
@@ -418,12 +440,6 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 ### 走廊退化
 
 AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
-
-| 方法 | 地图类型 | 指标效果 |
-| --- | --- | --- |
-| Raw | 原始二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
-| DUFOMap | 去动态点二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
-| BeautyMap | 离线清理二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
 
 完整扫描对照：71.60 cm，同一参考事件后6.6 s持续收敛。本次为初值偏移纠正。[恢复判据与记录](../results/reference/robot-corridor-v2/record.json)。
 
