@@ -198,11 +198,22 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 [Keyboard demos](demo/README.md) · [Video gallery](demo/gallery.html) · [Code Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb).
 
+<a id="practice-index"></a>
+
+| Scene | 2D · AMCL | 3D · GICP |
+| --- | --- | --- |
+| Pure static | [View recordings](#scene-static-2d) | [View recordings](#scene-static-3d) |
+| Moving obstacles | [View recordings](#scene-dynamic-2d) | [View recordings](#scene-dynamic-3d) |
+| Persistent change | [View recordings](#scene-change-2d) | [View recordings](#scene-change-3d) |
+| Corridor degradation | [View recordings](#scene-corridor-2d) | [View recordings](#scene-corridor-3d) |
+
+[3D map cleaning results](#map-review-3d)
+
 **Localization error with different maps.** 2D uses AMCL and XY RMSE; 3D directly uses complete point maps with the same upstream GICP and XYZ RMSE. Units: cm; all published native updates, one trial per condition. Mapping uses supplied poses; localization receives no truth. These are not stable rankings.
 
 ### 2D · AMCL
 
-**Pure static** · [record](results/reference/robot-live-static/record.json)
+**[Pure static](#scene-static-2d)** · [record](results/reference/robot-live-static/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
@@ -212,7 +223,7 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 Raw and DUFOMap projections are identical; BeautyMap is 0.39 cm lower in this run. Recovery was not tested.
 
-**Moving obstacles** · [record](results/reference/robot-2d-dynamic-matched/record.json)
+**[Moving obstacles](#scene-dynamic-2d)** · [record](results/reference/robot-2d-dynamic-matched/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
@@ -222,7 +233,7 @@ Raw and DUFOMap projections are identical; BeautyMap is 0.39 cm lower in this ru
 
 Paired new mapping A: DUFOMap is 0.67 cm higher, BeautyMap 0.23 cm lower. One trial gives no stable ranking; the previous run is retained.
 
-**Persistent change** · [record](results/reference/robot-live-large-change/record.json)
+**[Persistent change](#scene-change-2d)** · [record](results/reference/robot-live-large-change/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
@@ -232,7 +243,7 @@ Paired new mapping A: DUFOMap is 0.67 cm higher, BeautyMap 0.23 cm lower. One tr
 
 Frozen old maps; no online map update was called, and the route did not induce loss.
 
-**Corridor degradation** · [record](results/reference/robot-corridor-v2/record.json)
+**[Corridor degradation](#scene-corridor-2d)** · [record](results/reference/robot-corridor-v2/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
@@ -244,7 +255,7 @@ The three projected maps are identical; 13.3 s corrects an offset initial belief
 
 ### 3D · GICP
 
-**Pure static** · [record](results/reference/robot-3d-static/record.json)
+**[Pure static](#scene-static-3d)** · [record](results/reference/robot-3d-static/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
@@ -254,7 +265,7 @@ The three projected maps are identical; 13.3 s corrects an offset initial belief
 
 No moving contamination needs cleaning; no localization improvement in this trial.
 
-**Moving obstacles** · [record](results/reference/robot-3d-dynamic/record.json)
+**[Moving obstacles](#scene-dynamic-3d)** · [record](results/reference/robot-3d-dynamic/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
@@ -264,7 +275,7 @@ No moving contamination needs cleaning; no localization improvement in this tria
 
 Native cleaning removes dynamic map points, without a clear downstream GICP gain.
 
-**Persistent change** · [record](results/reference/robot-3d-large-change/record.json)
+**[Persistent change](#scene-change-3d)** · [record](results/reference/robot-3d-large-change/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
@@ -274,7 +285,7 @@ Native cleaning removes dynamic map points, without a clear downstream GICP gain
 
 Static-A 3D maps remain frozen; change detection/updating was not executed. No localization gain.
 
-**Corridor degradation** · [record](results/reference/robot-3d-corridor/record.json)
+**[Corridor degradation](#scene-corridor-3d)** · [record](results/reference/robot-3d-corridor/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
@@ -302,7 +313,11 @@ Yaw differences are wrapped to $[-\pi,\pi]$ before RMS and converted to degrees.
 
 [Scoring and controls](docs/testing/LIVE.md) · [Other localization libraries and deployment](docs/testing/LOCALIZERS.md) · [Recording names](demo/recording-index.json) · [One-click method demos](demo/README.md#逐方法独立-rviz-现场对照)
 
+<a id="scene-static-2d"></a>
+
 ### Pure static
+
+[↑ Back to Practice index](#practice-index)
 
 Localizer: AMCL; 290 updates per case, position RMSE includes initialization.
 
@@ -350,7 +365,11 @@ This route did not induce loss; recovery remains untested.
 
 [Result MP4](results/reference/robot-live-static/methods/beautymap/result.mp4) · [case record](results/reference/robot-live-static/methods/beautymap/record.json) · RMSE **6.89 cm** · 290 native updates.
 
+<a id="scene-dynamic-2d"></a>
+
 ### Moving obstacles
+
+[↑ Back to Practice index](#practice-index)
 
 Localizer: AMCL; 291 updates per case, position RMSE includes initialization.
 
@@ -396,7 +415,11 @@ Localizer: AMCL; 291 updates per case, position RMSE includes initialization.
 
 [Result MP4](results/reference/robot-2d-dynamic-matched/methods/beautymap/result.mp4) · [case record](results/reference/robot-2d-dynamic-matched/methods/beautymap/record.json) · RMSE **7.29 cm** · 291 native updates.
 
+<a id="scene-change-2d"></a>
+
 ### Persistent change
+
+[↑ Back to Practice index](#practice-index)
 
 Localizer: AMCL; 290 updates per case, position RMSE includes initialization.
 
@@ -444,7 +467,11 @@ This route did not induce loss; recovery remains untested.
 
 [Result MP4](results/reference/robot-live-large-change/methods/beautymap/result.mp4) · [case record](results/reference/robot-live-large-change/methods/beautymap/record.json) · RMSE **6.39 cm** · 290 native updates.
 
+<a id="scene-corridor-2d"></a>
+
 ### Corridor degradation
+
+[↑ Back to Practice index](#practice-index)
 
 AMCL, 508 updates; RMSE includes a 1 m initial offset. All three projected maps are identical.
 
@@ -498,7 +525,11 @@ Full-scan control: 71.60 cm, sustained convergence 6.6 s after the same referenc
 
 Native GICP outputs from fresh Gazebo B; complete XYZ/rotation scores and output-loss evidence are retained. Map processing A uses supplied poses, not full 3D SLAM.
 
+<a id="map-review-3d"></a>
+
 ### 3D map result review
+
+[↑ Back to Practice index](#practice-index)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
@@ -512,7 +543,11 @@ Real RViz result review of saved native outputs; no new inference. Grey: backgro
 
 [MP4](results/reference/robot-3d-map-review-v2/execution.mp4) · [point audit](results/reference/robot-3d-map-audit/record.json)
 
+<a id="scene-static-3d"></a>
+
 ### Pure static · 3D
+
+[↑ Back to Practice index](#practice-index)
 
 No moving contamination needs cleaning; no localization improvement in this trial.
 
@@ -534,7 +569,11 @@ No moving contamination needs cleaning; no localization improvement in this tria
 
 [Live MP4](results/reference/robot-3d-static/executions/beautymap.mp4) · [record](results/reference/robot-3d-static/record.json)
 
+<a id="scene-dynamic-3d"></a>
+
 ### Moving obstacles · 3D
+
+[↑ Back to Practice index](#practice-index)
 
 Native cleaning removes dynamic map points, without a clear downstream GICP gain.
 
@@ -556,7 +595,11 @@ Native cleaning removes dynamic map points, without a clear downstream GICP gain
 
 [Live MP4](results/reference/robot-3d-dynamic/executions/beautymap.mp4) · [record](results/reference/robot-3d-dynamic/record.json)
 
+<a id="scene-change-3d"></a>
+
 ### Persistent change · 3D
+
+[↑ Back to Practice index](#practice-index)
 
 Static-A 3D maps remain frozen; change detection/updating was not executed. No localization gain.
 
@@ -578,7 +621,11 @@ Static-A 3D maps remain frozen; change detection/updating was not executed. No l
 
 [Live MP4](results/reference/robot-3d-large-change/executions/beautymap.mp4) · [record](results/reference/robot-3d-large-change/record.json)
 
+<a id="scene-corridor-3d"></a>
+
 ### Corridor degradation · 3D
+
+[↑ Back to Practice index](#practice-index)
 
 Raw and DUFOMap 3D maps are byte-identical yet tracking differs. Output coverage is unequal; do not rank cleaners.
 

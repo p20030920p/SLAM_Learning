@@ -198,11 +198,22 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 [键盘演示](../demo/README.md) · [视频目录](../demo/gallery.html) · [代码 Notebook](../notebooks/presentation/SLAM_实验逐步展示.ipynb)。
 
+<a id="practice-index"></a>
+
+| 场景 | 2D · AMCL | 3D · GICP |
+| --- | --- | --- |
+| 纯静态 | [查看录像](#scene-static-2d) | [查看录像](#scene-static-3d) |
+| 运动障碍物 | [查看录像](#scene-dynamic-2d) | [查看录像](#scene-dynamic-3d) |
+| 持久结构变化 | [查看录像](#scene-change-2d) | [查看录像](#scene-change-3d) |
+| 走廊退化 | [查看录像](#scene-corridor-2d) | [查看录像](#scene-corridor-3d) |
+
+[三维地图清理结果](#map-review-3d)
+
 **不同地图下的定位误差。**2D使用AMCL，报XY RMSE；3D直接使用三维点云地图和同一原库GICP，报XYZ RMSE，单位均为cm。包含全部原生已发布输出；单次结果不构成稳定排名。三维建图使用给定位姿融合与清理，真值不进入定位器。
 
 ### 2D · AMCL
 
-**纯静态** · [record](../results/reference/robot-live-static/record.json)
+**[纯静态](#scene-static-2d)** · [record](../results/reference/robot-live-static/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
@@ -212,7 +223,7 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
-**运动障碍物** · [record](../results/reference/robot-2d-dynamic-matched/record.json)
+**[运动障碍物](#scene-dynamic-2d)** · [record](../results/reference/robot-2d-dynamic-matched/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
@@ -222,7 +233,7 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 新建图A配对结果：DUFOMap高0.67 cm，BeautyMap低0.23 cm；单次结果无稳定排名，旧一轮结果保留。
 
-**持久结构变化** · [record](../results/reference/robot-live-large-change/record.json)
+**[持久结构变化](#scene-change-2d)** · [record](../results/reference/robot-live-large-change/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
@@ -232,7 +243,7 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 旧图定位；未调用在线地图更新，本路线未诱发失效。
 
-**走廊退化** · [record](../results/reference/robot-corridor-v2/record.json)
+**[走廊退化](#scene-corridor-2d)** · [record](../results/reference/robot-corridor-v2/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
@@ -244,7 +255,7 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 ### 3D · GICP
 
-**纯静态** · [record](../results/reference/robot-3d-static/record.json)
+**[纯静态](#scene-static-3d)** · [record](../results/reference/robot-3d-static/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
@@ -254,7 +265,7 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 无动态污染需要清理，本次三维定位未见改善。
 
-**运动障碍物** · [record](../results/reference/robot-3d-dynamic/record.json)
+**[运动障碍物](#scene-dynamic-3d)** · [record](../results/reference/robot-3d-dynamic/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
@@ -264,7 +275,7 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 三维清理确实去除了动态点，但GICP定位仍未见明显收益。
 
-**持久结构变化** · [record](../results/reference/robot-3d-large-change/record.json)
+**[持久结构变化](#scene-change-3d)** · [record](../results/reference/robot-3d-large-change/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
@@ -274,7 +285,7 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 复用静态三维旧图；未执行变化检测或更新，未见定位改善。
 
-**走廊退化** · [record](../results/reference/robot-3d-corridor/record.json)
+**[走廊退化](#scene-corridor-3d)** · [record](../results/reference/robot-3d-corridor/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
@@ -302,7 +313,11 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 [计算口径与控制组](testing/LIVE.zh-CN.md) · [录像名称对照](../demo/recording-index.json) · [逐方法一键演示](../demo/README.md#逐方法独立-rviz-现场对照)
 
+<a id="scene-static-2d"></a>
+
 ### 纯静态
+
+[↑ 返回目录](#practice-index)
 
 定位器：AMCL；每组290次更新，位置RMSE含初始化。
 
@@ -350,7 +365,11 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 [Result MP4](../results/reference/robot-live-static/methods/beautymap/result.mp4) · [case record](../results/reference/robot-live-static/methods/beautymap/record.json) · RMSE **6.89 cm** · 290 次原生更新。
 
+<a id="scene-dynamic-2d"></a>
+
 ### 运动障碍物
+
+[↑ 返回目录](#practice-index)
 
 定位器：AMCL；每组291次更新，位置RMSE含初始化。
 
@@ -396,7 +415,11 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 [Result MP4](../results/reference/robot-2d-dynamic-matched/methods/beautymap/result.mp4) · [case record](../results/reference/robot-2d-dynamic-matched/methods/beautymap/record.json) · RMSE **7.29 cm** · 291 次原生更新。
 
+<a id="scene-change-2d"></a>
+
 ### 持久结构变化
+
+[↑ 返回目录](#practice-index)
 
 定位器：AMCL；每组290次更新，位置RMSE含初始化。
 
@@ -444,7 +467,11 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 [Result MP4](../results/reference/robot-live-large-change/methods/beautymap/result.mp4) · [case record](../results/reference/robot-live-large-change/methods/beautymap/record.json) · RMSE **6.39 cm** · 290 次原生更新。
 
+<a id="scene-corridor-2d"></a>
+
 ### 走廊退化
+
+[↑ 返回目录](#practice-index)
 
 AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 
@@ -498,7 +525,11 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 
 新仿真B中的原库GICP真实窗口录制；保留完整XYZ／旋转评分及输出缺失情况。建图A是给定位姿的三维点云融合、清理，不等同于完整三维SLAM。
 
+<a id="map-review-3d"></a>
+
 ### 三维建图清理结果展示
+
+[↑ 返回目录](#practice-index)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
@@ -512,7 +543,11 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 
 [MP4](../results/reference/robot-3d-map-review-v2/execution.mp4) · [point audit](../results/reference/robot-3d-map-audit/record.json)
 
+<a id="scene-static-3d"></a>
+
 ### 纯静态 · 3D
+
+[↑ 返回目录](#practice-index)
 
 无动态污染需要清理，本次三维定位未见改善。
 
@@ -534,7 +569,11 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 
 [Live MP4](../results/reference/robot-3d-static/executions/beautymap.mp4) · [record](../results/reference/robot-3d-static/record.json)
 
+<a id="scene-dynamic-3d"></a>
+
 ### 运动障碍物 · 3D
+
+[↑ 返回目录](#practice-index)
 
 三维清理确实去除了动态点，但GICP定位仍未见明显收益。
 
@@ -556,7 +595,11 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 
 [Live MP4](../results/reference/robot-3d-dynamic/executions/beautymap.mp4) · [record](../results/reference/robot-3d-dynamic/record.json)
 
+<a id="scene-change-3d"></a>
+
 ### 持久结构变化 · 3D
+
+[↑ 返回目录](#practice-index)
 
 复用静态三维旧图；未执行变化检测或更新，未见定位改善。
 
@@ -578,7 +621,11 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 
 [Live MP4](../results/reference/robot-3d-large-change/executions/beautymap.mp4) · [record](../results/reference/robot-3d-large-change/record.json)
 
+<a id="scene-corridor-3d"></a>
+
 ### 走廊退化 · 3D
+
+[↑ 返回目录](#practice-index)
 
 Raw与DUFOMap三维图字节相同却得到不同结果；有效输出覆盖不同，不能据此排名。
 
