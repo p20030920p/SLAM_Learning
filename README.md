@@ -13,7 +13,7 @@ English | [中文](docs/HOME.zh-CN.md)
 
 [Research thread](#research-thread-localization-self-recovery-under-degradation-and-large-scene-change) · [Localization GIFs](#static-and-dynamic-localization-recordings) · [Direction](#direction-analysis) · [Open question](#open-questions) · [Related works](#related-works)
 
-[Results](#reproduction-results) · [Evidence](#evidence) · [Hardware tests](#hardware-tests) · [Hypothesis](#hypothesis) · [Branches](#branches)
+[Results](#reproduction-results) · [Evidence](#evidence) · [Hypothesis](#hypothesis) · [Branches](#branches)
 
 </div>
 
@@ -101,7 +101,7 @@ Sensor data → Front end → Back end (optimize) → Map build and pose output
 
 | Element | Benefit | In this repository |
 | --- | --- | --- |
-| Sensor data | Cleaner input | Recorded Gazebo LiDAR and RGB-D drives; desktop hardware capture checks |
+| Sensor data | Cleaner input | Recorded Gazebo LiDAR and RGB-D drives |
 | Front end | Stable matches | Static-structure filtering (DUFOMap, BeautyMap) applied before localization |
 | Back end | Consistent poses | AMCL pose updates from scans and wheel odometry; outlier handling is outside these experiments |
 | Loop detection | Less drift | Not part of these experiments: the platform is AMCL, not a factor-graph back end |
@@ -180,23 +180,6 @@ Historical KITTI-02, frames 860–950, 91 scans; XY=1 m, Z=0.5 m, range=40 m. [O
 | HA | 82.90 | 82.9006 |
 
 All three values match at two decimals. All nine accuracy entries across XY=0.5/1/2 m match. This uses historical preprocessing/GT and the author's HA scorer; the exact paper method commit remains unidentified. Other sequences and runtime are outside this comparison.
-
-## Hardware tests
-
-![D435 / Unitree L2](docs/media/hardware/devices.jpg)
-
-Desktop setup: RealSense D435 depth camera (without IMU) and Unitree L2 LiDAR.
-
-| Device | Basic test | Full video |
-| --- | --- | --- |
-| D435 | RGB / depth / stereo IR capture | [24.6 s](docs/media/hardware/d435-input.mp4) |
-| L2 | Point cloud / ICP display | [42.2 s](docs/media/hardware/l2.mp4) |
-
-![D435 input](docs/media/hardware/d435-input.gif)
-
-![L2 display](docs/media/hardware/l2.gif)
-
-Supplement: [D435 RGB-D odometry, 44.9 s](docs/media/hardware/d435.mp4). These are recorded acquisition and display checks; hardware accuracy, full SLAM and cross-sensor fusion remain unverified. [Timing and sources](docs/media/hardware/record.json).
 
 ## Hypothesis
 
