@@ -98,3 +98,13 @@ Native Gazebo transport avoids model-name/top-level timestamp losses in this ROS
 Current author states are written atomically during execution and published to RViz; frame/serial order, state hashes and the computation interval are verified. WSL wall clocks showed sub-second corrections in the IR-MCL run, so frame order is authoritative with a 2 s wall-clock tolerance. Future captures also store monotonic clocks. Display thinning and observer overhead are disclosed; original inference and cleaning decisions are unchanged.
 
 DUFOMap and BeautyMap final `cleaned.pcd` SHA256 values are byte-identical to the preceding native executions: [DUFOMap previous](../../results/reference/desktop-dufomap/native-run/record.json) / [current](../../results/reference/desktop-live-dufomap/native-run/record.json), [BeautyMap previous](../../results/reference/desktop-beautymap/native-run/record.json) / [current](../../results/reference/desktop-live-beautymap/native-run/record.json).
+
+## Separate 2D / 3D comparison, 2026-10-14–15
+
+The homepage/video gallery now separates 2D AMCL from 3D GICP. A fresh dynamic mapping A supplies both the new 2D dynamic run and 3D dynamic run. The original table above is historical; its dynamic maps came from an earlier A. All other worlds/routes remain the existing four scenarios.
+
+The 3D branch uses full native cleaned point maps, retained XYZ/quaternion outputs and private SE(3) display TF. It also applies the corridor limitation to 3D clouds, keeping full-cloud controls. Missing native outputs after restoration are reported as insufficient evidence rather than successful recovery. GICP's first published pose has already undergone registration. Shared source streams do not guarantee identical consumed histories; byte-identical corridor maps with divergent tracking expose this limitation.
+
+[New scores, common-point map-quality audit, all parameter checks and paper applicability](MAP-2D-3D.md) · [2D recordings](../../demo/gallery.html#2d) · [3D recordings](../../demo/gallery.html#3d) · [new mapping-A input capture](../../results/reference/robot-3d-dynamic-mapping/record.json).
+
+Mapping remains point-cloud fusion/cleaning with supplied poses, not a full 3D SLAM claim. True live inference recordings and the explicitly labelled saved-map result review are separate. The recorder keeps the genuine status terminal repainting during encoder shutdown, allowing WGC/FFmpeg to finalize every MP4 before native windows close.

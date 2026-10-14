@@ -1,0 +1,44 @@
+Panels: []
+Visualization Manager:
+  Class: ''
+  Displays:
+  - Class: rviz_default_plugins/Grid
+    Name: World grid
+    Enabled: true
+    Cell Size: 1
+    Plane Cell Count: 30
+    Color: 65; 70; 85
+  - Class: rviz_default_plugins/PointCloud2
+    Name: Native retained points; red = residual moving-box returns
+    Enabled: true
+    Topic:
+      Value: /review/raw/map
+      Reliability Policy: Reliable
+      Durability Policy: Transient Local
+      Depth: 1
+    Style: Points
+    Size (Pixels): 1
+    Color Transformer: RGB8
+    Position Transformer: XYZ
+  Global Options:
+    Background Color: 18; 22; 28
+    Fixed Frame: map
+    Frame Rate: 15
+  Tools: []
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: 3D result review
+      Target Frame: map
+      Distance: 12
+      Pitch: 0.72
+      Yaw: 0.8
+      Focal Point:
+        X: 6.4
+        Y: 4.5
+        Z: 0.6
+Window Geometry:
+  Width: 640
+  Height: 720
+  Hide Left Dock: true
+  Hide Right Dock: true

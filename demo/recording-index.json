@@ -5,7 +5,7 @@
   "recordings": [
     {
       "original_name": "20261014-201016-localization-static-method-live-a72944/executions/raw.mp4",
-      "filename": "S1-纯静态__B-定位__raw-map_AMCL_独立RViz实时__20261014-201016-a72944.mp4",
+      "filename": "2D/S1-纯静态__B-定位__raw-map_AMCL_独立RViz实时__20261014-201016-a72944.mp4",
       "scene": "Pure static · 纯静态",
       "module": "B-定位 · 独立RViz现场",
       "algorithm": "Raw地图 + AMCL",
@@ -14,11 +14,12 @@
       "record": "results/reference/robot-live-static/record.json",
       "sha256": "fff176428acf8fbea6e6d650a727d69445a31cf1727d195b0012a55c441c65ba",
       "bytes": 2772299,
-      "note": "独立窗口 SLAM LIVE - raw - RViz2；位姿主题 /raw/amcl_pose；RMSE 7.28cm，290 更新"
+      "note": "独立窗口 SLAM LIVE - raw - RViz2；位姿主题 /raw/amcl_pose；RMSE 7.28cm，290 更新",
+      "dimension": "2D"
     },
     {
       "original_name": "20261014-201016-localization-static-method-live-a72944/executions/dufomap.mp4",
-      "filename": "S1-纯静态__B-定位__dufomap-map_AMCL_独立RViz实时__20261014-201016-a72944.mp4",
+      "filename": "2D/S1-纯静态__B-定位__dufomap-map_AMCL_独立RViz实时__20261014-201016-a72944.mp4",
       "scene": "Pure static · 纯静态",
       "module": "B-定位 · 独立RViz现场",
       "algorithm": "DUFOMap地图 + AMCL",
@@ -27,11 +28,12 @@
       "record": "results/reference/robot-live-static/record.json",
       "sha256": "834c6150c06899c4e3b6a12ff03b0ebb448ec66012ea63b23f3f6b536bd928cf",
       "bytes": 2797942,
-      "note": "独立窗口 SLAM LIVE - dufomap - RViz2；位姿主题 /dufomap/amcl_pose；RMSE 7.28cm，290 更新"
+      "note": "独立窗口 SLAM LIVE - dufomap - RViz2；位姿主题 /dufomap/amcl_pose；RMSE 7.28cm，290 更新",
+      "dimension": "2D"
     },
     {
       "original_name": "20261014-201016-localization-static-method-live-a72944/executions/beautymap.mp4",
-      "filename": "S1-纯静态__B-定位__beautymap-map_AMCL_独立RViz实时__20261014-201016-a72944.mp4",
+      "filename": "2D/S1-纯静态__B-定位__beautymap-map_AMCL_独立RViz实时__20261014-201016-a72944.mp4",
       "scene": "Pure static · 纯静态",
       "module": "B-定位 · 独立RViz现场",
       "algorithm": "BeautyMap地图 + AMCL",
@@ -40,7 +42,8 @@
       "record": "results/reference/robot-live-static/record.json",
       "sha256": "cdd81ad01b36f9dd74d16c56cd66a86de54b924d6aa149eb13f42dcc01e8e3b5",
       "bytes": 2753499,
-      "note": "独立窗口 SLAM LIVE - beautymap - RViz2；位姿主题 /beautymap/amcl_pose；RMSE 6.89cm，290 更新"
+      "note": "独立窗口 SLAM LIVE - beautymap - RViz2；位姿主题 /beautymap/amcl_pose；RMSE 6.89cm，290 更新",
+      "dimension": "2D"
     },
     {
       "original_name": "20261014-201346-localization-dynamic-method-live-ed745f/executions/raw.mp4",
@@ -48,7 +51,7 @@
       "scene": "Moving obstacles · 运动障碍物",
       "module": "B-定位 · 独立RViz现场",
       "algorithm": "Raw地图 + AMCL",
-      "status": "当前展示",
+      "status": "历史：较早建图A，保留对照",
       "source_run": "20261014-201346-localization-dynamic-method-live-ed745f",
       "record": "results/reference/robot-live-dynamic/record.json",
       "sha256": "b1dbc7d9694cee6d1f2e558ea52892a05a454bd4c6ee2b6e5b4119b3625cbc1f",
@@ -61,7 +64,7 @@
       "scene": "Moving obstacles · 运动障碍物",
       "module": "B-定位 · 独立RViz现场",
       "algorithm": "DUFOMap地图 + AMCL",
-      "status": "当前展示",
+      "status": "历史：较早建图A，保留对照",
       "source_run": "20261014-201346-localization-dynamic-method-live-ed745f",
       "record": "results/reference/robot-live-dynamic/record.json",
       "sha256": "7e64ce27ce7c1c4d0c0b7664cf2f850a1ae568b61fed8a75c09ee0217fe03be2",
@@ -74,7 +77,7 @@
       "scene": "Moving obstacles · 运动障碍物",
       "module": "B-定位 · 独立RViz现场",
       "algorithm": "BeautyMap地图 + AMCL",
-      "status": "当前展示",
+      "status": "历史：较早建图A，保留对照",
       "source_run": "20261014-201346-localization-dynamic-method-live-ed745f",
       "record": "results/reference/robot-live-dynamic/record.json",
       "sha256": "4319e3dd44071707f7b4d18c983e74a7e356f4eca459bb0a074d25a5ba65c2d4",
@@ -83,7 +86,7 @@
     },
     {
       "original_name": "20261014-201755-localization-large-change-method-live-05fc93/executions/raw.mp4",
-      "filename": "S3-持久变化__B-定位__raw-map_AMCL_独立RViz实时__20261014-201755-05fc93.mp4",
+      "filename": "2D/S3-持久变化__B-定位__raw-map_AMCL_独立RViz实时__20261014-201755-05fc93.mp4",
       "scene": "Persistent change · 持久变化",
       "module": "B-定位 · 独立RViz现场",
       "algorithm": "Raw地图 + AMCL",
@@ -92,11 +95,12 @@
       "record": "results/reference/robot-live-large-change/record.json",
       "sha256": "153d3b685a8d1a02204fadc81dbe1ffc3655d244827277a0317b982bb2aeeb6e",
       "bytes": 3158734,
-      "note": "独立窗口 SLAM LIVE - raw - RViz2；位姿主题 /raw/amcl_pose；RMSE 6.84cm，290 更新"
+      "note": "独立窗口 SLAM LIVE - raw - RViz2；位姿主题 /raw/amcl_pose；RMSE 6.84cm，290 更新",
+      "dimension": "2D"
     },
     {
       "original_name": "20261014-201755-localization-large-change-method-live-05fc93/executions/dufomap.mp4",
-      "filename": "S3-持久变化__B-定位__dufomap-map_AMCL_独立RViz实时__20261014-201755-05fc93.mp4",
+      "filename": "2D/S3-持久变化__B-定位__dufomap-map_AMCL_独立RViz实时__20261014-201755-05fc93.mp4",
       "scene": "Persistent change · 持久变化",
       "module": "B-定位 · 独立RViz现场",
       "algorithm": "DUFOMap地图 + AMCL",
@@ -105,11 +109,12 @@
       "record": "results/reference/robot-live-large-change/record.json",
       "sha256": "34f3d78f8bb6b25a19f2fd7c7e71ac0f66db6d8148ac856fd81dc903c87e75c2",
       "bytes": 3180497,
-      "note": "独立窗口 SLAM LIVE - dufomap - RViz2；位姿主题 /dufomap/amcl_pose；RMSE 6.84cm，290 更新"
+      "note": "独立窗口 SLAM LIVE - dufomap - RViz2；位姿主题 /dufomap/amcl_pose；RMSE 6.84cm，290 更新",
+      "dimension": "2D"
     },
     {
       "original_name": "20261014-201755-localization-large-change-method-live-05fc93/executions/beautymap.mp4",
-      "filename": "S3-持久变化__B-定位__beautymap-map_AMCL_独立RViz实时__20261014-201755-05fc93.mp4",
+      "filename": "2D/S3-持久变化__B-定位__beautymap-map_AMCL_独立RViz实时__20261014-201755-05fc93.mp4",
       "scene": "Persistent change · 持久变化",
       "module": "B-定位 · 独立RViz现场",
       "algorithm": "BeautyMap地图 + AMCL",
@@ -118,7 +123,8 @@
       "record": "results/reference/robot-live-large-change/record.json",
       "sha256": "5f1c1dcff15a8fa733a72e8ecdf82bf74a401e2dd9642e765217c2b33e89310e",
       "bytes": 3213956,
-      "note": "独立窗口 SLAM LIVE - beautymap - RViz2；位姿主题 /beautymap/amcl_pose；RMSE 6.39cm，290 更新"
+      "note": "独立窗口 SLAM LIVE - beautymap - RViz2；位姿主题 /beautymap/amcl_pose；RMSE 6.39cm，290 更新",
+      "dimension": "2D"
     },
     {
       "original_name": "20261014-202003-localization-degradation-method-live-adc675/executions/degraded_raw.mp4",
@@ -446,7 +452,7 @@
       "note": ""
     },
     {
-      "filename": "S4-走廊退化__B-定位__degraded_raw-map_AMCL_独立RViz实时__20261014-214224-88a307.mp4",
+      "filename": "2D/S4-走廊退化__B-定位__degraded_raw-map_AMCL_独立RViz实时__20261014-214224-88a307.mp4",
       "original_name": "20261014-214224-localization-degradation-method-live-88a307/executions/degraded_raw.mp4",
       "source_run": "20261014-214224-localization-degradation-method-live-88a307",
       "scene": "新走廊/退化",
@@ -456,10 +462,11 @@
       "record": "results/reference/robot-corridor-v2/record.json",
       "sha256": "09e721188468eba7f46a11b7c93c51cae63610dac089d7550a9be59fcd9503e1",
       "bytes": 4650073,
-      "note": ""
+      "note": "",
+      "dimension": "2D"
     },
     {
-      "filename": "S4-走廊退化__B-定位__degraded_dufomap-map_AMCL_独立RViz实时__20261014-214224-88a307.mp4",
+      "filename": "2D/S4-走廊退化__B-定位__degraded_dufomap-map_AMCL_独立RViz实时__20261014-214224-88a307.mp4",
       "original_name": "20261014-214224-localization-degradation-method-live-88a307/executions/degraded_dufomap.mp4",
       "source_run": "20261014-214224-localization-degradation-method-live-88a307",
       "scene": "新走廊/退化",
@@ -469,10 +476,11 @@
       "record": "results/reference/robot-corridor-v2/record.json",
       "sha256": "d5622f05ff1836c810a98c70d7c310ae3a44a8eb0ef99c052dcc49c3ac256444",
       "bytes": 4441212,
-      "note": ""
+      "note": "",
+      "dimension": "2D"
     },
     {
-      "filename": "S4-走廊退化__B-定位__degraded_beautymap-map_AMCL_独立RViz实时__20261014-214224-88a307.mp4",
+      "filename": "2D/S4-走廊退化__B-定位__degraded_beautymap-map_AMCL_独立RViz实时__20261014-214224-88a307.mp4",
       "original_name": "20261014-214224-localization-degradation-method-live-88a307/executions/degraded_beautymap.mp4",
       "source_run": "20261014-214224-localization-degradation-method-live-88a307",
       "scene": "新走廊/退化",
@@ -482,7 +490,8 @@
       "record": "results/reference/robot-corridor-v2/record.json",
       "sha256": "67b9a3b0872e47114e69669acb21b7367e3e5aca6e51f2a637bba3d613318c1d",
       "bytes": 4550303,
-      "note": ""
+      "note": "",
+      "dimension": "2D"
     },
     {
       "filename": "S1-纯静态__A-建图__slam_toolbox与3D点云__20261014-214613-e2db17.mp4",
@@ -574,6 +583,236 @@
       "sha256": "48a03fc1da52fd403402d7f97565c46dad6199abb8ec3eab67965f7449c31ff0",
       "bytes": 2379486,
       "note": ""
+    },
+    {
+      "original_name": "20261014-235749-localization-dynamic-method-live-6ff663/executions/raw.mp4",
+      "filename": "2D/S2-运动障碍物__2D__B-定位__raw-map_AMCL_独立RViz实时__20261014-235749-6ff663.mp4",
+      "dimension": "2D",
+      "scene": "运动障碍物",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "raw地图 + AMCL",
+      "status": "当前展示",
+      "source_run": "20261014-235749-localization-dynamic-method-live-6ff663",
+      "record": "results/reference/robot-2d-dynamic-matched/record.json",
+      "sha256": "37c704d34bfb65f040222bc5611a90bf7b859a3e500c4e30330505aa3d47358b",
+      "bytes": 4584203,
+      "note": "XY RMSE 7.52cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-235749-localization-dynamic-method-live-6ff663/executions/dufomap.mp4",
+      "filename": "2D/S2-运动障碍物__2D__B-定位__dufomap-map_AMCL_独立RViz实时__20261014-235749-6ff663.mp4",
+      "dimension": "2D",
+      "scene": "运动障碍物",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "dufomap地图 + AMCL",
+      "status": "当前展示",
+      "source_run": "20261014-235749-localization-dynamic-method-live-6ff663",
+      "record": "results/reference/robot-2d-dynamic-matched/record.json",
+      "sha256": "e00546533f95c6c3512c5ec1337615b46eee954586cb01b420c5d77f3bdf7772",
+      "bytes": 4552796,
+      "note": "XY RMSE 8.19cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-235749-localization-dynamic-method-live-6ff663/executions/beautymap.mp4",
+      "filename": "2D/S2-运动障碍物__2D__B-定位__beautymap-map_AMCL_独立RViz实时__20261014-235749-6ff663.mp4",
+      "dimension": "2D",
+      "scene": "运动障碍物",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "beautymap地图 + AMCL",
+      "status": "当前展示",
+      "source_run": "20261014-235749-localization-dynamic-method-live-6ff663",
+      "record": "results/reference/robot-2d-dynamic-matched/record.json",
+      "sha256": "4b61e571a4dc44bd73fd4958f7c35be4e02b285e40b0fd65edf7e5d686b013e4",
+      "bytes": 4561353,
+      "note": "XY RMSE 7.29cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-235230-localization-3d-static-method-live-2de2b0/executions/raw.mp4",
+      "filename": "3D/S1-纯静态__3D__B-定位__raw-map_GICP_独立RViz实时__20261014-235230-2de2b0.mp4",
+      "dimension": "3D",
+      "scene": "纯静态",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "raw地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-235230-localization-3d-static-method-live-2de2b0",
+      "record": "results/reference/robot-3d-static/record.json",
+      "sha256": "a7b3dcd9ef87be2f26355512473220334329fdb0f59bc75c69b15188be5a86f2",
+      "bytes": 5536804,
+      "note": "XYZ RMSE 0.95cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-235230-localization-3d-static-method-live-2de2b0/executions/dufomap.mp4",
+      "filename": "3D/S1-纯静态__3D__B-定位__dufomap-map_GICP_独立RViz实时__20261014-235230-2de2b0.mp4",
+      "dimension": "3D",
+      "scene": "纯静态",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "dufomap地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-235230-localization-3d-static-method-live-2de2b0",
+      "record": "results/reference/robot-3d-static/record.json",
+      "sha256": "d636fbcd57bd46597af98b05feab685db41be995d2940a1451847c12a81e2d1c",
+      "bytes": 5552170,
+      "note": "XYZ RMSE 0.99cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-235230-localization-3d-static-method-live-2de2b0/executions/beautymap.mp4",
+      "filename": "3D/S1-纯静态__3D__B-定位__beautymap-map_GICP_独立RViz实时__20261014-235230-2de2b0.mp4",
+      "dimension": "3D",
+      "scene": "纯静态",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "beautymap地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-235230-localization-3d-static-method-live-2de2b0",
+      "record": "results/reference/robot-3d-static/record.json",
+      "sha256": "fb2a3dcf0a3a9b2dfdbe388d24ab30b7a8dddf73b1dac00693fe64790f8db4b7",
+      "bytes": 5703636,
+      "note": "XYZ RMSE 1.07cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-234119-localization-3d-dynamic-method-live-b89312/executions/raw.mp4",
+      "filename": "3D/S2-运动障碍物__3D__B-定位__raw-map_GICP_独立RViz实时__20261014-234119-b89312.mp4",
+      "dimension": "3D",
+      "scene": "运动障碍物",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "raw地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-234119-localization-3d-dynamic-method-live-b89312",
+      "record": "results/reference/robot-3d-dynamic/record.json",
+      "sha256": "fb7c5c0af678983ff7e5297b8e1f3d4a053c423c0591fc3368447c75ee368474",
+      "bytes": 5715378,
+      "note": "XYZ RMSE 0.98cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-234119-localization-3d-dynamic-method-live-b89312/executions/dufomap.mp4",
+      "filename": "3D/S2-运动障碍物__3D__B-定位__dufomap-map_GICP_独立RViz实时__20261014-234119-b89312.mp4",
+      "dimension": "3D",
+      "scene": "运动障碍物",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "dufomap地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-234119-localization-3d-dynamic-method-live-b89312",
+      "record": "results/reference/robot-3d-dynamic/record.json",
+      "sha256": "a2b4703a91b120c2366202ad039b26b7be1fbad2595f4cd23b5e32ac02fe7668",
+      "bytes": 5715873,
+      "note": "XYZ RMSE 0.98cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-234119-localization-3d-dynamic-method-live-b89312/executions/beautymap.mp4",
+      "filename": "3D/S2-运动障碍物__3D__B-定位__beautymap-map_GICP_独立RViz实时__20261014-234119-b89312.mp4",
+      "dimension": "3D",
+      "scene": "运动障碍物",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "beautymap地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-234119-localization-3d-dynamic-method-live-b89312",
+      "record": "results/reference/robot-3d-dynamic/record.json",
+      "sha256": "910f9f6e863440498493f5d4c15235f98a2b6634ae93d89fe8a6ecdffa25fb72",
+      "bytes": 5740207,
+      "note": "XYZ RMSE 1.04cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-235508-localization-3d-large-change-method-live-676644/executions/raw.mp4",
+      "filename": "3D/S3-持久变化__3D__B-定位__raw-map_GICP_独立RViz实时__20261014-235508-676644.mp4",
+      "dimension": "3D",
+      "scene": "持久结构变化",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "raw地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-235508-localization-3d-large-change-method-live-676644",
+      "record": "results/reference/robot-3d-large-change/record.json",
+      "sha256": "e7e827004979342d37628570dbe7228f2f15774180ba53f1f0c25c7f02e3012f",
+      "bytes": 4547042,
+      "note": "XYZ RMSE 0.93cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-235508-localization-3d-large-change-method-live-676644/executions/dufomap.mp4",
+      "filename": "3D/S3-持久变化__3D__B-定位__dufomap-map_GICP_独立RViz实时__20261014-235508-676644.mp4",
+      "dimension": "3D",
+      "scene": "持久结构变化",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "dufomap地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-235508-localization-3d-large-change-method-live-676644",
+      "record": "results/reference/robot-3d-large-change/record.json",
+      "sha256": "d7f84fbe351866f942c89c4a3b2cad9e5972e4b7294dda338147be3aa81b2451",
+      "bytes": 4517532,
+      "note": "XYZ RMSE 1.01cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-235508-localization-3d-large-change-method-live-676644/executions/beautymap.mp4",
+      "filename": "3D/S3-持久变化__3D__B-定位__beautymap-map_GICP_独立RViz实时__20261014-235508-676644.mp4",
+      "dimension": "3D",
+      "scene": "持久结构变化",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "beautymap地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-235508-localization-3d-large-change-method-live-676644",
+      "record": "results/reference/robot-3d-large-change/record.json",
+      "sha256": "80a4220a3aee9c4efe10d1c6b57bdbb855805a772c269b11f17fba31dba4ac21",
+      "bytes": 4478926,
+      "note": "XYZ RMSE 1.04cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-234738-localization-3d-degradation-method-live-66be3b/executions/raw.mp4",
+      "filename": "3D/S4-走廊退化__3D__B-定位__raw-map_GICP_独立RViz实时__20261014-234738-66be3b.mp4",
+      "dimension": "3D",
+      "scene": "走廊退化",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "raw地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-234738-localization-3d-degradation-method-live-66be3b",
+      "record": "results/reference/robot-3d-corridor/record.json",
+      "sha256": "2de394d639df886f05725411af83886bbd7c927eaa767bf148c6a5fa39bdee88",
+      "bytes": 8537395,
+      "note": "XYZ RMSE 474.38cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-234738-localization-3d-degradation-method-live-66be3b/executions/dufomap.mp4",
+      "filename": "3D/S4-走廊退化__3D__B-定位__dufomap-map_GICP_独立RViz实时__20261014-234738-66be3b.mp4",
+      "dimension": "3D",
+      "scene": "走廊退化",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "dufomap地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-234738-localization-3d-degradation-method-live-66be3b",
+      "record": "results/reference/robot-3d-corridor/record.json",
+      "sha256": "49f8cac8db53553c90baddb4c5c1b12ad8067fd3ca98717a5309f83c926eac15",
+      "bytes": 8618537,
+      "note": "XYZ RMSE 497.05cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "original_name": "20261014-234738-localization-3d-degradation-method-live-66be3b/executions/beautymap.mp4",
+      "filename": "3D/S4-走廊退化__3D__B-定位__beautymap-map_GICP_独立RViz实时__20261014-234738-66be3b.mp4",
+      "dimension": "3D",
+      "scene": "走廊退化",
+      "module": "B-定位 · 独立RViz现场",
+      "algorithm": "beautymap地图 + GICP",
+      "status": "当前展示",
+      "source_run": "20261014-234738-localization-3d-degradation-method-live-66be3b",
+      "record": "results/reference/robot-3d-corridor/record.json",
+      "sha256": "a0dc8f85ec5651b5c9c0b702809ce26275841d15a885212e8ca42e710182e8f2",
+      "bytes": 8632137,
+      "note": "XYZ RMSE 592.00cm；单次输出，丢失覆盖另见record"
+    },
+    {
+      "filename": "3D/三维地图清理结果展示_20261015-000414-0001ea.mp4",
+      "dimension": "3D",
+      "scene": "运动障碍物",
+      "module": "A-地图结果展示",
+      "algorithm": "Raw / DUFOMap / BeautyMap",
+      "status": "当前展示",
+      "record": "results/reference/robot-3d-map-review-v2/record.json",
+      "note": "真实RViz显示已计算好的三维结果；无新推理"
+    },
+    {
+      "filename": "3D/S2-运动障碍物__A-三维雷达输入采集_二维SLAM显示_20261014-233545-a37043.mp4",
+      "dimension": "3D input",
+      "scene": "运动障碍物",
+      "module": "A-输入采集",
+      "algorithm": "2D slam_toolbox显示 / 独立3D雷达扫描",
+      "status": "当前展示",
+      "record": "results/reference/robot-3d-dynamic-mapping/record.json",
+      "note": "给定位姿建图A的输入实录，之后离线运行三维清理器"
     }
   ]
 }

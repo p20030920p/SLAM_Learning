@@ -10,6 +10,8 @@
 - 20 / 21 / 22 / 23：静态、运动障碍、持久变化、走廊观测恢复。三个独立 RViz 窗口，各自显示地图、AMCL 位姿、粒子及隔离显示 TF，同时录三段现场。
 - 24：自动重录四场景，分别记录三个方法窗口。
 - 31 / 32：作者原库 NDT / GICP 三维固定地图定位，显示实时三维扫描、地图和原生位姿，录制现场。
+- 33 / 34 / 35 / 36：相同四种场景，Raw／DUFOMap／BeautyMap三维地图共用原库GICP，分别录三个真实RViz窗口。静态、动态、持久变化90仿真秒，走廊120秒；三维走廊也限制、恢复观测。
+- 37：已计算好的三维清理地图结果展示，灰色静态、红色残留动态；不执行新推理。
 - 论文-实时-dufomap / beautymap / ir-mcl：重新执行原库，用当前计算状态更新实际 RViz。作者公开数据与 Gazebo 平台测试分开。
 - 论文-adam-mcl：一次受限原库试验，自建地图，格为单位。
 - 00：查看最新视频；09：正常结束活动仿真。
@@ -25,3 +27,9 @@
 每次运行创建新目录 results/runs/presentation，保留 bag、真值、位姿 CSV、参数与日志。正式小产物封存在 results/reference；录像复制到 F:\be2演讲\屏幕实录\20261014-native-ui，命名含场景、模块、算法和运行 ID。[名称索引](recording-index.json)。
 
 Live execution 是当前计算的窗口实录；Measured result replay 绘制该次保存数据，不重新推理。AMCL 对照只改变地图／扫描条件；NDT/GICP 使用三维输入，不能与二维 AMCL 的数值直接作算法排名。实体机器人测试待测。
+
+## 2D与3D分开看
+
+[视频目录](gallery.html#2d)先列二维AMCL，再列[三维GICP](gallery.html#3d)，每场景只用“方法／地图类型／指标效果”三列。[本轮原因分析与地图点级评分](../docs/testing/MAP-2D-3D.zh-CN.md)。录像镜像按`2D`、`3D`子目录保存；旧录像和较早NDT／GICP单地图试验作为历史保留。
+
+脚本也可指定：`record-methods.ps1 -Scene dynamic -Dimension 3D -Duration 90`。三维地图仍来自给定位姿的建图A，不代表已完成完整三维SLAM。

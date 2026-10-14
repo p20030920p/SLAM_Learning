@@ -77,6 +77,7 @@ class Observer:
         self.rows = {case: [] for case in self.case_names}
         self.files = {}
         self.writers = {}
+        self.pose3d_files, self.pose3d_writers = {}, {}
         self.dropped = {case: 0 for case in self.case_names}
         self.command_pub = self.node.create_publisher(Twist, "/cmd_vel", 10)
         self.node.create_subscription(Odometry, "/omni_drive_controller/odom", self.on_odom, 20)
@@ -86,6 +87,11 @@ class Observer:
             qos = QoSProfile(depth=1, durability=durable, reliability=ReliabilityPolicy.RELIABLE)
             self.node.create_subscription(OccupancyGrid, map_topic, self.on_map, qos)
         for case in self.case_names:
+            if self.cases[case].get("dimension") == "3d":
+                self.pose3d_files[case] = (self.run / f"{case}-poses3d.csv").open("w", newline="")
+                self.pose3d_writers[case] = csv.writer(self.pose3d_files[case])
+                self.pose3d_writers[case].writerow(["stamp_s", *["truth_"+key for key in ("x", "y", "z", "qx", "qy", "qz", "qw")],
+                                                   *["estimate_"+key for key in ("x", "y", "z", "qx", "qy", "qz", "qw")], "nearest_truth_delta_s"])
             self.files[case] = (self.run / f"{case}-samples.csv").open("w", newline="")
             self.writers[case] = csv.writer(self.files[case])
             self.writers[case].writerow(
@@ -187,6 +193,12 @@ class Observer:
                 self.writers[case].writerow(row)
                 self.files[case].flush()
                 self.rows[case].append(row)
+                if case in self.pose3d_writers:
+                    q = pose.orientation
+                    self.pose3d_writers[case].writerow([row[0], *truth["xyz"], *truth["xyzw"],
+                                                       pose.position.x, pose.position.y, pose.position.z,
+                                                       q.x, q.y, q.z, q.w, delta])
+                    self.pose3d_files[case].flush()
                 if case == self.case_names[0] and self.odom and not self.cases[case].get("native_map_odom_tf"):
                     odom = self.odom.pose.pose
                     oyaw = yaw(odom.orientation)
@@ -324,6 +336,8 @@ class Observer:
                     "dropped_unsynchronized": self.dropped[case],
                 }
             self.files[case].close()
+            if case in self.pose3d_files:
+                self.pose3d_files[case].close()
         if self.map_info:
             msg = self.map_info
             cells = np.asarray(msg.data, dtype=np.int16).reshape(msg.info.height, msg.info.width)

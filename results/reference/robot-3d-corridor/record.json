@@ -1,0 +1,674 @@
+{
+  "schema_version": 1,
+  "kind": "native_desktop_localization",
+  "status": "executed",
+  "exit_code": 0,
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-234738-localization-3d-degradation-method-live-66be3b",
+  "command": "localization-3d-degradation",
+  "scope": "3D map cleaning with provided mapping-A poses and native GICP localization in fresh B; no full 3D SLAM or online map-update claim",
+  "metrics": {
+    "kind": "live_native_ui_session",
+    "status": "completed",
+    "failure": null,
+    "mode": "localization",
+    "points_received": 1304,
+    "mapping_frames": 0,
+    "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
+    "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
+    "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
+    "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
+    "cases": {
+      "raw": {
+        "samples": 530,
+        "dropped_unsynchronized": 1,
+        "position_rmse_m": 4.743752864342552,
+        "yaw_rmse_deg": 0.12311618903484933,
+        "post_warmup_5s_samples": 493,
+        "post_warmup_5s_position_rmse_m": 4.908820584900908,
+        "position_p95_m": 8.28930070450386
+      },
+      "dufomap": {
+        "samples": 599,
+        "dropped_unsynchronized": 1,
+        "position_rmse_m": 4.970506451017625,
+        "yaw_rmse_deg": 0.13237766250716262,
+        "post_warmup_5s_samples": 561,
+        "post_warmup_5s_position_rmse_m": 5.127721477362659,
+        "position_p95_m": 8.141310431937113
+      },
+      "beautymap": {
+        "samples": 655,
+        "dropped_unsynchronized": 1,
+        "position_rmse_m": 5.905092040137742,
+        "yaw_rmse_deg": 40.3958828341127,
+        "post_warmup_5s_samples": 621,
+        "post_warmup_5s_position_rmse_m": 6.058842430410259,
+        "position_p95_m": 9.127071188228047
+      },
+      "full_raw": {
+        "samples": 150,
+        "dropped_unsynchronized": 1,
+        "position_rmse_m": 1.7722771808429587,
+        "yaw_rmse_deg": 0.14469148372643167,
+        "post_warmup_5s_samples": 123,
+        "post_warmup_5s_position_rmse_m": 1.8466341184528283,
+        "position_p95_m": 1.7135911497270717
+      },
+      "full_dufomap": {
+        "samples": 163,
+        "dropped_unsynchronized": 1,
+        "position_rmse_m": 1.7347041590551695,
+        "yaw_rmse_deg": 0.12284710729139041,
+        "post_warmup_5s_samples": 132,
+        "post_warmup_5s_position_rmse_m": 1.8071783265408692,
+        "position_p95_m": 1.7162329227381825
+      },
+      "full_beautymap": {
+        "samples": 166,
+        "dropped_unsynchronized": 1,
+        "position_rmse_m": 1.7318069820217465,
+        "yaw_rmse_deg": 0.12500352610777687,
+        "post_warmup_5s_samples": 133,
+        "post_warmup_5s_position_rmse_m": 1.8078328089376476,
+        "position_p95_m": 1.721759876784427
+      }
+    },
+    "observed_map": {
+      "width": 521,
+      "height": 161,
+      "resolution_m": 0.05000000074505806,
+      "known_cells": 32255
+    }
+  },
+  "metrics_3d": {
+    "raw": {
+      "samples": 530,
+      "xyz_rmse_m": 4.743795724979152,
+      "z_rmse_m": 0.02016537558074892,
+      "rotation_rmse_deg": 0.5347259358834602,
+      "xyz_p95_m": 8.289402333051655,
+      "post_warmup_5s_xyz_rmse_m": 4.908865045063743
+    },
+    "dufomap": {
+      "samples": 599,
+      "xyz_rmse_m": 4.970535032282992,
+      "z_rmse_m": 0.016856083313345517,
+      "rotation_rmse_deg": 0.48387988301291984,
+      "xyz_p95_m": 8.141456940657317,
+      "post_warmup_5s_xyz_rmse_m": 5.127750999236946
+    },
+    "beautymap": {
+      "samples": 655,
+      "xyz_rmse_m": 5.920022981650707,
+      "z_rmse_m": 0.42019055293331475,
+      "rotation_rmse_deg": 49.15638443628866,
+      "xyz_p95_m": 9.170482960992437,
+      "post_warmup_5s_xyz_rmse_m": 6.074191132937076
+    },
+    "full_raw": {
+      "samples": 150,
+      "xyz_rmse_m": 1.7722780991953297,
+      "z_rmse_m": 0.0018042036317416266,
+      "rotation_rmse_deg": 0.2114479577188803,
+      "xyz_p95_m": 1.7135916649412757,
+      "post_warmup_5s_xyz_rmse_m": 1.8466351735809932
+    },
+    "full_dufomap": {
+      "samples": 163,
+      "xyz_rmse_m": 1.7347049817211937,
+      "z_rmse_m": 0.0016894274248110443,
+      "rotation_rmse_deg": 0.19669679564367643,
+      "xyz_p95_m": 1.7162338373743813,
+      "post_warmup_5s_xyz_rmse_m": 1.807179279988016
+    },
+    "full_beautymap": {
+      "samples": 166,
+      "xyz_rmse_m": 1.7318078046296284,
+      "z_rmse_m": 0.0016879564042531305,
+      "rotation_rmse_deg": 0.19871528872844169,
+      "xyz_p95_m": 1.721760025207728,
+      "post_warmup_5s_xyz_rmse_m": 1.8078337699629594
+    }
+  },
+  "truth_input_to_localizers": false,
+  "case_maps": {
+    "raw": {
+      "yaml_sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "pgm_sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "processing_record_sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b",
+      "pcd_sha256": "fb380b3a15f69e3ba04c7479c43b6372713db0b3bd6969a323edff505a8e9670"
+    },
+    "dufomap": {
+      "yaml_sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "pgm_sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "processing_record_sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b",
+      "pcd_sha256": "fb380b3a15f69e3ba04c7479c43b6372713db0b3bd6969a323edff505a8e9670"
+    },
+    "beautymap": {
+      "yaml_sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "pgm_sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "processing_record_sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b",
+      "pcd_sha256": "618d093895e63556c21502e9a247e126e22bec9621cd566ad182046a15765c16"
+    },
+    "full_raw": {
+      "yaml_sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "pgm_sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "processing_record_sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b",
+      "pcd_sha256": "fb380b3a15f69e3ba04c7479c43b6372713db0b3bd6969a323edff505a8e9670"
+    },
+    "full_dufomap": {
+      "yaml_sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "pgm_sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "processing_record_sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b",
+      "pcd_sha256": "fb380b3a15f69e3ba04c7479c43b6372713db0b3bd6969a323edff505a8e9670"
+    },
+    "full_beautymap": {
+      "yaml_sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "pgm_sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "processing_record_sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b",
+      "pcd_sha256": "618d093895e63556c21502e9a247e126e22bec9621cd566ad182046a15765c16"
+    }
+  },
+  "recorded_inputs": {
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-234738-localization-3d-degradation-method-live-66be3b\\input-bag\\input-bag_0.mcap": {
+      "sha256": "cc5600bd42585e34e92122b31a2de0b3fad34e00f28cb5e704c09a5469317a2c",
+      "bytes": 518940038,
+      "availability": "local_only"
+    },
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\raw\\map-3d.pcd": {
+      "sha256": "fb380b3a15f69e3ba04c7479c43b6372713db0b3bd6969a323edff505a8e9670",
+      "bytes": 7882247,
+      "availability": "local_only"
+    },
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\dufomap\\map-3d.pcd": {
+      "sha256": "fb380b3a15f69e3ba04c7479c43b6372713db0b3bd6969a323edff505a8e9670",
+      "bytes": 7882247,
+      "availability": "local_only"
+    },
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\beautymap\\map-3d.pcd": {
+      "sha256": "618d093895e63556c21502e9a247e126e22bec9621cd566ad182046a15765c16",
+      "bytes": 7874531,
+      "availability": "local_only"
+    }
+  },
+  "robot_motion_xy_span_m": [
+    3.412941814310555,
+    0.23297143448651658
+  ],
+  "result_replay": null,
+  "timing": {
+    "execution": {
+      "duration_s": 192.19999999999763,
+      "frames": 961,
+      "fps": 5,
+      "video_duration_s": 192.25,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "raw": {
+      "duration_s": 192.19999999999763,
+      "frames": 961,
+      "fps": 5,
+      "video_duration_s": 192.25,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "dufomap": {
+      "duration_s": 191.59999999999766,
+      "frames": 958,
+      "fps": 5,
+      "video_duration_s": 191.583333,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "beautymap": {
+      "duration_s": 191.59999999999766,
+      "frames": 958,
+      "fps": 5,
+      "video_duration_s": 191.666667,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "native_views": [
+    {
+      "pose_topic": "/raw/pcl_pose",
+      "sha256": "2de394d639df886f05725411af83886bbd7c927eaa767bf148c6a5fa39bdee88",
+      "mirror_file": "S4-\u8d70\u5eca\u9000\u5316__3D__B-\u5b9a\u4f4d__raw-map_GICP_\u72ec\u7acbRViz\u5b9e\u65f6__20261014-234738-66be3b.mp4",
+      "map_topic": "/raw/initial_map",
+      "window_title": "SLAM LIVE - 3D raw - RViz2",
+      "tf_topic": "/raw/view/tf",
+      "case": "raw",
+      "video": "executions/raw.mp4"
+    },
+    {
+      "pose_topic": "/dufomap/pcl_pose",
+      "sha256": "49f8cac8db53553c90baddb4c5c1b12ad8067fd3ca98717a5309f83c926eac15",
+      "mirror_file": "S4-\u8d70\u5eca\u9000\u5316__3D__B-\u5b9a\u4f4d__dufomap-map_GICP_\u72ec\u7acbRViz\u5b9e\u65f6__20261014-234738-66be3b.mp4",
+      "map_topic": "/dufomap/initial_map",
+      "window_title": "SLAM LIVE - 3D dufomap - RViz2",
+      "tf_topic": "/dufomap/view/tf",
+      "case": "dufomap",
+      "video": "executions/dufomap.mp4"
+    },
+    {
+      "pose_topic": "/beautymap/pcl_pose",
+      "sha256": "a0dc8f85ec5651b5c9c0b702809ce26275841d15a885212e8ca42e710182e8f2",
+      "mirror_file": "S4-\u8d70\u5eca\u9000\u5316__3D__B-\u5b9a\u4f4d__beautymap-map_GICP_\u72ec\u7acbRViz\u5b9e\u65f6__20261014-234738-66be3b.mp4",
+      "map_topic": "/beautymap/initial_map",
+      "window_title": "SLAM LIVE - 3D beautymap - RViz2",
+      "tf_topic": "/beautymap/view/tf",
+      "case": "beautymap",
+      "video": "executions/beautymap.mp4"
+    }
+  ],
+  "restoration": {
+    "raw": {
+      "restore_stamp_s": 62.1,
+      "converged": null,
+      "status": "insufficient_post_restore_pose_updates",
+      "sustained_convergence_delay_s": null
+    },
+    "dufomap": {
+      "restore_stamp_s": 62.1,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": null,
+      "converged": false,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "beautymap": {
+      "restore_stamp_s": 62.1,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": null,
+      "converged": false,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "full_raw": {
+      "restore_stamp_s": 62.1,
+      "converged": null,
+      "status": "insufficient_post_restore_pose_updates",
+      "sustained_convergence_delay_s": null
+    },
+    "full_dufomap": {
+      "restore_stamp_s": 62.1,
+      "converged": null,
+      "status": "insufficient_post_restore_pose_updates",
+      "sustained_convergence_delay_s": null
+    },
+    "full_beautymap": {
+      "restore_stamp_s": 62.1,
+      "converged": null,
+      "status": "insufficient_post_restore_pose_updates",
+      "sustained_convergence_delay_s": null
+    }
+  },
+  "artifacts": {
+    "beautymap-poses3d.csv": {
+      "sha256": "913188be0cc83e9b55deb83478cb17db08e4c92d61a1b61326a4e3f18e11a654",
+      "bytes": 202104,
+      "availability": "portable"
+    },
+    "beautymap-samples.csv": {
+      "sha256": "dd0f77d27b60bd2197de8afd29a2af1dc8a5cc812ae29d0950457e9ab01b7f02",
+      "bytes": 120396,
+      "availability": "portable"
+    },
+    "cases.json": {
+      "sha256": "84db3098bf312f9573a0d5053d1f65490182f2787a8322c116b0cb6ea28188c2",
+      "bytes": 4786,
+      "availability": "portable"
+    },
+    "cloud-stress.jsonl": {
+      "sha256": "282cfacd049225c1b476ca3f6262a0937b34888451361f530f221fbe84faff8a",
+      "bytes": 195128,
+      "availability": "portable"
+    },
+    "dufomap-poses3d.csv": {
+      "sha256": "03c117fabf9147e5fed5112f5b04407f2930ea9132cdc6889efd072eab494d5f",
+      "bytes": 184507,
+      "availability": "portable"
+    },
+    "dufomap-samples.csv": {
+      "sha256": "e611a6276286099bd7e67d0844cf42ffbb0ab8dd982604511685119d1b4a8854",
+      "bytes": 110476,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "40c4d2026bf29c1f5602831d4e900aa76e4f15e4c00ea73acb0d5f2878f268eb",
+      "bytes": 3123638,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "2de394d639df886f05725411af83886bbd7c927eaa767bf148c6a5fa39bdee88",
+      "bytes": 8537395,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "3c36eee26a7bae7ae7cc0e0d074eab2073a5f340b4c8b7dd84c6638df0ef3dac",
+      "bytes": 1065989,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "15f8e1d608f6b5ad64cac60090caad1f6dfcd096599717fa123c4a979dfa3d4f",
+      "bytes": 1088169,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "12e32d02ed919ce4675a0453fb76cb60fc127adc3335948fdab136516bd3122e",
+      "bytes": 1093566,
+      "availability": "portable"
+    },
+    "full_beautymap-poses3d.csv": {
+      "sha256": "fc19d0a1bc7f29adc1222f6b97cd55492771aaa89b5021a6eb2b8b0bc3615120",
+      "bytes": 49768,
+      "availability": "portable"
+    },
+    "full_beautymap-samples.csv": {
+      "sha256": "c394cbf3dcfdc20f3b333f0846f5f4ce5002ee0d7f8513f9ece7f9e872586742",
+      "bytes": 31324,
+      "availability": "portable"
+    },
+    "full_dufomap-poses3d.csv": {
+      "sha256": "34624c2fc4215d4910ce9347cf89ed5ae38e63b3104746e6e1bece17b62cdcc2",
+      "bytes": 48898,
+      "availability": "portable"
+    },
+    "full_dufomap-samples.csv": {
+      "sha256": "b1e4a5e90208e15665c865dbe5fa448f8a1c34a06e38276f14e2c8d470aabae0",
+      "bytes": 30760,
+      "availability": "portable"
+    },
+    "full_raw-poses3d.csv": {
+      "sha256": "c656338250ae671c37bb7e39dff71ca879c2a9c7fd2256516902232e61d9975e",
+      "bytes": 44932,
+      "availability": "portable"
+    },
+    "full_raw-samples.csv": {
+      "sha256": "007639e990ae63b5b30c1d8fb23c76eece97c01c6b166fe3345701d0eda3085e",
+      "bytes": 28318,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "e966e1299eaa491a8628fa2a57e72d42822fed462007e5b02b0e3fb3eeebed14",
+      "bytes": 2518,
+      "availability": "portable"
+    },
+    "native-views.json": {
+      "sha256": "c4d34a1b9c0778978f4efd79607c04e7100002c730b3f59343cae79b1bc45b4d",
+      "bytes": 1330,
+      "availability": "portable"
+    },
+    "raw-poses3d.csv": {
+      "sha256": "35f4d1925861d638757cd4db465af988f4b17d802f288bc8a3bdf11e1ce700af",
+      "bytes": 163023,
+      "availability": "portable"
+    },
+    "raw-samples.csv": {
+      "sha256": "cd9fd06ce731a0ebefa5e3662e9b21fc150faad2696ec03dd8ec2a25c79da993",
+      "bytes": 97729,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "3dbfb101fe69c49adfb2499b95c4f45798d2a5d0f1d76a45f9a19cce505fdf16",
+      "bytes": 350,
+      "availability": "portable"
+    },
+    "scan-stress.jsonl": {
+      "sha256": "bb2f702be1ba43929c2d20609a1e4b6cc1afb383872f251552f3be3032cd5fb3",
+      "bytes": 206874,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "d602f5cd2b64a5203a5812f366b392044eed571a27f0715104d6311e7f5bddf3",
+      "bytes": 13133,
+      "availability": "portable"
+    },
+    "slam-map.pgm": {
+      "sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "timing.json": {
+      "sha256": "be7d37f097b331fa4d5006b8dd29e247c2f6ce6dd50c5dc093162a2d0640d810",
+      "bytes": 885,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "d831d4bd90acbff84918c8f97ce995e8b273c69d5f13a216ebd9a9ffdbac482a",
+      "bytes": 2630858,
+      "availability": "portable"
+    },
+    "view-beautymap.rviz": {
+      "sha256": "83663ea4f66d5481b657b3cc85974ce8a4e02bb1e17f7a60579f165dc019e2c9",
+      "bytes": 3018,
+      "availability": "portable"
+    },
+    "view-dufomap.rviz": {
+      "sha256": "705c7549eb9c5c44846a5434f9777474be882d9da0ddaad1f69c3d2288b446ba",
+      "bytes": 3009,
+      "availability": "portable"
+    },
+    "view-raw.rviz": {
+      "sha256": "371d3a7662e8f4570fbffdc1fc7c80d349b1f08533f3f96166c118371424ee2d",
+      "bytes": 2993,
+      "availability": "portable"
+    },
+    "view-updates.jsonl": {
+      "sha256": "ae80933c3492662abc980af4a51a17c25e0e9ad1ab1c519caf87692007c28ca7",
+      "bytes": 265823,
+      "availability": "portable"
+    },
+    "views.json": {
+      "sha256": "ecc89a237f03a9c22be63705f181a459a5c31cfea594baff612832ffe1a8bc90",
+      "bytes": 898,
+      "availability": "portable"
+    },
+    "executions/beautymap-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "executions/beautymap-filter.txt": {
+      "sha256": "2a3f25c576f389ea5fa1cdd01c8da15f7e04afa467fd28b163c95928b235341e",
+      "bytes": 671,
+      "availability": "portable"
+    },
+    "executions/beautymap-mid.png": {
+      "sha256": "adde32fbb33edb1530c3d4fcc71c42ace59fae72f1d89ec7b47c9b14cc9717bc",
+      "bytes": 1092329,
+      "availability": "portable"
+    },
+    "executions/beautymap-probe.json": {
+      "sha256": "439eb1e91b8b090c98ad2e1c760a15ee4228752b973a4edeeada3004756145bf",
+      "bytes": 330,
+      "availability": "portable"
+    },
+    "executions/beautymap.gif": {
+      "sha256": "9f64bd6741ef89d001dd353a2e2463ceedb84bb034bbc871a6da0c7868f6c303",
+      "bytes": 3034244,
+      "availability": "portable"
+    },
+    "executions/beautymap.mp4": {
+      "sha256": "a0dc8f85ec5651b5c9c0b702809ce26275841d15a885212e8ca42e710182e8f2",
+      "bytes": 8632137,
+      "availability": "portable"
+    },
+    "executions/dufomap-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "executions/dufomap-filter.txt": {
+      "sha256": "66a708f61eaacc16dc6d744c25709c26b5a955473da12e97cbef6938f0fbf48d",
+      "bytes": 669,
+      "availability": "portable"
+    },
+    "executions/dufomap-mid.png": {
+      "sha256": "2247f246a6139329c2968d94fd53b17336881a2454a72fd271bf49dc87a060e3",
+      "bytes": 1124148,
+      "availability": "portable"
+    },
+    "executions/dufomap-probe.json": {
+      "sha256": "1d1cad739b3b6018f25243efe1f9693fce8cea202f8e92a0a5c0c041360ce7f2",
+      "bytes": 330,
+      "availability": "portable"
+    },
+    "executions/dufomap.gif": {
+      "sha256": "66b6a6db9d88880489a79afc1221ad74d76ba21e758b17dd3b9baaf2bdc51a6c",
+      "bytes": 3037094,
+      "availability": "portable"
+    },
+    "executions/dufomap.mp4": {
+      "sha256": "49f8cac8db53553c90baddb4c5c1b12ad8067fd3ca98717a5309f83c926eac15",
+      "bytes": 8618537,
+      "availability": "portable"
+    },
+    "executions/raw-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "executions/raw-filter.txt": {
+      "sha256": "09131f6472ecb078c56c3b750bf2120ea74bf8d43fc5639276e24d3be1568e1c",
+      "bytes": 665,
+      "availability": "portable"
+    },
+    "executions/raw-mid.png": {
+      "sha256": "12e32d02ed919ce4675a0453fb76cb60fc127adc3335948fdab136516bd3122e",
+      "bytes": 1093566,
+      "availability": "portable"
+    },
+    "executions/raw-probe.json": {
+      "sha256": "9c7b8247d3408a96eeb69a11baadfcbcd5cdb18c2501e47d8345fff09e401040",
+      "bytes": 330,
+      "availability": "portable"
+    },
+    "executions/raw.gif": {
+      "sha256": "40c4d2026bf29c1f5602831d4e900aa76e4f15e4c00ea73acb0d5f2878f268eb",
+      "bytes": 3123638,
+      "availability": "portable"
+    },
+    "executions/raw.mp4": {
+      "sha256": "2de394d639df886f05725411af83886bbd7c927eaa767bf148c6a5fa39bdee88",
+      "bytes": 8537395,
+      "availability": "portable"
+    },
+    "logs/localizers.log": {
+      "sha256": "81e436d9b281c81321328f5b8f00f17cf2d7f9aa3cf2ef86de9b9a52ea5c1c3d",
+      "bytes": 2230988,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "e1dea430cf757ed6cd39e9b1386f21dc2e9041f5c180a78c2e5e1fd0a75c22bd",
+      "bytes": 44146,
+      "availability": "portable"
+    },
+    "logs/patrol.log": {
+      "sha256": "ba96671bb2970db61474ce985c5fce6da11c5e869ddbe64623d5eaca64eec22e",
+      "bytes": 2608,
+      "availability": "portable"
+    },
+    "logs/renderer.txt": {
+      "sha256": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+      "bytes": 1774,
+      "availability": "portable"
+    },
+    "logs/stress.log": {
+      "sha256": "76bab8352a9b5989c31ca9ea201a9768ca41e50f84a5f04788841ca737815bf9",
+      "bytes": 354,
+      "availability": "portable"
+    },
+    "maps/beautymap/map.pgm": {
+      "sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/beautymap/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/beautymap/processing.json": {
+      "sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "bytes": 2267,
+      "availability": "portable"
+    },
+    "maps/dufomap/map.pgm": {
+      "sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/dufomap/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/dufomap/processing.json": {
+      "sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "bytes": 2267,
+      "availability": "portable"
+    },
+    "maps/full_beautymap/map.pgm": {
+      "sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/full_beautymap/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/full_beautymap/processing.json": {
+      "sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "bytes": 2267,
+      "availability": "portable"
+    },
+    "maps/full_dufomap/map.pgm": {
+      "sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/full_dufomap/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/full_dufomap/processing.json": {
+      "sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "bytes": 2267,
+      "availability": "portable"
+    },
+    "maps/full_raw/map.pgm": {
+      "sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/full_raw/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/full_raw/processing.json": {
+      "sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "bytes": 2267,
+      "availability": "portable"
+    },
+    "maps/raw/map.pgm": {
+      "sha256": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/raw/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/raw/processing.json": {
+      "sha256": "e27cf0964d33d8ec202eb61eaf719c6efa3ae0e0626602f59cc9246dfeb3234e",
+      "bytes": 2267,
+      "availability": "portable"
+    }
+  }
+}

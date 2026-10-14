@@ -98,3 +98,13 @@ ROS-Gazebo 的 `Pose_V→TFMessage` 转换会丢掉用于本次评分的模型�
 作者执行过程中原子写出当前状态，RViz 读取本次新状态；验证原生帧号／序号、状态哈希和执行时间窗。IR-MCL 本次出现不足一秒的 WSL 墙钟校时，故以帧序为因果依据，并给墙钟留 2 s 容差；后续录制另保存单调时钟。显示稀疏采样和观察器开销明确披露，原生推理与地图清理决策不变。
 
 DUFOMap、BeautyMap 的最终 `cleaned.pcd` SHA256 与此前原生执行逐字节一致：[DUFOMap 前次](../../results/reference/desktop-dufomap/native-run/record.json)／[本次](../../results/reference/desktop-live-dufomap/native-run/record.json)，[BeautyMap 前次](../../results/reference/desktop-beautymap/native-run/record.json)／[本次](../../results/reference/desktop-live-beautymap/native-run/record.json)。
+
+## 2D／3D独立对照，2026-10-14–15
+
+首页和视频目录已把二维AMCL与三维GICP分开。新一份动态建图A同时供新的二维动态及三维动态运行使用；上面的原动态表仍是历史A，不能混作同一份地图。其余世界、路线沿用原四场景。
+
+三维分支直接使用原生清理后的完整点云地图，保存XYZ／四元数输出，每个显示窗口独立SE(3)变换。三维走廊同样施加观测限制，保留完整点云控制。恢复后缺少有效原生输出时报告证据不足，不冒充恢复成功；GICP的首次已发布位姿已经经过配准。共用发布源不保证实际消费历史相同，同图走廊组的差异暴露了这一限制。
+
+[新评分、相同输入点的地图质量审计、全部参数排查和论文适用性分析](MAP-2D-3D.zh-CN.md) · [二维录像](../../demo/gallery.html#2d) · [三维录像](../../demo/gallery.html#3d) · [新建图A输入实录](../../results/reference/robot-3d-dynamic-mapping/record.json)。
+
+建图仍为给定位姿的点云融合与清理，不声明完成完整三维SLAM。真实推理现场与已标明的保存地图结果展示分开。录制收尾期间真实状态终端持续重绘，使WGC／FFmpeg在应用窗口关闭前完整封装MP4。

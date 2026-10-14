@@ -1,0 +1,59 @@
+{
+  "raw": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/raw/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/raw/map-3d.pcd",
+    "pose_topic": "/raw/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points",
+    "map_points_sha256": "1aefa3045e23b6e494452b96c9e58e314cb120b7f19378fa1b99f6bd65a7baeb"
+  },
+  "dufomap": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/dufomap/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/dufomap/map-3d.pcd",
+    "pose_topic": "/dufomap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points",
+    "map_points_sha256": "3abff140e2c6ba3d29c4b72d008face8e4b04dace75ef909b67ea41465d31188"
+  },
+  "beautymap": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap/map-3d.pcd",
+    "pose_topic": "/beautymap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points",
+    "map_points_sha256": "543074039c2e18dcc7b016a73f1d32cd17706610218e264e6085294bc7cd3a47"
+  }
+}

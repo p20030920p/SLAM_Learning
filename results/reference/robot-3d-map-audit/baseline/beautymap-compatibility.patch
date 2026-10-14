@@ -1,0 +1,50 @@
+--- a/utils/pcdpy3.py
++++ b/utils/pcdpy3.py
+@@ -168,11 +168,11 @@
+         elif key in ('fields', 'type'):
+             metadata[key] = value.split()
+         elif key in ('size', 'count'):
+-            metadata[key] = map(int, value.split())
++            metadata[key] = list(map(int, value.split()))
+         elif key in ('width', 'height', 'points'):
+             metadata[key] = int(value)
+         elif key == 'viewpoint':
+-            metadata[key] = map(float, value.split())
++            metadata[key] = list(map(float, value.split()))
+         elif key == 'data':
+             metadata[key] = value.strip().lower()
+     # add some reasonable by defaults is not exist
+--- a/main.py
++++ b/main.py
+@@ -50,7 +50,14 @@
+     Mpts.set_points_from_file(raw_map_path)
+     Mpts.set_unit_params(xy_resolution, xy_resolution, h_res)
+     Mpts.non_negatification_all_map_points()
++    # Reindex working XY cells into an empty border; original points stay unchanged.
++    border_cells = int(np.ceil(dis_range / xy_resolution))
++    border_shift = np.array([border_cells * xy_resolution, border_cells * xy_resolution, 0.0])
++    Mpts.non_negtive_points = Mpts.non_negtive_points.astype(float) + border_shift
++    Mpts.non_negtive_center = Mpts.non_negtive_center.astype(float) + border_shift
+     Mpts.calculate_matrix_order()
++    Mpts.matrix_order += 2 * border_cells
++    Mpts.minz_matrix = np.full((Mpts.matrix_order, Mpts.matrix_order), float('inf'))
+     Mpts.generate_map_binary_tree()
+     Mpts.get_binary_matrix()
+     Mpts.get_minz_matrix()
+@@ -73,6 +80,8 @@
+         Qpts.set_points_from_file(f"{data_dir}/pcd/{pcd_file}")
+         Qpts.set_unit_params(xy_resolution, xy_resolution, h_res)
+         k = Qpts.transform_on_points(Mpts.coordinate_offset)  * xy_resolution / h_res
++        Qpts.non_negtive_points = Qpts.non_negtive_points.astype(float) + border_shift
++        Qpts.non_negtive_center = Qpts.non_negtive_center.astype(float) + border_shift
+         Qpts.calculate_query_matrix_start_id()
+ 
+         # get roi matrix
+@@ -130,6 +139,7 @@
+ 
+     # save static map
+     points_index2Retain =np.setdiff1d(np.arange(len(Mpts.original_points)), points_index2Remove)
++    np.save(f"{data_dir}/retained_indices.npy", points_index2Retain)
+     save_pcd(f"{data_dir}/beautymap_output.pcd", Mpts.original_points[points_index2Retain]) # static map
+ 
+     # show timer

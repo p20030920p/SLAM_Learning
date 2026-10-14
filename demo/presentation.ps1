@@ -52,6 +52,7 @@ if ($Record) {
     [IO.File]::WriteAllText((Join-Path $run 'STOP'),'Capture preflight failed')
     throw ('Real-window recording failed: '+$stderr.Result)
   }
+  [IO.File]::WriteAllText((Join-Path $run 'recording.capture'),'Native window capture')
 }
 [IO.File]::WriteAllText((Join-Path $run 'recording.started'),(Get-Date -Format o))
 Write-Host ('LIVE SESSION: '+$run)
@@ -66,10 +67,12 @@ try {
   if ($recorder -and -not $recorder.HasExited) {
     $recorder.StandardInput.WriteLine('q')
     $recorder.StandardInput.Flush()
+    $recorder.StandardInput.Close()
     $null=$recorder.WaitForExit(15000)
     if (-not $recorder.HasExited) {$recorder.Kill()}
   }
   if ($recorder) {[IO.File]::WriteAllText((Join-Path $run 'capture.log'),$stderr.Result)}
+  [IO.File]::WriteAllText((Join-Path $run 'recording.stopped'),(Get-Date -Format o))
 }
 if ($Record) {
   if ($recorder.ExitCode -ne 0) {throw ('Recorder exit code '+$recorder.ExitCode)}

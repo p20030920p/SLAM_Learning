@@ -23,17 +23,22 @@ int main(int argc, char **argv) {
     const auto &stamp = message.header().stamp();
     const double time = stamp.sec() + stamp.nsec() * 1e-9;
     for (const auto &pose : message.pose()) {
-      if (pose.name() != model) continue;
+      if (model != "*" && pose.name() != model) continue;
+      if (model == "*" && pose.name().rfind("dynamic_obstacle", 0) != 0 && pose.name() != "body") continue;
       const auto &p = pose.position();
       const auto &q = pose.orientation();
       std::lock_guard<std::mutex> guard(mutex);
-      output << "{\"stamp_s\":" << time << ",\"model\":\"" << model
-             << "\",\"xyz\":[" << p.x() << ',' << p.y() << ',' << p.z()
+      output << "{\"stamp_s\":" << time << ",\"model\":\"" << pose.name()
+             << "\",\"entity_id\":" << pose.id()
+             << ",\"xyz\":[" << p.x() << ',' << p.y() << ',' << p.z()
              << "],\"xyzw\":[" << q.x() << ',' << q.y() << ',' << q.z()
              << ',' << q.w() << "]}\n" << std::flush;
     }
   };
   if (!node.Subscribe<gz::msgs::Pose_V>(argv[1], callback)) return 4;
   gz::transport::waitForShutdown();
+  node.Unsubscribe(argv[1]);
+  std::lock_guard<std::mutex> guard(mutex);
+  output.flush();
   return 0;
 }

@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "beautymap",
+  "parent_record": "../../record.json",
+  "parent_sha256": "0bb7cd51738f570ea39a955dd0c080eb682f12395ad63b71d6aa9e87eb9afc9f",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-235749-localization-dynamic-method-live-6ff663",
+  "case_configuration": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/beautymap/map.yaml",
+    "mapping_scene": "dynamic",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    }
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 291,
+    "position_rmse_m": 0.07294859001824294,
+    "yaw_rmse_deg": 1.7933681393576375,
+    "post_warmup_5s_samples": 290,
+    "post_warmup_5s_position_rmse_m": 0.0710404344460349,
+    "position_p95_m": 0.13405659993378588
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 7.3,
+    "common_end_s": 72.7,
+    "alignment": "none",
+    "frames": 524
+  },
+  "timing": {
+    "duration_s": 65.60000000000039,
+    "frames": 328,
+    "fps": 5,
+    "video_duration_s": 65.5,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": null,
+  "source_inputs": {
+    "beautymap-samples.csv": "e45ecdafd09b112e1b7d407bc28c9958d366fb2d7fe9db8441d0e6ea6c1d9ca5",
+    "truth.jsonl": "fc287aa8c1595cfa395084b6d8799780883b36b21e582d3c0c23822dfcd0d7d0",
+    "cases.json": "a3470527f342600df29bef505bb238ab5099abe522419f0c186bf9bd2f79bdb3",
+    "metrics.json": "f7ac4a99c236497826ae57f1ee1b62732e6f21e158390db89f72ef2cd6115646",
+    "maps/beautymap/map.pgm": "fda6593ae02e4ec3b291efae9a7bdb964598ded511b1ceb548a568c40e6b6fad",
+    "maps/beautymap/map.yaml": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py results/reference/robot-2d-dynamic-matched",
+  "renderer_sha256": "b374eca6b6a1c5f371e36ddd46d23f5e27ada0d4d32353428e893925cebe45c0",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "dde1dca29c19b547dc08776d8aa8c8aaaecb8d4f116398fd42639d46760ed00e",
+      "bytes": 90926,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "e5053ed785d9d897a89c0485ffcc4fd18f6502b2b124e017d6b232a20c4823f8",
+      "bytes": 489066,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "e9b70863ffe5d85a0442c17b9d4551354754900aa6bfd2839864aba61d3e2e79",
+      "bytes": 216439,
+      "availability": "portable"
+    }
+  }
+}

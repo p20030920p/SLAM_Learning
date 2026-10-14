@@ -17,7 +17,7 @@ for name in LEGACY:
     if path.is_file():
         path.unlink()
 for name in ("presentation.ps1", "record-methods.ps1", "original-live.ps1",
-             "original.ps1", "build-maps.ps1", "stop-presentation.ps1"):
+             "original.ps1", "build-maps.ps1", "stop-presentation.ps1", "record-map-review.ps1"):
     (TARGET / name).write_text((SOURCE / name).read_text(encoding="utf-8-sig"), encoding="utf-8-sig")
 
 
@@ -57,6 +57,11 @@ for method in ("dufomap", "beautymap", "ir-mcl"):
 bat("论文-adam-mcl.bat", ps("original.ps1", "-Method adam-mcl -Trials 1 -Record"))
 for number, method in ((31, "ndt"), (32, "gicp")):
     bat(f"{number}-{method.upper()}三维定位_静态.bat", ps("presentation.ps1", f"-Flow localization-{method}-static -Duration 0 -Record"))
+for number, scene, label in ((33, "static", "静态"), (34, "dynamic", "动态"),
+                             (35, "large-change", "持久变化"), (36, "degradation", "走廊退化")):
+    duration = 120 if scene == "degradation" else 90
+    bat(f"{number}-三维{label}_三图GICP对照.bat", ps("record-methods.ps1", f"-Scene {scene} -Dimension 3D -Duration {duration}"))
+bat("37-三维地图清理结果展示.bat", ps("record-map-review.ps1", "-Duration 30"))
 (TARGET / "使用说明.md").write_text(r"""# 当前现场脚本
 
 - 00：打开最新视频目录。
@@ -66,11 +71,13 @@ for number, method in ((31, "ndt"), (32, "gicp")):
 - 20 / 21 / 22 / 23：对应四种环境，三个独立 RViz、相同 AMCL、不同地图，同时记录现场。
 - 24：自动录制四种环境。每次新运行目录，不覆盖已封存证据。
 - 31 / 32：NDT / GICP 原库三维固定地图定位；使用 /points 和原生输出 pcl_pose。无 IMU、无逐点去畸变。
+- 33 / 34 / 35 / 36：四种场景的 Raw／DUFOMap／BeautyMap 三维地图，共用GICP，三个独立窗口与录像；三维走廊也施加观测限制。
+- 37：已经计算好的三维地图结果展示，红色为残留动态点；不执行新的算法推理。
 - 论文-实时-*：DUFOMap / BeautyMap / IR-MCL 原库计算与 RViz 当前状态。
 - 论文-adam-mcl：一次受限数据试验，单位为格，不作为论文精度复现。
 - 09：正常结束活动仿真。
 
-一次启动一个场景。键盘在 SLAM-LIVE 终端：i/k 前后，j/l 转向，u/o 横移，空格停止，q 结束。超过 0.4 秒无按键自动停车。31 / 32 与 20–23 均录窗口。
+一次启动一个场景。键盘在 SLAM-LIVE 终端：i/k 前后，j/l 转向，u/o 横移，空格停止，q 结束。超过 0.4 秒无按键自动停车。31 / 32 与 20–23 均录窗口。33–36自动巡航并录制；2D与3D录像分目录存放，单次误差不作方法排名。
 
 需要本机已配置的 Windows Terminal、FFmpeg、Ubuntu-24.04 ROS Jazzy / Gazebo，以及 Ubuntu-22.04 作者环境。源库 D:\workspace\be2\slam_learning_updated；原始输出在 results\runs\presentation；录像复制到 F:\be2演讲\屏幕实录\20261014-native-ui。
 

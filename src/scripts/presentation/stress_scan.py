@@ -11,7 +11,8 @@ import numpy as np
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
-from sensor_msgs.msg import LaserScan
+from sensor_msgs.msg import LaserScan, PointCloud2
+from sensor_msgs_py import point_cloud2
 
 
 class ScanStress(Node):
@@ -22,6 +23,30 @@ class ScanStress(Node):
         self.pub = self.create_publisher(LaserScan, "/scan_degraded", qos_profile_sensor_data)
         self.create_subscription(LaserScan, "/scan", self.on_scan, qos_profile_sensor_data)
         self.log = (run / "scan-stress.jsonl").open("w")
+        self.cloud_pub = self.create_publisher(PointCloud2, "/points_degraded", qos_profile_sensor_data)
+        self.create_subscription(PointCloud2, "/points", self.on_cloud, qos_profile_sensor_data)
+        self.cloud_log = (run / "cloud-stress.jsonl").open("w")
+
+    def on_cloud(self, msg):
+        stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+        elapsed = stamp - self.started if self.started is not None else 0.0
+        limited = elapsed < 50
+        xyz = point_cloud2.read_points_numpy(msg, field_names=("x", "y", "z"), skip_nans=True).reshape(-1, 3)
+        xyz = xyz[np.isfinite(xyz).all(axis=1)]
+        if limited:
+            angles = np.arctan2(xyz[:, 1], xyz[:, 0])
+            low, high = -2 * math.pi / 3, 2 * math.pi / 3
+            centres = low + np.rint((angles-low) / ((high-low)/71)) * ((high-low)/71)
+            selected = ((np.linalg.norm(xyz, axis=1) <= 3.5) & (angles >= low) & (angles <= high)
+                        & (np.abs(angles-centres) <= math.pi/720 + 1e-5))
+            xyz = xyz[selected]
+        self.cloud_pub.publish(point_cloud2.create_cloud_xyz32(msg.header, xyz))
+        self.cloud_log.write(json.dumps({"stamp_s": stamp, "elapsed_s": elapsed,
+                                        "phase": "limited" if limited else "restored", "points": len(xyz),
+                                        "range_max_m": 3.5 if limited else 12.0,
+                                        "horizontal_bins": 72 if limited else 720,
+                                        "vertical_channels": 16}) + "\n")
+        self.cloud_log.flush()
 
     def on_scan(self, msg):
         stamp = msg.header.stamp.sec + msg.header.stamp.nanosec*1e-9
@@ -60,6 +85,7 @@ def main():
         rclpy.spin(node)
     finally:
         node.log.close()
+        node.cloud_log.close()
         node.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()

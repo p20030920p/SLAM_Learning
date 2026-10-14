@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 from slam_learning.core.provenance import digest
 from slam_learning.runtime.presentation_evidence import read_samples, restoration, score, validate_truth
 from slam_learning.runtime.runner import verify_record
+from slam_learning.runtime.poses3d import score_poses3d
 
 
 def windows_path(value):
@@ -133,13 +134,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("run", type=Path)
     parser.add_argument("output", type=Path)
+    parser.add_argument("--no-replay", action="store_true", help="Package genuine recordings and scores without generating a separate pose replay")
     args = parser.parse_args()
     run, folder = args.run, args.output
     measured = json.loads((run / "metrics.json").read_text())
     if measured["status"] != "completed" or not (run / "execution.mp4").is_file():
         raise ValueError("Completed native recording is required")
     folder.mkdir(parents=True, exist_ok=False)
-    for name in ("session.json", "runtime.json", "cases.json", "metrics.json", "truth.jsonl", "execution.mp4", "capture-filter.txt", "scan-stress.jsonl", "geometry-audit.json", "slam-map.pgm"):
+    for name in ("session.json", "runtime.json", "cases.json", "metrics.json", "truth.jsonl", "execution.mp4", "capture-filter.txt", "scan-stress.jsonl", "cloud-stress.jsonl", "geometry-audit.json", "slam-map.pgm"):
         if (run / name).exists():
             shutil.copyfile(run / name, folder / name)
     for path in [*run.glob("view-*.rviz"), *run.glob("*views.json"), run / "view-updates.jsonl"]:
@@ -157,7 +159,7 @@ def main():
     for name in ("renderer.txt", "observer.log", "stress.log", "patrol.log", "localizers.log", "rviz.log"):
         if (run / "logs" / name).exists():
             shutil.copyfile(run / "logs" / name, log_dir / name)
-    values, case_maps = {}, {}
+    values, case_maps, metrics_3d = {}, {}, {}
     cases = json.loads((run / "cases.json").read_text())
     for name, case in cases.items():
         source = run / f"{name}-samples.csv"
@@ -168,6 +170,10 @@ def main():
             if value is not None and not math.isclose(value, measured["cases"][name][key], abs_tol=1e-10, rel_tol=0):
                 raise ValueError(f"{name}: {key} differs")
         shutil.copyfile(source, folder / source.name)
+        if case.get("dimension") == "3d":
+            pose3d = run / f"{name}-poses3d.csv"
+            metrics_3d[name] = score_poses3d(pose3d, truth)
+            shutil.copyfile(pose3d, folder / pose3d.name)
         yaml = windows_path(cases[name]["map_yaml"])
         target = folder / "maps" / name
         target.mkdir(parents=True)
@@ -188,7 +194,7 @@ def main():
         restored_events = [event for event in events if event["phase"] == "restored"]
         if restored_events:
             restored = restored_events[0]["stamp_s"]
-            if any(array[-1, 0] <= restored+5 for array in values.values()):
+            if any(array[-1, 0] <= restored+5 for array in values.values()) and not all(case.get("dimension") == "3d" for case in cases.values()):
                 raise ValueError("Restoration stage lacks scored pose updates; retain as a diagnostic")
     timing = {"execution": gif(folder / "execution.mp4", folder / "execution.gif")}
     native_views = json.loads((folder / "native-views.json").read_text(encoding="utf-8-sig")) if (folder / "native-views.json").exists() else []
@@ -201,12 +207,12 @@ def main():
         duration = float(probe(video)["format"]["duration"])
         subprocess.run(["ffmpeg", "-v", "error", "-ss", str(duration/2), "-i", str(video), "-frames:v", "1",
                         "-y", str(video.with_name(view["case"]+"-mid.png"))], check=True)
-    if values:
+    if values and not args.no_replay:
         replay_meta = replay(folder, values, restored)
         timing["result"] = gif(folder / "result.mp4", folder / "result.gif")
     else:
         replay_meta = None
-    media = ["execution.mp4"]+(["result.mp4"] if values else [])
+    media = ["execution.mp4"]+(["result.mp4"] if values and not args.no_replay else [])
     for name in media:
         subprocess.run(["ffmpeg", "-v", "error", "-i", str(folder / name), "-f", "null", "-"], check=True)
     duration = float(probe(folder / "execution.mp4")["format"]["duration"])
@@ -218,7 +224,7 @@ def main():
               "status": "executed", "exit_code": 0, "source_run": str(run.resolve()),
               "command": json.loads((run / "session.json").read_text())["flow"],
               "scope": json.loads((run / "session.json").read_text()).get("scope", "Sim2Real same chassis; native 2D slam_toolbox/AMCL; 3D mapping with supplied poses; no 3D SLAM claim"),
-              "metrics": measured, "truth_input_to_localizers": False, "case_maps": case_maps,
+              "metrics": measured, "metrics_3d": metrics_3d, "truth_input_to_localizers": False, "case_maps": case_maps,
               "recorded_inputs": input_hashes,
               "robot_motion_xy_span_m": np.ptp(xyz[:, :2], axis=0).tolist(),
               "result_replay": replay_meta, "timing": timing,

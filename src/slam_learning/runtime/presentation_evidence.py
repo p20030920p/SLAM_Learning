@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 
 from slam_learning.core.provenance import digest
+from slam_learning.runtime.poses3d import score_poses3d
 
 
 def read_samples(path: Path) -> np.ndarray:
@@ -93,6 +94,10 @@ def verify_presentation(path: Path, record: dict) -> list[str]:
                         raise ValueError(f"{name}: {key} differs")
                 elif not math.isclose(value, expected[key], abs_tol=1e-10, rel_tol=0):
                     raise ValueError(f"{name}: {key} differs from retained poses")
+        for name, expected in record.get("metrics_3d", {}).items():
+            actual = score_poses3d(path.parent / f"{name}-poses3d.csv", truth)
+            if actual != expected:
+                raise ValueError(f"{name}: full 3D metric differs from retained poses")
         if record.get("truth_input_to_localizers") is not False:
             errors.append("Truth was not reserved for evaluation")
         if record.get("native_views"):
@@ -104,7 +109,7 @@ def verify_presentation(path: Path, record: dict) -> list[str]:
                 if any(view[key] != config[key.replace("window_", "")] for key in ("window_title", "map_topic", "pose_topic", "tf_topic")):
                     raise ValueError("Live recording points at another case's RViz/TF topics")
                 settings = (path.parent / config["config"]).read_text()
-                if f"Value: /{case}/map\n" not in settings or f"Value: /{case}/amcl_pose\n" not in settings:
+                if f"Value: {config['map_topic']}\n" not in settings or f"Value: {config['pose_topic']}\n" not in settings:
                     raise ValueError("RViz does not display its labelled method")
                 if digest(path.parent / view["video"]) != view["sha256"]:
                     raise ValueError("Live recording hash differs from capture")

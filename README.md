@@ -198,47 +198,93 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 [Keyboard demos](demo/README.md) · [Video gallery](demo/gallery.html) · [Code Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb).
 
-**Localization error with different maps.** Raw / DUFOMap / BeautyMap select the map; all use AMCL. Tables report XY RMSE in cm, including initialization, from one Gazebo run per condition.
+**Localization error with different maps.** 2D uses AMCL and XY RMSE; 3D directly uses complete point maps with the same upstream GICP and XYZ RMSE. Units: cm; all published native updates, one trial per condition. Mapping uses supplied poses; localization receives no truth. These are not stable rankings.
 
-**Pure static** · 290 updates/map · [record](results/reference/robot-live-static/record.json)
+### 2D · AMCL
 
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | RMSE 7.28 cm; no loss |
-| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 7.28 cm; same as Raw |
-| BeautyMap | Offline-cleaned 2D projection | RMSE 6.89 cm; slightly below Raw |
-
-Raw and DUFOMap are equal; BeautyMap is 0.39 cm lower in this run. Recovery was not tested.
-
-**Dynamic obstacles** · 288 updates/map · [record](results/reference/robot-live-dynamic/record.json)
+**Pure static** · [record](results/reference/robot-live-static/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 2D projection | RMSE 7.41 cm; no loss |
-| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 7.35 cm; close to Raw |
-| BeautyMap | Offline-cleaned 2D projection | RMSE 7.14 cm; close to Raw |
+| Raw | Raw 2D projection | XY RMSE 7.28 cm; no loss |
+| DUFOMap | Dynamic-point-cleaned 2D projection | XY RMSE 7.28 cm; same as Raw |
+| BeautyMap | Offline-cleaned 2D projection | XY RMSE 6.89 cm; slightly below Raw |
 
-DUFOMap / BeautyMap reduce RMSE against Raw by only 0.06 / 0.27 cm; a consistent advantage is not established.
+Raw and DUFOMap projections are identical; BeautyMap is 0.39 cm lower in this run. Recovery was not tested.
 
-**Persistent change** · 290 updates/map · [record](results/reference/robot-live-large-change/record.json)
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | RMSE 6.84 cm; no loss |
-| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 6.84 cm; same as Raw |
-| BeautyMap | Offline-cleaned 2D projection | RMSE 6.39 cm; no loss |
-
-BeautyMap is 0.45 cm below Raw, while DUFOMap is equal to Raw. This route did not induce loss, so recovery was not tested.
-
-**Corridor degradation** · 508 updates/map · [record](results/reference/robot-corridor-v2/record.json)
+**Moving obstacles** · [record](results/reference/robot-2d-dynamic-matched/record.json)
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 2D projection | RMSE 72.53 cm; recovery delay 13.3 s |
-| DUFOMap | Dynamic-point-cleaned 2D projection | RMSE 72.53 cm; recovery delay 13.3 s |
-| BeautyMap | Offline-cleaned 2D projection | RMSE 72.53 cm; recovery delay 13.3 s |
+| Raw | Raw 2D projection | XY RMSE 7.52 cm; no loss |
+| DUFOMap | Dynamic-point-cleaned 2D projection | XY RMSE 8.19 cm; above Raw this run |
+| BeautyMap | Offline-cleaned 2D projection | XY RMSE 7.29 cm; below Raw this run |
 
-All three projected maps are identical, so these scores cannot distinguish the map cleaners. The 13.3 s recovery corrects an offset initial belief.
+Paired new mapping A: DUFOMap is 0.67 cm higher, BeautyMap 0.23 cm lower. One trial gives no stable ranking; the previous run is retained.
+
+**Persistent change** · [record](results/reference/robot-live-large-change/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 2D projection | XY RMSE 6.84 cm; no loss |
+| DUFOMap | Dynamic-point-cleaned 2D projection | XY RMSE 6.84 cm; same as Raw |
+| BeautyMap | Offline-cleaned 2D projection | XY RMSE 6.39 cm; slightly below Raw |
+
+Frozen old maps; no online map update was called, and the route did not induce loss.
+
+**Corridor degradation** · [record](results/reference/robot-corridor-v2/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 2D projection | XY RMSE 72.53 cm; recovery delay 13.3 s |
+| DUFOMap | Dynamic-point-cleaned 2D projection | XY RMSE 72.53 cm; recovery delay 13.3 s |
+| BeautyMap | Offline-cleaned 2D projection | XY RMSE 72.53 cm; recovery delay 13.3 s |
+
+The three projected maps are identical; 13.3 s corrects an offset initial belief and cannot distinguish cleaning.
+
+### 3D · GICP
+
+**Pure static** · [record](results/reference/robot-3d-static/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 3D point map | XYZ RMSE 0.95 cm; tracking retained |
+| DUFOMap | Dynamic-point-cleaned 3D map | XYZ RMSE 0.99 cm; no observed gain |
+| BeautyMap | Offline-cleaned 3D map | XYZ RMSE 1.07 cm; no observed gain |
+
+No moving contamination needs cleaning; no localization improvement in this trial.
+
+**Moving obstacles** · [record](results/reference/robot-3d-dynamic/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 3D point map | XYZ RMSE 0.98 cm; tracking retained |
+| DUFOMap | Dynamic-point-cleaned 3D map | XYZ RMSE 0.98 cm; no observed gain |
+| BeautyMap | Offline-cleaned 3D map | XYZ RMSE 1.04 cm; no observed gain |
+
+Native cleaning removes dynamic map points, without a clear downstream GICP gain.
+
+**Persistent change** · [record](results/reference/robot-3d-large-change/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 3D point map | XYZ RMSE 0.93 cm; tracking retained |
+| DUFOMap | Dynamic-point-cleaned 3D map | XYZ RMSE 1.01 cm; no observed gain |
+| BeautyMap | Offline-cleaned 3D map | XYZ RMSE 1.04 cm; no observed gain |
+
+Static-A 3D maps remain frozen; change detection/updating was not executed. No localization gain.
+
+**Corridor degradation** · [record](results/reference/robot-3d-corridor/record.json)
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Raw 3D point map | XYZ RMSE 474.38 cm; insufficient post-restore updates |
+| DUFOMap | Dynamic-point-cleaned 3D map | XYZ RMSE 497.05 cm; no sustained convergence |
+| BeautyMap | Offline-cleaned 3D map | XYZ RMSE 592.00 cm; no sustained convergence |
+
+Raw and DUFOMap 3D maps are byte-identical yet tracking differs. Output coverage is unequal; do not rank cleaners.
+
+[Cause analysis, point-level map quality and parameter checks](docs/testing/MAP-2D-3D.md) · [Separate 2D / 3D video groups](demo/gallery.html)
 
 ## Measured result calculation
 
@@ -248,48 +294,9 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 Yaw differences are wrapped to $[-\pi,\pi]$ before RMS and converted to degrees. Metres × 100 gives centimetres. **Live execution** records real computation in wall time; **Measured result replay** draws saved estimates and truth in simulation time, with no new inference. The replay curve is instantaneous error, while its RMSE label uses the full scored CSV. [CSV, window rules and recovery criterion](docs/testing/LIVE.md#how-errors-are-calculated) · [Executable score code](src/scripts/presentation/observe_session.py).
 
-## Native 3D localization trials
+## 2D localization recordings
 
-The following short static trials use live 3D points and a fixed Raw 3D map. No IMU or deskew. Scores cover XY/yaw and initialization; sensor input and duration differ from the AMCL trials. [Libraries and scope](docs/testing/LOCALIZERS.md).
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| NDT_OMP | Raw 3D prior map | XY RMSE 0.93 cm; first trial 34.43 cm |
-| GICP | Raw 3D prior map | XY RMSE 1.09 cm; static validation only |
-
-### Pure static — NDT_OMP
-
-**Live execution**
-
-![NDT_OMP native 3D localization](results/reference/robot-ndt-static/execution.gif)
-
-[Live MP4](results/reference/robot-ndt-static/execution.mp4) · [record](results/reference/robot-ndt-static/record.json)
-
-**Measured result replay**
-
-![NDT_OMP saved pose result](results/reference/robot-ndt-static/result.gif)
-
-[Result MP4](results/reference/robot-ndt-static/result.mp4) · XY RMSE **0.93 cm** · yaw **0.17°** · 402 updates.
-
-### Pure static — GICP
-
-**Live execution**
-
-![GICP native 3D localization](results/reference/robot-gicp-static/execution.gif)
-
-[Live MP4](results/reference/robot-gicp-static/execution.mp4) · [record](results/reference/robot-gicp-static/record.json)
-
-**Measured result replay**
-
-![GICP saved pose result](results/reference/robot-gicp-static/result.gif)
-
-[Result MP4](results/reference/robot-gicp-static/result.mp4) · XY RMSE **1.09 cm** · yaw **0.16°** · 397 updates.
-
-NDT also produced 34.43 cm in its first trial with the same estimator parameters; that run is retained. The cause of the variation is not yet established, so the latest score is not a robustness claim. [Initial trial](results/reference/robot-ndt-static-initial/record.json).
-
-## Static and dynamic localization recordings
-
-**Fresh live tests on this Windows computer, 2026-10-14.** Each method has its own actual RViz window, map topic, native AMCL pose/particles and isolated display TF. Each GIF records Gazebo + that method’s RViz + Terminal, during the same live scene input.
+**Fresh live tests on this Windows computer, 2026-10-14–15.** Each method has its own actual RViz window, map topic, native AMCL pose/particles and isolated display TF. Each GIF records Gazebo + that method’s RViz + Terminal, during the same live scene input.
 
 **Raw / DUFOMap / BeautyMap are map-processing choices; the live localizer is AMCL.** Mapping uses provided poses and common 2D projection; this is a scoped 3D-map-to-2D-localization adaptation. Results below come from these new runs, including initialization; one trial per condition.
 
@@ -345,49 +352,49 @@ This route did not induce loss; recovery remains untested.
 
 ### Moving obstacles
 
-Localizer: AMCL; 288 updates per case, position RMSE includes initialization.
+Localizer: AMCL; 291 updates per case, position RMSE includes initialization.
 
 #### Raw map + AMCL
 
 **Live execution — Raw RViz**
 
-![Moving obstacles: actual Raw RViz live execution](results/reference/robot-live-dynamic/executions/raw.gif)
+![Moving obstacles: actual Raw RViz live execution](results/reference/robot-2d-dynamic-matched/executions/raw.gif)
 
-[Live MP4](results/reference/robot-live-dynamic/executions/raw.mp4) · [RViz config](results/reference/robot-live-dynamic/view-raw.rviz) · [record](results/reference/robot-live-dynamic/record.json)
+[Live MP4](results/reference/robot-2d-dynamic-matched/executions/raw.mp4) · [RViz config](results/reference/robot-2d-dynamic-matched/view-raw.rviz) · [record](results/reference/robot-2d-dynamic-matched/record.json)
 
 **Measured result replay — Raw**
 
-![Moving obstacles: Raw measured replay from this new run](results/reference/robot-live-dynamic/methods/raw/result.gif)
+![Moving obstacles: Raw measured replay from this new run](results/reference/robot-2d-dynamic-matched/methods/raw/result.gif)
 
-[Result MP4](results/reference/robot-live-dynamic/methods/raw/result.mp4) · [case record](results/reference/robot-live-dynamic/methods/raw/record.json) · RMSE **7.41 cm** · 288 native updates.
+[Result MP4](results/reference/robot-2d-dynamic-matched/methods/raw/result.mp4) · [case record](results/reference/robot-2d-dynamic-matched/methods/raw/record.json) · RMSE **7.52 cm** · 291 native updates.
 
 #### DUFOMap map + AMCL
 
 **Live execution — DUFOMap RViz**
 
-![Moving obstacles: actual DUFOMap RViz live execution](results/reference/robot-live-dynamic/executions/dufomap.gif)
+![Moving obstacles: actual DUFOMap RViz live execution](results/reference/robot-2d-dynamic-matched/executions/dufomap.gif)
 
-[Live MP4](results/reference/robot-live-dynamic/executions/dufomap.mp4) · [RViz config](results/reference/robot-live-dynamic/view-dufomap.rviz) · [record](results/reference/robot-live-dynamic/record.json)
+[Live MP4](results/reference/robot-2d-dynamic-matched/executions/dufomap.mp4) · [RViz config](results/reference/robot-2d-dynamic-matched/view-dufomap.rviz) · [record](results/reference/robot-2d-dynamic-matched/record.json)
 
 **Measured result replay — DUFOMap**
 
-![Moving obstacles: DUFOMap measured replay from this new run](results/reference/robot-live-dynamic/methods/dufomap/result.gif)
+![Moving obstacles: DUFOMap measured replay from this new run](results/reference/robot-2d-dynamic-matched/methods/dufomap/result.gif)
 
-[Result MP4](results/reference/robot-live-dynamic/methods/dufomap/result.mp4) · [case record](results/reference/robot-live-dynamic/methods/dufomap/record.json) · RMSE **7.35 cm** · 288 native updates.
+[Result MP4](results/reference/robot-2d-dynamic-matched/methods/dufomap/result.mp4) · [case record](results/reference/robot-2d-dynamic-matched/methods/dufomap/record.json) · RMSE **8.19 cm** · 291 native updates.
 
 #### BeautyMap map + AMCL
 
 **Live execution — BeautyMap RViz**
 
-![Moving obstacles: actual BeautyMap RViz live execution](results/reference/robot-live-dynamic/executions/beautymap.gif)
+![Moving obstacles: actual BeautyMap RViz live execution](results/reference/robot-2d-dynamic-matched/executions/beautymap.gif)
 
-[Live MP4](results/reference/robot-live-dynamic/executions/beautymap.mp4) · [RViz config](results/reference/robot-live-dynamic/view-beautymap.rviz) · [record](results/reference/robot-live-dynamic/record.json)
+[Live MP4](results/reference/robot-2d-dynamic-matched/executions/beautymap.mp4) · [RViz config](results/reference/robot-2d-dynamic-matched/view-beautymap.rviz) · [record](results/reference/robot-2d-dynamic-matched/record.json)
 
 **Measured result replay — BeautyMap**
 
-![Moving obstacles: BeautyMap measured replay from this new run](results/reference/robot-live-dynamic/methods/beautymap/result.gif)
+![Moving obstacles: BeautyMap measured replay from this new run](results/reference/robot-2d-dynamic-matched/methods/beautymap/result.gif)
 
-[Result MP4](results/reference/robot-live-dynamic/methods/beautymap/result.mp4) · [case record](results/reference/robot-live-dynamic/methods/beautymap/record.json) · RMSE **7.14 cm** · 288 native updates.
+[Result MP4](results/reference/robot-2d-dynamic-matched/methods/beautymap/result.mp4) · [case record](results/reference/robot-2d-dynamic-matched/methods/beautymap/record.json) · RMSE **7.29 cm** · 291 native updates.
 
 ### Persistent change
 
@@ -486,6 +493,151 @@ Full-scan control: 71.60 cm, sustained convergence 6.6 s after the same referenc
 [Result MP4](results/reference/robot-corridor-v2/methods/degraded_beautymap/result.mp4) · [case record](results/reference/robot-corridor-v2/methods/degraded_beautymap/record.json) · RMSE **72.53 cm** · 508 native updates.
 
 **Physical robot tests remain pending.** Keyboard demos: `F:\be2演讲\实机脚本\20–23`; `24` automatically records all four scenes. Historical executions/replays remain in the repository, separately from the videos above.
+
+## 3D map cleaning and localization recordings
+
+Native GICP outputs from fresh Gazebo B; complete XYZ/rotation scores and output-loss evidence are retained. Map processing A uses supplied poses, not full 3D SLAM.
+
+### 3D map result review
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | 3D point map | Static retained 100%; dynamic removed 0% |
+| DUFOMap | 3D point map | Static retained 99.998%; dynamic removed 46.59% |
+| BeautyMap | 3D point map | Static retained 81.15%; dynamic removed 74.36% |
+
+Real RViz result review of saved native outputs; no new inference. Grey: background points; red: confidently labelled residual moving-box returns.
+
+![3D map cleaning result review](results/reference/robot-3d-map-review-v2/execution.gif)
+
+[MP4](results/reference/robot-3d-map-review-v2/execution.mp4) · [point audit](results/reference/robot-3d-map-audit/record.json)
+
+### Pure static · 3D
+
+No moving contamination needs cleaning; no localization improvement in this trial.
+
+#### Raw 3D map + GICP
+
+![Raw native 3D localization](results/reference/robot-3d-static/executions/raw.gif)
+
+[Live MP4](results/reference/robot-3d-static/executions/raw.mp4) · [record](results/reference/robot-3d-static/record.json)
+
+#### DUFOMap 3D map + GICP
+
+![DUFOMap native 3D localization](results/reference/robot-3d-static/executions/dufomap.gif)
+
+[Live MP4](results/reference/robot-3d-static/executions/dufomap.mp4) · [record](results/reference/robot-3d-static/record.json)
+
+#### BeautyMap 3D map + GICP
+
+![BeautyMap native 3D localization](results/reference/robot-3d-static/executions/beautymap.gif)
+
+[Live MP4](results/reference/robot-3d-static/executions/beautymap.mp4) · [record](results/reference/robot-3d-static/record.json)
+
+### Moving obstacles · 3D
+
+Native cleaning removes dynamic map points, without a clear downstream GICP gain.
+
+#### Raw 3D map + GICP
+
+![Raw native 3D localization](results/reference/robot-3d-dynamic/executions/raw.gif)
+
+[Live MP4](results/reference/robot-3d-dynamic/executions/raw.mp4) · [record](results/reference/robot-3d-dynamic/record.json)
+
+#### DUFOMap 3D map + GICP
+
+![DUFOMap native 3D localization](results/reference/robot-3d-dynamic/executions/dufomap.gif)
+
+[Live MP4](results/reference/robot-3d-dynamic/executions/dufomap.mp4) · [record](results/reference/robot-3d-dynamic/record.json)
+
+#### BeautyMap 3D map + GICP
+
+![BeautyMap native 3D localization](results/reference/robot-3d-dynamic/executions/beautymap.gif)
+
+[Live MP4](results/reference/robot-3d-dynamic/executions/beautymap.mp4) · [record](results/reference/robot-3d-dynamic/record.json)
+
+### Persistent change · 3D
+
+Static-A 3D maps remain frozen; change detection/updating was not executed. No localization gain.
+
+#### Raw 3D map + GICP
+
+![Raw native 3D localization](results/reference/robot-3d-large-change/executions/raw.gif)
+
+[Live MP4](results/reference/robot-3d-large-change/executions/raw.mp4) · [record](results/reference/robot-3d-large-change/record.json)
+
+#### DUFOMap 3D map + GICP
+
+![DUFOMap native 3D localization](results/reference/robot-3d-large-change/executions/dufomap.gif)
+
+[Live MP4](results/reference/robot-3d-large-change/executions/dufomap.mp4) · [record](results/reference/robot-3d-large-change/record.json)
+
+#### BeautyMap 3D map + GICP
+
+![BeautyMap native 3D localization](results/reference/robot-3d-large-change/executions/beautymap.gif)
+
+[Live MP4](results/reference/robot-3d-large-change/executions/beautymap.mp4) · [record](results/reference/robot-3d-large-change/record.json)
+
+### Corridor degradation · 3D
+
+Raw and DUFOMap 3D maps are byte-identical yet tracking differs. Output coverage is unequal; do not rank cleaners.
+
+#### Raw 3D map + GICP
+
+![Raw native 3D localization](results/reference/robot-3d-corridor/executions/raw.gif)
+
+[Live MP4](results/reference/robot-3d-corridor/executions/raw.mp4) · [record](results/reference/robot-3d-corridor/record.json)
+
+#### DUFOMap 3D map + GICP
+
+![DUFOMap native 3D localization](results/reference/robot-3d-corridor/executions/dufomap.gif)
+
+[Live MP4](results/reference/robot-3d-corridor/executions/dufomap.mp4) · [record](results/reference/robot-3d-corridor/record.json)
+
+#### BeautyMap 3D map + GICP
+
+![BeautyMap native 3D localization](results/reference/robot-3d-corridor/executions/beautymap.gif)
+
+[Live MP4](results/reference/robot-3d-corridor/executions/beautymap.mp4) · [record](results/reference/robot-3d-corridor/record.json)
+
+## Earlier Raw-map 3D static trials
+
+The following short static trials use live 3D points and a fixed Raw 3D map. No IMU or deskew. Scores cover XY/yaw and initialization; sensor input and duration differ from the AMCL trials. [Libraries and scope](docs/testing/LOCALIZERS.md).
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| NDT_OMP | Raw 3D prior map | XY RMSE 0.93 cm; first trial 34.43 cm |
+| GICP | Raw 3D prior map | XY RMSE 1.09 cm; static validation only |
+
+### Pure static — NDT_OMP
+
+**Live execution**
+
+![NDT_OMP native 3D localization](results/reference/robot-ndt-static/execution.gif)
+
+[Live MP4](results/reference/robot-ndt-static/execution.mp4) · [record](results/reference/robot-ndt-static/record.json)
+
+**Measured result replay**
+
+![NDT_OMP saved pose result](results/reference/robot-ndt-static/result.gif)
+
+[Result MP4](results/reference/robot-ndt-static/result.mp4) · XY RMSE **0.93 cm** · yaw **0.17°** · 402 updates.
+
+### Pure static — GICP
+
+**Live execution**
+
+![GICP native 3D localization](results/reference/robot-gicp-static/execution.gif)
+
+[Live MP4](results/reference/robot-gicp-static/execution.mp4) · [record](results/reference/robot-gicp-static/record.json)
+
+**Measured result replay**
+
+![GICP saved pose result](results/reference/robot-gicp-static/result.gif)
+
+[Result MP4](results/reference/robot-gicp-static/result.mp4) · XY RMSE **1.09 cm** · yaw **0.16°** · 397 updates.
+
+NDT also produced 34.43 cm in its first trial with the same estimator parameters; that run is retained. The cause of the variation is not yet established, so the latest score is not a robustness claim. [Initial trial](results/reference/robot-ndt-static-initial/record.json).
 
 ## Supplementary live scene recordings
 

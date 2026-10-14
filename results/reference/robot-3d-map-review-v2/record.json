@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "kind": "native_3d_map_result_review",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "genuine three-window RViz recording of saved native map results; not live inference or full 3D SLAM",
+  "source_audit": "../robot-3d-map-audit/record.json",
+  "source_audit_sha256": "73bb54b86fd036b9ee60791b8c2b9b2276300eb37acb48c2526cc7294ccbfaf6",
+  "metrics": {
+    "raw": {
+      "static_retention": 1.0,
+      "dynamic_removal": 0.0,
+      "removed_static_points": 0,
+      "retained_dynamic_points": 7076
+    },
+    "dufomap": {
+      "static_retention": 0.9999793464935509,
+      "dynamic_removal": 0.46594120972300734,
+      "removed_static_points": 14,
+      "retained_dynamic_points": 3779
+    },
+    "beautymap": {
+      "static_retention": 0.8115249516486661,
+      "dynamic_removal": 0.743640474844545,
+      "removed_static_points": 127758,
+      "retained_dynamic_points": 1814
+    }
+  },
+  "display_stride": 6,
+  "timing": {
+    "duration_s": 29.999999999999925,
+    "frames": 150,
+    "fps": 5,
+    "video_duration_s": 30.0,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-000414-3d-map-review-0001ea",
+  "artifacts": {
+    "capture-filter.txt": {
+      "sha256": "b17af236f8cce89cde0fe1224d728e2bebce7f14bcfa37e8fb646a90b8c6d09d",
+      "bytes": 879,
+      "availability": "portable"
+    },
+    "capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "56f8dc0e261c3a897d90736d401a6b86bf9eb41f0bebdbbc1a5d3e293ff0c7bf",
+      "bytes": 372776,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "29776fe9b52519ac5982c8d2ca9e882450f332b8193a2ee5d5c286b09f45ecce",
+      "bytes": 965933,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "2869eb0cbe42d2efceeff0fa2e91a910c5f2f583077f51003199f2ace9c8467a",
+      "bytes": 1559091,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "4b4e965b5353bac33b18826d7e3de34f4417f760e6dc3c8ada941aef193ea73a",
+      "bytes": 1546859,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "f4824d0d0d41d61a190630d65df51e417f3d8794f9144dbf77cc8f2fd373cfa9",
+      "bytes": 1562439,
+      "availability": "portable"
+    },
+    "ready.json": {
+      "sha256": "ab1efe0a323d420d4ef49d2690bbaf606ec39dbce03a11de9e9479f4c2be394b",
+      "bytes": 686,
+      "availability": "portable"
+    },
+    "renderer.txt": {
+      "sha256": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+      "bytes": 1774,
+      "availability": "portable"
+    },
+    "review.log": {
+      "sha256": "c536e3085ee4a1a520e0cd669d92ceca785c7d33c8f4801b2f661b9683d54002",
+      "bytes": 14034,
+      "availability": "portable"
+    },
+    "view-beautymap.rviz": {
+      "sha256": "f22ed2eecd858de9ffb2c30dc729ae278eb8338f7528286df69c67a1209b08b5",
+      "bytes": 987,
+      "availability": "portable"
+    },
+    "view-dufomap.rviz": {
+      "sha256": "f322dc11c532bc2a64ebe7385d6f5501f88a0198fa95ea343a26b6355f7d6617",
+      "bytes": 985,
+      "availability": "portable"
+    },
+    "view-raw.rviz": {
+      "sha256": "a7306ee76dc139f039b562af3f0269d91476ff7874a7de182996fd26076fa40f",
+      "bytes": 981,
+      "availability": "portable"
+    }
+  }
+}

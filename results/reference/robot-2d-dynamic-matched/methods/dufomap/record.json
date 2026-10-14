@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "dufomap",
+  "parent_record": "../../record.json",
+  "parent_sha256": "0bb7cd51738f570ea39a955dd0c080eb682f12395ad63b71d6aa9e87eb9afc9f",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-235749-localization-dynamic-method-live-6ff663",
+  "case_configuration": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/dufomap/map.yaml",
+    "mapping_scene": "dynamic",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    }
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 291,
+    "position_rmse_m": 0.08186796407189753,
+    "yaw_rmse_deg": 1.7617300348448262,
+    "post_warmup_5s_samples": 290,
+    "post_warmup_5s_position_rmse_m": 0.08020206787490804,
+    "position_p95_m": 0.12825342915529825
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 7.3,
+    "common_end_s": 72.7,
+    "alignment": "none",
+    "frames": 524
+  },
+  "timing": {
+    "duration_s": 65.60000000000039,
+    "frames": 328,
+    "fps": 5,
+    "video_duration_s": 65.5,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": null,
+  "source_inputs": {
+    "dufomap-samples.csv": "21c6d515eeb0e2165f3b0d2370aeb3a7f84a18f59e9efeb2c1296dc242cdf20e",
+    "truth.jsonl": "fc287aa8c1595cfa395084b6d8799780883b36b21e582d3c0c23822dfcd0d7d0",
+    "cases.json": "a3470527f342600df29bef505bb238ab5099abe522419f0c186bf9bd2f79bdb3",
+    "metrics.json": "f7ac4a99c236497826ae57f1ee1b62732e6f21e158390db89f72ef2cd6115646",
+    "maps/dufomap/map.pgm": "c7478b176d5e6bb6fb38980083f07da95aeec8013419c23158066194bf82ea41",
+    "maps/dufomap/map.yaml": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py results/reference/robot-2d-dynamic-matched",
+  "renderer_sha256": "b374eca6b6a1c5f371e36ddd46d23f5e27ada0d4d32353428e893925cebe45c0",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "91e6e4d55f8c40517fc024729cde2ee4ae9b9e5cbb29c0070b2c86f018af044a",
+      "bytes": 91093,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "1954d28586bee153ac0f80a39d0b424289045e437dde51a994051bdad0a4288b",
+      "bytes": 487525,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "2e3273f757cc542df352d729e0634602fc69dec3a974abffaa2cec5332c4bb70",
+      "bytes": 214051,
+      "availability": "portable"
+    }
+  }
+}

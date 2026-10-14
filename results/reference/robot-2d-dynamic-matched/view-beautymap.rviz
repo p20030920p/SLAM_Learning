@@ -1,0 +1,142 @@
+Panels: []
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Arena grid (1 m)
+      Enabled: true
+      Cell Size: 1
+      Plane Cell Count: 60
+      Color: 60; 70; 82
+      Alpha: 0.35
+    - Class: rviz_default_plugins/Map
+      Name: BeautyMap map + AMCL (LIVE)
+      Enabled: true
+      Topic:
+        Value: /beautymap/map
+        Reliability Policy: Reliable
+        Durability Policy: Transient Local
+        Depth: 5
+      Alpha: 0.85
+      Color Scheme: map
+      Draw Behind: true
+      Update Topic:
+        Value: /map_updates
+    - Class: rviz_default_plugins/LaserScan
+      Name: Laser scan
+      Enabled: true
+      Topic:
+        Value: /scan
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        Depth: 10
+      Style: Points
+      Size (Pixels): 4
+      Color: 255; 60; 60
+      Color Transformer: FlatColor
+      Decay Time: 0
+      Position Transformer: XYZ
+    - Class: rviz_default_plugins/MarkerArray
+      Name: Moving boxes
+      Enabled: true
+      Topic:
+        Value: /live/markers
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        Depth: 5
+    - Class: rviz_default_plugins/Marker
+      Name: Driven trajectory
+      Enabled: true
+      Topic:
+        Value: /live/trajectory
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        Depth: 5
+    - Class: rviz_default_plugins/Odometry
+      Name: Wheel odometry
+      Enabled: true
+      Topic:
+        Value: /omni_drive_controller/odom
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        Depth: 10
+      Keep: 1
+      Position Tolerance: 0.05
+      Angle Tolerance: 0.1
+      Shape:
+        Value: Arrow
+        Shaft Length: 0.5
+        Shaft Radius: 0.06
+        Head Length: 0.2
+        Head Radius: 0.12
+      Color: 30; 190; 90
+      Covariance:
+        Value: false
+    - Class: rviz_default_plugins/TF
+      Name: TF frames
+      Enabled: true
+      Show Names: false
+      Show Axes: true
+      Show Arrows: false
+      Marker Scale: 0.6
+      Update Interval: 0
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Independent 3D LiDAR (live)
+      Enabled: true
+      Topic:
+        Value: /points
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        Depth: 5
+      Style: Points
+      Size (Pixels): 2
+      Color Transformer: AxisColor
+      Axis: Z
+      Position Transformer: XYZ
+      Decay Time: 0
+    - Class: rviz_default_plugins/PoseWithCovariance
+      Name: BeautyMap native AMCL pose
+      Enabled: true
+      Topic:
+        Value: /beautymap/amcl_pose
+      Color: 60; 180; 255
+      Shape: Arrow
+    - Class: rviz_default_plugins/Path
+      Name: BeautyMap estimated trajectory
+      Enabled: true
+      Topic:
+        Value: /beautymap/view/path
+      Color: 60; 180; 255
+      Line Width: 0.05
+    - Class: nav2_rviz_plugins/ParticleCloud
+      Name: BeautyMap native AMCL particles
+      Enabled: true
+      Topic:
+        Value: /beautymap/particle_cloud
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        Depth: 5
+      Color: 250; 210; 50
+  Global Options:
+    Background Color: 18; 22; 28
+    Fixed Frame: map
+    Frame Rate: 15
+  Tools: []
+  Views:
+    Current:
+      Class: rviz_default_plugins/TopDownOrtho
+      Name: Current View
+      Target Frame: map
+      Angle: 0
+      Scale: 36.7601246105919
+      X: 7.525
+      Y: 1.0250000000000004
+Window Geometry:
+  Height: 760
+  Width: 1000
+  X: 7.525
+  Y: 1.0250000000000004
+  Hide Left Dock: true
+  Hide Right Dock: true
+  Displays:
+    collapsed: false

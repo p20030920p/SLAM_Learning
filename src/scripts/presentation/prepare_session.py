@@ -65,6 +65,9 @@ if mode == "localization":
             raise FileNotFoundError("Native 3D map missing; process mapping A first: " + str(pcd))
         cases = {name: {**cases["raw"], "localizer": algorithm, "map_pcd": str(pcd),
                         "pose_topic": f"/{name}/pcl_pose", "native_map_odom_tf": True}}
+    if "-3d-" in flow:
+        from prepare_3d import configure
+        cases = configure(cases, maps, run, scene)
 (run / "cases.json").write_text(json.dumps(cases, indent=2) + "\n")
 config = (repo / "config/presentation/live_base.rviz").read_text()
 if mode == "localization":
@@ -121,7 +124,10 @@ if "-ndt-" in flow or "-gicp-" in flow:
 '''
     config = config.replace("  Global Options:\n", additions + "  Global Options:\n")
 (run / "live.rviz").write_text(config)
-if os.environ.get("PRESENTATION_MULTI_VIEW") == "true" and mode == "localization":
+if "-3d-" in flow:
+    from prepare_3d import views as prepare_3d_views
+    prepare_3d_views(config, cases, run, scene)
+elif os.environ.get("PRESENTATION_MULTI_VIEW") == "true" and mode == "localization":
     views = {}
     for method, label in (("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")):
         case = "degraded_"+method if scene == "corridor" else method
@@ -197,5 +203,8 @@ manifest = {
 if "-ndt-" in flow or "-gicp-" in flow:
     manifest["input_to_localizers"] = "live 3D /points, wheel odometry and frozen Raw 3D prior map"
     manifest["scope"] = "3D fixed-map scan registration; no new map update, IMU or deskew claim"
+if "-3d-" in flow:
+    manifest["input_to_localizers"] = "same live 3D point clouds and wheel odometry; Raw/DUFOMap/BeautyMap frozen 3D maps; no truth input"
+    manifest["scope"] = "3D map cleaning with provided mapping-A poses and native GICP localization in fresh B; no full 3D SLAM or online map-update claim"
 (run / "session.json").write_text(json.dumps(manifest, indent=2) + "\n")
 print(json.dumps(manifest, indent=2), flush=True)

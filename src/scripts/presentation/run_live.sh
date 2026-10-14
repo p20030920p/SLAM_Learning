@@ -17,7 +17,7 @@ REPO="$(cd "$HERE/../../.." && pwd)"
 export S2R_REPO="${S2R_REPO:-/root/projects/Sim2Real-AlgoBench}"
 source /opt/ros/jazzy/setup.bash
 source "$S2R_REPO/install/setup.bash"
-if [[ "$FLOW" == *-ndt-* || "$FLOW" == *-gicp-* ]]; then
+if [[ "$FLOW" == *-ndt-* || "$FLOW" == *-gicp-* || "$FLOW" == *-3d-* ]]; then
   source /root/slam-alternative-ws/build_ws/install/setup.bash
 fi
 exec 9>/root/slam-presentation.lock
@@ -55,6 +55,7 @@ cleanup() {
   trap - EXIT INT TERM
   for pid in "${PIDS[@]:-}"; do kill -TERM -- "-$pid" 2>/dev/null || true; done
   python3 "$HERE/stop_owned_session.py" --run "$RUN_DIR" || true
+  printf '{"state":"STOPPED","exit_code":%s}\n' "$status" > "$RUN_DIR/session-stopped.json"
   if [[ "$status" -ne 0 ]]; then printf '{"state":"FAILED","exit_code":%s}\n' "$status" > "$RUN_DIR/failed.json"; fi
   exit "$status"
 }
@@ -74,13 +75,25 @@ setsid "$REPO/.cache/presentation/truth-build/gz_truth" \
   /world/competition_world/dynamic_pose/info omni_car "$NATIVE_TRUTH" &
 TRUTH_PID=$!
 PIDS+=("$!")
+if [[ "$MODE" == mapping && "$FLOW" == *dynamic* ]]; then
+  setsid "$REPO/.cache/presentation/truth-build/gz_truth" \
+    /world/competition_world/dynamic_pose/info '*' "$RUN_DIR/object-truth.jsonl" &
+  PIDS+=("$!")
+  setsid bash -c '
+    while [[ ! -f "$PRESENTATION_RUN/ready.json" ]]; do sleep .2; done
+    gz service -s /world/competition_world/scene/info --reqtype gz.msgs.Empty \
+      --reptype gz.msgs.Scene --timeout 3000 --req "" > "$PRESENTATION_RUN/object-scene.pbtxt"
+    python3 "$PRESENTATION_REPO/src/scripts/presentation/object_scene.py" "$PRESENTATION_RUN"
+  ' > "$RUN_DIR/logs/object-scene.log" 2>&1 &
+  PIDS+=("$!")
+fi
 if [[ "$MODE" == localization ]]; then
-  if [[ "$FLOW" == localization-degradation ]]; then
+  if [[ "$FLOW" == *degradation ]]; then
     setsid python3 -u "$HERE/stress_scan.py" "$RUN_DIR" > "$RUN_DIR/logs/stress.log" 2>&1 &
     PIDS+=("$!")
   fi
   LOCALIZER_LAUNCH=localization.launch.py
-  if [[ "$FLOW" == *-ndt-* || "$FLOW" == *-gicp-* ]]; then LOCALIZER_LAUNCH=registration.launch.py; fi
+  if [[ "$FLOW" == *-ndt-* || "$FLOW" == *-gicp-* || "$FLOW" == *-3d-* ]]; then LOCALIZER_LAUNCH=registration.launch.py; fi
   setsid ros2 launch "$HERE/$LOCALIZER_LAUNCH" "cases_file:=$RUN_DIR/cases.json" \
     > "$RUN_DIR/logs/localizers.log" 2>&1 &
   PIDS+=("$!")
@@ -89,7 +102,8 @@ if [[ "$PRESENTATION_MULTI_VIEW" == true && "$MODE" == localization ]]; then
   setsid python3 -u "$HERE/case_view_tf.py" "$RUN_DIR" > "$RUN_DIR/logs/views.log" 2>&1 &
   PIDS+=("$!")
   for name in $(python3 -c 'import json,sys; print(" ".join(json.load(open(sys.argv[1]))))' "$RUN_DIR/views.json"); do
-    setsid rviz2 -d "$RUN_DIR/view-$name.rviz" -t "SLAM LIVE - $name - RViz2" --ros-args -p use_sim_time:=true \
+    VIEW_TITLE="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))[sys.argv[2]]["title"])' "$RUN_DIR/views.json" "$name")"
+    setsid rviz2 -d "$RUN_DIR/view-$name.rviz" -t "$VIEW_TITLE" --ros-args -p use_sim_time:=true \
       -r "/tf:=/$name/view/tf" -r "/tf_static:=/$name/view/tf_static" > "$RUN_DIR/logs/rviz-$name.log" 2>&1 &
     PIDS+=("$!")
   done
@@ -111,6 +125,18 @@ OPTIONS=()
 if [[ "$AUTO" == true ]]; then OPTIONS+=(--auto); fi
 python3 -u "$HERE/observe_session.py" --run "$RUN_DIR" --truth "$NATIVE_TRUTH" --mode "$MODE" \
   --duration "$DURATION" --cases "$CASE_NAMES" "${OPTIONS[@]}" | tee "$RUN_DIR/logs/observer.log"
+# Keep native windows alive until all Windows capture encoders flush their MP4s.
+# Destroying a WGC source first can leave an encoder waiting for a final frame.
+if [[ -f "$RUN_DIR/recording.capture" ]]; then
+  for ((flush_wait=0; flush_wait<350; flush_wait++)); do
+    [[ -f "$RUN_DIR/recording.stopped" ]] && break
+    # WGC is event driven: a frozen terminal can block a multi-source framesync
+    # request before ffmpeg gets to read its quit command. Keep this real status
+    # window repainting while encoders finish, without changing simulation data.
+    if ((flush_wait % 2 == 0)); then printf '\rFINALIZING NATIVE RECORDING %s ' "$flush_wait"; fi
+    sleep 0.1
+  done
+fi
 kill -TERM -- "-$TRUTH_PID" 2>/dev/null || true
 sleep 0.5
 cp "$NATIVE_TRUTH" "$RUN_DIR/truth.jsonl"

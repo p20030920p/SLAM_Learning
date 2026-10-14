@@ -62,6 +62,11 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--runtime", type=Path, default=Path("/home/qzl/projects/SLAM_Author_Originals"))
     parser.add_argument("--physical-root", type=Path, default=Path("/mnt/d/workspace/be2/SLAM-Physical"))
+    parser.add_argument("--max-scans", type=int, default=60, help="0 uses every saved measured scan")
+    parser.add_argument("--dufo-resolution", type=float, default=.1)
+    parser.add_argument("--beauty-range", type=float, default=8)
+    parser.add_argument("--beauty-xy", type=float, default=.5)
+    parser.add_argument("--beauty-z", type=float, default=.2)
     args = parser.parse_args()
     sys.path.insert(0, str(args.physical_root / "src"))
     from native_beautymap import run_beautymap
@@ -69,7 +74,8 @@ def main():
 
     archive = np.load(args.recording / "mapping-clouds.npz", allow_pickle=False)
     poses = archive["poses"]
-    ids = np.linspace(0, len(poses) - 1, min(60, len(poses)), dtype=int)
+    count = min(args.max_scans, len(poses)) if args.max_scans > 0 else len(poses)
+    ids = np.linspace(0, len(poses) - 1, count, dtype=int)
     scans = [archive[f"scan_{i:04d}"] for i in ids]
     poses = poses[ids]
     clouds = [scan @ pose[:3, :3].T + pose[:3, 3] for scan, pose in zip(scans, poses)]
@@ -90,7 +96,7 @@ def main():
 
             native = args.output / "dufomap-native"
             native.mkdir()
-            mapper = dufomap(0.1, 0.2, 1, num_threads=2)
+            mapper = dufomap(args.dufo_resolution, 0.2, 1, num_threads=2)
             for i, (cloud, pose) in enumerate(zip(clouds, poses)):
                 mapper.run(cloud, [*map(float, pose[:3, 3]), 1.0, 0.0, 0.0, 0.0], cloud_transform=False)
                 print(f"DUFOMap {i+1}/{len(scans)}", flush=True)
@@ -108,7 +114,7 @@ def main():
                 poses,
                 args.output / "beautymap-native",
                 args.runtime / "upstream/beautymap",
-                {"dis_range": 8, "xy_resolution": 0.5, "h_res": 0.2},
+                {"dis_range": args.beauty_range, "xy_resolution": args.beauty_xy, "h_res": args.beauty_z},
             )
             points = raw[mask]
         records[method] = {
@@ -122,6 +128,8 @@ def main():
         "source_recording": str(args.recording),
         "input_sha256": hashlib.sha256((args.recording / "mapping-clouds.npz").read_bytes()).hexdigest(),
         "selected_scan_ids": ids.tolist(),
+        "parameters": {"dufo_resolution": args.dufo_resolution, "dufo_ds": .2, "dufo_dp": 1,
+                       "beauty_range": args.beauty_range, "beauty_xy": args.beauty_xy, "beauty_z": args.beauty_z},
         "methods": records,
         "scope": "measured Sim2Real 3D point clouds with evaluation-provided mapping poses; not original-paper metrics",
         "truth_to_held_out_localization": False,

@@ -29,6 +29,12 @@ One-click entries: F:\be2演讲\实机脚本\31-NDT三维定位_静态.bat / 32-
 - [GICP native run](../../results/reference/robot-gicp-static/record.json): 397 matched updates, XY RMSE 1.09 cm, yaw 0.16°.
 - [NDT initial trial](../../results/reference/robot-ndt-static-initial/record.json): 399 updates, XY RMSE 34.43 cm. Its viewport was subsequently corrected and a fresh trial recorded; estimator parameters were unchanged. Keeping both trials exposes run-to-run variation; its cause has not yet been established. Latest-trial accuracy is not a stability claim.
 
-These are short static 35-simulation-second drives, with 3D input and XY/yaw scoring. They are not directly comparable to the longer 2D AMCL trials or a complete 3D pose-error benchmark. Dynamic, degradation and kidnapping robustness of these localizers remain untested here.
+These earlier trials are short static 35-simulation-second drives with 3D input and XY/yaw scoring. They are not directly comparable to the longer 2D AMCL trials. The newer multi-map GICP trials below test dynamic and degradation conditions; physical kidnapping remains untested.
 
 The source build completed two packages and the upstream focused suite passed 342 tests. Dependency ndt_omp_ros2 revision: 63bf15b965b71d3a53db1757abe8e31b6114372a. [Pinned rebuild script](../../demo/build-registration.sh) uses a separate overlay and refuses to reset an existing checkout at another revision.
+
+## Four-scene 3D map comparison, 2026-10-14–15
+
+Raw, DUFOMap and BeautyMap complete 3D point maps now feed separate identical GICP instances. All receive the same published cloud/odometry source; their consumed histories and accepted-output coverage may differ. Global TF broadcasts are disabled and private full-SE(3) display relays isolate the RViz windows. XYZ position and quaternion-angle errors are scored from retained native poses against independent truth. Mapping uses supplied poses, without a full 3D SLAM claim.
+
+[Four-scene scores, failed-output coverage and map-classification audit](MAP-2D-3D.md) · [native recordings](../../demo/gallery.html#3d). The new trials show no clear localization gain from cleaning; corridor controls expose registration instability. Entries 33–36 reproduce the multi-map trials, while 31–32 retain the earlier Raw-only demonstrations.

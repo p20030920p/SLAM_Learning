@@ -198,47 +198,93 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 [键盘演示](../demo/README.md) · [视频目录](../demo/gallery.html) · [代码 Notebook](../notebooks/presentation/SLAM_实验逐步展示.ipynb)。
 
-**不同地图下的定位误差。**Raw／DUFOMap／BeautyMap表示地图来源，定位器统一为AMCL。以下为Gazebo单次结果，XY RMSE单位cm，包含初始化。
+**不同地图下的定位误差。**2D使用AMCL，报XY RMSE；3D直接使用三维点云地图和同一原库GICP，报XYZ RMSE，单位均为cm。包含全部原生已发布输出；单次结果不构成稳定排名。三维建图使用给定位姿融合与清理，真值不进入定位器。
 
-**纯静态** · 每图290次更新 · [record](../results/reference/robot-live-static/record.json)
+### 2D · AMCL
 
-| 方法 | 地图类型 | 指标效果 |
-| --- | --- | --- |
-| Raw | 原始二维投影图 | RMSE 7.28 cm；未失效 |
-| DUFOMap | 去动态点二维投影图 | RMSE 7.28 cm；与Raw相同 |
-| BeautyMap | 离线清理二维投影图 | RMSE 6.89 cm；比Raw略低 |
-
-Raw与DUFOMap相同；BeautyMap本次低0.39 cm。恢复能力未测试。
-
-**运动障碍物** · 每图288次更新 · [record](../results/reference/robot-live-dynamic/record.json)
+**纯静态** · [record](../results/reference/robot-live-static/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始二维投影图 | RMSE 7.41 cm；未失效 |
-| DUFOMap | 去动态点二维投影图 | RMSE 7.35 cm；接近Raw |
-| BeautyMap | 离线清理二维投影图 | RMSE 7.14 cm；接近Raw |
+| Raw | 原始二维投影图 | XY RMSE 7.28 cm；未失效 |
+| DUFOMap | 去动态点二维投影图 | XY RMSE 7.28 cm；与Raw相同 |
+| BeautyMap | 离线清理二维投影图 | XY RMSE 6.89 cm；比Raw略低 |
 
-DUFOMap／BeautyMap相对Raw仅低0.06／0.27 cm，尚未证明稳定优势。
+Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
-**持久结构变化** · 每图290次更新 · [record](../results/reference/robot-live-large-change/record.json)
-
-| 方法 | 地图类型 | 指标效果 |
-| --- | --- | --- |
-| Raw | 原始二维投影图 | RMSE 6.84 cm；未失效 |
-| DUFOMap | 去动态点二维投影图 | RMSE 6.84 cm；与Raw相同 |
-| BeautyMap | 离线清理二维投影图 | RMSE 6.39 cm；未失效 |
-
-BeautyMap比Raw低0.45 cm，DUFOMap与Raw相同；本路线未诱发失效，未验证恢复。
-
-**走廊退化** · 每图508次更新 · [record](../results/reference/robot-corridor-v2/record.json)
+**运动障碍物** · [record](../results/reference/robot-2d-dynamic-matched/record.json)
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
-| DUFOMap | 去动态点二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
-| BeautyMap | 离线清理二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
+| Raw | 原始二维投影图 | XY RMSE 7.52 cm；未失效 |
+| DUFOMap | 去动态点二维投影图 | XY RMSE 8.19 cm；本次高于Raw |
+| BeautyMap | 离线清理二维投影图 | XY RMSE 7.29 cm；本次低于Raw |
 
-三张投影地图相同，无法区分清理方法；13.3 s恢复对应初始位姿偏移纠正。
+新建图A配对结果：DUFOMap高0.67 cm，BeautyMap低0.23 cm；单次结果无稳定排名，旧一轮结果保留。
+
+**持久结构变化** · [record](../results/reference/robot-live-large-change/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | XY RMSE 6.84 cm；未失效 |
+| DUFOMap | 去动态点二维投影图 | XY RMSE 6.84 cm；与Raw相同 |
+| BeautyMap | 离线清理二维投影图 | XY RMSE 6.39 cm；比Raw略低 |
+
+旧图定位；未调用在线地图更新，本路线未诱发失效。
+
+**走廊退化** · [record](../results/reference/robot-corridor-v2/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | XY RMSE 72.53 cm；恢复延迟13.3 s |
+| DUFOMap | 去动态点二维投影图 | XY RMSE 72.53 cm；恢复延迟13.3 s |
+| BeautyMap | 离线清理二维投影图 | XY RMSE 72.53 cm；恢复延迟13.3 s |
+
+三张投影图相同；13.3 s是初始信念偏移纠正，不能区分清理效果。
+
+### 3D · GICP
+
+**纯静态** · [record](../results/reference/robot-3d-static/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始三维点云图 | XYZ RMSE 0.95 cm；未失效 |
+| DUFOMap | 三维去动态点图 | XYZ RMSE 0.99 cm；未见改善 |
+| BeautyMap | 三维离线清理图 | XYZ RMSE 1.07 cm；未见改善 |
+
+无动态污染需要清理，本次三维定位未见改善。
+
+**运动障碍物** · [record](../results/reference/robot-3d-dynamic/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始三维点云图 | XYZ RMSE 0.98 cm；未失效 |
+| DUFOMap | 三维去动态点图 | XYZ RMSE 0.98 cm；未见改善 |
+| BeautyMap | 三维离线清理图 | XYZ RMSE 1.04 cm；未见改善 |
+
+三维清理确实去除了动态点，但GICP定位仍未见明显收益。
+
+**持久结构变化** · [record](../results/reference/robot-3d-large-change/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始三维点云图 | XYZ RMSE 0.93 cm；未失效 |
+| DUFOMap | 三维去动态点图 | XYZ RMSE 1.01 cm；未见改善 |
+| BeautyMap | 三维离线清理图 | XYZ RMSE 1.04 cm；未见改善 |
+
+复用静态三维旧图；未执行变化检测或更新，未见定位改善。
+
+**走廊退化** · [record](../results/reference/robot-3d-corridor/record.json)
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始三维点云图 | XYZ RMSE 474.38 cm；恢复后输出不足 |
+| DUFOMap | 三维去动态点图 | XYZ RMSE 497.05 cm；未持续收敛 |
+| BeautyMap | 三维离线清理图 | XYZ RMSE 592.00 cm；未持续收敛 |
+
+Raw与DUFOMap三维图字节相同却得到不同结果；有效输出覆盖不同，不能据此排名。
+
+[原因分析、点级地图质量与参数排查](testing/MAP-2D-3D.zh-CN.md) · [2D／3D独立视频目录](../demo/gallery.html)
 
 ## 实测结果如何计算
 
@@ -248,46 +294,7 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 偏航差先折回 $[-\pi,\pi]$，再求均方根并转换成度；米乘 100 得到厘米。**Live execution** 是按真实时间录制的现场计算；**Measured result replay** 按仿真时间绘制已保存估计与真值，不重新运行算法。曲线显示每时刻误差，RMSE 标注来自完整评分 CSV。[CSV、窗口与恢复判据](testing/LIVE.zh-CN.md) · [可执行评分代码](../src/scripts/presentation/observe_session.py)。
 
-## 三维定位原库部署实测
-
-以下短静态试验使用实时三维点云和固定 Raw 三维地图；不使用 IMU／去畸变。评分为 XY／yaw 并包含初始化，传感器与时长不同，不能与二维 AMCL 直接排名。[Libraries and scope](testing/LOCALIZERS.zh-CN.md).
-
-| 方法 | 地图类型 | 指标效果 |
-| --- | --- | --- |
-| NDT_OMP | Raw三维先验图 | XY RMSE 0.93 cm；首轮34.43 cm |
-| GICP | Raw三维先验图 | XY RMSE 1.09 cm；仅静态验证 |
-
-### Pure static — NDT_OMP
-
-**Live execution**
-
-![NDT_OMP native 3D localization](../results/reference/robot-ndt-static/execution.gif)
-
-[Live MP4](../results/reference/robot-ndt-static/execution.mp4) · [record](../results/reference/robot-ndt-static/record.json)
-
-**Measured result replay**
-
-![NDT_OMP saved pose result](../results/reference/robot-ndt-static/result.gif)
-
-[Result MP4](../results/reference/robot-ndt-static/result.mp4) · XY RMSE **0.93 cm** · yaw **0.17°** · 402 updates.
-
-### Pure static — GICP
-
-**Live execution**
-
-![GICP native 3D localization](../results/reference/robot-gicp-static/execution.gif)
-
-[Live MP4](../results/reference/robot-gicp-static/execution.mp4) · [record](../results/reference/robot-gicp-static/record.json)
-
-**Measured result replay**
-
-![GICP saved pose result](../results/reference/robot-gicp-static/result.gif)
-
-[Result MP4](../results/reference/robot-gicp-static/result.mp4) · XY RMSE **1.09 cm** · yaw **0.16°** · 397 updates.
-
-相同估计器参数的首次 NDT 试验为 34.43 cm，记录也保留。差异原因尚未定位，不能只用最新分数宣称鲁棒性。[Initial trial](../results/reference/robot-ndt-static-initial/record.json).
-
-## 静态与动态定位录制
+## 二维定位录制
 
 **2026-10-14 本机重新实测。**每种方法都有自己的真实 RViz 窗口、地图主题、原生 AMCL 位姿／粒子和独立显示 TF；每段 GIF 录制 Gazebo＋该方法 RViz＋终端，使用同一次场景的实时输入。
 
@@ -345,49 +352,49 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 ### 运动障碍物
 
-定位器：AMCL；每组288次更新，位置RMSE含初始化。
+定位器：AMCL；每组291次更新，位置RMSE含初始化。
 
 #### Raw map + AMCL
 
 **现场执行 · Live execution — Raw RViz**
 
-![Moving obstacles: actual Raw RViz live execution](../results/reference/robot-live-dynamic/executions/raw.gif)
+![Moving obstacles: actual Raw RViz live execution](../results/reference/robot-2d-dynamic-matched/executions/raw.gif)
 
-[Live MP4](../results/reference/robot-live-dynamic/executions/raw.mp4) · [RViz config](../results/reference/robot-live-dynamic/view-raw.rviz) · [record](../results/reference/robot-live-dynamic/record.json)
+[Live MP4](../results/reference/robot-2d-dynamic-matched/executions/raw.mp4) · [RViz config](../results/reference/robot-2d-dynamic-matched/view-raw.rviz) · [record](../results/reference/robot-2d-dynamic-matched/record.json)
 
 **结果回放 · Measured result replay — Raw**
 
-![Moving obstacles: Raw measured replay from this new run](../results/reference/robot-live-dynamic/methods/raw/result.gif)
+![Moving obstacles: Raw measured replay from this new run](../results/reference/robot-2d-dynamic-matched/methods/raw/result.gif)
 
-[Result MP4](../results/reference/robot-live-dynamic/methods/raw/result.mp4) · [case record](../results/reference/robot-live-dynamic/methods/raw/record.json) · RMSE **7.41 cm** · 288 次原生更新。
+[Result MP4](../results/reference/robot-2d-dynamic-matched/methods/raw/result.mp4) · [case record](../results/reference/robot-2d-dynamic-matched/methods/raw/record.json) · RMSE **7.52 cm** · 291 次原生更新。
 
 #### DUFOMap map + AMCL
 
 **现场执行 · Live execution — DUFOMap RViz**
 
-![Moving obstacles: actual DUFOMap RViz live execution](../results/reference/robot-live-dynamic/executions/dufomap.gif)
+![Moving obstacles: actual DUFOMap RViz live execution](../results/reference/robot-2d-dynamic-matched/executions/dufomap.gif)
 
-[Live MP4](../results/reference/robot-live-dynamic/executions/dufomap.mp4) · [RViz config](../results/reference/robot-live-dynamic/view-dufomap.rviz) · [record](../results/reference/robot-live-dynamic/record.json)
+[Live MP4](../results/reference/robot-2d-dynamic-matched/executions/dufomap.mp4) · [RViz config](../results/reference/robot-2d-dynamic-matched/view-dufomap.rviz) · [record](../results/reference/robot-2d-dynamic-matched/record.json)
 
 **结果回放 · Measured result replay — DUFOMap**
 
-![Moving obstacles: DUFOMap measured replay from this new run](../results/reference/robot-live-dynamic/methods/dufomap/result.gif)
+![Moving obstacles: DUFOMap measured replay from this new run](../results/reference/robot-2d-dynamic-matched/methods/dufomap/result.gif)
 
-[Result MP4](../results/reference/robot-live-dynamic/methods/dufomap/result.mp4) · [case record](../results/reference/robot-live-dynamic/methods/dufomap/record.json) · RMSE **7.35 cm** · 288 次原生更新。
+[Result MP4](../results/reference/robot-2d-dynamic-matched/methods/dufomap/result.mp4) · [case record](../results/reference/robot-2d-dynamic-matched/methods/dufomap/record.json) · RMSE **8.19 cm** · 291 次原生更新。
 
 #### BeautyMap map + AMCL
 
 **现场执行 · Live execution — BeautyMap RViz**
 
-![Moving obstacles: actual BeautyMap RViz live execution](../results/reference/robot-live-dynamic/executions/beautymap.gif)
+![Moving obstacles: actual BeautyMap RViz live execution](../results/reference/robot-2d-dynamic-matched/executions/beautymap.gif)
 
-[Live MP4](../results/reference/robot-live-dynamic/executions/beautymap.mp4) · [RViz config](../results/reference/robot-live-dynamic/view-beautymap.rviz) · [record](../results/reference/robot-live-dynamic/record.json)
+[Live MP4](../results/reference/robot-2d-dynamic-matched/executions/beautymap.mp4) · [RViz config](../results/reference/robot-2d-dynamic-matched/view-beautymap.rviz) · [record](../results/reference/robot-2d-dynamic-matched/record.json)
 
 **结果回放 · Measured result replay — BeautyMap**
 
-![Moving obstacles: BeautyMap measured replay from this new run](../results/reference/robot-live-dynamic/methods/beautymap/result.gif)
+![Moving obstacles: BeautyMap measured replay from this new run](../results/reference/robot-2d-dynamic-matched/methods/beautymap/result.gif)
 
-[Result MP4](../results/reference/robot-live-dynamic/methods/beautymap/result.mp4) · [case record](../results/reference/robot-live-dynamic/methods/beautymap/record.json) · RMSE **7.14 cm** · 288 次原生更新。
+[Result MP4](../results/reference/robot-2d-dynamic-matched/methods/beautymap/result.mp4) · [case record](../results/reference/robot-2d-dynamic-matched/methods/beautymap/record.json) · RMSE **7.29 cm** · 291 次原生更新。
 
 ### 持久结构变化
 
@@ -486,6 +493,151 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 [Result MP4](../results/reference/robot-corridor-v2/methods/degraded_beautymap/result.mp4) · [case record](../results/reference/robot-corridor-v2/methods/degraded_beautymap/record.json) · RMSE **72.53 cm** · 508 次原生更新。
 
 **实体机器人待测。**本机键盘演示在 `F:\be2演讲\实机脚本` 的 `20–23`；`24` 自动录制四类场景。此前现场及结果回放保留归档，与上面这轮录像区分。
+
+## 三维地图清理与定位录制
+
+新仿真B中的原库GICP真实窗口录制；保留完整XYZ／旋转评分及输出缺失情况。建图A是给定位姿的三维点云融合、清理，不等同于完整三维SLAM。
+
+### 三维建图清理结果展示
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 三维点云图 | 静态保留 100%；动态去除 0% |
+| DUFOMap | 三维点云图 | 静态保留 99.998%；动态去除 46.59% |
+| BeautyMap | 三维点云图 | 静态保留 81.15%；动态去除 74.36% |
+
+真实RViz结果展示，使用已经计算好的原生输出，不进行新推理。灰色为静态及未评分背景点，红色为可信标注的残留运动箱体点。
+
+![3D map cleaning result review](../results/reference/robot-3d-map-review-v2/execution.gif)
+
+[MP4](../results/reference/robot-3d-map-review-v2/execution.mp4) · [point audit](../results/reference/robot-3d-map-audit/record.json)
+
+### 纯静态 · 3D
+
+无动态污染需要清理，本次三维定位未见改善。
+
+#### Raw 3D map + GICP
+
+![Raw native 3D localization](../results/reference/robot-3d-static/executions/raw.gif)
+
+[Live MP4](../results/reference/robot-3d-static/executions/raw.mp4) · [record](../results/reference/robot-3d-static/record.json)
+
+#### DUFOMap 3D map + GICP
+
+![DUFOMap native 3D localization](../results/reference/robot-3d-static/executions/dufomap.gif)
+
+[Live MP4](../results/reference/robot-3d-static/executions/dufomap.mp4) · [record](../results/reference/robot-3d-static/record.json)
+
+#### BeautyMap 3D map + GICP
+
+![BeautyMap native 3D localization](../results/reference/robot-3d-static/executions/beautymap.gif)
+
+[Live MP4](../results/reference/robot-3d-static/executions/beautymap.mp4) · [record](../results/reference/robot-3d-static/record.json)
+
+### 运动障碍物 · 3D
+
+三维清理确实去除了动态点，但GICP定位仍未见明显收益。
+
+#### Raw 3D map + GICP
+
+![Raw native 3D localization](../results/reference/robot-3d-dynamic/executions/raw.gif)
+
+[Live MP4](../results/reference/robot-3d-dynamic/executions/raw.mp4) · [record](../results/reference/robot-3d-dynamic/record.json)
+
+#### DUFOMap 3D map + GICP
+
+![DUFOMap native 3D localization](../results/reference/robot-3d-dynamic/executions/dufomap.gif)
+
+[Live MP4](../results/reference/robot-3d-dynamic/executions/dufomap.mp4) · [record](../results/reference/robot-3d-dynamic/record.json)
+
+#### BeautyMap 3D map + GICP
+
+![BeautyMap native 3D localization](../results/reference/robot-3d-dynamic/executions/beautymap.gif)
+
+[Live MP4](../results/reference/robot-3d-dynamic/executions/beautymap.mp4) · [record](../results/reference/robot-3d-dynamic/record.json)
+
+### 持久结构变化 · 3D
+
+复用静态三维旧图；未执行变化检测或更新，未见定位改善。
+
+#### Raw 3D map + GICP
+
+![Raw native 3D localization](../results/reference/robot-3d-large-change/executions/raw.gif)
+
+[Live MP4](../results/reference/robot-3d-large-change/executions/raw.mp4) · [record](../results/reference/robot-3d-large-change/record.json)
+
+#### DUFOMap 3D map + GICP
+
+![DUFOMap native 3D localization](../results/reference/robot-3d-large-change/executions/dufomap.gif)
+
+[Live MP4](../results/reference/robot-3d-large-change/executions/dufomap.mp4) · [record](../results/reference/robot-3d-large-change/record.json)
+
+#### BeautyMap 3D map + GICP
+
+![BeautyMap native 3D localization](../results/reference/robot-3d-large-change/executions/beautymap.gif)
+
+[Live MP4](../results/reference/robot-3d-large-change/executions/beautymap.mp4) · [record](../results/reference/robot-3d-large-change/record.json)
+
+### 走廊退化 · 3D
+
+Raw与DUFOMap三维图字节相同却得到不同结果；有效输出覆盖不同，不能据此排名。
+
+#### Raw 3D map + GICP
+
+![Raw native 3D localization](../results/reference/robot-3d-corridor/executions/raw.gif)
+
+[Live MP4](../results/reference/robot-3d-corridor/executions/raw.mp4) · [record](../results/reference/robot-3d-corridor/record.json)
+
+#### DUFOMap 3D map + GICP
+
+![DUFOMap native 3D localization](../results/reference/robot-3d-corridor/executions/dufomap.gif)
+
+[Live MP4](../results/reference/robot-3d-corridor/executions/dufomap.mp4) · [record](../results/reference/robot-3d-corridor/record.json)
+
+#### BeautyMap 3D map + GICP
+
+![BeautyMap native 3D localization](../results/reference/robot-3d-corridor/executions/beautymap.gif)
+
+[Live MP4](../results/reference/robot-3d-corridor/executions/beautymap.mp4) · [record](../results/reference/robot-3d-corridor/record.json)
+
+## 此前Raw单地图三维静态试验
+
+以下短静态试验使用实时三维点云和固定 Raw 三维地图；不使用 IMU／去畸变。评分为 XY／yaw 并包含初始化，传感器与时长不同，不能与二维 AMCL 直接排名。[Libraries and scope](testing/LOCALIZERS.zh-CN.md).
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| NDT_OMP | Raw三维先验图 | XY RMSE 0.93 cm；首轮34.43 cm |
+| GICP | Raw三维先验图 | XY RMSE 1.09 cm；仅静态验证 |
+
+### Pure static — NDT_OMP
+
+**Live execution**
+
+![NDT_OMP native 3D localization](../results/reference/robot-ndt-static/execution.gif)
+
+[Live MP4](../results/reference/robot-ndt-static/execution.mp4) · [record](../results/reference/robot-ndt-static/record.json)
+
+**Measured result replay**
+
+![NDT_OMP saved pose result](../results/reference/robot-ndt-static/result.gif)
+
+[Result MP4](../results/reference/robot-ndt-static/result.mp4) · XY RMSE **0.93 cm** · yaw **0.17°** · 402 updates.
+
+### Pure static — GICP
+
+**Live execution**
+
+![GICP native 3D localization](../results/reference/robot-gicp-static/execution.gif)
+
+[Live MP4](../results/reference/robot-gicp-static/execution.mp4) · [record](../results/reference/robot-gicp-static/record.json)
+
+**Measured result replay**
+
+![GICP saved pose result](../results/reference/robot-gicp-static/result.gif)
+
+[Result MP4](../results/reference/robot-gicp-static/result.mp4) · XY RMSE **1.09 cm** · yaw **0.16°** · 397 updates.
+
+相同估计器参数的首次 NDT 试验为 34.43 cm，记录也保留。差异原因尚未定位，不能只用最新分数宣称鲁棒性。[Initial trial](../results/reference/robot-ndt-static-initial/record.json).
 
 ## 补充场景实时录制
 
