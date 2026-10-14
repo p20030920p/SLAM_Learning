@@ -1,5 +1,7 @@
 # 自恢复场景梯度录制（S1–S4）
 
+> **历史离屏流程**：这里的右侧是自建 `map_view.py`，不是 RViz；S3 未通过、S4 本流程未录制。当前已完成的真实 Gazebo＋RViz＋终端四类现场片段与独立评分见 [本机现场流程](../../../docs/testing/LIVE.zh-CN.md)。当时 llvmpipe 下的故障不代表本机永久硬件限制。
+
 ## 这是什么
 
 把 `Sim2Real-AlgoBench` 的四级场景（静态 → 动态 → 大变动 → 退化）各录成一条
@@ -20,7 +22,7 @@
 
 **右半边不是 RViz 窗口，是本次录制自己写的一个看图程序** `src/scripts/media/map_view.py`。
 
-原因是 RViz2 在这台机器上**画不出占用栅格**。它自己的日志：
+原因是这条历史流程当时选用 llvmpipe，RViz2 的占用栅格着色器链接失败。它自己的日志：
 
 ```
 [ERROR] [rviz2]: rviz/glsl120/indexed_8bit_image.vert
@@ -29,7 +31,7 @@
 active samplers with a different type refer to the same texture image unit
 ```
 
-RViz 的 `Map` display 着色器在 llvmpipe（本机无 GPU，Mesa 软件渲染）下链接失败，栅格永远不显示；
+RViz 的 `Map` display 着色器在当时的 llvmpipe（Mesa 软件渲染）配置下链接失败，栅格不显示；
 RViz 其余部分（网格、TF）正常，所以窗口看起来"活着"，但关键证据是空的。
 
 `map_view.py` 订阅**与 RViz 完全相同的主题**：
@@ -45,7 +47,7 @@ RViz 其余部分（网格、TF）正常，所以窗口看起来"活着"，但�
 与当前栅格尺寸，避免被误当成 RViz 窗口。
 
 切回 RViz：`RIGHT_VIEW=rviz ./record_live_split.sh S1_static`。
-代价是右半边会缺掉"地图在长"这条证据——这是本机硬限制，不是配置问题。
+这条历史配置未修复着色器时，右半边会缺掉地图。后续本机流程已使用 NVIDIA 4070 SUPER 的 D3D12 加速与独立 RViz 资源覆盖修复，并录下真实 RViz 地图，详见上述现场流程。
 
 ---
 
@@ -168,7 +170,7 @@ S1 世界基线（修正后）：未解释观测 **0.2%**、mean|Δ| **3.9 cm**�
 
 ## 已知限制
 
-1. **右半边不是 RViz 窗口**，理由见上。本机 llvmpipe 的硬限制。
+1. **右半边不是 RViz 窗口**，理由见上。这条历史软件渲染配置的故障后来已在原生现场流程中修复。
 2. **左半边帧率偏低**：原厂 URDF 同时开着机器人自带相机与俯瞰相机时，`/top_view` 实测约
    **1.4–2.7 Hz**。早期版本为提帧率裁掉机器人相机，但那次"只能有一个 RGB 相机"的结论**是错的**
    （成因见第 3 条），现在按上游原样使用 URDF，代价就是这个帧率，如实记录不掩饰。

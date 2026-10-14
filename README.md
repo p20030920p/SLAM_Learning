@@ -25,6 +25,8 @@ English | [中文](docs/HOME.zh-CN.md)
 
 Current native Gazebo/RViz/Terminal workflow: [one-click instructions](demo/README.md), [paired local video gallery](demo/gallery.html), [scoring protocol](docs/testing/LIVE.md). Prepared Windows scripts are in `F:\be2演讲\实机脚本`; separate keyboard and automatic recording entries cover static, moving-obstacle, persistent-change and corridor-restoration tests.
 
+[Step-by-step teaching Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb) covers four author-code executions and all four robot conditions, with saved videos, maps, independently recomputed scores and explicit limits. The prepared local Notebook and offline HTML are in `F:\be2演讲\展示`; [opening instructions](notebooks/presentation/README.md).
+
 [SLAM-Physical](https://github.com/p20030920p/SLAM-Physical) retains the earlier C1/C2/C4, object-departure and map-adapter experiments. Its legacy `demo/14–16` workflows and historical replay scores are distinct from the native desktop recordings below.
 
 ## Static and dynamic localization recordings

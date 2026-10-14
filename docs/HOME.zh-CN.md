@@ -25,6 +25,8 @@
 
 当前真实 Gazebo／RViz／终端流程：[一键说明](../demo/README.md)、[成对视频页](../demo/gallery.html)、[评分协议](testing/LIVE.zh-CN.md)。已准备的 Windows 脚本在 `F:\be2演讲\实机脚本`，分别提供静态、运动障碍物、持久变化及走廊观测恢复的键盘入口和自动录制入口。
 
+[逐步演示 Notebook](../notebooks/presentation/SLAM_实验逐步展示.ipynb) 串起四种作者原库执行及四类机器人场景，保存视频、地图、独立误差复算和结论边界。本机 Notebook 与离线 HTML 在 `F:\be2演讲\展示`；[打开说明](../notebooks/presentation/README.md)。
+
 [SLAM-Physical](https://github.com/p20030920p/SLAM-Physical) 保留此前 C1/C2/C4、物体离场与地图适配实验。其旧 `demo/14–16` 流程及历史回放分数与下面的本机现场录屏分开。
 
 ## 静态与动态定位录制
