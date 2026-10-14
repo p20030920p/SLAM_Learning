@@ -16,9 +16,9 @@ English | [中文](ir-mcl.zh-CN.md)
 
 ## Observed effects before watching
 
-| Effective | Failure / limit |
-| --- | --- |
-| Latest native Seq 1: 1543 processed / 1354 scored poses, RMSE 5.31 cm / 1.07°, close to the paper's 5.13 cm / 1.05°. [Live record](../../results/reference/desktop-live-ir-mcl/record.json) | Severe degradation, map replacement and kidnapping are untested here. The other four localization sequences and Gazebo deployment are not completed. Accuracy on Seq 1 does not establish recovery capability. |
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| IR-MCL | Neural occupancy field | RMSE 5.31 cm / 1.07°; Seq-1 localization works |
 
 **Failure hypothesis to check:** an obsolete learned field can render the wrong expected scan; repeated corridor geometry or too few informative beams can leave several pose hypotheses plausible. Check rendered-versus-measured residuals and particle coverage. These are diagnostic inferences, not observed failures in our Seq-1 run.
 

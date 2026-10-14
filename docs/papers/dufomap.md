@@ -16,9 +16,9 @@ English | [中文](dufomap.zh-CN.md)
 
 ## Observed effects before watching
 
-| Effective | Failure / limit |
-| --- | --- |
-| Latest native KITTI-00, 141 scans: SA 97.98%, DA 98.70%; most dynamic traces removed and static points retained. [Live record](../../results/reference/desktop-live-dufomap/record.json) | Residual dynamic points and static-point loss remain. This is map cleaning, not pose recovery. Dynamic Gazebo AMCL with its projected map improves RMSE by only 0.06 cm against Raw in one run. [Robot record](../../results/reference/robot-live-dynamic/record.json) |
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| DUFOMap | 3D dynamic-point-cleaned map | SA 97.98% / DA 98.70%; cleaning works |
 
 **Failure hypothesis to check:** sparse rays, occlusion or insufficient revisits may leave too little observed free space; pose errors can corrupt that evidence. Check visibility and point-retention decisions before attributing localization failure to the cleaner. This is a diagnostic inference, not an established cause in our runs.
 

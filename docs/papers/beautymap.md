@@ -16,9 +16,9 @@ English | [中文](beautymap.zh-CN.md)
 
 ## Observed effects before watching
 
-| Effective | Failure / limit |
-| --- | --- |
-| Latest KITTI-00: SA 96.95%, DA 98.34%; most dynamic traces removed. The historical KITTI-02 study separately matches nine Table III accuracy entries. [Live record](../../results/reference/desktop-live-beautymap/record.json) | Static-point loss and dynamic remnants remain. The single dynamic Gazebo AMCL run lowers RMSE by only 0.27 cm against Raw; sustained recovery benefit is unproven. [Robot record](../../results/reference/robot-live-dynamic/record.json) |
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| BeautyMap | 3D offline-cleaned map | SA 96.95% / DA 98.34%; cleaning works |
 
 **Failure hypothesis to check:** map/scan registration, cell size, ground levels and occluded static structures can affect cleaning. The paper's module ablation shows static restoration matters for point preservation. Inspect whether the 2D projection retains the differences before inferring a localization benefit; this cause is not established in our runs.
 

@@ -41,16 +41,14 @@
 
 **作者原库现场执行：RViz＋终端。**显示器观察当前计算状态，仅在可视化时稀疏展示点／粒子；观察器开销不作论文运行时间对比。
 
-**论文场景与本次观察效果——先看表，再看视频。**原文数据集说明论文实际评估过的范围，不代表适用于所有动态环境。此表数值来自最新原库现场运行；历史论文表格复现在后面单独列出。SA／DA评价地图点分类，位姿RMSE评价定位。
+最新原库运行；数据范围与失效分析见各论文条目。SA为静态点保留率，DA为动态点删除率。
 
-| 方法 | 原文数据集与任务 | 本实验有效的现象 | 无效、未见收益或尚未验证 |
-| --- | --- | --- | --- |
-| DUFOMap | KITTI 00／01（城镇／高速）、Argoverse 2（城市）、半室内运动行人；另有测绘、车站、两层建筑定性展示。输入三维扫描与给定位姿，去除动态点。[原文§IV–V](https://arxiv.org/html/2403.01449v1#S4) | KITTI-00，141帧：SA 97.98%、DA 98.70%；动态残留被删除，大部分静态结构保留。[现场记录](../results/reference/desktop-live-dufomap/record.json) | 两项分类指标都未达100%。方法本身不估计位姿、也不执行位姿恢复；地图清理有效尚不能证明定位更好。 |
-| BeautyMap | KITTI 00／01／05；02用于栅格大小实验；另有半室内数据。给定位姿下离线清理已有完整三维地图。[原文§IV](https://arxiv.org/html/2405.07283v1#S4) | 最新KITTI-00，141帧：SA 96.95%、DA 98.34%；动态残留被删除。历史KITTI-02，91帧，另行匹配表III九项准确率。[现场记录](../results/reference/desktop-live-beautymap/record.json) | 仍有静态点损失与动态点残留。“静态结构恢复”不是“机器人位姿恢复”。本次没有验证在线SLAM或长期变化后的恢复。 |
-| IR-MCL | 波恩IPBLab办公室／走廊／厨房，五条全局定位序列；Freiburg 079、Intel Lab、MIT CSAIL只评估扫描渲染，未评估全局定位。[原文§IV](https://ar5iv.labs.arxiv.org/html/2210.03113#S4) | 已公开Seq 1：处理1543／评分1354帧，RMSE 5.31 cm／1.07°，接近原文同序列5.13 cm／1.05°。[现场记录](../results/reference/desktop-live-ir-mcl/record.json) | 其余四条定位序列未复现；严重观测丢失、地图过期、绑架恢复均未在本次验证，也尚未接入Gazebo。 |
-| AdaM-MCL | 20张43×43 m仿真地图（18训练、2测试），UPO王宫、Bicocca室内数据；未知障碍、结构移除、全局定位和绑架。[原文§V](https://arxiv.org/html/2009.00211#S5) | 作者数据生成、训练、滤波流程在自建128格地图与2432步权重上跑通。最新123次更新，RMSE 32.23格。[现场记录](../results/reference/desktop-adam-mcl/record.json) | 未证明恢复有效。历史十次的平均每次RMSE为34.82格，全局／绑架两阶段持续收敛均0/10；缺少原发布数据／权重，不能比较论文米制精度。[更正证据](../results/reference/adam-mcl/ERRATUM.md) |
-
-各论文卡片补充原文数据、实验前提和失效排查线索；排查假设与本实验已经确认的原因分开说明。
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| DUFOMap | 三维去动态点地图 | SA 97.98% / DA 98.70%；清理有效 |
+| BeautyMap | 三维离线清理地图 | SA 96.95% / DA 98.34%；清理有效 |
+| IR-MCL | 神经占据场 | RMSE 5.31 cm / 1.07°；Seq 1定位有效 |
+| AdaM-MCL | 自建128格栅格图 | RMSE 32.23格；历史持续收敛0/10 |
 
 ### DUFOMap — 在地图积分过程中去除动态点
 
@@ -200,17 +198,7 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 [键盘演示](../demo/README.md) · [视频目录](../demo/gallery.html) · [代码 Notebook](../notebooks/presentation/SLAM_实验逐步展示.ipynb)。
 
-**机器人实验效果——先看表，再看视频。**以下都是Gazebo仿真；Raw／DUFOMap／BeautyMap是三种地图，定位器同为AMCL。表中为当前展示的新运行、含初始化；除明确标注外，每条件仅一次，小数值差异不能形成方法排名。
-
-| 场景／方法 | 有效的现象 | 无效、未见收益或尚未验证 | 证据 |
-| --- | --- | --- | --- |
-| 纯静态·三地图＋AMCL | 本路线定位跟随；XY RMSE按Raw／DUFOMap／BeautyMap顺序为7.28／7.28／6.89 cm，各290次更新。 | DUFOMap相对Raw未见改善；BeautyMap的小差异没有重复验证。路线未诱发失效，因此没有测试恢复。 | [record](../results/reference/robot-live-static/record.json) |
-| 三个运动箱体·三地图＋AMCL | 运动障碍下继续定位；XY RMSE为7.41／7.35／7.14 cm，各288次更新。 | DUFOMap／BeautyMap相对Raw仅降低0.06／0.27 cm；单次结果不足以证明稳定清理收益或恢复改善。 | [record](../results/reference/robot-live-dynamic/record.json) |
-| 持久结构变化·旧地图＋AMCL | 本路线仍可定位；XY RMSE为6.84／6.84／6.39 cm，各290次更新。 | 本路线未诱发失效，不能证明大幅地图失配后的恢复；DUFOMap相对Raw也未见RMSE收益。 | [record](../results/reference/robot-live-large-change/record.json) |
-| 走廊·受限→完整扫描＋AMCL | 66.2仿真秒恢复完整扫描后，受限组13.3 s开始持续收敛；连续确认5 s、≥8次更新、位置<0.1 m且yaw<5°。完整扫描对照从同一参考事件算为6.6 s。 | 全程XY RMSE仍为受限72.53 cm／完整71.60 cm，各508次更新，包含1 m初值偏移。三张投影地图相同，无法区分清理方法；起点是偏移初始位姿分布，尚不是正常跟踪中失效后的恢复。 | [record](../results/reference/robot-corridor-v2/record.json) |
-| 纯静态·原生NDT_OMP | 最新短时三维固定地图定位：XY RMSE 0.927 cm／yaw 0.171°，402次更新。 | 相同估计器参数的首轮为34.43 cm、399次更新，原因未查明；动态、退化和恢复测试仍待完成。 | [最新](../results/reference/robot-ndt-static/record.json)·[首轮](../results/reference/robot-ndt-static-initial/record.json) |
-| 纯静态·原生GICP | 短时三维固定地图定位：XY RMSE 1.091 cm／yaw 0.160°，397次更新。 | 只有约35仿真秒静态部署验证；动态、退化和恢复尚未测试。三维输入与AMCL二维输入不同，不能直接按数值排名。 | [record](../results/reference/robot-gicp-static/record.json) |
-| 补充建图场景 | 原生slam_toolbox在线生成二维地图；独立三维分支采集扫描，使用给定传感器位姿生成地图。 | 三维分支没有估计自身位姿，不是完整三维SLAM；实体机器人精度与恢复仍待测。 | [静态建图](../results/reference/robot-supp-static/record.json)·[走廊建图](../results/reference/robot-corridor-v2-mapping/record.json) |
+各场景视频前分别列简表。Gazebo单次运行，RMSE含初始化；小差异不构成方法排名。
 
 ## 实测结果如何计算
 
@@ -223,6 +211,11 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 ## 三维定位原库部署实测
 
 以下短静态试验使用实时三维点云和固定 Raw 三维地图；不使用 IMU／去畸变。评分为 XY／yaw 并包含初始化，传感器与时长不同，不能与二维 AMCL 直接排名。[Libraries and scope](testing/LOCALIZERS.zh-CN.md).
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| NDT_OMP | Raw三维先验图 | XY RMSE 0.93 cm；首轮34.43 cm |
+| GICP | Raw三维先验图 | XY RMSE 1.09 cm；仅静态验证 |
 
 ### Pure static — NDT_OMP
 
@@ -264,7 +257,15 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 ### 纯静态
 
-小初值偏移，本路线未失效。
+定位器：AMCL；每组290次更新，位置RMSE含初始化。
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | RMSE 7.28 cm；未失效 |
+| DUFOMap | 去动态点二维投影图 | RMSE 7.28 cm；与Raw相同 |
+| BeautyMap | 离线清理二维投影图 | RMSE 6.89 cm；比Raw略低 |
+
+本路线未诱发定位失效，恢复能力未验证。
 
 #### Raw map + AMCL
 
@@ -310,7 +311,13 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 ### 运动障碍物
 
-三个运动箱体。现场分别展示三种动态地图下的定位；同输入另运行三种静态地图控制组，数值见评分协议。
+定位器：AMCL；每组288次更新，位置RMSE含初始化。
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | RMSE 7.41 cm；未失效 |
+| DUFOMap | 去动态点二维投影图 | RMSE 7.35 cm；接近Raw |
+| BeautyMap | 离线清理二维投影图 | RMSE 7.14 cm；接近Raw |
 
 #### Raw map + AMCL
 
@@ -356,7 +363,15 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 ### 持久结构变化
 
-环境变化后继续使用旧静态地图；本次路线仍未诱发失效。
+定位器：AMCL；每组290次更新，位置RMSE含初始化。
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | RMSE 6.84 cm；未失效 |
+| DUFOMap | 去动态点二维投影图 | RMSE 6.84 cm；与Raw相同 |
+| BeautyMap | 离线清理二维投影图 | RMSE 6.39 cm；未失效 |
+
+本路线未诱发定位失效，恢复能力未验证。
 
 #### Raw map + AMCL
 
@@ -402,7 +417,15 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 ### 走廊退化
 
-X 初值偏移 1 m；72 束／240°／3.5 m 观测持续 50 个仿真秒后恢复完整扫描。本次恢复后约 13.3 s 开始持续收敛，并覆盖 5 s 确认。本走廊三种占据地图相同。
+AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原始二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
+| DUFOMap | 去动态点二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
+| BeautyMap | 离线清理二维投影图 | RMSE 72.53 cm；恢复延迟13.3 s |
+
+完整扫描对照：71.60 cm，同一参考事件后6.6 s持续收敛。本次为初值偏移纠正。[恢复判据与记录](../results/reference/robot-corridor-v2/record.json)。
 
 #### Raw map + AMCL
 

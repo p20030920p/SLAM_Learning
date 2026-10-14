@@ -16,9 +16,9 @@ English | [中文](adam-mcl.zh-CN.md)
 
 ## Observed effects before watching
 
-| Effective | Ineffective / limit |
-| --- | --- |
-| The original generator, planner, training and filter execute. Latest surrogate run: 123 updates, RMSE 32.23 cells, 2432-step checkpoint. [Live record](../../results/reference/desktop-adam-mcl/record.json) | Successful recovery is not demonstrated. Historical ten repeats: mean per-trial RMSE 34.82 cells; sustained global / kidnapping convergence both 0/10. The old 5.49-cell figure is withdrawn. [Corrected evidence](../../results/reference/adam-mcl/ERRATUM.md) |
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| AdaM-MCL | Authored 128-cell grid | RMSE 32.23 cells; historical sustained convergence 0/10 |
 
 **Failure hypotheses to check:** inadequate training, map/scan scale or encoding mismatch, and DSOM proposals that fail to cover the true pose. The 2432-step checkpoint versus the upstream 2,880,000-step default is a known reproduction difference, not proof that training alone caused failure. Inspect proposal coverage and filtering separately before concluding the published method fails.
 
