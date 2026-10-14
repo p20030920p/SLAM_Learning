@@ -11,6 +11,10 @@
 | 04_departure_experiment.cmd | 首个物体离场实验 |
 | 03_stop.cmd | 停止本次运行 |
 | 90_update.cmd | 更新 SLAM-Physical main，保留本地结果 |
+| 10_amcl_keyboard.cmd | Windows 键盘驾驶、AMCL 实时偏移与自动录制 |
+| 11_build_localization_maps.cmd | 用一次驾驶生成论文方法的定位地图 |
+| 12_amcl_choose_map.cmd | 选算法地图后键盘驾驶与观看偏移 |
+| 13_compare_localization.cmd | 用另一录制，在各地图上回放同一输入进行定位对照 |
 
 窗口内显示实际命令及进度；完成后按 Enter 关闭。结果写入 `SLAM-Physical/runs/`。源代码、实验协议与已实跑结果见实验仓库 README。
 
