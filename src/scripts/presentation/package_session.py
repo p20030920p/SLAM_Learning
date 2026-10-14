@@ -79,7 +79,7 @@ def replay(folder, values, restore_stamp, *, output_folder=None, heading_label=N
         top.imshow(image, cmap="gray", vmin=0, vmax=255, extent=extent, origin="upper", alpha=.72)
         x = array[:, [1, 4]]
         y = array[:, [2, 5]]
-        pad = 2.0 if count == 1 and folder.name == "robot-degradation" else .65
+        pad = 2.0 if count == 1 and folder.name.endswith("degradation") else .65
         top.set_xlim(x.min()-pad, x.max()+pad)
         top.set_ylim(y.min()-pad, y.max()+pad)
         top.set_aspect("equal", adjustable="box")
@@ -140,6 +140,11 @@ def main():
     for name in ("session.json", "runtime.json", "cases.json", "metrics.json", "truth.jsonl", "execution.mp4", "capture-filter.txt", "scan-stress.jsonl", "geometry-audit.json", "slam-map.pgm"):
         if (run / name).exists():
             shutil.copyfile(run / name, folder / name)
+    for path in [*run.glob("view-*.rviz"), *run.glob("*views.json"), run / "view-updates.jsonl"]:
+        if path.is_file():
+            shutil.copyfile(path, folder / path.name)
+    if (run / "executions").exists():
+        shutil.copytree(run / "executions", folder / "executions")
     truth = [json.loads(line) for line in (run / "truth.jsonl").read_text().splitlines()]
     input_hashes = {}
     for path in [run / "mapping-clouds.npz", *sorted((run / "input-bag").glob("*.mcap"))]:
@@ -180,6 +185,16 @@ def main():
             if any(array[-1, 0] <= restored+5 for array in values.values()):
                 raise ValueError("Restoration stage lacks scored pose updates; retain as a diagnostic")
     timing = {"execution": gif(folder / "execution.mp4", folder / "execution.gif")}
+    native_views = json.loads((folder / "native-views.json").read_text(encoding="utf-8-sig")) if (folder / "native-views.json").exists() else []
+    for view in native_views:
+        video = folder / view["video"]
+        if digest(video) != view["sha256"]:
+            raise ValueError("Native view capture changed: "+view["case"])
+        timing[view["case"]] = gif(video, video.with_suffix(".gif"))
+        subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-f", "null", "-"], check=True)
+        duration = float(probe(video)["format"]["duration"])
+        subprocess.run(["ffmpeg", "-v", "error", "-ss", str(duration/2), "-i", str(video), "-frames:v", "1",
+                        "-y", str(video.with_name(view["case"]+"-mid.png"))], check=True)
     if values:
         replay_meta = replay(folder, values, restored)
         timing["result"] = gif(folder / "result.mp4", folder / "result.gif")
@@ -201,6 +216,7 @@ def main():
               "recorded_inputs": input_hashes,
               "robot_motion_xy_span_m": np.ptp(xyz[:, :2], axis=0).tolist(),
               "result_replay": replay_meta, "timing": timing,
+              "native_views": native_views,
               "restoration": {name: restoration(array, restored) for name, array in values.items()} if restored is not None else {},
               "artifacts": {path.relative_to(folder).as_posix(): {"sha256": digest(path), "bytes": path.stat().st_size, "availability": "portable"} for path in folder.rglob("*") if path.is_file()}}
     (folder / "record.json").write_text(json.dumps(record, indent=2)+"\n")

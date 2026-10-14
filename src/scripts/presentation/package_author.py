@@ -56,6 +56,13 @@ def main():
     for name in ("execution.mp4", "execution.json", "native-output.log", "terminal.log"):
         if (run / name).exists():
             shutil.copyfile(run / name, out / name)
+    live_state = (run / "live/events.jsonl").is_file()
+    if live_state:
+        for source, name in ((run / "live/events.jsonl", "live-events.jsonl"), (run / "live-published.jsonl", "live-published.jsonl"),
+                             (run / "author-live.rviz", "author-live.rviz"), (run / "capture-filter.txt", "capture-filter.txt"),
+                             (run / "instrumentation.patch", "instrumentation.patch"), (run / "author-rviz.log", "author-rviz.log")):
+            if source.exists():
+                shutil.copyfile(source, out / name)
     method = native["method"]
     inputs, metrics = {}, native.get("metrics", {})
     fig = plt.figure(figsize=(12, 6.75), dpi=80, facecolor="#111827")
@@ -63,7 +70,7 @@ def main():
         gt = Path("D:/workspace/be2/SLAM_Learning/.cache/datasets/00/gt_cloud.pcd")
         cleaned = run / "native-run/cleaned.pcd"
         inputs.update({str(gt): digest(gt), str(cleaned): digest(cleaned)})
-        for name in ("record.json", "metrics.json", "worker.json", "run.log", "compatibility.patch"):
+        for name in ("record.json", "metrics.json", "worker.json", "run.log", "compatibility.patch", "instrumentation.patch"):
             if (run / "native-run" / name).exists():
                 (out / "native-run").mkdir(exist_ok=True)
                 shutil.copyfile(run / "native-run" / name, out / "native-run" / name)
@@ -175,6 +182,7 @@ def main():
     record = {"schema_version": 1, "kind": "author_desktop_demo", "method": method, "status": "executed", "exit_code": 0,
               "command": native["command"], "scope": native["scope"], "result_scope": scope, "metrics": metrics,
               "inputs_sha256": inputs, "source_run": str(run.resolve()), "timing": timing,
+              "live_state": {"enabled": live_state, "scope": "RViz shows newly emitted native execution states; display thinning and observer overhead disclosed"} if live_state else None,
               "artifacts": {p.relative_to(out).as_posix(): {"sha256": digest(p), "bytes": p.stat().st_size, "availability": "portable"} for p in out.rglob("*") if p.is_file()}}
     (out / "record.json").write_text(json.dumps(record, indent=2)+"\n")
     print(json.dumps({"output": str(out), "metrics": metrics}, indent=2), flush=True)

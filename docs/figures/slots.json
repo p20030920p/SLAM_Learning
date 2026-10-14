@@ -572,6 +572,330 @@
         "results/reference/robot-degradation/methods/degraded_beautymap/record.json"
       ],
       "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-live-static-raw-native",
+      "status": "published",
+      "path": "results/reference/robot-live-static/executions/raw.gif",
+      "caption": {
+        "en": "Pure static: actual Raw RViz live execution",
+        "zh": "纯静态：Raw 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-raw-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-static/methods/raw/result.gif",
+      "caption": {
+        "en": "Pure static: Raw saved native updates",
+        "zh": "纯静态：Raw 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/methods/raw/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-dufomap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-static/executions/dufomap.gif",
+      "caption": {
+        "en": "Pure static: actual DUFOMap RViz live execution",
+        "zh": "纯静态：DUFOMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-dufomap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-static/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Pure static: DUFOMap saved native updates",
+        "zh": "纯静态：DUFOMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/methods/dufomap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-beautymap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-static/executions/beautymap.gif",
+      "caption": {
+        "en": "Pure static: actual BeautyMap RViz live execution",
+        "zh": "纯静态：BeautyMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-beautymap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-static/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Pure static: BeautyMap saved native updates",
+        "zh": "纯静态：BeautyMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/methods/beautymap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-raw-native",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/executions/raw.gif",
+      "caption": {
+        "en": "Moving obstacles: actual Raw RViz live execution",
+        "zh": "运动障碍物：Raw 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-raw-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/methods/raw/result.gif",
+      "caption": {
+        "en": "Moving obstacles: Raw saved native updates",
+        "zh": "运动障碍物：Raw 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/methods/raw/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-dufomap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/executions/dufomap.gif",
+      "caption": {
+        "en": "Moving obstacles: actual DUFOMap RViz live execution",
+        "zh": "运动障碍物：DUFOMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-dufomap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Moving obstacles: DUFOMap saved native updates",
+        "zh": "运动障碍物：DUFOMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/methods/dufomap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-beautymap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/executions/beautymap.gif",
+      "caption": {
+        "en": "Moving obstacles: actual BeautyMap RViz live execution",
+        "zh": "运动障碍物：BeautyMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-beautymap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Moving obstacles: BeautyMap saved native updates",
+        "zh": "运动障碍物：BeautyMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/methods/beautymap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-raw-native",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/executions/raw.gif",
+      "caption": {
+        "en": "Persistent change: actual Raw RViz live execution",
+        "zh": "持久结构变化：Raw 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-raw-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/methods/raw/result.gif",
+      "caption": {
+        "en": "Persistent change: Raw saved native updates",
+        "zh": "持久结构变化：Raw 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/methods/raw/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-dufomap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/executions/dufomap.gif",
+      "caption": {
+        "en": "Persistent change: actual DUFOMap RViz live execution",
+        "zh": "持久结构变化：DUFOMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-dufomap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Persistent change: DUFOMap saved native updates",
+        "zh": "持久结构变化：DUFOMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/methods/dufomap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-beautymap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/executions/beautymap.gif",
+      "caption": {
+        "en": "Persistent change: actual BeautyMap RViz live execution",
+        "zh": "持久结构变化：BeautyMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-beautymap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Persistent change: BeautyMap saved native updates",
+        "zh": "持久结构变化：BeautyMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/methods/beautymap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_raw-native",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/executions/degraded_raw.gif",
+      "caption": {
+        "en": "Corridor degradation: actual Raw RViz live execution",
+        "zh": "走廊退化：Raw 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_raw-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/methods/degraded_raw/result.gif",
+      "caption": {
+        "en": "Corridor degradation: Raw saved native updates",
+        "zh": "走廊退化：Raw 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/methods/degraded_raw/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_dufomap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/executions/degraded_dufomap.gif",
+      "caption": {
+        "en": "Corridor degradation: actual DUFOMap RViz live execution",
+        "zh": "走廊退化：DUFOMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_dufomap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/methods/degraded_dufomap/result.gif",
+      "caption": {
+        "en": "Corridor degradation: DUFOMap saved native updates",
+        "zh": "走廊退化：DUFOMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/methods/degraded_dufomap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_beautymap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/executions/degraded_beautymap.gif",
+      "caption": {
+        "en": "Corridor degradation: actual BeautyMap RViz live execution",
+        "zh": "走廊退化：BeautyMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_beautymap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/methods/degraded_beautymap/result.gif",
+      "caption": {
+        "en": "Corridor degradation: BeautyMap saved native updates",
+        "zh": "走廊退化：BeautyMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/methods/degraded_beautymap/record.json"
+      ]
+    },
+    {
+      "id": "desktop-live-dufomap",
+      "status": "published",
+      "path": "results/reference/desktop-live-dufomap/execution.gif",
+      "caption": {
+        "en": "dufomap: actual native computation and live RViz",
+        "zh": "dufomap：原生计算与实时 RViz"
+      },
+      "source_records": [
+        "results/reference/desktop-live-dufomap/record.json"
+      ]
+    },
+    {
+      "id": "desktop-live-beautymap",
+      "status": "published",
+      "path": "results/reference/desktop-live-beautymap/execution.gif",
+      "caption": {
+        "en": "beautymap: actual native computation and live RViz",
+        "zh": "beautymap：原生计算与实时 RViz"
+      },
+      "source_records": [
+        "results/reference/desktop-live-beautymap/record.json"
+      ]
+    },
+    {
+      "id": "desktop-live-ir-mcl",
+      "status": "published",
+      "path": "results/reference/desktop-live-ir-mcl/execution.gif",
+      "caption": {
+        "en": "ir-mcl: actual native computation and live RViz",
+        "zh": "ir-mcl：原生计算与实时 RViz"
+      },
+      "source_records": [
+        "results/reference/desktop-live-ir-mcl/record.json"
+      ]
     }
   ]
 }

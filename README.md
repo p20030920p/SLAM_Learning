@@ -25,241 +25,203 @@ English | [中文](docs/HOME.zh-CN.md)
 
 Current native Gazebo/RViz/Terminal workflow: [one-click instructions](demo/README.md), [paired local video gallery](demo/gallery.html), [scoring protocol](docs/testing/LIVE.md). Prepared Windows scripts are in `F:\be2演讲\实机脚本`; separate keyboard and automatic recording entries cover static, moving-obstacle, persistent-change and corridor-restoration tests.
 
-[Step-by-step teaching Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb) covers four author-code executions and all four robot conditions, with saved videos, maps, independently recomputed scores and explicit limits. The prepared local Notebook and offline HTML are in `F:\be2演讲\展示`; [opening instructions](notebooks/presentation/README.md).
+[Earlier executed teaching Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb) covers four author-code executions and all four robot conditions, with saved videos, maps, independently recomputed scores and explicit limits. The prepared local Notebook and offline HTML are in `F:\be2演讲\展示`; [opening instructions](notebooks/presentation/README.md).
 
 [SLAM-Physical](https://github.com/p20030920p/SLAM-Physical) retains the earlier C1/C2/C4, object-departure and map-adapter experiments. Its legacy `demo/14–16` workflows and historical replay scores are distinct from the native desktop recordings below.
 
 ## Static and dynamic localization recordings
 
-**Recorded on this Windows computer, 2026-10-14.** Gazebo + RViz + Terminal live execution, followed by each method’s own saved-data replay. Sim2Real omnidirectional chassis, native 2D LiDAR + independent 3D profile.
+**Fresh live tests on this Windows computer, 2026-10-14.** Each method has its own actual RViz window, map topic, native AMCL pose/particles and isolated display TF. Each GIF records Gazebo + that method’s RViz + Terminal, during the same live scene input.
 
-**Method labels refer to map processing; every robot localizer is AMCL.** Raw uses the unfiltered map; DUFOMap and BeautyMap clean the same provided-pose 3D mapping input before common 2D projection. The live GIF under each method is the **same parallel scene execution**: RViz displays Raw, while the terminal reports all instances. Each result GIF isolates that case; replay performs no new inference.
+**Raw / DUFOMap / BeautyMap are map-processing choices; the live localizer is AMCL.** Mapping uses provided poses and common 2D projection; this is a scoped 3D-map-to-2D-localization adaptation. Results below come from these new runs, including initialization; one trial per condition.
 
-Position RMSE includes initialization and uses retained native updates. One run per condition. [Scoring formula and numeric comparison](docs/testing/LIVE.md#how-errors-are-calculated) · [Recording names / modules / algorithms](demo/recording-index.json).
+[Scoring and controls](docs/testing/LIVE.md) · [Recording names](demo/recording-index.json) · [One-click method demos](demo/README.md#逐方法独立-rviz-现场对照)
 
 ### Pure static
 
 Small initial offset; no loss on this route.
 
-#### Raw + AMCL
+#### Raw map + AMCL
 
-**Live execution**
+**Live execution — Raw RViz**
 
-![Pure static — Raw: shared native execution](results/reference/robot-static/execution.gif)
+![Pure static: actual Raw RViz live execution](results/reference/robot-live-static/executions/raw.gif)
 
-[MP4 · 170202-5abed0](results/reference/robot-static/execution.mp4)
+[Live MP4](results/reference/robot-live-static/executions/raw.mp4) · [RViz config](results/reference/robot-live-static/view-raw.rviz) · [record](results/reference/robot-live-static/record.json)
 
-**Measured result replay**
+**Measured result replay — Raw**
 
-![Pure static — Raw: raw measured replay](results/reference/robot-static/methods/raw/result.gif)
+![Pure static: Raw measured replay from this new run](results/reference/robot-live-static/methods/raw/result.gif)
 
-[MP4](results/reference/robot-static/methods/raw/result.mp4) · [record](results/reference/robot-static/methods/raw/record.json) · RMSE **7.08 cm** · 290 native updates.
+[Result MP4](results/reference/robot-live-static/methods/raw/result.mp4) · [case record](results/reference/robot-live-static/methods/raw/record.json) · RMSE **7.28 cm** · 290 native updates.
 
-#### DUFOMap + AMCL
+#### DUFOMap map + AMCL
 
-**Live execution**
+**Live execution — DUFOMap RViz**
 
-![Pure static — DUFOMap: shared native execution](results/reference/robot-static/execution.gif)
+![Pure static: actual DUFOMap RViz live execution](results/reference/robot-live-static/executions/dufomap.gif)
 
-[MP4 · 170202-5abed0](results/reference/robot-static/execution.mp4)
+[Live MP4](results/reference/robot-live-static/executions/dufomap.mp4) · [RViz config](results/reference/robot-live-static/view-dufomap.rviz) · [record](results/reference/robot-live-static/record.json)
 
-**Measured result replay**
+**Measured result replay — DUFOMap**
 
-![Pure static — DUFOMap: dufomap measured replay](results/reference/robot-static/methods/dufomap/result.gif)
+![Pure static: DUFOMap measured replay from this new run](results/reference/robot-live-static/methods/dufomap/result.gif)
 
-[MP4](results/reference/robot-static/methods/dufomap/result.mp4) · [record](results/reference/robot-static/methods/dufomap/record.json) · RMSE **7.08 cm** · 290 native updates.
+[Result MP4](results/reference/robot-live-static/methods/dufomap/result.mp4) · [case record](results/reference/robot-live-static/methods/dufomap/record.json) · RMSE **7.28 cm** · 290 native updates.
 
-#### BeautyMap + AMCL
+#### BeautyMap map + AMCL
 
-**Live execution**
+**Live execution — BeautyMap RViz**
 
-![Pure static — BeautyMap: shared native execution](results/reference/robot-static/execution.gif)
+![Pure static: actual BeautyMap RViz live execution](results/reference/robot-live-static/executions/beautymap.gif)
 
-[MP4 · 170202-5abed0](results/reference/robot-static/execution.mp4)
+[Live MP4](results/reference/robot-live-static/executions/beautymap.mp4) · [RViz config](results/reference/robot-live-static/view-beautymap.rviz) · [record](results/reference/robot-live-static/record.json)
 
-**Measured result replay**
+**Measured result replay — BeautyMap**
 
-![Pure static — BeautyMap: beautymap measured replay](results/reference/robot-static/methods/beautymap/result.gif)
+![Pure static: BeautyMap measured replay from this new run](results/reference/robot-live-static/methods/beautymap/result.gif)
 
-[MP4](results/reference/robot-static/methods/beautymap/result.mp4) · [record](results/reference/robot-static/methods/beautymap/record.json) · RMSE **6.55 cm** · 290 native updates.
+[Result MP4](results/reference/robot-live-static/methods/beautymap/result.mp4) · [case record](results/reference/robot-live-static/methods/beautymap/record.json) · RMSE **6.89 cm** · 290 native updates.
 
 ### Moving obstacles
 
-Three moving boxes. Dynamic-A maps and static-A controls receive the same dynamic B input.
+Three moving boxes. Three dynamic-map localizers are shown live; three static-map controls run on the same input and are listed in the scoring protocol.
 
-#### Raw + AMCL
+#### Raw map + AMCL
 
-**Live execution**
+**Live execution — Raw RViz**
 
-![Moving obstacles — Raw: shared native execution](results/reference/robot-dynamic/execution.gif)
+![Moving obstacles: actual Raw RViz live execution](results/reference/robot-live-dynamic/executions/raw.gif)
 
-[MP4 · 170718-20a6e0](results/reference/robot-dynamic/execution.mp4)
+[Live MP4](results/reference/robot-live-dynamic/executions/raw.mp4) · [RViz config](results/reference/robot-live-dynamic/view-raw.rviz) · [record](results/reference/robot-live-dynamic/record.json)
 
-**Measured result replay — dynamic-A map**
+**Measured result replay — Raw**
 
-![Moving obstacles — Raw: raw measured replay](results/reference/robot-dynamic/methods/raw/result.gif)
+![Moving obstacles: Raw measured replay from this new run](results/reference/robot-live-dynamic/methods/raw/result.gif)
 
-[MP4](results/reference/robot-dynamic/methods/raw/result.mp4) · [record](results/reference/robot-dynamic/methods/raw/record.json) · RMSE **7.31 cm** · 291 native updates.
+[Result MP4](results/reference/robot-live-dynamic/methods/raw/result.mp4) · [case record](results/reference/robot-live-dynamic/methods/raw/record.json) · RMSE **7.41 cm** · 288 native updates.
 
-**Measured result replay — static-A map control**
+#### DUFOMap map + AMCL
 
-![Moving obstacles — Raw: clean_raw measured replay](results/reference/robot-dynamic/methods/clean_raw/result.gif)
+**Live execution — DUFOMap RViz**
 
-[MP4](results/reference/robot-dynamic/methods/clean_raw/result.mp4) · [record](results/reference/robot-dynamic/methods/clean_raw/record.json) · RMSE **6.30 cm** · 291 native updates.
+![Moving obstacles: actual DUFOMap RViz live execution](results/reference/robot-live-dynamic/executions/dufomap.gif)
 
-#### DUFOMap + AMCL
+[Live MP4](results/reference/robot-live-dynamic/executions/dufomap.mp4) · [RViz config](results/reference/robot-live-dynamic/view-dufomap.rviz) · [record](results/reference/robot-live-dynamic/record.json)
 
-**Live execution**
+**Measured result replay — DUFOMap**
 
-![Moving obstacles — DUFOMap: shared native execution](results/reference/robot-dynamic/execution.gif)
+![Moving obstacles: DUFOMap measured replay from this new run](results/reference/robot-live-dynamic/methods/dufomap/result.gif)
 
-[MP4 · 170718-20a6e0](results/reference/robot-dynamic/execution.mp4)
+[Result MP4](results/reference/robot-live-dynamic/methods/dufomap/result.mp4) · [case record](results/reference/robot-live-dynamic/methods/dufomap/record.json) · RMSE **7.35 cm** · 288 native updates.
 
-**Measured result replay — dynamic-A map**
+#### BeautyMap map + AMCL
 
-![Moving obstacles — DUFOMap: dufomap measured replay](results/reference/robot-dynamic/methods/dufomap/result.gif)
+**Live execution — BeautyMap RViz**
 
-[MP4](results/reference/robot-dynamic/methods/dufomap/result.mp4) · [record](results/reference/robot-dynamic/methods/dufomap/record.json) · RMSE **7.10 cm** · 291 native updates.
+![Moving obstacles: actual BeautyMap RViz live execution](results/reference/robot-live-dynamic/executions/beautymap.gif)
 
-**Measured result replay — static-A map control**
+[Live MP4](results/reference/robot-live-dynamic/executions/beautymap.mp4) · [RViz config](results/reference/robot-live-dynamic/view-beautymap.rviz) · [record](results/reference/robot-live-dynamic/record.json)
 
-![Moving obstacles — DUFOMap: clean_dufomap measured replay](results/reference/robot-dynamic/methods/clean_dufomap/result.gif)
+**Measured result replay — BeautyMap**
 
-[MP4](results/reference/robot-dynamic/methods/clean_dufomap/result.mp4) · [record](results/reference/robot-dynamic/methods/clean_dufomap/record.json) · RMSE **6.30 cm** · 291 native updates.
+![Moving obstacles: BeautyMap measured replay from this new run](results/reference/robot-live-dynamic/methods/beautymap/result.gif)
 
-#### BeautyMap + AMCL
-
-**Live execution**
-
-![Moving obstacles — BeautyMap: shared native execution](results/reference/robot-dynamic/execution.gif)
-
-[MP4 · 170718-20a6e0](results/reference/robot-dynamic/execution.mp4)
-
-**Measured result replay — dynamic-A map**
-
-![Moving obstacles — BeautyMap: beautymap measured replay](results/reference/robot-dynamic/methods/beautymap/result.gif)
-
-[MP4](results/reference/robot-dynamic/methods/beautymap/result.mp4) · [record](results/reference/robot-dynamic/methods/beautymap/record.json) · RMSE **7.28 cm** · 291 native updates.
-
-**Measured result replay — static-A map control**
-
-![Moving obstacles — BeautyMap: clean_beautymap measured replay](results/reference/robot-dynamic/methods/clean_beautymap/result.gif)
-
-[MP4](results/reference/robot-dynamic/methods/clean_beautymap/result.mp4) · [record](results/reference/robot-dynamic/methods/clean_beautymap/record.json) · RMSE **6.89 cm** · 291 native updates.
+[Result MP4](results/reference/robot-live-dynamic/methods/beautymap/result.mp4) · [case record](results/reference/robot-live-dynamic/methods/beautymap/record.json) · RMSE **7.14 cm** · 288 native updates.
 
 ### Persistent change
 
-Old static-A maps in a changed world. This route did not induce loss, so it is not recovery-success evidence.
+Old static maps in a changed world; this route still did not induce loss.
 
-#### Raw + AMCL
+#### Raw map + AMCL
 
-**Live execution**
+**Live execution — Raw RViz**
 
-![Persistent change — Raw: shared native execution](results/reference/robot-large-change/execution.gif)
+![Persistent change: actual Raw RViz live execution](results/reference/robot-live-large-change/executions/raw.gif)
 
-[MP4 · 172452-ca9681](results/reference/robot-large-change/execution.mp4)
+[Live MP4](results/reference/robot-live-large-change/executions/raw.mp4) · [RViz config](results/reference/robot-live-large-change/view-raw.rviz) · [record](results/reference/robot-live-large-change/record.json)
 
-**Measured result replay**
+**Measured result replay — Raw**
 
-![Persistent change — Raw: raw measured replay](results/reference/robot-large-change/methods/raw/result.gif)
+![Persistent change: Raw measured replay from this new run](results/reference/robot-live-large-change/methods/raw/result.gif)
 
-[MP4](results/reference/robot-large-change/methods/raw/result.mp4) · [record](results/reference/robot-large-change/methods/raw/record.json) · RMSE **6.25 cm** · 290 native updates.
+[Result MP4](results/reference/robot-live-large-change/methods/raw/result.mp4) · [case record](results/reference/robot-live-large-change/methods/raw/record.json) · RMSE **6.84 cm** · 290 native updates.
 
-#### DUFOMap + AMCL
+#### DUFOMap map + AMCL
 
-**Live execution**
+**Live execution — DUFOMap RViz**
 
-![Persistent change — DUFOMap: shared native execution](results/reference/robot-large-change/execution.gif)
+![Persistent change: actual DUFOMap RViz live execution](results/reference/robot-live-large-change/executions/dufomap.gif)
 
-[MP4 · 172452-ca9681](results/reference/robot-large-change/execution.mp4)
+[Live MP4](results/reference/robot-live-large-change/executions/dufomap.mp4) · [RViz config](results/reference/robot-live-large-change/view-dufomap.rviz) · [record](results/reference/robot-live-large-change/record.json)
 
-**Measured result replay**
+**Measured result replay — DUFOMap**
 
-![Persistent change — DUFOMap: dufomap measured replay](results/reference/robot-large-change/methods/dufomap/result.gif)
+![Persistent change: DUFOMap measured replay from this new run](results/reference/robot-live-large-change/methods/dufomap/result.gif)
 
-[MP4](results/reference/robot-large-change/methods/dufomap/result.mp4) · [record](results/reference/robot-large-change/methods/dufomap/record.json) · RMSE **6.25 cm** · 290 native updates.
+[Result MP4](results/reference/robot-live-large-change/methods/dufomap/result.mp4) · [case record](results/reference/robot-live-large-change/methods/dufomap/record.json) · RMSE **6.84 cm** · 290 native updates.
 
-#### BeautyMap + AMCL
+#### BeautyMap map + AMCL
 
-**Live execution**
+**Live execution — BeautyMap RViz**
 
-![Persistent change — BeautyMap: shared native execution](results/reference/robot-large-change/execution.gif)
+![Persistent change: actual BeautyMap RViz live execution](results/reference/robot-live-large-change/executions/beautymap.gif)
 
-[MP4 · 172452-ca9681](results/reference/robot-large-change/execution.mp4)
+[Live MP4](results/reference/robot-live-large-change/executions/beautymap.mp4) · [RViz config](results/reference/robot-live-large-change/view-beautymap.rviz) · [record](results/reference/robot-live-large-change/record.json)
 
-**Measured result replay**
+**Measured result replay — BeautyMap**
 
-![Persistent change — BeautyMap: beautymap measured replay](results/reference/robot-large-change/methods/beautymap/result.gif)
+![Persistent change: BeautyMap measured replay from this new run](results/reference/robot-live-large-change/methods/beautymap/result.gif)
 
-[MP4](results/reference/robot-large-change/methods/beautymap/result.mp4) · [record](results/reference/robot-large-change/methods/beautymap/record.json) · RMSE **6.16 cm** · 290 native updates.
+[Result MP4](results/reference/robot-live-large-change/methods/beautymap/result.mp4) · [case record](results/reference/robot-live-large-change/methods/beautymap/record.json) · RMSE **6.39 cm** · 290 native updates.
 
 ### Corridor degradation
 
-1 m initial X offset. Full scans: 720 beams / 360° / 12 m; limited scans: 72 beams / 240° / 3.5 m, restored after 50 simulation seconds. Sustained convergence starts 11.3 s after restoration and is confirmed over 5 s. All three occupancy maps are identical here.
+1 m initial X offset; 72 beams / 240° / 3.5 m for 50 simulation seconds, then full scans. This trial starts sustained convergence 31.3 s after restoration, verified over 5 s. All three corridor occupancy maps are identical.
 
-#### Raw + AMCL
+#### Raw map + AMCL
 
-**Live execution**
+**Live execution — Raw RViz**
 
-![Corridor degradation — Raw: shared native execution](results/reference/robot-degradation/execution.gif)
+![Corridor degradation: actual Raw RViz live execution](results/reference/robot-live-degradation/executions/degraded_raw.gif)
 
-[MP4 · 173508-e41e34](results/reference/robot-degradation/execution.mp4)
+[Live MP4](results/reference/robot-live-degradation/executions/degraded_raw.mp4) · [RViz config](results/reference/robot-live-degradation/view-degraded_raw.rviz) · [record](results/reference/robot-live-degradation/record.json)
 
-**Measured result replay — full-scan control**
+**Measured result replay — Raw**
 
-![Corridor degradation — Raw: raw measured replay](results/reference/robot-degradation/methods/raw/result.gif)
+![Corridor degradation: Raw measured replay from this new run](results/reference/robot-live-degradation/methods/degraded_raw/result.gif)
 
-[MP4](results/reference/robot-degradation/methods/raw/result.mp4) · [record](results/reference/robot-degradation/methods/raw/record.json) · RMSE **62.64 cm** · 478 native updates.
+[Result MP4](results/reference/robot-live-degradation/methods/degraded_raw/result.mp4) · [case record](results/reference/robot-live-degradation/methods/degraded_raw/record.json) · RMSE **75.66 cm** · 476 native updates.
 
-**Measured result replay — limited → restored scans**
+#### DUFOMap map + AMCL
 
-![Corridor degradation — Raw: degraded_raw measured replay](results/reference/robot-degradation/methods/degraded_raw/result.gif)
+**Live execution — DUFOMap RViz**
 
-[MP4](results/reference/robot-degradation/methods/degraded_raw/result.mp4) · [record](results/reference/robot-degradation/methods/degraded_raw/record.json) · RMSE **73.63 cm** · 478 native updates.
+![Corridor degradation: actual DUFOMap RViz live execution](results/reference/robot-live-degradation/executions/degraded_dufomap.gif)
 
-#### DUFOMap + AMCL
+[Live MP4](results/reference/robot-live-degradation/executions/degraded_dufomap.mp4) · [RViz config](results/reference/robot-live-degradation/view-degraded_dufomap.rviz) · [record](results/reference/robot-live-degradation/record.json)
 
-**Live execution**
+**Measured result replay — DUFOMap**
 
-![Corridor degradation — DUFOMap: shared native execution](results/reference/robot-degradation/execution.gif)
+![Corridor degradation: DUFOMap measured replay from this new run](results/reference/robot-live-degradation/methods/degraded_dufomap/result.gif)
 
-[MP4 · 173508-e41e34](results/reference/robot-degradation/execution.mp4)
+[Result MP4](results/reference/robot-live-degradation/methods/degraded_dufomap/result.mp4) · [case record](results/reference/robot-live-degradation/methods/degraded_dufomap/record.json) · RMSE **75.66 cm** · 476 native updates.
 
-**Measured result replay — full-scan control**
+#### BeautyMap map + AMCL
 
-![Corridor degradation — DUFOMap: dufomap measured replay](results/reference/robot-degradation/methods/dufomap/result.gif)
+**Live execution — BeautyMap RViz**
 
-[MP4](results/reference/robot-degradation/methods/dufomap/result.mp4) · [record](results/reference/robot-degradation/methods/dufomap/record.json) · RMSE **62.64 cm** · 478 native updates.
+![Corridor degradation: actual BeautyMap RViz live execution](results/reference/robot-live-degradation/executions/degraded_beautymap.gif)
 
-**Measured result replay — limited → restored scans**
+[Live MP4](results/reference/robot-live-degradation/executions/degraded_beautymap.mp4) · [RViz config](results/reference/robot-live-degradation/view-degraded_beautymap.rviz) · [record](results/reference/robot-live-degradation/record.json)
 
-![Corridor degradation — DUFOMap: degraded_dufomap measured replay](results/reference/robot-degradation/methods/degraded_dufomap/result.gif)
+**Measured result replay — BeautyMap**
 
-[MP4](results/reference/robot-degradation/methods/degraded_dufomap/result.mp4) · [record](results/reference/robot-degradation/methods/degraded_dufomap/record.json) · RMSE **73.63 cm** · 478 native updates.
+![Corridor degradation: BeautyMap measured replay from this new run](results/reference/robot-live-degradation/methods/degraded_beautymap/result.gif)
 
-#### BeautyMap + AMCL
+[Result MP4](results/reference/robot-live-degradation/methods/degraded_beautymap/result.mp4) · [case record](results/reference/robot-live-degradation/methods/degraded_beautymap/record.json) · RMSE **75.66 cm** · 476 native updates.
 
-**Live execution**
-
-![Corridor degradation — BeautyMap: shared native execution](results/reference/robot-degradation/execution.gif)
-
-[MP4 · 173508-e41e34](results/reference/robot-degradation/execution.mp4)
-
-**Measured result replay — full-scan control**
-
-![Corridor degradation — BeautyMap: beautymap measured replay](results/reference/robot-degradation/methods/beautymap/result.gif)
-
-[MP4](results/reference/robot-degradation/methods/beautymap/result.mp4) · [record](results/reference/robot-degradation/methods/beautymap/record.json) · RMSE **62.64 cm** · 478 native updates.
-
-**Measured result replay — limited → restored scans**
-
-![Corridor degradation — BeautyMap: degraded_beautymap measured replay](results/reference/robot-degradation/methods/degraded_beautymap/result.gif)
-
-[MP4](results/reference/robot-degradation/methods/degraded_beautymap/result.mp4) · [record](results/reference/robot-degradation/methods/degraded_beautymap/record.json) · RMSE **73.63 cm** · 478 native updates.
-
-**Physical robot tests:** static, dynamic, degradation and persistent change remain pending; 2D/3D sensor layers are listed in the [protocol](docs/testing/LIVE.md#one-click-demonstrations-and-physical-tests).
-
-Local keyboard and recording scripts: `F:\be2演讲\实机脚本`; [instructions](demo/README.md).
+**Physical robot tests remain pending.** Keyboard demos: `F:\be2演讲\实机脚本\20–23`; `24` automatically records all four scenes. Historical executions/replays remain in the repository, separately from the videos above.
 
 ## Supplementary live scene recordings
 
@@ -305,73 +267,55 @@ Semantic mapping and earlier projections remain in the [original repository](htt
 
 ## Related works
 
-Fresh native author-code executions and their own result replays. Original datasets are separate from the Gazebo platform tests. Historical paper-table evidence remains below; fresh LiDAR scores use the independent scorer without a new PCL cross-check.
+**Live author-code execution with RViz + Terminal.** These three new recordings show current native computation; they do not load a previously computed final map or trajectory as execution. Display-only observers thin points/particles and add overhead; no paper runtime comparison is made. Source data are the released author datasets.
 
-### DUFOMap — author-code reproduction
-
-KITTI-00, 141 scans; final-map orbit, not online map growth. [Paper card](docs/papers/dufomap.md) · [record](results/reference/desktop-dufomap/record.json)
+### DUFOMap
 
 **Live execution**
 
-![DUFOMap native execution](results/reference/desktop-dufomap/execution.gif)
+![DUFOMap: fresh native calculation and actual RViz](results/reference/desktop-live-dufomap/execution.gif)
 
-[MP4](results/reference/desktop-dufomap/execution.mp4)
+[Live MP4](results/reference/desktop-live-dufomap/execution.mp4) · [record](results/reference/desktop-live-dufomap/record.json) · [paper](docs/papers/dufomap.md)
 
-**Measured result replay**
+KITTI-00, 141 scans. The current octree is queried during integration, followed by final propagation; gray = retained, red = removed, cyan = current scan. SA 97.98% / DA 98.70%.
 
-![DUFOMap measured result replay](results/reference/desktop-dufomap/result.gif)
-
-[MP4](results/reference/desktop-dufomap/result.mp4)
-
-### BeautyMap — author-code reproduction
-
-KITTI-00, 141 scans; distinct from the historical KITTI-02 paper-table reproduction. [Paper card](docs/papers/beautymap.md) · [record](results/reference/desktop-beautymap/record.json)
+### BeautyMap
 
 **Live execution**
 
-![BeautyMap native execution](results/reference/desktop-beautymap/execution.gif)
+![BeautyMap: fresh native calculation and actual RViz](results/reference/desktop-live-beautymap/execution.gif)
 
-[MP4](results/reference/desktop-beautymap/execution.mp4)
+[Live MP4](results/reference/desktop-live-beautymap/execution.mp4) · [record](results/reference/desktop-live-beautymap/record.json) · [paper](docs/papers/beautymap.md)
 
-**Measured result replay**
+KITTI-00, 141 scans. Offline map cleaning shown while it computes: the full input map is available at the start and cumulative native removal decisions update during scan processing. SA 96.95% / DA 98.34%.
 
-![BeautyMap measured result replay](results/reference/desktop-beautymap/result.gif)
-
-[MP4](results/reference/desktop-beautymap/result.mp4)
-
-### IR-MCL — author-code reproduction
-
-Bonn IPBLab: 1543 processed, 1354 scored; fresh 5.36 cm / 1.06°. [Paper card](docs/papers/ir-mcl.md) · [record](results/reference/desktop-ir-mcl/record.json)
+### IR-MCL
 
 **Live execution**
 
-![IR-MCL native execution](results/reference/desktop-ir-mcl/execution.gif)
+![IR-MCL: fresh native calculation and actual RViz](results/reference/desktop-live-ir-mcl/execution.gif)
 
-[MP4](results/reference/desktop-ir-mcl/execution.mp4)
+[Live MP4](results/reference/desktop-live-ir-mcl/execution.mp4) · [record](results/reference/desktop-live-ir-mcl/record.json) · [paper](docs/papers/ir-mcl.md)
 
-**Measured result replay**
+Bonn IPBLab, 1543 processed / 1354 scored poses. Current native particles, displayed estimate and reference update during inference. Fresh RMSE 5.31 cm / 1.07°.
 
-![IR-MCL measured result replay](results/reference/desktop-ir-mcl/result.gif)
+### AdaM-MCL
 
-[MP4](results/reference/desktop-ir-mcl/result.mp4)
+Previous native terminal execution and labelled saved-output replay, retained unchanged. Authored 128-cell plan / 2432-step checkpoint; one 123-update trial, 32.23-cell RMSE; no paper numeric comparison.
 
-### AdaM-MCL — author-code reproduction
+**Live execution (terminal)**
 
-Authored 128-cell plan, existing 2432-step checkpoint; one fresh 123-update trial, 32.23-cell RMSE; no numeric paper comparison. [Paper card](docs/papers/adam-mcl.md) · [record](results/reference/desktop-adam-mcl/record.json)
-
-**Live execution**
-
-![AdaM-MCL native execution](results/reference/desktop-adam-mcl/execution.gif)
+![AdaM-MCL native terminal execution](results/reference/desktop-adam-mcl/execution.gif)
 
 [MP4](results/reference/desktop-adam-mcl/execution.mp4)
 
 **Measured result replay**
 
-![AdaM-MCL measured result replay](results/reference/desktop-adam-mcl/result.gif)
+![AdaM-MCL saved result replay](results/reference/desktop-adam-mcl/result.gif)
 
-[MP4](results/reference/desktop-adam-mcl/result.mp4)
+[MP4](results/reference/desktop-adam-mcl/result.mp4) · [Score erratum](results/reference/adam-mcl/ERRATUM.md)
 
-AdaM-MCL’s terminal dashboard had a legacy footer error; current scores are recomputed from native saved distance logs. The author filter is unchanged; the wrapper footer is corrected for subsequent demonstrations. [Erratum](results/reference/adam-mcl/ERRATUM.md).
+Historical paper-table evidence remains below; fresh LiDAR values use the independent scorer without a new PCL cross-check.
 
 ## Reproduction results
 

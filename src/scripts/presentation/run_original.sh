@@ -5,6 +5,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir -p "$RUN"
 export MPLBACKEND=Agg PYTHONUNBUFFERED=1
 export ADAM_TRIALS="${3:-10}"
+if [[ "${4:-false}" == true ]]; then export SLAM_AUTHOR_LIVE="$RUN/live"; fi
 python=/home/qzl/projects/SLAM_Learning/.venv/bin/python
 [[ "$METHOD" == ir-mcl ]] && python=/home/qzl/.venvs/ir-mcl/bin/python
 [[ "$METHOD" == adam-mcl ]] && python=/home/qzl/.venvs/adam-mcl/bin/python

@@ -49,3 +49,11 @@
 场景世界和巡航脚本已放入本库，区分固定原机器人与本地场景适配。完整录像、bag与算法大产物留在 `results/runs/presentation`；公开小产物见 `results/reference/robot-*` 和 `desktop-*`。每条录像的计算口径与限制见[本机协议](../docs/testing/LIVE.zh-CN.md)。
 
 现场录像命名为 `场景__模块__算法或地图处理__日期时间-运行ID.mp4`，本轮15段的名称与证据对应见[录像索引](recording-index.json)。本机目录另附 `视频名称对照.csv/json`，明确标出正式执行、额外采集、诊断及启动测试。A-建图使用 slam_toolbox 和给定位姿三维点云采集；B-定位统一使用 AMCL，Raw／DUFOMap／BeautyMap 表示地图处理。首页每种方法的结果回放从同场景保存数据单独导出，现场录像为同一次并行执行。重新导出命令：`python src/scripts/presentation/package_case_replays.py results/reference/robot-static results/reference/robot-dynamic results/reference/robot-large-change results/reference/robot-degradation`。
+
+## 逐方法独立 RViz 现场对照
+
+本轮每类环境分别启动 Raw、DUFOMap、BeautyMap 的原生 AMCL 和三个真实 RViz 窗口。每个窗口订阅自己的地图、位姿、粒子和隔离的显示 TF；同一场景共享实时传感器与轮速。`record-methods.ps1 -Scene static|dynamic|large-change|degradation` 自动驾驶并同时录制三段独立现场视频；加 `-Keyboard -Duration 86400` 使用键盘演示。走廊窗口展示受限→恢复扫描实例，完整扫描控制组也运行并保存评分。
+
+本机新增 `20–23-*_三方法独立RViz实时.bat` 四个键盘入口、`24-自动重录四场景_逐方法实时.bat` 和 `论文-实时-dufomap/beautymap/ir-mcl.bat`。规范脚本：[record-methods.ps1](record-methods.ps1)、[original-live.ps1](original-live.ps1)。原库入口通过本次原生计算的只读状态显示器实时更新 RViz，不载入历史结果冒充执行；作者原数据与 Gazebo 平台适配分开。完整状态保留在本次 `results/runs/presentation/*-author-live-*`；点/粒子只在显示时稀疏采样，观察器开销不用于论文运行时间比较。请先正常结束一个同类现场演示再开下一场。
+
+本轮15段新现场视频与此前15段归档见[录像索引](recording-index.json)。主页、[本地视频页](gallery.html)均逐场景、逐方法展示；旧视频页保留为[历史页](archive-20261014.html)。

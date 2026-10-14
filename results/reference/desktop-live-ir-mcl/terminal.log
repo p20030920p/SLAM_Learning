@@ -1,0 +1,2864 @@
+AUTHOR EXECUTION: ir-mcl; fresh outputs: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-201724-author-live-ir-mcl-ec568b
+EXECUTING: /home/qzl/.venvs/ir-mcl/bin/python -u main.py --config_file ./config/global_localization/loc_config_test1.yml
+
+Loading data......
+All data are loaded! Time consume: 1.52s
+
+Monte Carlo localization initializing...
+
+Setting up the Sensor Model......
+Using:  cuda
+
+Initialize the Neural Occupancy Field model......
+Models are ready! Time consume: 0.31s
+/home/qzl/.venvs/ir-mcl/lib/python3.10/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/native/TensorShape.cpp:4221.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+
+Predicting the occupancy probability for each cells of grid......
+Inference Finished! Time consume: 1.10s
+Sensor Model Setup Successfully!
+
+finished frame 0 at timestamp 0.01s with time cost: 6.07967e-05s
+finished frame 1 at timestamp 0.11s with time cost: 4.52995e-05s
+finished frame 2 at timestamp 0.22s with time cost: 2.47955e-05s
+finished frame 3 at timestamp 0.32s with time cost: 1.28746e-05s
+finished frame 4 at timestamp 0.43s with time cost: 1.85966e-05s
+finished frame 5 at timestamp 0.54s with time cost: 1.74046e-05s
+finished frame 6 at timestamp 0.64s with time cost: 3.86238e-05s
+finished frame 7 at timestamp 0.74s with time cost: 1.83582e-05s
+finished frame 8 at timestamp 0.85s with time cost: 9.7752e-06s
+finished frame 9 at timestamp 0.96s with time cost: 0.6715922356s
+finished frame 10 at timestamp 1.06s with time cost: 2.57492e-05s
+finished frame 11 at timestamp 1.17s with time cost: 3.8147e-05s
+finished frame 12 at timestamp 1.27s with time cost: 1.35899e-05s
+finished frame 13 at timestamp 1.38s with time cost: 1.04904e-05s
+finished frame 14 at timestamp 1.49s with time cost: 9.2983e-06s
+finished frame 15 at timestamp 1.59s with time cost: 5.9605e-06s
+finished frame 16 at timestamp 1.69s with time cost: 5.00679e-05s
+finished frame 17 at timestamp 1.80s with time cost: 1.66893e-05s
+finished frame 18 at timestamp 1.91s with time cost: 6.1989e-06s
+finished frame 19 at timestamp 2.01s with time cost: 6.1989e-06s
+finished frame 20 at timestamp 2.12s with time cost: 5.2452e-06s
+finished frame 21 at timestamp 2.22s with time cost: 3.83854e-05s
+finished frame 22 at timestamp 2.33s with time cost: 0.507578373s
+finished frame 23 at timestamp 2.44s with time cost: 0.4609639645s
+finished frame 24 at timestamp 2.54s with time cost: 0.4695026875s
+finished frame 25 at timestamp 2.64s with time cost: 0.4431889057s
+finished frame 26 at timestamp 2.75s with time cost: 0.4298605919s
+finished frame 27 at timestamp 2.86s with time cost: 0.4770081043s
+finished frame 28 at timestamp 2.96s with time cost: 0.423730135s
+finished frame 29 at timestamp 3.07s with time cost: 0.4112784863s
+finished frame 30 at timestamp 3.17s with time cost: 0.421380043s
+finished frame 31 at timestamp 3.28s with time cost: 0.443475008s
+finished frame 32 at timestamp 3.39s with time cost: 0.4115769863s
+finished frame 33 at timestamp 3.49s with time cost: 0.4182467461s
+finished frame 34 at timestamp 3.59s with time cost: 0.4146716595s
+finished frame 35 at timestamp 3.69s with time cost: 0.4073226452s
+finished frame 36 at timestamp 3.81s with time cost: 0.4517498016s
+finished frame 37 at timestamp 3.91s with time cost: 0.4712312222s
+finished frame 38 at timestamp 4.01s with time cost: 0.4380266666s
+finished frame 39 at timestamp 4.12s with time cost: 0.4207856655s
+finished frame 40 at timestamp 4.22s with time cost: 0.4427058697s
+finished frame 41 at timestamp 4.33s with time cost: 0.4515929222s
+finished frame 42 at timestamp 4.44s with time cost: 0.4551136494s
+finished frame 43 at timestamp 4.54s with time cost: 0.440318346s
+finished frame 44 at timestamp 4.64s with time cost: 0.424902916s
+finished frame 45 at timestamp 4.75s with time cost: 0.5305988789s
+finished frame 46 at timestamp 4.86s with time cost: 0.4605293274s
+finished frame 47 at timestamp 4.96s with time cost: 0.450517416s
+finished frame 48 at timestamp 5.06s with time cost: 0.4402971268s
+finished frame 49 at timestamp 5.17s with time cost: 0.4879887104s
+finished frame 50 at timestamp 5.28s with time cost: 0.4160032272s
+finished frame 51 at timestamp 5.39s with time cost: 0.4257414341s
+finished frame 52 at timestamp 5.49s with time cost: 0.4155247211s
+finished frame 53 at timestamp 5.59s with time cost: 0.4171288013s
+finished frame 54 at timestamp 5.69s with time cost: 0.4311830997s
+finished frame 55 at timestamp 5.81s with time cost: 0.4204113483s
+finished frame 56 at timestamp 5.91s with time cost: 0.4146432877s
+finished frame 57 at timestamp 6.01s with time cost: 0.4165446758s
+finished frame 58 at timestamp 6.12s with time cost: 0.4628579617s
+finished frame 59 at timestamp 6.23s with time cost: 0.4285759926s
+finished frame 60 at timestamp 6.34s with time cost: 0.4213187695s
+finished frame 61 at timestamp 6.44s with time cost: 0.4354650974s
+finished frame 62 at timestamp 6.54s with time cost: 0.4169528484s
+finished frame 63 at timestamp 6.65s with time cost: 0.4194414616s
+finished frame 64 at timestamp 6.76s with time cost: 0.4511198997s
+finished frame 65 at timestamp 6.86s with time cost: 0.4358961582s
+finished frame 66 at timestamp 6.97s with time cost: 0.4320456982s
+finished frame 67 at timestamp 7.07s with time cost: 0.4412324429s
+finished frame 68 at timestamp 7.19s with time cost: 0.4286060333s
+finished frame 69 at timestamp 7.29s with time cost: 0.4298994541s
+finished frame 70 at timestamp 7.39s with time cost: 0.4632959366s
+finished frame 71 at timestamp 7.49s with time cost: 0.4512805939s
+finished frame 72 at timestamp 7.61s with time cost: 0.5443885326s
+finished frame 73 at timestamp 7.71s with time cost: 0.5392239094s
+finished frame 74 at timestamp 7.82s with time cost: 0.4973876476s
+finished frame 75 at timestamp 7.92s with time cost: 0.5298280716s
+finished frame 76 at timestamp 8.04s with time cost: 0.549795866s
+finished frame 77 at timestamp 8.14s with time cost: 0.4941942692s
+finished frame 78 at timestamp 8.24s with time cost: 0.5603628159s
+finished frame 79 at timestamp 8.35s with time cost: 0.5142874718s
+finished frame 80 at timestamp 8.46s with time cost: 0.5397238731s
+finished frame 81 at timestamp 8.56s with time cost: 0.6175458431s
+finished frame 82 at timestamp 8.67s with time cost: 0.5917847157s
+finished frame 83 at timestamp 8.77s with time cost: 0.5769147873s
+finished frame 84 at timestamp 8.89s with time cost: 0.592233181s
+finished frame 85 at timestamp 8.99s with time cost: 0.5889687538s
+finished frame 86 at timestamp 9.09s with time cost: 0.5560097694s
+finished frame 87 at timestamp 9.21s with time cost: 0.6580345631s
+finished frame 88 at timestamp 9.31s with time cost: 0.617389679s
+finished frame 89 at timestamp 9.41s with time cost: 0.588504076s
+finished frame 90 at timestamp 9.52s with time cost: 0.6027197838s
+finished frame 91 at timestamp 9.63s with time cost: 0.62301898s
+finished frame 92 at timestamp 9.74s with time cost: 0.5669915676s
+finished frame 93 at timestamp 9.84s with time cost: 0.5947201252s
+finished frame 94 at timestamp 9.94s with time cost: 0.6117999554s
+finished frame 95 at timestamp 10.06s with time cost: 0.6063404083s
+finished frame 96 at timestamp 10.16s with time cost: 0.5735809803s
+finished frame 97 at timestamp 10.27s with time cost: 0.5926370621s
+finished frame 98 at timestamp 10.37s with time cost: 0.6159658432s
+finished frame 99 at timestamp 10.48s with time cost: 0.6844656467s
+finished frame 100 at timestamp 10.59s with time cost: 0.6116390228s
+finished frame 101 at timestamp 10.69s with time cost: 0.6043465137s
+finished frame 102 at timestamp 10.79s with time cost: 0.5937998295s
+finished frame 103 at timestamp 10.91s with time cost: 0.6778144836s
+finished frame 104 at timestamp 11.01s with time cost: 0.5890271664s
+finished frame 105 at timestamp 11.12s with time cost: 0.572316885s
+finished frame 106 at timestamp 11.22s with time cost: 0.6470565796s
+finished frame 107 at timestamp 11.33s with time cost: 0.6413555145s
+finished frame 108 at timestamp 11.44s with time cost: 0.579741478s
+finished frame 109 at timestamp 11.54s with time cost: 0.5982074738s
+finished frame 110 at timestamp 11.64s with time cost: -0.0958914757s
+finished frame 111 at timestamp 11.76s with time cost: 0.6028897762s
+finished frame 112 at timestamp 11.86s with time cost: 0.6012592316s
+finished frame 113 at timestamp 11.97s with time cost: 0.6421792507s
+finished frame 114 at timestamp 12.07s with time cost: 0.655862093s
+finished frame 115 at timestamp 12.19s with time cost: 0.6008048058s
+finished frame 116 at timestamp 12.29s with time cost: 0.6701233387s
+finished frame 117 at timestamp 12.39s with time cost: 0.6795926094s
+finished frame 118 at timestamp 12.51s with time cost: 0.6025002003s
+finished frame 119 at timestamp 12.61s with time cost: 0.5679459572s
+finished frame 120 at timestamp 12.71s with time cost: 0.6066448689s
+finished frame 121 at timestamp 12.82s with time cost: 0.6186163425s
+finished frame 122 at timestamp 12.93s with time cost: 0.5901224613s
+finished frame 123 at timestamp 13.04s with time cost: 0.6202981472s
+finished frame 124 at timestamp 13.14s with time cost: 0.5872881413s
+finished frame 125 at timestamp 13.24s with time cost: 0.6600878239s
+finished frame 126 at timestamp 13.36s with time cost: 0.6036500931s
+finished frame 127 at timestamp 13.46s with time cost: 0.6162090302s
+finished frame 128 at timestamp 13.56s with time cost: 0.7435288429s
+finished frame 129 at timestamp 13.67s with time cost: 0.6414301395s
+finished frame 130 at timestamp 13.77s with time cost: 0.5920557976s
+finished frame 131 at timestamp 13.89s with time cost: 0.5777382851s
+finished frame 132 at timestamp 13.99s with time cost: 0.6575007439s
+finished frame 133 at timestamp 14.09s with time cost: 0.6882112026s
+finished frame 134 at timestamp 14.20s with time cost: 0.6368346214s
+finished frame 135 at timestamp 14.31s with time cost: 0.7081668377s
+finished frame 136 at timestamp 14.41s with time cost: 0.6588697433s
+finished frame 137 at timestamp 14.52s with time cost: 0.6767413616s
+finished frame 138 at timestamp 14.62s with time cost: 0.6835501194s
+finished frame 139 at timestamp 14.74s with time cost: 0.6268320084s
+finished frame 140 at timestamp 14.84s with time cost: 0.5871376991s
+finished frame 141 at timestamp 14.94s with time cost: 0.6457130909s
+finished frame 142 at timestamp 15.05s with time cost: 0.5659422874s
+finished frame 143 at timestamp 15.16s with time cost: 0.591511488s
+finished frame 144 at timestamp 15.26s with time cost: 0.595690012s
+finished frame 145 at timestamp 15.37s with time cost: 0.6543812752s
+finished frame 146 at timestamp 15.47s with time cost: 0.6533765793s
+finished frame 147 at timestamp 15.59s with time cost: 0.6201951504s
+finished frame 148 at timestamp 15.69s with time cost: 0.646021843s
+finished frame 149 at timestamp 15.79s with time cost: 0.6271631718s
+finished frame 150 at timestamp 15.89s with time cost: 0.6101725101s
+finished frame 151 at timestamp 16.01s with time cost: 0.6571090221s
+finished frame 152 at timestamp 16.11s with time cost: 0.6488823891s
+finished frame 153 at timestamp 16.22s with time cost: 0.6066172123s
+finished frame 154 at timestamp 16.32s with time cost: 0.6049141884s
+finished frame 155 at timestamp 16.44s with time cost: 0.6364989281s
+finished frame 156 at timestamp 16.54s with time cost: 0.6584825516s
+finished frame 157 at timestamp 16.64s with time cost: 0.7020375729s
+finished frame 158 at timestamp 16.74s with time cost: 0.6427037716s
+finished frame 159 at timestamp 16.86s with time cost: 0.6526381969s
+finished frame 160 at timestamp 16.96s with time cost: 0.6640334129s
+finished frame 161 at timestamp 17.07s with time cost: 0.0190253258s
+finished frame 162 at timestamp 17.17s with time cost: 0.6271665096s
+finished frame 163 at timestamp 17.29s with time cost: 0.6137495041s
+finished frame 164 at timestamp 17.39s with time cost: 0.6100962162s
+finished frame 165 at timestamp 17.49s with time cost: 0.5799953938s
+finished frame 166 at timestamp 17.59s with time cost: 0.6099681854s
+finished frame 167 at timestamp 17.71s with time cost: 0.6109535694s
+finished frame 168 at timestamp 17.81s with time cost: 0.619666338s
+finished frame 169 at timestamp 17.92s with time cost: 0.5524151325s
+finished frame 170 at timestamp 18.02s with time cost: 0.6465549469s
+finished frame 171 at timestamp 18.13s with time cost: 0.6991915703s
+finished frame 172 at timestamp 18.24s with time cost: 0.6759784222s
+finished frame 173 at timestamp 18.34s with time cost: 0.6992719173s
+finished frame 174 at timestamp 18.44s with time cost: 0.6181697845s
+finished frame 175 at timestamp 18.56s with time cost: 0.5901334286s
+finished frame 176 at timestamp 18.66s with time cost: 0.6668460369s
+finished frame 177 at timestamp 18.76s with time cost: 0.6495068073s
+finished frame 178 at timestamp 18.87s with time cost: 0.5808398724s
+finished frame 179 at timestamp 18.98s with time cost: 0.6438748837s
+finished frame 180 at timestamp 19.09s with time cost: 0.6457288265s
+finished frame 181 at timestamp 19.19s with time cost: 0.5848596096s
+finished frame 182 at timestamp 19.29s with time cost: 0.5953350067s
+finished frame 183 at timestamp 19.40s with time cost: 0.6132619381s
+finished frame 184 at timestamp 19.51s with time cost: 0.7112765312s
+finished frame 185 at timestamp 19.61s with time cost: 0.6464805603s
+finished frame 186 at timestamp 19.71s with time cost: 0.6591627598s
+finished frame 187 at timestamp 19.82s with time cost: 0.7020101547s
+finished frame 188 at timestamp 19.93s with time cost: 0.6704156399s
+Initialization is finished!
+finished frame 189 at timestamp 20.04s with time cost: 0.7104318142s
+finished frame 190 at timestamp 20.14s with time cost: 0.0997958183s
+finished frame 191 at timestamp 20.24s with time cost: 0.0362524986s
+finished frame 192 at timestamp 20.34s with time cost: 0.0357046127s
+finished frame 193 at timestamp 20.46s with time cost: 0.0337452888s
+finished frame 194 at timestamp 20.56s with time cost: 0.0353856087s
+finished frame 195 at timestamp 20.66s with time cost: 0.0329110622s
+finished frame 196 at timestamp 20.77s with time cost: 0.0308439732s
+finished frame 197 at timestamp 20.87s with time cost: 0.0287492275s
+finished frame 198 at timestamp 20.98s with time cost: 0.0269248486s
+finished frame 199 at timestamp 21.09s with time cost: 0.0263717175s
+finished frame 200 at timestamp 21.19s with time cost: 0.0350425243s
+finished frame 201 at timestamp 21.29s with time cost: 0.0374743938s
+finished frame 202 at timestamp 21.41s with time cost: 0.0296852589s
+finished frame 203 at timestamp 21.51s with time cost: 0.0334746838s
+finished frame 204 at timestamp 21.61s with time cost: 0.0321006775s
+finished frame 205 at timestamp 21.71s with time cost: 0.0313780308s
+finished frame 206 at timestamp 21.82s with time cost: 0.0285279751s
+finished frame 207 at timestamp 21.93s with time cost: 0.0310258865s
+finished frame 208 at timestamp 22.04s with time cost: 0.027718544s
+finished frame 209 at timestamp 22.14s with time cost: 0.0284979343s
+finished frame 210 at timestamp 22.24s with time cost: 0.0279798508s
+finished frame 211 at timestamp 22.34s with time cost: 0.0459141731s
+finished frame 212 at timestamp 22.46s with time cost: 0.0592067242s
+finished frame 213 at timestamp 22.56s with time cost: 0.0320835114s
+finished frame 214 at timestamp 22.66s with time cost: 0.0261707306s
+finished frame 215 at timestamp 22.77s with time cost: 0.0296916962s
+finished frame 216 at timestamp 22.88s with time cost: 0.087542057s
+finished frame 217 at timestamp 22.99s with time cost: 0.0844762325s
+finished frame 218 at timestamp 23.09s with time cost: 0.0817511082s
+finished frame 219 at timestamp 23.19s with time cost: 0.0264599323s
+finished frame 220 at timestamp 23.29s with time cost: 0.0477054119s
+finished frame 221 at timestamp 23.41s with time cost: 0.0277204514s
+finished frame 222 at timestamp 23.51s with time cost: 0.0258879662s
+finished frame 223 at timestamp 23.61s with time cost: 0.0310635567s
+finished frame 224 at timestamp 23.72s with time cost: 0.0298848152s
+finished frame 225 at timestamp 23.83s with time cost: 0.0259919167s
+finished frame 226 at timestamp 23.94s with time cost: 0.0392184258s
+finished frame 227 at timestamp 24.04s with time cost: 0.0224838257s
+finished frame 228 at timestamp 24.14s with time cost: 0.0344371796s
+finished frame 229 at timestamp 24.24s with time cost: 0.0218725204s
+finished frame 230 at timestamp 24.36s with time cost: 0.0249147415s
+finished frame 231 at timestamp 24.46s with time cost: 0.0378820896s
+finished frame 232 at timestamp 24.57s with time cost: 0.028429985s
+finished frame 233 at timestamp 24.67s with time cost: 0.0261895657s
+finished frame 234 at timestamp 24.78s with time cost: 0.0235118866s
+finished frame 235 at timestamp 24.89s with time cost: 0.0534267426s
+finished frame 236 at timestamp 24.99s with time cost: 0.0273127556s
+finished frame 237 at timestamp 25.09s with time cost: 0.0281097889s
+finished frame 238 at timestamp 25.21s with time cost: 0.053082943s
+finished frame 239 at timestamp 25.31s with time cost: 0.0561771393s
+finished frame 240 at timestamp 25.42s with time cost: 0.0263469219s
+finished frame 241 at timestamp 25.52s with time cost: 0.0320625305s
+finished frame 242 at timestamp 25.64s with time cost: 0.0270178318s
+finished frame 243 at timestamp 25.74s with time cost: 0.0272367001s
+finished frame 244 at timestamp 25.84s with time cost: 0.0427081585s
+finished frame 245 at timestamp 25.94s with time cost: 0.0301015377s
+finished frame 246 at timestamp 26.06s with time cost: 0.0401451588s
+finished frame 247 at timestamp 26.16s with time cost: 0.0533287525s
+finished frame 248 at timestamp 26.27s with time cost: 0.0321125984s
+finished frame 249 at timestamp 26.37s with time cost: 0.0379078388s
+finished frame 250 at timestamp 26.49s with time cost: 0.0255408287s
+finished frame 251 at timestamp 26.59s with time cost: 0.0510904789s
+finished frame 252 at timestamp 26.69s with time cost: 0.1028625965s
+finished frame 253 at timestamp 26.79s with time cost: 0.0250556469s
+finished frame 254 at timestamp 26.91s with time cost: 0.0317885876s
+finished frame 255 at timestamp 27.01s with time cost: 0.0257015228s
+finished frame 256 at timestamp 27.12s with time cost: 0.0246560574s
+finished frame 257 at timestamp 27.22s with time cost: 0.0346496105s
+finished frame 258 at timestamp 27.33s with time cost: 0.0340311527s
+finished frame 259 at timestamp 27.44s with time cost: 0.0301909447s
+finished frame 260 at timestamp 27.54s with time cost: 0.0345585346s
+finished frame 261 at timestamp 27.64s with time cost: 0.0258674622s
+finished frame 262 at timestamp 27.76s with time cost: 0.0251312256s
+finished frame 263 at timestamp 27.86s with time cost: 0.0250196457s
+finished frame 264 at timestamp 27.97s with time cost: 0.0306670666s
+finished frame 265 at timestamp 28.08s with time cost: 0.0258529186s
+finished frame 266 at timestamp 28.19s with time cost: 0.032345295s
+finished frame 267 at timestamp 28.29s with time cost: 0.0288310051s
+finished frame 268 at timestamp 28.39s with time cost: 0.0279798508s
+finished frame 269 at timestamp 28.51s with time cost: 0.0590865612s
+finished frame 270 at timestamp 28.61s with time cost: 0.0306138992s
+finished frame 271 at timestamp 28.71s with time cost: 0.0275814533s
+finished frame 272 at timestamp 28.82s with time cost: 0.0235650539s
+finished frame 273 at timestamp 28.92s with time cost: 0.0290606022s
+finished frame 274 at timestamp 29.04s with time cost: 0.0280704498s
+finished frame 275 at timestamp 29.14s with time cost: 0.0274426937s
+finished frame 276 at timestamp 29.24s with time cost: 0.0335388184s
+finished frame 277 at timestamp 29.34s with time cost: 0.0631155968s
+finished frame 278 at timestamp 29.46s with time cost: 0.0649416447s
+finished frame 279 at timestamp 29.56s with time cost: 0.0269212723s
+finished frame 280 at timestamp 29.67s with time cost: 0.0300905704s
+finished frame 281 at timestamp 29.77s with time cost: 0.0270922184s
+finished frame 282 at timestamp 29.89s with time cost: 0.030995369s
+finished frame 283 at timestamp 29.99s with time cost: 0.0305631161s
+finished frame 284 at timestamp 30.09s with time cost: 0.025696516s
+finished frame 285 at timestamp 30.19s with time cost: 0.0280725956s
+finished frame 286 at timestamp 30.31s with time cost: 0.0274102688s
+finished frame 287 at timestamp 30.41s with time cost: 0.0265831947s
+finished frame 288 at timestamp 30.51s with time cost: 0.0322387218s
+finished frame 289 at timestamp 30.62s with time cost: 0.0280823708s
+finished frame 290 at timestamp 30.73s with time cost: 0.029515028s
+finished frame 291 at timestamp 30.84s with time cost: 0.0273697376s
+finished frame 292 at timestamp 30.94s with time cost: 0.0291059017s
+finished frame 293 at timestamp 31.04s with time cost: 0.031065464s
+finished frame 294 at timestamp 31.16s with time cost: 0.0247197151s
+finished frame 295 at timestamp 31.26s with time cost: 0.0302987099s
+finished frame 296 at timestamp 31.36s with time cost: 0.1147954464s
+finished frame 297 at timestamp 31.47s with time cost: 0.0301995277s
+finished frame 298 at timestamp 31.58s with time cost: 0.0317494869s
+finished frame 299 at timestamp 31.69s with time cost: 0.0314686298s
+finished frame 300 at timestamp 31.79s with time cost: 0.0307722092s
+finished frame 301 at timestamp 31.89s with time cost: 0.0250442028s
+finished frame 302 at timestamp 31.99s with time cost: 0.0338797569s
+finished frame 303 at timestamp 32.11s with time cost: 0.0240066051s
+finished frame 304 at timestamp 32.21s with time cost: 0.0273718834s
+finished frame 305 at timestamp 32.32s with time cost: 0.0292978287s
+finished frame 306 at timestamp 32.42s with time cost: 0.0292949677s
+finished frame 307 at timestamp 32.53s with time cost: 0.0307347775s
+finished frame 308 at timestamp 32.64s with time cost: 0.0267748833s
+finished frame 309 at timestamp 32.74s with time cost: 0.0295786858s
+finished frame 310 at timestamp 32.84s with time cost: 0.0349109173s
+finished frame 311 at timestamp 32.96s with time cost: 0.0253286362s
+finished frame 312 at timestamp 33.06s with time cost: 0.0305290222s
+finished frame 313 at timestamp 33.16s with time cost: 0.025301218s
+finished frame 314 at timestamp 33.27s with time cost: 0.0268788338s
+finished frame 315 at timestamp 33.38s with time cost: 0.0288109779s
+finished frame 316 at timestamp 33.49s with time cost: 0.0261855125s
+finished frame 317 at timestamp 33.59s with time cost: 0.0292510986s
+finished frame 318 at timestamp 33.69s with time cost: 0.023165226s
+finished frame 319 at timestamp 33.79s with time cost: 0.0313208103s
+finished frame 320 at timestamp 33.91s with time cost: 0.0323605537s
+finished frame 321 at timestamp 34.01s with time cost: 0.0409801006s
+finished frame 322 at timestamp 34.11s with time cost: 0.0884013176s
+finished frame 323 at timestamp 34.22s with time cost: 0.0660948753s
+finished frame 324 at timestamp 34.33s with time cost: 0.0314545631s
+finished frame 325 at timestamp 34.44s with time cost: 0.0294764042s
+finished frame 326 at timestamp 34.54s with time cost: 0.0291707516s
+finished frame 327 at timestamp 34.64s with time cost: 0.0280642509s
+finished frame 328 at timestamp 34.74s with time cost: 0.0315184593s
+finished frame 329 at timestamp 34.86s with time cost: 0.0270261765s
+finished frame 330 at timestamp 34.96s with time cost: 0.0330917835s
+finished frame 331 at timestamp 35.06s with time cost: 0.0272183418s
+finished frame 332 at timestamp 35.17s with time cost: 0.0301632881s
+finished frame 333 at timestamp 35.28s with time cost: 0.03034091s
+finished frame 334 at timestamp 35.39s with time cost: 0.0262854099s
+finished frame 335 at timestamp 35.49s with time cost: 0.0287270546s
+finished frame 336 at timestamp 35.59s with time cost: 0.0309650898s
+finished frame 337 at timestamp 35.71s with time cost: 0.0262260437s
+finished frame 338 at timestamp 35.81s with time cost: 0.0300929546s
+finished frame 339 at timestamp 35.91s with time cost: 0.0276312828s
+finished frame 340 at timestamp 36.02s with time cost: 0.0496370792s
+finished frame 341 at timestamp 36.13s with time cost: 0.033996582s
+finished frame 342 at timestamp 36.24s with time cost: 0.0611791611s
+finished frame 343 at timestamp 36.34s with time cost: 0.0943973064s
+finished frame 344 at timestamp 36.44s with time cost: 0.0327401161s
+finished frame 345 at timestamp 36.54s with time cost: 0.0247502327s
+finished frame 346 at timestamp 36.66s with time cost: 0.0312972069s
+finished frame 347 at timestamp 36.76s with time cost: 0.0252051353s
+finished frame 348 at timestamp 36.87s with time cost: 0.0326433182s
+finished frame 349 at timestamp 36.97s with time cost: 0.029654026s
+finished frame 350 at timestamp 37.08s with time cost: 0.088326931s
+finished frame 351 at timestamp 37.19s with time cost: 0.046284914s
+finished frame 352 at timestamp 37.29s with time cost: 0.0370078087s
+finished frame 353 at timestamp 37.39s with time cost: 0.0283241272s
+finished frame 354 at timestamp 37.51s with time cost: 0.0277621746s
+finished frame 355 at timestamp 37.61s with time cost: 0.0312466621s
+finished frame 356 at timestamp 37.71s with time cost: 0.0324783325s
+finished frame 357 at timestamp 37.82s with time cost: 0.0288469791s
+finished frame 358 at timestamp 37.93s with time cost: 0.0321383476s
+finished frame 359 at timestamp 38.04s with time cost: 0.0438120365s
+finished frame 360 at timestamp 38.14s with time cost: 0.0322091579s
+finished frame 361 at timestamp 38.24s with time cost: 0.0268807411s
+finished frame 362 at timestamp 38.36s with time cost: 0.0361790657s
+finished frame 363 at timestamp 38.46s with time cost: 0.1002514362s
+finished frame 364 at timestamp 38.56s with time cost: 0.0295510292s
+finished frame 365 at timestamp 38.67s with time cost: 0.0304985046s
+finished frame 366 at timestamp 38.78s with time cost: 0.0353884697s
+finished frame 367 at timestamp 38.89s with time cost: 0.0350775719s
+finished frame 368 at timestamp 38.99s with time cost: 0.0317788124s
+finished frame 369 at timestamp 39.09s with time cost: 0.0291931629s
+finished frame 370 at timestamp 39.21s with time cost: 0.0292322636s
+finished frame 371 at timestamp 39.31s with time cost: 0.0317933559s
+finished frame 372 at timestamp 39.41s with time cost: 0.0301077366s
+finished frame 373 at timestamp 39.52s with time cost: 0.0329060555s
+finished frame 374 at timestamp 39.62s with time cost: 0.0233390331s
+finished frame 375 at timestamp 39.73s with time cost: 0.0305297375s
+finished frame 376 at timestamp 39.84s with time cost: 0.0264794827s
+finished frame 377 at timestamp 39.94s with time cost: 0.0318677425s
+finished frame 378 at timestamp 40.04s with time cost: 0.0297803879s
+finished frame 379 at timestamp 40.16s with time cost: 0.0287218094s
+finished frame 380 at timestamp 40.26s with time cost: 0.0323376656s
+finished frame 381 at timestamp 40.36s with time cost: 0.0291440487s
+finished frame 382 at timestamp 40.47s with time cost: 0.0301787853s
+finished frame 383 at timestamp 40.57s with time cost: 0.0275974274s
+finished frame 384 at timestamp 40.68s with time cost: 0.0289442539s
+finished frame 385 at timestamp 40.79s with time cost: 0.036962986s
+finished frame 386 at timestamp 40.89s with time cost: 0.0376317501s
+finished frame 387 at timestamp 40.99s with time cost: 0.0281703472s
+finished frame 388 at timestamp 41.11s with time cost: 0.0321555138s
+finished frame 389 at timestamp 41.21s with time cost: 0.0303163528s
+finished frame 390 at timestamp 41.31s with time cost: 0.0319397449s
+finished frame 391 at timestamp 41.42s with time cost: 0.0244333744s
+finished frame 392 at timestamp 41.53s with time cost: 0.0264203548s
+finished frame 393 at timestamp 41.64s with time cost: 0.0272526741s
+finished frame 394 at timestamp 41.74s with time cost: 0.0261888504s
+finished frame 395 at timestamp 41.84s with time cost: 0.0292806625s
+finished frame 396 at timestamp 41.96s with time cost: 0.0311083794s
+finished frame 397 at timestamp 42.06s with time cost: 0.0248510838s
+finished frame 398 at timestamp 42.16s with time cost: 0.0312271118s
+finished frame 399 at timestamp 42.27s with time cost: 0.0295240879s
+finished frame 400 at timestamp 42.37s with time cost: 0.0261871815s
+finished frame 401 at timestamp 42.48s with time cost: 0.0271263123s
+finished frame 402 at timestamp 42.59s with time cost: 0.0285439491s
+finished frame 403 at timestamp 42.69s with time cost: 0.0282127857s
+finished frame 404 at timestamp 42.79s with time cost: 0.0250489712s
+finished frame 405 at timestamp 42.91s with time cost: 0.0285186768s
+finished frame 406 at timestamp 43.01s with time cost: 0.0329012871s
+finished frame 407 at timestamp 43.11s with time cost: 0.0246038437s
+finished frame 408 at timestamp 43.22s with time cost: 0.0306668282s
+finished frame 409 at timestamp 43.33s with time cost: 0.0300221443s
+finished frame 410 at timestamp 43.44s with time cost: 0.0281624794s
+finished frame 411 at timestamp 43.54s with time cost: 0.0711548328s
+finished frame 412 at timestamp 43.64s with time cost: 0.0680377483s
+finished frame 413 at timestamp 43.74s with time cost: 0.0337665081s
+finished frame 414 at timestamp 43.86s with time cost: 0.0268514156s
+finished frame 415 at timestamp 43.96s with time cost: 0.0267028809s
+finished frame 416 at timestamp 44.06s with time cost: 0.0267634392s
+finished frame 417 at timestamp 44.17s with time cost: 0.0264120102s
+finished frame 418 at timestamp 44.28s with time cost: 0.0283324718s
+finished frame 419 at timestamp 44.39s with time cost: 0.0275092125s
+finished frame 420 at timestamp 44.49s with time cost: 0.0277042389s
+finished frame 421 at timestamp 44.59s with time cost: 0.0307338238s
+finished frame 422 at timestamp 44.71s with time cost: 0.0545656681s
+finished frame 423 at timestamp 44.81s with time cost: 0.0378298759s
+finished frame 424 at timestamp 44.91s with time cost: 0.0269954205s
+finished frame 425 at timestamp 45.02s with time cost: 0.0276100636s
+finished frame 426 at timestamp 45.13s with time cost: 0.0282936096s
+finished frame 427 at timestamp 45.24s with time cost: 0.0264337063s
+finished frame 428 at timestamp 45.34s with time cost: 0.0233514309s
+finished frame 429 at timestamp 45.44s with time cost: 0.0477142334s
+finished frame 430 at timestamp 45.54s with time cost: 0.1425461769s
+finished frame 431 at timestamp 45.66s with time cost: 0.0331456661s
+finished frame 432 at timestamp 45.76s with time cost: 0.0308055878s
+finished frame 433 at timestamp 45.86s with time cost: 0.0270507336s
+finished frame 434 at timestamp 45.97s with time cost: 0.0276887417s
+finished frame 435 at timestamp 46.08s with time cost: 0.0296480656s
+finished frame 436 at timestamp 46.19s with time cost: 0.0482640266s
+finished frame 437 at timestamp 46.29s with time cost: 0.0352101326s
+finished frame 438 at timestamp 46.39s with time cost: 0.0271103382s
+finished frame 439 at timestamp 46.51s with time cost: 0.0287103653s
+finished frame 440 at timestamp 46.61s with time cost: 0.0295553207s
+finished frame 441 at timestamp 46.71s with time cost: 0.0272624493s
+finished frame 442 at timestamp 46.82s with time cost: 0.0415410995s
+finished frame 443 at timestamp 46.93s with time cost: 0.0307540894s
+finished frame 444 at timestamp 47.04s with time cost: 0.02602911s
+finished frame 445 at timestamp 47.14s with time cost: 0.0285968781s
+finished frame 446 at timestamp 47.24s with time cost: 0.0284674168s
+finished frame 447 at timestamp 47.36s with time cost: 0.0324454308s
+finished frame 448 at timestamp 47.46s with time cost: 0.0326356888s
+finished frame 449 at timestamp 47.56s with time cost: 0.0248062611s
+finished frame 450 at timestamp 47.67s with time cost: 0.0275211334s
+finished frame 451 at timestamp 47.78s with time cost: 0.034976244s
+finished frame 452 at timestamp 47.89s with time cost: 0.041737318s
+finished frame 453 at timestamp 47.99s with time cost: 0.0797162056s
+finished frame 454 at timestamp 48.09s with time cost: 0.0292363167s
+finished frame 455 at timestamp 48.19s with time cost: 0.0312979221s
+finished frame 456 at timestamp 48.31s with time cost: 0.0300452709s
+finished frame 457 at timestamp 48.41s with time cost: 0.0282433033s
+finished frame 458 at timestamp 48.51s with time cost: 0.0271360874s
+finished frame 459 at timestamp 48.62s with time cost: 0.027078867s
+finished frame 460 at timestamp 48.73s with time cost: 0.0281429291s
+finished frame 461 at timestamp 48.84s with time cost: 0.0308802128s
+finished frame 462 at timestamp 48.94s with time cost: 0.0294971466s
+finished frame 463 at timestamp 49.04s with time cost: 0.0286467075s
+finished frame 464 at timestamp 49.16s with time cost: 0.0241780281s
+finished frame 465 at timestamp 49.26s with time cost: 0.0284063816s
+finished frame 466 at timestamp 49.36s with time cost: 0.0282292366s
+finished frame 467 at timestamp 49.47s with time cost: 0.0254590511s
+finished frame 468 at timestamp 49.57s with time cost: 0.0291867256s
+finished frame 469 at timestamp 49.69s with time cost: 0.0280852318s
+finished frame 470 at timestamp 49.79s with time cost: 0.0284690857s
+finished frame 471 at timestamp 49.89s with time cost: 0.0310733318s
+finished frame 472 at timestamp 49.99s with time cost: 0.0260255337s
+finished frame 473 at timestamp 50.11s with time cost: 0.0286211967s
+finished frame 474 at timestamp 50.21s with time cost: 0.0254700184s
+finished frame 475 at timestamp 50.31s with time cost: 0.0294859409s
+finished frame 476 at timestamp 50.42s with time cost: 0.0260736942s
+finished frame 477 at timestamp 50.53s with time cost: 0.0301141739s
+finished frame 478 at timestamp 50.64s with time cost: 0.0402934551s
+finished frame 479 at timestamp 50.74s with time cost: 0.1012887955s
+finished frame 480 at timestamp 50.84s with time cost: 0.0379855633s
+finished frame 481 at timestamp 50.96s with time cost: 0.0413386822s
+finished frame 482 at timestamp 51.06s with time cost: 0.0368144512s
+finished frame 483 at timestamp 51.16s with time cost: 0.0284562111s
+finished frame 484 at timestamp 51.27s with time cost: 0.0291743279s
+finished frame 485 at timestamp 51.38s with time cost: 0.0235660076s
+finished frame 486 at timestamp 51.49s with time cost: 0.0343697071s
+finished frame 487 at timestamp 51.59s with time cost: 0.0262668133s
+finished frame 488 at timestamp 51.69s with time cost: 0.0300512314s
+finished frame 489 at timestamp 51.81s with time cost: 0.0340282917s
+finished frame 490 at timestamp 51.91s with time cost: 0.0244421959s
+finished frame 491 at timestamp 52.01s with time cost: 0.0328814983s
+finished frame 492 at timestamp 52.12s with time cost: 0.0310521126s
+finished frame 493 at timestamp 52.23s with time cost: 0.0261456966s
+finished frame 494 at timestamp 52.34s with time cost: 0.0286104679s
+finished frame 495 at timestamp 52.44s with time cost: 0.0289633274s
+finished frame 496 at timestamp 52.54s with time cost: 0.0288615227s
+finished frame 497 at timestamp 52.66s with time cost: 0.0269837379s
+finished frame 498 at timestamp 52.76s with time cost: 0.0306622982s
+finished frame 499 at timestamp 52.86s with time cost: 0.0344109535s
+finished frame 500 at timestamp 52.97s with time cost: 0.0265786648s
+finished frame 501 at timestamp 53.07s with time cost: 0.0860095024s
+finished frame 502 at timestamp 53.18s with time cost: 0.034358263s
+finished frame 503 at timestamp 53.29s with time cost: 0.0272562504s
+finished frame 504 at timestamp 53.39s with time cost: 0.0273151398s
+finished frame 505 at timestamp 53.49s with time cost: 0.0219256878s
+finished frame 506 at timestamp 53.61s with time cost: 0.0271918774s
+finished frame 507 at timestamp 53.71s with time cost: 0.0332400799s
+finished frame 508 at timestamp 53.81s with time cost: 0.033916235s
+finished frame 509 at timestamp 53.92s with time cost: 0.0264263153s
+finished frame 510 at timestamp 54.03s with time cost: 0.026550293s
+finished frame 511 at timestamp 54.14s with time cost: 0.0267205238s
+finished frame 512 at timestamp 54.24s with time cost: 0.0296447277s
+finished frame 513 at timestamp 54.34s with time cost: 0.0276520252s
+finished frame 514 at timestamp 54.46s with time cost: 0.0266635418s
+finished frame 515 at timestamp 54.56s with time cost: 0.028110981s
+finished frame 516 at timestamp 54.66s with time cost: 0.0286309719s
+finished frame 517 at timestamp 54.77s with time cost: 0.0265295506s
+finished frame 518 at timestamp 54.88s with time cost: 0.0240924358s
+finished frame 519 at timestamp 54.99s with time cost: 0.0291764736s
+finished frame 520 at timestamp 55.09s with time cost: 0.0287473202s
+finished frame 521 at timestamp 55.19s with time cost: 0.0274496078s
+finished frame 522 at timestamp 55.31s with time cost: 0.0324072838s
+finished frame 523 at timestamp 55.41s with time cost: 0.0326764584s
+finished frame 524 at timestamp 55.51s with time cost: 0.0231947899s
+finished frame 525 at timestamp 55.62s with time cost: 0.0415651798s
+finished frame 526 at timestamp 55.73s with time cost: 0.0290615559s
+finished frame 527 at timestamp 55.84s with time cost: 0.0331082344s
+finished frame 528 at timestamp 55.94s with time cost: 0.0261528492s
+finished frame 529 at timestamp 56.04s with time cost: 0.0342066288s
+finished frame 530 at timestamp 56.16s with time cost: 0.0257687569s
+finished frame 531 at timestamp 56.26s with time cost: 0.0281276703s
+finished frame 532 at timestamp 56.36s with time cost: 0.0298132896s
+finished frame 533 at timestamp 56.47s with time cost: 0.0278460979s
+finished frame 534 at timestamp 56.58s with time cost: 0.0287983418s
+finished frame 535 at timestamp 56.69s with time cost: 0.0288908482s
+finished frame 536 at timestamp 56.79s with time cost: 0.0269656181s
+finished frame 537 at timestamp 56.89s with time cost: 0.0253014565s
+finished frame 538 at timestamp 57.01s with time cost: 0.0284149647s
+finished frame 539 at timestamp 57.11s with time cost: 0.0287659168s
+finished frame 540 at timestamp 57.21s with time cost: 0.0308132172s
+finished frame 541 at timestamp 57.32s with time cost: 0.0240926743s
+finished frame 542 at timestamp 57.43s with time cost: 0.0346839428s
+finished frame 543 at timestamp 57.54s with time cost: 0.0276069641s
+finished frame 544 at timestamp 57.64s with time cost: 0.0267643929s
+finished frame 545 at timestamp 57.74s with time cost: 0.0261867046s
+finished frame 546 at timestamp 57.86s with time cost: 0.0292129517s
+finished frame 547 at timestamp 57.96s with time cost: 0.0290408134s
+finished frame 548 at timestamp 58.06s with time cost: 0.0271782875s
+finished frame 549 at timestamp 58.17s with time cost: 0.0293056965s
+finished frame 550 at timestamp 58.28s with time cost: 0.0353391171s
+finished frame 551 at timestamp 58.39s with time cost: 0.0289001465s
+finished frame 552 at timestamp 58.49s with time cost: 0.0283277035s
+finished frame 553 at timestamp 58.59s with time cost: 0.0282654762s
+finished frame 554 at timestamp 58.71s with time cost: 0.0288949013s
+finished frame 555 at timestamp 58.81s with time cost: 0.0246560574s
+finished frame 556 at timestamp 58.91s with time cost: 0.0311765671s
+finished frame 557 at timestamp 59.02s with time cost: 0.0251591206s
+finished frame 558 at timestamp 59.13s with time cost: 0.0290203094s
+finished frame 559 at timestamp 59.24s with time cost: 0.0249364376s
+finished frame 560 at timestamp 59.34s with time cost: 0.0283913612s
+finished frame 561 at timestamp 59.44s with time cost: 0.0287601948s
+finished frame 562 at timestamp 59.56s with time cost: 0.0287230015s
+finished frame 563 at timestamp 59.71s with time cost: 0.025179863s
+finished frame 564 at timestamp 59.81s with time cost: 0.0281803608s
+finished frame 565 at timestamp 59.92s with time cost: 0.0250504017s
+finished frame 566 at timestamp 60.03s with time cost: 0.0514559746s
+finished frame 567 at timestamp 60.14s with time cost: 0.0416734219s
+finished frame 568 at timestamp 60.24s with time cost: 0.0302824974s
+finished frame 569 at timestamp 60.34s with time cost: 0.0448334217s
+finished frame 570 at timestamp 60.44s with time cost: 0.0270833969s
+finished frame 571 at timestamp 60.56s with time cost: 0.0312559605s
+finished frame 572 at timestamp 60.66s with time cost: 0.0645723343s
+finished frame 573 at timestamp 60.76s with time cost: 0.0494487286s
+finished frame 574 at timestamp 60.87s with time cost: 0.028955698s
+finished frame 575 at timestamp 60.98s with time cost: 0.0297324657s
+finished frame 576 at timestamp 61.09s with time cost: 0.0288100243s
+finished frame 577 at timestamp 61.19s with time cost: 0.0288152695s
+finished frame 578 at timestamp 61.29s with time cost: 0.0418701172s
+finished frame 579 at timestamp 61.39s with time cost: 0.0367074013s
+finished frame 580 at timestamp 61.51s with time cost: 0.0282213688s
+finished frame 581 at timestamp 61.61s with time cost: 0.0267813206s
+finished frame 582 at timestamp 61.71s with time cost: 0.0302131176s
+finished frame 583 at timestamp 61.82s with time cost: 0.0270962715s
+finished frame 584 at timestamp 61.92s with time cost: 0.0280022621s
+finished frame 585 at timestamp 62.03s with time cost: 0.0297868252s
+finished frame 586 at timestamp 62.14s with time cost: 0.0251526833s
+finished frame 587 at timestamp 62.24s with time cost: 0.0303580761s
+finished frame 588 at timestamp 62.34s with time cost: 0.0243844986s
+finished frame 589 at timestamp 62.46s with time cost: 0.0267531872s
+finished frame 590 at timestamp 62.56s with time cost: 0.0258827209s
+finished frame 591 at timestamp 62.66s with time cost: 0.0276708603s
+finished frame 592 at timestamp 62.77s with time cost: 0.0253732204s
+finished frame 593 at timestamp 62.88s with time cost: 0.0276358128s
+finished frame 594 at timestamp 62.99s with time cost: 0.0262701511s
+finished frame 595 at timestamp 63.09s with time cost: 0.0296723843s
+finished frame 596 at timestamp 63.19s with time cost: 0.028793335s
+finished frame 597 at timestamp 63.31s with time cost: 0.0311408043s
+finished frame 598 at timestamp 63.41s with time cost: 0.0422389507s
+finished frame 599 at timestamp 63.51s with time cost: 0.0788621902s
+finished frame 600 at timestamp 63.62s with time cost: 0.0271942616s
+finished frame 601 at timestamp 63.72s with time cost: 0.0315358639s
+finished frame 602 at timestamp 63.83s with time cost: 0.0308785439s
+finished frame 603 at timestamp 63.94s with time cost: 0.0314977169s
+finished frame 604 at timestamp 64.04s with time cost: 0.0308279991s
+finished frame 605 at timestamp 64.14s with time cost: 0.02684021s
+finished frame 606 at timestamp 64.26s with time cost: 0.0292139053s
+finished frame 607 at timestamp 64.36s with time cost: 0.0315976143s
+finished frame 608 at timestamp 64.46s with time cost: 0.0269474983s
+finished frame 609 at timestamp 64.57s with time cost: 0.0264589787s
+finished frame 610 at timestamp 64.68s with time cost: 0.027929306s
+finished frame 611 at timestamp 64.79s with time cost: 0.0286858082s
+finished frame 612 at timestamp 64.89s with time cost: 0.0256142616s
+finished frame 613 at timestamp 64.99s with time cost: 0.043700695s
+finished frame 614 at timestamp 65.11s with time cost: 0.0482254028s
+finished frame 615 at timestamp 65.21s with time cost: 0.0269296169s
+finished frame 616 at timestamp 65.31s with time cost: 0.0473568439s
+finished frame 617 at timestamp 65.42s with time cost: 0.0472991467s
+finished frame 618 at timestamp 65.52s with time cost: 0.0386357307s
+finished frame 619 at timestamp 65.63s with time cost: 0.1127889156s
+finished frame 620 at timestamp 65.74s with time cost: 0.0599496365s
+finished frame 621 at timestamp 65.84s with time cost: 0.028886795s
+finished frame 622 at timestamp 65.94s with time cost: 0.0282571316s
+finished frame 623 at timestamp 66.04s with time cost: 0.0220429897s
+finished frame 624 at timestamp 66.16s with time cost: 0.0306055546s
+finished frame 625 at timestamp 66.26s with time cost: 0.0301806927s
+finished frame 626 at timestamp 66.36s with time cost: 0.0304400921s
+finished frame 627 at timestamp 66.47s with time cost: 0.0271847248s
+finished frame 628 at timestamp 66.58s with time cost: 0.033397913s
+finished frame 629 at timestamp 66.69s with time cost: 0.0278949738s
+finished frame 630 at timestamp 66.79s with time cost: 0.0266916752s
+finished frame 631 at timestamp 66.89s with time cost: 0.0336472988s
+finished frame 632 at timestamp 66.99s with time cost: 0.0260837078s
+finished frame 633 at timestamp 67.11s with time cost: 0.0276823044s
+finished frame 634 at timestamp 67.21s with time cost: 0.0271677971s
+finished frame 635 at timestamp 67.31s with time cost: 0.0320913792s
+finished frame 636 at timestamp 67.42s with time cost: 0.0306749344s
+finished frame 637 at timestamp 67.52s with time cost: 0.0236411095s
+finished frame 638 at timestamp 67.63s with time cost: 0.0288336277s
+finished frame 639 at timestamp 67.74s with time cost: 0.0225296021s
+finished frame 640 at timestamp 67.84s with time cost: 0.0282509327s
+finished frame 641 at timestamp 67.94s with time cost: 0.0296607018s
+finished frame 642 at timestamp 68.06s with time cost: 0.0272536278s
+finished frame 643 at timestamp 68.16s with time cost: 0.0386779308s
+finished frame 644 at timestamp 68.26s with time cost: 0.0956735611s
+finished frame 645 at timestamp 68.37s with time cost: 0.0298545361s
+finished frame 646 at timestamp 68.48s with time cost: 0.0302400589s
+finished frame 647 at timestamp 68.59s with time cost: 0.0267567635s
+finished frame 648 at timestamp 68.69s with time cost: 0.0312261581s
+finished frame 649 at timestamp 68.79s with time cost: 0.0286476612s
+finished frame 650 at timestamp 68.89s with time cost: 0.0351700783s
+finished frame 651 at timestamp 69.01s with time cost: 0.0400073528s
+finished frame 652 at timestamp 69.11s with time cost: 0.0265612602s
+finished frame 653 at timestamp 69.21s with time cost: 0.0323753357s
+finished frame 654 at timestamp 69.32s with time cost: 0.031696558s
+finished frame 655 at timestamp 69.43s with time cost: 0.0302877426s
+finished frame 656 at timestamp 69.54s with time cost: 0.0318579674s
+finished frame 657 at timestamp 69.64s with time cost: 0.0365762711s
+finished frame 658 at timestamp 69.74s with time cost: 0.0326082706s
+finished frame 659 at timestamp 69.86s with time cost: 0.0255944729s
+finished frame 660 at timestamp 69.96s with time cost: 0.0279228687s
+finished frame 661 at timestamp 70.06s with time cost: 0.0261468887s
+finished frame 662 at timestamp 70.17s with time cost: 0.0365440845s
+finished frame 663 at timestamp 70.28s with time cost: 0.0277850628s
+finished frame 664 at timestamp 70.39s with time cost: 0.0279068947s
+finished frame 665 at timestamp 70.49s with time cost: 0.0281903744s
+finished frame 666 at timestamp 70.59s with time cost: 0.1016538143s
+finished frame 667 at timestamp 70.71s with time cost: 0.1014771461s
+finished frame 668 at timestamp 70.81s with time cost: 0.0534691811s
+finished frame 669 at timestamp 70.91s with time cost: 0.0313665867s
+finished frame 670 at timestamp 71.02s with time cost: 0.0301618576s
+finished frame 671 at timestamp 71.13s with time cost: 0.0361914635s
+finished frame 672 at timestamp 71.24s with time cost: 0.0275101662s
+finished frame 673 at timestamp 71.34s with time cost: 0.0358116627s
+finished frame 674 at timestamp 71.44s with time cost: 0.0284039974s
+finished frame 675 at timestamp 71.56s with time cost: 0.0319378376s
+finished frame 676 at timestamp 71.66s with time cost: 0.0336384773s
+finished frame 677 at timestamp 71.76s with time cost: 0.0295300484s
+finished frame 678 at timestamp 71.87s with time cost: 0.0289824009s
+finished frame 679 at timestamp 71.97s with time cost: 0.0333580971s
+finished frame 680 at timestamp 72.09s with time cost: 0.0493404865s
+finished frame 681 at timestamp 72.19s with time cost: 0.0724275112s
+finished frame 682 at timestamp 72.29s with time cost: 0.0513000488s
+finished frame 683 at timestamp 72.39s with time cost: 0.0706298351s
+finished frame 684 at timestamp 72.51s with time cost: 0.057687521s
+finished frame 685 at timestamp 72.61s with time cost: 0.0275838375s
+finished frame 686 at timestamp 72.72s with time cost: 0.0365476608s
+finished frame 687 at timestamp 72.82s with time cost: 0.0311861038s
+finished frame 688 at timestamp 72.94s with time cost: 0.0306749344s
+finished frame 689 at timestamp 73.04s with time cost: 0.0326535702s
+finished frame 690 at timestamp 73.14s with time cost: 0.029081583s
+finished frame 691 at timestamp 73.24s with time cost: 0.0316140652s
+finished frame 692 at timestamp 73.36s with time cost: 0.0269596577s
+finished frame 693 at timestamp 73.46s with time cost: 0.0274567604s
+finished frame 694 at timestamp 73.56s with time cost: 0.0313768387s
+finished frame 695 at timestamp 73.67s with time cost: 0.0231070518s
+finished frame 696 at timestamp 73.78s with time cost: 0.0240900517s
+finished frame 697 at timestamp 73.89s with time cost: 0.0274393559s
+finished frame 698 at timestamp 73.99s with time cost: 0.028002739s
+finished frame 699 at timestamp 74.09s with time cost: 0.0282974243s
+finished frame 700 at timestamp 74.21s with time cost: 0.0257394314s
+finished frame 701 at timestamp 74.31s with time cost: 0.0897698402s
+finished frame 702 at timestamp 74.41s with time cost: 0.0343341827s
+finished frame 703 at timestamp 74.52s with time cost: 0.0317828655s
+finished frame 704 at timestamp 74.63s with time cost: 0.0291185379s
+finished frame 705 at timestamp 74.74s with time cost: 0.0282390118s
+finished frame 706 at timestamp 74.84s with time cost: 0.0321948528s
+finished frame 707 at timestamp 74.94s with time cost: 0.0348343849s
+finished frame 708 at timestamp 75.06s with time cost: 0.0257599354s
+finished frame 709 at timestamp 75.16s with time cost: 0.0286176205s
+finished frame 710 at timestamp 75.26s with time cost: 0.0286285877s
+finished frame 711 at timestamp 75.37s with time cost: 0.0301599503s
+finished frame 712 at timestamp 75.48s with time cost: 0.0300428867s
+finished frame 713 at timestamp 75.59s with time cost: 0.0272071362s
+finished frame 714 at timestamp 75.69s with time cost: 0.0281305313s
+finished frame 715 at timestamp 75.79s with time cost: 0.032592535s
+finished frame 716 at timestamp 75.89s with time cost: 0.0281414986s
+finished frame 717 at timestamp 76.01s with time cost: 0.0260546207s
+finished frame 718 at timestamp 76.11s with time cost: 0.0298857689s
+finished frame 719 at timestamp 76.21s with time cost: 0.0318319798s
+finished frame 720 at timestamp 76.32s with time cost: 0.0256664753s
+finished frame 721 at timestamp 76.43s with time cost: 0.0302870274s
+finished frame 722 at timestamp 76.54s with time cost: 0.0296077728s
+finished frame 723 at timestamp 76.64s with time cost: 0.0287928581s
+finished frame 724 at timestamp 76.74s with time cost: 0.0293874741s
+finished frame 725 at timestamp 76.84s with time cost: 0.0287575722s
+finished frame 726 at timestamp 76.96s with time cost: 0.0334303379s
+finished frame 727 at timestamp 77.06s with time cost: 0.0280110836s
+finished frame 728 at timestamp 77.17s with time cost: 0.0279204845s
+finished frame 729 at timestamp 77.27s with time cost: 0.0243873596s
+finished frame 730 at timestamp 77.38s with time cost: 0.032384634s
+finished frame 731 at timestamp 77.49s with time cost: 0.0284190178s
+finished frame 732 at timestamp 77.59s with time cost: 0.0260398388s
+finished frame 733 at timestamp 77.69s with time cost: 0.0304763317s
+finished frame 734 at timestamp 77.81s with time cost: 0.0278363228s
+finished frame 735 at timestamp 77.91s with time cost: 0.0283446312s
+finished frame 736 at timestamp 78.01s with time cost: 0.0330221653s
+finished frame 737 at timestamp 78.12s with time cost: 0.0265188217s
+finished frame 738 at timestamp 78.23s with time cost: 0.0284793377s
+finished frame 739 at timestamp 78.34s with time cost: 0.0279462337s
+finished frame 740 at timestamp 78.44s with time cost: 0.0287773609s
+finished frame 741 at timestamp 78.54s with time cost: 0.0289950371s
+finished frame 742 at timestamp 78.64s with time cost: 0.0356822014s
+finished frame 743 at timestamp 78.76s with time cost: 0.0322313309s
+finished frame 744 at timestamp 78.86s with time cost: 0.0276765823s
+finished frame 745 at timestamp 78.96s with time cost: 0.0294930935s
+finished frame 746 at timestamp 79.07s with time cost: 0.0267176628s
+finished frame 747 at timestamp 79.18s with time cost: 0.0312607288s
+finished frame 748 at timestamp 79.29s with time cost: 0.0353484154s
+finished frame 749 at timestamp 79.39s with time cost: 0.1174864769s
+finished frame 750 at timestamp 79.49s with time cost: 0.028523922s
+finished frame 751 at timestamp 79.59s with time cost: 0.0299873352s
+finished frame 752 at timestamp 79.71s with time cost: 0.0309205055s
+finished frame 753 at timestamp 79.81s with time cost: 0.0324027538s
+finished frame 754 at timestamp 79.91s with time cost: 0.0258185863s
+finished frame 755 at timestamp 80.02s with time cost: 0.0305719376s
+finished frame 756 at timestamp 80.13s with time cost: 0.0297782421s
+finished frame 757 at timestamp 80.24s with time cost: 0.0439279079s
+finished frame 758 at timestamp 80.34s with time cost: 0.0306270123s
+finished frame 759 at timestamp 80.44s with time cost: 0.0324027538s
+finished frame 760 at timestamp 80.56s with time cost: 0.0306861401s
+finished frame 761 at timestamp 80.66s with time cost: 0.0484836102s
+finished frame 762 at timestamp 80.76s with time cost: 0.0273323059s
+finished frame 763 at timestamp 80.87s with time cost: 0.0488345623s
+finished frame 764 at timestamp 80.98s with time cost: 0.0256056786s
+finished frame 765 at timestamp 81.09s with time cost: 0.0302419662s
+finished frame 766 at timestamp 81.19s with time cost: 0.0308084488s
+finished frame 767 at timestamp 81.29s with time cost: 0.0321311951s
+finished frame 768 at timestamp 81.39s with time cost: 0.0318636894s
+finished frame 769 at timestamp 81.51s with time cost: 0.0321185589s
+finished frame 770 at timestamp 81.61s with time cost: 0.0445101261s
+finished frame 771 at timestamp 81.71s with time cost: 0.0627393723s
+finished frame 772 at timestamp 81.82s with time cost: 0.0321516991s
+finished frame 773 at timestamp 81.93s with time cost: 0.0300636292s
+finished frame 774 at timestamp 82.04s with time cost: 0.0294783115s
+finished frame 775 at timestamp 82.14s with time cost: 0.0294446945s
+finished frame 776 at timestamp 82.24s with time cost: 0.0337505341s
+finished frame 777 at timestamp 82.36s with time cost: 0.0327279568s
+finished frame 778 at timestamp 82.46s with time cost: 0.0317323208s
+finished frame 779 at timestamp 82.56s with time cost: 0.0291612148s
+finished frame 780 at timestamp 82.67s with time cost: 0.0261318684s
+finished frame 781 at timestamp 82.77s with time cost: 0.0309259892s
+finished frame 782 at timestamp 82.88s with time cost: 0.0286517143s
+finished frame 783 at timestamp 82.99s with time cost: 0.0285642147s
+finished frame 784 at timestamp 83.09s with time cost: 0.0456826687s
+finished frame 785 at timestamp 83.19s with time cost: 0.0324020386s
+finished frame 786 at timestamp 83.31s with time cost: 0.0293004513s
+finished frame 787 at timestamp 83.41s with time cost: 0.0310304165s
+finished frame 788 at timestamp 83.51s with time cost: 0.029001236s
+finished frame 789 at timestamp 83.62s with time cost: 0.045561552s
+finished frame 790 at timestamp 83.73s with time cost: 0.0757460594s
+finished frame 791 at timestamp 83.84s with time cost: 0.0350744724s
+finished frame 792 at timestamp 83.94s with time cost: 0.0282607079s
+finished frame 793 at timestamp 84.04s with time cost: 0.0340135098s
+finished frame 794 at timestamp 84.16s with time cost: 0.0369155407s
+finished frame 795 at timestamp 84.26s with time cost: 0.0340986252s
+finished frame 796 at timestamp 84.36s with time cost: 0.0292882919s
+finished frame 797 at timestamp 84.47s with time cost: 0.0310707092s
+finished frame 798 at timestamp 84.57s with time cost: 0.0287501812s
+finished frame 799 at timestamp 84.68s with time cost: 0.0312883854s
+finished frame 800 at timestamp 84.79s with time cost: 0.0283629894s
+finished frame 801 at timestamp 84.89s with time cost: 0.0300514698s
+finished frame 802 at timestamp 84.99s with time cost: 0.0291457176s
+finished frame 803 at timestamp 85.11s with time cost: 0.0253498554s
+finished frame 804 at timestamp 85.21s with time cost: 0.0327124596s
+finished frame 805 at timestamp 85.31s with time cost: 0.0289986134s
+finished frame 806 at timestamp 85.42s with time cost: 0.026065588s
+finished frame 807 at timestamp 85.52s with time cost: 0.0272448063s
+finished frame 808 at timestamp 85.63s with time cost: 0.027878046s
+finished frame 809 at timestamp 85.74s with time cost: 0.0254971981s
+finished frame 810 at timestamp 85.84s with time cost: 0.0296206474s
+finished frame 811 at timestamp 85.94s with time cost: 0.0327792168s
+finished frame 812 at timestamp 86.06s with time cost: 0.0382995605s
+finished frame 813 at timestamp 86.16s with time cost: 0.0989561081s
+finished frame 814 at timestamp 86.26s with time cost: 0.0271382332s
+finished frame 815 at timestamp 86.37s with time cost: 0.0254127979s
+finished frame 816 at timestamp 86.48s with time cost: 0.0302331448s
+finished frame 817 at timestamp 86.59s with time cost: 0.0339789391s
+finished frame 818 at timestamp 86.69s with time cost: 0.0301423073s
+finished frame 819 at timestamp 86.79s with time cost: 0.0264613628s
+finished frame 820 at timestamp 86.89s with time cost: 0.0315876007s
+finished frame 821 at timestamp 87.01s with time cost: 0.0335121155s
+finished frame 822 at timestamp 87.11s with time cost: 0.032781601s
+finished frame 823 at timestamp 87.21s with time cost: 0.0271968842s
+finished frame 824 at timestamp 87.32s with time cost: 0.0401883125s
+finished frame 825 at timestamp 87.43s with time cost: 0.0320217609s
+finished frame 826 at timestamp 87.54s with time cost: 0.086404562s
+finished frame 827 at timestamp 87.64s with time cost: 0.0921466351s
+finished frame 828 at timestamp 87.74s with time cost: 0.0292339325s
+finished frame 829 at timestamp 87.84s with time cost: 0.0354528427s
+finished frame 830 at timestamp 87.96s with time cost: 0.0296018124s
+finished frame 831 at timestamp 88.06s with time cost: 0.0351462364s
+finished frame 832 at timestamp 88.16s with time cost: 0.0314705372s
+finished frame 833 at timestamp 88.27s with time cost: 0.0394530296s
+finished frame 834 at timestamp 88.38s with time cost: 0.0903193951s
+finished frame 835 at timestamp 88.49s with time cost: 0.0389635563s
+finished frame 836 at timestamp 88.59s with time cost: 0.0790975094s
+finished frame 837 at timestamp 88.69s with time cost: 0.034265995s
+finished frame 838 at timestamp 88.81s with time cost: 0.0452063084s
+finished frame 839 at timestamp 88.91s with time cost: 0.0284407139s
+finished frame 840 at timestamp 89.01s with time cost: 0.0340383053s
+finished frame 841 at timestamp 89.12s with time cost: 0.0332331657s
+finished frame 842 at timestamp 89.22s with time cost: 0.0308640003s
+finished frame 843 at timestamp 89.33s with time cost: 0.0338442326s
+finished frame 844 at timestamp 89.44s with time cost: 0.0264778137s
+finished frame 845 at timestamp 89.54s with time cost: 0.0335304737s
+finished frame 846 at timestamp 89.64s with time cost: 0.0282747746s
+finished frame 847 at timestamp 89.76s with time cost: 0.0290956497s
+finished frame 848 at timestamp 89.86s with time cost: 0.037586689s
+finished frame 849 at timestamp 89.96s with time cost: 0.0342330933s
+finished frame 850 at timestamp 90.07s with time cost: 0.0373101234s
+finished frame 851 at timestamp 90.18s with time cost: 0.0322961807s
+finished frame 852 at timestamp 90.29s with time cost: 0.1158983707s
+finished frame 853 at timestamp 90.39s with time cost: 0.0312395096s
+finished frame 854 at timestamp 90.49s with time cost: 0.0338346958s
+finished frame 855 at timestamp 90.61s with time cost: 0.0312991142s
+finished frame 856 at timestamp 90.71s with time cost: 0.0288345814s
+finished frame 857 at timestamp 90.81s with time cost: 0.0347616673s
+finished frame 858 at timestamp 90.91s with time cost: 0.033216238s
+finished frame 859 at timestamp 91.02s with time cost: 0.0269947052s
+finished frame 860 at timestamp 91.13s with time cost: 0.0297343731s
+finished frame 861 at timestamp 91.24s with time cost: 0.0299267769s
+finished frame 862 at timestamp 91.34s with time cost: 0.0291452408s
+finished frame 863 at timestamp 91.44s with time cost: 0.0309848785s
+finished frame 864 at timestamp 91.56s with time cost: 0.0284054279s
+finished frame 865 at timestamp 91.66s with time cost: 0.0304613113s
+finished frame 866 at timestamp 91.76s with time cost: 0.0309476852s
+finished frame 867 at timestamp 91.87s with time cost: 0.0298960209s
+finished frame 868 at timestamp 91.98s with time cost: 0.0308897495s
+finished frame 869 at timestamp 92.09s with time cost: 0.0289530754s
+finished frame 870 at timestamp 92.19s with time cost: 0.030449152s
+finished frame 871 at timestamp 92.29s with time cost: 0.0309224129s
+finished frame 872 at timestamp 92.39s with time cost: 0.0308713913s
+finished frame 873 at timestamp 92.51s with time cost: 0.0288136005s
+finished frame 874 at timestamp 92.61s with time cost: 0.0286037922s
+finished frame 875 at timestamp 92.71s with time cost: 0.0404648781s
+finished frame 876 at timestamp 92.82s with time cost: 0.0323312283s
+finished frame 877 at timestamp 92.93s with time cost: 0.0316023827s
+finished frame 878 at timestamp 93.03s with time cost: 0.0289087296s
+finished frame 879 at timestamp 93.14s with time cost: 0.0292057991s
+finished frame 880 at timestamp 93.24s with time cost: 0.0303585529s
+finished frame 881 at timestamp 93.34s with time cost: 0.0266160965s
+finished frame 882 at timestamp 93.46s with time cost: 0.0303537846s
+finished frame 883 at timestamp 93.56s with time cost: 0.0305182934s
+finished frame 884 at timestamp 93.66s with time cost: 0.0310111046s
+finished frame 885 at timestamp 93.77s with time cost: 0.0293793678s
+finished frame 886 at timestamp 93.88s with time cost: 0.0263838768s
+finished frame 887 at timestamp 93.99s with time cost: 0.0336587429s
+finished frame 888 at timestamp 94.09s with time cost: 0.0353078842s
+finished frame 889 at timestamp 94.19s with time cost: 0.0299370289s
+finished frame 890 at timestamp 94.31s with time cost: 0.0256304741s
+finished frame 891 at timestamp 94.41s with time cost: 0.0252871513s
+finished frame 892 at timestamp 94.51s with time cost: 0.0317695141s
+finished frame 893 at timestamp 94.62s with time cost: 0.027885437s
+finished frame 894 at timestamp 94.73s with time cost: 0.0305247307s
+finished frame 895 at timestamp 94.84s with time cost: 0.028503418s
+finished frame 896 at timestamp 94.94s with time cost: 0.0287253857s
+finished frame 897 at timestamp 95.04s with time cost: 0.0266685486s
+finished frame 898 at timestamp 95.14s with time cost: 0.0359115601s
+finished frame 899 at timestamp 95.26s with time cost: 0.1123189926s
+finished frame 900 at timestamp 95.36s with time cost: 0.0271880627s
+finished frame 901 at timestamp 95.46s with time cost: 0.0380349159s
+finished frame 902 at timestamp 95.57s with time cost: 0.029296875s
+finished frame 903 at timestamp 95.68s with time cost: 0.0367083549s
+finished frame 904 at timestamp 95.79s with time cost: 0.0277233124s
+finished frame 905 at timestamp 95.89s with time cost: 0.0319848061s
+finished frame 906 at timestamp 95.99s with time cost: 0.0339927673s
+finished frame 907 at timestamp 96.11s with time cost: 0.0314686298s
+finished frame 908 at timestamp 96.21s with time cost: 0.0296812057s
+finished frame 909 at timestamp 96.31s with time cost: 0.0237448215s
+finished frame 910 at timestamp 96.42s with time cost: 0.0298683643s
+finished frame 911 at timestamp 96.53s with time cost: 0.0331015587s
+finished frame 912 at timestamp 96.63s with time cost: 0.0278625488s
+finished frame 913 at timestamp 96.74s with time cost: 0.0345873833s
+finished frame 914 at timestamp 96.84s with time cost: 0.0326807499s
+finished frame 915 at timestamp 96.94s with time cost: 0.027564764s
+finished frame 916 at timestamp 97.06s with time cost: 0.0278475285s
+finished frame 917 at timestamp 97.16s with time cost: 0.0275528431s
+finished frame 918 at timestamp 97.26s with time cost: 0.031870842s
+finished frame 919 at timestamp 97.37s with time cost: 0.0320813656s
+finished frame 920 at timestamp 97.48s with time cost: 0.0251815319s
+finished frame 921 at timestamp 97.59s with time cost: 0.0286846161s
+finished frame 922 at timestamp 97.69s with time cost: 0.0322680473s
+finished frame 923 at timestamp 97.79s with time cost: 0.033094883s
+finished frame 924 at timestamp 97.91s with time cost: 0.0371310711s
+finished frame 925 at timestamp 98.01s with time cost: 0.0305576324s
+finished frame 926 at timestamp 98.11s with time cost: 0.0390429497s
+finished frame 927 at timestamp 98.21s with time cost: 0.0278038979s
+finished frame 928 at timestamp 98.32s with time cost: 0.0267448425s
+finished frame 929 at timestamp 98.43s with time cost: 0.0222766399s
+finished frame 930 at timestamp 98.54s with time cost: 0.0302987099s
+finished frame 931 at timestamp 98.64s with time cost: 0.0290923119s
+finished frame 932 at timestamp 98.74s with time cost: 0.0286121368s
+finished frame 933 at timestamp 98.86s with time cost: 0.0258049965s
+finished frame 934 at timestamp 98.96s with time cost: 0.0308032036s
+finished frame 935 at timestamp 99.06s with time cost: 0.025537014s
+finished frame 936 at timestamp 99.17s with time cost: 0.0317692757s
+finished frame 937 at timestamp 99.28s with time cost: 0.0248565674s
+finished frame 938 at timestamp 99.38s with time cost: 0.031006813s
+finished frame 939 at timestamp 99.49s with time cost: 0.0278475285s
+finished frame 940 at timestamp 99.59s with time cost: 0.028151989s
+finished frame 941 at timestamp 99.69s with time cost: 0.0330250263s
+finished frame 942 at timestamp 99.81s with time cost: 0.0252959728s
+finished frame 943 at timestamp 99.91s with time cost: 0.0254399776s
+finished frame 944 at timestamp 100.01s with time cost: 0.0317413807s
+finished frame 945 at timestamp 100.12s with time cost: 0.0837829113s
+finished frame 946 at timestamp 100.23s with time cost: 0.0259811878s
+finished frame 947 at timestamp 100.34s with time cost: 0.0265331268s
+finished frame 948 at timestamp 100.44s with time cost: 0.0310602188s
+finished frame 949 at timestamp 100.54s with time cost: 0.027264595s
+finished frame 950 at timestamp 100.66s with time cost: 0.0294039249s
+finished frame 951 at timestamp 100.76s with time cost: 0.0347688198s
+finished frame 952 at timestamp 100.86s with time cost: 0.0275011063s
+finished frame 953 at timestamp 100.96s with time cost: 0.0283932686s
+finished frame 954 at timestamp 101.07s with time cost: 0.0272636414s
+finished frame 955 at timestamp 101.18s with time cost: 0.0305519104s
+finished frame 956 at timestamp 101.29s with time cost: 0.0281937122s
+finished frame 957 at timestamp 101.39s with time cost: 0.026863575s
+finished frame 958 at timestamp 101.49s with time cost: 0.0270307064s
+finished frame 959 at timestamp 101.61s with time cost: 0.0243301392s
+finished frame 960 at timestamp 101.71s with time cost: 0.0256872177s
+finished frame 961 at timestamp 101.81s with time cost: 0.030551672s
+finished frame 962 at timestamp 101.91s with time cost: 0.0265493393s
+finished frame 963 at timestamp 102.02s with time cost: 0.0288410187s
+finished frame 964 at timestamp 102.13s with time cost: 0.0259838104s
+finished frame 965 at timestamp 102.24s with time cost: 0.0251762867s
+finished frame 966 at timestamp 102.34s with time cost: 0.039978981s
+finished frame 967 at timestamp 102.44s with time cost: 0.0319440365s
+finished frame 968 at timestamp 102.56s with time cost: 0.030901432s
+finished frame 969 at timestamp 102.66s with time cost: 0.0335776806s
+finished frame 970 at timestamp 102.76s with time cost: 0.1114251614s
+finished frame 971 at timestamp 102.86s with time cost: 0.0350008011s
+finished frame 972 at timestamp 102.97s with time cost: 0.0285480022s
+finished frame 973 at timestamp 103.08s with time cost: 0.0234894753s
+finished frame 974 at timestamp 103.19s with time cost: 0.0304493904s
+finished frame 975 at timestamp 103.29s with time cost: 0.0266830921s
+finished frame 976 at timestamp 103.39s with time cost: 0.0277149677s
+finished frame 977 at timestamp 103.51s with time cost: 0.0260362625s
+finished frame 978 at timestamp 103.61s with time cost: 0.0443434715s
+finished frame 979 at timestamp 103.71s with time cost: 0.0607225895s
+finished frame 980 at timestamp 103.81s with time cost: 2.55108e-05s
+finished frame 981 at timestamp 103.92s with time cost: 0.0257043839s
+finished frame 982 at timestamp 104.03s with time cost: 1.88351e-05s
+finished frame 983 at timestamp 104.14s with time cost: 0.0250048637s
+finished frame 984 at timestamp 104.24s with time cost: 3.69549e-05s
+finished frame 985 at timestamp 104.34s with time cost: 0.0002548695s
+finished frame 986 at timestamp 104.46s with time cost: 0.058627367s
+finished frame 987 at timestamp 104.56s with time cost: 0.0605120659s
+finished frame 988 at timestamp 104.66s with time cost: 0.0486180782s
+finished frame 989 at timestamp 104.76s with time cost: 0.0243327618s
+finished frame 990 at timestamp 104.87s with time cost: 0.0283875465s
+finished frame 991 at timestamp 104.98s with time cost: 0.0268394947s
+finished frame 992 at timestamp 105.09s with time cost: 0.0322494507s
+finished frame 993 at timestamp 105.19s with time cost: 0.0530745983s
+finished frame 994 at timestamp 105.29s with time cost: 0.0453565121s
+finished frame 995 at timestamp 105.41s with time cost: 0.0262196064s
+finished frame 996 at timestamp 105.51s with time cost: 0.029599905s
+finished frame 997 at timestamp 105.61s with time cost: 0.0242004395s
+finished frame 998 at timestamp 105.71s with time cost: 0.0274794102s
+finished frame 999 at timestamp 105.82s with time cost: 0.0277760029s
+finished frame 1000 at timestamp 105.93s with time cost: 0.0223345757s
+finished frame 1001 at timestamp 106.04s with time cost: 0.0291707516s
+finished frame 1002 at timestamp 106.14s with time cost: 0.0253818035s
+finished frame 1003 at timestamp 106.24s with time cost: 0.0301544666s
+finished frame 1004 at timestamp 106.36s with time cost: 0.0247251987s
+finished frame 1005 at timestamp 106.46s with time cost: 0.0254769325s
+finished frame 1006 at timestamp 106.56s with time cost: 0.0268266201s
+finished frame 1007 at timestamp 106.67s with time cost: 0.0744869709s
+finished frame 1008 at timestamp 106.78s with time cost: 0.030359745s
+finished frame 1009 at timestamp 106.88s with time cost: 0.0298886299s
+finished frame 1010 at timestamp 106.99s with time cost: 0.026437521s
+finished frame 1011 at timestamp 107.09s with time cost: 0.029168129s
+finished frame 1012 at timestamp 107.19s with time cost: 0.028178215s
+finished frame 1013 at timestamp 107.31s with time cost: 0.0270760059s
+finished frame 1014 at timestamp 107.41s with time cost: 0.028349638s
+finished frame 1015 at timestamp 107.51s with time cost: 0.026706934s
+finished frame 1016 at timestamp 107.62s with time cost: 0.0286388397s
+finished frame 1017 at timestamp 107.73s with time cost: 0.0880224705s
+finished frame 1018 at timestamp 107.83s with time cost: 0.0308954716s
+finished frame 1019 at timestamp 107.94s with time cost: 0.027667284s
+finished frame 1020 at timestamp 108.04s with time cost: 0.0277822018s
+finished frame 1021 at timestamp 108.14s with time cost: 0.0375015736s
+finished frame 1022 at timestamp 108.26s with time cost: 0.0283231735s
+finished frame 1023 at timestamp 108.36s with time cost: 0.0262372494s
+finished frame 1024 at timestamp 108.46s with time cost: 0.0294370651s
+finished frame 1025 at timestamp 108.57s with time cost: 0.0320944786s
+finished frame 1026 at timestamp 108.68s with time cost: 0.0293080807s
+finished frame 1027 at timestamp 108.79s with time cost: 0.0296549797s
+finished frame 1028 at timestamp 108.89s with time cost: 0.030352354s
+finished frame 1029 at timestamp 108.99s with time cost: 0.0310015678s
+finished frame 1030 at timestamp 109.11s with time cost: 0.0289828777s
+finished frame 1031 at timestamp 109.21s with time cost: 0.0310282707s
+finished frame 1032 at timestamp 109.31s with time cost: 0.0288338661s
+finished frame 1033 at timestamp 109.42s with time cost: 0.0295164585s
+finished frame 1034 at timestamp 109.53s with time cost: 0.0321588516s
+finished frame 1035 at timestamp 109.64s with time cost: 0.0273373127s
+finished frame 1036 at timestamp 109.74s with time cost: 0.0486166477s
+finished frame 1037 at timestamp 109.84s with time cost: 0.0260632038s
+finished frame 1038 at timestamp 109.96s with time cost: 0.0321884155s
+finished frame 1039 at timestamp 110.06s with time cost: 0.0277798176s
+finished frame 1040 at timestamp 110.16s with time cost: 0.0292801857s
+finished frame 1041 at timestamp 110.27s with time cost: 0.0318222046s
+finished frame 1042 at timestamp 110.38s with time cost: 0.0269889832s
+finished frame 1043 at timestamp 110.49s with time cost: 0.0276384354s
+finished frame 1044 at timestamp 110.59s with time cost: 0.0235211849s
+finished frame 1045 at timestamp 110.69s with time cost: 0.0276343822s
+finished frame 1046 at timestamp 110.81s with time cost: 0.0253238678s
+finished frame 1047 at timestamp 110.91s with time cost: 0.0253551006s
+finished frame 1048 at timestamp 111.01s with time cost: 0.0276567936s
+finished frame 1049 at timestamp 111.12s with time cost: 0.0280637741s
+finished frame 1050 at timestamp 111.23s with time cost: 0.0303094387s
+finished frame 1051 at timestamp 111.34s with time cost: 0.0285990238s
+finished frame 1052 at timestamp 111.44s with time cost: 0.0252821445s
+finished frame 1053 at timestamp 111.54s with time cost: 0.0296781063s
+finished frame 1054 at timestamp 111.66s with time cost: 0.0262703896s
+finished frame 1055 at timestamp 111.76s with time cost: 0.0232818127s
+finished frame 1056 at timestamp 111.86s with time cost: 0.0393195152s
+finished frame 1057 at timestamp 111.97s with time cost: 0.0310668945s
+finished frame 1058 at timestamp 112.08s with time cost: 0.0304555893s
+finished frame 1059 at timestamp 112.19s with time cost: 0.0284597874s
+finished frame 1060 at timestamp 112.29s with time cost: 0.0299835205s
+finished frame 1061 at timestamp 112.39s with time cost: 0.0346608162s
+finished frame 1062 at timestamp 112.51s with time cost: 0.0325305462s
+finished frame 1063 at timestamp 112.61s with time cost: 0.0321896076s
+finished frame 1064 at timestamp 112.71s with time cost: 0.035410881s
+finished frame 1065 at timestamp 112.82s with time cost: 0.0288252831s
+finished frame 1066 at timestamp 112.93s with time cost: 0.0341024399s
+finished frame 1067 at timestamp 113.04s with time cost: 0.0383996964s
+finished frame 1068 at timestamp 113.14s with time cost: 0.0283970833s
+finished frame 1069 at timestamp 113.24s with time cost: 0.0304167271s
+finished frame 1070 at timestamp 113.36s with time cost: 0.0420451164s
+finished frame 1071 at timestamp 113.46s with time cost: 0.0455620289s
+finished frame 1072 at timestamp 113.56s with time cost: 0.0255560875s
+finished frame 1073 at timestamp 113.67s with time cost: 0.0279836655s
+finished frame 1074 at timestamp 113.78s with time cost: 0.0351839066s
+finished frame 1075 at timestamp 113.89s with time cost: 0.0285532475s
+finished frame 1076 at timestamp 113.99s with time cost: 0.0334794521s
+finished frame 1077 at timestamp 114.09s with time cost: 0.0316257477s
+finished frame 1078 at timestamp 114.21s with time cost: 0.0272963047s
+finished frame 1079 at timestamp 114.31s with time cost: 0.0293722153s
+finished frame 1080 at timestamp 114.41s with time cost: 0.0282421112s
+finished frame 1081 at timestamp 114.52s with time cost: 0.0291314125s
+finished frame 1082 at timestamp 114.63s with time cost: 0.0261697769s
+finished frame 1083 at timestamp 114.74s with time cost: 0.0346968174s
+finished frame 1084 at timestamp 114.84s with time cost: 0.0282666683s
+finished frame 1085 at timestamp 114.94s with time cost: 0.0321698189s
+finished frame 1086 at timestamp 115.06s with time cost: 0.0308499336s
+finished frame 1087 at timestamp 115.16s with time cost: 0.0323679447s
+finished frame 1088 at timestamp 115.26s with time cost: 0.0283997059s
+finished frame 1089 at timestamp 115.37s with time cost: 0.032453537s
+finished frame 1090 at timestamp 115.48s with time cost: 0.0261116028s
+finished frame 1091 at timestamp 115.59s with time cost: 0.0240309238s
+finished frame 1092 at timestamp 115.69s with time cost: 0.0263080597s
+finished frame 1093 at timestamp 115.79s with time cost: 0.0309798717s
+finished frame 1094 at timestamp 115.91s with time cost: 0.0319604874s
+finished frame 1095 at timestamp 116.01s with time cost: 0.0258147717s
+finished frame 1096 at timestamp 116.11s with time cost: 0.0322360992s
+finished frame 1097 at timestamp 116.22s with time cost: 0.0286958218s
+finished frame 1098 at timestamp 116.33s with time cost: 0.0299589634s
+finished frame 1099 at timestamp 116.44s with time cost: 0.045265913s
+finished frame 1100 at timestamp 116.54s with time cost: 0.039866209s
+finished frame 1101 at timestamp 116.64s with time cost: 0.0259215832s
+finished frame 1102 at timestamp 116.76s with time cost: 0.0272212029s
+finished frame 1103 at timestamp 116.86s with time cost: 0.0303664207s
+finished frame 1104 at timestamp 116.96s with time cost: 0.0283110142s
+finished frame 1105 at timestamp 117.06s with time cost: 0.0261085033s
+finished frame 1106 at timestamp 117.17s with time cost: 0.0304701328s
+finished frame 1107 at timestamp 117.28s with time cost: 0.0264976025s
+finished frame 1108 at timestamp 117.39s with time cost: 0.0293569565s
+finished frame 1109 at timestamp 117.49s with time cost: 0.0290110111s
+finished frame 1110 at timestamp 117.59s with time cost: 0.0333857536s
+finished frame 1111 at timestamp 117.71s with time cost: 0.0304169655s
+finished frame 1112 at timestamp 117.81s with time cost: 0.0273413658s
+finished frame 1113 at timestamp 117.91s with time cost: 0.0296096802s
+finished frame 1114 at timestamp 118.02s with time cost: 0.0304403305s
+finished frame 1115 at timestamp 118.13s with time cost: 0.0244538784s
+finished frame 1116 at timestamp 118.24s with time cost: 0.0352544785s
+finished frame 1117 at timestamp 118.34s with time cost: 0.0271337032s
+finished frame 1118 at timestamp 118.44s with time cost: 0.0253264904s
+finished frame 1119 at timestamp 118.56s with time cost: 0.0314660072s
+finished frame 1120 at timestamp 118.66s with time cost: 0.0289769173s
+finished frame 1121 at timestamp 118.76s with time cost: 0.087884903s
+finished frame 1122 at timestamp 118.86s with time cost: 0.031627655s
+finished frame 1123 at timestamp 118.97s with time cost: 0.0322973728s
+finished frame 1124 at timestamp 119.08s with time cost: 0.0405755043s
+finished frame 1125 at timestamp 119.19s with time cost: 0.0330631733s
+finished frame 1126 at timestamp 119.29s with time cost: 0.0241737366s
+finished frame 1127 at timestamp 119.39s with time cost: 0.0227789879s
+finished frame 1128 at timestamp 119.51s with time cost: 0.0244991779s
+finished frame 1129 at timestamp 119.61s with time cost: 0.0275073051s
+finished frame 1130 at timestamp 119.76s with time cost: 0.0261092186s
+finished frame 1131 at timestamp 119.87s with time cost: 0.0241415501s
+finished frame 1132 at timestamp 119.98s with time cost: 0.0226082802s
+finished frame 1133 at timestamp 120.09s with time cost: 0.0237178802s
+finished frame 1134 at timestamp 120.19s with time cost: 0.0212683678s
+finished frame 1135 at timestamp 120.29s with time cost: 0.0225293636s
+finished frame 1136 at timestamp 120.41s with time cost: 0.0231142044s
+finished frame 1137 at timestamp 120.51s with time cost: 0.0228171349s
+finished frame 1138 at timestamp 120.61s with time cost: 0.0246038437s
+finished frame 1139 at timestamp 120.71s with time cost: 0.0234172344s
+finished frame 1140 at timestamp 120.83s with time cost: 0.0229780674s
+finished frame 1141 at timestamp 120.93s with time cost: 0.0213427544s
+finished frame 1142 at timestamp 121.04s with time cost: 0.0224802494s
+finished frame 1143 at timestamp 121.14s with time cost: 0.021478653s
+finished frame 1144 at timestamp 121.24s with time cost: 0.0208001137s
+finished frame 1145 at timestamp 121.36s with time cost: 0.0208976269s
+finished frame 1146 at timestamp 121.46s with time cost: 0.0234138966s
+finished frame 1147 at timestamp 121.56s with time cost: 0.0209701061s
+finished frame 1148 at timestamp 121.67s with time cost: 0.0219342709s
+finished frame 1149 at timestamp 121.78s with time cost: 0.0245599747s
+finished frame 1150 at timestamp 121.89s with time cost: 0.0236167908s
+finished frame 1151 at timestamp 121.99s with time cost: 0.0235581398s
+finished frame 1152 at timestamp 122.09s with time cost: 0.0227520466s
+finished frame 1153 at timestamp 122.21s with time cost: 0.0242123604s
+finished frame 1154 at timestamp 122.31s with time cost: 0.025718689s
+finished frame 1155 at timestamp 122.41s with time cost: 0.0210268497s
+finished frame 1156 at timestamp 122.51s with time cost: 0.0228295326s
+finished frame 1157 at timestamp 122.62s with time cost: 0.0242946148s
+finished frame 1158 at timestamp 122.73s with time cost: 0.021686554s
+finished frame 1159 at timestamp 122.84s with time cost: 0.0252158642s
+finished frame 1160 at timestamp 122.94s with time cost: 0.0277738571s
+finished frame 1161 at timestamp 123.04s with time cost: 0.0653715134s
+finished frame 1162 at timestamp 123.16s with time cost: 0.0338087082s
+finished frame 1163 at timestamp 123.26s with time cost: 0.024109602s
+finished frame 1164 at timestamp 123.36s with time cost: 0.0344595909s
+finished frame 1165 at timestamp 123.47s with time cost: 0.0329623222s
+finished frame 1166 at timestamp 123.58s with time cost: 0.0257019997s
+finished frame 1167 at timestamp 123.69s with time cost: 0.0227069855s
+finished frame 1168 at timestamp 123.79s with time cost: 0.0250344276s
+finished frame 1169 at timestamp 123.89s with time cost: 0.02429986s
+finished frame 1170 at timestamp 124.01s with time cost: 0.0226252079s
+finished frame 1171 at timestamp 124.11s with time cost: 0.0235996246s
+finished frame 1172 at timestamp 124.21s with time cost: 0.0201966763s
+finished frame 1173 at timestamp 124.31s with time cost: 0.0221567154s
+finished frame 1174 at timestamp 124.42s with time cost: 0.0235219002s
+finished frame 1175 at timestamp 124.53s with time cost: 0.020881176s
+finished frame 1176 at timestamp 124.64s with time cost: 0.0262253284s
+finished frame 1177 at timestamp 124.74s with time cost: 0.0304293633s
+finished frame 1178 at timestamp 124.84s with time cost: 0.0289022923s
+finished frame 1179 at timestamp 124.96s with time cost: 0.0234754086s
+finished frame 1180 at timestamp 125.06s with time cost: 0.0230221748s
+finished frame 1181 at timestamp 125.16s with time cost: 0.0295138359s
+finished frame 1182 at timestamp 125.27s with time cost: 0.0217056274s
+finished frame 1183 at timestamp 125.38s with time cost: 0.0203094482s
+finished frame 1184 at timestamp 125.49s with time cost: 0.0193793774s
+finished frame 1185 at timestamp 125.59s with time cost: 0.0214807987s
+finished frame 1186 at timestamp 125.69s with time cost: 0.0203309059s
+finished frame 1187 at timestamp 125.81s with time cost: 0.0205688477s
+finished frame 1188 at timestamp 125.91s with time cost: 0.0200886726s
+finished frame 1189 at timestamp 126.01s with time cost: 0.0223128796s
+finished frame 1190 at timestamp 126.12s with time cost: 0.0212659836s
+finished frame 1191 at timestamp 126.23s with time cost: 0.0204191208s
+finished frame 1192 at timestamp 126.34s with time cost: 0.0216982365s
+finished frame 1193 at timestamp 126.44s with time cost: 0.0220706463s
+finished frame 1194 at timestamp 126.54s with time cost: 0.0212936401s
+finished frame 1195 at timestamp 126.66s with time cost: 0.0217154026s
+finished frame 1196 at timestamp 126.76s with time cost: 0.0211765766s
+finished frame 1197 at timestamp 126.86s with time cost: 0.021998167s
+finished frame 1198 at timestamp 126.97s with time cost: 0.020367384s
+finished frame 1199 at timestamp 127.08s with time cost: 0.0248622894s
+finished frame 1200 at timestamp 127.19s with time cost: 0.0235478878s
+finished frame 1201 at timestamp 127.29s with time cost: 0.0226671696s
+finished frame 1202 at timestamp 127.39s with time cost: 0.0215880871s
+finished frame 1203 at timestamp 127.51s with time cost: 0.0208563805s
+finished frame 1204 at timestamp 127.61s with time cost: 0.0207152367s
+finished frame 1205 at timestamp 127.71s with time cost: 0.0205876827s
+finished frame 1206 at timestamp 127.82s with time cost: 0.0215189457s
+finished frame 1207 at timestamp 127.93s with time cost: 0.0204460621s
+finished frame 1208 at timestamp 128.04s with time cost: 0.0211448669s
+finished frame 1209 at timestamp 128.14s with time cost: 0.0240223408s
+finished frame 1210 at timestamp 128.24s with time cost: 0.0208775997s
+finished frame 1211 at timestamp 128.36s with time cost: 0.0208263397s
+finished frame 1212 at timestamp 128.46s with time cost: 0.0235731602s
+finished frame 1213 at timestamp 128.56s with time cost: 0.0221354961s
+finished frame 1214 at timestamp 128.67s with time cost: 0.0207679272s
+finished frame 1215 at timestamp 128.78s with time cost: 0.0210702419s
+finished frame 1216 at timestamp 128.89s with time cost: 0.0215256214s
+finished frame 1217 at timestamp 128.99s with time cost: 0.020200491s
+finished frame 1218 at timestamp 129.09s with time cost: 0.0196697712s
+finished frame 1219 at timestamp 129.21s with time cost: 0.0231621265s
+finished frame 1220 at timestamp 129.31s with time cost: 0.022163868s
+finished frame 1221 at timestamp 129.41s with time cost: 0.0197696686s
+finished frame 1222 at timestamp 129.51s with time cost: 0.0212113857s
+finished frame 1223 at timestamp 129.63s with time cost: 0.0207226276s
+finished frame 1224 at timestamp 129.73s with time cost: 0.0204658508s
+finished frame 1225 at timestamp 129.84s with time cost: 0.0211036205s
+finished frame 1226 at timestamp 129.94s with time cost: 0.0220782757s
+finished frame 1227 at timestamp 130.06s with time cost: 0.0207285881s
+finished frame 1228 at timestamp 130.16s with time cost: 0.0238792896s
+finished frame 1229 at timestamp 130.26s with time cost: 0.0219993591s
+finished frame 1230 at timestamp 130.36s with time cost: 0.0202877522s
+finished frame 1231 at timestamp 130.48s with time cost: 0.0221233368s
+finished frame 1232 at timestamp 130.58s with time cost: 0.0214502811s
+finished frame 1233 at timestamp 130.69s with time cost: 0.020305872s
+finished frame 1234 at timestamp 130.79s with time cost: 0.0213499069s
+finished frame 1235 at timestamp 130.89s with time cost: 0.0213704109s
+finished frame 1236 at timestamp 131.01s with time cost: 0.0214576721s
+finished frame 1237 at timestamp 131.11s with time cost: 0.0220043659s
+finished frame 1238 at timestamp 131.21s with time cost: 0.0234289169s
+finished frame 1239 at timestamp 131.32s with time cost: 0.0217447281s
+finished frame 1240 at timestamp 131.43s with time cost: 0.0215494633s
+finished frame 1241 at timestamp 131.54s with time cost: 0.020586729s
+finished frame 1242 at timestamp 131.64s with time cost: 0.0201702118s
+finished frame 1243 at timestamp 131.74s with time cost: 0.0217535496s
+finished frame 1244 at timestamp 131.86s with time cost: 0.0208258629s
+finished frame 1245 at timestamp 131.96s with time cost: 0.019847393s
+finished frame 1246 at timestamp 132.06s with time cost: 0.0207672119s
+finished frame 1247 at timestamp 132.16s with time cost: 0.0205178261s
+finished frame 1248 at timestamp 132.27s with time cost: 0.022213459s
+finished frame 1249 at timestamp 132.38s with time cost: 0.0198097229s
+finished frame 1250 at timestamp 132.49s with time cost: 0.0197799206s
+finished frame 1251 at timestamp 132.59s with time cost: 0.0232255459s
+finished frame 1252 at timestamp 132.69s with time cost: 0.0217158794s
+finished frame 1253 at timestamp 132.81s with time cost: 0.0209541321s
+finished frame 1254 at timestamp 132.91s with time cost: 0.021766901s
+finished frame 1255 at timestamp 133.01s with time cost: 0.0236051083s
+finished frame 1256 at timestamp 133.12s with time cost: 0.0217933655s
+finished frame 1257 at timestamp 133.23s with time cost: 0.0204746723s
+finished frame 1258 at timestamp 133.34s with time cost: 0.0219573975s
+finished frame 1259 at timestamp 133.44s with time cost: 0.0209286213s
+finished frame 1260 at timestamp 133.54s with time cost: 0.0211355686s
+finished frame 1261 at timestamp 133.66s with time cost: 0.0219430923s
+finished frame 1262 at timestamp 133.76s with time cost: 0.0205984116s
+finished frame 1263 at timestamp 133.86s with time cost: 0.0226221085s
+finished frame 1264 at timestamp 133.96s with time cost: 0.0213158131s
+finished frame 1265 at timestamp 134.08s with time cost: 0.0243501663s
+finished frame 1266 at timestamp 134.18s with time cost: 0.0207304955s
+finished frame 1267 at timestamp 134.29s with time cost: 0.024923563s
+finished frame 1268 at timestamp 134.39s with time cost: 0.0213201046s
+finished frame 1269 at timestamp 134.49s with time cost: 0.021232605s
+finished frame 1270 at timestamp 134.61s with time cost: 0.0225856304s
+finished frame 1271 at timestamp 134.71s with time cost: 0.0219538212s
+finished frame 1272 at timestamp 134.81s with time cost: 0.0203194618s
+finished frame 1273 at timestamp 134.92s with time cost: 0.0224211216s
+finished frame 1274 at timestamp 135.03s with time cost: 0.0227355957s
+finished frame 1275 at timestamp 135.14s with time cost: 0.0221438408s
+finished frame 1276 at timestamp 135.24s with time cost: 0.0216488838s
+finished frame 1277 at timestamp 135.34s with time cost: 0.0208461285s
+finished frame 1278 at timestamp 135.46s with time cost: 0.021232605s
+finished frame 1279 at timestamp 135.56s with time cost: 0.0212323666s
+finished frame 1280 at timestamp 135.66s with time cost: 0.0215651989s
+finished frame 1281 at timestamp 135.77s with time cost: 0.0202758312s
+finished frame 1282 at timestamp 135.88s with time cost: 0.0195653439s
+finished frame 1283 at timestamp 135.98s with time cost: 0.021920681s
+finished frame 1284 at timestamp 136.09s with time cost: 0.0213055611s
+finished frame 1285 at timestamp 136.19s with time cost: 0.0218727589s
+finished frame 1286 at timestamp 136.29s with time cost: 0.0205366611s
+finished frame 1287 at timestamp 136.41s with time cost: 0.0204024315s
+finished frame 1288 at timestamp 136.51s with time cost: 0.0202834606s
+finished frame 1289 at timestamp 136.61s with time cost: 0.0197410583s
+finished frame 1290 at timestamp 136.71s with time cost: 0.0214040279s
+finished frame 1291 at timestamp 136.82s with time cost: 0.0211362839s
+finished frame 1292 at timestamp 136.93s with time cost: 0.0207231045s
+finished frame 1293 at timestamp 137.04s with time cost: 0.0216493607s
+finished frame 1294 at timestamp 137.14s with time cost: 0.0198919773s
+finished frame 1295 at timestamp 137.24s with time cost: 0.0207023621s
+finished frame 1296 at timestamp 137.36s with time cost: 0.0232982635s
+finished frame 1297 at timestamp 137.46s with time cost: 0.0196442604s
+finished frame 1298 at timestamp 137.56s with time cost: 0.0207827091s
+finished frame 1299 at timestamp 137.67s with time cost: 0.0214440823s
+finished frame 1300 at timestamp 137.78s with time cost: 0.0225877762s
+finished frame 1301 at timestamp 137.88s with time cost: 0.0207731724s
+finished frame 1302 at timestamp 137.99s with time cost: 0.022821188s
+finished frame 1303 at timestamp 138.09s with time cost: 0.0217242241s
+finished frame 1304 at timestamp 138.19s with time cost: 0.0201747417s
+finished frame 1305 at timestamp 138.31s with time cost: 0.0200514793s
+finished frame 1306 at timestamp 138.41s with time cost: 0.0223476887s
+finished frame 1307 at timestamp 138.51s with time cost: 0.0230109692s
+finished frame 1308 at timestamp 138.62s with time cost: 0.0203597546s
+finished frame 1309 at timestamp 138.73s with time cost: 0.0236799717s
+finished frame 1310 at timestamp 138.84s with time cost: 0.0228512287s
+finished frame 1311 at timestamp 138.94s with time cost: 0.0210309029s
+finished frame 1312 at timestamp 139.04s with time cost: 0.0234262943s
+finished frame 1313 at timestamp 139.16s with time cost: 0.0202188492s
+finished frame 1314 at timestamp 139.26s with time cost: 0.0187015533s
+finished frame 1315 at timestamp 139.36s with time cost: 0.0210330486s
+finished frame 1316 at timestamp 139.46s with time cost: 0.0209834576s
+finished frame 1317 at timestamp 139.57s with time cost: 0.020668745s
+finished frame 1318 at timestamp 139.68s with time cost: 0.0211093426s
+finished frame 1319 at timestamp 139.79s with time cost: 0.0224297047s
+finished frame 1320 at timestamp 139.89s with time cost: 0.0207679272s
+finished frame 1321 at timestamp 139.99s with time cost: 0.0208930969s
+finished frame 1322 at timestamp 140.11s with time cost: 0.0225243568s
+finished frame 1323 at timestamp 140.21s with time cost: 0.0204937458s
+finished frame 1324 at timestamp 140.31s with time cost: 0.0216109753s
+finished frame 1325 at timestamp 140.42s with time cost: 0.020595789s
+finished frame 1326 at timestamp 140.53s with time cost: 0.0202152729s
+finished frame 1327 at timestamp 140.63s with time cost: 0.0207123756s
+finished frame 1328 at timestamp 140.74s with time cost: 0.0209581852s
+finished frame 1329 at timestamp 140.84s with time cost: 0.022207737s
+finished frame 1330 at timestamp 140.94s with time cost: 0.0215747356s
+finished frame 1331 at timestamp 141.06s with time cost: 0.0200920105s
+finished frame 1332 at timestamp 141.16s with time cost: 0.0202031136s
+finished frame 1333 at timestamp 141.26s with time cost: 0.0204145908s
+finished frame 1334 at timestamp 141.37s with time cost: 0.0212106705s
+finished frame 1335 at timestamp 141.48s with time cost: 0.0209605694s
+finished frame 1336 at timestamp 141.59s with time cost: 0.0209093094s
+finished frame 1337 at timestamp 141.69s with time cost: 0.0208237171s
+finished frame 1338 at timestamp 141.79s with time cost: 0.0218508244s
+finished frame 1339 at timestamp 141.91s with time cost: 0.0210506916s
+finished frame 1340 at timestamp 142.01s with time cost: 0.0205876827s
+finished frame 1341 at timestamp 142.11s with time cost: 0.0217840672s
+finished frame 1342 at timestamp 142.21s with time cost: 0.0209136009s
+finished frame 1343 at timestamp 142.32s with time cost: 0.0204472542s
+finished frame 1344 at timestamp 142.43s with time cost: 0.0190989971s
+finished frame 1345 at timestamp 142.54s with time cost: 0.0239858627s
+finished frame 1346 at timestamp 142.64s with time cost: 0.0205945969s
+finished frame 1347 at timestamp 142.74s with time cost: 0.0198857784s
+finished frame 1348 at timestamp 142.86s with time cost: 0.023026228s
+finished frame 1349 at timestamp 142.96s with time cost: 0.0198905468s
+finished frame 1350 at timestamp 143.06s with time cost: 0.0198085308s
+finished frame 1351 at timestamp 143.17s with time cost: 0.0224440098s
+finished frame 1352 at timestamp 143.28s with time cost: 0.0211751461s
+finished frame 1353 at timestamp 143.39s with time cost: 0.0184092522s
+finished frame 1354 at timestamp 143.49s with time cost: 0.0200695992s
+finished frame 1355 at timestamp 143.59s with time cost: 0.0234491825s
+finished frame 1356 at timestamp 143.71s with time cost: 0.0188946724s
+finished frame 1357 at timestamp 143.81s with time cost: 0.0212390423s
+finished frame 1358 at timestamp 143.91s with time cost: 0.0210223198s
+finished frame 1359 at timestamp 144.01s with time cost: 0.0209023952s
+finished frame 1360 at timestamp 144.12s with time cost: 0.0196135044s
+finished frame 1361 at timestamp 144.23s with time cost: 0.021422863s
+finished frame 1362 at timestamp 144.34s with time cost: 0.0203783512s
+finished frame 1363 at timestamp 144.44s with time cost: 0.0197310448s
+finished frame 1364 at timestamp 144.54s with time cost: 0.0219700336s
+finished frame 1365 at timestamp 144.66s with time cost: 0.0224432945s
+finished frame 1366 at timestamp 144.76s with time cost: 0.021522522s
+finished frame 1367 at timestamp 144.86s with time cost: 0.0187733173s
+finished frame 1368 at timestamp 144.97s with time cost: 0.0191991329s
+finished frame 1369 at timestamp 145.08s with time cost: 0.0208654404s
+finished frame 1370 at timestamp 145.19s with time cost: 0.0200502872s
+finished frame 1371 at timestamp 145.29s with time cost: 0.0201871395s
+finished frame 1372 at timestamp 145.39s with time cost: 0.0197989941s
+finished frame 1373 at timestamp 145.51s with time cost: 0.0235614777s
+finished frame 1374 at timestamp 145.61s with time cost: 0.0200970173s
+finished frame 1375 at timestamp 145.71s with time cost: 0.019438982s
+finished frame 1376 at timestamp 145.81s with time cost: 0.0224580765s
+finished frame 1377 at timestamp 145.92s with time cost: 0.0217134953s
+finished frame 1378 at timestamp 146.03s with time cost: 0.0200982094s
+finished frame 1379 at timestamp 146.14s with time cost: 0.020665884s
+finished frame 1380 at timestamp 146.24s with time cost: 0.0216295719s
+finished frame 1381 at timestamp 146.34s with time cost: 0.019721508s
+finished frame 1382 at timestamp 146.46s with time cost: 0.0212087631s
+finished frame 1383 at timestamp 146.57s with time cost: 0.0198950768s
+finished frame 1384 at timestamp 146.66s with time cost: 0.0203771591s
+finished frame 1385 at timestamp 146.77s with time cost: 0.0213665962s
+finished frame 1386 at timestamp 146.88s with time cost: 0.0209567547s
+finished frame 1387 at timestamp 146.99s with time cost: 0.0210213661s
+finished frame 1388 at timestamp 147.09s with time cost: 0.0196225643s
+finished frame 1389 at timestamp 147.19s with time cost: 0.0206856728s
+finished frame 1390 at timestamp 147.31s with time cost: 0.0198521614s
+finished frame 1391 at timestamp 147.41s with time cost: 0.0205047131s
+finished frame 1392 at timestamp 147.51s with time cost: 0.0229969025s
+finished frame 1393 at timestamp 147.62s with time cost: 0.0193350315s
+finished frame 1394 at timestamp 147.73s with time cost: 0.020314455s
+finished frame 1395 at timestamp 147.83s with time cost: 0.0204508305s
+finished frame 1396 at timestamp 147.94s with time cost: 0.0205211639s
+finished frame 1397 at timestamp 148.04s with time cost: 0.0189950466s
+finished frame 1398 at timestamp 148.16s with time cost: 0.0227401257s
+finished frame 1399 at timestamp 148.26s with time cost: 0.0219364166s
+finished frame 1400 at timestamp 148.36s with time cost: 0.0210204124s
+finished frame 1401 at timestamp 148.46s with time cost: 0.0198993683s
+finished frame 1402 at timestamp 148.58s with time cost: 0.0211596489s
+finished frame 1403 at timestamp 148.68s with time cost: 0.0206317902s
+finished frame 1404 at timestamp 148.79s with time cost: 0.0202176571s
+finished frame 1405 at timestamp 148.89s with time cost: 0.0210959911s
+finished frame 1406 at timestamp 148.99s with time cost: 0.0230243206s
+finished frame 1407 at timestamp 149.11s with time cost: 0.0199995041s
+finished frame 1408 at timestamp 149.21s with time cost: 0.022320509s
+finished frame 1409 at timestamp 149.31s with time cost: 0.0211291313s
+finished frame 1410 at timestamp 149.42s with time cost: 0.0215022564s
+finished frame 1411 at timestamp 149.53s with time cost: 0.0200533867s
+finished frame 1412 at timestamp 149.63s with time cost: 0.0207073689s
+finished frame 1413 at timestamp 149.74s with time cost: 0.020844698s
+finished frame 1414 at timestamp 149.84s with time cost: 0.02242589s
+finished frame 1415 at timestamp 149.96s with time cost: 0.0207884312s
+finished frame 1416 at timestamp 150.06s with time cost: 0.0226519108s
+finished frame 1417 at timestamp 150.16s with time cost: 0.0200707912s
+finished frame 1418 at timestamp 150.26s with time cost: 0.0215194225s
+finished frame 1419 at timestamp 150.37s with time cost: 0.0199797153s
+finished frame 1420 at timestamp 150.48s with time cost: 0.0223712921s
+finished frame 1421 at timestamp 150.59s with time cost: 0.0181865692s
+finished frame 1422 at timestamp 150.69s with time cost: 0.0202782154s
+finished frame 1423 at timestamp 150.79s with time cost: 0.0234725475s
+finished frame 1424 at timestamp 150.91s with time cost: 0.0207736492s
+finished frame 1425 at timestamp 151.01s with time cost: 0.0194690228s
+finished frame 1426 at timestamp 151.12s with time cost: 0.0218262672s
+finished frame 1427 at timestamp 151.23s with time cost: 0.0216882229s
+finished frame 1428 at timestamp 151.34s with time cost: 0.0211720467s
+finished frame 1429 at timestamp 151.44s with time cost: 0.0215599537s
+finished frame 1430 at timestamp 151.54s with time cost: 0.0225758553s
+finished frame 1431 at timestamp 151.66s with time cost: 0.0208797455s
+finished frame 1432 at timestamp 151.76s with time cost: 0.0199480057s
+finished frame 1433 at timestamp 151.86s with time cost: 0.0222771168s
+finished frame 1434 at timestamp 151.97s with time cost: 0.0216338634s
+finished frame 1435 at timestamp 152.08s with time cost: 0.0194263458s
+finished frame 1436 at timestamp 152.18s with time cost: 0.0207021236s
+finished frame 1437 at timestamp 152.29s with time cost: 0.0198020935s
+finished frame 1438 at timestamp 152.39s with time cost: 0.0193758011s
+finished frame 1439 at timestamp 152.51s with time cost: 0.0213177204s
+finished frame 1440 at timestamp 152.61s with time cost: 0.0193650723s
+finished frame 1441 at timestamp 152.71s with time cost: 0.0216655731s
+finished frame 1442 at timestamp 152.82s with time cost: 0.0219240189s
+finished frame 1443 at timestamp 152.93s with time cost: 0.0203783512s
+finished frame 1444 at timestamp 153.04s with time cost: 0.0192782879s
+finished frame 1445 at timestamp 153.14s with time cost: 0.0229144096s
+finished frame 1446 at timestamp 153.24s with time cost: 0.0206112862s
+finished frame 1447 at timestamp 153.36s with time cost: 0.0209598541s
+finished frame 1448 at timestamp 153.46s with time cost: 0.0220975876s
+finished frame 1449 at timestamp 153.56s with time cost: 0.0201718807s
+finished frame 1450 at timestamp 153.67s with time cost: 0.0203280449s
+finished frame 1451 at timestamp 153.78s with time cost: 0.023673296s
+finished frame 1452 at timestamp 153.88s with time cost: 0.0237321854s
+finished frame 1453 at timestamp 153.99s with time cost: 0.0205807686s
+finished frame 1454 at timestamp 154.09s with time cost: 0.0207135677s
+finished frame 1455 at timestamp 154.21s with time cost: 0.0224370956s
+finished frame 1456 at timestamp 154.31s with time cost: 0.0206208229s
+finished frame 1457 at timestamp 154.41s with time cost: 0.0212247372s
+finished frame 1458 at timestamp 154.51s with time cost: 0.0199272633s
+finished frame 1459 at timestamp 154.63s with time cost: 0.0204536915s
+finished frame 1460 at timestamp 154.73s with time cost: 0.0204946995s
+finished frame 1461 at timestamp 154.84s with time cost: 0.0199584961s
+finished frame 1462 at timestamp 154.94s with time cost: 0.0209567547s
+finished frame 1463 at timestamp 155.06s with time cost: 0.0209467411s
+finished frame 1464 at timestamp 155.16s with time cost: 0.0201473236s
+finished frame 1465 at timestamp 155.26s with time cost: 0.0220611095s
+finished frame 1466 at timestamp 155.36s with time cost: 0.0207746029s
+finished frame 1467 at timestamp 155.48s with time cost: 0.0221891403s
+finished frame 1468 at timestamp 155.58s with time cost: 0.0223116875s
+finished frame 1469 at timestamp 155.69s with time cost: 0.0217061043s
+finished frame 1470 at timestamp 155.79s with time cost: 0.0211141109s
+finished frame 1471 at timestamp 155.91s with time cost: 0.0298335552s
+finished frame 1472 at timestamp 156.01s with time cost: 0.030664444s
+finished frame 1473 at timestamp 156.11s with time cost: 0.0240898132s
+finished frame 1474 at timestamp 156.22s with time cost: 0.022510767s
+finished frame 1475 at timestamp 156.33s with time cost: 0.0220766068s
+finished frame 1476 at timestamp 156.43s with time cost: 0.0205876827s
+finished frame 1477 at timestamp 156.54s with time cost: 0.0198199749s
+finished frame 1478 at timestamp 156.64s with time cost: 0.0208632946s
+finished frame 1479 at timestamp 156.76s with time cost: 0.0244135857s
+finished frame 1480 at timestamp 156.86s with time cost: 0.0238492489s
+finished frame 1481 at timestamp 156.96s with time cost: 0.0238697529s
+finished frame 1482 at timestamp 157.07s with time cost: 0.0218052864s
+finished frame 1483 at timestamp 157.18s with time cost: 0.0260326862s
+finished frame 1484 at timestamp 157.29s with time cost: 0.0233492851s
+finished frame 1485 at timestamp 157.39s with time cost: 0.0320546627s
+finished frame 1486 at timestamp 157.49s with time cost: 0.0832576752s
+finished frame 1487 at timestamp 157.61s with time cost: 0.0350334644s
+finished frame 1488 at timestamp 157.71s with time cost: 0.0224943161s
+finished frame 1489 at timestamp 157.81s with time cost: 0.0321099758s
+finished frame 1490 at timestamp 157.92s with time cost: 0.0194692612s
+finished frame 1491 at timestamp 158.03s with time cost: 0.0200972557s
+finished frame 1492 at timestamp 158.14s with time cost: 0.0196187496s
+finished frame 1493 at timestamp 158.24s with time cost: 0.0197820663s
+finished frame 1494 at timestamp 158.36s with time cost: 0.0218763351s
+finished frame 1495 at timestamp 158.46s with time cost: 0.0201351643s
+finished frame 1496 at timestamp 158.56s with time cost: 0.0197854042s
+finished frame 1497 at timestamp 158.66s with time cost: 0.021116972s
+finished frame 1498 at timestamp 158.78s with time cost: 0.0212805271s
+finished frame 1499 at timestamp 158.88s with time cost: 0.0194995403s
+finished frame 1500 at timestamp 158.99s with time cost: 0.0202302933s
+finished frame 1501 at timestamp 159.09s with time cost: 0.021879673s
+finished frame 1502 at timestamp 159.21s with time cost: 0.0199232101s
+finished frame 1503 at timestamp 159.31s with time cost: 0.0201048851s
+finished frame 1504 at timestamp 159.41s with time cost: 0.0197439194s
+finished frame 1505 at timestamp 159.51s with time cost: 0.0202846527s
+finished frame 1506 at timestamp 159.63s with time cost: 0.0193347931s
+finished frame 1507 at timestamp 159.73s with time cost: 0.0195624828s
+finished frame 1508 at timestamp 159.84s with time cost: 0.0231239796s
+finished frame 1509 at timestamp 159.94s with time cost: 0.0215053558s
+finished frame 1510 at timestamp 160.06s with time cost: 0.0193893909s
+finished frame 1511 at timestamp 160.16s with time cost: 0.021435976s
+finished frame 1512 at timestamp 160.26s with time cost: 0.0207607746s
+finished frame 1513 at timestamp 160.36s with time cost: 0.0204644203s
+finished frame 1514 at timestamp 160.48s with time cost: 0.0200662613s
+finished frame 1515 at timestamp 160.58s with time cost: 0.0205612183s
+finished frame 1516 at timestamp 160.69s with time cost: 0.0210020542s
+finished frame 1517 at timestamp 160.79s with time cost: 0.0222351551s
+finished frame 1518 at timestamp 160.91s with time cost: 0.0224924088s
+finished frame 1519 at timestamp 161.01s with time cost: 0.0206086636s
+finished frame 1520 at timestamp 161.11s with time cost: 0.0196177959s
+finished frame 1521 at timestamp 161.22s with time cost: 0.020308733s
+finished frame 1522 at timestamp 161.33s with time cost: 0.0215578079s
+finished frame 1523 at timestamp 161.43s with time cost: 0.0212385654s
+finished frame 1524 at timestamp 161.54s with time cost: 0.0233874321s
+finished frame 1525 at timestamp 161.64s with time cost: 0.0214643478s
+finished frame 1526 at timestamp 161.76s with time cost: 0.0224678516s
+finished frame 1527 at timestamp 161.86s with time cost: 0.0202727318s
+finished frame 1528 at timestamp 161.96s with time cost: 0.0233030319s
+finished frame 1529 at timestamp 162.06s with time cost: 0.0226089954s
+finished frame 1530 at timestamp 162.17s with time cost: 0.0230381489s
+finished frame 1531 at timestamp 162.28s with time cost: 0.0198836327s
+finished frame 1532 at timestamp 162.39s with time cost: 0.0218868256s
+finished frame 1533 at timestamp 162.49s with time cost: 0.0227365494s
+finished frame 1534 at timestamp 162.59s with time cost: 0.0210955143s
+finished frame 1535 at timestamp 162.71s with time cost: 0.0198214054s
+finished frame 1536 at timestamp 162.81s with time cost: 0.0227577686s
+finished frame 1537 at timestamp 162.91s with time cost: 0.0212833881s
+finished frame 1538 at timestamp 163.01s with time cost: 0.0227818489s
+finished frame 1539 at timestamp 163.12s with time cost: 0.0206019878s
+finished frame 1540 at timestamp 163.23s with time cost: 0.0210559368s
+finished frame 1541 at timestamp 163.34s with time cost: 0.0201807022s
+finished frame 1542 at timestamp 163.44s with time cost: 0.0212564468s
+
+Evaluation
+Sequence information:  1354 poses, 38.535m path length, 143.402s duration
+  location_rmse	  location_ptc5	 location_ptc10	 location_ptc20	       yaw_rmse	       yaw_ptc5	      yaw_ptc10	      yaw_ptc20	
+           5.31	          63.29	          96.09	         100.00	           1.07	          47.34	          74.37	          93.50	
+save the localization results at: results/ipblab/loc_test/test1/loc_results.npz
+/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-201724-author-live-ir-mcl-ec568b/author-code/mcl/vis_loc_result.py:111: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+{
+  "method": "ir-mcl",
+  "kind": "author_desktop_execution",
+  "started_unix": 1791998247.0577056,
+  "capture": "actual Windows Terminal window",
+  "status": "executed",
+  "wrapper_sha256": "e76d3c8fd29ac58c4162d2d31155c9e2c8b030cb23f121d0055643e2acf92faa",
+  "sources": {
+    "/mnt/d/workspace/be2/tmp/repro/ir-mcl/config/global_localization/loc_config_test1.yml": "942e28fd38331ff8189f561fc0d3df13ec5b15464f58c71babc0b655aac1891b"
+  },
+  "artifacts": {
+    "author-rviz.log": {
+      "sha256": "f4a9bc20190ca44d457331900d0a80cdbc26665c4d4c1b25d473020bbab4185f",
+      "bytes": 476
+    },
+    "bridge.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "capture-filter.txt": {
+      "sha256": "940dbae9b484d50dab69fa037ac4108a7b2e9f5ba84fbc15f85a88ffaa7de069",
+      "bytes": 448
+    },
+    "native-output.log": {
+      "sha256": "cebffb34800100e9f141ac1fd0e7723a211025cdaa9ba314cae12fc92d1da9fb",
+      "bytes": 108642
+    },
+    "ready.json": {
+      "sha256": "3a6478366a991ab5d7c6031f8ee1f1d9bdf56b72cd323e40038c0c9b03c8eb91",
+      "bytes": 30
+    },
+    "viewer-ready.json": {
+      "sha256": "fd3e150882b8fba3286aad4f9d203be5e8b353ca80ab81b448af30d09c90cf6e",
+      "bytes": 73
+    },
+    "live/frame-00000.npz": {
+      "sha256": "b99ec44ed0dba55df1deeff08124faeb683878f1501991f7495f23e095220184",
+      "bytes": 92666
+    },
+    "live/frame-00001.npz": {
+      "sha256": "dcb248c6e2163c5c9eba784c8fd8e9580ee9385508eef4baa432458e0e502cb3",
+      "bytes": 92667
+    },
+    "live/frame-00002.npz": {
+      "sha256": "6419fccaf2c3c9eeff29f7f46051e70c0da51103c055e9c50a47b3b21ec1fc65",
+      "bytes": 91686
+    },
+    "live/frame-00003.npz": {
+      "sha256": "371ec5148000bdc9e46176c023adc4b64a783d46a6619838f0ffe2fe6903b3b2",
+      "bytes": 91686
+    },
+    "live/frame-00004.npz": {
+      "sha256": "7ca600709fcf2ccbd4f91aa4c71eb79c71a1acbf6f59a6f9ce7909b99c1872a3",
+      "bytes": 91686
+    },
+    "live/frame-00005.npz": {
+      "sha256": "4cbd1b5ff6ef853cfdfda610614f02919f7d5cdfe963f9f955b99d4d18635cee",
+      "bytes": 90393
+    },
+    "live/frame-00006.npz": {
+      "sha256": "49124bd23b693f00faa6e96988b23cf4f01a111c6a9529c7422c50fb300dff2f",
+      "bytes": 89944
+    },
+    "live/frame-00007.npz": {
+      "sha256": "dd84fb3a064df933780dae3750243f6ea27c80345c66b38bd67df04b57f7f63b",
+      "bytes": 89950
+    },
+    "live/frame-00008.npz": {
+      "sha256": "b4e4a5d8537b1ff005d4763db38b5ebf1f7e6a84f03331b02b90a02abd0ca59f",
+      "bytes": 89973
+    },
+    "live/frame-00009.npz": {
+      "sha256": "ac698e37122d6e7524f8fda5b25c6b8d80d6f20db3bf9b365b4f0b401ab4f8a3",
+      "bytes": 90047
+    },
+    "live/frame-00010.npz": {
+      "sha256": "aebb92b2cb037525b6114900d8785b9ede18c67e43cad6befc8ba2f3c5229e87",
+      "bytes": 90027
+    },
+    "live/frame-00011.npz": {
+      "sha256": "c9d2f95386f2eadeea5202f21c1fb8801caaa06bdd91465d06fc321425776cd5",
+      "bytes": 89901
+    },
+    "live/frame-00012.npz": {
+      "sha256": "805341262be5334abae9fa5da90cc3087cbf6d338dd5887a12aa7b2d5b5e82ab",
+      "bytes": 89765
+    },
+    "live/frame-00013.npz": {
+      "sha256": "903680f54bc8e8f2d441ce1d74118a732603e46fa0ddf475230233ef4ca1042a",
+      "bytes": 89709
+    },
+    "live/frame-00014.npz": {
+      "sha256": "43fcb28bb115536d15f459bf79a983dbf61a486925628f6de3b06b5c63e51826",
+      "bytes": 89874
+    },
+    "live/frame-00015.npz": {
+      "sha256": "5c4bbd08ed4e987b8971cde18b723006f31cd9c6076598d7b7ca992e1d0c72e7",
+      "bytes": 89980
+    },
+    "live/frame-00016.npz": {
+      "sha256": "7e9459f18bf3d7b679abc805def50f2477cfe34e836e7e2ead32f981ebd2138c",
+      "bytes": 90086
+    },
+    "live/frame-00017.npz": {
+      "sha256": "a72074ec17851840cea82633232d716e9659bef490b6ed27b6331847a2efc819",
+      "bytes": 90104
+    },
+    "live/frame-00018.npz": {
+      "sha256": "ab6f4203a3fcd0705e4878690cfacb0f10fc51b86fbb1939bf85a251c22a7f3f",
+      "bytes": 90088
+    },
+    "live/frame-00019.npz": {
+      "sha256": "bcfa1a796bb7732ead220500b275a0dc97ab25d7af90065c8020d2e36864cb58",
+      "bytes": 90222
+    },
+    "live/frame-00020.npz": {
+      "sha256": "f71a13fbd8b08cead2e81fa4c28e2d17468993c29bf9bf87166947024ca3da4f",
+      "bytes": 90074
+    },
+    "live/frame-00021.npz": {
+      "sha256": "4a2593416a45b8263ccffdc03839bed74b76a7c98b14b586512987da17a8fd58",
+      "bytes": 90016
+    },
+    "live/frame-00022.npz": {
+      "sha256": "24af81fac8dc67cc8aa88c684dcc923b6b5d782f72041dfa744a69b12b37f03f",
+      "bytes": 90174
+    },
+    "live/frame-00023.npz": {
+      "sha256": "8601db1fa1f182035fc9d654cad02ff99503052b9b7496535efad0e3dd7541d7",
+      "bytes": 90050
+    },
+    "live/frame-00024.npz": {
+      "sha256": "87f528194d3b5e4d57eb603f2cd5705d812de7afe14832ada4074e2a3b523c55",
+      "bytes": 90083
+    },
+    "live/frame-00025.npz": {
+      "sha256": "44bf3165d4d369a0744cfe611f32bf6668c23636f5d23edb094dd282fc3641af",
+      "bytes": 89918
+    },
+    "live/frame-00026.npz": {
+      "sha256": "74c6949492db5c0d45e5011f8c522e89f60401730ed86c42656695b9e43be987",
+      "bytes": 89820
+    },
+    "live/frame-00027.npz": {
+      "sha256": "4a2f1f967a94a00f1d3125318393e3b9ba14ee5b13b593032342d4d2dfabe6dd",
+      "bytes": 89814
+    },
+    "live/frame-00028.npz": {
+      "sha256": "f8be7efe2bb3fcac2c21ba9aeb56b52c748ea6708c66a0e43adce452ff5fa2cc",
+      "bytes": 89599
+    },
+    "live/frame-00029.npz": {
+      "sha256": "0bfc5a323300aa23708fecf7e65cd444ae4a245a887d74b9e3baf6014b2c0337",
+      "bytes": 89659
+    },
+    "live/frame-00030.npz": {
+      "sha256": "a9d91175a09757e9270365182ef5fdfb5d20bd52e108dce02dd86e54c123e2db",
+      "bytes": 89847
+    },
+    "live/frame-00031.npz": {
+      "sha256": "c2a9796cf05a807839c7a3f7f5eba7a9c19426f93e03fd3148873716798ecbcf",
+      "bytes": 89792
+    },
+    "live/frame-00032.npz": {
+      "sha256": "8571c18b64695e8c1ab003c4d20d22734758dfc306ffcb14388be34316bef741",
+      "bytes": 89862
+    },
+    "live/frame-00033.npz": {
+      "sha256": "40fd1a5fc1f9c215d47956950063bfc7db865b9ccd1772535dc840aa8bb85946",
+      "bytes": 89997
+    },
+    "live/frame-00034.npz": {
+      "sha256": "927eb80a050cabf085608f6cdb0d40ea72ba68025e08b03b258f92e3ca31cd43",
+      "bytes": 90087
+    },
+    "live/frame-00035.npz": {
+      "sha256": "a0e2d4027ea6eb2aa51cac89517d34b16badf68d4796ec58febe42b08c7d2d81",
+      "bytes": 90528
+    },
+    "live/frame-00036.npz": {
+      "sha256": "e6f830b04709a9f64fb6eac020673942a350f832913248fb226b5da78ad5615a",
+      "bytes": 90638
+    },
+    "live/frame-00037.npz": {
+      "sha256": "031f886508a9193bc43f05293fa21e25da2697dc6f315a1d0f0c14bc1b869811",
+      "bytes": 90647
+    },
+    "live/frame-00038.npz": {
+      "sha256": "1bbcaeb541dcd3bbc29ad425d2458116aaeedaf7c711efc83f495c246ab46a35",
+      "bytes": 90492
+    },
+    "live/frame-00039.npz": {
+      "sha256": "29ed552b40baf7308df051b78db0d7d16ba2e51d377e76bcbc18ddb7237c5e1a",
+      "bytes": 91425
+    },
+    "live/frame-00040.npz": {
+      "sha256": "8a22a35e0b157b72db0d3d9532b7af3676f457b6f15169762eea7553ecea1ff2",
+      "bytes": 90733
+    },
+    "live/frame-00041.npz": {
+      "sha256": "da8dda475f4d25967259f057266d9a66dff0c136ab1b4e2a561fc6335a6353e5",
+      "bytes": 90656
+    },
+    "live/frame-00042.npz": {
+      "sha256": "cbf8fef5b92ce881e7064e351337bc0ef95b696ec52a26e8c6c772e049ef5712",
+      "bytes": 90580
+    },
+    "live/frame-00043.npz": {
+      "sha256": "2bd1562d9b4e09b37d12ed77396680313859bb89378bc77c5d1be6106bd827e5",
+      "bytes": 90669
+    },
+    "live/frame-00044.npz": {
+      "sha256": "9e7744c54f5931000dee44fa9358eeb9815378a1b38725dfb3e83deb62e2ddcf",
+      "bytes": 90544
+    },
+    "live/frame-00045.npz": {
+      "sha256": "5829d66263993ae6fe07d1b66f92638554d97cb2dfd5df9cb94f234c3bd085f4",
+      "bytes": 90858
+    },
+    "live/frame-00046.npz": {
+      "sha256": "66663e3756d4b20637a50a16660c5423eb5d795b5119c5d703b37d2d8a3ca37b",
+      "bytes": 91258
+    },
+    "live/frame-00047.npz": {
+      "sha256": "9fce447cb507e5a81de24f1abc4b07f5ab062c017f47fbfb4ed8b6c693d6b614",
+      "bytes": 90987
+    },
+    "live/frame-00048.npz": {
+      "sha256": "397940d2982abbb9af5cdd834da947f3a9cb4bc0e93021fc86027b59950e57ab",
+      "bytes": 90950
+    },
+    "live/frame-00049.npz": {
+      "sha256": "39c08d5c81f99f9aabe21c9b3e13849ae9674a0f57db7a604c93d44b95529a22",
+      "bytes": 91252
+    },
+    "live/frame-00050.npz": {
+      "sha256": "c319c798f4c48292c6e349bdd0da06f8e61db5043de5dbe19df4f8ec7d45b832",
+      "bytes": 91401
+    },
+    "live/frame-00051.npz": {
+      "sha256": "b6164e079980920a15b4b90bf4742d2a8bfd9022568d52e0d84f4aec4d56b684",
+      "bytes": 91279
+    },
+    "live/frame-00052.npz": {
+      "sha256": "2d5adecbf17d7c50e805054ae1a5b73961e8c495f0e55fc8cba65ec27cf052fc",
+      "bytes": 91206
+    },
+    "live/frame-00053.npz": {
+      "sha256": "38a4a6b8f6d79074c7b2f7adac2fa05e6ed30a6626eb822fb15444f48179d5ed",
+      "bytes": 90972
+    },
+    "live/frame-00054.npz": {
+      "sha256": "d7b4655aadc869dec81c532554495263b7c0f7dbedaae7392bde8beef77e53b9",
+      "bytes": 90813
+    },
+    "live/frame-00055.npz": {
+      "sha256": "a70c925f5541605497a8901b294c868bf534b7383bdfc3d724138c1b1e74e648",
+      "bytes": 90789
+    },
+    "live/frame-00056.npz": {
+      "sha256": "1b1ebd9166ec16e2e188639511093c749416aaa86e5d6575fda321eaa5c2df28",
+      "bytes": 90745
+    },
+    "live/frame-00057.npz": {
+      "sha256": "5aa1b03c85f270cf2c912593aaaccc4848fcd6ee2d57e09ab674def4d5f08ae1",
+      "bytes": 90688
+    },
+    "live/frame-00058.npz": {
+      "sha256": "32fd19d9620bfdbae8bfd255a7915940d93c2ff7a7f3f94f448e45b2a4219823",
+      "bytes": 90390
+    },
+    "live/frame-00059.npz": {
+      "sha256": "7f3f2d17b9933ea73faaecb9a668264dc669efbe4ae1317741565e05466ba073",
+      "bytes": 90178
+    },
+    "live/frame-00060.npz": {
+      "sha256": "8b240fc2da8dbcd63603b465be7d1d9d87adf2c40104c52e3fceb2a058945285",
+      "bytes": 89974
+    },
+    "live/frame-00061.npz": {
+      "sha256": "6a55fe448f1a83b4ae563711702fd98086498c2638d4f089b0359dd51fbc9020",
+      "bytes": 89881
+    },
+    "live/frame-00062.npz": {
+      "sha256": "20eab45885f8c4018f9d4cf1defe9d7039ec3259bd8d092e8f356277082f30fd",
+      "bytes": 89946
+    },
+    "live/frame-00063.npz": {
+      "sha256": "331444a98cd18af0c6cf2fbbedd336bb9350da789f6cf4437f87448a73686922",
+      "bytes": 89591
+    },
+    "live/frame-00064.npz": {
+      "sha256": "2a009bf208518a414adfb198a4a75c5d03e3ba78ce2137326826d1411adefff4",
+      "bytes": 89450
+    },
+    "live/frame-00065.npz": {
+      "sha256": "f948f8b062a291a75e6a6393b6b68ea2106f2e5dc3c9672ad9d33c062fb27bb5",
+      "bytes": 89100
+    },
+    "live/frame-00066.npz": {
+      "sha256": "4b3ba383711b4b5d4609b603fdfd441c29806fd8f4ae92eaaae75fbe8d3e3d2b",
+      "bytes": 88926
+    },
+    "live/frame-00067.npz": {
+      "sha256": "24829e2bccf10e69d4b244e5ad0c901f11844ea0dfe4c2a310d86989f19ae01b",
+      "bytes": 88807
+    },
+    "live/frame-00068.npz": {
+      "sha256": "e8ee6828b9ae0f5fb59a0f2d07aab18edea2360a85f4a34a9329594b251533c5",
+      "bytes": 88827
+    },
+    "live/frame-00069.npz": {
+      "sha256": "1b602fc71b4196776b7fc11cf800bfad83db40663d82c9411009369edfb94ba9",
+      "bytes": 88427
+    },
+    "live/frame-00070.npz": {
+      "sha256": "717ae0596849ebd0fb7dcefbf5fdc57b0058bbbb1c75c19c0ce7bd220c876883",
+      "bytes": 88125
+    },
+    "live/frame-00071.npz": {
+      "sha256": "23deefbc6835b1127739541b43f6ca9710894a15668b6701e27029f107aba8e3",
+      "bytes": 88266
+    },
+    "live/frame-00072.npz": {
+      "sha256": "4261e4274680dfb6234936a3ffd8caf938811b9ac3da74386e7eb34c7417acbd",
+      "bytes": 88615
+    },
+    "live/frame-00073.npz": {
+      "sha256": "1f741af838c6f674151612c50898c7d400264232156a79a8bfc14ba70d31ccc6",
+      "bytes": 88601
+    },
+    "live/frame-00074.npz": {
+      "sha256": "318359554096efc81e73398be31a6ef6ff28d8a62a9de6c54654eec6e577c272",
+      "bytes": 88700
+    },
+    "live/frame-00075.npz": {
+      "sha256": "1d7bb02d2ac7b189a379c550083de84b0052d8c1d2185dff34cbc6f84cdc7d07",
+      "bytes": 88855
+    },
+    "live/frame-00076.npz": {
+      "sha256": "4efb7265870eedfe271027ef70b87eff208f13eee5ccb32540e75f70e8139ddc",
+      "bytes": 89119
+    },
+    "live/frame-00077.npz": {
+      "sha256": "62fe3c08fee278302b2c4a09bb1ba8228eff98950c9e3f3ed9ec83f115b76434",
+      "bytes": 89179
+    },
+    "live/frame-00078.npz": {
+      "sha256": "b333f4c08e7eaf9feb47276188dfdabff175b82252a872f3db614e0065f436a3",
+      "bytes": 89216
+    },
+    "live/frame-00079.npz": {
+      "sha256": "8e4e460b975ba2ab96a3b843d4bbcff99d91d2a2f66c8cefab59b5c932cf69b2",
+      "bytes": 89470
+    },
+    "live/frame-00080.npz": {
+      "sha256": "68137807fc6fe67702459cc369f9c5f727bd765cc68730631387452b6fb97971",
+      "bytes": 89359
+    },
+    "live/frame-00081.npz": {
+      "sha256": "86adba3463971a60aa18a003a2ceec3218ce262aee42b46f41b829f575397dba",
+      "bytes": 89322
+    },
+    "live/frame-00082.npz": {
+      "sha256": "2a8ff93c07b84d08024a1b92a25caff0534c709e5f70f970fdb5f8995407a669",
+      "bytes": 89333
+    },
+    "live/frame-00083.npz": {
+      "sha256": "43deb1e015d48f4a229e5882c5243498937bc4d766ced843bb5cf6ab8647b04a",
+      "bytes": 89483
+    },
+    "live/frame-00084.npz": {
+      "sha256": "c2ee74405d98a089d6b3dde14769e27c1ad9e3c2a7cb97044f08017e91d38ce2",
+      "bytes": 89476
+    },
+    "live/frame-00085.npz": {
+      "sha256": "e565f8d1022c0d97f54c4975f87fd890f0e599fa32bec7ebc3737585988984d0",
+      "bytes": 89419
+    },
+    "live/frame-00086.npz": {
+      "sha256": "285c44f4ab39edcdf2a3eed284c64299b4ab8804177a83ccc40e0cfed1bd4bf7",
+      "bytes": 89607
+    },
+    "live/frame-00087.npz": {
+      "sha256": "4b01f96ac7995c8084f732fa9eeb9ef2b16b9b099112a05f3dd11005be977569",
+      "bytes": 89624
+    },
+    "live/frame-00088.npz": {
+      "sha256": "c5e00b12169087f6e6211cd46e196374855fc68cc514293d5636f6b2bad51051",
+      "bytes": 89636
+    },
+    "live/frame-00089.npz": {
+      "sha256": "cf92d67a17d5b5c8990d5fce4e68a8f7e7566a74ed802a97c1edd2cb83dc3bcd",
+      "bytes": 89884
+    },
+    "live/frame-00090.npz": {
+      "sha256": "e44ea48656eb88e0f8245ea5dbfacdc3142238044bc7e1cbbbfe24c0932127b5",
+      "bytes": 89882
+    },
+    "live/frame-00091.npz": {
+      "sha256": "ba7a75b26e2a0435d604da0fefd941fcc0769c583a558c1dd13d9375c1218ebc",
+      "bytes": 89558
+    },
+    "live/frame-00092.npz": {
+      "sha256": "ec69994f27d4e40b9aae2f01b6a8614db504966531c4d42d17641bd50445f52e",
+      "bytes": 89383
+    },
+    "live/frame-00093.npz": {
+      "sha256": "1925bbe5f52a68106c171b8a21557b928a82b97406515b1ae1744814694ac103",
+      "bytes": 89401
+    },
+    "live/frame-00094.npz": {
+      "sha256": "72205bd7e1d80224ae6be9539993235a5c93a8c28da02e4e449c34af6e40aba6",
+      "bytes": 89300
+    },
+    "live/frame-00095.npz": {
+      "sha256": "3fcd6b6624c19aa077a9af6ba9b12d7f1e6c251d86b8703cd0fb372f0cb1acc6",
+      "bytes": 89274
+    },
+    "live/frame-00096.npz": {
+      "sha256": "5f1e2810592fb87839fec943cc280209cf5a1835ba5cb83cba7bd450243ee5bb",
+      "bytes": 89232
+    },
+    "live/frame-00097.npz": {
+      "sha256": "1528d3f8c6f2cd46f56d319855c488719b6f1b79a3e1b2533ca117b17be8f8ce",
+      "bytes": 89203
+    },
+    "live/frame-00098.npz": {
+      "sha256": "42277c3919fe39e3ca2872806fabf0e8e2b3b9e0061aaff36761eaaba20db70c",
+      "bytes": 89361
+    },
+    "live/frame-00099.npz": {
+      "sha256": "427f3c8afc77085cbb7a79cb5aa2e2035cf8e8935c2cc8ff2bfbe881dae2a63f",
+      "bytes": 89557
+    },
+    "live/frame-00100.npz": {
+      "sha256": "059d4bdccdf3166b86ac3117fa91bb1c0b680bea53c3ba72e2aebe0588cefd39",
+      "bytes": 89421
+    },
+    "live/frame-00101.npz": {
+      "sha256": "d17a5e10fb173e1af96ee86121b846acf4e840f26f04355d2acdc0bcd77be551",
+      "bytes": 89673
+    },
+    "live/frame-00102.npz": {
+      "sha256": "10e02bfe57eaf42989fdacabdd770d0787df775c8a9b97350269137014b9a15d",
+      "bytes": 89823
+    },
+    "live/frame-00103.npz": {
+      "sha256": "2c387214b6fe87c240b505e8a4822be1bc5bd5a3e92d64550d2c7dd748d9f117",
+      "bytes": 89699
+    },
+    "live/frame-00104.npz": {
+      "sha256": "fb3245a95c722a270c2615c965dd324af992a2eb8d45ad6981db621716aa686d",
+      "bytes": 89541
+    },
+    "live/frame-00105.npz": {
+      "sha256": "dc61460005cd5d363998fdab8363803af14aff326d56d33af44f2bfa8d8b3fb8",
+      "bytes": 89299
+    },
+    "live/frame-00106.npz": {
+      "sha256": "6b5fa1e2d16e128f774a8a5f07507a07260634a6211a5980ef89433a83bbea36",
+      "bytes": 89535
+    },
+    "live/frame-00107.npz": {
+      "sha256": "bb3cb5442022370c9b9d0a214950902d98a4861af49569a8d692ae394cb80409",
+      "bytes": 89233
+    },
+    "live/frame-00108.npz": {
+      "sha256": "33763c134d77dc3bb99ac2a5f8b717fd928bec62082d94fd46072fd9f095ee17",
+      "bytes": 89456
+    },
+    "live/frame-00109.npz": {
+      "sha256": "a9b0169cf83289529e7c8c981eed00913aee2b768814335a081e845c5a98052b",
+      "bytes": 89283
+    },
+    "live/frame-00110.npz": {
+      "sha256": "782ef344dea79534cd44ee1ff763d7bd5fcc06145349c7453a8c189cc37f42b0",
+      "bytes": 89213
+    },
+    "live/frame-00111.npz": {
+      "sha256": "85a16bcff593feb068830f34ba4f0f602cba47db35132f2f596c356cd34617ad",
+      "bytes": 89868
+    },
+    "live/frame-00112.npz": {
+      "sha256": "16150a9797836b65575b854bd6d46dd98a2c610d103db2f8f8a72060fd6c9ca4",
+      "bytes": 89927
+    },
+    "live/frame-00113.npz": {
+      "sha256": "84380b9601c775518ce76e8e401395620ebc26fce179395f14c6decf8d40d29e",
+      "bytes": 89949
+    },
+    "live/frame-00114.npz": {
+      "sha256": "09c8a79950c03911e0eea7c3f745cb1c0c075b61239ceb4344a0c4ae21fc9964",
+      "bytes": 90189
+    },
+    "live/frame-00115.npz": {
+      "sha256": "f142d4be088cc0bc99b94fa9cccce096518da0bfdf7c47450b09e843106fc28c",
+      "bytes": 90259
+    },
+    "live/frame-00116.npz": {
+      "sha256": "9f9b2b79acc676c47a344389d9d3e017752d7d45fcfdd7389afc04c09095b7d6",
+      "bytes": 90389
+    },
+    "live/frame-00117.npz": {
+      "sha256": "098d5a5dc270e6286f010c9ed8e9b233435b3b032a555d7349ce5e9a7204412f",
+      "bytes": 90325
+    },
+    "live/frame-00118.npz": {
+      "sha256": "fbd2cf0862ef01236809a8e533d91375974afb9bf3bd84174cb983b57cab6659",
+      "bytes": 90134
+    },
+    "live/frame-00119.npz": {
+      "sha256": "fb6ac24e30965cde2510de541bb0040ce5781a80b35e82fd28b8ed2dce35be11",
+      "bytes": 89941
+    },
+    "live/frame-00120.npz": {
+      "sha256": "4d0da6a66c99c75af87af31a0fb68c0745f51e85c8762ed409ec41b0e36ff15b",
+      "bytes": 89839
+    },
+    "live/frame-00121.npz": {
+      "sha256": "1b5b30590300a3e07b2636f62db5934358bfb834c8e50545fe70e00f01964fad",
+      "bytes": 89955
+    },
+    "live/frame-00122.npz": {
+      "sha256": "21130545f1b8427746284ff334f6c444ced0acaead97d486fe1f0568319b8b62",
+      "bytes": 90129
+    },
+    "live/frame-00123.npz": {
+      "sha256": "4f7221e0096abdc29073858082c888bc27f59650f2ea437a45fb15374996e5b9",
+      "bytes": 90178
+    },
+    "live/frame-00124.npz": {
+      "sha256": "d9a93aefc17129c26881d8266d79f9a86b1bb427f44fcd9c2c76c0d59d3e5f24",
+      "bytes": 90081
+    },
+    "live/frame-00125.npz": {
+      "sha256": "9777fe41fae3834297f74b461311e412cc094db4ac92173ed963a0b36166e180",
+      "bytes": 90068
+    },
+    "live/frame-00126.npz": {
+      "sha256": "382d235065e4dabc2073f80a07d60a384a3f8de9749709abf1e509260737782b",
+      "bytes": 89841
+    },
+    "live/frame-00127.npz": {
+      "sha256": "a19764041fd4f5dc1517366d78b2647b6e92eb168b39b16ccca3a73173e807b9",
+      "bytes": 89848
+    },
+    "live/frame-00128.npz": {
+      "sha256": "bb876d0d7df48655cbd994187b3324aa80dbb1e45943de0ba45438b01cb02137",
+      "bytes": 89692
+    },
+    "live/frame-00129.npz": {
+      "sha256": "3dd08849d13695d5b3981b0258aa62388ad0259e52d61a45cd2a4806b3ceff6a",
+      "bytes": 89772
+    },
+    "live/frame-00130.npz": {
+      "sha256": "8bb27c348e82527b1f3b467ced7cffd989bd9094e511af9f78f5d662f7fceeb4",
+      "bytes": 89688
+    },
+    "live/frame-00131.npz": {
+      "sha256": "7ede36ffc6aead67bf76cbe94ef9dde53d52578c4d485f21ad9c773d0eb0c8e7",
+      "bytes": 89695
+    },
+    "live/frame-00132.npz": {
+      "sha256": "23942310ab0af168430eaa653645322943aa6afe9be285d2d205ce0cc8934c32",
+      "bytes": 89993
+    },
+    "live/frame-00133.npz": {
+      "sha256": "6091b3aad55bd5675acc9f41bcec1a12ae9806ad190081351526a64b9f3735ba",
+      "bytes": 90022
+    },
+    "live/frame-00134.npz": {
+      "sha256": "0741a11b66dfe91a026094fd70b9096b6e189fe9035c973136e1a0fdc0d692d5",
+      "bytes": 89865
+    },
+    "live/frame-00135.npz": {
+      "sha256": "a69e9b3bca40f1205407bd20facdd9c7c351255ad1f50caddcb931036c202240",
+      "bytes": 89860
+    },
+    "live/frame-00136.npz": {
+      "sha256": "a409d5ab24ec1f90d0a6621d0a94194cd4e36d045af406bf4414e11a03381a4f",
+      "bytes": 89745
+    },
+    "live/frame-00137.npz": {
+      "sha256": "342579f048221f91949f9cf98b64cb03412fd75e6e6605d4008bdbbc21459c91",
+      "bytes": 89980
+    },
+    "live/frame-00138.npz": {
+      "sha256": "2035631762be51f13a8f9b701281c6615ee8936fda38813f0f27038bc22cb345",
+      "bytes": 89709
+    },
+    "live/frame-00139.npz": {
+      "sha256": "295086f65649f66a1bc68ae2fe44fbe91fdf17026b4b582882b73a5c7bf39f78",
+      "bytes": 89968
+    },
+    "live/frame-00140.npz": {
+      "sha256": "3e03a2cd59ad681d45f54cf43dfbe565f816735e9553824946ddce935106a116",
+      "bytes": 90191
+    },
+    "live/frame-00141.npz": {
+      "sha256": "e404ddf8f9a8007bc14fda24cc64ad01b59b9d920d8d8ac7acaf629e70da00bf",
+      "bytes": 90333
+    },
+    "live/frame-00142.npz": {
+      "sha256": "383a55b8cc718498839505e4abd6bf7cc48246b16979e6b34c38cf324e0e70c8",
+      "bytes": 90303
+    },
+    "live/frame-00143.npz": {
+      "sha256": "21717a7f722b92a1422507237818792a68ec06acf4a27776b32d60e3214c6c3f",
+      "bytes": 90473
+    },
+    "live/frame-00144.npz": {
+      "sha256": "ed50f939617a5b3754eb47b924156299d4936f57ffac484a074ff38bf81417dc",
+      "bytes": 90790
+    },
+    "live/frame-00145.npz": {
+      "sha256": "6083364553a03cd9bd021b2efd09b329cc4d93a0fc5f2debd3df123c356a4aff",
+      "bytes": 91152
+    },
+    "live/frame-00146.npz": {
+      "sha256": "1009d032db690ec576b4886461c6cd9416c1c50754e16882b9a68238d3089ce2",
+      "bytes": 91113
+    },
+    "live/frame-00147.npz": {
+      "sha256": "b81ed6ea30b242d86208676e27ab57790f2cfea423d9d8ff9fdcade730bf5a75",
+      "bytes": 91101
+    },
+    "live/frame-00148.npz": {
+      "sha256": "0585a646dc51d2d814d94910c662626774713d038c8df6460d25ce7fbdf809f3",
+      "bytes": 91201
+    },
+    "live/frame-00149.npz": {
+      "sha256": "06f4b7dc6c7ea6f89c58a7ca07d5e0eec221693c263fd16f79bce9f595faaf88",
+      "bytes": 91221
+    },
+    "live/frame-00150.npz": {
+      "sha256": "d43b57bb872d0477f99b86cb1190f86aa0d398bff58c4373634a158a0546d0fe",
+      "bytes": 91093
+    },
+    "live/frame-00151.npz": {
+      "sha256": "f96903acee391a78e223b1ec722bfef3b7ebce24703664e189c6fcbd39dd0842",
+      "bytes": 91005
+    },
+    "live/frame-00152.npz": {
+      "sha256": "0c2925e88f7e56745b0bcacfa6314296348c06acfb62cf1bb162e4c9e2600763",
+      "bytes": 90927
+    },
+    "live/frame-00153.npz": {
+      "sha256": "1070196ea570d747587826c3c03e3d2de29fb11be1529ec509daed2477c21b7f",
+      "bytes": 90687
+    },
+    "live/frame-00154.npz": {
+      "sha256": "a3198b868d97453b301559102aeae11a6d31e5a3a30ac940404ce334ed9ebac8",
+      "bytes": 90785
+    },
+    "live/frame-00155.npz": {
+      "sha256": "e52b8ad307ec381b4cdd6fb2e1e11e14da6c12181a8f1ec5c70d991e3fd3c3fe",
+      "bytes": 90649
+    },
+    "live/frame-00156.npz": {
+      "sha256": "2a153249a4b62bd17998ec8592219fc6cdd6c6d804091926327b807ad5303a00",
+      "bytes": 90592
+    },
+    "live/frame-00157.npz": {
+      "sha256": "07ad754add06a9c749bc394a2d65bf5bd7cfd48ec2b7b8afb97d249a41079e90",
+      "bytes": 90556
+    },
+    "live/frame-00158.npz": {
+      "sha256": "c5924451ae2ab7964365055820027ea1968587eb7a2f4bc878e3dec5e5ceb1df",
+      "bytes": 90539
+    },
+    "live/frame-00159.npz": {
+      "sha256": "05723fe5142b34f416cf175c80b5df67da93085062b912c2507144fbd9b555ac",
+      "bytes": 90378
+    },
+    "live/frame-00160.npz": {
+      "sha256": "d49b55d0c3e9a499cf603fc7e87fd9a02c9b23c44b39f796dbc0e98b18d66f69",
+      "bytes": 90373
+    },
+    "live/frame-00161.npz": {
+      "sha256": "32bbd93754677437c8191f2ebe51d8c0d643259cdf391dcd2e59dd06b0f2c171",
+      "bytes": 90422
+    },
+    "live/frame-00162.npz": {
+      "sha256": "cc77799ec14c3ebd58b44b3c75d67bf4286afc8f331ac1b48c4cebc3e06ebf12",
+      "bytes": 90825
+    },
+    "live/frame-00163.npz": {
+      "sha256": "1c8b9ea313983de0b50cfbb696adff40e994f11337706e1dcedd346c404547c0",
+      "bytes": 90774
+    },
+    "live/frame-00164.npz": {
+      "sha256": "90a04524c7f1344c3938c6fdedc21a84a79a7cecc71a38fc6149b2aa8dfaab30",
+      "bytes": 90405
+    },
+    "live/frame-00165.npz": {
+      "sha256": "1ce2695b2efe23be374d4a688b07db4c283bbd03090882a32c58d3f218425388",
+      "bytes": 90444
+    },
+    "live/frame-00166.npz": {
+      "sha256": "a7b474bb42436f9e0c7ea54322f4a4cd7b991216a02368d24584c8b523c68cb7",
+      "bytes": 90185
+    },
+    "live/frame-00167.npz": {
+      "sha256": "eb9e41f81c291a110f73f259d996dca33c7f307b907b888d4c4b30c31e9d7982",
+      "bytes": 90003
+    },
+    "live/frame-00168.npz": {
+      "sha256": "daecca9957c53ea0cd5a0173a1daf0390a050ba799aff662a42fd9e791c6cbfa",
+      "bytes": 90352
+    },
+    "live/frame-00169.npz": {
+      "sha256": "f37f5f5ee2b7dcc13e78e7085967be3fb439066826b9eb4737440dc4afea18b4",
+      "bytes": 90204
+    },
+    "live/frame-00170.npz": {
+      "sha256": "b7baf02babcf796bab2e0a398b7e377e35d50329c1b9777d1c5705295a351b4b",
+      "bytes": 90018
+    },
+    "live/frame-00171.npz": {
+      "sha256": "3fe5b189255464ed806a3cfadd0ce5515f2022933e4cb7bc9b6d5f638d465b83",
+      "bytes": 90060
+    },
+    "live/frame-00172.npz": {
+      "sha256": "94a5f37dead0151ef4173ca0df5f16665c867836336aeab8b2d65ad91dd49f61",
+      "bytes": 89734
+    },
+    "live/frame-00173.npz": {
+      "sha256": "f94ea47da2cdf5dedd6abf87945cd26f790ec01d75a994b297bc290fde450d18",
+      "bytes": 89973
+    },
+    "live/frame-00174.npz": {
+      "sha256": "3ff8eb1092f49870facbb73607ce88ff63608909fd68411d8fa6ff69ed9a7916",
+      "bytes": 90036
+    },
+    "live/frame-00175.npz": {
+      "sha256": "0d3058c5faac75f97ba57fbf8dece5c51a1e2c9850a01a3c36b2a0923b713b3a",
+      "bytes": 89850
+    },
+    "live/frame-00176.npz": {
+      "sha256": "27814db4304456f2e68eb8654af1f27cfa03a1f0f22f95a0a946abee80125915",
+      "bytes": 89736
+    },
+    "live/frame-00177.npz": {
+      "sha256": "1427ec976fd1dd3e03ee68599c528d3997260a681ab8f4d5276e17ef9ca7b776",
+      "bytes": 89571
+    },
+    "live/frame-00178.npz": {
+      "sha256": "f9f962487fc1eef380fb3056a8183de471c98b8ad75f1fb7763f21eb3265d5fa",
+      "bytes": 89259
+    },
+    "live/frame-00179.npz": {
+      "sha256": "d5ae25cddc03fd4613f68c2e5a1466cbef285f38408419f334c59dddce46dfce",
+      "bytes": 89248
+    },
+    "live/frame-00180.npz": {
+      "sha256": "6b2addb37a22007bfc358a220e68a93cd2672d0356d1c324a29f357b088fd9ff",
+      "bytes": 89238
+    },
+    "live/frame-00181.npz": {
+      "sha256": "5c95c1136dad28b6ac02370c42c40bb13b1d4c5f73a3a110f2312415d02d6f75",
+      "bytes": 89232
+    },
+    "live/frame-00182.npz": {
+      "sha256": "8f391d4d3a8f5dab255a16bba929a9738ddd176863fa373b8d31aa3b644d49d1",
+      "bytes": 89288
+    },
+    "live/frame-00183.npz": {
+      "sha256": "ddaa03e4696fb1e7eea4bb4fd50634d695e4a0a9ab44ac5b38b22fcd359d438e",
+      "bytes": 89238
+    },
+    "live/frame-00184.npz": {
+      "sha256": "6de9c1d29840fb50d78243e1a8a252c36eee62c1436b689628610298be38051f",
+      "bytes": 89148
+    },
+    "live/frame-00185.npz": {
+      "sha256": "ea2d92a5e9f73e3a93d24b640aa5d99a974eea1aa6a4ec4ec6213a208563ed10",
+      "bytes": 88993
+    },
+    "live/frame-00186.npz": {
+      "sha256": "a3ca2d084469c59f72fef4456926d4548f006a7b4bb92dee3783bba5327d7eb1",
+      "bytes": 88829
+    },
+    "live/frame-00187.npz": {
+      "sha256": "ae392ba72f6ef83853af3f198f8e8c01408549f8a51a5a81b94bebf716b60860",
+      "bytes": 88895
+    },
+    "live/frame-00188.npz": {
+      "sha256": "61b4bc1a7fac9a75e0de2a011cb8c12c46821ffb31017dd3cb7e00daeb2ba94d",
+      "bytes": 88821
+    },
+    "live/frame-00189.npz": {
+      "sha256": "b8f84e0964bcd7b722773f101fc8c74f7adb70d63efbf3345a2b9b7ebcff8449",
+      "bytes": 88740
+    },
+    "live/frame-00190.npz": {
+      "sha256": "ed407cbd5b7da953105902262527c6c57a5ba867a2dde24c1a7423211eda523a",
+      "bytes": 88749
+    },
+    "live/frame-00191.npz": {
+      "sha256": "c8337a79c19b03fdfcd051439c891fbfd3218d9605d219b6bf3124cc3d9894d3",
+      "bytes": 88682
+    },
+    "live/frame-00192.npz": {
+      "sha256": "df453d43e921d059a1d9a9c8bf8eec213ce11f2a7f9077f495981716a9aa1ac4",
+      "bytes": 88740
+    },
+    "live/frame-00193.npz": {
+      "sha256": "fe4779ef72b56f4455a31b3e6edb1b3d1bdda949ea5f7b2b77ffd6d2d5ba9438",
+      "bytes": 86844
+    },
+    "live/frame-00194.npz": {
+      "sha256": "24956645b80ff1ae331ec9102f4778d2b773870cdf2d194dd0e74b631ad115ce",
+      "bytes": 89042
+    },
+    "live/frame-00195.npz": {
+      "sha256": "9e1c71ef306e68330a48ea398965f5ade7466fd67d98edf548e8723c0b97e85f",
+      "bytes": 88772
+    },
+    "live/frame-00196.npz": {
+      "sha256": "519e1da8ce37665d8534b7fbba7e5e8f64d5294fc54f1cd6443c134203d697a0",
+      "bytes": 81824
+    },
+    "live/frame-00197.npz": {
+      "sha256": "19af1496d228edabc56fa878dff5ee4d00b961490282d68a5f1eaad881baecca",
+      "bytes": 78158
+    },
+    "live/frame-00198.npz": {
+      "sha256": "61dae1a6601e494e15ae95d0ec1e1324dc2bfe24cc70c4dd211885127a21d601",
+      "bytes": 88819
+    },
+    "live/frame-00199.npz": {
+      "sha256": "4c707a5ee9d8121ab36c0ed24ee6e30f499f345aab7333813cf3de574125dcdc",
+      "bytes": 88906
+    },
+    "live/frame-00200.npz": {
+      "sha256": "18442c7282be962f583c8172593448a16c3bf54cf4ef60252fd157d3ff21ee85",
+      "bytes": 88864
+    },
+    "live/frame-00201.npz": {
+      "sha256": "64a8944d3b91b9c9f9c6aca532da9133e4b495f9f29a88ff9426c91becd4ca29",
+      "bytes": 88698
+    },
+    "live/frame-00202.npz": {
+      "sha256": "c2d4e48a628bdfdb8e0987f839ac6f0420941477b1ff450be42f979c87449245",
+      "bytes": 88717
+    },
+    "live/frame-00203.npz": {
+      "sha256": "7653dc36cec1cec41393c6b261c0e9cc499df96d828fae892691bfd95ab2122f",
+      "bytes": 88658
+    },
+    "live/frame-00204.npz": {
+      "sha256": "687994db994d50890c06af7e7d93be9026c9db148f07e4a8b592db348c8d2e0d",
+      "bytes": 89047
+    },
+    "live/frame-00205.npz": {
+      "sha256": "1a595197c269749ff3054600e89a619fcb62c5f1dfb568613ac094bd06182fd4",
+      "bytes": 89123
+    },
+    "live/frame-00206.npz": {
+      "sha256": "96de4a6bbd00014ddccd0f75ca606bee429c4484cac4b5b215e4d09a2387cbfe",
+      "bytes": 89192
+    },
+    "live/frame-00207.npz": {
+      "sha256": "68206c5cf992dae5926f7af491f25d96780510af9580402d08de1f534c66c7f1",
+      "bytes": 88648
+    },
+    "live/frame-00208.npz": {
+      "sha256": "0aabff93cf159d15dc9a5a92473cbc269d9f8e5a414dd09aac2f7f572205d2a8",
+      "bytes": 86186
+    },
+    "live/frame-00209.npz": {
+      "sha256": "592427d9831c447373de271ac039f84ccc1203200e63018a2f8ac3895d16b163",
+      "bytes": 89017
+    },
+    "live/frame-00210.npz": {
+      "sha256": "ca1a72ee711deccac848a62351bfe7a60f5defecf0b75d7b872dd95412616e91",
+      "bytes": 89092
+    },
+    "live/frame-00211.npz": {
+      "sha256": "709d041cfd64e85fee0eca9aa3cd79fbbb5555b95476980231edb54d4ec43224",
+      "bytes": 88938
+    },
+    "live/frame-00212.npz": {
+      "sha256": "7f2a242474e5356d5f9a8f381eca9075351bc1b66a6a05663ae489553b9f72a8",
+      "bytes": 88870
+    },
+    "live/frame-00213.npz": {
+      "sha256": "83295320fdb46ae2177f55f2674cdd9c6ebe4e7387219a02fc7ec4d7f8964427",
+      "bytes": 88882
+    },
+    "live/frame-00214.npz": {
+      "sha256": "7ac346bb3a9f28e868b3f1979e700bbd6193b68cf6b5b1ca384d1f79fbedb3a5",
+      "bytes": 89074
+    },
+    "live/frame-00215.npz": {
+      "sha256": "1c57c43cd179a401abcc870a9298b376700d983bf57d6c14667908e4295f9a73",
+      "bytes": 88739
+    },
+    "live/frame-00216.npz": {
+      "sha256": "84ee1a20823b360387f1781257f94e984d4536c202b03c2c46262d5cb7845528",
+      "bytes": 88833
+    },
+    "live/frame-00217.npz": {
+      "sha256": "eb4f7b8d0572ff521f5fcaf4f6b5c0fcc5c3ebc1867e0c8eedeae2800507edc2",
+      "bytes": 89210
+    },
+    "live/frame-00218.npz": {
+      "sha256": "3b6cbe38ae8bed2a4c5897e974d9088df13d9729290d218a7b7ba47ac8a97365",
+      "bytes": 89245
+    },
+    "live/frame-00219.npz": {
+      "sha256": "06250324b91e6e054bc7d3b14aea7b6e70c28bbd8a3cecb33549a255541c3db5",
+      "bytes": 89216
+    },
+    "live/frame-00220.npz": {
+      "sha256": "220cea83348dd9c68fe4a67631c6c7f3574faf4f650515843b0b1dc421688546",
+      "bytes": 89446
+    },
+    "live/frame-00221.npz": {
+      "sha256": "44c11d9e13366e9c1975a5a94ff18df69678f10e371d43cbcc31c9b28b70d4bc",
+      "bytes": 89573
+    },
+    "live/frame-00222.npz": {
+      "sha256": "88260d6ed48637db2bcd3a95fba60b483e297163fd23a7bcbbaeca933c8111f6",
+      "bytes": 89516
+    },
+    "live/frame-00223.npz": {
+      "sha256": "877ff5a581688753050d1e3d3b95f777305482c231f6eb7dedcc566903a38a5d",
+      "bytes": 89453
+    },
+    "live/frame-00224.npz": {
+      "sha256": "3e335c4ea0a8c20a69200a8a6f7c606b4ab15ccaa81bcd71e2dde7cb4beb13dc",
+      "bytes": 89406
+    },
+    "live/frame-00225.npz": {
+      "sha256": "3813cf57b6e94481629938bfd27c1f918e5d646fe4fe904de817cc4cc271ef68",
+      "bytes": 89589
+    },
+    "live/frame-00226.npz": {
+      "sha256": "8b17f24f14c5ad56331975a8dd2accaf66fa09c1e695fbbf5a6f91605e79dd20",
+      "bytes": 89979
+    },
+    "live/frame-00227.npz": {
+      "sha256": "54e8a18765fb771c8a4f3a67f6e47a1faadfdad545808b50eaaea34fff019168",
+      "bytes": 89971
+    },
+    "live/frame-00228.npz": {
+      "sha256": "9476003e331f0bcc00175cf09848fb89f4c37a0a7927c7263e10852544d40b19",
+      "bytes": 90068
+    },
+    "live/frame-00229.npz": {
+      "sha256": "ecbe4b13115bc623b44c3dad47b194d6b08a57e2db9fa4889ed25818a7ad2b98",
+      "bytes": 89951
+    },
+    "live/frame-00230.npz": {
+      "sha256": "037f6121fa395ae2bbf2ff30ebb18d19d0c09bbfeaf9bbac98d53bb44b410d9e",
+      "bytes": 89904
+    },
+    "live/frame-00231.npz": {
+      "sha256": "8f155cee10519d2f6cc93fd976a7a2c49e2b8e00669de30e1fa1adf72c08da75",
+      "bytes": 89392
+    },
+    "live/frame-00232.npz": {
+      "sha256": "c5bbd5408652b277ba8a98896446ccaf1534562aa8b09aa739ea129d394ad21e",
+      "bytes": 89865
+    },
+    "live/frame-00233.npz": {
+      "sha256": "96a1fd2ad219715b9e397a2eed9f3f2cbda0fb076af182665abcbd3bebdaf621",
+      "bytes": 89888
+    },
+    "live/frame-00234.npz": {
+      "sha256": "04c2d2d137e97902fc1145f3a5e0a0700cff8b95cdeb0fa693c8f07434b8e8b2",
+      "bytes": 90079
+    },
+    "live/frame-00235.npz": {
+      "sha256": "56c5414571d468fd372e7a3fabb9eff49c5c54f6376c80f030b0ecf0b16cec73",
+      "bytes": 90198
+    },
+    "live/frame-00236.npz": {
+      "sha256": "37f36bfa342a2bd5340576dcd90beb72da679efb75150a00f2e56708d160c15f",
+      "bytes": 90155
+    },
+    "live/frame-00237.npz": {
+      "sha256": "e0a332d8971edec61f82a3b77c9b9f4a26e6435fcf2f91907a84e2aa4f75a57b",
+      "bytes": 90155
+    },
+    "live/frame-00238.npz": {
+      "sha256": "5a44c36b11247ed135a6af67d5c4f7d2fc2781c0ceec9476e8477b318bfd5eb5",
+      "bytes": 90154
+    },
+    "live/frame-00239.npz": {
+      "sha256": "a39676465da6aaddb94534794dd91e582f9c1029914956a8624c24cd4ae0ea0b",
+      "bytes": 90191
+    },
+    "live/frame-00240.npz": {
+      "sha256": "6ac5836c4c2955e6001f78639c82a5ce0002c8291c7ea77ca01b3f36191c2c7b",
+      "bytes": 90058
+    },
+    "live/frame-00241.npz": {
+      "sha256": "e7e2d4ca0e45b78e315a43b8efb384341844074ad0d2487b5d8351599ba0c3ba",
+      "bytes": 89969
+    },
+    "live/frame-00242.npz": {
+      "sha256": "3516115d217a38d2fc174a47a67950461dbda1af2c816f6508e21a9e9fb735fe",
+      "bytes": 89878
+    },
+    "live/frame-00243.npz": {
+      "sha256": "aacafc1f73a0eead6f6a3b826b68ee57e36b965174e3d77a2df3da7c0f1b90f6",
+      "bytes": 89818
+    },
+    "live/frame-00244.npz": {
+      "sha256": "dea0d78ba3bf0a459a2e9f6c0e811c3e2d8785496c8d417412e2a22d2c68a577",
+      "bytes": 89493
+    },
+    "live/frame-00245.npz": {
+      "sha256": "cf3e2756e672f4b143c5da01b99eb1e38829cf75ae6dcf77c8732ecbc066a18b",
+      "bytes": 89698
+    },
+    "live/frame-00246.npz": {
+      "sha256": "eb9da5698118c52a8ae7a03544a4d735b684bb2bf0c6d4f0f5ae488fb20137e4",
+      "bytes": 89634
+    },
+    "live/frame-00247.npz": {
+      "sha256": "f4661ac090055e80dd283a86bf9820b06978ef398b7f3357ebde760807853036",
+      "bytes": 89427
+    },
+    "live/frame-00248.npz": {
+      "sha256": "247793fcc8f57c43f0c2228257c43649aaade029980baf5aba9d1168fa380265",
+      "bytes": 89449
+    },
+    "live/frame-00249.npz": {
+      "sha256": "24614fa0cd161292c4adf1e62632d680172d200daa728f6007aed1d3f955a68c",
+      "bytes": 89519
+    },
+    "live/frame-00250.npz": {
+      "sha256": "1d5bf030ba5842e2ad31e6758486697c2bc6bea46c575151609795605134362a",
+      "bytes": 89249
+    },
+    "live/frame-00251.npz": {
+      "sha256": "5f4478bc3f13b55b6df65d5ee547ace5fc5f5836d090c3fff71e4bac7db734d3",
+      "bytes": 89259
+    },
+    "live/frame-00252.npz": {
+      "sha256": "309c65a706ead9d34b1d55204738b798da467fa5190eb99b912131a19a89558c",
+      "bytes": 89169
+    },
+    "live/frame-00253.npz": {
+      "sha256": "8b5ef1cb8590690ffca9734c2a50b3eeefe81c7cf4da838d0e3afbc13d7dc91b",
+      "bytes": 88952
+    },
+    "live/frame-00254.npz": {
+      "sha256": "9fd4a36c0beb0226703990624ed12ebc4f7b415cafddd7b81942ae3c0de258b8",
+      "bytes": 88978
+    },
+    "live/frame-00255.npz": {
+      "sha256": "b5aee8962b509fd4bb900aedef4e7fbfd0b4545f8d7141345b2410fd53a38f5f",
+      "bytes": 88880
+    },
+    "live/frame-00256.npz": {
+      "sha256": "272f9dbe170aee1637995db3c306ccc9368caf4f45679e59cd46fff10ca86713",
+      "bytes": 89507
+    },
+    "live/frame-00257.npz": {
+      "sha256": "35d6da40ee2464c4bd54e54f9f42794d6005c41e3f9532a4f6c7a973914d5b6b",
+      "bytes": 89280
+    },
+    "live/frame-00258.npz": {
+      "sha256": "5e11cfa1276dd994dd161d27100637ec2977da1ec16a3614f8d16c82560349fc",
+      "bytes": 89103
+    },
+    "live/frame-00259.npz": {
+      "sha256": "91c4b6fee0488a9664118f742fa644034b1bd0159c5981ca0b3121d641b28a86",
+      "bytes": 89015
+    },
+    "live/frame-00260.npz": {
+      "sha256": "a1225a8581b812be8715971536a7185c9ece3d17354c67f853bda7581752256c",
+      "bytes": 88868
+    },
+    "live/frame-00261.npz": {
+      "sha256": "1229bd183d0db5f03c9d9cd76f830c35550dc51fd17089841118954e215cc725",
+      "bytes": 89176
+    },
+    "live/frame-00262.npz": {
+      "sha256": "4450d086b66cfac2887d54ba64b4e622bc323aaef2397223ae8a9ef63dd8b8f6",
+      "bytes": 89381
+    },
+    "live/frame-00263.npz": {
+      "sha256": "42453b9ef27e59a49e25f7c436fccc3c5920854678e2fdf9c8bb4e23598395af",
+      "bytes": 89779
+    },
+    "live/frame-00264.npz": {
+      "sha256": "eb1eccad22a7c794d109ace6b69ab89caa54b20aedf77dedde53ccf3bd6b4009",
+      "bytes": 89852
+    },
+    "live/frame-00265.npz": {
+      "sha256": "9bf097f9cdc4a1610c9ff3925b70e74ffb0d9c797c5df78036eb590cf347ab22",
+      "bytes": 90204
+    },
+    "live/frame-00266.npz": {
+      "sha256": "5c0c356dd4e9bdf10b30baca6dfd2a5c4dd2fa99c05552c4b82a1232048ca01a",
+      "bytes": 90734
+    },
+    "live/frame-00267.npz": {
+      "sha256": "970746b7bce5a447eb6838af20216e300f3ccdcf211d40153bb0bc6b9348e0ac",
+      "bytes": 90795
+    },
+    "live/frame-00268.npz": {
+      "sha256": "adbac99f2d1115a4193b072dccc411fe438b090b3f93cc55dd232855994ab34b",
+      "bytes": 91304
+    },
+    "live/frame-00269.npz": {
+      "sha256": "59670908053f98c47748849c753e5c884347da590eec21b486849ce229f14746",
+      "bytes": 91241
+    },
+    "live/frame-00270.npz": {
+      "sha256": "e768ba20b81c203a9af5828754f3691c55ec6a250923d16071f970946c275f29",
+      "bytes": 91054
+    },
+    "live/frame-00271.npz": {
+      "sha256": "994f3e90bd0fa9547270944b87edd732870937cc9f33054428497544447fa6a9",
+      "bytes": 91041
+    },
+    "live/frame-00272.npz": {
+      "sha256": "a367b170acf672dc2ebb8b1891a3e521ebb7e6d3d1e9312f24bfbf72df8e9917",
+      "bytes": 90957
+    },
+    "live/frame-00273.npz": {
+      "sha256": "ce2a477c0a360b32bc0b9526651963c81a97103112e80a07f93425bead419fd2",
+      "bytes": 90820
+    },
+    "live/frame-00274.npz": {
+      "sha256": "dd4953c21eb77f65ab879c199ddb38f9f44666ad459dcb9edd2dfe461489aab5",
+      "bytes": 90782
+    },
+    "live/frame-00275.npz": {
+      "sha256": "0c530fdf7d2ed6703c34fecb5c1d50bccf5896b229b086dd7c44b577ebe5851f",
+      "bytes": 90759
+    },
+    "live/frame-00276.npz": {
+      "sha256": "278fe2f78f806bf1aa8a59a3296fce562becf26f4e701151d78f89cc3da07034",
+      "bytes": 91054
+    },
+    "live/frame-00277.npz": {
+      "sha256": "733d30f8cdb0e6f363ebe822b485332eaf00547a2902891bfd7a5bb0ab3b8e6c",
+      "bytes": 90908
+    },
+    "live/frame-00278.npz": {
+      "sha256": "dab13fa6ade979b864bd1e7c05837d25fcd8331bad5c9f62e2f121c13d0cd950",
+      "bytes": 90496
+    },
+    "live/frame-00279.npz": {
+      "sha256": "9705efe4f34e70106579a3a1a0b8267cdbb6172ce20c86b380a9917fbb20e725",
+      "bytes": 90231
+    },
+    "live/frame-00280.npz": {
+      "sha256": "9b289030ff0013638269b860beae828cb7c3f1a2c46e7924367bb81719045d40",
+      "bytes": 90452
+    },
+    "live/frame-00281.npz": {
+      "sha256": "4c8b7dbab55149238b46068014373a43f99ad9a6855f59d4d449dd2c2c67b345",
+      "bytes": 90476
+    },
+    "live/frame-00282.npz": {
+      "sha256": "cde1d9f7881c6835cf129d51e8f49ab4318e56fe844b536ec07e303b3dc42f56",
+      "bytes": 90462
+    },
+    "live/frame-00283.npz": {
+      "sha256": "c6e764f623caf69185c25884ef662961dd4a8119a443dd30bf9deffb8c1717c1",
+      "bytes": 89974
+    },
+    "live/frame-00284.npz": {
+      "sha256": "a465d099a259a5cfcde0dbaa39385244ceca87419ed37ea45e87c4092917453b",
+      "bytes": 90002
+    },
+    "live/frame-00285.npz": {
+      "sha256": "9a941671be29193f24bcf1bf771889d70af902b7a9fd8b1e734fd8642d0172d3",
+      "bytes": 89943
+    },
+    "live/frame-00286.npz": {
+      "sha256": "6222f37ac92266062a3a70b793adc64cd9f532b0e981ef0ee9078d392065e064",
+      "bytes": 89902
+    },
+    "live/frame-00287.npz": {
+      "sha256": "74f1518cd51275f57a2b5d7f9c064ee4d5618c274ac6e788aefb7e876f3bef09",
+      "bytes": 89951
+    },
+    "live/frame-00288.npz": {
+      "sha256": "8f92667e6a944f96ae37b51fa631cfcbf8430a3116206eab4fc31f931494aee6",
+      "bytes": 89981
+    },
+    "live/frame-00289.npz": {
+      "sha256": "75e1847f63b6def21c13141ccc5bb4534cb3d96c92825693d1b69e8c3ce8deac",
+      "bytes": 90662
+    },
+    "live/frame-00290.npz": {
+      "sha256": "2880e9cc9811d9486450374fac423d66471904fb8715f870de3bd947cdcc7e58",
+      "bytes": 90578
+    },
+    "live/frame-00291.npz": {
+      "sha256": "970aad7232a2f46f4483f1040aa5672bc36143c2c267c044a4651fd3736af960",
+      "bytes": 90451
+    },
+    "live/frame-00292.npz": {
+      "sha256": "fa8bc847e2f02f2cb11d7e1cc82587655be18671035229b8c375d17f6b813de7",
+      "bytes": 90467
+    },
+    "live/frame-00293.npz": {
+      "sha256": "5a660b747a091415227e9dab050a64fea9d70ab9cef8a11ce41285e1a8c40243",
+      "bytes": 90430
+    },
+    "live/frame-00294.npz": {
+      "sha256": "d176cf7cfa0f9cd85c3062477ff265eb39b5154c6e09a4cba175f33f39ee2da0",
+      "bytes": 90237
+    },
+    "live/frame-00295.npz": {
+      "sha256": "df89727d283bc41f440c1b358d219d81f84d0a612703d6a1557b5fef65bf5bc8",
+      "bytes": 90559
+    },
+    "live/frame-00296.npz": {
+      "sha256": "0729ea783955a305e5537100ed3e3ed96f64988248f5f3373e49fc02ba20e435",
+      "bytes": 90199
+    },
+    "live/frame-00297.npz": {
+      "sha256": "824ccc3041af2e1bec7ec0f4d5f5252b5c8b20e1daabf9cec0fc4e0d6ce3fcf3",
+      "bytes": 90379
+    },
+    "live/frame-00298.npz": {
+      "sha256": "86080d2562c9a0333ed7c2154776d78788b313448a58a8de592e668342305ad2",
+      "bytes": 90636
+    },
+    "live/frame-00299.npz": {
+      "sha256": "874a96a1c999307556a7220dd67f216726fc6388d16c17182054942d8f0fce94",
+      "bytes": 90402
+    },
+    "live/frame-00300.npz": {
+      "sha256": "d8d962295e504a1768088c6716d4feba9ea675b99736bbcf7c95071fcc30dfbb",
+      "bytes": 90204
+    },
+    "live/frame-00301.npz": {
+      "sha256": "48dda6aa3591a1c7840ee61b2613d9be8d603a2467e3949fffc5d6ea047ec293",
+      "bytes": 90217
+    },
+    "live/frame-00302.npz": {
+      "sha256": "5156caf1960fea574c5a53f997448ab530dedddceff7d2f03ebaf995dd733705",
+      "bytes": 90204
+    },
+    "live/frame-00303.npz": {
+      "sha256": "fc01a05da0106ec3f42bdbae6533ae44e0e5a48aa4a5c3d0780f2bfc6d243241",
+      "bytes": 90327
+    },
+    "live/frame-00304.npz": {
+      "sha256": "e15fcf1e0d02ba558c47aef464088c3f971cd14d5b4d9729c68ff8f8b1359204",
+      "bytes": 90263
+    },
+    "live/frame-00305.npz": {
+      "sha256": "d81ab24171f0712fdbe674021b79c00227092235a19a9c155ac376e6dba9fff4",
+      "bytes": 90397
+    },
+    "live/frame-00306.npz": {
+      "sha256": "d645c402ff59b9dcd954dd8017b379196d52055787836d0f1ce7bebfb4ff0a13",
+      "bytes": 90770
+    },
+    "live/frame-00307.npz": {
+      "sha256": "09ac2f27ccf2fb44b19bb16d095f343f8d0c046f01970fc00f8f8f72df2ee191",
+      "bytes": 90714
+    },
+    "live/frame-00308.npz": {
+      "sha256": "9fca50e44faa42c9f86ff63a8e5e7c51d0b13a2385a2e09d836b8d4ca0814a83",
+      "bytes": 90369
+    },
+    "live/frame-00309.npz": {
+      "sha256": "6254da0733b80e7064c36b64cd4eccf008a72b4034e9baeedbf95cd424828f44",
+      "bytes": 89991
+    },
+    "live/latest.json": {
+      "sha256": "b5cf7080e110b9d87e04a1a17f745e4a1771276284cfa0c2768b5f7d937bd5f7",
+      "bytes": 314
+    }
+  },
+  "scope": "released Bonn IPBLab sequence; native config and 100000 initial particles; fresh inference",
+  "command": [
+    "/home/qzl/.venvs/ir-mcl/bin/python",
+    "-u",
+    "main.py",
+    "--config_file",
+    "./config/global_localization/loc_config_test1.yml"
+  ],
+  "exit_code": 0,
+  "finished_unix": 1791998488.0908046,
+  "wall_seconds": 241.03309965133667
+}

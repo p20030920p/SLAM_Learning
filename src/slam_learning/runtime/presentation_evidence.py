@@ -95,6 +95,23 @@ def verify_presentation(path: Path, record: dict) -> list[str]:
                     raise ValueError(f"{name}: {key} differs from retained poses")
         if record.get("truth_input_to_localizers") is not False:
             errors.append("Truth was not reserved for evaluation")
+        if record.get("native_views"):
+            configurations = json.loads((path.parent / "views.json").read_text())
+            updates = [json.loads(line) for line in (path.parent / "view-updates.jsonl").read_text().splitlines()]
+            for view in record["native_views"]:
+                case = view["case"]
+                config = configurations[case]
+                if any(view[key] != config[key.replace("window_", "")] for key in ("window_title", "map_topic", "pose_topic", "tf_topic")):
+                    raise ValueError("Live recording points at another case's RViz/TF topics")
+                settings = (path.parent / config["config"]).read_text()
+                if f"Value: /{case}/map\n" not in settings or f"Value: /{case}/amcl_pose\n" not in settings:
+                    raise ValueError("RViz does not display its labelled method")
+                if digest(path.parent / view["video"]) != view["sha256"]:
+                    raise ValueError("Live recording hash differs from capture")
+                retained = read_samples(path.parent / f"{case}-samples.csv")
+                shown = [row for row in updates if row["case"] == case]
+                if len(shown) < .9*len(retained) or shown[-1]["stamp_s"] < retained[-1, 0]-.5:
+                    raise ValueError("Live method display lacks native pose-update coverage")
         if record.get("restoration"):
             events = [json.loads(line) for line in (path.parent / "scan-stress.jsonl").read_text().splitlines()]
             stamp = min(event["stamp_s"] for event in events if event["phase"] == "restored")

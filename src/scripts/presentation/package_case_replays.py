@@ -16,6 +16,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("parents", nargs="+", type=Path)
     parser.add_argument("--force", action="store_true", help="Replace derived renders; preserve original scene evidence")
+    parser.add_argument("--cases", help="Comma-separated native cases to export; default all")
     args = parser.parse_args()
     for parent in args.parents:
         source = parent / "record.json"
@@ -24,8 +25,12 @@ def main():
             raise ValueError(issues)
         record = json.loads(source.read_text(encoding="utf-8"))
         cases = json.loads((parent / "cases.json").read_text(encoding="utf-8"))
+        if args.cases and not set(args.cases.split(",")).issubset(cases):
+            raise ValueError("Requested replay case is absent from the native execution")
         interval = [record["result_replay"][key] for key in ("common_start_s", "common_end_s")]
         for name, case in cases.items():
+            if args.cases and name not in args.cases.split(","):
+                continue
             output = parent / "methods" / name
             if (output / "record.json").exists() and not args.force:
                 issues = verify_record(output / "record.json")

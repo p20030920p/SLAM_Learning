@@ -82,6 +82,44 @@ if scene == "corridor":
         config = config.replace("X: 0\n", "X: 0.0\n").replace("Y: 0\n", "Y: 0.0\n")
     config = config.replace("Scale: 35", "Scale: 25")
 (run / "live.rviz").write_text(config)
+if os.environ.get("PRESENTATION_MULTI_VIEW") == "true" and mode == "localization":
+    views = {}
+    for method, label in (("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")):
+        case = "degraded_"+method if scene == "corridor" else method
+        own = config.replace("Value: /raw/map\n", f"Value: /{case}/map\n")
+        own = own.replace("Raw map + common AMCL (live)", label+" map + AMCL (LIVE)")
+        own = own.replace("Value: /scan\n", "Value: "+cases[case].get("scan_topic", "/scan")+"\n")
+        additions = f'''    - Class: rviz_default_plugins/PoseWithCovariance
+      Name: {label} native AMCL pose
+      Enabled: true
+      Topic:
+        Value: /{case}/amcl_pose
+      Color: 60; 180; 255
+      Shape: Arrow
+    - Class: rviz_default_plugins/Path
+      Name: {label} estimated trajectory
+      Enabled: true
+      Topic:
+        Value: /{case}/view/path
+      Color: 60; 180; 255
+      Line Width: 0.05
+    - Class: nav2_rviz_plugins/ParticleCloud
+      Name: {label} native AMCL particles
+      Enabled: true
+      Topic:
+        Value: /{case}/particle_cloud
+        Reliability Policy: Best Effort
+        Durability Policy: Volatile
+        Depth: 5
+      Color: 250; 210; 50
+'''
+        own = own.replace("  Global Options:\n", additions+"  Global Options:\n")
+        path = run / f"view-{case}.rviz"
+        path.write_text(own)
+        views[case] = {"method": method, "title": f"SLAM LIVE - {case} - RViz2",
+                       "config": path.name, "map_topic": f"/{case}/map", "pose_topic": f"/{case}/amcl_pose",
+                       "tf_topic": f"/{case}/view/tf", "scan_topic": cases[case].get("scan_topic", "/scan")}
+    (run / "views.json").write_text(json.dumps(views, indent=2)+"\n")
 default_gui = Path("/root/.gz/sim/8/gui.config").read_text()
 gui = ET.fromstring("<root>" + re.sub(r"<\?xml.*?\?>", "", default_gui) + "</root>")
 for plugin in list(gui.findall("plugin")):

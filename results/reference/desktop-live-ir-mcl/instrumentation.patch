@@ -1,0 +1,18 @@
+--- a/main.py
++++ b/main.py
+@@ -20,6 +20,7 @@
+ from mcl.srrg_utils.pf_library.pf_utils import PfUtils
+ from mcl.vis_loc_result import plot_traj_result
+ from mcl.visualizer import Visualizer
++from slam_learning.runtime.live_capture import ir_snapshot
+ 
+ 
+ def get_args():
+@@ -145,6 +146,7 @@
+ 
+         curr_numParticles = particles.shape[0]
+         results[frame_idx, :curr_numParticles] = particles
++        ir_snapshot(frame_idx, curr_timestamp, particles, poses_gt[frame_idx], occmap, scans, config)
+ 
+         if visualize:
+             visualizer.update(frame_idx, particles)

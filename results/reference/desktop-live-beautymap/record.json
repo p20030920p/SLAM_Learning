@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "kind": "author_desktop_demo",
+  "status": "executed",
+  "exit_code": 0,
+  "method": "beautymap",
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+    "-m",
+    "slam_learning.cli",
+    "_worker",
+    "--root",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-202609-author-live-beautymap-dbdf18/experiment",
+    "--method",
+    "beautymap",
+    "--output",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-202609-author-live-beautymap-dbdf18/experiment/results/runs/beautymap-b9f4a4723ce8",
+    "--frames",
+    "0"
+  ],
+  "scope": "141 released KITTI-00 scans, pinned author pipeline; paper comparison as native record",
+  "metrics": {
+    "counts": {
+      "kept_static": 16740135,
+      "removed_static": 526112,
+      "removed_dynamic": 94388,
+      "kept_dynamic": 1595
+    },
+    "SA": 96.95294524629469,
+    "DA": 98.33824739797673,
+    "AA": 97.64313962379855,
+    "HA": 97.6406829872703,
+    "gt_points": 17362230,
+    "map_points": 16558909,
+    "threshold_m": 0.05,
+    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+  },
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-202609-author-live-beautymap-dbdf18",
+  "live_state": {
+    "enabled": true,
+    "scope": "Actual RViz+terminal capture during new author execution; read-only current state, display thinning; observer overhead included"
+  },
+  "timing": {
+    "execution": {
+      "duration_s": 74.60000000000052,
+      "frames": 373,
+      "fps": 5,
+      "video_duration_s": 74.583333,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "artifacts": {
+    "author-live.rviz": {
+      "sha256": "b324c2c736b55b40055a36d930d2504857008b71a258f679236b1cf3a87a7a77",
+      "bytes": 2477,
+      "availability": "portable"
+    },
+    "author-rviz.log": {
+      "sha256": "1b89fa7fc85104815106a1961450d4d4259ffe74039c971fb93a19ec319e1619",
+      "bytes": 474,
+      "availability": "portable"
+    },
+    "capture-filter.txt": {
+      "sha256": "2f60ae8692fdaa92cbeaa9a6b58b410166c495322c15586e26ed7ebdb88fd094",
+      "bytes": 454,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "d4b8daab0da3574a7f4c89e1d862b79d6b9ad2f3c7737825cb8782d1dd37000e",
+      "bytes": 795528,
+      "availability": "portable"
+    },
+    "execution.json": {
+      "sha256": "627ade9078ec070824d7de5918c9fbcf761e822e6a2a302161ff0525ef4fdedb",
+      "bytes": 7574,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "73e1e086ff3ca2c25a7b02e1194977555164a18c4b221e6c33a3ace4710edc49",
+      "bytes": 1749408,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "17ffe6640834ade8605f7f47c68fc5c0b964590bf8e42ceb4b8763df938d36f6",
+      "bytes": 152008,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "65b53334500bc71139f9eeda8d00bad507d44bb505b426caba8871477613e246",
+      "bytes": 563860,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "de8cefcb68786c60b72305d9e26f5ddd2a38eda341da65a830c94bd667780770",
+      "bytes": 647640,
+      "availability": "portable"
+    },
+    "live-events.jsonl": {
+      "sha256": "793b7482887578d8b34101fc9034f5464e06f8a3fff40b71d279a7644e07fcf8",
+      "bytes": 6750,
+      "availability": "portable"
+    },
+    "live-published.jsonl": {
+      "sha256": "85fa58d3dc456cd6265f3f2e41f72b5eca601760be7ba999bc11f45fec21e010",
+      "bytes": 7545,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "6cc1cd2ce82ff7ce92c5a59b2ae79c2c86605de977a2d7e95c43d669b7a0670f",
+      "bytes": 447,
+      "availability": "portable"
+    },
+    "terminal.log": {
+      "sha256": "e6b9508c68f96423ff0a610f9d89ba816a2f616d798562b0a7c189951569aa73",
+      "bytes": 25045,
+      "availability": "portable"
+    },
+    "timing.json": {
+      "sha256": "23429b20d4af4c1ecea1776515d2bcacad34b43af09cacb15b383a43c95fd2be",
+      "bytes": 227,
+      "availability": "portable"
+    },
+    "native-run/compatibility.patch": {
+      "sha256": "04002c2b3fca0db1295f8629c1369278b526b54c83e031f4163e23b359d92b9e",
+      "bytes": 366,
+      "availability": "portable"
+    },
+    "native-run/instrumentation.patch": {
+      "sha256": "a9ffde032b50ef8ad2802857fd5bac34444f4e568d3f9005da46777ee51e60cb",
+      "bytes": 617,
+      "availability": "portable"
+    },
+    "native-run/metrics.json": {
+      "sha256": "8942b872a404af8203fe0c2601d4f4a9b53acbb5ac1c818b86472c4b4c124fd0",
+      "bytes": 431,
+      "availability": "portable"
+    },
+    "native-run/record.json": {
+      "sha256": "b95ce3fc708e4c671554d45e780dfb329ebe0326f8e28b340fea6468061452ec",
+      "bytes": 14261,
+      "availability": "portable"
+    },
+    "native-run/run.log": {
+      "sha256": "40033e090939d513a4a4bc6adad91ad55f218bc212913e330f850c3369bb90ff",
+      "bytes": 16918,
+      "availability": "portable"
+    },
+    "native-run/worker.json": {
+      "sha256": "6fcf97e51920f8fcad7705045e312e263d6afa87c8f21146b81d7556f6c78411",
+      "bytes": 1442,
+      "availability": "portable"
+    }
+  },
+  "native_output_path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-202609-author-live-beautymap-dbdf18\\native-run\\cleaned.pcd"
+}

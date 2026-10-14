@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "beautymap",
+  "parent_record": "../../record.json",
+  "parent_sha256": "091fb154cc0307453c4d3ee3229caec66aa3a883b7d9f42b186c8f2c55af1ff0",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-201016-localization-static-method-live-a72944",
+  "case_configuration": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    }
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 290,
+    "position_rmse_m": 0.06890830689932811,
+    "yaw_rmse_deg": 1.048481029710238,
+    "post_warmup_5s_samples": 289,
+    "post_warmup_5s_position_rmse_m": 0.0668630496309503,
+    "position_p95_m": 0.08442992147500789
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 4.1,
+    "common_end_s": 69.2,
+    "alignment": "none",
+    "frames": 521
+  },
+  "timing": {
+    "duration_s": 65.20000000000039,
+    "frames": 326,
+    "fps": 5,
+    "video_duration_s": 65.125,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": null,
+  "source_inputs": {
+    "beautymap-samples.csv": "894d2ec67b1180a85496f95123903c2df9a429d59bc8f5b2f4227b4c9dadfd5f",
+    "truth.jsonl": "8ff8ce524cc737064b7f9cee6c27b51dcbb47434c8d388361015c638f7e8022d",
+    "cases.json": "cfc3fc2ba8c4fae1f569a8b781d2f0b6ff653168a33f061f5817ee41942adb26",
+    "metrics.json": "0d180cfbcc3904e79238b0413415083b38379c30e40becba49413fd82158d782",
+    "maps/beautymap/map.pgm": "eb35c804e1bf86ba80093ab83b712ff0bdb08ee5afd42a5c01ea25eb76df85b8",
+    "maps/beautymap/map.yaml": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py D:/workspace/be2/slam_learning_updated/results/reference/robot-live-static",
+  "renderer_sha256": "428ee2b92af7b594780c82aedfbc09da65e1c7e21d3799f0c2ffe7bf68a029d4",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "073adcb08cc4311c802c78d4742c86e1c5eb8474f6d194e06492670c3694d190",
+      "bytes": 89973,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "438673aa439fa9c1c22cec01ef252deea0ef75bc0dbad715b622196d90bb134c",
+      "bytes": 620453,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "20c83a05104b6ff62cf6fa8658f34f5569f8f04b5ede103728530028838e2ce9",
+      "bytes": 232624,
+      "availability": "portable"
+    }
+  }
+}

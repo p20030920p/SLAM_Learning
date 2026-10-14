@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "dufomap",
+  "parent_record": "../../record.json",
+  "parent_sha256": "091fb154cc0307453c4d3ee3229caec66aa3a883b7d9f42b186c8f2c55af1ff0",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-201016-localization-static-method-live-a72944",
+  "case_configuration": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/dufomap/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    }
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 290,
+    "position_rmse_m": 0.07279735604823728,
+    "yaw_rmse_deg": 1.034383191048404,
+    "post_warmup_5s_samples": 289,
+    "post_warmup_5s_position_rmse_m": 0.07087788523400028,
+    "position_p95_m": 0.1074340703033236
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 4.1,
+    "common_end_s": 69.2,
+    "alignment": "none",
+    "frames": 521
+  },
+  "timing": {
+    "duration_s": 65.20000000000039,
+    "frames": 326,
+    "fps": 5,
+    "video_duration_s": 65.125,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": null,
+  "source_inputs": {
+    "dufomap-samples.csv": "8fed02616a19a452f0c47ca1c534a6f3213aedb62a86084cdcf21f6ad29d2257",
+    "truth.jsonl": "8ff8ce524cc737064b7f9cee6c27b51dcbb47434c8d388361015c638f7e8022d",
+    "cases.json": "cfc3fc2ba8c4fae1f569a8b781d2f0b6ff653168a33f061f5817ee41942adb26",
+    "metrics.json": "0d180cfbcc3904e79238b0413415083b38379c30e40becba49413fd82158d782",
+    "maps/dufomap/map.pgm": "040efe320426e4a2da5976e17a5da3bb7d2290d1babe64b009b39b44f649e6d8",
+    "maps/dufomap/map.yaml": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py D:/workspace/be2/slam_learning_updated/results/reference/robot-live-static",
+  "renderer_sha256": "428ee2b92af7b594780c82aedfbc09da65e1c7e21d3799f0c2ffe7bf68a029d4",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "b6e88221f2472253e76e098ea27f635aac9201d9119fce5777ff1da67dbc7368",
+      "bytes": 87941,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "01da3e4d125861944c7676f3017af4d7b227ccac47ddb77efbcb2671e1cea361",
+      "bytes": 483483,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "c46e18ebe9bd1101fe5bba3b4d555697fbe713daf6a39f844e51498c987cdd25",
+      "bytes": 211283,
+      "availability": "portable"
+    }
+  }
+}

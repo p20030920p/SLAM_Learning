@@ -4,12 +4,29 @@
 
 ## 现场与回放
 
-| 场景 | 独立建图 A 现场 | 定位 B 现场 | B 结果回放 | 评分证据 |
-| --- | --- | --- | --- | --- |
-| 纯静态 | [MP4](../../results/reference/robot-static-mapping/execution.mp4) | [MP4](../../results/reference/robot-static/execution.mp4) | [MP4](../../results/reference/robot-static/result.mp4) | [记录](../../results/reference/robot-static/record.json) |
-| 三个运动障碍物 | [MP4](../../results/reference/robot-dynamic-mapping/execution.mp4) | [MP4](../../results/reference/robot-dynamic/execution.mp4) | [MP4](../../results/reference/robot-dynamic/result.mp4) | [记录](../../results/reference/robot-dynamic/record.json) |
-| 持久结构变化 | 复用静态 A | [MP4](../../results/reference/robot-large-change/execution.mp4) | [MP4](../../results/reference/robot-large-change/result.mp4) | [记录](../../results/reference/robot-large-change/record.json) |
-| 走廊退化 | [MP4](../../results/reference/robot-corridor-mapping/execution.mp4) | [MP4](../../results/reference/robot-degradation/execution.mp4) | [MP4](../../results/reference/robot-degradation/result.mp4) | [记录](../../results/reference/robot-degradation/record.json) |
+### 纯静态
+
+[Raw live RViz](../../results/reference/robot-live-static/executions/raw.mp4) · [DUFOMap live RViz](../../results/reference/robot-live-static/executions/dufomap.mp4) · [BeautyMap live RViz](../../results/reference/robot-live-static/executions/beautymap.mp4) · [record](../../results/reference/robot-live-static/record.json)
+
+[独立建图 A](../../results/reference/robot-static-mapping/execution.mp4)
+
+### 运动障碍物
+
+[Raw live RViz](../../results/reference/robot-live-dynamic/executions/raw.mp4) · [DUFOMap live RViz](../../results/reference/robot-live-dynamic/executions/dufomap.mp4) · [BeautyMap live RViz](../../results/reference/robot-live-dynamic/executions/beautymap.mp4) · [record](../../results/reference/robot-live-dynamic/record.json)
+
+[独立建图 A](../../results/reference/robot-dynamic-mapping/execution.mp4)
+
+### 持久变化
+
+[Raw live RViz](../../results/reference/robot-live-large-change/executions/raw.mp4) · [DUFOMap live RViz](../../results/reference/robot-live-large-change/executions/dufomap.mp4) · [BeautyMap live RViz](../../results/reference/robot-live-large-change/executions/beautymap.mp4) · [record](../../results/reference/robot-live-large-change/record.json)
+
+[独立建图 A](../../results/reference/robot-static-mapping/execution.mp4)
+
+### 走廊退化
+
+[Raw live RViz](../../results/reference/robot-live-degradation/executions/degraded_raw.mp4) · [DUFOMap live RViz](../../results/reference/robot-live-degradation/executions/degraded_dufomap.mp4) · [BeautyMap live RViz](../../results/reference/robot-live-degradation/executions/degraded_beautymap.mp4) · [record](../../results/reference/robot-live-degradation/record.json)
+
+[独立建图 A](../../results/reference/robot-corridor-mapping/execution.mp4)
 
 左为 Gazebo 自身实时渲染，右为真正的 RViz，下面是实际终端输出。视频组合三个窗口的同期采集，不包含其他桌面窗口。Gazebo 的实时因子以画面中实际值为准，不能把 15 fps 的录屏帧率当成算法吞吐。GIF 以 5 fps 采样完整 MP4 时间区间，无加速；各包的 `timing.json` 保存时长、帧数，视频全部解码检查通过。
 
@@ -21,7 +38,7 @@
 
 DUFOMap 参数为 0.1 m / d_s=0.2 / d_p=1。BeautyMap 为 range=8 m / XY=0.5 m / Z=0.2 m，使用公开作者代码；小室内地图触发了查询矩阵越界，适配仅将工作 XY 索引平移到空边界内，原始世界点保持不变，补丁、原生日志与输出保留点身份检查均记录。它属于明确披露的平台适配，不是未修改原协议的论文指标复现。地图清理点数也不能直接算静态误删率或动态移除率，本轮没有经过验证的逐点静动态真值标签。
 
-B 使用独立的新仿真和轮速轨迹。每个方法是同一原生 Nav2 AMCL，只更换地图；动态 B 另外同时运行静态 A 地图的控制组。全部接收同一个 `/scan` 与轮速 TF；走廊另有三组接收 `/scan_degraded`。Gazebo 真值仅流入评分与显示，不给 AMCL 或巡航控制器。AMCL 使用 OmniMotionModel、500—2000 粒子、最多 60 束、相同观测与运动参数，TF 广播关闭，避免多组定位互相覆盖。RViz 中的地图与机器人 TF 对应 Raw，终端与结果回放展示所有组。
+B 使用独立的新仿真和轮速轨迹。每个方法是同一原生 Nav2 AMCL，只更换地图；动态 B 另外同时运行静态 A 地图的控制组。全部接收同一个 `/scan` 与轮速 TF；走廊另有三组接收 `/scan_degraded`。Gazebo 真值仅流入评分与显示，不给 AMCL 或巡航控制器。AMCL 使用 OmniMotionModel、500—2000 粒子、最多 60 束、相同观测与运动参数，TF 广播关闭，避免多组定位互相覆盖。三种方法分别用独立 RViz 进程显示自己的地图、原生位姿／粒子及隔离的 TF；被动显示转发不改变 AMCL 输入。每段现场视频录制该方法的窗口。动态场景的静态地图控制组及走廊的完整扫描控制组也运行并保存原生评分。
 
 当前是二维 SLAM／定位＋给定位姿的三维点云建图，尚未完成三维 SLAM 或逐点运动畸变评测。不同配置的三维原生 SLAM与真实机器人仍按[分层测试协议](PROTOCOL.zh-CN.md)推进。
 
@@ -42,26 +59,24 @@ e_i=\sqrt{(\hat{x}_i-x_i)^2+(\hat{y}_i-y_i)^2},\qquad
 
 | 条件 | Raw + AMCL | DUFOMap + AMCL | BeautyMap + AMCL | 每组更新数 |
 | --- | ---: | ---: | ---: | ---: |
-| 纯静态 | 7.08 | 7.08 | 6.55 | 290 |
-| 运动障碍物／动态 A 地图 | 7.31 | 7.10 | 7.28 | 291 |
-| 运动障碍物／静态 A 控制 | 6.30 | 6.30 | 6.89 | 291 |
-| 持久变化／旧静态 A 地图 | 6.25 | 6.25 | 6.16 | 290 |
-| 走廊／完整扫描控制 | 62.64 | 62.64 | 62.64 | 478 |
-| 走廊／受限→恢复 | 73.63 | 73.63 | 73.63 | 478 |
+| 纯静态 | 7.28 | 7.28 | 6.89 | 290 |
+| 动态地图／运动障碍物 | 7.41 | 7.35 | 7.14 | 288 |
+| 静态地图控制／同一动态输入 | 7.08 | 7.08 | 6.78 | 288 |
+| 旧地图／持久变化 | 6.84 | 6.84 | 6.39 | 290 |
+| 完整扫描控制 | 53.46 | 53.46 | 53.46 | 476 |
+| 受限→恢复扫描 | 75.66 | 75.66 | 75.66 | 476 |
 
 主页按方法分别展示 GIF；[录像索引](../../demo/recording-index.json)将本机文件名对应到上述各行。
 
 ## 走廊退化与恢复
 
-走廊为两面 20 m 平行墙与端墙，地图 A 与测试 B 几何一致；初始估计 X 偏移 1.0 m、Y 偏移 0.15 m、偏航偏移 0.12 rad。其他场景初值 X 偏移 0.25 m，故走廊的全窗 RMSE不能直接与其他场景横比。
+匹配的两面 20 m 平行墙走廊。初始信念 X 偏移 1 m、Y 偏移 0.15 m、偏航偏移 0.12 rad；其他场景 X 偏移 0.25 m。完整控制组接收 720 束／360°／12 m；压力组从同一扫描派生 72 束／240°／3.5 m，持续 50 个仿真秒后恢复完整观测。独立三维激光始终完整，不输入 AMCL。
 
-完整组始终使用 720 束、360°、12 m 扫描；压力组从相同扫描公开派生 72 束、240°、3.5 m 观测，50 个仿真秒后恢复原始观测，不添加人工测量噪声。三维激光配置保持完整。这是几何与束数／视角／距离的联合压力测试，尚未逐因素归因。
+本次每组保留 476 条原生更新至仿真 103.3 s，恢复发生在 58.5 s。压力组恢复前 RMSE 为 0.975 m，恢复后整个过渡窗为 0.441 m，末帧误差 6.62 cm。恢复后约 31.3 s 开始持续收敛，随后覆盖 5 个仿真秒、至少八次更新，位置误差 <0.1 m、绝对偏航差 <5°。
 
-机器人恢复后继续运动，六组均保留 478 条有效原生更新，末条达到仿真 103.5 s；恢复发生在 58.6 s。压力组恢复前 RMSE 1.002 m，恢复后整个窗口 0.278 m（包含过渡过程），最后误差约 5.94 cm。持续收敛判据为位置误差 <0.1 m、绝对偏航差 <5°，覆盖 5 个仿真秒且至少八次更新；压力组约 11.3 s 达到该判据，完整组在事件前已收敛。
+三种投影后的走廊地图相同，因此结果相同。此前 478 更新／11.3 s 的运行仍[保留归档](../../results/reference/robot-degradation/record.json)，不与新现场录像配对。本次为 31.3 s，说明不能用单次运行宣称恢复稳定性；两次都不是实体绑架。本次持久变化路线也未诱发失效。
 
-三种地图的占据图在这个走廊一致，因而得到相同结果。它不支持三种方法优劣排名，而提示恢复边界应考察观测约束和滤波更新触发。实际扫描的[法向覆盖诊断](../../results/reference/robot-degradation/geometry-audit.json)中，法向 Gram 矩阵小／大特征值比的中位数为完整 0.1042、受限 0.00024、恢复后 0.1048。这个局部扫描诊断不是完整 SLAM Hessian，也不是校准后的恢复概率。
-
-首轮走廊巡航提前结束，AMCL 因运动阈值停止新位姿更新，恢复阶段没有原生评分样本；该片段保留在本机诊断目录，没有用来判断恢复失败。现在检查拒绝把缺失恢复后样本判成成功或失败。持久变化片段在本路线没有诱发失效，不能称为自恢复成功。
+[历史法向覆盖诊断](../../results/reference/robot-degradation/geometry-audit.json)对应上一轮，而非本次新运行；局部 Gram 比不是完整 SLAM Hessian 或校准后的恢复概率。
 
 ## 一键演示与实体测试
 
@@ -79,3 +94,9 @@ e_i=\sqrt{(\hat{x}_i-x_i)^2+(\hat{y}_i-y_i)^2},\qquad
 本机 NVIDIA 4070 SUPER 在 WSLg 中需要显式 `GALLIUM_DRIVER=d3d12`，否则自动选择 llvmpipe。当前日志确认 D3D12 NVIDIA 加速，Gazebo 原生 GUI 能渲染。[相关上游问题](https://github.com/gazebosim/gz-sim/issues/2670)。RViz 地图 GLSL 的两个采样器在本机链接失败，通过独立 ament 资源覆盖给采样器设置不同 binding，保留系统安装；补丁代码随脚本记录。旧的“本机 GUI 无法渲染”判断已经被实际录屏推翻。
 
 ROS-Gazebo 的 `Pose_V→TFMessage` 转换会丢掉用于本次评分的模型名／顶层时间戳，因此使用原生 Gazebo transport C++ 订阅。评分校验进一步检查模型身份、时间单调、匹配时间差、原生更新覆盖及持续收敛，避免画面正常而指标失真。
+
+## 原库实时状态显示
+
+作者执行过程中原子写出当前状态，RViz 读取本次新状态；验证原生帧号／序号、状态哈希和执行时间窗。IR-MCL 本次出现不足一秒的 WSL 墙钟校时，故以帧序为因果依据，并给墙钟留 2 s 容差；后续录制另保存单调时钟。显示稀疏采样和观察器开销明确披露，原生推理与地图清理决策不变。
+
+DUFOMap、BeautyMap 的最终 `cleaned.pcd` SHA256 与此前原生执行逐字节一致：[DUFOMap 前次](../../results/reference/desktop-dufomap/native-run/record.json)／[本次](../../results/reference/desktop-live-dufomap/native-run/record.json)，[BeautyMap 前次](../../results/reference/desktop-beautymap/native-run/record.json)／[本次](../../results/reference/desktop-live-beautymap/native-run/record.json)。

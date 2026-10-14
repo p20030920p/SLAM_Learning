@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "kind": "author_desktop_demo",
+  "status": "executed",
+  "exit_code": 0,
+  "method": "ir-mcl",
+  "command": [
+    "/home/qzl/.venvs/ir-mcl/bin/python",
+    "-u",
+    "main.py",
+    "--config_file",
+    "./config/global_localization/loc_config_test1.yml"
+  ],
+  "scope": "released Bonn IPBLab sequence; native config and 100000 initial particles; fresh inference",
+  "metrics": {
+    "location_rmse_cm": 5.31,
+    "yaw_rmse_deg": 1.07,
+    "location_lt5_pct": 63.29,
+    "location_lt10_pct": 96.09,
+    "location_lt20_pct": 100.0,
+    "yaw_lt0_5_pct": 47.34,
+    "yaw_lt1_pct": 74.37,
+    "yaw_lt2_pct": 93.5,
+    "scored_poses": 1354
+  },
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-201724-author-live-ir-mcl-ec568b",
+  "live_state": {
+    "enabled": true,
+    "scope": "Actual RViz+terminal capture during new author execution; read-only current state, display thinning; observer overhead included"
+  },
+  "timing": {
+    "execution": {
+      "duration_s": 241.19999999999484,
+      "frames": 1206,
+      "fps": 5,
+      "video_duration_s": 241.166667,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "artifacts": {
+    "author-live.rviz": {
+      "sha256": "6081974d6b69ce5872b70ebf27aeb9df8c480028003a04db14f6b14e7b790fb2",
+      "bytes": 2475,
+      "availability": "portable"
+    },
+    "author-rviz.log": {
+      "sha256": "796407e2da41b40c127e8a9b8ed25381958fa0608baa1f80b9b9470e3ea52c4e",
+      "bytes": 547,
+      "availability": "portable"
+    },
+    "capture-filter.txt": {
+      "sha256": "940dbae9b484d50dab69fa037ac4108a7b2e9f5ba84fbc15f85a88ffaa7de069",
+      "bytes": 448,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "759a6d28e740e9ca515116ae0bd8efcb734d7bbd35f48b0812434262c31028ca",
+      "bytes": 3063578,
+      "availability": "portable"
+    },
+    "execution.json": {
+      "sha256": "9f46c1f66c5e7af126de2e5f9006d2ffcd6bf72710ed8342f8a326b88d2c593e",
+      "bytes": 45787,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "02ab1d8cb77ff4e6d4c161fc77af2b0aba94045dfe8835f698c989b8c3064528",
+      "bytes": 6928437,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "2a2431d13e0201f51c5ddea6772c1230c5bd696f6ac3680caf2832e6183fb5b2",
+      "bytes": 150754,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "3a68a748bda5ce0dd82002f34744ca965a5818c6ef330113273ea906d4de4203",
+      "bytes": 291304,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "9d632f72a10e1bec5dec90b6dc62256355ad0dca9f4c6ecf4657b2b574a0a31a",
+      "bytes": 399484,
+      "availability": "portable"
+    },
+    "instrumentation.patch": {
+      "sha256": "f4e57cb9e6e52a4e42dedad6ff5e9327f90228f6988dff4823fa17e7b8a8b892",
+      "bytes": 582,
+      "availability": "portable"
+    },
+    "IRMCL.txt": {
+      "sha256": "4ef91aeb83fa62bb072e26d137e4b92ae37af71e227e97d2bde088c7c8f0b8f3",
+      "bytes": 311961,
+      "availability": "portable"
+    },
+    "live-events.jsonl": {
+      "sha256": "60bca4e8424f5444b659f88fb98ec51a591d48e44ef7df2cd63a3915ebb2a73f",
+      "bytes": 97244,
+      "availability": "portable"
+    },
+    "live-published.jsonl": {
+      "sha256": "125dcd87d7b44d3b80b3711067b5b019f57fb3f9e5ea4cefda6e929ad4896ab4",
+      "bytes": 108247,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "d3cd5a4e697a5f9d81463ffa6a20f19eba5ab2c7d41fcf48f1ad16df68531ebf",
+      "bytes": 252,
+      "availability": "portable"
+    },
+    "native-output.log": {
+      "sha256": "cebffb34800100e9f141ac1fd0e7723a211025cdaa9ba314cae12fc92d1da9fb",
+      "bytes": 108642,
+      "availability": "portable"
+    },
+    "seq_1_gt_pose.txt": {
+      "sha256": "4968cb363b83599539ac3ee75511376f17184c528072933a33f229d52a537e58",
+      "bytes": 311962,
+      "availability": "portable"
+    },
+    "terminal.log": {
+      "sha256": "e055f64444c385fd0a10bcc585823ed3f5dd701e91ada8d6fb4dee961f29a23c",
+      "bytes": 154702,
+      "availability": "portable"
+    },
+    "timing.json": {
+      "sha256": "aafbbbd66be5406e5060ca2901f0b833e52f3780faaf47b7de04b201987ab2db",
+      "bytes": 230,
+      "availability": "portable"
+    }
+  },
+  "native_output_path": "IRMCL.txt"
+}

@@ -1,0 +1,18 @@
+--- a/main.py
++++ b/main.py
+@@ -20,6 +20,7 @@
+ 
+ # self
+ from lib.bee_tree import BEETree
++from slam_learning.runtime.live_capture import beauty_snapshot
+ from utils.pcdpy3 import save_pcd
+ 
+ def main(
+@@ -113,6 +114,7 @@
+         global_ground_trigger[:, Qpts.start_id_x:Qpts.start_id_x+Qpts.matrix_order, Qpts.start_id_y:Qpts.start_id_y+Qpts.matrix_order] |= ground_trigger
+         timer[4].stop()
+         timer[5].stop()
++        beauty_snapshot(Mpts, global_trigger, global_ground_trigger, Qpts.original_points, file_cnt)
+ 
+     # extract all dynamic points from binary_xor matrix
+     points_index2Remove = []

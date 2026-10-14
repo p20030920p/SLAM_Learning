@@ -85,9 +85,20 @@ def main():
             work = run / "author-code"
             shutil.copytree(source, work, ignore=shutil.ignore_patterns(".git", "data", "results", "__pycache__"))
             (work / "data").symlink_to(source / "data", target_is_directory=True)
+            if os.environ.get("SLAM_AUTHOR_LIVE"):
+                import difflib
+                entry = work / "main.py"
+                original = entry.read_text()
+                changed = original.replace("from mcl.visualizer import Visualizer", "from mcl.visualizer import Visualizer\nfrom slam_learning.runtime.live_capture import ir_snapshot")
+                anchor = "        results[frame_idx, :curr_numParticles] = particles\n"
+                if original.count(anchor) != 1:
+                    raise ValueError("IR-MCL instrumentation anchor changed")
+                changed = changed.replace(anchor, anchor+"        ir_snapshot(frame_idx, curr_timestamp, particles, poses_gt[frame_idx], occmap, scans, config)\n")
+                entry.write_text(changed)
+                (run / "instrumentation.patch").write_text("".join(difflib.unified_diff(original.splitlines(True), changed.splitlines(True), fromfile="a/main.py", tofile="b/main.py")))
             manifest["sources"][str(source / "config/global_localization/loc_config_test1.yml")] = sha(source / "config/global_localization/loc_config_test1.yml")
             command = [str(Path.home() / ".venvs/ir-mcl/bin/python"), "-u", "main.py", "--config_file", "./config/global_localization/loc_config_test1.yml"]
-            env = dict(os.environ, PYTHONPATH=f"{work}/mcl/srrg_utils:{work}/mcl", MPLBACKEND="Agg")
+            env = dict(os.environ, PYTHONPATH=f"{work}/mcl/srrg_utils:{work}/mcl:{repo}/src", MPLBACKEND="Agg")
             manifest["scope"] = "released Bonn IPBLab sequence; native config and 100000 initial particles; fresh inference"
             code = execute(command, work, env, run / "native-output.log")
             manifest["command"] = command

@@ -5,6 +5,7 @@ FLOW="${1:?usage: run_live.sh FLOW RUN_DIR DURATION AUTO}"
 RUN_DIR="${2:?fresh output directory required}"
 DURATION="${3:-90}"
 AUTO="${4:-false}"
+export PRESENTATION_MULTI_VIEW="${5:-false}"
 mkdir -p "$RUN_DIR/logs"
 startup_failure() {
   local status=$?
@@ -79,9 +80,19 @@ if [[ "$MODE" == localization ]]; then
     > "$RUN_DIR/logs/localizers.log" 2>&1 &
   PIDS+=("$!")
 fi
-setsid rviz2 -d "$RUN_DIR/live.rviz" -t 'SLAM LIVE - RViz2' --ros-args -p use_sim_time:=true \
-  > "$RUN_DIR/logs/rviz.log" 2>&1 &
-PIDS+=("$!")
+if [[ "$PRESENTATION_MULTI_VIEW" == true && "$MODE" == localization ]]; then
+  setsid python3 -u "$HERE/case_view_tf.py" "$RUN_DIR" > "$RUN_DIR/logs/views.log" 2>&1 &
+  PIDS+=("$!")
+  for name in $(python3 -c 'import json,sys; print(" ".join(json.load(open(sys.argv[1]))))' "$RUN_DIR/views.json"); do
+    setsid rviz2 -d "$RUN_DIR/view-$name.rviz" -t "SLAM LIVE - $name - RViz2" --ros-args -p use_sim_time:=true \
+      -r "/tf:=/$name/view/tf" -r "/tf_static:=/$name/view/tf_static" > "$RUN_DIR/logs/rviz-$name.log" 2>&1 &
+    PIDS+=("$!")
+  done
+else
+  setsid rviz2 -d "$RUN_DIR/live.rviz" -t 'SLAM LIVE - RViz2' --ros-args -p use_sim_time:=true \
+    > "$RUN_DIR/logs/rviz.log" 2>&1 &
+  PIDS+=("$!")
+fi
 # Record the actual ROS inputs, independent of the visual screen capture.
 setsid ros2 bag record -o "$RUN_DIR/input-bag" /clock /scan /points /tf /tf_static \
   /omni_drive_controller/odom /map /scan_degraded > "$RUN_DIR/logs/bag.log" 2>&1 &

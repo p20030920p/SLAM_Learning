@@ -114,7 +114,7 @@ def run_method(root: Path, method: str, frames: int = 0, timeout: float = 3600) 
         record.update(status="failed", error=f"{type(e).__name__}: {e}", traceback=traceback.format_exc())
     finally:
         record["finished_at"] = utc_now()
-        for name in ("cleaned.pcd", "run.log", "worker.json", "metrics.json", "compatibility.patch"):
+        for name in ("cleaned.pcd", "run.log", "worker.json", "metrics.json", "compatibility.patch", "instrumentation.patch"):
             path = output / name
             if path.is_file():
                 record["artifacts"][name] = {"sha256": digest(path), "bytes": path.stat().st_size,
