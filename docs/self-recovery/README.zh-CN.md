@@ -1,5 +1,9 @@
 # 自恢复主线（工作稿）
 
+> **开放问题（定稿表述）**：在退化与大变动环境中，什么样的策略能够有效地让定位系统自恢复？
+>
+> 英文：*In degradation and large-change environments, what strategy effectively lets a localization system recover itself?*
+
 **主线问题：退化和大变动场景下，定位系统的自恢复。**
 
 定位系统在两类场景下失效，而现有方法对这两类失效的处理方式完全不同：
@@ -60,7 +64,8 @@
 | --- | --- |
 | [SURVEY.zh-CN.md](SURVEY.zh-CN.md) | 论文地图（按五组分类，逐条核验过链接），含每组的共同假设与共同盲区 |
 | [FEASIBILITY.zh-CN.md](FEASIBILITY.zh-CN.md) | 逐篇"能不能用现有 Static and dynamic localization recordings 仿真验证"，分三级 + 改装清单 |
-| [HYPOTHESES.zh-CN.md](HYPOTHESES.zh-CN.md) | 候选假设 H1—H6、证伪条件、最小实验、指标集、两天计划 |
+| [HYPOTHESES-BY-PAPER.zh-CN.md](HYPOTHESES-BY-PAPER.zh-CN.md) | **按策略族/论文分组的假设集**（6 族），每条假设绑定到现有仿真的哪一格、证伪条件、旧编号对照、6 页展示骨架 |
+| [HYPOTHESES.zh-CN.md](HYPOTHESES.zh-CN.md) | 指标定义、实验矩阵、两天计划 |
 
 ## 写作与证据纪律（沿用旧库）
 
