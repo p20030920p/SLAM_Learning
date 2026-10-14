@@ -1,0 +1,283 @@
+{
+  "kind": "bilingual_direction_figure_v2_review",
+  "application": "Microsoft PowerPoint",
+  "backend": "COM",
+  "renderer": "Microsoft PowerPoint",
+  "authoring_target": "Isolated working presentations identified by absolute FullName on every region operation; reference deck inspected read-only.",
+  "objects_per_slide": 52,
+  "native_top_level_objects": 46,
+  "pictures_per_slide": 6,
+  "schematic_group_members": 12,
+  "leaf_object_count": 63,
+  "regional_reviews": {
+    "en": [
+      "canvas",
+      "platform",
+      "observations",
+      "slam",
+      "recovery",
+      "flow"
+    ],
+    "zh-CN": [
+      "canvas",
+      "platform",
+      "observations",
+      "slam",
+      "recovery",
+      "flow"
+    ]
+  },
+  "reviewer_basis": "Each region was rendered through PowerPoint and inspected in whole-slide context before the next region. Native text bounds, picture declarations, connector attachment, whole-slide audit and final renders were also checked.",
+  "semantic_scope": [
+    "Conceptual mutual dependence of pose and map; no claim that all deployed localizers build a map.",
+    "3D map is controlled mapping A with provided sensor poses.",
+    "Pose hypotheses are 12 editable illustrative circles, not measured particles.",
+    "Recovery remains an open question; physical tests pending."
+  ],
+  "corrections": [
+    "Corrected the native crop-window placement so geometric fields remain complete.",
+    "Computed repeated-column positions at a constant 218 pt step.",
+    "Serialized each raster declaration under the Scientific Illustrator tag names.",
+    "Moved algorithm-role details into editable speaker notes to enlarge the map field."
+  ],
+  "crop_gate": {
+    "basis": "Source nonwhite-pixel bounding boxes are fully inside the declared native picture crop windows.",
+    "sources": {
+      "scan-2d.png": {
+        "size": [
+          1080,
+          720
+        ],
+        "content_bbox": [
+          187,
+          30,
+          894,
+          691
+        ],
+        "crop_ltrb_fraction": [
+          0.16,
+          0.03,
+          0.16,
+          0.02
+        ]
+      },
+      "scan-3d.png": {
+        "size": [
+          1080,
+          675
+        ],
+        "content_bbox": [
+          203,
+          152,
+          879,
+          603
+        ],
+        "crop_ltrb_fraction": [
+          0.17,
+          0.2,
+          0.17,
+          0.08
+        ]
+      },
+      "map-3d.png": {
+        "size": [
+          1080,
+          675
+        ],
+        "content_bbox": [
+          311,
+          89,
+          878,
+          499
+        ],
+        "crop_ltrb_fraction": [
+          0.27,
+          0.1,
+          0.17,
+          0.23
+        ]
+      }
+    }
+  },
+  "visual_review": {
+    "semantic_text_accuracy": 1,
+    "reconstructable_editability": 1,
+    "clipping_overlap_safety": 1,
+    "layout_alignment_confidence": 0.98,
+    "connector_clarity_confidence": 0.98,
+    "style_reference_correspondence_confidence": 0.94,
+    "basis": "Reference purple palette and Golos type, rounded white canvas, four numbered horizontal stages and editable process row; no unrelated semantic-mapping content or logo copied.",
+    "unresolved_findings": [],
+    "source_ambiguities": []
+  },
+  "whole_figure": {
+    "en": {
+      "backend": "powerpoint",
+      "slide_index": 1,
+      "slide_size": {
+        "width": 960,
+        "height": 540
+      },
+      "object_counts": {
+        "total": 52,
+        "pictures": 6,
+        "native_or_composite": 46
+      },
+      "picture_audit": [
+        {
+          "name": "chassis",
+          "area_ratio": 0.0272,
+          "raster_reason": "One user-supplied photograph of the physical omnidirectional chassis.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "sensors",
+          "area_ratio": 0.0234,
+          "raster_reason": "One user-supplied photograph of the physical sensors.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "scan2",
+          "area_ratio": 0.0242,
+          "raster_reason": "One measured 2D LaserScan geometric field from the declared recorded bag, with no rasterized axes or labels.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "scan3",
+          "area_ratio": 0.0229,
+          "raster_reason": "One dense actual 3D LiDAR scan from the declared recording, with no labels or axes.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "map3",
+          "area_ratio": 0.0218,
+          "raster_reason": "One dense recorded 3D map field from controlled mapping A with supplied sensor poses.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "gazebo",
+          "area_ratio": 0.0369,
+          "raster_reason": "One simulator-rendered corridor viewport from the genuine native execution recording; window chrome, RViz and Terminal excluded.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        }
+      ],
+      "hard_failure_count": 0,
+      "warning_count": 0,
+      "findings_truncated": false,
+      "passed": true,
+      "findings": [],
+      "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry or decomposition operations, executed by the Drawer, rerendered, and audited again.",
+      "focus_policy": "preserve",
+      "backend_selection": {
+        "selected": "com",
+        "preference": "auto",
+        "locked": null,
+        "locked_host": null,
+        "host_preference": "auto",
+        "mutation_count": 0
+      }
+    },
+    "zh-CN": {
+      "backend": "powerpoint",
+      "slide_index": 1,
+      "slide_size": {
+        "width": 960,
+        "height": 540
+      },
+      "object_counts": {
+        "total": 52,
+        "pictures": 6,
+        "native_or_composite": 46
+      },
+      "picture_audit": [
+        {
+          "name": "chassis",
+          "area_ratio": 0.0272,
+          "raster_reason": "One user-supplied photograph of the physical omnidirectional chassis.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "sensors",
+          "area_ratio": 0.0234,
+          "raster_reason": "One user-supplied photograph of the physical sensors.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "scan2",
+          "area_ratio": 0.0242,
+          "raster_reason": "One measured 2D LaserScan geometric field from the declared recorded bag, with no rasterized axes or labels.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "scan3",
+          "area_ratio": 0.0229,
+          "raster_reason": "One dense actual 3D LiDAR scan from the declared recording, with no labels or axes.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "map3",
+          "area_ratio": 0.0218,
+          "raster_reason": "One dense recorded 3D map field from controlled mapping A with supplied sensor poses.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        },
+        {
+          "name": "gazebo",
+          "area_ratio": 0.0369,
+          "raster_reason": "One simulator-rendered corridor viewport from the genuine native execution recording; window chrome, RViz and Terminal excluded.",
+          "source_is_tightly_cropped": "true",
+          "atomic_raster_unit": "true",
+          "contains_reconstructable_content": "false",
+          "decomposition_note": "One independent photographic or dense measured geometric field. Captions, nodes, arrows and pose-hypothesis glyphs are separate native objects."
+        }
+      ],
+      "hard_failure_count": 0,
+      "warning_count": 0,
+      "findings_truncated": false,
+      "passed": true,
+      "findings": [],
+      "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry or decomposition operations, executed by the Drawer, rerendered, and audited again.",
+      "focus_policy": "preserve",
+      "backend_selection": {
+        "selected": "com",
+        "preference": "auto",
+        "locked": null,
+        "locked_host": null,
+        "host_preference": "auto",
+        "mutation_count": 0
+      }
+    }
+  }
+}

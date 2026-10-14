@@ -25,9 +25,9 @@
 
 **SLAM（Simultaneous Localization and Mapping）**在构建地图的同时估计自身运动。大方向包含动态环境下的建图、定位和 SLAM，自恢复是其中的开放问题。
 
-![SLAM 位姿与地图估计及恢复：实体底盘与传感器、Gazebo 扫描、给定位姿地图与走廊](assets/slam-recovery-flow.zh-CN.png)
+![SLAM 位姿与地图估计及恢复：实体底盘与传感器、Gazebo 扫描、给定位姿地图与走廊](assets/slam-recovery-flow.zh-CN.v2.png)
 
-开放问题属于**位姿估计失效后的恢复**，受观测质量与地图有效性影响。可收窄为：**几何观测重新充分后，固定地图定位如何避免错误收敛，并确认持续恢复？** [可编辑中文流程图](assets/slam-recovery-flow.zh-CN.pptx) · [图像来源](assets/direction/sources.json)。照片为已有底盘与传感器，实体测试仍待测。
+开放问题属于**位姿估计失效后的恢复**，受观测质量与地图有效性影响。可收窄为：**几何观测重新充分后，固定地图定位如何避免错误收敛，并确认持续恢复？** [可编辑中文流程图](assets/slam-recovery-flow.zh-CN.v2.pptx) · [图像来源](assets/direction/sources.json)。照片为已有底盘与传感器，实体测试仍待测。
 
 | 成果 | 内容 |
 | --- | --- |

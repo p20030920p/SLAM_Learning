@@ -25,9 +25,9 @@ English | [中文](docs/HOME.zh-CN.md)
 
 **SLAM (Simultaneous Localization and Mapping)** estimates motion while building a map. The direction includes dynamic-environment mapping, localization and SLAM; self-recovery is an open question within it.
 
-![SLAM pose-map estimation and recovery: physical chassis and sensors, Gazebo scans, provided-pose map and corridor](docs/assets/slam-recovery-flow.en.png)
+![SLAM pose-map estimation and recovery: physical chassis and sensors, Gazebo scans, provided-pose map and corridor](docs/assets/slam-recovery-flow.en.v2.png)
 
-The open question concerns recovery of pose estimation after failure, influenced by observation quality and map validity. A narrower candidate is: **after geometric observations become informative again, how can fixed-map localization avoid false convergence and confirm recovery?** [Editable English diagram](docs/assets/slam-recovery-flow.en.pptx) · [Image sources](docs/assets/direction/sources.json). Hardware photographs document the existing chassis/sensors; physical tests remain pending.
+The open question concerns recovery of pose estimation after failure, influenced by observation quality and map validity. A narrower candidate is: **after geometric observations become informative again, how can fixed-map localization avoid false convergence and confirm recovery?** [Editable English diagram](docs/assets/slam-recovery-flow.en.v2.pptx) · [Image sources](docs/assets/direction/sources.json). Hardware photographs document the existing chassis/sensors; physical tests remain pending.
 
 | Deliverable | Content |
 | --- | --- |
