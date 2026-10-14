@@ -1,62 +1,38 @@
-# 复现清单（按结构分组）
+# 原库复现与机器人测试队列
 
-**选取原则**：不是按论文影响力排，而是按**结构**排——即"它做了什么结构性的改动、这个改动能不能在我们现有的仿真里被检验、上游代码是否真的公开可跑"。每条都给出：代码位置（已核实）、结构核心、怎么喂我们的仿真、怎么复现原库、优先级。
+大方向为动态环境中的鲁棒定位与 SLAM，自恢复是其中的开放问题。队列分开记录作者原协议与机器人适配；成功运行代码、匹配某一论文实验、完成平台测试是不同层级。状态以实际证据为准，不按星数或跨任务平均误差排序。
 
-**状态标记**：✅ 已跑通 · 🔄 进行中 · 📋 待办 · ⛔ 无公开代码
+## 已归档范围与原库缺口
 
----
-
-## A 类｜观测模型结构：把"我有多像这个位姿"这件事换掉
-
-| 方法 | 论文 | 代码（已核实） | 结构核心 | 我们的仿真怎么喂 | 原库复现 | 优先级 |
-| --- | --- | --- | --- | --- | --- | --- |
-| **IR-MCL** | Kuang et al., RA-L 2023, DOI 10.1109/LRA.2023.3239318 | [PRBonn/ir-mcl](https://github.com/PRBonn/ir-mcl) 140★ @ `aab8c91b37` | 用**神经占据场（NOF）**隐式表示场景，体渲染**合成 2D 扫描**替代占据栅格的似然场，再嵌进 MCL | 我们的 Gazebo 竞技场可导出「激光 + 给定位姿」序列 → 按其 `train.py` 在**我们的地图上重训 NOF** → 用它跑全局定位，与 `nav2_amcl` 同场景对比 | 仓内自带 4 个预训练权重（fr079/intel/mit/ipblab）+ 10 个现成 config；公开数据集已下载校验；**C++ 扩展已编译通过**；上游还自带 `loc_demo.py` 直接出 GIF | **P0** |
-| **AdaM-MCL / DSOM** | Chen et al., RA-L 2021, DOI 10.1109/LRA.2021.3061339 | [Runjian-Chen/AdaM_MCL](https://github.com/Runjian-Chen/AdaM_MCL) 12★ @ `e8aedd2bae` | 学一个**可采样的多模态条件位姿分布**（从均匀采样改为在似然高处采样），配**自适应混合 MCL** 在轨切换模式 | 同 IR-MCL：把我们的 2D 激光 + 地图喂进去，做全局定位/绑架恢复 | 仓内自带 `Dataset/` 与 `Trained_models/`；含 `Bicocca/UPO/synthetic` 三个数据集处理器 | **P0（进行中）** |
-
-## B 类｜退化感知的配准/里程计结构：把"哪个方向不能信"显式化
-
-| 方法 | 论文 | 代码 | 结构核心 | 可行性 |
-| --- | --- | --- | --- | --- |
-| X-ICP | arXiv:2211.16335 | **⛔ 无公开代码**（官方仓搜不到） | 用 scan–map 对应在主优化方向上算六轴可定位性，退化方向受控更新或冻结 | 只能作**方法层对照**，或自实现 2D 同构版（2×2 信息矩阵方向各向异性） |
-| LF-GICP | arXiv:2608.19522 | 候选 [ies0411/LF_GICP](https://github.com/ies0411/LF_GICP)（0★，**未核验是否为作者**） | 指出体素 GICP 的协方差正则化**掩盖**退化；无正则化法向可定位性场 + 时间中值门控 | 先核验该仓真伪；否则按方法自实现 |
-| GLIM | Koide et al.（体素 GICP / 全局一致） | [koide3/glim](https://github.com/koide3/glim) 1874★（2026-10 仍活跃） | 体素化 GICP + GPU 加速全局配准，工程成熟 | 3D，需要 3D 序列（我们只有 KITTI teaser 与固定安装的 L2） |
-| KISS-ICP | RA-L 2023 | [PRBonn/kiss-icp](https://github.com/PRBonn/kiss-icp) 2346★ | 自适应对应阈值，免调参 | 3D，同上；作为强基线引用即可 |
-
-## C 类｜鲁棒后端结构：把"错误约束"变成可关断/可剔除/可撤销
-
-| 方法 | 代码（已核实） | 结构核心 | 怎么在我们这里做 |
+| 方法 | 作者来源与原任务 | 已归档范围 | 下一步与边界 |
 | --- | --- | --- | --- |
-| **GNC** | [borglab/gtsam](https://github.com/borglab/gtsam) 3749★（内含 GNC）+ [MIT-SPARK/CertifiablyRobustPerception](https://github.com/MIT-SPARK/CertifiablyRobustPerception) 124★ | Black-Rangarajan 对偶 + 渐进非凸，无需初值即可拒绝大量离群约束 | **离线 2D 位姿图**：用现有回放生成位姿图、注入假回环，比较剔除前后误差与恢复耗时 |
-| **PCM / DCS / Switchable Constraints** | 同在 GTSAM / g2o 生态 | 集合级一致性（最大团）／残差闭式重加权／开关变量关断 | 同一 2D 位姿图试验台，与 GNC 并列对比 |
-| interactive_slam | [koide3/interactive_slam](https://github.com/koide3/interactive_slam) 969★ | **人工/半自动**的事后修正 | 作为"自恢复"的**反面结构**对照：它靠人，我们要求无人干预 |
+| DUFOMap | [作者库](https://github.com/PRBonn/dufomap)，动态点云地图清理 | KITTI-00 141 帧给定位姿地图处理；另有历史原论文表格对照，见[卡片](../papers/dufomap.zh-CN.md) | 原协议和同机器人点云适配分开；清理地图不等于定位恢复 |
+| BeautyMap | [作者库](https://github.com/MKJia/BeautyMap)，动态点云地图清理 | KITTI-00 141 帧给定位姿地图处理；历史 KITTI-02 91 帧表格对照另列，见[卡片](../papers/beautymap.zh-CN.md) | 保留未处理地图、静态误删和动态残影；不能用地图标量代替定位评分 |
+| IR-MCL | [作者库](https://github.com/PRBonn/ir-mcl)，二维激光全局定位 | 发布的 IPBLab 序列 1543 帧／同协议评分 1354 帧，5.32 cm／1.07°，见[卡片](../papers/ir-mcl.zh-CN.md) | 当前是一条序列，不是论文全部实验；自有地图训练及动态恢复未完成 |
+| AdaM-MCL | [作者库](https://github.com/Runjian-Chen/AdaM_MCL)，全局定位／绑架恢复 | 自建 128 格地图，2432 步训练，123 次更新×10 次重复，持续收敛 0/10，见[卡片](../papers/adam-mcl.zh-CN.md) | 上游数据／模型目录为空，外部权重不可达；与论文训练预算未匹配，不能称原论文指标复现 |
+| LILocBench | [官方项目](https://www.ipb.uni-bonn.de/html/projects/localization_benchmark/)，动态／长期变化评测 | 官方示例评估用于验证接口 | 接入自己预测、固定官方划分；示例提交分数不是本库方法结果，也不是直接超越的基线 |
 
-## D 类｜系统级恢复结构：丢失→新建→重接，或纯定位
+原库复现保存提交、作者数据／权重、原配置、必要兼容补丁、日志、原始输出、评分与完整执行录像。官方资源缺失时保留缺口，不以自造数据悄悄替代。见[证据总表](../../results/REPORT.zh-CN.md)。
 
-| 方法 | 代码（已核实） | 结构核心 | 怎么在我们这里做 |
+## 三维原库候选
+
+| 候选 | 为什么纳入 | 先完成的原库验证 | 平台适配条件 |
 | --- | --- | --- | --- |
-| ORB-SLAM3 | [UZ-SLAMLab/ORB_SLAM3](https://github.com/UZ-SLAMLab/ORB_SLAM3) 9142★ | 多地图 Atlas：跟踪丢失另起新图，重访再合并 | Gazebo 的 RGB-D 流可直接喂；瞬移模拟丢失，返回已建图区域看重定位 |
-| Cartographer | [cartographer-project/cartographer](https://github.com/cartographer-project/cartographer) 7987★ | 纯定位模式（地图冻结） | 作"地图不变"的极端对照 |
-| **slam_toolbox** | [SteveMacenski/slam_toolbox](https://github.com/SteveMacenski/slam_toolbox) 2672★ | 在线建图/定位，ROS 2 原生 | **录制管线已在用它**做右侧实时建图 |
+| [KISS-ICP](https://github.com/PRBonn/kiss-icp) | 三维激光里程计，可作前端位姿估计基线 | 固定作者源码与支持的数据序列、配置和轨迹评分，保存原始估计 | 核对点云坐标、量程、逐点时间要求与外参；不称为包含全局恢复的完整 SLAM |
+| [GLIM](https://github.com/koide3/glim) | 三维点云定位与建图框架，可观察位姿／地图耦合 | 固定作者源码、官方配置／示例数据及所选估计模块 | 逐模块核对 IMU、时间字段与硬件条件；原机器人没有已验证的 IMU，不能直接假设适配完成 |
 
-## E 类｜评测结构
+已选保留 Sim2Real 原底盘，增加独立三维激光版本；因此不再以“只有二维点云”为由排除三维候选。但静止点云源检查通过仍不代表这些原库已复现或已通过移动测试。
 
-| 资源 | 状态 | 说明 |
+退化感知配准、鲁棒后端与多地图重接仍是文献候选。只有在逐级测试稳定暴露相应失败后，再检查作者公开代码、数据和原评估条件，加入执行队列。自实现近似机制单列，不能标成作者原库复现。原模型是 RGB 相机，不是 RGB-D；视觉方法需另核对输入条件。
+
+## 机器人测试推进
+
+| 顺序 | 交付 | 验收条件 |
 | --- | --- | --- |
-| **LILocBench**（IROS 2025） | ✅ 评测链已跑通 | 官方示例提交得分 **23.1567**；公开真值覆盖 `static_0 / dynamics_0 / lt_changes_0 / lt_changes_dynamics_0`；**后续要用它评我们自己的结果** |
-| DUFOMap / BeautyMap | ✅ 已完成 | 地图侧抑制；Evidence 表已在主页 |
-| AnyLoc | 📋 待办 | [AnyLoc/AnyLoc](https://github.com/AnyLoc/AnyLoc) 644★，通用地点识别（视觉）——作跨模态对照 |
+| 1 | 原生二维与独立三维 T0 | 静止点云、直行／旋转／横移、TF、时钟和轮速；当前仅三维静止源通过 |
+| 2 | T1 静态基线 | 独立建图 A／测试 B，保留原始点云、估计轨迹、地图与指标 |
+| 3 | T2 动态、T3 遮挡解除 | 每类一次只增加一个因素，记录失效和有效结构重现时间 |
+| 4 | T4 退化退出、T5 持久变化 | 分开约束不足与旧地图失配；恢复须回到原地图坐标系 |
+| 5 | T6 组合与真实数据 | 单因素边界已明确后组合，使用官方数据检验仿真发现 |
 
----
-
-## 执行顺序（按"结构价值 ÷ 落地成本"排）
-
-| 序 | 目标 | 双重验证 |
-| --- | --- | --- |
-| 1 | **AdaM-MCL**（A 类） | 原库数据集跑通 + 我们仿真 2D 激光跑通 |
-| 2 | **IR-MCL**（A 类） | 公开数据集跑通 + **在我们的竞技场地图上重训 NOF** 再跑 |
-| 3 | **四级场景梯度录制**（S1 静态 → S2 动态 → S3 大变动 → S4 退化） | 我们自己的仿真，用原型底盘 |
-| 4 | **GNC / PCM / DCS**（C 类） | 离线 2D 位姿图，注入假回环 |
-| 5 | **LILocBench 评我们自己的结果** | 把我们的位姿转 TUM + `description.json`，与上游示例 23.1567 对比 |
-| 6 | ORB-SLAM3 / Cartographer（D 类） | Gazebo 流直接喂 |
-
-**不做的**（写清原因）：X-ICP（无公开代码）· GLIM / KISS-ICP（3D 数据不够）· 多会话类（无移动平台与长期数据）。
+给定位姿建图、固定地图定位和估计位姿的 SLAM 分开评价。方法顺序以输入条件和实际失败为依据，不预先承诺某策略胜出。[完整测试协议](../testing/PROTOCOL.zh-CN.md) · [开放问题分析](DESIGN.zh-CN.md) · [接续状态](STATUS.zh-CN.md)。

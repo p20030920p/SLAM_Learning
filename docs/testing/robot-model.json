@@ -1,0 +1,232 @@
+{
+  "kind": "source_model_inspection",
+  "simulation_verified": false,
+  "repository": "https://github.com/p20030920p/Sim2Real-AlgoBench",
+  "commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+  "robot_urdf": "src/race_description/urdf/omni_car_ros2_control.urdf",
+  "joints": [
+    {
+      "name": "base_footprint_joint",
+      "type": "fixed",
+      "parent": "base_footprint",
+      "child": "base_link"
+    },
+    {
+      "name": "front_wheel_joint",
+      "type": "continuous",
+      "parent": "base_link",
+      "child": "front_wheel_link"
+    },
+    {
+      "name": "left_wheel_joint",
+      "type": "continuous",
+      "parent": "base_link",
+      "child": "left_wheel_link"
+    },
+    {
+      "name": "right_wheel_joint",
+      "type": "continuous",
+      "parent": "base_link",
+      "child": "right_wheel_link"
+    },
+    {
+      "name": "lidar_joint",
+      "type": "fixed",
+      "parent": "base_link",
+      "child": "lidar_link"
+    },
+    {
+      "name": "camera_joint",
+      "type": "fixed",
+      "parent": "base_link",
+      "child": "camera_link"
+    }
+  ],
+  "sensors": [
+    {
+      "name": "lidar",
+      "type": "gpu_lidar",
+      "parameters": {
+        "topic": [
+          "/scan"
+        ],
+        "update_rate": [
+          "10"
+        ],
+        "samples": [
+          "720"
+        ],
+        "min_angle": [
+          "-3.14159"
+        ],
+        "max_angle": [
+          "3.14159"
+        ],
+        "min": [
+          "0.08"
+        ],
+        "max": [
+          "12.0"
+        ],
+        "width": [],
+        "height": [],
+        "gz_frame_id": [
+          "lidar_link"
+        ]
+      }
+    },
+    {
+      "name": "front_camera",
+      "type": "camera",
+      "parameters": {
+        "topic": [
+          "/camera"
+        ],
+        "update_rate": [
+          "15"
+        ],
+        "samples": [],
+        "min_angle": [],
+        "max_angle": [],
+        "min": [],
+        "max": [],
+        "width": [
+          "640"
+        ],
+        "height": [
+          "480"
+        ],
+        "gz_frame_id": [
+          "camera_link"
+        ]
+      }
+    },
+    {
+      "name": "chassis_contact",
+      "type": "contact",
+      "parameters": {
+        "topic": [
+          "/robot/contacts",
+          "/robot/contacts"
+        ],
+        "update_rate": [
+          "30"
+        ],
+        "samples": [],
+        "min_angle": [],
+        "max_angle": [],
+        "min": [],
+        "max": [],
+        "width": [],
+        "height": [],
+        "gz_frame_id": []
+      }
+    },
+    {
+      "name": "front_wheel_contact",
+      "type": "contact",
+      "parameters": {
+        "topic": [
+          "/robot/contacts/front_wheel",
+          "/robot/contacts/front_wheel"
+        ],
+        "update_rate": [
+          "30"
+        ],
+        "samples": [],
+        "min_angle": [],
+        "max_angle": [],
+        "min": [],
+        "max": [],
+        "width": [],
+        "height": [],
+        "gz_frame_id": []
+      }
+    },
+    {
+      "name": "left_wheel_contact",
+      "type": "contact",
+      "parameters": {
+        "topic": [
+          "/robot/contacts/left_wheel",
+          "/robot/contacts/left_wheel"
+        ],
+        "update_rate": [
+          "30"
+        ],
+        "samples": [],
+        "min_angle": [],
+        "max_angle": [],
+        "min": [],
+        "max": [],
+        "width": [],
+        "height": [],
+        "gz_frame_id": []
+      }
+    },
+    {
+      "name": "right_wheel_contact",
+      "type": "contact",
+      "parameters": {
+        "topic": [
+          "/robot/contacts/right_wheel",
+          "/robot/contacts/right_wheel"
+        ],
+        "update_rate": [
+          "30"
+        ],
+        "samples": [],
+        "min_angle": [],
+        "max_angle": [],
+        "min": [],
+        "max": [],
+        "width": [],
+        "height": [],
+        "gz_frame_id": []
+      }
+    }
+  ],
+  "assets": {
+    "src/race_description/urdf/omni_car_ros2_control.urdf": {
+      "sha256": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+      "bytes": 10937,
+      "matches_pinned_commit": true
+    },
+    "src/race_description/meshes/base_link.STL": {
+      "sha256": "571d9014f11e8214ad604254f4c440a521526a4bf776a6d0c34ed0c50caa8ba1",
+      "bytes": 394084,
+      "matches_pinned_commit": true
+    },
+    "src/race_description/meshes/front_wheel_link.STL": {
+      "sha256": "d7de2e7a30323b7a4961e09c2485216b1e55626cc0e7330ea321124f2e4ce064",
+      "bytes": 2845234,
+      "matches_pinned_commit": true
+    },
+    "src/race_description/meshes/left_wheel_link.STL": {
+      "sha256": "f47799053c584d7fed93e3bf5406088953cb1fcef0b5a92f207b4393a15eb0da",
+      "bytes": 2845234,
+      "matches_pinned_commit": true
+    },
+    "src/race_description/meshes/right_wheel_link.STL": {
+      "sha256": "41ec25c9c763d41bca7ffa38960a13fcf342925ccdceea19289204b8509b4047",
+      "bytes": 2845234,
+      "matches_pinned_commit": true
+    },
+    "src/race_navigation/config/nav2_params.yaml": {
+      "sha256": "13d50a5214ca993e65c3bdef96d2c160fe1d8fa2588387b2d3c1a6280916c518",
+      "bytes": 14652,
+      "matches_pinned_commit": true
+    },
+    "src/race_bringup/config/bridge_sensors.yaml": {
+      "sha256": "bcd72f936c4bd8786111d46c57b2f6dfb8dfe37e5807ca2a0e047444a2cfdc80",
+      "bytes": 1551,
+      "matches_pinned_commit": true
+    },
+    "src/race_bringup/config/ros2_control_omni.yaml": {
+      "sha256": "68254d454cb92a6027872dc627b10a02f3d926a90fc4fbe38342fb0856d42992",
+      "bytes": 1082,
+      "matches_pinned_commit": true
+    }
+  },
+  "runtime_note": "Robot source and controller configuration inspected; local scenario_variants are untracked and not upstream assets."
+}

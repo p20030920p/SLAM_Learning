@@ -2,7 +2,7 @@
 
 # SLAM Learning
 
-**Localization self-recovery**
+**Robust localization and SLAM in dynamic environments**
 
 Robust localization and SLAM in dynamic environments · Localization self-recovery
 
@@ -19,7 +19,7 @@ English | [中文](docs/HOME.zh-CN.md)
 
 ## Open question
 
-**What strategies enable a localization system to recover itself under degradation and substantial environmental change?** The first experiment focuses on 2D MCL recovery triggers, pose proposals and sustained confirmation. [Research design](docs/self-recovery/DESIGN.md) · [Chinese talk](docs/self-recovery/TALK.zh-CN.md) · [Handoff status](docs/self-recovery/STATUS.zh-CN.md) · [Working literature](docs/self-recovery/README.zh-CN.md).
+**What strategies enable localization self-recovery under degradation and substantial environmental change?** Analyze failure mechanisms, recovery targets and boundaries before choosing a strategy. Deliver author-code reproductions and progressively harder point-cloud mapping/localization tests on the Sim2Real-AlgoBench robot. [Question analysis](docs/self-recovery/DESIGN.md) · [Robot test protocol](docs/testing/PROTOCOL.md) · [Chinese talk](docs/self-recovery/TALK.zh-CN.md) · [Status](docs/self-recovery/STATUS.zh-CN.md).
 
 ## Live experiments and local demos
 
@@ -47,15 +47,15 @@ Recorded-data reconstruction with three moving boxes: green is truth, blue the e
 
 ## Direction analysis
 
-**SLAM (Simultaneous Localization and Mapping)** estimates motion while building a map. The first experiment studies recovery against a prior map; full SLAM back ends are a later extension.
+**SLAM (Simultaneous Localization and Mapping)** estimates motion while building a map. The direction includes dynamic-environment mapping, localization and SLAM; self-recovery is an open question within it.
 
-| Stage | Current role |
+| Deliverable | Content |
 | --- | --- |
-| Map preparation | DUFOMap/BeautyMap controls and static-structure preservation |
-| Online localization | MCL estimates pose from scans, odometry and map; AMCL is not a factor-graph back end |
-| Recovery supervision | Monitor anomalies, generate proposals within budget and confirm trust using later observations |
+| Native reproduction | Author source/data/protocol, each paper's metrics and actual reproduced scope |
+| Robot tests | Sim2Real-AlgoBench omnidirectional chassis, native 2D and independent 3D LiDAR profiles, progressively harder mapping/localization/recovery |
+| Question analysis | Separate weak constraints from map mismatch; narrow using reproducible failures, keeping methods open |
 
-The semantic-mapping direction and earlier projection comparisons remain in the [original repository](https://github.com/p20030920p/SLAM_Learning).
+Semantic mapping and earlier projections remain in the [original repository](https://github.com/p20030920p/SLAM_Learning).
 
 ## Related works
 
@@ -83,7 +83,7 @@ These are saved-result replays of recorded runs. GIFs preserve the companion MP4
 
 ![AdaM-MCL recorded evaluation session](results/reference/adam-mcl/media/preview.gif)
 
-**Authored 128-cell indoor plan, one held-out scene, 200 particles.** A CNN turns a map and a 2-D scan into a samplable pose distribution, so global-localization particles are drawn from the whole map instead of a uniform prior. Unlike the rows above this one is the recorded run in real time: the cloud contracts from its uniform start, then again after the teleport at update 63. [MP4](results/reference/adam-mcl/media/replay/replay.mp4).
+**Authored 128-cell indoor plan, one held-out scene, 200 particles.** A CNN turns a map and a 2-D scan into a samplable pose distribution. The recorded run shows particle updates and the teleport at update 63; contraction does not establish recovery, and none of ten trials met the sustained convergence criterion. [MP4](results/reference/adam-mcl/media/replay/replay.mp4).
 
 ## Reproduction results
 
@@ -163,7 +163,7 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 ## Hypothesis
 
-Temporal triggering and sustained recovery confirmation may reduce unnecessary resets and improve correctly available time within a fixed budget. Compare explicit AMCL recovery off/on, single-frame triggering and periodic resets first. [Candidate hypotheses and falsification](docs/self-recovery/DESIGN.md).
+Test whether cleaner maps also improve recovery, better nominal observation models expand recovery range, and remaining stable structure limits recovery against obsolete maps. Complete native reproduction and progressive tests before choosing an intervention. [Analysis and counterexamples](docs/self-recovery/DESIGN.md).
 
 ## Branches
 

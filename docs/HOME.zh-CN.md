@@ -2,7 +2,7 @@
 
 # SLAM Learning
 
-**定位自恢复**
+**动态环境中的鲁棒定位与 SLAM**
 
 动态环境中的鲁棒定位与 SLAM · 定位系统自恢复
 
@@ -19,7 +19,7 @@
 
 ## 开放问题
 
-**在退化与大变动环境中，什么样的策略能够有效地让定位系统自恢复？** 首轮聚焦二维 MCL 的恢复触发、候选位姿与持续确认。[研究设计](self-recovery/DESIGN.zh-CN.md) · [汇报稿](self-recovery/TALK.zh-CN.md) · [接续状态](self-recovery/STATUS.zh-CN.md) · [文献与候选资料](self-recovery/README.zh-CN.md)。
+**在退化与大变动环境中，什么样的策略能够有效地让定位系统自恢复？** 先分析失效原因、恢复目标和适用边界，再选择策略。成果包括作者原库复现，以及使用 Sim2Real-AlgoBench 机器人逐步加难的点云建图与定位测试。[问题分析与收窄](self-recovery/DESIGN.zh-CN.md) · [机器人测试协议](testing/PROTOCOL.zh-CN.md) · [汇报稿](self-recovery/TALK.zh-CN.md) · [接续状态](self-recovery/STATUS.zh-CN.md)。
 
 ## 仿真实验与本机演示入口
 
@@ -47,13 +47,13 @@
 
 ## 方向分析
 
-**SLAM（Simultaneous Localization and Mapping）**在构建地图的同时估计自身运动。当前首轮实验研究先验地图上的定位自恢复；完整 SLAM 后端是后续扩展。
+**SLAM（Simultaneous Localization and Mapping）**在构建地图的同时估计自身运动。大方向包含动态环境下的建图、定位和 SLAM，自恢复是其中的开放问题。
 
-| 环节 | 当前角色 |
+| 成果 | 内容 |
 | --- | --- |
-| 地图准备 | DUFOMap／BeautyMap 清理对照，检查静态结构保留 |
-| 在线定位 | MCL 用扫描、里程计与地图估计位姿；AMCL 不是因子图后端 |
-| 恢复监督 | 监测异常、受预算限制地提出候选、通过后续观测确认可信度 |
+| 原库复现 | 作者代码、数据与协议，保留各论文自己的指标及实际复现范围 |
+| 机器人测试 | Sim2Real-AlgoBench 三轮全向底盘；原生二维＋独立三维激光版本，逐级测试点云建图、定位与恢复 |
+| 问题分析 | 区分约束不足与地图失配，通过失败与恢复对照收窄问题，方法保持开放 |
 
 语义建图方向及早期投影比较保留在[原库](https://github.com/p20030920p/SLAM_Learning)。
 
@@ -83,7 +83,7 @@
 
 ![AdaM-MCL 评测会话录制](../results/reference/adam-mcl/media/preview.gif)
 
-**自建 128 格室内平面、一个留出场景、200 个粒子。**卷积网络把地图与二维扫描变成可采样的位姿分布，全局定位的粒子直接从整张地图上抽取，而不是从均匀先验。与上面几条不同，这条 GIF 就是按真实时间录下来的运行本身：粒子云从均匀铺开逐步收紧，第 63 次更新发生瞬移后再次收紧。[MP4](../results/reference/adam-mcl/media/replay/replay.mp4)。
+**自建 128 格室内平面、一个留出场景、200 个粒子。**卷积网络把地图与二维扫描变成可采样的位姿分布。实录展示粒子更新与第 63 次更新的瞬移；粒子云收紧不等于恢复，10 次重复均未满足持续收敛判据。[MP4](../results/reference/adam-mcl/media/replay/replay.mp4)。
 
 ## 复现结果
 
@@ -163,7 +163,7 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 ## 假设
 
-时序一致性触发与持续恢复确认，可能在固定预算下减少正常定位时的误重置，并提高失效后的可信可用时间。先与关闭／开启 AMCL 随机注入、单帧触发和固定周期重置比较；候选假设及证伪条件见[研究设计](self-recovery/DESIGN.zh-CN.md)。
+待检验：地图更干净是否也更容易恢复，更好的正常观测模型是否扩大恢复范围，剩余稳定结构怎样限制地图过期后的恢复。先完成原库复现与逐级测试，再根据可重复失败选择恢复策略。[分析与反例](self-recovery/DESIGN.zh-CN.md)。
 
 ## 分支
 

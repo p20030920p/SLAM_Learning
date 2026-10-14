@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "profile": "omni-3d-v1",
+  "status": "generated_static_profile",
+  "runtime_verified": false,
+  "upstream": "https://github.com/p20030920p/Sim2Real-AlgoBench",
+  "upstream_commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+  "native_elements_preserved": 24,
+  "native_element_comparison_passed": true,
+  "source_urdf_sha256": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+  "source_assets": {
+    "src/race_description/urdf/omni_car_ros2_control.urdf": {
+      "sha256": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+      "bytes": 10937,
+      "matches_pinned_commit": true
+    },
+    "src/race_description/meshes/base_link.STL": {
+      "sha256": "571d9014f11e8214ad604254f4c440a521526a4bf776a6d0c34ed0c50caa8ba1",
+      "bytes": 394084,
+      "matches_pinned_commit": true
+    },
+    "src/race_description/meshes/front_wheel_link.STL": {
+      "sha256": "d7de2e7a30323b7a4961e09c2485216b1e55626cc0e7330ea321124f2e4ce064",
+      "bytes": 2845234,
+      "matches_pinned_commit": true
+    },
+    "src/race_description/meshes/left_wheel_link.STL": {
+      "sha256": "f47799053c584d7fed93e3bf5406088953cb1fcef0b5a92f207b4393a15eb0da",
+      "bytes": 2845234,
+      "matches_pinned_commit": true
+    },
+    "src/race_description/meshes/right_wheel_link.STL": {
+      "sha256": "41ec25c9c763d41bca7ffa38960a13fcf342925ccdceea19289204b8509b4047",
+      "bytes": 2845234,
+      "matches_pinned_commit": true
+    },
+    "src/race_navigation/config/nav2_params.yaml": {
+      "sha256": "13d50a5214ca993e65c3bdef96d2c160fe1d8fa2588387b2d3c1a6280916c518",
+      "bytes": 14652,
+      "matches_pinned_commit": true
+    },
+    "src/race_bringup/config/bridge_sensors.yaml": {
+      "sha256": "bcd72f936c4bd8786111d46c57b2f6dfb8dfe37e5807ca2a0e047444a2cfdc80",
+      "bytes": 1551,
+      "matches_pinned_commit": true
+    },
+    "src/race_bringup/config/ros2_control_omni.yaml": {
+      "sha256": "68254d454cb92a6027872dc627b10a02f3d926a90fc4fbe38342fb0856d42992",
+      "bytes": 1082,
+      "matches_pinned_commit": true
+    }
+  },
+  "sensor": {
+    "type": "gpu_lidar",
+    "frame": "lidar_3d_link",
+    "parent": "base_link",
+    "mount_xyz_m": [
+      0,
+      0,
+      0.3
+    ],
+    "mount_rpy_rad": [
+      0,
+      0,
+      0
+    ],
+    "added_mass_kg": 0.05,
+    "horizontal_samples": 720,
+    "vertical_samples": 16,
+    "vertical_fov_deg": 30,
+    "configured_rate_hz": 10,
+    "range_m": [
+      0.08,
+      12.0
+    ],
+    "ros_topic": "/points",
+    "gz_topic": "/lidar_3d/points",
+    "per_point_time_field": "not provided or assumed; verify algorithm requirements"
+  },
+  "motion_model": "nav2_amcl::OmniMotionModel",
+  "odom_topic": "/omni_drive_controller/odom",
+  "artifacts": {
+    "omni_car_lidar3d.urdf": {
+      "sha256": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+      "bytes": 12331
+    },
+    "bridge_sensors.yaml": {
+      "sha256": "78a65754c92191536a523fc9f9b80f9210f4d2a72dc3b9cfab3b84edfb6c4c08",
+      "bytes": 1812
+    },
+    "LICENSE": {
+      "sha256": "36f6695246553010cf1c08c1c3c8b5a49760d1e8b1b64d78d5620f6bc19d3945",
+      "bytes": 1079
+    }
+  },
+  "note": "Adds a 0.05 kg sensor assembly; native chassis mass/inertia, joints, sensors and control remain unchanged.",
+  "static_checks": {
+    "urdf_to_sdf_passed": true,
+    "sensor_name": "research_lidar_3d",
+    "horizontal_samples": 720,
+    "vertical_samples": 16,
+    "sdf_sha256": "b6faddeee60e3feb27c3115a555d88a371ebc8dcbaef2734e53a4d3db41ea786"
+  }
+}

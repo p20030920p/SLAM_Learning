@@ -1,0 +1,242 @@
+{
+  "kind": "T0_stationary_3d_sensor_smoke",
+  "profile": "omni-3d-v1",
+  "passed": true,
+  "scope": "Native Sim2Real chassis stationary in an isolated box world; ROS PointCloud2 source only. Not a mapping/localization trial.",
+  "source_revision": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+  "input_urdf_sha256": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+  "harness_sha256": "51fdd62bc5c316cb49e6240c0dc98a17694313e581e8c68a3cba60e85e9526c7",
+  "probe_sha256": "ec2ce6623e334cc4a79d535edacfa8f29d24a9ea2f1607400224f346dc5493f7",
+  "world_sha256": "bc13713eb24863a87ded3b28d6e5703c8e4d2b4f9a65f3dfe5e9a994b482c926",
+  "observed_sim_rate_hz": 10.014306151645208,
+  "frames": [
+    {
+      "stamp_s": 0.002,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.9394828081130981
+    },
+    {
+      "stamp_s": 0.1,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8895682096481323
+    },
+    {
+      "stamp_s": 0.2,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8822815418243408
+    },
+    {
+      "stamp_s": 0.3,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.88238525390625
+    },
+    {
+      "stamp_s": 0.4,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.88248872756958
+    },
+    {
+      "stamp_s": 0.5,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.882591724395752
+    },
+    {
+      "stamp_s": 0.6,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8826954364776611
+    },
+    {
+      "stamp_s": 0.7,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8827989101409912
+    },
+    {
+      "stamp_s": 0.8,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8828989267349243
+    },
+    {
+      "stamp_s": 0.9,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8829489946365356
+    },
+    {
+      "stamp_s": 1.0,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8829671144485474
+    },
+    {
+      "stamp_s": 1.1,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.882973313331604
+    },
+    {
+      "stamp_s": 1.2,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8829753398895264
+    },
+    {
+      "stamp_s": 1.3,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8829765319824219
+    },
+    {
+      "stamp_s": 1.4,
+      "frame_id": "lidar_3d_link",
+      "width": 720,
+      "height": 16,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity",
+        "ring"
+      ],
+      "finite_points": 11520,
+      "z_span_m": 1.8829765319824219
+    }
+  ],
+  "mapping_tested": false,
+  "localization_tested": false,
+  "motion_tested": false
+}
