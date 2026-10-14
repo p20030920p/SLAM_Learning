@@ -62,6 +62,7 @@
 
 | 文档 | 内容 |
 | --- | --- |
+| [REPRODUCTION-QUEUE.zh-CN.md](REPRODUCTION-QUEUE.zh-CN.md) | **复现清单（按结构分组）**：每条核实过上游代码是否公开、结构核心、怎么喂我们的仿真、原库怎么复现、执行顺序 |
 | [SURVEY.zh-CN.md](SURVEY.zh-CN.md) | 论文地图（按五组分类，逐条核验过链接），含每组的共同假设与共同盲区 |
 | [FEASIBILITY.zh-CN.md](FEASIBILITY.zh-CN.md) | 逐篇"能不能用现有 Static and dynamic localization recordings 仿真验证"，分三级 + 改装清单 |
 | [HYPOTHESES-BY-PAPER.zh-CN.md](HYPOTHESES-BY-PAPER.zh-CN.md) | **按策略族/论文分组的假设集**（6 族），每条假设绑定到现有仿真的哪一格、证伪条件、旧编号对照、6 页展示骨架 |

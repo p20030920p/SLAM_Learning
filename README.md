@@ -19,7 +19,7 @@ English | [中文](docs/HOME.zh-CN.md)
 
 ## Open question
 
-**In degradation and large-change environments, what strategy effectively lets a localization system recover itself?** Working documents (Chinese): [thread and gaps](docs/self-recovery/README.zh-CN.md) · [paper map](docs/self-recovery/SURVEY.zh-CN.md) · [feasibility](docs/self-recovery/FEASIBILITY.zh-CN.md) · [hypotheses by strategy family](docs/self-recovery/HYPOTHESES-BY-PAPER.zh-CN.md) · [per-paper hypotheses](docs/self-recovery/PAPER-TO-HYPOTHESIS.zh-CN.md). The semantic-mapping direction previously hosted here is archived in [SLAM_Learning](https://github.com/p20030920p/SLAM_Learning).
+**In degradation and large-change environments, what strategy effectively lets a localization system recover itself?** Working documents (Chinese): [thread and gaps](docs/self-recovery/README.zh-CN.md) · [reproduction queue by structure](docs/self-recovery/REPRODUCTION-QUEUE.zh-CN.md) · [paper map](docs/self-recovery/SURVEY.zh-CN.md) · [feasibility](docs/self-recovery/FEASIBILITY.zh-CN.md) · [hypotheses by strategy family](docs/self-recovery/HYPOTHESES-BY-PAPER.zh-CN.md) · [per-paper hypotheses](docs/self-recovery/PAPER-TO-HYPOTHESIS.zh-CN.md). The semantic-mapping direction previously hosted here is archived in [SLAM_Learning](https://github.com/p20030920p/SLAM_Learning).
 
 ## Live experiments and local demos
 
