@@ -4,7 +4,7 @@ RUN_DIR="${1:?output directory required}"
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 while [[ ! -f "$RUN_DIR/recording.started" ]]; do sleep 0.2; done
 SCENE="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["scene"])' "$RUN_DIR/runtime.json")"
-if [[ "$SCENE" == corridor ]]; then
+if [[ "$SCENE" == corridor || "$SCENE" == height-corridor ]]; then
   CORRIDOR_ROUTE='9.15,-3.1;5.15,-3.1;9.15,-3.1;5.15,-3.1;9.15,-3.1;5.15,-3.1;9.15,-3.1;5.15,-3.1;9.15,-3.1;5.15,-3.1'
   exec python3 "$HERE/patrol_waypoints.py" \
     --ros-args -p use_sim_time:=true -p speed:=0.30 -p hold:=1.0 \

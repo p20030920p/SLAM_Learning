@@ -1,0 +1,1513 @@
+{
+  "batch": {
+    "diagnostics": [
+      null,
+      {
+        "finished_at": "2026-10-15T01:13:26.3337796+03:00",
+        "error": "Startup failed: D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-011312-localization-probe-3d-static-method-live-dd8f13",
+        "state": "failed"
+      },
+      {
+        "run_id": "20261015-012043-localization-probe-3d-dynamic-method-live-0b10dc",
+        "reason": "Observer omitted first emitted frame for plain/guard/depth; canonical scoring recovered these actual logged poses with independent truth; raw observer files and original failed package retained"
+      },
+      {
+        "finished_at": "2026-10-15T01:23:12.5536128+03:00",
+        "error": "Probe evidence verification failed: D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-012043-localization-probe-3d-dynamic-method-live-0b10dc",
+        "state": "failed"
+      }
+    ],
+    "scope": "Four original scenes plus explicitly derived height control; fixed algorithm settings; each fresh native capture is retained",
+    "finished_at": "2026-10-15T01:39:00.4849282+03:00",
+    "runs": [
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-010054-localization-probe-2d-static-method-live-c4dfc9",
+        "run_id": "20261015-010054-localization-probe-2d-static-method-live-c4dfc9",
+        "scene": "static",
+        "dimension": "2D"
+      },
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-010309-localization-probe-2d-dynamic-method-live-2bb3b5",
+        "run_id": "20261015-010309-localization-probe-2d-dynamic-method-live-2bb3b5",
+        "scene": "dynamic",
+        "dimension": "2D"
+      },
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-010529-localization-probe-2d-large-change-method-live-18e02b",
+        "run_id": "20261015-010529-localization-probe-2d-large-change-method-live-18e02b",
+        "scene": "large-change",
+        "dimension": "2D"
+      },
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-010743-localization-probe-2d-degradation-method-live-f67f02",
+        "run_id": "20261015-010743-localization-probe-2d-degradation-method-live-f67f02",
+        "scene": "degradation",
+        "dimension": "2D"
+      },
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-011027-localization-probe-2d-height-corridor-method-live-f3cf54",
+        "run_id": "20261015-011027-localization-probe-2d-height-corridor-method-live-f3cf54",
+        "scene": "height-corridor",
+        "dimension": "2D"
+      },
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-011822-localization-probe-3d-static-method-live-b6855b",
+        "run_id": "20261015-011822-localization-probe-3d-static-method-live-b6855b",
+        "scene": "static",
+        "dimension": "3D"
+      },
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-012043-localization-probe-3d-dynamic-method-live-0b10dc",
+        "run_id": "20261015-012043-localization-probe-3d-dynamic-method-live-0b10dc",
+        "scene": "dynamic",
+        "dimension": "3D"
+      },
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-013045-localization-probe-3d-large-change-method-live-b3e96c",
+        "run_id": "20261015-013045-localization-probe-3d-large-change-method-live-b3e96c",
+        "scene": "large-change",
+        "dimension": "3D"
+      },
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-013308-localization-probe-3d-degradation-method-live-4ab7ec",
+        "run_id": "20261015-013308-localization-probe-3d-degradation-method-live-4ab7ec",
+        "scene": "degradation",
+        "dimension": "3D"
+      },
+      {
+        "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-013606-localization-probe-3d-height-corridor-method-live-cddf3e",
+        "run_id": "20261015-013606-localization-probe-3d-height-corridor-method-live-cddf3e",
+        "scene": "height-corridor",
+        "dimension": "3D"
+      }
+    ],
+    "resumed_at": "2026-10-15T01:30:45.4713988+03:00",
+    "status": "completed",
+    "started_at": "2026-10-15T01:00:54.2477303+03:00"
+  },
+  "protocol_sha256": "d92c4f2f86123d0ae64fc27ad44e3446ada0e0cd09ecb8c0332a1dce7564dcb9",
+  "conditions": [
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-010054-localization-probe-2d-static-method-live-c4dfc9\\evidence\\record.json",
+      "source_record_sha256": "f9d27fa53d20544aedc6fa5c6859dbb1e3440fcc8b6353c107c2d445786e0596",
+      "dimension": "2d",
+      "scene": "static",
+      "shared_prototype_frames": 265,
+      "depth_used_frames": 194,
+      "depth_stale_or_absent_frames": 71,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": 0.000379269300433277
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.08569502507174115
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 0.0
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": 5.999390262356741e-09
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.08569503107113141
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 0.13563843320840885,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 5.3,
+          "last_output_s": 101.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.13601770250884213,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 5.3,
+          "last_output_s": 101.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.22171272758058327,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 5.3,
+          "last_output_s": 101.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.13601770250884213,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 5.3,
+          "last_output_s": 101.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.22171273357997354,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 5.3,
+          "last_output_s": 101.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 6.715242713898845,
+          "xyz_rmse_cm": null,
+          "samples": 289,
+          "first_output_s": 5.4,
+          "last_output_s": 73.7,
+          "max_output_gap_s": 9.799999999999999,
+          "initial_sustained_delay_from_first_probe_output_s": 10.899999999999999,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "af0cbbf8e21f5f39d951bee2f694c96f19fbb00b57f9f0da69123336e7ae71a0"
+    },
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-010309-localization-probe-2d-dynamic-method-live-2bb3b5\\evidence\\record.json",
+      "source_record_sha256": "f4fb1c3972a746619257807c999992294e55408c9b56016bd78629663edad89c",
+      "dimension": "2d",
+      "scene": "dynamic",
+      "shared_prototype_frames": 264,
+      "depth_used_frames": 165,
+      "depth_stale_or_absent_frames": 99,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -0.18403639917558925
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.002722606705689329
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 3.207636378732559e-10
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -1.1544850608669055e-05
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.002711061534317022
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 0.37382343829677744,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.6,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.1897870391211882,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.6,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.19250964582687752,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.6,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.18978703944195183,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.6,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.19249810097626885,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.6,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 7.1178520991933265,
+          "xyz_rmse_cm": null,
+          "samples": 289,
+          "first_output_s": 5.5,
+          "last_output_s": 72.0,
+          "max_output_gap_s": 8.1,
+          "initial_sustained_delay_from_first_probe_output_s": 9.200000000000001,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "28ef91e534587a647308d3c24bc8d6d0c9ef239691ee03350cd0d236063fe0e9"
+    },
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-010529-localization-probe-2d-large-change-method-live-18e02b\\evidence\\record.json",
+      "source_record_sha256": "2385e336cbf25099ae63fc6dbf57daa51a6314affe8b360dd8361bf9d54c5bbe",
+      "dimension": "2d",
+      "scene": "large-change",
+      "shared_prototype_frames": 264,
+      "depth_used_frames": 165,
+      "depth_stale_or_absent_frames": 99,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -7.584616397283808
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.012230882868062287
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 0.0
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -1.5108136142139017e-06
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.012229372054448073
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 8.054109916909375,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.9,
+          "last_output_s": 101.7,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.4694935196255674,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.9,
+          "last_output_s": 101.7,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.4817244024936297,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.9,
+          "last_output_s": 101.7,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.4694935196255674,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.9,
+          "last_output_s": 101.7,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.4817228916800155,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 5.9,
+          "last_output_s": 101.7,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 6.74237004730024,
+          "xyz_rmse_cm": null,
+          "samples": 288,
+          "first_output_s": 5.9,
+          "last_output_s": 75.1,
+          "max_output_gap_s": 10.6,
+          "initial_sustained_delay_from_first_probe_output_s": 11.6,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "c425cbaa026746591567213d91a98ea2470da21017610b2c03e6a8ace43e6b3c"
+    },
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-010743-localization-probe-2d-degradation-method-live-f67f02\\evidence\\record.json",
+      "source_record_sha256": "7b4b9acfd58db613cfdb79b3f1929616ea450e57be70a6054d30b9a93819db8d",
+      "dimension": "2d",
+      "scene": "corridor",
+      "shared_prototype_frames": 343,
+      "depth_used_frames": 222,
+      "depth_stale_or_absent_frames": 121,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -818.2339985656567
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.04989106845430058
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": -30.195057523360447
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -30.22831629589156
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.016632295923187712
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 918.7606579735362,
+          "xyz_rmse_cm": null,
+          "samples": 343,
+          "first_output_s": 5.4,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "guard": {
+          "xy_rmse_cm": 100.52665940787955,
+          "xyz_rmse_cm": null,
+          "samples": 343,
+          "first_output_s": 5.4,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "depth": {
+          "xy_rmse_cm": 100.57655047633385,
+          "xyz_rmse_cm": null,
+          "samples": 343,
+          "first_output_s": 5.4,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "search": {
+          "xy_rmse_cm": 70.3316018845191,
+          "xyz_rmse_cm": null,
+          "samples": 343,
+          "first_output_s": 5.4,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 60.199999999999996,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 4.699999999999996,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "recover": {
+          "xy_rmse_cm": 70.34823418044229,
+          "xyz_rmse_cm": null,
+          "samples": 343,
+          "first_output_s": 5.4,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 60.199999999999996,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 4.699999999999996,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "native": {
+          "xy_rmse_cm": 66.02252179515374,
+          "xyz_rmse_cm": null,
+          "samples": 616,
+          "first_output_s": 5.4,
+          "last_output_s": 130.7,
+          "max_output_gap_s": 9.0,
+          "initial_sustained_delay_from_first_probe_output_s": 65.5,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 10.000000000000007,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "0fa9c2f153189414dbf36b48cbf630c278a3ed05fd30242b97cde582914e00bc"
+    },
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-011027-localization-probe-2d-height-corridor-method-live-f3cf54\\evidence\\record.json",
+      "source_record_sha256": "4bef524d386bc0d44e4f71e129edd50464a0cbd230ba4b974004e75c796bec4e",
+      "dimension": "2d",
+      "scene": "height-corridor",
+      "shared_prototype_frames": 342,
+      "depth_used_frames": 207,
+      "depth_stale_or_absent_frames": 135,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -189.65823356890883
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": -0.38391268641917975
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": -30.032153672645066
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -79.43844501379007
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": -49.790204027564194
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 290.6930946563603,
+          "xyz_rmse_cm": null,
+          "samples": 342,
+          "first_output_s": 5.6,
+          "last_output_s": 130.3,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.7,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "guard": {
+          "xy_rmse_cm": 101.03486108745146,
+          "xyz_rmse_cm": null,
+          "samples": 342,
+          "first_output_s": 5.6,
+          "last_output_s": 130.3,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.7,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "depth": {
+          "xy_rmse_cm": 100.65094840103228,
+          "xyz_rmse_cm": null,
+          "samples": 342,
+          "first_output_s": 5.6,
+          "last_output_s": 130.3,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.7,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "search": {
+          "xy_rmse_cm": 71.0027074148064,
+          "xyz_rmse_cm": null,
+          "samples": 342,
+          "first_output_s": 5.6,
+          "last_output_s": 130.3,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": 60.300000000000004,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.7,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 5.200000000000003,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "recover": {
+          "xy_rmse_cm": 21.2125033872422,
+          "xyz_rmse_cm": null,
+          "samples": 342,
+          "first_output_s": 5.6,
+          "last_output_s": 130.3,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": 55.4,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 2,
+          "wrong_acceptance_events": 1,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.7,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 0.29999999999999716,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "native": {
+          "xy_rmse_cm": 67.25323358343186,
+          "xyz_rmse_cm": null,
+          "samples": 628,
+          "first_output_s": 5.5,
+          "last_output_s": 130.6,
+          "max_output_gap_s": 6.9,
+          "initial_sustained_delay_from_first_probe_output_s": 81.80000000000001,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.7,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 26.700000000000003,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "610f89ba21de17736bb301aa6c8b5ebe519835033be51f0a24b7fd7042bbf18c"
+    },
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-011822-localization-probe-3d-static-method-live-b6855b\\evidence\\record.json",
+      "source_record_sha256": "8752b239baeac140f0df09bee9df8ca22d4c6c05d2a52d6d9d4c3f2653643a73",
+      "dimension": "3d",
+      "scene": "static",
+      "shared_prototype_frames": 263,
+      "depth_used_frames": 210,
+      "depth_stale_or_absent_frames": 53,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -0.00011611056695493005
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.0007366769375778404
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 9.592326932761353e-14
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -9.769962616701378e-14
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.0007366769373842175
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 0.14452092080729406,
+          "xyz_rmse_cm": 9.41509672066467,
+          "samples": 263,
+          "first_output_s": 3.7,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 1.4999999999999991,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.13674767126471937,
+          "xyz_rmse_cm": 9.414980610097714,
+          "samples": 263,
+          "first_output_s": 3.7,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 1.4999999999999991,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.18047732947825051,
+          "xyz_rmse_cm": 9.415717287035292,
+          "samples": 263,
+          "first_output_s": 3.7,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 1.4999999999999991,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.13674767127128906,
+          "xyz_rmse_cm": 9.41498061009781,
+          "samples": 263,
+          "first_output_s": 3.7,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 1.4999999999999991,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.1804773294732242,
+          "xyz_rmse_cm": 9.415717287035195,
+          "samples": 263,
+          "first_output_s": 3.7,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 1.4999999999999991,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 1.084721094131296,
+          "xyz_rmse_cm": 1.089440362312093,
+          "samples": 974,
+          "first_output_s": 3.0,
+          "last_output_s": 101.1,
+          "max_output_gap_s": 0.2999999999999998,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "e7f5514eda5b33c862aa08a12c2aee879fed42e7d1c797aeedd6d65c41550132"
+    },
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-012043-localization-probe-3d-dynamic-method-live-0b10dc\\evidence\\record.json",
+      "source_record_sha256": "04f7bd9ab364fe43ab2a8dcdf6b8e95fa95d34ccb0b1fa798d3a5bac7569f7d7",
+      "dimension": "3d",
+      "scene": "dynamic",
+      "shared_prototype_frames": 261,
+      "depth_used_frames": 158,
+      "depth_stale_or_absent_frames": 103,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -0.00040041830419923485
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 5.1400660062483894e-05
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 0.0
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -1.2304379737315685e-09
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 5.139942962451016e-05
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 0.15008293085025332,
+          "xyz_rmse_cm": 9.415183810345887,
+          "samples": 261,
+          "first_output_s": 3.0,
+          "last_output_s": 98.8,
+          "max_output_gap_s": 1.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.12241332687786344,
+          "xyz_rmse_cm": 9.414783392041688,
+          "samples": 261,
+          "first_output_s": 3.0,
+          "last_output_s": 98.8,
+          "max_output_gap_s": 1.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.1263047006280209,
+          "xyz_rmse_cm": 9.41483479270175,
+          "samples": 261,
+          "first_output_s": 3.0,
+          "last_output_s": 98.8,
+          "max_output_gap_s": 1.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.12241332687786344,
+          "xyz_rmse_cm": 9.414783392041688,
+          "samples": 261,
+          "first_output_s": 3.0,
+          "last_output_s": 98.8,
+          "max_output_gap_s": 1.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.1263046089102445,
+          "xyz_rmse_cm": 9.414834791471312,
+          "samples": 261,
+          "first_output_s": 3.0,
+          "last_output_s": 98.8,
+          "max_output_gap_s": 1.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 1.3527008174238648,
+          "xyz_rmse_cm": 1.3606567516457824,
+          "samples": 951,
+          "first_output_s": 3.6,
+          "last_output_s": 99.7,
+          "max_output_gap_s": 0.20000000000000284,
+          "initial_sustained_delay_from_first_probe_output_s": 0.6000000000000001,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "d27417c042d5b2f973a761ffba87ec2a305c6950a67701a5483d8d8d904fe293"
+    },
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-013045-localization-probe-3d-large-change-method-live-b3e96c\\evidence\\record.json",
+      "source_record_sha256": "0202ba2fd6c41fc0f1794dae8926f2ba1bc898270c8f2c3a13efe60c3ccb4d71",
+      "dimension": "3d",
+      "scene": "large-change",
+      "shared_prototype_frames": 261,
+      "depth_used_frames": 203,
+      "depth_stale_or_absent_frames": 58,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -0.07013752016283625
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.004105617075332191
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 1.104996982803641e-09
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": 1.340136890348731e-10
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.004105616104348897
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 1.1705260236996382,
+          "xyz_rmse_cm": 9.486478093126989,
+          "samples": 261,
+          "first_output_s": 3.6,
+          "last_output_s": 101.6,
+          "max_output_gap_s": 2.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 1.9999999999999996,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.21055722934789864,
+          "xyz_rmse_cm": 9.416340572964152,
+          "samples": 261,
+          "first_output_s": 3.6,
+          "last_output_s": 101.6,
+          "max_output_gap_s": 2.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 1.9999999999999996,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.348813675490561,
+          "xyz_rmse_cm": 9.420446190039485,
+          "samples": 261,
+          "first_output_s": 3.6,
+          "last_output_s": 101.6,
+          "max_output_gap_s": 2.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 1.9999999999999996,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.2105572787644984,
+          "xyz_rmse_cm": 9.41634057406915,
+          "samples": 261,
+          "first_output_s": 3.6,
+          "last_output_s": 101.6,
+          "max_output_gap_s": 2.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 1.9999999999999996,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.34881367910990774,
+          "xyz_rmse_cm": 9.420446190173498,
+          "samples": 261,
+          "first_output_s": 3.6,
+          "last_output_s": 101.6,
+          "max_output_gap_s": 2.1000000000000005,
+          "initial_sustained_delay_from_first_probe_output_s": 1.9999999999999996,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 1.0523183007173986,
+          "xyz_rmse_cm": 1.0585392393532889,
+          "samples": 984,
+          "first_output_s": 2.4,
+          "last_output_s": 101.8,
+          "max_output_gap_s": 0.3999999999999999,
+          "initial_sustained_delay_from_first_probe_output_s": 0.19999999999999973,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "0178060dac37e796cba7cec093b6208fa185482bf91fcd87da5fb787c9b46cf4"
+    },
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-013308-localization-probe-3d-degradation-method-live-4ab7ec\\evidence\\record.json",
+      "source_record_sha256": "b77f46139ae9c437ace668b3bfbd8974d1f0d69ac5ffdd2844851a1ffb73d9ea",
+      "dimension": "3d",
+      "scene": "corridor",
+      "shared_prototype_frames": 249,
+      "depth_used_frames": 155,
+      "depth_stale_or_absent_frames": 93,
+      "depth_synchronized_empty_frames": 1,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": 52.57670470304644
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": -0.026132186293324366
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": -42.27559990458003
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -40.22544678842387
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 2.0240209298628358
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 47.53128354080733,
+          "xyz_rmse_cm": 48.454578015024516,
+          "samples": 249,
+          "first_output_s": 4.8,
+          "last_output_s": 132.2,
+          "max_output_gap_s": 3.3999999999999915,
+          "initial_sustained_delay_from_first_probe_output_s": 64.5,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 62.6,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 6.699999999999996,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "guard": {
+          "xy_rmse_cm": 100.59173361703886,
+          "xyz_rmse_cm": 101.03128271807095,
+          "samples": 249,
+          "first_output_s": 4.8,
+          "last_output_s": 132.2,
+          "max_output_gap_s": 3.3999999999999915,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 62.6,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "depth": {
+          "xy_rmse_cm": 100.56548721290808,
+          "xyz_rmse_cm": 101.00515053177763,
+          "samples": 249,
+          "first_output_s": 4.8,
+          "last_output_s": 132.2,
+          "max_output_gap_s": 3.3999999999999915,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 62.6,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "search": {
+          "xy_rmse_cm": 57.996612377811154,
+          "xyz_rmse_cm": 58.75568281349093,
+          "samples": 249,
+          "first_output_s": 4.8,
+          "last_output_s": 132.2,
+          "max_output_gap_s": 3.3999999999999915,
+          "initial_sustained_delay_from_first_probe_output_s": 64.5,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 62.6,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 6.699999999999996,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "recover": {
+          "xy_rmse_cm": 60.04622528979133,
+          "xyz_rmse_cm": 60.779703743353764,
+          "samples": 249,
+          "first_output_s": 4.8,
+          "last_output_s": 132.2,
+          "max_output_gap_s": 3.3999999999999915,
+          "initial_sustained_delay_from_first_probe_output_s": 67.5,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 4,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 62.6,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 9.699999999999996,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "native": {
+          "xy_rmse_cm": 411.71532547798193,
+          "xyz_rmse_cm": 411.71820547332726,
+          "samples": 596,
+          "first_output_s": 3.0,
+          "last_output_s": 63.3,
+          "max_output_gap_s": 0.2999999999999998,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 62.6,
+            "converged": null,
+            "status": "insufficient_post_restore_pose_updates",
+            "sustained_convergence_delay_s": null
+          }
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "d38fa8a6c3ae6605bf075c4ce40899fd297772e01887e6b06682e9cb44dd5bff"
+    },
+    {
+      "source_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-013606-localization-probe-3d-height-corridor-method-live-cddf3e\\evidence\\record.json",
+      "source_record_sha256": "0abe19919b34ce8b34148bb14d91096b5e2ba59723a96dfe9d3b25fc9f4eb00c",
+      "dimension": "3d",
+      "scene": "height-corridor",
+      "shared_prototype_frames": 258,
+      "depth_used_frames": 174,
+      "depth_stale_or_absent_frames": 84,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": 54.085460810961095
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": -0.1636690789626556
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": -35.70125091417003
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -78.5202023847547
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": -42.98262054954732
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 46.26712658735975,
+          "xyz_rmse_cm": 47.215148436929766,
+          "samples": 258,
+          "first_output_s": 5.6,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.6000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": 50.1,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 0.7999999999999972,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "guard": {
+          "xy_rmse_cm": 100.86223373851746,
+          "xyz_rmse_cm": 101.30060924789086,
+          "samples": 258,
+          "first_output_s": 5.6,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.6000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "depth": {
+          "xy_rmse_cm": 100.69785214920337,
+          "xyz_rmse_cm": 101.1369401689282,
+          "samples": 258,
+          "first_output_s": 5.6,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.6000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "search": {
+          "xy_rmse_cm": 64.92035562537663,
+          "xyz_rmse_cm": 65.59935833372083,
+          "samples": 258,
+          "first_output_s": 5.6,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.6000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": 63.300000000000004,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 2,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 5.700000000000003,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "recover": {
+          "xy_rmse_cm": 20.564376691928253,
+          "xyz_rmse_cm": 22.61673778417351,
+          "samples": 258,
+          "first_output_s": 5.6,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.6000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": 58.4,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 8,
+          "wrong_acceptance_events": 3,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 0.7999999999999972,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "native": {
+          "xy_rmse_cm": 411.41215831073845,
+          "xyz_rmse_cm": 411.4155155783638,
+          "samples": 611,
+          "first_output_s": 2.4,
+          "last_output_s": 63.7,
+          "max_output_gap_s": 0.20000000000000284,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "converged": null,
+            "status": "insufficient_post_restore_pose_updates",
+            "sustained_convergence_delay_s": null
+          }
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a"
+      },
+      "plot_sha256": "e00b26e938cee8849055c70206216ce7a7edbd7e82483b9542829e5032e0da5b"
+    }
+  ]
+}

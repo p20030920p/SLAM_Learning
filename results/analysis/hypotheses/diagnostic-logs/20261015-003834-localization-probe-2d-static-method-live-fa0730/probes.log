@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_localizer.py", line 172, in <module>
+    main()
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_localizer.py", line 158, in main
+    localizer = Localizer(Path(sys.argv[1]))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_localizer.py", line 55, in __init__
+    self.node.create_subscription(Odometry, "/omni_drive_controller/odom", self.odom.append, 100)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/node.py", line 1648, in create_subscription
+    subscription = Subscription(
+                   ^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/subscription.py", line 73, in __init__
+    self.callback = callback
+    ^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/subscription.py", line 117, in callback
+    inspect.signature(value).bind(object())
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/inspect.py", line 3310, in signature
+    return Signature.from_callable(obj, follow_wrapped=follow_wrapped,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/inspect.py", line 3054, in from_callable
+    return _signature_from_callable(obj, sigcls=cls,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/inspect.py", line 2571, in _signature_from_callable
+    return _signature_from_builtin(sigcls, obj,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/inspect.py", line 2361, in _signature_from_builtin
+    raise ValueError("no signature found for builtin {!r}".format(func))
+ValueError: no signature found for builtin <built-in method append of collections.deque object at 0x706fd83f0220>

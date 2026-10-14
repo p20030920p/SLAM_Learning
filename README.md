@@ -207,7 +207,7 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 | Persistent change | [View recordings](#scene-change-2d) | [View recordings](#scene-change-3d) |
 | Corridor degradation | [View recordings](#scene-corridor-2d) | [View recordings](#scene-corridor-3d) |
 
-[3D map cleaning results](#map-review-3d)
+[3D map cleaning results](#map-review-3d) · [Hypotheses and new experiments](#hypothesis-experiments)
 
 **Localization error with different maps.** 2D uses AMCL and XY RMSE; 3D directly uses complete point maps with the same upstream GICP and XYZ RMSE. Units: cm; all published native updates, one trial per condition. Mapping uses supplied poses; localization receives no truth. These are not stable rankings.
 
@@ -713,3 +713,358 @@ Actual native Gazebo + RViz + Terminal. The RViz viewport fills its window and i
 ![S4 new corridor · limited → restored AMCL](results/reference/robot-corridor-v2/executions/degraded_raw.gif)
 
 [MP4](results/reference/robot-corridor-v2/executions/degraded_raw.mp4) · [record](results/reference/robot-corridor-v2/record.json)
+
+<a id="hypothesis-experiments"></a>
+
+## Hypotheses and small experiments
+
+The earlier results suggest three directions to test:
+
+- **H1 · Guard:** suppress inconsistent matches and reduce lidar corrections along weak directions, while retaining wheel-odometry prediction.
+- **H2 · Depth:** use a 2D lidar plus a depth camera to add visible height structure; test the same idea with 3D lidar.
+- **H3 · Search and confirm:** search multiple nearby pose candidates and accept a unique, motion-consistent candidate only after consecutive confirmation.
+
+These are small custom ground-robot prototypes. The 2D arm has no 3D lidar; the 3D arm uses XYZ observations with x/y/yaw motion constraints. Mapping A uses supplied poses, all maps stay frozen, and localization B never reads truth. The four original scenes remain; the separately labelled height control adds two high blocks. Single ideal-simulation trials cannot establish a ranking.
+
+[Frozen hypotheses, controls and interpretation](docs/testing/HYPOTHESES.md) · [Video directory](demo/hypotheses.html) · [One-click scripts](demo/README.md#开放问题假设与简单实验)
+
+<!-- PROBE_APPENDIX_RESULTS -->
+
+<a id="hypothesis-experiment-index"></a>
+
+| Scene | 2D + depth | 3D + depth |
+| --- | --- | --- |
+| Pure static | [View experiment](#probe-calibrated-2d-static) | [View experiment](#probe-calibrated-3d-static) |
+| Moving obstacles | [View experiment](#probe-calibrated-2d-dynamic) | [View experiment](#probe-calibrated-3d-dynamic) |
+| Persistent change | [View experiment](#probe-calibrated-2d-large-change) | [View experiment](#probe-calibrated-3d-large-change) |
+| Original corridor degradation | [View experiment](#probe-calibrated-2d-corridor) | [View experiment](#probe-calibrated-3d-corridor) |
+| Height landmarks · derived control | [View experiment](#probe-calibrated-2d-height-corridor) | [View experiment](#probe-calibrated-3d-height-corridor) |
+
+[Coarse-to-fine follow-up](#probe-refinement-index)
+
+[Interpretation and next directions](#hypothesis-findings)
+
+This matrix fixes the raw source maps and shares identical paired inputs across five prototypes. Red: Plain; yellow: Guard; orange: Depth; purple: lidar search; green: depth + search; blue: native AMCL/GICP. Report XY for 2D and XYZ for 3D; these single trials do not establish a ranking.
+
+### 2D · native-window experiments
+
+<a id="probe-calibrated-2d-static"></a>
+
+#### Pure static · 2D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + AMCL | Same-source 2D grid projection | XY RMSE 6.82 cm |
+| Plain ICP | 2D lidar point map | XY RMSE 0.15 cm |
+| H1 · Guard | 2D lidar point map | XY RMSE 0.15 cm; close to plain |
+| H2 · Guard + Depth | 2D lidar point map + depth map | XY RMSE 0.21 cm; 0.06 cm above guard |
+| H3 · LiDAR Search | 2D lidar point map | XY RMSE 0.15 cm; close to guard |
+| H3 · Depth + Search | 2D lidar point map + depth map | XY RMSE 0.21 cm; close to depth |
+
+Each prototype: 264 frames; usable depth: 219/264; native anchor: 287 outputs. Body height is calibrated from mapping A.
+
+The native anchor last published at simulation 73.2s; prototypes extend to 99.4s. Missing outputs are not filled; native RMSE covers its available outputs only.
+
+![Pure static · 2D · native windows](results/reference/probe-calibrated-2d-static/execution.gif)
+
+[MP4](results/reference/probe-calibrated-2d-static/execution.mp4) · [record](results/reference/probe-calibrated-2d-static/record.json) · [CSV](results/reference/probe-calibrated-2d-static/recover-samples.csv)
+
+<a id="probe-calibrated-2d-dynamic"></a>
+
+#### Moving obstacles · 2D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + AMCL | Same-source 2D grid projection | XY RMSE 7.08 cm |
+| Plain ICP | 2D lidar point map | XY RMSE 0.37 cm |
+| H1 · Guard | 2D lidar point map | XY RMSE 0.19 cm; 0.18 cm below plain |
+| H2 · Guard + Depth | 2D lidar point map + depth map | XY RMSE 0.18 cm; close to guard |
+| H3 · LiDAR Search | 2D lidar point map | XY RMSE 0.19 cm; close to guard |
+| H3 · Depth + Search | 2D lidar point map + depth map | XY RMSE 0.18 cm; close to depth |
+
+Each prototype: 265 frames; usable depth: 181/265; native anchor: 292 outputs. Body height is calibrated from mapping A.
+
+The native anchor last published at simulation 72.3s; prototypes extend to 99.7s. Missing outputs are not filled; native RMSE covers its available outputs only.
+
+![Moving obstacles · 2D · native windows](results/reference/probe-calibrated-2d-dynamic/execution.gif)
+
+[MP4](results/reference/probe-calibrated-2d-dynamic/execution.mp4) · [record](results/reference/probe-calibrated-2d-dynamic/record.json) · [CSV](results/reference/probe-calibrated-2d-dynamic/recover-samples.csv)
+
+<a id="probe-calibrated-2d-large-change"></a>
+
+#### Persistent change · 2D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + AMCL | Same-source 2D grid projection | XY RMSE 6.28 cm |
+| Plain ICP | 2D lidar point map | XY RMSE 7.98 cm |
+| H1 · Guard | 2D lidar point map | XY RMSE 0.49 cm; 7.49 cm below plain |
+| H2 · Guard + Depth | 2D lidar point map + depth map | XY RMSE 0.49 cm; close to guard |
+| H3 · LiDAR Search | 2D lidar point map | XY RMSE 0.49 cm; close to guard |
+| H3 · Depth + Search | 2D lidar point map + depth map | XY RMSE 0.49 cm; close to depth |
+
+Each prototype: 263 frames; usable depth: 187/263; native anchor: 288 outputs. Body height is calibrated from mapping A.
+
+The native anchor last published at simulation 71.3s; prototypes extend to 99.3s. Missing outputs are not filled; native RMSE covers its available outputs only.
+
+The old map remains frozen; this tests inconsistent-observation handling without map updates.
+
+![Persistent change · 2D · native windows](results/reference/probe-calibrated-2d-large-change/execution.gif)
+
+[MP4](results/reference/probe-calibrated-2d-large-change/execution.mp4) · [record](results/reference/probe-calibrated-2d-large-change/record.json) · [CSV](results/reference/probe-calibrated-2d-large-change/recover-samples.csv)
+
+<a id="probe-calibrated-2d-corridor"></a>
+
+#### Original corridor degradation · 2D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + AMCL | Same-source 2D grid projection | XY RMSE 100.61 cm; sustained recovery 45.7s after restoration |
+| Plain ICP | 2D lidar point map | XY RMSE 1037.69 cm; no sustained recovery |
+| H1 · Guard | 2D lidar point map | XY RMSE 100.48 cm; 937.21 cm below plain; no sustained recovery |
+| H2 · Guard + Depth | 2D lidar point map + depth map | XY RMSE 100.54 cm; 0.06 cm above guard; no sustained recovery |
+| H3 · LiDAR Search | 2D lidar point map | XY RMSE 70.40 cm; 30.08 cm below guard; sustained recovery 5.8s after restoration |
+| H3 · Depth + Search | 2D lidar point map + depth map | XY RMSE 70.44 cm; 30.11 cm below depth; sustained recovery 5.8s after restoration |
+
+Each prototype: 338 frames; usable depth: 195/338; native anchor: 600 outputs. Body height is calibrated from mapping A.
+
+![Original corridor degradation · 2D · native windows](results/reference/probe-calibrated-2d-corridor/execution.gif)
+
+[MP4](results/reference/probe-calibrated-2d-corridor/execution.mp4) · [record](results/reference/probe-calibrated-2d-corridor/record.json) · [CSV](results/reference/probe-calibrated-2d-corridor/recover-samples.csv)
+
+<a id="probe-calibrated-2d-height-corridor"></a>
+
+#### Height landmarks · derived control · 2D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + AMCL | Same-source 2D grid projection | XY RMSE 67.00 cm; sustained recovery 11.7s after restoration |
+| Plain ICP | 2D lidar point map | XY RMSE 285.54 cm; no sustained recovery |
+| H1 · Guard | 2D lidar point map | XY RMSE 101.15 cm; 184.39 cm below plain; no sustained recovery |
+| H2 · Guard + Depth | 2D lidar point map + depth map | XY RMSE 100.77 cm; 0.38 cm below guard; no sustained recovery |
+| H3 · LiDAR Search | 2D lidar point map | XY RMSE 70.93 cm; 30.22 cm below guard; sustained recovery 5.0s after restoration |
+| H3 · Depth + Search | 2D lidar point map + depth map | XY RMSE 21.15 cm; 79.61 cm below depth; sustained recovery 0.2s after restoration |
+
+Each prototype: 345 frames; usable depth: 239/345; native anchor: 620 outputs. Body height is calibrated from mapping A.
+
+Two high blocks are added in this feasibility control; report it separately from the original corridor.
+
+![Height landmarks · derived control · 2D · native windows](results/reference/probe-calibrated-2d-height-corridor/execution.gif)
+
+[MP4](results/reference/probe-calibrated-2d-height-corridor/execution.mp4) · [record](results/reference/probe-calibrated-2d-height-corridor/record.json) · [CSV](results/reference/probe-calibrated-2d-height-corridor/recover-samples.csv)
+
+### 3D · native-window experiments
+
+<a id="probe-calibrated-3d-static"></a>
+
+#### Pure static · 3D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + GICP | 3D lidar point map | XYZ RMSE 1.08 cm |
+| Plain ICP | 3D lidar point map | XYZ RMSE 0.12 cm |
+| H1 · Guard | 3D lidar point map | XYZ RMSE 0.12 cm; close to plain |
+| H2 · Guard + Depth | 3D lidar point map + depth map | XYZ RMSE 0.21 cm; 0.09 cm above guard |
+| H3 · LiDAR Search | 3D lidar point map | XYZ RMSE 0.12 cm; close to guard |
+| H3 · Depth + Search | 3D lidar point map + depth map | XYZ RMSE 0.21 cm; close to depth |
+
+Each prototype: 266 frames; usable depth: 184/266; native anchor: 994 outputs. Body height is calibrated from mapping A.
+
+![Pure static · 3D · native windows](results/reference/probe-calibrated-3d-static/execution.gif)
+
+[MP4](results/reference/probe-calibrated-3d-static/execution.mp4) · [record](results/reference/probe-calibrated-3d-static/record.json) · [CSV](results/reference/probe-calibrated-3d-static/recover-samples.csv)
+
+<a id="probe-calibrated-3d-dynamic"></a>
+
+#### Moving obstacles · 3D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + GICP | 3D lidar point map | XYZ RMSE 1.39 cm |
+| Plain ICP | 3D lidar point map | XYZ RMSE 0.17 cm |
+| H1 · Guard | 3D lidar point map | XYZ RMSE 0.13 cm; 0.04 cm below plain |
+| H2 · Guard + Depth | 3D lidar point map + depth map | XYZ RMSE 0.13 cm; close to guard |
+| H3 · LiDAR Search | 3D lidar point map | XYZ RMSE 0.13 cm; close to guard |
+| H3 · Depth + Search | 3D lidar point map + depth map | XYZ RMSE 0.13 cm; close to depth |
+
+Each prototype: 258 frames; usable depth: 154/258; native anchor: 951 outputs. Body height is calibrated from mapping A.
+
+![Moving obstacles · 3D · native windows](results/reference/probe-calibrated-3d-dynamic/execution.gif)
+
+[MP4](results/reference/probe-calibrated-3d-dynamic/execution.mp4) · [record](results/reference/probe-calibrated-3d-dynamic/record.json) · [CSV](results/reference/probe-calibrated-3d-dynamic/recover-samples.csv)
+
+<a id="probe-calibrated-3d-large-change"></a>
+
+#### Persistent change · 3D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + GICP | 3D lidar point map | XYZ RMSE 1.25 cm |
+| Plain ICP | 3D lidar point map | XYZ RMSE 3.69 cm |
+| H1 · Guard | 3D lidar point map | XYZ RMSE 0.24 cm; 3.45 cm below plain |
+| H2 · Guard + Depth | 3D lidar point map + depth map | XYZ RMSE 0.35 cm; 0.11 cm above guard |
+| H3 · LiDAR Search | 3D lidar point map | XYZ RMSE 0.24 cm; close to guard |
+| H3 · Depth + Search | 3D lidar point map + depth map | XYZ RMSE 0.35 cm; close to depth |
+
+Each prototype: 264 frames; usable depth: 163/264; native anchor: 950 outputs. Body height is calibrated from mapping A.
+
+The old map remains frozen; this tests inconsistent-observation handling without map updates.
+
+![Persistent change · 3D · native windows](results/reference/probe-calibrated-3d-large-change/execution.gif)
+
+[MP4](results/reference/probe-calibrated-3d-large-change/execution.mp4) · [record](results/reference/probe-calibrated-3d-large-change/record.json) · [CSV](results/reference/probe-calibrated-3d-large-change/recover-samples.csv)
+
+<a id="probe-calibrated-3d-corridor"></a>
+
+#### Original corridor degradation · 3D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + GICP | 3D lidar point map | XYZ RMSE 397.82 cm; no sustained recovery |
+| Plain ICP | 3D lidar point map | XYZ RMSE 733.38 cm; no sustained recovery |
+| H1 · Guard | 3D lidar point map | XYZ RMSE 100.49 cm; 632.88 cm below plain; no sustained recovery |
+| H2 · Guard + Depth | 3D lidar point map + depth map | XYZ RMSE 100.62 cm; 0.12 cm above guard; no sustained recovery |
+| H3 · LiDAR Search | 3D lidar point map | XYZ RMSE 56.77 cm; 43.72 cm below guard; sustained recovery 6.2s after restoration |
+| H3 · Depth + Search | 3D lidar point map + depth map | XYZ RMSE 57.56 cm; 43.06 cm below depth; sustained recovery 6.6s after restoration |
+
+Each prototype: 247 frames; usable depth: 122/247; native anchor: 712 outputs. Body height is calibrated from mapping A.
+
+The native anchor last published at simulation 75.6s; prototypes extend to 132.8s. Missing outputs are not filled; native RMSE covers its available outputs only.
+
+![Original corridor degradation · 3D · native windows](results/reference/probe-calibrated-3d-corridor/execution.gif)
+
+[MP4](results/reference/probe-calibrated-3d-corridor/execution.mp4) · [record](results/reference/probe-calibrated-3d-corridor/record.json) · [CSV](results/reference/probe-calibrated-3d-corridor/recover-samples.csv)
+
+<a id="probe-calibrated-3d-height-corridor"></a>
+
+#### Height landmarks · derived control · 3D
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Raw + GICP | 3D lidar point map | XYZ RMSE 512.79 cm; no sustained recovery |
+| Plain ICP | 3D lidar point map | XYZ RMSE 46.60 cm; sustained recovery 8.7s after restoration |
+| H1 · Guard | 3D lidar point map | XYZ RMSE 100.36 cm; 53.76 cm above plain; no sustained recovery |
+| H2 · Guard + Depth | 3D lidar point map + depth map | XYZ RMSE 100.38 cm; 0.02 cm above guard; no sustained recovery |
+| H3 · LiDAR Search | 3D lidar point map | XYZ RMSE 47.70 cm; 52.66 cm below guard; sustained recovery 8.7s after restoration |
+| H3 · Depth + Search | 3D lidar point map + depth map | XYZ RMSE 50.79 cm; 49.59 cm below depth; sustained recovery 12.8s after restoration |
+
+Each prototype: 203 frames; usable depth: 124/203; native anchor: 716 outputs. Body height is calibrated from mapping A.
+
+The native anchor last published at simulation 75.1s; prototypes extend to 132.5s. Missing outputs are not filled; native RMSE covers its available outputs only.
+
+Two high blocks are added in this feasibility control; report it separately from the original corridor.
+
+![Height landmarks · derived control · 3D · native windows](results/reference/probe-calibrated-3d-height-corridor/execution.gif)
+
+[MP4](results/reference/probe-calibrated-3d-height-corridor/execution.mp4) · [record](results/reference/probe-calibrated-3d-height-corridor/record.json) · [CSV](results/reference/probe-calibrated-3d-height-corridor/recover-samples.csv)
+
+<a id="probe-refinement-index"></a>
+
+### Follow-up hypothesis: coarse-to-fine search and recovery confirmation
+
+An approximately 20cm plateau in the initial height control motivated a 0.1m refinement of the 0.4m candidate grid and checks against more evaluated alternatives. H1/H2, score thresholds and consecutive confirmation stay fixed. New inference uses exactly the retained B arrays above; these videos replay its saved results.
+
+| Scene | 2D inference | 3D inference |
+| --- | --- | --- |
+| Original corridor degradation | [2D](#probe-calibrated-refinement-2d-corridor) | [3D](#probe-calibrated-refinement-3d-corridor) |
+| Height landmarks · derived control | [2D](#probe-calibrated-refinement-2d-height-corridor) | [3D](#probe-calibrated-refinement-3d-height-corridor) |
+
+<a id="probe-calibrated-refinement-2d-corridor"></a>
+
+#### 2D · Original corridor degradation · same-input refinement
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Coarse · lidar | Lidar point map | XY RMSE 70.40 cm；sustained convergence 61.1s from first output |
+| Coarse · depth + lidar | Lidar + depth point maps | XY RMSE 70.44 cm；sustained convergence 61.1s from first output |
+| Fine · lidar | Lidar point map | XY RMSE 70.40 cm；sustained convergence 61.1s from first output |
+| Fine · depth + lidar | Lidar + depth point maps | XY RMSE 70.44 cm；sustained convergence 61.1s from first output |
+
+![Original corridor degradation · 2D · offline-inference result replay](results/reference/probe-calibrated-refinement-2d-corridor/result.gif)
+
+[Result replay MP4](results/reference/probe-calibrated-refinement-2d-corridor/result.mp4) · [record](results/reference/probe-calibrated-refinement-2d-corridor/record.json)
+
+<a id="probe-calibrated-refinement-2d-height-corridor"></a>
+
+#### 2D · Height landmarks · derived control · same-input refinement
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Coarse · lidar | Lidar point map | XY RMSE 70.93 cm；sustained convergence 60.7s from first output |
+| Coarse · depth + lidar | Lidar + depth point maps | XY RMSE 21.15 cm；sustained convergence 55.9s from first output |
+| Fine · lidar | Lidar point map | XY RMSE 70.93 cm；sustained convergence 60.7s from first output |
+| Fine · depth + lidar | Lidar + depth point maps | XY RMSE 16.20 cm；sustained convergence 3.3s from first output |
+
+![Height landmarks · derived control · 2D · offline-inference result replay](results/reference/probe-calibrated-refinement-2d-height-corridor/result.gif)
+
+[Result replay MP4](results/reference/probe-calibrated-refinement-2d-height-corridor/result.mp4) · [record](results/reference/probe-calibrated-refinement-2d-height-corridor/record.json)
+
+<a id="probe-calibrated-refinement-3d-corridor"></a>
+
+#### 3D · Original corridor degradation · same-input refinement
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Coarse · lidar | Lidar point map | XYZ RMSE 56.77 cm；sustained convergence 63.7s from first output |
+| Coarse · depth + lidar | Lidar + depth point maps | XYZ RMSE 57.56 cm；sustained convergence 64.1s from first output |
+| Fine · lidar | Lidar point map | XYZ RMSE 56.77 cm；sustained convergence 63.7s from first output |
+| Fine · depth + lidar | Lidar + depth point maps | XYZ RMSE 56.84 cm；sustained convergence 63.7s from first output |
+
+![Original corridor degradation · 3D · offline-inference result replay](results/reference/probe-calibrated-refinement-3d-corridor/result.gif)
+
+[Result replay MP4](results/reference/probe-calibrated-refinement-3d-corridor/result.mp4) · [record](results/reference/probe-calibrated-refinement-3d-corridor/record.json)
+
+<a id="probe-calibrated-refinement-3d-height-corridor"></a>
+
+#### 3D · Height landmarks · derived control · same-input refinement
+
+[↑ Back to index](#hypothesis-experiment-index)
+
+| Method | Map / observations | Metric / effect |
+| --- | --- | --- |
+| Coarse · lidar | Lidar point map | XYZ RMSE 47.70 cm；sustained convergence 66.1s from first output |
+| Coarse · depth + lidar | Lidar + depth point maps | XYZ RMSE 50.79 cm；sustained convergence 70.2s from first output |
+| Fine · lidar | Lidar point map | XYZ RMSE 47.70 cm；sustained convergence 66.1s from first output |
+| Fine · depth + lidar | Lidar + depth point maps | XYZ RMSE 47.71 cm；sustained convergence 66.1s from first output |
+
+![Height landmarks · derived control · 3D · offline-inference result replay](results/reference/probe-calibrated-refinement-3d-height-corridor/result.gif)
+
+[Result replay MP4](results/reference/probe-calibrated-refinement-3d-height-corridor/result.mp4) · [record](results/reference/probe-calibrated-refinement-3d-height-corridor/record.json)
+
+<!-- PROBE_APPENDIX_RESULTS_END -->
+
+<a id="hypothesis-findings"></a>
+
+### Directions supported by these trials
+
+- **Robust matching with wheel prediction**: persistent-change RMSE falls from Plain's 7.98 to Guard's 0.49cm in 2D, and from 3.69 to 0.24cm in 3D. Guard is worse in the 3D height corridor, retaining a 1m bias while Plain eventually recovers. Tracking protection does not replace relocalization.
+- **2D lidar, depth and candidate refinement**: in the added-height control, same-input refinement advances sustained convergence from 55.9s to 3.3s after first output; full XY RMSE falls from 21.15 to 16.20cm. The original corridor does not improve, and the 3D height trial does not recover early.
+- **Bounded search and recovery checks**: after full observations return in the original corridor, lidar search reaches sustained convergence in 5.8s/6.2s for 2D/3D. High scores and two consistent proposals are not sufficient: coarse depth search accepted an approximately 20cm bias in the 2D height control, which refinement corrected.
+
+[Detailed diagnosis and next directions](docs/testing/HYPOTHESES.md#hypothesis-findings) · [Per-frame summary](results/analysis/hypotheses/calibrated-summary.json) · [Initial trials and unsuccessful refinements](demo/hypotheses-diagnostics.html). These ideal simulations use supplied-pose mapping A and frozen-map localization B. Autonomous mapping using only inexpensive sensors, physical kidnapping and hardware performance remain untested.

@@ -19,7 +19,7 @@ import rclpy
 from geometry_msgs.msg import PoseWithCovarianceStamped, TransformStamped, Twist
 from nav_msgs.msg import OccupancyGrid, Odometry
 from rclpy.qos import DurabilityPolicy, QoSProfile, ReliabilityPolicy, qos_profile_sensor_data
-from sensor_msgs.msg import PointCloud2
+from sensor_msgs.msg import LaserScan, PointCloud2
 from sensor_msgs_py import point_cloud2
 from tf2_ros import Buffer, TransformBroadcaster, TransformListener
 
@@ -52,6 +52,8 @@ class Observer:
     def __init__(self, args):
         self.args = args
         self.run = args.run
+        session_flow = json.loads((self.run / "session.json").read_text())["flow"]
+        self.simple_probe = "-probe-" in session_flow and "-2d-" in session_flow
         self.node = rclpy.create_node("presentation_observer")
         self.node.set_parameters([rclpy.parameter.Parameter("use_sim_time", value=True)])
         self.tf = Buffer()
@@ -65,6 +67,7 @@ class Observer:
         self.last_cloud = -math.inf
         self.odom, self.map_transform = None, None
         self.points_received = 0
+        self.scans_received = 0
         self.map_info = None
         self.started_sim = None
         self.started_wall = time.monotonic()
@@ -75,6 +78,7 @@ class Observer:
         self.case_names = args.cases.split(",") if args.cases else []
         self.cases = json.loads((self.run / "cases.json").read_text())
         self.rows = {case: [] for case in self.case_names}
+        self.seen_poses = {case: set() for case in self.case_names}
         self.files = {}
         self.writers = {}
         self.pose3d_files, self.pose3d_writers = {}, {}
@@ -82,6 +86,7 @@ class Observer:
         self.command_pub = self.node.create_publisher(Twist, "/cmd_vel", 10)
         self.node.create_subscription(Odometry, "/omni_drive_controller/odom", self.on_odom, 20)
         self.node.create_subscription(PointCloud2, "/points", self.on_cloud, qos_profile_sensor_data)
+        self.node.create_subscription(LaserScan, "/scan", self.on_scan_receipt, qos_profile_sensor_data)
         map_topic = "/map" if args.mode == "mapping" else f"/{self.case_names[0]}/map"
         for durable in (DurabilityPolicy.TRANSIENT_LOCAL, DurabilityPolicy.VOLATILE):
             qos = QoSProfile(depth=1, durability=durable, reliability=ReliabilityPolicy.RELIABLE)
@@ -114,9 +119,21 @@ class Observer:
                 lambda msg, name=case: self.pending.append(("pose", name, msg)),
                 20,
             )
+            if self.cases[case].get("localizer", "AMCL") == "AMCL":
+                # AMCL's retained initial pose can precede observer discovery.
+                # A stationary robot must not deadlock recording readiness.
+                retained = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL,
+                                      reliability=ReliabilityPolicy.RELIABLE)
+                self.node.create_subscription(
+                    PoseWithCovarianceStamped,
+                    self.cases[case].get("pose_topic", f"/{case}/amcl_pose"),
+                    lambda msg, name=case: self.pending.append(("pose", name, msg)), retained)
 
     def on_odom(self, msg):
         self.odom = msg
+
+    def on_scan_receipt(self, msg):
+        self.scans_received += 1
 
     def on_map(self, msg):
         self.map_info = msg
@@ -173,6 +190,11 @@ class Observer:
                 self.cloud_stamps.append(seconds(msg.header.stamp))
             else:
                 pose = msg.pose.pose
+                identity = (msg.header.stamp.sec, msg.header.stamp.nanosec, pose.position.x, pose.position.y,
+                            pose.position.z, pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w)
+                if identity in self.seen_poses[case]:
+                    continue
+                self.seen_poses[case].add(identity)
                 tx, ty, _ = truth["xyz"]
                 qx, qy, qz, qw = truth["xyzw"]
                 truth_yaw = math.atan2(2 * (qw * qz + qx * qy), 1 - 2 * (qy * qy + qz * qz))
@@ -234,7 +256,7 @@ class Observer:
                 sim = self.node.get_clock().now().nanoseconds * 1e-9
                 wall = time.monotonic()
                 if (
-                    self.points_received
+                    (self.points_received or (self.simple_probe and self.scans_received))
                     and self.odom
                     and self.truth
                     and self.map_info
@@ -308,6 +330,7 @@ class Observer:
             "failure": self.failure,
             "mode": self.args.mode,
             "points_received": self.points_received,
+            "scans_received": self.scans_received,
             "mapping_frames": len(self.clouds),
             "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
             "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",

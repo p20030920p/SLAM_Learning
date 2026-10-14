@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "kind": "offline_hypothesis_refinement",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "new offline inference on the exact retained B arrays; video replays saved coarse/fine outputs with evaluation truth; no live simulation or hardware claim",
+  "dimension": "2d",
+  "scene": "height-corridor",
+  "parent_repository_path": "results/reference/probe-calibrated-2d-height-corridor/record.json",
+  "parent_sha256": "bafe25d265d565d766e328173411be981028ae9d6ed8b3934900519588aaa69c",
+  "truth_input_to_estimators": false,
+  "protocol_sha256": "117a3e39c93461e0c977238b9499e88356ed04b7c65991eac2c49915903149bd",
+  "inference_wall_s": 11.18699999999808,
+  "protocol_repository_path": "results/analysis/hypotheses/calibrated-refinement-protocol.json",
+  "ground_z_m": 0.09413998817395625,
+  "metrics": {
+    "coarse_lidar": {
+      "samples": 345,
+      "position_rmse_m": 0.7092560509806504,
+      "yaw_rmse_deg": 0.15401714514605433,
+      "post_warmup_5s_samples": 331,
+      "post_warmup_5s_position_rmse_m": 0.6940149240249335,
+      "position_p95_m": 1.0137106840769154
+    },
+    "coarse_depth": {
+      "samples": 345,
+      "position_rmse_m": 0.2115361912960363,
+      "yaw_rmse_deg": 0.14067488919775528,
+      "post_warmup_5s_samples": 331,
+      "post_warmup_5s_position_rmse_m": 0.13682254807084349,
+      "position_p95_m": 0.21195096851327483
+    },
+    "fine_lidar": {
+      "samples": 345,
+      "position_rmse_m": 0.7092560166947657,
+      "yaw_rmse_deg": 0.15401662132873026,
+      "post_warmup_5s_samples": 331,
+      "post_warmup_5s_position_rmse_m": 0.6940148875040982,
+      "position_p95_m": 1.0137106840769154
+    },
+    "fine_depth": {
+      "samples": 345,
+      "position_rmse_m": 0.1619557377984533,
+      "yaw_rmse_deg": 0.13261611918951074,
+      "post_warmup_5s_samples": 331,
+      "post_warmup_5s_position_rmse_m": 0.006049388020095826,
+      "position_p95_m": 0.01188396072344103
+    }
+  },
+  "metrics_3d": {},
+  "restoration": {
+    "coarse_lidar": {
+      "restore_stamp_s": 60.9,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 5.000000000000007,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "coarse_depth": {
+      "restore_stamp_s": 60.9,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 0.20000000000000284,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "fine_lidar": {
+      "restore_stamp_s": 60.9,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 5.000000000000007,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "fine_depth": {
+      "restore_stamp_s": 60.9,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 0.20000000000000284,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    }
+  },
+  "initial_sustained_delay_s": {
+    "coarse_lidar": 60.7,
+    "coarse_depth": 55.9,
+    "fine_lidar": 60.7,
+    "fine_depth": 3.3
+  },
+  "source_inputs": {
+    "cases.json": "73c82337763e9cb4599a99ec445ce78370d3b4ef0443d79db40f63ed320873fa",
+    "probe-config.json": "bab10db3147a6d0e7991d50d9f75f61f8598168cd72e3ce4ab4574034db74cc9",
+    "probe-B-inputs.npz": "63b5eeb3b5939bdf2acb4ecfc6b45f97ad9802b75136a51dc8e7188bb5575923",
+    "probe-B-inputs.json": "bc0c40805cef0b9c6d35cc34a1f0b38fd2cf5c4b26cd6a9f912829cc3673ce53",
+    "probe-maps/lidar.npy": "e911ebdf23231eb43b5f08a96a8887801f82f8175ec0208b90e9f1d2b1481e15",
+    "probe-maps/depth.npy": "42ae8f763aa484fcf33601bd57725f568eb9111e56f0f0ec73a6a7fc1f8c0aed",
+    "truth.jsonl": "3cc2e07a069fca516a6fc348475ba7e715a8ad8b6f1cab0d8401f539d18f0699",
+    "search-samples.csv": "acb49351a613404d953e67a87becbc964b1d0807e86740428b2737bb7e1f27d4",
+    "recover-samples.csv": "dddd84010c23fb781a5a32bf82fad9a22007dec9fb80ffe9e6ec3d6697b61d79"
+  },
+  "result_replay": {
+    "frame_sampling": "latest retained coarse/fine estimate at each 8fps simulation timestamp; no new inference during replay",
+    "common_start_s": 5.2,
+    "common_end_s": 130.8,
+    "alignment": "none",
+    "frames": 1005
+  },
+  "timing": {
+    "duration_s": 125.60000000000124,
+    "frames": 628,
+    "fps": 5,
+    "video_duration_s": 125.625,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "artifacts": {
+    "cases.json": {
+      "sha256": "25519f134b365bf4130421f74e01b00827c8250a28c3f920f2a86f9205a563ff",
+      "bytes": 2893,
+      "availability": "portable"
+    },
+    "coarse_depth-samples.csv": {
+      "sha256": "dddd84010c23fb781a5a32bf82fad9a22007dec9fb80ffe9e6ec3d6697b61d79",
+      "bytes": 63646,
+      "availability": "portable"
+    },
+    "coarse_lidar-samples.csv": {
+      "sha256": "acb49351a613404d953e67a87becbc964b1d0807e86740428b2737bb7e1f27d4",
+      "bytes": 63478,
+      "availability": "portable"
+    },
+    "fine_depth-poses3d.csv": {
+      "sha256": "2cf9460e25e7d374a946da5631e19df294869f4d78bba7368093b079bd0e3839",
+      "bytes": 94304,
+      "availability": "portable"
+    },
+    "fine_depth-samples.csv": {
+      "sha256": "e9fe69fab5e125a235829aca642d40c15af2cea96c47eadea817df3970412dde",
+      "bytes": 63861,
+      "availability": "portable"
+    },
+    "fine_lidar-poses3d.csv": {
+      "sha256": "904f1cb240903ee5b9c4dd13ed4618eb57f60a14993060e5062dffa1b022cfa6",
+      "bytes": 94255,
+      "availability": "portable"
+    },
+    "fine_lidar-samples.csv": {
+      "sha256": "6d2ec454f9af0defc8cfb95280c4c3a278617f9c1eabfa5b25095470179c129f",
+      "bytes": 63503,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "b20bd570e00fb7cd4c7bcbc73b02f4acdc11d18adac8c6f7ab17b7bf2deac36b",
+      "bytes": 182127,
+      "availability": "portable"
+    },
+    "inference.jsonl": {
+      "sha256": "8c0117717aa1fff2ac0e69a79e6a652c834b52a5c4d5a84581d4531a870355e2",
+      "bytes": 313743,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "ab40edb0bf514181f042fd0e8d187f8090e51e1ef6ecd479d156a98ec7411055",
+      "bytes": 1090,
+      "availability": "portable"
+    },
+    "new-estimates.npz": {
+      "sha256": "578aad48331b2d038211ff24032ebf253d2318b386dcfa83c0c8a2386becb765",
+      "bytes": 17876,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "49ff6bbfbae420e23aae472d3252defef4070931d1874617bcd384173f3d74a1",
+      "bytes": 1784152,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "8d5826ff48f7d279224222a19e9f1fba08365ac5150398cfafb20804f0aa3379",
+      "bytes": 684759,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "3cc2e07a069fca516a6fc348475ba7e715a8ad8b6f1cab0d8401f539d18f0699",
+      "bytes": 1797375,
+      "availability": "portable"
+    },
+    "maps/coarse_depth/map.pgm": {
+      "sha256": "2b4f579b8eaa4a916dfb140830ded38d5d839b8f6ba32ea71a534dceffef789f",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/coarse_depth/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/coarse_lidar/map.pgm": {
+      "sha256": "2b4f579b8eaa4a916dfb140830ded38d5d839b8f6ba32ea71a534dceffef789f",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/coarse_lidar/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/fine_depth/map.pgm": {
+      "sha256": "2b4f579b8eaa4a916dfb140830ded38d5d839b8f6ba32ea71a534dceffef789f",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/fine_depth/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/fine_lidar/map.pgm": {
+      "sha256": "2b4f579b8eaa4a916dfb140830ded38d5d839b8f6ba32ea71a534dceffef789f",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "maps/fine_lidar/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "sources/recovery_probe.py": {
+      "sha256": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+      "bytes": 9600,
+      "availability": "portable"
+    },
+    "sources/refined_probe.py": {
+      "sha256": "997a45172495050d456b569ef46fcb5b7836b9b22f3b4e65ce82f9f49e68fd87",
+      "bytes": 5338,
+      "availability": "portable"
+    },
+    "sources/refine_saved_probe.py": {
+      "sha256": "d7d05d042b70857b8a73519235bd54961f1f7b693891c3ea08c57d7a098b1b81",
+      "bytes": 12601,
+      "availability": "portable"
+    }
+  }
+}

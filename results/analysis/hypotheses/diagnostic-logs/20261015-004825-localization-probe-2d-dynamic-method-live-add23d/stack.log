@@ -1,0 +1,102 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-15-00-48-36-712932-DESKTOP-GI2390C-145199
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [145297]
+[INFO] [robot_state_publisher-2]: process started with pid [145298]
+[INFO] [parameter_bridge-3]: process started with pid [145299]
+[INFO] [parameter_bridge-4]: process started with pid [145300]
+[robot_state_publisher-2] [INFO] [1792014518.010408087] [robot_state_publisher]: Robot initialized
+[parameter_bridge-4] [INFO] [1792014518.017293297] [gz_moving_obstacle_bridge]: Creating ROS->GZ Bridge: [/dynamic_obstacle/cmd_pos (std_msgs/msg/Float64) -> /dynamic_obstacle/cmd_pos (gz.msgs.Double)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792014518.018830833] [gz_moving_obstacle_bridge]: Creating ROS->GZ Bridge: [/dynamic_obstacle_2/cmd_pos (std_msgs/msg/Float64) -> /dynamic_obstacle_2/cmd_pos (gz.msgs.Double)] (Lazy 0)
+[parameter_bridge-4] [INFO] [1792014518.019505756] [gz_moving_obstacle_bridge]: Creating ROS->GZ Bridge: [/dynamic_obstacle_3/cmd_pos (std_msgs/msg/Float64) -> /dynamic_obstacle_3/cmd_pos (gz.msgs.Double)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.018881678] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.021445363] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/scan (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.024889349] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/camera (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.027049863] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.028798492] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/robot/contacts (gz.msgs.Contacts) -> /robot/contacts (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.031399232] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/robot/contacts/front_wheel (gz.msgs.Contacts) -> /robot/contacts/front_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.033046686] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/robot/contacts/left_wheel (gz.msgs.Contacts) -> /robot/contacts/left_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.034896055] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/robot/contacts/right_wheel (gz.msgs.Contacts) -> /robot/contacts/right_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.036415538] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/probe_depth/points (gz.msgs.PointCloudPacked) -> /depth/points (sensor_msgs/msg/PointCloud2)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.037578097] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/probe_depth/depth_image (gz.msgs.Image) -> /depth/image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792014519.038703791] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/probe_depth/camera_info (gz.msgs.CameraInfo) -> /depth/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[INFO] [create-5]: process started with pid [145451]
+[create-5] [INFO] [1792014521.024621304] [spawn_omni_car]: Requesting list of world names.
+[create-5] [INFO] [1792014521.227581454] [spawn_omni_car]: Waiting messages on topic [robot_description].
+[create-5] [INFO] [1792014521.241860247] [spawn_omni_car]: Entity creation successful.
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="front_camera"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="probe_depth"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="lidar"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[INFO] [create-5]: process has finished cleanly [pid 145451]
+[gazebo-1] [INFO] [1792014521.472352052] [gz_ros_control]: Loading controller_manager
+[gazebo-1] [INFO] [1792014521.642193747] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [WARN] [1792014521.642249637] [controller_manager]: The resource manager is not yet initialized, will wait for the robot description to initialize it..
+[gazebo-1] [INFO] [1792014521.654759263] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1792014521.654856428] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [INFO] [1792014521.665455666] [controller_manager]: Received robot description from topic.
+[gazebo-1] [INFO] [1792014521.665563470] [controller_manager]: Enforcing command limits is disabled. Command limits from URDF will be ignored.
+[gazebo-1] [INFO] [1792014521.690844360] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gazebo-1] [INFO] [1792014521.690963681] [gz_ros_control]: Loading joint: front_wheel_joint
+[gazebo-1] [INFO] [1792014521.690974827] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792014521.690981267] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792014521.690985075] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792014521.690994423] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792014521.690997278] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792014521.691018905] [gz_ros_control]: Loading joint: left_wheel_joint
+[gazebo-1] [INFO] [1792014521.691022025] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792014521.691024986] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792014521.691028190] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792014521.691030855] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792014521.691033678] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792014521.691046654] [gz_ros_control]: Loading joint: right_wheel_joint
+[gazebo-1] [INFO] [1792014521.691049510] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792014521.691052132] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792014521.691055252] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792014521.691057832] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792014521.691060434] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792014521.691174573] [controller_manager]: Initialize hardware 'GazeboSimSystem' 
+[gazebo-1] [WARN] [1792014521.691189790] [controller_manager.hardware_component.system.GazeboSimSystem]: Executor is not available during hardware component initialization for 'GazeboSimSystem'. Skipping node creation!
+[gazebo-1] [INFO] [1792014521.691262326] [controller_manager]: Successful initialization of hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792014521.691381795] [controller_manager]: Activating component 'GazeboSimSystem'.
+[gazebo-1] [INFO] [1792014521.691393322] [resource_manager]: 'configure' hardware 'GazeboSimSystem' 
+[gazebo-1] [INFO] [1792014521.691397869] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1792014521.691402575] [resource_manager]: Successful 'configure' of hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792014521.691408550] [resource_manager]: 'activate' hardware 'GazeboSimSystem' 
+[gazebo-1] [INFO] [1792014521.691421526] [resource_manager]: Successful 'activate' of hardware 'GazeboSimSystem'
+[gazebo-1] [WARN] [1792014521.691493512] [controller_manager]: Component 'GazeboSimSystem' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [INFO] [1792014521.691499095] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...
+[gazebo-1] [WARN] [1792014523.678929829] [gz_ros_control]:  Desired controller update period (0.01 s) is slower than the gazebo simulation period (0.001 s).
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="front_camera"]/gz_frame_id:<data-string>:L134]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="probe_depth"]/gz_frame_id:<data-string>:L154]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="lidar"]/gz_frame_id:<data-string>:L177]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[INFO] [spawner-6]: process started with pid [145534]
+[spawner-6] [INFO] [1792014525.214606472] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[INFO] [spawner-7]: process started with pid [145654]
+[INFO] [twist_to_twist_stamped-8]: process started with pid [145669]
+[twist_to_twist_stamped-8] [INFO] [1792014528.437709227] [twist_to_twist_stamped]: Converting Twist /cmd_vel -> TwistStamped /omni_drive_controller/cmd_vel
+[gazebo-1] [INFO] [1792014528.726555139] [controller_manager]: Loading controller : 'joint_state_broadcaster' of type 'joint_state_broadcaster/JointStateBroadcaster'
+[gazebo-1] [INFO] [1792014528.726683628] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1792014528.740570683] [controller_manager]: Controller 'joint_state_broadcaster' node arguments: --ros-args --params-file /root/projects/Sim2Real-AlgoBench/install/race_bringup/share/race_bringup/config/ros2_control_omni.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-6] [INFO] [1792014528.779437264] [spawner_joint_state_broadcaster]: Loaded joint_state_broadcaster
+[gazebo-1] [INFO] [1792014528.783876757] [controller_manager]: Configuring controller: 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1792014528.784192214] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[gazebo-1] [INFO] [1792014528.812046535] [controller_manager]: Activating controllers: [ joint_state_broadcaster ]
+[gazebo-1] [INFO] [1792014528.819839679] [controller_manager]: Successfully switched controllers!
+[spawner-6] [INFO] [1792014528.832624733] [spawner_joint_state_broadcaster]: Configured and activated joint_state_broadcaster
+[spawner-7] [INFO] [1792014528.965641017] [spawner_omni_drive_controller]: waiting for service /controller_manager/list_controllers to become available...
+[INFO] [spawner-6]: process has finished cleanly [pid 145534]
+[INFO] [moving_obstacle-9]: process started with pid [145717]
+[INFO] [moving_obstacle-10]: process started with pid [145718]
+[INFO] [moving_obstacle-11]: process started with pid [145719]
+[moving_obstacle-9] [INFO] [1792014531.305387667] [moving_obstacle_1]: Physical moving-obstacle controller started on /dynamic_obstacle/cmd_pos
+[moving_obstacle-10] [INFO] [1792014531.352632330] [moving_obstacle_2]: Physical moving-obstacle controller started on /dynamic_obstacle_2/cmd_pos
+[moving_obstacle-11] [INFO] [1792014531.378866909] [moving_obstacle_3]: Physical moving-obstacle controller started on /dynamic_obstacle_3/cmd_pos
+[gazebo-1] [INFO] [1792014531.474106804] [controller_manager]: Loading controller : 'omni_drive_controller' of type 'omni_wheel_drive_controller/OmniWheelDriveController'
+[gazebo-1] [INFO] [1792014531.474149937] [controller_manager]: Loading controller 'omni_drive_controller'
+[gazebo-1] [INFO] [1792014531.480866497] [controller_manager]: Controller 'omni_drive_controller' node arguments: --ros-args --params-file /root/projects/Sim2Real-AlgoBench/install/race_bringup/share/race_bringup/config/ros2_control_omni.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-7] [INFO] [1792014531.538332527] [spawner_omni_drive_controller]: Loaded omni_drive_controller
+[gazebo-1] [INFO] [1792014531.540599560] [controller_manager]: Configuring controller: 'omni_drive_controller'
+[gazebo-1] [INFO] [1792014531.572045368] [controller_manager]: Activating controllers: [ omni_drive_controller ]
+[gazebo-1] [INFO] [1792014531.578689193] [controller_manager]: Successfully switched controllers!
+[spawner-7] [INFO] [1792014531.591068661] [spawner_omni_drive_controller]: Configured and activated omni_drive_controller
+[INFO] [spawner-7]: process has finished cleanly [pid 145654]
+[parameter_bridge-4] [INFO] [1792014534.416175320] [gz_moving_obstacle_bridge]: Passing message from ROS std_msgs/msg/Float64 to Gazebo gz.msgs.Double (showing msg only once per type)

@@ -1,0 +1,263 @@
+{
+  "frozen_at_utc": "2026-10-14T22:42:09.671514+00:00",
+  "hypotheses": {
+    "H1": "Robust plane residuals, weak-direction projection and odometry regularization reduce corruption/degeneracy-driven drift; cannot create missing absolute constraints",
+    "H2": "A real 4m depth camera supplies additional height geometry only if distinctive surfaces are visible and mapped; parallel walls alone remain ambiguous",
+    "H3": "Bounded multi-candidate search with uniqueness and consecutive odometry-consistent confirmation can correct an offset initial belief where local fitting cannot"
+  },
+  "parameters": {
+    "map_voxel_m": 0.06,
+    "scan_voxel_m": 0.08,
+    "scan_period_s": 0.3,
+    "maximum_points_per_sensor": 850,
+    "normal_neighbors": 12,
+    "maximum_iterations": 12,
+    "plain_correspondence_m": 1.0,
+    "guard_correspondence_m": 0.5,
+    "huber_m": 0.08,
+    "weak_eigenvalue_ratio": 0.02,
+    "odom_regularizer": 0.003,
+    "search_translation_radius_m": 2.0,
+    "search_translation_step_m": 0.4,
+    "search_yaw_radius_deg": 30,
+    "search_yaw_step_deg": 10,
+    "search_period_s": 3.0,
+    "search_min_score": 0.65,
+    "search_distinct_margin": 0.025,
+    "search_confirmations": 2,
+    "search_consistency_translation_m": 0.25,
+    "search_consistency_yaw_deg": 8,
+    "search_trigger": "unconfirmed startup, rank<3, median residual>0.08m, or inlier fraction<0.6"
+  },
+  "comparisons": {
+    "H1": [
+      "plain",
+      "guard"
+    ],
+    "H2": [
+      "guard",
+      "depth"
+    ],
+    "H3_lidar": [
+      "guard",
+      "search"
+    ],
+    "H3_depth": [
+      "depth",
+      "recover"
+    ],
+    "depth_during_recovery": [
+      "search",
+      "recover"
+    ]
+  },
+  "arms": [
+    "2D lidar + depth camera, no 3D lidar in B URDF",
+    "16-channel 3D lidar + same depth camera"
+  ],
+  "scenes": [
+    "static",
+    "dynamic",
+    "large-change",
+    "corridor",
+    "height-corridor"
+  ],
+  "trials_per_condition": 1,
+  "duration_sim_s": {
+    "static": 90,
+    "dynamic": 90,
+    "large-change": 90,
+    "corridor": 120,
+    "height-corridor": 120
+  },
+  "depth": {
+    "actual_sensor": "Gazebo depth_camera",
+    "horizontal_fov_deg": 80,
+    "resolution": [
+      320,
+      240
+    ],
+    "range_m": [
+      0.25,
+      4.0
+    ],
+    "synchronization_max_s": 0.12,
+    "motion_compensation": "wheel odometry",
+    "noise": "ideal rendered depth, no hardware noise model"
+  },
+  "pose_scope": "x/y/yaw; z fixed to median mapping-A body height reconstructed with actual URDF extrinsics; roll/pitch=0; native GICP still unconstrained",
+  "mapping": "Separate measured A per scene, supplied mapping poses, raw lidar point map and independent depth point map; static A reused for persistent-change B; frozen maps",
+  "truth_in_B": "independent scoring only; never an estimator input",
+  "sampling": "all recorded published outputs; custom variants share frame IDs and sensor/odom bytes; native anchors consume the same live source independently",
+  "metrics": "XY RMSE for 2D, XYZ RMSE for 3D; no spatial alignment; truth delta<=0.05s; first registered estimates, no unpublished initial belief or missing-output zero fill",
+  "recovery_evaluation": "after actual observation-restoration stamp: XY<0.1m and |yaw|<5deg continuously >=5s with >=8 updates; retained XYZ/rotation separately",
+  "limitations": [
+    "Exploratory single run, no stable ranking",
+    "Native-vs-prototype differences include motion prior, optimizer and map representation; no isolated sensor attribution",
+    "Bounded +/-2m, +/-30deg search, not arbitrary global kidnapping",
+    "No online map update or full 3D SLAM",
+    "Height control changes the world and is explicitly separate from original corridor"
+  ],
+  "source_sha256": {
+    "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+    "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+    "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+    "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+  },
+  "parent_protocol_sha256": "d92c4f2f86123d0ae64fc27ad44e3446ada0e0cd09ecb8c0332a1dce7564dcb9",
+  "correction": "Align internal XYZ map coordinates to the body reference calibrated from mapping A; publish world Z using that same fixed prior. All H1/H2/H3 settings remain unchanged. Localization B truth is never used for calibration.",
+  "mapping_A_height_priors": {
+    "static": {
+      "ground_z_m": 0.09413998817619046,
+      "provided_pose_count": 99,
+      "height_p10_p90_m": [
+        0.09413916167428249,
+        0.09413998822269071
+      ],
+      "source": "median body height reconstructed from mapping-A supplied sensor poses and actual URDF extrinsics",
+      "mapping_A_pose_archive_sha256": "c793c4fe2a3484ab5674b0048ee50fa262e8678569533e37cd147599b1053d6f",
+      "mapping_A_urdf_sha256": "ded3a24b7439a1dcbe5edbde94bb041e01eee63791daae31ac1d3cc643010542",
+      "body_from_sensor": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -0.3
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "localization_B_truth_used": false
+    },
+    "dynamic": {
+      "ground_z_m": 0.09413998817578456,
+      "provided_pose_count": 95,
+      "height_p10_p90_m": [
+        0.0941394144493854,
+        0.09413998822265485
+      ],
+      "source": "median body height reconstructed from mapping-A supplied sensor poses and actual URDF extrinsics",
+      "mapping_A_pose_archive_sha256": "e791f5a2c1325c123e14b3f4f9ecc3af375889fc5573d906e9b388fdc2676cb0",
+      "mapping_A_urdf_sha256": "ded3a24b7439a1dcbe5edbde94bb041e01eee63791daae31ac1d3cc643010542",
+      "body_from_sensor": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -0.3
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "localization_B_truth_used": false
+    },
+    "corridor": {
+      "ground_z_m": 0.0941399881739558,
+      "provided_pose_count": 99,
+      "height_p10_p90_m": [
+        0.09413916167428249,
+        0.09413998817680705
+      ],
+      "source": "median body height reconstructed from mapping-A supplied sensor poses and actual URDF extrinsics",
+      "mapping_A_pose_archive_sha256": "a9638962bed9cd2cb4c227fb81acd0b95cd8bd6555168e2f0c7c17ca99782639",
+      "mapping_A_urdf_sha256": "ded3a24b7439a1dcbe5edbde94bb041e01eee63791daae31ac1d3cc643010542",
+      "body_from_sensor": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -0.3
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "localization_B_truth_used": false
+    },
+    "height-corridor": {
+      "ground_z_m": 0.09413998817395625,
+      "provided_pose_count": 98,
+      "height_p10_p90_m": [
+        0.09413968279916654,
+        0.094139988177286
+      ],
+      "source": "median body height reconstructed from mapping-A supplied sensor poses and actual URDF extrinsics",
+      "mapping_A_pose_archive_sha256": "4521d56f34c236683b9275e81f59f760febbf4475e2e243d0f98e71ca284f4fa",
+      "mapping_A_urdf_sha256": "ded3a24b7439a1dcbe5edbde94bb041e01eee63791daae31ac1d3cc643010542",
+      "body_from_sensor": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -0.3
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "localization_B_truth_used": false
+    }
+  }
+}

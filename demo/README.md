@@ -33,3 +33,19 @@ Live execution 是当前计算的窗口实录；Measured result replay 绘制该
 [视频目录](gallery.html#2d)先列二维AMCL，再列[三维GICP](gallery.html#3d)，每场景只用“方法／地图类型／指标效果”三列。[本轮原因分析与地图点级评分](../docs/testing/MAP-2D-3D.zh-CN.md)。录像镜像按`2D`、`3D`子目录保存；旧录像和较早NDT／GICP单地图试验作为历史保留。
 
 脚本也可指定：`record-methods.ps1 -Scene dynamic -Dimension 3D -Duration 90`。三维地图仍来自给定位姿的建图A，不代表已完成完整三维SLAM。
+
+## 开放问题：假设与简单实验
+
+[假设、对照与实验结果](../docs/testing/HYPOTHESES.zh-CN.md) · [新视频目录](hypotheses.html)。
+
+- 38：采集假设实验地图A，真实二维／三维雷达＋深度相机；四份A分别对应静态、动态、原走廊与高处几何派生对照。
+- 39：打开本机假设实验视频目录。
+- 40–44：二维雷达＋深度，五场景依次录制；45–49：三维雷达＋深度，对应相同五场景。
+- 50：自动完成十组计算、真实窗口录制、位姿／输入检查及本机视频目录更新。地图A缺失时先采集。每次新目录，参数与全部结果保留。
+- 51–54：二维／三维原走廊和高处对照的同输入搜索细化；55自动重算四组。视频为新推理后保存输出的结果回放。
+
+规范入口：[record-probes.ps1](record-probes.ps1)、[record-all-probes.ps1](record-all-probes.ps1)、[build-probe-maps.ps1](build-probe-maps.ps1)、[refine-probes.ps1](refine-probes.ps1)。二维B机器人不含三维雷达；三维原型使用XYZ观测、约束地面x/y/yaw。原生AMCL／GICP为同源参照，原型之间才是严格同帧配对。地图冻结，不宣称完整六自由度SLAM或在线更新。
+
+新结果在 `F:\be2演讲\本轮成片\hypotheses`，按2D／3D分开，页面自带可跳转目录和三列表格。录屏准备阶段定位器已开始计算；早于视频的起始误差与接受事件保存在CSV和日志中。
+
+校准版原始会话位于 `F:\be2演讲\原始会话\hypotheses-calibrated`。车体高度由独立建图A位姿与实际URDF外参得到，定位B不读取真值；固定高度只用于本轮平坦地面。首轮高度设置错误的十组与无效细化结果保留为排查档案。

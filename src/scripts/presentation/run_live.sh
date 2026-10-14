@@ -49,6 +49,8 @@ SPAWN_YAW="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["sp
 MODE=mapping
 SLAM=true
 if [[ "$FLOW" == localization-* ]]; then MODE=localization; SLAM=false; fi
+URDF="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("urdf",sys.argv[2]))' "$RUN_DIR/runtime.json" "$REPO/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf")"
+BRIDGE="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("bridge_config",sys.argv[2]))' "$RUN_DIR/runtime.json" "$REPO/config/robot_profiles/omni-3d-v1/bridge_sensors.yaml")"
 PIDS=()
 cleanup() {
   local status=$?
@@ -63,8 +65,7 @@ trap cleanup EXIT INT TERM
 echo "EXECUTING: ros2 launch scenario_gpu.launch.py $LEVEL; profile=omni-3d-v1; mode=$MODE"
 setsid ros2 launch "$HERE/scenario_gpu.launch.py" \
   "world:=$WORLD" "spawn_x:=$SPAWN_X" "spawn_y:=$SPAWN_Y" "spawn_yaw:=$SPAWN_YAW" \
-  "urdf:=$REPO/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf" \
-  "bridge_config:=$REPO/config/robot_profiles/omni-3d-v1/bridge_sensors.yaml" \
+  "urdf:=$URDF" "bridge_config:=$BRIDGE" \
   headless:=false "slam:=$SLAM" patrol:=false "obstacles:=$OBSTACLES" truth:=false \
   > "$RUN_DIR/logs/stack.log" 2>&1 &
 PIDS+=("$!")
@@ -75,6 +76,11 @@ setsid "$REPO/.cache/presentation/truth-build/gz_truth" \
   /world/competition_world/dynamic_pose/info omni_car "$NATIVE_TRUTH" &
 TRUTH_PID=$!
 PIDS+=("$!")
+if [[ "$MODE" == mapping && "$FLOW" == *-probe-* ]]; then
+  setsid python3 -u "$HERE/collect_probe_mapping.py" "$RUN_DIR" "$NATIVE_TRUTH" > "$RUN_DIR/logs/probe-mapping.log" 2>&1 &
+  PROBE_MAPPING_PID=$!
+  PIDS+=("$!")
+fi
 if [[ "$MODE" == mapping && "$FLOW" == *dynamic* ]]; then
   setsid "$REPO/.cache/presentation/truth-build/gz_truth" \
     /world/competition_world/dynamic_pose/info '*' "$RUN_DIR/object-truth.jsonl" &
@@ -88,15 +94,34 @@ if [[ "$MODE" == mapping && "$FLOW" == *dynamic* ]]; then
   PIDS+=("$!")
 fi
 if [[ "$MODE" == localization ]]; then
-  if [[ "$FLOW" == *degradation ]]; then
+  if [[ "$FLOW" == *degradation || "$FLOW" == *height-corridor ]]; then
     setsid python3 -u "$HERE/stress_scan.py" "$RUN_DIR" > "$RUN_DIR/logs/stress.log" 2>&1 &
     PIDS+=("$!")
   fi
   LOCALIZER_LAUNCH=localization.launch.py
   if [[ "$FLOW" == *-ndt-* || "$FLOW" == *-gicp-* || "$FLOW" == *-3d-* ]]; then LOCALIZER_LAUNCH=registration.launch.py; fi
-  setsid ros2 launch "$HERE/$LOCALIZER_LAUNCH" "cases_file:=$RUN_DIR/cases.json" \
+  LOCALIZER_CASES="$RUN_DIR/cases.json"
+  if [[ "$FLOW" == *-probe-* ]]; then
+    LOCALIZER_CASES="$RUN_DIR/native-cases.json"
+    setsid python3 -u "$HERE/probe_localizer.py" "$RUN_DIR" > "$RUN_DIR/logs/probes.log" 2>&1 &
+    PROBE_LOCALIZER_PID=$!
+    PIDS+=("$!")
+  fi
+  setsid ros2 launch "$HERE/$LOCALIZER_LAUNCH" "cases_file:=$LOCALIZER_CASES" \
     > "$RUN_DIR/logs/localizers.log" 2>&1 &
   PIDS+=("$!")
+fi
+if [[ "$FLOW" == *-probe-* ]]; then
+  # Avoid concurrent initial D3D12 context creation by Gazebo and RViz on WSLg.
+  timeout 40 ros2 topic echo /scan sensor_msgs/msg/LaserScan --once --field header > "$RUN_DIR/logs/sensor-preflight.log" 2>&1
+  if [[ "$MODE" == localization ]]; then
+    for ((probe_wait=0; probe_wait<200; probe_wait++)); do
+      [[ -f "$RUN_DIR/probes-ready.json" ]] && break
+      kill -0 "$PROBE_LOCALIZER_PID" 2>/dev/null || { echo 'Probe process failed; see logs/probes.log'; exit 7; }
+      sleep .1
+    done
+    [[ -f "$RUN_DIR/probes-ready.json" ]] || { echo 'Probe initialization timed out'; exit 7; }
+  fi
 fi
 if [[ "$PRESENTATION_MULTI_VIEW" == true && "$MODE" == localization ]]; then
   setsid python3 -u "$HERE/case_view_tf.py" "$RUN_DIR" > "$RUN_DIR/logs/views.log" 2>&1 &
@@ -113,8 +138,12 @@ else
   PIDS+=("$!")
 fi
 # Record the actual ROS inputs, independent of the visual screen capture.
+if [[ "$FLOW" == localization-probe-* ]]; then
+  setsid python3 -u "$HERE/window_capture_heartbeat.py" "$RUN_DIR" > "$RUN_DIR/logs/window-capture.log" 2>&1 &
+  PIDS+=("$!")
+fi
 setsid ros2 bag record -o "$RUN_DIR/input-bag" /clock /scan /points /tf /tf_static \
-  /omni_drive_controller/odom /map /scan_degraded > "$RUN_DIR/logs/bag.log" 2>&1 &
+  /omni_drive_controller/odom /map /scan_degraded /depth/points /depth/image > "$RUN_DIR/logs/bag.log" 2>&1 &
 PIDS+=("$!")
 if [[ "$AUTO" == true ]]; then
   setsid bash "$HERE/auto_patrol.sh" "$RUN_DIR" > "$RUN_DIR/logs/patrol.log" 2>&1 &
@@ -125,6 +154,18 @@ OPTIONS=()
 if [[ "$AUTO" == true ]]; then OPTIONS+=(--auto); fi
 python3 -u "$HERE/observe_session.py" --run "$RUN_DIR" --truth "$NATIVE_TRUTH" --mode "$MODE" \
   --duration "$DURATION" --cases "$CASE_NAMES" "${OPTIONS[@]}" | tee "$RUN_DIR/logs/observer.log"
+if [[ -n "${PROBE_MAPPING_PID:-}" ]]; then
+  for ((probe_wait=0; probe_wait<100; probe_wait++)); do
+    [[ -f "$RUN_DIR/probe-mapping-inputs.npz" ]] && break
+    sleep .1
+  done
+fi
+if [[ -n "${PROBE_LOCALIZER_PID:-}" ]]; then
+  for ((probe_wait=0; probe_wait<200; probe_wait++)); do
+    [[ -f "$RUN_DIR/probe-B-inputs.json" ]] && break
+    sleep .1
+  done
+fi
 # Keep native windows alive until all Windows capture encoders flush their MP4s.
 # Destroying a WGC source first can leave an encoder waiting for a final frame.
 if [[ -f "$RUN_DIR/recording.capture" ]]; then

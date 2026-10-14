@@ -22,18 +22,27 @@ if "large-change" in flow:
 mapping_scene = "static" if scene == "large-change" else scene
 level = {"static": "S1_static", "dynamic": "S2_dynamic", "large-change": "S3_large_change", "corridor": "S4_degradation"}[scene]
 world_path = repo / f"config/presentation/worlds/{level}.world"
+if "height-corridor" in flow:
+    from probe_sensors import height_control_world
+    world_path = height_control_world(world_path, run)
 spawn = [7.15, -3.1, 0.0] if scene == "corridor" else [8.0727, 7.5312, -1.5708]
 initial_offset = [1.0, 0.15, 0.12] if scene == "corridor" else [0.25, 0.15, 0.12]
 runtime = {"world": str(world_path), "spawn": spawn, "scene": scene,
            "world_sha256": hashlib.sha256(world_path.read_bytes()).hexdigest(),
            "initial_offset": initial_offset, "scan_restore_after_s": 50.0 if scene == "corridor" else None}
+if "height-corridor" in flow:
+    runtime["scene"] = "height-corridor"
+    runtime["derived_control"] = "original corridor plus two high geometric blocks; same ground-level corridor, route and initial offset"
 (run / "runtime.json").write_text(json.dumps(runtime, indent=2)+"\n")
+if "-probe-" in flow:
+    from probe_sensors import configure as configure_probe_sensors
+    configure_probe_sensors(repo, run, flow, runtime)
 cases = {}
 if mode == "localization":
     marker = repo / ".cache/presentation" / f"maps-{mapping_scene}-latest.json"
     fallback = {"static": "robot-static", "dynamic": "robot-dynamic", "corridor": "robot-degradation"}[mapping_scene]
     maps = Path(json.loads(marker.read_text())["path"]) if marker.exists() else repo / f"results/reference/{fallback}/maps"
-    if scene == "corridor":
+    if scene == "corridor" and "-probe-" not in flow:
         processing = json.loads((maps / "record.json").read_text())
         if processing.get("world_sha256") != runtime["world_sha256"]:
             raise ValueError("Corridor geometry changed: record mapping-corridor A and rebuild maps first")
@@ -65,9 +74,15 @@ if mode == "localization":
             raise FileNotFoundError("Native 3D map missing; process mapping A first: " + str(pcd))
         cases = {name: {**cases["raw"], "localizer": algorithm, "map_pcd": str(pcd),
                         "pose_topic": f"/{name}/pcl_pose", "native_map_odom_tf": True}}
-    if "-3d-" in flow:
+    if "-3d-" in flow and "-probe-" not in flow:
         from prepare_3d import configure
         cases = configure(cases, maps, run, scene)
+    if "-probe-" in flow:
+        from prepare_probe import configure as configure_probe
+        cases = configure_probe(repo, run, runtime)
+        if "-calibrated-" in flow:
+            from prepare_calibrated_probe import configure as configure_calibrated_probe
+            cases = configure_calibrated_probe(repo, run, cases)
 (run / "cases.json").write_text(json.dumps(cases, indent=2) + "\n")
 config = (repo / "config/presentation/live_base.rviz").read_text()
 if mode == "localization":
@@ -123,8 +138,17 @@ if "-ndt-" in flow or "-gicp-" in flow:
       Position Transformer: XYZ
 '''
     config = config.replace("  Global Options:\n", additions + "  Global Options:\n")
+if "-probe-" in flow:
+    from probe_sensors import add_depth_display
+    config = add_depth_display(config)
 (run / "live.rviz").write_text(config)
-if "-3d-" in flow:
+if "-probe-" in flow and mode == "localization":
+    from prepare_probe import views as prepare_probe_views
+    prepare_probe_views(config, cases, run, runtime)
+    if "-calibrated-" in flow:
+        from prepare_calibrated_probe import views as calibrated_views
+        calibrated_views(run)
+elif "-3d-" in flow:
     from prepare_3d import views as prepare_3d_views
     prepare_3d_views(config, cases, run, scene)
 elif os.environ.get("PRESENTATION_MULTI_VIEW") == "true" and mode == "localization":
@@ -206,5 +230,10 @@ if "-ndt-" in flow or "-gicp-" in flow:
 if "-3d-" in flow:
     manifest["input_to_localizers"] = "same live 3D point clouds and wheel odometry; Raw/DUFOMap/BeautyMap frozen 3D maps; no truth input"
     manifest["scope"] = "3D map cleaning with provided mapping-A poses and native GICP localization in fresh B; no full 3D SLAM or online map-update claim"
+if "-probe-" in flow:
+    manifest["robot"] = "Sim2Real omni chassis with " + runtime["sensor_arm"]
+    manifest["source_robot_profile"] = "omni-3d-v1 adapted; generated URDF is the authoritative sensor inventory"
+    manifest["input_to_localizers"] = "actual lidar, optional 4m depth and wheel odometry; no simulator truth in B"
+    manifest["scope"] = "hypothesis prototypes, planar ground-robot pose; 2D arm has no 3D lidar; frozen provided-pose mapping A"
 (run / "session.json").write_text(json.dumps(manifest, indent=2) + "\n")
 print(json.dumps(manifest, indent=2), flush=True)

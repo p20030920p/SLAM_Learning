@@ -17,7 +17,8 @@ for name in LEGACY:
     if path.is_file():
         path.unlink()
 for name in ("presentation.ps1", "record-methods.ps1", "original-live.ps1",
-             "original.ps1", "build-maps.ps1", "stop-presentation.ps1", "record-map-review.ps1"):
+             "original.ps1", "build-maps.ps1", "stop-presentation.ps1", "record-map-review.ps1",
+             "record-probes.ps1", "record-all-probes.ps1", "build-probe-maps.ps1", "refine-probes.ps1"):
     (TARGET / name).write_text((SOURCE / name).read_text(encoding="utf-8-sig"), encoding="utf-8-sig")
 
 
@@ -62,6 +63,18 @@ for number, scene, label in ((33, "static", "静态"), (34, "dynamic", "动态")
     duration = 120 if scene == "degradation" else 90
     bat(f"{number}-三维{label}_三图GICP对照.bat", ps("record-methods.ps1", f"-Scene {scene} -Dimension 3D -Duration {duration}"))
 bat("37-三维地图清理结果展示.bat", ps("record-map-review.ps1", "-Duration 30"))
+bat("38-采集假设实验地图A.bat", ps("build-probe-maps.ps1", ""))
+bat("39-查看假设实验视频.bat", r'start "" "F:\be2演讲\本轮成片\hypotheses\index.html"')
+for dimension, start in (("2D", 40), ("3D", 45)):
+    for offset, (scene, label) in enumerate((("static", "静态"), ("dynamic", "动态"),
+                                             ("large-change", "持久变化"), ("degradation", "原走廊退化"),
+                                             ("height-corridor", "高处标志_派生对照"))):
+        bat(f"{start + offset}-{dimension}_{label}_假设实验.bat", ps("record-probes.ps1", f"-Scene {scene} -Dimension {dimension}"))
+bat("50-自动重录假设实验_二维三维十组.bat", ps("record-all-probes.ps1", ""))
+for number, dimension, scene, label in ((51, "2D", "corridor", "原走廊"), (52, "2D", "height-corridor", "高处对照"),
+                                        (53, "3D", "corridor", "原走廊"), (54, "3D", "height-corridor", "高处对照")):
+    bat(f"{number}-{dimension}_{label}_封存输入细化.bat", ps("refine-probes.ps1", f"-Dimension {dimension} -Scene {scene}"))
+bat("55-自动重算四组细化_封存输入.bat", ps("refine-probes.ps1", "-All"))
 (TARGET / "使用说明.md").write_text(r"""# 当前现场脚本
 
 - 00：打开最新视频目录。
@@ -73,6 +86,12 @@ bat("37-三维地图清理结果展示.bat", ps("record-map-review.ps1", "-Durat
 - 31 / 32：NDT / GICP 原库三维固定地图定位；使用 /points 和原生输出 pcl_pose。无 IMU、无逐点去畸变。
 - 33 / 34 / 35 / 36：四种场景的 Raw／DUFOMap／BeautyMap 三维地图，共用GICP，三个独立窗口与录像；三维走廊也施加观测限制。
 - 37：已经计算好的三维地图结果展示，红色为残留动态点；不执行新的算法推理。
+- 38：重新采集假设实验的静态、动态、原走廊、高处标志对照地图A，保留真实二维／三维雷达和深度相机输入；给定位姿建图。
+- 39：打开假设实验视频与指标目录。
+- 40–44：二维雷达＋深度相机，依次为静态、动态、持久变化、原走廊、高处标志派生对照；二维B机器人没有三维雷达。
+- 45–49：三维雷达＋同一深度相机，对应相同五个场景。
+- 50：自动录制并验证全部十组。缺少地图A时先采集；已有地图时复用。每组包含Plain、H1 Guard、H2 Depth、H3 LiDAR Search、H3 Depth + Search，以及原生AMCL／GICP参照，真实窗口共同录制。
+- 51–54：分别对二维／三维原走廊和高处对照的封存输入重新计算粗到细候选；55自动重算四组。输出视频是保存位姿的结果回放，没有新增Gazebo实录。
 - 论文-实时-*：DUFOMap / BeautyMap / IR-MCL 原库计算与 RViz 当前状态。
 - 论文-adam-mcl：一次受限数据试验，单位为格，不作为论文精度复现。
 - 09：正常结束活动仿真。
@@ -82,5 +101,7 @@ bat("37-三维地图清理结果展示.bat", ps("record-map-review.ps1", "-Durat
 需要本机已配置的 Windows Terminal、FFmpeg、Ubuntu-24.04 ROS Jazzy / Gazebo，以及 Ubuntu-22.04 作者环境。源库 D:\workspace\be2\slam_learning_updated；原始输出在 results\runs\presentation；录像复制到 F:\be2演讲\屏幕实录\20261014-native-ui。
 
 实体机器人尚未测试。本目录的 BAT / PS1 是仿真与原库演示入口。
+
+假设实验结果自动封存到 F:\be2演讲\本轮成片\hypotheses\2D 或 3D，目录页同步更新；校准版原始会话在 F:\be2演讲\原始会话\hypotheses-calibrated，较早原型仍在源库 results\runs\presentation。每次新目录，不覆盖封存数据。深度为80°水平视场、0.25–4m的真实渲染；车体高度由建图A位姿与真实URDF外参标定，定位B不读真值。原型约束平坦地面机器人的x/y/yaw，固定A标定高度和roll/pitch，不是完整六自由度SLAM。高处标志场景是另加几何的可行性对照，不能冒充原走廊结果。原型参数与日志在每组record中；讲义见源库 docs\testing\HYPOTHESES.zh-CN.md。
 """, encoding="utf-8")
 print(f"Removed {len(LEGACY)} obsolete managed entries; refreshed current scripts: {TARGET}")

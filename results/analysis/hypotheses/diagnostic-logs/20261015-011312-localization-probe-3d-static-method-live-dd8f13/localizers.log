@@ -1,0 +1,165 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-15-01-13-23-243659-DESKTOP-GI2390C-159503
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [map_server-1]: process started with pid [159545]
+[INFO] [lidar_localization_node-2]: process started with pid [159546]
+[INFO] [start_lifecycle_node.py-3]: process started with pid [159547]
+[INFO] [lifecycle_manager-4]: process started with pid [159548]
+[lifecycle_manager-4] [INFO] [1792016003.378775063] [native.map_lifecycle]: Creating
+[lifecycle_manager-4] [INFO] [1792016003.382864389] [native.map_lifecycle]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-4] [INFO] [1792016003.385164010] [native.map_lifecycle]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-4] [INFO] [1792016003.385198195] [native.map_lifecycle]: [34m[1mConfiguring map_server[0m[0m
+[map_server-1] [INFO] [1792016003.386625671] [native.map_server]: 
+[map_server-1] 	map_server lifecycle node launched. 
+[map_server-1] 	Waiting on external lifecycle transitions to activate
+[map_server-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-1] [INFO] [1792016003.386743295] [native.map_server]: Creating
+[map_server-1] [INFO] [1792016003.558220224] [native.map_server]: Configuring
+[map_server-1] [INFO] [1792016003.558305387] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar3d/map.yaml
+[map_server-1] [INFO] [1792016003.562045912] [map_io]: resolution: 0.05
+[map_server-1] [INFO] [1792016003.562083408] [map_io]: origin[0]: 3
+[map_server-1] [INFO] [1792016003.562088959] [map_io]: origin[1]: -7
+[map_server-1] [INFO] [1792016003.562091285] [map_io]: origin[2]: 0
+[map_server-1] [INFO] [1792016003.562093981] [map_io]: free_thresh: 0.196
+[map_server-1] [INFO] [1792016003.562096361] [map_io]: occupied_thresh: 0.65
+[map_server-1] [INFO] [1792016003.562099977] [map_io]: mode: trinary
+[map_server-1] [INFO] [1792016003.562103086] [map_io]: negate: 0
+[map_server-1] [INFO] [1792016003.562334051] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar3d/map.pgm
+[map_server-1] [INFO] [1792016003.571866744] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar3d/map.pgm: 181 X 321 map @ 0.05 m/cell
+[lifecycle_manager-4] [INFO] [1792016003.578436441] [native.map_lifecycle]: [34m[1mActivating map_server[0m[0m
+[map_server-1] [INFO] [1792016003.578622061] [native.map_server]: Activating
+[map_server-1] [INFO] [1792016003.578750439] [native.map_server]: Creating bond (map_server) to lifecycle manager.
+[lifecycle_manager-4] [INFO] [1792016003.682546514] [native.map_lifecycle]: Server map_server connected with bond.
+[lifecycle_manager-4] [INFO] [1792016003.682602894] [native.map_lifecycle]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-4] [INFO] [1792016003.682614821] [native.map_lifecycle]: [34m[1mCreating bond timer...[0m[0m
+[lidar_localization_node-2] [INFO] [1792016003.862623847] [native.lidar_localization]: Configuring
+[lidar_localization_node-2] [INFO] [1792016003.862786585] [native.lidar_localization]: initializeParameters
+[lidar_localization_node-2] [INFO] [1792016003.862859449] [native.lidar_localization]: IMU preintegration smoother enabled
+[lidar_localization_node-2] [INFO] [1792016003.862872423] [native.lidar_localization]: point_timestamp_unit: auto; soft odom correction gate: 0
+[lidar_localization_node-2] [INFO] [1792016003.862899376] [native.lidar_localization]: global_frame_id: map
+[lidar_localization_node-2] [INFO] [1792016003.862904970] [native.lidar_localization]: odom_frame_id: odom
+[lidar_localization_node-2] [INFO] [1792016003.862909834] [native.lidar_localization]: base_frame_id: base_footprint
+[lidar_localization_node-2] [INFO] [1792016003.862914455] [native.lidar_localization]: enable_map_odom_tf: 0
+[lidar_localization_node-2] [INFO] [1792016003.862919149] [native.lidar_localization]: use_odom_tf_prediction: 0
+[lidar_localization_node-2] [INFO] [1792016003.862923252] [native.lidar_localization]: constrain_odom_tf_prediction_to_planar: 0
+[lidar_localization_node-2] [INFO] [1792016003.862927936] [native.lidar_localization]: constrain_odom_tf_prediction_height_only: 0
+[lidar_localization_node-2] [INFO] [1792016003.862932430] [native.lidar_localization]: level_map_to_odom: 0
+[lidar_localization_node-2] [INFO] [1792016003.862941460] [native.lidar_localization]: publish_bridge_pose_when_lost: 0
+[lidar_localization_node-2] [INFO] [1792016003.862945383] [native.lidar_localization]: enable_map_odom_anchor_fitness_gate: 0
+[lidar_localization_node-2] [INFO] [1792016003.862948619] [native.lidar_localization]: map_odom_anchor_max_fitness: 1.500000
+[lidar_localization_node-2] [INFO] [1792016003.862954149] [native.lidar_localization]: map_odom_anchor_max_correction_rotation_deg: 10.000000
+[lidar_localization_node-2] [INFO] [1792016003.862959045] [native.lidar_localization]: registration_method: GICP
+[lidar_localization_node-2] [INFO] [1792016003.862962101] [native.lidar_localization]: ndt_resolution: 0.500000
+[lidar_localization_node-2] [INFO] [1792016003.862966066] [native.lidar_localization]: ndt_step_size: 0.100000
+[lidar_localization_node-2] [INFO] [1792016003.862969397] [native.lidar_localization]: ndt_num_threads: 2
+[lidar_localization_node-2] [INFO] [1792016003.862972442] [native.lidar_localization]: gicp_corr_randomness: 20
+[lidar_localization_node-2] [INFO] [1792016003.862975561] [native.lidar_localization]: gicp_max_correspondence_distance: 1.000000
+[lidar_localization_node-2] [INFO] [1792016003.862979061] [native.lidar_localization]: vgicp_voxel_resolution: 1.000000
+[lidar_localization_node-2] [INFO] [1792016003.862982614] [native.lidar_localization]: transform_epsilon: 0.001000
+[lidar_localization_node-2] [INFO] [1792016003.862986040] [native.lidar_localization]: voxel_leaf_size: 0.150000
+[lidar_localization_node-2] [INFO] [1792016003.862989360] [native.lidar_localization]: enable_scan_voxel_filter: 1
+[lidar_localization_node-2] [INFO] [1792016003.862992257] [native.lidar_localization]: scan_max_range: 12.000000
+[lidar_localization_node-2] [INFO] [1792016003.862995779] [native.lidar_localization]: scan_min_range: 0.300000
+[lidar_localization_node-2] [INFO] [1792016003.862999025] [native.lidar_localization]: scan_period: 0.100000
+[lidar_localization_node-2] [INFO] [1792016003.863002345] [native.lidar_localization]: scan_time_range_max_duration_ratio: 2.000000
+[lidar_localization_node-2] [INFO] [1792016003.863008520] [native.lidar_localization]: cloud_queue_depth: 1
+[lidar_localization_node-2] [INFO] [1792016003.863011946] [native.lidar_localization]: imu_queue_depth: 2000
+[lidar_localization_node-2] [INFO] [1792016003.863015298] [native.lidar_localization]: min_scan_interval_sec: 0.000000
+[lidar_localization_node-2] [INFO] [1792016003.863018502] [native.lidar_localization]: use_pcd_map: 1
+[lidar_localization_node-2] [INFO] [1792016003.863021494] [native.lidar_localization]: map_path: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar3d/map-3d.pcd
+[lidar_localization_node-2] [INFO] [1792016003.863025734] [native.lidar_localization]: set_initial_pose: 1
+[lidar_localization_node-2] [INFO] [1792016003.863028854] [native.lidar_localization]: use_odom: 1
+[lidar_localization_node-2] [INFO] [1792016003.863031984] [native.lidar_localization]: use_twist_prediction: 0
+[lidar_localization_node-2] [INFO] [1792016003.863034965] [native.lidar_localization]: twist_prediction_use_angular_velocity: 1
+[lidar_localization_node-2] [INFO] [1792016003.863038264] [native.lidar_localization]: max_twist_prediction_dt: 0.500000
+[lidar_localization_node-2] [INFO] [1792016003.863041659] [native.lidar_localization]: use_imu: 0
+[lidar_localization_node-2] [INFO] [1792016003.863044947] [native.lidar_localization]: use_imu_preintegration: 1
+[lidar_localization_node-2] [INFO] [1792016003.863048236] [native.lidar_localization]: imu_seed_consistency_gate: enabled=1 translation=0.500 m rotation=5.000 deg passes=5
+[lidar_localization_node-2] [INFO] [1792016003.863053364] [native.lidar_localization]: imu_dual_queue_enabled: 1
+[lidar_localization_node-2] [INFO] [1792016003.863056568] [native.lidar_localization]: imu_preintegration_use_base_frame_transform: 0
+[lidar_localization_node-2] [INFO] [1792016003.863084536] [native.lidar_localization]: imu_accel_scale: 1.00000000
+[lidar_localization_node-2] [INFO] [1792016003.863089907] [native.lidar_localization]: use_continuous_time_deskew: 0
+[lidar_localization_node-2] [INFO] [1792016003.863095141] [native.lidar_localization]: continuous_time_deskew_mode: relative_motion
+[lidar_localization_node-2] [INFO] [1792016003.863098578] [native.lidar_localization]: continuous_time_cloud_stamp_reference: start
+[lidar_localization_node-2] [INFO] [1792016003.863101750] [native.lidar_localization]: continuous_time_deskew_reference_time_sec: 0.000000
+[lidar_localization_node-2] [INFO] [1792016003.863105049] [native.lidar_localization]: continuous_time_pose_history_duration_sec: 2.000000
+[lidar_localization_node-2] [INFO] [1792016003.863108380] [native.lidar_localization]: enable_localizability_guard: 0
+[lidar_localization_node-2] [INFO] [1792016003.863111415] [native.lidar_localization]: localizability_min_xy_eigen_ratio: 0.050000
+[lidar_localization_node-2] [INFO] [1792016003.863114872] [native.lidar_localization]: use_twist_ekf: 0
+[lidar_localization_node-2] [INFO] [1792016003.863118203] [native.lidar_localization]: use_gtsam_smoother: 0
+[lidar_localization_node-2] [INFO] [1792016003.863121238] [native.lidar_localization]: enable_debug: 1
+[lidar_localization_node-2] [INFO] [1792016003.863124294] [native.lidar_localization]: predict_pose_from_previous_delta: 1
+[lidar_localization_node-2] [INFO] [1792016003.863127487] [native.lidar_localization]: enable_local_map_crop: 0
+[lidar_localization_node-2] [INFO] [1792016003.863130575] [native.lidar_localization]: local_map_radius: 150.000000
+[lidar_localization_node-2] [INFO] [1792016003.863134223] [native.lidar_localization]: local_map_min_points: 100
+[lidar_localization_node-2] [INFO] [1792016003.863137236] [native.lidar_localization]: min_registration_points: 0
+[lidar_localization_node-2] [INFO] [1792016003.863140207] [native.lidar_localization]: local_map_update_distance: 0.000000
+[lidar_localization_node-2] [INFO] [1792016003.863143729] [native.lidar_localization]: reject_above_score_threshold: 1
+[lidar_localization_node-2] [INFO] [1792016003.863146975] [native.lidar_localization]: enable_consistency_recovery_gate: 0
+[lidar_localization_node-2] [INFO] [1792016003.863150062] [native.lidar_localization]: consistency_recovery_min_rejections: 10
+[lidar_localization_node-2] [INFO] [1792016003.863155085] [native.lidar_localization]: consistency_recovery_score_margin: 2.000000
+[lidar_localization_node-2] [INFO] [1792016003.863158394] [native.lidar_localization]: consistency_recovery_max_translation_m: 0.050000
+[lidar_localization_node-2] [INFO] [1792016003.863161683] [native.lidar_localization]: consistency_recovery_max_yaw_deg: 0.500000
+[lidar_localization_node-2] [INFO] [1792016003.863165035] [native.lidar_localization]: enable_post_reject_strict_score_threshold: 0
+[lidar_localization_node-2] [INFO] [1792016003.863168112] [native.lidar_localization]: post_reject_strict_min_rejections: 100
+[lidar_localization_node-2] [INFO] [1792016003.863171654] [native.lidar_localization]: post_reject_strict_score_threshold: 5.500000
+[lidar_localization_node-2] [INFO] [1792016003.863175006] [native.lidar_localization]: enable_open_loop_strict_score_threshold: 0
+[lidar_localization_node-2] [INFO] [1792016003.863177946] [native.lidar_localization]: open_loop_strict_min_accepted_gap_sec: 15.000000
+[lidar_localization_node-2] [INFO] [1792016003.863181403] [native.lidar_localization]: open_loop_strict_min_seed_translation_m: 100.000000
+[lidar_localization_node-2] [INFO] [1792016003.863185263] [native.lidar_localization]: open_loop_strict_score_threshold: 5.250000
+[lidar_localization_node-2] [INFO] [1792016003.863188604] [native.lidar_localization]: enable_borderline_seed_rejection_gate: 0
+[lidar_localization_node-2] [INFO] [1792016003.863191554] [native.lidar_localization]: borderline_seed_gate_score_threshold: 5.250000
+[lidar_localization_node-2] [INFO] [1792016003.863194748] [native.lidar_localization]: borderline_seed_gate_min_seed_translation_m: 1.000000
+[lidar_localization_node-2] [INFO] [1792016003.863197930] [native.lidar_localization]: enable_rejected_seed_update: 0
+[lidar_localization_node-2] [INFO] [1792016003.863201250] [native.lidar_localization]: rejected_seed_update_min_rejections: 0
+[lidar_localization_node-2] [INFO] [1792016003.863204550] [native.lidar_localization]: rejected_seed_update_max_fitness: 10.000000
+[lidar_localization_node-2] [INFO] [1792016003.863207986] [native.lidar_localization]: rejected_seed_update_max_correction_translation_m: 2.000000
+[lidar_localization_node-2] [INFO] [1792016003.863213347] [native.lidar_localization]: rejected_seed_update_max_correction_yaw_deg: 2.000000
+[lidar_localization_node-2] [INFO] [1792016003.863216921] [native.lidar_localization]: seed_correction_guard: enabled=0 translation_m=0.500000 yaw_deg=15.000000 release_rejections=10 warmup_accepts=5 exact_start_translation_m=0.000000
+[lidar_localization_node-2] [INFO] [1792016003.863222409] [native.lidar_localization]: enable_odom_tf_prediction_correction_guard: 0
+[lidar_localization_node-2] [INFO] [1792016003.863225496] [native.lidar_localization]: odom_tf_prediction_correction_guard_translation_m: 2.000000
+[lidar_localization_node-2] [INFO] [1792016003.863236863] [native.lidar_localization]: odom_tf_prediction_correction_guard_yaw_deg: 30.000000
+[lidar_localization_node-2] [INFO] [1792016003.863240649] [native.lidar_localization]: enable_odom_tf_prediction_recovery_correction_guard: 0
+[lidar_localization_node-2] [INFO] [1792016003.863243662] [native.lidar_localization]: odom_tf_prediction_recovery_min_rejections: 30
+[lidar_localization_node-2] [INFO] [1792016003.863246750] [native.lidar_localization]: odom_tf_prediction_recovery_max_fitness: 1.500000
+[lidar_localization_node-2] [INFO] [1792016003.863249996] [native.lidar_localization]: odom_tf_prediction_recovery_guard_translation_m: 5.000000
+[lidar_localization_node-2] [INFO] [1792016003.863253137] [native.lidar_localization]: odom_tf_prediction_recovery_guard_yaw_deg: 30.000000
+[lidar_localization_node-2] [INFO] [1792016003.863256393] [native.lidar_localization]: enable_recovery_retry_from_last_pose: 0
+[lidar_localization_node-2] [INFO] [1792016003.863259312] [native.lidar_localization]: recovery_retry_from_last_pose_min_rejections: 1
+[lidar_localization_node-2] [INFO] [1792016003.863262262] [native.lidar_localization]: recovery_retry_from_last_pose_max_accepted_gap_sec: 1.000000
+[lidar_localization_node-2] [INFO] [1792016003.863265497] [native.lidar_localization]: recovery_retry_from_last_pose_max_seed_translation_m: 1000000000.000000
+[lidar_localization_node-2] [INFO] [1792016003.863269896] [native.lidar_localization]: enable_reinitialization_request_output: 1
+[lidar_localization_node-2] [INFO] [1792016003.863274686] [native.lidar_localization]: enable_reinitialization_request_latch: 1
+[lidar_localization_node-2] [INFO] [1792016003.863277594] [native.lidar_localization]: reinitialization_request_clear_ok_samples: 5
+[lidar_localization_node-2] [INFO] [1792016003.863280449] [native.lidar_localization]: reinitialization_request_clear_max_fitness: 1.000000
+[lidar_localization_node-2] [INFO] [1792016003.863283674] [native.lidar_localization]: reinitialization_request_clear_max_correction_translation_m: 0.500000
+[lidar_localization_node-2] [INFO] [1792016003.863289130] [native.lidar_localization]: reinitialization_trigger_threshold: 0.950000
+[lidar_localization_node-2] [INFO] [1792016003.863297706] [native.lidar_localization]: reinitialization_trigger_gap_scale_sec: 30.000000
+[lidar_localization_node-2] [INFO] [1792016003.863301163] [native.lidar_localization]: reinitialization_trigger_seed_translation_scale_m: 100.000000
+[lidar_localization_node-2] [INFO] [1792016003.863304409] [native.lidar_localization]: reinitialization_trigger_reject_streak_scale: 200.000000
+[lidar_localization_node-2] [INFO] [1792016003.863307708] [native.lidar_localization]: reinitialization_trigger_fitness_explosion_threshold: 1000.000000
+[lidar_localization_node-2] [INFO] [1792016003.863311103] [native.lidar_localization]: imu_prediction_correction_guard_translation_m: 2.000000
+[lidar_localization_node-2] [INFO] [1792016003.863314592] [native.lidar_localization]: imu_prediction_correction_guard_yaw_deg: 10.000000
+[lidar_localization_node-2] [INFO] [1792016003.863317785] [native.lidar_localization]: imu_prediction_correction_guard_warmup_accepts: 5
+[lidar_localization_node-2] [INFO] [1792016003.863320566] [native.lidar_localization]: enable_timer_publishing: 0
+[lidar_localization_node-2] [INFO] [1792016003.863323368] [native.lidar_localization]: pose_publish_frequency: 10.000000
+[lidar_localization_node-2] [INFO] [1792016003.863361688] [native.lidar_localization]: path_max_poses: 2000
+[lidar_localization_node-2] [INFO] [1792016003.863380108] [native.lidar_localization]: initializePubSub
+[lidar_localization_node-2] [INFO] [1792016003.872370751] [native.lidar_localization]: Initial pose subscription uses a dedicated callback group
+[lidar_localization_node-2] [INFO] [1792016003.876723367] [native.lidar_localization]: IMU preintegration subscription uses a dedicated callback group
+[lidar_localization_node-2] [INFO] [1792016003.877885332] [native.lidar_localization]: initializePubSub end
+[lidar_localization_node-2] [INFO] [1792016003.877902663] [native.lidar_localization]: initializeRegistration
+[lidar_localization_node-2] [INFO] [1792016003.878016089] [native.lidar_localization]: initializeRegistration end
+[lidar_localization_node-2] [INFO] [1792016003.878029423] [native.lidar_localization]: Configuring end
+[lidar_localization_node-2] [INFO] [1792016003.878921950] [native.lidar_localization]: Activating
+[lidar_localization_node-2] [INFO] [1792016003.878984748] [native.lidar_localization]: initialPoseReceived
+[lidar_localization_node-2] [WARN] [1792016003.878996316] [native.lidar_localization]: initial pose accepted before map is ready; scans will wait until map load completes
+[lidar_localization_node-2] [INFO] [1792016003.879318629] [native.lidar_localization]: published map -> base_footprint TF from initial pose
+[lidar_localization_node-2] [INFO] [1792016003.879339925] [native.lidar_localization]: initialPoseReceived end
+[lidar_localization_node-2] [INFO] [1792016003.879349389] [native.lidar_localization]: Loading pcd map from: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar3d/map-3d.pcd
+[lidar_localization_node-2] [WARN] [1792016003.891987256] [native.lidar_localization]: Map point cloud does not contain intensity. Falling back to xyz with zero intensity.
+[lidar_localization_node-2] [INFO] [1792016003.892049969] [native.lidar_localization]: Map Size 43550
+[lidar_localization_node-2] [INFO] [1792016003.892468167] [native.lidar_localization]: Initial Map Published
+[lidar_localization_node-2] [INFO] [1792016003.892502078] [native.lidar_localization]: Local map cropping enabled. Full map: 43550 pts, radius: 150m
+[lidar_localization_node-2] [INFO] [1792016003.895402942] [native.lidar_localization]: NDT initializer created (5 scans before GICP switch)
+[lidar_localization_node-2] [INFO] [1792016003.895536395] [native.lidar_localization]: Activating end
+[start_lifecycle_node.py-3] [INFO] [1792016003.906394213] [localization_startup]: /native/lidar_localization: active

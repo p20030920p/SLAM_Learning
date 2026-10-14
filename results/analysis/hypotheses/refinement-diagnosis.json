@@ -1,0 +1,30 @@
+{
+  "scope": "post-run first-frame diagnostic; truth only compares candidate errors after both searches finish",
+  "parent_sha256": "4bef524d386bc0d44e4f71e129edd50464a0cbd230ba4b974004e75c796bec4e",
+  "frame": 0,
+  "coarse": {
+    "pose": [
+      7.3512657462444215,
+      -3.095470172652484,
+      -0.001122148330733864
+    ],
+    "xy_error_m": 0.2013167155633711,
+    "accepted_geometry": true,
+    "best_score": 0.9663231964155803,
+    "margin": 0.037280407797443016,
+    "distinct_candidates": 4
+  },
+  "fine": {
+    "pose": [
+      7.151273469000513,
+      -3.095813823980081,
+      -0.0014073403933465385
+    ],
+    "xy_error_m": 0.004375590597798446,
+    "accepted_geometry": false,
+    "best_score": 0.9768713663951881,
+    "margin": 0.01978050434176526,
+    "distinct_candidates": 3,
+    "fine_translation_step_m": 0.1
+  }
+}

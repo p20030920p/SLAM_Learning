@@ -1,0 +1,26 @@
+{
+  "kind": "probe_mapping_A",
+  "source_recording": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b",
+  "world_sha256": "a75643aa46953a02cc936445394c1c233b7d9db5952dbdb7f2100862e4d3da86",
+  "provided_mapping_poses": true,
+  "truth_to_localization_B": false,
+  "inputs": {
+    "mapping-clouds.npz": "4521d56f34c236683b9275e81f59f760febbf4475e2e243d0f98e71ca284f4fa",
+    "probe-mapping-inputs.npz": "3b309481b1e071d5e1650278f95335c2cc4054b56d8adad546c59753ad197710",
+    "probe-mapping-inputs.json": "0c2688d99f8a5954a29b1dee70e6249cd232e1b9cd6219bed537dcf51441526d"
+  },
+  "maps": {
+    "lidar2d": {
+      "raw_points": 78512,
+      "voxel_points": 1608
+    },
+    "depth": {
+      "raw_points": 429040,
+      "voxel_points": 12986
+    },
+    "lidar3d": {
+      "raw_points": 1075244,
+      "voxel_points": 47874
+    }
+  }
+}

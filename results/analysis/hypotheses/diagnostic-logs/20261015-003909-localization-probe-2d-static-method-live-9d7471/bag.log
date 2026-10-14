@@ -1,0 +1,20 @@
+[WARN] [ros2bag]: Positional "topics" argument deprecated. Please use optional "--topics" argument instead.
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1792013968.781173786] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1792013968.781256636] [rosbag2_recorder]: Event publisher thread: Started
+[INFO] [1792013968.794616042] [rosbag2_recorder]: Starting recording to '/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003909-localization-probe-2d-static-method-live-9d7471/input-bag'
+[INFO] [1792013968.808241751] [rosbag2_recorder]: Listening for topics...
+[INFO] [1792013968.808948397] [rosbag2_recorder]: Recording...
+[INFO] [1792013968.808578053] [rosbag2_recorder]: Topics discovery started.
+[INFO] [1792013968.899918705] [rosbag2_recorder]: Subscribed to topic '/clock'
+[INFO] [1792013968.924056907] [rosbag2_recorder]: Subscribed to topic '/tf'
+[INFO] [1792013968.950721987] [rosbag2_recorder]: Subscribed to topic '/scan'
+[INFO] [1792013969.021420329] [rosbag2_recorder]: Subscribed to topic '/depth/image'
+[INFO] [1792013969.026857609] [rosbag2_recorder]: Subscribed to topic '/tf_static'
+[INFO] [1792013969.038026349] [rosbag2_recorder]: Subscribed to topic '/depth/points'
+[INFO] [1792013971.878889342] [rosbag2_recorder]: Subscribed to topic '/omni_drive_controller/odom'
+[INFO] [1792014069.572058056] [rosbag2_recorder]: Topics discovery stopped.
+[INFO] [1792014069.572817603] [rosbag2_recorder]: Pausing recording.
+[INFO] [1792014069.573290506] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1792014069.596077456] [rosbag2_recorder]: Recording stopped
+[WARN] [1792014069.596699236] [rosbag2_recorder]: Number of messages lost on the transport layer: 265
+[INFO] [1792014069.609459396] [rosbag2_recorder]: Event publisher thread: Exited

@@ -1,0 +1,2031 @@
+{
+  "scope": "Post-run diagnosis only. Truth is used to evaluate emitted proposals, never to select or tune them. All four preregistered conditions retained.",
+  "conditions": [
+    {
+      "dimension": "2d",
+      "scene": "corridor",
+      "parent_record": "results/reference/probe-calibrated-2d-corridor/record.json",
+      "child_record": "results/reference/probe-calibrated-refinement-2d-corridor/record.json",
+      "parent_sha256": "eccead9b27ed79f2f4251c120205e53329225883b13ee744793a6769353df0e1",
+      "child_sha256": "89966bfdfa0eed6013b99dab2d68b206f3dcc83b14d9dcd2ec9d7c89930a9d86",
+      "methods": {
+        "recover": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.6,
+              "used_depth": true,
+              "margin": 0.0008235612879372578,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 8.8,
+              "used_depth": true,
+              "margin": 0.0009557678720308882,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 11.8,
+              "used_depth": false,
+              "margin": 5.817007671693464e-05,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 15.2,
+              "used_depth": true,
+              "margin": 0.0009555693577578683,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 18.5,
+              "used_depth": true,
+              "margin": 0.0012537764791826778,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 21.5,
+              "used_depth": true,
+              "margin": 0.003806396641017229,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 24.5,
+              "used_depth": true,
+              "margin": 0.011495654273534384,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 27.5,
+              "used_depth": false,
+              "margin": 0.00040872604469854856,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 30.5,
+              "used_depth": false,
+              "margin": 0.0006210142832331345,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 33.6,
+              "used_depth": true,
+              "margin": 0.0011875747759246824,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 36.6,
+              "used_depth": false,
+              "margin": 0.0008160481218512095,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 39.6,
+              "used_depth": true,
+              "margin": 0.0010188941683361152,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 42.6,
+              "used_depth": true,
+              "margin": 6.547386061650506e-06,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 45.6,
+              "used_depth": false,
+              "margin": 0.00014773908836329674,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 48.6,
+              "used_depth": true,
+              "margin": 0.00012678166523782952,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 51.6,
+              "used_depth": true,
+              "margin": 0.0038157826809390727,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 54.7,
+              "used_depth": true,
+              "margin": 0.01299801724348948,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 57.7,
+              "used_depth": true,
+              "margin": 0.002091242689969852,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 60.7,
+              "used_depth": false,
+              "margin": 6.202917684838827e-05,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 66.7,
+            "position_error_m": 0.0073767022734216045,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.988474006931668,
+              "margin": 0.19916751373940966,
+              "distinct_candidates": 4,
+              "confirmations": 2
+            }
+          }
+        },
+        "fine_depth": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.6,
+              "used_depth": true,
+              "margin": 0.0005845957626083864,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 8.8,
+              "used_depth": true,
+              "margin": 0.0005850302683346742,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 11.8,
+              "used_depth": false,
+              "margin": 2.3508954818396433e-05,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 15.2,
+              "used_depth": true,
+              "margin": 0.0005849323392772554,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 18.5,
+              "used_depth": true,
+              "margin": 0.0010263064568305502,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 21.5,
+              "used_depth": true,
+              "margin": 0.0007548033327207104,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 24.5,
+              "used_depth": true,
+              "margin": 0.00035174257689829513,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 27.5,
+              "used_depth": false,
+              "margin": 0.0009197530920314057,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 30.5,
+              "used_depth": false,
+              "margin": 0.0003528962080158182,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 33.6,
+              "used_depth": true,
+              "margin": 0.0011907983512133846,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 36.6,
+              "used_depth": false,
+              "margin": 0.0007894647533354116,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 39.6,
+              "used_depth": true,
+              "margin": 0.000987750546960653,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 42.6,
+              "used_depth": true,
+              "margin": 0.00020757120303416254,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 45.6,
+              "used_depth": false,
+              "margin": 0.0011619342501932861,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 48.6,
+              "used_depth": true,
+              "margin": 0.002793107842058884,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 51.6,
+              "used_depth": true,
+              "margin": 0.001856200189785051,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 54.7,
+              "used_depth": true,
+              "margin": 0.0036195846442608204,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 57.7,
+              "used_depth": true,
+              "margin": 0.0006619385788471099,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 60.7,
+              "used_depth": false,
+              "margin": 0.000522874311957966,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 66.7,
+            "position_error_m": 0.008793054750490378,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9884433724836817,
+              "margin": 0.19087793351794302,
+              "distinct_candidates": 2,
+              "fine_translation_step_m": 0.1,
+              "confirmations": 2
+            }
+          }
+        },
+        "fine_lidar": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.6,
+              "used_depth": false,
+              "margin": 5.624768359213661e-05,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 8.8,
+              "used_depth": false,
+              "margin": -2.9458387400871366e-05,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 11.8,
+              "used_depth": false,
+              "margin": -2.9458387401204433e-05,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 15.2,
+              "used_depth": false,
+              "margin": -2.9458387401204433e-05,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 18.5,
+              "used_depth": false,
+              "margin": 0.00040411818693486534,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 21.5,
+              "used_depth": false,
+              "margin": 0.00018596447653596027,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 24.5,
+              "used_depth": false,
+              "margin": 4.774474500190973e-05,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 27.5,
+              "used_depth": false,
+              "margin": 0.000797069263533956,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 30.5,
+              "used_depth": false,
+              "margin": 0.0004589463914959069,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 33.6,
+              "used_depth": false,
+              "margin": 0.000735349187543477,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 36.6,
+              "used_depth": false,
+              "margin": 0.0007630150562396576,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 39.6,
+              "used_depth": false,
+              "margin": 0.0004961715848244008,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 42.6,
+              "used_depth": false,
+              "margin": 0.0003418398135879297,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 45.6,
+              "used_depth": false,
+              "margin": 0.0012188810384876625,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 48.6,
+              "used_depth": false,
+              "margin": 0.0009530739101073493,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 51.6,
+              "used_depth": false,
+              "margin": 0.00031935976363106633,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 54.7,
+              "used_depth": false,
+              "margin": 0.0010278494286227735,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 57.7,
+              "used_depth": false,
+              "margin": 0.00028029879962632176,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 60.7,
+              "used_depth": false,
+              "margin": 0.0004916029179216075,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 66.7,
+            "position_error_m": 0.008785041104712791,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9884436297731644,
+              "margin": 0.1908304866239805,
+              "distinct_candidates": 2,
+              "fine_translation_step_m": 0.1,
+              "confirmations": 2
+            }
+          }
+        }
+      },
+      "metrics_3d": {},
+      "metrics": {
+        "coarse_lidar": {
+          "samples": 338,
+          "position_rmse_m": 0.7040422423322306,
+          "yaw_rmse_deg": 0.11253727952124208,
+          "post_warmup_5s_samples": 323,
+          "post_warmup_5s_position_rmse_m": 0.6872417094562221,
+          "position_p95_m": 1.008122963577105
+        },
+        "coarse_depth": {
+          "samples": 338,
+          "position_rmse_m": 0.7043672221797649,
+          "yaw_rmse_deg": 0.11450579477787792,
+          "post_warmup_5s_samples": 323,
+          "post_warmup_5s_position_rmse_m": 0.6875678125415321,
+          "position_p95_m": 1.0085108157075031
+        },
+        "fine_lidar": {
+          "samples": 338,
+          "position_rmse_m": 0.7040422889893749,
+          "yaw_rmse_deg": 0.1125390414904653,
+          "post_warmup_5s_samples": 323,
+          "post_warmup_5s_position_rmse_m": 0.6872417594736713,
+          "position_p95_m": 1.008122963577105
+        },
+        "fine_depth": {
+          "samples": 338,
+          "position_rmse_m": 0.7043672712036727,
+          "yaw_rmse_deg": 0.11451159788924857,
+          "post_warmup_5s_samples": 323,
+          "post_warmup_5s_position_rmse_m": 0.6875678650955231,
+          "position_p95_m": 1.0085108157075031
+        }
+      },
+      "initial_sustained_delay_s": {
+        "coarse_lidar": 61.1,
+        "coarse_depth": 61.1,
+        "fine_lidar": 61.1,
+        "fine_depth": 61.1
+      }
+    },
+    {
+      "dimension": "2d",
+      "scene": "height-corridor",
+      "parent_record": "results/reference/probe-calibrated-2d-height-corridor/record.json",
+      "child_record": "results/reference/probe-calibrated-refinement-2d-height-corridor/record.json",
+      "parent_sha256": "bafe25d265d565d766e328173411be981028ae9d6ed8b3934900519588aaa69c",
+      "child_sha256": "1ad1ac1e39052cbe73d68ee698ed6e14e0803f891326092c10ec74997e19262b",
+      "methods": {
+        "recover": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [
+            {
+              "stamp_s": 5.2,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9691026866282022,
+                "margin": 0.04085753430951211,
+                "distinct_candidates": 4,
+                "confirmations": 1
+              }
+            },
+            {
+              "stamp_s": 8.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9690915512729941,
+                "margin": 0.040853099941996485,
+                "distinct_candidates": 4,
+                "confirmations": 2
+              }
+            },
+            {
+              "stamp_s": 11.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9691018137623116,
+                "margin": 0.04086385772491574,
+                "distinct_candidates": 4,
+                "confirmations": 3
+              }
+            },
+            {
+              "stamp_s": 14.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9758753775524498,
+                "margin": 0.033728035175684346,
+                "distinct_candidates": 4,
+                "confirmations": 1
+              }
+            },
+            {
+              "stamp_s": 26.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9672319149392357,
+                "margin": 0.03810315717896651,
+                "distinct_candidates": 4,
+                "confirmations": 1
+              }
+            },
+            {
+              "stamp_s": 41.6,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9657421853953703,
+                "margin": 0.03687802767051063,
+                "distinct_candidates": 4,
+                "confirmations": 1
+              }
+            }
+          ],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.2,
+              "used_depth": true,
+              "margin": 0.04085753430951211,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 8.5,
+              "used_depth": true,
+              "margin": 0.040853099941996485,
+              "confirmations": 2
+            },
+            {
+              "stamp_s": 11.5,
+              "used_depth": true,
+              "margin": 0.04086385772491574,
+              "confirmations": 3
+            },
+            {
+              "stamp_s": 14.5,
+              "used_depth": true,
+              "margin": 0.033728035175684346,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 17.5,
+              "used_depth": true,
+              "margin": 0.0010675278263594379,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 20.5,
+              "used_depth": true,
+              "margin": 0.003061261368108692,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 23.5,
+              "used_depth": true,
+              "margin": 0.01801263639570494,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 26.5,
+              "used_depth": true,
+              "margin": 0.03810315717896651,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 29.5,
+              "used_depth": true,
+              "margin": 0.0006858695116702673,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 32.5,
+              "used_depth": true,
+              "margin": 0.002245311875731293,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 35.5,
+              "used_depth": true,
+              "margin": 0.0024137817066399725,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 38.5,
+              "used_depth": true,
+              "margin": 0.013456537618378617,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 41.6,
+              "used_depth": true,
+              "margin": 0.03687802767051063,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 44.6,
+              "used_depth": false,
+              "margin": 0.001468797549023626,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 47.6,
+              "used_depth": true,
+              "margin": 0.0017267556827608166,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 50.6,
+              "used_depth": false,
+              "margin": 0.00045292077248626494,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 53.6,
+              "used_depth": false,
+              "margin": 0.00016251702651159938,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 56.6,
+              "used_depth": false,
+              "margin": 0.0015714341481830596,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 59.6,
+              "used_depth": true,
+              "margin": 0.002630597584767136,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 8.5,
+            "position_error_m": 0.20217260111021731,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9690915512729941,
+              "margin": 0.040853099941996485,
+              "distinct_candidates": 4,
+              "confirmations": 2
+            }
+          }
+        },
+        "fine_depth": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [
+            {
+              "stamp_s": 5.2,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9865105462171436,
+                "margin": 0.03003175532858582,
+                "distinct_candidates": 3,
+                "fine_translation_step_m": 0.1,
+                "confirmations": 1
+              }
+            },
+            {
+              "stamp_s": 8.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9865043848686883,
+                "margin": 0.030027299527779938,
+                "distinct_candidates": 3,
+                "fine_translation_step_m": 0.1,
+                "confirmations": 2
+              }
+            },
+            {
+              "stamp_s": 11.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9865057040107956,
+                "margin": 0.029977022701755174,
+                "distinct_candidates": 4,
+                "fine_translation_step_m": 0.1,
+                "confirmations": 3
+              }
+            },
+            {
+              "stamp_s": 23.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9804864421725554,
+                "margin": 0.025063445033989384,
+                "distinct_candidates": 4,
+                "fine_translation_step_m": 0.1,
+                "confirmations": 1
+              }
+            },
+            {
+              "stamp_s": 26.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9777612362739928,
+                "margin": 0.03587683156486465,
+                "distinct_candidates": 4,
+                "fine_translation_step_m": 0.1,
+                "confirmations": 2
+              }
+            }
+          ],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.2,
+              "used_depth": true,
+              "margin": 0.03003175532858582,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 8.5,
+              "used_depth": true,
+              "margin": 0.030027299527779938,
+              "confirmations": 2
+            },
+            {
+              "stamp_s": 11.5,
+              "used_depth": true,
+              "margin": 0.029977022701755174,
+              "confirmations": 3
+            },
+            {
+              "stamp_s": 14.5,
+              "used_depth": true,
+              "margin": 0.015579042275032373,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 17.5,
+              "used_depth": true,
+              "margin": 0.0008518163301409754,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 20.5,
+              "used_depth": true,
+              "margin": 0.001141267587646766,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 23.5,
+              "used_depth": true,
+              "margin": 0.025063445033989384,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 26.5,
+              "used_depth": true,
+              "margin": 0.03587683156486465,
+              "confirmations": 2
+            },
+            {
+              "stamp_s": 29.5,
+              "used_depth": true,
+              "margin": 0.0005108444822190528,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 32.5,
+              "used_depth": true,
+              "margin": 0.00210999536578782,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 35.5,
+              "used_depth": true,
+              "margin": 2.0043158239335668e-05,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 38.5,
+              "used_depth": true,
+              "margin": 0.011919647598356509,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 41.6,
+              "used_depth": true,
+              "margin": 0.02240313743937261,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 44.6,
+              "used_depth": false,
+              "margin": 0.0017697223575254828,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 47.6,
+              "used_depth": true,
+              "margin": 1.618545825288198e-05,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 50.6,
+              "used_depth": false,
+              "margin": 0.00020426926084515795,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 53.6,
+              "used_depth": false,
+              "margin": 0.0004816464395424047,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 56.6,
+              "used_depth": false,
+              "margin": 0.0006332238163310189,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 59.6,
+              "used_depth": true,
+              "margin": 0.000801420409150877,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 8.5,
+            "position_error_m": 0.004266249972166753,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9865043848686883,
+              "margin": 0.030027299527779938,
+              "distinct_candidates": 3,
+              "fine_translation_step_m": 0.1,
+              "confirmations": 2
+            }
+          }
+        },
+        "fine_lidar": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.2,
+              "used_depth": false,
+              "margin": 0.00042525519486869,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 8.5,
+              "used_depth": false,
+              "margin": 0.0005273836448018709,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 11.5,
+              "used_depth": false,
+              "margin": 0.0005273836448018709,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 14.5,
+              "used_depth": false,
+              "margin": 0.000341329893771225,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 17.5,
+              "used_depth": false,
+              "margin": 0.0008306865677651931,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 20.5,
+              "used_depth": false,
+              "margin": 0.0010207477209085436,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 23.5,
+              "used_depth": false,
+              "margin": 0.0008465247823939981,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 26.5,
+              "used_depth": false,
+              "margin": 0.00024098248432014024,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 29.5,
+              "used_depth": false,
+              "margin": 0.0007507790086248578,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 32.5,
+              "used_depth": false,
+              "margin": 0.0012381076557409498,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 35.5,
+              "used_depth": false,
+              "margin": 0.00018283641352756508,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 38.5,
+              "used_depth": false,
+              "margin": 0.0008406821829962663,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 41.6,
+              "used_depth": false,
+              "margin": 0.0004940314469589202,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 44.6,
+              "used_depth": false,
+              "margin": 0.0008167610214706578,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 47.6,
+              "used_depth": false,
+              "margin": 0.00027527849076658395,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 50.6,
+              "used_depth": false,
+              "margin": 0.000431393718943629,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 53.6,
+              "used_depth": false,
+              "margin": 0.0005032232571210438,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 56.6,
+              "used_depth": false,
+              "margin": 0.00012683193624174471,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 59.6,
+              "used_depth": false,
+              "margin": 0.0016057312760177078,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 65.9,
+            "position_error_m": 0.005746206369895326,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9893325554514135,
+              "margin": 0.1839262356334731,
+              "distinct_candidates": 2,
+              "fine_translation_step_m": 0.1,
+              "confirmations": 2
+            }
+          }
+        }
+      },
+      "metrics_3d": {},
+      "metrics": {
+        "coarse_lidar": {
+          "samples": 345,
+          "position_rmse_m": 0.7092560509806504,
+          "yaw_rmse_deg": 0.15401714514605433,
+          "post_warmup_5s_samples": 331,
+          "post_warmup_5s_position_rmse_m": 0.6940149240249335,
+          "position_p95_m": 1.0137106840769154
+        },
+        "coarse_depth": {
+          "samples": 345,
+          "position_rmse_m": 0.2115361912960363,
+          "yaw_rmse_deg": 0.14067488919775528,
+          "post_warmup_5s_samples": 331,
+          "post_warmup_5s_position_rmse_m": 0.13682254807084349,
+          "position_p95_m": 0.21195096851327483
+        },
+        "fine_lidar": {
+          "samples": 345,
+          "position_rmse_m": 0.7092560166947657,
+          "yaw_rmse_deg": 0.15401662132873026,
+          "post_warmup_5s_samples": 331,
+          "post_warmup_5s_position_rmse_m": 0.6940148875040982,
+          "position_p95_m": 1.0137106840769154
+        },
+        "fine_depth": {
+          "samples": 345,
+          "position_rmse_m": 0.1619557377984533,
+          "yaw_rmse_deg": 0.13261611918951074,
+          "post_warmup_5s_samples": 331,
+          "post_warmup_5s_position_rmse_m": 0.006049388020095826,
+          "position_p95_m": 0.01188396072344103
+        }
+      },
+      "initial_sustained_delay_s": {
+        "coarse_lidar": 60.7,
+        "coarse_depth": 55.9,
+        "fine_lidar": 60.7,
+        "fine_depth": 3.3
+      }
+    },
+    {
+      "dimension": "3d",
+      "scene": "corridor",
+      "parent_record": "results/reference/probe-calibrated-3d-corridor/record.json",
+      "child_record": "results/reference/probe-calibrated-refinement-3d-corridor/record.json",
+      "parent_sha256": "9efbb2b42bfdde9e97dce62d00d90ed47a18fd506065308a07a147087534dfb6",
+      "child_sha256": "5212fdbfb203323d71bbfebe6ee10705cbb44a5189dfb315a6bd27363633fd4a",
+      "methods": {
+        "recover": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.7,
+              "used_depth": true,
+              "margin": 0.001191682297737251,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 9.0,
+              "used_depth": true,
+              "margin": 0.0011964548544929343,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 12.0,
+              "used_depth": true,
+              "margin": 0.001196062085239591,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 15.0,
+              "used_depth": true,
+              "margin": 0.0011950261874472679,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 18.1,
+              "used_depth": false,
+              "margin": 0.009769149929930276,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 21.1,
+              "used_depth": false,
+              "margin": 0.0051871944464115805,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 24.1,
+              "used_depth": true,
+              "margin": 0.012065027937966821,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 27.1,
+              "used_depth": true,
+              "margin": 0.0011543486886169685,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 30.1,
+              "used_depth": false,
+              "margin": 0.000425823439329176,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 33.2,
+              "used_depth": true,
+              "margin": 0.0045279316795703295,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 36.2,
+              "used_depth": false,
+              "margin": 0.0033523249531838273,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 39.4,
+              "used_depth": false,
+              "margin": 0.0056254645959871175,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 42.4,
+              "used_depth": false,
+              "margin": 0.0004849479120101474,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 45.4,
+              "used_depth": false,
+              "margin": 0.0027175527195320015,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 48.4,
+              "used_depth": false,
+              "margin": 0.006714433302120626,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 51.4,
+              "used_depth": true,
+              "margin": 0.0014300678962462232,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 54.4,
+              "used_depth": false,
+              "margin": 0.004671029299068374,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 57.4,
+              "used_depth": false,
+              "margin": 0.0033005219128686702,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 60.4,
+              "used_depth": false,
+              "margin": 0.0030980967503483337,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 69.8,
+            "position_error_m": 0.011131746202897884,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9753122890014121,
+              "margin": 0.05833673552338081,
+              "distinct_candidates": 4,
+              "confirmations": 2
+            }
+          }
+        },
+        "fine_depth": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.7,
+              "used_depth": true,
+              "margin": 0.004652103562057919,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 9.0,
+              "used_depth": true,
+              "margin": 0.004652597432029726,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 12.0,
+              "used_depth": true,
+              "margin": 0.004653837882633849,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 15.0,
+              "used_depth": true,
+              "margin": 0.004656017288364733,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 18.1,
+              "used_depth": false,
+              "margin": 0.006580836837980164,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 21.1,
+              "used_depth": false,
+              "margin": 0.00499948334796152,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 24.1,
+              "used_depth": true,
+              "margin": 0.0010659438189726256,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 27.1,
+              "used_depth": true,
+              "margin": 0.0005994393308514923,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 30.1,
+              "used_depth": false,
+              "margin": 0.001002888394756818,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 33.2,
+              "used_depth": true,
+              "margin": 0.004073405204409131,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 36.2,
+              "used_depth": false,
+              "margin": 0.003348884514616568,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 39.4,
+              "used_depth": false,
+              "margin": 0.0047942911068878935,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 42.4,
+              "used_depth": false,
+              "margin": 0.002741177544753892,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 45.4,
+              "used_depth": false,
+              "margin": 0.0035273156672377404,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 48.4,
+              "used_depth": false,
+              "margin": 0.004695494042909143,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 51.4,
+              "used_depth": true,
+              "margin": 0.002198268836959283,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 54.4,
+              "used_depth": false,
+              "margin": 0.00048438588611976474,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 57.4,
+              "used_depth": false,
+              "margin": 0.0038160196492509346,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 60.4,
+              "used_depth": false,
+              "margin": 0.003166185733667004,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 66.7,
+            "position_error_m": 0.01360794899973526,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9730057736477008,
+              "margin": 0.09349302721634234,
+              "distinct_candidates": 2,
+              "fine_translation_step_m": 0.1,
+              "confirmations": 2
+            }
+          }
+        },
+        "fine_lidar": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.7,
+              "used_depth": false,
+              "margin": 0.006066739191417758,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 9.0,
+              "used_depth": false,
+              "margin": 0.006205703293190035,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 12.0,
+              "used_depth": false,
+              "margin": 0.0062057032931894796,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 15.0,
+              "used_depth": false,
+              "margin": 0.0062057032931894796,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 18.1,
+              "used_depth": false,
+              "margin": 0.006768694668507269,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 21.1,
+              "used_depth": false,
+              "margin": 0.005117638397322488,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 24.1,
+              "used_depth": false,
+              "margin": 0.0022122707804729247,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 27.1,
+              "used_depth": false,
+              "margin": 0.0023795109054942643,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 30.1,
+              "used_depth": false,
+              "margin": 0.0012350020664974037,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 33.2,
+              "used_depth": false,
+              "margin": 0.003827614770622101,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 36.2,
+              "used_depth": false,
+              "margin": 0.003264411049487159,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 39.4,
+              "used_depth": false,
+              "margin": 0.004352396614164422,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 42.4,
+              "used_depth": false,
+              "margin": 0.002980509110780183,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 45.4,
+              "used_depth": false,
+              "margin": 0.003672984360142073,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 48.4,
+              "used_depth": false,
+              "margin": 0.0047610579309164125,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 51.4,
+              "used_depth": false,
+              "margin": 0.005606860291109239,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 54.4,
+              "used_depth": false,
+              "margin": 0.0006922099060199249,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 57.4,
+              "used_depth": false,
+              "margin": 0.0038246476783245775,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 60.4,
+              "used_depth": false,
+              "margin": 0.0028791541348263117,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 66.7,
+            "position_error_m": 0.014019877587848412,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9731251413406409,
+              "margin": 0.09371625472990563,
+              "distinct_candidates": 2,
+              "fine_translation_step_m": 0.1,
+              "confirmations": 2
+            }
+          }
+        }
+      },
+      "metrics_3d": {
+        "coarse_lidar": {
+          "samples": 247,
+          "xyz_rmse_m": 0.567700962506814,
+          "z_rmse_m": 3.685689362796019e-07,
+          "rotation_rmse_deg": 0.09777296201300492,
+          "xyz_p95_m": 1.0071624897218021,
+          "post_warmup_5s_xyz_rmse_m": 0.5474717001468107
+        },
+        "coarse_depth": {
+          "samples": 247,
+          "xyz_rmse_m": 0.5755872862183937,
+          "z_rmse_m": 3.685689362796019e-07,
+          "rotation_rmse_deg": 0.09392809089404933,
+          "xyz_p95_m": 1.0084692419042383,
+          "post_warmup_5s_xyz_rmse_m": 0.5558358179145643
+        },
+        "fine_lidar": {
+          "samples": 247,
+          "xyz_rmse_m": 0.5677012571919372,
+          "z_rmse_m": 3.685689362796019e-07,
+          "rotation_rmse_deg": 0.09777958522481628,
+          "xyz_p95_m": 1.0071624897218021,
+          "post_warmup_5s_xyz_rmse_m": 0.5474720159490515
+        },
+        "fine_depth": {
+          "samples": 247,
+          "xyz_rmse_m": 0.5684254694994546,
+          "z_rmse_m": 3.685689362796019e-07,
+          "rotation_rmse_deg": 0.09433831643255798,
+          "xyz_p95_m": 1.0084692419042383,
+          "post_warmup_5s_xyz_rmse_m": 0.5481660305963438
+        }
+      },
+      "metrics": {
+        "coarse_lidar": {
+          "samples": 247,
+          "position_rmse_m": 0.5677009625066944,
+          "yaw_rmse_deg": 0.09777280264998563,
+          "post_warmup_5s_samples": 239,
+          "post_warmup_5s_position_rmse_m": 0.5474717001467032,
+          "position_p95_m": 1.0071624897218021
+        },
+        "coarse_depth": {
+          "samples": 247,
+          "position_rmse_m": 0.5755872862182758,
+          "yaw_rmse_deg": 0.09392792500723987,
+          "post_warmup_5s_samples": 239,
+          "post_warmup_5s_position_rmse_m": 0.5558358179144586,
+          "position_p95_m": 1.0084692419042383
+        },
+        "fine_lidar": {
+          "samples": 247,
+          "position_rmse_m": 0.5677012571918176,
+          "yaw_rmse_deg": 0.09777942587238381,
+          "post_warmup_5s_samples": 239,
+          "post_warmup_5s_position_rmse_m": 0.5474720159489441,
+          "position_p95_m": 1.0071624897218021
+        },
+        "fine_depth": {
+          "samples": 247,
+          "position_rmse_m": 0.5684254694993351,
+          "yaw_rmse_deg": 0.09433815126755468,
+          "post_warmup_5s_samples": 239,
+          "post_warmup_5s_position_rmse_m": 0.5481660305962367,
+          "position_p95_m": 1.0084692419042383
+        }
+      },
+      "initial_sustained_delay_s": {
+        "coarse_lidar": 63.7,
+        "coarse_depth": 64.1,
+        "fine_lidar": 63.7,
+        "fine_depth": 63.7
+      }
+    },
+    {
+      "dimension": "3d",
+      "scene": "height-corridor",
+      "parent_record": "results/reference/probe-calibrated-3d-height-corridor/record.json",
+      "child_record": "results/reference/probe-calibrated-refinement-3d-height-corridor/record.json",
+      "parent_sha256": "08c4d921f7455c7a0be2fcfa8fee93d912854d618207d7c710983f89fda23f49",
+      "child_sha256": "2452101985882acdc8320931d44fa8081db210462bedc32e1a46540b31f250fc",
+      "methods": {
+        "recover": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [
+            {
+              "stamp_s": 11.8,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9662834486781615,
+                "margin": 0.04491662071903568,
+                "distinct_candidates": 4,
+                "confirmations": 1
+              }
+            },
+            {
+              "stamp_s": 57.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9600982310026798,
+                "margin": 0.038648165472618956,
+                "distinct_candidates": 4,
+                "confirmations": 1
+              }
+            }
+          ],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.6,
+              "used_depth": false,
+              "margin": 0.003961682295456681,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 8.8,
+              "used_depth": false,
+              "margin": 0.0035657017968071525,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 11.8,
+              "used_depth": true,
+              "margin": 0.04491662071903568,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 14.8,
+              "used_depth": false,
+              "margin": 0.003882877205134916,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 17.8,
+              "used_depth": true,
+              "margin": 0.0035401804216818045,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 20.8,
+              "used_depth": false,
+              "margin": 0.0008627136856010909,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 23.8,
+              "used_depth": true,
+              "margin": 0.004852533451535579,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 26.8,
+              "used_depth": false,
+              "margin": 0.0033789911295153408,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 29.8,
+              "used_depth": false,
+              "margin": 0.0006041595826200563,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 32.9,
+              "used_depth": false,
+              "margin": 0.0036512940733368637,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 36.0,
+              "used_depth": false,
+              "margin": 0.0017365294857150104,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 39.0,
+              "used_depth": true,
+              "margin": 0.0012120806084688907,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 42.0,
+              "used_depth": true,
+              "margin": 0.023609414492437253,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 45.0,
+              "used_depth": false,
+              "margin": 0.0023953187689069733,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 48.1,
+              "used_depth": true,
+              "margin": 0.004278988376610782,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 51.1,
+              "used_depth": false,
+              "margin": 0.00021849385479699723,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 54.5,
+              "used_depth": false,
+              "margin": 0.003962710662768321,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 57.5,
+              "used_depth": true,
+              "margin": 0.038648165472618956,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 60.9,
+              "used_depth": false,
+              "margin": 0.004842092211005511,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 74.7,
+            "position_error_m": 0.20348544929373683,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9386617334051068,
+              "margin": 0.05152725333670394,
+              "distinct_candidates": 4,
+              "confirmations": 2
+            }
+          }
+        },
+        "fine_depth": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [
+            {
+              "stamp_s": 11.8,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.9843825317690869,
+                "margin": 0.03428001028503136,
+                "distinct_candidates": 4,
+                "fine_translation_step_m": 0.1,
+                "confirmations": 1
+              }
+            },
+            {
+              "stamp_s": 57.5,
+              "used_depth": true,
+              "search": {
+                "accepted_geometry": true,
+                "best_score": 0.970742221933178,
+                "margin": 0.03201105013674199,
+                "distinct_candidates": 3,
+                "fine_translation_step_m": 0.1,
+                "confirmations": 1
+              }
+            }
+          ],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.6,
+              "used_depth": false,
+              "margin": 0.005551236053735753,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 8.8,
+              "used_depth": false,
+              "margin": 0.006341626663088129,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 11.8,
+              "used_depth": true,
+              "margin": 0.03428001028503136,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 14.8,
+              "used_depth": false,
+              "margin": 0.004703309428386815,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 17.8,
+              "used_depth": true,
+              "margin": 0.004508619652055179,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 20.8,
+              "used_depth": false,
+              "margin": 0.0016744614680308523,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 23.8,
+              "used_depth": true,
+              "margin": 0.0030740723914146617,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 26.8,
+              "used_depth": false,
+              "margin": 0.0014377889983865355,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 29.8,
+              "used_depth": false,
+              "margin": 0.004879351570061807,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 32.9,
+              "used_depth": false,
+              "margin": 0.004289626449133888,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 36.0,
+              "used_depth": false,
+              "margin": 0.005240668743891619,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 39.0,
+              "used_depth": true,
+              "margin": 0.0012487440440598352,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 42.0,
+              "used_depth": true,
+              "margin": 0.01607793508791089,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 45.0,
+              "used_depth": false,
+              "margin": 0.003885303337074708,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 48.1,
+              "used_depth": true,
+              "margin": 0.004247733643348628,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 51.1,
+              "used_depth": false,
+              "margin": 0.0018352094328809576,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 54.5,
+              "used_depth": false,
+              "margin": 0.0007061393058117593,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 57.5,
+              "used_depth": true,
+              "margin": 0.03201105013674199,
+              "confirmations": 1
+            },
+            {
+              "stamp_s": 60.9,
+              "used_depth": false,
+              "margin": 0.002141658742922603,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 67.6,
+            "position_error_m": 0.006879924901985956,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.9694996157201698,
+              "margin": 0.05378143669115798,
+              "distinct_candidates": 4,
+              "fine_translation_step_m": 0.1,
+              "confirmations": 2
+            }
+          }
+        },
+        "fine_lidar": {
+          "limited_searches": 19,
+          "limited_geometry_passes": [],
+          "limited_search_sequence": [
+            {
+              "stamp_s": 5.6,
+              "used_depth": false,
+              "margin": 0.005551236053735753,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 8.8,
+              "used_depth": false,
+              "margin": 0.006341424488041647,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 11.8,
+              "used_depth": false,
+              "margin": 0.006341424488046088,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 14.8,
+              "used_depth": false,
+              "margin": 0.004701569973736386,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 17.8,
+              "used_depth": false,
+              "margin": 0.007227515314932709,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 20.8,
+              "used_depth": false,
+              "margin": 0.0016373388921331333,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 23.8,
+              "used_depth": false,
+              "margin": 0.0011180737258064122,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 26.8,
+              "used_depth": false,
+              "margin": 0.001448093349099011,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 29.8,
+              "used_depth": false,
+              "margin": 0.004856358031371633,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 32.9,
+              "used_depth": false,
+              "margin": 0.0043296514286534915,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 36.0,
+              "used_depth": false,
+              "margin": 0.0052707997689526165,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 39.0,
+              "used_depth": false,
+              "margin": 0.003795221512423952,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 42.0,
+              "used_depth": false,
+              "margin": 0.0032115484748297396,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 45.0,
+              "used_depth": false,
+              "margin": 0.003911388095948931,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 48.1,
+              "used_depth": false,
+              "margin": 0.002802014678970788,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 51.1,
+              "used_depth": false,
+              "margin": 0.0018066924817654595,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 54.5,
+              "used_depth": false,
+              "margin": 0.0007271415772572842,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 57.5,
+              "used_depth": false,
+              "margin": 0.0011050957723713895,
+              "confirmations": 0
+            },
+            {
+              "stamp_s": 60.9,
+              "used_depth": false,
+              "margin": 0.0021630294720834664,
+              "confirmations": 0
+            }
+          ],
+          "first_accepted_candidate": {
+            "stamp_s": 67.6,
+            "position_error_m": 0.008591313815138838,
+            "search": {
+              "accepted_geometry": true,
+              "best_score": 0.974352529179559,
+              "margin": 0.11131132227787355,
+              "distinct_candidates": 3,
+              "fine_translation_step_m": 0.1,
+              "confirmations": 2
+            }
+          }
+        }
+      },
+      "metrics_3d": {
+        "coarse_lidar": {
+          "samples": 203,
+          "xyz_rmse_m": 0.4770404819748701,
+          "z_rmse_m": 3.4991014858272404e-07,
+          "rotation_rmse_deg": 0.11743288422391246,
+          "xyz_p95_m": 1.0045666772937418,
+          "post_warmup_5s_xyz_rmse_m": 0.44746940219716963
+        },
+        "coarse_depth": {
+          "samples": 203,
+          "xyz_rmse_m": 0.507863616511348,
+          "z_rmse_m": 3.4991014858272404e-07,
+          "rotation_rmse_deg": 0.11575252060087256,
+          "xyz_p95_m": 1.005492690690474,
+          "post_warmup_5s_xyz_rmse_m": 0.48132210997624847
+        },
+        "fine_lidar": {
+          "samples": 203,
+          "xyz_rmse_m": 0.47704001224365117,
+          "z_rmse_m": 3.4991014858272404e-07,
+          "rotation_rmse_deg": 0.11743493541369894,
+          "xyz_p95_m": 1.0045666772937418,
+          "post_warmup_5s_xyz_rmse_m": 0.4474688835388835
+        },
+        "fine_depth": {
+          "samples": 203,
+          "xyz_rmse_m": 0.4770961994996582,
+          "z_rmse_m": 3.4991014858272404e-07,
+          "rotation_rmse_deg": 0.11571576832398174,
+          "xyz_p95_m": 1.004712924392902,
+          "post_warmup_5s_xyz_rmse_m": 0.44753099840304705
+        }
+      },
+      "metrics": {
+        "coarse_lidar": {
+          "samples": 203,
+          "position_rmse_m": 0.47704048197474175,
+          "yaw_rmse_deg": 0.11743276668907567,
+          "post_warmup_5s_samples": 196,
+          "post_warmup_5s_position_rmse_m": 0.4474694021970552,
+          "position_p95_m": 1.0045666772937416
+        },
+        "coarse_depth": {
+          "samples": 203,
+          "position_rmse_m": 0.5078636165112276,
+          "yaw_rmse_deg": 0.11575240135867088,
+          "post_warmup_5s_samples": 196,
+          "post_warmup_5s_position_rmse_m": 0.481322109976142,
+          "position_p95_m": 1.005492690690474
+        },
+        "fine_lidar": {
+          "samples": 203,
+          "position_rmse_m": 0.4770400122435229,
+          "yaw_rmse_deg": 0.11743481788091352,
+          "post_warmup_5s_samples": 196,
+          "post_warmup_5s_position_rmse_m": 0.44746888353876907,
+          "position_p95_m": 1.0045666772937416
+        },
+        "fine_depth": {
+          "samples": 203,
+          "position_rmse_m": 0.47709619949952986,
+          "yaw_rmse_deg": 0.11571564904389366,
+          "post_warmup_5s_samples": 196,
+          "post_warmup_5s_position_rmse_m": 0.4475309984029326,
+          "position_p95_m": 1.004712924392902
+        }
+      },
+      "initial_sustained_delay_s": {
+        "coarse_lidar": 66.10000000000001,
+        "coarse_depth": 70.2,
+        "fine_lidar": 66.10000000000001,
+        "fine_depth": 66.10000000000001
+      }
+    }
+  ]
+}

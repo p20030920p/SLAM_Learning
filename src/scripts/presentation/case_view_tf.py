@@ -59,7 +59,7 @@ class Views:
         c, s = math.cos(angle), math.sin(angle)
         self.transforms[case] = (pose.position.x-c*odom.position.x+s*odom.position.y,
                                  pose.position.y-s*odom.position.x-c*odom.position.y, angle)
-        if self.specs[case].get("dimension") == "3d":
+        if self.specs[case].get("dimension") == "3d" or self.specs[case].get("full_pose_display_tf"):
             def transform(value):
                 p, q = value.position, value.orientation
                 result = np.eye(4)
@@ -85,7 +85,7 @@ class Views:
             transform = TransformStamped()
             transform.header.frame_id, transform.child_frame_id = "map", "odom"
             transform.header.stamp = self.node.get_clock().now().to_msg()
-            if self.specs[case].get("dimension") == "3d":
+            if self.specs[case].get("dimension") == "3d" or self.specs[case].get("full_pose_display_tf"):
                 xyz, q = alignment
                 transform.transform.translation.x, transform.transform.translation.y, transform.transform.translation.z = map(float, xyz)
                 transform.transform.rotation.x, transform.transform.rotation.y, transform.transform.rotation.z, transform.transform.rotation.w = map(float, q)

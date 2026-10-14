@@ -1,16 +1,21 @@
 ﻿param(
- [ValidateSet('static','dynamic','large-change','degradation')][string]$Scene='static',
+ [ValidateSet('static','dynamic','large-change','degradation','height-corridor')][string]$Scene='static',
  [ValidateSet('2D','3D')][string]$Dimension='2D',
  [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
  [string]$PresentationRoot='F:\be2演讲',
  [double]$Duration=90,
+ [switch]$Hypotheses,
+ [switch]$Calibrated,
  [switch]$Keyboard
 )
 $ErrorActionPreference='Stop'
 $flow='localization-'+$Scene
 if($Dimension -eq '3D'){$flow='localization-3d-'+$Scene}
+if($Hypotheses){$flow='localization-probe-'+$Dimension.ToLower()+'-'+$Scene}
+if($Hypotheses -and $Calibrated){$flow='localization-probe-calibrated-'+$Dimension.ToLower()+'-'+$Scene}
 $id=(Get-Date -Format 'yyyyMMdd-HHmmss')+'-'+$flow+'-method-live-'+([guid]::NewGuid().ToString('N').Substring(0,6))
 $run=Join-Path $RepoRoot ('results\runs\presentation\'+$id)
+if($Hypotheses -and $Calibrated){$run=Join-Path $PresentationRoot ('原始会话\hypotheses-calibrated\'+$id)}
 New-Item -ItemType Directory -Path (Join-Path $run 'executions') -Force | Out-Null
 $rw='/mnt/'+$run.Substring(0,1).ToLower()+'/'+$run.Substring(3).Replace('\','/')
 $rootw='/mnt/'+$RepoRoot.Substring(0,1).ToLower()+'/'+$RepoRoot.Substring(3).Replace('\','/')
@@ -23,7 +28,7 @@ while(-not (Test-Path "$run/ready.json") -or -not (Test-Path "$run/views-ready.j
  if((Get-Date)-gt $deadline){[IO.File]::WriteAllText("$run/STOP",'Views did not become ready');throw "Three live RViz views not ready: $run"}
  Start-Sleep -Milliseconds 500
 }
-$views=Get-Content "$run/views.json" -Raw | ConvertFrom-Json
+$views=Get-Content "$run/views.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $captures=@()
 try{
  foreach($item in $views.PSObject.Properties){
@@ -60,8 +65,9 @@ try{
  [IO.File]::WriteAllText("$run/recording.stopped",(Get-Date -Format o))
 }
 $dest=Join-Path $PresentationRoot ('屏幕实录\20261014-native-ui\'+$Dimension)
+if($Hypotheses){$dest=Join-Path $PresentationRoot ('屏幕实录\20261015-hypotheses\'+$Dimension)}
 New-Item -ItemType Directory -Path $dest -Force | Out-Null
-$sceneLabel=@{static='S1-纯静态';dynamic='S2-运动障碍物';'large-change'='S3-持久变化';degradation='S4-走廊退化'}[$Scene]
+$sceneLabel=@{static='S1-纯静态';dynamic='S2-运动障碍物';'large-change'='S3-持久变化';degradation='S4-走廊退化';'height-corridor'='S5-新增高处标志_派生对照'}[$Scene]
 $manifest=@()
 foreach($c in $captures){
  if($c.process.ExitCode -ne 0){throw "Capture failed: $($c.case)"}
@@ -69,19 +75,23 @@ foreach($c in $captures){
  & ffprobe.exe -v error -show_entries format=duration,size -show_entries stream=width,height,nb_frames,r_frame_rate -of json $video | Set-Content "$run/executions/$($c.case)-probe.json" -Encoding utf8
  $estimator=if($Dimension -eq '3D'){'GICP'}else{'AMCL'}
  $name=$sceneLabel+'__'+$Dimension+'__B-定位__'+$c.case+'-map_'+$estimator+'_独立RViz实时__'+$id.Substring(0,15)+'-'+$id.Substring($id.Length-6)+'.mp4'
+ if($Hypotheses){$name=$sceneLabel+'__'+$Dimension+'__假设实验_六组实时对照__'+$id.Substring(0,15)+'-'+$id.Substring($id.Length-6)+'.mp4'}
  Copy-Item -LiteralPath $video -Destination (Join-Path $dest $name)
  $manifest+=@{case=$c.case;window_title=$c.title;map_topic=$c.map_topic;pose_topic=$c.pose_topic;tf_topic=$c.tf_topic;video='executions/'+$c.case+'.mp4';mirror_file=$name;sha256=(Get-FileHash -LiteralPath $video -Algorithm SHA256).Hash.ToLower()}
 }
 Copy-Item -LiteralPath "$run/executions/$($captures[0].case).mp4" -Destination "$run/execution.mp4"
-[IO.File]::WriteAllText("$run/native-views.json",(ConvertTo-Json -InputObject $manifest -Depth 8))
+$viewManifest=if($Hypotheses){'comparison-views.json'}else{'native-views.json'}
+[IO.File]::WriteAllText("$run/$viewManifest",(ConvertTo-Json -InputObject $manifest -Depth 8))
 $stopDeadline=(Get-Date).AddSeconds(15)
 while(-not (Test-Path "$run/session-stopped.json")){
  if((Get-Date)-gt $stopDeadline){throw "Native shutdown did not finish: $run"}
  Start-Sleep -Milliseconds 100
 }
 if(-not (Test-Path "$run/truth.jsonl")){throw "Independent truth was not finalized: $run"}
-[IO.File]::WriteAllText((Join-Path $RepoRoot ".cache/presentation/method-live-$Dimension-$Scene-latest.json"),(@{path=$run;flow=$flow;run_id=$id}|ConvertTo-Json))
-if($Dimension -eq '2D'){
+$markerPrefix=if($Hypotheses){'probe-live'}else{'method-live'}
+if($Hypotheses -and $Calibrated){$markerPrefix='probe-calibrated-live'}
+[IO.File]::WriteAllText((Join-Path $RepoRoot ".cache/presentation/$markerPrefix-$Dimension-$Scene-latest.json"),(@{path=$run;flow=$flow;run_id=$id}|ConvertTo-Json))
+if($Dimension -eq '2D' -and -not $Hypotheses){
  [IO.File]::WriteAllText((Join-Path $RepoRoot ".cache/presentation/method-live-$Scene-latest.json"),(@{path=$run;flow=$flow;run_id=$id}|ConvertTo-Json))
 }
 Write-Host "COMPLETE: $run"

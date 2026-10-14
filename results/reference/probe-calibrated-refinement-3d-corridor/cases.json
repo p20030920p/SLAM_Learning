@@ -1,0 +1,70 @@
+{
+  "coarse_lidar": {
+    "dimension": "3d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005045-mapping-probe-corridor-e4f0aa/probe-maps/lidar3d/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "yaw": 0.12,
+      "z": 0.0941399881739558
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005045-mapping-probe-corridor-e4f0aa/probe-maps/lidar3d/map-3d.pcd",
+    "method": "search",
+    "localizer": "coarse lidar SE2 probe",
+    "pose_topic": "/search/probe_pose"
+  },
+  "coarse_depth": {
+    "dimension": "3d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005045-mapping-probe-corridor-e4f0aa/probe-maps/lidar3d/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "yaw": 0.12,
+      "z": 0.0941399881739558
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005045-mapping-probe-corridor-e4f0aa/probe-maps/lidar3d/map-3d.pcd",
+    "method": "recover",
+    "localizer": "coarse depth SE2 probe",
+    "pose_topic": "/recover/probe_pose"
+  },
+  "fine_lidar": {
+    "dimension": "3d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005045-mapping-probe-corridor-e4f0aa/probe-maps/lidar3d/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "yaw": 0.12,
+      "z": 0.0941399881739558
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005045-mapping-probe-corridor-e4f0aa/probe-maps/lidar3d/map-3d.pcd",
+    "method": "search",
+    "localizer": "fine lidar SE2 probe",
+    "pose_topic": "/search/probe_pose"
+  },
+  "fine_depth": {
+    "dimension": "3d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005045-mapping-probe-corridor-e4f0aa/probe-maps/lidar3d/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "yaw": 0.12,
+      "z": 0.0941399881739558
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005045-mapping-probe-corridor-e4f0aa/probe-maps/lidar3d/map-3d.pcd",
+    "method": "recover",
+    "localizer": "fine depth SE2 probe",
+    "pose_topic": "/recover/probe_pose"
+  }
+}

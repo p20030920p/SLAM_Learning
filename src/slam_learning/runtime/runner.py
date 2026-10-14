@@ -126,6 +126,9 @@ def run_method(root: Path, method: str, frames: int = 0, timeout: float = 3600) 
 
 def verify_record(path: Path, full: bool = False) -> list[str]:
     record = json.loads(path.read_text(encoding="utf-8"))
+    if record.get("kind") == "probe_mapping_A" and "schema_version" not in record:
+        from slam_learning.runtime.probe_evidence import verify_probe_map_manifest
+        return verify_probe_map_manifest(path, record)
     errors = []
     if record.get("schema_version") != 1:
         errors.append("Unsupported schema")
@@ -134,9 +137,15 @@ def verify_record(path: Path, full: bool = False) -> list[str]:
     if record.get("status") == "executed" and record.get("kind") == "native_desktop_localization":
         from slam_learning.runtime.presentation_evidence import verify_presentation
         errors.extend(verify_presentation(path, record))
+        if record.get("hypothesis_probes"):
+            from slam_learning.runtime.probe_evidence import verify_probe
+            errors.extend(verify_probe(path, record))
     if record.get("status") == "executed" and record.get("kind") == "native_map_point_audit":
         from slam_learning.runtime.map_point_audit import verify_map_point_audit
         errors.extend(verify_map_point_audit(path, record))
+    if record.get("status") == "executed" and record.get("kind") == "offline_hypothesis_refinement":
+        from slam_learning.runtime.refinement_evidence import verify_refinement
+        errors.extend(verify_refinement(path, record))
     if record.get("status") == "executed" and record.get("kind") == "native_case_replay":
         from slam_learning.runtime.presentation_evidence import verify_case_replay
         errors.extend(verify_case_replay(path, record))

@@ -1,0 +1,65 @@
+{
+  "dimension": "2d",
+  "maps": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps",
+  "lidar_map": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar2d/points.npy",
+  "depth_map": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/depth.npy",
+  "parameters": {
+    "map_voxel_m": 0.06,
+    "scan_voxel_m": 0.08,
+    "scan_period_s": 0.3,
+    "maximum_points_per_sensor": 850,
+    "normal_neighbors": 12,
+    "maximum_iterations": 12,
+    "plain_correspondence_m": 1.0,
+    "guard_correspondence_m": 0.5,
+    "huber_m": 0.08,
+    "weak_eigenvalue_ratio": 0.02,
+    "odom_regularizer": 0.003,
+    "search_translation_radius_m": 2.0,
+    "search_translation_step_m": 0.4,
+    "search_yaw_radius_deg": 30,
+    "search_yaw_step_deg": 10,
+    "search_period_s": 3.0,
+    "search_min_score": 0.65,
+    "search_distinct_margin": 0.025,
+    "search_confirmations": 2,
+    "search_consistency_translation_m": 0.25,
+    "search_consistency_yaw_deg": 8
+  },
+  "scan_topic": "/scan",
+  "cloud_topic": "/points",
+  "truth_input_to_localizers": false,
+  "pose_dof": "x/y/yaw; z=roll=pitch=0",
+  "mapping_A_record_sha256": "4d4fdca32d9f2df8072a31c9435e46f128094f0c5caa8f2b994bd4a72bd89188",
+  "variants": {
+    "plain": {
+      "guarded": false,
+      "depth": false,
+      "recovery": false
+    },
+    "guard": {
+      "guarded": true,
+      "depth": false,
+      "recovery": false
+    },
+    "depth": {
+      "guarded": true,
+      "depth": true,
+      "recovery": false
+    },
+    "search": {
+      "guarded": true,
+      "depth": false,
+      "recovery": true
+    },
+    "recover": {
+      "guarded": true,
+      "depth": true,
+      "recovery": true
+    }
+  },
+  "source_sha256": {
+    "recovery_probe.py": "049942c665bf625f9e3c2b245ed28ad885a3a1a88355a3f88ce606469ba81eda",
+    "probe_localizer.py": "3669267f4e72c380cd345812ae632702244eb2fe67c14be74f342e18b92b2f47"
+  }
+}

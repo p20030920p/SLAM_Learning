@@ -1,0 +1,13 @@
+{
+  "recover": {
+    "method": "comparison",
+    "dimension": "2d",
+    "title": "SLAM LIVE - probe 2D - RViz2",
+    "config": "view-recover.rviz",
+    "map_topic": "/recover/map",
+    "pose_topic": "/recover/probe_pose",
+    "tf_topic": "/recover/view/tf",
+    "scan_topic": "/depth/points",
+    "display_scope": "six labelled paths/poses; live depth aligned by recover estimate; no truth displayed"
+  }
+}

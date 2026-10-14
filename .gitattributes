@@ -16,5 +16,7 @@ config/presentation/worlds/** -text whitespace=-blank-at-eol
 # Native configuration/stdout bytes are hash-bound, including trailing empty lines.
 results/reference/robot-*/** whitespace=-blank-at-eol,-blank-at-eof
 results/reference/desktop-*/** whitespace=-blank-at-eol,-blank-at-eof
+results/reference/probe-*/** whitespace=-blank-at-eol,-blank-at-eof
+results/analysis/hypotheses/** -text whitespace=-blank-at-eol,-blank-at-eof
 # Preserve the hash-bound native mapper console, including author whitespace.
 results/analysis/map-2d-3d/baseline-native-mappers.log -text whitespace=-blank-at-eol,-blank-at-eof

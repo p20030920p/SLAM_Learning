@@ -1,0 +1,75 @@
+{
+  "kind": "live_native_ui_session",
+  "status": "completed",
+  "failure": null,
+  "mode": "localization",
+  "points_received": 0,
+  "scans_received": 966,
+  "mapping_frames": 0,
+  "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
+  "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
+  "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
+  "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
+  "cases": {
+    "plain": {
+      "samples": 265,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.00366217488977997,
+      "yaw_rmse_deg": 0.08495768634370157,
+      "post_warmup_5s_samples": 251,
+      "post_warmup_5s_position_rmse_m": 0.0037624552529668008,
+      "position_p95_m": 0.007822480577226393
+    },
+    "guard": {
+      "samples": 265,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.00185646994433205,
+      "yaw_rmse_deg": 0.07735399078081726,
+      "post_warmup_5s_samples": 251,
+      "post_warmup_5s_position_rmse_m": 0.0019047283503721328,
+      "position_p95_m": 0.0039553540885474
+    },
+    "depth": {
+      "samples": 265,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.0017881272467705773,
+      "yaw_rmse_deg": 0.07529798737619957,
+      "post_warmup_5s_samples": 251,
+      "post_warmup_5s_position_rmse_m": 0.0018344404422065469,
+      "position_p95_m": 0.003435790193245226
+    },
+    "search": {
+      "samples": 265,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.00185646994433205,
+      "yaw_rmse_deg": 0.07735399078081726,
+      "post_warmup_5s_samples": 251,
+      "post_warmup_5s_position_rmse_m": 0.0019047283503721328,
+      "position_p95_m": 0.0039553540885474
+    },
+    "recover": {
+      "samples": 265,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.0017881244220584616,
+      "yaw_rmse_deg": 0.07529797433702086,
+      "post_warmup_5s_samples": 251,
+      "post_warmup_5s_position_rmse_m": 0.0018344404422065469,
+      "position_p95_m": 0.003435790193245226
+    },
+    "native": {
+      "samples": 292,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.07076874032403105,
+      "yaw_rmse_deg": 1.154859306764223,
+      "post_warmup_5s_samples": 291,
+      "post_warmup_5s_position_rmse_m": 0.06879919146790524,
+      "position_p95_m": 0.09685113940050209
+    }
+  },
+  "observed_map": {
+    "width": 181,
+    "height": 321,
+    "resolution_m": 0.05000000074505806,
+    "known_cells": 23310
+  }
+}

@@ -207,7 +207,7 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | 持久结构变化 | [查看录像](#scene-change-2d) | [查看录像](#scene-change-3d) |
 | 走廊退化 | [查看录像](#scene-corridor-2d) | [查看录像](#scene-corridor-3d) |
 
-[三维地图清理结果](#map-review-3d)
+[三维地图清理结果](#map-review-3d) · [开放问题：假设与新实验](#hypothesis-experiments)
 
 **不同地图下的定位误差。**2D使用AMCL，报XY RMSE；3D直接使用三维点云地图和同一原库GICP，报XYZ RMSE，单位均为cm。包含全部原生已发布输出；单次结果不构成稳定排名。三维建图使用给定位姿融合与清理，真值不进入定位器。
 
@@ -713,3 +713,358 @@ Raw与DUFOMap三维图字节相同却得到不同结果；有效输出覆盖不�
 ![S4 new corridor · limited → restored AMCL](../results/reference/robot-corridor-v2/executions/degraded_raw.gif)
 
 [MP4](../results/reference/robot-corridor-v2/executions/degraded_raw.mp4) · [record](../results/reference/robot-corridor-v2/record.json)
+
+<a id="hypothesis-experiments"></a>
+
+## 开放问题：假设与简单实验
+
+根据此前录像，先提出三个方向，再做对应实验：
+
+- **H1 · 退化保护：**抑制不一致匹配，弱约束方向减少激光修正，保留轮式里程计预测。
+- **H2 · 深度补充：**用二维雷达＋深度相机补充可见的高度结构，并用三维雷达做对应对照。
+- **H3 · 搜索与确认：**搜索多个附近位置，只有候选足够独特、连续两次与里程计运动一致时才接受。
+
+这是自写的地面机器人小原型。二维组没有三维雷达；三维组使用XYZ观测、约束x/y/yaw运动。建图A给定位姿，地图冻结，定位B不读取真值。保留四个原场景，另将增加两块高处几何的场景单独标为派生对照。理想仿真单轮结果不构成稳定排名。
+
+[固定假设、对照与结果解释](testing/HYPOTHESES.zh-CN.md) · [实验视频目录](../demo/hypotheses.html) · [一键脚本](../demo/README.md#开放问题假设与简单实验)
+
+<!-- PROBE_APPENDIX_RESULTS -->
+
+<a id="hypothesis-experiment-index"></a>
+
+| 场景 | 2D＋深度 | 3D＋深度 |
+| --- | --- | --- |
+| 纯静态 | [查看实验](#probe-calibrated-2d-static) | [查看实验](#probe-calibrated-3d-static) |
+| 运动障碍物 | [查看实验](#probe-calibrated-2d-dynamic) | [查看实验](#probe-calibrated-3d-dynamic) |
+| 持久结构变化 | [查看实验](#probe-calibrated-2d-large-change) | [查看实验](#probe-calibrated-3d-large-change) |
+| 原走廊退化 | [查看实验](#probe-calibrated-2d-corridor) | [查看实验](#probe-calibrated-3d-corridor) |
+| 高处标志 · 派生对照 | [查看实验](#probe-calibrated-2d-height-corridor) | [查看实验](#probe-calibrated-3d-height-corridor) |
+
+[粗到细补充实验](#probe-refinement-index)
+
+[结果解释与后续方向](#hypothesis-findings)
+
+本轮固定同源Raw图，五个原型严格共享已配对输入。红Plain、黄Guard、橙Depth、紫雷达搜索、绿深度＋搜索、蓝原生AMCL／GICP。二维报XY，三维报XYZ；单轮结果不构成稳定排名。
+
+### 2D · 真实窗口实验
+
+<a id="probe-calibrated-2d-static"></a>
+
+#### 纯静态 · 2D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + AMCL | 同源二维栅格投影图 | XY RMSE 6.82 cm |
+| Plain ICP | 二维雷达点图 | XY RMSE 0.15 cm |
+| H1 · Guard | 二维雷达点图 | XY RMSE 0.15 cm；接近Plain |
+| H2 · Guard＋Depth | 二维雷达点图＋深度点图 | XY RMSE 0.21 cm；较Guard高0.06 cm |
+| H3 · 雷达搜索 | 二维雷达点图 | XY RMSE 0.15 cm；接近Guard |
+| H3 · 深度＋搜索 | 二维雷达点图＋深度点图 | XY RMSE 0.21 cm；接近Depth |
+
+五原型各264帧；有效深度219/264帧；原生参照287次输出。车体高度由建图A标定。
+
+原生参照最后一次有效输出在仿真73.2s，原型记录至99.4s；无输出时段未填补，其RMSE只覆盖已有输出。
+
+![纯静态 · 2D · 真实窗口](../results/reference/probe-calibrated-2d-static/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-2d-static/execution.mp4) · [record](../results/reference/probe-calibrated-2d-static/record.json) · [CSV](../results/reference/probe-calibrated-2d-static/recover-samples.csv)
+
+<a id="probe-calibrated-2d-dynamic"></a>
+
+#### 运动障碍物 · 2D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + AMCL | 同源二维栅格投影图 | XY RMSE 7.08 cm |
+| Plain ICP | 二维雷达点图 | XY RMSE 0.37 cm |
+| H1 · Guard | 二维雷达点图 | XY RMSE 0.19 cm；较Plain低0.18 cm |
+| H2 · Guard＋Depth | 二维雷达点图＋深度点图 | XY RMSE 0.18 cm；接近Guard |
+| H3 · 雷达搜索 | 二维雷达点图 | XY RMSE 0.19 cm；接近Guard |
+| H3 · 深度＋搜索 | 二维雷达点图＋深度点图 | XY RMSE 0.18 cm；接近Depth |
+
+五原型各265帧；有效深度181/265帧；原生参照292次输出。车体高度由建图A标定。
+
+原生参照最后一次有效输出在仿真72.3s，原型记录至99.7s；无输出时段未填补，其RMSE只覆盖已有输出。
+
+![运动障碍物 · 2D · 真实窗口](../results/reference/probe-calibrated-2d-dynamic/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-2d-dynamic/execution.mp4) · [record](../results/reference/probe-calibrated-2d-dynamic/record.json) · [CSV](../results/reference/probe-calibrated-2d-dynamic/recover-samples.csv)
+
+<a id="probe-calibrated-2d-large-change"></a>
+
+#### 持久结构变化 · 2D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + AMCL | 同源二维栅格投影图 | XY RMSE 6.28 cm |
+| Plain ICP | 二维雷达点图 | XY RMSE 7.98 cm |
+| H1 · Guard | 二维雷达点图 | XY RMSE 0.49 cm；较Plain低7.49 cm |
+| H2 · Guard＋Depth | 二维雷达点图＋深度点图 | XY RMSE 0.49 cm；接近Guard |
+| H3 · 雷达搜索 | 二维雷达点图 | XY RMSE 0.49 cm；接近Guard |
+| H3 · 深度＋搜索 | 二维雷达点图＋深度点图 | XY RMSE 0.49 cm；接近Depth |
+
+五原型各263帧；有效深度187/263帧；原生参照288次输出。车体高度由建图A标定。
+
+原生参照最后一次有效输出在仿真71.3s，原型记录至99.3s；无输出时段未填补，其RMSE只覆盖已有输出。
+
+旧图保持冻结；此处检验不一致观测的处理，没有执行地图更新。
+
+![持久结构变化 · 2D · 真实窗口](../results/reference/probe-calibrated-2d-large-change/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-2d-large-change/execution.mp4) · [record](../results/reference/probe-calibrated-2d-large-change/record.json) · [CSV](../results/reference/probe-calibrated-2d-large-change/recover-samples.csv)
+
+<a id="probe-calibrated-2d-corridor"></a>
+
+#### 原走廊退化 · 2D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + AMCL | 同源二维栅格投影图 | XY RMSE 100.61 cm；恢复后45.7 s持续收敛 |
+| Plain ICP | 二维雷达点图 | XY RMSE 1037.69 cm；未持续收敛 |
+| H1 · Guard | 二维雷达点图 | XY RMSE 100.48 cm；较Plain低937.21 cm；未持续收敛 |
+| H2 · Guard＋Depth | 二维雷达点图＋深度点图 | XY RMSE 100.54 cm；较Guard高0.06 cm；未持续收敛 |
+| H3 · 雷达搜索 | 二维雷达点图 | XY RMSE 70.40 cm；较Guard低30.08 cm；恢复后5.8 s持续收敛 |
+| H3 · 深度＋搜索 | 二维雷达点图＋深度点图 | XY RMSE 70.44 cm；较Depth低30.11 cm；恢复后5.8 s持续收敛 |
+
+五原型各338帧；有效深度195/338帧；原生参照600次输出。车体高度由建图A标定。
+
+![原走廊退化 · 2D · 真实窗口](../results/reference/probe-calibrated-2d-corridor/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-2d-corridor/execution.mp4) · [record](../results/reference/probe-calibrated-2d-corridor/record.json) · [CSV](../results/reference/probe-calibrated-2d-corridor/recover-samples.csv)
+
+<a id="probe-calibrated-2d-height-corridor"></a>
+
+#### 高处标志 · 派生对照 · 2D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + AMCL | 同源二维栅格投影图 | XY RMSE 67.00 cm；恢复后11.7 s持续收敛 |
+| Plain ICP | 二维雷达点图 | XY RMSE 285.54 cm；未持续收敛 |
+| H1 · Guard | 二维雷达点图 | XY RMSE 101.15 cm；较Plain低184.39 cm；未持续收敛 |
+| H2 · Guard＋Depth | 二维雷达点图＋深度点图 | XY RMSE 100.77 cm；较Guard低0.38 cm；未持续收敛 |
+| H3 · 雷达搜索 | 二维雷达点图 | XY RMSE 70.93 cm；较Guard低30.22 cm；恢复后5.0 s持续收敛 |
+| H3 · 深度＋搜索 | 二维雷达点图＋深度点图 | XY RMSE 21.15 cm；较Depth低79.61 cm；恢复后0.2 s持续收敛 |
+
+五原型各345帧；有效深度239/345帧；原生参照620次输出。车体高度由建图A标定。
+
+此场景额外加入两块高处几何，作为结构互补的可行性对照；与原走廊分别报告。
+
+![高处标志 · 派生对照 · 2D · 真实窗口](../results/reference/probe-calibrated-2d-height-corridor/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-2d-height-corridor/execution.mp4) · [record](../results/reference/probe-calibrated-2d-height-corridor/record.json) · [CSV](../results/reference/probe-calibrated-2d-height-corridor/recover-samples.csv)
+
+### 3D · 真实窗口实验
+
+<a id="probe-calibrated-3d-static"></a>
+
+#### 纯静态 · 3D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + GICP | 三维雷达点图 | XYZ RMSE 1.08 cm |
+| Plain ICP | 三维雷达点图 | XYZ RMSE 0.12 cm |
+| H1 · Guard | 三维雷达点图 | XYZ RMSE 0.12 cm；接近Plain |
+| H2 · Guard＋Depth | 三维雷达点图＋深度点图 | XYZ RMSE 0.21 cm；较Guard高0.09 cm |
+| H3 · 雷达搜索 | 三维雷达点图 | XYZ RMSE 0.12 cm；接近Guard |
+| H3 · 深度＋搜索 | 三维雷达点图＋深度点图 | XYZ RMSE 0.21 cm；接近Depth |
+
+五原型各266帧；有效深度184/266帧；原生参照994次输出。车体高度由建图A标定。
+
+![纯静态 · 3D · 真实窗口](../results/reference/probe-calibrated-3d-static/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-3d-static/execution.mp4) · [record](../results/reference/probe-calibrated-3d-static/record.json) · [CSV](../results/reference/probe-calibrated-3d-static/recover-samples.csv)
+
+<a id="probe-calibrated-3d-dynamic"></a>
+
+#### 运动障碍物 · 3D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + GICP | 三维雷达点图 | XYZ RMSE 1.39 cm |
+| Plain ICP | 三维雷达点图 | XYZ RMSE 0.17 cm |
+| H1 · Guard | 三维雷达点图 | XYZ RMSE 0.13 cm；较Plain低0.04 cm |
+| H2 · Guard＋Depth | 三维雷达点图＋深度点图 | XYZ RMSE 0.13 cm；接近Guard |
+| H3 · 雷达搜索 | 三维雷达点图 | XYZ RMSE 0.13 cm；接近Guard |
+| H3 · 深度＋搜索 | 三维雷达点图＋深度点图 | XYZ RMSE 0.13 cm；接近Depth |
+
+五原型各258帧；有效深度154/258帧；原生参照951次输出。车体高度由建图A标定。
+
+![运动障碍物 · 3D · 真实窗口](../results/reference/probe-calibrated-3d-dynamic/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-3d-dynamic/execution.mp4) · [record](../results/reference/probe-calibrated-3d-dynamic/record.json) · [CSV](../results/reference/probe-calibrated-3d-dynamic/recover-samples.csv)
+
+<a id="probe-calibrated-3d-large-change"></a>
+
+#### 持久结构变化 · 3D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + GICP | 三维雷达点图 | XYZ RMSE 1.25 cm |
+| Plain ICP | 三维雷达点图 | XYZ RMSE 3.69 cm |
+| H1 · Guard | 三维雷达点图 | XYZ RMSE 0.24 cm；较Plain低3.45 cm |
+| H2 · Guard＋Depth | 三维雷达点图＋深度点图 | XYZ RMSE 0.35 cm；较Guard高0.11 cm |
+| H3 · 雷达搜索 | 三维雷达点图 | XYZ RMSE 0.24 cm；接近Guard |
+| H3 · 深度＋搜索 | 三维雷达点图＋深度点图 | XYZ RMSE 0.35 cm；接近Depth |
+
+五原型各264帧；有效深度163/264帧；原生参照950次输出。车体高度由建图A标定。
+
+旧图保持冻结；此处检验不一致观测的处理，没有执行地图更新。
+
+![持久结构变化 · 3D · 真实窗口](../results/reference/probe-calibrated-3d-large-change/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-3d-large-change/execution.mp4) · [record](../results/reference/probe-calibrated-3d-large-change/record.json) · [CSV](../results/reference/probe-calibrated-3d-large-change/recover-samples.csv)
+
+<a id="probe-calibrated-3d-corridor"></a>
+
+#### 原走廊退化 · 3D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + GICP | 三维雷达点图 | XYZ RMSE 397.82 cm；未持续收敛 |
+| Plain ICP | 三维雷达点图 | XYZ RMSE 733.38 cm；未持续收敛 |
+| H1 · Guard | 三维雷达点图 | XYZ RMSE 100.49 cm；较Plain低632.88 cm；未持续收敛 |
+| H2 · Guard＋Depth | 三维雷达点图＋深度点图 | XYZ RMSE 100.62 cm；较Guard高0.12 cm；未持续收敛 |
+| H3 · 雷达搜索 | 三维雷达点图 | XYZ RMSE 56.77 cm；较Guard低43.72 cm；恢复后6.2 s持续收敛 |
+| H3 · 深度＋搜索 | 三维雷达点图＋深度点图 | XYZ RMSE 57.56 cm；较Depth低43.06 cm；恢复后6.6 s持续收敛 |
+
+五原型各247帧；有效深度122/247帧；原生参照712次输出。车体高度由建图A标定。
+
+原生参照最后一次有效输出在仿真75.6s，原型记录至132.8s；无输出时段未填补，其RMSE只覆盖已有输出。
+
+![原走廊退化 · 3D · 真实窗口](../results/reference/probe-calibrated-3d-corridor/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-3d-corridor/execution.mp4) · [record](../results/reference/probe-calibrated-3d-corridor/record.json) · [CSV](../results/reference/probe-calibrated-3d-corridor/recover-samples.csv)
+
+<a id="probe-calibrated-3d-height-corridor"></a>
+
+#### 高处标志 · 派生对照 · 3D
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| Raw + GICP | 三维雷达点图 | XYZ RMSE 512.79 cm；未持续收敛 |
+| Plain ICP | 三维雷达点图 | XYZ RMSE 46.60 cm；恢复后8.7 s持续收敛 |
+| H1 · Guard | 三维雷达点图 | XYZ RMSE 100.36 cm；较Plain高53.76 cm；未持续收敛 |
+| H2 · Guard＋Depth | 三维雷达点图＋深度点图 | XYZ RMSE 100.38 cm；较Guard高0.02 cm；未持续收敛 |
+| H3 · 雷达搜索 | 三维雷达点图 | XYZ RMSE 47.70 cm；较Guard低52.66 cm；恢复后8.7 s持续收敛 |
+| H3 · 深度＋搜索 | 三维雷达点图＋深度点图 | XYZ RMSE 50.79 cm；较Depth低49.59 cm；恢复后12.8 s持续收敛 |
+
+五原型各203帧；有效深度124/203帧；原生参照716次输出。车体高度由建图A标定。
+
+原生参照最后一次有效输出在仿真75.1s，原型记录至132.5s；无输出时段未填补，其RMSE只覆盖已有输出。
+
+此场景额外加入两块高处几何，作为结构互补的可行性对照；与原走廊分别报告。
+
+![高处标志 · 派生对照 · 3D · 真实窗口](../results/reference/probe-calibrated-3d-height-corridor/execution.gif)
+
+[MP4](../results/reference/probe-calibrated-3d-height-corridor/execution.mp4) · [record](../results/reference/probe-calibrated-3d-height-corridor/record.json) · [CSV](../results/reference/probe-calibrated-3d-height-corridor/recover-samples.csv)
+
+<a id="probe-refinement-index"></a>
+
+### 补充假设：粗到细搜索与恢复确认
+
+首轮高处对照出现约20cm平台误差。补充试验将候选平移网格从0.4m细化到0.1m，并把更多已检查位置纳入分数差检验；H1／H2、分数门槛和连续确认规则保持一致。使用上方同一B包的雷达、深度、里程计数组重新推理，下面的视频是保存输出的结果回放。
+
+| 场景 | 2D重算 | 3D重算 |
+| --- | --- | --- |
+| 原走廊退化 | [2D](#probe-calibrated-refinement-2d-corridor) | [3D](#probe-calibrated-refinement-3d-corridor) |
+| 高处标志 · 派生对照 | [2D](#probe-calibrated-refinement-2d-height-corridor) | [3D](#probe-calibrated-refinement-3d-height-corridor) |
+
+<a id="probe-calibrated-refinement-2d-corridor"></a>
+
+#### 2D · 原走廊退化 · 同输入细化
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| 粗搜索·雷达 | 雷达点图 | XY RMSE 70.40 cm；首次输出后61.1s持续收敛 |
+| 粗搜索·深度＋雷达 | 雷达点图＋深度点图 | XY RMSE 70.44 cm；首次输出后61.1s持续收敛 |
+| 细化·雷达 | 雷达点图 | XY RMSE 70.40 cm；首次输出后61.1s持续收敛 |
+| 细化·深度＋雷达 | 雷达点图＋深度点图 | XY RMSE 70.44 cm；首次输出后61.1s持续收敛 |
+
+![原走廊退化 · 2D · 离线重算结果回放](../results/reference/probe-calibrated-refinement-2d-corridor/result.gif)
+
+[结果回放MP4](../results/reference/probe-calibrated-refinement-2d-corridor/result.mp4) · [record](../results/reference/probe-calibrated-refinement-2d-corridor/record.json)
+
+<a id="probe-calibrated-refinement-2d-height-corridor"></a>
+
+#### 2D · 高处标志 · 派生对照 · 同输入细化
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| 粗搜索·雷达 | 雷达点图 | XY RMSE 70.93 cm；首次输出后60.7s持续收敛 |
+| 粗搜索·深度＋雷达 | 雷达点图＋深度点图 | XY RMSE 21.15 cm；首次输出后55.9s持续收敛 |
+| 细化·雷达 | 雷达点图 | XY RMSE 70.93 cm；首次输出后60.7s持续收敛 |
+| 细化·深度＋雷达 | 雷达点图＋深度点图 | XY RMSE 16.20 cm；首次输出后3.3s持续收敛 |
+
+![高处标志 · 派生对照 · 2D · 离线重算结果回放](../results/reference/probe-calibrated-refinement-2d-height-corridor/result.gif)
+
+[结果回放MP4](../results/reference/probe-calibrated-refinement-2d-height-corridor/result.mp4) · [record](../results/reference/probe-calibrated-refinement-2d-height-corridor/record.json)
+
+<a id="probe-calibrated-refinement-3d-corridor"></a>
+
+#### 3D · 原走廊退化 · 同输入细化
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| 粗搜索·雷达 | 雷达点图 | XYZ RMSE 56.77 cm；首次输出后63.7s持续收敛 |
+| 粗搜索·深度＋雷达 | 雷达点图＋深度点图 | XYZ RMSE 57.56 cm；首次输出后64.1s持续收敛 |
+| 细化·雷达 | 雷达点图 | XYZ RMSE 56.77 cm；首次输出后63.7s持续收敛 |
+| 细化·深度＋雷达 | 雷达点图＋深度点图 | XYZ RMSE 56.84 cm；首次输出后63.7s持续收敛 |
+
+![原走廊退化 · 3D · 离线重算结果回放](../results/reference/probe-calibrated-refinement-3d-corridor/result.gif)
+
+[结果回放MP4](../results/reference/probe-calibrated-refinement-3d-corridor/result.mp4) · [record](../results/reference/probe-calibrated-refinement-3d-corridor/record.json)
+
+<a id="probe-calibrated-refinement-3d-height-corridor"></a>
+
+#### 3D · 高处标志 · 派生对照 · 同输入细化
+
+[↑ 返回目录](#hypothesis-experiment-index)
+
+| 方法 | 地图／观测 | 指标效果 |
+| --- | --- | --- |
+| 粗搜索·雷达 | 雷达点图 | XYZ RMSE 47.70 cm；首次输出后66.1s持续收敛 |
+| 粗搜索·深度＋雷达 | 雷达点图＋深度点图 | XYZ RMSE 50.79 cm；首次输出后70.2s持续收敛 |
+| 细化·雷达 | 雷达点图 | XYZ RMSE 47.70 cm；首次输出后66.1s持续收敛 |
+| 细化·深度＋雷达 | 雷达点图＋深度点图 | XYZ RMSE 47.71 cm；首次输出后66.1s持续收敛 |
+
+![高处标志 · 派生对照 · 3D · 离线重算结果回放](../results/reference/probe-calibrated-refinement-3d-height-corridor/result.gif)
+
+[结果回放MP4](../results/reference/probe-calibrated-refinement-3d-height-corridor/result.mp4) · [record](../results/reference/probe-calibrated-refinement-3d-height-corridor/record.json)
+
+<!-- PROBE_APPENDIX_RESULTS_END -->
+
+<a id="hypothesis-findings"></a>
+
+### 本轮实验支持的方向
+
+- **稳健匹配＋里程计保底**：持久变化中，二维RMSE由Plain的7.98降到Guard的0.49cm，三维由3.69降到0.24cm。但三维高处走廊中Guard保留约1m偏差，反而差于恢复后自行收敛的Plain；保护跟踪不能替代重定位。
+- **二维雷达＋深度＋候选细化**：在额外高度几何对照中，同输入细化将持续收敛从首次输出后55.9s提前到3.3s，完整XY RMSE由21.15降到16.20cm。原走廊没有同样收益；三维高处组也未提前恢复，负结果均列在上方。
+- **有界搜索＋恢复确认**：原走廊完整观测恢复后，雷达搜索在二维／三维分别用5.8／6.2s持续收敛。几何分数高、连续两次一致仍不保证正确：二维粗深度搜索曾确认约20cm偏差，细化实验才纠正它。
+
+[详细原因与后续方向](testing/HYPOTHESES.zh-CN.md#hypothesis-findings) · [逐帧汇总](../results/analysis/hypotheses/calibrated-summary.json) · [首轮与无效细化录像](../demo/hypotheses-diagnostics.html)。本轮是给定位姿建图A、冻结图定位B的理想仿真，尚未验证仅廉价传感器的自主建图、实际绑架恢复或实体效果。

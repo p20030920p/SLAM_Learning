@@ -1,0 +1,2868 @@
+{
+  "scope": "post-run evaluation at independent truth, never input to B estimators; local rank is not proof of unique global position",
+  "record_sha256": "08c4d921f7455c7a0be2fcfa8fee93d912854d618207d7c710983f89fda23f49",
+  "scene": "height-corridor",
+  "dimension": "3d",
+  "stages": {
+    "limited": {
+      "frames": 45,
+      "frames_with_depth": 20,
+      "lidar_full_rank_frames": 0,
+      "with_depth_full_rank_frames": 0,
+      "high_fixture_lidar_points": 0,
+      "high_fixture_depth_points": 457
+    },
+    "restored": {
+      "frames": 158,
+      "frames_with_depth": 104,
+      "lidar_full_rank_frames": 157,
+      "with_depth_full_rank_frames": 155,
+      "high_fixture_lidar_points": 195,
+      "high_fixture_depth_points": 1438
+    }
+  },
+  "frames": [
+    {
+      "frame": 0,
+      "stamp_s": 5.6,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 1,
+      "stamp_s": 7.1,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": 3.9775189587515456e-07,
+      "depth_points": 446,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 41
+      }
+    },
+    {
+      "frame": 2,
+      "stamp_s": 7.4,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 3,
+      "stamp_s": 7.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": 3.9775189587515456e-07,
+      "depth_points": 446,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 41
+      }
+    },
+    {
+      "frame": 4,
+      "stamp_s": 8.2,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 5,
+      "stamp_s": 8.5,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 6,
+      "stamp_s": 8.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 7,
+      "stamp_s": 10.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": 3.9775189587515456e-07,
+      "depth_points": 446,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 41
+      }
+    },
+    {
+      "frame": 8,
+      "stamp_s": 11.2,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 9,
+      "stamp_s": 11.5,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": 3.9775189587515456e-07,
+      "depth_points": 446,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 41
+      }
+    },
+    {
+      "frame": 10,
+      "stamp_s": 11.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": 3.9775189587515456e-07,
+      "depth_points": 446,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 41
+      }
+    },
+    {
+      "frame": 11,
+      "stamp_s": 14.2,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": 3.9775189587515456e-07,
+      "depth_points": 446,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 41
+      }
+    },
+    {
+      "frame": 12,
+      "stamp_s": 14.5,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0010393117941294504,
+      "depth_plane_median_residual_at_truth_m": 3.9775189587515456e-07,
+      "depth_points": 446,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 41
+      }
+    },
+    {
+      "frame": 13,
+      "stamp_s": 14.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.001033041244570767,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 14,
+      "stamp_s": 16.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.002677469894706996,
+      "depth_plane_median_residual_at_truth_m": 2.9194588363128812e-05,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 8
+      }
+    },
+    {
+      "frame": 15,
+      "stamp_s": 17.1,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0026508193261897232,
+      "depth_plane_median_residual_at_truth_m": 2.4386281683442498e-05,
+      "depth_points": 417,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 8
+      }
+    },
+    {
+      "frame": 16,
+      "stamp_s": 17.5,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.00226735490625396,
+      "depth_plane_median_residual_at_truth_m": 2.442216545861091e-05,
+      "depth_points": 409,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 17,
+      "stamp_s": 17.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0024090690302640606,
+      "depth_plane_median_residual_at_truth_m": 2.1260073874577293e-05,
+      "depth_points": 409,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 18,
+      "stamp_s": 20.5,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.003082092696780848,
+      "depth_plane_median_residual_at_truth_m": 0.00033545352010112936,
+      "depth_points": 409,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 19,
+      "stamp_s": 20.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0026765617103490192,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 20,
+      "stamp_s": 23.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.004362869760060785,
+      "depth_plane_median_residual_at_truth_m": 0.004897636638238382,
+      "depth_points": 406,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 21,
+      "stamp_s": 26.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0023673936313086392,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 22,
+      "stamp_s": 29.5,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0021125335414258553,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 23,
+      "stamp_s": 29.8,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0018764593849621167,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 24,
+      "stamp_s": 32.1,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.003131828807767171,
+      "depth_plane_median_residual_at_truth_m": 6.626324231751966e-05,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 25,
+      "stamp_s": 32.5,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0026632687004399286,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 26,
+      "stamp_s": 32.9,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.002665119256442431,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 27,
+      "stamp_s": 35.2,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0028808831961603587,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 28,
+      "stamp_s": 35.6,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0032081337350523,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 29,
+      "stamp_s": 36.0,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.003585935670564689,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 30,
+      "stamp_s": 38.2,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.007017681343764728,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 31,
+      "stamp_s": 38.6,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.006297727095918916,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 32,
+      "stamp_s": 39.0,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.005212953220592509,
+      "depth_plane_median_residual_at_truth_m": 0.003925887469144372,
+      "depth_points": 482,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 33,
+      "stamp_s": 41.2,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.002278639777186534,
+      "depth_plane_median_residual_at_truth_m": 0.0028480554374801263,
+      "depth_points": 445,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 34
+      }
+    },
+    {
+      "frame": 34,
+      "stamp_s": 41.6,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.00222640302499469,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 35,
+      "stamp_s": 42.0,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0019123552534943658,
+      "depth_plane_median_residual_at_truth_m": 0.0010434930376413542,
+      "depth_points": 445,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 34
+      }
+    },
+    {
+      "frame": 36,
+      "stamp_s": 44.2,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0019665793045711695,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 37,
+      "stamp_s": 44.6,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.002733251951022098,
+      "depth_plane_median_residual_at_truth_m": 3.406260736315769e-05,
+      "depth_points": 455,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 45
+      }
+    },
+    {
+      "frame": 38,
+      "stamp_s": 45.0,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0017725977992602362,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 39,
+      "stamp_s": 47.7,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0022908249959608194,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 40,
+      "stamp_s": 48.1,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.002449542559327735,
+      "depth_plane_median_residual_at_truth_m": 3.6397722034468426e-05,
+      "depth_points": 410,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 41,
+      "stamp_s": 51.1,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0029771837616308244,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 42,
+      "stamp_s": 54.5,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.003975470267742609,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 43,
+      "stamp_s": 57.5,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.002143041684212159,
+      "depth_plane_median_residual_at_truth_m": 0.000247141450785579,
+      "depth_points": 455,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 41
+      }
+    },
+    {
+      "frame": 44,
+      "stamp_s": 60.9,
+      "phase": "limited",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0026657076040739296,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 45,
+      "stamp_s": 63.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0054717500695287925,
+      "depth_plane_median_residual_at_truth_m": 4.159504987491291e-05,
+      "depth_points": 412,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 46,
+      "stamp_s": 67.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006949229551822526,
+      "depth_plane_median_residual_at_truth_m": 6.505913462278608e-05,
+      "depth_points": 320,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 47,
+      "stamp_s": 71.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005286031524892779,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 48,
+      "stamp_s": 73.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004470698570121347,
+      "depth_plane_median_residual_at_truth_m": 8.272921866012224e-05,
+      "depth_points": 458,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 43
+      }
+    },
+    {
+      "frame": 49,
+      "stamp_s": 73.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0048389739141642095,
+      "depth_plane_median_residual_at_truth_m": 4.976732993318939e-05,
+      "depth_points": 458,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 43
+      }
+    },
+    {
+      "frame": 50,
+      "stamp_s": 73.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005184623547715676,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 51,
+      "stamp_s": 74.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004558872147758741,
+      "depth_plane_median_residual_at_truth_m": 1.8457659861519073e-05,
+      "depth_points": 465,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 50
+      }
+    },
+    {
+      "frame": 52,
+      "stamp_s": 74.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.003974840739224644,
+      "depth_plane_median_residual_at_truth_m": 1.3180470051689145e-05,
+      "depth_points": 457,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 42
+      }
+    },
+    {
+      "frame": 53,
+      "stamp_s": 75.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004540748690024603,
+      "depth_plane_median_residual_at_truth_m": 1.059791157975147e-05,
+      "depth_points": 451,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 42
+      }
+    },
+    {
+      "frame": 54,
+      "stamp_s": 75.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004821958440763503,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 55,
+      "stamp_s": 76.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004983092546325405,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 56,
+      "stamp_s": 76.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0042387096990591944,
+      "depth_plane_median_residual_at_truth_m": 1.844125276575832e-05,
+      "depth_points": 432,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 20
+      }
+    },
+    {
+      "frame": 57,
+      "stamp_s": 77.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004779026295156077,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 58,
+      "stamp_s": 77.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004696289105586811,
+      "depth_plane_median_residual_at_truth_m": 2.1336696046320926e-05,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 59,
+      "stamp_s": 77.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004621470489299681,
+      "depth_plane_median_residual_at_truth_m": 2.5973482374373023e-05,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 60,
+      "stamp_s": 78.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005120505458190969,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 61,
+      "stamp_s": 78.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004765358514768503,
+      "depth_plane_median_residual_at_truth_m": 4.581321076006206e-05,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 62,
+      "stamp_s": 78.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005634014967537231,
+      "depth_plane_median_residual_at_truth_m": 2.9479155488485823e-05,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 63,
+      "stamp_s": 79.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005080765220283136,
+      "depth_plane_median_residual_at_truth_m": 9.895446537913859e-05,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 64,
+      "stamp_s": 79.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005018746879959844,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 65,
+      "stamp_s": 80.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004790043547276624,
+      "depth_plane_median_residual_at_truth_m": 0.00013152570505727638,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 66,
+      "stamp_s": 80.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006085100773819048,
+      "depth_plane_median_residual_at_truth_m": 0.00017970594166915663,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 67,
+      "stamp_s": 80.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005846439173011177,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 68,
+      "stamp_s": 81.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006448625219671737,
+      "depth_plane_median_residual_at_truth_m": 0.00024139687737692193,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 69,
+      "stamp_s": 81.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007190950621346199,
+      "depth_plane_median_residual_at_truth_m": 0.00032136969012558196,
+      "depth_points": 415,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 70,
+      "stamp_s": 81.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007085615875491776,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 71,
+      "stamp_s": 82.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007581068446054856,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 72,
+      "stamp_s": 82.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006677851674782658,
+      "depth_plane_median_residual_at_truth_m": 0.003309785615013402,
+      "depth_points": 343,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 73,
+      "stamp_s": 83.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00660367475811626,
+      "depth_plane_median_residual_at_truth_m": 0.0016317880311694309,
+      "depth_points": 485,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 74,
+      "stamp_s": 83.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00879017925179134,
+      "depth_plane_median_residual_at_truth_m": 0.0036682571254699416,
+      "depth_points": 367,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 75,
+      "stamp_s": 83.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.013778696741110595,
+      "depth_plane_median_residual_at_truth_m": 0.010616792119239379,
+      "depth_points": 362,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 76,
+      "stamp_s": 84.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006278540214259764,
+      "depth_plane_median_residual_at_truth_m": 0.0026386446314592533,
+      "depth_points": 451,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 77,
+      "stamp_s": 84.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.011408674151538274,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 78,
+      "stamp_s": 84.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007154973378931841,
+      "depth_plane_median_residual_at_truth_m": 0.008442192403304398,
+      "depth_points": 369,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 34
+      }
+    },
+    {
+      "frame": 79,
+      "stamp_s": 85.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005755703152269561,
+      "depth_plane_median_residual_at_truth_m": 0.0017276304609035766,
+      "depth_points": 404,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 28
+      }
+    },
+    {
+      "frame": 80,
+      "stamp_s": 85.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004899145674288924,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 81,
+      "stamp_s": 86.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005001351787441344,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 82,
+      "stamp_s": 86.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005187185719750847,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 83,
+      "stamp_s": 86.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005666125945391322,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 84,
+      "stamp_s": 87.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005037120728039748,
+      "depth_plane_median_residual_at_truth_m": 0.001223452358666847,
+      "depth_points": 451,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 46
+      }
+    },
+    {
+      "frame": 85,
+      "stamp_s": 87.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00490090569326878,
+      "depth_plane_median_residual_at_truth_m": 0.000489324836175186,
+      "depth_points": 451,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 43
+      }
+    },
+    {
+      "frame": 86,
+      "stamp_s": 87.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00511902780143052,
+      "depth_plane_median_residual_at_truth_m": 0.0002910783701801961,
+      "depth_points": 457,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 47
+      }
+    },
+    {
+      "frame": 87,
+      "stamp_s": 88.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005101288100938992,
+      "depth_plane_median_residual_at_truth_m": 0.00033548908755054696,
+      "depth_points": 446,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 36
+      }
+    },
+    {
+      "frame": 88,
+      "stamp_s": 88.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004720245923814757,
+      "depth_plane_median_residual_at_truth_m": 0.00018529611427136938,
+      "depth_points": 445,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 38
+      }
+    },
+    {
+      "frame": 89,
+      "stamp_s": 89.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004660719434690697,
+      "depth_plane_median_residual_at_truth_m": 7.831466267995706e-05,
+      "depth_points": 435,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 28
+      }
+    },
+    {
+      "frame": 90,
+      "stamp_s": 89.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004443630642283999,
+      "depth_plane_median_residual_at_truth_m": 0.00028319453090612317,
+      "depth_points": 428,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 21
+      }
+    },
+    {
+      "frame": 91,
+      "stamp_s": 89.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.005093955485789558,
+      "depth_plane_median_residual_at_truth_m": 8.34956064453521e-05,
+      "depth_points": 421,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 14
+      }
+    },
+    {
+      "frame": 92,
+      "stamp_s": 90.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.004860082457772987,
+      "depth_plane_median_residual_at_truth_m": 7.921669974022862e-05,
+      "depth_points": 413,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 5
+      }
+    },
+    {
+      "frame": 93,
+      "stamp_s": 90.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004686569939607864,
+      "depth_plane_median_residual_at_truth_m": 5.906146855279237e-05,
+      "depth_points": 408,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 94,
+      "stamp_s": 90.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004890263894613332,
+      "depth_plane_median_residual_at_truth_m": 6.096934976573167e-05,
+      "depth_points": 408,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 95,
+      "stamp_s": 91.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005604976991640838,
+      "depth_plane_median_residual_at_truth_m": 6.182164011367363e-05,
+      "depth_points": 407,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 96,
+      "stamp_s": 91.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0043031672825963475,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 97,
+      "stamp_s": 92.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00550836787862042,
+      "depth_plane_median_residual_at_truth_m": 5.516381678741945e-05,
+      "depth_points": 406,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 98,
+      "stamp_s": 92.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005114694860566336,
+      "depth_plane_median_residual_at_truth_m": 4.375987555111933e-05,
+      "depth_points": 406,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 99,
+      "stamp_s": 92.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005147585570149289,
+      "depth_plane_median_residual_at_truth_m": 3.728063010490426e-05,
+      "depth_points": 405,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 100,
+      "stamp_s": 93.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004849418077219601,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 101,
+      "stamp_s": 93.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005145604445345098,
+      "depth_plane_median_residual_at_truth_m": 5.952076324483187e-05,
+      "depth_points": 405,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 102,
+      "stamp_s": 93.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005372771747459178,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 103,
+      "stamp_s": 94.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005764222897757125,
+      "depth_plane_median_residual_at_truth_m": 4.6172562741099295e-05,
+      "depth_points": 404,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 104,
+      "stamp_s": 94.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0051931273725396585,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 105,
+      "stamp_s": 95.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0058369303574624855,
+      "depth_plane_median_residual_at_truth_m": 4.713414935543706e-05,
+      "depth_points": 403,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 106,
+      "stamp_s": 95.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005969733165144787,
+      "depth_plane_median_residual_at_truth_m": 6.498263688389338e-05,
+      "depth_points": 403,
+      "high_fixture_points": {
+        "lidar": 3,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 107,
+      "stamp_s": 95.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006595325762159085,
+      "depth_plane_median_residual_at_truth_m": 5.83317702561503e-05,
+      "depth_points": 403,
+      "high_fixture_points": {
+        "lidar": 3,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 108,
+      "stamp_s": 96.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006933297181791764,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 109,
+      "stamp_s": 96.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00754576661050696,
+      "depth_plane_median_residual_at_truth_m": 6.56628021906719e-05,
+      "depth_points": 402,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 110,
+      "stamp_s": 96.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007910547602470699,
+      "depth_plane_median_residual_at_truth_m": 6.498810283892174e-05,
+      "depth_points": 402,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 111,
+      "stamp_s": 97.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006939038511947363,
+      "depth_plane_median_residual_at_truth_m": 4.347167855614136e-05,
+      "depth_points": 402,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 112,
+      "stamp_s": 97.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00836516691067809,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 113,
+      "stamp_s": 98.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00727152143322895,
+      "depth_plane_median_residual_at_truth_m": 0.005556852302979586,
+      "depth_points": 447,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 114,
+      "stamp_s": 98.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.008281874756385166,
+      "depth_plane_median_residual_at_truth_m": 0.0017334329111666669,
+      "depth_points": 459,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 115,
+      "stamp_s": 98.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007586795501643657,
+      "depth_plane_median_residual_at_truth_m": 0.0027667253386321478,
+      "depth_points": 379,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 116,
+      "stamp_s": 99.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007834147628733457,
+      "depth_plane_median_residual_at_truth_m": 0.0033599833122300647,
+      "depth_points": 457,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 117,
+      "stamp_s": 99.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.008096234850778013,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 3,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 118,
+      "stamp_s": 99.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0068625495248276335,
+      "depth_plane_median_residual_at_truth_m": 0.0027158845577896157,
+      "depth_points": 331,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 15
+      }
+    },
+    {
+      "frame": 119,
+      "stamp_s": 100.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00690289992682608,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 3,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 120,
+      "stamp_s": 100.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005903367326960521,
+      "depth_plane_median_residual_at_truth_m": 0.003442647673459585,
+      "depth_points": 416,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 20
+      }
+    },
+    {
+      "frame": 121,
+      "stamp_s": 101.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005345252883244492,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 3,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 122,
+      "stamp_s": 101.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0053504102147112565,
+      "depth_plane_median_residual_at_truth_m": 0.001971110782830702,
+      "depth_points": 440,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 30
+      }
+    },
+    {
+      "frame": 123,
+      "stamp_s": 101.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004785742116433394,
+      "depth_plane_median_residual_at_truth_m": 0.002118120947615962,
+      "depth_points": 439,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 31
+      }
+    },
+    {
+      "frame": 124,
+      "stamp_s": 102.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005218482814971904,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 125,
+      "stamp_s": 102.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004734143534519629,
+      "depth_plane_median_residual_at_truth_m": 0.0001900917590572199,
+      "depth_points": 442,
+      "high_fixture_points": {
+        "lidar": 1,
+        "depth": 38
+      }
+    },
+    {
+      "frame": 126,
+      "stamp_s": 102.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004787377644884475,
+      "depth_plane_median_residual_at_truth_m": 0.00014231347569500772,
+      "depth_points": 443,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 39
+      }
+    },
+    {
+      "frame": 127,
+      "stamp_s": 103.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004797403288932748,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 128,
+      "stamp_s": 103.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004681632301994297,
+      "depth_plane_median_residual_at_truth_m": 8.055179747238263e-05,
+      "depth_points": 449,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 45
+      }
+    },
+    {
+      "frame": 129,
+      "stamp_s": 104.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004782784894132719,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 130,
+      "stamp_s": 104.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004166124279034313,
+      "depth_plane_median_residual_at_truth_m": 1.5170838438414517e-05,
+      "depth_points": 452,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 48
+      }
+    },
+    {
+      "frame": 131,
+      "stamp_s": 104.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004017070853885,
+      "depth_plane_median_residual_at_truth_m": 5.159183997297398e-05,
+      "depth_points": 446,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 43
+      }
+    },
+    {
+      "frame": 132,
+      "stamp_s": 105.2,
+      "phase": "restored",
+      "lidar_rank": 2,
+      "with_depth_rank": 2,
+      "lidar_plane_median_residual_at_truth_m": 0.0032354980464055416,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 133,
+      "stamp_s": 107.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0047960061060411145,
+      "depth_plane_median_residual_at_truth_m": 2.4780796391423826e-05,
+      "depth_points": 414,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 10
+      }
+    },
+    {
+      "frame": 134,
+      "stamp_s": 107.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0046056905524850976,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 135,
+      "stamp_s": 107.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004654684273920902,
+      "depth_plane_median_residual_at_truth_m": 6.711004041415474e-05,
+      "depth_points": 406,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 136,
+      "stamp_s": 108.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005712274138714175,
+      "depth_plane_median_residual_at_truth_m": 2.8328674806147156e-05,
+      "depth_points": 406,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 137,
+      "stamp_s": 108.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004979143055734086,
+      "depth_plane_median_residual_at_truth_m": 8.49527487011828e-05,
+      "depth_points": 408,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 138,
+      "stamp_s": 108.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004730697742250582,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 139,
+      "stamp_s": 109.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005814593354587203,
+      "depth_plane_median_residual_at_truth_m": 4.0050839716208796e-05,
+      "depth_points": 408,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 140,
+      "stamp_s": 109.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005176346703913119,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 141,
+      "stamp_s": 110.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005579365699385872,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 142,
+      "stamp_s": 110.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00538287289660928,
+      "depth_plane_median_residual_at_truth_m": 0.00013310115971091826,
+      "depth_points": 406,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 143,
+      "stamp_s": 110.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006438231536807577,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 144,
+      "stamp_s": 111.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00641858741645622,
+      "depth_plane_median_residual_at_truth_m": 0.00016615666844881866,
+      "depth_points": 407,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 145,
+      "stamp_s": 111.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006343647568494719,
+      "depth_plane_median_residual_at_truth_m": 9.371626965287724e-05,
+      "depth_points": 407,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 146,
+      "stamp_s": 111.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006686854852185035,
+      "depth_plane_median_residual_at_truth_m": 0.00034327647123993737,
+      "depth_points": 407,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 147,
+      "stamp_s": 112.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007212029732452822,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 148,
+      "stamp_s": 112.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.01109282704153708,
+      "depth_plane_median_residual_at_truth_m": 0.002195590055040276,
+      "depth_points": 365,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 149,
+      "stamp_s": 113.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006798903146935983,
+      "depth_plane_median_residual_at_truth_m": 0.00024975935890504957,
+      "depth_points": 420,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 150,
+      "stamp_s": 113.5,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006966622358237943,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 151,
+      "stamp_s": 113.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007953048926823955,
+      "depth_plane_median_residual_at_truth_m": 0.005803247946829931,
+      "depth_points": 376,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 152,
+      "stamp_s": 114.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.011114809130006193,
+      "depth_plane_median_residual_at_truth_m": 0.014100285925070198,
+      "depth_points": 462,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 28
+      }
+    },
+    {
+      "frame": 153,
+      "stamp_s": 114.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0073020032766629665,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 154,
+      "stamp_s": 115.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0053303169179848495,
+      "depth_plane_median_residual_at_truth_m": 0.000933746267993723,
+      "depth_points": 343,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 29
+      }
+    },
+    {
+      "frame": 155,
+      "stamp_s": 115.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005547243463388996,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 156,
+      "stamp_s": 115.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005203007296117723,
+      "depth_plane_median_residual_at_truth_m": 0.0005630102352023366,
+      "depth_points": 433,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 34
+      }
+    },
+    {
+      "frame": 157,
+      "stamp_s": 116.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004964556107136176,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 158,
+      "stamp_s": 116.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004763409935488126,
+      "depth_plane_median_residual_at_truth_m": 0.001036061053632513,
+      "depth_points": 457,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 47
+      }
+    },
+    {
+      "frame": 159,
+      "stamp_s": 116.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004123162318820928,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 160,
+      "stamp_s": 117.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004271958414169528,
+      "depth_plane_median_residual_at_truth_m": 0.0003527634214496501,
+      "depth_points": 449,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 40
+      }
+    },
+    {
+      "frame": 161,
+      "stamp_s": 117.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004292992075593341,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 162,
+      "stamp_s": 118.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004291548099870625,
+      "depth_plane_median_residual_at_truth_m": 0.0002488862324450843,
+      "depth_points": 449,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 41
+      }
+    },
+    {
+      "frame": 163,
+      "stamp_s": 118.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.003932295277531099,
+      "depth_plane_median_residual_at_truth_m": 0.00020303787367342865,
+      "depth_points": 449,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 42
+      }
+    },
+    {
+      "frame": 164,
+      "stamp_s": 118.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0047854386478261715,
+      "depth_plane_median_residual_at_truth_m": 0.00018780948784153718,
+      "depth_points": 445,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 38
+      }
+    },
+    {
+      "frame": 165,
+      "stamp_s": 119.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005061225899364986,
+      "depth_plane_median_residual_at_truth_m": 0.00035562738273138203,
+      "depth_points": 440,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 34
+      }
+    },
+    {
+      "frame": 166,
+      "stamp_s": 119.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.003855029988719347,
+      "depth_plane_median_residual_at_truth_m": 0.00010211621581457053,
+      "depth_points": 428,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 20
+      }
+    },
+    {
+      "frame": 167,
+      "stamp_s": 119.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004383069454059215,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 168,
+      "stamp_s": 120.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0038327990472917014,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 169,
+      "stamp_s": 120.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004121059368233093,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 170,
+      "stamp_s": 121.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00428827161361414,
+      "depth_plane_median_residual_at_truth_m": 5.581722592459358e-05,
+      "depth_points": 410,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 171,
+      "stamp_s": 121.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004651212581313296,
+      "depth_plane_median_residual_at_truth_m": 0.0001269193336556852,
+      "depth_points": 410,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 172,
+      "stamp_s": 121.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0048056850653344745,
+      "depth_plane_median_residual_at_truth_m": 9.29834389965677e-05,
+      "depth_points": 409,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 173,
+      "stamp_s": 122.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00471139695460359,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 174,
+      "stamp_s": 122.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.00516010953379137,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 0,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 175,
+      "stamp_s": 122.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0051163549372732296,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 1,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 176,
+      "stamp_s": 123.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005160934213488559,
+      "depth_plane_median_residual_at_truth_m": 3.809573703562597e-05,
+      "depth_points": 409,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 177,
+      "stamp_s": 123.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005462730845635025,
+      "depth_plane_median_residual_at_truth_m": 4.367553421850184e-05,
+      "depth_points": 410,
+      "high_fixture_points": {
+        "lidar": 3,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 178,
+      "stamp_s": 124.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.004711779786628515,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 3,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 179,
+      "stamp_s": 124.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005023531602223378,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 3,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 180,
+      "stamp_s": 124.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005086517276453669,
+      "depth_plane_median_residual_at_truth_m": 5.59034331888554e-05,
+      "depth_points": 408,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 181,
+      "stamp_s": 125.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005972677284626637,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 182,
+      "stamp_s": 125.6,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006379707686185254,
+      "depth_plane_median_residual_at_truth_m": 5.006622699909437e-05,
+      "depth_points": 408,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 183,
+      "stamp_s": 125.9,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006632771153567085,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 184,
+      "stamp_s": 126.3,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006157345840889948,
+      "depth_plane_median_residual_at_truth_m": 5.609354516175467e-05,
+      "depth_points": 408,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 185,
+      "stamp_s": 126.7,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006629760881744245,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 186,
+      "stamp_s": 127.1,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.008166612262576128,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 187,
+      "stamp_s": 127.4,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006809389235543681,
+      "depth_plane_median_residual_at_truth_m": 4.6459237336458704e-05,
+      "depth_points": 406,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 188,
+      "stamp_s": 127.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.009580182096095778,
+      "depth_plane_median_residual_at_truth_m": 0.01945638265524962,
+      "depth_points": 402,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 189,
+      "stamp_s": 128.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.015494638826298146,
+      "depth_plane_median_residual_at_truth_m": 0.013253575755039566,
+      "depth_points": 476,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 190,
+      "stamp_s": 128.5,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007707774600730728,
+      "depth_plane_median_residual_at_truth_m": 0.003372295428129246,
+      "depth_points": 489,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 191,
+      "stamp_s": 128.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007705539265785533,
+      "depth_plane_median_residual_at_truth_m": 0.002050836945961933,
+      "depth_points": 351,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 192,
+      "stamp_s": 129.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007969273898195194,
+      "depth_plane_median_residual_at_truth_m": 0.004283835343053212,
+      "depth_points": 387,
+      "high_fixture_points": {
+        "lidar": 5,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 193,
+      "stamp_s": 129.5,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.006919594649718616,
+      "depth_plane_median_residual_at_truth_m": 0.00477566218408399,
+      "depth_points": 471,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 194,
+      "stamp_s": 129.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.007658630021928188,
+      "depth_plane_median_residual_at_truth_m": 0.00903526179910567,
+      "depth_points": 358,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 10
+      }
+    },
+    {
+      "frame": 195,
+      "stamp_s": 130.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0061720139438191345,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 196,
+      "stamp_s": 130.5,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005605434197990273,
+      "depth_plane_median_residual_at_truth_m": 0.002130964581460842,
+      "depth_points": 410,
+      "high_fixture_points": {
+        "lidar": 4,
+        "depth": 18
+      }
+    },
+    {
+      "frame": 197,
+      "stamp_s": 130.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005993081795780528,
+      "depth_plane_median_residual_at_truth_m": 0.004491327003111426,
+      "depth_points": 420,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 26
+      }
+    },
+    {
+      "frame": 198,
+      "stamp_s": 131.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0053502635173958675,
+      "depth_plane_median_residual_at_truth_m": 0.001247485933349779,
+      "depth_points": 437,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 31
+      }
+    },
+    {
+      "frame": 199,
+      "stamp_s": 131.5,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0054847309459623355,
+      "depth_plane_median_residual_at_truth_m": null,
+      "depth_points": 0,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 0
+      }
+    },
+    {
+      "frame": 200,
+      "stamp_s": 131.8,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005875951535046794,
+      "depth_plane_median_residual_at_truth_m": 0.0013784317080753367,
+      "depth_points": 448,
+      "high_fixture_points": {
+        "lidar": 2,
+        "depth": 37
+      }
+    },
+    {
+      "frame": 201,
+      "stamp_s": 132.2,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.0048485730986568875,
+      "depth_plane_median_residual_at_truth_m": 0.0006236088470938934,
+      "depth_points": 441,
+      "high_fixture_points": {
+        "lidar": 3,
+        "depth": 31
+      }
+    },
+    {
+      "frame": 202,
+      "stamp_s": 132.5,
+      "phase": "restored",
+      "lidar_rank": 3,
+      "with_depth_rank": 3,
+      "lidar_plane_median_residual_at_truth_m": 0.005407376375236601,
+      "depth_plane_median_residual_at_truth_m": 0.0014698564098749045,
+      "depth_points": 443,
+      "high_fixture_points": {
+        "lidar": 1,
+        "depth": 33
+      }
+    }
+  ]
+}

@@ -49,7 +49,7 @@ def gif(video, output):
             "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"}
 
 
-def replay(folder, values, restore_stamp, *, output_folder=None, heading_label=None, interval=None):
+def replay(folder, values, restore_stamp, *, output_folder=None, heading_label=None, interval=None, provenance_label=None):
     names = list(values)
     count = len(names)
     start, finish = interval or (max(array[0, 0] for array in values.values()),
@@ -57,7 +57,7 @@ def replay(folder, values, restore_stamp, *, output_folder=None, heading_label=N
     if finish-start < 10:
         raise ValueError("Pose replay is too short")
     fig = plt.figure(figsize=(16, 9), dpi=80, facecolor="#111827")
-    cols = 1 if count == 1 else 3
+    cols = 1 if count == 1 else (2 if count == 4 else 3)
     rows = math.ceil(count/cols)
     gs = fig.add_gridspec(rows*2, cols, height_ratios=[3, 1]*rows, left=.04, right=.99, bottom=.06, top=.90, hspace=.50, wspace=.23)
     artists = []
@@ -100,7 +100,7 @@ def replay(folder, values, restore_stamp, *, output_folder=None, heading_label=N
             bottom.axvline(restore_stamp-start, color="#6ee7b7", ls="--")
         artists.append((array, gt, est, dot, line))
     heading = fig.suptitle("", color="white", fontsize=15)
-    fig.text(.04, .95, "MEASURED RESULT REPLAY | saved native estimates + independent Gazebo truth | no new inference", color="#b9c5d9", fontsize=10)
+    fig.text(.04, .95, provenance_label or "MEASURED RESULT REPLAY | saved native estimates + independent Gazebo truth | no new inference", color="#b9c5d9", fontsize=10)
     fps = 8
     frames = int(math.floor((finish-start)*fps))+1
     output = (output_folder or folder) / "result.mp4"
@@ -147,6 +147,26 @@ def main():
     for path in [*run.glob("view-*.rviz"), *run.glob("*views.json"), run / "view-updates.jsonl"]:
         if path.is_file():
             shutil.copyfile(path, folder / path.name)
+    if (run / "probe-config.json").exists():
+        for part in ("probe-config.json", "probe-updates.jsonl", "probe-B-inputs.npz", "probe-B-inputs.json", "probe-robot.urdf", "probe-bridge.yaml", "height-control.world", "window-capture-heartbeat.jsonl"):
+            if (run / part).is_file():
+                shutil.copyfile(run / part, folder / part)
+        shutil.copytree(run / "probe-source", folder / "probe-source")
+        probe_config = json.loads((run / "probe-config.json").read_text())
+        (folder / "probe-maps").mkdir()
+        for part, source in (("lidar.npy", "lidar_map"), ("depth.npy", "depth_map")):
+            shutil.copyfile(windows_path(probe_config[source]), folder / "probe-maps" / part)
+        if "ground_z_m" in probe_config:
+            mapping = json.loads((windows_path(probe_config["maps"]) / "record.json").read_text())
+            mapping_run = windows_path(mapping["source_recording"])
+            pose_archive = mapping_run / "mapping-clouds.npz"
+            prior = probe_config["frame_alignment"]
+            if digest(pose_archive) != prior["mapping_A_pose_archive_sha256"]:
+                raise ValueError("Mapping-A pose archive changed before height-prior packaging")
+            with np.load(pose_archive, allow_pickle=False) as archived:
+                np.savez_compressed(folder / "height-prior-inputs.npz", provided_sensor_poses=archived["poses"],
+                                    body_from_sensor=np.array(prior["body_from_sensor"]))
+            shutil.copyfile(mapping_run / "probe-robot.urdf", folder / "height-prior-source.urdf")
     if (run / "executions").exists():
         shutil.copytree(run / "executions", folder / "executions")
     truth = [json.loads(line) for line in (run / "truth.jsonl").read_text().splitlines()]
@@ -156,24 +176,37 @@ def main():
             input_hashes[str(path.resolve())] = {"sha256": digest(path), "bytes": path.stat().st_size, "availability": "local_only"}
     log_dir = folder / "logs"
     log_dir.mkdir()
-    for name in ("renderer.txt", "observer.log", "stress.log", "patrol.log", "localizers.log", "rviz.log"):
+    for name in ("renderer.txt", "observer.log", "stress.log", "patrol.log", "localizers.log", "rviz.log", "probes.log", "sensor-preflight.log"):
         if (run / "logs" / name).exists():
             shutil.copyfile(run / "logs" / name, log_dir / name)
     values, case_maps, metrics_3d = {}, {}, {}
     cases = json.loads((run / "cases.json").read_text())
+    probe_updates = [json.loads(line) for line in (run / "probe-updates.jsonl").read_text().splitlines()] if (run / "probe-updates.jsonl").exists() else []
+    repairs = []
     for name, case in cases.items():
         source = run / f"{name}-samples.csv"
         values[name] = read_samples(source)
+        if probe_updates and name != "native":
+            from repair_probe_boundary import repair
+            config = json.loads((run / "probe-config.json").read_text())
+            recovered = repair(run, folder, name, values[name], probe_updates, truth, case["dimension"], config.get("ground_z_m", 0.))
+            if recovered:
+                repairs.append(recovered)
+                source = folder / source.name
+                values[name] = read_samples(source)
+                measured["cases"][name].update(score(values[name]))
         validate_truth(values[name], truth)
         actual = score(values[name])
         for key, value in actual.items():
             if value is not None and not math.isclose(value, measured["cases"][name][key], abs_tol=1e-10, rel_tol=0):
                 raise ValueError(f"{name}: {key} differs")
-        shutil.copyfile(source, folder / source.name)
+        if source.resolve() != (folder / source.name).resolve():
+            shutil.copyfile(source, folder / source.name)
         if case.get("dimension") == "3d":
-            pose3d = run / f"{name}-poses3d.csv"
+            pose3d = folder / f"{name}-poses3d.csv" if (folder / f"{name}-poses3d.csv").exists() else run / f"{name}-poses3d.csv"
             metrics_3d[name] = score_poses3d(pose3d, truth)
-            shutil.copyfile(pose3d, folder / pose3d.name)
+            if pose3d.resolve() != (folder / pose3d.name).resolve():
+                shutil.copyfile(pose3d, folder / pose3d.name)
         yaml = windows_path(cases[name]["map_yaml"])
         target = folder / "maps" / name
         target.mkdir(parents=True)
@@ -187,6 +220,10 @@ def main():
             pcd = windows_path(case["map_pcd"])
             case_maps[name]["pcd_sha256"] = digest(pcd)
             input_hashes[str(pcd.resolve())] = {"sha256": digest(pcd), "bytes": pcd.stat().st_size, "availability": "local_only"}
+    if repairs:
+        shutil.copyfile(run / "metrics.json", folder / "observer-metrics.json")
+        (folder / "metrics.json").write_text(json.dumps(measured, indent=2) + "\n")
+        (folder / "pose-stream-boundary-repair.json").write_text(json.dumps(repairs, indent=2) + "\n")
     restored = None
     events = []
     if (run / "scan-stress.jsonl").exists():
@@ -231,6 +268,10 @@ def main():
               "native_views": native_views,
               "restoration": {name: restoration(array, restored) for name, array in values.items()} if restored is not None else {},
               "artifacts": {path.relative_to(folder).as_posix(): {"sha256": digest(path), "bytes": path.stat().st_size, "availability": "portable"} for path in folder.rglob("*") if path.is_file()}}
+    if (folder / "probe-config.json").exists():
+        record["hypothesis_probes"] = json.loads((folder / "probe-config.json").read_text())
+        record["scope"] = "Matched sensor-only SE(2) recovery prototypes plus native AMCL/GICP anchor; 3D inputs do not imply full SE(3) estimation; mapping A uses provided poses"
+        record["pose_stream_boundary_repair"] = repairs
     (folder / "record.json").write_text(json.dumps(record, indent=2)+"\n")
     issues = verify_record(folder / "record.json")
     if issues:

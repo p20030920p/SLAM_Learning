@@ -1,0 +1,148 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-15-00-31-16-302485-DESKTOP-GI2390C-139048
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [139164]
+[INFO] [robot_state_publisher-2]: process started with pid [139165]
+[INFO] [parameter_bridge-3]: process started with pid [139166]
+[robot_state_publisher-2] [INFO] [1792013477.729670048] [robot_state_publisher]: Robot initialized
+[parameter_bridge-3] [INFO] [1792013478.777052646] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.848748597] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/scan (gz.msgs.LaserScan) -> /scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.853017020] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/camera (gz.msgs.Image) -> /camera/image_raw (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.854325049] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/camera_info (gz.msgs.CameraInfo) -> /camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.855986878] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/robot/contacts (gz.msgs.Contacts) -> /robot/contacts (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.863243998] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/robot/contacts/front_wheel (gz.msgs.Contacts) -> /robot/contacts/front_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.864800861] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/robot/contacts/left_wheel (gz.msgs.Contacts) -> /robot/contacts/left_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.866252138] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/robot/contacts/right_wheel (gz.msgs.Contacts) -> /robot/contacts/right_wheel (ros_gz_interfaces/msg/Contacts)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.867895220] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/lidar_3d/points (gz.msgs.PointCloudPacked) -> /points (sensor_msgs/msg/PointCloud2)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.869193656] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/probe_depth/points (gz.msgs.PointCloudPacked) -> /depth/points (sensor_msgs/msg/PointCloud2)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.869961695] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/probe_depth/depth_image (gz.msgs.Image) -> /depth/image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-3] [INFO] [1792013478.870930814] [gz_sensor_bridge]: Creating GZ->ROS Bridge: [/probe_depth/camera_info (gz.msgs.CameraInfo) -> /depth/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[gazebo-1] Stack trace (most recent call last):
+[gazebo-1] #31   Object "/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib/libOgreNextMain.so.2.3.3", at 0x7c773e33f79b, in Ogre::Root::installPlugin(Ogre::Plugin*, Ogre::StdMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, Ogre::STLAllocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const*)
+[gazebo-1] #30   Object "/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib/OGRE-Next/RenderSystem_GL3Plus.so", at 0x7c773dec325e, in Ogre::GL3PlusPlugin::install(Ogre::StdMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, Ogre::STLAllocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const*)
+[gazebo-1] #29   Object "/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib/OGRE-Next/RenderSystem_GL3Plus.so", at 0x7c773dec5fa0, in Ogre::GL3PlusRenderSystem::GL3PlusRenderSystem(Ogre::StdMap<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, Ogre::STLAllocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const*)
+[gazebo-1] #28   Object "/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib/OGRE-Next/RenderSystem_GL3Plus.so", at 0x7c773debc7f0, in 
+[gazebo-1] #27   Object "/lib/x86_64-linux-gnu/libEGL_mesa.so.0", at 0x7c773de1bc5f, in 
+[gazebo-1] #26   Object "/lib/x86_64-linux-gnu/libEGL_mesa.so.0", at 0x7c773de291a9, in 
+[gazebo-1] #25   Object "/lib/x86_64-linux-gnu/libgallium-25.2.8-0ubuntu0.24.04.4.so", at 0x7c77a14f517f, in driCreateContextAttribs
+[gazebo-1] #24   Object "/lib/x86_64-linux-gnu/libgallium-25.2.8-0ubuntu0.24.04.4.so", at 0x7c77a14f1270, in 
+[gazebo-1] #23   Object "/lib/x86_64-linux-gnu/libgallium-25.2.8-0ubuntu0.24.04.4.so", at 0x7c77a159af37, in 
+[gazebo-1] #22   Object "/lib/x86_64-linux-gnu/libgallium-25.2.8-0ubuntu0.24.04.4.so", at 0x7c77a2171691, in 
+[gazebo-1] #21   Object "/lib/x86_64-linux-gnu/libgallium-25.2.8-0ubuntu0.24.04.4.so", at 0x7c77a21b3d30, in 
+[gazebo-1] #20   Object "/usr/lib/wsl/lib/libd3d12core.so", at 0x7c77ad8c9c71, in 
+[gazebo-1] #19   Object "/usr/lib/wsl/lib/libd3d12core.so", at 0x7c77ad8c9a2b, in 
+[gazebo-1] #18   Object "/usr/lib/wsl/lib/libd3d12.so", at 0x7c77adca61c5, in 
+[gazebo-1] #17   Object "/usr/lib/wsl/lib/libd3d12.so", at 0x7c77adca64b1, in 
+[gazebo-1] #16   Object "/usr/lib/wsl/lib/libd3d12core.so", at 0x7c77ad8786c6, in 
+[gazebo-1] #15   Object "/usr/lib/wsl/lib/libd3d12core.so", at 0x7c77ad8bfc7e, in 
+[gazebo-1] #14   Object "/usr/lib/wsl/lib/libd3d12core.so", at 0x7c77ad9c1dfc, in 
+[gazebo-1] #13   Object "/usr/lib/wsl/lib/libd3d12core.so", at 0x7c77ad84f66e, in 
+[gazebo-1] #12   Object "/usr/lib/wsl/lib/libd3d12core.so", at 0x7c77ad850d4e, in 
+[gazebo-1] #11   Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c7791feb189, in 
+[gazebo-1] #10   Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c77928a4deb, in 
+[gazebo-1] #9    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c7791fe8a2e, in 
+[gazebo-1] #8    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c7791fe8b31, in 
+[gazebo-1] #7    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c7791fe68d9, in 
+[gazebo-1] #6    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c7791c49ab7, in 
+[gazebo-1] #5    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c7791c951b2, in 
+[gazebo-1] #4    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c7791c06d7f, in 
+[gazebo-1] #3    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c7791e93713, in 
+[gazebo-1] #2    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c7791e937c5, in 
+[gazebo-1] #1    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c77926a2200, in 
+[gazebo-1] #0    Object "/usr/lib/wsl/drivers/nv_dispig.inf_amd64_cc526ccc3287f5cd/libnvwgf2umx.so", at 0x7c779262052d, in 
+[gazebo-1] Segmentation fault (Signal sent by the kernel [(nil)])
+[INFO] [create-4]: process started with pid [139277]
+[create-4] [INFO] [1792013479.054629876] [spawn_omni_car]: Requesting list of world names.
+[create-4] [INFO] [1792013479.257613024] [spawn_omni_car]: Waiting messages on topic [robot_description].
+[create-4] [INFO] [1792013479.269885585] [spawn_omni_car]: Entity creation successful.
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="front_camera"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="probe_depth"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="research_lidar_3d"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="race_omni_car"]/link[@name="base_footprint"]/sensor[@name="lidar"]/gz_frame_id:<urdf-string>:L0]: XML Element[gz_frame_id], child of element[sensor], not defined in SDF. Copying[gz_frame_id] as children of [sensor].
+[INFO] [create-4]: process has finished cleanly [pid 139277]
+[gazebo-1] [INFO] [1792013479.744779053] [gz_ros_control]: Loading controller_manager
+[gazebo-1] [INFO] [1792013479.863240582] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [WARN] [1792013479.863313927] [controller_manager]: The resource manager is not yet initialized, will wait for the robot description to initialize it..
+[gazebo-1] [INFO] [1792013479.876480544] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1792013479.876565366] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [INFO] [1792013479.886753771] [controller_manager]: Received robot description from topic.
+[gazebo-1] [INFO] [1792013479.886834634] [controller_manager]: Enforcing command limits is disabled. Command limits from URDF will be ignored.
+[gazebo-1] [INFO] [1792013479.898444035] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gazebo-1] [INFO] [1792013479.898523884] [gz_ros_control]: Loading joint: front_wheel_joint
+[gazebo-1] [INFO] [1792013479.898531508] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792013479.898537210] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792013479.898540937] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792013479.898549427] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792013479.898552299] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792013479.898572172] [gz_ros_control]: Loading joint: left_wheel_joint
+[gazebo-1] [INFO] [1792013479.898575783] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792013479.898578919] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792013479.898582034] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792013479.898584758] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792013479.898587599] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792013479.898600238] [gz_ros_control]: Loading joint: right_wheel_joint
+[gazebo-1] [INFO] [1792013479.898603353] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1792013479.898605961] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1792013479.898608929] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792013479.898611980] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1792013479.898614430] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1792013479.898700055] [controller_manager]: Initialize hardware 'GazeboSimSystem' 
+[gazebo-1] [WARN] [1792013479.898711153] [controller_manager.hardware_component.system.GazeboSimSystem]: Executor is not available during hardware component initialization for 'GazeboSimSystem'. Skipping node creation!
+[gazebo-1] [INFO] [1792013479.898756674] [controller_manager]: Successful initialization of hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792013479.898827009] [controller_manager]: Activating component 'GazeboSimSystem'.
+[gazebo-1] [INFO] [1792013479.898837357] [resource_manager]: 'configure' hardware 'GazeboSimSystem' 
+[gazebo-1] [INFO] [1792013479.898841887] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1792013479.898845372] [resource_manager]: Successful 'configure' of hardware 'GazeboSimSystem'
+[gazebo-1] [INFO] [1792013479.898850514] [resource_manager]: 'activate' hardware 'GazeboSimSystem' 
+[gazebo-1] [INFO] [1792013479.898863027] [resource_manager]: Successful 'activate' of hardware 'GazeboSimSystem'
+[gazebo-1] [WARN] [1792013479.898922919] [controller_manager]: Component 'GazeboSimSystem' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [INFO] [1792013479.898928061] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...
+[gazebo-1] [INFO] [1792013481.895133927] [controller_manager.pal_statistics]: Async messages lost 0
+[gazebo-1] [INFO] [1792013481.895263811] [controller_manager.pal_statistics]: publish_async_failures_ 0
+[gazebo-1] [INFO] [1792013481.907715888] [controller_manager.pal_statistics]: Async messages lost 0
+[gazebo-1] [INFO] [1792013481.907764653] [controller_manager.pal_statistics]: publish_async_failures_ 0
+[INFO] [gazebo-1]: process has finished cleanly [pid 139164]
+[INFO] [spawner-5]: process started with pid [139350]
+[spawner-5] [INFO] [1792013483.194730146] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[INFO] [spawner-6]: process started with pid [139379]
+[INFO] [twist_to_twist_stamped-7]: process started with pid [139391]
+[twist_to_twist_stamped-7] [INFO] [1792013486.202612236] [twist_to_twist_stamped]: Converting Twist /cmd_vel -> TwistStamped /omni_drive_controller/cmd_vel
+[INFO] [map_saver_server-8]: process started with pid [139434]
+[INFO] [lifecycle_manager-9]: process started with pid [139435]
+[INFO] [sync_slam_toolbox_node-10]: process started with pid [139436]
+[lifecycle_manager-9] [INFO] [1792013488.261503566] [lifecycle_manager_slam]: Creating
+[sync_slam_toolbox_node-10] [INFO] [1792013488.268297194] [slam_toolbox]: Node using stack size 40000000
+[lifecycle_manager-9] [INFO] [1792013488.271482293] [lifecycle_manager_slam]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[map_saver_server-8] [INFO] [1792013488.281205866] [map_saver]: 
+[map_saver_server-8] 	map_saver lifecycle node launched. 
+[map_saver_server-8] 	Waiting on external lifecycle transitions to activate
+[map_saver_server-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_saver_server-8] [INFO] [1792013488.281324130] [map_saver]: Creating
+[sync_slam_toolbox_node-10] [INFO] [1792013488.658926061] [slam_toolbox]: Configuring
+[sync_slam_toolbox_node-10] [INFO] [1792013488.684581732] [slam_toolbox]: Using solver plugin solver_plugins::CeresSolver
+[sync_slam_toolbox_node-10] [INFO] [1792013488.684767817] [slam_toolbox]: CeresSolver: Using SCHUR_JACOBI preconditioner.
+[INFO] [launch.user]: [LifecycleLaunch] Slamtoolbox node is activating.
+[sync_slam_toolbox_node-10] [INFO] [1792013488.702912289] [slam_toolbox]: Activating
+[lifecycle_manager-9] [INFO] [1792013489.671855140] [lifecycle_manager_slam]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-9] [INFO] [1792013489.671911981] [lifecycle_manager_slam]: [34m[1mConfiguring map_saver[0m[0m
+[map_saver_server-8] [INFO] [1792013489.672181391] [map_saver]: Configuring
+[lifecycle_manager-9] [INFO] [1792013489.675573385] [lifecycle_manager_slam]: [34m[1mActivating map_saver[0m[0m
+[map_saver_server-8] [INFO] [1792013489.675726092] [map_saver]: Activating
+[map_saver_server-8] [INFO] [1792013489.675739905] [map_saver]: Creating bond (map_saver) to lifecycle manager.
+[lifecycle_manager-9] [INFO] [1792013489.786257145] [lifecycle_manager_slam]: Server map_saver connected with bond.
+[lifecycle_manager-9] [INFO] [1792013489.786314771] [lifecycle_manager_slam]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-9] [INFO] [1792013489.786322143] [lifecycle_manager_slam]: [34m[1mCreating bond timer...[0m[0m
+[spawner-5] [WARN] [1792013493.205279074] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-5] [INFO] [1792013493.205632676] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-5] [WARN] [1792013503.230827741] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-5] [INFO] [1792013503.231124437] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-6] [WARN] [1792013505.171046126] [ros2_control_controller_spawner_omni_drive_controller]: Failed to acquire lock in 20 seconds. Attempt 1 of 5 failed. Retrying in 3 seconds...
+[spawner-5] [WARN] [1792013511.525141475] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-5] [INFO] [1792013511.525463318] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-5] [WARN] [1792013521.536908784] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-5] [INFO] [1792013521.537206219] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-6] [WARN] [1792013526.454440127] [ros2_control_controller_spawner_omni_drive_controller]: Failed to acquire lock in 20 seconds. Attempt 2 of 5 failed. Retrying in 3 seconds...
+[spawner-5] [WARN] [1792013531.547757148] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-5] [INFO] [1792013531.548065999] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-5] [WARN] [1792013541.559934932] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-5] [INFO] [1792013541.560230057] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-6] [WARN] [1792013547.788440079] [ros2_control_controller_spawner_omni_drive_controller]: Failed to acquire lock in 20 seconds. Attempt 3 of 5 failed. Retrying in 3 seconds...

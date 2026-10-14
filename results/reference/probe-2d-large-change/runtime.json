@@ -1,0 +1,34 @@
+{
+  "world": "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S3_large_change.world",
+  "spawn": [
+    8.0727,
+    7.5312,
+    -1.5708
+  ],
+  "scene": "large-change",
+  "world_sha256": "f02535cae493af92299798575c818a2e477f525e258cc5fc1fceb2e7913cf51c",
+  "initial_offset": [
+    0.25,
+    0.15,
+    0.12
+  ],
+  "scan_restore_after_s": null,
+  "urdf": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-010529-localization-probe-2d-large-change-method-live-18e02b/probe-robot.urdf",
+  "bridge_config": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-010529-localization-probe-2d-large-change-method-live-18e02b/probe-bridge.yaml",
+  "sensor_arm": "2D lidar + depth camera",
+  "depth_sensor": {
+    "type": "Gazebo depth_camera",
+    "resolution": [
+      320,
+      240
+    ],
+    "horizontal_fov_deg": 80,
+    "near_far_m": [
+      0.25,
+      4.0
+    ],
+    "rate_hz": 10,
+    "extrinsics": "actual robot_state_publisher TF",
+    "noise": "ideal rendered depth; no hardware noise model"
+  }
+}

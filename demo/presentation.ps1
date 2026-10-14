@@ -1,5 +1,5 @@
 ﻿param(
-  [ValidateSet('mapping-static','mapping-dynamic','mapping-corridor','localization-static','localization-dynamic','localization-large-change','localization-degradation','localization-ndt-static','localization-gicp-static','localization-ndt-dynamic','localization-gicp-dynamic')]
+  [ValidateSet('mapping-static','mapping-dynamic','mapping-corridor','mapping-probe-static','mapping-probe-dynamic','mapping-probe-corridor','mapping-probe-height-corridor','localization-static','localization-dynamic','localization-large-change','localization-degradation','localization-ndt-static','localization-gicp-static','localization-ndt-dynamic','localization-gicp-dynamic')]
   [string]$Flow='mapping-static',
   [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
   [string]$PresentationRoot='F:\be2演讲',
@@ -92,6 +92,7 @@ if ($Record) {
     'localization-gicp-dynamic'='S2-运动障碍物__B-三维定位__GICP_Raw3D地图'
   }
   $mirrorName=$labels[$Flow]+'__'+$runId.Substring(0,15)+'-'+$runId.Substring($runId.Length-6)+'.mp4'
+  if($Flow -like 'mapping-probe-*'){$mirrorName=$Flow+'__2D-3D-depth_A__'+$runId.Substring(0,15)+'-'+$runId.Substring($runId.Length-6)+'.mp4'}
   Copy-Item -LiteralPath $video -Destination (Join-Path $mediaDir $mirrorName)
   [IO.File]::WriteAllText((Join-Path $run 'mirror.json'),(@{run_id=$runId;flow=$Flow;file=(Join-Path $mediaDir $mirrorName);scope='Native capture; metrics require a completed and verified session'}|ConvertTo-Json))
   & ffprobe.exe -v error -show_entries format=duration,size -show_entries stream=width,height,nb_frames,r_frame_rate -of json $video | Set-Content -LiteralPath (Join-Path $run 'video-probe.json') -Encoding utf8

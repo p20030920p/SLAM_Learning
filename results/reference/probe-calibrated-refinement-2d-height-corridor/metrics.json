@@ -1,0 +1,34 @@
+{
+  "coarse_lidar": {
+    "samples": 345,
+    "position_rmse_m": 0.7092560509806504,
+    "yaw_rmse_deg": 0.15401714514605433,
+    "post_warmup_5s_samples": 331,
+    "post_warmup_5s_position_rmse_m": 0.6940149240249335,
+    "position_p95_m": 1.0137106840769154
+  },
+  "coarse_depth": {
+    "samples": 345,
+    "position_rmse_m": 0.2115361912960363,
+    "yaw_rmse_deg": 0.14067488919775528,
+    "post_warmup_5s_samples": 331,
+    "post_warmup_5s_position_rmse_m": 0.13682254807084349,
+    "position_p95_m": 0.21195096851327483
+  },
+  "fine_lidar": {
+    "samples": 345,
+    "position_rmse_m": 0.7092560166947657,
+    "yaw_rmse_deg": 0.15401662132873026,
+    "post_warmup_5s_samples": 331,
+    "post_warmup_5s_position_rmse_m": 0.6940148875040982,
+    "position_p95_m": 1.0137106840769154
+  },
+  "fine_depth": {
+    "samples": 345,
+    "position_rmse_m": 0.1619557377984533,
+    "yaw_rmse_deg": 0.13261611918951074,
+    "post_warmup_5s_samples": 331,
+    "post_warmup_5s_position_rmse_m": 0.006049388020095826,
+    "position_p95_m": 0.01188396072344103
+  }
+}
