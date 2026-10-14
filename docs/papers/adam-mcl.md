@@ -4,6 +4,26 @@ English | [中文](adam-mcl.zh-CN.md)
 
 **Authored 128-cell indoor plan, one held-out scene, 200 particles.** A CNN turns a map and a 2-D scan into a samplable pose distribution, so global-localization particles are drawn from the whole map instead of a uniform prior.
 
+## Original paper datasets and scenes
+
+| Evaluation | Data / scene |
+| --- | --- |
+| Synthetic transfer | 20 maps, each 43×43 m; 18 training / two held-out test maps, six test sequences. Unknown obstacles are added or structure removed; each sequence includes global localization and one kidnapping. |
+| Real observations | UPO Royal Alcazar of Seville, 150×100 m; Rawseeds Bicocca indoor, split into two 40×30 m parts. Training scans are simulated from each real scene's SLAM map or floorplan, with added obstacles. |
+| Recovery evaluation | Each method/sequence is repeated 100 times; convergence requires position <2 m and yaw <10° for five consecutive updates. |
+
+[Paper §V-A/C](https://arxiv.org/html/2009.00211#S5). Real-scene testing still supplies that environment's map for synthetic training; it does not demonstrate deployment into any unknown building without its map. Our surrogate maps, short training and cell units differ from the paper protocol.
+
+## Observed effects before watching
+
+| Effective | Ineffective / limit |
+| --- | --- |
+| The original generator, planner, training and filter execute. Latest surrogate run: 123 updates, RMSE 32.23 cells, 2432-step checkpoint. [Live record](../../results/reference/desktop-adam-mcl/record.json) | Successful recovery is not demonstrated. Historical ten repeats: mean per-trial RMSE 34.82 cells; sustained global / kidnapping convergence both 0/10. The old 5.49-cell figure is withdrawn. [Corrected evidence](../../results/reference/adam-mcl/ERRATUM.md) |
+
+**Failure hypotheses to check:** inadequate training, map/scan scale or encoding mismatch, and DSOM proposals that fail to cover the true pose. The 2432-step checkpoint versus the upstream 2,880,000-step default is a known reproduction difference, not proof that training alone caused failure. Inspect proposal coverage and filtering separately before concluding the published method fails.
+
+The video below is historical and may display withdrawn score labels; use the erratum for its numbers. The [latest actual execution](../../results/reference/desktop-adam-mcl/execution.mp4) and [latest result replay](../../results/reference/desktop-adam-mcl/result.mp4) belong to the separate 123-update run.
+
 ![AdaM-MCL recorded evaluation session](../../results/reference/adam-mcl/media/preview.gif)
 
 [MP4](../../results/reference/adam-mcl/media/replay/replay.mp4) · [Run](../../results/reference/adam-mcl/runs/adam-mcl-wsl/record.json) · [Timing](../../results/reference/adam-mcl/media/timing.json)

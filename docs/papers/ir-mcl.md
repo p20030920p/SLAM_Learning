@@ -4,6 +4,26 @@ English | [中文](ir-mcl.zh-CN.md)
 
 **Bonn IPBLab indoor lab, the one released localization sequence (1543 scans, 1041 beams kept at 32).** A neural occupancy field renders a synthetic scan for every particle, and the rendered-versus-real range difference becomes the observation model of a particle filter.
 
+## Original paper datasets and scenes
+
+| Evaluation | Data / scene |
+| --- | --- |
+| Global localization / pose tracking | Bonn IPBLab: offices, corridor and kitchen; Kuka YouBot with Hokuyo UTM-30LX 2D LiDAR. A 31,608-frame mapping sequence trains the field; five shorter sequences test localization. |
+| Observation-model comparison | Freiburg Building 079, Intel Lab and MIT CSAIL Lab: indoor 2D scans split into training/validation/test subsets. These measure predicted-scan accuracy, not global-localization performance. |
+| Evaluated task | Localization in a known environment represented by a trained neural occupancy field; global initialization and tracking are reported separately. |
+
+[Paper §IV-A–C](https://ar5iv.labs.arxiv.org/html/2210.03113#S4). Its experiments do not establish recovery under our corridor scan restriction or major persistent map changes. Our reproduction covers only the released IPBLab Seq 1.
+
+## Observed effects before watching
+
+| Effective | Failure / limit |
+| --- | --- |
+| Latest native Seq 1: 1543 processed / 1354 scored poses, RMSE 5.31 cm / 1.07°, close to the paper's 5.13 cm / 1.05°. [Live record](../../results/reference/desktop-live-ir-mcl/record.json) | Severe degradation, map replacement and kidnapping are untested here. The other four localization sequences and Gazebo deployment are not completed. Accuracy on Seq 1 does not establish recovery capability. |
+
+**Failure hypothesis to check:** an obsolete learned field can render the wrong expected scan; repeated corridor geometry or too few informative beams can leave several pose hypotheses plausible. Check rendered-versus-measured residuals and particle coverage. These are diagnostic inferences, not observed failures in our Seq-1 run.
+
+The media below are retained historical evidence; the [latest actual execution](../../results/reference/desktop-live-ir-mcl/execution.mp4) observes fresh author-code inference.
+
 ![IR-MCL](../../results/reference/ir-mcl/media/preview.gif)
 
 [Result replay](../../results/reference/ir-mcl/media/replay/replay.mp4) · [Full execution recording](../../results/reference/ir-mcl/media/session/full-session.mp4) · [Run](../../results/reference/ir-mcl/runs/ir-mcl-wsl/record.json) · [Timing](../../results/reference/ir-mcl/media/timing.json)

@@ -4,6 +4,26 @@
 
 **自建 128 格室内平面、一个留出场景、200 个粒子。** 卷积网络把地图与二维扫描变成可采样的位姿分布，全局定位的粒子因此直接从整张地图上抽取，而不是从均匀先验。
 
+## 原文数据集与场景
+
+| 评估 | 数据／场景 |
+| --- | --- |
+| 仿真迁移 | 20张43×43 m地图；18张训练、2张留出测试，共六条测试序列。加入未知障碍或移除环境结构，每序列包含全局定位和一次绑架。 |
+| 真实观测 | UPO塞维利亚王宫，150×100 m；Rawseeds Bicocca室内数据分成两个40×30 m区域。使用对应真实场景的SLAM地图或平面图，加入障碍、仿真激光来训练。 |
+| 恢复评估 | 每方法／每序列重复100次；位置误差<2 m、yaw<10°连续五次更新才算收敛。 |
+
+[原文§V-A/C](https://arxiv.org/html/2009.00211#S5)。真实场景测试仍提供该环境的地图来生成训练扫描，并非无需对应地图就能部署到任意陌生建筑。本次替代地图、短训练与格单位均不同于论文协议。
+
+## 看视频前：本次观察效果
+
+| 有效 | 无效／限制 |
+| --- | --- |
+| 作者生成器、路径规划、训练和滤波流程能执行。最新替代数据运行：123次更新、RMSE 32.23格、2432步权重。[现场记录](../../results/reference/desktop-adam-mcl/record.json) | 没有证明成功恢复。历史十次的平均每次RMSE为34.82格，全局／绑架持续收敛均0/10；旧5.49格数值已撤回。[更正证据](../../results/reference/adam-mcl/ERRATUM.md) |
+
+**待排查假设：**训练不足、地图／扫描尺度或编码不匹配、DSOM候选分布未覆盖真值位置。2432步权重与上游默认2,880,000步的差距是已知复现差异，尚不能证明单由训练导致失败。应分别检查候选覆盖与滤波更新，再判断论文方法是否失效。
+
+下面是历史视频，画面可能含已撤回指标，数值请以勘误为准。[最新真实执行](../../results/reference/desktop-adam-mcl/execution.mp4)与[最新结果回放](../../results/reference/desktop-adam-mcl/result.mp4)属于另一次123次更新运行。
+
 ![AdaM-MCL 评测会话录制](../../results/reference/adam-mcl/media/preview.gif)
 
 [完整视频](../../results/reference/adam-mcl/media/replay/replay.mp4) · [原始记录](../../results/reference/adam-mcl/runs/adam-mcl-wsl/record.json) · [时间核对](../../results/reference/adam-mcl/media/timing.json)
