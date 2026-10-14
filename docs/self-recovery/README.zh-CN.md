@@ -65,6 +65,7 @@
 | [SURVEY.zh-CN.md](SURVEY.zh-CN.md) | 论文地图（按五组分类，逐条核验过链接），含每组的共同假设与共同盲区 |
 | [FEASIBILITY.zh-CN.md](FEASIBILITY.zh-CN.md) | 逐篇"能不能用现有 Static and dynamic localization recordings 仿真验证"，分三级 + 改装清单 |
 | [HYPOTHESES-BY-PAPER.zh-CN.md](HYPOTHESES-BY-PAPER.zh-CN.md) | **按策略族/论文分组的假设集**（6 族），每条假设绑定到现有仿真的哪一格、证伪条件、旧编号对照、6 页展示骨架 |
+| [PAPER-TO-HYPOTHESIS.zh-CN.md](PAPER-TO-HYPOTHESIS.zh-CN.md) | **逐篇假设**：每篇论文各自推出哪条假设（P1.1—P6.3），用现有仿真的哪一格验证，以及"现在就能讲 / 补一格就能讲 / 暂时不做"的三分表 |
 | [HYPOTHESES.zh-CN.md](HYPOTHESES.zh-CN.md) | 指标定义、实验矩阵、两天计划 |
 
 ## 写作与证据纪律（沿用旧库）
