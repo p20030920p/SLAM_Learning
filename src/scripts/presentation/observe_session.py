@@ -73,6 +73,7 @@ class Observer:
         self.last_control = 0
         self.keys = Twist()
         self.case_names = args.cases.split(",") if args.cases else []
+        self.cases = json.loads((self.run / "cases.json").read_text())
         self.rows = {case: [] for case in self.case_names}
         self.files = {}
         self.writers = {}
@@ -103,7 +104,7 @@ class Observer:
             )
             self.node.create_subscription(
                 PoseWithCovarianceStamped,
-                f"/{case}/amcl_pose",
+                self.cases[case].get("pose_topic", f"/{case}/amcl_pose"),
                 lambda msg, name=case: self.pending.append(("pose", name, msg)),
                 20,
             )
@@ -186,7 +187,7 @@ class Observer:
                 self.writers[case].writerow(row)
                 self.files[case].flush()
                 self.rows[case].append(row)
-                if case == self.case_names[0] and self.odom:
+                if case == self.case_names[0] and self.odom and not self.cases[case].get("native_map_odom_tf"):
                     odom = self.odom.pose.pose
                     oyaw = yaw(odom.orientation)
                     dyaw = wrap(est_yaw - oyaw)
@@ -299,7 +300,7 @@ class Observer:
             "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
             "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
             "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
-            "score_sampling": "AMCL pose updates; nearest truth within 0.05 simulation seconds",
+            "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
             "cases": {},
         }
         for case, rows in self.rows.items():

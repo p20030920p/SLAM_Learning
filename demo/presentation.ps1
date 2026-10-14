@@ -1,5 +1,5 @@
 ﻿param(
-  [ValidateSet('mapping-static','mapping-dynamic','mapping-corridor','localization-static','localization-dynamic','localization-large-change','localization-degradation')]
+  [ValidateSet('mapping-static','mapping-dynamic','mapping-corridor','localization-static','localization-dynamic','localization-large-change','localization-degradation','localization-ndt-static','localization-gicp-static','localization-ndt-dynamic','localization-gicp-dynamic')]
   [string]$Flow='mapping-static',
   [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
   [string]$PresentationRoot='F:\be2演讲',
@@ -83,6 +83,10 @@ if ($Record) {
     'localization-dynamic'='S2-运动障碍物__B-定位__AMCL_Raw-DUFOMap-BeautyMap_动静地图六组'
     'localization-large-change'='S3-持久变化__B-定位__AMCL_Raw-DUFOMap-BeautyMap_旧地图'
     'localization-degradation'='S4-走廊退化__B-定位__AMCL_Raw-DUFOMap-BeautyMap_完整与恢复六组'
+    'localization-ndt-static'='S1-纯静态__B-三维定位__NDT_OMP_Raw3D地图'
+    'localization-gicp-static'='S1-纯静态__B-三维定位__GICP_Raw3D地图'
+    'localization-ndt-dynamic'='S2-运动障碍物__B-三维定位__NDT_OMP_Raw3D地图'
+    'localization-gicp-dynamic'='S2-运动障碍物__B-三维定位__GICP_Raw3D地图'
   }
   $mirrorName=$labels[$Flow]+'__'+$runId.Substring(0,15)+'-'+$runId.Substring($runId.Length-6)+'.mp4'
   Copy-Item -LiteralPath $video -Destination (Join-Path $mediaDir $mirrorName)

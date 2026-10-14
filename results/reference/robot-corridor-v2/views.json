@@ -1,0 +1,29 @@
+{
+  "degraded_raw": {
+    "method": "raw",
+    "title": "SLAM LIVE - degraded_raw - RViz2",
+    "config": "view-degraded_raw.rviz",
+    "map_topic": "/degraded_raw/map",
+    "pose_topic": "/degraded_raw/amcl_pose",
+    "tf_topic": "/degraded_raw/view/tf",
+    "scan_topic": "/scan_degraded"
+  },
+  "degraded_dufomap": {
+    "method": "dufomap",
+    "title": "SLAM LIVE - degraded_dufomap - RViz2",
+    "config": "view-degraded_dufomap.rviz",
+    "map_topic": "/degraded_dufomap/map",
+    "pose_topic": "/degraded_dufomap/amcl_pose",
+    "tf_topic": "/degraded_dufomap/view/tf",
+    "scan_topic": "/scan_degraded"
+  },
+  "degraded_beautymap": {
+    "method": "beautymap",
+    "title": "SLAM LIVE - degraded_beautymap - RViz2",
+    "config": "view-degraded_beautymap.rviz",
+    "map_topic": "/degraded_beautymap/map",
+    "pose_topic": "/degraded_beautymap/amcl_pose",
+    "tf_topic": "/degraded_beautymap/view/tf",
+    "scan_topic": "/scan_degraded"
+  }
+}

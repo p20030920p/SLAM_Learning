@@ -24,7 +24,7 @@
 
 ### 走廊退化
 
-[Raw live RViz](../../results/reference/robot-live-degradation/executions/degraded_raw.mp4) · [DUFOMap live RViz](../../results/reference/robot-live-degradation/executions/degraded_dufomap.mp4) · [BeautyMap live RViz](../../results/reference/robot-live-degradation/executions/degraded_beautymap.mp4) · [record](../../results/reference/robot-live-degradation/record.json)
+[Raw live RViz](../../results/reference/robot-corridor-v2/executions/degraded_raw.mp4) · [DUFOMap live RViz](../../results/reference/robot-corridor-v2/executions/degraded_dufomap.mp4) · [BeautyMap live RViz](../../results/reference/robot-corridor-v2/executions/degraded_beautymap.mp4) · [record](../../results/reference/robot-corridor-v2/record.json)
 
 [独立建图 A](../../results/reference/robot-corridor-mapping/execution.mp4)
 
@@ -63,20 +63,18 @@ e_i=\sqrt{(\hat{x}_i-x_i)^2+(\hat{y}_i-y_i)^2},\qquad
 | 动态地图／运动障碍物 | 7.41 | 7.35 | 7.14 | 288 |
 | 静态地图控制／同一动态输入 | 7.08 | 7.08 | 6.78 | 288 |
 | 旧地图／持久变化 | 6.84 | 6.84 | 6.39 | 290 |
-| 完整扫描控制 | 53.46 | 53.46 | 53.46 | 476 |
-| 受限→恢复扫描 | 75.66 | 75.66 | 75.66 | 476 |
+| 新走廊完整扫描控制 | 71.60 | 71.60 | 71.60 | 508 |
+| 新走廊受限→恢复扫描 | 72.53 | 72.53 | 72.53 | 508 |
 
 主页按方法分别展示 GIF；[录像索引](../../demo/recording-index.json)将本机文件名对应到上述各行。
 
 ## 走廊退化与恢复
 
-匹配的两面 20 m 平行墙走廊。初始信念 X 偏移 1 m、Y 偏移 0.15 m、偏航偏移 0.12 rad；其他场景 X 偏移 0.25 m。完整控制组接收 720 束／360°／12 m；压力组从同一扫描派生 72 束／240°／3.5 m，持续 50 个仿真秒后恢复完整观测。独立三维激光始终完整，不输入 AMCL。
+本次世界为 14 m 平行墙中段、两端扩宽房间与不对称柱／块，总长约 24 m。起点的 3.5 m 受限扫描看不到远端特征；12 m 完整扫描在驾驶中重新获得约束。建图 A 与独立定位 B 保存相同世界哈希，模型变更后必须重建地图。
 
-本次每组保留 476 条原生更新至仿真 103.3 s，恢复发生在 58.5 s。压力组恢复前 RMSE 为 0.975 m，恢复后整个过渡窗为 0.441 m，末帧误差 6.62 cm。恢复后约 31.3 s 开始持续收敛，随后覆盖 5 个仿真秒、至少八次更新，位置误差 <0.1 m、绝对偏航差 <5°。
+每组 508 条原生更新；t=66.2 s 恢复扫描。受限→恢复组全窗口 RMSE 72.53 cm，完整扫描控制组 71.60 cm，均包含初始化。受限组在恢复后 13.3 s 开始满足连续 5 s、至少 8 更新、位置误差 <0.1 m、偏航 <5° 的判据；控制组在同一参照时刻后 6.6 s 满足。控制组也曾存在歧义，不能把本次失效全归因于受限扫描。
 
-三种投影后的走廊地图相同，因此结果相同。此前 478 更新／11.3 s 的运行仍[保留归档](../../results/reference/robot-degradation/record.json)，不与新现场录像配对。本次为 31.3 s，说明不能用单次运行宣称恢复稳定性；两次都不是实体绑架。本次持久变化路线也未诱发失效。
-
-[历史法向覆盖诊断](../../results/reference/robot-degradation/geometry-audit.json)对应上一轮，而非本次新运行；局部 Gram 比不是完整 SLAM Hessian 或校准后的恢复概率。
+三个二维地图相同，不能给地图清理方法排序。此前 11.3 s 与 31.3 s 属于旧模型／旧运行。本次不是实体绑架实验。三维输入没有进入这些 AMCL。
 
 ## 一键演示与实体测试
 

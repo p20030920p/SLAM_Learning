@@ -118,6 +118,7 @@ def main():
         }
     report = {
         "kind": "author_map_platform_adaptation",
+        "world_sha256": json.loads((args.recording / "runtime.json").read_text()).get("world_sha256"),
         "source_recording": str(args.recording),
         "input_sha256": hashlib.sha256((args.recording / "mapping-clouds.npz").read_bytes()).hexdigest(),
         "selected_scan_ids": ids.tolist(),

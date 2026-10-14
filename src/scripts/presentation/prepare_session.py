@@ -24,25 +24,8 @@ level = {"static": "S1_static", "dynamic": "S2_dynamic", "large-change": "S3_lar
 world_path = repo / f"config/presentation/worlds/{level}.world"
 spawn = [7.15, -3.1, 0.0] if scene == "corridor" else [8.0727, 7.5312, -1.5708]
 initial_offset = [1.0, 0.15, 0.12] if scene == "corridor" else [0.25, 0.15, 0.12]
-if scene == "corridor":
-    # Matched-map test: remove the arena mesh rather than confound old-map mismatch.
-    world = ET.parse(world_path)
-    body = world.find("world")
-    for include in list(body.findall("include")):
-        body.remove(include)
-    for wall in body.findall("model"):
-        if wall.get("name", "").startswith("s4_corridor_wall"):
-            for size in wall.findall(".//box/size"):
-                size.text = "20.0 0.16 1.5"
-            pose = wall.find("pose")
-            values = pose.text.split()
-            values[2] = "0.75"
-            pose.text = " ".join(values)
-    for name, x in [("west", -2.93), ("east", 17.23)]:
-        body.append(ET.fromstring(f'<model name="corridor_end_{name}"><static>true</static><pose>{x} -3.1 0.75 0 0 0</pose><link name="link"><collision name="collision"><geometry><box><size>0.16 3.16 1.5</size></box></geometry></collision><visual name="visual"><geometry><box><size>0.16 3.16 1.5</size></box></geometry><material><ambient>0.25 0.35 0.55 1</ambient><diffuse>0.25 0.35 0.55 1</diffuse></material></visual></link></model>'))
-    world_path = run / "corridor.world"
-    world.write(world_path, encoding="utf-8", xml_declaration=True)
 runtime = {"world": str(world_path), "spawn": spawn, "scene": scene,
+           "world_sha256": hashlib.sha256(world_path.read_bytes()).hexdigest(),
            "initial_offset": initial_offset, "scan_restore_after_s": 50.0 if scene == "corridor" else None}
 (run / "runtime.json").write_text(json.dumps(runtime, indent=2)+"\n")
 cases = {}
@@ -50,6 +33,10 @@ if mode == "localization":
     marker = repo / ".cache/presentation" / f"maps-{mapping_scene}-latest.json"
     fallback = {"static": "robot-static", "dynamic": "robot-dynamic", "corridor": "robot-degradation"}[mapping_scene]
     maps = Path(json.loads(marker.read_text())["path"]) if marker.exists() else repo / f"results/reference/{fallback}/maps"
+    if scene == "corridor":
+        processing = json.loads((maps / "record.json").read_text())
+        if processing.get("world_sha256") != runtime["world_sha256"]:
+            raise ValueError("Corridor geometry changed: record mapping-corridor A and rebuild maps first")
     for method in ("raw", "dufomap", "beautymap"):
         path = maps / method / "map.yaml"
         if not path.exists():
@@ -70,17 +57,69 @@ if mode == "localization":
                     "map_yaml": str(path),
                     "mapping_scene": "static",
                 }
+    if "-ndt-" in flow or "-gicp-" in flow:
+        algorithm = "NDT_OMP" if "-ndt-" in flow else "GICP"
+        name = "ndt" if algorithm == "NDT_OMP" else "gicp"
+        pcd = maps / "raw-map.pcd"
+        if not pcd.is_file():
+            raise FileNotFoundError("Native 3D map missing; process mapping A first: " + str(pcd))
+        cases = {name: {**cases["raw"], "localizer": algorithm, "map_pcd": str(pcd),
+                        "pose_topic": f"/{name}/pcl_pose", "native_map_odom_tf": True}}
 (run / "cases.json").write_text(json.dumps(cases, indent=2) + "\n")
 config = (repo / "config/presentation/live_base.rviz").read_text()
 if mode == "localization":
     config = config.replace("Value: /map\n", "Value: /raw/map\n")
-    config = config.replace("X: 0\n", "X: 3.65\n").replace("Y: 0\n", "Y: 1.0\n")
+    map_yaml = Path(next(iter(cases.values()))["map_yaml"])
+    settings = map_yaml.read_text()
+    origin = [float(item) for item in re.search(r"origin:\s*\[([^]]+)\]", settings).group(1).split(",")]
+    resolution = float(re.search(r"resolution:\s*([\d.]+)", settings).group(1))
+    dimensions = re.match(rb"P5\s+(\d+)\s+(\d+)", map_yaml.with_name("map.pgm").read_bytes()[:512])
+    width, height = [float(item) * resolution for item in dimensions.groups()]
+    centre_x, centre_y = origin[0] + width / 2, origin[1] + height / 2
+    scale = min(55.0, 840 / width, 590 / height)
+    config = config.replace("X: 0\n", f"X: {centre_x}\n").replace("Y: 0\n", f"Y: {centre_y}\n")
+    config = config.replace("Scale: 55", f"Scale: {scale}")
     config = config.replace("slam_toolbox map (live)", "Raw map + common AMCL (live)")
+else:
+    # slam_toolbox's map origin follows the initial odometry frame, not world.
+    config = config.replace("X: 0\n", "X: 3.0\n").replace("Y: 0\n", "Y: -2.0\n")
 if scene == "corridor":
-    config = config.replace("X: 3.65\n", "X: 7.15\n").replace("Y: 1.0\n", "Y: -3.1\n")
     if mode == "mapping":
-        config = config.replace("X: 0\n", "X: 0.0\n").replace("Y: 0\n", "Y: 0.0\n")
-    config = config.replace("Scale: 35", "Scale: 25")
+        config = config.replace("X: 3.0\n", "X: 0.0\n").replace("Y: -2.0\n", "Y: 0.0\n")
+    config = config.replace("Scale: 55", "Scale: 25")
+if "-ndt-" in flow or "-gicp-" in flow:
+    name = next(iter(cases))
+    config = config.replace("Value: /raw/map\n", f"Value: /{name}/map\n")
+    config = config.replace("Raw map + common AMCL (live)", cases[name]["localizer"] + " 3D fixed-map localization")
+    additions = f'''    - Class: rviz_default_plugins/PoseWithCovariance
+      Name: {cases[name]["localizer"]} native pose
+      Enabled: true
+      Topic:
+        Value: /{name}/pcl_pose
+      Color: 60; 180; 255
+      Shape: Arrow
+    - Class: rviz_default_plugins/Path
+      Name: {cases[name]["localizer"]} native trajectory
+      Enabled: true
+      Topic:
+        Value: /{name}/path
+      Color: 60; 180; 255
+      Line Width: 0.05
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Frozen 3D prior map
+      Enabled: true
+      Topic:
+        Value: /{name}/initial_map
+        Reliability Policy: Reliable
+        Durability Policy: Transient Local
+        Depth: 1
+      Style: Points
+      Size (Pixels): 1
+      Color Transformer: FlatColor
+      Color: 170; 185; 200
+      Position Transformer: XYZ
+'''
+    config = config.replace("  Global Options:\n", additions + "  Global Options:\n")
 (run / "live.rviz").write_text(config)
 if os.environ.get("PRESENTATION_MULTI_VIEW") == "true" and mode == "localization":
     views = {}
@@ -126,7 +165,7 @@ for plugin in list(gui.findall("plugin")):
     if plugin.get("filename") in ("ComponentInspector", "EntityTree"):
         gui.remove(plugin)
 camera = gui.find("plugin[@filename='MinimalScene']/camera_pose")
-camera.text = "7.15 -3.1 15 0 1.5707963267948966 0" if scene == "corridor" else "7.5 4.5 13 0 1.5707963267948966 0"
+camera.text = "7.15 -3.1 27 0 1.5707963267948966 -1.5707963267948966" if scene == "corridor" else "7.5 4.5 22 0 1.5707963267948966 0"
 gui.find("window/width").text = "960"
 gui.find("window/height").text = "720"
 gui.find("window/dialog_on_exit").text = "false"
@@ -155,5 +194,8 @@ manifest = {
     "assets": {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in paths if path.is_file()},
     "cases": cases,
 }
+if "-ndt-" in flow or "-gicp-" in flow:
+    manifest["input_to_localizers"] = "live 3D /points, wheel odometry and frozen Raw 3D prior map"
+    manifest["scope"] = "3D fixed-map scan registration; no new map update, IMU or deskew claim"
 (run / "session.json").write_text(json.dumps(manifest, indent=2) + "\n")
 print(json.dumps(manifest, indent=2), flush=True)

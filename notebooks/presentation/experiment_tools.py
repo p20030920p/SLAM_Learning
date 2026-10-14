@@ -17,9 +17,10 @@ from IPython.display import HTML, Markdown, display
 from PIL import Image
 
 PACKAGES = (
-    "robot-static-mapping", "robot-static", "robot-dynamic-mapping", "robot-dynamic",
-    "robot-large-change", "robot-corridor-mapping", "robot-degradation",
-    "desktop-dufomap", "desktop-beautymap", "desktop-ir-mcl", "desktop-adam-mcl",
+    "robot-supp-static", "robot-supp-dynamic", "robot-supp-large-change", "robot-corridor-v2-mapping",
+    "robot-live-static", "robot-live-dynamic", "robot-live-large-change", "robot-corridor-v2",
+    "desktop-live-dufomap", "desktop-live-beautymap", "desktop-live-ir-mcl", "desktop-adam-mcl",
+    "robot-ndt-static", "robot-gicp-static", "robot-ndt-static-initial",
 )
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "evidence"

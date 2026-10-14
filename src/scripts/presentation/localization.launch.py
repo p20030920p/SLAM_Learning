@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, OpaqueFunction
+from launch.actions import DeclareLaunchArgument, OpaqueFunction, TimerAction
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
@@ -12,9 +12,9 @@ from launch_ros.actions import Node
 def launch_cases(context):
     cases = json.loads(Path(LaunchConfiguration("cases_file").perform(context)).read_text())
     actions = []
-    for name, case in cases.items():
+    for index, (name, case) in enumerate(cases.items()):
         common = {"use_sim_time": True}
-        actions.extend(
+        case_actions = (
             [
                 Node(
                     package="nav2_map_server",
@@ -65,16 +65,17 @@ def launch_cases(context):
                         }
                     ],
                 ),
-                Node(
+                TimerAction(period=2.0, actions=[Node(
                     package="nav2_lifecycle_manager",
                     executable="lifecycle_manager",
                     name="lifecycle_manager",
                     namespace=name,
                     output="screen",
                     parameters=[{**common, "autostart": True, "node_names": ["map_server", "amcl"]}],
-                ),
+                )]),
             ]
         )
+        actions.append(TimerAction(period=3.0 * index, actions=case_actions))
     return actions
 
 

@@ -22,11 +22,11 @@
 
 ### Corridor degradation
 
-[Raw live RViz](../../results/reference/robot-live-degradation/executions/degraded_raw.mp4) · [DUFOMap live RViz](../../results/reference/robot-live-degradation/executions/degraded_dufomap.mp4) · [BeautyMap live RViz](../../results/reference/robot-live-degradation/executions/degraded_beautymap.mp4) · [record](../../results/reference/robot-live-degradation/record.json)
+[Raw live RViz](../../results/reference/robot-corridor-v2/executions/degraded_raw.mp4) · [DUFOMap live RViz](../../results/reference/robot-corridor-v2/executions/degraded_dufomap.mp4) · [BeautyMap live RViz](../../results/reference/robot-corridor-v2/executions/degraded_beautymap.mp4) · [record](../../results/reference/robot-corridor-v2/record.json)
 
 [Mapping A](../../results/reference/robot-corridor-mapping/execution.mp4)
 
-Execution combines synchronized captures of real application windows; unrelated desktop content is excluded. Gazebo's visible real-time factor reports actual simulation speed; 15fps capture is not algorithm throughput. GIFs sample the full MP4 interval at 5fps without acceleration. `timing.json` records duration/frame checks, and every MP4 is fully decoded.
+Execution combines synchronized captures of real application windows; unrelated desktop content is excluded. Gazebo's visible real-time factor reports actual simulation speed; 12/15fps capture is not algorithm throughput. GIFs sample the full MP4 interval at 5fps without acceleration. `timing.json` records duration/frame checks, and every MP4 is fully decoded.
 
 Replays are labelled `MEASURED RESULT REPLAY`: saved AMCL updates and independent simulator truth, sampled at 8fps of simulation time using the latest saved update. No inference is performed during replay. Capture uses wall time, replay uses simulation time, so durations differ.
 
@@ -61,20 +61,20 @@ One run per condition. Within a condition, all instances receive the same inputs
 | Dynamic maps / moving obstacles | 7.41 | 7.35 | 7.14 | 288 |
 | Static-map controls / same dynamic input | 7.08 | 7.08 | 6.78 | 288 |
 | Old maps / persistent change | 6.84 | 6.84 | 6.39 | 290 |
-| Full-scan controls | 53.46 | 53.46 | 53.46 | 476 |
-| Limited → restored scans | 75.66 | 75.66 | 75.66 | 476 |
+| New corridor full-scan controls | 71.60 | 71.60 | 71.60 | 508 |
+| New corridor limited → restored scans | 72.53 | 72.53 | 72.53 | 508 |
 
 The homepage shows separate method GIFs; the [recording index](../../demo/recording-index.json) connects local video names to these rows.
 
 ## Corridor restoration
 
-Matched 20 m parallel-wall corridor. Initial belief offset: X=1 m, Y=0.15 m, yaw=0.12 rad; other scenes use X=0.25 m. Full controls receive 720 beams / 360° / 12 m. Pressure cases receive 72 beams / 240° / 3.5 m from the same scan for 50 simulation seconds, then regain full observations. Independent 3D LiDAR stays full and does not feed AMCL.
+The rebuilt model has a 14 m plain parallel-wall centre and wider end rooms with asymmetric columns/blocks, total length about 24 m. The central 3.5 m scan cannot see the end landmarks at the starting pose; full 12 m scans regain distant constraints as the robot drives. Both mapping A and held-out B use the same saved world hash. Changing geometry forces a fresh A and map processing; old maps cannot silently enter this test.
 
-This new run retains 476 native updates per case through t=103.3 s, with restoration at t=58.5 s. Pressure-group RMSE is 0.975 m before restoration, 0.441 m over the post-restoration transition, and 6.62 cm at the last update. Sustained convergence begins 31.3 s after restoration and is confirmed across 5 simulation seconds, >=8 native updates, position <0.1 m and absolute yaw <5°.
+Initial belief offset: X=1 m, Y=0.15 m, yaw=0.12 rad. Full controls receive 720 beams / 360° / 12 m; pressure cases receive 72 beams / 240° / 3.5 m for 50 simulation seconds, then full observations. The 3D sensor remains full and does not feed AMCL.
 
-All three projected corridor maps are identical, so their outcomes are identical. The earlier 478-update / 11.3 s trial remains [archived](../../results/reference/robot-degradation/record.json); it is not paired with the new live clips. The new 31.3 s delay illustrates why one run does not establish recovery stability. Neither trial is physical kidnapping. The persistent-change route did not induce loss.
+This run retains 508 updates per case. Restoration occurs at t=66.2 s. Pressure cases have full-window XY RMSE 72.53 cm; full controls 71.60 cm, both including initialization. Pressure convergence begins 13.3 s after restoration; confirmation requires position <0.1 m and |yaw|<5° across 5 simulation seconds and at least 8 native updates. The full controls first satisfy the same sustained rule 6.6 s after that reference time, despite never being scan-limited.
 
-The [historical normal-coverage audit](../../results/reference/robot-degradation/geometry-audit.json) describes the earlier trial, not this new one. Its local Gram ratio is not a full SLAM Hessian or calibrated recovery probability.
+All three projected maps are identical. The full-control ambiguity means this run does not isolate scan limitation as the sole failure cause, and does not rank map cleaners. The 11.3 s and 31.3 s results refer to earlier corridor models/runs, retained as history. No physical kidnapping is performed.
 
 ## One-click demonstrations and physical tests
 

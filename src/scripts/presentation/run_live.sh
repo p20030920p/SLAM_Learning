@@ -17,9 +17,12 @@ REPO="$(cd "$HERE/../../.." && pwd)"
 export S2R_REPO="${S2R_REPO:-/root/projects/Sim2Real-AlgoBench}"
 source /opt/ros/jazzy/setup.bash
 source "$S2R_REPO/install/setup.bash"
+if [[ "$FLOW" == *-ndt-* || "$FLOW" == *-gicp-* ]]; then
+  source /root/slam-alternative-ws/build_ws/install/setup.bash
+fi
 exec 9>/root/slam-presentation.lock
 flock -w 15 9 || { echo 'A presentation is active. Finish it with q before starting another.'; exit 3; }
-export ROS_DOMAIN_ID=196
+export ROS_DOMAIN_ID="${SLAM_ROS_DOMAIN_ID:-198}"
 export GZ_PARTITION="slam_presentation_$(basename "$RUN_DIR")"
 export GALLIUM_DRIVER=d3d12 MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
 export QT_QPA_PLATFORM=xcb DISPLAY=:0
@@ -76,7 +79,9 @@ if [[ "$MODE" == localization ]]; then
     setsid python3 -u "$HERE/stress_scan.py" "$RUN_DIR" > "$RUN_DIR/logs/stress.log" 2>&1 &
     PIDS+=("$!")
   fi
-  setsid ros2 launch "$HERE/localization.launch.py" "cases_file:=$RUN_DIR/cases.json" \
+  LOCALIZER_LAUNCH=localization.launch.py
+  if [[ "$FLOW" == *-ndt-* || "$FLOW" == *-gicp-* ]]; then LOCALIZER_LAUNCH=registration.launch.py; fi
+  setsid ros2 launch "$HERE/$LOCALIZER_LAUNCH" "cases_file:=$RUN_DIR/cases.json" \
     > "$RUN_DIR/logs/localizers.log" 2>&1 &
   PIDS+=("$!")
 fi
@@ -89,7 +94,7 @@ if [[ "$PRESENTATION_MULTI_VIEW" == true && "$MODE" == localization ]]; then
     PIDS+=("$!")
   done
 else
-  setsid rviz2 -d "$RUN_DIR/live.rviz" -t 'SLAM LIVE - RViz2' --ros-args -p use_sim_time:=true \
+  setsid rviz2 -d "$RUN_DIR/live.rviz" -t "SLAM LIVE - RViz2 - $FLOW" --ros-args -p use_sim_time:=true \
     > "$RUN_DIR/logs/rviz.log" 2>&1 &
   PIDS+=("$!")
 fi

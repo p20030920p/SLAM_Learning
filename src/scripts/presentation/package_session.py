@@ -83,9 +83,11 @@ def replay(folder, values, restore_stamp, *, output_folder=None, heading_label=N
         top.set_xlim(x.min()-pad, x.max()+pad)
         top.set_ylim(y.min()-pad, y.max()+pad)
         top.set_aspect("equal", adjustable="box")
-        top.set_title(name+f" | AMCL | full RMSE {score(array)['position_rmse_m']*100:.2f} cm", color="white", fontsize=13 if count == 1 else 10)
+        case = json.loads((folder / "cases.json").read_text())[name]
+        localizer = case.get("localizer", "AMCL")
+        top.set_title(name+f" | {localizer} | full RMSE {score(array)['position_rmse_m']*100:.2f} cm", color="white", fontsize=13 if count == 1 else 10)
         gt, = top.plot([], [], color="#6ee7b7", lw=2, label="truth")
-        est, = top.plot([], [], color="#60a5fa", lw=1.6, label="AMCL")
+        est, = top.plot([], [], color="#60a5fa", lw=1.6, label=localizer)
         dot, = top.plot([], [], "o", color="#60a5fa", ms=5)
         top.legend(fontsize=7, facecolor="#192338", labelcolor="white", loc="best")
         bottom.plot(array[:, 0]-start, array[:, 7]*100, color="#fbbf24", lw=1)
@@ -97,7 +99,7 @@ def replay(folder, values, restore_stamp, *, output_folder=None, heading_label=N
             bottom.axvline(restore_stamp-start, color="#6ee7b7", ls="--")
         artists.append((array, gt, est, dot, line))
     heading = fig.suptitle("", color="white", fontsize=15)
-    fig.text(.04, .95, "MEASURED RESULT REPLAY | saved AMCL updates + independent Gazebo truth | no new inference", color="#b9c5d9", fontsize=10)
+    fig.text(.04, .95, "MEASURED RESULT REPLAY | saved native estimates + independent Gazebo truth | no new inference", color="#b9c5d9", fontsize=10)
     fps = 8
     frames = int(math.floor((finish-start)*fps))+1
     output = (output_folder or folder) / "result.mp4"
@@ -157,7 +159,7 @@ def main():
             shutil.copyfile(run / "logs" / name, log_dir / name)
     values, case_maps = {}, {}
     cases = json.loads((run / "cases.json").read_text())
-    for name in cases:
+    for name, case in cases.items():
         source = run / f"{name}-samples.csv"
         values[name] = read_samples(source)
         validate_truth(values[name], truth)
@@ -175,6 +177,10 @@ def main():
         shutil.copyfile(processing, target / "processing.json")
         case_maps[name] = {"yaml_sha256": digest(yaml), "pgm_sha256": digest(yaml.parent / "map.pgm"),
                            "processing_record_sha256": digest(processing), "mapping_run": json.loads(processing.read_text())["source_recording"]}
+        if case.get("map_pcd"):
+            pcd = windows_path(case["map_pcd"])
+            case_maps[name]["pcd_sha256"] = digest(pcd)
+            input_hashes[str(pcd.resolve())] = {"sha256": digest(pcd), "bytes": pcd.stat().st_size, "availability": "local_only"}
     restored = None
     events = []
     if (run / "scan-stress.jsonl").exists():
@@ -211,7 +217,7 @@ def main():
     record = {"schema_version": 1, "kind": "native_desktop_localization" if values else "native_desktop_mapping",
               "status": "executed", "exit_code": 0, "source_run": str(run.resolve()),
               "command": json.loads((run / "session.json").read_text())["flow"],
-              "scope": "Sim2Real same chassis; native 2D slam_toolbox/AMCL; 3D mapping with supplied poses; no 3D SLAM claim",
+              "scope": json.loads((run / "session.json").read_text()).get("scope", "Sim2Real same chassis; native 2D slam_toolbox/AMCL; 3D mapping with supplied poses; no 3D SLAM claim"),
               "metrics": measured, "truth_input_to_localizers": False, "case_maps": case_maps,
               "recorded_inputs": input_hashes,
               "robot_motion_xy_span_m": np.ptp(xyz[:, :2], axis=0).tolist(),
