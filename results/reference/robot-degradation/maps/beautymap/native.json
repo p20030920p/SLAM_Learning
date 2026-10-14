@@ -1,0 +1,28 @@
+{
+  "commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e",
+  "command": [
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "-u",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d/author-maps-20261014-172116/beautymap-native/author-code/main.py",
+    "--data_dir",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d/author-maps-20261014-172116/beautymap-native/input",
+    "--dis_range",
+    "8",
+    "--xy_resolution",
+    "0.5",
+    "--h_res",
+    "0.2"
+  ],
+  "exit_code": 0,
+  "seconds": 1.2968883069988806,
+  "frames": 60,
+  "parameters": {
+    "dis_range": 8,
+    "xy_resolution": 0.5,
+    "h_res": 0.2
+  },
+  "raw_input_sha256": "edcb96265656a0e07fd00915aa169a26cce55987322bcb312467aaaf7006af9d",
+  "compatibility_patch_sha256": "96d53d772f0c61f6c58f947d99cbe345f170cc1c21aaa85b3431130be15ce6da",
+  "boundary_fix": "reindex working XY cells by an integer query-width border; empty bitmap border on all sides, min-z unknown remains infinity; original world points unchanged",
+  "scope": "platform adaptation; not an unmodified original-paper metric reproduction"
+}

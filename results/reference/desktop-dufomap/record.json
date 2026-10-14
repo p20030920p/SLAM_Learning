@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "kind": "author_desktop_demo",
+  "method": "dufomap",
+  "status": "executed",
+  "exit_code": 0,
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+    "-m",
+    "slam_learning.cli",
+    "_worker",
+    "--root",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171354-author-dufomap-b9b1ba/experiment",
+    "--method",
+    "dufomap",
+    "--output",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171354-author-dufomap-b9b1ba/experiment/results/runs/dufomap-86e1b80b2473",
+    "--frames",
+    "0"
+  ],
+  "scope": "141 released KITTI-00 scans, pinned author pipeline; paper comparison as native record",
+  "result_scope": "Final measured input/retained point clouds, 15000 display points per panel, camera orbit; no online growth or runtime claim",
+  "metrics": {
+    "counts": {
+      "kept_static": 16917434,
+      "removed_static": 348813,
+      "removed_dynamic": 94738,
+      "kept_dynamic": 1245
+    },
+    "SA": 97.97979838930834,
+    "DA": 98.70289530437681,
+    "AA": 98.34068223458615,
+    "HA": 98.34001762682132,
+    "gt_points": 17362230,
+    "map_points": 15995399,
+    "threshold_m": 0.05,
+    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+  },
+  "inputs_sha256": {
+    "D:\\workspace\\be2\\SLAM_Learning\\.cache\\datasets\\00\\gt_cloud.pcd": "344df4512eb4ee9e4f3297312f806011cef9bfde50ca0ce5f90a0ffca48e0e44",
+    "results\\runs\\presentation\\20261014-171354-author-dufomap-b9b1ba\\native-run\\cleaned.pcd": "747357a383465721f7235a2639d26c7223e9398878e5268c41cd950b4a37b04d"
+  },
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-171354-author-dufomap-b9b1ba",
+  "timing": {
+    "execution": {
+      "duration_s": 66.4000000000004,
+      "frames": 332,
+      "fps": 5,
+      "video_duration_s": 66.466667,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "result": {
+      "duration_s": 19.99999999999996,
+      "frames": 100,
+      "fps": 5,
+      "video_duration_s": 20.0,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "artifacts": {
+    "execution.gif": {
+      "sha256": "21a83783200ec5475f7a0c9e8c6ee0be6be771d32916b5c3eb80d4a34effcd35",
+      "bytes": 231812,
+      "availability": "portable"
+    },
+    "execution.json": {
+      "sha256": "fddad7e0961de8fc2b23359c88eaa81f91049a4473943b333ff9faa160bf96b5",
+      "bytes": 3729,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "3d57f3aadf49328114b6e1466dcf332fcac98ef9906d25bb7e2cd74f45da7ed2",
+      "bytes": 497285,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "a0c3f0ab72f4a58b99d437cd784a289d96a62673a856a0374a6e811118a706b4",
+      "bytes": 89894,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "01c2d38a54b4c9463bcefa188957aa97fb9cde2a7a40e77a12bbb9bb96842e65",
+      "bytes": 541446,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "b1a786a03168d03a5b44855931dad111eb1d5c0a3b62a7043cd688cd349e477c",
+      "bytes": 271696,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "4837ac8fbfd489b6c8c6b08d972449bf8745af4fbf3796cb925267287c9f05d7",
+      "bytes": 448,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "aa61e3a3500f3baa5ac6cf5ca8e98b1c2fb7c6dabba10b07e42f9d8dd865ef1a",
+      "bytes": 5097420,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "5c214b16f929c115d14753d7502a23280502507d490a38440c50a234b117219f",
+      "bytes": 1490037,
+      "availability": "portable"
+    },
+    "terminal.log": {
+      "sha256": "eae04a9b859970eacc286f7f9fc0c8b90c8c8a0e4fca114f03bfabb1bed01c86",
+      "bytes": 4826,
+      "availability": "portable"
+    },
+    "timing.json": {
+      "sha256": "7b551ddbc83386a87031b9c8d65f0465b7289592f6908c21f5bb09f704185e71",
+      "bytes": 440,
+      "availability": "portable"
+    },
+    "native-run/metrics.json": {
+      "sha256": "e43b3371a9b3f15923f177b41b66194b05a717c3ea702b20640a1050b5e4e676",
+      "bytes": 432,
+      "availability": "portable"
+    },
+    "native-run/record.json": {
+      "sha256": "f6a7c54c0c5faf1f242bc2f3330add124aaeec51a7d6bc8c7b64b7d246097799",
+      "bytes": 11085,
+      "availability": "portable"
+    },
+    "native-run/run.log": {
+      "sha256": "699972409068b7b3b5bb208ede6288871d334cbe0cf67131b47971d1bffce4da",
+      "bytes": 575,
+      "availability": "portable"
+    },
+    "native-run/worker.json": {
+      "sha256": "9da8a7c8682672c1ed7d3209ebd52ea177fbc326f7ffc39bee57118029f5b061",
+      "bytes": 122,
+      "availability": "portable"
+    }
+  }
+}

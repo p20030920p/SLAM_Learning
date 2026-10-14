@@ -1,0 +1,324 @@
+{
+  "source_benchmark": "static-dynamic-20261014-033854-8e3b79",
+  "recomputed": true,
+  "entries": [
+    {
+      "condition": "static",
+      "method": "raw",
+      "trials": [
+        {
+          "repeat": "repeat-01",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11648293819130316,
+          "post_warmup_5s_position_rmse_m": 0.055915705781074486,
+          "samples_file": "static\\raw\\repeat-01.csv",
+          "sha256": "07540979c1273f2e9a18174ab64597c5d9b039613148069860e0ebd9af17cfc1"
+        },
+        {
+          "repeat": "repeat-02",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11648293819130316,
+          "post_warmup_5s_position_rmse_m": 0.055915705781074486,
+          "samples_file": "static\\raw\\repeat-02.csv",
+          "sha256": "0a9d087a36b250d2364d6ca9d7448cc4574103ee211c53f101b1b4b120088199"
+        },
+        {
+          "repeat": "repeat-03",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11648293819130316,
+          "post_warmup_5s_position_rmse_m": 0.055915705781074486,
+          "samples_file": "static\\raw\\repeat-03.csv",
+          "sha256": "39f0923a807439cc6d7abc039c07f11fc8f761c158b42d1930ed1728e949ac30"
+        }
+      ],
+      "full_position_rmse_m_mean": 0.11648293819130316,
+      "post_warmup_5s_position_rmse_m_mean": 0.055915705781074486,
+      "original_summary_match": true
+    },
+    {
+      "condition": "static",
+      "method": "dufomap",
+      "trials": [
+        {
+          "repeat": "repeat-01",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11752147020979002,
+          "post_warmup_5s_position_rmse_m": 0.062142281695214525,
+          "samples_file": "static\\dufomap\\repeat-01.csv",
+          "sha256": "3141c23ae473358fc71b3427f8f52615b5a40ce247059e38b1fe29581f1d5f6f"
+        },
+        {
+          "repeat": "repeat-02",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11752147020979002,
+          "post_warmup_5s_position_rmse_m": 0.062142281695214525,
+          "samples_file": "static\\dufomap\\repeat-02.csv",
+          "sha256": "f50af9804be6d54033a38bc4d18589af2e4dcf70a75260db6645f3e421aa5e4d"
+        },
+        {
+          "repeat": "repeat-03",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11752147020979002,
+          "post_warmup_5s_position_rmse_m": 0.062142281695214525,
+          "samples_file": "static\\dufomap\\repeat-03.csv",
+          "sha256": "22a5964c700d0071624938de50a0c05ca4798b625985b7e39e3cee3fb9d001f6"
+        }
+      ],
+      "full_position_rmse_m_mean": 0.11752147020979002,
+      "post_warmup_5s_position_rmse_m_mean": 0.062142281695214525,
+      "original_summary_match": true
+    },
+    {
+      "condition": "static",
+      "method": "beautymap",
+      "trials": [
+        {
+          "repeat": "repeat-01",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11952230883528718,
+          "post_warmup_5s_position_rmse_m": 0.060108114166974314,
+          "samples_file": "static\\beautymap\\repeat-01.csv",
+          "sha256": "137062c5d14aaa5755b66bae88837542ce3c24a4ae63b905e6131f1255d00b99"
+        },
+        {
+          "repeat": "repeat-02",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11952230883528718,
+          "post_warmup_5s_position_rmse_m": 0.060108114166974314,
+          "samples_file": "static\\beautymap\\repeat-02.csv",
+          "sha256": "cb5e37519e63d3ab0ca612e0ecca1f48b4600eb50571f72577a82a95a678f4eb"
+        },
+        {
+          "repeat": "repeat-03",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11952230883528718,
+          "post_warmup_5s_position_rmse_m": 0.060108114166974314,
+          "samples_file": "static\\beautymap\\repeat-03.csv",
+          "sha256": "cde3e3661f497cd947ec1bbb84298042995e306487896dc5c923fd3554f710cc"
+        }
+      ],
+      "full_position_rmse_m_mean": 0.11952230883528718,
+      "post_warmup_5s_position_rmse_m_mean": 0.060108114166974314,
+      "original_summary_match": true
+    },
+    {
+      "condition": "dynamic",
+      "method": "raw",
+      "trials": [
+        {
+          "repeat": "repeat-01",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.12099700394620946,
+          "post_warmup_5s_position_rmse_m": 0.0629379575288412,
+          "samples_file": "dynamic\\raw\\repeat-01.csv",
+          "sha256": "8bad1ee3c9f4e66621c2b0c5ffc66efbdeafc5190d19ae46e36d6b17a906f361"
+        },
+        {
+          "repeat": "repeat-02",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.12099700394620946,
+          "post_warmup_5s_position_rmse_m": 0.0629379575288412,
+          "samples_file": "dynamic\\raw\\repeat-02.csv",
+          "sha256": "9093927cd68168edf80b74aeb67df2cb814510562b0fbd28cef05650e33c775b"
+        },
+        {
+          "repeat": "repeat-03",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.12099700394620946,
+          "post_warmup_5s_position_rmse_m": 0.0629379575288412,
+          "samples_file": "dynamic\\raw\\repeat-03.csv",
+          "sha256": "88a9597fffa11f030fd7e626be99ced35998008154d985e23c1578d2c4b8377f"
+        }
+      ],
+      "full_position_rmse_m_mean": 0.12099700394620945,
+      "post_warmup_5s_position_rmse_m_mean": 0.0629379575288412,
+      "original_summary_match": true
+    },
+    {
+      "condition": "dynamic",
+      "method": "dufomap",
+      "trials": [
+        {
+          "repeat": "repeat-01",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.1103401757817488,
+          "post_warmup_5s_position_rmse_m": 0.05064192706482291,
+          "samples_file": "dynamic\\dufomap\\repeat-01.csv",
+          "sha256": "2abd055554ed3252032875ebffc68dbed483bc4b50c6bd5b0f80e6312e9560c4"
+        },
+        {
+          "repeat": "repeat-02",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.1103401757817488,
+          "post_warmup_5s_position_rmse_m": 0.05064192706482291,
+          "samples_file": "dynamic\\dufomap\\repeat-02.csv",
+          "sha256": "ad28cbf070d6417be779b205351f537a1e743f1a8cd6af15f8a5036cfda81edf"
+        },
+        {
+          "repeat": "repeat-03",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.1103401757817488,
+          "post_warmup_5s_position_rmse_m": 0.05064192706482291,
+          "samples_file": "dynamic\\dufomap\\repeat-03.csv",
+          "sha256": "4c68133cd451608693e929340f85238f50d3300e69f9bc95d86b70f8f0ea1e25"
+        }
+      ],
+      "full_position_rmse_m_mean": 0.1103401757817488,
+      "post_warmup_5s_position_rmse_m_mean": 0.05064192706482291,
+      "original_summary_match": true
+    },
+    {
+      "condition": "dynamic",
+      "method": "beautymap",
+      "trials": [
+        {
+          "repeat": "repeat-01",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11153002191585726,
+          "post_warmup_5s_position_rmse_m": 0.055166122177181275,
+          "samples_file": "dynamic\\beautymap\\repeat-01.csv",
+          "sha256": "36701090f32be527eeb4c318d637492a3357255787a9c53a36963cd7ac2fdbd7"
+        },
+        {
+          "repeat": "repeat-02",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11153002191585726,
+          "post_warmup_5s_position_rmse_m": 0.055166122177181275,
+          "samples_file": "dynamic\\beautymap\\repeat-02.csv",
+          "sha256": "3d047c696d4157246d342b91e7585d9ed6901c2cf19d9d4fdddf330a3418eb62"
+        },
+        {
+          "repeat": "repeat-03",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.11153002191585726,
+          "post_warmup_5s_position_rmse_m": 0.055166122177181275,
+          "samples_file": "dynamic\\beautymap\\repeat-03.csv",
+          "sha256": "d9a94017464588ed2ecfe3347237d10bc810b5d8cfa93c438362a6728d4fe6df"
+        }
+      ],
+      "full_position_rmse_m_mean": 0.11153002191585726,
+      "post_warmup_5s_position_rmse_m_mean": 0.055166122177181275,
+      "original_summary_match": true
+    },
+    {
+      "condition": "clean-map-dynamic-test",
+      "method": "raw",
+      "trials": [
+        {
+          "repeat": "repeat-01",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.10992210274978845,
+          "post_warmup_5s_position_rmse_m": 0.04859880438191578,
+          "samples_file": "clean-map-dynamic-test\\raw\\repeat-01.csv",
+          "sha256": "62bb7d20f137643d9662bd7864d1500efc63aed94d7257b08605d981e3606c98"
+        }
+      ],
+      "full_position_rmse_m_mean": 0.10992210274978845,
+      "post_warmup_5s_position_rmse_m_mean": 0.04859880438191578,
+      "original_summary_match": true
+    },
+    {
+      "condition": "clean-map-dynamic-test",
+      "method": "dufomap",
+      "trials": [
+        {
+          "repeat": "repeat-01",
+          "samples": 169,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.10998712550734302,
+          "post_warmup_5s_position_rmse_m": 0.04748486780460635,
+          "samples_file": "clean-map-dynamic-test\\dufomap\\repeat-01.csv",
+          "sha256": "0b5be5d22f764959158a0f305ffd9dd4bb721add4b9faf1977c428a4f90fcfc6"
+        }
+      ],
+      "full_position_rmse_m_mean": 0.10998712550734302,
+      "post_warmup_5s_position_rmse_m_mean": 0.04748486780460635,
+      "original_summary_match": true
+    },
+    {
+      "condition": "clean-map-dynamic-test",
+      "method": "beautymap",
+      "trials": [
+        {
+          "repeat": "repeat-01",
+          "samples": 164,
+          "post_warmup_samples": 145,
+          "first_stamp_s": 0.1,
+          "last_stamp_s": 26.2,
+          "full_position_rmse_m": 0.10517249011529939,
+          "post_warmup_5s_position_rmse_m": 0.05523868188680673,
+          "samples_file": "clean-map-dynamic-test\\beautymap\\repeat-01.csv",
+          "sha256": "768ca18c50b586302ca9e5f0681d78fa8810c6ae502a36836a25d14bd4dfe59d"
+        }
+      ],
+      "full_position_rmse_m_mean": 0.10517249011529939,
+      "post_warmup_5s_position_rmse_m_mean": 0.05523868188680673,
+      "original_summary_match": true
+    }
+  ],
+  "formula": "sqrt(mean((estimate_x-truth_x)^2 + (estimate_y-truth_y)^2))",
+  "window": "AMCL pose updates, stamp >= first matched pose stamp + 5 simulation seconds",
+  "aggregation": "arithmetic mean of per-replay RMSE values; repeats replay identical recorded input",
+  "coordinates": "same simulator map frame, no fitted SE2 alignment",
+  "truth_sync": "original recorder interpolates evaluation-only simulator truth at AMCL update timestamps",
+  "video_sampling": "continuous AMCL+odometry predictions differ from scored AMCL update samples"
+}

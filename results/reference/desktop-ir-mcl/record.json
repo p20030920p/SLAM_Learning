@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "kind": "author_localization",
+  "method": "ir-mcl",
+  "status": "executed",
+  "exit_code": 0,
+  "command": [
+    "/home/qzl/.venvs/ir-mcl/bin/python",
+    "-u",
+    "main.py",
+    "--config_file",
+    "./config/global_localization/loc_config_test1.yml"
+  ],
+  "scope": "released Bonn IPBLab sequence; native config and 100000 initial particles; fresh inference",
+  "result_scope": "Fresh native estimated trajectory and released truth, same 1354-pose scoring window; saved-output replay at sequence timestamps",
+  "metrics": {
+    "location_rmse_cm": 5.36,
+    "yaw_rmse_deg": 1.06,
+    "location_lt5_pct": 63.52,
+    "location_lt10_pct": 95.49,
+    "location_lt20_pct": 100.0,
+    "yaw_lt0_5_pct": 47.49,
+    "yaw_lt1_pct": 75.92,
+    "yaw_lt2_pct": 93.5
+  },
+  "inputs_sha256": {
+    "results\\runs\\presentation\\20261014-173706-author-ir-mcl-a1d43e\\author-code\\results\\ipblab\\loc_test\\test1\\IRMCL.txt": "bac12f4cb4c35ba2c49a9b9cd49697bd6935949c5c617ee604e9343da338e212",
+    "D:\\workspace\\be2\\tmp\\repro\\ir-mcl\\data\\ipblab\\loc_test\\test1\\seq_1_gt_pose.txt": "4968cb363b83599539ac3ee75511376f17184c528072933a33f229d52a537e58",
+    "results\\runs\\presentation\\20261014-173706-author-ir-mcl-a1d43e\\author-code\\config\\global_localization\\loc_config_test1.yml": "942e28fd38331ff8189f561fc0d3df13ec5b15464f58c71babc0b655aac1891b"
+  },
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-173706-author-ir-mcl-a1d43e",
+  "timing": {
+    "execution": {
+      "duration_s": 173.99999999999866,
+      "frames": 870,
+      "fps": 5,
+      "video_duration_s": 173.933333,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "result": {
+      "duration_s": 143.6000000000004,
+      "frames": 718,
+      "fps": 5,
+      "video_duration_s": 143.5,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "artifacts": {
+    "execution.gif": {
+      "sha256": "bfcc036a5511fcbeb9276bd8ed5af3fce89e76dc578d3f4218e26df23b297517",
+      "bytes": 8899108,
+      "availability": "portable"
+    },
+    "execution.json": {
+      "sha256": "3ee6e2831e0a6e836dee49c79976b30db945181d330a826a3a705c2407e27fbe",
+      "bytes": 1094,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "74e1c7f82e694c78273f988cb2a0e3167ecb2f4894ed51bcddeabfe39d9f05fd",
+      "bytes": 16411361,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "3478eac2bfbcc9bda6c40d73e9e11a0fae65ee2ce9c131887971c2de2a6e7096",
+      "bytes": 89744,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "bd4686e1459816c7752a1ccc008b941274ade1964d85e00d3aafbc5afaf0fd16",
+      "bytes": 627350,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "f9e550e98aa6bee5559431e75152824756bd2bf4875a6a59f4b4a7b15170df48",
+      "bytes": 946616,
+      "availability": "portable"
+    },
+    "IRMCL.txt": {
+      "sha256": "bac12f4cb4c35ba2c49a9b9cd49697bd6935949c5c617ee604e9343da338e212",
+      "bytes": 311960,
+      "availability": "portable"
+    },
+    "loc_config.yml": {
+      "sha256": "942e28fd38331ff8189f561fc0d3df13ec5b15464f58c71babc0b655aac1891b",
+      "bytes": 1714,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "70add96727c2b9dc32a27c862528102cc3bb3b136c8346301caf7c0bddcb7ec7",
+      "bytes": 265,
+      "availability": "portable"
+    },
+    "native-output.log": {
+      "sha256": "c49b61ebf0fcd96e7ee0d8d410b071d2761a297503ba6f3cb677c4e367a0b393",
+      "bytes": 108604,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "71d07544d58d412dac15a1aa707778eec9ad37bcf71efe6b9f886ddb2fae3776",
+      "bytes": 937460,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "279c7dfa1bb4849fdc451b6778d477b4d74e80ac8e32084b3bfb5e31dfea6a36",
+      "bytes": 314775,
+      "availability": "portable"
+    },
+    "run.log": {
+      "sha256": "c49b61ebf0fcd96e7ee0d8d410b071d2761a297503ba6f3cb677c4e367a0b393",
+      "bytes": 108604,
+      "availability": "portable"
+    },
+    "seq_1_gt_pose.txt": {
+      "sha256": "4968cb363b83599539ac3ee75511376f17184c528072933a33f229d52a537e58",
+      "bytes": 311962,
+      "availability": "portable"
+    },
+    "terminal.log": {
+      "sha256": "b8cabfb0e985d0ba61b9b30f63a986aa773fe1b2c5bb3aa6c53293b54c58fe82",
+      "bytes": 109966,
+      "availability": "portable"
+    },
+    "timing.json": {
+      "sha256": "625259447d287fffb249290c837a641f0b7829bf8d68190ccacd0970ed6bc9ac",
+      "bytes": 444,
+      "availability": "portable"
+    }
+  },
+  "scoring": {
+    "start_time_s": 20,
+    "max_timestamp_difference_s": 0.01,
+    "scored_samples": 1354,
+    "alignment": "none",
+    "rotation_metric": "rotation_angle_deg"
+  },
+  "dataset": {
+    "inputs_sha256": {
+      "loc_config.yml": "942e28fd38331ff8189f561fc0d3df13ec5b15464f58c71babc0b655aac1891b",
+      "seq_1_gt_pose.txt": "4968cb363b83599539ac3ee75511376f17184c528072933a33f229d52a537e58"
+    }
+  },
+  "paper_comparison": {
+    "location_rmse_cm": {
+      "paper": 5.13,
+      "reproduced": 5.36
+    },
+    "yaw_rmse_deg": {
+      "paper": 1.05,
+      "reproduced": 1.06
+    },
+    "location_lt5_pct": {
+      "paper": 63.15,
+      "reproduced": 63.52
+    },
+    "location_lt10_pct": {
+      "paper": 97.27,
+      "reproduced": 95.49
+    },
+    "location_lt20_pct": {
+      "paper": 100.0,
+      "reproduced": 100.0
+    },
+    "yaw_lt0_5_pct": {
+      "paper": 47.12,
+      "reproduced": 47.49
+    },
+    "yaw_lt1_pct": {
+      "paper": 74.59,
+      "reproduced": 75.92
+    },
+    "yaw_lt2_pct": {
+      "paper": 94.24,
+      "reproduced": 93.5
+    }
+  }
+}

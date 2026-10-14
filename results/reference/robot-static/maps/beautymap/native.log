@@ -1,0 +1,28 @@
+We will process the data in folder: [1m /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap-native/input [0m
+[LOG] Min xyz: 3.671952486038208, -6.299919605255127, -0.029652532190084457 
+[LOG] Max/Min value on x: 15.309414863586426/8.0, y: 22.677839279174805/8.0
+[LOG] Matrix order: 30
+
+Generating Map Binary tree:   0%|                                           | 0/267 [00:00<?, ?it/s]
+Generating Map Binary tree:  60%|██████████████████▍            | 159/267 [00:00<00:00, 1544.92it/s]
+Generating Map Binary tree: 100%|███████████████████████████████| 267/267 [00:00<00:00, 1313.72it/s]
+
+Processing Frames:   0%|                                                     | 0/60 [00:00<?, ?it/s]
+Processing Frames:  20%|████████▌                                  | 12/60 [00:00<00:00, 112.96it/s]
+Processing Frames:  43%|██████████████████▋                        | 26/60 [00:00<00:00, 120.78it/s]
+Processing Frames:  65%|███████████████████████████▉               | 39/60 [00:00<00:00, 115.17it/s]
+Processing Frames:  85%|████████████████████████████████████▌      | 51/60 [00:00<00:00, 114.45it/s]
+Processing Frames: 100%|███████████████████████████████████████████| 60/60 [00:00<00:00, 116.09it/s]
+shape: (32, 62, 62)
+len print: 32
+There are 114196 pts to remove
+BeautyMap Timings in seconds (s)
+       Component       	Total 	 Last 	 Mean 	StDev 	 Min  	 Max  	Steps
+[1m[31mTotal                  	1.1572	1.1572	1.1572	nan   	1.1572	1.1572	1    [0m
+[1m[32m  0. Map Generation    	0.5272	0.5272	0.5272	nan   	0.5272	0.5272	1    [0m
+[1m[33m  1. Query Generation  	0.4528	0.0066	0.0075	0.0014	0.0058	0.0145	60   [0m
+[1m[34m  2. Matrix Comparison 	0.0005	0.0000	0.0000	0.0000	0.0000	0.0000	60   [0m
+[1m[35m  3. Static Restoration	0.0517	0.0009	0.0009	0.0002	0.0006	0.0014	60   [0m
+[1m[36m  4. Fine Ground Seg   	0.0106	0.0002	0.0002	0.0001	0.0001	0.0003	60   [0m
+[1m[37m  5. One Scan Cost     	0.5159	0.0077	0.0086	0.0015	0.0066	0.0158	60   [0m
+main.py: All codes run successfully, Close now..

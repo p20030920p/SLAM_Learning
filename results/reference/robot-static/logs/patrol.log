@@ -1,0 +1,45 @@
+[INFO] [1791986554.658353393] [patrol_waypoints]: patrol: 8 waypoints, speed 0.3 m/s, origin (8.0727, 7.5312, -1.5708), hold 1.0s, odom /omni_drive_controller/odom
+[INFO] [1791986559.468793484] [patrol_waypoints]: reached waypoint 1/8 (8.5, 7.6) (odom 0.02,0.14)
+[INFO] [1791986573.463780801] [patrol_waypoints]: reached waypoint 2/8 (5.3, 7.6) (odom -0.07,-2.48)
+[INFO] [1791986579.318724722] [patrol_waypoints]: reached waypoint 3/8 (5.3, 6.5) (odom 0.74,-2.74)
+[INFO] [1791986592.413059012] [patrol_waypoints]: reached waypoint 4/8 (8.2, 6.5) (odom 1.02,-0.17)
+[INFO] [1791986598.483919936] [patrol_waypoints]: reached waypoint 5/8 (8.2, 5.2) (odom 2.04,0.10)
+[INFO] [1791986605.819491464] [patrol_waypoints]: reached waypoint 6/8 (9.7, 5.2) (odom 2.31,1.33)
+[INFO] [1791986611.346153026] [patrol_waypoints]: reached waypoint 7/8 (9.7, 4.2) (odom 3.03,1.59)
+[INFO] [1791986626.065667968] [patrol_waypoints]: reached waypoint 8/8 (6.7, 4.2) (odom 3.32,-1.08)
+[INFO] [1791986626.067217784] [patrol_waypoints]: ROUTE_COMPLETE
+Traceback (most recent call last):
+  File "/root/projects/Sim2Real-AlgoBench/scenario_variants/race_nodes/patrol_waypoints.py", line 140, in main
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 918, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 286, in _execute_coroutine_step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 592, in handler
+    await call_coroutine()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 454, in _execute
+    await await_or_execute(tmr.callback)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 115, in await_or_execute
+    return callback(*args)
+           ^^^^^^^^^^^^^^^
+  File "/root/projects/Sim2Real-AlgoBench/scenario_variants/race_nodes/patrol_waypoints.py", line 98, in step
+    self.pub.publish(cmd)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/publisher.py", line 70, in publish
+    self.__publisher.publish(msg)
+rclpy._rclpy_pybind11.RCLError: Failed to publish: publisher's context is invalid, at ./src/rcl/publisher.c:423
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/projects/Sim2Real-AlgoBench/scenario_variants/race_nodes/patrol_waypoints.py", line 148, in <module>
+    main()
+  File "/root/projects/Sim2Real-AlgoBench/scenario_variants/race_nodes/patrol_waypoints.py", line 142, in main
+    node.pub.publish(Twist())
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/publisher.py", line 70, in publish
+    self.__publisher.publish(msg)
+rclpy._rclpy_pybind11.RCLError: Failed to publish: publisher's context is invalid, at ./src/rcl/publisher.c:423

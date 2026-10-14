@@ -22,3 +22,28 @@
 窗口内显示实际命令及进度；完成后按 Enter 关闭。结果写入 `SLAM-Physical/runs/`。源代码、实验协议与已实跑结果见实验仓库 README。
 
 入口面向当前 Windows / WSL2 / CUDA 机器，依赖已准备的 Ubuntu-22.04 作者环境；`00_setup.cmd` 只安装 Ubuntu-24.04 仿真侧，不能替代全部算法、数据与权重安装。现有私有库不需要公开或复制到这里。
+## 本轮真正的 Gazebo＋RViz＋终端
+
+2026-10-14 新入口在 `F:\be2演讲\实机脚本`，规范版本为 [presentation.ps1](presentation.ps1)、[original.ps1](original.ps1)、[build-maps.ps1](build-maps.ps1)及[stop-presentation.ps1](stop-presentation.ps1)。依赖本机已编译的 Ubuntu-24.04 ROS Jazzy／Gazebo Harmonic Sim2Real 环境、Ubuntu-22.04 原作者环境、Windows Terminal 和 Windows FFmpeg；不是在未配置电脑上双击就自动安装全部论文依赖。
+
+| 双击文件 | 行为 |
+| --- | --- |
+| 00-查看本轮视频.bat | 打开现场／本次结果成对的视频页面 |
+| 01-静态建图与三维点云.bat | 原生二维 SLAM＋独立三维点云，手动键盘 |
+| 02-动态建图与三维点云.bat | 三个运动障碍物，同上 |
+| 03-静态定位对照.bat | 三种地图、相同 AMCL，手动键盘 |
+| 04-动态定位与论文地图对照.bat | 六组同时定位，手动键盘 |
+| 05-走廊点云建图.bat | 匹配走廊的独立建图 A，手动键盘 |
+| 06-退化定位与观测恢复.bat | 走廊完整／受限扫描对照；开始后50个仿真秒恢复完整扫描 |
+| 07-持久结构变化定位.bat | 新结构＋旧静态地图，手动键盘 |
+| 08-处理最新走廊地图.bat | 用最新走廊 A 真实点云执行原生 DUFOMap／BeautyMap与共用投影 |
+| 09-正常停止仿真.bat | 给本轮活动仿真发正常结束标记 |
+| 重录-动态.bat / 重录-退化.bat | 自动驾驶、真实窗口录制、保存输入 bag 和评分；每次新目录 |
+| 重录-四类场景.bat | 依次录制静态、动态、持久变化、走廊退化 |
+| 论文-dufomap.bat / 论文-beautymap.bat / 论文-ir-mcl.bat / 论文-adam-mcl.bat | 重新执行原作者入口，实际 Windows终端录像，保留原始输出 |
+
+键盘在专用 `SLAM-LIVE` 终端：i/k前后、j/l转向、u/o横移、空格停止、q结束。按住键靠键盘重复触发，超过0.4秒未收到按键自动停止。手动入口默认不录窗口，但保存实际ROS输入和评分；“重录”入口自动录制窗口。走廊键盘模式需要在恢复后继续运动，AMCL运动阈值会使完全静止时没有新的位姿更新。
+
+现有最新地图标记优先；没有标记时可用仓库已封存的对应场景地图。若要用自己新采集的地图，先完成建图并按相应 `build-maps.ps1 -Scene static|dynamic|corridor` 处理，再运行定位。原算法、训练权重、数据与上游依赖各自保留本机路径；论文录制不把KITTI/Bonn真实数据伪装成Gazebo场景。AdaM默认10次试验，快速现场可用 `original.ps1 -Method adam-mcl -Trials 1 -Record`，单位为格。
+
+场景世界和巡航脚本已放入本库，区分固定原机器人与本地场景适配。完整录像、bag与算法大产物留在 `results/runs/presentation`；公开小产物见 `results/reference/robot-*` 和 `desktop-*`。每条录像的计算口径与限制见[本机协议](../docs/testing/LIVE.zh-CN.md)。

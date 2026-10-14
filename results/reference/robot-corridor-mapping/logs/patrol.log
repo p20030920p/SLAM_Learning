@@ -1,0 +1,33 @@
+[INFO] [1791987568.203019723] [patrol_waypoints]: patrol: 4 waypoints, speed 0.3 m/s, origin (7.15, -3.1, 0.0), hold 1.0s, odom /omni_drive_controller/odom
+[INFO] [1791987576.947870393] [patrol_waypoints]: reached waypoint 1/4 (9.15, -3.1) (odom 1.70,0.00)
+[INFO] [1791987591.878490837] [patrol_waypoints]: reached waypoint 2/4 (5.15, -3.1) (odom -1.70,-0.01)
+[INFO] [1791987607.571993531] [patrol_waypoints]: reached waypoint 3/4 (9.15, -3.1) (odom 1.70,0.01)
+[INFO] [1791987615.542731675] [patrol_waypoints]: reached waypoint 4/4 (7.15, -3.1) (odom 0.30,-0.03)
+[INFO] [1791987615.543793095] [patrol_waypoints]: ROUTE_COMPLETE
+Traceback (most recent call last):
+  File "/root/projects/Sim2Real-AlgoBench/scenario_variants/race_nodes/patrol_waypoints.py", line 140, in main
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 785, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/projects/Sim2Real-AlgoBench/scenario_variants/race_nodes/patrol_waypoints.py", line 148, in <module>
+    main()
+  File "/root/projects/Sim2Real-AlgoBench/scenario_variants/race_nodes/patrol_waypoints.py", line 142, in main
+    node.pub.publish(Twist())
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/publisher.py", line 70, in publish
+    self.__publisher.publish(msg)
+rclpy._rclpy_pybind11.RCLError: Failed to publish: publisher's context is invalid, at ./src/rcl/publisher.c:423

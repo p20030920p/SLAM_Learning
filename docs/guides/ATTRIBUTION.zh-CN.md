@@ -13,5 +13,6 @@
 | IR-MCL | 仓库无许可文件；固定快照 [作者源库](https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5) 及其预训练权重仅用于研究复现。取自 range-mcl 的文件头部标注 MIT 并署名作者 |
 | 录制呈现 | [RECORDING](RECORDING.zh-CN.md)标明 Sim2Real-AlgoBench 约定来源，未复制其源码 |
 | 机器人模型扩展 | [Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) 的 MIT 机器人 URDF 与桥接配置；保留[上游许可](../../config/robot_profiles/omni-3d-v1/LICENSE)，固定来源与资产哈希见[模型检查](../testing/robot-model.json) |
+| 本机现场场景与驱动 | [世界](../../config/presentation/worlds)及[巡航／启动脚本](../../src/scripts/presentation)保留本地 Sim2Real 场景适配；这些变体不属于固定上游提交。复用上游 CAD、底盘与控制包及许可，各次记录区分本地场景和原机器人哈希。本轮未新增分发作者算法源码、下载数据或权重。 |
 
 PDF 嵌入本机许可中文字体的子集，不单独分发字体文件。[AI 披露](DISCLOSURE.zh-CN.md)披露 AI 参与及申请人需要亲自核查的内容。每张图都链接实测运行，或明确标记为未执行实验的预留。

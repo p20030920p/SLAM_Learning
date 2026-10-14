@@ -23,27 +23,41 @@ English | [中文](docs/HOME.zh-CN.md)
 
 ## Live experiments and local demos
 
-[**SLAM-Physical**](https://github.com/p20030920p/SLAM-Physical) contains native BeautyMap pose-revision C1/C2/C4 experiments, a first Gazebo object-departure scenario, measured results and live RViz demos of BeautyMap and DUFOMap. On the prepared local machine, double-click scripts in [demo/](demo/README.md); missing sibling code is cloned automatically. Each demo executes the native pipeline again. Small demo subsets do not replace the paper benchmarks below.
+Current native Gazebo/RViz/Terminal workflow: [one-click instructions](demo/README.md), [paired local video gallery](demo/gallery.html), [scoring protocol](docs/testing/LIVE.md). Prepared Windows scripts are in `F:\be2演讲\实机脚本`; separate keyboard and automatic recording entries cover static, moving-obstacle, persistent-change and corridor-restoration tests.
 
-New [Windows / WSL2 AMCL guide](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/WINDOWS_AMCL.zh-CN.md): keyboard driving, live truth/estimate errors, automatic ROS bag recording, native paper-map adapters and paired localization replay.
-
-Local `demo/14_static_keyboard.cmd` opens a purely static scene; `demo/15_dynamic_keyboard.cmd` opens a scene with three moving obstacles and a raw/paper-map menu. Both record automatically. `demo/16_record_static_dynamic.cmd` acquires independent mapping/test drives and runs repeated AMCL comparisons.
+[SLAM-Physical](https://github.com/p20030920p/SLAM-Physical) retains the earlier C1/C2/C4, object-departure and map-adapter experiments. Its legacy `demo/14–16` workflows and historical replay scores are distinct from the native desktop recordings below.
 
 ## Static and dynamic localization recordings
 
-**Earlier map-filtering comparison.** Recorded 2026-10-14 with independent mapping A and test B. This historical LiDAR subset contains six maps and 21 scored replays. Position RMSE below excludes the first 5 s (cm); recovery after failure has not been evaluated.
+**Recorded on this Windows computer, 2026-10-14.** Actual Gazebo + RViz + Terminal windows; fresh measured-data replays shown separately. Sim2Real omnidirectional chassis, native 2D LiDAR + independent 3D profile. [Protocol / 计算口径](docs/testing/LIVE.md)
 
-| Map | Static test | Dynamic test | Clean map + same dynamic test |
-| --- | ---: | ---: | ---: |
-| Raw | 5.59 | 6.29 | 4.86 |
-| BeautyMap | 6.01 | 5.52 | 5.52 |
-| DUFOMap | 6.21 | 5.06 | 4.75 |
+| Gazebo scene | Live execution | Measured result replay | Observed outcome |
+| --- | --- | --- | --- |
+| Pure static | ![live](results/reference/robot-static/execution.gif) [MP4](results/reference/robot-static/execution.mp4) | ![result](results/reference/robot-static/result.gif) [MP4](results/reference/robot-static/result.mp4) | Small offset; no loss |
+| Moving obstacles | ![live](results/reference/robot-dynamic/execution.gif) [MP4](results/reference/robot-dynamic/execution.mp4) | ![result](results/reference/robot-dynamic/result.gif) [MP4](results/reference/robot-dynamic/result.mp4) | Three moving boxes; six simultaneous localizers |
+| Persistent change | ![live](results/reference/robot-large-change/execution.gif) [MP4](results/reference/robot-large-change/execution.mp4) | ![result](results/reference/robot-large-change/result.gif) [MP4](results/reference/robot-large-change/result.mp4) | Old map; this route did not induce loss |
+| Corridor degradation | ![live](results/reference/robot-degradation/execution.gif) [MP4](results/reference/robot-degradation/execution.mp4) | ![result](results/reference/robot-degradation/result.gif) [MP4](results/reference/robot-degradation/result.mp4) | Limited scans restored; convergence after 11.3s |
 
-![Dynamic LiDAR map and localization replay](results/localization/static-dynamic/dynamic-lidar.gif)
+**Gazebo position RMSE (cm), all retained native AMCL updates including initialization.** DUFOMap/BeautyMap provide offline 3D-derived maps to the same 2D AMCL; these are platform adaptations. Mapping A receives provided poses; held-out B receives scans and wheel odometry, with independent simulator truth for scoring only. One run per condition.
 
-Recorded-data reconstruction with three moving boxes: green is truth, blue the estimate. Mapping uses supplied poses; test AMCL receives no truth. Three identical-input main replays check reproducibility; the clean-map control has one replay. [MP4](results/localization/static-dynamic/dynamic-lidar.mp4) · [Historical evidence](results/localization/static-dynamic/README.md).
+| Condition | Raw | DUFOMap | BeautyMap | Updates per method |
+| --- | ---: | ---: | ---: | ---: |
+| Pure static | 7.08 | 7.08 | 6.55 | 290 |
+| Moving obstacles | 7.31 | 7.10 | 7.28 | 291 |
+| Static map + same dynamic input | 6.30 | 6.30 | 6.89 | 291 |
+| Persistent change | 6.25 | 6.25 | 6.16 | 290 |
+| Corridor degradation | 62.64 | 62.64 | 62.64 | 478 |
+| Limited → restored corridor scans | 73.63 | 73.63 | 73.63 | 478 |
 
-**Recovery footage preparation.** S1 static, S2 dynamic, S3 persistent structural change and S4 degradation are being prepared. Split-screen footage has not passed visual acceptance. [Status](docs/self-recovery/STATUS.zh-CN.md).
+Corridor rows use a disclosed 1 m initial X offset; other rows use 0.25 m. The corridor restores 720-beam / 360° / 12 m observations after 50 simulation seconds of 72-beam / 240° / 3.5 m input. Continued motion allows AMCL updates; sustained convergence is checked for 5 seconds. This is an initial-belief recovery test, not physical kidnapping.
+
+**Physical robot tests**
+
+| Scene | Robot / sensors | Status |
+| --- | --- | --- |
+| Static / dynamic / degradation / persistent change | Same chassis; 2D and 3D layers | Pending measurement |
+
+Local one-click keyboard/recording scripts: `F:\be2演讲\实机脚本`; [instructions](demo/README.md) · [historical error audit](results/localization/static-dynamic/scored/audit.json).
 
 ## Direction analysis
 
@@ -59,31 +73,16 @@ Semantic mapping and earlier projections remain in the [original repository](htt
 
 ## Related works
 
-These are saved-result replays of recorded runs. GIFs preserve the companion MP4 timing; for the two mapping replays each selected map observation is held for eight frames at 12 fps. [DUFOMap timing](results/reference/dufomap/media/timing.json) · [BeautyMap timing](results/reference/beautymap/media/timing.json) · [IR-MCL timing](results/reference/ir-mcl/media/timing.json) · [AdaM-MCL timing](results/reference/adam-mcl/media/timing.json).
+Fresh native executions on this Windows computer, paired with their own measured result replays. Original author datasets are distinct from the Gazebo platform tests above. Older paper-table evidence remains archived below; fresh LiDAR scores use the independent scorer, without a new PCL cross-check.
 
-### [DUFOMap](docs/papers/dufomap.md)
+| Method | Native execution | Fresh result replay | Scope |
+| --- | --- | --- | --- |
+| [dufomap](docs/papers/dufomap.md) | ![execution](results/reference/desktop-dufomap/execution.gif) [MP4](results/reference/desktop-dufomap/execution.mp4) | ![result](results/reference/desktop-dufomap/result.gif) [MP4](results/reference/desktop-dufomap/result.mp4) | KITTI-00, 141 scans; final-map orbit, no online-growth claim · [record](results/reference/desktop-dufomap/record.json) |
+| [beautymap](docs/papers/beautymap.md) | ![execution](results/reference/desktop-beautymap/execution.gif) [MP4](results/reference/desktop-beautymap/execution.mp4) | ![result](results/reference/desktop-beautymap/result.gif) [MP4](results/reference/desktop-beautymap/result.mp4) | KITTI-00, 141 scans; this differs from historical KITTI-02 paper match · [record](results/reference/desktop-beautymap/record.json) |
+| [ir-mcl](docs/papers/ir-mcl.md) | ![execution](results/reference/desktop-ir-mcl/execution.gif) [MP4](results/reference/desktop-ir-mcl/execution.mp4) | ![result](results/reference/desktop-ir-mcl/result.gif) [MP4](results/reference/desktop-ir-mcl/result.mp4) | Bonn IPBLab: 1543 processed, 1354 scored; fresh 5.36 cm / 1.06° · [record](results/reference/desktop-ir-mcl/record.json) |
+| [adam-mcl](docs/papers/adam-mcl.md) | ![execution](results/reference/desktop-adam-mcl/execution.gif) [MP4](results/reference/desktop-adam-mcl/execution.mp4) | ![result](results/reference/desktop-adam-mcl/result.gif) [MP4](results/reference/desktop-adam-mcl/result.mp4) | Authored 128-cell plan, existing 2432-step checkpoint, one fresh 123-update trial; 32.23-cell RMSE; no paper comparison · [record](results/reference/desktop-adam-mcl/record.json) |
 
-![DUFOMap core replay](results/reference/dufomap/media/preview.gif)
-
-**KITTI-00 outdoor scene, 141 LiDAR scans.** Observed empty space identifies dynamic points; pose margins protect static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](results/reference/dufomap/media/replay/replay.mp4).
-
-### [BeautyMap](docs/papers/beautymap.md)
-
-![BeautyMap core replay](results/reference/beautymap/media/preview.gif)
-
-**KITTI-00 outdoor scene, 141 LiDAR scans.** Occupancy comparisons remove dynamic traces; restoration protects static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](results/reference/beautymap/media/replay/replay.mp4).
-
-### [IR-MCL](docs/papers/ir-mcl.md)
-
-![IR-MCL saved localization replay](results/reference/ir-mcl/media/preview.gif)
-
-**Bonn IPBLab indoor lab, the released localization sequence, 1543 2D LiDAR scans.** A neural occupancy field renders a synthetic scan for every particle, and the rendered-versus-real range difference weights the particles. The GIF replays all 1543 saved frames at the upstream tool's 10 fps. [MP4](results/reference/ir-mcl/media/replay/replay.mp4).
-
-### [AdaM-MCL](docs/papers/adam-mcl.md)
-
-![AdaM-MCL recorded evaluation session](results/reference/adam-mcl/media/preview.gif)
-
-**Authored 128-cell indoor plan, one held-out scene, 200 particles.** A CNN turns a map and a 2-D scan into a samplable pose distribution. The recorded run shows particle updates and the teleport at update 63; contraction does not establish recovery, and none of ten trials met the sustained convergence criterion. [MP4](results/reference/adam-mcl/media/replay/replay.mp4).
+AdaM-MCL's terminal dashboard had a legacy footer error; corrected scores are recomputed from native saved distance logs. The author filter is unchanged; the wrapper footer is corrected for subsequent demonstrations. [erratum](results/reference/adam-mcl/ERRATUM.md).
 
 ## Reproduction results
 
@@ -159,7 +158,7 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 | Global localization $E_{pos}$ | 0.153 m | not compared |
 | Kidnapping $E_{pos}$ | 0.128 m | not compared |
 
-**No numeric comparison is made.** The paper's 20 simulation maps are 43 m × 43 m with six evaluation sequences and released checkpoints, all of them external downloads; this run authors its own plans and trains for 2 432 optimizer steps against the authors' 2 880 000, so cells are not metres. Measured here, in cells: position RMSE 5.49 over 10 repeats, mean final error 6.78, 0.43 s per filter update, and 0 of 10 repeats holding the paper's convergence rule rescaled to this plan.
+**No numeric comparison is made.** The paper's 20 simulation maps are 43 m × 43 m with six evaluation sequences and released checkpoints, all of them external downloads; this run authors its own plans and trains for 2 432 optimizer steps against the authors' 2 880 000, so cells are not metres. Measured here, in cells: mean per-trial position RMSE 34.82 over 10 repeats, mean final error 47.71, 0.43 s per filter update, and 0 of 10 repeats holding the paper's convergence rule rescaled to this plan. [Score correction](results/reference/adam-mcl/ERRATUM.md).
 
 ## Hypothesis
 

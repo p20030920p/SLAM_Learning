@@ -131,6 +131,12 @@ def verify_record(path: Path, full: bool = False) -> list[str]:
         errors.append("Unsupported schema")
     if record.get("status") == "executed" and record.get("kind") == "author_localization":
         errors.extend(verify_localization(path, record))
+    if record.get("status") == "executed" and record.get("kind") == "native_desktop_localization":
+        from slam_learning.runtime.presentation_evidence import verify_presentation
+        errors.extend(verify_presentation(path, record))
+    if record.get("status") == "executed" and record.get("kind") == "author_desktop_demo":
+        from slam_learning.runtime.author_demo_evidence import verify_author_demo
+        errors.extend(verify_author_demo(path, record))
     if record.get("status") in ("executed", "smoke_passed") and record.get("kind") == "author_method":
         if record.get("exit_code") != 0 or not record.get("command") or not record.get("dataset"):
             errors.append("Successful author run lacks command, zero exit code, or dataset evidence")

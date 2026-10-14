@@ -1,0 +1,28 @@
+{
+  "commit": "98bce4a97db96ddd0d5342e31425c7679f58ba2e",
+  "command": [
+    "/home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python",
+    "-u",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap-native/author-code/main.py",
+    "--data_dir",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap-native/input",
+    "--dis_range",
+    "8",
+    "--xy_resolution",
+    "0.5",
+    "--h_res",
+    "0.2"
+  ],
+  "exit_code": 0,
+  "seconds": 1.5951970930000243,
+  "frames": 60,
+  "parameters": {
+    "dis_range": 8,
+    "xy_resolution": 0.5,
+    "h_res": 0.2
+  },
+  "raw_input_sha256": "17519c1f9e0ff29964383b614fe5042ae292101b1d744bed19e932095a830f23",
+  "compatibility_patch_sha256": "96d53d772f0c61f6c58f947d99cbe345f170cc1c21aaa85b3431130be15ce6da",
+  "boundary_fix": "reindex working XY cells by an integer query-width border; empty bitmap border on all sides, min-z unknown remains infinity; original world points unchanged",
+  "scope": "platform adaptation; not an unmodified original-paper metric reproduction"
+}

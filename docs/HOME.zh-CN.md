@@ -23,27 +23,41 @@
 
 ## 仿真实验与本机演示入口
 
-[**SLAM-Physical 公开实验仓库**](https://github.com/p20030920p/SLAM-Physical)：BeautyMap 静态位姿修正与 C1/C2/C4 对照、首个物体离场场景、实测报告，以及 BeautyMap / DUFOMap 的实时 RViz 演示。本机双击 [demo 文件夹](../demo/README.md) 中的脚本，缺少同级实验仓库时会自动克隆。演示重新执行原生流程；小样本演示不替代下文的论文正式复现。
+当前真实 Gazebo／RViz／终端流程：[一键说明](../demo/README.md)、[成对视频页](../demo/gallery.html)、[评分协议](testing/LIVE.zh-CN.md)。已准备的 Windows 脚本在 `F:\be2演讲\实机脚本`，分别提供静态、运动障碍物、持久变化及走廊观测恢复的键盘入口和自动录制入口。
 
-新增 [Windows / WSL2 键盘 AMCL 操作指南](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/WINDOWS_AMCL.zh-CN.md)：实时真值/估计偏移、自动录制、论文地图适配与同一输入回放对照。
-
-本机 `demo/14_static_keyboard.cmd` 打开纯静态场景，`demo/15_dynamic_keyboard.cmd` 打开含三个运动障碍物的场景并选择原始/论文地图；两个入口均自动录制。`demo/16_record_static_dynamic.cmd` 执行独立建图/测试录制及重复 AMCL 对比。
+[SLAM-Physical](https://github.com/p20030920p/SLAM-Physical) 保留此前 C1/C2/C4、物体离场与地图适配实验。其旧 `demo/14–16` 流程及历史回放分数与下面的本机现场录屏分开。
 
 ## 静态与动态定位录制
 
-**已有地图过滤对照。** 2026-10-14，独立建图 A 与测试 B；下表为历史 LiDAR 子集的六张地图、21 次评分回放。数字是最初 5 秒后的平面位置 RMSE（cm），尚未评测失效后的恢复。
+**2026-10-14 本机现场录制。**真实 Gazebo＋RViz＋终端窗口，另配本次数据的结果回放。Sim2Real 三轮全向底盘，原生二维激光＋独立三维版本。[测试与计算口径](testing/LIVE.zh-CN.md)
 
-| 地图 | 静态测试 | 动态测试 | 干净地图＋同一动态测试 |
-| --- | ---: | ---: | ---: |
-| 原始 | 5.59 | 6.29 | 4.86 |
-| BeautyMap | 6.01 | 5.52 | 5.52 |
-| DUFOMap | 6.21 | 5.06 | 4.75 |
+| Gazebo 类别 | 现场执行 | 本次结果回放 | 实际效果 |
+| --- | --- | --- | --- |
+| 纯静态 | ![live](../results/reference/robot-static/execution.gif) [MP4](../results/reference/robot-static/execution.mp4) | ![result](../results/reference/robot-static/result.gif) [MP4](../results/reference/robot-static/result.mp4) | 小初值偏移，未失效 |
+| 运动障碍物 | ![live](../results/reference/robot-dynamic/execution.gif) [MP4](../results/reference/robot-dynamic/execution.mp4) | ![result](../results/reference/robot-dynamic/result.gif) [MP4](../results/reference/robot-dynamic/result.mp4) | 三个运动箱体，六组同时定位 |
+| 持久结构变化 | ![live](../results/reference/robot-large-change/execution.gif) [MP4](../results/reference/robot-large-change/execution.mp4) | ![result](../results/reference/robot-large-change/result.gif) [MP4](../results/reference/robot-large-change/result.mp4) | 沿用旧地图，本路线未诱发失效 |
+| 走廊退化 | ![live](../results/reference/robot-degradation/execution.gif) [MP4](../results/reference/robot-degradation/execution.mp4) | ![result](../results/reference/robot-degradation/result.gif) [MP4](../results/reference/robot-degradation/result.mp4) | 受限扫描恢复后，约 11.3 秒持续收敛 |
 
-![动态 LiDAR 地图与定位结果回放](../results/localization/static-dynamic/dynamic-lidar.gif)
+**Gazebo 平面位置 RMSE（cm），包含初始化的全部原生 AMCL 更新。**DUFOMap／BeautyMap 离线处理三维地图，再由同一二维 AMCL 定位，属于平台适配。建图 A 使用给定位姿；独立测试 B 接收扫描与轮速，仿真真值只作评分。每种条件当前一次运行。
 
-画面是录制数据重绘；三个运动箱体，绿色为真值，蓝色为定位估计。建图使用给定位姿，测试 AMCL 不接收真值。主实验三次同输入回放检验可复现性，干净地图控制组一次。[MP4](../results/localization/static-dynamic/dynamic-lidar.mp4) · [完整历史证据](../results/localization/static-dynamic/README.md)。
+| 条件 | 原始 | DUFOMap | BeautyMap | 每方法更新数 |
+| --- | ---: | ---: | ---: | ---: |
+| 纯静态 | 7.08 | 7.08 | 6.55 | 290 |
+| 运动障碍物 | 7.31 | 7.10 | 7.28 | 291 |
+| 静态地图＋同一动态输入 | 6.30 | 6.30 | 6.89 | 291 |
+| 持久结构变化 | 6.25 | 6.25 | 6.16 | 290 |
+| 走廊退化 | 62.64 | 62.64 | 62.64 | 478 |
+| 走廊受限→恢复扫描 | 73.63 | 73.63 | 73.63 | 478 |
 
-**自恢复实录准备。** S1 静态、S2 动态、S3 持久结构变化、S4 退化场景已进入准备流程；当前分屏实录未通过视觉验收，见[接续状态](self-recovery/STATUS.zh-CN.md)。
+走廊使用明确记录的 X 方向 1 m 初值偏移，其他场景为 0.25 m。走廊在 72 束／240°／3.5 m 观测持续 50 个仿真秒后，恢复 720 束／360°／12 m 观测；机器人继续运动以触发 AMCL 更新，持续收敛检查覆盖 5 秒。这是初始信念恢复测试，不是实体绑架。
+
+**实体机器人测试**
+
+| 场景 | 机器人／传感器 | 状态 |
+| --- | --- | --- |
+| 静态／动态／退化／持久变化 | 同底盘，二维与三维分层 | 待测 |
+
+本机一键键盘演示与录制：`F:\be2演讲\实机脚本`；[instructions](../demo/README.md) · [旧误差表审计](../results/localization/static-dynamic/scored/audit.json).
 
 ## 方向分析
 
@@ -59,31 +73,16 @@
 
 ## 相关工作
 
-以下回放录制运行的保存结果。GIF 保留对应 MP4 的播放时序；两个建图回放中每个选定地图观测在 12 fps 下保持八帧。[DUFOMap 时序](../results/reference/dufomap/media/timing.json) · [BeautyMap 时序](../results/reference/beautymap/media/timing.json) · [IR-MCL 时序](../results/reference/ir-mcl/media/timing.json) · [AdaM-MCL 时序](../results/reference/adam-mcl/media/timing.json)。
+本机重新执行作者代码，现场终端与本次结果回放成对展示。论文原数据与上面的 Gazebo 平台测试分开。下文旧论文表格证据保留；本次 LiDAR 分数来自独立评分器，未重新作 PCL 交叉核验。
 
-### [DUFOMap](papers/dufomap.zh-CN.md)
+| 方法 | 原生执行 | 本次结果回放 | 范围 |
+| --- | --- | --- | --- |
+| [dufomap](../docs/papers/dufomap.zh-CN.md) | ![execution](../results/reference/desktop-dufomap/execution.gif) [MP4](../results/reference/desktop-dufomap/execution.mp4) | ![result](../results/reference/desktop-dufomap/result.gif) [MP4](../results/reference/desktop-dufomap/result.mp4) | KITTI-00，141 帧；最终地图环视，不冒充在线增长 · [record](../results/reference/desktop-dufomap/record.json) |
+| [beautymap](../docs/papers/beautymap.zh-CN.md) | ![execution](../results/reference/desktop-beautymap/execution.gif) [MP4](../results/reference/desktop-beautymap/execution.mp4) | ![result](../results/reference/desktop-beautymap/result.gif) [MP4](../results/reference/desktop-beautymap/result.mp4) | KITTI-00，141 帧；与旧 KITTI-02 论文匹配不是同一口径 · [record](../results/reference/desktop-beautymap/record.json) |
+| [ir-mcl](../docs/papers/ir-mcl.zh-CN.md) | ![execution](../results/reference/desktop-ir-mcl/execution.gif) [MP4](../results/reference/desktop-ir-mcl/execution.mp4) | ![result](../results/reference/desktop-ir-mcl/result.gif) [MP4](../results/reference/desktop-ir-mcl/result.mp4) | Bonn IPBLab：处理1543、评分1354帧；本轮5.36 cm／1.06° · [record](../results/reference/desktop-ir-mcl/record.json) |
+| [adam-mcl](../docs/papers/adam-mcl.zh-CN.md) | ![execution](../results/reference/desktop-adam-mcl/execution.gif) [MP4](../results/reference/desktop-adam-mcl/execution.mp4) | ![result](../results/reference/desktop-adam-mcl/result.gif) [MP4](../results/reference/desktop-adam-mcl/result.mp4) | 自建128格地图，已有2432步权重，本轮123次更新×1次；RMSE32.23格，不比论文值 · [record](../results/reference/desktop-adam-mcl/record.json) |
 
-![DUFOMap 核心回放](../results/reference/dufomap/media/preview.gif)
-
-**KITTI-00 户外场景，141 帧激光雷达扫描。**用已观测的空区域识别动态点，位姿容差保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](../results/reference/dufomap/media/replay/replay.mp4)。
-
-### [BeautyMap](papers/beautymap.zh-CN.md)
-
-![BeautyMap 核心回放](../results/reference/beautymap/media/preview.gif)
-
-**KITTI-00 户外场景，141 帧激光雷达扫描。**通过占据比较清理动态残影，用恢复机制保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](../results/reference/beautymap/media/replay/replay.mp4)。
-
-### [IR-MCL](papers/ir-mcl.zh-CN.md)
-
-![IR-MCL 已保存定位回放](../results/reference/ir-mcl/media/preview.gif)
-
-**波恩 IPBLab 室内实验室，官方公开的定位序列，1543 帧二维激光扫描。**神经占据场为每个粒子渲染一条合成扫描，渲染距离与真实距离之差用于加权粒子。GIF 以作者工具自带的 10 fps 回放全部 1543 帧。[MP4](../results/reference/ir-mcl/media/replay/replay.mp4)。
-
-### [AdaM-MCL](papers/adam-mcl.zh-CN.md)
-
-![AdaM-MCL 评测会话录制](../results/reference/adam-mcl/media/preview.gif)
-
-**自建 128 格室内平面、一个留出场景、200 个粒子。**卷积网络把地图与二维扫描变成可采样的位姿分布。实录展示粒子更新与第 63 次更新的瞬移；粒子云收紧不等于恢复，10 次重复均未满足持续收敛判据。[MP4](../results/reference/adam-mcl/media/replay/replay.mp4)。
+AdaM-MCL 终端看板末尾含旧版统计公式错误；新指标从作者保存的距离日志重算。作者滤波器未改，后续演示包装器的末尾公式已修正。[erratum](../results/reference/adam-mcl/ERRATUM.md).
 
 ## 复现结果
 
@@ -159,7 +158,7 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | 全局定位 $E_{pos}$ | 0.153 m | 未做数值对照 |
 | 绑架 $E_{pos}$ | 0.128 m | 未做数值对照 |
 
-**未做数值对照。** 论文的 20 张仿真地图为 43 m × 43 m，另有 6 条评测序列与已发布权重，全部是外部下载；本次用自建平面，训练 **2432** 次优化步而作者默认 **2 880 000** 步，格不是米。本次实测（单位：格）：10 次重复的位置 RMSE 5.49，末帧误差均值 6.78，每次更新 0.43 s，10 次重复中 0 次满足折算到本平面的论文收敛判据。
+**未做数值对照。** 论文的 20 张仿真地图为 43 m × 43 m，另有 6 条评测序列与已发布权重，全部是外部下载；本次用自建平面，训练 **2432** 次优化步而作者默认 **2 880 000** 步，格不是米。本次实测（单位：格）：10 次重复的每次运行 RMSE 均值 34.82，末帧误差均值 47.71，每次更新 0.43 s，10 次重复中 0 次满足折算到本平面的论文收敛判据。 [指标勘误](../results/reference/adam-mcl/ERRATUM.md)。
 
 ## 假设
 

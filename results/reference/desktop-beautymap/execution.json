@@ -1,0 +1,98 @@
+{
+  "method": "beautymap",
+  "kind": "author_desktop_execution",
+  "started_unix": 1791987685.3182905,
+  "capture": "actual Windows Terminal window",
+  "status": "executed",
+  "wrapper_sha256": "3c1e04b37105fed30a4609f891f7b8b5bc88ad6314eefeef08c214c86f354349",
+  "sources": {},
+  "artifacts": {
+    "ready.json": {
+      "sha256": "3a6478366a991ab5d7c6031f8ee1f1d9bdf56b72cd323e40038c0c9b03c8eb91",
+      "bytes": 30
+    },
+    "experiment/results/runs/beautymap-7f05ae237b78/metrics.json": {
+      "sha256": "8942b872a404af8203fe0c2601d4f4a9b53acbb5ac1c818b86472c4b4c124fd0",
+      "bytes": 431
+    },
+    "experiment/results/runs/beautymap-7f05ae237b78/record.json": {
+      "sha256": "e4c20f8d5e925f69c5c8a948bc2398b3c0482c15ac55ca571b5bbcccd7109e58",
+      "bytes": 12462
+    },
+    "experiment/results/runs/beautymap-7f05ae237b78/run.log": {
+      "sha256": "8219cc289209d4047fff4a0f41fc623636e6479e7ba9019f06d056fc972de210",
+      "bytes": 16354
+    },
+    "experiment/results/runs/beautymap-7f05ae237b78/worker.json": {
+      "sha256": "068efe5709b394f16297d3223967917f1b0dcbbddcb725541f041cea3c3a4789",
+      "bytes": 1158
+    },
+    "native-run/metrics.json": {
+      "sha256": "8942b872a404af8203fe0c2601d4f4a9b53acbb5ac1c818b86472c4b4c124fd0",
+      "bytes": 431
+    },
+    "native-run/record.json": {
+      "sha256": "e4c20f8d5e925f69c5c8a948bc2398b3c0482c15ac55ca571b5bbcccd7109e58",
+      "bytes": 12462
+    },
+    "native-run/run.log": {
+      "sha256": "8219cc289209d4047fff4a0f41fc623636e6479e7ba9019f06d056fc972de210",
+      "bytes": 16354
+    },
+    "native-run/worker.json": {
+      "sha256": "068efe5709b394f16297d3223967917f1b0dcbbddcb725541f041cea3c3a4789",
+      "bytes": 1158
+    }
+  },
+  "native_record": "native-run/record.json",
+  "metrics": {
+    "counts": {
+      "kept_static": 16740135,
+      "removed_static": 526112,
+      "removed_dynamic": 94388,
+      "kept_dynamic": 1595
+    },
+    "SA": 96.95294524629469,
+    "DA": 98.33824739797673,
+    "AA": 97.64313962379855,
+    "HA": 97.6406829872703,
+    "gt_points": 17362230,
+    "map_points": 16558909,
+    "threshold_m": 0.05,
+    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+  },
+  "scope": "141 released KITTI-00 scans, pinned author pipeline; paper comparison as native record",
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+    "-m",
+    "slam_learning.cli",
+    "_worker",
+    "--root",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-172125-author-beautymap-5e3566/experiment",
+    "--method",
+    "beautymap",
+    "--output",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-172125-author-beautymap-5e3566/experiment/results/runs/beautymap-7f05ae237b78",
+    "--frames",
+    "0"
+  ],
+  "dataset": {
+    "manifest_sha256": "ee139f3c00f1fd6019a74332dad460d6e30e3330a78b108a9609e81e4a1359a7",
+    "archive_sha256": "14e30a0ddc19f275477aa0e72e6ba713f0f6a6a29dcf7ded8a92ce0c421109fd",
+    "configuration": {
+      "id": "dynamicmap-kitti00-teaser",
+      "record": "https://zenodo.org/records/10886629",
+      "url": "https://zenodo.org/records/10886629/files/00.zip?download=1",
+      "filename": "00.zip",
+      "md5": "87f856c4dd1ad05d0ffd4171f92780a0",
+      "frames": 141,
+      "gt_points": 17362230,
+      "coordinate_frame": "world; sensor origins stored in PCD VIEWPOINT",
+      "scope": "Selected frames, not the full KITTI odometry sequence. Poses supplied by benchmark, not estimated here.",
+      "license_note": "Original KITTI/SemanticKITTI terms apply; data is not redistributed."
+    }
+  },
+  "exit_code": 0,
+  "finished_unix": 1791987769.1976137,
+  "wall_seconds": 83.87932324409485
+}

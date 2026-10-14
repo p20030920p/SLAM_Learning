@@ -1,0 +1,32 @@
+{
+  "method": "ir-mcl",
+  "kind": "author_desktop_execution",
+  "started_unix": 1791988626.2111995,
+  "capture": "actual Windows Terminal window",
+  "status": "executed",
+  "wrapper_sha256": "268a9e9c9b848395608b4b84935db2105db5d41e9497f9ff5b3f6fa8df1c0360",
+  "sources": {
+    "/mnt/d/workspace/be2/tmp/repro/ir-mcl/config/global_localization/loc_config_test1.yml": "942e28fd38331ff8189f561fc0d3df13ec5b15464f58c71babc0b655aac1891b"
+  },
+  "artifacts": {
+    "native-output.log": {
+      "sha256": "c49b61ebf0fcd96e7ee0d8d410b071d2761a297503ba6f3cb677c4e367a0b393",
+      "bytes": 108604
+    },
+    "ready.json": {
+      "sha256": "3a6478366a991ab5d7c6031f8ee1f1d9bdf56b72cd323e40038c0c9b03c8eb91",
+      "bytes": 30
+    }
+  },
+  "scope": "released Bonn IPBLab sequence; native config and 100000 initial particles; fresh inference",
+  "command": [
+    "/home/qzl/.venvs/ir-mcl/bin/python",
+    "-u",
+    "main.py",
+    "--config_file",
+    "./config/global_localization/loc_config_test1.yml"
+  ],
+  "exit_code": 0,
+  "finished_unix": 1791988797.9957786,
+  "wall_seconds": 171.78457951545715
+}

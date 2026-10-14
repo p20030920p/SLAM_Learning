@@ -1,0 +1,113 @@
+AUTHOR EXECUTION: dufomap; fresh outputs: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171354-author-dufomap-b9b1ba
+Running dufomap; log: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171354-author-dufomap-b9b1ba/experiment/results/runs/dufomap-86e1b80b2473/run.log
+I20261014 17:13:59.988995 137925602263040 dufomap.cpp:52] Here is your dufomap config: 
+I20261014 17:13:59.990132 137925602263040 dufomap.cpp:53] Set resolution: 0.1, d_s: 0.2, d_p: 1, hit_extension: 1, ray_passthrough_hits: 0
+I20261014 17:13:59.990481 137925602263040 dufomap.cpp:54] Set num_threads: 2
+DUFOMap frame 20/141
+DUFOMap frame 40/141
+DUFOMap frame 60/141
+DUFOMap frame 80/141
+DUFOMap frame 100/141
+DUFOMap frame 120/141
+DUFOMap frame 140/141
+DUFOMap frame 141/141
+I20261014 17:14:34.702491 137925602263040 dufomap.cpp:108] Cleaned map saved to dufomap_output.pcd
+dufomap: executed; record: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171354-author-dufomap-b9b1ba/experiment/results/runs/dufomap-86e1b80b2473/record.json
+{
+  "method": "dufomap",
+  "kind": "author_desktop_execution",
+  "started_unix": 1791987234.4526677,
+  "capture": "actual Windows Terminal window",
+  "status": "executed",
+  "wrapper_sha256": "3c1e04b37105fed30a4609f891f7b8b5bc88ad6314eefeef08c214c86f354349",
+  "sources": {},
+  "artifacts": {
+    "ready.json": {
+      "sha256": "3a6478366a991ab5d7c6031f8ee1f1d9bdf56b72cd323e40038c0c9b03c8eb91",
+      "bytes": 30
+    },
+    "experiment/results/runs/dufomap-86e1b80b2473/metrics.json": {
+      "sha256": "e43b3371a9b3f15923f177b41b66194b05a717c3ea702b20640a1050b5e4e676",
+      "bytes": 432
+    },
+    "experiment/results/runs/dufomap-86e1b80b2473/record.json": {
+      "sha256": "f6a7c54c0c5faf1f242bc2f3330add124aaeec51a7d6bc8c7b64b7d246097799",
+      "bytes": 11085
+    },
+    "experiment/results/runs/dufomap-86e1b80b2473/run.log": {
+      "sha256": "699972409068b7b3b5bb208ede6288871d334cbe0cf67131b47971d1bffce4da",
+      "bytes": 575
+    },
+    "experiment/results/runs/dufomap-86e1b80b2473/worker.json": {
+      "sha256": "9da8a7c8682672c1ed7d3209ebd52ea177fbc326f7ffc39bee57118029f5b061",
+      "bytes": 122
+    },
+    "native-run/metrics.json": {
+      "sha256": "e43b3371a9b3f15923f177b41b66194b05a717c3ea702b20640a1050b5e4e676",
+      "bytes": 432
+    },
+    "native-run/record.json": {
+      "sha256": "f6a7c54c0c5faf1f242bc2f3330add124aaeec51a7d6bc8c7b64b7d246097799",
+      "bytes": 11085
+    },
+    "native-run/run.log": {
+      "sha256": "699972409068b7b3b5bb208ede6288871d334cbe0cf67131b47971d1bffce4da",
+      "bytes": 575
+    },
+    "native-run/worker.json": {
+      "sha256": "9da8a7c8682672c1ed7d3209ebd52ea177fbc326f7ffc39bee57118029f5b061",
+      "bytes": 122
+    }
+  },
+  "native_record": "native-run/record.json",
+  "metrics": {
+    "counts": {
+      "kept_static": 16917434,
+      "removed_static": 348813,
+      "removed_dynamic": 94738,
+      "kept_dynamic": 1245
+    },
+    "SA": 97.97979838930834,
+    "DA": 98.70289530437681,
+    "AA": 98.34068223458615,
+    "HA": 98.34001762682132,
+    "gt_points": 17362230,
+    "map_points": 15995399,
+    "threshold_m": 0.05,
+    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+  },
+  "scope": "141 released KITTI-00 scans, pinned author pipeline; paper comparison as native record",
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+    "-m",
+    "slam_learning.cli",
+    "_worker",
+    "--root",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171354-author-dufomap-b9b1ba/experiment",
+    "--method",
+    "dufomap",
+    "--output",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171354-author-dufomap-b9b1ba/experiment/results/runs/dufomap-86e1b80b2473",
+    "--frames",
+    "0"
+  ],
+  "dataset": {
+    "manifest_sha256": "ee139f3c00f1fd6019a74332dad460d6e30e3330a78b108a9609e81e4a1359a7",
+    "archive_sha256": "14e30a0ddc19f275477aa0e72e6ba713f0f6a6a29dcf7ded8a92ce0c421109fd",
+    "configuration": {
+      "id": "dynamicmap-kitti00-teaser",
+      "record": "https://zenodo.org/records/10886629",
+      "url": "https://zenodo.org/records/10886629/files/00.zip?download=1",
+      "filename": "00.zip",
+      "md5": "87f856c4dd1ad05d0ffd4171f92780a0",
+      "frames": 141,
+      "gt_points": 17362230,
+      "coordinate_frame": "world; sensor origins stored in PCD VIEWPOINT",
+      "scope": "Selected frames, not the full KITTI odometry sequence. Poses supplied by benchmark, not estimated here.",
+      "license_note": "Original KITTI/SemanticKITTI terms apply; data is not redistributed."
+    }
+  },
+  "exit_code": 0,
+  "finished_unix": 1791987297.5819805,
+  "wall_seconds": 63.12931275367737
+}
