@@ -4,24 +4,22 @@
 
 **Map repair?**
 
-Dynamic-environment robust localization · Localization self-recovery
+Robust localization and SLAM in dynamic environments · Localization self-recovery
 
 [![CPU reproducibility](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](src/pyproject.toml)
 
 English | [中文](docs/HOME.zh-CN.md)
 
-[Localization GIFs](#static-and-dynamic-localization-recordings) · [Directions](#directions-analysis) · [Questions](#open-questions) · [Related works](#related-works) · [Results](#reproduction-results)
+[Research thread](#research-thread-localization-self-recovery-under-degradation-and-large-scene-change) · [Localization GIFs](#static-and-dynamic-localization-recordings) · [Direction](#direction-analysis) · [Open question](#open-questions) · [Related works](#related-works)
 
-[Evidence](#evidence) · [Hardware tests](#hardware-tests) · [Hypothesis](#hypothesis) · [Branches](#branches)
+[Results](#reproduction-results) · [Evidence](#evidence) · [Hardware tests](#hardware-tests) · [Hypothesis](#hypothesis) · [Branches](#branches)
 
 </div>
 
 ## Research thread: localization self-recovery under degradation and large scene change
 
 The current thread of this repository is the **self-recovery of a localization system**: under geometric/perceptual **degradation** and under **large scene change** (the prior map no longer matches the world), how does the system detect that its own pose is no longer trustworthy, attribute the cause, recover without human intervention, and verify that the recovery actually succeeded?
-
-> **Open question (frozen):** *In degradation and large-change environments, what strategy effectively lets a localization system recover itself?*
 
 Working documents (Chinese; English counterparts follow once the paper set is frozen):
 
@@ -36,9 +34,9 @@ The semantic-mapping and visual-localization direction previously hosted here ha
 
 ## Live experiments and local demos
 
-[**SLAM-Physical**](https://github.com/p20030920p/SLAM-Physical) contains native BeautyMap pose-revision C1/C2/C4 experiments, a first Gazebo object-departure scenario, measured results and live RViz demos of BeautyMap, DUFOMap, ConceptGraphs and HOV-SG. On the prepared local machine, double-click scripts in [demo/](demo/README.md); missing sibling code is cloned automatically. Each demo executes the native pipeline again. Small demo subsets do not replace the paper benchmarks below.
+[**SLAM-Physical**](https://github.com/p20030920p/SLAM-Physical) contains native BeautyMap pose-revision C1/C2/C4 experiments, a first Gazebo object-departure scenario, measured results and live RViz demos of BeautyMap and DUFOMap. On the prepared local machine, double-click scripts in [demo/](demo/README.md); missing sibling code is cloned automatically. Each demo executes the native pipeline again. Small demo subsets do not replace the paper benchmarks below.
 
-New [Windows / WSL2 AMCL guide](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/WINDOWS_AMCL.zh-CN.md): keyboard driving, live truth/estimate errors, automatic ROS bag recording, native paper-map adapters and paired localization replay. The semantic methods currently contribute geometry projections; AMCL does not consume their semantic features.
+New [Windows / WSL2 AMCL guide](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/WINDOWS_AMCL.zh-CN.md): keyboard driving, live truth/estimate errors, automatic ROS bag recording, native paper-map adapters and paired localization replay.
 
 Local `demo/14_static_keyboard.cmd` opens a purely static scene; `demo/15_dynamic_keyboard.cmd` opens a scene with three moving obstacles and a raw/paper-map menu. Both record automatically. `demo/16_record_static_dynamic.cmd` acquires independent mapping/test drives and runs repeated AMCL comparisons.
 
@@ -54,8 +52,8 @@ Local `demo/14_static_keyboard.cmd` opens a purely static scene; `demo/15_dynami
 | LiDAR | BeautyMap | 6.01 | 5.52 | 12.3% | 5.52 |
 | LiDAR | DUFOMap | 6.21 | 5.06 | 19.5% | 4.75 |
 | RGB-D geometry | Raw, no paper algorithm | 5.97 | 6.45 | Baseline | 6.48 |
-| RGB-D geometry | ConceptGraphs | 5.48 | 6.02 | 6.7% | 6.36 |
-| RGB-D geometry | HOV-SG | 6.35 | 6.28 | 2.7% | 5.71 |
+
+Two further RGB-D geometry families were recorded with the same protocol by methods of the direction now archived in the old repository — ConceptGraphs and HOV-SG, with position RMSE 5.48 / 6.02 / 6.36 cm and 6.35 / 6.28 / 5.71 cm for the static / dynamic / clean-map conditions — and are shown in category 3 below.
 
 Static and dynamic results each use three fresh AMCL replays of identical input; their position estimates were identical, so these check reproducibility. The clean-map control uses one replay per method. This is one controlled scene. [Full precision CSV](results/localization/static-dynamic/summary.csv) · [Protocol, maps and reports](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/results/static-dynamic/README.md).
 
@@ -73,9 +71,9 @@ Three boxes move during both mapping and testing. On the same test B, BeautyMap 
 
 ### 3. Dynamic scene — RGB-D geometry maps
 
-![Dynamic RGB-D geometry comparison: raw, ConceptGraphs and HOV-SG](results/localization/static-dynamic/dynamic-rgbd.gif)
+![Dynamic RGB-D geometry comparison: raw baseline and the two archived methods](results/localization/static-dynamic/dynamic-rgbd.gif)
 
-With RGB-D raw as the baseline, ConceptGraphs reduces RMSE by **0.43 cm**, and HOV-SG by **0.18 cm**. Their offline maps contribute geometry projections to common LiDAR AMCL; CLIP features, hierarchy and semantic localization are outside this test. [MP4](results/localization/static-dynamic/dynamic-rgbd.mp4).
+With RGB-D raw as the baseline, the two archived RGB-D geometry methods listed above reduce RMSE by **0.43 cm** and **0.18 cm**. [MP4](results/localization/static-dynamic/dynamic-rgbd.mp4).
 
 ### 4. Control — clean maps with the same dynamic test
 
@@ -87,38 +85,43 @@ Mapping A uses simulator-provided sensor poses to isolate map construction. Test
 
 **Try it locally:** on the prepared Windows / WSL2 machine, double-click [14: static keyboard](demo/14_static_keyboard.cmd), [15: dynamic keyboard + map menu](demo/15_dynamic_keyboard.cmd), or [16: record and compare](demo/16_record_static_dynamic.cmd). Keyboard: `i` forward, `,` backward, `j` / `l` turn, `k` stop; `Ctrl+C` ends and saves the recording. [Setup and controls](demo/README.md).
 
-## Directions analysis
+## Direction analysis
 
 **SLAM — Simultaneous Localization and Mapping:** estimate sensor motion while building a map from its observations.
 
-- **Robust localization and SLAM in dynamic environments:** estimate motion and maintain a stable map despite moving objects.
-- **Semantic mapping, visual localization and navigation:** describe objects and their locations, estimate pose from images, and reach a target.
+- **Robust localization and SLAM in dynamic environments:** estimate motion and maintain a stable map despite moving objects, and keep the pose estimate trustworthy once the map no longer matches the world.
 
-Five elements organize this process:
+This repository keeps that single direction. Five elements organize the process, and the current thread adds detection and recovery around it:
 
 ```text
-Sensor data → Front end → Back end (optimize) → Map build
-                  ↓              ↑
-             Loop detection ─────┘
+Sensor data → Front end → Back end (optimize) → Map build and pose output
+                  ↓              ↑                        ↓
+             Loop detection ─────┘          Failure detection → Recovery
 ```
 
-| Element | Benefit | Dynamic SLAM | Semantic mapping |
-| --- | --- | --- | --- |
-| Sensor data | Cleaner input | Motion cues | RGB-D alignment |
-| Front end | Stable matches | Static features | Object association |
-| Back end | Consistent poses | Outlier rejection | Object alignment |
-| Loop detection | Less drift | Place recognition | Relocalization |
-| Map build | Stable maps | Dynamic removal | Object identities |
+| Element | Benefit | In this repository |
+| --- | --- | --- |
+| Sensor data | Cleaner input | Recorded Gazebo LiDAR and RGB-D drives; desktop hardware capture checks |
+| Front end | Stable matches | Static-structure filtering (DUFOMap, BeautyMap) applied before localization |
+| Back end | Consistent poses | AMCL pose updates from scans and wheel odometry; outlier handling is outside these experiments |
+| Loop detection | Less drift | Not part of these experiments: the platform is AMCL, not a factor-graph back end |
+| Map build | Stable maps | Supplied-pose mapping A builds each map; six map families are scored on the same test B |
+| Failure detection and recovery | Trustworthy pose | The open thread: detection → attribution → recovery → confirmation, with the working documents linked above |
 
-The first direction emphasizes reliable motion and geometry. The second adds object meaning and target retrieval. The completed mapping experiments use supplied poses to isolate **map construction**. Complete SLAM and navigation remain outside these experiments. Both directions rely on multi-frame alignment: pose errors can corrupt static-structure filtering and object association, motivating the following open question.
+The direction kept here emphasizes reliable motion and geometry. The completed mapping experiments use supplied poses to isolate **map construction**; complete SLAM, navigation and a factor-graph back end remain outside these experiments. Pose errors can still corrupt static-structure filtering, which is where the open question below comes from.
 
-## open questions:
+## Open questions
 
-How can multi-frame mapping prevent localization errors from causing persistent mistakes in static-structure filtering and object association?
+**In degradation and large-change environments, what strategy effectively lets a localization system recover itself?**
+
+Two working documents state the candidate claims and the measurements that would falsify them:
+
+- [Hypotheses grouped by strategy family, each bound to one simulation cell](docs/self-recovery/HYPOTHESES-BY-PAPER.zh-CN.md) (Chinese)
+- [Metric definitions, experiment matrix and falsification conditions](docs/self-recovery/HYPOTHESES.zh-CN.md) (Chinese)
 
 ## Related works
 
-These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing; each selected map observation is held for eight frames at 12 fps. [GIF timing and sources](https://github.com/p20030920p/SLAM_Learning/blob/main/results/reference/conceptgraphs/media/timing.json).
+These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing; each selected map observation is held for eight frames at 12 fps. [DUFOMap timing](results/reference/dufomap/media/timing.json) · [BeautyMap timing](results/reference/beautymap/media/timing.json).
 
 ### [DUFOMap](docs/papers/dufomap.md)
 
@@ -132,24 +135,12 @@ These are saved-result replays from supplied-pose mapping runs. GIFs preserve th
 
 **KITTI-00 outdoor scene, 141 LiDAR scans.** Occupancy comparisons remove dynamic traces; restoration protects static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](results/reference/beautymap/media/replay/replay.mp4).
 
-### [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/conceptgraphs.md)
-
-![ConceptGraphs core replay](https://github.com/p20030920p/SLAM_Learning/raw/main/results/reference/conceptgraphs/media/preview.gif)
-
-**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](https://github.com/p20030920p/SLAM_Learning/blob/main/results/reference/conceptgraphs/media/replay/replay.mp4).
-
-### [HOV-SG](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/hovsg.md)
-
-In progress
-
 ## Reproduction results
 
 | Work | Data | Result |
 | --- | --- | --- |
 | [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md) | KITTI-00, 141 scans | Table IV accuracy matched |
 | [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md) | Historical KITTI-02, 91 scans | Table III accuracy matched |
-| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md) | room0, 400 observations | Single-scene scored |
-| [HOV-SG](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/hovsg.md) | | In progress |
 
 ## Evidence
 
@@ -190,28 +181,6 @@ Historical KITTI-02, frames 860–950, 91 scans; XY=1 m, Z=0.5 m, range=40 m. [O
 
 All three values match at two decimals. All nine accuracy entries across XY=0.5/1/2 m match. This uses historical preprocessing/GT and the author's HA scorer; the exact paper method commit remains unidentified. Other sequences and runtime are outside this comparison.
 
-### ConceptGraphs
-
-The paper reports Replica benchmark results; our completed result below covers **room0 only, 400 observations**, with the disclosed SAM batch-16 variant. These scopes differ, so the paper values are reference values, without a reproduction-gap calculation. [Original repository](https://github.com/concept-graphs/concept-graphs/tree/93277a02bd89171f8121e84203121cf7af9ebb5d) · [Paper Table II](https://arxiv.org/html/2309.16650v1#S3.T2) · [Our room0 results](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md).
-
-| Metric | Paper benchmark % | Our room0 % |
-| --- | ---: | ---: |
-| mAcc | 40.63 | 38.3156 |
-| F-mIoU | 35.95 | 50.1379 |
-
-In the author's evaluation confusion matrix, $n_c$ counts reference labels for class $c$, $p_c$ predicted labels and $t_c$ correct matches; $C$ is the evaluated class count and $N=\sum_c n_c$.
-
-$$
-\begin{aligned}
-\mathrm{IoU}_c &= \frac{t_c}{n_c+p_c-t_c}, &
-\mathrm{mAcc} &= \frac{100}{C}\sum_c\frac{t_c}{n_c},\\
-\mathrm{mIoU} &= \frac{100}{C}\sum_c\mathrm{IoU}_c, &
-\text{F-mIoU} &= 100\sum_c\frac{n_c}{N}\mathrm{IoU}_c.
-\end{aligned}
-$$
-
-Zero-denominator terms are 0. The author's `mrecall` is mAcc; F-mIoU is frequency-weighted, whereas our macro mIoU is 21.3460%. [Scoring code](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/utils/eval.py#L57-L84).
-
 ## Hardware tests
 
 ![D435 / Unitree L2](docs/media/hardware/devices.jpg)
@@ -231,14 +200,14 @@ Supplement: [D435 RGB-D odometry, 44.9 s](docs/media/hardware/d435.mp4). These a
 
 ## Hypothesis
 
-We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and preserve more consistent geometric and semantic maps
+We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and keep geometric maps more consistent. Candidate hypotheses for the current self-recovery thread are stated under [Open questions](#open-questions).
 
 ## Branches
 
 | Branch | Role |
 | --- | --- |
-| main | Curated submission: question, four mapping reproductions, open question and hypothesis. |
-| [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | Original pipelines, paper-table/semantic scoring and recordings. |
+| main | Curated submission: one direction (robust localization and SLAM in dynamic environments), two mapping reproductions, open question and hypothesis. |
+| [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | Original pipelines, paper-table scoring and recordings. |
 | [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | Personal study notes and hardware trials under `src/physical/`, including operations and failures. |
 
 

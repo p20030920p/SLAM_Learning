@@ -4,16 +4,16 @@
 
 **地图修复？**
 
-动态环境鲁棒定位 · 定位系统自恢复
+动态环境中的鲁棒定位与 SLAM · 定位系统自恢复
 
 [![CPU reproducibility](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](../src/pyproject.toml)
 
 [English](../README.md) | 中文
 
-[定位实测 GIF](#静态与动态定位录制) · [方向分析](#方向分析) · [开放问题](#开放问题) · [相关工作](#相关工作) · [复现结果](#复现结果)
+[研究主线](#研究主线退化与大变动场景下的定位系统自恢复) · [定位实测 GIF](#静态与动态定位录制) · [方向分析](#方向分析) · [开放问题](#开放问题) · [相关工作](#相关工作)
 
-[实验证据](#实验证据) · [实物测试](#实物测试) · [假设](#假设) · [分支](#分支)
+[复现结果](#复现结果) · [实验证据](#实验证据) · [实物测试](#实物测试) · [假设](#假设) · [分支](#分支)
 
 </div>
 
@@ -27,14 +27,16 @@
 - [论文地图：退化检测、重定位、地图维护、鲁棒后端、评测](self-recovery/SURVEY.zh-CN.md)
 - [用现有静态/动态 AMCL 录制做实验的可行性评估](self-recovery/FEASIBILITY.zh-CN.md)
 - [候选假设 H1—H6 与证伪条件](self-recovery/HYPOTHESES.zh-CN.md)
+- [按策略族分组的假设集，每条绑定到仿真里的一格](self-recovery/HYPOTHESES-BY-PAPER.zh-CN.md)
+- [逐篇假设：每篇论文推出哪条主张、用哪一格仿真检验](self-recovery/PAPER-TO-HYPOTHESIS.zh-CN.md)
 
 此前放在本仓库的语义建图与视觉定位方向，已归档到旧库 [SLAM_Learning](https://github.com/p20030920p/SLAM_Learning)。
 
 ## 仿真实验与本机演示入口
 
-[**SLAM-Physical 公开实验仓库**](https://github.com/p20030920p/SLAM-Physical)：BeautyMap 静态位姿修正与 C1/C2/C4 对照、首个物体离场场景、实测报告，以及 BeautyMap / DUFOMap / ConceptGraphs / HOV-SG 的实时 RViz 演示。本机双击 [demo 文件夹](../demo/README.md) 中的脚本，缺少同级实验仓库时会自动克隆。演示重新执行原生流程；小样本演示不替代下文的论文正式复现。
+[**SLAM-Physical 公开实验仓库**](https://github.com/p20030920p/SLAM-Physical)：BeautyMap 静态位姿修正与 C1/C2/C4 对照、首个物体离场场景、实测报告，以及 BeautyMap / DUFOMap 的实时 RViz 演示。本机双击 [demo 文件夹](../demo/README.md) 中的脚本，缺少同级实验仓库时会自动克隆。演示重新执行原生流程；小样本演示不替代下文的论文正式复现。
 
-新增 [Windows / WSL2 键盘 AMCL 操作指南](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/WINDOWS_AMCL.zh-CN.md)：实时真值/估计偏移、自动录制、论文地图适配与同一输入回放对照。CG/HOV 当前仅提供几何投影，AMCL 不消费语义特征。
+新增 [Windows / WSL2 键盘 AMCL 操作指南](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/WINDOWS_AMCL.zh-CN.md)：实时真值/估计偏移、自动录制、论文地图适配与同一输入回放对照。
 
 本机 `demo/14_static_keyboard.cmd` 打开纯静态场景，`demo/15_dynamic_keyboard.cmd` 打开含三个运动障碍物的场景并选择原始/论文地图；两个入口均自动录制。`demo/16_record_static_dynamic.cmd` 执行独立建图/测试录制及重复 AMCL 对比。
 
@@ -50,8 +52,8 @@
 | LiDAR | BeautyMap | 6.01 | 5.52 | 12.3% | 5.52 |
 | LiDAR | DUFOMap | 6.21 | 5.06 | 19.5% | 4.75 |
 | RGB-D 几何 | 原始，不使用论文算法 | 5.97 | 6.45 | 基线 | 6.48 |
-| RGB-D 几何 | ConceptGraphs | 5.48 | 6.02 | 6.7% | 6.36 |
-| RGB-D 几何 | HOV-SG | 6.35 | 6.28 | 2.7% | 5.71 |
+
+另有两个 RGB-D 几何地图族由已归档到旧库方向的方法按同一协议录制——ConceptGraphs 与 HOV-SG，静态／动态／干净地图条件下的位置 RMSE 分别为 5.48／6.02／6.36 cm 与 6.35／6.28／5.71 cm——见下文第 3 类。
 
 静态、动态主实验各重新启动 AMCL 回放三次相同输入，位置估计相同，用于检查可复现性；干净地图控制组每种方法回放一次。这是一处受控场景的结果。[完整精度 CSV](../results/localization/static-dynamic/summary.csv) · [协议、地图与报告](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/results/static-dynamic/README.md)。
 
@@ -69,9 +71,9 @@
 
 ### 3. 动态场景——RGB-D 几何地图
 
-![动态 RGB-D 几何：原始、ConceptGraphs 与 HOV-SG 对照](../results/localization/static-dynamic/dynamic-rgbd.gif)
+![动态 RGB-D 几何：原始基线与两个已归档方法对照](../results/localization/static-dynamic/dynamic-rgbd.gif)
 
-以 RGB-D 原始地图为基线，ConceptGraphs 的 RMSE 降低 **0.43 cm**，HOV-SG 降低 **0.18 cm**。此处将离线地图的几何投影交给共用的 LiDAR AMCL；CLIP 特征、层级关系及语义定位不在本次评测范围内。[MP4](../results/localization/static-dynamic/dynamic-rgbd.mp4)。
+以 RGB-D 原始地图为基线，上表所述两个已归档的 RGB-D 几何方法分别使 RMSE 降低 **0.43 cm** 与 **0.18 cm**。[MP4](../results/localization/static-dynamic/dynamic-rgbd.mp4)。
 
 ### 4. 控制组——干净地图＋相同动态测试
 
@@ -87,34 +89,39 @@
 
 **SLAM — Simultaneous Localization and Mapping，同步定位与建图：**利用传感器观测，同时估计自身运动并构建地图。
 
-- **动态环境中的鲁棒定位与 SLAM：**物体运动时，仍能可靠估计自身运动并维护稳定地图。
-- **语义建图、视觉定位与导航：**描述物体及其位置，用图像确定自身位姿，并据此到达目标。
+- **动态环境中的鲁棒定位与 SLAM：**物体运动时仍能可靠估计自身运动并维护稳定地图；当地图与现状不再一致时，保持位姿估计可信。
 
-用五个要素理解这个过程：
+本仓库只保留这一个方向。用五个要素理解这个过程，当前主线在其外围加上检测与恢复：
 
 ```text
-传感器数据 → 前端 → 后端（优化） → 地图构建
-              ↓       ↑
-           回环检测 ──┘
+传感器数据 → 前端 → 后端（优化） → 地图构建与位姿输出
+              ↓        ↑                    ↓
+          回环检测 ────┘            失效检测 → 恢复
 ```
 
-| 要素 | 收益 | 动态 SLAM | 语义建图 |
-| --- | --- | --- | --- |
-| 传感器数据 | 干净输入 | 运动线索 | RGB-D 对齐 |
-| 前端 | 稳定匹配 | 静态特征 | 对象关联 |
-| 后端 | 一致位姿 | 异常约束剔除 | 对象对齐 |
-| 回环检测 | 减少漂移 | 地点识别 | 重定位 |
-| 地图构建 | 稳定地图 | 动态剔除 | 对象身份 |
+| 要素 | 收益 | 本仓库的做法 |
+| --- | --- | --- |
+| 传感器数据 | 干净输入 | 已录制的 Gazebo 激光与 RGB-D 采集；桌面硬件采集检查 |
+| 前端 | 稳定匹配 | 定位前先做静态结构过滤（DUFOMap、BeautyMap） |
+| 后端 | 一致位姿 | 由扫描与轮速里程计驱动的 AMCL 位姿更新；异常约束处理不在这些实验内 |
+| 回环检测 | 减少漂移 | 不在这些实验内：本平台是 AMCL，没有因子图后端 |
+| 地图构建 | 稳定地图 | 给定位姿的建图 A 生成各地图；同一测试 B 上为六个地图族打分 |
+| 失效检测与恢复 | 位姿可信 | 当前开放主线：检测 → 归因 → 恢复 → 确认，工作文档见上 |
 
-第一个方向重在可靠运动与几何。第二个方向增加物体含义与目标检索。已完成的建图实验使用给定位姿，单独检查**地图构建**；完整 SLAM 与导航不在这些实验范围内。两个方向都依赖多帧对齐：位姿误差可能误导静态结构过滤和物体关联，因此引出下面的开放问题。
+这里保留的方向重在可靠运动与几何。已完成的建图实验使用给定位姿，单独检查**地图构建**；完整 SLAM、导航与因子图后端不在这些实验范围内。位姿误差仍可能误导静态结构过滤，这正是下面开放问题的来源。
 
 ## 开放问题
 
-多帧建图如何避免定位误差在静态结构过滤和物体关联中造成持续性错误？
+**在退化与大变动环境中，什么样的策略能够有效地让定位系统自恢复？**
+
+两份工作文档给出候选主张与证伪所需的测量：
+
+- [按策略族分组的假设集，每条绑定到仿真里的一格](self-recovery/HYPOTHESES-BY-PAPER.zh-CN.md)（中文文档）
+- [指标定义、实验矩阵与证伪条件](self-recovery/HYPOTHESES.zh-CN.md)（中文文档）
 
 ## 相关工作
 
-以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序；每个选定地图观测在 12 fps 下保持八帧。[GIF 时序与来源](https://github.com/p20030920p/SLAM_Learning/blob/main/results/reference/conceptgraphs/media/timing.json)。
+以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序；每个选定地图观测在 12 fps 下保持八帧。[DUFOMap 时序](../results/reference/dufomap/media/timing.json) · [BeautyMap 时序](../results/reference/beautymap/media/timing.json)。
 
 ### [DUFOMap](papers/dufomap.zh-CN.md)
 
@@ -128,24 +135,12 @@
 
 **KITTI-00 户外场景，141 帧激光雷达扫描。**通过占据比较清理动态残影，用恢复机制保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](../results/reference/beautymap/media/replay/replay.mp4)。
 
-### [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/conceptgraphs.zh-CN.md)
-
-![ConceptGraphs 核心回放](https://github.com/p20030920p/SLAM_Learning/raw/main/results/reference/conceptgraphs/media/preview.gif)
-
-**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](https://github.com/p20030920p/SLAM_Learning/blob/main/results/reference/conceptgraphs/media/replay/replay.mp4)。
-
-### [HOV-SG](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/hovsg.zh-CN.md)
-
-在复现中
-
 ## 复现结果
 
 | 工作 | 数据 | 结果 |
 | --- | --- | --- |
 | [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.zh-CN.md) | KITTI-00，141 扫描 | 表 IV 准确率匹配 |
 | [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.zh-CN.md) | 历史 KITTI-02，91 扫描 | 表 III 准确率匹配 |
-| [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md) | room0，400 观测 | 单场景已评分 |
-| [HOV-SG](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/hovsg.zh-CN.md) | | 在复现中 |
 
 ## 实验证据
 
@@ -186,28 +181,6 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 三项数值保留两位小数后均一致。XY=0.5／1／2 m 的九项准确率全部匹配。使用历史预处理／GT 与作者 HA 评分器；论文当时的精确方法提交尚未确定。其他序列及运行时间不在本表范围内。
 
-### ConceptGraphs
-
-论文报告 Replica benchmark；下列已完成结果仅覆盖 **room0，400 次观测**，使用已披露的 SAM batch-16 变体。覆盖范围不同，论文值仅供参考，不计算复现差距。[作者源库](https://github.com/concept-graphs/concept-graphs/tree/93277a02bd89171f8121e84203121cf7af9ebb5d) · [论文表 II](https://arxiv.org/html/2309.16650v1#S3.T2) · [我们的 room0 结果](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md)。
-
-| 指标 | 论文 benchmark % | 我们的 room0 % |
-| --- | ---: | ---: |
-| mAcc | 40.63 | 38.3156 |
-| F-mIoU | 35.95 | 50.1379 |
-
-在作者的评估混淆矩阵中，$n_c$ 为类别 $c$ 的真值标签数，$p_c$ 为预测标签数，$t_c$ 为正确匹配数；$C$ 为评估类别数，$N=\sum_c n_c$。
-
-$$
-\begin{aligned}
-\mathrm{IoU}_c &= \frac{t_c}{n_c+p_c-t_c}, &
-\mathrm{mAcc} &= \frac{100}{C}\sum_c\frac{t_c}{n_c},\\
-\mathrm{mIoU} &= \frac{100}{C}\sum_c\mathrm{IoU}_c, &
-\text{F-mIoU} &= 100\sum_c\frac{n_c}{N}\mathrm{IoU}_c.
-\end{aligned}
-$$
-
-分母为零的项记为 0。作者的 `mrecall` 即 mAcc；F-mIoU 按类别点数加权，而我们的宏平均 mIoU 为 21.3460%。[评分代码](https://github.com/concept-graphs/concept-graphs/blob/93277a02bd89171f8121e84203121cf7af9ebb5d/conceptgraph/utils/eval.py#L57-L84)。
-
 ## 实物测试
 
 ![D435 / Unitree L2](media/hardware/devices.jpg)
@@ -227,14 +200,14 @@ $$
 
 ## 假设
 
-我们假设，保留地图更新背后的观测证据，并随着位姿估计的改善重新审视这些更新，能够减少持续性建图错误，保持更加一致的几何与语义地图。
+我们假设，保留地图更新背后的观测证据，并随着位姿估计的改善重新审视这些更新，能够减少持续性建图错误，保持几何地图更加一致。当前自恢复主线的候选假设列在[开放问题](#开放问题)一节。
 
 ## 分支
 
 | 分支 | 用途 |
 | --- | --- |
-| main | 提交展示：四方法复现、开放问题与假设。 |
-| [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | 作者原流程、论文表格／语义评分与录制。 |
+| main | 提交展示：单一方向（动态环境中的鲁棒定位与 SLAM）、两项方法复现、开放问题与假设。 |
+| [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | 作者原流程、论文表格评分与录制。 |
 | [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | 个人学习笔记与 `src/physical/` 实物实验，保留操作说明和失败记录。 |
 
 
