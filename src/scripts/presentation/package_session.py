@@ -48,15 +48,15 @@ def gif(video, output):
             "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"}
 
 
-def replay(folder, values, restore_stamp):
+def replay(folder, values, restore_stamp, *, output_folder=None, heading_label=None, interval=None):
     names = list(values)
     count = len(names)
-    start = max(array[0, 0] for array in values.values())
-    finish = min(array[-1, 0] for array in values.values())
+    start, finish = interval or (max(array[0, 0] for array in values.values()),
+                                 min(array[-1, 0] for array in values.values()))
     if finish-start < 10:
         raise ValueError("Pose replay is too short")
     fig = plt.figure(figsize=(16, 9), dpi=80, facecolor="#111827")
-    cols = 3
+    cols = 1 if count == 1 else 3
     rows = math.ceil(count/cols)
     gs = fig.add_gridspec(rows*2, cols, height_ratios=[3, 1]*rows, left=.04, right=.99, bottom=.06, top=.90, hspace=.50, wspace=.23)
     artists = []
@@ -83,7 +83,7 @@ def replay(folder, values, restore_stamp):
         top.set_xlim(x.min()-pad, x.max()+pad)
         top.set_ylim(y.min()-pad, y.max()+pad)
         top.set_aspect("equal", adjustable="box")
-        top.set_title(name+f" | full RMSE {score(array)['position_rmse_m']*100:.2f} cm", color="white", fontsize=10)
+        top.set_title(name+f" | AMCL | full RMSE {score(array)['position_rmse_m']*100:.2f} cm", color="white", fontsize=13 if count == 1 else 10)
         gt, = top.plot([], [], color="#6ee7b7", lw=2, label="truth")
         est, = top.plot([], [], color="#60a5fa", lw=1.6, label="AMCL")
         dot, = top.plot([], [], "o", color="#60a5fa", ms=5)
@@ -100,7 +100,7 @@ def replay(folder, values, restore_stamp):
     fig.text(.04, .95, "MEASURED RESULT REPLAY | saved AMCL updates + independent Gazebo truth | no new inference", color="#b9c5d9", fontsize=10)
     fps = 8
     frames = int(math.floor((finish-start)*fps))+1
-    output = folder / "result.mp4"
+    output = (output_folder or folder) / "result.mp4"
     width, height = fig.canvas.get_width_height()
     process = subprocess.Popen(["ffmpeg", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgba", "-s", f"{width}x{height}", "-r", str(fps), "-i", "-", "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "22", "-pix_fmt", "yuv420p", "-y", str(output)], stdin=subprocess.PIPE)
     try:
@@ -109,7 +109,7 @@ def replay(folder, values, restore_stamp):
             phase = ""
             if restore_stamp is not None:
                 phase = " | LIMITED OBSERVATIONS" if stamp < restore_stamp else " | FULL OBSERVATIONS RESTORED"
-            heading.set_text(folder.name+f" | simulation t={stamp-start:.1f}s"+phase)
+            heading.set_text((heading_label or folder.name)+f" | simulation t={stamp-start:.1f}s"+phase)
             for array, gt, est, dot, line in artists:
                 end = max(1, int(np.searchsorted(array[:, 0], stamp, side="right")))
                 gt.set_data(array[:end, 1], array[:end, 2])

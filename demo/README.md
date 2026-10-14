@@ -47,3 +47,5 @@
 现有最新地图标记优先；没有标记时可用仓库已封存的对应场景地图。若要用自己新采集的地图，先完成建图并按相应 `build-maps.ps1 -Scene static|dynamic|corridor` 处理，再运行定位。原算法、训练权重、数据与上游依赖各自保留本机路径；论文录制不把KITTI/Bonn真实数据伪装成Gazebo场景。AdaM默认10次试验，快速现场可用 `original.ps1 -Method adam-mcl -Trials 1 -Record`，单位为格。
 
 场景世界和巡航脚本已放入本库，区分固定原机器人与本地场景适配。完整录像、bag与算法大产物留在 `results/runs/presentation`；公开小产物见 `results/reference/robot-*` 和 `desktop-*`。每条录像的计算口径与限制见[本机协议](../docs/testing/LIVE.zh-CN.md)。
+
+现场录像命名为 `场景__模块__算法或地图处理__日期时间-运行ID.mp4`，本轮15段的名称与证据对应见[录像索引](recording-index.json)。本机目录另附 `视频名称对照.csv/json`，明确标出正式执行、额外采集、诊断及启动测试。A-建图使用 slam_toolbox 和给定位姿三维点云采集；B-定位统一使用 AMCL，Raw／DUFOMap／BeautyMap 表示地图处理。首页每种方法的结果回放从同场景保存数据单独导出，现场录像为同一次并行执行。重新导出命令：`python src/scripts/presentation/package_case_replays.py results/reference/robot-static results/reference/robot-dynamic results/reference/robot-large-change results/reference/robot-degradation`。

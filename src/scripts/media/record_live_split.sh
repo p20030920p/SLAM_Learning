@@ -68,7 +68,14 @@ RVIZ_VIEW_SCALE="${RVIZ_VIEW_SCALE:-52}"
 # It must not start with a "-": argparse reads a leading negative number as an
 # option and fails with "expected one argument".  Hence 0,19,0,12 rather than
 # -2,19,-2,12.
-VIEW_BOUNDS="${VIEW_BOUNDS:-0,19,0,12}"
+#
+# The default covers the two-room arena.  Levels that happen elsewhere override it:
+# S4's corridor sits at y = -3.1, which is outside this box, and with the wrong box
+# the right half came out 99% blank because the robot was simply off-screen.
+DEFAULT_VIEW_BOUNDS="${DEFAULT_VIEW_BOUNDS:-0,19,0,12}"
+# NB: VIEW_BOUNDS is deliberately NOT assigned here.  Setting it now would make the
+# later `${VIEW_BOUNDS:-...}` see an already-set value, silently ignore the per-level
+# override, and leave S4 filming the arena box while its robot is 3 m off-screen.
 
 # ---------------------------------------------------------------- level table
 WORLD=""; URDF="$REPO/src/race_description/urdf/omni_car_ros2_control.urdf"
@@ -80,6 +87,8 @@ ROUTE_MAIN='8.5,7.6;5.3,7.6;5.3,6.5;8.2,6.5;8.2,5.2;9.7,5.2;9.7,4.2;6.7,4.2;6.7,
 ROUTE_CORRIDOR='9.4,-3.1;5.0,-3.1'
 WAYPOINTS="$ROUTE_MAIN"
 CONDITION=""
+MAP_STATIC=false
+EXTRA_LAUNCH_ARGS="${EXTRA_LAUNCH_ARGS:-}"
 
 case "$LEVEL" in
   S1_static)
@@ -90,15 +99,52 @@ case "$LEVEL" in
     CONDITION="Same arena with three scripted moving obstacles (amplitudes 1.6/1.4/1.75 m, periods 8/7/6 s) crossing the patrol route." ;;
   S3_large_change)
     WORLD="$VARIANTS/worlds/S3_large_change.world"; PATROL=true; TRUTH=true
-    CONDITION="Structurally altered arena: the passage the robot mapped in S1 is walled off, so the live scan contradicts the previously built map." ;;
+    # Localization against a SAVED map, not mapping.  The map is therefore supposed
+    # to stay static, and the pass criterion has to be robot_moved plus a moving
+    # map->base_footprint, not "the map grew" -- demanding growth here is simply the
+    # wrong test and it wrongly failed the first two S3 takes.
+    MAP_STATIC=true
+    LOCALIZE_MAP="${LOCALIZE_MAP:-$REPO/src/race_navigation/maps/race_map.yaml}"
+    EXTRA_LAUNCH_ARGS="localize:=true map:=$LOCALIZE_MAP"
+    CONDITION="Localizes against the previously built map in a structurally altered arena: the passage that was open when the map was made is walled off, so the live scan contradicts the map. The map must NOT grow here." ;;
   S4_degradation)
     WORLD="$VARIANTS/worlds/S4_degradation.world"
     URDF="$VARIANTS/urdf/omni_car_lidar_sparse.urdf"
     PATROL=true; TRUTH=true
     SX=7.15; SY=-3.10; SYAW=0.0; WAYPOINTS="$ROUTE_CORRIDOR"
-    CONDITION="Long straight featureless corridor with a degraded lidar: 72 beams over 240 deg, 3.5 m range, 0.03 m gaussian range noise." ;;
+    # the corridor is at y = -3.1, well outside the arena box
+    DEFAULT_VIEW_BOUNDS="0,16,-8,6"
+    # S4 maps, like S1/S2: the point of the level is that mapping degrades when the
+    # geometry and the sensing are poor.  Without slam:=true nothing publishes the
+    # `map` frame at all, so there is no grid and no map->base_footprint, and the
+    # right half is just background -- which is what the first S4 take showed.
+    SLAM=true
+    CONDITION="Long straight featureless corridor with a degraded lidar: 72 beams over 240 deg, 3.5 m range. Mapping degrades because the corridor gives no along-axis constraint." ;;
   *) echo "unknown level '$LEVEL'" >&2; exit 2 ;;
 esac
+
+# a level that moved the view box overrides the script-wide default
+VIEW_BOUNDS="${VIEW_BOUNDS:-$DEFAULT_VIEW_BOUNDS}"
+echo "right-half view box: $VIEW_BOUNDS m"
+
+# Repeat the waypoint list so the robot keeps driving for several laps.
+#
+# This exists because the patrol is ONE lap: it logs ROUTE_COMPLETE and stops dead.
+# Setting up a recording -- waiting for topics, the render gate, placing windows, the
+# layout gate, rate measurement and (for S3) the localisation sampling -- takes about
+# 150 s, while a ten-waypoint lap takes about 155 s.  So by the time the capture is
+# ready the robot is already at waypoint 9 of 10 and about to park, and every fixed
+# delay or waypoint anchor I tried landed either just before or just after the useful
+# part.  Repeating the list removes the race entirely: there is always more patrol
+# left, so the capture can simply start when the pipeline is ready.
+if [ "${WAYPOINT_REPEAT:-1}" -gt 1 ]; then
+  repeated=""
+  for _ in $(seq 1 "$WAYPOINT_REPEAT"); do
+    repeated="${repeated}${repeated:+;}${WAYPOINTS}"
+  done
+  WAYPOINTS="$repeated"
+  echo "waypoints repeated ${WAYPOINT_REPEAT}x -> $(echo "$WAYPOINTS" | tr ';' '\n' | wc -l) legs"
+fi
 
 mkdir -p "$SCRATCH/logs" "$OUTDIR"
 
@@ -438,11 +484,41 @@ measure() {  # topic seconds
     >>"$STATS_FILE"
 }
 echo "measuring topic rates"
-measure /scan 8
-measure "$ODOM_TOPIC" 8
-measure /top_view 8
-measure /map 8
+measure /scan 5
+measure "$ODOM_TOPIC" 5
+measure /top_view 5
+measure /map 5
 cat "$STATS_FILE"
+
+# For a localization level, record the direct evidence that the robot's pose in the
+# map frame actually changes.  This is the honest substitute for "the map grew": in
+# localization mode the map is a saved artefact and must stay static, so the thing to
+# demonstrate is that map -> base_footprint tracks the robot.  Sampled twice, with a
+# gap, so the two readings differ only if localisation is live.
+LOC_EVIDENCE=""
+if [ "$MAP_STATIC" = true ]; then
+  echo "sampling map -> base_footprint twice as localisation evidence"
+  for k in 1 2; do
+    # `|| true` matters: tf2_echo runs until it is killed, so `timeout` reports 124,
+    # and under `set -e` a bare 124 would abort the whole recording.
+    timeout 20 ros2 run tf2_ros tf2_echo map base_footprint \
+      >"$SCRATCH/logs/tf_map_$k.txt" 2>&1 || true
+    sample=$(grep -A1 'Translation' "$SCRATCH/logs/tf_map_$k.txt" \
+             | grep -m1 'Translation' | tr -s ' ' || true)
+    if [ -z "$sample" ]; then
+      sample="(no transform: $(grep -m1 'Invalid frame' "$SCRATCH/logs/tf_map_$k.txt" | tr -s ' ' || true))"
+    fi
+    LOC_EVIDENCE="${LOC_EVIDENCE}t${k}=${sample# }; "
+    if [ "$k" = 1 ]; then
+      sleep 15
+    fi
+  done
+  echo "  $LOC_EVIDENCE"
+  # /map is published RELIABLE + TRANSIENT_LOCAL by map_server and amcl in this mode,
+  # so a volatile-only observer sees nothing and misreads that as a fault.
+  timeout 20 ros2 topic info /map --verbose >"$SCRATCH/logs/map_qos.txt" 2>&1 || true
+  echo "  /map publisher QoS: $(grep -m1 -A3 'Durability' "$SCRATCH/logs/map_qos.txt" | tr -s ' \n' ' ' || true)"
+fi
 
 # -------------------------------------------------------------------- capture
 # Wait for the machine to be quiet enough to hold a sustained screen grab.  Two
@@ -555,15 +631,56 @@ else
   echo "sustained preflight OK at ${CAPTURE_FPS} fps"
 fi
 
-# CAPTURE_START_DELAY films a level at the point in its patrol where the thing being
-# demonstrated is genuinely in view.  A multi-room patrol is not equally informative
-# throughout: S2's only reachable moving obstacle sits at (8.5, 2.0), which the route
-# approaches on its last legs and never before.  This sleep is deliberately placed
-# AFTER the gates, so the delay is measured from a known point (capture is ready)
-# rather than being eroded by however long the probes happened to take.  ffmpeg's -t
-# plus this sleep give an exact [start, start+seconds] window, with no editing after.
+# CAPTURE_WAYPOINTS_AHEAD anchors the capture to the patrol's own progress instead of to
+# elapsed wall time, which is what the timing bugs kept getting wrong.  Setup takes a
+# variable amount of time -- window placement, render gate, rate measurement and, for
+# S3, the localisation sampling add up to well over a minute -- so a fixed delay lands
+# either before the robot moves or after it has finished and parked.  Those two are
+# indistinguishable in the statistics and both worthless.  Waiting for the patrol to
+# report a specific waypoint is immune to how long setup took.
+#
+# CAPTURE_START_DELAY remains for levels that need an extra nudge past the waypoint.
+if [ -n "${CAPTURE_WAYPOINTS_AHEAD:-}" ]; then
+  # Anchoring on a fixed waypoint number does not work here, because how far the
+  # patrol has already got by the time setup finishes varies by tens of seconds.
+  # Asking for waypoint 2 matches an old log line, so the wait returns instantly and
+  # the clip still starts with the robot nearly finished; asking for waypoint 5 can
+  # be already passed, so the wait never ends.  Both happened.  Instead read how far
+  # it has actually got and aim a few waypoints further on, which adapts to whatever
+  # setup cost and always lands mid-patrol.
+  done_wp=$(grep -o 'reached waypoint [0-9]*/' "$LAUNCH_LOG" 2>/dev/null \
+            | tail -1 | grep -o '[0-9]*' || true)
+  done_wp=${done_wp:-0}
+  target_wp=$((done_wp + CAPTURE_WAYPOINTS_AHEAD))
+  echo "patrol is at waypoint ${done_wp}; aiming to capture from waypoint ${target_wp}"
+  LOG_MARK=$(wc -l < "$LAUNCH_LOG" 2>/dev/null || echo 0)
+  found=no
+  for _ in $(seq 1 180); do
+    # accept the target OR anything beyond it, so a fast patrol cannot slip past the
+    # mark between two polls
+    seen=$(tail -n "+$((LOG_MARK + 1))" "$LAUNCH_LOG" 2>/dev/null \
+           | grep -o 'reached waypoint [0-9]*/' | grep -o '[0-9]*' \
+           | sort -n | tail -1 || true)
+    if [ -n "$seen" ] && [ "$seen" -ge "$target_wp" ]; then
+      found=yes
+      break
+    fi
+    if ! kill -0 "${STACK_PID:-0}" 2>/dev/null; then
+      echo "warning: the simulation ended before waypoint ${target_wp}; capturing anyway" >&2
+      found=yes
+      break
+    fi
+    sleep 2
+  done
+  if [ "$found" != yes ]; then
+    echo "error: never reached waypoint ${target_wp} within 360s" >&2
+    exit 17
+  fi
+  echo "  patrol reached waypoint ${target_wp}; starting capture"
+fi
+
 if [ "${CAPTURE_START_DELAY:-0}" != "0" ]; then
-  echo "delaying capture by ${CAPTURE_START_DELAY}s to reach the informative part of the route"
+  echo "delaying capture by ${CAPTURE_START_DELAY}s"
   sleep "$CAPTURE_START_DELAY"
   if ! kill -0 "${STACK_PID:-0}" 2>/dev/null; then
     echo "error: the simulation exited while waiting to reach the capture window" >&2
@@ -600,9 +717,11 @@ ffmpeg -y -loglevel error -i "$MP4" \
 
 # --------------------------------------------------------------------- verify
 echo "checking the exported frames"
-python3 "$SCRATCH/verify_split.py" --video "$MP4" --outdir "$OUTDIR" \
-  --stem "$LEVEL" --split 960 \
-  --display-before "$DISPLAY_BEFORE" --display-after "$DISPLAY_AFTER" \
+VERIFY_ARGS=(--video "$MP4" --outdir "$OUTDIR" --stem "$LEVEL" --split 960
+             --display-before "$DISPLAY_BEFORE" --display-after "$DISPLAY_AFTER")
+[ "$MAP_STATIC" = true ] && VERIFY_ARGS+=(--map-static)
+[ -n "$LOC_EVIDENCE" ] && VERIFY_ARGS+=(--localization-evidence "$LOC_EVIDENCE")
+python3 "$SCRATCH/verify_split.py" "${VERIFY_ARGS[@]}" \
   | tee "$SCRATCH/logs/verify.log"
 
 {

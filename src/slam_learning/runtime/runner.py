@@ -134,6 +134,9 @@ def verify_record(path: Path, full: bool = False) -> list[str]:
     if record.get("status") == "executed" and record.get("kind") == "native_desktop_localization":
         from slam_learning.runtime.presentation_evidence import verify_presentation
         errors.extend(verify_presentation(path, record))
+    if record.get("status") == "executed" and record.get("kind") == "native_case_replay":
+        from slam_learning.runtime.presentation_evidence import verify_case_replay
+        errors.extend(verify_case_replay(path, record))
     if record.get("status") == "executed" and record.get("kind") == "author_desktop_demo":
         from slam_learning.runtime.author_demo_evidence import verify_author_demo
         errors.extend(verify_author_demo(path, record))

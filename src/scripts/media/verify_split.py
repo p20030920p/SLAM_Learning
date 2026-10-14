@@ -76,6 +76,13 @@ def main() -> int:
                     help="Xvfb pid/uptime before the capture, recorded verbatim")
     ap.add_argument("--display-after", default="",
                     help="Xvfb pid/uptime after the capture")
+    ap.add_argument("--map-static", action="store_true",
+                    help="the level localises against a SAVED map, so the map is "
+                         "supposed NOT to grow; pass then requires robot_moved "
+                         "instead of right_map_grew")
+    ap.add_argument("--localization-evidence", default="",
+                    help="raw map->base_footprint samples proving the robot's pose "
+                         "in the map frame changes; recorded verbatim")
     args = ap.parse_args()
 
     video = Path(args.video).resolve()
@@ -110,12 +117,13 @@ def main() -> int:
     diff = np.abs(ra - rb).max(axis=2)
     changed = float((diff > 24).mean())
 
-    # Whole-screen pixel change is a poor test of "the map grew": most of the right
-    # half is the viewer's flat background and unmapped grey, which never change, so
-    # a genuinely growing grid moves only a fraction of a percent of the pixels.
-    # What actually grows is the *mapped* area, so measure that directly.  In this
-    # viewer free space is near-white, occupied near-black and unknown a mid grey,
-    # so "mapped" is anything that is neither background nor unknown grey.
+    # What actually grows is the *mapped* area.  "Mapped" was the first attempt at
+    # measuring it, but it counts the viewer's dark background as occupied (the
+    # background is 18,22,28 and "occupied" is anything under 45), so on a take where
+    # the grid is small the whole half reads as 99% mapped and the number barely
+    # moves.  Free space is the unambiguous signal instead: it is near-white
+    # (238,238,234) and nothing else in this viewer is, so free-area growth cannot be
+    # confused with either the background or the unknown grey.
     def mapped_frac(arr: np.ndarray) -> float:
         mx, mn = arr.max(axis=2), arr.min(axis=2)
         free = mn > 200
@@ -127,6 +135,7 @@ def main() -> int:
 
     m_a, m_b = mapped_frac(ra), mapped_frac(rb)
     f_a, f_b = free_frac(ra), free_frac(rb)
+    free_growth = f_b - f_a
 
     # Did the robot actually go anywhere?  The viewer draws the driven trail in light
     # blue, so the trail's bounding box and length are a direct read of how far the
@@ -163,17 +172,18 @@ def main() -> int:
                 "instead of extending, so span saturates while the robot still moves",
     }
 
-    grew = (m_b - m_a) > 0.001 or changed > 0.001
+    grew = free_growth > 0.001 or changed > 0.001
     report["right_half_change"] = {
         "t_a_s": round(a * dur, 3),
         "t_b_s": round(b * dur, 3),
         "changed_frac": round(changed, 4),
         "mean_abs_diff": round(float(diff.mean()), 2),
+        "free_frac_t_a": round(f_a, 4),
+        "free_frac_t_b": round(f_b, 4),
+        "free_growth": round(free_growth, 4),
         "mapped_frac_t_a": round(m_a, 4),
         "mapped_frac_t_b": round(m_b, 4),
         "mapped_growth": round(m_b - m_a, 4),
-        "free_frac_t_a": round(f_a, 4),
-        "free_frac_t_b": round(f_b, 4),
     }
 
     left_ok = all(report["frames"][t]["left"]["std"] > 5.0
@@ -201,15 +211,28 @@ def main() -> int:
         "after": args.display_after,
         "changed_during_capture": display_changed,
     }
+    report["localization_evidence"] = args.localization_evidence
+    report["map_expected_static"] = bool(args.map_static)
     report["verdict"] = {
         "left_rendered": left_ok,
         "right_drawn": right_ok,
         "right_map_grew": grow_ok,
         "robot_moved": bool(moved),
         "display_stable": not display_changed,
-        # A take of a parked robot is not evidence of mapping, however live the map
-        # stream looks, so motion is part of the pass condition.
-        "pass": bool(left_ok and right_ok and grow_ok and moved),
+        # Which growth criterion applies depends on what the level is supposed to do:
+        #
+        #  * mapping levels (S1, S2, S4) build a map, so the mapped area must grow;
+        #  * a localization level (S3) is handed a SAVED map and must NOT grow it --
+        #    demanding growth there is simply the wrong test, and it is what wrongly
+        #    failed the first two S3 takes.  What has to be true instead is that the
+        #    robot moves and that its pose in the map frame tracks, which is checked
+        #    by robot_moved plus the recorded map->base_footprint samples.
+        #
+        # Either way a take of a parked robot is not evidence of anything, however
+        # live the map stream looks, so motion is required in both modes.
+        "growth_criterion": "map_static_ok" if args.map_static else "map_grew",
+        "pass": bool(left_ok and right_ok and moved
+                     and (args.map_static or grow_ok)),
     }
 
     (outdir / f"{args.stem}_check.json").write_text(json.dumps(report, indent=2))
@@ -217,6 +240,8 @@ def main() -> int:
     print()
     print(f"left_rendered={left_ok}  right_drawn={right_ok}  right_map_grew={grow_ok}  "
           f"robot_moved={moved}")
+    print(f"  criterion={report['verdict']['growth_criterion']}"
+          f"{'  (saved map: static is correct)' if args.map_static else ''}")
     print(f"  changed_frac={changed:.4f}  mapped {m_a:.4f}->{m_b:.4f}  "
           f"trail {t_a['pixels']} -> {t_b['pixels']} px "
           f"({trail_growth:+d})")

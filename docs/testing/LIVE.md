@@ -36,6 +36,19 @@ Yaw errors wrap with `atan2(sin(delta), cos(delta))` before RMS and degree conve
 
 One run per condition. Within a condition, all instances receive the same inputs; across conditions, routes, initial beliefs and maps differ, so these are not general algorithm rankings. Earlier homepage values came from another configuration and replay protocol; all 21 actual scored CSVs and recomputation are retained in the [historical audit](../../results/localization/static-dynamic/scored/audit.json), separately from these recordings.
 
+**Position RMSE (cm), all retained native updates including initialization; one run per condition.**
+
+| Condition | Raw + AMCL | DUFOMap + AMCL | BeautyMap + AMCL | Updates per case |
+| --- | ---: | ---: | ---: | ---: |
+| Pure static | 7.08 | 7.08 | 6.55 | 290 |
+| Moving obstacles / dynamic-A maps | 7.31 | 7.10 | 7.28 | 291 |
+| Moving obstacles / static-A controls | 6.30 | 6.30 | 6.89 | 291 |
+| Persistent change / old static-A maps | 6.25 | 6.25 | 6.16 | 290 |
+| Corridor / full-scan controls | 62.64 | 62.64 | 62.64 | 478 |
+| Corridor / limited → restored | 73.63 | 73.63 | 73.63 | 478 |
+
+The homepage shows separate method GIFs; the [recording index](../../demo/recording-index.json) connects local video names to these rows.
+
 ## Corridor restoration
 
 Two 20m parallel walls and end walls; A/B geometry matches. Initial estimate offset: X=1m, Y=0.15m, yaw=0.12rad. Other scenes use X=0.25m. Full instances retain 720 beams / 360° / 12m. Stress instances derive 72 beams / 240° / 3.5m from that same sensor, restoring the original observations after 50 simulation seconds. No artificial measurement noise; the 3D profile stays full. This combines geometry and beam/FOV/range pressure, with individual attribution still pending.

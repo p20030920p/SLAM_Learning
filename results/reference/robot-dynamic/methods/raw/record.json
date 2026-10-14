@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "raw",
+  "parent_record": "../../record.json",
+  "parent_sha256": "96f648f8a1262eb6cb5d10016ac49da42263bb8769ff452e9a62ca31629dc82c",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-170718-localization-dynamic-20a6e0",
+  "case_configuration": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/raw/map.yaml",
+    "mapping_scene": "dynamic"
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 291,
+    "position_rmse_m": 0.0731244455070077,
+    "yaw_rmse_deg": 1.3019775054555855,
+    "post_warmup_5s_samples": 278,
+    "post_warmup_5s_position_rmse_m": 0.059318633832722206,
+    "position_p95_m": 0.08897406308959924
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 5.3,
+    "common_end_s": 67.7,
+    "alignment": "none",
+    "frames": 500
+  },
+  "timing": {
+    "duration_s": 62.60000000000035,
+    "frames": 313,
+    "fps": 5,
+    "video_duration_s": 62.5,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": null,
+  "source_inputs": {
+    "raw-samples.csv": "ecba33ed0df1eb9a550d2c2c1cc1102b51a61b9ef11bf59fc8dba534659ad9d6",
+    "truth.jsonl": "276c3238d700b1ab0f9fb909aff6e0466d38c47aaf1f4b3fb5e9ae9101ccc50e",
+    "cases.json": "cc2be6f4fa290db504e2819aa26ba268bf0aa74e3df52f7ed8fd7382018cf3b8",
+    "metrics.json": "5873d260c269dff5fc21d71896edf11b1b9d0b8ad53eb173d16abfc9df388a85",
+    "maps/raw/map.pgm": "6815c43d6664f975b213110b0ba9a77f021a98504b766a5a19e12fb3f1e3e25b",
+    "maps/raw/map.yaml": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py results/reference/robot-dynamic",
+  "renderer_sha256": "66b93ef4888f375b7ba23bc7d9a8e18fb61b6be7b1e15cb22f17828b44282355",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "254fc2180d566bfb22998de4083caa5bb083dceb20d71ea28eec9c679160b403",
+      "bytes": 85764,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "332cfb603550ea594c95b2bfa54b7b85e07eba31d2bcd4a7b0261501b099c416",
+      "bytes": 457123,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "6f4288c8adca608ea66cdf1eab8d7830992a9335de1b43050d5926efc330c8da",
+      "bytes": 183583,
+      "availability": "portable"
+    }
+  }
+}

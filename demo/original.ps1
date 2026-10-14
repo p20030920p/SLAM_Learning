@@ -1,4 +1,4 @@
-param(
+﻿param(
  [ValidateSet('dufomap','beautymap','ir-mcl','adam-mcl')][string]$Method='dufomap',
  [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
  [ValidateRange(1,100)][int]$Trials=10,
@@ -49,7 +49,10 @@ if($Record){
  & ffprobe.exe -v error -show_entries format=duration,size -show_entries stream=width,height,nb_frames,r_frame_rate -of json "$run/execution.mp4" | Set-Content "$run/video-probe.json" -Encoding utf8
  $dest='F:\be2演讲\屏幕实录\20261014-native-ui'
  New-Item -ItemType Directory -Path $dest -Force | Out-Null
- Copy-Item -LiteralPath "$run/execution.mp4" -Destination (Join-Path $dest "$id.mp4")
+ $labels=@{'dufomap'='地图清理__DUFOMap_KITTI-00';'beautymap'='地图清理__BeautyMap_KITTI-00';'ir-mcl'='隐式地图定位__IR-MCL_Bonn-IPBLab';'adam-mcl'='粒子定位__AdaM-MCL_自建128格'}
+ $mirrorName='论文原库__'+$labels[$Method]+'__'+$id.Substring(0,15)+'-'+$id.Substring($id.Length-6)+'.mp4'
+ Copy-Item -LiteralPath "$run/execution.mp4" -Destination (Join-Path $dest $mirrorName)
+ [IO.File]::WriteAllText((Join-Path $run 'mirror.json'),(@{run_id=$id;method=$Method;file=(Join-Path $dest $mirrorName);scope='Author execution; metrics require a completed and verified session'}|ConvertTo-Json))
 }
 [IO.File]::WriteAllText((Join-Path $RepoRoot ".cache/presentation/author-$Method-latest.json"),(@{path=$run;method=$Method;run_id=$id}|ConvertTo-Json))
 Write-Host "COMPLETE: $run"

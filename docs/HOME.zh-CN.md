@@ -31,35 +31,235 @@
 
 ## 静态与动态定位录制
 
-**2026-10-14 本机现场录制。**真实 Gazebo＋RViz＋终端窗口，另配本次数据的结果回放。Sim2Real 三轮全向底盘，原生二维激光＋独立三维版本。[测试与计算口径](testing/LIVE.zh-CN.md)
+**2026-10-14 本机现场录制。**真实 Gazebo＋RViz＋终端执行，随后分别展示各方法的保存数据回放。Sim2Real 三轮全向底盘，原生二维激光＋独立三维版本。
 
-| Gazebo 类别 | 现场执行 | 本次结果回放 | 实际效果 |
-| --- | --- | --- | --- |
-| 纯静态 | ![live](../results/reference/robot-static/execution.gif) [MP4](../results/reference/robot-static/execution.mp4) | ![result](../results/reference/robot-static/result.gif) [MP4](../results/reference/robot-static/result.mp4) | 小初值偏移，未失效 |
-| 运动障碍物 | ![live](../results/reference/robot-dynamic/execution.gif) [MP4](../results/reference/robot-dynamic/execution.mp4) | ![result](../results/reference/robot-dynamic/result.gif) [MP4](../results/reference/robot-dynamic/result.mp4) | 三个运动箱体，六组同时定位 |
-| 持久结构变化 | ![live](../results/reference/robot-large-change/execution.gif) [MP4](../results/reference/robot-large-change/execution.mp4) | ![result](../results/reference/robot-large-change/result.gif) [MP4](../results/reference/robot-large-change/result.mp4) | 沿用旧地图，本路线未诱发失效 |
-| 走廊退化 | ![live](../results/reference/robot-degradation/execution.gif) [MP4](../results/reference/robot-degradation/execution.mp4) | ![result](../results/reference/robot-degradation/result.gif) [MP4](../results/reference/robot-degradation/result.mp4) | 受限扫描恢复后，约 11.3 秒持续收敛 |
+**方法名表示地图处理，机器人定位器统一为 AMCL。**Raw 使用未清理地图；DUFOMap、BeautyMap 清理同一给定位姿三维建图输入，再作共用二维投影。各方法下面的现场 GIF 来自**同一次场景并行执行**：RViz 显示 Raw，终端报告所有组；结果 GIF 则分别展示该组数据，回放不执行新推理。
 
-**Gazebo 平面位置 RMSE（cm），包含初始化的全部原生 AMCL 更新。**DUFOMap／BeautyMap 离线处理三维地图，再由同一二维 AMCL 定位，属于平台适配。建图 A 使用给定位姿；独立测试 B 接收扫描与轮速，仿真真值只作评分。每种条件当前一次运行。
+平面位置 RMSE 包含初始化，按全部保留的原生更新计算；每种条件当前一次运行。[计算公式与数值对照表](testing/LIVE.zh-CN.md#误差如何测算) · [录像名称／模块／算法对照](../demo/recording-index.json)。
 
-| 条件 | 原始 | DUFOMap | BeautyMap | 每方法更新数 |
-| --- | ---: | ---: | ---: | ---: |
-| 纯静态 | 7.08 | 7.08 | 6.55 | 290 |
-| 运动障碍物 | 7.31 | 7.10 | 7.28 | 291 |
-| 静态地图＋同一动态输入 | 6.30 | 6.30 | 6.89 | 291 |
-| 持久结构变化 | 6.25 | 6.25 | 6.16 | 290 |
-| 走廊退化 | 62.64 | 62.64 | 62.64 | 478 |
-| 走廊受限→恢复扫描 | 73.63 | 73.63 | 73.63 | 478 |
+### 纯静态
 
-走廊使用明确记录的 X 方向 1 m 初值偏移，其他场景为 0.25 m。走廊在 72 束／240°／3.5 m 观测持续 50 个仿真秒后，恢复 720 束／360°／12 m 观测；机器人继续运动以触发 AMCL 更新，持续收敛检查覆盖 5 秒。这是初始信念恢复测试，不是实体绑架。
+小初值偏移，本路线未失效。
 
-**实体机器人测试**
+#### Raw + AMCL
 
-| 场景 | 机器人／传感器 | 状态 |
-| --- | --- | --- |
-| 静态／动态／退化／持久变化 | 同底盘，二维与三维分层 | 待测 |
+**现场执行 · Live execution**
 
-本机一键键盘演示与录制：`F:\be2演讲\实机脚本`；[instructions](../demo/README.md) · [旧误差表审计](../results/localization/static-dynamic/scored/audit.json).
+![Pure static — Raw: shared native execution](../results/reference/robot-static/execution.gif)
+
+[MP4 · 170202-5abed0](../results/reference/robot-static/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![Pure static — Raw: raw measured replay](../results/reference/robot-static/methods/raw/result.gif)
+
+[MP4](../results/reference/robot-static/methods/raw/result.mp4) · [record](../results/reference/robot-static/methods/raw/record.json) · RMSE **7.08 cm** · 290 次原生更新。
+
+#### DUFOMap + AMCL
+
+**现场执行 · Live execution**
+
+![Pure static — DUFOMap: shared native execution](../results/reference/robot-static/execution.gif)
+
+[MP4 · 170202-5abed0](../results/reference/robot-static/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![Pure static — DUFOMap: dufomap measured replay](../results/reference/robot-static/methods/dufomap/result.gif)
+
+[MP4](../results/reference/robot-static/methods/dufomap/result.mp4) · [record](../results/reference/robot-static/methods/dufomap/record.json) · RMSE **7.08 cm** · 290 次原生更新。
+
+#### BeautyMap + AMCL
+
+**现场执行 · Live execution**
+
+![Pure static — BeautyMap: shared native execution](../results/reference/robot-static/execution.gif)
+
+[MP4 · 170202-5abed0](../results/reference/robot-static/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![Pure static — BeautyMap: beautymap measured replay](../results/reference/robot-static/methods/beautymap/result.gif)
+
+[MP4](../results/reference/robot-static/methods/beautymap/result.mp4) · [record](../results/reference/robot-static/methods/beautymap/record.json) · RMSE **6.55 cm** · 290 次原生更新。
+
+### 运动障碍物
+
+三个运动箱体。动态 A 地图与静态 A 控制组接收同一动态 B 输入。
+
+#### Raw + AMCL
+
+**现场执行 · Live execution**
+
+![Moving obstacles — Raw: shared native execution](../results/reference/robot-dynamic/execution.gif)
+
+[MP4 · 170718-20a6e0](../results/reference/robot-dynamic/execution.mp4)
+
+**结果回放 · Measured result replay — 动态 A 地图**
+
+![Moving obstacles — Raw: raw measured replay](../results/reference/robot-dynamic/methods/raw/result.gif)
+
+[MP4](../results/reference/robot-dynamic/methods/raw/result.mp4) · [record](../results/reference/robot-dynamic/methods/raw/record.json) · RMSE **7.31 cm** · 291 次原生更新。
+
+**结果回放 · Measured result replay — 静态 A 地图控制组**
+
+![Moving obstacles — Raw: clean_raw measured replay](../results/reference/robot-dynamic/methods/clean_raw/result.gif)
+
+[MP4](../results/reference/robot-dynamic/methods/clean_raw/result.mp4) · [record](../results/reference/robot-dynamic/methods/clean_raw/record.json) · RMSE **6.30 cm** · 291 次原生更新。
+
+#### DUFOMap + AMCL
+
+**现场执行 · Live execution**
+
+![Moving obstacles — DUFOMap: shared native execution](../results/reference/robot-dynamic/execution.gif)
+
+[MP4 · 170718-20a6e0](../results/reference/robot-dynamic/execution.mp4)
+
+**结果回放 · Measured result replay — 动态 A 地图**
+
+![Moving obstacles — DUFOMap: dufomap measured replay](../results/reference/robot-dynamic/methods/dufomap/result.gif)
+
+[MP4](../results/reference/robot-dynamic/methods/dufomap/result.mp4) · [record](../results/reference/robot-dynamic/methods/dufomap/record.json) · RMSE **7.10 cm** · 291 次原生更新。
+
+**结果回放 · Measured result replay — 静态 A 地图控制组**
+
+![Moving obstacles — DUFOMap: clean_dufomap measured replay](../results/reference/robot-dynamic/methods/clean_dufomap/result.gif)
+
+[MP4](../results/reference/robot-dynamic/methods/clean_dufomap/result.mp4) · [record](../results/reference/robot-dynamic/methods/clean_dufomap/record.json) · RMSE **6.30 cm** · 291 次原生更新。
+
+#### BeautyMap + AMCL
+
+**现场执行 · Live execution**
+
+![Moving obstacles — BeautyMap: shared native execution](../results/reference/robot-dynamic/execution.gif)
+
+[MP4 · 170718-20a6e0](../results/reference/robot-dynamic/execution.mp4)
+
+**结果回放 · Measured result replay — 动态 A 地图**
+
+![Moving obstacles — BeautyMap: beautymap measured replay](../results/reference/robot-dynamic/methods/beautymap/result.gif)
+
+[MP4](../results/reference/robot-dynamic/methods/beautymap/result.mp4) · [record](../results/reference/robot-dynamic/methods/beautymap/record.json) · RMSE **7.28 cm** · 291 次原生更新。
+
+**结果回放 · Measured result replay — 静态 A 地图控制组**
+
+![Moving obstacles — BeautyMap: clean_beautymap measured replay](../results/reference/robot-dynamic/methods/clean_beautymap/result.gif)
+
+[MP4](../results/reference/robot-dynamic/methods/clean_beautymap/result.mp4) · [record](../results/reference/robot-dynamic/methods/clean_beautymap/record.json) · RMSE **6.89 cm** · 291 次原生更新。
+
+### 持久结构变化
+
+变化后的世界使用旧静态 A 地图；本路线未诱发失效，不能作为恢复成功证据。
+
+#### Raw + AMCL
+
+**现场执行 · Live execution**
+
+![Persistent change — Raw: shared native execution](../results/reference/robot-large-change/execution.gif)
+
+[MP4 · 172452-ca9681](../results/reference/robot-large-change/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![Persistent change — Raw: raw measured replay](../results/reference/robot-large-change/methods/raw/result.gif)
+
+[MP4](../results/reference/robot-large-change/methods/raw/result.mp4) · [record](../results/reference/robot-large-change/methods/raw/record.json) · RMSE **6.25 cm** · 290 次原生更新。
+
+#### DUFOMap + AMCL
+
+**现场执行 · Live execution**
+
+![Persistent change — DUFOMap: shared native execution](../results/reference/robot-large-change/execution.gif)
+
+[MP4 · 172452-ca9681](../results/reference/robot-large-change/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![Persistent change — DUFOMap: dufomap measured replay](../results/reference/robot-large-change/methods/dufomap/result.gif)
+
+[MP4](../results/reference/robot-large-change/methods/dufomap/result.mp4) · [record](../results/reference/robot-large-change/methods/dufomap/record.json) · RMSE **6.25 cm** · 290 次原生更新。
+
+#### BeautyMap + AMCL
+
+**现场执行 · Live execution**
+
+![Persistent change — BeautyMap: shared native execution](../results/reference/robot-large-change/execution.gif)
+
+[MP4 · 172452-ca9681](../results/reference/robot-large-change/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![Persistent change — BeautyMap: beautymap measured replay](../results/reference/robot-large-change/methods/beautymap/result.gif)
+
+[MP4](../results/reference/robot-large-change/methods/beautymap/result.mp4) · [record](../results/reference/robot-large-change/methods/beautymap/record.json) · RMSE **6.16 cm** · 290 次原生更新。
+
+### 走廊退化
+
+X 初值偏移 1 m。完整扫描为 720 束／360°／12 m；受限扫描为 72 束／240°／3.5 m，持续 50 个仿真秒后恢复。恢复后约 11.3 s 开始持续收敛，随后覆盖 5 s 确认。本走廊三种占据地图相同。
+
+#### Raw + AMCL
+
+**现场执行 · Live execution**
+
+![Corridor degradation — Raw: shared native execution](../results/reference/robot-degradation/execution.gif)
+
+[MP4 · 173508-e41e34](../results/reference/robot-degradation/execution.mp4)
+
+**结果回放 · Measured result replay — 完整扫描控制组**
+
+![Corridor degradation — Raw: raw measured replay](../results/reference/robot-degradation/methods/raw/result.gif)
+
+[MP4](../results/reference/robot-degradation/methods/raw/result.mp4) · [record](../results/reference/robot-degradation/methods/raw/record.json) · RMSE **62.64 cm** · 478 次原生更新。
+
+**结果回放 · Measured result replay — 受限→恢复扫描**
+
+![Corridor degradation — Raw: degraded_raw measured replay](../results/reference/robot-degradation/methods/degraded_raw/result.gif)
+
+[MP4](../results/reference/robot-degradation/methods/degraded_raw/result.mp4) · [record](../results/reference/robot-degradation/methods/degraded_raw/record.json) · RMSE **73.63 cm** · 478 次原生更新。
+
+#### DUFOMap + AMCL
+
+**现场执行 · Live execution**
+
+![Corridor degradation — DUFOMap: shared native execution](../results/reference/robot-degradation/execution.gif)
+
+[MP4 · 173508-e41e34](../results/reference/robot-degradation/execution.mp4)
+
+**结果回放 · Measured result replay — 完整扫描控制组**
+
+![Corridor degradation — DUFOMap: dufomap measured replay](../results/reference/robot-degradation/methods/dufomap/result.gif)
+
+[MP4](../results/reference/robot-degradation/methods/dufomap/result.mp4) · [record](../results/reference/robot-degradation/methods/dufomap/record.json) · RMSE **62.64 cm** · 478 次原生更新。
+
+**结果回放 · Measured result replay — 受限→恢复扫描**
+
+![Corridor degradation — DUFOMap: degraded_dufomap measured replay](../results/reference/robot-degradation/methods/degraded_dufomap/result.gif)
+
+[MP4](../results/reference/robot-degradation/methods/degraded_dufomap/result.mp4) · [record](../results/reference/robot-degradation/methods/degraded_dufomap/record.json) · RMSE **73.63 cm** · 478 次原生更新。
+
+#### BeautyMap + AMCL
+
+**现场执行 · Live execution**
+
+![Corridor degradation — BeautyMap: shared native execution](../results/reference/robot-degradation/execution.gif)
+
+[MP4 · 173508-e41e34](../results/reference/robot-degradation/execution.mp4)
+
+**结果回放 · Measured result replay — 完整扫描控制组**
+
+![Corridor degradation — BeautyMap: beautymap measured replay](../results/reference/robot-degradation/methods/beautymap/result.gif)
+
+[MP4](../results/reference/robot-degradation/methods/beautymap/result.mp4) · [record](../results/reference/robot-degradation/methods/beautymap/record.json) · RMSE **62.64 cm** · 478 次原生更新。
+
+**结果回放 · Measured result replay — 受限→恢复扫描**
+
+![Corridor degradation — BeautyMap: degraded_beautymap measured replay](../results/reference/robot-degradation/methods/degraded_beautymap/result.gif)
+
+[MP4](../results/reference/robot-degradation/methods/degraded_beautymap/result.mp4) · [record](../results/reference/robot-degradation/methods/degraded_beautymap/record.json) · RMSE **73.63 cm** · 478 次原生更新。
+
+**实体机器人测试：**静态、动态、退化与持久变化均标明待测，二维／三维层配置见[测试协议](testing/LIVE.zh-CN.md#一键演示与实体测试)。
+
+本机键盘演示与录制脚本：`F:\be2演讲\实机脚本`；[使用说明](../demo/README.md)。
 
 ## 方向分析
 
@@ -75,16 +275,73 @@
 
 ## 相关工作
 
-本机重新执行作者代码，现场终端与本次结果回放成对展示。论文原数据与上面的 Gazebo 平台测试分开。下文旧论文表格证据保留；本次 LiDAR 分数来自独立评分器，未重新作 PCL 交叉核验。
+本机作者原库执行及各自结果回放；原始数据与 Gazebo 平台测试分开。下文保留历史论文表证据，本次 LiDAR 分数来自独立评分器，未重新作 PCL 交叉核验。
 
-| 方法 | 原生执行 | 本次结果回放 | 范围 |
-| --- | --- | --- | --- |
-| [dufomap](../docs/papers/dufomap.zh-CN.md) | ![execution](../results/reference/desktop-dufomap/execution.gif) [MP4](../results/reference/desktop-dufomap/execution.mp4) | ![result](../results/reference/desktop-dufomap/result.gif) [MP4](../results/reference/desktop-dufomap/result.mp4) | KITTI-00，141 帧；最终地图环视，不冒充在线增长 · [record](../results/reference/desktop-dufomap/record.json) |
-| [beautymap](../docs/papers/beautymap.zh-CN.md) | ![execution](../results/reference/desktop-beautymap/execution.gif) [MP4](../results/reference/desktop-beautymap/execution.mp4) | ![result](../results/reference/desktop-beautymap/result.gif) [MP4](../results/reference/desktop-beautymap/result.mp4) | KITTI-00，141 帧；与旧 KITTI-02 论文匹配不是同一口径 · [record](../results/reference/desktop-beautymap/record.json) |
-| [ir-mcl](../docs/papers/ir-mcl.zh-CN.md) | ![execution](../results/reference/desktop-ir-mcl/execution.gif) [MP4](../results/reference/desktop-ir-mcl/execution.mp4) | ![result](../results/reference/desktop-ir-mcl/result.gif) [MP4](../results/reference/desktop-ir-mcl/result.mp4) | Bonn IPBLab：处理1543、评分1354帧；本轮5.36 cm／1.06° · [record](../results/reference/desktop-ir-mcl/record.json) |
-| [adam-mcl](../docs/papers/adam-mcl.zh-CN.md) | ![execution](../results/reference/desktop-adam-mcl/execution.gif) [MP4](../results/reference/desktop-adam-mcl/execution.mp4) | ![result](../results/reference/desktop-adam-mcl/result.gif) [MP4](../results/reference/desktop-adam-mcl/result.mp4) | 自建128格地图，已有2432步权重，本轮123次更新×1次；RMSE32.23格，不比论文值 · [record](../results/reference/desktop-adam-mcl/record.json) |
+### DUFOMap — 作者原库复现
 
-AdaM-MCL 终端看板末尾含旧版统计公式错误；新指标从作者保存的距离日志重算。作者滤波器未改，后续演示包装器的末尾公式已修正。[erratum](../results/reference/adam-mcl/ERRATUM.md).
+KITTI-00，141 帧；最终地图环视，不是在线增长。 [Paper card](papers/dufomap.zh-CN.md) · [record](../results/reference/desktop-dufomap/record.json)
+
+**现场执行 · Live execution**
+
+![DUFOMap native execution](../results/reference/desktop-dufomap/execution.gif)
+
+[MP4](../results/reference/desktop-dufomap/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![DUFOMap measured result replay](../results/reference/desktop-dufomap/result.gif)
+
+[MP4](../results/reference/desktop-dufomap/result.mp4)
+
+### BeautyMap — 作者原库复现
+
+KITTI-00，141 帧；与历史 KITTI-02 论文表复现不是同一范围。 [Paper card](papers/beautymap.zh-CN.md) · [record](../results/reference/desktop-beautymap/record.json)
+
+**现场执行 · Live execution**
+
+![BeautyMap native execution](../results/reference/desktop-beautymap/execution.gif)
+
+[MP4](../results/reference/desktop-beautymap/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![BeautyMap measured result replay](../results/reference/desktop-beautymap/result.gif)
+
+[MP4](../results/reference/desktop-beautymap/result.mp4)
+
+### IR-MCL — 作者原库复现
+
+Bonn IPBLab：处理 1543、评分 1354 帧；本轮 5.36 cm／1.06°。 [Paper card](papers/ir-mcl.zh-CN.md) · [record](../results/reference/desktop-ir-mcl/record.json)
+
+**现场执行 · Live execution**
+
+![IR-MCL native execution](../results/reference/desktop-ir-mcl/execution.gif)
+
+[MP4](../results/reference/desktop-ir-mcl/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![IR-MCL measured result replay](../results/reference/desktop-ir-mcl/result.gif)
+
+[MP4](../results/reference/desktop-ir-mcl/result.mp4)
+
+### AdaM-MCL — 作者原库复现
+
+自建 128 格地图、已有 2432 步权重；本轮 123 次更新×1 试验，RMSE 32.23 格；不与论文值数值对照。 [Paper card](papers/adam-mcl.zh-CN.md) · [record](../results/reference/desktop-adam-mcl/record.json)
+
+**现场执行 · Live execution**
+
+![AdaM-MCL native execution](../results/reference/desktop-adam-mcl/execution.gif)
+
+[MP4](../results/reference/desktop-adam-mcl/execution.mp4)
+
+**结果回放 · Measured result replay**
+
+![AdaM-MCL measured result replay](../results/reference/desktop-adam-mcl/result.gif)
+
+[MP4](../results/reference/desktop-adam-mcl/result.mp4)
+
+AdaM-MCL 终端看板末尾含旧统计公式错误；当前指标从作者保存的距离日志重算，后续演示包装器的末尾公式已修正。[指标勘误](../results/reference/adam-mcl/ERRATUM.md)。
 
 ## 复现结果
 

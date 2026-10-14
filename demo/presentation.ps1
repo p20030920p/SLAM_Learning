@@ -1,4 +1,4 @@
-param(
+﻿param(
   [ValidateSet('mapping-static','mapping-dynamic','mapping-corridor','localization-static','localization-dynamic','localization-large-change','localization-degradation')]
   [string]$Flow='mapping-static',
   [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
@@ -75,7 +75,18 @@ if ($Record) {
   if ($recorder.ExitCode -ne 0) {throw ('Recorder exit code '+$recorder.ExitCode)}
   $mediaDir=Join-Path $PresentationRoot '屏幕实录\20261014-native-ui'
   New-Item -ItemType Directory -Path $mediaDir -Force | Out-Null
-  Copy-Item -LiteralPath $video -Destination (Join-Path $mediaDir ($runId+'.mp4'))
+  $labels=@{
+    'mapping-static'='S1-纯静态__A-建图__slam_toolbox与3D点云'
+    'mapping-dynamic'='S2-运动障碍物__A-建图__slam_toolbox与3D点云'
+    'mapping-corridor'='S4-走廊退化__A-建图__slam_toolbox与3D点云'
+    'localization-static'='S1-纯静态__B-定位__AMCL_Raw-DUFOMap-BeautyMap'
+    'localization-dynamic'='S2-运动障碍物__B-定位__AMCL_Raw-DUFOMap-BeautyMap_动静地图六组'
+    'localization-large-change'='S3-持久变化__B-定位__AMCL_Raw-DUFOMap-BeautyMap_旧地图'
+    'localization-degradation'='S4-走廊退化__B-定位__AMCL_Raw-DUFOMap-BeautyMap_完整与恢复六组'
+  }
+  $mirrorName=$labels[$Flow]+'__'+$runId.Substring(0,15)+'-'+$runId.Substring($runId.Length-6)+'.mp4'
+  Copy-Item -LiteralPath $video -Destination (Join-Path $mediaDir $mirrorName)
+  [IO.File]::WriteAllText((Join-Path $run 'mirror.json'),(@{run_id=$runId;flow=$Flow;file=(Join-Path $mediaDir $mirrorName);scope='Native capture; metrics require a completed and verified session'}|ConvertTo-Json))
   & ffprobe.exe -v error -show_entries format=duration,size -show_entries stream=width,height,nb_frames,r_frame_rate -of json $video | Set-Content -LiteralPath (Join-Path $run 'video-probe.json') -Encoding utf8
 }
 [IO.File]::WriteAllText((Join-Path $RepoRoot ('.cache\presentation\'+$Flow+'-latest.json')),(@{path=$run;flow=$Flow;run_id=$runId}|ConvertTo-Json))

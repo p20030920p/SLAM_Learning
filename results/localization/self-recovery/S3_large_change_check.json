@@ -4,94 +4,97 @@
     "width": 1920,
     "height": 1080,
     "fps": 15.0,
-    "nb_frames": 1800,
-    "duration_s": 120.0,
-    "bytes": 670795
+    "nb_frames": 1050,
+    "duration_s": 70.0,
+    "bytes": 1227976
   },
   "frames": {
     "first": {
-      "t_s": 2.4,
+      "t_s": 1.4,
       "left": {
         "mean": 188.57,
         "std": 32.97,
         "nonblack_frac": 1.0,
-        "distinct_rows": 1418
+        "distinct_rows": 1439
       },
       "right": {
-        "mean": 74.72,
-        "std": 88.66,
+        "mean": 74.79,
+        "std": 88.71,
         "nonblack_frac": 0.9999,
-        "distinct_rows": 16290
+        "distinct_rows": 16900
       }
     },
     "mid": {
-      "t_s": 60.0,
+      "t_s": 35.0,
       "left": {
-        "mean": 188.56,
+        "mean": 188.57,
         "std": 32.97,
         "nonblack_frac": 1.0,
-        "distinct_rows": 1345
+        "distinct_rows": 1373
       },
       "right": {
         "mean": 74.72,
-        "std": 88.66,
+        "std": 88.61,
         "nonblack_frac": 0.9999,
-        "distinct_rows": 15279
+        "distinct_rows": 18551
       }
     },
     "last": {
-      "t_s": 117.6,
+      "t_s": 68.6,
       "left": {
-        "mean": 188.56,
+        "mean": 188.57,
         "std": 32.97,
         "nonblack_frac": 1.0,
-        "distinct_rows": 1345
+        "distinct_rows": 1311
       },
       "right": {
-        "mean": 74.72,
-        "std": 88.67,
+        "mean": 74.82,
+        "std": 88.66,
         "nonblack_frac": 0.9999,
-        "distinct_rows": 15181
+        "distinct_rows": 18497
       }
     }
   },
   "robot_motion": {
     "trail_at_t_a": {
-      "pixels": 1925,
-      "span_x": 507,
-      "span_y": 1039
+      "pixels": 1988,
+      "span_x": 492,
+      "span_y": 1033
     },
     "trail_at_t_b": {
-      "pixels": 1913,
+      "pixels": 2566,
       "span_x": 507,
-      "span_y": 736
+      "span_y": 1031
     },
-    "trail_pixel_growth": -12,
-    "moved": false,
+    "trail_pixel_growth": 578,
+    "moved": true,
     "note": "trail pixel count, not bounding box: a patrol fills its area in instead of extending, so span saturates while the robot still moves"
   },
   "right_half_change": {
-    "t_a_s": 24.0,
-    "t_b_s": 96.0,
-    "changed_frac": 0.0017,
-    "mean_abs_diff": 0.16,
+    "t_a_s": 14.0,
+    "t_b_s": 56.0,
+    "changed_frac": 0.0069,
+    "mean_abs_diff": 1.33,
     "mapped_frac_t_a": 0.8713,
-    "mapped_frac_t_b": 0.8713,
-    "mapped_growth": 0.0,
-    "free_frac_t_a": 0.225,
-    "free_frac_t_b": 0.225
+    "mapped_frac_t_b": 0.87,
+    "mapped_growth": -0.0013,
+    "free_frac_t_a": 0.2253,
+    "free_frac_t_b": 0.2243
   },
   "display": {
-    "before": "pid=484 uptime_s=8714",
-    "after": "pid=484 uptime_s=8920",
+    "before": "pid=484 uptime_s=18074",
+    "after": "pid=484 uptime_s=18175",
     "changed_during_capture": false
   },
+  "localization_evidence": "t1=- Translation: [6.765, 6.510, 0.000]; t2=- Translation: [9.557, 4.438, 0.000]; ",
+  "map_expected_static": true,
   "verdict": {
     "left_rendered": true,
     "right_drawn": true,
     "right_map_grew": true,
-    "robot_moved": false,
+    "robot_moved": true,
     "display_stable": true,
-    "pass": false
+    "growth_criterion": "map_static_ok",
+    "pass": true
   }
 }

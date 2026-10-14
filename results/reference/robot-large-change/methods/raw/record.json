@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "raw",
+  "parent_record": "../../record.json",
+  "parent_sha256": "46cadcf11cf8fea36044cdd10af1a6122c03b32d2b21053eaf96bcead6395fab",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-172452-localization-large-change-ca9681",
+  "case_configuration": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/raw/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    }
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 290,
+    "position_rmse_m": 0.06250202119387281,
+    "yaw_rmse_deg": 1.1150067020434478,
+    "post_warmup_5s_samples": 289,
+    "post_warmup_5s_position_rmse_m": 0.06021546575815125,
+    "position_p95_m": 0.07956757451266036
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 3.0,
+    "common_end_s": 66.8,
+    "alignment": "none",
+    "frames": 511
+  },
+  "timing": {
+    "duration_s": 63.80000000000037,
+    "frames": 319,
+    "fps": 5,
+    "video_duration_s": 63.875,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": null,
+  "source_inputs": {
+    "raw-samples.csv": "21362dfb2334d7fb617dac983a710ce2323619dfe1806013f922058b446a7a6d",
+    "truth.jsonl": "4c42a60377b37b518e1d6e53ebae43c4b1ac0131a4afcc92c34ebd3e1d9840f9",
+    "cases.json": "cfc3fc2ba8c4fae1f569a8b781d2f0b6ff653168a33f061f5817ee41942adb26",
+    "metrics.json": "807baead461ca428104a2ea58ada35664f1ce92b1dafe0ce7886c58ecae42537",
+    "maps/raw/map.pgm": "040efe320426e4a2da5976e17a5da3bb7d2290d1babe64b009b39b44f649e6d8",
+    "maps/raw/map.yaml": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py results/reference/robot-large-change",
+  "renderer_sha256": "66b93ef4888f375b7ba23bc7d9a8e18fb61b6be7b1e15cb22f17828b44282355",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "b32b947040406bb902e847deb343d58becedace86b9ef7e024519db746895d28",
+      "bytes": 85907,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "0cebfcdc6e77fa40423ad46d7168aee032118a1f18bc63ba3215ce37194a422a",
+      "bytes": 478316,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "c5d76d8734ea55dff59f37ac9e0563e67591f1c87a39683316fa89133d0d3341",
+      "bytes": 209224,
+      "availability": "portable"
+    }
+  }
+}

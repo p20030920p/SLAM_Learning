@@ -8,6 +8,8 @@ from pathlib import Path
 
 import numpy as np
 
+from slam_learning.core.provenance import digest
+
 
 def read_samples(path: Path) -> np.ndarray:
     with path.open(newline="", encoding="utf-8") as stream:
@@ -103,3 +105,43 @@ def verify_presentation(path: Path, record: dict) -> list[str]:
     except (OSError, ValueError, KeyError, TypeError) as error:
         errors.append(f"Native desktop localization: {error}")
     return errors
+
+
+def verify_case_replay(path: Path, record: dict) -> list[str]:
+    """Reject a replay assigned to the wrong algorithm, map, score or source interval."""
+    try:
+        parent_path = (path.parent / record["parent_record"]).resolve()
+        if parent_path != path.resolve().parents[2] / "record.json":
+            raise ValueError("Replay parent must be its containing scene record")
+        parent = json.loads(parent_path.read_text(encoding="utf-8"))
+        if parent["kind"] != "native_desktop_localization" or parent["status"] != "executed":
+            raise ValueError("Replay needs an executed native localization parent")
+        if digest(parent_path) != record["parent_sha256"]:
+            raise ValueError("Replay parent changed")
+        name = record["case"]
+        if path.parent.name != name:
+            raise ValueError("Case label differs from replay directory")
+        cases = json.loads((parent_path.parent / "cases.json").read_text(encoding="utf-8"))
+        if record["case_configuration"] != cases[name] or record["source_run"] != parent["source_run"]:
+            raise ValueError("Replay algorithm/map configuration differs from its native case")
+        required = {f"{name}-samples.csv", "truth.jsonl", "cases.json", "metrics.json",
+                    f"maps/{name}/map.pgm", f"maps/{name}/map.yaml"}
+        if parent.get("restoration", {}).get(name) is not None:
+            required.add("scan-stress.jsonl")
+        if set(record["source_inputs"]) != required:
+            raise ValueError("Replay inputs do not match its case")
+        for part, sha in record["source_inputs"].items():
+            if sha != parent["artifacts"][part]["sha256"] or sha != digest(parent_path.parent / part):
+                raise ValueError(f"Replay source changed: {part}")
+        values = read_samples(parent_path.parent / f"{name}-samples.csv")
+        if record["metrics"] != score(values):
+            raise ValueError("Replay score differs from saved poses")
+        if record["result_replay"] != parent["result_replay"]:
+            raise ValueError("Replay interval/frame sampling differs from the comparison")
+        if record["restoration"] != parent.get("restoration", {}).get(name):
+            raise ValueError("Replay restoration claim differs from its case")
+        if not {"result.mp4", "result.gif", "frame-mid.png"}.issubset(record["artifacts"]):
+            raise ValueError("Replay media are incomplete")
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        return [f"Native case replay: {error}"]
+    return []
