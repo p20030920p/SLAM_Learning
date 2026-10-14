@@ -11,7 +11,7 @@ Dynamic robust mapping · Semantic mapping and localization
 
 English | [中文](docs/HOME.zh-CN.md)
 
-[Directions](#directions-analysis) · [Questions](#open-questions) · [Related works](#related-works) · [Results](#reproduction-results)
+[Localization GIFs](#static-and-dynamic-localization-recordings) · [Directions](#directions-analysis) · [Questions](#open-questions) · [Related works](#related-works) · [Results](#reproduction-results)
 
 [Evidence](#evidence) · [Hardware tests](#hardware-tests) · [Hypothesis](#hypothesis) · [Branches](#branches)
 
@@ -22,6 +22,53 @@ English | [中文](docs/HOME.zh-CN.md)
 [**SLAM-Physical**](https://github.com/p20030920p/SLAM-Physical) contains native BeautyMap pose-revision C1/C2/C4 experiments, a first Gazebo object-departure scenario, measured results and live RViz demos of BeautyMap, DUFOMap, ConceptGraphs and HOV-SG. On the prepared local machine, double-click scripts in [demo/](demo/README.md); missing sibling code is cloned automatically. Each demo executes the native pipeline again. Small demo subsets do not replace the paper benchmarks below.
 
 New [Windows / WSL2 AMCL guide](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/WINDOWS_AMCL.zh-CN.md): keyboard driving, live truth/estimate errors, automatic ROS bag recording, native paper-map adapters and paired localization replay. The semantic methods currently contribute geometry projections; AMCL does not consume their semantic features.
+
+Local `demo/14_static_keyboard.cmd` opens a purely static scene; `demo/15_dynamic_keyboard.cmd` opens a scene with three moving obstacles and a raw/paper-map menu. Both record automatically. `demo/16_record_static_dynamic.cmd` acquires independent mapping/test drives and runs repeated AMCL comparisons.
+
+## Static and dynamic localization recordings
+
+**Recorded on 2026-10-14:** four Gazebo mapping/test drives, 12 sensor-built maps and 42 scored AMCL replays. The four GIFs below replay recorded trajectories, maps and measured obstacle positions, with live error curves. Green is ground truth, blue is the localization estimate, and orange marks moving boxes. Each GIF preserves its companion MP4's complete playback duration; these are recorded-data reconstructions.
+
+**Measured effect — position RMSE in cm, after the first 5 s; lower is better.** Compare methods within each sensor family. The dynamic improvement uses that family's raw map on the same dynamic test B.
+
+| Map family | Map method | Pure static | Dynamic | Dynamic RMSE reduction | Clean map + dynamic test |
+| --- | --- | ---: | ---: | ---: | ---: |
+| LiDAR | Raw, no paper algorithm | 5.59 | 6.29 | Baseline | 4.86 |
+| LiDAR | BeautyMap | 6.01 | 5.52 | 12.3% | 5.52 |
+| LiDAR | DUFOMap | 6.21 | 5.06 | 19.5% | 4.75 |
+| RGB-D geometry | Raw, no paper algorithm | 5.97 | 6.45 | Baseline | 6.48 |
+| RGB-D geometry | ConceptGraphs | 5.48 | 6.02 | 6.7% | 6.36 |
+| RGB-D geometry | HOV-SG | 6.35 | 6.28 | 2.7% | 5.71 |
+
+Static and dynamic results each use three fresh AMCL replays of identical input; their position estimates were identical, so these check reproducibility. The clean-map control uses one replay per method. This is one controlled scene. [Full precision CSV](results/localization/static-dynamic/summary.csv) · [Protocol, maps and reports](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/results/static-dynamic/README.md).
+
+### 1. Pure static scene
+
+![Pure static scene: six map methods, trajectories and live errors](results/localization/static-dynamic/static.gif)
+
+Static mapping A and an independently recorded static test B contain no moving boxes. BeautyMap and DUFOMap slightly increase localization RMSE here; filtering does not automatically improve a clean scene. [MP4](results/localization/static-dynamic/static.mp4).
+
+### 2. Dynamic scene — LiDAR map filtering
+
+![Dynamic LiDAR comparison: raw, BeautyMap and DUFOMap](results/localization/static-dynamic/dynamic-lidar.gif)
+
+Three boxes move during both mapping and testing. On the same test B, BeautyMap reduces RMSE by **0.78 cm**, and DUFOMap by **1.23 cm**, relative to the unfiltered LiDAR map. [MP4](results/localization/static-dynamic/dynamic-lidar.mp4).
+
+### 3. Dynamic scene — RGB-D geometry maps
+
+![Dynamic RGB-D geometry comparison: raw, ConceptGraphs and HOV-SG](results/localization/static-dynamic/dynamic-rgbd.gif)
+
+With RGB-D raw as the baseline, ConceptGraphs reduces RMSE by **0.43 cm**, and HOV-SG by **0.18 cm**. Their offline maps contribute geometry projections to common LiDAR AMCL; CLIP features, hierarchy and semantic localization are outside this test. [MP4](results/localization/static-dynamic/dynamic-rgbd.mp4).
+
+### 4. Control — clean maps with the same dynamic test
+
+![Clean static maps with the identical dynamic test: six methods](results/localization/static-dynamic/clean-map-dynamic-test.gif)
+
+This reuses **exactly the dynamic test B from categories 2–3**, changing mapping A to the static recording. Raw LiDAR RMSE is **4.86 cm** on the clean map versus **6.29 cm** on the dynamically built map. It helps separate map contamination from obstacles encountered during localization. [MP4](results/localization/static-dynamic/clean-map-dynamic-test.mp4).
+
+Mapping A uses simulator-provided sensor poses to isolate map construction. Test B gives AMCL only scans, wheel odometry and the selected map; truth is used for scoring and display. The clips show repeat 1, with live AMCL + odometry prediction errors; the table scores AMCL pose updates. Map generation runs offline. [GIF timing, source hashes and recorded traces](results/localization/static-dynamic/README.md) · [Original six-method dynamic MP4](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/results/static-dynamic/dynamic-localization-replay.mp4).
+
+**Try it locally:** on the prepared Windows / WSL2 machine, double-click [14: static keyboard](demo/14_static_keyboard.cmd), [15: dynamic keyboard + map menu](demo/15_dynamic_keyboard.cmd), or [16: record and compare](demo/16_record_static_dynamic.cmd). Keyboard: `i` forward, `,` backward, `j` / `l` turn, `k` stop; `Ctrl+C` ends and saves the recording. [Setup and controls](demo/README.md).
 
 ## Directions analysis
 

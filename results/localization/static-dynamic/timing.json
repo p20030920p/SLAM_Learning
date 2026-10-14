@@ -1,0 +1,354 @@
+{
+  "benchmark": "static-dynamic-20261014-033854-8e3b79",
+  "renderer_sha256": "ff8ef60d6a55dbc499acddab6283523edae2ab9a51e8e129abaa824a48dd562c",
+  "summary_json_sha256": "f101e032302899839801dcdcc6ff58a64fbae7265786c4d03f9525fb77073e70",
+  "summary_csv_sha256": "afc43a1b48d8ae145c5db7c09a52b708bd48b879a0f781eb538c626620314121",
+  "protocol": "Independent mapping A and test B; provided poses only for mapping A; truth only for evaluation/display in B",
+  "repeats": "Static/dynamic: 3 identical-input reproducibility checks; control: 1; GIFs show repeat 1",
+  "clips": [
+    {
+      "name": "static",
+      "condition": "static",
+      "methods": [
+        "raw",
+        "beautymap",
+        "dufomap",
+        "rgbd-raw",
+        "conceptgraphs",
+        "hovsg"
+      ],
+      "repeat": 1,
+      "kind": "recorded-data reconstruction, not an RViz screen capture",
+      "test_recording": "static-test",
+      "test_bag_files_sha256": {
+        "bag_0.db3": "399f2f1b8ed062f5fbbc0dd0fb0075cde8d2cdeb56539492b9db23ecc80d330c"
+      },
+      "start_sim_s": 0.16,
+      "end_sim_s": 26.16,
+      "source_fps": 8,
+      "sampling": "Continuous common trace interval at 8 fps; latest recorded sample; no cuts or speed-up",
+      "curve_scope": "live AMCL+odometry prediction; table RMSE scores AMCL pose updates after initial 5 seconds",
+      "sources": {
+        "raw": {
+          "trace": "evidence/static/raw.csv",
+          "trace_sha256": "ee53361b937ca3ab6251cef14384fc801f74a2dbd46c539c2ceac28b0e889a7e",
+          "map_scene": "static",
+          "map_image_sha256": "43ac5f11789871760806abb9f81f6c05b799807d42c5bc7e8b048f177a30addc",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "beautymap": {
+          "trace": "evidence/static/beautymap.csv",
+          "trace_sha256": "850eab9cbe167d16977b09439f79df6635613eb9101f490980356c92ce8c92de",
+          "map_scene": "static",
+          "map_image_sha256": "712d53a68c7bfcee06dd2bed5eb4bd869c797bb9b427b4dedb05c7896008d552",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "dufomap": {
+          "trace": "evidence/static/dufomap.csv",
+          "trace_sha256": "9ee0341d0d68a24c12292d9194b4f24f2853cc89d6d8b35f8c91864ee4b7cea0",
+          "map_scene": "static",
+          "map_image_sha256": "2fedf10030ce2a066a360381987278d8f80eaa1cf173c27360e1db2beff7af3e",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "rgbd-raw": {
+          "trace": "evidence/static/rgbd-raw.csv",
+          "trace_sha256": "55b8cb69d61bbcc7c3321ea86d4eca34a07f717cd5899ba3f48993f7313d95b9",
+          "map_scene": "static",
+          "map_image_sha256": "d50d1ebf2715b806804bce85beff37e6154a41b85746f76aa4f61baaa5154ac7",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "conceptgraphs": {
+          "trace": "evidence/static/conceptgraphs.csv",
+          "trace_sha256": "5aa557fe2829615de6a135a3b085a107bce896c6b7fe9b045719a25a0786e348",
+          "map_scene": "static",
+          "map_image_sha256": "0408d1b9bf20b2f76f8bfdcdef7de420d551b03974f9abc948674c94d7324e6a",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "hovsg": {
+          "trace": "evidence/static/hovsg.csv",
+          "trace_sha256": "d4c358cc2c0e655c2726fe92dd6242e06e0e2d2c2fd98cf3a3d0d8a4813b78c7",
+          "map_scene": "static",
+          "map_image_sha256": "1d16bd42a96dd0f2bbafa1f839a0dafcfe29b6785fdf731e8d672b9eead4b7d5",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        }
+      },
+      "actor_observations_sha256": null,
+      "mp4": "static.mp4",
+      "mp4_sha256": "140cdba660c5161b162e90f7217f3956b49bc423f8deaf0d75fc6f790794fddb",
+      "gif": "static.gif",
+      "gif_sha256": "04d41b3c377c7ec1390bc45b423c5048c96e851d4938ccd83821a41d7f23d31d",
+      "gif_metadata": {
+        "dimensions": [
+          1080,
+          940
+        ],
+        "frames": 208,
+        "duration_seconds": 26.01,
+        "delay_counts_ms": {
+          "130": 105,
+          "120": 103
+        },
+        "loop": 0,
+        "full_decode_passed": true,
+        "source_video_metadata": {
+          "programs": [],
+          "streams": [
+            {
+              "r_frame_rate": "8/1",
+              "nb_frames": "208"
+            }
+          ],
+          "format": {
+            "duration": "26.000000"
+          }
+        }
+      }
+    },
+    {
+      "name": "dynamic-lidar",
+      "condition": "dynamic",
+      "methods": [
+        "raw",
+        "beautymap",
+        "dufomap"
+      ],
+      "repeat": 1,
+      "kind": "recorded-data reconstruction, not an RViz screen capture",
+      "test_recording": "dynamic-test",
+      "test_bag_files_sha256": {
+        "bag_0.db3": "5ce2cd5b7dec32a68cf8ece9dd1aec19f137fe2227ffd02e8dbe17b83ff6aa3b"
+      },
+      "start_sim_s": 0.16,
+      "end_sim_s": 26.28,
+      "source_fps": 8,
+      "sampling": "Continuous common trace interval at 8 fps; latest recorded sample; no cuts or speed-up",
+      "curve_scope": "live AMCL+odometry prediction; table RMSE scores AMCL pose updates after initial 5 seconds",
+      "sources": {
+        "raw": {
+          "trace": "evidence/dynamic/raw.csv",
+          "trace_sha256": "ea4e470fb6460c0824c1473078f725e5d92713745eb5bc6e5703536df92216a2",
+          "map_scene": "dynamic",
+          "map_image_sha256": "2600ec9c5725b98966c6cfc99fd9ded40c89a0b589ab27b3e824bc3de8ade66b",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "beautymap": {
+          "trace": "evidence/dynamic/beautymap.csv",
+          "trace_sha256": "c09ff2b87910be3a5d42c1ffacd0828fced838c19781b071e423a22773e8605f",
+          "map_scene": "dynamic",
+          "map_image_sha256": "86e7a8f125624a7b66268bffc4f81635ff72b75f03ae0313996f1fb418848041",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "dufomap": {
+          "trace": "evidence/dynamic/dufomap.csv",
+          "trace_sha256": "8c72e6ba30c6a92444394c91cca3d7f72c94bab53ee004a5a3cdcfd57b36b027",
+          "map_scene": "dynamic",
+          "map_image_sha256": "c6e82d6931541b4bb3a37fae30ec4ee11460b8e1a8b2f06a9fb04d8acba10d71",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        }
+      },
+      "actor_observations_sha256": "8cfb2e6bf6621c50172a8662a63c0841c608f465fed53b9b4f8c6a441eb837ef",
+      "mp4": "dynamic-lidar.mp4",
+      "mp4_sha256": "9d37b517d7c0f42895ddb8a03d0760563d2d3441da650daa35ecd41b9083dd55",
+      "gif": "dynamic-lidar.gif",
+      "gif_sha256": "c29b16cab8f6db33323ce66c36a68165ed5ab340bcb006a674f6de5054d18c3e",
+      "gif_metadata": {
+        "dimensions": [
+          1080,
+          504
+        ],
+        "frames": 209,
+        "duration_seconds": 26.12,
+        "delay_counts_ms": {
+          "130": 104,
+          "120": 105
+        },
+        "loop": 0,
+        "full_decode_passed": true,
+        "source_video_metadata": {
+          "programs": [],
+          "streams": [
+            {
+              "r_frame_rate": "8/1",
+              "nb_frames": "209"
+            }
+          ],
+          "format": {
+            "duration": "26.125000"
+          }
+        }
+      }
+    },
+    {
+      "name": "dynamic-rgbd",
+      "condition": "dynamic",
+      "methods": [
+        "rgbd-raw",
+        "conceptgraphs",
+        "hovsg"
+      ],
+      "repeat": 1,
+      "kind": "recorded-data reconstruction, not an RViz screen capture",
+      "test_recording": "dynamic-test",
+      "test_bag_files_sha256": {
+        "bag_0.db3": "5ce2cd5b7dec32a68cf8ece9dd1aec19f137fe2227ffd02e8dbe17b83ff6aa3b"
+      },
+      "start_sim_s": 0.16,
+      "end_sim_s": 26.28,
+      "source_fps": 8,
+      "sampling": "Continuous common trace interval at 8 fps; latest recorded sample; no cuts or speed-up",
+      "curve_scope": "live AMCL+odometry prediction; table RMSE scores AMCL pose updates after initial 5 seconds",
+      "sources": {
+        "rgbd-raw": {
+          "trace": "evidence/dynamic/rgbd-raw.csv",
+          "trace_sha256": "4c6b5afd60af99db27438fe347dccfae613adc05135544b681b5a6a37b1f3ed4",
+          "map_scene": "dynamic",
+          "map_image_sha256": "a1cadf8a9439b89d95442c78686d90a04b04b4f8751a30c363e300350e8892d4",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "conceptgraphs": {
+          "trace": "evidence/dynamic/conceptgraphs.csv",
+          "trace_sha256": "75927095d219a9331255c7b0e787d08d493ded50c5cba73fbf57b5f8da7e0c71",
+          "map_scene": "dynamic",
+          "map_image_sha256": "583b5e1c8adf60b812ac04b68b33c0cb3cc8fa0e69ba956d03579d79298d6955",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "hovsg": {
+          "trace": "evidence/dynamic/hovsg.csv",
+          "trace_sha256": "703f2291285d6d05efb744e65dbdf1b548b68228c003f6ffcef3e7930e7025ff",
+          "map_scene": "dynamic",
+          "map_image_sha256": "d8fb95842596f2d3df154d478ab6362145beb106364ba709d64b0d4410aaad57",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        }
+      },
+      "actor_observations_sha256": "8cfb2e6bf6621c50172a8662a63c0841c608f465fed53b9b4f8c6a441eb837ef",
+      "mp4": "dynamic-rgbd.mp4",
+      "mp4_sha256": "076b1ba36be73afa0fde313cd14e1b240c1b51889f441e69c546e5314a874993",
+      "gif": "dynamic-rgbd.gif",
+      "gif_sha256": "8d8685a4477aa5dcf7940efff8c177f2a436d1f884b2b651f780d47202fd3162",
+      "gif_metadata": {
+        "dimensions": [
+          1080,
+          504
+        ],
+        "frames": 209,
+        "duration_seconds": 26.12,
+        "delay_counts_ms": {
+          "130": 104,
+          "120": 105
+        },
+        "loop": 0,
+        "full_decode_passed": true,
+        "source_video_metadata": {
+          "programs": [],
+          "streams": [
+            {
+              "r_frame_rate": "8/1",
+              "nb_frames": "209"
+            }
+          ],
+          "format": {
+            "duration": "26.125000"
+          }
+        }
+      }
+    },
+    {
+      "name": "clean-map-dynamic-test",
+      "condition": "clean-map-dynamic-test",
+      "methods": [
+        "raw",
+        "beautymap",
+        "dufomap",
+        "rgbd-raw",
+        "conceptgraphs",
+        "hovsg"
+      ],
+      "repeat": 1,
+      "kind": "recorded-data reconstruction, not an RViz screen capture",
+      "test_recording": "dynamic-test",
+      "test_bag_files_sha256": {
+        "bag_0.db3": "5ce2cd5b7dec32a68cf8ece9dd1aec19f137fe2227ffd02e8dbe17b83ff6aa3b"
+      },
+      "start_sim_s": 0.16,
+      "end_sim_s": 26.28,
+      "source_fps": 8,
+      "sampling": "Continuous common trace interval at 8 fps; latest recorded sample; no cuts or speed-up",
+      "curve_scope": "live AMCL+odometry prediction; table RMSE scores AMCL pose updates after initial 5 seconds",
+      "sources": {
+        "raw": {
+          "trace": "evidence/clean-map-dynamic-test/raw.csv",
+          "trace_sha256": "de6b06f1b2f17422efdcc460cebd04f4cffd50c203dde47e8439932529b33c69",
+          "map_scene": "static",
+          "map_image_sha256": "43ac5f11789871760806abb9f81f6c05b799807d42c5bc7e8b048f177a30addc",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "beautymap": {
+          "trace": "evidence/clean-map-dynamic-test/beautymap.csv",
+          "trace_sha256": "165f4e684e2ff957937a3117d8820200dd1ba1968f06d205361375e6d0f8dc2e",
+          "map_scene": "static",
+          "map_image_sha256": "712d53a68c7bfcee06dd2bed5eb4bd869c797bb9b427b4dedb05c7896008d552",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "dufomap": {
+          "trace": "evidence/clean-map-dynamic-test/dufomap.csv",
+          "trace_sha256": "b3766260f99d8b2910db687ad59caa4742cde323124084d29990036d49377ca5",
+          "map_scene": "static",
+          "map_image_sha256": "2fedf10030ce2a066a360381987278d8f80eaa1cf173c27360e1db2beff7af3e",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "rgbd-raw": {
+          "trace": "evidence/clean-map-dynamic-test/rgbd-raw.csv",
+          "trace_sha256": "e905d93839cdb788f2105bd698fc0d25f6803c14e3189e55ff896d83e8d35311",
+          "map_scene": "static",
+          "map_image_sha256": "d50d1ebf2715b806804bce85beff37e6154a41b85746f76aa4f61baaa5154ac7",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "conceptgraphs": {
+          "trace": "evidence/clean-map-dynamic-test/conceptgraphs.csv",
+          "trace_sha256": "81df4e9f62f56c5bc61d893f695914b4a60cef4f554db54c66c7df34b94ee799",
+          "map_scene": "static",
+          "map_image_sha256": "0408d1b9bf20b2f76f8bfdcdef7de420d551b03974f9abc948674c94d7324e6a",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        },
+        "hovsg": {
+          "trace": "evidence/clean-map-dynamic-test/hovsg.csv",
+          "trace_sha256": "9eeba88f31cf9042e2e8514b4c061e8d3f9904eac25961bb1d61f4a4c6b6238c",
+          "map_scene": "static",
+          "map_image_sha256": "1d16bd42a96dd0f2bbafa1f839a0dafcfe29b6785fdf731e8d672b9eead4b7d5",
+          "map_yaml_sha256": "71ed28d8978c2d32e4fb5f9439483a94e005a26c736b86568f4f552622600f55"
+        }
+      },
+      "actor_observations_sha256": "8cfb2e6bf6621c50172a8662a63c0841c608f465fed53b9b4f8c6a441eb837ef",
+      "mp4": "clean-map-dynamic-test.mp4",
+      "mp4_sha256": "fc8b41d8b232e5b98a9414179ea27d0f25fcdda38c9e1fec3812736e433cbe1b",
+      "gif": "clean-map-dynamic-test.gif",
+      "gif_sha256": "65fcc8ba14a5d2989fe74164795d1bb17ac58fa52c83010378fa5af20c81a916",
+      "gif_metadata": {
+        "dimensions": [
+          1080,
+          940
+        ],
+        "frames": 209,
+        "duration_seconds": 26.12,
+        "delay_counts_ms": {
+          "130": 104,
+          "120": 105
+        },
+        "loop": 0,
+        "full_decode_passed": true,
+        "source_video_metadata": {
+          "programs": [],
+          "streams": [
+            {
+              "r_frame_rate": "8/1",
+              "nb_frames": "209"
+            }
+          ],
+          "format": {
+            "duration": "26.125000"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -15,6 +15,9 @@
 | 11_build_localization_maps.cmd | 用一次驾驶生成论文方法的定位地图 |
 | 12_amcl_choose_map.cmd | 选算法地图后键盘驾驶与观看偏移 |
 | 13_compare_localization.cmd | 用另一录制，在各地图上回放同一输入进行定位对照 |
+| 14_static_keyboard.cmd | 纯静态场景，真实录制地图，键盘测试并自动录制 |
+| 15_dynamic_keyboard.cmd | 动态场景，选择原始/论文地图，键盘测试并自动录制 |
+| 16_record_static_dynamic.cmd | 自动录制两种场景、运行论文算法、重复定位对比及导出数据回放视频 |
 
 窗口内显示实际命令及进度；完成后按 Enter 关闭。结果写入 `SLAM-Physical/runs/`。源代码、实验协议与已实跑结果见实验仓库 README。
 
