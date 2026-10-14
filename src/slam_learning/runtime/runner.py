@@ -13,6 +13,7 @@ from pathlib import Path
 from slam_learning.core.metrics import compare_paper, score_map
 from slam_learning.core.pcd import read_pcd
 from slam_learning.core.provenance import digest, environment, git_state, source_hashes, utc_now, write_json
+from slam_learning.runtime.localization_evidence import verify_localization
 
 
 class MissingRequirement(RuntimeError):
@@ -128,6 +129,8 @@ def verify_record(path: Path, full: bool = False) -> list[str]:
     errors = []
     if record.get("schema_version") != 1:
         errors.append("Unsupported schema")
+    if record.get("status") == "executed" and record.get("kind") == "author_localization":
+        errors.extend(verify_localization(path, record))
     if record.get("status") in ("executed", "smoke_passed") and record.get("kind") == "author_method":
         if record.get("exit_code") != 0 or not record.get("command") or not record.get("dataset"):
             errors.append("Successful author run lacks command, zero exit code, or dataset evidence")

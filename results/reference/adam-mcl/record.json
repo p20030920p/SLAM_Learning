@@ -1,0 +1,331 @@
+{
+  "schema_version": 1,
+  "kind": "method_delivery",
+  "method": "adam-mcl",
+  "status": "recorded",
+  "scope": "Authored 128-cell plan, released AdaM MCL global localization and kidnapping evaluation",
+  "primary_record": "runs/adam-mcl-wsl/record.json",
+  "note": "Curated index of one released-code run. media/preview.gif is the complete evaluation recording converted to a continuous excerpt; no metric is read from the media.",
+  "artifacts": {
+    "harness/README.md": {
+      "sha256": "2181b6f4f4203d90d0e09ef01093aafd7d2732b1c828e570995a165308b23406",
+      "bytes": 2384,
+      "availability": "portable"
+    },
+    "harness/gen_test_data.sh": {
+      "sha256": "5c20006bd304f28db9209b2182bd8e6a83eb00c82e19d0ad3bccd32bee52de18",
+      "bytes": 901,
+      "availability": "portable"
+    },
+    "harness/gen_train_data.sh": {
+      "sha256": "20898fa67c71028d53b6c9265654b9973314b9ebf8823accad5313b11c82a70b",
+      "bytes": 1729,
+      "availability": "portable"
+    },
+    "harness/live_eval.py": {
+      "sha256": "1ab829b46c1039c7e89469bcf6327ccd075d73c20a86e31e92ef76b8b6a004e1",
+      "bytes": 8697,
+      "availability": "portable"
+    },
+    "harness/make_maps.py": {
+      "sha256": "0da68916a4c7cc04010f1fd7d16035d0a5b44208701baa20d4787906b5be6c53",
+      "bytes": 2914,
+      "availability": "portable"
+    },
+    "harness/make_preview.py": {
+      "sha256": "de9b9c10793263e4812d4f2531a721ba25623b1bf5a0d72f538ea85e9593d04f",
+      "bytes": 8276,
+      "availability": "portable"
+    },
+    "harness/probe_trajectory.py": {
+      "sha256": "f70305505737f20996c6a95507d48c34cd2d59ac8ea06aa4cbbf991e312954ad",
+      "bytes": 586,
+      "availability": "portable"
+    },
+    "harness/publish_evidence.py": {
+      "sha256": "6973ae7497170eeffcc1a58d2c5123c62f9c33e2734fa1fd1439bd0436b94694",
+      "bytes": 19198,
+      "availability": "portable"
+    },
+    "harness/publish_recording.py": {
+      "sha256": "61ded1c7b237322f361e63329e1bea4ef47358030745dd70f0aad10f758db305",
+      "bytes": 3251,
+      "availability": "portable"
+    },
+    "harness/rebuild_preview.sh": {
+      "sha256": "0d3fa5bfb53d4f6f5d1f59fac1f2b20cf3f9159ba0c25b6e00669f1e7d878a04",
+      "bytes": 647,
+      "availability": "portable"
+    },
+    "harness/run_recorded_session.sh": {
+      "sha256": "99cf2824c88087f941a7c7bd81b5998c27f1e34392faf6b34ec6f66c6c77d805",
+      "bytes": 1221,
+      "availability": "portable"
+    },
+    "harness/run_session.sh": {
+      "sha256": "3557d922869273ba71299512283d59ea222b1d6d7e7f927aec9817a884fdcba2",
+      "bytes": 2086,
+      "availability": "portable"
+    },
+    "harness/sequence_facts.py": {
+      "sha256": "6aa548540015d79ed165641cb41c42fc1dd1ec6f2f528abb986460dab3b68e6b",
+      "bytes": 654,
+      "availability": "portable"
+    },
+    "harness/stage_dataset.sh": {
+      "sha256": "74bc2029625233143cce4b879fbca07793888b2309fcbd5f63d056e32380b9b8",
+      "bytes": 803,
+      "availability": "portable"
+    },
+    "harness/train.sh": {
+      "sha256": "cfffffae25327a688ff78f5799dae3be30f75083815302db8a2c1660f94f17d7",
+      "bytes": 1026,
+      "availability": "portable"
+    },
+    "media/preview.gif": {
+      "sha256": "3e8cb1949c12780143ae44876842cbfe20238a35d6d7e2d0482380a4b879f56d",
+      "bytes": 1431985,
+      "availability": "portable"
+    },
+    "media/replay/command.json": {
+      "sha256": "a75240706e8d094d065463ca1b39baef4b991570f87e41d1d55fe940da46d995",
+      "bytes": 415,
+      "availability": "portable"
+    },
+    "media/replay/encoder-progress.txt": {
+      "sha256": "161579dfba7bafd0b1cda5ba47e5eb5418389b54ca277f61e5235d90fbfd8246",
+      "bytes": 211652,
+      "availability": "portable"
+    },
+    "media/replay/exit.json": {
+      "sha256": "21b4f4aac987b44ee6c2032663b3b79346d0a44aaa5005f0cea50c9f93250119",
+      "bytes": 119,
+      "availability": "portable"
+    },
+    "media/replay/ffmpeg.log": {
+      "sha256": "6314dbf5abb04941faa2859211d09bc76ee32692c0785a1464e4e35d875339f8",
+      "bytes": 104998,
+      "availability": "portable"
+    },
+    "media/replay/recording.json": {
+      "sha256": "442af1278b6805bbaf48db15b1df182fde34ed436bb538783ed10cc8c5d791ea",
+      "bytes": 3758,
+      "availability": "portable"
+    },
+    "media/replay/replay.mp4": {
+      "sha256": "cddcdc530ee037b80ad1dd6d3c897a3b03c281704dcba08f884e4b83e171dd6d",
+      "bytes": 22988985,
+      "availability": "portable"
+    },
+    "media/replay/review-end.png": {
+      "sha256": "7ac73bf0860a8380002d9f069dc9a6c2ced0eab4a02b7fca057a0469b602a3f4",
+      "bytes": 139086,
+      "availability": "portable"
+    },
+    "media/replay/review-middle.png": {
+      "sha256": "9ec66680412928089a0e4527d1b7766bf1aff5207b800fd26c508428a9b0259c",
+      "bytes": 149498,
+      "availability": "portable"
+    },
+    "media/replay/review-start.png": {
+      "sha256": "945f1a53ded57c6fa13f5cb60f6f021ff59e537827686785c0207f8ea0ab2707",
+      "bytes": 71182,
+      "availability": "portable"
+    },
+    "media/replay/terminal.raw.xz": {
+      "sha256": "b0ac5705d1c3317c35d7a588d98572660f59e87cb0684a49102333b4821b5f2e",
+      "bytes": 1606940,
+      "availability": "portable"
+    },
+    "media/replay/terminal.time": {
+      "sha256": "3a9cf90be50081c5c828b8ecbb4b1bca9626af4ee666bc3b51be9dac557dfd32",
+      "bytes": 431148,
+      "availability": "portable"
+    },
+    "media/replay/xvfb.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "media/timing.json": {
+      "sha256": "7cb64e0801db9ea20e65742be78e171bc4303a26d00badb02bb1960e2579e90d",
+      "bytes": 4871,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/compatibility.patch": {
+      "sha256": "d89bacbc192408b5ba2d5c507e384090d9cab8d2298324a22677e01657c771c8",
+      "bytes": 16320,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-33-52.007098_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "0424d6d944d965f93085e346dad635e5ca94c5c1062f87f86c87e6bd3abaa7fe",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-33-52.007098_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "8c43d4fd16b871821169e0a517351e5045456cd36d46a7ee70fbdb24797590df",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-33-52.007098_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "fc3a41c46eb18e4313d50d5bf187a5553b3613c8a36126c7b472443e115bcee4",
+      "bytes": 3076,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-34-38.615595_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "72ca10837489ac82e5475be8c4d14318287644bf512620b7038385f93d5b6c4c",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-34-38.615595_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "3e117b696f6f0fe872269148d34471ca063a8422bbb4a749de3ec7d012bbbf39",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-34-38.615595_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "4fdb4330d87d446e8330bc62c2d66edb15287e97fb7930b761aae914fcd7798f",
+      "bytes": 3077,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-35-25.757630_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "b8eb2a415cd4ef824e1e713f4396ba194001b49d45998fe2eff78f1a9479d583",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-35-25.757630_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "0e581d8e8a528a5102639cc421c8aad66fc58f3615aff7de88429a05dc23daff",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-35-25.757630_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "904f22686c267e6c114813c966e31a1029b68a80389b689d6988e487b89d9ace",
+      "bytes": 3076,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-36-23.544739_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "1c2b125731fceb33bb83a880a6284aad12c801f15b38f8965445911c58ef07a2",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-36-23.544739_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "22371d2c6326411abc095429de0a6ce7fb924c40fdcb301946631322cec2b913",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-36-23.544739_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "3c848f00de4fbb6f9cbef5640fd6462b39daed347509fea6c0ccaec007956557",
+      "bytes": 3076,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-37-01.935855_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "66658573dc8114f63a617d378d942017384d138ce7f311a4f66cc0ede586991a",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-37-01.935855_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "56018bc873fc594b2ab27e48fccde611971d1879b3dd0bcb4cf83d87dbb2a6cd",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-37-01.935855_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "6a8745cf3d0ad82aad109cc19344af6f722c867f25aa9e554dda0f5fa3df525a",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-37-47.708733_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "3739ca44bc08eaf405d33eb6275642776c0786c7e7738859e63e7413bfe07bba",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-37-47.708733_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "23d3ae06cc0f36d842960b6018215364dc330a6ee3d9a1945091d4841542d0a2",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-37-47.708733_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "ca2a837ad9f9318553ba4273b812b1ff74ccaa115e311b5c1d02c94c702bd104",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-38-53.681563_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "a24edeb3660a04040e8b23507361c73c06a7d5df2571e8ab99950b7d2d9ad0a4",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-38-53.681563_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "1496699949c2e7e7bc9bc60268054302bf57b7478a7a06f99a39cc6a7a7dee07",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-38-53.681563_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "e2588b3b5f9c2bb148af00bda72dc7939f02cfc060fdedcb728968ecbf5f2d4b",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-39-50.911343_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "3e15be96d5bcd1e70be1ae73a36588760718385c2fa9f413a157b27b5a75db54",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-39-50.911343_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "a92b8accd49652d3e02a303a20a7b903b565a1d0d210f587fa7733caee2d2b20",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-39-50.911343_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "d3c4d876c8934df5d1e0cb5773e24b4f3b97a8588e5f4441e1df57947f78e781",
+      "bytes": 3076,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-40-48.320860_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "9696bd53e37cab59c5700605251f78e27b615e0178948a91241a61b53afae529",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-40-48.320860_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "6d34f5433addeedf99ad298dc3652b0e964ed63c9a99eaa9d8c9b7e9176475e8",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-40-48.320860_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "395341a1b535d604fc6d4e6805516c5e73d27856c97f74ab669bcb06581b0856",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-41-46.663262_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "5eaef8cf29ea186995458fcaff77fff0fdc27654cbb76c94ebd104dbf31ce69b",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-41-46.663262_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "5aa676a073f0223509ba135b205be4a76259acd0bce6bb843c387562f133f709",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 14-41-46.663262_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "a76ee329afb32cd75d1c48439d5b50312fa2fa80f492f281c5439ec6bcc13d91",
+      "bytes": 3075,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/metrics.json": {
+      "sha256": "bc8ccfeca651c1325d4d471dbfaf1cfeb850508d06aa378e88eab9f48dad4ffb",
+      "bytes": 6417,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/record.json": {
+      "sha256": "92149143d9532e6e207a3a7b0a197d9104ddb2e21c07568b12163e93c20e7435",
+      "bytes": 15568,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/run.log": {
+      "sha256": "c7d7fd5d6ec6847bdf01d499d17118e6bab6cb313a2b60d2796db3269b301c58",
+      "bytes": 914162,
+      "availability": "portable"
+    },
+    "runs/adam-mcl-wsl/worker.json": {
+      "sha256": "967c3a2cc3856af766fadde3c7b3e4c8996a7c6febe2de32414a4c1307725c7c",
+      "bytes": 2200,
+      "availability": "portable"
+    }
+  }
+}

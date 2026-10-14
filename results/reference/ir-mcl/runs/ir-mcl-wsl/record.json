@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "kind": "author_localization",
+  "method": "ir-mcl",
+  "status": "executed",
+  "scope": "full_teaser",
+  "started_at": "2026-10-14T08:03:15+03:00",
+  "finished_at": "2026-10-14T08:13:41+03:00",
+  "exit_code": 0,
+  "upstream": {
+    "repository": "https://github.com/PRBonn/ir-mcl",
+    "commit": "aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5",
+    "remote": "origin"
+  },
+  "paper": {
+    "url": "https://arxiv.org/abs/2210.03113",
+    "table": "https://arxiv.org/html/2210.03113v2#S4.SS2",
+    "year": 2023,
+    "venue": "IEEE RA-L"
+  },
+  "command": [
+    "bash",
+    "results/reference/ir-mcl/runs/ir-mcl-wsl/reproduce.sh"
+  ],
+  "dataset": {
+    "sequence": "IPBLab Seq 1",
+    "source": "https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5",
+    "inputs_sha256": {
+      "data/ipblab/loc_test/test1/seq_1.json": "f8f766869edbf30bf9b02bc2844d7b138991b9089ad0e3e9a59b2c5174c2d224",
+      "data/ipblab/loc_test/test1/seq_1_gt_pose.txt": "4968cb363b83599539ac3ee75511376f17184c528072933a33f229d52a537e58",
+      "config/global_localization/loc_config_test1.yml": "942e28fd38331ff8189f561fc0d3df13ec5b15464f58c71babc0b655aac1891b",
+      "data/ipblab/occmap.npy": "50ee1629028d023c061be69c74ac2442c7cb7bc278fb17f7a2310c6af0dd5100"
+    },
+    "hash_capture": "retained inputs hashed during evidence packaging"
+  },
+  "scoring": {
+    "start_time_s": 20.0,
+    "max_timestamp_difference_s": 0.01,
+    "scored_samples": 1354,
+    "alignment": "none",
+    "rotation_metric": "rotation_angle_deg"
+  },
+  "scope_detail": "Global localization on the single released IPBLab sequence with the supplied config and pre-trained weights, followed by the upstream GIF export.",
+  "environment": {
+    "python": "3.10.12",
+    "numpy": "2.2.6",
+    "torch": "2.14.1+cu130",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "pybind11_build_time": "3.1.0"
+  },
+  "build_note": "The C++ particle-filter extension is compiled against this environment's pybind11 3.1.0 via CMAKE_ARGS=-Dpybind11_DIR=...; CMake otherwise selects the distribution's pybind11 2.9.1, which predates NumPy 2 and makes the first numpy-to-C++ array conversion segfault.",
+  "compatibility_patch": "compatibility.patch",
+  "metrics": {
+    "location_rmse_cm": 5.32,
+    "location_lt5_pct": 61.74,
+    "location_lt10_pct": 96.01,
+    "location_lt20_pct": 100.0,
+    "yaw_rmse_deg": 1.07,
+    "yaw_lt0_5_pct": 47.64,
+    "yaw_lt1_pct": 75.85,
+    "yaw_lt2_pct": 93.57
+  },
+  "metrics_source": "runs/ir-mcl-wsl/metrics.json",
+  "paper_comparison": {
+    "location_rmse_cm": {
+      "paper": 5.13,
+      "reproduced": 5.32
+    },
+    "location_lt5_pct": {
+      "paper": 63.15,
+      "reproduced": 61.74
+    },
+    "location_lt10_pct": {
+      "paper": 97.27,
+      "reproduced": 96.01
+    },
+    "location_lt20_pct": {
+      "paper": 100.0,
+      "reproduced": 100.0
+    },
+    "yaw_rmse_deg": {
+      "paper": 1.05,
+      "reproduced": 1.07
+    },
+    "yaw_lt0_5_pct": {
+      "paper": 47.12,
+      "reproduced": 47.64
+    },
+    "yaw_lt1_pct": {
+      "paper": 74.59,
+      "reproduced": 75.85
+    },
+    "yaw_lt2_pct": {
+      "paper": 94.24,
+      "reproduced": 93.57
+    }
+  },
+  "artifacts": {
+    "compatibility.patch": {
+      "sha256": "98b7d2794d1e73c9e49524aa31a76df8329f183ed295f23412e92eb6ca42ab36",
+      "bytes": 2427,
+      "availability": "portable"
+    },
+    "IRMCL.txt": {
+      "sha256": "565893fa8a34c77be55abb9bf9e3654ccbd9330544cc99aa1e4b11d7aebdd2a5",
+      "bytes": 311961,
+      "availability": "portable"
+    },
+    "loc_config.yml": {
+      "sha256": "942e28fd38331ff8189f561fc0d3df13ec5b15464f58c71babc0b655aac1891b",
+      "bytes": 1714,
+      "availability": "portable"
+    },
+    "make_media.py": {
+      "sha256": "620bd6e756e768367e27d08656740993b120c2c7627314c0010fdb1465956e3b",
+      "bytes": 5708,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "5e4087ef526d08cc7c657edf03acafdc36df1fe69240eb64d0db5a2cf37b31c4",
+      "bytes": 3116,
+      "availability": "portable"
+    },
+    "reproduce.sh": {
+      "sha256": "70bd558e3632c25220bb4459aa355c6fca38e77dd190b833b923ceeb59e45390",
+      "bytes": 3960,
+      "availability": "portable"
+    },
+    "run.log": {
+      "sha256": "6bc244df629914cc3c02b65b8ffff5dff4683c9fd6444fedb395281d42ee141a",
+      "bytes": 110501,
+      "availability": "portable"
+    },
+    "seq_1_gt_pose.txt": {
+      "sha256": "4968cb363b83599539ac3ee75511376f17184c528072933a33f229d52a537e58",
+      "bytes": 311962,
+      "availability": "portable"
+    },
+    "write_records.py": {
+      "sha256": "02513a04d2c8442d0a8b0c1567ed5b3728f8b108ea6e3cc75ac5b214079d0331",
+      "bytes": 15042,
+      "availability": "portable"
+    }
+  }
+}

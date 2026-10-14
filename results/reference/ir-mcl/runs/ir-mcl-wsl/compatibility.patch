@@ -1,0 +1,53 @@
+IR-MCL upstream aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5 - two source lines adjusted.
+Apply with:  patch -p1 < compatibility.patch
+Verified with --dry-run against a pristine `git archive HEAD` extraction.
+
+1. utils.py - evo 1.38.0 made `max_diff` keyword-only in
+   sync.associate_trajectories(); the value is unchanged (0.01), only the call form.
+   Upstream pins an older evo, where the third positional argument was accepted.
+
+2. loc_demo.py - mcl/vis_loc_result.py imports its sibling with a package-relative
+   `from .visualizer import Visualizer`, so the repository-root loc_demo.py cannot
+   import it as a top-level module; import it as a package module instead.
+
+Separate from this patch, and involving no source change: the C++ particle-filter
+extension must be built against a NumPy-2-aware pybind11. CMake's
+find_package(pybind11) selects the distribution's pybind11 2.9.1
+("/usr/lib/cmake/pybind11", reported as `Found pybind11: /usr/include (found
+version "2.9.1")`), whose PyArrayDescr_Proxy hardcodes the NumPy 1.x descriptor
+layout (`char flags; int type_num; int elsize; int alignment;`). NumPy 2.x uses
+(`char _former_flags; int type_num; npy_uint64 flags; npy_intp elsize; ...`), so
+`elsize` is read from the wrong offset, the dtype itemsize comes out as 0, and the
+first numpy-to-C++ array conversion segfaults - on every rebuild. Build the
+extension with the environment's own pybind11 (>= 2.12, which selects its
+descriptor proxy from PyArray_RUNTIME_VERSION_) instead:
+
+  cd mcl
+  CMAKE_ARGS="-Dpybind11_DIR=$HOME/.venvs/ir-mcl/lib/python3.10/site-packages/pybind11/share/cmake/pybind11" \
+    $HOME/.venvs/ir-mcl/bin/python -m pip install -e . --no-build-isolation
+
+The environment used here keeps NumPy 2.2.6 and torch 2.14.1; no runtime dependency
+was downgraded.
+
+--- a/utils.py
++++ b/utils.py
+@@ -135,7 +135,7 @@
+ def evaluate_APE(est_poses, gt_poses, use_converge=False):
+     # align est and gt
+     max_diff = 0.01
+-    traj_ref, traj_est = sync.associate_trajectories(gt_poses, est_poses, max_diff)
++    traj_ref, traj_est = sync.associate_trajectories(gt_poses, est_poses, max_diff=max_diff)
+     data = (traj_ref, traj_est)
+ 
+     # location error
+--- a/loc_demo.py
++++ b/loc_demo.py
+@@ -4,7 +4,7 @@
+ import numpy as np
+ 
+ from utils import load_data
+-from vis_loc_result import plot_traj_result, vis_offline
++from mcl.vis_loc_result import plot_traj_result, vis_offline
+ 
+ 
+ def get_args():

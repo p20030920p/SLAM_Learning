@@ -1,0 +1,70 @@
+{
+  "video": "/mnt/d/workspace/be2/slam_learning_updated/results/localization/self-recovery/S1_static.mp4",
+  "probe": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 15.0,
+    "nb_frames": 1950,
+    "duration_s": 130.0,
+    "bytes": 288212
+  },
+  "frames": {
+    "first": {
+      "t_s": 2.6,
+      "left": {
+        "mean": 188.72,
+        "std": 32.7,
+        "nonblack_frac": 1.0,
+        "distinct_rows": 1528
+      },
+      "right": {
+        "mean": 0.29,
+        "std": 6.52,
+        "nonblack_frac": 0.0021,
+        "distinct_rows": 136
+      }
+    },
+    "mid": {
+      "t_s": 65.0,
+      "left": {
+        "mean": 188.71,
+        "std": 32.7,
+        "nonblack_frac": 1.0,
+        "distinct_rows": 1506
+      },
+      "right": {
+        "mean": 0.29,
+        "std": 6.52,
+        "nonblack_frac": 0.0021,
+        "distinct_rows": 123
+      }
+    },
+    "last": {
+      "t_s": 127.4,
+      "left": {
+        "mean": 188.71,
+        "std": 32.7,
+        "nonblack_frac": 1.0,
+        "distinct_rows": 1506
+      },
+      "right": {
+        "mean": 0.29,
+        "std": 6.52,
+        "nonblack_frac": 0.0021,
+        "distinct_rows": 123
+      }
+    }
+  },
+  "right_half_change": {
+    "t_a_s": 26.0,
+    "t_b_s": 104.0,
+    "changed_frac": 0.0,
+    "mean_abs_diff": 0.0
+  },
+  "verdict": {
+    "left_rendered": true,
+    "right_drawn": false,
+    "right_map_grew": false,
+    "pass": false
+  }
+}

@@ -99,7 +99,7 @@ The completed mapping experiments use supplied poses to isolate map construction
 
 ## Related works
 
-These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing; each selected map observation is held for eight frames at 12 fps. [DUFOMap timing](results/reference/dufomap/media/timing.json) · [BeautyMap timing](results/reference/beautymap/media/timing.json).
+These are saved-result replays of recorded runs. GIFs preserve the companion MP4 timing; for the two mapping replays each selected map observation is held for eight frames at 12 fps. [DUFOMap timing](results/reference/dufomap/media/timing.json) · [BeautyMap timing](results/reference/beautymap/media/timing.json) · [IR-MCL timing](results/reference/ir-mcl/media/timing.json) · [AdaM-MCL timing](results/reference/adam-mcl/media/timing.json).
 
 ### [DUFOMap](docs/papers/dufomap.md)
 
@@ -113,12 +113,26 @@ These are saved-result replays from supplied-pose mapping runs. GIFs preserve th
 
 **KITTI-00 outdoor scene, 141 LiDAR scans.** Occupancy comparisons remove dynamic traces; restoration protects static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](results/reference/beautymap/media/replay/replay.mp4).
 
+### [IR-MCL](docs/papers/ir-mcl.md)
+
+![IR-MCL saved localization replay](results/reference/ir-mcl/media/preview.gif)
+
+**Bonn IPBLab indoor lab, the released localization sequence, 1543 2D LiDAR scans.** A neural occupancy field renders a synthetic scan for every particle, and the rendered-versus-real range difference weights the particles. The GIF replays all 1543 saved frames at the upstream tool's 10 fps. [MP4](results/reference/ir-mcl/media/replay/replay.mp4).
+
+### [AdaM-MCL](docs/papers/adam-mcl.md)
+
+![AdaM-MCL recorded evaluation session](results/reference/adam-mcl/media/preview.gif)
+
+**Authored 128-cell indoor plan, one held-out scene, 200 particles.** A CNN turns a map and a 2-D scan into a samplable pose distribution, so global-localization particles are drawn from the whole map instead of a uniform prior. Unlike the rows above this one is the recorded run in real time: the cloud contracts from its uniform start, then again after the teleport at update 63. [MP4](results/reference/adam-mcl/media/replay/replay.mp4).
+
 ## Reproduction results
 
 | Work | Data | Result |
 | --- | --- | --- |
 | [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md) | KITTI-00, 141 scans | Table IV accuracy matched |
 | [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md) | Historical KITTI-02, 91 scans | Table III accuracy matched |
+| [IR-MCL](docs/papers/ir-mcl.md) | Bonn IPBLab, released localization sequence, 1543 scans | Location RMSE 5.32 cm against the paper's 5.13 cm |
+| [AdaM-MCL](docs/papers/adam-mcl.md) | Authored 128-cell plan, one held-out scene, 123 updates × 10 repeats | Released pipeline executed; no paper value compared |
 
 ## Evidence
 
@@ -158,6 +172,34 @@ Historical KITTI-02, frames 860–950, 91 scans; XY=1 m, Z=0.5 m, range=40 m. [O
 | HA | 82.90 | 82.9006 |
 
 All three values match at two decimals. All nine accuracy entries across XY=0.5/1/2 m match. This uses historical preprocessing/GT and the author's HA scorer; the exact paper method commit remains unidentified. Other sequences and runtime are outside this comparison.
+
+### IR-MCL
+
+Bonn IPBLab, the single released localization sequence; scored window 1354 of 1543 scans, because the repository's own evaluation drops the first 20 s. [Original repository](https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5) · [Paper IV-B localization table](https://arxiv.org/html/2210.03113v2#S4.SS2) · [Our run](results/reference/ir-mcl/runs/ir-mcl-wsl/record.json).
+
+| Metric | Paper, Seq 1 | Reproduced |
+| --- | ---: | ---: |
+| Location RMSE (cm) | 5.13 | 5.32 |
+| Yaw RMSE (deg) | 1.05 | 1.07 |
+| Location < 5 cm (%) | 63.15 | 61.74 |
+| Location < 10 cm (%) | 97.27 | 96.01 |
+| Location < 20 cm (%) | 100.00 | 100.00 |
+| Yaw < 0.5° (%) | 47.12 | 47.64 |
+| Yaw < 1° (%) | 74.59 | 75.85 |
+| Yaw < 2° (%) | 94.24 | 93.57 |
+
+The paper's Seq-1 percentages are exact integer counts over 1354 samples, the same window this repository's evaluation produces, so the rows are directly comparable. The C++ motion model seeds its generator from `std::random_device`, so repeated runs differ slightly; a second full run gave 5.28 cm. The upstream README's supplementary 6.62 cm / 1.11° aggregates the whole self-recorded dataset, not Seq 1, and is not used here.
+
+### AdaM-MCL
+
+Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 particles and $T_{\mathrm{cut}}=0.6$ — the particle number and trust threshold of the paper's synthetic setting. [Original repository](https://github.com/Runjian-Chen/AdaM_MCL/tree/e8aedd2bae03816aabd5300e5ca2fe181b39d830) · [Paper Table II](https://arxiv.org/html/2009.00211v3) · [Our run](results/reference/adam-mcl/runs/adam-mcl-wsl/record.json).
+
+| Metric | Paper Table II | This run |
+| --- | ---: | ---: |
+| Global localization $E_{pos}$ | 0.153 m | not compared |
+| Kidnapping $E_{pos}$ | 0.128 m | not compared |
+
+**No numeric comparison is made.** The paper's 20 simulation maps are 43 m × 43 m with six evaluation sequences and released checkpoints, all of them external downloads; this run authors its own plans and trains for 2 432 optimizer steps against the authors' 2 880 000, so cells are not metres. Measured here, in cells: position RMSE 5.49 over 10 repeats, mean final error 6.78, 0.43 s per filter update, and 0 of 10 repeats holding the paper's convergence rule rescaled to this plan.
 
 ## Hypothesis
 

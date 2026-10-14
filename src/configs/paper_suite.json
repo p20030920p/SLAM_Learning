@@ -28,6 +28,34 @@
         "zh": "docs/papers/beautymap.zh-CN.md"
       },
       "status": "partial_reproduction"
+    },
+    {
+      "id": "adam-mcl",
+      "name": "AdaM-MCL",
+      "year": 2021,
+      "paper": "https://arxiv.org/html/2009.00211v3",
+      "record": "results/reference/adam-mcl/runs/adam-mcl-wsl/record.json",
+      "command": "bash results/reference/adam-mcl/harness/run_recorded_session.sh",
+      "media_record": "results/reference/adam-mcl/media/replay/recording.json",
+      "cards": {
+        "en": "docs/papers/adam-mcl.md",
+        "zh": "docs/papers/adam-mcl.zh-CN.md"
+      },
+      "status": "partial_reproduction"
+    },
+    {
+      "id": "ir-mcl",
+      "name": "IR-MCL",
+      "year": 2023,
+      "paper": "https://arxiv.org/abs/2210.03113",
+      "record": "results/reference/ir-mcl/runs/ir-mcl-wsl/record.json",
+      "command": "bash results/reference/ir-mcl/runs/ir-mcl-wsl/reproduce.sh",
+      "media_record": "results/reference/ir-mcl/media/replay/record.json",
+      "cards": {
+        "en": "docs/papers/ir-mcl.md",
+        "zh": "docs/papers/ir-mcl.zh-CN.md"
+      },
+      "status": "partial_reproduction"
     }
   ]
 }

@@ -99,7 +99,7 @@
 
 ## 相关工作
 
-以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序；每个选定地图观测在 12 fps 下保持八帧。[DUFOMap 时序](../results/reference/dufomap/media/timing.json) · [BeautyMap 时序](../results/reference/beautymap/media/timing.json)。
+以下回放录制运行的保存结果。GIF 保留对应 MP4 的播放时序；两个建图回放中每个选定地图观测在 12 fps 下保持八帧。[DUFOMap 时序](../results/reference/dufomap/media/timing.json) · [BeautyMap 时序](../results/reference/beautymap/media/timing.json) · [IR-MCL 时序](../results/reference/ir-mcl/media/timing.json) · [AdaM-MCL 时序](../results/reference/adam-mcl/media/timing.json)。
 
 ### [DUFOMap](papers/dufomap.zh-CN.md)
 
@@ -113,12 +113,26 @@
 
 **KITTI-00 户外场景，141 帧激光雷达扫描。**通过占据比较清理动态残影，用恢复机制保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](../results/reference/beautymap/media/replay/replay.mp4)。
 
+### [IR-MCL](papers/ir-mcl.zh-CN.md)
+
+![IR-MCL 已保存定位回放](../results/reference/ir-mcl/media/preview.gif)
+
+**波恩 IPBLab 室内实验室，官方公开的定位序列，1543 帧二维激光扫描。**神经占据场为每个粒子渲染一条合成扫描，渲染距离与真实距离之差用于加权粒子。GIF 以作者工具自带的 10 fps 回放全部 1543 帧。[MP4](../results/reference/ir-mcl/media/replay/replay.mp4)。
+
+### [AdaM-MCL](papers/adam-mcl.zh-CN.md)
+
+![AdaM-MCL 评测会话录制](../results/reference/adam-mcl/media/preview.gif)
+
+**自建 128 格室内平面、一个留出场景、200 个粒子。**卷积网络把地图与二维扫描变成可采样的位姿分布，全局定位的粒子直接从整张地图上抽取，而不是从均匀先验。与上面几条不同，这条 GIF 就是按真实时间录下来的运行本身：粒子云从均匀铺开逐步收紧，第 63 次更新发生瞬移后再次收紧。[MP4](../results/reference/adam-mcl/media/replay/replay.mp4)。
+
 ## 复现结果
 
 | 工作 | 数据 | 结果 |
 | --- | --- | --- |
 | [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.zh-CN.md) | KITTI-00，141 扫描 | 表 IV 准确率匹配 |
 | [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.zh-CN.md) | 历史 KITTI-02，91 扫描 | 表 III 准确率匹配 |
+| [IR-MCL](papers/ir-mcl.zh-CN.md) | 波恩 IPBLab，公开定位序列，1543 扫描 | 位置 RMSE 5.32 cm，论文 5.13 cm |
+| [AdaM-MCL](papers/adam-mcl.zh-CN.md) | 自建 128 格平面，一个留出场景，123 次更新 × 10 次重复 | 上游流程跑通；未与论文数值对照 |
 
 ## 实验证据
 
@@ -158,6 +172,34 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | HA | 82.90 | 82.9006 |
 
 三项数值保留两位小数后均一致。XY=0.5／1／2 m 的九项准确率全部匹配。使用历史预处理／GT 与作者 HA 评分器；论文当时的精确方法提交尚未确定。其他序列及运行时间不在本表范围内。
+
+### IR-MCL
+
+波恩 IPBLab，官方公开的唯一一个定位序列；评分窗口为 1543 帧中的 1354 帧，因为仓库自带的评估会剔除最初 20 秒。[作者源库](https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5) · [论文 IV-B 定位结果表](https://arxiv.org/html/2210.03113v2#S4.SS2) · [我们的运行](../results/reference/ir-mcl/runs/ir-mcl-wsl/record.json)。
+
+| 指标 | 论文 Seq 1 | 复现 |
+| --- | ---: | ---: |
+| 位置 RMSE（cm） | 5.13 | 5.32 |
+| 偏航 RMSE（度） | 1.05 | 1.07 |
+| 位置 < 5 cm（%） | 63.15 | 61.74 |
+| 位置 < 10 cm（%） | 97.27 | 96.01 |
+| 位置 < 20 cm（%） | 100.00 | 100.00 |
+| 偏航 < 0.5°（%） | 47.12 | 47.64 |
+| 偏航 < 1°（%） | 74.59 | 75.85 |
+| 偏航 < 2°（%） | 94.24 | 93.57 |
+
+论文 Seq 1 的百分比恰好是 1354 个样本上的整数计数，与本仓库评估产生的窗口一致，因此两行可直接对照。C++ 运动模型的随机数发生器由 `std::random_device` 播种，重复运行会略有差异；第二次完整运行给出 5.28 cm。上游 README 补遗表中的 6.62 cm／1.11° 是整个自录数据集的汇总而非 Seq 1，本表不使用它。
+
+### AdaM-MCL
+
+自建 128 格室内平面、一个留出场景、123 次滤波更新、200 个粒子、$T_{\mathrm{cut}}=0.6$——粒子数与信赖阈值取自论文的仿真设置。[作者源库](https://github.com/Runjian-Chen/AdaM_MCL/tree/e8aedd2bae03816aabd5300e5ca2fe181b39d830) · [论文表 II](https://arxiv.org/html/2009.00211v3) · [我们的运行](../results/reference/adam-mcl/runs/adam-mcl-wsl/record.json)。
+
+| 指标 | 论文表 II | 本次复现 |
+| --- | ---: | ---: |
+| 全局定位 $E_{pos}$ | 0.153 m | 未做数值对照 |
+| 绑架 $E_{pos}$ | 0.128 m | 未做数值对照 |
+
+**未做数值对照。** 论文的 20 张仿真地图为 43 m × 43 m，另有 6 条评测序列与已发布权重，全部是外部下载；本次用自建平面，训练 **2432** 次优化步而作者默认 **2 880 000** 步，格不是米。本次实测（单位：格）：10 次重复的位置 RMSE 5.49，末帧误差均值 6.78，每次更新 0.43 s，10 次重复中 0 次满足折算到本平面的论文收敛判据。
 
 ## 假设
 

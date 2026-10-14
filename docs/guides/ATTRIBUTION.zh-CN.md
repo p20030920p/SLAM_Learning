@@ -8,7 +8,9 @@
 | --- | --- |
 | DUFOMap、DynamicMap Benchmark | 固定源码快照中的 BSD 3-Clause；作者及提交见 [upstreams.json](../../src/configs/upstreams.json) |
 | BeautyMap | 检查的源码根目录无独立许可文件；[作者源码](https://github.com/MKJia/BeautyMap)下载至私有缓存，披露补丁及来源 |
+| AdaM_MCL（DSOM、AdaM MCL） | 固定快照 [Runjian-Chen/AdaM_MCL](https://github.com/Runjian-Chen/AdaM_MCL/tree/e8aedd2bae03816aabd5300e5ca2fe181b39d830) 提交 `e8aedd2bae` 为 MIT；作者 `Dataset/` 与 `Trained_models/` 上游为空目录，未再分发 |
 | KITTI-00 teaser | [DynamicMap 发布](https://zenodo.org/records/10886629)；数据配置固定完整归档哈希，不提交原始扫描 |
+| IR-MCL | 仓库无许可文件；固定快照 [作者源库](https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5) 及其预训练权重仅用于研究复现。取自 range-mcl 的文件头部标注 MIT 并署名作者 |
 | 录制呈现 | [RECORDING](RECORDING.zh-CN.md)标明 Sim2Real-AlgoBench 约定来源，未复制其源码 |
 
 PDF 嵌入本机许可中文字体的子集，不单独分发字体文件。[AI 披露](DISCLOSURE.zh-CN.md)披露 AI 参与及申请人需要亲自核查的内容。每张图都链接实测运行，或明确标记为未执行实验的预留。

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "kind": "method_delivery",
+  "method": "ir-mcl",
+  "status": "recorded",
+  "scope": "IPBLab results/reference/ir-mcl/runs/ir-mcl-wsl/metrics.json: global localization on the one released sequence, 1543 scans, 1354 scored",
+  "primary_record": "results/reference/ir-mcl/runs/ir-mcl-wsl/record.json",
+  "upstream": {
+    "repository": "https://github.com/PRBonn/ir-mcl",
+    "commit": "aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5"
+  },
+  "paper": {
+    "url": "https://arxiv.org/abs/2210.03113",
+    "table": "https://arxiv.org/html/2210.03113v2#S4.SS2"
+  },
+  "media_record": "results/reference/ir-mcl/media/replay/record.json",
+  "session_record": "media/session/recording.json",
+  "note": "Single recorded run; no new mapping or training. media/session/private.Xauthority is a spent recorder credential and is not listed. Git checkout reports every file modified because the working tree is on a CRLF mount; compatibility.patch is diffed from CR-normalised content.",
+  "metrics": {
+    "location_rmse_cm": 5.32,
+    "location_lt5_pct": 61.74,
+    "location_lt10_pct": 96.01,
+    "location_lt20_pct": 100.0,
+    "yaw_rmse_deg": 1.07,
+    "yaw_lt0_5_pct": 47.64,
+    "yaw_lt1_pct": 75.85,
+    "yaw_lt2_pct": 93.57
+  },
+  "paper_comparison": {
+    "location_rmse_cm": {
+      "paper": 5.13,
+      "reproduced": 5.32
+    },
+    "location_lt5_pct": {
+      "paper": 63.15,
+      "reproduced": 61.74
+    },
+    "location_lt10_pct": {
+      "paper": 97.27,
+      "reproduced": 96.01
+    },
+    "location_lt20_pct": {
+      "paper": 100.0,
+      "reproduced": 100.0
+    },
+    "yaw_rmse_deg": {
+      "paper": 1.05,
+      "reproduced": 1.07
+    },
+    "yaw_lt0_5_pct": {
+      "paper": 47.12,
+      "reproduced": 47.64
+    },
+    "yaw_lt1_pct": {
+      "paper": 74.59,
+      "reproduced": 75.85
+    },
+    "yaw_lt2_pct": {
+      "paper": 94.24,
+      "reproduced": 93.57
+    }
+  },
+  "artifacts": {
+    "media/preview.gif": {
+      "sha256": "22b4e8bf79ce372fb3cd65e794b43df6ffa1d79a0b9f8e28dad2969970edaaed",
+      "bytes": 1567578,
+      "availability": "portable"
+    },
+    "media/replay/poster.png": {
+      "sha256": "fede7e6cad4b018f2ee87bfa78ef9dfa280c39f68fedebde8c9b17644ea0c424",
+      "bytes": 757835,
+      "availability": "portable"
+    },
+    "media/replay/qa-end.png": {
+      "sha256": "677354718fd6d44dae0789776bb4e2c9233bf3d3d60e7830bafc5cb886c4cfe9",
+      "bytes": 226973,
+      "availability": "portable"
+    },
+    "media/replay/qa-middle.png": {
+      "sha256": "ebf494b97e4d0593429cff713de9c0c64be6d4f30a62637b93d8cb8e585d7568",
+      "bytes": 193397,
+      "availability": "portable"
+    },
+    "media/replay/qa-start.png": {
+      "sha256": "b6aca9901c0addf62ceb9c06389f81fb65cb7134c90fc8f8b2c3ec740949b8fa",
+      "bytes": 692350,
+      "availability": "portable"
+    },
+    "media/replay/record.json": {
+      "sha256": "4e9a999d89275d9d001202871947454883dc2a37af6586c7e49317bf8365bf09",
+      "bytes": 2613,
+      "availability": "portable"
+    },
+    "media/replay/render.json": {
+      "sha256": "262ea56f6e0732778d256f4529f2e5aa249c806e3e97a23ed9c710470461fd0b",
+      "bytes": 1177,
+      "availability": "portable"
+    },
+    "media/replay/replay.mp4": {
+      "sha256": "c216fa28f0cd93b38a449f15b59dc0ee6fc2463b28cc429943076dc253791d2b",
+      "bytes": 1141373,
+      "availability": "portable"
+    },
+    "media/session/DONE": {
+      "sha256": "8c9094d1c1ace920f77f1bbb04615350d1215374b1bfaeb7f31a9619364aacd2",
+      "bytes": 25,
+      "availability": "portable"
+    },
+    "media/session/GO": {
+      "sha256": "ef7ce3aa0558d5cef38964d70908d958e3da62e6bf56ec9eee4d77d218cf435e",
+      "bytes": 25,
+      "availability": "portable"
+    },
+    "media/session/command.json": {
+      "sha256": "fbb91765e34a90fc64e39ac09486a44626646610c7b512240c5bc97dde666516",
+      "bytes": 441,
+      "availability": "portable"
+    },
+    "media/session/encoder-progress.txt": {
+      "sha256": "686d7d1792f4d46d8d4356c242ebb1d769d2ebca042cc2dae6eaa94128795c88",
+      "bytes": 221354,
+      "availability": "portable"
+    },
+    "media/session/exit.json": {
+      "sha256": "06d65301239ffa5e83f58e60d7df6af1c69b86fd68f58fb144d3c091898e463f",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "media/session/ffmpeg.log": {
+      "sha256": "a00be708b642bba23714a38f784aa4f869ebeee18a0b716def1162c9b0dc18c8",
+      "bytes": 110088,
+      "availability": "portable"
+    },
+    "media/session/full-session.mp4": {
+      "sha256": "972575088a9f002582d6524f10783e15dfd4f6c99c0104fbd3c128bd815a3500",
+      "bytes": 14512084,
+      "availability": "portable"
+    },
+    "media/session/recording.json": {
+      "sha256": "033982cd3f929e03f603aeb64b6c0470ed9acf6340c9828a691f5cc75c1f8dca",
+      "bytes": 2783,
+      "availability": "portable"
+    },
+    "media/session/review-end.png": {
+      "sha256": "dc4e0e076584e588c2a716721ab7038e0665eab3bbb8dd5ac31ee32b5fbcbdc1",
+      "bytes": 420266,
+      "availability": "portable"
+    },
+    "media/session/review-middle.png": {
+      "sha256": "ca8cd0b150ca3d76a23b6c42fdf070c1ca64d4db85e348f6329555625de08704",
+      "bytes": 466420,
+      "availability": "portable"
+    },
+    "media/session/review-start.png": {
+      "sha256": "77e832de8db74561f17d7ff5ba1447328e6e7bbbd2d2fc598c2ecc1ccde6e602",
+      "bytes": 111188,
+      "availability": "portable"
+    },
+    "media/session/terminal.raw": {
+      "sha256": "974888ec17635d7d7b8d128e41cda97813983018d85963b84d0156e537ff8833",
+      "bytes": 114625,
+      "availability": "portable"
+    },
+    "media/session/terminal.time": {
+      "sha256": "2b176a5210fa6b40340b4a27ed079c177875f3a514f3b7a64b28c047d7cf1085",
+      "bytes": 20233,
+      "availability": "portable"
+    },
+    "media/session/xvfb.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "media/timing.json": {
+      "sha256": "bcad10c628cbb533c381e8b3cb08da577b7f7bcc50646ee6caf74b23191d8b94",
+      "bytes": 1998,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/IRMCL.txt": {
+      "sha256": "565893fa8a34c77be55abb9bf9e3654ccbd9330544cc99aa1e4b11d7aebdd2a5",
+      "bytes": 311961,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/compatibility.patch": {
+      "sha256": "98b7d2794d1e73c9e49524aa31a76df8329f183ed295f23412e92eb6ca42ab36",
+      "bytes": 2427,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/loc_config.yml": {
+      "sha256": "942e28fd38331ff8189f561fc0d3df13ec5b15464f58c71babc0b655aac1891b",
+      "bytes": 1714,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/make_media.py": {
+      "sha256": "620bd6e756e768367e27d08656740993b120c2c7627314c0010fdb1465956e3b",
+      "bytes": 5708,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/metrics.json": {
+      "sha256": "5e4087ef526d08cc7c657edf03acafdc36df1fe69240eb64d0db5a2cf37b31c4",
+      "bytes": 3116,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/record.json": {
+      "sha256": "ab2970dd1aeeefb191fe1ae7798791f575b7a331c3557ba9e24f70fd12432c25",
+      "bytes": 4872,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/reproduce.sh": {
+      "sha256": "70bd558e3632c25220bb4459aa355c6fca38e77dd190b833b923ceeb59e45390",
+      "bytes": 3960,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/run.log": {
+      "sha256": "6bc244df629914cc3c02b65b8ffff5dff4683c9fd6444fedb395281d42ee141a",
+      "bytes": 110501,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/seq_1_gt_pose.txt": {
+      "sha256": "4968cb363b83599539ac3ee75511376f17184c528072933a33f229d52a537e58",
+      "bytes": 311962,
+      "availability": "portable"
+    },
+    "runs/ir-mcl-wsl/write_records.py": {
+      "sha256": "02513a04d2c8442d0a8b0c1567ed5b3728f8b108ea6e3cc75ac5b214079d0331",
+      "bytes": 15042,
+      "availability": "portable"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-# Two Methods
+# Three Methods
 
 English | [中文](README.zh-CN.md)
 
@@ -6,3 +6,4 @@ English | [中文](README.zh-CN.md)
 | --- | --- |
 | [DUFOMap](dufomap.md) | Scoped reproduction |
 | [BeautyMap](beautymap.md) | Scoped reproduction |
+| [AdaM-MCL](adam-mcl.md) | Scoped reproduction |

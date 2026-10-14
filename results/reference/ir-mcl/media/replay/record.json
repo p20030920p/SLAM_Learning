@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "kind": "paper_reproduction_media",
+  "method": "ir-mcl",
+  "status": "executed",
+  "started_at": "2026-10-14T11:59:42+00:00",
+  "finished_at": "2026-10-14T11:59:42+00:00",
+  "input_record_sha256": "ab2970dd1aeeefb191fe1ae7798791f575b7a331c3557ba9e24f70fd12432c25",
+  "rendering": {
+    "source_gif": "results/reference/ir-mcl/media/preview.gif",
+    "source_gif_sha256": "22b4e8bf79ce372fb3cd65e794b43df6ffa1d79a0b9f8e28dad2969970edaaed",
+    "source_gif_frames": 1543,
+    "source_gif_frame_delay_ms": 100,
+    "source_gif_dimensions": [
+      1600,
+      900
+    ],
+    "source_gif_duration_seconds": 154.3,
+    "playback_fps": 10,
+    "encoded_frames": 1543,
+    "expected_frames": 1543,
+    "encoded_duration_seconds": 154.3,
+    "dimensions": [
+      1600,
+      900
+    ],
+    "codec": "h264",
+    "pix_fmt": "yuv420p",
+    "command": [
+      "ffmpeg",
+      "-y",
+      "-v",
+      "error",
+      "-i",
+      "/mnt/d/workspace/be2/slam_learning_updated/results/reference/ir-mcl/media/preview.gif",
+      "-r",
+      "10",
+      "-c:v",
+      "libx264",
+      "-preset",
+      "medium",
+      "-crf",
+      "20",
+      "-pix_fmt",
+      "yuv420p",
+      "-movflags",
+      "+faststart",
+      "/mnt/d/workspace/be2/slam_learning_updated/results/reference/ir-mcl/media/replay/replay.mp4"
+    ],
+    "qa_frame_stddev": [
+      59.826,
+      50.377,
+      52.18
+    ],
+    "full_decode_passed": true,
+    "frame_count_passed": true,
+    "scope": "Constant-rate re-encode of the saved localization frames; playback rate is not algorithm throughput"
+  },
+  "artifacts": {
+    "replay.mp4": {
+      "sha256": "c216fa28f0cd93b38a449f15b59dc0ee6fc2463b28cc429943076dc253791d2b",
+      "bytes": 1141373,
+      "availability": "portable"
+    },
+    "poster.png": {
+      "sha256": "fede7e6cad4b018f2ee87bfa78ef9dfa280c39f68fedebde8c9b17644ea0c424",
+      "bytes": 757835,
+      "availability": "portable"
+    },
+    "render.json": {
+      "sha256": "262ea56f6e0732778d256f4529f2e5aa249c806e3e97a23ed9c710470461fd0b",
+      "bytes": 1177,
+      "availability": "portable"
+    },
+    "qa-start.png": {
+      "sha256": "b6aca9901c0addf62ceb9c06389f81fb65cb7134c90fc8f8b2c3ec740949b8fa",
+      "bytes": 692350,
+      "availability": "portable"
+    },
+    "qa-middle.png": {
+      "sha256": "ebf494b97e4d0593429cff713de9c0c64be6d4f30a62637b93d8cb8e585d7568",
+      "bytes": 193397,
+      "availability": "portable"
+    },
+    "qa-end.png": {
+      "sha256": "677354718fd6d44dae0789776bb4e2c9233bf3d3d60e7830bafc5cb886c4cfe9",
+      "bytes": 226973,
+      "availability": "portable"
+    }
+  }
+}
