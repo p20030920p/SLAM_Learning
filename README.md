@@ -2,7 +2,7 @@
 
 # SLAM Learning
 
-**Map repair?**
+**Localization self-recovery**
 
 Robust localization and SLAM in dynamic environments · Localization self-recovery
 
@@ -19,7 +19,7 @@ English | [中文](docs/HOME.zh-CN.md)
 
 ## Open question
 
-**In degradation and large-change environments, what strategy effectively lets a localization system recover itself?** Working documents (Chinese): [thread and gaps](docs/self-recovery/README.zh-CN.md) · [reproduction queue by structure](docs/self-recovery/REPRODUCTION-QUEUE.zh-CN.md) · [paper map](docs/self-recovery/SURVEY.zh-CN.md) · [feasibility](docs/self-recovery/FEASIBILITY.zh-CN.md) · [hypotheses by strategy family](docs/self-recovery/HYPOTHESES-BY-PAPER.zh-CN.md) · [per-paper hypotheses](docs/self-recovery/PAPER-TO-HYPOTHESIS.zh-CN.md). The semantic-mapping direction previously hosted here is archived in [SLAM_Learning](https://github.com/p20030920p/SLAM_Learning).
+**What strategies enable a localization system to recover itself under degradation and substantial environmental change?** The first experiment focuses on 2D MCL recovery triggers, pose proposals and sustained confirmation. [Research design](docs/self-recovery/DESIGN.md) · [Chinese talk](docs/self-recovery/TALK.zh-CN.md) · [Handoff status](docs/self-recovery/STATUS.zh-CN.md) · [Working literature](docs/self-recovery/README.zh-CN.md).
 
 ## Live experiments and local demos
 
@@ -31,71 +31,31 @@ Local `demo/14_static_keyboard.cmd` opens a purely static scene; `demo/15_dynami
 
 ## Static and dynamic localization recordings
 
-**Conditions.** Gazebo, recorded 2026-10-14: mapping A and an independent test B, one static and one dynamic scene (three moving boxes), 12 sensor-built maps and 42 scored AMCL replays. Green is ground truth, blue the localization estimate, orange the moving boxes.
+**Earlier map-filtering comparison.** Recorded 2026-10-14 with independent mapping A and test B. This historical LiDAR subset contains six maps and 21 scored replays. Position RMSE below excludes the first 5 s (cm); recovery after failure has not been evaluated.
 
-**Position RMSE in cm, after the first 5 s; lower is better.** Compare within each sensor family.
+| Map | Static test | Dynamic test | Clean map + same dynamic test |
+| --- | ---: | ---: | ---: |
+| Raw | 5.59 | 6.29 | 4.86 |
+| BeautyMap | 6.01 | 5.52 | 5.52 |
+| DUFOMap | 6.21 | 5.06 | 4.75 |
 
-| Map family | Map method | Pure static | Dynamic | Dynamic RMSE reduction | Clean map + dynamic test |
-| --- | --- | ---: | ---: | ---: | ---: |
-| LiDAR | Raw, no paper algorithm | 5.59 | 6.29 | Baseline | 4.86 |
-| LiDAR | BeautyMap | 6.01 | 5.52 | 12.3% | 5.52 |
-| LiDAR | DUFOMap | 6.21 | 5.06 | 19.5% | 4.75 |
-| RGB-D geometry | Raw, no paper algorithm | 5.97 | 6.45 | Baseline | 6.48 |
+![Dynamic LiDAR map and localization replay](results/localization/static-dynamic/dynamic-lidar.gif)
 
-Two further RGB-D geometry families from the archived direction (ConceptGraphs, HOV-SG) scored 5.48 / 6.02 / 6.36 cm and 6.35 / 6.28 / 5.71 cm; category 3 shows their GIF.
+Recorded-data reconstruction with three moving boxes: green is truth, blue the estimate. Mapping uses supplied poses; test AMCL receives no truth. Three identical-input main replays check reproducibility; the clean-map control has one replay. [MP4](results/localization/static-dynamic/dynamic-lidar.mp4) · [Historical evidence](results/localization/static-dynamic/README.md).
 
-Three identical AMCL replays per condition gave identical position estimates. One controlled scene. [CSV](results/localization/static-dynamic/summary.csv) · [Protocol and maps](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/results/static-dynamic/README.md).
-
-### 1. Pure static scene
-
-![Pure static scene: six map methods, trajectories and live errors](results/localization/static-dynamic/static.gif)
-
-Static mapping A and an independent static test B; no moving boxes. Filtering does not improve this clean scene. [MP4](results/localization/static-dynamic/static.mp4).
-
-### 2. Dynamic scene — LiDAR map filtering
-
-![Dynamic LiDAR comparison: raw, BeautyMap and DUFOMap](results/localization/static-dynamic/dynamic-lidar.gif)
-
-Three boxes move during both mapping and testing. On the same test B, BeautyMap reduces RMSE by **0.78 cm**, and DUFOMap by **1.23 cm**, relative to the unfiltered LiDAR map. [MP4](results/localization/static-dynamic/dynamic-lidar.mp4).
-
-### 3. Dynamic scene — RGB-D geometry maps
-
-![Dynamic RGB-D geometry comparison: raw baseline and the two archived methods](results/localization/static-dynamic/dynamic-rgbd.gif)
-
-With RGB-D raw as the baseline, the two archived RGB-D geometry methods listed above reduce RMSE by **0.43 cm** and **0.18 cm**. [MP4](results/localization/static-dynamic/dynamic-rgbd.mp4).
-
-### 4. Control — clean maps with the same dynamic test
-
-![Clean static maps with the identical dynamic test: six methods](results/localization/static-dynamic/clean-map-dynamic-test.gif)
-
-The same dynamic test B as categories 2–3, with mapping A replaced by the static recording: raw LiDAR RMSE **4.86 cm** versus **6.29 cm** on the dynamically built map. [MP4](results/localization/static-dynamic/clean-map-dynamic-test.mp4).
-
-Mapping uses simulator-provided poses; test B gives AMCL only scans, wheel odometry and the selected map, and truth is used for scoring only. [Timing and traces](results/localization/static-dynamic/README.md) · [Dynamic comparison MP4](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/results/static-dynamic/dynamic-localization-replay.mp4).
+**Recovery footage preparation.** S1 static, S2 dynamic, S3 persistent structural change and S4 degradation are being prepared. Split-screen footage has not passed visual acceptance. [Status](docs/self-recovery/STATUS.zh-CN.md).
 
 ## Direction analysis
 
-**SLAM — Simultaneous Localization and Mapping:** estimate sensor motion while building a map from its observations.
+**SLAM (Simultaneous Localization and Mapping)** estimates motion while building a map. The first experiment studies recovery against a prior map; full SLAM back ends are a later extension.
 
-- **Robust localization and SLAM in dynamic environments:** estimate motion and maintain a stable map despite moving objects, and keep the pose estimate trustworthy once the map no longer matches the world.
+| Stage | Current role |
+| --- | --- |
+| Map preparation | DUFOMap/BeautyMap controls and static-structure preservation |
+| Online localization | MCL estimates pose from scans, odometry and map; AMCL is not a factor-graph back end |
+| Recovery supervision | Monitor anomalies, generate proposals within budget and confirm trust using later observations |
 
-This repository keeps that single direction. Five elements organize the process, and the current thread adds detection and recovery around it:
-
-```text
-Sensor data → Front end → Back end (optimize) → Map build and pose output
-                  ↓              ↑                        ↓
-             Loop detection ─────┘          Failure detection → Recovery
-```
-
-| Element | Benefit | In this repository |
-| --- | --- | --- |
-| Sensor data | Cleaner input | Recorded Gazebo LiDAR and RGB-D drives |
-| Front end | Stable matches | Static-structure filtering (DUFOMap, BeautyMap) applied before localization |
-| Back end | Consistent poses | AMCL pose updates from scans and wheel odometry; outlier handling is outside these experiments |
-| Loop detection | Less drift | Not part of these experiments: the platform is AMCL, not a factor-graph back end |
-| Map build | Stable maps | Supplied-pose mapping A builds each map; six map families are scored on the same test B |
-| Failure detection and recovery | Trustworthy pose | The open thread: detection → attribution → recovery → confirmation, with the working documents linked above |
-
-The completed mapping experiments use supplied poses to isolate map construction; full SLAM, navigation and a factor-graph back end are outside them.
+The semantic-mapping direction and earlier projection comparisons remain in the [original repository](https://github.com/p20030920p/SLAM_Learning).
 
 ## Related works
 
@@ -203,13 +163,13 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 ## Hypothesis
 
-We hypothesize that retaining the observation evidence behind map updates and revisiting these updates as pose estimates improve will reduce persistent mapping errors and keep geometric maps more consistent. Candidate hypotheses for the current self-recovery thread are stated under [Open questions](#open-questions).
+Temporal triggering and sustained recovery confirmation may reduce unnecessary resets and improve correctly available time within a fixed budget. Compare explicit AMCL recovery off/on, single-frame triggering and periodic resets first. [Candidate hypotheses and falsification](docs/self-recovery/DESIGN.md).
 
 ## Branches
 
 | Branch | Role |
 | --- | --- |
-| main | Curated submission: one direction (robust localization and SLAM in dynamic environments), two mapping reproductions, open question and hypothesis. |
+| main | Curated submission: dynamic-environment localization, scoped mapping/localization reproductions and a candidate recovery experiment. |
 | [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | Original pipelines, paper-table scoring and recordings. |
 | [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | Personal study notes and hardware trials under `src/physical/`, including operations and failures. |
 

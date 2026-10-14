@@ -2,7 +2,7 @@
 
 # SLAM Learning
 
-**地图修复？**
+**定位自恢复**
 
 动态环境中的鲁棒定位与 SLAM · 定位系统自恢复
 
@@ -19,7 +19,7 @@
 
 ## 开放问题
 
-**在退化与大变动环境中，什么样的策略能够有效地让定位系统自恢复？** 工作文档：[主线与缺口](self-recovery/README.zh-CN.md) · [论文地图](self-recovery/SURVEY.zh-CN.md) · [可行性评估](self-recovery/FEASIBILITY.zh-CN.md) · [按策略族的假设集](self-recovery/HYPOTHESES-BY-PAPER.zh-CN.md) · [逐篇假设](self-recovery/PAPER-TO-HYPOTHESIS.zh-CN.md)。此前放在本仓库的语义建图与视觉定位方向已归档到旧库 [SLAM_Learning](https://github.com/p20030920p/SLAM_Learning)。
+**在退化与大变动环境中，什么样的策略能够有效地让定位系统自恢复？** 首轮聚焦二维 MCL 的恢复触发、候选位姿与持续确认。[研究设计](self-recovery/DESIGN.zh-CN.md) · [汇报稿](self-recovery/TALK.zh-CN.md) · [接续状态](self-recovery/STATUS.zh-CN.md) · [文献与候选资料](self-recovery/README.zh-CN.md)。
 
 ## 仿真实验与本机演示入口
 
@@ -31,71 +31,31 @@
 
 ## 静态与动态定位录制
 
-**录制条件。**Gazebo，2026-10-14：建图 A 与独立测试 B，静态与动态（三个运动箱体）两种场景，十二张传感器地图、42 次有效 AMCL 回放。绿色为真值，蓝色为定位估计，橙色为运动箱体。
+**已有地图过滤对照。** 2026-10-14，独立建图 A 与测试 B；下表为历史 LiDAR 子集的六张地图、21 次评分回放。数字是最初 5 秒后的平面位置 RMSE（cm），尚未评测失效后的恢复。
 
-**平面位置 RMSE，排除最初 5 秒，单位 cm，越小越好。**按传感器家族分别比较。
+| 地图 | 静态测试 | 动态测试 | 干净地图＋同一动态测试 |
+| --- | ---: | ---: | ---: |
+| 原始 | 5.59 | 6.29 | 4.86 |
+| BeautyMap | 6.01 | 5.52 | 5.52 |
+| DUFOMap | 6.21 | 5.06 | 4.75 |
 
-| 地图类别 | 建图方法 | 纯静态 | 动态 | 动态 RMSE 降幅 | 干净地图＋动态测试 |
-| --- | --- | ---: | ---: | ---: | ---: |
-| LiDAR | 原始，不使用论文算法 | 5.59 | 6.29 | 基线 | 4.86 |
-| LiDAR | BeautyMap | 6.01 | 5.52 | 12.3% | 5.52 |
-| LiDAR | DUFOMap | 6.21 | 5.06 | 19.5% | 4.75 |
-| RGB-D 几何 | 原始，不使用论文算法 | 5.97 | 6.45 | 基线 | 6.48 |
+![动态 LiDAR 地图与定位结果回放](../results/localization/static-dynamic/dynamic-lidar.gif)
 
-另有两个已归档方向的 RGB-D 几何地图族（ConceptGraphs、HOV-SG），位置 RMSE 分别为 5.48／6.02／6.36 cm 与 6.35／6.28／5.71 cm；第 3 类是其 GIF。
+画面是录制数据重绘；三个运动箱体，绿色为真值，蓝色为定位估计。建图使用给定位姿，测试 AMCL 不接收真值。主实验三次同输入回放检验可复现性，干净地图控制组一次。[MP4](../results/localization/static-dynamic/dynamic-lidar.mp4) · [完整历史证据](../results/localization/static-dynamic/README.md)。
 
-每组条件下三次相同输入的 AMCL 回放给出相同的位置估计。单一受控场景。[CSV](../results/localization/static-dynamic/summary.csv) · [协议与地图](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/results/static-dynamic/README.md)。
-
-### 1. 纯静态场景
-
-![纯静态：六种地图、轨迹与实时误差](../results/localization/static-dynamic/static.gif)
-
-静态建图 A 与独立静态测试 B，无运动箱体。干净场景中过滤不带来定位收益。[MP4](../results/localization/static-dynamic/static.mp4)。
-
-### 2. 动态场景——LiDAR 地图过滤
-
-![动态 LiDAR：原始、BeautyMap 与 DUFOMap 对照](../results/localization/static-dynamic/dynamic-lidar.gif)
-
-建图与测试期间均有三个运动箱体。同一测试 B 上，相比未过滤的 LiDAR 地图，BeautyMap 的 RMSE 降低 **0.78 cm**，DUFOMap 降低 **1.23 cm**。[MP4](../results/localization/static-dynamic/dynamic-lidar.mp4)。
-
-### 3. 动态场景——RGB-D 几何地图
-
-![动态 RGB-D 几何：原始基线与两个已归档方法对照](../results/localization/static-dynamic/dynamic-rgbd.gif)
-
-以 RGB-D 原始地图为基线，上表所述两个已归档的 RGB-D 几何方法分别使 RMSE 降低 **0.43 cm** 与 **0.18 cm**。[MP4](../results/localization/static-dynamic/dynamic-rgbd.mp4)。
-
-### 4. 控制组——干净地图＋相同动态测试
-
-![静态干净地图＋完全相同的动态测试：六种方法](../results/localization/static-dynamic/clean-map-dynamic-test.gif)
-
-与第 2、3 类同一份动态测试 B，只把建图 A 换成静态录制：原始 LiDAR 的 RMSE **4.86 cm**，动态建图结果为 **6.29 cm**。[MP4](../results/localization/static-dynamic/clean-map-dynamic-test.mp4)。
-
-建图使用仿真提供的传感器位姿；测试 B 的 AMCL 仅接收扫描、轮速里程计与待测地图，真值只用于评分。[时序与轨迹](../results/localization/static-dynamic/README.md) · [动态对照 MP4](https://github.com/p20030920p/SLAM-Physical/blob/main/docs/results/static-dynamic/dynamic-localization-replay.mp4)。
+**自恢复实录准备。** S1 静态、S2 动态、S3 持久结构变化、S4 退化场景已进入准备流程；当前分屏实录未通过视觉验收，见[接续状态](self-recovery/STATUS.zh-CN.md)。
 
 ## 方向分析
 
-**SLAM — Simultaneous Localization and Mapping，同步定位与建图：**利用传感器观测，同时估计自身运动并构建地图。
+**SLAM（Simultaneous Localization and Mapping）**在构建地图的同时估计自身运动。当前首轮实验研究先验地图上的定位自恢复；完整 SLAM 后端是后续扩展。
 
-- **动态环境中的鲁棒定位与 SLAM：**物体运动时仍能可靠估计自身运动并维护稳定地图；当地图与现状不再一致时，保持位姿估计可信。
+| 环节 | 当前角色 |
+| --- | --- |
+| 地图准备 | DUFOMap／BeautyMap 清理对照，检查静态结构保留 |
+| 在线定位 | MCL 用扫描、里程计与地图估计位姿；AMCL 不是因子图后端 |
+| 恢复监督 | 监测异常、受预算限制地提出候选、通过后续观测确认可信度 |
 
-本仓库只保留这一个方向。用五个要素理解这个过程，当前主线在其外围加上检测与恢复：
-
-```text
-传感器数据 → 前端 → 后端（优化） → 地图构建与位姿输出
-              ↓        ↑                    ↓
-          回环检测 ────┘            失效检测 → 恢复
-```
-
-| 要素 | 收益 | 本仓库的做法 |
-| --- | --- | --- |
-| 传感器数据 | 干净输入 | 已录制的 Gazebo 激光与 RGB-D 采集 |
-| 前端 | 稳定匹配 | 定位前先做静态结构过滤（DUFOMap、BeautyMap） |
-| 后端 | 一致位姿 | 由扫描与轮速里程计驱动的 AMCL 位姿更新；异常约束处理不在这些实验内 |
-| 回环检测 | 减少漂移 | 不在这些实验内：本平台是 AMCL，没有因子图后端 |
-| 地图构建 | 稳定地图 | 给定位姿的建图 A 生成各地图；同一测试 B 上为六个地图族打分 |
-| 失效检测与恢复 | 位姿可信 | 当前开放主线：检测 → 归因 → 恢复 → 确认，工作文档见上 |
-
-已完成的建图实验使用给定位姿，单独检查地图构建；完整 SLAM、导航与因子图后端不在这些实验范围内。
+语义建图方向及早期投影比较保留在[原库](https://github.com/p20030920p/SLAM_Learning)。
 
 ## 相关工作
 
@@ -203,13 +163,13 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 ## 假设
 
-我们假设，保留地图更新背后的观测证据，并随着位姿估计的改善重新审视这些更新，能够减少持续性建图错误，保持几何地图更加一致。当前自恢复主线的候选假设列在[开放问题](#开放问题)一节。
+时序一致性触发与持续恢复确认，可能在固定预算下减少正常定位时的误重置，并提高失效后的可信可用时间。先与关闭／开启 AMCL 随机注入、单帧触发和固定周期重置比较；候选假设及证伪条件见[研究设计](self-recovery/DESIGN.zh-CN.md)。
 
 ## 分支
 
 | 分支 | 用途 |
 | --- | --- |
-| main | 提交展示：单一方向（动态环境中的鲁棒定位与 SLAM）、两项方法复现、开放问题与假设。 |
+| main | 提交展示：动态环境鲁棒定位主线、按范围记录的建图／定位复现，以及候选自恢复实验。 |
 | [reproduce/author-originals](https://github.com/p20030920p/SLAM_Learning/tree/reproduce/author-originals) | 作者原流程、论文表格评分与录制。 |
 | [notes/personal-study-guide-20261008](https://github.com/p20030920p/SLAM_Learning/tree/notes/personal-study-guide-20261008) | 个人学习笔记与 `src/physical/` 实物实验，保留操作说明和失败记录。 |
 

@@ -18,16 +18,13 @@
 # ---------------------------------------------------------------------------
 # WHY THERE IS A DERIVED URDF AND BRIDGE CONFIG
 # ---------------------------------------------------------------------------
-# On this machine (WSL2, no GPU, Mesa llvmpipe) Gazebo Harmonic gives exactly one
-# RGB camera sensor a working render target.  Every additional camera sensor
-# publishes a constant untextured frame for ever while still reporting a healthy
-# update rate; measured on the robot's own rgbd_camera, 320x180 rgb8, mean 218.00,
-# std 0.00, one distinct colour.  Removing the robot camera makes the overview
-# camera render, and removing the overview camera makes the robot camera render, so
-# it is a one-camera limit, not a broken sensor.  2D and 3D lidar are unaffected.
+# Flat camera frames have been observed on this WSL/Mesa setup despite healthy
+# topic rates. A universal one-camera limit or gpu_lidar render-target conflict
+# has NOT been isolated: removing the robot camera did not establish a successful
+# split-screen recording. See docs/self-recovery/STATUS.zh-CN.md for M0/M1/M2.
 #
-# The overview camera therefore has to be the only RGB camera, so this script
-# generates, in its scratch directory only:
+# To reduce the number of rendering variables this script generates, in its
+# scratch directory only:
 #   * <urdf>_nocam.urdf      the robot URDF with the front_camera sensor removed
 #   * bridge_sensors_nocam.yaml  the sensor bridge config without /camera topics
 #   * topcam.sdf             the overview camera model, spawned at runtime
@@ -53,6 +50,8 @@ NEWREPO="${SLAM_LEARNING_REPO:-/mnt/d/workspace/be2/slam_learning_updated}"
 OUTDIR="${OUTDIR:-$NEWREPO/results/localization/self-recovery}"
 SCRATCH="${SCRATCH:-/root/live-split/$LEVEL}"
 DISPLAY_NUM="${DISPLAY_NUM:-:99}"
+SPLIT_X="${SPLIT_X:-960}"
+SCREEN="${SCREEN:-1920x1080}"
 
 # the recording-specific RViz layout: top-down, so the growing occupancy grid is
 # the subject.  The repository's own race_sim.rviz is for interactive driving and
@@ -190,6 +189,17 @@ wait_topic() {
   return 1
 }
 
+# Refuse to run if another stack is already on this domain/partition.  Two stacks
+# sharing a domain means two robots publishing /scan and two things writing
+# /cmd_vel, and the recording would silently contain someone else's simulation.
+if ros2 topic list 2>/dev/null | grep -qx /scan; then
+  echo "error: /scan already exists on ROS_DOMAIN_ID=$ROS_DOMAIN_ID." >&2
+  echo "       Another scenario is running on this domain; pick another" >&2
+  echo "       ROS_DOMAIN_ID or wait for it to finish. Refusing to start a" >&2
+  echo "       second stack, which would corrupt both." >&2
+  exit 8
+fi
+
 # The odometry topic is /omni_drive_controller/odom; /odom does not exist in this
 # stack (the remap in slam_launch.py is named /odom but nothing publishes there).
 for t in /clock /scan "$ODOM_TOPIC" /robot_description; do
@@ -235,16 +245,40 @@ if [ "$RENDER_OK" != 1 ]; then
   exit 7
 fi
 
-# --------------------------------------------------------------- viewer + RViz
-python3 "$SCRATCH/make_rviz_config.py" \
-  --out "$SCRATCH/live_split.rviz" \
-  --center "$RVIZ_VIEW_CENTER" --scale "$RVIZ_VIEW_SCALE" \
-  >"$SCRATCH/logs/rviz_config.log" 2>&1
+# --------------------------------------------------------- viewer + right half
+# The right half is either RViz2 or the purpose-built map viewer.
+#
+# Default is the map viewer.  RViz2 cannot draw the occupancy grid on this machine:
+# its GLSL program fails to link under llvmpipe --
+#   rviz2]: rviz/glsl120/indexed_8bit_image.vert ... GLSL link result :
+#   active samplers with a different type refer to the same texture image unit
+# -- so the Map display is blank and the "map is growing" evidence is missing.
+# map_view.py draws the same /map grid, the same /scan and the same odom pose with
+# the X11 canvas, which does work here.  Set RIGHT_VIEW=rviz to use RViz instead.
+RIGHT_VIEW="${RIGHT_VIEW:-map}"
+RIGHT_TITLE="$LEVEL map"
 
-ros2 run rviz2 rviz2 -d "$SCRATCH/live_split.rviz" \
-  --ros-args -p use_sim_time:=true >"$SCRATCH/logs/rviz.log" 2>&1 &
-RECORDER_PIDS+=($!)
-sleep 15
+if [ "$RIGHT_VIEW" = rviz ]; then
+  python3 "$SCRATCH/make_rviz_config.py" \
+    --out "$SCRATCH/live_split.rviz" \
+    --center "$RVIZ_VIEW_CENTER" --scale "$RVIZ_VIEW_SCALE" \
+    >"$SCRATCH/logs/rviz_config.log" 2>&1
+  ros2 run rviz2 rviz2 -d "$SCRATCH/live_split.rviz" \
+    --ros-args -p use_sim_time:=true >"$SCRATCH/logs/rviz.log" 2>&1 &
+  RECORDER_PIDS+=($!)
+  RIGHT_MATCH="RViz"
+  sleep 15
+else
+  python3 "$SCRATCH/map_view.py" \
+    --geometry 960x1080+960+0 --split "$SPLIT_X" \
+    --scan-topic /scan --odom-topic "$ODOM_TOPIC" \
+    --frame map --odom-child base_footprint \
+    --view-center "$RVIZ_VIEW_CENTER" --view-size 22 \
+    --label "$LEVEL" >"$SCRATCH/logs/map_view.log" 2>&1 &
+  RECORDER_PIDS+=($!)
+  RIGHT_MATCH="live_map_view"
+  sleep 10
+fi
 
 python3 "$SCRATCH/sdk_image_view.py" --topic /top_view \
   --geometry 960x1080+0+0 --rotate cw --label "$LEVEL" \
@@ -253,10 +287,27 @@ RECORDER_PIDS+=($!)
 sleep 8
 
 # ------------------------------------------------------------------- placement
+# The window is found by frame name *and* by having a real size.  `xdotool search
+# --name RViz` alone matches Qt's internal "Qt Selection Owner for rviz2" helper
+# window, which is 3x3; moving that leaves the visible RViz window where it was and
+# the right half of the capture comes out black.
 place() {  # window-name-substring  x y w h
-  local wid
-  wid=$(xdotool search --name "$1" 2>/dev/null | head -1 || true)
-  [ -z "$wid" ] && { echo "  window '$1' not found"; return 0; }
+  local wid geom name
+  wid=""
+  for wid_candidate in $(xdotool search --name "$1" 2>/dev/null); do
+    name=$(xdotool getwindowname "$wid_candidate" 2>/dev/null)
+    geom=$(xdotool getwindowgeometry "$wid_candidate" 2>/dev/null | awk '/Geometry/{print $2}')
+    case "$geom" in
+      [0-9]*x[0-9]*)
+        local w=${geom%x*} h=${geom#*x}
+        if [ "$w" -ge 200 ] && [ "$h" -ge 200 ]; then
+          wid="$wid_candidate"
+          break
+        fi
+        ;;
+    esac
+  done
+  [ -z "$wid" ] && { echo "  window matching '$1' not found (no window >=200x200)"; return 0; }
   xdotool windowmove "$wid" "$2" "$3" 2>/dev/null || true
   xdotool windowsize "$wid" "$4" "$5" 2>/dev/null || true
   xdotool windowraise "$wid" 2>/dev/null || true
@@ -264,8 +315,39 @@ place() {  # window-name-substring  x y w h
 }
 echo "placing windows"
 place "$LEVEL"        0   0 960 1080
-place "RViz"        960   0 960 1080
-sleep 3
+place "$RIGHT_MATCH" 960   0 960 1080
+sleep 5
+
+# Gate on the layout itself before spending minutes recording it: grab the display
+# and check that each half has content.  A misplaced window shows up here as a
+# black half rather than as a wasted recording.
+layout_gate() {
+  import -window root "$SCRATCH/layout.png" 2>/dev/null || return 0
+  python3 - "$SCRATCH/layout.png" "$SPLIT_X" <<'PY'
+import sys
+import numpy as np
+from PIL import Image
+a = np.asarray(Image.open(sys.argv[1]).convert("RGB"))
+split = int(sys.argv[2])
+ok = True
+for name, h in (("left", a[:, :split]), ("right", a[:, split:])):
+    uniq = len(np.unique(h.reshape(-1, 3), axis=0))
+    good = h.std() > 4.0 and uniq > 20
+    ok = ok and good
+    print(f"  {name:5s} mean={h.mean():7.2f} std={h.std():6.2f} uniq={uniq:6d} "
+          f"{'OK' if good else 'EMPTY'}")
+sys.exit(0 if ok else 1)
+PY
+}
+LAYOUT_TRIES=0
+until layout_gate || [ "$LAYOUT_TRIES" -ge 3 ]; do
+  LAYOUT_TRIES=$((LAYOUT_TRIES + 1))
+  echo "layout incomplete, re-placing (attempt $LAYOUT_TRIES)"
+  place "$LEVEL"    0   0 960 1080
+  place "RViz"    960   0 960 1080
+  sleep 6
+done
+echo "layout gate: $([ "$LAYOUT_TRIES" -ge 3 ] && echo 'still incomplete, recording anyway' || echo 'both halves have content')"
 
 # ---------------------------------------------------------------- measurements
 # `ros2 topic hz` is written to a file rather than piped into grep -m1: grep exits
@@ -292,13 +374,52 @@ cat "$STATS_FILE"
 echo "settling 15 s before capture"
 sleep 15
 
+# The display must still be there.  An Xvfb that dies between the layout gate and
+# the capture makes ffmpeg fail with "No data available" after minutes of work, so
+# both the display and a real 2-second grab are checked first.
+#
+# The Xvfb pid and uptime are recorded before and after the capture.  If the pid
+# changes or the uptime resets, the display was restarted mid-recording and black
+# frames mean a dead display, not a rendering failure.
+xdisplay_info() {
+  local pid
+  pid=$(pgrep -f "Xvfb ${DISPLAY_NUM} " 2>/dev/null | head -1)
+  if [ -z "$pid" ]; then
+    echo "pid=none uptime_s=0"
+  else
+    echo "pid=$pid uptime_s=$(ps -o etimes= -p "$pid" 2>/dev/null | tr -d ' ')"
+  fi
+}
+DISPLAY_BEFORE=$(xdisplay_info)
+echo "display before capture: $DISPLAY_BEFORE"
+
+if ! xdpyinfo -display "$DISPLAY_NUM" >/dev/null 2>&1; then
+  echo "error: display $DISPLAY_NUM is gone; cannot capture" >&2
+  exit 9
+fi
+if ! ffmpeg -y -loglevel error -f x11grab -framerate 10 -video_size "$SCREEN" \
+     -i "$DISPLAY_NUM.0" -t 2 -c:v libx264 -preset ultrafast -pix_fmt yuv420p \
+     "$SCRATCH/preflight.mp4" >"$SCRATCH/logs/preflight.log" 2>&1; then
+  echo "error: preflight capture failed; see $SCRATCH/logs/preflight.log" >&2
+  tail -5 "$SCRATCH/logs/preflight.log" >&2
+  exit 10
+fi
+echo "preflight capture OK ($(stat -c%s "$SCRATCH/preflight.mp4") bytes)"
+
 MP4="$OUTDIR/$LEVEL.mp4"
 echo "recording ${SECONDS_TO_RECORD}s -> $MP4"
 ffmpeg -y -loglevel warning -f x11grab -framerate 15 \
-  -video_size 1920x1080 -i "$DISPLAY_NUM.0" \
+  -video_size "$SCREEN" -i "$DISPLAY_NUM.0" \
   -t "$SECONDS_TO_RECORD" \
   -c:v libx264 -preset veryfast -crf 21 -pix_fmt yuv420p -movflags +faststart \
   "$MP4"
+
+DISPLAY_AFTER=$(xdisplay_info)
+echo "display after capture: $DISPLAY_AFTER"
+if [ "$DISPLAY_BEFORE" != "$DISPLAY_AFTER" ]; then
+  echo "WARNING: the display changed during the capture ($DISPLAY_BEFORE -> $DISPLAY_AFTER)." >&2
+  echo "         Any black frames are a restarted display, not a rendering failure." >&2
+fi
 
 echo "encoding $OUTDIR/$LEVEL.gif"
 ffmpeg -y -loglevel error -i "$MP4" \
@@ -308,7 +429,9 @@ ffmpeg -y -loglevel error -i "$MP4" \
 # --------------------------------------------------------------------- verify
 echo "checking the exported frames"
 python3 "$SCRATCH/verify_split.py" --video "$MP4" --outdir "$OUTDIR" \
-  --stem "$LEVEL" --split 960 | tee "$SCRATCH/logs/verify.log"
+  --stem "$LEVEL" --split 960 \
+  --display-before "$DISPLAY_BEFORE" --display-after "$DISPLAY_AFTER" \
+  | tee "$SCRATCH/logs/verify.log"
 
 {
   echo "level=$LEVEL"
@@ -320,6 +443,9 @@ python3 "$SCRATCH/verify_split.py" --video "$MP4" --outdir "$OUTDIR" \
   echo "route_waypoints=$WAYPOINTS"
   echo "spawn=$SX,$SY,$SYAW"
   echo "seconds=$SECONDS_TO_RECORD fps=15"
+  echo "right_view=$RIGHT_VIEW"
+  echo "display_before=$DISPLAY_BEFORE"
+  echo "display_after=$DISPLAY_AFTER"
   cat "$STATS_FILE"
 } >"$SCRATCH/logs/params.txt"
 echo "parameters -> $SCRATCH/logs/params.txt"
