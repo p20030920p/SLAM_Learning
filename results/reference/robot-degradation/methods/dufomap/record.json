@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "dufomap",
+  "parent_record": "../../record.json",
+  "parent_sha256": "0fe77b58f1dbbd702a974f0b15bb8ad51af1412cfd4565092c50c7f8c7d99398",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-173508-localization-degradation-e41e34",
+  "case_configuration": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d/author-maps-20261014-172116/dufomap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    }
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 478,
+    "position_rmse_m": 0.6263684190976451,
+    "yaw_rmse_deg": 0.8067723612398179,
+    "post_warmup_5s_samples": 477,
+    "post_warmup_5s_position_rmse_m": 0.6253129623140437,
+    "position_p95_m": 1.1178361591975823
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 5.5,
+    "common_end_s": 103.5,
+    "alignment": "none",
+    "frames": 785
+  },
+  "timing": {
+    "duration_s": 98.20000000000086,
+    "frames": 491,
+    "fps": 5,
+    "video_duration_s": 98.125,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": {
+    "restore_stamp_s": 58.6,
+    "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+    "sustained_convergence_delay_s": 0.0,
+    "converged": true,
+    "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+  },
+  "source_inputs": {
+    "dufomap-samples.csv": "04b16813218d4ce64cad1d238727e56ae71161d6f84e22d785594bd4d6442bc1",
+    "truth.jsonl": "3913ca4c795ea1df6f32a2478263ae89d294e5d2615f00d098e8d8500cc81d78",
+    "cases.json": "e7d1622786b9ac788d8661b0b0e9c1202ccae55d49ac0326f2df613c85010070",
+    "metrics.json": "3f94b5bd2fe5d23dbd24b4b0567b957f0e5619e398c30cec32b75423a6362a1e",
+    "maps/dufomap/map.pgm": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+    "maps/dufomap/map.yaml": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+    "scan-stress.jsonl": "4079e9cc4ef0808e33e728e14ecfc686360a62bc9f92e56cf174d147e9f6e782"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py results/reference/robot-degradation",
+  "renderer_sha256": "2d8c1db5f4603798936c79087cbef5a8654222a74e8bbcfa6e1d41a97137fb29",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "92b5390f4c77c8ef5f0351db991e711886e36cfd57e21827f2324e5287f342e6",
+      "bytes": 100473,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "adf8881dbdcb00c28c421a448dc72cc27cbe647a62c96ae4efe1d53b9a8d9271",
+      "bytes": 756006,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "dc36bd2ecd8e9debecc6300c3db6e3e3a4dc625ce3fba63ab2a53d89f9ca970d",
+      "bytes": 318743,
+      "availability": "portable"
+    }
+  }
+}

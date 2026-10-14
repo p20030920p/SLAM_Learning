@@ -79,7 +79,7 @@ def replay(folder, values, restore_stamp, *, output_folder=None, heading_label=N
         top.imshow(image, cmap="gray", vmin=0, vmax=255, extent=extent, origin="upper", alpha=.72)
         x = array[:, [1, 4]]
         y = array[:, [2, 5]]
-        pad = .65
+        pad = 2.0 if count == 1 and folder.name == "robot-degradation" else .65
         top.set_xlim(x.min()-pad, x.max()+pad)
         top.set_ylim(y.min()-pad, y.max()+pad)
         top.set_aspect("equal", adjustable="box")

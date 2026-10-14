@@ -15,6 +15,7 @@ from slam_learning.runtime.runner import verify_record
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("parents", nargs="+", type=Path)
+    parser.add_argument("--force", action="store_true", help="Replace derived renders; preserve original scene evidence")
     args = parser.parse_args()
     for parent in args.parents:
         source = parent / "record.json"
@@ -26,7 +27,7 @@ def main():
         interval = [record["result_replay"][key] for key in ("common_start_s", "common_end_s")]
         for name, case in cases.items():
             output = parent / "methods" / name
-            if (output / "record.json").exists():
+            if (output / "record.json").exists() and not args.force:
                 issues = verify_record(output / "record.json")
                 if issues:
                     raise ValueError(issues)
@@ -63,7 +64,7 @@ def main():
                      "command": "python src/scripts/presentation/package_case_replays.py " + parent.as_posix(),
                      "renderer_sha256": digest(Path(__file__).with_name("package_session.py")),
                      "artifacts": {p.name: {"sha256": digest(p), "bytes": p.stat().st_size, "availability": "portable"}
-                                   for p in output.iterdir() if p.is_file()}}
+                                   for p in output.iterdir() if p.is_file() and p.name != "record.json"}}
             (output / "record.json").write_text(json.dumps(child, indent=2)+"\n", encoding="utf-8")
             issues = verify_record(output / "record.json")
             if issues:

@@ -35,37 +35,7 @@ Current native Gazebo/RViz/Terminal workflow: [one-click instructions](demo/READ
 
 **Method labels refer to map processing; every robot localizer is AMCL.** Raw uses the unfiltered map; DUFOMap and BeautyMap clean the same provided-pose 3D mapping input before common 2D projection. The live GIF under each method is the **same parallel scene execution**: RViz displays Raw, while the terminal reports all instances. Each result GIF isolates that case; replay performs no new inference.
 
-All-position RMSE includes initialization and uses retained native updates. One run per condition. [Scoring formula and numeric comparison](docs/testing/LIVE.md#how-errors-are-calculated) · [Recording names / modules / algorithms](demo/recording-index.json).
-
-### Degradation ladder, live split screen
-
-Left is the simulator's own overview render; right is the map being built online. Both halves come from a single 1920x1080 capture, so they are the same instant. Every take is judged from the encoded file by five gates: the left renders, the right draws, the map grows (or, for a localisation level, correctly does **not** grow), the robot actually moved, and the display stayed alive. The right half is a purpose-built viewer for the same topics, not the RViz window, because RViz's map shader fails to link under llvmpipe. [Conditions, pipeline and limitations](results/localization/self-recovery/README.md).
-
-#### S1 static
-
-![S1 static: live split screen](results/localization/self-recovery/S1_static.gif)
-
-[MP4](results/localization/self-recovery/S1_static.mp4) · [check](results/localization/self-recovery/S1_static_check.json) · 170 s · map grew 216x143 to 293x143 cells (4.65 m to 14.65 m wide) · robot trail +265 px.
-
-#### S2 dynamic
-
-![S2 dynamic: live split screen](results/localization/self-recovery/S2_dynamic.gif)
-
-[MP4](results/localization/self-recovery/S2_dynamic.mp4) · [check](results/localization/self-recovery/S2_dynamic_check.json) · 80 s · three moving obstacles in frame; the right half changed 6.5 percent between samples.
-
-#### S3 large change
-
-![S3 large change: live split screen](results/localization/self-recovery/S3_large_change.gif)
-
-[MP4](results/localization/self-recovery/S3_large_change.mp4) · [check](results/localization/self-recovery/S3_large_change_check.json) · 70 s · the level is handed a saved map and must not grow it; robot trail +578 px. What failed here first was the criterion, not the localisation: `map -> base_footprint` moves and `amcl_pose` tracks it.
-
-#### S4 degradation
-
-![S4 degradation: live split screen](results/localization/self-recovery/S4_degradation.gif)
-
-[MP4](results/localization/self-recovery/S4_degradation.mp4) · [check](results/localization/self-recovery/S4_degradation_check.json) · 70 s · 72-beam, 120-degree, 3.5 m lidar in a straight corridor; robot trail +229 px. The map does not grow, which is the point of the level, and the check records that rather than leaning on a weak branch.
-
-### Earlier recordings, reconstructed from saved data
+Position RMSE includes initialization and uses retained native updates. One run per condition. [Scoring formula and numeric comparison](docs/testing/LIVE.md#how-errors-are-calculated) · [Recording names / modules / algorithms](demo/recording-index.json).
 
 ### Pure static
 
@@ -290,6 +260,36 @@ Old static-A maps in a changed world. This route did not induce loss, so it is n
 **Physical robot tests:** static, dynamic, degradation and persistent change remain pending; 2D/3D sensor layers are listed in the [protocol](docs/testing/LIVE.md#one-click-demonstrations-and-physical-tests).
 
 Local keyboard and recording scripts: `F:\be2演讲\实机脚本`; [instructions](demo/README.md).
+
+## Supplementary live scene recordings
+
+A separate offscreen camera + topic-viewer pipeline; the native Gazebo/RViz/Terminal captures and method scores are above.
+
+Left is the simulator's own overview render; right is the map being built online. Both halves come from a single 1920x1080 capture, so they are the same instant. Every take is judged from the encoded file by five gates: the left renders, the right draws, the map grows (or, for a localisation level, correctly does **not** grow), the robot actually moved, and the display stayed alive. The right half is a purpose-built viewer for the same topics, not the RViz window, because RViz's map shader fails to link under llvmpipe. [Conditions, pipeline and limitations](results/localization/self-recovery/README.md).
+
+### S1 static
+
+![S1 static: live split screen](results/localization/self-recovery/S1_static.gif)
+
+[MP4](results/localization/self-recovery/S1_static.mp4) · [check](results/localization/self-recovery/S1_static_check.json) · 170 s · map grew 216x143 to 293x143 cells (4.65 m to 14.65 m wide) · robot trail +265 px.
+
+### S2 dynamic
+
+![S2 dynamic: live split screen](results/localization/self-recovery/S2_dynamic.gif)
+
+[MP4](results/localization/self-recovery/S2_dynamic.mp4) · [check](results/localization/self-recovery/S2_dynamic_check.json) · 80 s · three moving obstacles in frame; the right half changed 6.5 percent between samples.
+
+### S3 large change
+
+![S3 large change: live split screen](results/localization/self-recovery/S3_large_change.gif)
+
+[MP4](results/localization/self-recovery/S3_large_change.mp4) · [check](results/localization/self-recovery/S3_large_change_check.json) · 70 s · the level is handed a saved map and must not grow it; robot trail +578 px. What failed here first was the criterion, not the localisation: `map -> base_footprint` moves and `amcl_pose` tracks it.
+
+### S4 degradation
+
+![S4 degradation: live split screen](results/localization/self-recovery/S4_degradation.gif)
+
+[MP4](results/localization/self-recovery/S4_degradation.mp4) · [check](results/localization/self-recovery/S4_degradation_check.json) · 70 s · 72-beam, 120-degree, 3.5 m lidar in a straight corridor; robot trail +229 px. The map does not grow, which is the point of the level, and the check records that rather than leaning on a weak branch.
 
 ## Direction analysis
 
