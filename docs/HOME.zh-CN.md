@@ -25,9 +25,9 @@
 
 **SLAM（Simultaneous Localization and Mapping）**在构建地图的同时估计自身运动。大方向包含动态环境下的建图、定位和 SLAM，自恢复是其中的开放问题。
 
-![SLAM 位姿与地图联合估计、定位恢复闭环及实际底盘与传感器](assets/slam-recovery-flow.png)
+![SLAM 位姿与地图估计及恢复：实体底盘与传感器、Gazebo 扫描、给定位姿地图与走廊](assets/slam-recovery-flow.zh-CN.png)
 
-开放问题属于**位姿估计失效后的恢复**，受观测质量与地图有效性影响。可收窄为：**几何观测重新充分后，固定地图定位如何避免错误收敛，并确认持续恢复？** [可编辑流程图](assets/slam-recovery-flow.pptx)。照片为已有底盘与传感器，实体测试仍待测。
+开放问题属于**位姿估计失效后的恢复**，受观测质量与地图有效性影响。可收窄为：**几何观测重新充分后，固定地图定位如何避免错误收敛，并确认持续恢复？** [可编辑中文流程图](assets/slam-recovery-flow.zh-CN.pptx) · [图像来源](assets/direction/sources.json)。照片为已有底盘与传感器，实体测试仍待测。
 
 | 成果 | 内容 |
 | --- | --- |
@@ -39,11 +39,19 @@
 
 ## 相关工作
 
+**作者原库现场执行：RViz＋终端。**显示器观察当前计算状态，仅在可视化时稀疏展示点／粒子；观察器开销不作论文运行时间对比。
+
 ### DUFOMap — 在地图积分过程中去除动态点
 
 **输入：**连续三维激光扫描与给定传感器位姿。**处理：**用扫描实际观测到的空闲空间判断过去的占据点是否为动态残留；八叉树累积证据，并为位姿不确定性留出裕量。**输出：**去除动态残留的点云地图。它本身不估计机器人位姿。[论文与复现范围](papers/dufomap.zh-CN.md)。
 
 录像中灰色是保留点、红色是移除点、青色是当前扫描。重点看后续扫描如何改变旧点的保留决策。KITTI-00，141 帧；SA 97.98%／DA 98.70%。SA 是静态点保留率，DA 是动态点删除率，都不是定位误差。
+
+**现场执行 · Live execution**
+
+![DUFOMap author-code live execution](../results/reference/desktop-live-dufomap/execution.gif)
+
+[Live MP4](../results/reference/desktop-live-dufomap/execution.mp4) · [record](../results/reference/desktop-live-dufomap/record.json)
 
 ### BeautyMap — 清理已有点云地图
 
@@ -51,17 +59,41 @@
 
 灰色／红色分别表示保留／移除。重点看累计移除决策，不把初始完整地图理解成在线 SLAM 的建图结果。KITTI-00，141 帧；SA 96.95%／DA 98.34%。更干净的地图是否改善定位，需要另做下游测试。
 
+**现场执行 · Live execution**
+
+![BeautyMap author-code live execution](../results/reference/desktop-live-beautymap/execution.gif)
+
+[Live MP4](../results/reference/desktop-live-beautymap/execution.mp4) · [record](../results/reference/desktop-live-beautymap/record.json)
+
 ### IR-MCL — 用神经观测模型定位
 
 **输入：**预训练神经占据场、真实二维扫描与运动输入。**处理：**每个粒子代表一个候选机器人位姿；神经场在该位姿渲染预测扫描，与真实扫描比较后更新权重，再重采样。**输出：**估计位姿与粒子分布。[论文、原库与评分协议](papers/ir-mcl.zh-CN.md)。
 
 RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示估计，绿色是真值轨迹。重点看粒子是否集中，以及估计是否贴近参照。显示用加权粒子均值，评分用原生保存轨迹。Bonn IPBLab Seq 1：处理 1543／评分 1354 帧，本次 RMSE 5.31 cm／1.07°。这次作者数据运行与接入 Gazebo 是两项不同实验。
 
+**现场执行 · Live execution**
+
+![IR-MCL author-code live execution](../results/reference/desktop-live-ir-mcl/execution.gif)
+
+[Live MP4](../results/reference/desktop-live-ir-mcl/execution.mp4) · [record](../results/reference/desktop-live-ir-mcl/record.json)
+
 ### AdaM-MCL — 学习式候选位置与粒子跟踪混合
 
 **输入：**地图、激光观测、运动输入与训练好的候选位姿模型。**处理：**学习模型提出候选位置，自适应混合机制将其与常规粒子跟踪结合。**输出：**位姿分布，可包含绑架事件后的新位置假设。[论文与范围限制](papers/adam-mcl.zh-CN.md)。
 
 当前使用自建 128 格地图、2432 步权重，123 次滤波更新，RMSE 32.23 格。未获取论文发布数据与权重，因此这是受限原库流程执行；没有复现论文的米制精度，也没有证明成功自恢复。[评分更正](../results/reference/adam-mcl/ERRATUM.md)。
+
+**现场执行 · Live execution**
+
+![AdaM-MCL author-code live execution](../results/reference/desktop-adam-mcl/execution.gif)
+
+[Live MP4](../results/reference/desktop-adam-mcl/execution.mp4) · [record](../results/reference/desktop-adam-mcl/record.json)
+
+**保存结果回放**
+
+![AdaM-MCL saved result replay](../results/reference/desktop-adam-mcl/result.gif)
+
+[Result MP4](../results/reference/desktop-adam-mcl/result.mp4)
 
 ## 假设
 
@@ -198,58 +230,6 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 [Result MP4](../results/reference/robot-gicp-static/result.mp4) · XY RMSE **1.09 cm** · yaw **0.16°** · 397 updates.
 
 相同估计器参数的首次 NDT 试验为 34.43 cm，记录也保留。差异原因尚未定位，不能只用最新分数宣称鲁棒性。[Initial trial](../results/reference/robot-ndt-static-initial/record.json).
-
-## 作者原库现场录像
-
-**作者原库现场执行：RViz＋终端。**下面三段新录像显示当前原生计算状态，不把预先计算的最终地图或轨迹当成执行。只读显示观察器稀疏展示点／粒子并增加开销，不作论文运行时间比较；输入为作者公开数据。
-
-### DUFOMap
-
-**现场执行 · Live execution**
-
-![DUFOMap: fresh native calculation and actual RViz](../results/reference/desktop-live-dufomap/execution.gif)
-
-[Live MP4](../results/reference/desktop-live-dufomap/execution.mp4) · [record](../results/reference/desktop-live-dufomap/record.json) · [paper](papers/dufomap.zh-CN.md)
-
-KITTI-00，141 帧。积分过程中查询当前八叉树，末尾执行传播；灰色为保留、红色为移除、青色为当前扫描。SA 97.98%／DA 98.70%。
-
-### BeautyMap
-
-**现场执行 · Live execution**
-
-![BeautyMap: fresh native calculation and actual RViz](../results/reference/desktop-live-beautymap/execution.gif)
-
-[Live MP4](../results/reference/desktop-live-beautymap/execution.mp4) · [record](../results/reference/desktop-live-beautymap/record.json) · [paper](papers/beautymap.zh-CN.md)
-
-KITTI-00，141 帧。现场展示离线地图清理的计算过程：完整输入地图在开始时已提供，随扫描处理更新原生累计移除决策。SA 96.95%／DA 98.34%。
-
-### IR-MCL
-
-**现场执行 · Live execution**
-
-![IR-MCL: fresh native calculation and actual RViz](../results/reference/desktop-live-ir-mcl/execution.gif)
-
-[Live MP4](../results/reference/desktop-live-ir-mcl/execution.mp4) · [record](../results/reference/desktop-live-ir-mcl/record.json) · [paper](papers/ir-mcl.zh-CN.md)
-
-Bonn IPBLab，处理 1543／评分 1354 帧。推理过程中更新原生粒子、显示估计与参考轨迹。本次 RMSE 5.31 cm／1.07°。
-
-### AdaM-MCL
-
-保留此前原生终端执行及明确标注的保存结果回放。自建 128 格地图／2432 步权重，一次 123 更新试验，RMSE 32.23 格；不与论文数值对比。
-
-**现场执行（终端）**
-
-![AdaM-MCL native terminal execution](../results/reference/desktop-adam-mcl/execution.gif)
-
-[MP4](../results/reference/desktop-adam-mcl/execution.mp4)
-
-**保存结果回放**
-
-![AdaM-MCL saved result replay](../results/reference/desktop-adam-mcl/result.gif)
-
-[MP4](../results/reference/desktop-adam-mcl/result.mp4) · [Score erratum](../results/reference/adam-mcl/ERRATUM.md)
-
-下文保留历史论文表证据；本次 LiDAR 数值来自独立评分器，未重新作 PCL 交叉核验。
 
 ## 静态与动态定位录制
 

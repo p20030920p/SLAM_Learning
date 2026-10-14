@@ -25,9 +25,9 @@ English | [中文](docs/HOME.zh-CN.md)
 
 **SLAM (Simultaneous Localization and Mapping)** estimates motion while building a map. The direction includes dynamic-environment mapping, localization and SLAM; self-recovery is an open question within it.
 
-![SLAM joint pose-map estimation and the localization recovery loop; actual chassis and sensor photographs](docs/assets/slam-recovery-flow.png)
+![SLAM pose-map estimation and recovery: physical chassis and sensors, Gazebo scans, provided-pose map and corridor](docs/assets/slam-recovery-flow.en.png)
 
-The open question concerns recovery of pose estimation after failure, influenced by observation quality and map validity. A narrower candidate is: **after geometric observations become informative again, how can fixed-map localization avoid false convergence and confirm recovery?** [Editable flow diagram](docs/assets/slam-recovery-flow.pptx). Hardware photographs document the existing chassis/sensors; physical tests remain pending.
+The open question concerns recovery of pose estimation after failure, influenced by observation quality and map validity. A narrower candidate is: **after geometric observations become informative again, how can fixed-map localization avoid false convergence and confirm recovery?** [Editable English diagram](docs/assets/slam-recovery-flow.en.pptx) · [Image sources](docs/assets/direction/sources.json). Hardware photographs document the existing chassis/sensors; physical tests remain pending.
 
 | Deliverable | Content |
 | --- | --- |
@@ -39,11 +39,19 @@ Semantic mapping and earlier projections remain in the [original repository](htt
 
 ## Related works
 
+**Author-code live execution with RViz + Terminal.** The display observes current computation; points/particles are thinned only for visualization. Observer overhead is excluded from paper runtime comparisons.
+
 ### DUFOMap — dynamic-point removal during map integration
 
 **Input:** successive 3D LiDAR scans and provided sensor poses. **Process:** observed free space supplies evidence that earlier occupied points are transient; an octree accumulates this evidence with margins for pose uncertainty. **Output:** a map with dynamic remnants removed. It does not estimate the robot pose. [Paper and reproduced scope](docs/papers/dufomap.md).
 
 In the live video, gray points are retained, red points are removed, and cyan points are the current scan. Watch how decisions change as later scans supply evidence. KITTI-00, 141 scans; SA 97.98% / DA 98.70%. SA measures retained static points and DA measures removed dynamic points; neither is localization error.
+
+**Live execution**
+
+![DUFOMap author-code live execution](results/reference/desktop-live-dufomap/execution.gif)
+
+[Live MP4](results/reference/desktop-live-dufomap/execution.mp4) · [record](results/reference/desktop-live-dufomap/record.json)
 
 ### BeautyMap — clean an existing point-cloud map
 
@@ -51,17 +59,41 @@ In the live video, gray points are retained, red points are removed, and cyan po
 
 Gray/red show retained/removed points. Watch the cumulative removal decisions, rather than interpreting the complete initial map as online SLAM. KITTI-00, 141 scans; SA 96.95% / DA 98.34%. Cleaner maps may help downstream localization, but that requires a separate test.
 
+**Live execution**
+
+![BeautyMap author-code live execution](results/reference/desktop-live-beautymap/execution.gif)
+
+[Live MP4](results/reference/desktop-live-beautymap/execution.mp4) · [record](results/reference/desktop-live-beautymap/record.json)
+
 ### IR-MCL — localize with a neural observation model
 
 **Input:** a pretrained neural occupancy field, measured 2D scans and motion input. **Process:** each particle represents a possible robot pose; the field renders a predicted scan at that pose, scan agreement changes particle weights, and resampling concentrates the belief. **Output:** an estimated pose and particle distribution. [Paper, original code and protocol](docs/papers/ir-mcl.md).
 
 In RViz, the map supplies context, yellow particles show pose hypotheses, blue is the displayed estimate and green is the reference trajectory. Watch particle concentration and agreement with the reference. The displayed weighted particle mean is an observer; scoring uses the native saved estimate. Bonn IPBLab Seq 1: 1543 processed / 1354 scored poses, fresh RMSE 5.31 cm / 1.07°. This author-data run is separate from deployment into Gazebo.
 
+**Live execution**
+
+![IR-MCL author-code live execution](results/reference/desktop-live-ir-mcl/execution.gif)
+
+[Live MP4](results/reference/desktop-live-ir-mcl/execution.mp4) · [record](results/reference/desktop-live-ir-mcl/record.json)
+
 ### AdaM-MCL — combine learned proposals and particle tracking
 
 **Input:** a map, laser observation, motion input and trained proposal model. **Process:** the learned model proposes candidate poses; the adaptive mixture combines proposals with conventional particle tracking. **Output:** pose belief, including hypotheses after a kidnapping event. [Paper and limits](docs/papers/adam-mcl.md).
 
 Our run uses an authored 128-cell map and a 2432-step checkpoint: 123 filter updates, RMSE 32.23 cells. The released paper dataset/checkpoint was unavailable. This verifies a limited original-code workflow; it neither reproduces the paper's metre-scale scores nor demonstrates successful recovery. [Score correction](results/reference/adam-mcl/ERRATUM.md).
+
+**Live execution**
+
+![AdaM-MCL author-code live execution](results/reference/desktop-adam-mcl/execution.gif)
+
+[Live MP4](results/reference/desktop-adam-mcl/execution.mp4) · [record](results/reference/desktop-adam-mcl/record.json)
+
+**Measured result replay**
+
+![AdaM-MCL saved result replay](results/reference/desktop-adam-mcl/result.gif)
+
+[Result MP4](results/reference/desktop-adam-mcl/result.mp4)
 
 ## Hypothesis
 
@@ -198,58 +230,6 @@ The following short static trials use live 3D points and a fixed Raw 3D map. No 
 [Result MP4](results/reference/robot-gicp-static/result.mp4) · XY RMSE **1.09 cm** · yaw **0.16°** · 397 updates.
 
 NDT also produced 34.43 cm in its first trial with the same estimator parameters; that run is retained. The cause of the variation is not yet established, so the latest score is not a robustness claim. [Initial trial](results/reference/robot-ndt-static-initial/record.json).
-
-## Author-code live recordings
-
-**Live author-code execution with RViz + Terminal.** These three new recordings show current native computation; they do not load a previously computed final map or trajectory as execution. Display-only observers thin points/particles and add overhead; no paper runtime comparison is made. Source data are the released author datasets.
-
-### DUFOMap
-
-**Live execution**
-
-![DUFOMap: fresh native calculation and actual RViz](results/reference/desktop-live-dufomap/execution.gif)
-
-[Live MP4](results/reference/desktop-live-dufomap/execution.mp4) · [record](results/reference/desktop-live-dufomap/record.json) · [paper](docs/papers/dufomap.md)
-
-KITTI-00, 141 scans. The current octree is queried during integration, followed by final propagation; gray = retained, red = removed, cyan = current scan. SA 97.98% / DA 98.70%.
-
-### BeautyMap
-
-**Live execution**
-
-![BeautyMap: fresh native calculation and actual RViz](results/reference/desktop-live-beautymap/execution.gif)
-
-[Live MP4](results/reference/desktop-live-beautymap/execution.mp4) · [record](results/reference/desktop-live-beautymap/record.json) · [paper](docs/papers/beautymap.md)
-
-KITTI-00, 141 scans. Offline map cleaning shown while it computes: the full input map is available at the start and cumulative native removal decisions update during scan processing. SA 96.95% / DA 98.34%.
-
-### IR-MCL
-
-**Live execution**
-
-![IR-MCL: fresh native calculation and actual RViz](results/reference/desktop-live-ir-mcl/execution.gif)
-
-[Live MP4](results/reference/desktop-live-ir-mcl/execution.mp4) · [record](results/reference/desktop-live-ir-mcl/record.json) · [paper](docs/papers/ir-mcl.md)
-
-Bonn IPBLab, 1543 processed / 1354 scored poses. Current native particles, displayed estimate and reference update during inference. Fresh RMSE 5.31 cm / 1.07°.
-
-### AdaM-MCL
-
-Previous native terminal execution and labelled saved-output replay, retained unchanged. Authored 128-cell plan / 2432-step checkpoint; one 123-update trial, 32.23-cell RMSE; no paper numeric comparison.
-
-**Live execution (terminal)**
-
-![AdaM-MCL native terminal execution](results/reference/desktop-adam-mcl/execution.gif)
-
-[MP4](results/reference/desktop-adam-mcl/execution.mp4)
-
-**Measured result replay**
-
-![AdaM-MCL saved result replay](results/reference/desktop-adam-mcl/result.gif)
-
-[MP4](results/reference/desktop-adam-mcl/result.mp4) · [Score erratum](results/reference/adam-mcl/ERRATUM.md)
-
-Historical paper-table evidence remains below; fresh LiDAR values use the independent scorer without a new PCL cross-check.
 
 ## Static and dynamic localization recordings
 

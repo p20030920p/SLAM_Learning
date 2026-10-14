@@ -1,0 +1,60 @@
+{
+  "kind": "direction_figure_visual_sources",
+  "sources": {
+    "scan-2d": {
+      "file": "D:\\workspace\\be2\\slam_learning_updated\\docs\\assets\\direction\\scan-2d.json",
+      "sha256": "02a1ea34ffc36a3a99a6aa13bfc500584f6e4090ff3331bfd9b41ebb6cc69bdd",
+      "stamp_s": 25.0
+    },
+    "scan-3d": {
+      "file": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-214613-mapping-static-e2db17\\mapping-clouds.npz",
+      "sha256": "d6f6c2841a23595b567e4002a33eb7120872dae31fe58940b3a9bb352ef3c4f4",
+      "scan_index": 20,
+      "stamp_s": 21.3
+    },
+    "map-3d": {
+      "file": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-163140-mapping-static-24597a\\author-maps-20261014-165909\\raw\\points.npy",
+      "sha256": "1aefa3045e23b6e494452b96c9e58e314cb120b7f19378fa1b99f6bd65a7baeb",
+      "scope": "controlled mapping A with provided sensor poses; not full 3D SLAM"
+    },
+    "gazebo-corridor": {
+      "file": "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\robot-corridor-v2-mapping\\execution.mp4",
+      "sha256": "551870630451e93b0fc60d32943fa99663755c61ca81b98688855dfcf97362bf",
+      "wall_time_s": 35,
+      "viewport_crop_xywh": [
+        240,
+        270,
+        650,
+        345
+      ]
+    },
+    "chassis": {
+      "file": "D:\\workspace\\be2\\slam_learning_updated\\docs\\assets\\robot\\chassis.jpg",
+      "sha256": "865627da7634dc76df3224c6ad2735156d93daaf7eb420ec1c62d007a5ba4ccc",
+      "scope": "user-supplied hardware photograph; physical accuracy tests pending"
+    },
+    "sensors": {
+      "file": "D:\\workspace\\be2\\slam_learning_updated\\docs\\assets\\robot\\sensors.png",
+      "sha256": "db95caace3bc9a4df7ea597287b1b9610f38bde36e5015aa6715fe9b172525d2",
+      "scope": "user-supplied hardware photograph; physical accuracy tests pending"
+    }
+  },
+  "outputs": {
+    "gazebo-corridor.png": {
+      "sha256": "51a88b8b30a6a8050b056751b22b4fa4d665a4d51080fb131025bb314f29420d",
+      "bytes": 52841
+    },
+    "map-3d.png": {
+      "sha256": "2d9b39792a71acdb303da5ef76310fec57836676ebb376bc6650efa5b99b722e",
+      "bytes": 246210
+    },
+    "scan-2d.png": {
+      "sha256": "da4838f478930e27e3772a0f6ebff957e575b3112fbb37de217c8e15883ec074",
+      "bytes": 14904
+    },
+    "scan-3d.png": {
+      "sha256": "93feb64a6c0e652667b55600aa34c4179ebc1664ab3b084bcd06628cef6ca051",
+      "bytes": 40258
+    }
+  }
+}
