@@ -60,11 +60,25 @@ class MapView(Node):
         self.scan_count = 0
         self.last_map_wall = 0.0
         self.last_scan_wall = 0.0
+        self.map_via = "none"
         self.updates = 0
 
+        # /map is subscribed twice with different durability.  A RELIABLE +
+        # TRANSIENT_LOCAL reader only matches a publisher offering the same, and
+        # when it does not match it receives *nothing at all* -- which is how a
+        # recording came out with "map 0  scan 1090  age map 3351.0s" and an empty
+        # grid.  A VOLATILE reader matches both a latched and an unlatched publisher,
+        # so it is created as a fallback and whichever one is actually delivering is
+        # the one drawn.  The active one is reported on screen and in the log.
         latched = QoSProfile(
             reliability=QoSReliabilityPolicy.RELIABLE,
             durability=QoSDurabilityPolicy.TRANSIENT_LOCAL,
+            history=QoSHistoryPolicy.KEEP_LAST,
+            depth=1,
+        )
+        volatile = QoSProfile(
+            reliability=QoSReliabilityPolicy.RELIABLE,
+            durability=QoSDurabilityPolicy.VOLATILE,
             history=QoSHistoryPolicy.KEEP_LAST,
             depth=1,
         )
@@ -74,19 +88,23 @@ class MapView(Node):
             history=QoSHistoryPolicy.KEEP_LAST,
             depth=5,
         )
-        self.create_subscription(OccupancyGrid, "/map", self.on_map, latched)
+        self.create_subscription(OccupancyGrid, "/map",
+                                 lambda m: self.on_map(m, "transient_local"), latched)
+        self.create_subscription(OccupancyGrid, "/map",
+                                 lambda m: self.on_map(m, "volatile"), volatile)
         self.create_subscription(LaserScan, args.scan_topic, self.on_scan, best)
         self.create_subscription(Odometry, args.odom_topic, self.on_odom, best)
 
         self.tf_buffer = Buffer(cache_time=rclpy.duration.Duration(seconds=30))
         self.tf_listener = TransformListener(self.tf_buffer, self)
         self.get_logger().info(
-            f"map viewer: /map + {args.scan_topic} + {args.odom_topic}"
+            f"map viewer: /map (latched+volatile) + {args.scan_topic} + {args.odom_topic}"
         )
 
-    def on_map(self, msg: OccupancyGrid) -> None:
+    def on_map(self, msg: OccupancyGrid, via: str = "") -> None:
         self.grid = msg
         self.map_count += 1
+        self.map_via = via
         self.last_map_wall = time.monotonic()
 
     def on_scan(self, msg: LaserScan) -> None:
@@ -157,7 +175,14 @@ def main() -> int:
     ap.add_argument("--odom-child", default="base_footprint")
     ap.add_argument("--view-center", default="3.65,1.0")
     ap.add_argument("--view-size", type=float, default=22.0,
-                    help="metres of world height shown")
+                    help="metres of world height shown (ignored if --view-bounds is given)")
+    ap.add_argument("--view-bounds", default="",
+                    help="fixed world box 'xmin,xmax,ymin,ymax'.  Prefer this: with a "
+                         "fixed box the mapped region visibly GROWS as the robot "
+                         "explores.  Fitting the grid to the panel instead makes the "
+                         "picture look identical from the first frame, because "
+                         "slam_toolbox allocates its full max_size grid immediately "
+                         "and only fills it in.")
     ap.add_argument("--label", default="")
     args = ap.parse_args()
 
@@ -177,22 +202,30 @@ def main() -> int:
     threading.Thread(target=rclpy.spin, args=(node,), daemon=True).start()
 
     state: dict[str, object] = {"photo": None, "item": None, "n": 0}
-    cx, cy = (float(v) for v in args.view_center.split(","))
-    # world -> pixels
-    scale = th / args.view_size
-    ox = tw / 2.0 - cx * scale
-    oy = th / 2.0 + cy * scale
+    if args.view_bounds:
+        xmin, xmax, ymin, ymax = (float(v) for v in args.view_bounds.split(","))
+    else:
+        cx, cy = (float(v) for v in args.view_center.split(","))
+        xmin, xmax = cx - args.view_size / 2.0, cx + args.view_size / 2.0
+        ymin, ymax = cy - args.view_size / 2.0, cy + args.view_size / 2.0
+    # world -> pixels.  Choose one isotropic scale so the map is never distorted, and
+    # letterbox whichever axis has room to spare.
+    scale = min(tw / (xmax - xmin), th / (ymax - ymin))
+    pad_x = (tw - (xmax - xmin) * scale) / 2.0
+    pad_y = (th - (ymax - ymin) * scale) / 2.0
 
     text_item = canvas.create_text(
         14, 14, anchor="nw", fill="#e8eef5", font=("DejaVu Sans Mono", 14), text=""
     )
 
     def to_px(x: float, y: float) -> tuple[float, float]:
-        return (ox + x * scale, oy - y * scale)
+        # +x to the right, +y up, so the viewer and RViz share one orientation
+        return (pad_x + (x - xmin) * scale, th - pad_y - (y - ymin) * scale)
 
     def redraw() -> None:
         img = node.palette()
         canvas.delete("dyn")
+        now = time.monotonic()
         if img is not None:
             g = node.grid
             res = g.info.resolution
@@ -204,15 +237,20 @@ def main() -> int:
             sys.path.insert(0, str(Path(__file__).resolve().parent))
             from PIL import Image, ImageTk
 
-            x0, y0 = to_px(origin.position.x, origin.position.y + h * res)
-            x1, y1 = to_px(origin.position.x + wpx * res, origin.position.y)
+            # the grid's full extent in world metres, then in pixels
+            gx0 = origin.position.x
+            gy0 = origin.position.y
+            gx1 = gx0 + wpx * res
+            gy1 = gy0 + h * res
+            p_left, p_bottom = to_px(gx0, gy0)
+            p_right, p_top = to_px(gx1, gy1)
+            px_w = max(1, int(round(p_right - p_left)))
+            px_h = max(1, int(round(p_bottom - p_top)))
             photo = ImageTk.PhotoImage(
-                Image.fromarray(rgba).resize(
-                    (max(1, int(x1 - x0)), max(1, int(y1 - y0))), Image.NEAREST
-                )
+                Image.fromarray(rgba).resize((px_w, px_h), Image.NEAREST)
             )
             state["photo"] = photo
-            canvas.create_image(x0, y0, anchor="nw", image=photo, tags="dyn")
+            canvas.create_image(p_left, p_top, anchor="nw", image=photo, tags="dyn")
 
         if node.scan_xy is not None and node.scan_xy.size:
             pts = node.scan_xy
@@ -241,7 +279,6 @@ def main() -> int:
                                y + 26 * math.sin(-pose[2]),
                                fill="#28dc5a", width=3, tags="dyn")
 
-        now = time.monotonic()
         gm = (node.grid.info.width, node.grid.info.height,
               node.grid.info.resolution) if node.grid else None
         canvas.itemconfigure(
@@ -250,7 +287,8 @@ def main() -> int:
                   f"map grid + live scan + robot trail\n"
                   f"purpose-built viewer: RViz map display\n"
                   f"cannot render on llvmpipe\n"
-                  + (f"grid {gm[0]}x{gm[1]} @ {gm[2]:.2f} m/cell" if gm else "grid --")),
+                  + (f"grid {gm[0]}x{gm[1]} @ {gm[2]:.2f} m/cell "
+                     f"[{node.map_via}]" if gm else "grid -- (no /map yet)")),
             fill="#e8eef5",
         )
         canvas.create_text(

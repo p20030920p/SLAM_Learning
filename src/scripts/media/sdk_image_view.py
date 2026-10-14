@@ -75,6 +75,7 @@ def main() -> int:
     tw, th = (int(v) for v in args.geometry.split("+")[0].split("x"))
 
     root = tk.Tk()
+    root.title("live_split_view")
     root.overrideredirect(True)
     root.geometry(args.geometry)
     canvas = tk.Canvas(root, width=tw, height=th, bg="#000000",

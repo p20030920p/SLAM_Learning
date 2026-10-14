@@ -131,9 +131,11 @@ def main() -> None:
     ap.add_argument("--width", type=int, default=600)
     ap.add_argument("--height", type=int, default=675)
     ap.add_argument("--drop-camera-topics", default="/camera/image_raw,/camera/camera_info")
-    ap.add_argument("--lidar-type", default="ray",
+    ap.add_argument("--lidar-type", default="keep",
                     choices=["ray", "gpu_lidar", "keep"],
                     help="rewrite lidar sensor type; 'keep' leaves the URDF alone")
+    ap.add_argument("--strip-cameras", default="no", choices=["yes", "no"],
+                    help="remove the robot's own camera sensors; not needed here")
     args = ap.parse_args()
 
     outdir = Path(args.outdir).resolve()
@@ -148,7 +150,9 @@ def main() -> None:
     urdf_src = Path(args.urdf).resolve()
     urdf_out = outdir / (urdf_src.stem + "_rec" + urdf_src.suffix)
     text = urdf_src.read_text()
-    text, n_cam = strip_camera_sensor(text)
+    n_cam = 0
+    if args.strip_cameras == "yes":
+        text, n_cam = strip_camera_sensor(text)
     lidar_changed: list[str] = []
     if args.lidar_type != "keep":
         text, lidar_changed = retype_lidar(text, args.lidar_type)
@@ -157,18 +161,18 @@ def main() -> None:
     bridge_src = Path(args.bridge).resolve()
     drops = [t.strip() for t in args.drop_camera_topics.split(",") if t.strip()]
     bridge_out = outdir / (bridge_src.stem + "_nocam" + bridge_src.suffix)
-    kept, dropped = strip_bridge_entries(bridge_src.read_text(), drops)
+    if args.strip_cameras == "yes":
+        kept, dropped = strip_bridge_entries(bridge_src.read_text(), drops)
+    else:
+        kept, dropped = bridge_src.read_text(), []
     bridge_out.write_text(kept)
 
     print(f"topcam  -> {topcam}")
     print(f"  pose={args.pose} topic={args.topic} {args.width}x{args.height} "
           f"hfov={args.hfov} rate={args.rate}")
-    print(f"urdf    -> {urdf_out}  (camera sensors removed: {n_cam})")
-    print(f"  lidar sensors rewritten: {lidar_changed or 'none'}")
-    print(f"bridge  -> {bridge_out}  (entries dropped: {dropped})")
-    if n_cam == 0:
-        print("  WARNING: no camera sensor found in the URDF; the overview camera "
-              "may end up as the second RGB camera and render flat.")
+    print(f"urdf    -> {urdf_out} (camera sensors removed: {n_cam}, "
+          f"lidar rewritten: {lidar_changed or 'none'})")
+    print(f"bridge  -> {bridge_out} (entries dropped: {dropped or 'none'})")
 
 
 if __name__ == "__main__":
