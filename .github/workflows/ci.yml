@@ -32,7 +32,7 @@ jobs:
       - run: uv run --project src python src/scripts/evidence/verify_evidence.py
       - run: uv run --project src python src/scripts/evidence/check_docs.py
       - if: runner.os == 'Linux'
-        run: bash -n src/launch/reproduce.sh src/scripts/setup/setup_linux.sh src/scripts/run_reproduction.sh src/scripts/setup/setup_semantic.sh src/scripts/setup/setup_hovsg.sh
+        run: bash -n src/launch/reproduce.sh src/scripts/setup/setup_linux.sh src/scripts/run_reproduction.sh
       - if: runner.os == 'Linux'
         run: bash src/launch/reproduce.sh --help && bash src/scripts/run_reproduction.sh --help
       - if: runner.os == 'Windows'

@@ -4,9 +4,9 @@
 
 **Map repair?**
 
-Dynamic robust mapping · Semantic mapping and localization
+Dynamic-environment robust localization · Localization self-recovery
 
-[![CPU reproducibility](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml)
+[![CPU reproducibility](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](src/pyproject.toml)
 
 English | [中文](docs/HOME.zh-CN.md)
@@ -16,6 +16,19 @@ English | [中文](docs/HOME.zh-CN.md)
 [Evidence](#evidence) · [Hardware tests](#hardware-tests) · [Hypothesis](#hypothesis) · [Branches](#branches)
 
 </div>
+
+## Research thread: localization self-recovery under degradation and large scene change
+
+The current thread of this repository is the **self-recovery of a localization system**: under geometric/perceptual **degradation** and under **large scene change** (the prior map no longer matches the world), how does the system detect that its own pose is no longer trustworthy, attribute the cause, recover without human intervention, and verify that the recovery actually succeeded?
+
+Working documents (Chinese; English counterparts follow once the paper set is frozen):
+
+- [Thread definition, evidence gaps and platform inventory](docs/self-recovery/README.zh-CN.md)
+- [Paper map: degradation detection, relocalization, map maintenance, robust back-ends, evaluation](docs/self-recovery/SURVEY.zh-CN.md)
+- [Feasibility with the existing static/dynamic AMCL recordings](docs/self-recovery/FEASIBILITY.zh-CN.md)
+- [Candidate hypotheses H1–H6 with falsification conditions](docs/self-recovery/HYPOTHESES.zh-CN.md)
+
+The semantic-mapping and visual-localization direction previously hosted here has moved to the archived repository [SLAM_Learning](https://github.com/p20030920p/SLAM_Learning).
 
 ## Live experiments and local demos
 

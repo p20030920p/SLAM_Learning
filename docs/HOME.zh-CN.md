@@ -4,9 +4,9 @@
 
 **地图修复？**
 
-动态环境稳健建图 · 语义建图与定位
+动态环境鲁棒定位 · 定位系统自恢复
 
-[![CPU reproducibility](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml)
+[![CPU reproducibility](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](../src/pyproject.toml)
 
 [English](../README.md) | 中文
@@ -16,6 +16,19 @@
 [实验证据](#实验证据) · [实物测试](#实物测试) · [假设](#假设) · [分支](#分支)
 
 </div>
+
+## 研究主线：退化与大变动场景下的定位系统自恢复
+
+本仓库当前的主线是**定位系统的自恢复**：在几何/感知**退化**与**大变动**（先验地图与现状不再一致）场景下，系统如何判断自身位姿已不可信、如何归因、如何在无人干预下恢复、以及如何确认恢复真的成功。
+
+工作文档（中文先行，英文版在论文集冻结后补齐）：
+
+- [主线定义、证据缺口与平台清单](self-recovery/README.zh-CN.md)
+- [论文地图：退化检测、重定位、地图维护、鲁棒后端、评测](self-recovery/SURVEY.zh-CN.md)
+- [用现有静态/动态 AMCL 录制做实验的可行性评估](self-recovery/FEASIBILITY.zh-CN.md)
+- [候选假设 H1—H6 与证伪条件](self-recovery/HYPOTHESES.zh-CN.md)
+
+此前放在本仓库的语义建图与视觉定位方向，已归档到旧库 [SLAM_Learning](https://github.com/p20030920p/SLAM_Learning)。
 
 ## 仿真实验与本机演示入口
 
