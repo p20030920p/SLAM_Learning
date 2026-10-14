@@ -28,34 +28,6 @@
         "zh": "docs/papers/beautymap.zh-CN.md"
       },
       "status": "partial_reproduction"
-    },
-    {
-      "id": "conceptgraphs",
-      "name": "ConceptGraphs",
-      "year": 2024,
-      "paper": "https://arxiv.org/html/2309.16650v1",
-      "record": "results/reference/conceptgraphs/runs/conceptgraphs-wsl/record.json",
-      "command": ".venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py",
-      "media_record": "results/reference/conceptgraphs/media/replay/record.json",
-      "cards": {
-        "en": "docs/papers/conceptgraphs.md",
-        "zh": "docs/papers/conceptgraphs.zh-CN.md"
-      },
-      "status": "partial_reproduction"
-    },
-    {
-      "id": "hovsg",
-      "name": "HOV-SG",
-      "year": 2024,
-      "paper": "https://arxiv.org/html/2403.17846v2",
-      "record": "results/reference/hovsg/runs/hovsg-wsl-resolved/record.json",
-      "command": ".venv-hovsg/bin/python src/scripts/methods/run_hovsg.py",
-      "media_record": null,
-      "cards": {
-        "en": "docs/papers/hovsg.md",
-        "zh": "docs/papers/hovsg.zh-CN.md"
-      },
-      "status": "in_progress"
     }
   ]
 }

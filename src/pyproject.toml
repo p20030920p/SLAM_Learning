@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "slam-learning"
 version = "0.2.0"
-description = "Evidence-first experiments on changing maps and semantic localization"
+description = "Evidence-first experiments on changing maps and dynamic-environment localization"
 requires-python = ">=3.10,<3.12"
 dependencies = ["numpy==1.26.4", "scipy==1.14.1", "matplotlib==3.9.2", "pillow==12.3.0"]
 
@@ -68,7 +68,7 @@ layers = [
 name = "CUDA and ROS stay in separate experiment environments"
 type = "forbidden"
 source_modules = ["slam_learning"]
-forbidden_modules = ["torch", "conceptgraph", "hovsg", "rclpy"]
+forbidden_modules = ["torch", "rclpy"]
 
 [tool.vulture]
 paths = ["src/slam_learning", "src/scripts", "src/tests"]

@@ -116,9 +116,6 @@ def main():
     spec["watch_prefix"] = None
     if "--method" in command:
         spec["watch_prefix"] = command[command.index("--method") + 1] + "-"
-    for method in ("conceptgraphs", "hovsg"):
-        if any(Path(part).name == f"run_{method}.py" for part in command):
-            spec["watch_prefix"] = method + "-"
     (directory / "command.json").write_text(json.dumps(spec, indent=2) + "\n")
     recorder = terminal = server = None
     capture_stop = threading.Event()

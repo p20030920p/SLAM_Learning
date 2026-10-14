@@ -101,7 +101,7 @@ How can multi-frame mapping prevent localization errors from causing persistent 
 
 ## Related works
 
-These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing; each selected map observation is held for eight frames at 12 fps. [GIF timing and sources](results/reference/conceptgraphs/media/timing.json).
+These are saved-result replays from supplied-pose mapping runs. GIFs preserve the companion MP4 timing; each selected map observation is held for eight frames at 12 fps. [GIF timing and sources](https://github.com/p20030920p/SLAM_Learning/blob/main/results/reference/conceptgraphs/media/timing.json).
 
 ### [DUFOMap](docs/papers/dufomap.md)
 
@@ -115,13 +115,13 @@ These are saved-result replays from supplied-pose mapping runs. GIFs preserve th
 
 **KITTI-00 outdoor scene, 141 LiDAR scans.** Occupancy comparisons remove dynamic traces; restoration protects static geometry. The GIF selects 21 scans to compare input, removed and retained points against the final map. [MP4](results/reference/beautymap/media/replay/replay.mp4).
 
-### [ConceptGraphs](docs/papers/conceptgraphs.md)
+### [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/conceptgraphs.md)
 
-![ConceptGraphs core replay](results/reference/conceptgraphs/media/preview.gif)
+![ConceptGraphs core replay](https://github.com/p20030920p/SLAM_Learning/raw/main/results/reference/conceptgraphs/media/preview.gif)
 
-**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](results/reference/conceptgraphs/media/replay/replay.mp4).
+**Replica room0 indoor scene, 40 RGB-D frames.** Geometry/CLIP matching fuses observations into 39 object representations. The GIF selects 20 frames, showing image segments, the final map and a red text-query candidate. Candidate correctness is unverified. [MP4](https://github.com/p20030920p/SLAM_Learning/blob/main/results/reference/conceptgraphs/media/replay/replay.mp4).
 
-### [HOV-SG](docs/papers/hovsg.md)
+### [HOV-SG](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/hovsg.md)
 
 In progress
 
@@ -132,7 +132,7 @@ In progress
 | [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md) | KITTI-00, 141 scans | Table IV accuracy matched |
 | [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md) | Historical KITTI-02, 91 scans | Table III accuracy matched |
 | [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.md) | room0, 400 observations | Single-scene scored |
-| [HOV-SG](docs/papers/hovsg.md) | | In progress |
+| [HOV-SG](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/hovsg.md) | | In progress |
 
 ## Evidence
 

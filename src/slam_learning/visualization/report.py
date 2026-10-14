@@ -6,7 +6,7 @@ from pathlib import Path
 
 from slam_learning.runtime.runner import verify_record
 
-METHODS = {"dufomap": "DUFOMap", "beautymap": "BeautyMap", "conceptgraphs": "ConceptGraphs", "hovsg": "HOV-SG"}
+METHODS = {"dufomap": "DUFOMap", "beautymap": "BeautyMap"}
 
 
 def render_report(paths: list[Path], base: Path | None = None, lang: str = "en") -> str:
@@ -31,7 +31,7 @@ def render_report(paths: list[Path], base: Path | None = None, lang: str = "en")
     states = {"recorded": "已记录", "executed": "已执行", "failed": "失败", "blocked": "环境阻塞",
               "smoke_passed": "冒烟通过", "running": "运行中"}
     for method, name in METHODS.items():
-        if method == "hovsg" or method not in selected:
+        if method not in selected:
             lines.append(f"| {name} | | {'在复现中' if zh else 'In progress'} | |")
             continue
         _, path, record = selected[method]

@@ -101,7 +101,7 @@
 
 ## 相关工作
 
-以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序；每个选定地图观测在 12 fps 下保持八帧。[GIF 时序与来源](../results/reference/conceptgraphs/media/timing.json)。
+以下回放给定位姿建图后的保存结果。GIF 保留对应 MP4 的播放时序；每个选定地图观测在 12 fps 下保持八帧。[GIF 时序与来源](https://github.com/p20030920p/SLAM_Learning/blob/main/results/reference/conceptgraphs/media/timing.json)。
 
 ### [DUFOMap](papers/dufomap.zh-CN.md)
 
@@ -115,13 +115,13 @@
 
 **KITTI-00 户外场景，141 帧激光雷达扫描。**通过占据比较清理动态残影，用恢复机制保护静态几何。GIF 节选 21 帧，对比原始、剔除与保留点，背景为最终地图。[MP4](../results/reference/beautymap/media/replay/replay.mp4)。
 
-### [ConceptGraphs](papers/conceptgraphs.zh-CN.md)
+### [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/conceptgraphs.zh-CN.md)
 
-![ConceptGraphs 核心回放](../results/reference/conceptgraphs/media/preview.gif)
+![ConceptGraphs 核心回放](https://github.com/p20030920p/SLAM_Learning/raw/main/results/reference/conceptgraphs/media/preview.gif)
 
-**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](../results/reference/conceptgraphs/media/replay/replay.mp4)。
+**Replica room0 室内场景，40 帧 RGB-D。**用几何／CLIP 匹配融合观测，得到 39 个对象表示。GIF 节选 20 帧，展示图像分割、最终地图和红色文本查询候选；候选正确性未验证。[MP4](https://github.com/p20030920p/SLAM_Learning/blob/main/results/reference/conceptgraphs/media/replay/replay.mp4)。
 
-### [HOV-SG](papers/hovsg.zh-CN.md)
+### [HOV-SG](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/hovsg.zh-CN.md)
 
 在复现中
 
@@ -132,7 +132,7 @@
 | [DUFOMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.zh-CN.md) | KITTI-00，141 扫描 | 表 IV 准确率匹配 |
 | [BeautyMap](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.zh-CN.md) | 历史 KITTI-02，91 扫描 | 表 III 准确率匹配 |
 | [ConceptGraphs](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/CONCEPTGRAPHS_ROOM0_RESULTS.zh-CN.md) | room0，400 观测 | 单场景已评分 |
-| [HOV-SG](papers/hovsg.zh-CN.md) | | 在复现中 |
+| [HOV-SG](https://github.com/p20030920p/SLAM_Learning/blob/main/docs/papers/hovsg.zh-CN.md) | | 在复现中 |
 
 ## 实验证据
 
