@@ -21,6 +21,12 @@ PACKAGES = (
     "robot-live-static", "robot-live-dynamic", "robot-live-large-change", "robot-corridor-v2",
     "desktop-live-dufomap", "desktop-live-beautymap", "desktop-live-ir-mcl", "desktop-adam-mcl",
     "robot-ndt-static", "robot-gicp-static", "robot-ndt-static-initial",
+    *(f"robot-3d-{scene}" for scene in ("static", "dynamic", "large-change", "corridor")),
+    *(f"probe-calibrated-{dimension}-{scene}" for dimension in ("2d", "3d")
+      for scene in ("static", "dynamic", "large-change", "corridor", "height-corridor")),
+    *(f"probe-calibrated-refinement-{dimension}-{scene}" for dimension in ("2d", "3d")
+      for scene in ("corridor", "height-corridor")),
+    *(f"probe-mapping-{scene}" for scene in ("static", "dynamic", "corridor", "height-corridor")),
 )
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "evidence"
@@ -73,6 +79,151 @@ def videos(name: str, result: bool = True):
                      f'<a href="{src}" target="_blank">单独打开 MP4</a></div>')
     display(HTML('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));'
                  'gap:18px">' + "".join(parts) + "</div>"))
+
+
+def show_video(path: Path, title: str):
+    if not path.is_file():
+        raise FileNotFoundError(path)
+    src = local_url(path)
+    display(HTML(f'<p><strong>{html.escape(title)}</strong></p><video controls preload="none" '
+                 f'style="width:100%;max-width:1000px" src="{src}"></video>'
+                 f'<p><a href="{src}">打开 MP4</a></p>'))
+
+
+def expected_media():
+    """The exact media coverage expected from the generated teaching notebook."""
+    files = []
+    for name in ("desktop-live-dufomap", "desktop-live-beautymap", "desktop-live-ir-mcl", "desktop-adam-mcl",
+                 "robot-supp-static", "robot-supp-dynamic", "robot-corridor-v2-mapping",
+                 "robot-ndt-static", "robot-gicp-static"):
+        files.append(f"{name}/execution.mp4")
+        if name in ("desktop-adam-mcl", "robot-ndt-static", "robot-gicp-static"):
+            files.append(f"{name}/result.mp4")
+    for dimension in ("2d", "3d"):
+        for scene in ("static", "dynamic", "large-change", "corridor"):
+            name = f"robot-3d-{scene}" if dimension == "3d" else (
+                "robot-corridor-v2" if scene == "corridor" else f"robot-live-{scene}")
+            record = read_json(package(name) / "record.json")
+            for view in record["native_views"]:
+                files.append(f"{name}/{view['video']}")
+                if dimension == "2d":
+                    prefix = "degraded_" if scene == "corridor" else ""
+                    case = view["case"] if view["case"].startswith(prefix) else prefix + view["case"]
+                    files.append(f"{name}/methods/{case}/result.mp4")
+        files.extend(f"probe-calibrated-{dimension}-{scene}/execution.mp4" for scene in
+                     ("static", "dynamic", "large-change", "corridor", "height-corridor"))
+        files.extend(f"probe-calibrated-refinement-{dimension}-{scene}/result.mp4" for scene in
+                     ("corridor", "height-corridor"))
+    return set(files)
+
+
+def measured_rmse(name: str, case: str, dimension: str) -> float:
+    """Recompute from retained outputs; never run the estimator during playback."""
+    record = read_json(package(name) / "record.json")
+    arr = samples(name, case)
+    check_truth(name, arr)
+    saved = record["metrics"].get("cases", record["metrics"])[case]
+    xy = float(np.sqrt(np.mean(arr["position_error_m"] ** 2)))
+    assert math.isclose(xy, saved["position_rmse_m"], abs_tol=1e-10)
+    if dimension == "2d":
+        return xy * 100
+    poses = np.genfromtxt(package(name) / f"{case}-poses3d.csv", delimiter=",", names=True)
+    assert np.allclose(poses["stamp_s"], arr["stamp_s"], atol=1e-10, rtol=0)
+    xyz = np.sqrt(sum((poses[f"estimate_{axis}"] - poses[f"truth_{axis}"]) ** 2 for axis in "xyz"))
+    value = float(np.sqrt(np.mean(xyz ** 2)))
+    assert math.isclose(value, record["metrics_3d"][case]["xyz_rmse_m"], abs_tol=1e-10)
+    return value * 100
+
+
+def recovery_text(record, case):
+    recovery = record.get("restoration", {}).get(case)
+    if not recovery:
+        return ""
+    if recovery["converged"] is True:
+        return f"；恢复后{recovery['sustained_convergence_delay_s']:.1f}s持续收敛"
+    return "；恢复后样本不足" if recovery["converged"] is None else "；未持续收敛"
+
+
+def baseline_scene(name: str, dimension: str, prefix: str = ""):
+    record = read_json(package(name) / "record.json")
+    values = {case: measured_rmse(name, prefix + case, dimension) for case in ("raw", "dufomap", "beautymap")}
+    rows = []
+    for case, label in (("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")):
+        difference = values[case] - values["raw"]
+        comparison = "" if case == "raw" else ("；接近Raw" if abs(difference) < .01 else
+                     f"；较Raw{'低' if difference < 0 else '高'}{abs(difference):.2f}cm")
+        map_type = {"raw": "原始", "dufomap": "去动态点", "beautymap": "离线清理"}[case]
+        map_type += "二维投影图" if dimension == "2d" else "三维点云图"
+        rows.append([label, map_type, f"{'XY' if dimension == '2d' else 'XYZ'} RMSE {values[case]:.2f}cm"
+                     + comparison + recovery_text(record, prefix + case)])
+    table(["方法", "地图类型", "指标效果"], rows)
+    display(Markdown("同场景单轮结果，RMSE包含初始化；小差异不作排名。"
+                     "地图清理不等于恢复能力，缺失定位输出不补零。"))
+    for view in record["native_views"]:
+        case = view["case"]
+        show_video(package(name) / view["video"], f"{case} · 真实窗口执行")
+        sample_case = case if case.startswith(prefix) else prefix + case
+        replay = package(name) / "methods" / sample_case / "result.mp4"
+        if dimension == "2d":
+            show_video(replay, f"{case} · 保存结果回放，无新推理")
+
+
+def probe_scene(dimension: str, scene: str):
+    name = f"probe-calibrated-{dimension}-{scene}"
+    folder = package(name)
+    record = read_json(folder / "record.json")
+    assert "ground_z_m" in record["hypothesis_probes"]
+    labels = {"native": "Raw＋AMCL" if dimension == "2d" else "Raw＋GICP", "plain": "Plain ICP",
+              "guard": "H1 Guard", "depth": "H2 Guard＋Depth", "search": "H3 雷达搜索", "recover": "H3 深度＋搜索"}
+    values = {case: measured_rmse(name, case, dimension) for case in labels}
+    rows = []
+    for case, label in labels.items():
+        parent = {"guard": "plain", "depth": "guard", "search": "guard", "recover": "depth"}.get(case)
+        effect = f"{'XY' if dimension == '2d' else 'XYZ'} RMSE {values[case]:.2f}cm"
+        if parent:
+            delta = values[case] - values[parent]
+            reference = {"plain": "Plain", "guard": "Guard", "depth": "Depth"}[parent]
+            effect += f"；接近{reference}" if abs(delta) < .01 else f"；较{reference}{'低' if delta < 0 else '高'}{abs(delta):.2f}cm"
+        map_type = ("二维" if dimension == "2d" else "三维") + "雷达点图"
+        if case in ("depth", "recover"):
+            map_type += "＋深度点图"
+        if case == "native" and dimension == "2d":
+            map_type = "同源二维栅格投影图"
+        rows.append([label, map_type, effect + recovery_text(record, case)])
+    table(["方法", "地图／观测", "指标效果"], rows)
+    frames = read_json(folder / "probe-B-inputs.json")["frames"]
+    valid = sum(row["depth_points"] >= 12 for row in frames)
+    display(Markdown(f"五原型各{len(frames)}帧，有效深度{valid}帧；车体高度由建图A标定。"
+                     "原生AMCL／GICP独立消费同源消息，不能与原型直接作算法排名。"))
+    native = samples(name, "native")
+    if native["stamp_s"][-1] < frames[-1]["stamp_s"] - 5:
+        display(Markdown(f"**原生参照最后输出{native['stamp_s'][-1]:.1f}s，原型至{frames[-1]['stamp_s']:.1f}s；"
+                         "其RMSE仅覆盖已有输出。**"))
+    show_video(folder / "execution.mp4", f"{dimension.upper()} · {scene} · Gazebo＋RViz＋终端真实录制")
+
+
+def refinement_scene(dimension: str, scene: str):
+    name = f"probe-calibrated-refinement-{dimension}-{scene}"
+    folder = package(name)
+    record = read_json(folder / "record.json")
+    parent = package(f"probe-calibrated-{dimension}-{scene}")
+    assert hashlib.sha256((parent / "record.json").read_bytes()).hexdigest() == record["parent_sha256"]
+    for relative, expected in record["source_inputs"].items():
+        assert hashlib.sha256((parent / relative).read_bytes()).hexdigest() == expected
+    for case, source in (("coarse_lidar", "search"), ("coarse_depth", "recover")):
+        assert (folder / f"{case}-samples.csv").read_bytes() == (parent / f"{source}-samples.csv").read_bytes()
+    rows = []
+    for case, label in (("coarse_lidar", "粗搜索·雷达"), ("coarse_depth", "粗搜索·雷达＋深度"),
+                        ("fine_lidar", "细化·雷达"), ("fine_depth", "细化·雷达＋深度")):
+        value = measured_rmse(name, case, dimension)
+        delay = record["initial_sustained_delay_s"][case]
+        timing = "未持续收敛" if delay is None else f"首次输出后{delay:.1f}s持续收敛"
+        rows.append([label, "雷达＋深度点图" if "depth" in case else "雷达点图",
+                     f"{'XY' if dimension == '2d' else 'XYZ'} RMSE {value:.2f}cm；{timing}"])
+    table(["方法", "地图／观测", "指标效果"], rows)
+    display(Markdown("已核对父B包哈希、同输入数组和粗搜索CSV；以下为新离线推理完成后的保存输出回放。"
+                     "本单元只复核结果，不启动算法推理或Gazebo。"))
+    show_video(folder / "result.mp4", f"{dimension.upper()} · {scene} · 同输入细化结果回放")
 
 
 def verify_files():

@@ -12,6 +12,7 @@ from urllib.parse import quote, unquote, urlsplit
 
 import nbformat
 from nbformat.sign import NotebookNotary
+from experiment_tools import expected_media
 
 
 def main():
@@ -27,10 +28,11 @@ def main():
     codes = [c for c in nb.cells if c.cell_type == "code"]
     assert all(c.execution_count is not None for c in codes)
     assert not any(o.output_type == "error" for c in codes for o in c.outputs)
-    assert all("START_THIS_EXPERIMENT = False" in c.source for c in codes
+    assert all("RUN_LIVE = False" in c.source for c in codes
                if "manual-live-launch" in c.metadata.get("tags", []))
+    assert all("RUN_REFINEMENT = False" in c.source for c in codes if "RUN_REFINEMENT" in c.source)
     notebook_urls = []
-    plots = Path(__file__).resolve().parents[2] / ".cache" / "notebook-review"
+    plots = root / ".cache" / "notebook-review"
     plots.mkdir(parents=True, exist_ok=True)
     png_count = 0
     for i, c in enumerate(nb.cells):
@@ -43,16 +45,28 @@ def main():
             if "image/png" in data:
                 (plots / f"cell-{i:02d}.png").write_bytes(base64.b64decode(data["image/png"]))
                 png_count += 1
-    assert len(notebook_urls) == 19, notebook_urls
+    expected = expected_media()
+    relative_media = []
     for url in notebook_urls:
         assert url.startswith("/files/")
-        assert (root / unquote(url[len("/files/"):])).is_file(), url
+        relative = unquote(url[len("/files/"):])
+        assert (root / relative).is_file(), url
+        assert relative.startswith("evidence/"), url
+        relative_media.append(relative[len("evidence/"):])
+    assert len(relative_media) == len(set(relative_media))
+    assert set(relative_media) == expected, (set(relative_media) ^ expected)
     html = (root / f"{name}.html").read_text(encoding="utf-8")
     offline_urls = re.findall(r'<video[^>]*src="([^"]+)"', html)
-    assert len(offline_urls) == 19
+    assert len(offline_urls) == len(notebook_urls)
     for url in offline_urls:
         assert not urlsplit(url).scheme and not url.startswith("/")
         assert (root / unquote(url)).is_file(), url
+    sources = "\n".join(c.source for c in nb.cells if c.cell_type == "markdown")
+    anchors = re.findall(r'<a id="([^"]+)"', sources)
+    assert len(anchors) == len(set(anchors))
+    for target in re.findall(r'\]\(#([^)]+)\)', sources):
+        assert target in anchors, target
+        assert f'id="{target}"' in html, target
     manifest = json.loads((root / "bundle-manifest.json").read_text(encoding="utf-8"))
     for relative, item in manifest["files"].items():
         path = root / relative
@@ -62,17 +76,19 @@ def main():
           f"{png_count} plots and {len(manifest['files'])} frozen evidence files.")
     if args.server:
         runtime = Path.home() / "AppData" / "Roaming" / "jupyter" / "runtime"
-        servers = [json.loads(p.read_text()) for p in runtime.glob("jpserver-*.json")]
+        servers = [json.loads(p.read_text(encoding="utf-8")) for p in
+                   sorted(runtime.glob("jpserver-*.json"), key=lambda p: p.stat().st_mtime)]
         target = [s for s in servers if Path(s["root_dir"]).resolve() == root]
         assert target, "The one-click server is not running"
         s = target[-1]
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
         # Never print the authentication token.
         def request(path, *, media=False):
             req = urllib.request.Request(s["url"].rstrip("/") + path,
                                          headers={"Authorization": "token " + s["token"]})
             if media:
                 req.add_header("Range", "bytes=0-255")
-            with urllib.request.urlopen(req, timeout=20) as response:
+            with opener.open(req, timeout=20) as response:
                 if media:
                     assert response.status == 206 and response.headers.get_content_type() == "video/mp4"
                     assert b"ftyp" in response.read(256)
@@ -85,7 +101,7 @@ def main():
         assert b"jupyter" in request("/lab/tree/" + quote(f"{name}.ipynb")).lower()
         for url in notebook_urls:
             request(url, media=True)
-        print("One-click Jupyter server: Notebook, dedicated kernel and all 19 MP4 range requests passed.")
+        print(f"One-click Jupyter server: Notebook, dedicated kernel and all {len(notebook_urls)} MP4 range requests passed.")
 
 
 if __name__ == "__main__":
