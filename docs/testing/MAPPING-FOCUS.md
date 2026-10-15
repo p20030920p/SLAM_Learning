@@ -18,32 +18,57 @@ Mirror identification and physical reflections remain open within Q3; physical e
 
 ### Mathematical form
 
-A builds the map; B is a separate acquisition. Freeze A's map and run the same localizer on B. $j$ indexes the control, $Z$ denotes scans, $T$ is the sensor pose and $p^*$ is true position:
+A builds the map; B is a separate acquisition. Freeze A's map and run the same localizer on B. $`j`$ indexes the control, $`Z`$ denotes scans, $`T`$ is the sensor pose and $`p^{\ast}`$ is true position:
 
-$$
-M_j=\mathcal B_j(Z^A,\hat T_j^A),\qquad
-\hat T^B_{j,t}=\mathcal L(Z^B_{\le t},M_j).
-$$
+```math
+M_j = \mathcal{B}_j\bigl(Z^A,\hat{T}_j^A\bigr)
+```
 
-$$
-E_L(j)=\sqrt{\frac1N\sum_t\|\hat p^B_{j,t}-p^{B,*}_t\|^2},\qquad
-\Delta E_L=E_L(\mathrm{baseline})-E_L(\mathrm{method}).
-$$
+```math
+\hat{T}_{j,t}^B = \mathcal{L}\bigl(Z_{\leq t}^B,M_j\bigr)
+```
 
-$\Delta E_L>0$ means improved localization; lower map error $E_M$ with $\Delta E_L\le0$ supports only map improvement. Test these predictions:
+```math
+E_L(j) = \sqrt{\frac{1}{N}\sum_t\left\lVert\hat{p}_{j,t}^B-p_t^{B,\ast}\right\rVert^2}
+```
 
-$$
-\begin{aligned}
-H1:\;& DA_{\rm SRRG}>DA_{\rm Raw},\quad SA_{\rm SRRG}\ge SA_{\rm Raw}-\varepsilon,
-\quad E_M({\rm SRRG})<E_M({\rm Raw}),\quad\Delta E_L>0;\\
-H2:\;&p_i^{\rm end}=T(t_{\rm end})^{-1}T(t_i)p_i,
-\quad E_M({\rm on})<E_M({\rm off}),\quad\Delta E_L>0;\\
-H3:\;&E_{\parallel}({\rm landmark})<E_{\parallel}({\rm original}),
-\quad E_{\parallel}=\sqrt{\frac1N\sum_t[u^T(\hat p_t-p_t^*)]^2}.
-\end{aligned}
-$$
+```math
+\Delta E_L = E_L(\mathrm{baseline})-E_L(\mathrm{method})
+```
 
-$\varepsilon=1$ percentage point is the static-loss tolerance; $u$ is the corridor direction. This SRRG comparison includes pose optimization and maintenance; deletion alone at fixed poses remains untested. Truth is used only for scoring.
+$`\Delta E_L\gt 0`$ means improved localization; lower map error $`E_M`$ with $`\Delta E_L\leq 0`$ supports only map improvement. Test these predictions:
+
+**H1**
+
+```math
+\mathrm{DA}_{\mathrm{SRRG}}\gt\mathrm{DA}_{\mathrm{Raw}},\qquad \mathrm{SA}_{\mathrm{SRRG}}\geq\mathrm{SA}_{\mathrm{Raw}}-\varepsilon
+```
+
+```math
+E_M(\mathrm{SRRG})\lt E_M(\mathrm{Raw}),\qquad\Delta E_L\gt 0
+```
+
+**H2**
+
+```math
+p_i^{\mathrm{end}}=T(t_{\mathrm{end}})^{-1}T(t_i)p_i
+```
+
+```math
+E_M(\mathrm{on})\lt E_M(\mathrm{off}),\qquad\Delta E_L\gt 0
+```
+
+**H3**
+
+```math
+E_{\parallel}=\sqrt{\frac{1}{N}\sum_t\left[u^{\mathsf{T}}\left(\hat{p}_t-p_t^{\ast}\right)\right]^2}
+```
+
+```math
+E_{\parallel}(\mathrm{landmark})\lt E_{\parallel}(\mathrm{original})
+```
+
+$`\varepsilon=1`$ percentage point is the static-loss tolerance; $`u`$ is the corridor direction. This SRRG comparison includes pose optimization and maintenance; deletion alone at fixed poses remains untested. Truth is used only for scoring.
 
 <a id="hypothesis-pseudocode"></a>
 

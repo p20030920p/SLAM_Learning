@@ -18,32 +18,57 @@
 
 ### 数学表达
 
-A用于建图，B是另一次采集；冻结A的地图后，用相同定位器处理B。$j$是对照方法，$Z$是扫描，$T$是传感器位姿，$p^*$是位置真值：
+A用于建图，B是另一次采集；冻结A的地图后，用相同定位器处理B。$`j`$是对照方法，$`Z`$是扫描，$`T`$是传感器位姿，$`p^{\ast}`$是位置真值：
 
-$$
-M_j=\mathcal B_j(Z^A,\hat T_j^A),\qquad
-\hat T^B_{j,t}=\mathcal L(Z^B_{\le t},M_j).
-$$
+```math
+M_j = \mathcal{B}_j\bigl(Z^A,\hat{T}_j^A\bigr)
+```
 
-$$
-E_L(j)=\sqrt{\frac1N\sum_t\|\hat p^B_{j,t}-p^{B,*}_t\|^2},\qquad
-\Delta E_L=E_L(\mathrm{baseline})-E_L(\mathrm{method}).
-$$
+```math
+\hat{T}_{j,t}^B = \mathcal{L}\bigl(Z_{\leq t}^B,M_j\bigr)
+```
 
-$\Delta E_L>0$表示定位改善；地图误差$E_M$下降但$\Delta E_L\le0$时，只支持建图改善。下式是要检验的预测：
+```math
+E_L(j) = \sqrt{\frac{1}{N}\sum_t\left\lVert\hat{p}_{j,t}^B-p_t^{B,\ast}\right\rVert^2}
+```
 
-$$
-\begin{aligned}
-H1:\;& DA_{\rm SRRG}>DA_{\rm Raw},\quad SA_{\rm SRRG}\ge SA_{\rm Raw}-\varepsilon,
-\quad E_M({\rm SRRG})<E_M({\rm Raw}),\quad\Delta E_L>0;\\
-H2:\;&p_i^{\rm end}=T(t_{\rm end})^{-1}T(t_i)p_i,
-\quad E_M({\rm on})<E_M({\rm off}),\quad\Delta E_L>0;\\
-H3:\;&E_{\parallel}({\rm landmark})<E_{\parallel}({\rm original}),
-\quad E_{\parallel}=\sqrt{\frac1N\sum_t[u^T(\hat p_t-p_t^*)]^2}.
-\end{aligned}
-$$
+```math
+\Delta E_L = E_L(\mathrm{baseline})-E_L(\mathrm{method})
+```
 
-$\varepsilon=1$个百分点为本轮静态损失容差；$u$为走廊方向。SRRG本轮是端到端对照，包含位姿优化与地图维护；给定相同位姿的纯删除消融仍待做。真值仅用于评分。
+$`\Delta E_L\gt 0`$表示定位改善；地图误差$`E_M`$下降但$`\Delta E_L\leq 0`$时，只支持建图改善。下式是要检验的预测：
+
+**H1**
+
+```math
+\mathrm{DA}_{\mathrm{SRRG}}\gt\mathrm{DA}_{\mathrm{Raw}},\qquad \mathrm{SA}_{\mathrm{SRRG}}\geq\mathrm{SA}_{\mathrm{Raw}}-\varepsilon
+```
+
+```math
+E_M(\mathrm{SRRG})\lt E_M(\mathrm{Raw}),\qquad\Delta E_L\gt 0
+```
+
+**H2**
+
+```math
+p_i^{\mathrm{end}}=T(t_{\mathrm{end}})^{-1}T(t_i)p_i
+```
+
+```math
+E_M(\mathrm{on})\lt E_M(\mathrm{off}),\qquad\Delta E_L\gt 0
+```
+
+**H3**
+
+```math
+E_{\parallel}=\sqrt{\frac{1}{N}\sum_t\left[u^{\mathsf{T}}\left(\hat{p}_t-p_t^{\ast}\right)\right]^2}
+```
+
+```math
+E_{\parallel}(\mathrm{landmark})\lt E_{\parallel}(\mathrm{original})
+```
+
+$`\varepsilon=1`$个百分点为本轮静态损失容差；$`u`$为走廊方向。SRRG本轮是端到端对照，包含位姿优化与地图维护；给定相同位姿的纯删除消融仍待做。真值仅用于评分。
 
 <a id="hypothesis-pseudocode"></a>
 
