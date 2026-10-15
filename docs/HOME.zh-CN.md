@@ -9,7 +9,7 @@
 [![CPU reproducibility](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](../src/pyproject.toml)
 
-[English](../README.md) | 中文 | [Minimal English](MINIMAL.md) | [极简中文](MINIMAL.zh-CN.md)
+[English](../README.md) | 中文 | [**Minimal English · Practice**](MINIMAL.md) | [**极简中文 · 实践**](MINIMAL.zh-CN.md)
 
 [开放问题](#开放问题) · [方向分析](#方向分析) · [相关工作](#相关工作) · [假设](#假设)
 
@@ -235,7 +235,7 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 ## 实践
 
-[极简：全部 GIF 与指标](MINIMAL.zh-CN.md)
+[极简实践：GIF预览与视频](MINIMAL.zh-CN.md)
 
 [键盘演示](../demo/README.md) · [视频目录](../demo/gallery.html) · [代码 Notebook](../notebooks/presentation/SLAM_实验逐步展示.ipynb)。
 

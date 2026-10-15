@@ -9,7 +9,7 @@ Dynamic map cleaning · Static structure retention · Downstream localization
 [![CPU reproducibility](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](src/pyproject.toml)
 
-English | [中文](docs/HOME.zh-CN.md) | [Minimal English](docs/MINIMAL.md) | [极简中文](docs/MINIMAL.zh-CN.md)
+English | [中文](docs/HOME.zh-CN.md) | [**Minimal English · Practice**](docs/MINIMAL.md) | [**极简中文 · 实践**](docs/MINIMAL.zh-CN.md)
 
 [Open question](#open-question) · [Direction](#direction-analysis) · [Related works](#related-works) · [Hypothesis](#hypothesis)
 
@@ -235,7 +235,7 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 ## Practice
 
-[极简：全部 GIF 与指标](docs/MINIMAL.zh-CN.md)
+[Minimal practice: GIF previews and videos](docs/MINIMAL.md)
 
 [Keyboard demos](demo/README.md) · [Video gallery](demo/gallery.html) · [Code Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb).
 

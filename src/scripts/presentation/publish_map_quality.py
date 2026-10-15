@@ -98,14 +98,15 @@ def replace_tables(path, chinese):
         pos = group.find("\n\n", group.find("### ")) + 2
         group = group[:pos] + "\n".join(table) + "\n" + group[pos:]
         text = text[:loc] + group + text[nextloc:]
-    minimal = "MINIMAL.zh-CN.md" if chinese else "docs/MINIMAL.zh-CN.md"
+    minimal = "MINIMAL.zh-CN.md" if chinese else "docs/MINIMAL.md"
     if f"]({minimal})" not in text:
         needle = "## " + ("实践" if chinese else "Practice") + "\n"
-        text = text.replace(needle, needle + f"\n[极简：全部 GIF 与指标]({minimal})\n", 1)
+        label = "极简实践：GIF预览与视频" if chinese else "Minimal practice: GIF previews and videos"
+        text = text.replace(needle, needle + f"\n[{label}]({minimal})\n", 1)
     path.write_text(text, encoding="utf-8")
 
 
-def legacy_minimal():
+def legacy_minimal(write=True):
     out = ROOT / "docs/MINIMAL.zh-CN.md"
     slots = json.loads((ROOT / "docs/figures/slots.json").read_text())["slots"]
     captions = {s["path"]: s["caption"].get("zh", s["id"]) for s in slots if s.get("status") == "published"}
@@ -201,8 +202,10 @@ def legacy_minimal():
             )
         link = "../" + rel
         rows.append(f'| {label.replace("|","／")} | [GIF]({link}) | {effect} |')
-    out.write_text("\n".join(rows) + "\n", encoding="utf-8")
-    print("Minimal GIF rows:", len(rows) - 2)
+    if write:
+        out.write_text("\n".join(rows) + "\n", encoding="utf-8")
+        print("Minimal GIF rows:", len(rows) - 2)
+    return rows[2:]
 
 
 if __name__ == "__main__":

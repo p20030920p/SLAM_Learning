@@ -1,12 +1,12 @@
-"""Render table-only bilingual indexes of every tracked GIF/MP4 and experiment settings."""
+"""Render practice-only bilingual tables with clickable, animated GIF previews."""
 
 import json
 import re
 import subprocess
+from html import escape
 from pathlib import Path
 
-from publish_map_quality import legacy_minimal
-from publish_mapping_focus import SETUP_EN, SETUP_ZH
+from publish_map_quality import NAMES, legacy_minimal
 
 ROOT = Path(__file__).resolve().parents[3]
 
@@ -53,114 +53,243 @@ def english(text):
     return text
 
 
+GROUPS = [
+    ("related-works", "Related works · 原库实践", "Related works · author-code practice"),
+    ("srrg-2d", "原生二维建图 · SRRG", "Native 2D mapping · SRRG"),
+    ("practice-2d", "二维投影地图＋AMCL", "Projected 2D maps + AMCL"),
+    ("practice-3d", "三维地图＋GICP", "3D maps + GICP"),
+    ("map-review", "三维地图清理效果", "3D map-cleaning results"),
+    ("registration", "NDT／GICP早期实践", "Earlier NDT / GICP practice"),
+    ("sensor-practice", "简单传感器实践", "Simple-sensor practice"),
+    ("hypotheses-2d", "二维＋深度 · 定位假设实践", "2D + depth · localization prototypes"),
+    ("hypotheses-3d", "三维＋深度 · 定位假设实践", "3D + depth · localization prototypes"),
+    ("refinement", "同输入候选细化 · 结果回放", "Same-input refinement · result replay"),
+    ("hardware", "实机传感器采集", "Hardware sensor captures"),
+]
+SCENES = {
+    "static": ("纯静态", "Pure static"),
+    "dynamic": ("运动障碍物", "Moving obstacles"),
+    "large-change": ("持久结构变化", "Persistent structural change"),
+    "corridor": ("走廊退化", "Corridor degradation"),
+    "height-corridor": ("高处几何对照", "Added-height control"),
+}
+
+
+def group_for(path):
+    if path.startswith("docs/media/hardware/"):
+        return "hardware"
+    name = path.split("/")[2]
+    if name.startswith("desktop-"):
+        return "related-works"
+    if name.startswith("srrg-2d-"):
+        return "srrg-2d"
+    if name in NAMES:
+        return "practice-3d" if name.startswith("robot-3d-") else "practice-2d"
+    if name == "robot-3d-map-review-v2":
+        return "map-review"
+    if name in ("robot-ndt-static", "robot-gicp-static"):
+        return "registration"
+    if name.startswith("robot-supp-"):
+        return "sensor-practice"
+    if name.startswith("probe-calibrated-refinement-"):
+        return "refinement"
+    if name.startswith("probe-calibrated-"):
+        return "hypotheses-3d" if "-3d-" in name else "hypotheses-2d"
+    return "archive"
+
+
 def render():
-    legacy_minimal()
-    old = (ROOT / "docs/MINIMAL.zh-CN.md").read_text(encoding="utf-8").splitlines()[2:]
-    source_rows = []
-    for line in old:
+    source_rows = {}
+    for line in legacy_minimal(write=False):
         parts = [p.strip() for p in line.split("|")[1:-1]]
-        match = re.search(r"\]\(\.\./([^)]*)\)", parts[1])
-        source_rows.append((match.group(1), parts[0], parts[2]))
-    tracked = subprocess.check_output(["git", "ls-files", "*.mp4"], cwd=ROOT, text=True).splitlines()
-    videos = set(tracked)
+        path = re.search(r"\]\(\.\./([^)]*)\)", parts[1]).group(1)
+        source_rows[path] = (parts[0], parts[2])
+    videos = set(subprocess.check_output(["git", "ls-files", "*.mp4"], cwd=ROOT, text=True).splitlines())
+    # Match the actual practices displayed in the article, rather than file-name order.
+    article = (ROOT / "README.md").read_text(encoding="utf-8")
+    primary = list(dict.fromkeys(re.findall(r"!\[[^]]*\]\(([^)]*\.gif)\)", article)))
+    primary += [p for p in source_rows if p.startswith("docs/media/hardware/") and p not in primary]
+    assert set(primary) <= source_rows.keys()
     slots = json.loads((ROOT / "docs/figures/slots.json").read_text())["slots"]
-    labels = {s["path"]: s["caption"].get("en", s["id"]) for s in slots if s.get("status") == "published"}
+    captions = {s["path"]: s["caption"] for s in slots if s.get("status") == "published"}
+    records = {}
+    for path in source_rows:
+        if path.startswith("results/reference/"):
+            name = path.split("/")[2]
+            file = ROOT / "results/reference" / name / "record.json"
+            if name not in records:
+                records[name] = json.loads(file.read_text()) if file.exists() else {}
+
     for chinese in (False, True):
+        home = "HOME.zh-CN.md" if chinese else "../README.md"
         rows = [
-            "| 导航 | 入口 |" if chinese else "| Navigation | Link |",
+            "| 极简实践 | 跳转 |" if chinese else "| Minimal practice | Jump to |",
             "| --- | --- |",
-            "| 语言 | [English](MINIMAL.md) / [中文](MINIMAL.zh-CN.md) |"
+            "| 语言／主文 | [English](MINIMAL.md) · [中文](MINIMAL.zh-CN.md) · [主README](HOME.zh-CN.md) |"
             if chinese
-            else "| Language | [English](MINIMAL.md) / [中文](MINIMAL.zh-CN.md) |",
-            "| 主文 | [English](../README.md) / [中文](HOME.zh-CN.md) |"
+            else "| Language / main | [English](MINIMAL.md) · [中文](MINIMAL.zh-CN.md) · [Main README](../README.md) |",
+            "| 查看 | 表内GIF直接播放；点击预览打开完整视频；DA／SA为动态删除／静态保留，单次不排名 |"
             if chinese
-            else "| Main article | [English](../README.md) / [中文](HOME.zh-CN.md) |",
-            "| 查看方式 | 点击GIF／MP4；保留成功、无效和失败记录；单轮不排名 |"
+            else "| Viewing | GIFs play in the tables; click a preview for the full video; DA/SA = dynamic removal/static retention; single trials do not establish a ranking |",
+        ]
+        for anchor, zh, en in GROUPS:
+            rows.append(f"| {zh if chinese else en} | [▶ {'查看' if chinese else 'View'}](#{anchor}) |")
+        rows.append(
+            "| 历史实践与失败诊断 | [展开查看](#archive) |"
             if chinese
-            else "| Viewing | Open GIF/MP4; positive, null and failed runs retained; single trials do not establish a ranking |",
-            "",
-            "| 实验／设置 | 输入和地图 | 指标／范围 |"
-            if chinese
-            else "| Experiment / setup | Inputs and map | Metrics / scope |",
-            "| --- | --- | --- |",
-        ]
-        zh = [
-            "| 原库清理 | KITTI等作者数据；原库参数见主文 | DUFO／Beauty点级DA／SA；不与仿真排名 |",
-            "| 原生二维SRRG | 四场景；二维雷达＋里程计，无三维雷达；已知起点 | 残影删除／静态覆盖；动态42.31%／99.51%；独立定位B待测 |",
-            "| 旧二维投影＋AMCL | 四场景；三维清理图投影，定位使用二维扫描 | 动态格DA／静态格SA；另报XY RMSE，含初始化 |",
-            "| 三维清理＋GICP | 四场景；三维扫描，给定位姿建图A；独立定位B无真值输入 | 源点DA／SA；另报XYZ RMSE，含初始化；走廊覆盖不同不排名 |",
-            "| 历史定位假设 | 五场景×2D／3D＋深度；五原型同帧；地图冻结 | 只测定位／恢复，不是动态建图；细化回放无新仿真 |",
-            "| 时长／重复 | 逐记录为准；假设普通场景90s、走廊120s；前50s限制雷达后恢复 | 仿真秒；主要场景每条件一轮，不能推出稳定排名 |",
-            "| 地图与定位区分 | DA=动态删除，SA=静态保留；无动态样本N/A | 清理率不是几何误差；更干净不保证定位更准 |",
-            "| SRRG退化检查 | 11.1s跟踪重置；11.5s持续偏差>20cm；57.6s恢复扫描 | 仿真时刻；MP4首告警约4.6s；非独立测得地图坍塌时刻 |",
-        ]
-        en = [
-            "| Author cleaning | KITTI / author data; native parameters in main article | DUFO/Beauty point DA/SA; no ranking against simulator |",
-            "| Native 2D SRRG | Four scenes; 2D lidar + odometry, no 3D lidar; known start | Ghost removal / static coverage; dynamic 42.31% / 99.51%; held-out localization B pending |",
-            "| Legacy projection + AMCL | Four scenes; projected 3D-cleaned maps, 2D localization scans | Dynamic/static cell DA/SA; separate XY RMSE, initialization included |",
-            "| 3D cleaning + GICP | Four scenes; supplied-pose mapping A, independent localization B with no truth input | Point DA/SA; separate XYZ RMSE, initialization included; unequal corridor coverage prevents ranking |",
-            "| Earlier localization hypotheses | Five scenes × 2D/3D + depth; five prototypes share frames; frozen maps | Pose/recovery only, not dynamic mapping; refinement replay has no new simulation |",
-            "| Duration / repeats | Per-record settings; hypothesis scenes 90s, corridors 120s; constrained lidar first 50s then restored | Simulation seconds; primary conditions have one run, insufficient for stable ranking |",
-            "| Map vs pose | DA=dynamic removal, SA=static retention; no dynamic samples=N/A | Cleaning scores are not geometric error; cleaning need not improve localization |",
-            "| SRRG corridor inspection | Tracking reset 11.1s; sustained >20cm error 11.5s; scan restoration 57.6s | Simulation timestamps; first warning around MP4 4.6s; no independently measured map-collapse time |",
-        ]
-        rows.extend(zh if chinese else en)
-        rows += [
-            "",
-            ("| 器材参数 | 实际设置 |" if chinese else "| Equipment | Actual setting |"),
-            "| --- | --- |",
-        ]
-        setup = SETUP_ZH if chinese else SETUP_EN
-        rows.extend(
-            line
-            for line in setup.splitlines()
-            if line.startswith("|") and not line.startswith(("| ---", "| 项目", "| Item"))
+            else "| Earlier practice and failures | [Expand](#archive) |"
         )
-        rows += [
-            "",
-            "| 地图／算法参数 | 设置 |" if chinese else "| Map / algorithm parameter | Setting |",
-            "| --- | --- |",
-        ]
-        rows += [
-            "| DUFOMap | voxel=0.10m; d_s=0.20m; d_p=1; threads=2 |",
-            "| BeautyMap (Gazebo) | XY=0.50m; Z=0.20m; range=8m; offline |",
-            "| SRRG | native local projective merge ON; graph merge OFF in four main runs; 10cm support / 15cm coverage tolerance |",
-            "| AMCL / GICP | frozen-map B; nearest truth ≤0.05 simulation seconds; no trajectory fitting |",
-            "| Native source | [URDF](../config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf) / [map processing](../src/scripts/presentation/build_maps.py) / [SRRG](papers/srrg_mapper2d.zh-CN.md) |",
-            "",
-            "| 实验／地图 | GIF / MP4 | 指标效果 |"
-            if chinese
-            else "| Experiment / map | GIF / MP4 | Metric / effect |",
-            "| --- | --- | --- |",
-        ]
-        used = set()
-        for path, label, effect in source_rows:
+        used_videos = set()
+
+        def make_row(path):
             gif = Path(path)
+            label, effect = source_rows[path]
+            if not chinese:
+                label = captions.get(path, {}).get(
+                    "en", gif.with_suffix("").as_posix().replace("results/reference/", "")
+                )
+                effect = english(effect)
             choices = [gif.with_suffix(".mp4").as_posix()]
             if gif.stem == "preview":
-                choices += [(gif.parent / name).as_posix() for name in ("replay.mp4", "execution.mp4")]
+                choices += [(gif.parent / p).as_posix() for p in ("replay.mp4", "execution.mp4")]
             video = next((p for p in choices if p in videos), None)
-            links = f"[GIF](../{path})"
             if video:
-                links += f" / [MP4](../{video})"
-                used.add(video)
-            if not chinese:
-                label = labels.get(path, gif.with_suffix("").as_posix().replace("results/reference/", ""))
-                effect = english(effect)
-                if re.search(r"[\u4e00-\u9fff]", effect):
-                    raise ValueError(f"Untranslated effect: {effect}")
-            rows.append(f"| {label} | {links} | {effect} |")
-        for path in sorted(videos - used):
-            package = path.split("/")[2] if path.startswith("results/reference/") else path
-            effect = (
-                "补充实录／回放；对应指标见同实验GIF行，不新增评分"
+                used_videos.add(video)
+            destination = "../" + (video or path)
+            preview = f'<a href="{destination}"><img src="../{path}" width="280" loading="lazy" alt="{escape(label, quote=True)}"></a>'
+            preview += f'<br>[{"完整视频" if chinese else "Full video"}]({destination}) · [GIF](../{path})'
+            detail = ""
+            if path.startswith("results/reference/"):
+                name = path.split("/")[2]
+                record = records[name]
+                record_url = "../results/reference/" + name + "/record.json"
+                if (ROOT / "results/reference" / name / "record.json").exists():
+                    preview += f' · [{"记录" if chinese else "Record"}]({record_url})'
+                method = next((m for m in ("raw", "dufomap", "beautymap") if m in path), None)
+                if name in NAMES and method:
+                    dimension = "3d" if name.startswith("robot-3d-") else "2d"
+                    scene = ("static", "dynamic", "large-change", "corridor")[NAMES.index(name) % 4]
+                    label = f'{SCENES[scene][0 if chinese else 1]} · {dimension.upper()} · {dict(raw="Raw",dufomap="DUFOMap",beautymap="BeautyMap")[method]}'
+                    replay = "/methods/" in path
+                    label += " · " + (
+                        ("结果回放" if chinese else "Result replay")
+                        if replay
+                        else ("实录" if chinese else "Live")
+                    )
+                    case = ("degraded_" if name == "robot-corridor-v2" else "") + method
+                    value = (
+                        record["metrics_3d"][case]["xyz_rmse_m"]
+                        if dimension == "3d"
+                        else record["metrics"]["cases"][case]["position_rmse_m"]
+                    )
+                    effect += f'<br>{"XYZ" if dimension == "3d" else "XY"} RMSE {value*100:.2f} cm'
+                    if name == "robot-3d-corridor":
+                        effect += (
+                            "；输出覆盖不同，不排名" if chinese else "; unequal output coverage; no ranking"
+                        )
+                    anchor = "scene-" + ("change" if scene == "large-change" else scene) + "-" + dimension
+                    detail = home + "#" + anchor
+                elif name.startswith("srrg-2d-") and name.removeprefix("srrg-2d-") in SCENES:
+                    detail = home + "#srrg-" + name.removeprefix("srrg-2d-") + "-2d"
+                    effect += "；独立定位B待测" if chinese else "; held-out localization B pending"
+                elif name.startswith("probe-calibrated-"):
+                    detail = home + "#" + name
+                elif name in (
+                    "desktop-live-dufomap",
+                    "desktop-live-beautymap",
+                    "desktop-live-ir-mcl",
+                    "desktop-adam-mcl",
+                ):
+                    method_name = name.removeprefix("desktop-live-").removeprefix("desktop-")
+                    method_label = {
+                        "dufomap": "DUFOMap",
+                        "beautymap": "BeautyMap",
+                        "ir-mcl": "IR-MCL",
+                        "adam-mcl": "AdaM-MCL",
+                    }[method_name]
+                    label = (
+                        method_label
+                        + " · "
+                        + (
+                            ("结果回放" if chinese else "Result replay")
+                            if gif.stem == "result"
+                            else ("原库实录" if chinese else "Author-code execution")
+                        )
+                    )
+                    detail = home + "#" + method_name
+                elif name == "robot-3d-map-review-v2":
+                    label = (
+                        "Raw／DUFOMap／BeautyMap · 三维清理结果"
+                        if chinese
+                        else "Raw / DUFOMap / BeautyMap · 3D cleaning results"
+                    )
+                    effect = (
+                        "动态删除：0／46.59／74.36%；静态保留：100／99.998／81.15%；保存结果展示"
+                        if chinese
+                        else "DA: 0 / 46.59 / 74.36%; SA: 100 / 99.998 / 81.15%; saved-result review"
+                    )
+                    detail = home + "#map-review-3d"
+            if detail:
+                label = f"[{label}]({detail})"
+            return f'| {label.replace("|", "／")} | {preview} | {effect} |'
+
+        for anchor, zh, en in GROUPS:
+            paths = [p for p in primary if group_for(p) == anchor]
+            if not paths:
+                continue
+            rows += [
+                "",
+                f'<a id="{anchor}"></a>',
+                "",
+                f'| {zh if chinese else en} | {"GIF预览（点击看视频）" if chinese else "GIF preview (click for video)"} | {"指标效果" if chinese else "Metric / effect"} |',
+                "| --- | --- | --- |",
+            ]
+            rows.extend(make_row(path) for path in paths)
+        remaining = [p for p in source_rows if p not in primary]
+        rows += [
+            "",
+            '<a id="archive"></a>',
+            "",
+            "<details>",
+            f'<summary>{"历史实践与失败诊断" if chinese else "Earlier practice and failure diagnostics"} · {len(remaining)} GIF</summary>',
+            "",
+            "| 实践 | GIF预览（点击看视频） | 指标效果 |"
+            if chinese
+            else "| Practice | GIF preview (click for video) | Metric / effect |",
+            "| --- | --- | --- |",
+        ]
+        rows.extend(make_row(path) for path in remaining)
+        additional = sorted(videos - used_videos)
+        if additional:
+            rows += [
+                "",
+                "| 补充实践视频 | 视频 | 说明 |"
                 if chinese
-                else "Additional capture/replay; use the same experiment's GIF score; no additional measurement"
-            )
-            rows.append(f"| {package} / {Path(path).name} | [MP4](../{path}) | {effect} |")
+                else "| Additional practice videos | Video | Note |",
+                "| --- | --- | --- |",
+            ]
+            for path in additional:
+                label = path.removeprefix("results/reference/")
+                note = (
+                    "同实验补充片段；不新增评分"
+                    if chinese
+                    else "Additional clip of the same experiment; no additional score"
+                )
+                rows.append(
+                    f'| {label} | [▶ {"完整视频" if chinese else "Full video"}](../{path}) | {note} |'
+                )
+        rows += ["", "</details>"]
         output = ROOT / "docs" / ("MINIMAL.zh-CN.md" if chinese else "MINIMAL.md")
-        output.write_text("\n".join(rows) + "\n", encoding="utf-8")
-        print(output.name, len(source_rows), "GIFs;", len(videos), "MP4s")
+        output.write_text("\n".join(rows) + "\n", encoding="utf-8", newline="\n")
+        print(
+            output.name,
+            len(primary),
+            "main practice GIFs;",
+            len(remaining),
+            "archived GIFs;",
+            len(videos),
+            "MP4s",
+        )
 
 
 if __name__ == "__main__":

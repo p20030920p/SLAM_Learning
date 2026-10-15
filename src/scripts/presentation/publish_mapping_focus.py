@@ -79,7 +79,7 @@ def publish():
         if chinese:
             text = re.sub(
                 r"^\[English\]\(../README.md\) \| 中文.*$",
-                "[English](../README.md) | 中文 | [Minimal English](MINIMAL.md) | [极简中文](MINIMAL.zh-CN.md)",
+                "[English](../README.md) | 中文 | [**Minimal English · Practice**](MINIMAL.md) | [**极简中文 · 实践**](MINIMAL.zh-CN.md)",
                 text,
                 count=1,
                 flags=re.M,
@@ -95,7 +95,7 @@ def publish():
         else:
             text = re.sub(
                 r"^English \| \[中文\]\(docs/HOME.zh-CN.md\).*$",
-                "English | [中文](docs/HOME.zh-CN.md) | [Minimal English](docs/MINIMAL.md) | [极简中文](docs/MINIMAL.zh-CN.md)",
+                "English | [中文](docs/HOME.zh-CN.md) | [**Minimal English · Practice**](docs/MINIMAL.md) | [**极简中文 · 实践**](docs/MINIMAL.zh-CN.md)",
                 text,
                 count=1,
                 flags=re.M,
