@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import sys
 
 ROOT = Path(__file__).resolve().parents[4]
 SCENES = [
@@ -180,6 +181,12 @@ def main():
     }
     for doc, zh in [(ROOT / "README.md", False), (ROOT / "docs/HOME.zh-CN.md", True)]:
         text = doc.read_text(encoding="utf-8")
+        if "<!-- HOME_EXPERIMENTS_V2 -->" in text:
+            sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+            from publish_home_experiments import refresh_document
+
+            refresh_document(doc, zh)
+            continue
         if "| srrg_mapper2d |" not in text:
             pos = text.index("\n", text.index("| AdaM-MCL |"))
             text = (

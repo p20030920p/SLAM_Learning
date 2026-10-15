@@ -69,6 +69,11 @@ HYP_ZH = """本轮问题聚焦**地图清理**。假设由易到难逐项检验�
 def publish():
     for chinese, path in [(False, ROOT / "README.md"), (True, ROOT / "docs/HOME.zh-CN.md")]:
         text = path.read_text(encoding="utf-8")
+        if "<!-- HOME_EXPERIMENTS_V2 -->" in text:
+            from publish_home_experiments import refresh_document
+
+            refresh_document(path, chinese)
+            continue
         text = text.split('\n\n<a id="mapping-hypothesis-tests"></a>')[0]
         text = re.sub(
             r"## (?:Simulation sensors and chassis|仿真雷达与小车结构参数)\n.*?(?=## (?:Practice|实践)\n)",
@@ -79,7 +84,7 @@ def publish():
         if chinese:
             text = re.sub(
                 r"^\[English\]\(../README.md\) \| 中文.*$",
-                "[English](../README.md) | 中文 | [**Minimal English · Practice**](MINIMAL.md) | [**极简中文 · 实践**](MINIMAL.zh-CN.md)",
+                "[English](../README.md) | 中文",
                 text,
                 count=1,
                 flags=re.M,
@@ -95,7 +100,7 @@ def publish():
         else:
             text = re.sub(
                 r"^English \| \[中文\]\(docs/HOME.zh-CN.md\).*$",
-                "English | [中文](docs/HOME.zh-CN.md) | [**Minimal English · Practice**](docs/MINIMAL.md) | [**极简中文 · 实践**](docs/MINIMAL.zh-CN.md)",
+                "English | [中文](docs/HOME.zh-CN.md)",
                 text,
                 count=1,
                 flags=re.M,

@@ -9,11 +9,11 @@ Dynamic map cleaning · Static structure retention · Downstream localization
 [![CPU reproducibility](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/SLAM_Learning/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](src/pyproject.toml)
 
-English | [中文](docs/HOME.zh-CN.md) | [**Minimal English · Practice**](docs/MINIMAL.md) | [**极简中文 · 实践**](docs/MINIMAL.zh-CN.md)
+English | [中文](docs/HOME.zh-CN.md)
 
-[Open question](#open-question) · [Direction](#direction-analysis) · [Related works](#related-works) · [Metrics](#metrics)
+[Open question](#open-question) · [Direction](#direction-analysis) · [Hypothesis](#hypothesis) · [Related works](#related-works) · [Metrics](#metrics)
 
-[Practice](#practice) · [Hypothesis](#hypothesis) · [Hypothesis test experiment](#hypothesis-test-experiment) · [Hardware experiment](#hardware-experiment) · [Branches](#branches)
+[Practice](#practice) · [Hypothesis test experiment](#hypothesis-test-experiment) · [Hardware experiment](#hardware-experiment) · [Branches](#branches)
 
 </div>
 
@@ -39,29 +39,51 @@ The current chain is **dynamic trace removal → static constraint retention →
 
 Semantic mapping and earlier projections remain in the [original repository](https://github.com/p20030920p/SLAM_Learning).
 
+<a id="mapping-hypothesis-tests"></a>
+
+## Hypothesis
+
+<!-- HOME_HYPOTHESIS_PROGRESS -->
+**Current progress: after M3, preparing the controlled M4 validation.** M1 removal, M2 static retention and M3 projection loss have single-run evidence. M4 has localization baselines, but contamination-dose/repeated tests and SRRG's held-out B are pending; no localization gain is established. M5 temporal-depth gating for 2D mapping remains untested. Guard/Depth/Search below are frozen-map localization exploration.
+<!-- /HOME_HYPOTHESIS_PROGRESS -->
+
+The current question is about **map cleaning**. Test hypotheses in order; a failed condition stops a claim from propagating to localization. Existing pose-only Guard/Depth/Search experiments remain as a labelled exploratory appendix.
+
+| Hypothesis, easy → hard | Existing simple test / outcome |
+| --- | --- |
+| M1: temporal visibility can remove dynamic traces | Dynamic scene: DUFOMap removes 46.59% / BeautyMap 74.36% of 3D dynamic points; native 2D SRRG removes 42.31% of verified dynamic ghost cells. Different denominators; no cross-method ranking. |
+| M2: removal can preserve static constraints | Same scene: 3D static retention DUFOMap 99.998%, BeautyMap 81.15%; SRRG 2D static coverage 99.51%. BeautyMap's removal gain has a static-loss cost here. |
+| M3: a 3D cleaning gain survives 2D projection | Re-score the same maps: projected dynamic-cell removal is only 8.33% / 33.33%; supported only partially. Native 2D SRRG is a separate representation/control. |
+| M4: cleaner maps lower held-out pose error when ghosts corrupt useful constraints | Dynamic GICP XYZ RMSE Raw/DUFO/Beauty=0.98/0.98/1.04 cm: no benefit established. Vary contamination and repeat with a frozen localizer; this dose-response experiment is pending. SRRG's separate localization B is also pending. |
+| M5: a 2D lidar + depth camera can disambiguate occluded static structure | Existing Depth experiments test pose estimation only, with no stable general gain. A temporal depth visibility gate for map updates, compared with 2D-only SRRG and 3D reference, remains an untested mapping hypothesis. |
+
+[Mapping question, paper links and controlled next tests](docs/testing/MAPPING-FOCUS.md) · [Map-quality evidence and failure timestamps](docs/testing/MAP-METRICS.zh-CN.md). Static and corridor scenes are controls: deleting points cannot create missing geometry. Persistent change needs a separate map-update test.
+
 ## Related works
 
-**Author-code live execution with RViz + Terminal.** The display observes current computation; points/particles are thinned only for visualization. Observer overhead is excluded from paper runtime comparisons.
+<!-- HOME_RELATED_TABLE -->
+Grouped by algorithm family. Click a GIF for the full video. The application-direction column is intentionally blank. Different data protocols prevent cross-row ranking.
 
-Latest author-code runs; datasets and failure analysis are in each paper card. SA: static retention; DA: dynamic removal.
+| Method / algorithm family | Reproduction GIF | Measured metrics and scope | Application direction |
+| --- | --- | --- | --- |
+| <a id="related-dufomap"></a>[DUFOMap](docs/papers/dufomap.md)<br>3D map cleaning | <a href="results/reference/desktop-live-dufomap/execution.mp4"><img src="results/reference/desktop-live-dufomap/execution.gif" width="230" loading="lazy" alt="DUFOMap · Live execution"></a><br>[Live execution](results/reference/desktop-live-dufomap/execution.mp4) | SA 97.98% / DA 98.7%<br>KITTI-00 · 141 scans; cleaning demonstrated<br>[Record](results/reference/desktop-live-dufomap/record.json) |  |
+| <a id="related-beautymap"></a>[BeautyMap](docs/papers/beautymap.md)<br>Offline 3D map cleaning | <a href="results/reference/desktop-live-beautymap/execution.mp4"><img src="results/reference/desktop-live-beautymap/execution.gif" width="230" loading="lazy" alt="BeautyMap · Live execution"></a><br>[Live execution](results/reference/desktop-live-beautymap/execution.mp4) | SA 96.95% / DA 98.34%<br>KITTI-00 · 141 scans; cleaning demonstrated<br>[Record](results/reference/desktop-live-beautymap/record.json) |  |
+| <a id="related-srrg_mapper2d"></a>[srrg_mapper2d](docs/papers/srrg_mapper2d.zh-CN.md)<br>Native dynamic 2D mapping | <a href="results/reference/srrg-2d-dynamic/execution.mp4"><img src="results/reference/srrg-2d-dynamic/execution.gif" width="230" loading="lazy" alt="srrg_mapper2d · Live execution"></a><br>[Live execution](results/reference/srrg-2d-dynamic/execution.mp4) | DA 42.31% / SA 99.51%<br>Single Gazebo dynamic run; author code compiled, four scenes in Practice; held-out localization B pending<br>[Record](results/reference/srrg-2d-dynamic/record.json) |  |
+| <a id="related-ir-mcl"></a>[IR-MCL](docs/papers/ir-mcl.md)<br>2D neural-field localization | <a href="results/reference/desktop-live-ir-mcl/execution.mp4"><img src="results/reference/desktop-live-ir-mcl/execution.gif" width="230" loading="lazy" alt="IR-MCL · Live execution"></a><br>[Live execution](results/reference/desktop-live-ir-mcl/execution.mp4) | RMSE 5.31 cm / 1.07°<br>Bonn IPBLab Seq 1<br>[Record](results/reference/desktop-live-ir-mcl/record.json) |  |
+| <a id="related-adam-mcl"></a>[AdaM-MCL](docs/papers/adam-mcl.md)<br>Learned proposals + particle localization | <a href="results/reference/desktop-adam-mcl/execution.mp4"><img src="results/reference/desktop-adam-mcl/execution.gif" width="230" loading="lazy" alt="AdaM-MCL · Live execution"></a><br>[Live execution](results/reference/desktop-adam-mcl/execution.mp4)<br><a href="results/reference/desktop-adam-mcl/result.mp4"><img src="results/reference/desktop-adam-mcl/result.gif" width="230" loading="lazy" alt="AdaM-MCL · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/desktop-adam-mcl/result.mp4) | RMSE 32.23 cells; authored 128-cell map, 2432 training steps; historical sustained convergence 0/10, no comparison to paper metre-scale accuracy<br>[Record](results/reference/desktop-adam-mcl/record.json) |  |
+<!-- /HOME_RELATED_TABLE -->
 
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| DUFOMap | 3D dynamic-point-cleaned map | SA 97.98% / DA 98.70%; cleaning works |
-| BeautyMap | 3D offline-cleaned map | SA 96.95% / DA 98.34%; cleaning works |
-| IR-MCL | Neural occupancy field | RMSE 5.31 cm / 1.07°; Seq-1 localization works |
-| AdaM-MCL | Authored 128-cell grid | RMSE 32.23 cells; historical sustained convergence 0/10 |
-| srrg_mapper2d | Native 2D point map (Gazebo) | Ghost removal 42.31% / static coverage 99.51% |
+See [Metrics](#metrics) for SA/DA and pose-RMSE definitions. SRRG scores 2D observed support; DUFOMap/BeautyMap score 3D points. IR-MCL/AdaM-MCL do not clean maps.
 
+<details>
+<summary>Inputs, processing and reproduction boundaries</summary>
+
+<!-- HOME_RELATED_DETAILS -->
 ### DUFOMap — dynamic-point removal during map integration
 
 **Input:** successive 3D LiDAR scans and provided sensor poses. **Process:** observed free space supplies evidence that earlier occupied points are transient; an octree accumulates this evidence with margins for pose uncertainty. **Output:** a map with dynamic remnants removed. It does not estimate the robot pose. [Paper and reproduced scope](docs/papers/dufomap.md).
 
 In the live video, gray points are retained, red points are removed, and cyan points are the current scan. Watch how decisions change as later scans supply evidence. KITTI-00, 141 scans; SA 97.98% / DA 98.70%. SA measures retained static points and DA measures removed dynamic points; neither is localization error.
-
-**Live execution**
-
-![DUFOMap author-code live execution](results/reference/desktop-live-dufomap/execution.gif)
 
 [Live MP4](results/reference/desktop-live-dufomap/execution.mp4) · [record](results/reference/desktop-live-dufomap/record.json)
 
@@ -71,10 +93,6 @@ In the live video, gray points are retained, red points are removed, and cyan po
 
 Gray/red show retained/removed points. Watch the cumulative removal decisions, rather than interpreting the complete initial map as online SLAM. KITTI-00, 141 scans; SA 96.95% / DA 98.34%. Cleaner maps may help downstream localization, but that requires a separate test.
 
-**Live execution**
-
-![BeautyMap author-code live execution](results/reference/desktop-live-beautymap/execution.gif)
-
 [Live MP4](results/reference/desktop-live-beautymap/execution.mp4) · [record](results/reference/desktop-live-beautymap/record.json)
 
 ### IR-MCL — localize with a neural observation model
@@ -82,10 +100,6 @@ Gray/red show retained/removed points. Watch the cumulative removal decisions, r
 **Input:** a pretrained neural occupancy field, measured 2D scans and motion input. **Process:** each particle represents a possible robot pose; the field renders a predicted scan at that pose, scan agreement changes particle weights, and resampling concentrates the belief. **Output:** an estimated pose and particle distribution. [Paper, original code and protocol](docs/papers/ir-mcl.md).
 
 In RViz, the map supplies context, yellow particles show pose hypotheses, blue is the displayed estimate and green is the reference trajectory. Watch particle concentration and agreement with the reference. The displayed weighted particle mean is an observer; scoring uses the native saved estimate. Bonn IPBLab Seq 1: 1543 processed / 1354 scored poses, fresh RMSE 5.31 cm / 1.07°. This author-data run is separate from deployment into Gazebo.
-
-**Live execution**
-
-![IR-MCL author-code live execution](results/reference/desktop-live-ir-mcl/execution.gif)
 
 [Live MP4](results/reference/desktop-live-ir-mcl/execution.mp4) · [record](results/reference/desktop-live-ir-mcl/record.json)
 
@@ -95,15 +109,7 @@ In RViz, the map supplies context, yellow particles show pose hypotheses, blue i
 
 Our run uses an authored 128-cell map and a 2432-step checkpoint: 123 filter updates, RMSE 32.23 cells. The released paper dataset/checkpoint was unavailable. This verifies a limited original-code workflow; it neither reproduces the paper's metre-scale scores nor demonstrates successful recovery. [Score correction](results/reference/adam-mcl/ERRATUM.md).
 
-**Live execution**
-
-![AdaM-MCL author-code live execution](results/reference/desktop-adam-mcl/execution.gif)
-
 [Live MP4](results/reference/desktop-adam-mcl/execution.mp4) · [record](results/reference/desktop-adam-mcl/record.json)
-
-**Measured result replay**
-
-![AdaM-MCL saved result replay](results/reference/desktop-adam-mcl/result.gif)
 
 [Result MP4](results/reference/desktop-adam-mcl/result.mp4)
 
@@ -117,6 +123,9 @@ The paper evaluates long-term dynamic 2D mapping on LCAS–STRANDS and MIT Stata
 [2D 实践：视频与指标](#srrg-2d) · [失败诊断](#srrg-diagnostics) · [原文适用条件](docs/papers/srrg_mapper2d.zh-CN.md)
 
 <!-- /SRRG_RELATED -->
+<!-- /HOME_RELATED_DETAILS -->
+
+</details>
 
 ## Metrics
 
@@ -214,25 +223,24 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 ## Practice
 
-[Minimal practice: GIF previews and videos](docs/MINIMAL.md)
-
-[Keyboard demos](demo/README.md) · [Video gallery](demo/gallery.html) · [Code Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb).
-
-### Practice index
+<!-- HOME_EXPERIMENTS_V2 -->
 
 <a id="practice-index"></a>
 
-[Simulation setup](#simulation-sensors-and-chassis) · [SRRG native 2D mapping](#srrg-2d) · [2D · AMCL](#2d--amcl) · [3D · GICP](#3d--gicp) · [2D recordings](#2d-localization-recordings) · [3D recordings](#3d-map-cleaning-and-localization-recordings) · [Earlier NDT / GICP](#earlier-raw-map-3d-static-trials) · [Supplementary recordings](#supplementary-live-scene-recordings)
+[Keyboard demos](demo/README.md) · [Video gallery](demo/gallery.html) · [Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb)
 
-| Scene | 2D · AMCL | 3D · GICP |
-| --- | --- | --- |
-| Pure static | [SRRG mapping](#srrg-static-2d) / [Legacy localization](#scene-static-2d) | [View recordings](#scene-static-3d) |
-| Moving obstacles | [SRRG mapping](#srrg-dynamic-2d) / [Legacy localization](#scene-dynamic-2d) | [View recordings](#scene-dynamic-3d) |
-| Persistent change | [SRRG mapping](#srrg-large-change-2d) / [Legacy localization](#scene-change-2d) | [View recordings](#scene-change-3d) |
-| Corridor degradation | [SRRG mapping](#srrg-corridor-2d) / [Legacy localization](#scene-corridor-2d) | [View recordings](#scene-corridor-3d) |
+Grouped by experiment type; each table keeps its algorithms, GIFs and metrics together. 2D and 3D remain separate; single runs do not establish stable rankings.
 
-[3D map cleaning results](#map-review-3d) · [Hypotheses and new experiments](#hypothesis-experiments)
+| Scene | A · Native 2D mapping | B · 2D projection + AMCL | C · 3D maps + GICP |
+| --- | --- | --- | --- |
+| Pure static | [SRRG](#srrg-static-2d) | [Raw / DUFO / Beauty](#scene-static-2d) | [Raw / DUFO / Beauty](#scene-static-3d) |
+| Moving obstacles | [SRRG](#srrg-dynamic-2d) | [Raw / DUFO / Beauty](#scene-dynamic-2d) | [Raw / DUFO / Beauty](#scene-dynamic-3d) |
+| Persistent change | [SRRG](#srrg-large-change-2d) | [Raw / DUFO / Beauty](#scene-change-2d) | [Raw / DUFO / Beauty](#scene-change-3d) |
+| Corridor degradation | [SRRG](#srrg-corridor-2d) | [Raw / DUFO / Beauty](#scene-corridor-2d) | [Raw / DUFO / Beauty](#scene-corridor-3d) |
 
+[Simulation](#simulation-sensors-and-chassis) · [3D map review](#map-review-3d) · [NDT / GICP](#earlier-raw-map-3d-static-trials) · [Supplementary](#supplementary-live-scene-recordings) · [Hypothesis experiments](#hypothesis-experiments)
+
+<!-- HOME_SIMULATION -->
 <a id="simulation-sensors-and-chassis"></a>
 
 ### Simulation setup · sensors and chassis
@@ -249,97 +257,98 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 | Map representation | 3D source points; legacy 2D projection: 0.05 m cells, world Z=0.12–1.20 m, one-cell occupied dilation; SRRG has its own native 2D map and scoring tolerance |
 
 [Actual robot URDF](config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf) · [Depth/sensor-arm generation](src/scripts/presentation/probe_sensors.py) · [Map projection](src/scripts/presentation/build_maps.py). Sensor offsets are relative to base_link, not height above the floor. The 16-line simulator is not a claim of a specific commercial lidar model.
+<!-- /HOME_SIMULATION -->
 
-<!-- SRRG_PRACTICE -->
 <a id="srrg-2d"></a>
 
-### Native 2D mapping · srrg_mapper2d
+### A · Native dynamic 2D mapping
 
-[↑ Practice index](#practice-index)
-
-Actual 2D lidar and wheel odometry, with no 3D lidar or truth registration. Native author Mapper2D registration and pose graph; the main group uses the author default with graph merging off and local projective merging on. The numerical failure with graph merging on is retained separately.
-
-Metrics use unique 10cm observed support and 15cm coverage tolerance. Ghost removal scores only historical dynamic positions later verified free by actual rays, excluding current objects. Raw accumulation uses each frame’s then-current estimate; SRRG also optimizes the graph. This is an end-to-end comparison, distinct from exact 3D point retention.
+2D lidar + wheel odometry with a known start; native Mapper2D/local projective merging, with no truth registration. Main runs use the author default with graph merging off. Raw accumulates then-current estimates; SRRG also maintains the pose graph, so this is an end-to-end comparison.
 
 <a id="srrg-static-2d"></a>
 
-#### Pure static · 2D
+#### A1 · Pure static · 2D
 
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Method | Same-input mapping GIF | Metric / effect |
 | --- | --- | --- |
-| Raw | Native 2D point map | Ghost removal N/A; static coverage 100.00% |
-| srrg_mapper2d | Native 2D point map | Ghost removal N/A; static coverage 99.84% |
+| Raw accumulation | <a href="results/reference/srrg-2d-static/execution.mp4"><img src="results/reference/srrg-2d-static/execution.gif" width="230" loading="lazy" alt="Raw / SRRG · Pure static · Live execution"></a><br>[Live execution](results/reference/srrg-2d-static/execution.mp4) | DA N/A / SA 100% |
+| srrg_mapper2d | [Same clip: blue maintained map](results/reference/srrg-2d-static/execution.mp4) | DA N/A / SA 99.84%<br>Mapping-trajectory XY RMSE 0.71 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-Mapping trajectory XY RMSE (not held-out localization B): 0.71 cm.
+[Record and audit](results/reference/srrg-2d-static/record.json)
 
-No native tracker reset or sustained 20cm pose warning was logged; this does not guarantee perfect map geometry.
+**Calculation:** Deduplicate observed support at 10cm. DA = historical dynamic cells later verified free by real rays and removed from the maintained map / all such cells × 100%; SA = static-support cells within 15cm of the map / all static-support cells × 100%. Current moving objects are excluded from the ghost denominator. Mapping-trajectory XY RMSE compares native tracking poses with synchronized truth, in cm.
 
-![SRRG Pure static actual native mapping](results/reference/srrg-2d-static/execution.gif)
+**Meaning:** Higher DA means fewer historical ghosts; higher SA means more static coverage retained. This differs from 3D point classification and from held-out localization-B error. **Localization B is pending.**
 
-[MP4](results/reference/srrg-2d-static/execution.mp4) · [record](results/reference/srrg-2d-static/record.json)
+[↑ Practice](#practice-index)
 
 <a id="srrg-dynamic-2d"></a>
 
-#### Moving obstacles · 2D
+#### A2 · Moving obstacles · 2D
 
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Method | Same-input mapping GIF | Metric / effect |
 | --- | --- | --- |
-| Raw | Native 2D point map | Ghost removal 0.00%; static coverage 100.00% |
-| srrg_mapper2d | Native 2D point map | Ghost removal 42.31%; static coverage 99.51% |
+| Raw accumulation | <a href="results/reference/srrg-2d-dynamic/execution.mp4"><img src="results/reference/srrg-2d-dynamic/execution.gif" width="230" loading="lazy" alt="Raw / SRRG · Moving obstacles · Live execution"></a><br>[Live execution](results/reference/srrg-2d-dynamic/execution.mp4) | DA 0% / SA 100% |
+| srrg_mapper2d | [Same clip: blue maintained map](results/reference/srrg-2d-dynamic/execution.mp4) | DA 42.31% / SA 99.51%<br>Mapping-trajectory XY RMSE 0.64 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-Mapping trajectory XY RMSE (not held-out localization B): 0.64 cm.
+[Record and audit](results/reference/srrg-2d-dynamic/record.json)
 
-No native tracker reset or sustained 20cm pose warning was logged; this does not guarantee perfect map geometry.
+**Calculation:** Deduplicate observed support at 10cm. DA = historical dynamic cells later verified free by real rays and removed from the maintained map / all such cells × 100%; SA = static-support cells within 15cm of the map / all static-support cells × 100%. Current moving objects are excluded from the ghost denominator. Mapping-trajectory XY RMSE compares native tracking poses with synchronized truth, in cm.
 
-![SRRG Moving obstacles actual native mapping](results/reference/srrg-2d-dynamic/execution.gif)
+**Meaning:** Higher DA means fewer historical ghosts; higher SA means more static coverage retained. This differs from 3D point classification and from held-out localization-B error. **Localization B is pending.**
 
-[MP4](results/reference/srrg-2d-dynamic/execution.mp4) · [record](results/reference/srrg-2d-dynamic/record.json)
+[↑ Practice](#practice-index)
 
 <a id="srrg-large-change-2d"></a>
 
-#### Persistent change · 2D
+#### A3 · Persistent change · 2D
 
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Method | Same-input mapping GIF | Metric / effect |
 | --- | --- | --- |
-| Raw | Native 2D point map | Ghost removal N/A; static coverage 100.00% |
-| srrg_mapper2d | Native 2D point map | Ghost removal N/A; static coverage 99.71% |
+| Raw accumulation | <a href="results/reference/srrg-2d-large-change/execution.mp4"><img src="results/reference/srrg-2d-large-change/execution.gif" width="230" loading="lazy" alt="Raw / SRRG · Persistent change · Live execution"></a><br>[Live execution](results/reference/srrg-2d-large-change/execution.mp4) | DA N/A / SA 100%<br>Added-structure coverage 100% |
+| srrg_mapper2d | [Same clip: blue maintained map](results/reference/srrg-2d-large-change/execution.mp4) | DA N/A / SA 99.71%<br>Mapping-trajectory XY RMSE 0.46 cm<br>Added-structure coverage 98.9% |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-Mapping trajectory XY RMSE (not held-out localization B): 0.46 cm.
+[Record and audit](results/reference/srrg-2d-large-change/record.json)
 
-Loads the static-A author map and calls the native multi-session update with a known start. This short route does not reproduce the paper’s long-term evaluation.
+**Calculation:** Deduplicate observed support at 10cm. DA = historical dynamic cells later verified free by real rays and removed from the maintained map / all such cells × 100%; SA = static-support cells within 15cm of the map / all static-support cells × 100%. Current moving objects are excluded from the ghost denominator. Mapping-trajectory XY RMSE compares native tracking poses with synchronized truth, in cm.
 
-Retention of observed added structures: 98.90% (91 support cells). This scene adds structures without removing old ones; dynamic removal is N/A.
+**Meaning:** Higher DA means fewer historical ghosts; higher SA means more static coverage retained. This differs from 3D point classification and from held-out localization-B error. **Localization B is pending.**
 
-No native tracker reset or sustained 20cm pose warning was logged; this does not guarantee perfect map geometry.
+The native multi-session update loads static map A with a known start. This scene adds structures without removing old ones, so DA=N/A. Added-structure coverage is covered new-support cells / all 91 new-support cells; it measures preservation of observed additions.
 
-![SRRG Persistent change actual native mapping](results/reference/srrg-2d-large-change/execution.gif)
-
-[MP4](results/reference/srrg-2d-large-change/execution.mp4) · [record](results/reference/srrg-2d-large-change/record.json)
+[↑ Practice](#practice-index)
 
 <a id="srrg-corridor-2d"></a>
 
-#### Corridor degradation · 2D
+#### A4 · Corridor degradation · 2D
 
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Method | Same-input mapping GIF | Metric / effect |
 | --- | --- | --- |
-| Raw | Native 2D point map | Ghost removal N/A; static coverage 83.43% |
-| srrg_mapper2d | Native 2D point map | Ghost removal N/A; static coverage 82.24% |
+| Raw accumulation | <a href="results/reference/srrg-2d-corridor/execution.mp4"><img src="results/reference/srrg-2d-corridor/execution.gif" width="230" loading="lazy" alt="Raw / SRRG · Corridor degradation · Live execution"></a><br>[Live execution](results/reference/srrg-2d-corridor/execution.mp4) | DA N/A / SA 83.43% |
+| srrg_mapper2d | [Same clip: blue maintained map](results/reference/srrg-2d-corridor/execution.mp4) | DA N/A / SA 82.24%<br>Mapping-trajectory XY RMSE 83.23 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-Mapping trajectory XY RMSE (not held-out localization B): 83.23 cm.
+[Record and audit](results/reference/srrg-2d-corridor/record.json)
 
-The first 50 recording simulation seconds retain 72 rays within 3.5m in the original 720 angular bins; other bins are invalid, then full observations return.
+**Calculation:** Deduplicate observed support at 10cm. DA = historical dynamic cells later verified free by real rays and removed from the maintained map / all such cells × 100%; SA = static-support cells within 15cm of the map / all static-support cells × 100%. Current moving objects are excluded from the ghost denominator. Mapping-trajectory XY RMSE compares native tracking poses with synchronized truth, in cm.
 
-| Event | Simulation seconds | Video time (approx.) |
-| --- | --- | --- |
-| native_mapper_reset | 11.1 | [4.6s](results/reference/srrg-2d-corridor/execution.mp4#t=4.6) |
-| observation_change | 7.5 | [2.7s](results/reference/srrg-2d-corridor/execution.mp4#t=2.7) |
-| observation_change | 57.6 | [50.9s](results/reference/srrg-2d-corridor/execution.mp4#t=50.9) |
-| pose_error_warning | 11.5 | [5.0s](results/reference/srrg-2d-corridor/execution.mp4#t=5.0) |
+**Meaning:** Higher DA means fewer historical ghosts; higher SA means more static coverage retained. This differs from 3D point classification and from held-out localization-B error. **Localization B is pending.**
 
-![SRRG Corridor degradation actual native mapping](results/reference/srrg-2d-corridor/execution.gif)
+The first 50 recording simulation seconds retain 72 rays / 3.5m, then restore observations. **Inspection points:** first tracker reset at 11.1s ([MP4 ≈4.6s](results/reference/srrg-2d-corridor/execution.mp4#t=4.6)); sustained >20cm pose error at 11.5s; full observations at 57.6s. No independent map-collapse onset was measured; static coverage did not improve here.
 
-[MP4](results/reference/srrg-2d-corridor/execution.mp4) · [record](results/reference/srrg-2d-corridor/record.json)
+[↑ Practice](#practice-index)
 
+<details>
+<summary>SRRG failure diagnostics and implementation limits</summary>
+
+<!-- HOME_SRRG_DIAGNOSTICS -->
 <a id="srrg-diagnostics"></a>
 
 #### Retained failure diagnostics
@@ -351,598 +360,302 @@ The first 50 recording simulation seconds retain 72 rays within 3.5m in the orig
 | [GIF](results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/execution.gif) · [MP4](results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/execution.mp4) · [record](results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/record.json) | 图合并开启：最后成功输出仿真66.0s／录制55.4s，随后g2o数值分解失败并崩溃；不是动态清理率为零。 |
 
 [Paper datasets and scope](docs/papers/srrg_mapper2d.zh-CN.md) · [Metrics and degradation timestamps](docs/testing/MAP-METRICS.zh-CN.md)
-<!-- /SRRG_PRACTICE -->
+<!-- /HOME_SRRG_DIAGNOSTICS -->
 
-### 2D · AMCL
+</details>
 
-**[Pure static](#scene-static-2d)** · [record](results/reference/robot-live-static/record.json)
+<a id="2d--amcl"></a>
+<a id="2d-localization-recordings"></a>
 
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | Dynamic cell removal N/A; static retention 100.00% |
-| DUFOMap | Dynamic-point-cleaned 2D projection | Dynamic cell removal N/A; static retention 100.00% |
-| BeautyMap | Offline-cleaned 2D projection | Dynamic cell removal N/A; static retention 96.51% |
 
-Localization separately (XY RMSE, cm): Raw 7.28 / DUFOMap 7.28 / BeautyMap 6.89.
+### B · Localization with projected 2D maps
 
-Raw and DUFOMap projections are identical; BeautyMap is 0.39 cm lower in this run. Recovery was not tested.
-
-**[Moving obstacles](#scene-dynamic-2d)** · [record](results/reference/robot-2d-dynamic-matched/record.json)
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | Dynamic cell removal 0.00%; static retention 100.00% |
-| DUFOMap | Dynamic-point-cleaned 2D projection | Dynamic cell removal 8.33%; static retention 100.00% |
-| BeautyMap | Offline-cleaned 2D projection | Dynamic cell removal 33.33%; static retention 96.64% |
-
-Localization separately (XY RMSE, cm): Raw 7.52 / DUFOMap 8.19 / BeautyMap 7.29.
-
-Paired new mapping A: DUFOMap is 0.67 cm higher, BeautyMap 0.23 cm lower. One trial gives no stable ranking; the previous run is retained.
-
-**[Persistent change](#scene-change-2d)** · [record](results/reference/robot-live-large-change/record.json)
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | Dynamic cell removal N/A; static retention 100.00% (static-A old map) |
-| DUFOMap | Dynamic-point-cleaned 2D projection | Dynamic cell removal N/A; static retention 100.00% (static-A old map) |
-| BeautyMap | Offline-cleaned 2D projection | Dynamic cell removal N/A; static retention 96.51% (static-A old map) |
-
-Localization separately (XY RMSE, cm): Raw 6.84 / DUFOMap 6.84 / BeautyMap 6.39.
-
-Frozen old maps; no online map update was called, and the route did not induce loss.
-
-**[Corridor degradation](#scene-corridor-2d)** · [record](results/reference/robot-corridor-v2/record.json)
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 2D projection | Dynamic cell removal N/A; static retention 100.00% |
-| DUFOMap | Dynamic-point-cleaned 2D projection | Dynamic cell removal N/A; static retention 100.00% |
-| BeautyMap | Offline-cleaned 2D projection | Dynamic cell removal N/A; static retention 100.00% |
-
-Localization separately (XY RMSE, cm): Raw 72.53 / DUFOMap 72.53 / BeautyMap 72.53.
-
-The three projected maps are identical; 13.3 s corrects an offset initial belief and cannot distinguish cleaning.
-
-### 3D · GICP
-
-**[Pure static](#scene-static-3d)** · [record](results/reference/robot-3d-static/record.json)
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 3D point map | Dynamic point removal N/A; static retention 100.00% |
-| DUFOMap | Dynamic-point-cleaned 3D map | Dynamic point removal N/A; static retention 100.00% |
-| BeautyMap | Offline-cleaned 3D map | Dynamic point removal N/A; static retention 83.33% |
-
-Localization separately (XYZ RMSE, cm): Raw 0.95 / DUFOMap 0.99 / BeautyMap 1.07.
-
-No moving contamination needs cleaning; no localization improvement in this trial.
-
-**[Moving obstacles](#scene-dynamic-3d)** · [record](results/reference/robot-3d-dynamic/record.json)
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 3D point map | Dynamic point removal 0.00%; static retention 100.00% |
-| DUFOMap | Dynamic-point-cleaned 3D map | Dynamic point removal 46.59%; static retention 100.00% |
-| BeautyMap | Offline-cleaned 3D map | Dynamic point removal 74.36%; static retention 81.15% |
-
-Localization separately (XYZ RMSE, cm): Raw 0.98 / DUFOMap 0.98 / BeautyMap 1.04.
-
-Native cleaning removes dynamic map points, without a clear downstream GICP gain.
-
-**[Persistent change](#scene-change-3d)** · [record](results/reference/robot-3d-large-change/record.json)
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 3D point map | Dynamic point removal N/A; static retention 100.00% (static-A old map) |
-| DUFOMap | Dynamic-point-cleaned 3D map | Dynamic point removal N/A; static retention 100.00% (static-A old map) |
-| BeautyMap | Offline-cleaned 3D map | Dynamic point removal N/A; static retention 83.33% (static-A old map) |
-
-Localization separately (XYZ RMSE, cm): Raw 0.93 / DUFOMap 1.01 / BeautyMap 1.04.
-
-Static-A 3D maps remain frozen; change detection/updating was not executed. No localization gain.
-
-**[Corridor degradation](#scene-corridor-3d)** · [record](results/reference/robot-3d-corridor/record.json)
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | Raw 3D point map | Dynamic point removal N/A; static retention 100.00% |
-| DUFOMap | Dynamic-point-cleaned 3D map | Dynamic point removal N/A; static retention 100.00% |
-| BeautyMap | Offline-cleaned 3D map | Dynamic point removal N/A; static retention 99.90% |
-
-Localization separately (XYZ RMSE, cm): Raw 474.38 / DUFOMap 497.05 / BeautyMap 592.00.
-
-Raw and DUFOMap 3D maps are byte-identical yet tracking differs. Output coverage is unequal; do not rank cleaners.
-
-[Cause analysis, point-level map quality and parameter checks](docs/testing/MAP-2D-3D.md) · [Separate 2D / 3D video groups](demo/gallery.html)
-
-### 2D localization recordings
-
-**Fresh live tests on this Windows computer, 2026-10-14–15.** Each method has its own actual RViz window, map topic, native AMCL pose/particles and isolated display TF. Each GIF records Gazebo + that method’s RViz + Terminal, during the same live scene input.
-
-**Raw / DUFOMap / BeautyMap are map-processing choices; the live localizer is AMCL.** Mapping uses provided poses and common 2D projection; this is a scoped 3D-map-to-2D-localization adaptation. Results below come from these new runs, including initialization; one trial per condition.
-
-[Scoring and controls](docs/testing/LIVE.md) · [Other localization libraries and deployment](docs/testing/LOCALIZERS.md) · [Recording names](demo/recording-index.json) · [One-click method demos](demo/README.md#逐方法独立-rviz-现场对照)
+Three 3D map-processing choices share the height-band projection into 5cm maps, with AMCL fixed as the localizer. DUFOMap/BeautyMap require 3D inputs; this remains a cross-dimensional adaptation control.
 
 <a id="scene-static-2d"></a>
 
-#### Pure static
+#### B1 · Pure static · 2D
 
-<!-- MAP_QUALITY_VIDEO_TABLE -->
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Map method / fixed localizer | Execution and result GIFs | Metric / effect |
 | --- | --- | --- |
-| Raw | 2D | Dynamic cell removal N/A; static retention 100.00% |
-| DUFOMap | 2D | Dynamic cell removal N/A; static retention 100.00% |
-| BeautyMap | 2D | Dynamic cell removal N/A; static retention 96.51% |
-<!-- /MAP_QUALITY_VIDEO_TABLE -->
+| Raw / AMCL | <a href="results/reference/robot-live-static/executions/raw.mp4"><img src="results/reference/robot-live-static/executions/raw.gif" width="230" loading="lazy" alt="Raw · Pure static · Live execution"></a><br>[Live execution](results/reference/robot-live-static/executions/raw.mp4)<br><a href="results/reference/robot-live-static/methods/raw/result.mp4"><img src="results/reference/robot-live-static/methods/raw/result.gif" width="230" loading="lazy" alt="Raw · Pure static · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-live-static/methods/raw/result.mp4) | DA N/A / SA 100%<br>XY RMSE 7.28 cm |
+| DUFOMap / AMCL | <a href="results/reference/robot-live-static/executions/dufomap.mp4"><img src="results/reference/robot-live-static/executions/dufomap.gif" width="230" loading="lazy" alt="DUFOMap · Pure static · Live execution"></a><br>[Live execution](results/reference/robot-live-static/executions/dufomap.mp4)<br><a href="results/reference/robot-live-static/methods/dufomap/result.mp4"><img src="results/reference/robot-live-static/methods/dufomap/result.gif" width="230" loading="lazy" alt="DUFOMap · Pure static · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-live-static/methods/dufomap/result.mp4) | DA N/A / SA 100%<br>XY RMSE 7.28 cm |
+| BeautyMap / AMCL | <a href="results/reference/robot-live-static/executions/beautymap.mp4"><img src="results/reference/robot-live-static/executions/beautymap.gif" width="230" loading="lazy" alt="BeautyMap · Pure static · Live execution"></a><br>[Live execution](results/reference/robot-live-static/executions/beautymap.mp4)<br><a href="results/reference/robot-live-static/methods/beautymap/result.mp4"><img src="results/reference/robot-live-static/methods/beautymap/result.gif" width="230" loading="lazy" alt="BeautyMap · Pure static · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-live-static/methods/beautymap/result.mp4) | DA N/A / SA 96.51%<br>XY RMSE 6.89 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-[↑ Back to Practice index](#practice-index)
+[Localization record](results/reference/robot-live-static/record.json) · [Cleaning audit](results/analysis/map-quality/static.json)
 
-Localizer: AMCL; 290 updates per case, position RMSE includes initialization.
+**Calculation:** DA = removed dynamic samples / all dynamic samples × 100%; SA = retained static samples / all static samples × 100%. Samples here are unique 5cm dynamic/static-exclusive projection cells; overlapping projected labels are excluded. No dynamic denominator means N/A.
 
-This route did not induce loss; recovery remains untested.
+Projection uses the shared height band and one-cell occupied dilation; score whether each cell remains occupied.
 
-##### Raw map + AMCL
+Pose $\mathrm{RMSE}_{XY}=100\sqrt{\mathrm{mean}[(\hat x-x)^2+(\hat y-y)^2]}$ cm pairs native updates with independent Gazebo truth within 0.05 simulation seconds. Initialization is included; no trajectory fitting or zero-filling of missing outputs.
 
-**Live execution — Raw RViz**
+**Meaning:** Higher DA means fewer dynamic remnants; higher SA means less static-support loss. Lower RMSE means lower pose error. Cleaning rates do not replace map-geometry error or establish a localization benefit.
 
-![Pure static: actual Raw RViz live execution](results/reference/robot-live-static/executions/raw.gif)
+No moving contamination is present, so DA=N/A. This control tests static-support loss and changes in localization.
 
-[Live MP4](results/reference/robot-live-static/executions/raw.mp4) · [RViz config](results/reference/robot-live-static/view-raw.rviz) · [record](results/reference/robot-live-static/record.json)
-
-**Measured result replay — Raw**
-
-![Pure static: Raw measured replay from this new run](results/reference/robot-live-static/methods/raw/result.gif)
-
-[Result MP4](results/reference/robot-live-static/methods/raw/result.mp4) · [case record](results/reference/robot-live-static/methods/raw/record.json) · RMSE **7.28 cm** · 290 native updates.
-
-##### DUFOMap map + AMCL
-
-**Live execution — DUFOMap RViz**
-
-![Pure static: actual DUFOMap RViz live execution](results/reference/robot-live-static/executions/dufomap.gif)
-
-[Live MP4](results/reference/robot-live-static/executions/dufomap.mp4) · [RViz config](results/reference/robot-live-static/view-dufomap.rviz) · [record](results/reference/robot-live-static/record.json)
-
-**Measured result replay — DUFOMap**
-
-![Pure static: DUFOMap measured replay from this new run](results/reference/robot-live-static/methods/dufomap/result.gif)
-
-[Result MP4](results/reference/robot-live-static/methods/dufomap/result.mp4) · [case record](results/reference/robot-live-static/methods/dufomap/record.json) · RMSE **7.28 cm** · 290 native updates.
-
-##### BeautyMap map + AMCL
-
-**Live execution — BeautyMap RViz**
-
-![Pure static: actual BeautyMap RViz live execution](results/reference/robot-live-static/executions/beautymap.gif)
-
-[Live MP4](results/reference/robot-live-static/executions/beautymap.mp4) · [RViz config](results/reference/robot-live-static/view-beautymap.rviz) · [record](results/reference/robot-live-static/record.json)
-
-**Measured result replay — BeautyMap**
-
-![Pure static: BeautyMap measured replay from this new run](results/reference/robot-live-static/methods/beautymap/result.gif)
-
-[Result MP4](results/reference/robot-live-static/methods/beautymap/result.mp4) · [case record](results/reference/robot-live-static/methods/beautymap/record.json) · RMSE **6.89 cm** · 290 native updates.
+[↑ Practice](#practice-index)
 
 <a id="scene-dynamic-2d"></a>
 
-#### Moving obstacles
+#### B2 · Moving obstacles · 2D
 
-<!-- MAP_QUALITY_VIDEO_TABLE -->
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Map method / fixed localizer | Execution and result GIFs | Metric / effect |
 | --- | --- | --- |
-| Raw | 2D | Dynamic cell removal 0.00%; static retention 100.00% |
-| DUFOMap | 2D | Dynamic cell removal 8.33%; static retention 100.00% |
-| BeautyMap | 2D | Dynamic cell removal 33.33%; static retention 96.64% |
-<!-- /MAP_QUALITY_VIDEO_TABLE -->
+| Raw / AMCL | <a href="results/reference/robot-2d-dynamic-matched/executions/raw.mp4"><img src="results/reference/robot-2d-dynamic-matched/executions/raw.gif" width="230" loading="lazy" alt="Raw · Moving obstacles · Live execution"></a><br>[Live execution](results/reference/robot-2d-dynamic-matched/executions/raw.mp4)<br><a href="results/reference/robot-2d-dynamic-matched/methods/raw/result.mp4"><img src="results/reference/robot-2d-dynamic-matched/methods/raw/result.gif" width="230" loading="lazy" alt="Raw · Moving obstacles · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-2d-dynamic-matched/methods/raw/result.mp4) | DA 0% / SA 100%<br>XY RMSE 7.52 cm |
+| DUFOMap / AMCL | <a href="results/reference/robot-2d-dynamic-matched/executions/dufomap.mp4"><img src="results/reference/robot-2d-dynamic-matched/executions/dufomap.gif" width="230" loading="lazy" alt="DUFOMap · Moving obstacles · Live execution"></a><br>[Live execution](results/reference/robot-2d-dynamic-matched/executions/dufomap.mp4)<br><a href="results/reference/robot-2d-dynamic-matched/methods/dufomap/result.mp4"><img src="results/reference/robot-2d-dynamic-matched/methods/dufomap/result.gif" width="230" loading="lazy" alt="DUFOMap · Moving obstacles · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-2d-dynamic-matched/methods/dufomap/result.mp4) | DA 8.33% / SA 100%<br>XY RMSE 8.19 cm |
+| BeautyMap / AMCL | <a href="results/reference/robot-2d-dynamic-matched/executions/beautymap.mp4"><img src="results/reference/robot-2d-dynamic-matched/executions/beautymap.gif" width="230" loading="lazy" alt="BeautyMap · Moving obstacles · Live execution"></a><br>[Live execution](results/reference/robot-2d-dynamic-matched/executions/beautymap.mp4)<br><a href="results/reference/robot-2d-dynamic-matched/methods/beautymap/result.mp4"><img src="results/reference/robot-2d-dynamic-matched/methods/beautymap/result.gif" width="230" loading="lazy" alt="BeautyMap · Moving obstacles · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-2d-dynamic-matched/methods/beautymap/result.mp4) | DA 33.33% / SA 96.64%<br>XY RMSE 7.29 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-[↑ Back to Practice index](#practice-index)
+[Localization record](results/reference/robot-2d-dynamic-matched/record.json) · [Cleaning audit](results/analysis/map-quality/projected-dynamic.json)
 
-Localizer: AMCL; 291 updates per case, position RMSE includes initialization.
+**Calculation:** DA = removed dynamic samples / all dynamic samples × 100%; SA = retained static samples / all static samples × 100%. Samples here are unique 5cm dynamic/static-exclusive projection cells; overlapping projected labels are excluded. No dynamic denominator means N/A.
 
-##### Raw map + AMCL
+Projection uses the shared height band and one-cell occupied dilation; score whether each cell remains occupied.
 
-**Live execution — Raw RViz**
+Pose $\mathrm{RMSE}_{XY}=100\sqrt{\mathrm{mean}[(\hat x-x)^2+(\hat y-y)^2]}$ cm pairs native updates with independent Gazebo truth within 0.05 simulation seconds. Initialization is included; no trajectory fitting or zero-filling of missing outputs.
 
-![Moving obstacles: actual Raw RViz live execution](results/reference/robot-2d-dynamic-matched/executions/raw.gif)
+**Meaning:** Higher DA means fewer dynamic remnants; higher SA means less static-support loss. Lower RMSE means lower pose error. Cleaning rates do not replace map-geometry error or establish a localization benefit.
 
-[Live MP4](results/reference/robot-2d-dynamic-matched/executions/raw.mp4) · [RViz config](results/reference/robot-2d-dynamic-matched/view-raw.rviz) · [record](results/reference/robot-2d-dynamic-matched/record.json)
+Projection merges height/time evidence: deleting 3D points need not clear a 2D occupied cell. These pose differences do not establish a ranking.
 
-**Measured result replay — Raw**
-
-![Moving obstacles: Raw measured replay from this new run](results/reference/robot-2d-dynamic-matched/methods/raw/result.gif)
-
-[Result MP4](results/reference/robot-2d-dynamic-matched/methods/raw/result.mp4) · [case record](results/reference/robot-2d-dynamic-matched/methods/raw/record.json) · RMSE **7.52 cm** · 291 native updates.
-
-##### DUFOMap map + AMCL
-
-**Live execution — DUFOMap RViz**
-
-![Moving obstacles: actual DUFOMap RViz live execution](results/reference/robot-2d-dynamic-matched/executions/dufomap.gif)
-
-[Live MP4](results/reference/robot-2d-dynamic-matched/executions/dufomap.mp4) · [RViz config](results/reference/robot-2d-dynamic-matched/view-dufomap.rviz) · [record](results/reference/robot-2d-dynamic-matched/record.json)
-
-**Measured result replay — DUFOMap**
-
-![Moving obstacles: DUFOMap measured replay from this new run](results/reference/robot-2d-dynamic-matched/methods/dufomap/result.gif)
-
-[Result MP4](results/reference/robot-2d-dynamic-matched/methods/dufomap/result.mp4) · [case record](results/reference/robot-2d-dynamic-matched/methods/dufomap/record.json) · RMSE **8.19 cm** · 291 native updates.
-
-##### BeautyMap map + AMCL
-
-**Live execution — BeautyMap RViz**
-
-![Moving obstacles: actual BeautyMap RViz live execution](results/reference/robot-2d-dynamic-matched/executions/beautymap.gif)
-
-[Live MP4](results/reference/robot-2d-dynamic-matched/executions/beautymap.mp4) · [RViz config](results/reference/robot-2d-dynamic-matched/view-beautymap.rviz) · [record](results/reference/robot-2d-dynamic-matched/record.json)
-
-**Measured result replay — BeautyMap**
-
-![Moving obstacles: BeautyMap measured replay from this new run](results/reference/robot-2d-dynamic-matched/methods/beautymap/result.gif)
-
-[Result MP4](results/reference/robot-2d-dynamic-matched/methods/beautymap/result.mp4) · [case record](results/reference/robot-2d-dynamic-matched/methods/beautymap/record.json) · RMSE **7.29 cm** · 291 native updates.
+[↑ Practice](#practice-index)
 
 <a id="scene-change-2d"></a>
 
-#### Persistent change
+#### B3 · Persistent change · 2D
 
-<!-- MAP_QUALITY_VIDEO_TABLE -->
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Map method / fixed localizer | Execution and result GIFs | Metric / effect |
 | --- | --- | --- |
-| Raw | 2D | Dynamic cell removal N/A; static retention 100.00% (static-A old map) |
-| DUFOMap | 2D | Dynamic cell removal N/A; static retention 100.00% (static-A old map) |
-| BeautyMap | 2D | Dynamic cell removal N/A; static retention 96.51% (static-A old map) |
-<!-- /MAP_QUALITY_VIDEO_TABLE -->
+| Raw / AMCL | <a href="results/reference/robot-live-large-change/executions/raw.mp4"><img src="results/reference/robot-live-large-change/executions/raw.gif" width="230" loading="lazy" alt="Raw · Persistent change · Live execution"></a><br>[Live execution](results/reference/robot-live-large-change/executions/raw.mp4)<br><a href="results/reference/robot-live-large-change/methods/raw/result.mp4"><img src="results/reference/robot-live-large-change/methods/raw/result.gif" width="230" loading="lazy" alt="Raw · Persistent change · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-live-large-change/methods/raw/result.mp4) | DA N/A / SA 100% (old map A)<br>XY RMSE 6.84 cm |
+| DUFOMap / AMCL | <a href="results/reference/robot-live-large-change/executions/dufomap.mp4"><img src="results/reference/robot-live-large-change/executions/dufomap.gif" width="230" loading="lazy" alt="DUFOMap · Persistent change · Live execution"></a><br>[Live execution](results/reference/robot-live-large-change/executions/dufomap.mp4)<br><a href="results/reference/robot-live-large-change/methods/dufomap/result.mp4"><img src="results/reference/robot-live-large-change/methods/dufomap/result.gif" width="230" loading="lazy" alt="DUFOMap · Persistent change · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-live-large-change/methods/dufomap/result.mp4) | DA N/A / SA 100% (old map A)<br>XY RMSE 6.84 cm |
+| BeautyMap / AMCL | <a href="results/reference/robot-live-large-change/executions/beautymap.mp4"><img src="results/reference/robot-live-large-change/executions/beautymap.gif" width="230" loading="lazy" alt="BeautyMap · Persistent change · Live execution"></a><br>[Live execution](results/reference/robot-live-large-change/executions/beautymap.mp4)<br><a href="results/reference/robot-live-large-change/methods/beautymap/result.mp4"><img src="results/reference/robot-live-large-change/methods/beautymap/result.gif" width="230" loading="lazy" alt="BeautyMap · Persistent change · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-live-large-change/methods/beautymap/result.mp4) | DA N/A / SA 96.51% (old map A)<br>XY RMSE 6.39 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-[↑ Back to Practice index](#practice-index)
+[Localization record](results/reference/robot-live-large-change/record.json) · [Cleaning audit](results/analysis/map-quality/static.json)
 
-Localizer: AMCL; 290 updates per case, position RMSE includes initialization.
+**Calculation:** DA = removed dynamic samples / all dynamic samples × 100%; SA = retained static samples / all static samples × 100%. Samples here are unique 5cm dynamic/static-exclusive projection cells; overlapping projected labels are excluded. No dynamic denominator means N/A.
 
-This route did not induce loss; recovery remains untested.
+Projection uses the shared height band and one-cell occupied dilation; score whether each cell remains occupied.
 
-##### Raw map + AMCL
+Pose $\mathrm{RMSE}_{XY}=100\sqrt{\mathrm{mean}[(\hat x-x)^2+(\hat y-y)^2]}$ cm pairs native updates with independent Gazebo truth within 0.05 simulation seconds. Initialization is included; no trajectory fitting or zero-filling of missing outputs.
 
-**Live execution — Raw RViz**
+**Meaning:** Higher DA means fewer dynamic remnants; higher SA means less static-support loss. Lower RMSE means lower pose error. Cleaning rates do not replace map-geometry error or establish a localization benefit.
 
-![Persistent change: actual Raw RViz live execution](results/reference/robot-live-large-change/executions/raw.gif)
+B uses the frozen static-A map throughout, without online updates. DA/SA describe old map A, not post-change map-update performance.
 
-[Live MP4](results/reference/robot-live-large-change/executions/raw.mp4) · [RViz config](results/reference/robot-live-large-change/view-raw.rviz) · [record](results/reference/robot-live-large-change/record.json)
-
-**Measured result replay — Raw**
-
-![Persistent change: Raw measured replay from this new run](results/reference/robot-live-large-change/methods/raw/result.gif)
-
-[Result MP4](results/reference/robot-live-large-change/methods/raw/result.mp4) · [case record](results/reference/robot-live-large-change/methods/raw/record.json) · RMSE **6.84 cm** · 290 native updates.
-
-##### DUFOMap map + AMCL
-
-**Live execution — DUFOMap RViz**
-
-![Persistent change: actual DUFOMap RViz live execution](results/reference/robot-live-large-change/executions/dufomap.gif)
-
-[Live MP4](results/reference/robot-live-large-change/executions/dufomap.mp4) · [RViz config](results/reference/robot-live-large-change/view-dufomap.rviz) · [record](results/reference/robot-live-large-change/record.json)
-
-**Measured result replay — DUFOMap**
-
-![Persistent change: DUFOMap measured replay from this new run](results/reference/robot-live-large-change/methods/dufomap/result.gif)
-
-[Result MP4](results/reference/robot-live-large-change/methods/dufomap/result.mp4) · [case record](results/reference/robot-live-large-change/methods/dufomap/record.json) · RMSE **6.84 cm** · 290 native updates.
-
-##### BeautyMap map + AMCL
-
-**Live execution — BeautyMap RViz**
-
-![Persistent change: actual BeautyMap RViz live execution](results/reference/robot-live-large-change/executions/beautymap.gif)
-
-[Live MP4](results/reference/robot-live-large-change/executions/beautymap.mp4) · [RViz config](results/reference/robot-live-large-change/view-beautymap.rviz) · [record](results/reference/robot-live-large-change/record.json)
-
-**Measured result replay — BeautyMap**
-
-![Persistent change: BeautyMap measured replay from this new run](results/reference/robot-live-large-change/methods/beautymap/result.gif)
-
-[Result MP4](results/reference/robot-live-large-change/methods/beautymap/result.mp4) · [case record](results/reference/robot-live-large-change/methods/beautymap/record.json) · RMSE **6.39 cm** · 290 native updates.
+[↑ Practice](#practice-index)
 
 <a id="scene-corridor-2d"></a>
 
-#### Corridor degradation
+#### B4 · Corridor degradation · 2D
 
-<!-- MAP_QUALITY_VIDEO_TABLE -->
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Map method / fixed localizer | Execution and result GIFs | Metric / effect |
 | --- | --- | --- |
-| Raw | 2D | Dynamic cell removal N/A; static retention 100.00% |
-| DUFOMap | 2D | Dynamic cell removal N/A; static retention 100.00% |
-| BeautyMap | 2D | Dynamic cell removal N/A; static retention 100.00% |
-<!-- /MAP_QUALITY_VIDEO_TABLE -->
+| Raw / AMCL | <a href="results/reference/robot-corridor-v2/executions/degraded_raw.mp4"><img src="results/reference/robot-corridor-v2/executions/degraded_raw.gif" width="230" loading="lazy" alt="Raw · Corridor degradation · Live execution"></a><br>[Live execution](results/reference/robot-corridor-v2/executions/degraded_raw.mp4)<br><a href="results/reference/robot-corridor-v2/methods/degraded_raw/result.mp4"><img src="results/reference/robot-corridor-v2/methods/degraded_raw/result.gif" width="230" loading="lazy" alt="Raw · Corridor degradation · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-corridor-v2/methods/degraded_raw/result.mp4) | DA N/A / SA 100%<br>XY RMSE 72.53 cm |
+| DUFOMap / AMCL | <a href="results/reference/robot-corridor-v2/executions/degraded_dufomap.mp4"><img src="results/reference/robot-corridor-v2/executions/degraded_dufomap.gif" width="230" loading="lazy" alt="DUFOMap · Corridor degradation · Live execution"></a><br>[Live execution](results/reference/robot-corridor-v2/executions/degraded_dufomap.mp4)<br><a href="results/reference/robot-corridor-v2/methods/degraded_dufomap/result.mp4"><img src="results/reference/robot-corridor-v2/methods/degraded_dufomap/result.gif" width="230" loading="lazy" alt="DUFOMap · Corridor degradation · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-corridor-v2/methods/degraded_dufomap/result.mp4) | DA N/A / SA 100%<br>XY RMSE 72.53 cm |
+| BeautyMap / AMCL | <a href="results/reference/robot-corridor-v2/executions/degraded_beautymap.mp4"><img src="results/reference/robot-corridor-v2/executions/degraded_beautymap.gif" width="230" loading="lazy" alt="BeautyMap · Corridor degradation · Live execution"></a><br>[Live execution](results/reference/robot-corridor-v2/executions/degraded_beautymap.mp4)<br><a href="results/reference/robot-corridor-v2/methods/degraded_beautymap/result.mp4"><img src="results/reference/robot-corridor-v2/methods/degraded_beautymap/result.gif" width="230" loading="lazy" alt="BeautyMap · Corridor degradation · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-corridor-v2/methods/degraded_beautymap/result.mp4) | DA N/A / SA 100%<br>XY RMSE 72.53 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-[↑ Back to Practice index](#practice-index)
+[Localization record](results/reference/robot-corridor-v2/record.json) · [Cleaning audit](results/analysis/map-quality/corridor.json)
 
-AMCL, 508 updates; RMSE includes a 1 m initial offset. All three projected maps are identical.
+**Calculation:** DA = removed dynamic samples / all dynamic samples × 100%; SA = retained static samples / all static samples × 100%. Samples here are unique 5cm dynamic/static-exclusive projection cells; overlapping projected labels are excluded. No dynamic denominator means N/A.
 
-Full-scan control: 71.60 cm, sustained convergence 6.6 s after the same reference event. This corrects an offset initial belief. [Recovery criterion and record](results/reference/robot-corridor-v2/record.json).
+Projection uses the shared height band and one-cell occupied dilation; score whether each cell remains occupied.
 
-##### Raw map + AMCL
+Pose $\mathrm{RMSE}_{XY}=100\sqrt{\mathrm{mean}[(\hat x-x)^2+(\hat y-y)^2]}$ cm pairs native updates with independent Gazebo truth within 0.05 simulation seconds. Initialization is included; no trajectory fitting or zero-filling of missing outputs.
 
-**Live execution — Raw RViz**
+**Meaning:** Higher DA means fewer dynamic remnants; higher SA means less static-support loss. Lower RMSE means lower pose error. Cleaning rates do not replace map-geometry error or establish a localization benefit.
 
-![Corridor degradation: actual Raw RViz live execution](results/reference/robot-corridor-v2/executions/degraded_raw.gif)
+All three projected maps are identical. Full observations return at 66.2s and sustained convergence is around 79.5s; the 13.3s delay corrects initial-belief bias and cannot distinguish cleaning. This is not an online-mapping failure test.
 
-[Live MP4](results/reference/robot-corridor-v2/executions/degraded_raw.mp4) · [RViz config](results/reference/robot-corridor-v2/view-degraded_raw.rviz) · [record](results/reference/robot-corridor-v2/record.json)
+[↑ Practice](#practice-index)
 
-**Measured result replay — Raw**
+<a id="3d--gicp"></a>
+<a id="3d-map-cleaning-and-localization-recordings"></a>
 
-![Corridor degradation: Raw measured replay from this new run](results/reference/robot-corridor-v2/methods/degraded_raw/result.gif)
 
-[Result MP4](results/reference/robot-corridor-v2/methods/degraded_raw/result.mp4) · [case record](results/reference/robot-corridor-v2/methods/degraded_raw/record.json) · RMSE **72.53 cm** · 508 native updates.
+### C · Localization with 3D maps
 
-##### DUFOMap map + AMCL
-
-**Live execution — DUFOMap RViz**
-
-![Corridor degradation: actual DUFOMap RViz live execution](results/reference/robot-corridor-v2/executions/degraded_dufomap.gif)
-
-[Live MP4](results/reference/robot-corridor-v2/executions/degraded_dufomap.mp4) · [RViz config](results/reference/robot-corridor-v2/view-degraded_dufomap.rviz) · [record](results/reference/robot-corridor-v2/record.json)
-
-**Measured result replay — DUFOMap**
-
-![Corridor degradation: DUFOMap measured replay from this new run](results/reference/robot-corridor-v2/methods/degraded_dufomap/result.gif)
-
-[Result MP4](results/reference/robot-corridor-v2/methods/degraded_dufomap/result.mp4) · [case record](results/reference/robot-corridor-v2/methods/degraded_dufomap/record.json) · RMSE **72.53 cm** · 508 native updates.
-
-##### BeautyMap map + AMCL
-
-**Live execution — BeautyMap RViz**
-
-![Corridor degradation: actual BeautyMap RViz live execution](results/reference/robot-corridor-v2/executions/degraded_beautymap.gif)
-
-[Live MP4](results/reference/robot-corridor-v2/executions/degraded_beautymap.mp4) · [RViz config](results/reference/robot-corridor-v2/view-degraded_beautymap.rviz) · [record](results/reference/robot-corridor-v2/record.json)
-
-**Measured result replay — BeautyMap**
-
-![Corridor degradation: BeautyMap measured replay from this new run](results/reference/robot-corridor-v2/methods/degraded_beautymap/result.gif)
-
-[Result MP4](results/reference/robot-corridor-v2/methods/degraded_beautymap/result.mp4) · [case record](results/reference/robot-corridor-v2/methods/degraded_beautymap/record.json) · RMSE **72.53 cm** · 508 native updates.
-
-**Physical robot tests remain pending.** Keyboard demos: `F:\be2演讲\实机脚本\20–23`; `24` automatically records all four scenes. Historical executions/replays remain in the repository, separately from the videos above.
-
-### 3D map cleaning and localization recordings
-
-Native GICP outputs from fresh Gazebo B; complete XYZ/rotation scores and output-loss evidence are retained. Map processing A uses supplied poses, not full 3D SLAM.
-
-<a id="map-review-3d"></a>
-
-#### 3D map result review
-
-[↑ Back to Practice index](#practice-index)
-
-| Method | Map type | Metric / effect |
-| --- | --- | --- |
-| Raw | 3D point map | Static retained 100%; dynamic removed 0% |
-| DUFOMap | 3D point map | Static retained 99.998%; dynamic removed 46.59% |
-| BeautyMap | 3D point map | Static retained 81.15%; dynamic removed 74.36% |
-
-Real RViz result review of saved native outputs; no new inference. Grey: background points; red: confidently labelled residual moving-box returns.
-
-![3D map cleaning result review](results/reference/robot-3d-map-review-v2/execution.gif)
-
-[MP4](results/reference/robot-3d-map-review-v2/execution.mp4) · [point audit](results/reference/robot-3d-map-audit/record.json)
+Mapping A uses supplied poses to isolate cleaning. Independent B uses actual 3D scans and the same native GICP, without truth input to localization.
 
 <a id="scene-static-3d"></a>
 
-#### Pure static · 3D
+#### C1 · Pure static · 3D
 
-<!-- MAP_QUALITY_VIDEO_TABLE -->
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Map method / fixed localizer | Execution and result GIFs | Metric / effect |
 | --- | --- | --- |
-| Raw | 3D | Dynamic point removal N/A; static retention 100.00% |
-| DUFOMap | 3D | Dynamic point removal N/A; static retention 100.00% |
-| BeautyMap | 3D | Dynamic point removal N/A; static retention 83.33% |
-<!-- /MAP_QUALITY_VIDEO_TABLE -->
+| Raw / GICP | <a href="results/reference/robot-3d-static/executions/raw.mp4"><img src="results/reference/robot-3d-static/executions/raw.gif" width="230" loading="lazy" alt="Raw · Pure static · Live execution"></a><br>[Live execution](results/reference/robot-3d-static/executions/raw.mp4) | DA N/A / SA 100%<br>XYZ RMSE 0.95 cm |
+| DUFOMap / GICP | <a href="results/reference/robot-3d-static/executions/dufomap.mp4"><img src="results/reference/robot-3d-static/executions/dufomap.gif" width="230" loading="lazy" alt="DUFOMap · Pure static · Live execution"></a><br>[Live execution](results/reference/robot-3d-static/executions/dufomap.mp4) | DA N/A / SA 99.999%<br>XYZ RMSE 0.99 cm |
+| BeautyMap / GICP | <a href="results/reference/robot-3d-static/executions/beautymap.mp4"><img src="results/reference/robot-3d-static/executions/beautymap.gif" width="230" loading="lazy" alt="BeautyMap · Pure static · Live execution"></a><br>[Live execution](results/reference/robot-3d-static/executions/beautymap.mp4) | DA N/A / SA 83.33%<br>XYZ RMSE 1.07 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-[↑ Back to Practice index](#practice-index)
+[Localization record](results/reference/robot-3d-static/record.json) · [Cleaning audit](results/analysis/map-quality/static.json)
 
-No moving contamination needs cleaning; no localization improvement in this trial.
+**Calculation:** DA = removed dynamic samples / all dynamic samples × 100%; SA = retained static samples / all static samples × 100%. Samples here are labelled dynamic/static source points in 3D. No dynamic denominator means N/A.
 
-##### Raw 3D map + GICP
+A source point is retained when its nearest cleaned-map point is <2×10⁻⁵m away. This checks source membership, not geometric accuracy.
 
-![Raw native 3D localization](results/reference/robot-3d-static/executions/raw.gif)
+Pose $\mathrm{RMSE}_{XYZ}=100\sqrt{\mathrm{mean}[(\hat x-x)^2+(\hat y-y)^2+(\hat z-z)^2]}$ cm pairs native updates with independent Gazebo truth within 0.05 simulation seconds. Initialization is included; no trajectory fitting or zero-filling of missing outputs.
 
-[Live MP4](results/reference/robot-3d-static/executions/raw.mp4) · [record](results/reference/robot-3d-static/record.json)
+**Meaning:** Higher DA means fewer dynamic remnants; higher SA means less static-support loss. Lower RMSE means lower pose error. Cleaning rates do not replace map-geometry error or establish a localization benefit.
 
-##### DUFOMap 3D map + GICP
+No moving contamination is present, so DA=N/A. This control tests static-support loss and changes in localization.
 
-![DUFOMap native 3D localization](results/reference/robot-3d-static/executions/dufomap.gif)
-
-[Live MP4](results/reference/robot-3d-static/executions/dufomap.mp4) · [record](results/reference/robot-3d-static/record.json)
-
-##### BeautyMap 3D map + GICP
-
-![BeautyMap native 3D localization](results/reference/robot-3d-static/executions/beautymap.gif)
-
-[Live MP4](results/reference/robot-3d-static/executions/beautymap.mp4) · [record](results/reference/robot-3d-static/record.json)
+[↑ Practice](#practice-index)
 
 <a id="scene-dynamic-3d"></a>
 
-#### Moving obstacles · 3D
+#### C2 · Moving obstacles · 3D
 
-<!-- MAP_QUALITY_VIDEO_TABLE -->
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Map method / fixed localizer | Execution and result GIFs | Metric / effect |
 | --- | --- | --- |
-| Raw | 3D | Dynamic point removal 0.00%; static retention 100.00% |
-| DUFOMap | 3D | Dynamic point removal 46.59%; static retention 100.00% |
-| BeautyMap | 3D | Dynamic point removal 74.36%; static retention 81.15% |
-<!-- /MAP_QUALITY_VIDEO_TABLE -->
+| Raw / GICP | <a href="results/reference/robot-3d-dynamic/executions/raw.mp4"><img src="results/reference/robot-3d-dynamic/executions/raw.gif" width="230" loading="lazy" alt="Raw · Moving obstacles · Live execution"></a><br>[Live execution](results/reference/robot-3d-dynamic/executions/raw.mp4) | DA 0% / SA 100%<br>XYZ RMSE 0.98 cm |
+| DUFOMap / GICP | <a href="results/reference/robot-3d-dynamic/executions/dufomap.mp4"><img src="results/reference/robot-3d-dynamic/executions/dufomap.gif" width="230" loading="lazy" alt="DUFOMap · Moving obstacles · Live execution"></a><br>[Live execution](results/reference/robot-3d-dynamic/executions/dufomap.mp4) | DA 46.59% / SA 99.998%<br>XYZ RMSE 0.98 cm |
+| BeautyMap / GICP | <a href="results/reference/robot-3d-dynamic/executions/beautymap.mp4"><img src="results/reference/robot-3d-dynamic/executions/beautymap.gif" width="230" loading="lazy" alt="BeautyMap · Moving obstacles · Live execution"></a><br>[Live execution](results/reference/robot-3d-dynamic/executions/beautymap.mp4) | DA 74.36% / SA 81.15%<br>XYZ RMSE 1.04 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-[↑ Back to Practice index](#practice-index)
+[Localization record](results/reference/robot-3d-dynamic/record.json) · [Cleaning audit](results/reference/robot-3d-map-audit/record.json)
 
-Native cleaning removes dynamic map points, without a clear downstream GICP gain.
+**Calculation:** DA = removed dynamic samples / all dynamic samples × 100%; SA = retained static samples / all static samples × 100%. Samples here are labelled dynamic/static source points in 3D. No dynamic denominator means N/A.
 
-##### Raw 3D map + GICP
+A source point is retained when its nearest cleaned-map point is <2×10⁻⁵m away. This checks source membership, not geometric accuracy.
 
-![Raw native 3D localization](results/reference/robot-3d-dynamic/executions/raw.gif)
+Pose $\mathrm{RMSE}_{XYZ}=100\sqrt{\mathrm{mean}[(\hat x-x)^2+(\hat y-y)^2+(\hat z-z)^2]}$ cm pairs native updates with independent Gazebo truth within 0.05 simulation seconds. Initialization is included; no trajectory fitting or zero-filling of missing outputs.
 
-[Live MP4](results/reference/robot-3d-dynamic/executions/raw.mp4) · [record](results/reference/robot-3d-dynamic/record.json)
+**Meaning:** Higher DA means fewer dynamic remnants; higher SA means less static-support loss. Lower RMSE means lower pose error. Cleaning rates do not replace map-geometry error or establish a localization benefit.
 
-##### DUFOMap 3D map + GICP
+3D cleaning removes dynamic points, but no GICP gain is established; BeautyMap also loses static support.
 
-![DUFOMap native 3D localization](results/reference/robot-3d-dynamic/executions/dufomap.gif)
-
-[Live MP4](results/reference/robot-3d-dynamic/executions/dufomap.mp4) · [record](results/reference/robot-3d-dynamic/record.json)
-
-##### BeautyMap 3D map + GICP
-
-![BeautyMap native 3D localization](results/reference/robot-3d-dynamic/executions/beautymap.gif)
-
-[Live MP4](results/reference/robot-3d-dynamic/executions/beautymap.mp4) · [record](results/reference/robot-3d-dynamic/record.json)
+[↑ Practice](#practice-index)
 
 <a id="scene-change-3d"></a>
 
-#### Persistent change · 3D
+#### C3 · Persistent change · 3D
 
-<!-- MAP_QUALITY_VIDEO_TABLE -->
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Map method / fixed localizer | Execution and result GIFs | Metric / effect |
 | --- | --- | --- |
-| Raw | 3D | Dynamic point removal N/A; static retention 100.00% (static-A old map) |
-| DUFOMap | 3D | Dynamic point removal N/A; static retention 100.00% (static-A old map) |
-| BeautyMap | 3D | Dynamic point removal N/A; static retention 83.33% (static-A old map) |
-<!-- /MAP_QUALITY_VIDEO_TABLE -->
+| Raw / GICP | <a href="results/reference/robot-3d-large-change/executions/raw.mp4"><img src="results/reference/robot-3d-large-change/executions/raw.gif" width="230" loading="lazy" alt="Raw · Persistent change · Live execution"></a><br>[Live execution](results/reference/robot-3d-large-change/executions/raw.mp4) | DA N/A / SA 100% (old map A)<br>XYZ RMSE 0.93 cm |
+| DUFOMap / GICP | <a href="results/reference/robot-3d-large-change/executions/dufomap.mp4"><img src="results/reference/robot-3d-large-change/executions/dufomap.gif" width="230" loading="lazy" alt="DUFOMap · Persistent change · Live execution"></a><br>[Live execution](results/reference/robot-3d-large-change/executions/dufomap.mp4) | DA N/A / SA 99.999% (old map A)<br>XYZ RMSE 1.01 cm |
+| BeautyMap / GICP | <a href="results/reference/robot-3d-large-change/executions/beautymap.mp4"><img src="results/reference/robot-3d-large-change/executions/beautymap.gif" width="230" loading="lazy" alt="BeautyMap · Persistent change · Live execution"></a><br>[Live execution](results/reference/robot-3d-large-change/executions/beautymap.mp4) | DA N/A / SA 83.33% (old map A)<br>XYZ RMSE 1.04 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-[↑ Back to Practice index](#practice-index)
+[Localization record](results/reference/robot-3d-large-change/record.json) · [Cleaning audit](results/analysis/map-quality/static.json)
 
-Static-A 3D maps remain frozen; change detection/updating was not executed. No localization gain.
+**Calculation:** DA = removed dynamic samples / all dynamic samples × 100%; SA = retained static samples / all static samples × 100%. Samples here are labelled dynamic/static source points in 3D. No dynamic denominator means N/A.
 
-##### Raw 3D map + GICP
+A source point is retained when its nearest cleaned-map point is <2×10⁻⁵m away. This checks source membership, not geometric accuracy.
 
-![Raw native 3D localization](results/reference/robot-3d-large-change/executions/raw.gif)
+Pose $\mathrm{RMSE}_{XYZ}=100\sqrt{\mathrm{mean}[(\hat x-x)^2+(\hat y-y)^2+(\hat z-z)^2]}$ cm pairs native updates with independent Gazebo truth within 0.05 simulation seconds. Initialization is included; no trajectory fitting or zero-filling of missing outputs.
 
-[Live MP4](results/reference/robot-3d-large-change/executions/raw.mp4) · [record](results/reference/robot-3d-large-change/record.json)
+**Meaning:** Higher DA means fewer dynamic remnants; higher SA means less static-support loss. Lower RMSE means lower pose error. Cleaning rates do not replace map-geometry error or establish a localization benefit.
 
-##### DUFOMap 3D map + GICP
+B uses the frozen static-A map throughout, without online updates. DA/SA describe old map A, not post-change map-update performance.
 
-![DUFOMap native 3D localization](results/reference/robot-3d-large-change/executions/dufomap.gif)
-
-[Live MP4](results/reference/robot-3d-large-change/executions/dufomap.mp4) · [record](results/reference/robot-3d-large-change/record.json)
-
-##### BeautyMap 3D map + GICP
-
-![BeautyMap native 3D localization](results/reference/robot-3d-large-change/executions/beautymap.gif)
-
-[Live MP4](results/reference/robot-3d-large-change/executions/beautymap.mp4) · [record](results/reference/robot-3d-large-change/record.json)
+[↑ Practice](#practice-index)
 
 <a id="scene-corridor-3d"></a>
 
-#### Corridor degradation · 3D
+#### C4 · Corridor degradation · 3D
 
-<!-- MAP_QUALITY_VIDEO_TABLE -->
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Map method / fixed localizer | Execution and result GIFs | Metric / effect |
 | --- | --- | --- |
-| Raw | 3D | Dynamic point removal N/A; static retention 100.00% |
-| DUFOMap | 3D | Dynamic point removal N/A; static retention 100.00% |
-| BeautyMap | 3D | Dynamic point removal N/A; static retention 99.90% |
-<!-- /MAP_QUALITY_VIDEO_TABLE -->
+| Raw / GICP | <a href="results/reference/robot-3d-corridor/executions/raw.mp4"><img src="results/reference/robot-3d-corridor/executions/raw.gif" width="230" loading="lazy" alt="Raw · Corridor degradation · Live execution"></a><br>[Live execution](results/reference/robot-3d-corridor/executions/raw.mp4) | DA N/A / SA 100%<br>XYZ RMSE 474.38 cm |
+| DUFOMap / GICP | <a href="results/reference/robot-3d-corridor/executions/dufomap.mp4"><img src="results/reference/robot-3d-corridor/executions/dufomap.gif" width="230" loading="lazy" alt="DUFOMap · Corridor degradation · Live execution"></a><br>[Live execution](results/reference/robot-3d-corridor/executions/dufomap.mp4) | DA N/A / SA 100%<br>XYZ RMSE 497.05 cm |
+| BeautyMap / GICP | <a href="results/reference/robot-3d-corridor/executions/beautymap.mp4"><img src="results/reference/robot-3d-corridor/executions/beautymap.gif" width="230" loading="lazy" alt="BeautyMap · Corridor degradation · Live execution"></a><br>[Live execution](results/reference/robot-3d-corridor/executions/beautymap.mp4) | DA N/A / SA 99.9%<br>XYZ RMSE 592.00 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-[↑ Back to Practice index](#practice-index)
+[Localization record](results/reference/robot-3d-corridor/record.json) · [Cleaning audit](results/analysis/map-quality/corridor.json)
 
-Raw and DUFOMap 3D maps are byte-identical yet tracking differs. Output coverage is unequal; do not rank cleaners.
+**Calculation:** DA = removed dynamic samples / all dynamic samples × 100%; SA = retained static samples / all static samples × 100%. Samples here are labelled dynamic/static source points in 3D. No dynamic denominator means N/A.
 
-##### Raw 3D map + GICP
+A source point is retained when its nearest cleaned-map point is <2×10⁻⁵m away. This checks source membership, not geometric accuracy.
 
-![Raw native 3D localization](results/reference/robot-3d-corridor/executions/raw.gif)
+Pose $\mathrm{RMSE}_{XYZ}=100\sqrt{\mathrm{mean}[(\hat x-x)^2+(\hat y-y)^2+(\hat z-z)^2]}$ cm pairs native updates with independent Gazebo truth within 0.05 simulation seconds. Initialization is included; no trajectory fitting or zero-filling of missing outputs.
 
-[Live MP4](results/reference/robot-3d-corridor/executions/raw.mp4) · [record](results/reference/robot-3d-corridor/record.json)
+**Meaning:** Higher DA means fewer dynamic remnants; higher SA means less static-support loss. Lower RMSE means lower pose error. Cleaning rates do not replace map-geometry error or establish a localization benefit.
 
-##### DUFOMap 3D map + GICP
+Raw/DUFOMap 3D maps are byte-identical but native outputs differ. Unequal output coverage prevents whole-run RMSE ranking. Observations return at 62.1s; last valid Raw/DUFO/Beauty outputs are approximately 63.5/76.4/119.3s. Frozen-map localization supplies no map-damage onset.
 
-![DUFOMap native 3D localization](results/reference/robot-3d-corridor/executions/dufomap.gif)
+[↑ Practice](#practice-index)
 
-[Live MP4](results/reference/robot-3d-corridor/executions/dufomap.mp4) · [record](results/reference/robot-3d-corridor/record.json)
+<a id="map-review-3d"></a>
 
-##### BeautyMap 3D map + GICP
+### D · 3D map-cleaning result review
 
-![BeautyMap native 3D localization](results/reference/robot-3d-corridor/executions/beautymap.gif)
-
-[Live MP4](results/reference/robot-3d-corridor/executions/beautymap.mp4) · [record](results/reference/robot-3d-corridor/record.json)
-
-### Earlier Raw-map 3D static trials
-
-The following short static trials use live 3D points and a fixed Raw 3D map. No IMU or deskew. Scores cover XY/yaw and initialization; sensor input and duration differ from the AMCL trials. [Libraries and scope](docs/testing/LOCALIZERS.md).
-
-| Method | Map type | Metric / effect |
+<!-- HOME_EXPERIMENT_TABLE -->
+| Comparison | Cleaned-map GIF | Metric / effect |
 | --- | --- | --- |
-| NDT_OMP | Raw 3D prior map | XY RMSE 0.93 cm; first trial 34.43 cm |
-| GICP | Raw 3D prior map | XY RMSE 1.09 cm; static validation only |
+| Raw / DUFOMap / BeautyMap | <a href="results/reference/robot-3d-map-review-v2/execution.mp4"><img src="results/reference/robot-3d-map-review-v2/execution.gif" width="230" loading="lazy" alt="3D map review · Live execution"></a><br>[Live execution](results/reference/robot-3d-map-review-v2/execution.mp4) | DA 0 / 46.59 / 74.36%; SA 100 / 99.998 / 81.15% |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-#### Pure static — NDT_OMP
+**Calculation and meaning:** Reuses C2's 3D source-point DA/SA: dynamic removal and static retention. This records saved map results for inspection, with no additional inference or score.
 
-**Live execution**
+<a id="earlier-raw-map-3d-static-trials"></a>
 
-![NDT_OMP native 3D localization](results/reference/robot-ndt-static/execution.gif)
 
-[Live MP4](results/reference/robot-ndt-static/execution.mp4) · [record](results/reference/robot-ndt-static/record.json)
+### E · Earlier Raw-map 3D static trials
 
-**Measured result replay**
+<!-- HOME_EXPERIMENT_TABLE -->
+| Localizer | Execution / replay GIF | Metric / effect |
+| --- | --- | --- |
+| NDT_OMP | <a href="results/reference/robot-ndt-static/execution.mp4"><img src="results/reference/robot-ndt-static/execution.gif" width="230" loading="lazy" alt="NDT · Live execution"></a><br>[Live execution](results/reference/robot-ndt-static/execution.mp4)<br><a href="results/reference/robot-ndt-static/result.mp4"><img src="results/reference/robot-ndt-static/result.gif" width="230" loading="lazy" alt="NDT · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-ndt-static/result.mp4) | XY RMSE 0.93 cm; yaw RMSE 0.17°; N=402<br>[Record](results/reference/robot-ndt-static/record.json) |
+| GICP | <a href="results/reference/robot-gicp-static/execution.mp4"><img src="results/reference/robot-gicp-static/execution.gif" width="230" loading="lazy" alt="GICP · Live execution"></a><br>[Live execution](results/reference/robot-gicp-static/execution.mp4)<br><a href="results/reference/robot-gicp-static/result.mp4"><img src="results/reference/robot-gicp-static/result.gif" width="230" loading="lazy" alt="GICP · Saved-result replay (no new inference)"></a><br>[Saved-result replay (no new inference)](results/reference/robot-gicp-static/result.mp4) | XY RMSE 1.09 cm; yaw RMSE 0.16°; N=397<br>[Record](results/reference/robot-gicp-static/record.json) |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-![NDT_OMP saved pose result](results/reference/robot-ndt-static/result.gif)
+**Calculation and meaning:** XY RMSE follows group B; yaw differences are wrapped to [-π,π], RMS-averaged and converted to degrees. Input is 3D, but these historical scores are XY/yaw, not XYZ. Initialization is included; N counts native updates. NDT's same-parameter first trial (34.43cm) is retained; its variation remains unexplained.
 
-[Result MP4](results/reference/robot-ndt-static/result.mp4) · XY RMSE **0.93 cm** · yaw **0.17°** · 402 updates.
+[Initial NDT record](results/reference/robot-ndt-static-initial/record.json)
 
-#### Pure static — GICP
+<a id="supplementary-live-scene-recordings"></a>
 
-**Live execution**
 
-![GICP native 3D localization](results/reference/robot-gicp-static/execution.gif)
+### F · Supplementary acquisition and localization
 
-[Live MP4](results/reference/robot-gicp-static/execution.mp4) · [record](results/reference/robot-gicp-static/record.json)
+#### F1 · Pure static
 
-**Measured result replay**
+<!-- HOME_EXPERIMENT_TABLE -->
+| Method | GIF | Metric / effect |
+| --- | --- | --- |
+| slam_toolbox | <a href="results/reference/robot-supp-static/execution.mp4"><img src="results/reference/robot-supp-static/execution.gif" width="230" loading="lazy" alt="Pure static · Live execution"></a><br>[Live execution](results/reference/robot-supp-static/execution.mp4) | 54 saved cloud frames; known cells 20568 |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-![GICP saved pose result](results/reference/robot-gicp-static/result.gif)
+[Record](results/reference/robot-supp-static/record.json)
 
-[Result MP4](results/reference/robot-gicp-static/result.mp4) · XY RMSE **1.09 cm** · yaw **0.16°** · 397 updates.
+**Calculation and meaning:** Cloud-frame count is the number of saved scans; known cells count non-unknown grid entries. These describe acquisition/coverage, not cleaning accuracy or map-geometry error, which were not scored here.
 
-NDT also produced 34.43 cm in its first trial with the same estimator parameters; that run is retained. The cause of the variation is not yet established, so the latest score is not a robustness claim. [Initial trial](results/reference/robot-ndt-static-initial/record.json).
+#### F2 · Moving obstacles
 
-### Supplementary live scene recordings
+<!-- HOME_EXPERIMENT_TABLE -->
+| Method | GIF | Metric / effect |
+| --- | --- | --- |
+| slam_toolbox | <a href="results/reference/robot-supp-dynamic/execution.mp4"><img src="results/reference/robot-supp-dynamic/execution.gif" width="230" loading="lazy" alt="Moving obstacles · Live execution"></a><br>[Live execution](results/reference/robot-supp-dynamic/execution.mp4) | 55 saved cloud frames; known cells 20509 |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-Actual native Gazebo + RViz + Terminal. The RViz viewport fills its window and is centred for the map; the earlier custom-viewer clips remain archived.
+[Record](results/reference/robot-supp-dynamic/record.json)
 
-#### S1 static · slam_toolbox mapping
+**Calculation and meaning:** Cloud-frame count is the number of saved scans; known cells count non-unknown grid entries. These describe acquisition/coverage, not cleaning accuracy or map-geometry error, which were not scored here.
 
-![S1 static · slam_toolbox mapping](results/reference/robot-supp-static/execution.gif)
+#### F3 · Persistent change
 
-[MP4](results/reference/robot-supp-static/execution.mp4) · [record](results/reference/robot-supp-static/record.json)
+<!-- HOME_EXPERIMENT_TABLE -->
+| Method | GIF | Metric / effect |
+| --- | --- | --- |
+| Raw / AMCL | <a href="results/reference/robot-supp-large-change/execution.mp4"><img src="results/reference/robot-supp-large-change/execution.gif" width="230" loading="lazy" alt="Persistent change · Live execution"></a><br>[Live execution](results/reference/robot-supp-large-change/execution.mp4) | XY RMSE 6.99 cm |
+<!-- /HOME_EXPERIMENT_TABLE -->
 
-#### S2 dynamic · slam_toolbox mapping
+[Record](results/reference/robot-supp-large-change/record.json)
 
-![S2 dynamic · slam_toolbox mapping](results/reference/robot-supp-dynamic/execution.gif)
-
-[MP4](results/reference/robot-supp-dynamic/execution.mp4) · [record](results/reference/robot-supp-dynamic/record.json)
-
-#### S3 persistent change · Raw map + AMCL
-
-![S3 persistent change · Raw map + AMCL](results/reference/robot-supp-large-change/execution.gif)
-
-[MP4](results/reference/robot-supp-large-change/execution.mp4) · [record](results/reference/robot-supp-large-change/record.json)
-
-#### S4 new corridor · limited → restored AMCL
-
-![S4 new corridor · limited → restored AMCL](results/reference/robot-corridor-v2/executions/degraded_raw.gif)
-
-[MP4](results/reference/robot-corridor-v2/executions/degraded_raw.mp4) · [record](results/reference/robot-corridor-v2/record.json)
-
-<a id="mapping-hypothesis-tests"></a>
-
-## Hypothesis
-
-The current question is about **map cleaning**. Test hypotheses in order; a failed condition stops a claim from propagating to localization. Existing pose-only Guard/Depth/Search experiments remain as a labelled exploratory appendix.
-
-| Hypothesis, easy → hard | Existing simple test / outcome |
-| --- | --- |
-| M1: temporal visibility can remove dynamic traces | Dynamic scene: DUFOMap removes 46.59% / BeautyMap 74.36% of 3D dynamic points; native 2D SRRG removes 42.31% of verified dynamic ghost cells. Different denominators; no cross-method ranking. |
-| M2: removal can preserve static constraints | Same scene: 3D static retention DUFOMap 99.998%, BeautyMap 81.15%; SRRG 2D static coverage 99.51%. BeautyMap's removal gain has a static-loss cost here. |
-| M3: a 3D cleaning gain survives 2D projection | Re-score the same maps: projected dynamic-cell removal is only 8.33% / 33.33%; supported only partially. Native 2D SRRG is a separate representation/control. |
-| M4: cleaner maps lower held-out pose error when ghosts corrupt useful constraints | Dynamic GICP XYZ RMSE Raw/DUFO/Beauty=0.98/0.98/1.04 cm: no benefit established. Vary contamination and repeat with a frozen localizer; this dose-response experiment is pending. SRRG's separate localization B is also pending. |
-| M5: a 2D lidar + depth camera can disambiguate occluded static structure | Existing Depth experiments test pose estimation only, with no stable general gain. A temporal depth visibility gate for map updates, compared with 2D-only SRRG and 3D reference, remains an untested mapping hypothesis. |
-
-[Mapping question, paper links and controlled next tests](docs/testing/MAPPING-FOCUS.md) · [Map-quality evidence and failure timestamps](docs/testing/MAP-METRICS.zh-CN.md). Static and corridor scenes are controls: deleting points cannot create missing geometry. Persistent change needs a separate map-update test.
+**Calculation and meaning:** Group B's XY RMSE compares native AMCL updates with synchronized truth, including initialization; lower means smaller pose error. Map updates are not tested.
 
 <a id="hypothesis-experiments"></a>
 

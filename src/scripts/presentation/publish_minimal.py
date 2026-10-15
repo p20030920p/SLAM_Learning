@@ -107,7 +107,8 @@ def render():
     videos = set(subprocess.check_output(["git", "ls-files", "*.mp4"], cwd=ROOT, text=True).splitlines())
     # Match the actual practices displayed in the article, rather than file-name order.
     article = (ROOT / "README.md").read_text(encoding="utf-8")
-    primary = list(dict.fromkeys(re.findall(r"!\[[^]]*\]\(([^)]*\.gif)\)", article)))
+    previews = re.findall(r'!\[[^]]*\]\(([^)]*\.gif)\)|<img\b[^>]*\bsrc="([^"]*\.gif)"', article)
+    primary = list(dict.fromkeys(markdown or html for markdown, html in previews))
     primary += [p for p in source_rows if p.startswith("docs/media/hardware/") and p not in primary]
     assert set(primary) <= source_rows.keys()
     slots = json.loads((ROOT / "docs/figures/slots.json").read_text())["slots"]

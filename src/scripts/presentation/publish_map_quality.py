@@ -21,6 +21,11 @@ NAMES = [
 
 def replace_tables(path, chinese):
     text = path.read_text(encoding="utf-8")
+    if "<!-- HOME_EXPERIMENTS_V2 -->" in text:
+        from publish_home_experiments import refresh_document
+
+        refresh_document(path, chinese)
+        return
     heading = "### 2D · AMCL"
     start = text.index(heading)
     end = text.index("## " + ("实测结果如何计算" if chinese else "Measured result calculation"))
@@ -98,11 +103,6 @@ def replace_tables(path, chinese):
         pos = group.find("\n\n", group.find("### ")) + 2
         group = group[:pos] + "\n".join(table) + "\n" + group[pos:]
         text = text[:loc] + group + text[nextloc:]
-    minimal = "MINIMAL.zh-CN.md" if chinese else "docs/MINIMAL.md"
-    if f"]({minimal})" not in text:
-        needle = "## " + ("实践" if chinese else "Practice") + "\n"
-        label = "极简实践：GIF预览与视频" if chinese else "Minimal practice: GIF previews and videos"
-        text = text.replace(needle, needle + f"\n[{label}]({minimal})\n", 1)
     path.write_text(text, encoding="utf-8")
 
 
