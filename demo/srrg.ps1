@@ -32,9 +32,14 @@ while(-not (Test-Path "$run/session-stopped.json")){
 }
 $stop=Get-Content "$run/session-stopped.json" -Raw | ConvertFrom-Json
 if($stop.exit_code -ne 0 -or -not (Test-Path "$run/srrg-finished.json")){throw "SRRG failed; evidence retained at $run"}
+$runw='/mnt/'+$run.Substring(0,1).ToLower()+'/'+$run.Substring(3).Replace('\','/')
+& wsl.exe -d Ubuntu-24.04 -u root -- python3 "$rw/src/scripts/presentation/srrg/evaluate.py" $runw | Out-Null
+if($LASTEXITCODE -ne 0){throw "SRRG scoring failed; inspect $run"}
+& wsl.exe -d Ubuntu-24.04 -u root -- python3 "$rw/src/scripts/presentation/srrg/export_grid.py" $runw | Out-Null
+if($LASTEXITCODE -ne 0){throw "SRRG occupancy export failed; inspect $run"}
 if($Scene -eq 'static'){
- $runw='/mnt/'+$run.Substring(0,1).ToLower()+'/'+$run.Substring(3).Replace('\','/')
  if(-not (Test-Path "$run/prior.g2o")){throw 'Native static prior export missing'}
  [IO.File]::WriteAllText("$RepoRoot/.cache/presentation/srrg-static-prior-latest.json",(@{path=$runw;source_run=$run;scope='Actual native author static-A graph and clouds, saved by the live worker'} | ConvertTo-Json))
 }
 Write-Host "SRRG mapping completed: $run"
+Write-Host "Map scores: $run/srrg-quality.json ; manual-localization maps: $run/maps"
