@@ -1,0 +1,38 @@
+{
+  "deskew": {
+    "method": "deskew",
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/direction-20261016-v2/fastlio-maps/deskew/map.yaml",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/direction-20261016-v2/fastlio-maps/deskew/map-3d.pcd",
+    "pose_topic": "/deskew/pcl_pose",
+    "cloud_topic": "/points",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_points_sha256": "ea243aea2399b1d9fe0e09edbf4fb35422a1e4b0352369326df355170b3a5af3",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    }
+  },
+  "no_deskew": {
+    "method": "no_deskew",
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/direction-20261016-v2/fastlio-maps/no_deskew/map.yaml",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/direction-20261016-v2/fastlio-maps/no_deskew/map-3d.pcd",
+    "pose_topic": "/no_deskew/pcl_pose",
+    "cloud_topic": "/points",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_points_sha256": "ad3e6bda0746826a9cb8fe6ccf9da7cc1c138f2206b11a4456a5f0a85579d83c",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    }
+  }
+}

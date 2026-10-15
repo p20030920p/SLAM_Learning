@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "kind": "fastlio_point_compensation_ablation_score",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Supplied one initial pose per instance; no trajectory alignment; all common-time finite native registered clouds accumulated including initialization, 5cm voxels, rendered ground included; no estimated-height cropping. This freezes registered-scan accumulation, not a native ikd-Tree export. Independent localization is separate.",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013049-mapping-fastlio-static-016fc4",
+  "common_cloud_snapshots": 173,
+  "reference_voxels": 26705,
+  "methods": {
+    "deskew": {
+      "map_voxels": 15970,
+      "surface_rmse_m": 0.04608713090419769,
+      "surface_p95_m": 0.023107653390616167,
+      "observed_static_coverage_5cm": 0.9438307433064969,
+      "xyz_rmse_m": 0.01032977972622941,
+      "rotation_rmse_deg": 0.2254197406759318,
+      "native_pose_samples": 133,
+      "phases": {
+        "stationary": {
+          "samples": 7,
+          "xyz_rmse_m": 0.0015368138576699864,
+          "rotation_rmse_deg": 0.02590132706012036
+        },
+        "slow_turn": {
+          "samples": 26,
+          "xyz_rmse_m": 0.004217542254219097,
+          "rotation_rmse_deg": 0.14448903846727515
+        },
+        "fast_turn": {
+          "samples": 54,
+          "xyz_rmse_m": 0.00788217808689693,
+          "rotation_rmse_deg": 0.26038310314673946
+        },
+        "translation": {
+          "samples": 26,
+          "xyz_rmse_m": 0.0144960619318318,
+          "rotation_rmse_deg": 0.2454305698032564
+        },
+        "stop": {
+          "samples": 20,
+          "xyz_rmse_m": 0.015643183883675287,
+          "rotation_rmse_deg": 0.22175029662257495
+        }
+      },
+      "initial_anchor": [
+        [
+          0.00010493208022572956,
+          0.9999999919995721,
+          -7.064074228300314e-05,
+          8.072414201449979
+        ],
+        [
+          -0.9999999932637779,
+          0.00010493558471403228,
+          4.960813697132782e-05,
+          7.531417802415635
+        ],
+        [
+          4.961554930203759e-05,
+          7.063553632214287e-05,
+          0.9999999962744591,
+          0.09379480689618881
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "initial_anchor_stamp_s": 4.099999999
+    },
+    "no_deskew": {
+      "map_voxels": 32837,
+      "surface_rmse_m": 0.13490703701972961,
+      "surface_p95_m": 0.32003028392791744,
+      "observed_static_coverage_5cm": 0.8227672720464333,
+      "xyz_rmse_m": 0.034363433859476336,
+      "rotation_rmse_deg": 3.5495264193911735,
+      "native_pose_samples": 132,
+      "phases": {
+        "stationary": {
+          "samples": 7,
+          "xyz_rmse_m": 0.0012447359111989284,
+          "rotation_rmse_deg": 0.024073539656473606
+        },
+        "slow_turn": {
+          "samples": 26,
+          "xyz_rmse_m": 0.01302085968925407,
+          "rotation_rmse_deg": 0.9535180687513735
+        },
+        "fast_turn": {
+          "samples": 54,
+          "xyz_rmse_m": 0.03179331126696708,
+          "rotation_rmse_deg": 4.3496397705597
+        },
+        "translation": {
+          "samples": 26,
+          "xyz_rmse_m": 0.05329444227921434,
+          "rotation_rmse_deg": 3.6791956821336456
+        },
+        "stop": {
+          "samples": 19,
+          "xyz_rmse_m": 0.03480844705567593,
+          "rotation_rmse_deg": 3.740593429898586
+        }
+      },
+      "initial_anchor": [
+        [
+          0.00010423324645924136,
+          0.999999992335965,
+          -6.680943226098532e-05,
+          8.072412559236236
+        ],
+        [
+          -0.9999999934052501,
+          0.0001042364674911353,
+          4.821056406534892e-05,
+          7.531423628975343
+        ],
+        [
+          4.8217527675075444e-05,
+          6.680440667678767e-05,
+          0.9999999966061207,
+          0.09383091590866899
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "initial_anchor_stamp_s": 4.099999999
+    }
+  },
+  "input_hashes": {
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013049-mapping-fastlio-static-016fc4\\truth.jsonl": "c645d2c41e0be2820fdad365aaf6c04589e40be98483f32b9e6aeae05e3f7de4",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013049-mapping-fastlio-static-016fc4\\mapping-clouds.npz": "6fff42eee5ab4d811c7c41e30cf8798f6204d5870d47d790db2bb272679e8c89",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013049-mapping-fastlio-static-016fc4\\fastlio.yaml": "0b52607b71f79ff666697c0e90940da5208117e62018597c523304226733444e",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\map-hypotheses-20261015\\static\\map-quality\\evaluation-static-mesh.ply": "c7175635e3b3d2fc2da031daf128dd825420b6eae9d57f4f10c943097b6b0994",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013049-mapping-fastlio-static-016fc4\\fastlio-deskew.jsonl": "1bc3ade5a68bf7e9d25a4ed6a94153722534fe61c4f527372d145d71ffc20460",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013049-mapping-fastlio-static-016fc4\\fastlio-no_deskew.jsonl": "b1498aa92ab1388f12b0f5887a3dc3c5d8f82c17a0f69a125bcdd4e5f71b2770",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013049-mapping-fastlio-static-016fc4\\fastlio-deskew-clouds.npz": "6922fa98fe98ec24f3888ee4d303b5f0d20050a9b6b1efb1092c14fea6ae9c39",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013049-mapping-fastlio-static-016fc4\\fastlio-no_deskew-clouds.npz": "43383efacb4ff50f91669ee1e38be1a42670fff08c616aef3b3ef44c49f3642f"
+  }
+}

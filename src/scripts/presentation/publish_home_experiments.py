@@ -241,6 +241,10 @@ def practice(doc, zh, previous):
 
 def refresh_document(doc, zh):
     text = doc.read_text(encoding="utf-8")
+    if "<!-- SIMPLE_HYPOTHESES_V2 -->" in text:
+        from simple_research_home import publish_document
+        publish_document(doc, zh)
+        return doc.read_text(encoding="utf-8")
     prefix, blocks = sections(text)
     hypothesis = "假设" if zh else "Hypothesis"
     related_title = "相关工作" if zh else "Related works"
@@ -310,6 +314,8 @@ def main():
     for doc, zh in ((ROOT / "README.md", False), (ROOT / "docs/HOME.zh-CN.md", True)):
         refresh_document(doc, zh)
         print("Organized:", doc.relative_to(ROOT))
+    if "<!-- SIMPLE_HYPOTHESES_V2 -->" in (ROOT / "README.md").read_text(encoding="utf-8"):
+        return
     if (ROOT / "results/reference/direction-20261016/fastlio-B/score-3d.json").exists():
         from publish_direction_gallery import publish
         publish()

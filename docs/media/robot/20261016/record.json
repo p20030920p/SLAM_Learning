@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "executed",
+  "exit_code": 0,
+  "kind": "native_urdf_rviz_screenshot",
+  "source_urdf": "config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf",
+  "source_sha256": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+  "scope": "Actual RViz RobotModel rendering, all mesh files loaded; zero wheel angles. Red upper cylinder is the URDF's 3D lidar; black lower cylinder is its 2D lidar. No fabricated robot illustration.",
+  "artifacts": {
+    "renderer.log": {
+      "sha256": "838c7167e6e0194a4d0171084a651c1709d1b6cec452d8a2ef0948705762059f",
+      "bytes": 340,
+      "availability": "portable"
+    },
+    "robot.rviz": {
+      "sha256": "05da6934587b93de89d377d148d65b514654e0a958e2ff0412e2ac9852560ec9",
+      "bytes": 837,
+      "availability": "portable"
+    },
+    "urdf.png": {
+      "sha256": "8010ffb680ac5e1b83933825acc46411bb68ed5a543b93c11182e0df85cc2e29",
+      "bytes": 37647,
+      "availability": "portable"
+    }
+  }
+}

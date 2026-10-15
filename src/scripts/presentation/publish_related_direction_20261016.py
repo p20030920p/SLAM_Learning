@@ -7,6 +7,9 @@ ROOT = Path(__file__).resolve().parents[3]
 
 
 def publish():
+    if "<!-- SIMPLE_HYPOTHESES_V2 -->" in (ROOT / "README.md").read_text(encoding="utf-8"):
+        from simple_research_home import publish as publish_simple
+        return publish_simple()
     for zh, path in [(True, ROOT / "docs/HOME.zh-CN.md"), (False, ROOT / "README.md")]:
         text = path.read_text(encoding="utf-8")
         base = "assets/related/20261016/" if zh else "docs/assets/related/20261016/"

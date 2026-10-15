@@ -99,6 +99,9 @@ def group_for(path):
 
 
 def render():
+    if "<!-- SIMPLE_HYPOTHESES_V2 -->" in (ROOT / "README.md").read_text(encoding="utf-8"):
+        from simple_research_home import publish
+        return publish()
     source_rows = {}
     for line in legacy_minimal(write=False):
         parts = [p.strip() for p in line.split("|")[1:-1]]

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "kind": "frozen_actual_native_2d_mapping_a",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Freshly recorded A and separate B in this batch. Geometry metric is 10cm-voxel point distance to observed static support, not exact surface RMSE.",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-010925-mapping-srrg-static-9c3490",
+  "methods": {
+    "raw": {
+      "static_retention": 1.0,
+      "dynamic_removal": null,
+      "points": 248922,
+      "observed_static_support_distance_rmse_m": 0.03792356820792049
+    },
+    "srrg": {
+      "static_retention": 1.0,
+      "dynamic_removal": null,
+      "points": 36189,
+      "observed_static_support_distance_rmse_m": 0.025721786714097684
+    }
+  },
+  "timing": {
+    "duration_s": 69.20000000000044,
+    "frames": 346,
+    "fps": 5,
+    "video_duration_s": 69.266667,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "artifacts": {
+    "execution.gif": {
+      "sha256": "7542d643c9208ac7453322e31962a38132e71f2e35f67d6281df3eb1304b45a1",
+      "bytes": 890289,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "172d188557785aeec06ec682e514ea1fedbc8d0ee071370192043cd2062ac68b",
+      "bytes": 1068020,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "c46e8a96796410378a8fb364d30c24e380d91ac36b0819ab2b43b3c2f932dff3",
+      "bytes": 728,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "5ae24e8be2acf3ae6226f1809982c523b85d2803639b40edd55f8343b5f7127b",
+      "bytes": 20132,
+      "availability": "portable"
+    },
+    "srrg-2d.urdf": {
+      "sha256": "5952db4f8a29a501700b4a518ea18ecdb61afb1042ca04ac70879759728948f5",
+      "bytes": 9694,
+      "availability": "portable"
+    },
+    "srrg-bridge.yaml": {
+      "sha256": "08c14b517565208bfc7885af5774237070b25d136e56056f48cbde80c285ab3d",
+      "bytes": 1367,
+      "availability": "portable"
+    },
+    "srrg-final.npy": {
+      "sha256": "f36590cd06efab441f99aeb7d4ce59b940329520a42dedb88defe943887659a2",
+      "bytes": 289640,
+      "availability": "portable"
+    },
+    "srrg-frames.jsonl": {
+      "sha256": "8d403674812d5e5c5df147c36614be9434b1a6a159a193b4961475cc0d704225",
+      "bytes": 126254,
+      "availability": "portable"
+    },
+    "srrg-inputs.jsonl": {
+      "sha256": "e73f0ed030288e0c3cfef535a0821d72fe29c8531e17c34a3649c04c3207ff93",
+      "bytes": 5011900,
+      "availability": "portable"
+    },
+    "srrg-quality-inputs.npz": {
+      "sha256": "e82323e4de1e55eee8d7d73b6730f4bd9f90ac29fc5c050e53b81c35f99d23a9",
+      "bytes": 1658559,
+      "availability": "portable"
+    },
+    "srrg-quality.json": {
+      "sha256": "3e3ada92e31e6506794f0336938b6709c01377c0025fa1808b376f562d3b5a50",
+      "bytes": 7976,
+      "availability": "portable"
+    },
+    "srrg-raw.npy": {
+      "sha256": "b08a8c858bb1bc5e4802bd7d7d40f88e5e4980b42315191cf557435780cdbfce",
+      "bytes": 1991504,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "a1cc78c1d0c73f566265c8c2b501913841e13bab4932732a001a5aa51e148ae8",
+      "bytes": 1028464,
+      "availability": "portable"
+    },
+    "maps/record.json": {
+      "sha256": "8edd62451381100ccd2c87fd5e6fb28827087c129005df6bf623fdbb51a2e3ce",
+      "bytes": 240,
+      "availability": "portable"
+    },
+    "maps/raw/map.pgm": {
+      "sha256": "dfa4f9dd6e8ca278957bd2051ab836b551fb2b381a0d9a125108dccaedbd7bc1",
+      "bytes": 58116,
+      "availability": "portable"
+    },
+    "maps/raw/map.yaml": {
+      "sha256": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42",
+      "bytes": 122,
+      "availability": "portable"
+    },
+    "maps/srrg/map.pgm": {
+      "sha256": "b594153675dd3df238356f186d0cc60abf911d7228c6a758a703e781c906486f",
+      "bytes": 58116,
+      "availability": "portable"
+    },
+    "maps/srrg/map.yaml": {
+      "sha256": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42",
+      "bytes": 122,
+      "availability": "portable"
+    }
+  }
+}

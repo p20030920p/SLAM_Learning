@@ -1,0 +1,39 @@
+Panels: []
+Visualization Manager:
+  Class: ''
+  Displays:
+  - Class: rviz_default_plugins/RobotModel
+    Name: Actual omni-3d-v1 URDF
+    Enabled: true
+    Description Source: Topic
+    Description Topic:
+      Value: /robot_description
+      Durability Policy: Transient Local
+      Reliability Policy: Reliable
+      Depth: 1
+    Visual Enabled: true
+    Collision Enabled: false
+    Alpha: 1.0
+  Global Options:
+    Fixed Frame: base_footprint
+    Background Color: 228; 234; 240
+    Frame Rate: 15
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Target Frame: base_footprint
+      Distance: 1.15
+      Pitch: 0.45
+      Yaw: 0.85
+      Focal Point:
+        X: 0.0
+        Y: 0.0
+        Z: 0.15
+  Tools: []
+Window Geometry:
+  Width: 1000
+  Height: 760
+  X: 0
+  Y: 0
+  Hide Left Dock: true
+  Hide Right Dock: true

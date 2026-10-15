@@ -1,6 +1,6 @@
 # srrg_mapper2d：原生二维动态环境建图
 
-**原文实验：不复现。** 本页保留此前作者代码迁移与自有场景记录；当前Raw／SRRG与独立AMCL B见[新实践](../HOME.zh-CN.md#direction-experiments-20261016)。下方旧数值对应此前采集，不与新的A／B记录混用。
+**原文实验：不复现。** 本页保留此前作者代码迁移与自有场景记录；当前Raw／SRRG与独立AMCL B见[新实践](../HOME.zh-CN.md#experiment-h1)。下方旧数值对应此前采集，不与新的A／B记录混用。
 
 ![原文图1，第2页：系统流程](../assets/related/20261016/srrg-fig1.png)
 

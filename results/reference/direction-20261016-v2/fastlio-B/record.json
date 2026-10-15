@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "kind": "native_direction_experiment",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Native run and real application capture; pose metrics use evaluation-only truth, 10Hz grid, max pose age 0.15s, 5s warmup; no truth to localizers",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013218-localization-fastlio-3d-static-method-live-006dce",
+  "source_session_sha256": "600091aa03f27ec3085f9d13193229a33416cf61076e373a469a7e99b89b1562",
+  "metrics": {
+    "deskew": {
+      "position_rmse_m": 0.018185912929510436,
+      "position_p95_m": 0.0442948659496642,
+      "yaw_rmse_deg": 0.3831426636999842,
+      "grid_coverage": 1.0,
+      "success_fraction": 1.0,
+      "grid_samples": 601,
+      "grid_expected": 601,
+      "native_samples": 734,
+      "limited": {
+        "rmse_m": 0.008326452449631027,
+        "samples": 451
+      },
+      "restored": {
+        "rmse_m": 0.0334165069377735,
+        "samples": 150
+      }
+    },
+    "no_deskew": {
+      "position_rmse_m": 0.1396106301964897,
+      "position_p95_m": 0.19363026170446423,
+      "yaw_rmse_deg": 3.576017033171479,
+      "grid_coverage": 1.0,
+      "success_fraction": 1.0,
+      "grid_samples": 601,
+      "grid_expected": 601,
+      "native_samples": 734,
+      "limited": {
+        "rmse_m": 0.12204443863534324,
+        "samples": 451
+      },
+      "restored": {
+        "rmse_m": 0.1825119698460244,
+        "samples": 150
+      }
+    }
+  },
+  "timing": {
+    "executions/deskew.mp4": {
+      "duration_s": 78.60000000000058,
+      "frames": 393,
+      "fps": 5,
+      "video_duration_s": 78.5,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "executions/no_deskew.mp4": {
+      "duration_s": 78.60000000000058,
+      "frames": 393,
+      "fps": 5,
+      "video_duration_s": 78.5,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "input_bags": {
+    "input-bag_0.mcap": {
+      "sha256": "d444d91337f76b92f29765f68ae7bd51690a41712842d5b66877cd36bda4fa2d",
+      "bytes": 292518967,
+      "availability": "local_only"
+    }
+  },
+  "artifacts": {
+    "cases.json": {
+      "sha256": "dcffed7d8861c34257be9c9be1354fae6a89df3a0b5a8659460174d5fce36c33",
+      "bytes": 1396,
+      "availability": "portable"
+    },
+    "deskew-poses3d.csv": {
+      "sha256": "a369960aaf243405abdb9a43c62b7df18e6290124ae516652390ebd4bb62c4f8",
+      "bytes": 224013,
+      "availability": "portable"
+    },
+    "deskew-samples.csv": {
+      "sha256": "190138289246bac6ac0d8e0781ffbc34a1132196d2c60358cc5bea77efe2ac08",
+      "bytes": 131461,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "ae6938b5ddc487d272c6a4156d89eef0fdd5c3a449b915d7b4687262a3dbb420",
+      "bytes": 1371,
+      "availability": "portable"
+    },
+    "native-views.json": {
+      "sha256": "7863e7283ca1f739a0bc9e8761b976d4934b02d23930a3985ea49d018beadfe6",
+      "bytes": 898,
+      "availability": "portable"
+    },
+    "no_deskew-poses3d.csv": {
+      "sha256": "a78d7ad10bbbea9f7b6d57f5881734d235c893e36825c5da411025bd18cc2f71",
+      "bytes": 224255,
+      "availability": "portable"
+    },
+    "no_deskew-samples.csv": {
+      "sha256": "4026b1e25bacc83901d00c1182452eff94aa37e4ddf1b0af5a481f4b24411c86",
+      "bytes": 129499,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "659184ed9803a4c127eca3d6594081e22fbffa680db25f450b11dc8e174fd4f2",
+      "bytes": 352,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "600091aa03f27ec3085f9d13193229a33416cf61076e373a469a7e99b89b1562",
+      "bytes": 20339,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "e6063d803fd110388ed3a542f31f237c44693a9b28fbb8e17d25898cc668197b",
+      "bytes": 1091745,
+      "availability": "portable"
+    },
+    "views.json": {
+      "sha256": "393965dfadd2fa8128208579a2259d1c3e20508700f2d06891ffa2aa17f24147",
+      "bytes": 598,
+      "availability": "portable"
+    },
+    "executions/deskew.gif": {
+      "sha256": "99dfbbf494c67da3ce8023e2d0928e5a2ecd2f6fcb84f540647202ba83121ae0",
+      "bytes": 1944851,
+      "availability": "portable"
+    },
+    "executions/deskew.mp4": {
+      "sha256": "4cad4a83669d84c9afe04e684ae1962996e00ab3d93578ac3a6559e2191b28e0",
+      "bytes": 6604610,
+      "availability": "portable"
+    },
+    "executions/no_deskew.gif": {
+      "sha256": "be61d129f871ebd704fed35faa60ba9e3bdaa0b1e87bb4cf530757bf1c987807",
+      "bytes": 1899858,
+      "availability": "portable"
+    },
+    "executions/no_deskew.mp4": {
+      "sha256": "3d96b3b5d02e530032fe1e81bbf84c39c5031d4b7c58ee018d45e3baf87e17d1",
+      "bytes": 6905687,
+      "availability": "portable"
+    },
+    "logs/bag.log": {
+      "sha256": "3cbcd77805c35b9beb0cf42769e49f126d6759372511ad6a7c1e406cda8dba59",
+      "bytes": 22330,
+      "availability": "portable"
+    },
+    "logs/cmake.log": {
+      "sha256": "97e5be5e8b52950c0fe331d5bc4a22a7f967a76f6c036acf3686a9530a95dd09",
+      "bytes": 1126,
+      "availability": "portable"
+    },
+    "logs/localizers.log": {
+      "sha256": "81731c93f4d8c385d66280daeaba076e808c9e297cd385a2cc536af88bd38120",
+      "bytes": 1107588,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "f2c25a8056a891d74146316d1fc7150a5b19303fbab36aba52625090f7d8dfdb",
+      "bytes": 12304,
+      "availability": "portable"
+    },
+    "logs/patrol.log": {
+      "sha256": "2fccc1a14ac26820a4f1a9c5f4e23c815c339c34b76ac781cc079a025a4ddda0",
+      "bytes": 2653,
+      "availability": "portable"
+    },
+    "logs/rviz-deskew.log": {
+      "sha256": "b73cb76d6b317738685b4aba126e0d92daf4388a19249526ede5e43a16d8675f",
+      "bytes": 597,
+      "availability": "portable"
+    },
+    "logs/rviz-no_deskew.log": {
+      "sha256": "3f6b9ddc21c74a8c0644a221a1f0ed9e2ba1c4bbba2c3f8d9c8cc0e25cc52079",
+      "bytes": 600,
+      "availability": "portable"
+    },
+    "logs/stack.log": {
+      "sha256": "220bcd2f5d2d4005cac6eb9a1c6ff3695f0fc628e55414800bfbaa0bbd39385f",
+      "bytes": 11320,
+      "availability": "portable"
+    },
+    "logs/views.log": {
+      "sha256": "f31410f963f0c12ce9548cb7d2da1edba0ed1cd105c7dc0fe14c8f2bca34692e",
+      "bytes": 786,
+      "availability": "portable"
+    },
+    "logs/window-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "maps/deskew/map.pgm": {
+      "sha256": "78364d9fc77e2403d68e709d49fa0915280c1ca4534204259279f8f7dd0d1baf",
+      "bytes": 175015,
+      "availability": "portable"
+    },
+    "maps/deskew/map.yaml": {
+      "sha256": "5249e682132987f1a2cef8196d0af0f07c1621428a397e7b96ff85e6fc54c4b2",
+      "bytes": 124,
+      "availability": "portable"
+    },
+    "maps/no_deskew/map.pgm": {
+      "sha256": "15ea92e349426a76c75419eb8e5273964db6f9e652f17cc32b37bfddc0ee808e",
+      "bytes": 175015,
+      "availability": "portable"
+    },
+    "maps/no_deskew/map.yaml": {
+      "sha256": "5249e682132987f1a2cef8196d0af0f07c1621428a397e7b96ff85e6fc54c4b2",
+      "bytes": 124,
+      "availability": "portable"
+    }
+  }
+}

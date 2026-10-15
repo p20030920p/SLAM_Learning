@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "status": "executed",
+  "exit_code": 0,
+  "kind": "cropped_native_pointcloud_previews",
+  "scope": "12-second RViz viewport excerpts from existing actual author-code execution captures; real-time, terminal omitted, not new executions.",
+  "sources": {
+    "dufomap": {
+      "record": "results/reference/desktop-live-dufomap/record.json",
+      "video": "results/reference/desktop-live-dufomap/execution.mp4",
+      "sha256": "6ba66340c5c289f506963e7b3dc192cc7fd2efc768c1bb43909964b7b4d8edf2",
+      "interval_s": [
+        20,
+        32
+      ],
+      "crop_xywh": [
+        762,
+        100,
+        688,
+        564
+      ],
+      "timing": {
+        "duration_s": 11.99999999999999,
+        "frames": 60,
+        "fps": 5,
+        "video_duration_s": 12.0,
+        "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+      }
+    },
+    "beautymap": {
+      "record": "results/reference/desktop-live-beautymap/record.json",
+      "video": "results/reference/desktop-live-beautymap/execution.mp4",
+      "sha256": "73e1e086ff3ca2c25a7b02e1194977555164a18c4b221e6c33a3ace4710edc49",
+      "interval_s": [
+        45,
+        57
+      ],
+      "crop_xywh": [
+        762,
+        100,
+        688,
+        564
+      ],
+      "timing": {
+        "duration_s": 11.99999999999999,
+        "frames": 60,
+        "fps": 5,
+        "video_duration_s": 12.0,
+        "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+      }
+    },
+    "ir-mcl": {
+      "record": "results/reference/desktop-live-ir-mcl/record.json",
+      "video": "results/reference/desktop-live-ir-mcl/execution.mp4",
+      "sha256": "02ab1d8cb77ff4e6d4c161fc77af2b0aba94045dfe8835f698c989b8c3064528",
+      "interval_s": [
+        20,
+        32
+      ],
+      "crop_xywh": [
+        762,
+        100,
+        688,
+        564
+      ],
+      "timing": {
+        "duration_s": 11.99999999999999,
+        "frames": 60,
+        "fps": 5,
+        "video_duration_s": 12.0,
+        "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+      }
+    }
+  },
+  "artifacts": {
+    "beautymap.gif": {
+      "sha256": "c5918ef0bfa47cd0371d3dfeb4bd83f2400b3991c8170fa0b89a7952ce660e6d",
+      "bytes": 165268,
+      "availability": "portable"
+    },
+    "beautymap.mp4": {
+      "sha256": "91dd9e4ef990870eed7733bfd86b368733f01370064a1fdadc8d746dd509cd1c",
+      "bytes": 88584,
+      "availability": "portable"
+    },
+    "dufomap.gif": {
+      "sha256": "36dd4913b9aadd1ab051ca5dd3aeb3d5885830744f35a2cf05f7c64c7c12b6af",
+      "bytes": 905832,
+      "availability": "portable"
+    },
+    "dufomap.mp4": {
+      "sha256": "f6c2e17bcf624d3f48ac616515335b688c49dd863e565befdcd9c1eff6ba5ecd",
+      "bytes": 309477,
+      "availability": "portable"
+    },
+    "ir-mcl.gif": {
+      "sha256": "3215db396b8f727f975ea0b8201e2c7ede33a1a7f34265c4af0ac159cc0ae34b",
+      "bytes": 256798,
+      "availability": "portable"
+    },
+    "ir-mcl.mp4": {
+      "sha256": "466b4220893e9930bd412d53373c1b1935a6dcba2c017f9397eff51c4b619c5a",
+      "bytes": 53679,
+      "availability": "portable"
+    }
+  }
+}

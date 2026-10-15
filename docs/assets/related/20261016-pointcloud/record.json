@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "status": "executed",
+  "exit_code": 0,
+  "kind": "original_paper_pointcloud_figures",
+  "sources": {
+    "srrg-fig7": {
+      "url": "https://iris.uniroma1.it/handle/11573/1340118",
+      "pdf_sha256": "7c8702c63a0c0f014a788c6327cb62b3de8ce7f1e42977cf491ffed373a8404b",
+      "page": 6,
+      "crop_xywh_at_scale1400": [
+        95,
+        85,
+        895,
+        415
+      ],
+      "scope": "Original paper figure excerpt; original-paper experiment not reproduced."
+    },
+    "fastlio2-fig12": {
+      "url": "https://arxiv.org/abs/2107.06829",
+      "pdf_sha256": "25ee5a7a43c3775a842f858ea23b91867fb18d21a7f17b730cd9ae19e77c74e4",
+      "page": 16,
+      "crop_xywh_at_scale1400": [
+        550,
+        498,
+        449,
+        280
+      ],
+      "scope": "Original paper figure excerpt; original-paper experiment not reproduced."
+    }
+  },
+  "artifacts": {
+    "fastlio2-fig12.png": {
+      "sha256": "ac5dfe1fe016f200d7d3c44571202a9b6088790b5564fe3cfb8ac59b3d61613e",
+      "bytes": 130439,
+      "availability": "portable"
+    },
+    "srrg-fig7.png": {
+      "sha256": "471504b33474e11c68aa31a7728a825cf9c0e96af317c6e58d411b69b5953945",
+      "bytes": 154140,
+      "availability": "portable"
+    }
+  }
+}

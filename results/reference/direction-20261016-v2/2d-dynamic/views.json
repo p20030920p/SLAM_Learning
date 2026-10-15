@@ -1,0 +1,20 @@
+{
+  "raw": {
+    "method": "raw",
+    "title": "SLAM LIVE - raw - RViz2",
+    "config": "view-raw.rviz",
+    "map_topic": "/raw/map",
+    "pose_topic": "/raw/amcl_pose",
+    "tf_topic": "/raw/view/tf",
+    "scan_topic": "/scan"
+  },
+  "srrg": {
+    "method": "srrg",
+    "title": "SLAM LIVE - srrg - RViz2",
+    "config": "view-srrg.rviz",
+    "map_topic": "/srrg/map",
+    "pose_topic": "/srrg/amcl_pose",
+    "tf_topic": "/srrg/view/tf",
+    "scan_topic": "/scan"
+  }
+}

@@ -1,0 +1,319 @@
+{
+  "kind": "srrg_observed_support_coverage",
+  "resolution_m": 0.1,
+  "coverage_tolerance_m": 0.15,
+  "static_cells": 691,
+  "dynamic_return_points": 0,
+  "dynamic_ghost_opportunities": 0,
+  "new_structure_cells": 0,
+  "static_label_scope": "Observed scene support excluding self and moving-box boundary shell; unique 10cm cells",
+  "dynamic_label_scope": "Historical moving-box support later crossed by a real free ray; current occupancy and static overlap excluded",
+  "methods": {
+    "raw": {
+      "static_retention": 0.8263386396526773,
+      "dynamic_removal": null,
+      "points": 56391
+    },
+    "srrg": {
+      "static_retention": 0.8205499276410999,
+      "dynamic_removal": null,
+      "points": 15309
+    }
+  },
+  "events": [
+    {
+      "kind": "native_mapper_reset",
+      "criterion": "BadCorrespondences: native tracker map reset",
+      "stamp_s": 12.4,
+      "recording_sim_elapsed_s": 4.6000000000000005,
+      "approx_mp4_s": 6.823879241943359
+    },
+    {
+      "kind": "observation_change",
+      "criterion": "limited",
+      "stamp_s": 7.8,
+      "recording_sim_elapsed_s": 0.0,
+      "approx_mp4_s": 2.060116767883301
+    },
+    {
+      "kind": "observation_change",
+      "criterion": "full",
+      "stamp_s": 57.9,
+      "recording_sim_elapsed_s": 50.1,
+      "approx_mp4_s": 53.84231758117676
+    },
+    {
+      "kind": "pose_error_warning",
+      "criterion": "XY error >0.2m sustained >=2.8s, independent truth, not a map-failure label",
+      "stamp_s": 12.8,
+      "recording_sim_elapsed_s": 5.000000000000001,
+      "approx_mp4_s": 7.234785556793213
+    }
+  ],
+  "map_geometry_timeline": [
+    {
+      "stamp_s": 3.6,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 4.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 5.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 6.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 7.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 8.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 9.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 10.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 11.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 12.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 13.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 14.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 15.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 16.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 17.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 18.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0
+    },
+    {
+      "stamp_s": 19.8,
+      "map_points_over_20cm_from_observed_static_fraction": 0.01107419712070875
+    },
+    {
+      "stamp_s": 21.0,
+      "map_points_over_20cm_from_observed_static_fraction": 0.033707865168539325
+    },
+    {
+      "stamp_s": 22.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.006472491909385114
+    },
+    {
+      "stamp_s": 23.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.002129925452609159
+    },
+    {
+      "stamp_s": 24.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.002008032128514056
+    },
+    {
+      "stamp_s": 25.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0017777777777777779
+    },
+    {
+      "stamp_s": 26.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0016313213703099511
+    },
+    {
+      "stamp_s": 27.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.001443001443001443
+    },
+    {
+      "stamp_s": 28.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0013395847287340924
+    },
+    {
+      "stamp_s": 29.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0012004801920768306
+    },
+    {
+      "stamp_s": 30.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0011280315848843769
+    },
+    {
+      "stamp_s": 31.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.001027221366204417
+    },
+    {
+      "stamp_s": 32.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0010025062656641604
+    },
+    {
+      "stamp_s": 33.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0009474182851729038
+    },
+    {
+      "stamp_s": 34.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0009220839096357768
+    },
+    {
+      "stamp_s": 35.4,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0018357044515832951
+    },
+    {
+      "stamp_s": 36.5,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0018075011296882061
+    },
+    {
+      "stamp_s": 37.5,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0008880994671403197
+    },
+    {
+      "stamp_s": 38.6,
+      "map_points_over_20cm_from_observed_static_fraction": 0.000881057268722467
+    },
+    {
+      "stamp_s": 39.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0008521516829995739
+    },
+    {
+      "stamp_s": 40.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0008173273395995096
+    },
+    {
+      "stamp_s": 41.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0007642338555598013
+    },
+    {
+      "stamp_s": 42.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0007317965605561653
+    },
+    {
+      "stamp_s": 43.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0006887052341597796
+    },
+    {
+      "stamp_s": 44.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0006622516556291391
+    },
+    {
+      "stamp_s": 45.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0006261740763932373
+    },
+    {
+      "stamp_s": 46.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0006064281382656155
+    },
+    {
+      "stamp_s": 47.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0005959475566150178
+    },
+    {
+      "stamp_s": 48.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0005858230814294083
+    },
+    {
+      "stamp_s": 50.0,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0005755395683453237
+    },
+    {
+      "stamp_s": 51.2,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0011425307055127106
+    },
+    {
+      "stamp_s": 52.7,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0005652911249293386
+    },
+    {
+      "stamp_s": 54.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.000564334085778781
+    },
+    {
+      "stamp_s": 55.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0005625879043600563
+    },
+    {
+      "stamp_s": 56.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.00055005500550055
+    },
+    {
+      "stamp_s": 57.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.0005330490405117271
+    },
+    {
+      "stamp_s": 58.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.021604938271604937
+    },
+    {
+      "stamp_s": 59.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.022017997319548153
+    },
+    {
+      "stamp_s": 60.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.03009259259259259
+    },
+    {
+      "stamp_s": 61.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.030824725364813906
+    },
+    {
+      "stamp_s": 62.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.03208469055374593
+    },
+    {
+      "stamp_s": 63.1,
+      "map_points_over_20cm_from_observed_static_fraction": 0.03824200913242009
+    },
+    {
+      "stamp_s": 64.3,
+      "map_points_over_20cm_from_observed_static_fraction": 0.03777335984095427
+    },
+    {
+      "stamp_s": 65.3,
+      "map_points_over_20cm_from_observed_static_fraction": 0.044634025717111774
+    },
+    {
+      "stamp_s": 66.3,
+      "map_points_over_20cm_from_observed_static_fraction": 0.05021379234733034
+    },
+    {
+      "stamp_s": 67.3,
+      "map_points_over_20cm_from_observed_static_fraction": 0.07033639143730887
+    },
+    {
+      "stamp_s": 68.3,
+      "map_points_over_20cm_from_observed_static_fraction": 0.05587915885082437
+    },
+    {
+      "stamp_s": 70.0,
+      "map_points_over_20cm_from_observed_static_fraction": 0.05745677233429395
+    },
+    {
+      "stamp_s": 72.0,
+      "map_points_over_20cm_from_observed_static_fraction": 0.05778107484338938
+    }
+  ],
+  "mapping_pose_xy_rmse_m": 0.8233839744654187,
+  "truth_sync_max_s": 0.009000000000000341,
+  "frames": 301,
+  "scope": "Single session native author map. Coverage after registration and fusion, not exact source-point deletion; cannot numerically rank against 3D subset metrics."
+}

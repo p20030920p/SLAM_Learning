@@ -65,6 +65,9 @@ HYP_ZH = """围绕当前开放问题，依次检验**联合地图质量→污染
 
 
 def publish():
+    if "<!-- SIMPLE_HYPOTHESES_V2 -->" in (ROOT / "README.md").read_text(encoding="utf-8"):
+        from simple_research_home import publish as publish_simple
+        return publish_simple()
     for chinese, path in [(False, ROOT / "README.md"), (True, ROOT / "docs/HOME.zh-CN.md")]:
         text = path.read_text(encoding="utf-8")
         if "<!-- HOME_EXPERIMENTS_V2 -->" in text:

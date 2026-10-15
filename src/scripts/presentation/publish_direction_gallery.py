@@ -8,6 +8,9 @@ SUITE = "results/reference/direction-20261016"
 
 
 def publish():
+    if "<!-- SIMPLE_HYPOTHESES_V2 -->" in (ROOT / "README.md").read_text(encoding="utf-8"):
+        from publish_simple_gallery import publish as publish_simple
+        return publish_simple()
     lines = [
         '<!doctype html><html lang="zh-CN"><meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width,initial-scale=1">',

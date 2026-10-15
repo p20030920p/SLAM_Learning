@@ -1,6 +1,6 @@
 # SRRG / srrg_mapper2d: native 2D mapping
 
-**Original-paper experiments: not reproduced.** Author-code runs on our Gazebo scenes are separate adaptation tests. Current Raw/SRRG mapping and independent AMCL B are in [Practice](../../README.md#direction-experiments-20261016).
+**Original-paper experiments: not reproduced.** Author-code runs on our Gazebo scenes are separate adaptation tests. Current Raw/SRRG mapping and independent AMCL B are in [Practice](../../README.md#experiment-h1).
 
 Lázaro, Capobianco and Grisetti, *Efficient Long-term Mapping in Dynamic Environments*, IROS 2018. [Paper](https://iris.uniroma1.it/handle/11573/1340118) · [Author mapping code](https://gitlab.com/srrg-software/srrg_mapper2d) · [ROS entry](https://gitlab.com/srrg-software/srrg_mapper2d_ros).
 

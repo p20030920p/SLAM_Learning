@@ -1,0 +1,20 @@
+{
+  "world": "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S4_degradation.world",
+  "spawn": [
+    7.15,
+    -3.1,
+    0.0
+  ],
+  "scene": "corridor",
+  "world_sha256": "e57fee1a83aa2b32b71d5ff4b19cdfed4cfae3d8330e12cc67ec4e807512bc6b",
+  "initial_offset": [
+    1.0,
+    0.15,
+    0.12
+  ],
+  "scan_restore_after_s": 50.0,
+  "mapping_source": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261016-012220-mapping-srrg-corridor-f25d55",
+  "urdf": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261016-012402-localization-degradation-method-live-d936b9/srrg-2d.urdf",
+  "bridge_config": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261016-012402-localization-degradation-method-live-d936b9/srrg-bridge.yaml",
+  "sensor_arm": "2D lidar + wheel odometry; no 3D lidar"
+}

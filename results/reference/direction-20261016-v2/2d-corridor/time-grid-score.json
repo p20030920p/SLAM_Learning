@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "kind": "paired_common_truth_grid_score",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "10Hz grid after 5s; latest native pose age<=0.15s; errors recomputed against interpolated grid truth; common timestamps across cases. Fresh-update coverage is affected by AMCL motion-triggered publishing and is not tracking-loss rate.",
+  "common_grid_samples": 591,
+  "grid_expected": 671,
+  "methods": {
+    "raw": {
+      "fresh_update_grid_coverage": 0.8807749627421758,
+      "common": {
+        "samples": 591,
+        "rmse_m": 0.7407327471658778,
+        "p95_m": 1.0145894758199057,
+        "along_x_rmse_m": 0.7392874380392057,
+        "across_y_rmse_m": 0.04625026141910812,
+        "yaw_rmse_deg": 1.0971233010185821,
+        "over_25cm_fraction": 0.9018612521150592,
+        "over_10deg_fraction": 0.0
+      },
+      "limited": {
+        "samples": 403,
+        "rmse_m": 0.875874993534553,
+        "p95_m": 1.0201324191183017,
+        "along_x_rmse_m": 0.8745915912820418,
+        "across_y_rmse_m": 0.04739781385147741,
+        "yaw_rmse_deg": 1.1330734126671929,
+        "over_25cm_fraction": 1.0,
+        "over_10deg_fraction": 0.0
+      },
+      "restored": {
+        "samples": 188,
+        "rmse_m": 0.28348668659188436,
+        "p95_m": 0.3720632611939045,
+        "along_x_rmse_m": 0.2800999480621885,
+        "across_y_rmse_m": 0.04368890672017997,
+        "yaw_rmse_deg": 1.0157821042711468,
+        "over_25cm_fraction": 0.6914893617021277,
+        "over_10deg_fraction": 0.0
+      }
+    },
+    "srrg": {
+      "fresh_update_grid_coverage": 0.8807749627421758,
+      "common": {
+        "samples": 591,
+        "rmse_m": 0.6155867104782073,
+        "p95_m": 0.9821631855295105,
+        "along_x_rmse_m": 0.6139120232334017,
+        "across_y_rmse_m": 0.04537649002348586,
+        "yaw_rmse_deg": 0.9359166047083944,
+        "over_25cm_fraction": 0.8917089678510999,
+        "over_10deg_fraction": 0.0
+      },
+      "limited": {
+        "samples": 403,
+        "rmse_m": 0.7013345684372085,
+        "p95_m": 0.9875725302027153,
+        "along_x_rmse_m": 0.699906650376575,
+        "across_y_rmse_m": 0.04473094726973997,
+        "yaw_rmse_deg": 0.8460774375624199,
+        "over_25cm_fraction": 0.8411910669975186,
+        "over_10deg_fraction": 0.0
+      },
+      "restored": {
+        "samples": 188,
+        "rmse_m": 0.36997695876154096,
+        "p95_m": 0.42702465614082136,
+        "along_x_rmse_m": 0.36701394226528217,
+        "across_y_rmse_m": 0.04673024927533644,
+        "yaw_rmse_deg": 1.104136618345622,
+        "over_25cm_fraction": 1.0,
+        "over_10deg_fraction": 0.0
+      }
+    },
+    "degraded_raw": {
+      "fresh_update_grid_coverage": 0.8807749627421758,
+      "common": {
+        "samples": 591,
+        "rmse_m": 1.1330130879141929,
+        "p95_m": 1.2890968753927443,
+        "along_x_rmse_m": 1.1315091051747124,
+        "across_y_rmse_m": 0.058359251979238747,
+        "yaw_rmse_deg": 1.37670977528757,
+        "over_25cm_fraction": 1.0,
+        "over_10deg_fraction": 0.0
+      },
+      "limited": {
+        "samples": 403,
+        "rmse_m": 1.098461816062362,
+        "p95_m": 1.2886017051182486,
+        "along_x_rmse_m": 1.0967505666476818,
+        "across_y_rmse_m": 0.061290748934985255,
+        "yaw_rmse_deg": 1.4297076293901365,
+        "over_25cm_fraction": 1.0,
+        "over_10deg_fraction": 0.0
+      },
+      "restored": {
+        "samples": 188,
+        "rmse_m": 1.2037409041471572,
+        "p95_m": 1.2914996396881724,
+        "along_x_rmse_m": 1.202638035088477,
+        "across_y_rmse_m": 0.05151621953853461,
+        "yaw_rmse_deg": 1.2555878530061197,
+        "over_25cm_fraction": 1.0,
+        "over_10deg_fraction": 0.0
+      }
+    },
+    "degraded_srrg": {
+      "fresh_update_grid_coverage": 0.8807749627421758,
+      "common": {
+        "samples": 591,
+        "rmse_m": 1.0271570632314544,
+        "p95_m": 1.212536510317603,
+        "along_x_rmse_m": 1.0264689111090326,
+        "across_y_rmse_m": 0.03759264652698311,
+        "yaw_rmse_deg": 1.0751454326831433,
+        "over_25cm_fraction": 1.0,
+        "over_10deg_fraction": 0.0
+      },
+      "limited": {
+        "samples": 403,
+        "rmse_m": 0.998796842988066,
+        "p95_m": 1.093016419611785,
+        "along_x_rmse_m": 0.9980886162519196,
+        "across_y_rmse_m": 0.03760648443095624,
+        "yaw_rmse_deg": 0.964737430376785,
+        "over_25cm_fraction": 1.0,
+        "over_10deg_fraction": 0.0
+      },
+      "restored": {
+        "samples": 188,
+        "rmse_m": 1.0854567525930787,
+        "p95_m": 1.2518990377677874,
+        "along_x_rmse_m": 1.0848066119458117,
+        "across_y_rmse_m": 0.037562966184272066,
+        "yaw_rmse_deg": 1.280125706057575,
+        "over_25cm_fraction": 1.0,
+        "over_10deg_fraction": 0.0
+      }
+    }
+  },
+  "inputs": {
+    "metrics.json": "2b80f3c4780ffee44d83698de9763ff29ee775ae1c826c1614660ce7aeeceb4d",
+    "truth.jsonl": "368a3ca5e7d8f2175712b77020b9001b149d40fba4cbe5f6e75fe1793f5bf0b2",
+    "degraded_raw-samples.csv": "5eaf8a5d0582aa7ba2d8d55ce63dd7d1850990a6feea68e216fd902ae3c22168",
+    "degraded_srrg-samples.csv": "8446816af53b03f504d7a909ec981583ca46c99e4def2dd02204e5f1c92c16f9",
+    "raw-samples.csv": "875d2a13697b3dfd0854330f77c2e3f4f8ee2a256736739184048285fb520c7b",
+    "srrg-samples.csv": "62b2cad422d3ad3825c369c3a692915182789053383e50b06552a1527c4f2068"
+  }
+}

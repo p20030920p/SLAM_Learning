@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "kind": "serialized_fastlio_input_audit",
+  "status": "executed",
+  "exit_code": 0,
+  "rolling_cloud_messages": 177,
+  "finite_point_fields": true,
+  "nonnegative_ordered_point_times": true,
+  "minimum_cloud_points": 11283,
+  "median_scan_interval_s": 0.3000000000000007,
+  "imu_after_settling_messages": 10997,
+  "median_imu_interval_s": 0.004999999999999893,
+  "scope": "Checks recorded rolling clouds and source IMU after t>=3s settling gate; no truth read",
+  "bags": {
+    "input-bag_0.mcap": "8a848c81d70eecf0ab2531455e8da70894943be91ed6fd2d1cc1ee4a30f42d5f"
+  }
+}

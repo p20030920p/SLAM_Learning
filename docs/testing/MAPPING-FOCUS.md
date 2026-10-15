@@ -1,29 +1,80 @@
-# Three open questions and experiments
+<a id="mapping-hypothesis-tests"></a>
 
-H1/H2/H3 replace M1/M4/M5 as the current organization. Historical records retain their identity.
+## Hypothesis
 
-## E1 · Dynamic traces and held-out localization (H1)
+<!-- SIMPLE_HYPOTHESES_V2 -->
 
-Use the existing static, dynamic and corridor scenes and Sim2Real omni chassis. Native 2D uses 720-beam scans and wheel odometry: Raw accumulation vs author SRRG maintenance. Remove the projected DUFOMap/BeautyMap arms from current 2D tests. Freeze A, launch separate B, share scans and AMCL settings, and use the same initial offset. Truth is evaluation-only. Keep 3D Raw/DUFOMap/BeautyMap and GICP unchanged.
+| Question | Hypothesis | Controls | Metrics |
+| --- | --- | --- | --- |
+| H1 / Q1 | Dynamic cleaning removes traces while retaining static structure and reduces held-out localization error. | Raw / SRRG | DA, SA, Eₘ, XY RMSE |
+| H2 / Q2 | FAST-LIO deskew reduces motion-induced map error and improves held-out localization accuracy. | Point compensation off / on | Eₘ, Cₘ, XYZ RMSE |
+| H3 / Q3 | Adding LiDAR-visible asymmetric static references reduces along-corridor localization error. | Original / landmark corridor | Eₘ, SA, along RMSE |
 
-Report DA/SA, geometric error and observed support, then common-time pose/angular RMSE, P95, valid coverage and failures. DA is N/A without dynamics. Different representations are not ranked together. SRRG changes pose optimization and maintenance together; end-to-end observations do not isolate deletion. Cleaning without downstream improvement does not establish the entire hypothesis.
+Goal: first measure map improvement, then test whether the same localizer has lower error on independent B.
 
-## E2 · FAST-LIO motion-distortion ablation (H2)
+Mirror identification and physical reflections remain open within Q3; physical evidence stays at the top.
 
-An isolated robot/world variant adds a 200Hz Gazebo IMU. Filter invalid returns and gate both IMU/scans until 3s of settling. Native gpu_lidar scans are instantaneous. Build a sequential scan from three successive measured 120-degree sectors with their actual packet timestamps; no truth-based warping or commercial scan-pattern claim.
+<a id="hypothesis-math"></a>
 
-Feed identical rolling scans, IMU and extrinsics to two official ROS2 FAST-LIO2 instances. A disclosed ablation skips only backward point correction after IMU state prediction; preserve matching and prediction. Bind the source commit and patch.
+### Mathematical form
 
-After stationary initialization, execute stationary, slow rotation, fast rotation, forward/reverse translation and stop phases. Check timing, IMU coverage and native outputs before scoring. Failures remain diagnostic records. Accumulate finite native registered clouds at matched times with 5cm voxels, including rendered ground and drifted points. Do not crop by estimated world height. This is frozen registered-scan accumulation, not an ikd-Tree export. Align poses only by the known start, never a best-fit trajectory alignment. Report odometry separately from held-out B: same GICP and initial pose on both frozen maps using an independent existing B scan session. Missing B is an explicit incomplete test, never substituted with odometry.
+A builds the map; B is a separate acquisition. Freeze A's map and run the same localizer on B. $j$ indexes the control, $Z$ denotes scans, $T$ is the sensor pose and $p^*$ is true position:
 
-## E3a · Missing returns near a mirror (H3)
+$$
+M_j=\mathcal B_j(Z^A,\hat T_j^A),\qquad
+\hat T^B_{j,t}=\mathcal L(Z^B_{\le t},M_j).
+$$
 
-The supplied physical images motivate a controlled missing-return test: remove a fixed angular sector in a known scene and compare invalid/unknown handling with incorrectly treating it as maximum-range free rays. Score wrongly cleared real boundary cells, unknown space and geometric support. This is a missing-return control, not physical reflection simulation or a mirror detector. Real multipath, incidence-angle dependence and classification require additional hardware data.
+$$
+E_L(j)=\sqrt{\frac1N\sum_t\|\hat p^B_{j,t}-p^{B,*}_t\|^2},\qquad
+\Delta E_L=E_L(\mathrm{baseline})-E_L(\mathrm{method}).
+$$
 
-## E3b · Corridor geometry (H3)
+$\Delta E_L>0$ means improved localization; lower map error $E_M$ with $\Delta E_L\le0$ supports only map improvement. Test these predictions:
 
-Compare the original corridor with a derived scene containing two asymmetric, LiDAR-visible physical side landmarks, leaving the route clear. Recollect A/B with identical parameters, route, initial offset and scan-limit/restoration timing. Score along/across-corridor error, yaw, coverage and the first 50s limited phase separately. The intervention changes the environment; it does not validate automatic degeneracy detection or fusion.
+$$
+\begin{aligned}
+H1:\;& DA_{\rm SRRG}>DA_{\rm Raw},\quad SA_{\rm SRRG}\ge SA_{\rm Raw}-\varepsilon,
+\quad E_M({\rm SRRG})<E_M({\rm Raw}),\quad\Delta E_L>0;\\
+H2:\;&p_i^{\rm end}=T(t_{\rm end})^{-1}T(t_i)p_i,
+\quad E_M({\rm on})<E_M({\rm off}),\quad\Delta E_L>0;\\
+H3:\;&E_{\parallel}({\rm landmark})<E_{\parallel}({\rm original}),
+\quad E_{\parallel}=\sqrt{\frac1N\sum_t[u^T(\hat p_t-p_t^*)]^2}.
+\end{aligned}
+$$
 
-## Evidence
+$\varepsilon=1$ percentage point is the static-loss tolerance; $u$ is the corridor direction. This SRRG comparison includes pose optimization and maintenance; deletion alone at fixed poses remains untested. Truth is used only for scoring.
 
-Bind recordings to inputs, source versions, configuration, native outputs, independent truth and media hashes. The few current runs are exploratory, not preregistered or statistically conclusive. Later vary speeds, contamination, offsets and repetitions. Homepage reporting contains metric definitions, values and blank analysis slots.
+<a id="hypothesis-pseudocode"></a>
+
+### Pseudocode
+
+```text
+for scene in [static, dynamic, motion, corridor, corridor_landmarks]:
+    controls = methods_for(scene)
+    A, maps = record_A_and_build_maps(scene, controls)
+    map_metrics = score_and_freeze(maps)
+    B = record_new_localization_session(scene)
+    poses = same_localizer_for_all_maps(B, maps)
+    report(map_metrics, score_on_common_times(poses, B.truth))
+    save_native_recordings_and_input_hashes()
+compare_corridor_variants_on_common_elapsed_times()
+```
+
+For H3, acquire A/B in each corridor variant with the same route, speed, initial offset and localization settings.
+
+[Experiments and new recordings](../../README.md#practice-index)
+
+### Experiment design
+
+| Experiment | Scene | A mapping controls | Separate B localization |
+| --- | --- | --- | --- |
+| H1 | Static + dynamic | Raw / SRRG | AMCL |
+| H2 | Static scene: stationary, slow/fast turns, translation | FAST-LIO compensation off / on | GICP |
+| H3 | Original / landmark corridor | SRRG (retain Raw control) | AMCL |
+
+Reacquire A/B for each scene; within each scene share inputs and settings and change only the listed control. Existing 3D Raw/DUFOMap/BeautyMap tests are retained.
+
+```powershell
+./demo/record-hypotheses.ps1 -Suite results/reference/direction-YYYYMMDD-new
+```

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "kind": "frozen_actual_native_2d_mapping_a",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Freshly recorded A and separate B in this batch. Geometry metric is 10cm-voxel point distance to observed static support, not exact surface RMSE.",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-012220-mapping-srrg-corridor-f25d55",
+  "methods": {
+    "raw": {
+      "static_retention": 0.8263386396526773,
+      "dynamic_removal": null,
+      "points": 56391,
+      "observed_static_support_distance_rmse_m": 0.16674928940564018
+    },
+    "srrg": {
+      "static_retention": 0.8205499276410999,
+      "dynamic_removal": null,
+      "points": 15309,
+      "observed_static_support_distance_rmse_m": 0.14930844394539794
+    }
+  },
+  "timing": {
+    "duration_s": 69.20000000000044,
+    "frames": 346,
+    "fps": 5,
+    "video_duration_s": 69.2,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "artifacts": {
+    "execution.gif": {
+      "sha256": "21bbe13522fbc4e2b3624f334734986d08c0b398257fd9582396bfb186257ea6",
+      "bytes": 515697,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "923349efbed29099ec401ef823c41b5b2772b2149be7dcb3cc930d0dea2ef0ba",
+      "bytes": 772857,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "fcc6c4de7f61397adbbc9743c634b2a2bb945b6cb79fbf7e38d098838fcb2dde",
+      "bytes": 730,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "e1579d1d332d4e6fc24ed6a16cd7a98182e00d2a67c08aac42ae833ebc821d52",
+      "bytes": 20811,
+      "availability": "portable"
+    },
+    "srrg-2d.urdf": {
+      "sha256": "5952db4f8a29a501700b4a518ea18ecdb61afb1042ca04ac70879759728948f5",
+      "bytes": 9694,
+      "availability": "portable"
+    },
+    "srrg-bridge.yaml": {
+      "sha256": "08c14b517565208bfc7885af5774237070b25d136e56056f48cbde80c285ab3d",
+      "bytes": 1367,
+      "availability": "portable"
+    },
+    "srrg-final.npy": {
+      "sha256": "0cbbcccd8a343580be45fffdcebb6cf047a2bacbb8319f53a096ae9463a72296",
+      "bytes": 122600,
+      "availability": "portable"
+    },
+    "srrg-frames.jsonl": {
+      "sha256": "2fc7e8cf5611e6ffd4f850547a05617d3efa4a46bc18bcfdf9b71788cf823eee",
+      "bytes": 110195,
+      "availability": "portable"
+    },
+    "srrg-inputs.jsonl": {
+      "sha256": "3d9603c7d619af617ee2c3c556d7be746784f82a9b97a409e4cd3fc4ae355fc8",
+      "bytes": 2039663,
+      "availability": "portable"
+    },
+    "srrg-quality-inputs.npz": {
+      "sha256": "9bc68ad116c712bdc11680c31cda19b86bb9f3fc445c6df05fc1183daa2b853f",
+      "bytes": 481237,
+      "availability": "portable"
+    },
+    "srrg-quality.json": {
+      "sha256": "7c43af4edf7f90b1962270d7e4f6c37739c721c193eef66689f429e0c9d5a403",
+      "bytes": 9254,
+      "availability": "portable"
+    },
+    "srrg-raw.npy": {
+      "sha256": "1f34065c82d258cd0a9025f4be1fbca4d16d776b2d67f1a0483c893a90e41187",
+      "bytes": 451256,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "b50eafcb3a62e203411d1283bb930de53776329f5aad8f86e8c53c16ab48f430",
+      "bytes": 997695,
+      "availability": "portable"
+    },
+    "maps/record.json": {
+      "sha256": "8edd62451381100ccd2c87fd5e6fb28827087c129005df6bf623fdbb51a2e3ce",
+      "bytes": 240,
+      "availability": "portable"
+    },
+    "maps/raw/map.pgm": {
+      "sha256": "7e164cad4f4d8b4d2b26f395b0593005b5e39f85ea800155ee9ebc591db4f233",
+      "bytes": 73476,
+      "availability": "portable"
+    },
+    "maps/raw/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/srrg/map.pgm": {
+      "sha256": "20783ae15a21a785d54eeb3ae7032b16d978a0bc55030f2fc5b48517f756b47f",
+      "bytes": 73476,
+      "availability": "portable"
+    },
+    "maps/srrg/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    }
+  }
+}

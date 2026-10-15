@@ -19,8 +19,8 @@ def windows(value):
     return Path(text[5].upper() + ":/" + text[7:]) if text.startswith("/mnt/") else Path(text)
 
 
-def freeze(scene):
-    b = ROOT / "results/reference/direction-20261016" / ("2d-" + scene)
+def freeze(scene, suite="results/reference/direction-20261016", fresh=False):
+    b = ROOT / suite / ("2d-" + scene)
     runtime = json.loads((b / "runtime.json").read_text())
     run = windows(runtime["mapping_source"])
     out = b.parent / ("2d-A-" + scene)
@@ -35,6 +35,8 @@ def freeze(scene):
         "srrg-frames.jsonl",
         "srrg-inputs.jsonl",
         "truth.jsonl",
+        "srrg-2d.urdf",
+        "srrg-bridge.yaml",
     ):
         shutil.copyfile(run / name, out / name)
     shutil.copytree(run / "maps", out / "maps")
@@ -59,7 +61,7 @@ def freeze(scene):
         "kind": "frozen_actual_native_2d_mapping_a",
         "status": "executed",
         "exit_code": 0,
-        "scope": "Previously recorded actual A that generated the maps used in this new B; no new A execution claimed. Geometry metric is 10cm-voxel point distance to observed static support, not exact surface RMSE.",
+        "scope": ("Freshly recorded A and separate B in this batch. " if fresh else "Previously recorded actual A that generated the maps used in this new B; no new A execution claimed. ") + "Geometry metric is 10cm-voxel point distance to observed static support, not exact surface RMSE.",
         "source_run": str(run),
         "methods": methods,
         "timing": timing,

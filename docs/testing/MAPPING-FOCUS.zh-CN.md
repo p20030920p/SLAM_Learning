@@ -1,34 +1,80 @@
-# 三个开放问题与配套实验
+<a id="mapping-hypothesis-tests"></a>
 
-本版按当前首页的三个问题定义H1／H2／H3，取代旧M1／M4／M5作为当前实验组织。旧记录保持原样，不能改名冒充本轮新执行。
+## 假设
 
-## E1 · 动态残影、静态保留与独立定位（H1）
+<!-- SIMPLE_HYPOTHESES_V2 -->
 
-- 场景：现有静态、运动障碍物、长廊；同一Sim2Real全向底盘。
-- 二维：原生720束二维雷达＋轮式里程计，Raw累计地图与作者SRRG维护图；移除DUFOMap／BeautyMap二维投影的当前对照。A地图冻结，另起Gazebo会话B，共享扫描和相同AMCL参数。给定起点偏移，不向AMCL输入真值。
-- 三维：保持现有Raw／DUFOMap／BeautyMap及GICP实验和记录不变。
-- 地图：DA、SA、几何误差、已观测支持覆盖；静态无动态分母时DA=N/A。二维与三维分别评分。
-- 定位：共同时间网格上的位置／角度RMSE、P95、有效覆盖、误差超阈比例；同时提供原生更新时间统计。缺失输出不得计作零误差。
-- 判断：删除率提高但静态结构丢失，或者独立定位无改善，都不能宣布完整H1成立。SRRG的位姿图和融合同时变化，只能先做端到端观察；还需给定相同位姿的模块隔离实验。
+| 问题 | 一句话假设 | 对照方法 | 指标 |
+| --- | --- | --- | --- |
+| H1 / Q1 | 动态清图在保留静态结构的同时减少残影，并降低独立定位误差。 | Raw / SRRG | DA、SA、Eₘ、XY RMSE |
+| H2 / Q2 | FAST-LIO去畸变能降低运动造成的地图误差，并提高独立定位精度。 | 点补偿关 / 开 | Eₘ、Cₘ、XYZ RMSE |
+| H3 / Q3 | 长廊中增加雷达可见的非对称静态参照，能降低沿廊定位误差。 | 原长廊 / 加参照长廊 | Eₘ、SA、沿廊 RMSE |
 
-## E2 · FAST-LIO运动畸变消融（H2）
+目标：先检查地图是否改善，再检验同一定位器在独立B中的误差是否下降。
 
-- 使用同一静态场景和机器人，为独立实验变体加入200Hz Gazebo IMU，不修改旧三维测试配置；过滤无效回波，静止3s后才向FAST-LIO发送扫描和IMU。
-- 原始gpu_lidar整帧为瞬时采样。适配器从连续三帧真实扫描中各取一个120°扇区，构成有真实分组采样时刻的扫描；没有从真值位姿生成或扭曲点，也不冒充商用雷达的连续扫描模式。
-- 同一滚动扫描和IMU同时输入官方ROS2分支FAST-LIO2的两个实例。仅一个实例在IMU预测之后跳过点的反向补偿；保留状态传播、匹配和所有参数。保存补丁和作者版本。
-- 录制前静止初始化，随后按固定控制序列静止、慢转、快转、正反平移、停止。先检查IMU数量、逐点时间、输出完整性；配置失败单列诊断，不输出伪造精度。
-- 地图：累计共同时间的有限原生注册点云，使用相同5cm体素和参考静态几何（含地面）评价；不按估计世界高度裁剪漂移点。冻结的是注册扫描累计，不冒充ikd-Tree原生导出。
-- 位姿：仅用已知起点作一次坐标系对齐，不作整条轨迹最优拟合；真值仅评测。里程计RMSE与冻结地图后的独立B分别报告。
-- 独立B：从现有B录制的原生三维扫描中选取与A不重叠的测试会话，在两个冻结FAST-LIO地图上用同一GICP及相同初值；如B不能运行，明确标为未完成，不能以FAST-LIO自身里程计替代。
+镜面识别与真实反射仍是Q3中待验证的部分，实物证据保留在首页开头。
 
-## E3a · 镜面缺测的边界检验（H3）
+<a id="hypothesis-math"></a>
 
-实物两图作为动机。先在已知几何中对指定角区删除回波，比较“无效／未知”与“错当最大量程自由射线”的地图更新。记录被清空的真实边界格、未知格和几何覆盖。该受控缺测不是真实镜面物理仿真，也不验证镜面识别器。真实反射、虚像和入射角依赖需要另行采集带原始扫描的视频／数据。
+### 数学表达
 
-## E3b · 长廊几何干预（H3）
+A用于建图，B是另一次采集；冻结A的地图后，用相同定位器处理B。$j$是对照方法，$Z$是扫描，$T$是传感器位姿，$p^*$是位置真值：
 
-原长廊 vs 在侧壁附近放置两处不对称、真实可见几何标志的派生长廊；保留走行区。二维建图／定位分别重新采集A／B，参数、路线、初始偏移和限束／恢复时刻一致。报告沿廊误差、横向误差、yaw、有效覆盖和前50s限制段指标，避免恢复完整观测掩盖退化段。该对照改变环境，不验证自动识别退化或多传感器融合。
+$$
+M_j=\mathcal B_j(Z^A,\hat T_j^A),\qquad
+\hat T^B_{j,t}=\mathcal L(Z^B_{\le t},M_j).
+$$
 
-## 记录与判定
+$$
+E_L(j)=\sqrt{\frac1N\sum_t\|\hat p^B_{j,t}-p^{B,*}_t\|^2},\qquad
+\Delta E_L=E_L(\mathrm{baseline})-E_L(\mathrm{method}).
+$$
 
-每个录像绑定运行输入、作者版本、配置、原生输出、独立真值和媒体哈希。今天的少量运行是探索性结果，不声称预注册或统计显著。后续以多个速度、污染水平、初始偏移和独立重复检验适用范围。首页只列指标解释、数值和分析空位。
+$\Delta E_L>0$表示定位改善；地图误差$E_M$下降但$\Delta E_L\le0$时，只支持建图改善。下式是要检验的预测：
+
+$$
+\begin{aligned}
+H1:\;& DA_{\rm SRRG}>DA_{\rm Raw},\quad SA_{\rm SRRG}\ge SA_{\rm Raw}-\varepsilon,
+\quad E_M({\rm SRRG})<E_M({\rm Raw}),\quad\Delta E_L>0;\\
+H2:\;&p_i^{\rm end}=T(t_{\rm end})^{-1}T(t_i)p_i,
+\quad E_M({\rm on})<E_M({\rm off}),\quad\Delta E_L>0;\\
+H3:\;&E_{\parallel}({\rm landmark})<E_{\parallel}({\rm original}),
+\quad E_{\parallel}=\sqrt{\frac1N\sum_t[u^T(\hat p_t-p_t^*)]^2}.
+\end{aligned}
+$$
+
+$\varepsilon=1$个百分点为本轮静态损失容差；$u$为走廊方向。SRRG本轮是端到端对照，包含位姿优化与地图维护；给定相同位姿的纯删除消融仍待做。真值仅用于评分。
+
+<a id="hypothesis-pseudocode"></a>
+
+### 伪代码
+
+```text
+for scene in [static, dynamic, motion, corridor, corridor_landmarks]:
+    controls = methods_for(scene)
+    A, maps = record_A_and_build_maps(scene, controls)
+    map_metrics = score_and_freeze(maps)
+    B = record_new_localization_session(scene)
+    poses = same_localizer_for_all_maps(B, maps)
+    report(map_metrics, score_on_common_times(poses, B.truth))
+    save_native_recordings_and_input_hashes()
+compare_corridor_variants_on_common_elapsed_times()
+```
+
+H3分别采集原长廊与加参照场景的A/B，保持路线、速度、初始偏移和定位参数相同。
+
+[实验与新录像](../HOME.zh-CN.md#practice-index)
+
+### 实验设计
+
+| 实验 | 场景 | A建图对照 | 独立B定位 |
+| --- | --- | --- | --- |
+| H1 | 静态＋动态 | Raw / SRRG | AMCL |
+| H2 | 静态场景：静止、慢转、快转、平移 | FAST-LIO点补偿关 / 开 | GICP |
+| H3 | 原长廊 / 加非对称参照 | SRRG（Raw同时保留） | AMCL |
+
+每个场景重新采集A/B；同一场景各方法共享输入和参数，仅改变表中的对照因素。原三维Raw／DUFOMap／BeautyMap测试保留。
+
+```powershell
+./demo/record-hypotheses.ps1 -Suite results/reference/direction-YYYYMMDD-new
+```

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "kind": "corridor_geometry_common_elapsed_grid",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Exploratory environment intervention; 10Hz common elapsed grid, pose age<=0.15s across all four methods. Environment changes; no universal algorithmic recovery claim.",
+  "common_samples": 552,
+  "expected_samples": 670,
+  "methods": {
+    "original-degraded_raw": {
+      "all": {
+        "samples": 552,
+        "xy_rmse_m": 1.138094379550886,
+        "along_rmse_m": 1.1365169841822527,
+        "across_rmse_m": 0.059899594577869635
+      },
+      "limited": {
+        "samples": 373,
+        "xy_rmse_m": 1.10411794418384,
+        "along_rmse_m": 1.1023074926116314,
+        "across_rmse_m": 0.06320305689606283
+      },
+      "restored": {
+        "samples": 179,
+        "xy_rmse_m": 1.2058223664612309,
+        "along_rmse_m": 1.204685446927348,
+        "across_rmse_m": 0.05235029531549108
+      },
+      "fresh_coverage": 0.8805970149253731
+    },
+    "original-degraded_srrg": {
+      "all": {
+        "samples": 552,
+        "xy_rmse_m": 1.0283909731260188,
+        "along_rmse_m": 1.0276826439933213,
+        "across_rmse_m": 0.038162505708834234
+      },
+      "limited": {
+        "samples": 373,
+        "xy_rmse_m": 0.999103893361082,
+        "along_rmse_m": 0.9983701220450476,
+        "across_rmse_m": 0.03828431972791102
+      },
+      "restored": {
+        "samples": 179,
+        "xy_rmse_m": 1.0868867139964282,
+        "along_rmse_m": 1.0862254633224178,
+        "across_rmse_m": 0.037907412097794475
+      },
+      "fresh_coverage": 0.8805970149253731
+    },
+    "landmark-degraded_raw": {
+      "all": {
+        "samples": 552,
+        "xy_rmse_m": 0.690449303901939,
+        "along_rmse_m": 0.6866708922028375,
+        "across_rmse_m": 0.07213409083111319
+      },
+      "limited": {
+        "samples": 373,
+        "xy_rmse_m": 0.8146060069330442,
+        "along_rmse_m": 0.8105963155132413,
+        "across_rmse_m": 0.08072521172320626
+      },
+      "restored": {
+        "samples": 179,
+        "xy_rmse_m": 0.2955265551460821,
+        "along_rmse_m": 0.29132306923566764,
+        "across_rmse_m": 0.04966703260333455
+      },
+      "fresh_coverage": 0.8791044776119403
+    },
+    "landmark-degraded_srrg": {
+      "all": {
+        "samples": 552,
+        "xy_rmse_m": 0.5261356400229675,
+        "along_rmse_m": 0.522459735275122,
+        "across_rmse_m": 0.06208491538713005
+      },
+      "limited": {
+        "samples": 373,
+        "xy_rmse_m": 0.6357036538231436,
+        "along_rmse_m": 0.6325330654313488,
+        "across_rmse_m": 0.06341180189930208
+      },
+      "restored": {
+        "samples": 179,
+        "xy_rmse_m": 0.10747200035890686,
+        "along_rmse_m": 0.08968103549349374,
+        "across_rmse_m": 0.05922451125977816
+      },
+      "fresh_coverage": 0.8791044776119403
+    }
+  },
+  "inputs": {
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\direction-20261016-v2\\2d-corridor\\degraded_raw-samples.csv": "5eaf8a5d0582aa7ba2d8d55ce63dd7d1850990a6feea68e216fd902ae3c22168",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\direction-20261016-v2\\2d-corridor\\degraded_srrg-samples.csv": "8446816af53b03f504d7a909ec981583ca46c99e4def2dd02204e5f1c92c16f9",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\direction-20261016-v2\\2d-landmark-corridor\\degraded_raw-samples.csv": "2e55ab9f0becd672964a46b4a65763f13700bd33c1ba8a3afad2f72c8ccdbd0e",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\direction-20261016-v2\\2d-landmark-corridor\\degraded_srrg-samples.csv": "f43fcfeb545aec9fae90a84f1e952a2c6d7772766e3e6b19e6770e1a848e831a"
+  }
+}

@@ -35,7 +35,7 @@ if ($Record) {
   $filter="gfxcapture=window_title=^Gazebo Sim.*:max_framerate=15:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[gz];gfxcapture=window_title=^SLAM LIVE - RViz2.*:max_framerate=15:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[rv];[gz][rv]hstack=inputs=2,format=yuv420p[out]"
   $filterPath=Join-Path $run 'capture-filter.txt'
   [IO.File]::WriteAllText($filterPath,$filter,[Text.UTF8Encoding]::new($false))
-  $argsText='-hide_banner -loglevel warning -filter_complex "'+$filter+'" -map "[out]" -r 15 -fps_mode cfr -c:v libx264 -preset veryfast -crf 21 -y "'+$video+'"'
+  $argsText='-hide_banner -loglevel warning -filter_complex_threads 1 -filter_complex "'+$filter+'" -map "[out]" -r 15 -fps_mode cfr -c:v libx264 -threads 2 -preset veryfast -crf 21 -progress "'+$run+'\capture-progress.txt" -y "'+$video+'"'
   $info=[Diagnostics.ProcessStartInfo]::new()
   $info.FileName=(Get-Command ffmpeg.exe).Source
   $info.Arguments=$argsText
@@ -43,14 +43,31 @@ if ($Record) {
   $info.CreateNoWindow=$true
   $info.RedirectStandardInput=$true
   $info.RedirectStandardError=$true
-  $recorder=[Diagnostics.Process]::new()
-  $recorder.StartInfo=$info
-  $null=$recorder.Start()
-  $stderr=$recorder.StandardError.ReadToEndAsync()
-  Start-Sleep -Seconds 2
+  for($attempt=0;$attempt -lt 10;$attempt++){
+    $recorder=[Diagnostics.Process]::new()
+    $recorder.StartInfo=$info
+    $null=$recorder.Start()
+    $stderr=$recorder.StandardError.ReadToEndAsync()
+    Start-Sleep -Seconds 2
+    if(-not $recorder.HasExited){break}
+    if($stderr.Result -notmatch 'Failed to find capture source'){break}
+    if($attempt -eq 9){break}
+    # WSLg may expose the Windows title after the ROS data-ready marker.
+    $recorder.Dispose()
+  }
   if ($recorder.HasExited) {
     [IO.File]::WriteAllText((Join-Path $run 'STOP'),'Capture preflight failed')
     throw ('Real-window recording failed: '+$stderr.Result)
+  }
+  $captureDeadline=(Get-Date).AddSeconds(30)
+  while(-not ((Test-Path -LiteralPath "$run/capture-progress.txt") -and (Select-String -LiteralPath "$run/capture-progress.txt" -Pattern '^frame=[1-9][0-9]*$' -Quiet))){
+    if($recorder.HasExited -or (Get-Date)-gt $captureDeadline){
+      [IO.File]::WriteAllText((Join-Path $run 'STOP'),'Native capture produced no frames; experiment not started')
+      if(-not $recorder.HasExited){$recorder.Kill();$recorder.WaitForExit()}
+      [IO.File]::WriteAllText((Join-Path $run 'capture.log'),$stderr.Result)
+      throw "Native capture produced no frames: $run"
+    }
+    Start-Sleep -Milliseconds 250
   }
   [IO.File]::WriteAllText((Join-Path $run 'recording.capture'),'Native window capture')
 }
@@ -68,7 +85,7 @@ try {
     $recorder.StandardInput.WriteLine('q')
     $recorder.StandardInput.Flush()
     $recorder.StandardInput.Close()
-    $null=$recorder.WaitForExit(15000)
+    $null=$recorder.WaitForExit(30000)
     if (-not $recorder.HasExited) {$recorder.Kill()}
   }
   if ($recorder) {[IO.File]::WriteAllText((Join-Path $run 'capture.log'),$stderr.Result)}
