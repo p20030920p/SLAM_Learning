@@ -170,9 +170,9 @@ The core question is:
 
 | Question | Hypothesis | Controls | Metrics |
 | --- | --- | --- | --- |
-| H1 / Q1 | Repeated hits plus free-ray confirmation reduce dynamic traces and improve held-out localization. | Own accumulation / own temporal cleaning | DA、SA、Eₘ、XY RMSE |
-| H2 / Q2 | Wheel-odometry compensation for point timestamps reduces map and held-out localization error. | Own compensation off / on | Eₘ、SA、XY RMSE |
-| H3 / Q3 | Detecting geometric degeneracy and retaining reliable static structures that constrain the weak direction reduces along-corridor error. | Own uniform threshold / own degeneracy-aware cleaning | SA、Eₘ、along RMSE |
+| H1 / Q1 | Repeated hits plus free-ray confirmation reduce dynamic traces and improve held-out localization. | Own accumulation / own temporal cleaning | A: DA, SA; B: XY RMSE |
+| H2 / Q2 | Wheel-odometry compensation for point timestamps reduces map and held-out localization error. | Own compensation off / on | A: Eₘ; B: XY RMSE |
+| H3 / Q3 | Detecting geometric degeneracy and retaining reliable static structures that constrain the weak direction reduces along-corridor error. | Own uniform threshold / own degeneracy-aware cleaning | A: additional retained cells; B: along RMSE |
 
 All three interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.
 
@@ -181,6 +181,8 @@ All three interventions are implemented in this repository; AMCL is the common d
 ### Mathematical form
 
 A builds the maps; B is a separate acquisition. Freeze the maps and share B scans, odometry and AMCL settings across controls.
+
+DA/SA measure removal and retention, not geometric or localization accuracy. B evaluates localization while moving through an existing map; complete navigation-task outcomes were not measured.
 
 ```math
 M_j=\mathcal{B}_j(Z^A,\hat T_{\rm odom}^A),\qquad \hat T_{j,t}^B=\mathcal{L}_{\rm AMCL}(Z_{\leq t}^B,M_j)
@@ -197,7 +199,7 @@ H_c=\sum_b\mathbf{1}[\text{hit in time bin }b],\quad F_c=\sum_b\mathbf{1}[\text{
 ```
 
 ```math
-\mathrm{DA}_{\rm temporal}\gt\mathrm{DA}_{\rm raw},\quad\mathrm{SA}_{\rm temporal}\geq\mathrm{SA}_{\rm raw}-\varepsilon,\quad E_M(\mathrm{temporal})\lt E_M(\mathrm{raw}),\quad\Delta E_L\gt0
+\mathrm{DA}_{\rm temporal}\gt\mathrm{DA}_{\rm raw},\quad\mathrm{SA}_{\rm temporal}\geq\mathrm{SA}_{\rm raw}-\varepsilon,\quad\Delta E_L\gt0
 ```
 
 **H2**
@@ -327,13 +329,11 @@ Source: Xu et al., *FAST-LIO2: Fast Direct LiDAR-inertial Odometry*, Fig. 12, pa
 
 | Metric | Definition |
 | --- | --- |
-| DA ↑ / SA ↑ | Dynamic-trace removal / static retention; 2D scores spatial-support coverage. |
-| Eₘ ↓ | Map distance RMSE, cm; observed static support in 2D, reference surfaces in 3D. |
-| Cₘ ↑ | Fraction of observed static reference covered by the map. |
-| XY / XYZ / along RMSE ↓ | 2D / 3D / along-corridor position error, cm. |
-| Angular RMSE ↓ | 2D yaw or 3D rotation error, degrees. |
-| P95 ↓ / N / Update coverage ↑ | 95th-percentile position error / valid samples / grid fraction with fresh outputs. |
-| N/A | Not applicable; DA is undefined without dynamics. |
+| DA ↑ / SA ↑ | Cleaning A only: dynamic removal / static retention; omit DA without dynamics. Units are observed support in 2D and points in 3D. |
+| Eₘ ↓ | Deskew A: map-point distance RMSE to static reference geometry, cm. |
+| XY / XYZ RMSE ↓ | Localization B on frozen maps: 2D / 3D position error, cm. |
+| Along RMSE ↓ | H3 during limited observations: position error along the corridor, cm. |
+| Angular RMSE ↓ | Yaw or 3D rotation error when pose orientation is evaluated, degrees; A odometry is labelled separately. |
 
 ### Evidence
 
@@ -341,29 +341,16 @@ Source: Xu et al., *FAST-LIO2: Fast Direct LiDAR-inertial Odometry*, Fig. 12, pa
 | --- | ---: | ---: |
 | SA | 97.96 | 97.9635 |
 | DA | 98.72 | 98.7196 |
-| AA | 98.34 | 98.3408 |
 
 | BeautyMap · KITTI-02 · Metric | Paper % | Reproduced % |
 | --- | ---: | ---: |
 | SA | 83.40 | 83.3978 |
 | DA | 82.41 | 82.4092 |
-| HA | 82.90 | 82.9006 |
 
 | IR-MCL · Metric | Paper, Seq 1 | Reproduced |
 | --- | ---: | ---: |
 | Location RMSE (cm) | 5.13 | 5.32 |
 | Yaw RMSE (deg) | 1.05 | 1.07 |
-| Location < 5 cm (%) | 63.15 | 61.74 |
-| Location < 10 cm (%) | 97.27 | 96.01 |
-| Location < 20 cm (%) | 100.00 | 100.00 |
-| Yaw < 0.5° (%) | 47.12 | 47.64 |
-| Yaw < 1° (%) | 74.59 | 75.85 |
-| Yaw < 2° (%) | 94.24 | 93.57 |
-
-| AdaM-MCL · Metric | Paper Table II | This run |
-| --- | ---: | ---: |
-| Global localization $E_{pos}$ | 0.153 m | not compared |
-| Kidnapping $E_{pos}$ | 0.128 m | not compared |
 
 ## Practice
 
@@ -416,7 +403,7 @@ This section practices methods in Related works. A = mapping; B = a separate loc
 
 [Short definitions in Metrics](#metrics)
 
-New localization scores use common 10 Hz times after 5 s warmup, with pose age ≤0.15 s; update coverage is not a tracking-loss rate. One run per arm.
+A measures cleaning or geometry for the task; B measures localization on frozen maps. B uses common 10 Hz times after 5 s warmup, with pose age ≤0.15 s; counts and missing outputs remain in records. One run per arm; complete navigation outcomes were not measured.
 
 <a id="practice-srrg"></a>
 
@@ -431,10 +418,10 @@ New localization scores use common 10 Hz times after 5 s warmup, with pose age �
 
 #### Static · A
 
-| Method | DA | SA | Eₘ / cm |
-| --- | --- | --- | --- |
-| Raw | N/A | 100.00% | 3.79 |
-| SRRG | N/A | 100.00% | 2.57 |
+| Method | SA ↑ |
+| --- | --- |
+| Raw | 100.00% |
+| SRRG | 100.00% |
 
 
 [Record](results/reference/direction-20261016-v2/2d-A-static/record.json)
@@ -455,10 +442,10 @@ New localization scores use common 10 Hz times after 5 s warmup, with pose age �
 
 #### Static · B
 
-| Map | XY RMSE / cm | yaw / ° | P95 / cm | Update coverage | N |
-| --- | --- | --- | --- | --- | --- |
-| Raw | 5.03 | 2.88 | 8.76 | 41.43% | 278 |
-| SRRG | 5.84 | 2.91 | 9.58 | 41.43% | 278 |
+| Map | XY RMSE / cm | yaw / ° |
+| --- | --- | --- |
+| Raw | 5.03 | 2.88 |
+| SRRG | 5.84 | 2.91 |
 
 
 [Scores](results/reference/direction-20261016-v2/2d-static/time-grid-score.json)
@@ -479,10 +466,10 @@ New localization scores use common 10 Hz times after 5 s warmup, with pose age �
 
 #### Dynamic · A
 
-| Method | DA | SA | Eₘ / cm |
-| --- | --- | --- | --- |
-| Raw | 0.00% | 100.00% | 49.05 |
-| SRRG | 36.94% | 99.84% | 15.45 |
+| Method | DA ↑ | SA ↑ |
+| --- | --- | --- |
+| Raw | 0.00% | 100.00% |
+| SRRG | 36.94% | 99.84% |
 
 
 [Record](results/reference/direction-20261016-v2/2d-A-dynamic/record.json)
@@ -503,10 +490,10 @@ New localization scores use common 10 Hz times after 5 s warmup, with pose age �
 
 #### Dynamic · B
 
-| Map | XY RMSE / cm | yaw / ° | P95 / cm | Update coverage | N |
-| --- | --- | --- | --- | --- | --- |
-| Raw | 5.53 | 0.76 | 7.92 | 66.77% | 448 |
-| SRRG | 5.13 | 0.70 | 7.32 | 66.77% | 448 |
+| Map | XY RMSE / cm | yaw / ° |
+| --- | --- | --- |
+| Raw | 5.53 | 0.76 |
+| SRRG | 5.13 | 0.70 |
 
 
 [Scores](results/reference/direction-20261016-v2/2d-dynamic/time-grid-score.json)
@@ -531,10 +518,10 @@ New localization scores use common 10 Hz times after 5 s warmup, with pose age �
 
 #### Original corridor · A
 
-| Method | DA | SA | Eₘ / cm |
-| --- | --- | --- | --- |
-| Raw | N/A | 82.63% | 16.67 |
-| SRRG | N/A | 82.05% | 14.93 |
+| Method | SA ↑ |
+| --- | --- |
+| Raw | 82.63% |
+| SRRG | 82.05% |
 
 
 [Record](results/reference/direction-20261016-v2/2d-A-corridor/record.json)
@@ -555,10 +542,10 @@ New localization scores use common 10 Hz times after 5 s warmup, with pose age �
 
 #### Original corridor · B
 
-| Map | XY RMSE / cm | yaw / ° | P95 / cm | Update coverage | N |
-| --- | --- | --- | --- | --- | --- |
-| Raw | 113.30 | 1.38 | 128.91 | 88.08% | 591 |
-| SRRG | 102.72 | 1.08 | 121.25 | 88.08% | 591 |
+| Map | XY RMSE / cm | yaw / ° |
+| --- | --- | --- |
+| Raw | 113.30 | 1.38 |
+| SRRG | 102.72 | 1.08 |
 
 
 [Scores](results/reference/direction-20261016-v2/2d-corridor/time-grid-score.json)
@@ -590,10 +577,10 @@ Three measured 120° sectors form a 0.2 s scan; this is controlled grouped sampl
 
 #### A · Mapping and motion phases
 
-| Point compensation | Eₘ / cm | Cₘ |
-| --- | --- | --- |
-| Off | 13.49 | 82.28% |
-| On | 4.61 | 94.38% |
+| Point compensation | Eₘ / cm ↓ |
+| --- | --- |
+| Off | 13.49 |
+| On | 4.61 |
 
 
 [Scores](results/reference/direction-20261016-v2/fastlio-maps/score.json)
@@ -607,40 +594,40 @@ Three measured 120° sectors form a 0.2 s scan; this is controlled grouped sampl
 
 ##### Stationary
 
-| Point compensation | Phase time | A odometry XYZ RMSE / cm | Rotation / ° | N |
-| --- | --- | --- | --- | --- |
-| Off | 0–7 s | 0.12 | 0.02 | 7 |
-| On | 0–7 s | 0.15 | 0.03 | 7 |
+| Point compensation | Phase time | A odometry XYZ RMSE / cm | Rotation / ° |
+| --- | --- | --- | --- |
+| Off | 0–7 s | 0.12 | 0.02 |
+| On | 0–7 s | 0.15 | 0.03 |
 
 
 <a id="h2-slow"></a>
 
 ##### Slow turn
 
-| Point compensation | Phase time | A odometry XYZ RMSE / cm | Rotation / ° | N |
-| --- | --- | --- | --- | --- |
-| Off | 7–15 s | 1.30 | 0.95 | 26 |
-| On | 7–15 s | 0.42 | 0.14 | 26 |
+| Point compensation | Phase time | A odometry XYZ RMSE / cm | Rotation / ° |
+| --- | --- | --- | --- |
+| Off | 7–15 s | 1.30 | 0.95 |
+| On | 7–15 s | 0.42 | 0.14 |
 
 
 <a id="h2-fast"></a>
 
 ##### Fast turn
 
-| Point compensation | Phase time | A odometry XYZ RMSE / cm | Rotation / ° | N |
-| --- | --- | --- | --- | --- |
-| Off | 15–31 s | 3.18 | 4.35 | 54 |
-| On | 15–31 s | 0.79 | 0.26 | 54 |
+| Point compensation | Phase time | A odometry XYZ RMSE / cm | Rotation / ° |
+| --- | --- | --- | --- |
+| Off | 15–31 s | 3.18 | 4.35 |
+| On | 15–31 s | 0.79 | 0.26 |
 
 
 <a id="h2-translation"></a>
 
 ##### Translation
 
-| Point compensation | Phase time | A odometry XYZ RMSE / cm | Rotation / ° | N |
-| --- | --- | --- | --- | --- |
-| Off | 31–39 s | 5.33 | 3.68 | 26 |
-| On | 31–39 s | 1.45 | 0.25 | 26 |
+| Point compensation | Phase time | A odometry XYZ RMSE / cm | Rotation / ° |
+| --- | --- | --- | --- |
+| Off | 31–39 s | 5.33 | 3.68 |
+| On | 31–39 s | 1.45 | 0.25 |
 
 
 **Analysis:**
@@ -654,10 +641,10 @@ Three measured 120° sectors form a 0.2 s scan; this is controlled grouped sampl
 
 #### B · GICP on frozen maps
 
-| A compensation | XYZ RMSE / cm | Rotation / ° | P95 / cm | N |
-| --- | --- | --- | --- | --- |
-| Off | 14.03 | 3.62 | 19.68 | 601 |
-| On | 2.04 | 0.87 | 4.35 | 601 |
+| A compensation | XYZ RMSE / cm | Rotation / ° |
+| --- | --- | --- |
+| Off | 14.03 | 3.62 |
+| On | 2.04 | 0.87 |
 
 
 [Scores](results/reference/direction-20261016-v2/fastlio-B/score-3d.json)
@@ -678,10 +665,12 @@ Three measured 120° sectors form a 0.2 s scan; this is controlled grouped sampl
 
 ### P3.0 · DUFOMap / BeautyMap · KITTI-00
 
-| Method | Scans | DA | SA | Point-cloud excerpt (click for full recording) | Record |
-| --- | --- | --- | --- | --- | --- |
-| DUFOMap | 141 | 98.70% | 97.98% | <a href="results/reference/desktop-live-dufomap/execution.mp4"><img src="docs/media/related-pointcloud/20261016/dufomap.gif" width="340" alt="DUFOMap"></a> | [Record](results/reference/desktop-live-dufomap/record.json) |
-| BeautyMap | 141 | 98.34% | 96.95% | <a href="results/reference/desktop-live-beautymap/execution.mp4"><img src="docs/media/related-pointcloud/20261016/beautymap.gif" width="340" alt="BeautyMap"></a> | [Record](results/reference/desktop-live-beautymap/record.json) |
+KITTI-00, 141 scans; this experiment evaluates map cleaning only.
+
+| Method | DA ↑ | SA ↑ | Point-cloud excerpt (click for full recording) | Record |
+| --- | --- | --- | --- | --- |
+| DUFOMap | 98.70% | 97.98% | <a href="results/reference/desktop-live-dufomap/execution.mp4"><img src="docs/media/related-pointcloud/20261016/dufomap.gif" width="340" alt="DUFOMap"></a> | [Record](results/reference/desktop-live-dufomap/record.json) |
+| BeautyMap | 98.34% | 96.95% | <a href="results/reference/desktop-live-beautymap/execution.mp4"><img src="docs/media/related-pointcloud/20261016/beautymap.gif" width="340" alt="BeautyMap"></a> | [Record](results/reference/desktop-live-beautymap/record.json) |
 
 <a id="baseline-3d"></a>
 
@@ -693,12 +682,23 @@ Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for sc
 
 #### Static · 3D
 
+**A · Map cleaning**
+
+| Map | SA ↑ |
+| --- | --- |
+| Raw | 100% |
+| DUFOMap | 99.999% |
+| BeautyMap | 83.33% |
+
+
+**B · Localization on frozen maps**
+
 <!-- HOME_EXPERIMENT_TABLE -->
-| Map | DA | SA | XYZ RMSE / cm | Rotation RMSE / ° | P95 / cm | N |
-| --- | --- | --- | --- | --- | --- | --- |
-| Raw | N/A | 100% | 0.95 | 0.15 | 1.47 | 845 |
-| DUFOMap | N/A | 99.999% | 0.99 | 0.16 | 1.47 | 835 |
-| BeautyMap | N/A | 83.33% | 1.07 | 0.17 | 1.44 | 917 |
+| Map | XYZ RMSE / cm | Rotation RMSE / ° |
+| --- | --- | --- |
+| Raw | 0.95 | 0.15 |
+| DUFOMap | 0.99 | 0.16 |
+| BeautyMap | 1.07 | 0.17 |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
 [Record](results/reference/robot-3d-static/record.json)
@@ -719,12 +719,23 @@ Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for sc
 
 #### Dynamic · 3D
 
+**A · Map cleaning**
+
+| Map | DA ↑ | SA ↑ |
+| --- | --- | --- |
+| Raw | 0% | 100% |
+| DUFOMap | 46.59% | 99.998% |
+| BeautyMap | 74.36% | 81.15% |
+
+
+**B · Localization on frozen maps**
+
 <!-- HOME_EXPERIMENT_TABLE -->
-| Map | DA | SA | XYZ RMSE / cm | Rotation RMSE / ° | P95 / cm | N |
-| --- | --- | --- | --- | --- | --- | --- |
-| Raw | 0% | 100% | 0.98 | 0.17 | 1.96 | 967 |
-| DUFOMap | 46.59% | 99.998% | 0.98 | 0.18 | 2.00 | 963 |
-| BeautyMap | 74.36% | 81.15% | 1.04 | 0.17 | 1.99 | 1022 |
+| Map | XYZ RMSE / cm | Rotation RMSE / ° |
+| --- | --- | --- |
+| Raw | 0.98 | 0.17 |
+| DUFOMap | 0.98 | 0.18 |
+| BeautyMap | 1.04 | 0.17 |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
 [Record](results/reference/robot-3d-dynamic/record.json)
@@ -745,15 +756,28 @@ Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for sc
 
 #### Corridor · 3D
 
+**A · Map cleaning**
+
+| Map | SA ↑ |
+| --- | --- |
+| Raw | 100% |
+| DUFOMap | 100% |
+| BeautyMap | 99.9% |
+
+
+**B · Localization on frozen maps**
+
 <!-- HOME_EXPERIMENT_TABLE -->
-| Map | DA | SA | XYZ RMSE / cm | Rotation RMSE / ° | P95 / cm | N |
-| --- | --- | --- | --- | --- | --- | --- |
-| Raw | N/A | 100% | 474.38 | 0.53 | 828.94 | 530 |
-| DUFOMap | N/A | 100% | 497.05 | 0.48 | 814.15 | 599 |
-| BeautyMap | N/A | 99.9% | 592.00 | 49.16 | 917.05 | 655 |
+| Map | XYZ RMSE / cm | Rotation RMSE / ° |
+| --- | --- | --- |
+| Raw | 474.38 | 0.53 |
+| DUFOMap | 497.05 | 0.48 |
+| BeautyMap | 592.00 | 49.16 |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
 [Record](results/reference/robot-3d-corridor/record.json)
+
+Valid localization intervals differ in this group; RMSE covers available outputs only and cannot rank stability. See records for missing outputs.
 
 | Raw | DUFOMap | BeautyMap |
 | --- | --- | --- |
@@ -771,12 +795,23 @@ Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for sc
 
 #### Changed world · 3D
 
+**A · Map cleaning**
+
+| Map | SA ↑ |
+| --- | --- |
+| Raw | 100% |
+| DUFOMap | 99.999% |
+| BeautyMap | 83.33% |
+
+
+**B · Localization on frozen maps**
+
 <!-- HOME_EXPERIMENT_TABLE -->
-| Map | DA | SA | XYZ RMSE / cm | Rotation RMSE / ° | P95 / cm | N |
-| --- | --- | --- | --- | --- | --- | --- |
-| Raw | N/A | 100% | 0.93 | 0.17 | 1.45 | 859 |
-| DUFOMap | N/A | 99.999% | 1.01 | 0.19 | 1.45 | 860 |
-| BeautyMap | N/A | 83.33% | 1.04 | 0.17 | 1.46 | 945 |
+| Map | XYZ RMSE / cm | Rotation RMSE / ° |
+| --- | --- | --- |
+| Raw | 0.93 | 0.17 |
+| DUFOMap | 1.01 | 0.19 |
+| BeautyMap | 1.04 | 0.17 |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
 [Record](results/reference/robot-3d-large-change/record.json)
@@ -801,10 +836,10 @@ Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for sc
 
 #### SRRG · Persistent change
 
-| Method | DA | SA | New structure coverage | Separate B |
-| --- | --- | --- | --- | --- |
-| Raw | N/A | 100.00% | 100.00% | Not tested |
-| SRRG | N/A | 99.71% | 98.90% | Not tested |
+| Method | SA | New structure coverage | Separate B |
+| --- | --- | --- | --- |
+| Raw | 100.00% | 100.00% | Not tested |
+| SRRG | 99.71% | 98.90% | Not tested |
 
 
 [Record](results/reference/srrg-2d-large-change/record.json)
@@ -914,10 +949,10 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 ### H1 · Static retention · A
 
-| Control | DA | SA | Eₘ / cm |
-| --- | --- | --- | --- |
-| raw | N/A | 99.55% | 8.84 |
-| temporal | N/A | 95.62% | 8.46 |
+| Control | SA ↑ |
+| --- | --- |
+| raw | 99.55% |
+| temporal | 95.62% |
 
 | Mapping: grey baseline, blue own intervention |
 | --- |
@@ -934,10 +969,10 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 ### H1 · Static retention · B
 
-| Map / AMCL | XY RMSE / cm | along RMSE / cm | P95 / cm | N | Fresh coverage |
-| --- | --- | --- | --- | --- | --- |
-| raw | 4.74 | — | 7.38 | 268 | 44.67% |
-| temporal | 5.68 | — | 9.22 | 268 | 44.67% |
+| Map / AMCL | XY RMSE / cm ↓ |
+| --- | --- |
+| raw | 4.74 |
+| temporal | 5.68 |
 
 | raw | temporal |
 | --- | --- |
@@ -956,10 +991,10 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 ### H1 · Dynamic cleaning · A
 
-| Control | DA | SA | Eₘ / cm |
-| --- | --- | --- | --- |
-| raw | 5.13% | 99.50% | 22.84 |
-| temporal | 94.87% | 92.55% | 9.79 |
+| Control | DA ↑ | SA ↑ |
+| --- | --- | --- |
+| raw | 5.13% | 99.50% |
+| temporal | 94.87% | 92.55% |
 
 | Mapping: grey baseline, blue own intervention |
 | --- |
@@ -976,10 +1011,10 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 ### H1 · Dynamic cleaning · B
 
-| Map / AMCL | XY RMSE / cm | along RMSE / cm | P95 / cm | N | Fresh coverage |
-| --- | --- | --- | --- | --- | --- |
-| raw | 5.72 | — | 8.74 | 456 | 75.87% |
-| temporal | 6.11 | — | 9.68 | 456 | 75.87% |
+| Map / AMCL | XY RMSE / cm ↓ |
+| --- | --- |
+| raw | 5.72 |
+| temporal | 6.11 |
 
 | raw | temporal |
 | --- | --- |
@@ -998,10 +1033,10 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 ### H2 · Odometry deskew · A
 
-| Control | DA | SA | Eₘ / cm |
-| --- | --- | --- | --- |
-| off | N/A | 100.00% | 34.10 |
-| deskew | N/A | 100.00% | 4.57 |
+| Control | Eₘ / cm ↓ |
+| --- | --- |
+| off | 34.10 |
+| deskew | 4.57 |
 
 | Mapping: grey baseline, blue own intervention |
 | --- |
@@ -1018,10 +1053,10 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 ### H2 · Odometry deskew · B
 
-| Map / AMCL | XY RMSE / cm | along RMSE / cm | P95 / cm | N | Fresh coverage |
-| --- | --- | --- | --- | --- | --- |
-| off | 4.70 | — | 8.49 | 272 | 45.26% |
-| deskew | 4.71 | — | 7.16 | 272 | 45.26% |
+| Map / AMCL | XY RMSE / cm ↓ |
+| --- | --- |
+| off | 4.70 |
+| deskew | 4.71 |
 
 | off | deskew |
 | --- | --- |
@@ -1039,11 +1074,6 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 <a id="own-corridor-a"></a>
 
 ### H3 · Weak-axis protection · A
-
-| Control | DA | SA | Eₘ / cm |
-| --- | --- | --- | --- |
-| strict | N/A | 77.36% | 5.56 |
-| protected | N/A | 77.36% | 5.56 |
 
 | Additional cells retained by protection | Frozen maps are byte-identical |
 | --- | --- |
@@ -1066,12 +1096,12 @@ The protection rule did not change the final map in this trial; random differenc
 
 ### H3 · Weak-axis protection · B
 
-Along-corridor RMSE uses the first 50 s of limited observations; XY RMSE uses the full common evaluation interval.
+Use along-corridor RMSE during the first 50 s of limited observations to test weak-direction localization.
 
-| Map / AMCL | XY RMSE / cm | along RMSE / cm | P95 / cm | N | Fresh coverage |
-| --- | --- | --- | --- | --- | --- |
-| degraded_strict | 76.62 | 80.56 | 104.55 | 319 | 53.08% |
-| degraded_protected | 76.62 | 80.56 | 104.55 | 319 | 53.08% |
+| Map / AMCL | Along RMSE / cm ↓ |
+| --- | --- |
+| degraded_strict | 80.56 |
+| degraded_protected | 80.56 |
 
 | degraded_strict | degraded_protected |
 | --- | --- |
@@ -1086,4 +1116,4 @@ Along-corridor RMSE uses the first 50 s of limited observations; XY RMSE uses th
 
 [↑ Contents](#hypothesis-test-index)
 
-Eₘ is map-point distance RMSE to observed static support. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; fresh coverage is not tracking-loss rate. Map improvement without localization improvement supports only the mapping claim.
+H1 uses DA/SA for cleaning and only SA in its static control; H2 uses Eₘ for map geometry; H3 checks additional retained cells, then B along-corridor error. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; sample counts and missing outputs remain in the score records. Better mapping scores without lower B error support only the mapping claim.

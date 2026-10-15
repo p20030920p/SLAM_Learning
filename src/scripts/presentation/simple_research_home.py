@@ -198,46 +198,33 @@ def metric_table(zh):
             [
                 "DA ↑ / SA ↑",
                 label(
-                    "动态残影删除比例 / 静态保留比例；二维按空间支持覆盖计。",
-                    "Dynamic-trace removal / static retention; 2D scores spatial-support coverage.",
+                    "仅评清图A：动态删除比例／静态保留比例；无动态时只列SA。二维按观测支持、三维按点评分。",
+                    "Cleaning A only: dynamic removal / static retention; omit DA without dynamics. Units are observed support in 2D and points in 3D.",
                 ),
             ],
             [
                 "Eₘ ↓",
                 label(
-                    "地图点到参考几何的距离RMSE，cm；2D用已观测静态支持，3D用真实表面。",
-                    "Map distance RMSE, cm; observed static support in 2D, reference surfaces in 3D.",
+                    "去畸变A：地图点到静态参考几何的距离RMSE，cm。",
+                    "Deskew A: map-point distance RMSE to static reference geometry, cm.",
                 ),
             ],
             [
-                "Cₘ ↑",
+                label("XY / XYZ RMSE ↓", "XY / XYZ RMSE ↓"),
                 label(
-                    "被地图覆盖的已观测静态参照比例。",
-                    "Fraction of observed static reference covered by the map.",
+                    "冻结地图后的定位B：二维／三维位置误差，cm。",
+                    "Localization B on frozen maps: 2D / 3D position error, cm.",
                 ),
             ],
             [
-                label("XY / XYZ / 沿廊 RMSE ↓", "XY / XYZ / along RMSE ↓"),
+                label("沿廊 RMSE ↓", "Along RMSE ↓"),
                 label(
-                    "二维 / 三维 / 沿走廊方向的位置误差，cm。", "2D / 3D / along-corridor position error, cm."
+                    "H3受限观测阶段：沿走廊方向的位置误差，cm。", "H3 during limited observations: position error along the corridor, cm."
                 ),
             ],
             [
                 label("角度RMSE ↓", "Angular RMSE ↓"),
-                label("二维偏航或三维旋转误差，度。", "2D yaw or 3D rotation error, degrees."),
-            ],
-            [
-                "P95 ↓ / N / " + label("更新覆盖 ↑", "Update coverage ↑"),
-                label(
-                    "位置误差95分位 / 有效样本数 / 评分网格上新鲜输出比例。",
-                    "95th-percentile position error / valid samples / grid fraction with fresh outputs.",
-                ),
-            ],
-            [
-                "N/A",
-                label(
-                    "不适用；没有动态物体时不计算DA。", "Not applicable; DA is undefined without dynamics."
-                ),
+                label("仅在评价姿态时报告偏航或三维旋转误差，度；A里程计误差单独标注。", "Yaw or 3D rotation error when pose orientation is evaluated, degrees; A odometry is labelled separately."),
             ],
         ],
     )
@@ -248,7 +235,7 @@ def metrics(previous, zh):
     evidence = "实验证据" if zh else "Evidence"
     body = "## " + title + "\n\n" + metric_table(zh) + "### " + evidence + "\n\n"
     # Retain only tables; include method/data identity inside each table.
-    for method in ["DUFOMap", "BeautyMap", "IR-MCL", "AdaM-MCL"]:
+    for method in ["DUFOMap", "BeautyMap", "IR-MCL"]:
         part = re.search(r"^#### " + re.escape(method) + r"\n(.*?)(?=^#### |\Z)", previous, re.M | re.S)
         if part:
             found = re.search(r"(?m)^\|.*(?:\n\|.*)+", part.group(1))
@@ -267,6 +254,11 @@ def metrics(previous, zh):
     body = body.replace("BeautyMap · 指标", "BeautyMap · KITTI-02 · 指标").replace(
         "BeautyMap · Metric", "BeautyMap · KITTI-02 · Metric"
     )
+    # Show only task-specific evidence; retain complete scoring in source records.
+    body = "\n".join(
+        line for line in body.splitlines()
+        if not re.match(r"^\| (?:AA|HA|Location <|Yaw <|位置 <|偏航 <|位置小于|偏航小于)", line)
+    ) + "\n\n"
     return body
 
 
@@ -477,8 +469,8 @@ def practice(doc, zh, previous):
         + ")",
         "",
         label(
-            "本轮定位按共同10 Hz时间点评分，预热5秒，最新输出最多滞后0.15秒；更新覆盖不是失锁率。每组1轮。",
-            "New localization scores use common 10 Hz times after 5 s warmup, with pose age ≤0.15 s; update coverage is not a tracking-loss rate. One run per arm.",
+            "A按任务评价清图或几何；B评价冻结地图后的定位。B使用共同10 Hz时间点，预热5秒，输出滞后≤0.15秒；样本数与缺失情况见记录。每组1轮，未测完整导航到达效果。",
+            "A measures cleaning or geometry for the task; B measures localization on frozen maps. B uses common 10 Hz times after 5 s warmup, with pose age ≤0.15 s; counts and missing outputs remain in records. One run per arm; complete navigation outcomes were not measured.",
         ),
         "",
     ]
@@ -509,18 +501,12 @@ def practice(doc, zh, previous):
             lines.extend([label("重新录制中。", "New recording in progress."), ""])
             return
         data = read(folder + "/record.json")["methods"]
-        rows = [
-            [
-                name,
-                pct(data[key]["dynamic_removal"]),
-                pct(data[key]["static_retention"]),
-                num(data[key]["observed_static_support_distance_rmse_m"], 100),
-            ]
-            for key, name in [("raw", "Raw"), ("srrg", "SRRG")]
-        ]
+        dynamic = scene == "dynamic"
+        rows = [[name] + ([pct(data[key]["dynamic_removal"])] if dynamic else []) + [pct(data[key]["static_retention"])]
+                for key, name in [("raw", "Raw"), ("srrg", "SRRG")]]
         lines.extend(
             [
-                table([label("方法", "Method"), "DA", "SA", "Eₘ / cm"], rows),
+                table([label("方法", "Method")] + (["DA ↑"] if dynamic else []) + ["SA ↑"], rows),
                 ref(folder + "/record.json", label("记录", "Record")),
                 "",
             ]
@@ -545,9 +531,6 @@ def practice(doc, zh, previous):
                     name,
                     num(v["rmse_m"], 100),
                     num(v["yaw_rmse_deg"]),
-                    num(v["p95_m"], 100),
-                    pct(m["fresh_update_grid_coverage"]),
-                    v["samples"],
                 ]
             )
         lines.extend(
@@ -557,9 +540,6 @@ def practice(doc, zh, previous):
                         label("地图", "Map"),
                         "XY RMSE / cm",
                         "yaw / °",
-                        "P95 / cm",
-                        label("更新覆盖", "Update coverage"),
-                        "N",
                     ],
                     rows,
                 ),
@@ -626,9 +606,9 @@ def practice(doc, zh, previous):
         rows = []
         for key, name in [("no_deskew", label("关", "Off")), ("deskew", label("开", "On"))]:
             m = data[key]
-            rows.append([name, num(m["surface_rmse_m"], 100), pct(m["observed_static_coverage_5cm"])])
+            rows.append([name, num(m["surface_rmse_m"], 100)])
         lines += [
-            table([label("点补偿", "Point compensation"), "Eₘ / cm", "Cₘ"], rows),
+            table([label("点补偿", "Point compensation"), "Eₘ / cm ↓"], rows),
             ref(folder + "/score.json", label("评分", "Scores")),
             "",
         ]
@@ -645,7 +625,7 @@ def practice(doc, zh, previous):
             for key, name in [("no_deskew", label("关", "Off")), ("deskew", label("开", "On"))]:
                 m = data[key]["phases"][phase]
                 rows.append(
-                    [name, interval, num(m["xyz_rmse_m"], 100), num(m["rotation_rmse_deg"]), m["samples"]]
+                    [name, interval, num(m["xyz_rmse_m"], 100), num(m["rotation_rmse_deg"])]
                 )
             lines += [
                 table(
@@ -654,7 +634,6 @@ def practice(doc, zh, previous):
                         label("阶段时间", "Phase time"),
                         label("A里程计XYZ RMSE / cm", "A odometry XYZ RMSE / cm"),
                         label("旋转 / °", "Rotation / °"),
-                        "N",
                     ],
                     rows,
                 )
@@ -672,8 +651,6 @@ def practice(doc, zh, previous):
                     name,
                     num(m["xyz_rmse_m"], 100),
                     num(m["rotation_rmse_deg"]),
-                    num(m["xyz_p95_m"], 100),
-                    m["samples"],
                 ]
             )
         lines += [
@@ -682,8 +659,6 @@ def practice(doc, zh, previous):
                     label("A点补偿", "A compensation"),
                     "XYZ RMSE / cm",
                     label("旋转 / °", "Rotation / °"),
-                    "P95 / cm",
-                    "N",
                 ],
                 rows,
             ),
@@ -762,31 +737,27 @@ def practice(doc, zh, previous):
         folder = "results/reference/robot-3d-" + ("large-change" if scene == "change" else scene)
         data = read(folder + "/record.json")["metrics_3d"]
         map_metrics = quality("large-change" if scene == "change" else scene, "3d")
-        rows = []
+        rows, mapping_rows = [], []
         for key, name in [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")]:
             m = data[key]
+            mapping_rows.append([name] + ([old_pct(map_metrics[key]["dynamic_removal"])] if scene == "dynamic" else []) + [old_pct(map_metrics[key]["static_retention"])])
             rows.append(
                 [
                     name,
-                    old_pct(map_metrics[key]["dynamic_removal"]),
-                    old_pct(map_metrics[key]["static_retention"]),
                     num(m["xyz_rmse_m"], 100),
                     num(m["rotation_rmse_deg"]),
-                    num(m["xyz_p95_m"], 100),
-                    m["samples"],
                 ]
             )
         lines += [
+            "**" + label("A · 地图清理", "A · Map cleaning") + "**\n",
+            table([label("地图", "Map")] + (["DA ↑"] if scene == "dynamic" else []) + ["SA ↑"], mapping_rows),
+            "**" + label("B · 冻结地图后定位", "B · Localization on frozen maps") + "**\n",
             "<!-- HOME_EXPERIMENT_TABLE -->",
             table(
                 [
-                    "Map",
-                    "DA",
-                    "SA",
+                    label("地图", "Map"),
                     "XYZ RMSE / cm",
                     label("旋转 RMSE / °", "Rotation RMSE / °"),
-                    "P95 / cm",
-                    "N",
                 ],
                 rows,
             ).rstrip(),
@@ -795,6 +766,11 @@ def practice(doc, zh, previous):
             ref(folder + "/record.json", label("记录", "Record")),
             "",
         ]
+        if scene == "corridor":
+            lines += [label(
+                "本组有效定位输出区间不同；RMSE只覆盖有输出的时段，不能据此排名稳定性。缺失输出详情见记录。",
+                "Valid localization intervals differ in this group; RMSE covers available outputs only and cannot rank stability. See records for missing outputs.",
+            ), ""]
         media(
             folder,
             [
@@ -812,7 +788,6 @@ def practice(doc, zh, previous):
         table(
             [
                 label("方法", "Method"),
-                "DA",
                 "SA",
                 label("新增结构覆盖", "New structure coverage"),
                 label("独立B", "Separate B"),
@@ -820,7 +795,6 @@ def practice(doc, zh, previous):
             [
                 [
                     name,
-                    pct(data[key]["dynamic_removal"]),
                     pct(data[key]["static_retention"]),
                     pct(data[key].get("new_structure_retention")),
                     label("未测", "Not tested"),

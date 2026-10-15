@@ -30,7 +30,7 @@ The video below is the retained historical result replay; the [latest actual exe
 
 ## Results
 
-The retained wrapper run gives SA / DA / HA = 96.9529 / 98.3382 / 97.6407%. The separate historical KITTI-02 Table III experiment matches all nine paper accuracy values at two decimals.
+The retained wrapper run gives SA / DA = 96.9529 / 98.3382%. Only static retention and dynamic removal are displayed here; complete paper scores remain in the source records. This cleaning experiment does not measure downstream localization or navigation.
 
 [Original-code paper protocol](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.md)
 

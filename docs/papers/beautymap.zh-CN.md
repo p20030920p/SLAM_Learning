@@ -30,7 +30,7 @@
 
 ## 结果
 
-保留的封装试跑 SA／DA／HA 为 96.9529／98.3382／97.6407%。另一组历史 KITTI-02 Table III 实验在两位小数精度下匹配全部 9 个准确率数值。
+保留的封装试跑 SA／DA 为 96.9529／98.3382%。这里只展示静态保留和动态删除比例；完整论文评分保留在原始记录中。这项清图实验未测下游定位或导航效果。
 
 [原始代码与论文协议](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/KITTI_PAPER_PROTOCOL.zh-CN.md)
 

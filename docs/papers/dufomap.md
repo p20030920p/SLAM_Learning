@@ -30,7 +30,7 @@ The video below is the retained historical result replay; the [latest actual exe
 
 ## Results
 
-The retained wrapper run gives SA / DA / AA = 97.9798 / 98.7029 / 98.3407%. The separate original C++ Table IV experiment matches all 15 paper accuracy values at two decimals.
+The retained wrapper run gives SA / DA = 97.9798 / 98.7029%. Only static retention and dynamic removal are displayed here; complete paper scores remain in the source records. This cleaning experiment does not measure downstream localization or navigation.
 
 [Original-code paper protocol](https://github.com/p20030920p/SLAM_Learning/blob/535a2780af7ca7eb3aa02f722e1340fe90bc2dcf/docs/DUFOMAP_TABLE4.md)
 

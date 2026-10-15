@@ -7,9 +7,9 @@
 
 | 问题 | 一句话假设 | 对照方法 | 指标 |
 | --- | --- | --- | --- |
-| H1 / Q1 | 重复命中＋自由射线确认能减少动态残影，并改善独立定位。 | 自写累积图 / 自写时序清图 | DA、SA、Eₘ、XY RMSE |
-| H2 / Q2 | 用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。 | 自写补偿关 / 开 | Eₘ、SA、XY RMSE |
-| H3 / Q3 | 检测几何退化并按弱方向的约束贡献保留可靠静态结构，能减少沿廊定位误差。 | 自写统一阈值 / 自写退化感知清图 | SA、Eₘ、along RMSE |
+| H1 / Q1 | 重复命中＋自由射线确认能减少动态残影，并改善独立定位。 | 自写累积图 / 自写时序清图 | A：DA、SA；B：XY RMSE |
+| H2 / Q2 | 用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。 | 自写补偿关 / 开 | A：Eₘ；B：XY RMSE |
+| H3 / Q3 | 检测几何退化并按弱方向的约束贡献保留可靠静态结构，能减少沿廊定位误差。 | 自写统一阈值 / 自写退化感知清图 | A：额外保留格数；B：沿廊 RMSE |
 
 三项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。
 
@@ -18,6 +18,8 @@
 ### 数学表达
 
 A建图、B独立采集；冻结地图后，各对照使用相同B扫描、里程计和AMCL参数。
+
+DA/SA只衡量清图的删除与保留比例，不代表几何精度或定位精度。B评估在既有地图中运动时的定位误差；本轮未测完整导航任务的到达效果。
 
 ```math
 M_j=\mathcal{B}_j(Z^A,\hat T_{\rm odom}^A),\qquad \hat T_{j,t}^B=\mathcal{L}_{\rm AMCL}(Z_{\leq t}^B,M_j)
@@ -34,7 +36,7 @@ H_c=\sum_b\mathbf{1}[\text{hit in time bin }b],\quad F_c=\sum_b\mathbf{1}[\text{
 ```
 
 ```math
-\mathrm{DA}_{\rm temporal}\gt\mathrm{DA}_{\rm raw},\quad\mathrm{SA}_{\rm temporal}\geq\mathrm{SA}_{\rm raw}-\varepsilon,\quad E_M(\mathrm{temporal})\lt E_M(\mathrm{raw}),\quad\Delta E_L\gt0
+\mathrm{DA}_{\rm temporal}\gt\mathrm{DA}_{\rm raw},\quad\mathrm{SA}_{\rm temporal}\geq\mathrm{SA}_{\rm raw}-\varepsilon,\quad\Delta E_L\gt0
 ```
 
 **H2**

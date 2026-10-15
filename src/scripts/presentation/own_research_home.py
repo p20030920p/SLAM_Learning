@@ -16,13 +16,14 @@ def definitions(zh):
         return cn if zh else en
     text = '<a id="mapping-hypothesis-tests"></a>\n\n## ' + s("假设", "Hypothesis") + "\n\n<!-- SIMPLE_HYPOTHESES_V2 -->\n" + MARKER + "\n\n"
     text += table([s("问题", "Question"), s("一句话假设", "Hypothesis"), s("对照方法", "Controls"), s("指标", "Metrics")], [
-        ["H1 / Q1", s("重复命中＋自由射线确认能减少动态残影，并改善独立定位。", "Repeated hits plus free-ray confirmation reduce dynamic traces and improve held-out localization."), s("自写累积图 / 自写时序清图", "Own accumulation / own temporal cleaning"), "DA、SA、Eₘ、XY RMSE"],
-        ["H2 / Q2", s("用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。", "Wheel-odometry compensation for point timestamps reduces map and held-out localization error."), s("自写补偿关 / 开", "Own compensation off / on"), "Eₘ、SA、XY RMSE"],
-        ["H3 / Q3", s("检测几何退化并按弱方向的约束贡献保留可靠静态结构，能减少沿廊定位误差。", "Detecting geometric degeneracy and retaining reliable static structures that constrain the weak direction reduces along-corridor error."), s("自写统一阈值 / 自写退化感知清图", "Own uniform threshold / own degeneracy-aware cleaning"), "SA、Eₘ、along RMSE"],
+        ["H1 / Q1", s("重复命中＋自由射线确认能减少动态残影，并改善独立定位。", "Repeated hits plus free-ray confirmation reduce dynamic traces and improve held-out localization."), s("自写累积图 / 自写时序清图", "Own accumulation / own temporal cleaning"), s("A：DA、SA；B：XY RMSE", "A: DA, SA; B: XY RMSE")],
+        ["H2 / Q2", s("用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。", "Wheel-odometry compensation for point timestamps reduces map and held-out localization error."), s("自写补偿关 / 开", "Own compensation off / on"), s("A：Eₘ；B：XY RMSE", "A: Eₘ; B: XY RMSE")],
+        ["H3 / Q3", s("检测几何退化并按弱方向的约束贡献保留可靠静态结构，能减少沿廊定位误差。", "Detecting geometric degeneracy and retaining reliable static structures that constrain the weak direction reduces along-corridor error."), s("自写统一阈值 / 自写退化感知清图", "Own uniform threshold / own degeneracy-aware cleaning"), s("A：额外保留格数；B：沿廊 RMSE", "A: additional retained cells; B: along RMSE")],
     ])
     text += s("三项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。", "All three interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.") + "\n\n"
     text += '<a id="hypothesis-math"></a>\n\n### ' + s("数学表达", "Mathematical form") + "\n\n"
     text += s("A建图、B独立采集；冻结地图后，各对照使用相同B扫描、里程计和AMCL参数。", "A builds the maps; B is a separate acquisition. Freeze the maps and share B scans, odometry and AMCL settings across controls.") + "\n\n"
+    text += s("DA/SA只衡量清图的删除与保留比例，不代表几何精度或定位精度。B评估在既有地图中运动时的定位误差；本轮未测完整导航任务的到达效果。", "DA/SA measure removal and retention, not geometric or localization accuracy. B evaluates localization while moving through an existing map; complete navigation-task outcomes were not measured.") + "\n\n"
     text += r"""```math
 M_j=\mathcal{B}_j(Z^A,\hat T_{\rm odom}^A),\qquad \hat T_{j,t}^B=\mathcal{L}_{\rm AMCL}(Z_{\leq t}^B,M_j)
 ```
@@ -38,7 +39,7 @@ H_c=\sum_b\mathbf{1}[\text{hit in time bin }b],\quad F_c=\sum_b\mathbf{1}[\text{
 ```
 
 ```math
-\mathrm{DA}_{\rm temporal}\gt\mathrm{DA}_{\rm raw},\quad\mathrm{SA}_{\rm temporal}\geq\mathrm{SA}_{\rm raw}-\varepsilon,\quad E_M(\mathrm{temporal})\lt E_M(\mathrm{raw}),\quad\Delta E_L\gt0
+\mathrm{DA}_{\rm temporal}\gt\mathrm{DA}_{\rm raw},\quad\mathrm{SA}_{\rm temporal}\geq\mathrm{SA}_{\rm raw}-\varepsilon,\quad\Delta E_L\gt0
 ```
 
 **H2**
@@ -135,8 +136,9 @@ def practice(doc, zh, previous):
         folder = "results/reference/desktop-live-" + method
         data = json.loads((ROOT / folder / "record.json").read_text())["metrics"]
         preview = f'<a href="{href(folder + "/execution.mp4")}"><img src="{href("docs/media/related-pointcloud/20261016/" + method + ".gif")}" width="340" alt="{title}"></a>'
-        kitti_rows.append([title, "141", num(data["DA"]) + "%", num(data["SA"]) + "%", preview, f'[{s("记录", "Record")}]({href(folder + "/record.json")})'])
-    kitti += table([s("方法", "Method"), s("帧数", "Scans"), "DA", "SA", s("点云实录节选（点击看完整录像）", "Point-cloud excerpt (click for full recording)"), s("记录", "Record")], kitti_rows)
+        kitti_rows.append([title, num(data["DA"]) + "%", num(data["SA"]) + "%", preview, f'[{s("记录", "Record")}]({href(folder + "/record.json")})'])
+    kitti += s("KITTI-00，141帧；本项只评价地图清理。", "KITTI-00, 141 scans; this experiment evaluates map cleaning only.") + "\n\n"
+    kitti += table([s("方法", "Method"), "DA ↑", "SA ↑", s("点云实录节选（点击看完整录像）", "Point-cloud excerpt (click for full recording)"), s("记录", "Record")], kitti_rows)
     text += setup + sr + corridor + fast + kitti + rest
     for anchor, name, folder, video, preview, score_text in [
         ("practice-irmcl", "IR-MCL", "results/reference/desktop-live-ir-mcl", "execution", "docs/media/related-pointcloud/20261016/ir-mcl.gif", "XY RMSE 5.31 cm / yaw 1.07°"),
@@ -172,7 +174,12 @@ def hypothesis_tests(doc, zh):
         br = json.loads((ROOT / b / "time-grid-score.json").read_text())
         text += f'<a id="own-{scene}-a"></a>\n\n### {name} · A\n\n'
         controls = ("off", "deskew") if scene == "motion" else (("strict", "protected") if scene == "corridor" else ("raw", "temporal"))
-        text += table([s("对照", "Control"), "DA", "SA", "Eₘ / cm"], [[method, pct(ar["methods"][method]["dynamic_removal"]), pct(ar["methods"][method]["static_retention"]), num(ar["methods"][method]["map_rmse_m"], 100)] for method in controls])
+        if scene in ("static", "dynamic"):
+            headers = [s("对照", "Control")] + (["DA ↑"] if scene == "dynamic" else []) + ["SA ↑"]
+            rows = [[method] + ([pct(ar["methods"][method]["dynamic_removal"])] if scene == "dynamic" else []) + [pct(ar["methods"][method]["static_retention"])] for method in controls]
+            text += table(headers, rows)
+        elif scene == "motion":
+            text += table([s("对照", "Control"), "Eₘ / cm ↓"], [[method, num(ar["methods"][method]["map_rmse_m"], 100)] for method in controls])
         if scene == "corridor":
             extra = ar["methods"]["protected"]["points"] - ar["methods"]["strict"]["points"]
             same_map = (ROOT / a / "maps/strict/map.pgm").read_bytes() == (ROOT / a / "maps/protected/map.pgm").read_bytes()
@@ -183,12 +190,13 @@ def hypothesis_tests(doc, zh):
         text += link(a + "/record.json", s("记录", "Record")) + "\n\n**" + s("分析：", "Analysis:") + "**\n<!-- OWN_ANALYSIS:" + scene + "-a -->\n\n<!-- /OWN_ANALYSIS:" + scene + "-a -->\n\n"
         text += f'<a id="own-{scene}-b"></a>\n\n### {name} · B\n\n'
         if scene == "corridor":
-            text += s("沿廊RMSE在前50秒受限扫描阶段评分；XY RMSE使用整个共同评分区间。", "Along-corridor RMSE uses the first 50 s of limited observations; XY RMSE uses the full common evaluation interval.") + "\n\n"
+            text += s("仅用前50秒受限扫描阶段的沿廊RMSE检验弱方向定位。", "Use along-corridor RMSE during the first 50 s of limited observations to test weak-direction localization.") + "\n\n"
         selected = {key: m for key, m in br["methods"].items() if (key.startswith("degraded_") if scene == "corridor" else True)}
-        text += table([s("地图／AMCL", "Map / AMCL"), "XY RMSE / cm", "along RMSE / cm", "P95 / cm", "N", s("更新覆盖", "Fresh coverage")], [[key, num((m.get("common") or {}).get("rmse_m"), 100), num((m.get("limited") or {}).get("along_x_rmse_m"), 100) if scene == "corridor" else "—", num((m.get("common") or {}).get("p95_m"), 100), (m.get("common") or {}).get("samples", 0), pct(m["fresh_update_grid_coverage"])] for key, m in selected.items()])
+        score_label = s("沿廊 RMSE / cm ↓", "Along RMSE / cm ↓") if scene == "corridor" else "XY RMSE / cm ↓"
+        text += table([s("地图／AMCL", "Map / AMCL"), score_label], [[key, num((m.get("limited") or {}).get("along_x_rmse_m") if scene == "corridor" else (m.get("common") or {}).get("rmse_m"), 100)] for key, m in selected.items()])
         text += table(list(selected), [[media(b + "/executions/" + key, key + " B") for key in selected]])
         text += link(b + "/time-grid-score.json", s("共同时间点评分", "Common-time scores")) + " · " + link(b + "/record.json", s("记录", "Record")) + "\n\n**" + s("分析：", "Analysis:") + "**\n<!-- OWN_ANALYSIS:" + scene + "-b -->\n\n<!-- /OWN_ANALYSIS:" + scene + "-b -->\n\n[↑ " + s("目录", "Contents") + "](#hypothesis-test-index)\n\n"
-    text += s("Eₘ为地图点到已观测静态支持的距离RMSE。定位预热5秒后在共同10 Hz时间点评分，最新输出最多滞后0.15秒；更新覆盖不是失锁率。地图改善但定位未改善时，只支持建图结论。", "Eₘ is map-point distance RMSE to observed static support. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; fresh coverage is not tracking-loss rate. Map improvement without localization improvement supports only the mapping claim.") + "\n\n"
+    text += s("H1用DA/SA评清图，静态对照只看SA；H2用Eₘ评地图几何；H3检查保护规则是否增加保留格数，再看B沿廊误差。定位预热5秒后使用共同10 Hz时间点，最新输出最多滞后0.15秒；样本数与输出缺失情况见原始评分记录。建图指标改善但B误差不降时，只支持建图结论。", "H1 uses DA/SA for cleaning and only SA in its static control; H2 uses Eₘ for map geometry; H3 checks additional retained cells, then B along-corridor error. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; sample counts and missing outputs remain in the score records. Better mapping scores without lower B error support only the mapping claim.") + "\n\n"
     return text
 
 

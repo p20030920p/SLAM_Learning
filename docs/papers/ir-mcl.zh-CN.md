@@ -32,7 +32,7 @@
 
 使用官方配置与官方权重做全局定位，由仓库自带的 evo 评估在其 1354 帧窗口上打分：位置 RMSE **5.32 cm**，偏航 RMSE **1.07°**。论文对同一序列、同一窗口给出 5.13 cm 与 1.05°。
 
-保留原生估计轨迹、真值轨迹与配置，未做空间对齐即可重新核对全部八项两位小数指标。此处评测 Seq 1 定位，动态地图下的自恢复仍是独立实验。
+此处只展示位置与偏航 RMSE；原生估计轨迹、真值轨迹、配置和完整评分仍可重算。Seq 1 评测既有地图中的定位，不计算 DA/SA；动态地图下的自恢复仍是独立实验。
 
 [论文](https://arxiv.org/abs/2210.03113) · [论文 HTML](https://ar5iv.labs.arxiv.org/html/2210.03113) · [作者源库](https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5) · [兼容性补丁](../../results/reference/ir-mcl/runs/ir-mcl-wsl/compatibility.patch)
 
