@@ -68,6 +68,32 @@ Observation from Figure 2: the mirror region lacks a usable mapped boundary, whi
 
 <!-- /PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
 
+<a id="physical-test-additional"></a>
+
+### Additional physical tests
+
+| Test 4 · `4.mp4` | Test 5 · `5.mp4` |
+| --- | --- |
+| <a href="docs/media/physical-test/20261016-additional/4.gif"><img src="docs/media/physical-test/20261016-additional/4.gif" width="420" loading="lazy" alt="Physical test 4"></a> | <a href="docs/media/physical-test/20261016-additional/5.gif"><img src="docs/media/physical-test/20261016-additional/5.gif" width="420" loading="lazy" alt="Physical test 5"></a> |
+| **Test 6 · `6.mp4`** | **Test 7 · `7.mp4`** |
+| <a href="docs/media/physical-test/20261016-additional/6.gif"><img src="docs/media/physical-test/20261016-additional/6.gif" width="420" loading="lazy" alt="Physical test 6"></a> | <a href="docs/media/physical-test/20261016-additional/7.gif"><img src="docs/media/physical-test/20261016-additional/7.gif" width="420" loading="lazy" alt="Physical test 7"></a> |
+
+**Analysis:**
+<!-- PHYSICAL_TEST_ANALYSIS:additional-four -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:additional-four -->
+
+<a id="physical-test-annotated-maps"></a>
+
+### Annotated map comparison
+
+<a href="docs/media/physical-test/20261016-additional/annotated-maps.png"><img src="docs/media/physical-test/20261016-additional/annotated-maps.png" width="653" alt="User-annotated comparison of four physical-test maps"></a>
+
+**Analysis:**
+<!-- PHYSICAL_TEST_ANALYSIS:annotated-maps -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:annotated-maps -->
+
 ## Direction analysis
 
 ### 1. What does the research title ask?

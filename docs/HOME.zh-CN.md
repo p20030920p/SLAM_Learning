@@ -68,6 +68,32 @@
 
 <!-- /PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
 
+<a id="physical-test-additional"></a>
+
+### 新增实物测试
+
+| 测试4 · `4.mp4` | 测试5 · `5.mp4` |
+| --- | --- |
+| <a href="media/physical-test/20261016-additional/4.gif"><img src="media/physical-test/20261016-additional/4.gif" width="420" loading="lazy" alt="实物测试4"></a> | <a href="media/physical-test/20261016-additional/5.gif"><img src="media/physical-test/20261016-additional/5.gif" width="420" loading="lazy" alt="实物测试5"></a> |
+| **测试6 · `6.mp4`** | **测试7 · `7.mp4`** |
+| <a href="media/physical-test/20261016-additional/6.gif"><img src="media/physical-test/20261016-additional/6.gif" width="420" loading="lazy" alt="实物测试6"></a> | <a href="media/physical-test/20261016-additional/7.gif"><img src="media/physical-test/20261016-additional/7.gif" width="420" loading="lazy" alt="实物测试7"></a> |
+
+**分析：**
+<!-- PHYSICAL_TEST_ANALYSIS:additional-four -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:additional-four -->
+
+<a id="physical-test-annotated-maps"></a>
+
+### 建图结果标注图
+
+<a href="media/physical-test/20261016-additional/annotated-maps.png"><img src="media/physical-test/20261016-additional/annotated-maps.png" width="653" alt="用户标注的四组实物测试建图结果"></a>
+
+**分析：**
+<!-- PHYSICAL_TEST_ANALYSIS:annotated-maps -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:annotated-maps -->
+
 ## 方向分析
 
 ### 1. 题目究竟在研究什么？

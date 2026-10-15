@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "kind": "user_provided_physical_test_clips",
+  "status": "recorded",
+  "source_kind": "User-provided edited clips; conversion applies no further cuts or speed changes",
+  "scope": "Physical scene and RViz video evidence; interpretation and analysis supplied by the user",
+  "items": [
+    {
+      "source_name": "4.mp4",
+      "source_sha256": "a27be7d6af2ae170814b2a82c84b7c31359341d39e421cf5f142c0f55739b8ee",
+      "source_availability": "user_local_directory",
+      "gif": "4.gif",
+      "source_video_dimensions": [
+        960,
+        544
+      ],
+      "source_frames": 774,
+      "source_fps": 30.0,
+      "source_duration_s": 25.82,
+      "gif_duration_s": 25.76,
+      "gif_frames": 206,
+      "gif_dimensions": [
+        480,
+        272
+      ],
+      "gif_fps": 8,
+      "speed_multiplier": 1,
+      "additional_trim": false,
+      "crop": false,
+      "video_reencoded": false,
+      "full_video_decoded": true,
+      "qa_source_times_s": [
+        0.5,
+        12.91,
+        25.52
+      ],
+      "conversion_filter": "fps=8,scale=480:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle"
+    },
+    {
+      "source_name": "5.mp4",
+      "source_sha256": "73e250c2a60269d78ca2f322e711f30c4771ce1c536efcf2f9fa8d0315189ab6",
+      "source_availability": "user_local_directory",
+      "gif": "5.gif",
+      "source_video_dimensions": [
+        960,
+        544
+      ],
+      "source_frames": 804,
+      "source_fps": 30.0,
+      "source_duration_s": 26.819002,
+      "gif_duration_s": 26.76,
+      "gif_frames": 214,
+      "gif_dimensions": [
+        480,
+        272
+      ],
+      "gif_fps": 8,
+      "speed_multiplier": 1,
+      "additional_trim": false,
+      "crop": false,
+      "video_reencoded": false,
+      "full_video_decoded": true,
+      "qa_source_times_s": [
+        0.5,
+        13.409501,
+        26.519002
+      ],
+      "conversion_filter": "fps=8,scale=480:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle"
+    },
+    {
+      "source_name": "6.mp4",
+      "source_sha256": "9a4b2d0027504a177a59af1b09fb4cf32c92d3a1f15fb868d797c993ceabe78f",
+      "source_availability": "user_local_directory",
+      "gif": "6.gif",
+      "source_video_dimensions": [
+        968,
+        544
+      ],
+      "source_frames": 748,
+      "source_fps": 30.0,
+      "source_duration_s": 24.938005,
+      "gif_duration_s": 24.9,
+      "gif_frames": 249,
+      "gif_dimensions": [
+        960,
+        540
+      ],
+      "gif_fps": 10,
+      "speed_multiplier": 1,
+      "additional_trim": false,
+      "crop": false,
+      "video_reencoded": false,
+      "full_video_decoded": true,
+      "qa_source_times_s": [
+        0.5,
+        12.4690025,
+        24.638005
+      ],
+      "conversion_filter": "fps=10,scale=960:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle"
+    },
+    {
+      "source_name": "7.mp4",
+      "source_sha256": "fa03bc821db5152cf00e92db3705f4a6a21f3a0351854535f824aa208d173585",
+      "source_availability": "user_local_directory",
+      "gif": "7.gif",
+      "source_video_dimensions": [
+        1920,
+        1080
+      ],
+      "source_frames": 733,
+      "source_fps": 30.0,
+      "source_duration_s": 24.45,
+      "gif_duration_s": 24.4,
+      "gif_frames": 244,
+      "gif_dimensions": [
+        960,
+        540
+      ],
+      "gif_fps": 10,
+      "speed_multiplier": 1,
+      "additional_trim": false,
+      "crop": false,
+      "video_reencoded": false,
+      "full_video_decoded": true,
+      "qa_source_times_s": [
+        0.5,
+        12.225,
+        24.15
+      ],
+      "conversion_filter": "fps=10,scale=960:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle"
+    }
+  ],
+  "image": {
+    "source_name": "codex-clipboard-001e7086-9fb5-42ae-b901-323451020c7f.png",
+    "source_sha256": "060472959fb5f202aeb1f6d4a502ef57f27618d025d5db2544988d1de1930385",
+    "source_availability": "user_attachment",
+    "image": "annotated-maps.png",
+    "dimensions": [
+      653,
+      673
+    ],
+    "edited": false
+  },
+  "artifacts": {
+    "4-qa-0.png": {
+      "sha256": "a0fc06925a4b2ebe4ba911e748d625b57b5cabe48bbf586e574bb68ff820f900",
+      "bytes": 218173,
+      "availability": "portable"
+    },
+    "4-qa-1.png": {
+      "sha256": "3edace9a6ded7f001ea7b90d42064a61945011b642b66596ca5fccb72fbc2e71",
+      "bytes": 233076,
+      "availability": "portable"
+    },
+    "4-qa-2.png": {
+      "sha256": "6778862d0668a6c6ae9b685cadd851a647c4982bfbca19c51644a6981504cafc",
+      "bytes": 215986,
+      "availability": "portable"
+    },
+    "4.gif": {
+      "sha256": "7ffaf35c0bcc37affa1ff4d890b324a383fd4102e186a4bbaaa1af0ef24e7064",
+      "bytes": 10000546,
+      "availability": "portable"
+    },
+    "5-qa-0.png": {
+      "sha256": "7cce95f0fc17f70ca2304084eb1cd99fe22cd7711612792175aee928986a407d",
+      "bytes": 177948,
+      "availability": "portable"
+    },
+    "5-qa-1.png": {
+      "sha256": "99bbecb66ebb53d7a91517f76691f2cdc347ce6b2b48a0b37fdeabd459ecad2a",
+      "bytes": 163981,
+      "availability": "portable"
+    },
+    "5-qa-2.png": {
+      "sha256": "87c57a62202af37d2fdde2e3e5a5cfc00d3c7316927359646bb004a8073d4cf1",
+      "bytes": 139675,
+      "availability": "portable"
+    },
+    "5.gif": {
+      "sha256": "cf8883bf7ca8b3da845cfe0dedb10f40fba079895ec78ec17b4621414e277cbb",
+      "bytes": 8697738,
+      "availability": "portable"
+    },
+    "6-qa-0.png": {
+      "sha256": "1c1a05d808be60d4d4d7686412bc056d1a53e2e9719c2f5deefa84c7fbe6ce8c",
+      "bytes": 196858,
+      "availability": "portable"
+    },
+    "6-qa-1.png": {
+      "sha256": "c022e56dae9829ac4fd9dd9423f73fe44213ca3c716b5868e865e0cfade5fa21",
+      "bytes": 215983,
+      "availability": "portable"
+    },
+    "6-qa-2.png": {
+      "sha256": "7b3a00468fb5b5ce9ac7bd39acb0249b51c1ad03eccacd990d688df0391b30d0",
+      "bytes": 223553,
+      "availability": "portable"
+    },
+    "6.gif": {
+      "sha256": "a48d5c58f9719d18b835eab9edb40063c1b0aaf49d991d655cc8f6f4723f95ba",
+      "bytes": 4060886,
+      "availability": "portable"
+    },
+    "7-qa-0.png": {
+      "sha256": "5503752ce211cdd87440a93eecc888cbdb3699f6e416d9a003323b313b3d9b1c",
+      "bytes": 200383,
+      "availability": "portable"
+    },
+    "7-qa-1.png": {
+      "sha256": "f8d10ed6280aa34d54d0c5ca2a696b1ba527c44fb4f2455370a8955bc5cfb5d0",
+      "bytes": 209074,
+      "availability": "portable"
+    },
+    "7-qa-2.png": {
+      "sha256": "fd45b8210a0e5e9bae7276df5e2c8e9ef486149c9681bf1013475a093d1e7301",
+      "bytes": 228426,
+      "availability": "portable"
+    },
+    "7.gif": {
+      "sha256": "a59fe3bb7a4c09a962ffbb3f714cdfa8ffcae0648ccd73f0eeb32a3c6590f9ef",
+      "bytes": 2995265,
+      "availability": "portable"
+    },
+    "annotated-maps.png": {
+      "sha256": "060472959fb5f202aeb1f6d4a502ef57f27618d025d5db2544988d1de1930385",
+      "bytes": 88878,
+      "availability": "portable"
+    },
+    "export_physical_test_clips.source.py": {
+      "sha256": "e27a8df3eb6efc8aee41dcc3fe7051b03021b6a450be0cc8b5d20bc10ad9dc66",
+      "bytes": 5883,
+      "availability": "portable"
+    }
+  }
+}
