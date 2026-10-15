@@ -50,6 +50,45 @@ Semantic mapping and earlier projections remain in the [original repository](htt
 
 ## Problem getting from Physical test
 
+<a id="physical-test-real"></a>
+
+### 1. Physical scene
+
+<a href="docs/media/physical-test/20261015/real.gif"><img src="docs/media/physical-test/20261015/real.gif" width="360" loading="lazy" alt="Physical scene"></a>
+
+12.17 s
+
+**Analysis:**
+<!-- PHYSICAL_TEST_ANALYSIS:real -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:real -->
+
+<a id="physical-test-rviz-static"></a>
+
+### 2. RViz static clip
+
+<a href="docs/media/physical-test/20261015/rviz_Static.gif"><img src="docs/media/physical-test/20261015/rviz_Static.gif" width="960" loading="lazy" alt="RViz static clip"></a>
+
+17.11 s
+
+**Analysis:**
+<!-- PHYSICAL_TEST_ANALYSIS:rviz-static -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:rviz-static -->
+
+<a id="physical-test-rviz-dynamic"></a>
+
+### 3. RViz dynamic clip
+
+<a href="docs/media/physical-test/20261015/rviz_dyn.gif"><img src="docs/media/physical-test/20261015/rviz_dyn.gif" width="960" loading="lazy" alt="RViz dynamic clip"></a>
+
+24.38 s
+
+**Analysis:**
+<!-- PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
+
 ## Open question
 
 **Broad direction: reliable mapping and localization in changing environments.** Self-recovery under degradation and large change spans mapping, registration, relocalization and sensor fusion; it is too broad for the present paper set and experiments.

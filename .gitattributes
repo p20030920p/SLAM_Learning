@@ -9,6 +9,7 @@ results/localization/static-dynamic/** -text whitespace=-blank-at-eol
 *.pdf binary
 
 docs/media/hardware/** -text whitespace=-blank-at-eol
+docs/media/physical-test/** -text whitespace=-blank-at-eol,-blank-at-eof
 
 # Preserve inspected upstream URDF bytes, including the exporter's comment spacing.
 config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf -text whitespace=-blank-at-eol

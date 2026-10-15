@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "kind": "user_provided_physical_test_clips",
+  "status": "recorded",
+  "source_kind": "User-provided edited clips; conversion applies no further cuts or speed changes",
+  "scope": "Physical scene and RViz video evidence; interpretation and analysis supplied by the user",
+  "items": [
+    {
+      "source_name": "real.mp4",
+      "source_sha256": "b7f3921081e6d462d0297a6fb32d731f9702a5609555486c58f16c8f2f9415d5",
+      "gif": "real.gif",
+      "source_video_dimensions": [
+        720,
+        1280
+      ],
+      "source_frames": 365,
+      "source_fps": 30.0,
+      "source_duration_s": 12.167007,
+      "gif_duration_s": 12.2,
+      "gif_frames": 122,
+      "gif_dimensions": [
+        360,
+        640
+      ],
+      "gif_fps": 10,
+      "speed_multiplier": 1,
+      "additional_trim": false,
+      "crop": false,
+      "video_reencoded": false,
+      "full_video_decoded": true,
+      "qa_source_times_s": [
+        0.5,
+        6.0835035,
+        11.867007
+      ],
+      "conversion_filter": "fps=10,scale=360:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=96:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle",
+      "source_availability": "user_local_directory"
+    },
+    {
+      "source_name": "rviz_dyn.mp4",
+      "source_sha256": "44035925e03432bca2d254ce45087f3a1530e3eacc46b6975f12efda90f40291",
+      "gif": "rviz_dyn.gif",
+      "source_video_dimensions": [
+        1920,
+        1080
+      ],
+      "source_frames": 731,
+      "source_fps": 30.0,
+      "source_duration_s": 24.380998,
+      "gif_duration_s": 24.4,
+      "gif_frames": 244,
+      "gif_dimensions": [
+        960,
+        540
+      ],
+      "gif_fps": 10,
+      "speed_multiplier": 1,
+      "additional_trim": false,
+      "crop": false,
+      "video_reencoded": false,
+      "full_video_decoded": true,
+      "qa_source_times_s": [
+        0.5,
+        12.190499,
+        24.080998
+      ],
+      "conversion_filter": "fps=10,scale=960:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle",
+      "source_availability": "user_local_directory"
+    },
+    {
+      "source_name": "rviz_Static.mp4",
+      "source_sha256": "58f0289a8f0a759ee59a8f277711094395feadf1ad211588025e5088c780a173",
+      "gif": "rviz_Static.gif",
+      "source_video_dimensions": [
+        1920,
+        1080
+      ],
+      "source_frames": 513,
+      "source_fps": 30.0,
+      "source_duration_s": 17.112993,
+      "gif_duration_s": 17.1,
+      "gif_frames": 171,
+      "gif_dimensions": [
+        960,
+        540
+      ],
+      "gif_fps": 10,
+      "speed_multiplier": 1,
+      "additional_trim": false,
+      "crop": false,
+      "video_reencoded": false,
+      "full_video_decoded": true,
+      "qa_source_times_s": [
+        0.5,
+        8.5564965,
+        16.812993
+      ],
+      "conversion_filter": "fps=10,scale=960:-2:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle",
+      "source_availability": "user_local_directory"
+    }
+  ],
+  "artifacts": {
+    "export_physical_test_clips.source.py": {
+      "sha256": "84bb624b06bd61066073931c5ba811f82396028a936f3c85fa0d61611af290d7",
+      "bytes": 4658,
+      "availability": "portable"
+    },
+    "real-qa-0.png": {
+      "sha256": "46a2d4a1e2d5e829628124cf68344dd93445f41b20ab6a487f484f043c39485c",
+      "bytes": 344094,
+      "availability": "portable"
+    },
+    "real-qa-1.png": {
+      "sha256": "86dbcc8e4612f618d2ee1d590ea1098a8aa7dcf8ddc4f697fd03b1ec484ec7bd",
+      "bytes": 398759,
+      "availability": "portable"
+    },
+    "real-qa-2.png": {
+      "sha256": "a592f706df7bcb8088222dbe437b335b53e3101763633494068c985b9cd16892",
+      "bytes": 410989,
+      "availability": "portable"
+    },
+    "real.gif": {
+      "sha256": "75a20420d40c4a68d11d760b994d5dfcf1b3b2c2bdb91398b2a21caddbcc44ad",
+      "bytes": 9300183,
+      "availability": "portable"
+    },
+    "rviz_dyn-qa-0.png": {
+      "sha256": "3ac3690d18cc9c2260481eac2420f8f83f40fd6200165fd59d595036adb174fd",
+      "bytes": 226945,
+      "availability": "portable"
+    },
+    "rviz_dyn-qa-1.png": {
+      "sha256": "18b86f667c94c6d1c27f45a0498992f105a5d26ba3a4b75967525b468eab6dec",
+      "bytes": 249651,
+      "availability": "portable"
+    },
+    "rviz_dyn-qa-2.png": {
+      "sha256": "7b425a099a9ce68d16852a2651ef0f21a77acb8c1cab9d4ee2591fca8a3f4b7d",
+      "bytes": 254682,
+      "availability": "portable"
+    },
+    "rviz_dyn.gif": {
+      "sha256": "b9557db11a9995df1c509abf16ffd58860085d1293e15cd9fefed522c1636733",
+      "bytes": 2854771,
+      "availability": "portable"
+    },
+    "rviz_Static-qa-0.png": {
+      "sha256": "daf314335fa72cee8a0148dbc8eb5c7ecff959963f43edf8bb852cb8dc814489",
+      "bytes": 206929,
+      "availability": "portable"
+    },
+    "rviz_Static-qa-1.png": {
+      "sha256": "b5dfd87be09f7ad1159c3859a55c93a4a27a2ca44edfc1f392abc6810fe3873c",
+      "bytes": 237101,
+      "availability": "portable"
+    },
+    "rviz_Static-qa-2.png": {
+      "sha256": "d1d1d2b7c9bebb2082eba3408ca6879e641392f6618e167d34270f4239fad758",
+      "bytes": 239217,
+      "availability": "portable"
+    },
+    "rviz_Static.gif": {
+      "sha256": "f5f60494038604053de0d4a8be860b3d69541e8f6145efe21e86fc650ca03784",
+      "bytes": 2295482,
+      "availability": "portable"
+    }
+  }
+}

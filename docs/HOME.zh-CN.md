@@ -50,6 +50,45 @@
 
 ## Problem getting from Physical test
 
+<a id="physical-test-real"></a>
+
+### 1. 实物现场
+
+<a href="media/physical-test/20261015/real.gif"><img src="media/physical-test/20261015/real.gif" width="360" loading="lazy" alt="实物现场"></a>
+
+12.17 s
+
+**分析：**
+<!-- PHYSICAL_TEST_ANALYSIS:real -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:real -->
+
+<a id="physical-test-rviz-static"></a>
+
+### 2. RViz 静态视频
+
+<a href="media/physical-test/20261015/rviz_Static.gif"><img src="media/physical-test/20261015/rviz_Static.gif" width="960" loading="lazy" alt="RViz 静态视频"></a>
+
+17.11 s
+
+**分析：**
+<!-- PHYSICAL_TEST_ANALYSIS:rviz-static -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:rviz-static -->
+
+<a id="physical-test-rviz-dynamic"></a>
+
+### 3. RViz 动态视频
+
+<a href="media/physical-test/20261015/rviz_dyn.gif"><img src="media/physical-test/20261015/rviz_dyn.gif" width="960" loading="lazy" alt="RViz 动态视频"></a>
+
+24.38 s
+
+**分析：**
+<!-- PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
+
 ## 开放问题
 
 **大方向：变化环境中的可靠建图与定位。** 原来的“退化与大变动下定位自恢复”适合作为长期方向，但同时跨越建图、配准、重定位和多传感器融合，对当前论文与实验过于开放。
