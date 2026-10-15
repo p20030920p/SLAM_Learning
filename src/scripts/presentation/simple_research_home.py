@@ -203,7 +203,7 @@ def metric_table(zh):
                 ),
             ],
             [
-                "Eₘ ↓",
+                label("地图 RMSE ↓", "Map RMSE ↓"),
                 label(
                     "去畸变A：地图点到静态参考几何的距离RMSE，cm。",
                     "Deskew A: map-point distance RMSE to static reference geometry, cm.",
@@ -602,7 +602,7 @@ def practice(doc, zh, previous):
             m = data[key]
             rows.append([name, num(m["surface_rmse_m"], 100)])
         lines += [
-            table([label("点补偿", "Point compensation"), "Eₘ / cm ↓"], rows),
+            table([label("点补偿", "Point compensation"), label("地图 RMSE / cm ↓", "Map RMSE / cm ↓")], rows),
             ref(folder + "/score.json", label("评分", "Scores")),
             "",
         ]
