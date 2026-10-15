@@ -1,39 +1,44 @@
-<!doctype html><html lang="zh-CN"><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SLAM · H1/H2/H3 新实验录像</title>
-<style>body{max-width:1200px;margin:32px auto;padding:0 24px;font:16px/1.65 system-ui;background:#f5f7fa;color:#182331}nav{position:sticky;top:0;background:white;padding:12px}article{background:white;padding:18px;margin:16px 0;border-radius:12px}video{display:block;width:100%;max-width:960px}a{color:#075ca8}</style>
-<h1>H1 / H2 / H3 · 新实验录像</h1>
-<nav><a href="#h1">动态清图</a> · <a href="#h2">运动畸变</a> · <a href="#h3">长廊参照</a> · <a href="#baseline">三维原测试</a> · <a href="../docs/HOME.zh-CN.md#practice-index">指标与分析</a></nav>
-<p>A为建图，B为另一次独立定位采集；此页显示原生Gazebo／RViz实录。</p>
-<section id="h1"><h2>H1 · 动态清图</h2>
-<article><h3>静态对照 · 新A · Raw / SRRG</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-A-static/execution.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-A-static/execution.mp4">MP4</a></article>
-<article><h3>静态对照 · 新B · raw map / AMCL</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-static/executions/raw.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-static/executions/raw.mp4">MP4</a></article>
-<article><h3>静态对照 · 新B · srrg map / AMCL</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-static/executions/srrg.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-static/executions/srrg.mp4">MP4</a></article>
-<article><h3>运动障碍物 · 新A · Raw / SRRG</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-A-dynamic/execution.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-A-dynamic/execution.mp4">MP4</a></article>
-<article><h3>运动障碍物 · 新B · raw map / AMCL</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-dynamic/executions/raw.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-dynamic/executions/raw.mp4">MP4</a></article>
-<article><h3>运动障碍物 · 新B · srrg map / AMCL</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.mp4">MP4</a></article>
-</section><section id="h2"><h2>H2 · FAST-LIO点补偿</h2><p>绿色为开启补偿，橙色为关闭补偿；保留两组的IMU状态预测。</p>
-<article><h3>新A · 静止、慢转、快转、平移</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/fastlio-motion/execution.mp4"></video><a href="../results/reference/direction-20261016-v2/fastlio-motion/execution.mp4">MP4</a></article>
-<article><h3>新B · 关闭点补偿的冻结地图 / GICP</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.mp4"></video><a href="../results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.mp4">MP4</a></article>
-<article><h3>新B · 开启点补偿的冻结地图 / GICP</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/fastlio-B/executions/deskew.mp4"></video><a href="../results/reference/direction-20261016-v2/fastlio-B/executions/deskew.mp4">MP4</a></article>
-</section><section id="h3"><h2>H3 · 长廊静态参照</h2>
-<article><h3>原长廊 · 新A · Raw / SRRG</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-A-corridor/execution.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-A-corridor/execution.mp4">MP4</a></article>
-<article><h3>原长廊 · 新B · degraded_raw map / AMCL</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.mp4">MP4</a></article>
-<article><h3>原长廊 · 新B · degraded_srrg map / AMCL</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.mp4">MP4</a></article>
-<article><h3>加非对称参照长廊 · 新A · Raw / SRRG</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-A-landmark-corridor/execution.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-A-landmark-corridor/execution.mp4">MP4</a></article>
-<article><h3>加非对称参照长廊 · 新B · degraded_raw map / AMCL</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-landmark-corridor/executions/degraded_raw.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-landmark-corridor/executions/degraded_raw.mp4">MP4</a></article>
-<article><h3>加非对称参照长廊 · 新B · degraded_srrg map / AMCL</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-landmark-corridor/executions/degraded_srrg.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-landmark-corridor/executions/degraded_srrg.mp4">MP4</a></article>
-</section><section id="baseline"><h2>三维原测试</h2>
-<article><h3>静态 · raw map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-static/executions/raw.mp4"></video><a href="../results/reference/robot-3d-static/executions/raw.mp4">MP4</a></article>
-<article><h3>静态 · dufomap map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-static/executions/dufomap.mp4"></video><a href="../results/reference/robot-3d-static/executions/dufomap.mp4">MP4</a></article>
-<article><h3>静态 · beautymap map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-static/executions/beautymap.mp4"></video><a href="../results/reference/robot-3d-static/executions/beautymap.mp4">MP4</a></article>
-<article><h3>动态 · raw map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-dynamic/executions/raw.mp4"></video><a href="../results/reference/robot-3d-dynamic/executions/raw.mp4">MP4</a></article>
-<article><h3>动态 · dufomap map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-dynamic/executions/dufomap.mp4"></video><a href="../results/reference/robot-3d-dynamic/executions/dufomap.mp4">MP4</a></article>
-<article><h3>动态 · beautymap map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-dynamic/executions/beautymap.mp4"></video><a href="../results/reference/robot-3d-dynamic/executions/beautymap.mp4">MP4</a></article>
-<article><h3>长廊 · raw map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-corridor/executions/raw.mp4"></video><a href="../results/reference/robot-3d-corridor/executions/raw.mp4">MP4</a></article>
-<article><h3>长廊 · dufomap map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-corridor/executions/dufomap.mp4"></video><a href="../results/reference/robot-3d-corridor/executions/dufomap.mp4">MP4</a></article>
-<article><h3>长廊 · beautymap map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-corridor/executions/beautymap.mp4"></video><a href="../results/reference/robot-3d-corridor/executions/beautymap.mp4">MP4</a></article>
-<article><h3>结构变化 · raw map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-large-change/executions/raw.mp4"></video><a href="../results/reference/robot-3d-large-change/executions/raw.mp4">MP4</a></article>
-<article><h3>结构变化 · dufomap map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-large-change/executions/dufomap.mp4"></video><a href="../results/reference/robot-3d-large-change/executions/dufomap.mp4">MP4</a></article>
-<article><h3>结构变化 · beautymap map / GICP · 原记录</h3><video controls preload="none" src="../results/reference/robot-3d-large-change/executions/beautymap.mp4"></video><a href="../results/reference/robot-3d-large-change/executions/beautymap.mp4">MP4</a></article>
-</section></html>
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Practice · Related works方法实践</title>
+<style>body{max-width:1200px;margin:24px auto;padding:0 20px;font:16px/1.7 system-ui;background:#f4f6f8}nav{position:sticky;top:0;padding:12px;background:white}section{margin:24px 0}article{background:white;padding:16px;margin:16px 0}video{width:100%;max-width:960px}a{color:#075ca8}</style>
+<h1>Practice · Related works方法实践</h1>
+<nav><a href="gallery.html">Practice · 论文方法实践</a> · <a href="hypotheses.html">Hypothesis test · 自写方法</a> · <a href="../docs/HOME.zh-CN.md">中文首页</a></nav>
+<section id="srrg"><h2>P1 · SRRG</h2>
+<article><h3>SRRG · static · A</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-A-static/execution.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-A-static/execution.mp4">MP4</a></article>
+<article><h3>SRRG · static · B · raw</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-static/executions/raw.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-static/executions/raw.mp4">MP4</a></article>
+<article><h3>SRRG · static · B · srrg</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-static/executions/srrg.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-static/executions/srrg.mp4">MP4</a></article>
+<article><h3>SRRG · dynamic · A</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-A-dynamic/execution.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-A-dynamic/execution.mp4">MP4</a></article>
+<article><h3>SRRG · dynamic · B · raw</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-dynamic/executions/raw.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-dynamic/executions/raw.mp4">MP4</a></article>
+<article><h3>SRRG · dynamic · B · srrg</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.mp4">MP4</a></article>
+<article><h3>SRRG · corridor · A</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-A-corridor/execution.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-A-corridor/execution.mp4">MP4</a></article>
+<article><h3>SRRG · corridor · B · degraded_raw</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.mp4">MP4</a></article>
+<article><h3>SRRG · corridor · B · degraded_srrg</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.mp4"></video><a href="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.mp4">MP4</a></article>
+</section>
+<section id="fastlio"><h2>P2 · FAST-LIO</h2>
+<article><h3>FAST-LIO · A · 运动阶段</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/fastlio-motion/execution.mp4"></video><a href="../results/reference/direction-20261016-v2/fastlio-motion/execution.mp4">MP4</a></article>
+<article><h3>FAST-LIO · B · deskew</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/fastlio-B/executions/deskew.mp4"></video><a href="../results/reference/direction-20261016-v2/fastlio-B/executions/deskew.mp4">MP4</a></article>
+<article><h3>FAST-LIO · B · no_deskew</h3><video controls preload="none" src="../results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.mp4"></video><a href="../results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.mp4">MP4</a></article>
+</section>
+<section id="3d"><h2>P3 · DUFOMap / BeautyMap · 3D</h2>
+<article><h3>KITTI-00 · dufomap</h3><video controls preload="none" src="../results/reference/desktop-live-dufomap/execution.mp4"></video><a href="../results/reference/desktop-live-dufomap/execution.mp4">MP4</a></article>
+<article><h3>KITTI-00 · beautymap</h3><video controls preload="none" src="../results/reference/desktop-live-beautymap/execution.mp4"></video><a href="../results/reference/desktop-live-beautymap/execution.mp4">MP4</a></article>
+<article><h3>static · raw / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-static/executions/raw.mp4"></video><a href="../results/reference/robot-3d-static/executions/raw.mp4">MP4</a></article>
+<article><h3>static · dufomap / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-static/executions/dufomap.mp4"></video><a href="../results/reference/robot-3d-static/executions/dufomap.mp4">MP4</a></article>
+<article><h3>static · beautymap / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-static/executions/beautymap.mp4"></video><a href="../results/reference/robot-3d-static/executions/beautymap.mp4">MP4</a></article>
+<article><h3>dynamic · raw / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-dynamic/executions/raw.mp4"></video><a href="../results/reference/robot-3d-dynamic/executions/raw.mp4">MP4</a></article>
+<article><h3>dynamic · dufomap / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-dynamic/executions/dufomap.mp4"></video><a href="../results/reference/robot-3d-dynamic/executions/dufomap.mp4">MP4</a></article>
+<article><h3>dynamic · beautymap / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-dynamic/executions/beautymap.mp4"></video><a href="../results/reference/robot-3d-dynamic/executions/beautymap.mp4">MP4</a></article>
+<article><h3>corridor · raw / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-corridor/executions/raw.mp4"></video><a href="../results/reference/robot-3d-corridor/executions/raw.mp4">MP4</a></article>
+<article><h3>corridor · dufomap / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-corridor/executions/dufomap.mp4"></video><a href="../results/reference/robot-3d-corridor/executions/dufomap.mp4">MP4</a></article>
+<article><h3>corridor · beautymap / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-corridor/executions/beautymap.mp4"></video><a href="../results/reference/robot-3d-corridor/executions/beautymap.mp4">MP4</a></article>
+<article><h3>large-change · raw / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-large-change/executions/raw.mp4"></video><a href="../results/reference/robot-3d-large-change/executions/raw.mp4">MP4</a></article>
+<article><h3>large-change · dufomap / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-large-change/executions/dufomap.mp4"></video><a href="../results/reference/robot-3d-large-change/executions/dufomap.mp4">MP4</a></article>
+<article><h3>large-change · beautymap / GICP</h3><video controls preload="none" src="../results/reference/robot-3d-large-change/executions/beautymap.mp4"></video><a href="../results/reference/robot-3d-large-change/executions/beautymap.mp4">MP4</a></article>
+</section>
+<section id="irmcl"><h2>P4 · IR-MCL</h2>
+<article><h3>Bonn · 原生执行</h3><video controls preload="none" src="../results/reference/desktop-live-ir-mcl/execution.mp4"></video><a href="../results/reference/desktop-live-ir-mcl/execution.mp4">MP4</a></article>
+</section>
+<section id="adam"><h2>P5 · AdaM-MCL</h2>
+<article><h3>保存结果回放</h3><video controls preload="none" src="../results/reference/desktop-adam-mcl/result.mp4"></video><a href="../results/reference/desktop-adam-mcl/result.mp4">MP4</a></article>
+</section>
+</html>

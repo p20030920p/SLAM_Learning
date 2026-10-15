@@ -1,0 +1,20 @@
+{
+  "off": {
+    "method": "off",
+    "title": "SLAM LIVE - off - RViz2",
+    "config": "view-off.rviz",
+    "map_topic": "/off/map",
+    "pose_topic": "/off/amcl_pose",
+    "tf_topic": "/off/view/tf",
+    "scan_topic": "/scan"
+  },
+  "deskew": {
+    "method": "deskew",
+    "title": "SLAM LIVE - deskew - RViz2",
+    "config": "view-deskew.rviz",
+    "map_topic": "/deskew/map",
+    "pose_topic": "/deskew/amcl_pose",
+    "tf_topic": "/deskew/view/tf",
+    "scan_topic": "/scan"
+  }
+}

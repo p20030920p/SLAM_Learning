@@ -1,0 +1,102 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-16-02-07-29-818388-DESKTOP-GI2390C-287720
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [map_server-1]: process started with pid [287808]
+[INFO] [amcl-2]: process started with pid [287809]
+[amcl-2] [INFO] [1792105649.935860504] [off.amcl]: 
+[amcl-2] 	amcl lifecycle node launched. 
+[amcl-2] 	Waiting on external lifecycle transitions to activate
+[amcl-2] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-2] [INFO] [1792105649.942820957] [off.amcl]: Creating
+[map_server-1] [INFO] [1792105649.944334221] [off.map_server]: 
+[map_server-1] 	map_server lifecycle node launched. 
+[map_server-1] 	Waiting on external lifecycle transitions to activate
+[map_server-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-1] [INFO] [1792105649.944435512] [off.map_server]: Creating
+[INFO] [lifecycle_manager-3]: process started with pid [287988]
+[lifecycle_manager-3] [INFO] [1792105651.953684359] [off.lifecycle_manager]: Creating
+[lifecycle_manager-3] [INFO] [1792105651.956647444] [off.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[INFO] [map_server-4]: process started with pid [288023]
+[INFO] [amcl-5]: process started with pid [288024]
+[amcl-5] [INFO] [1792105652.951145677] [deskew.amcl]: 
+[amcl-5] 	amcl lifecycle node launched. 
+[amcl-5] 	Waiting on external lifecycle transitions to activate
+[amcl-5] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-5] [INFO] [1792105652.955072471] [deskew.amcl]: Creating
+[map_server-4] [INFO] [1792105652.958575001] [deskew.map_server]: 
+[map_server-4] 	map_server lifecycle node launched. 
+[map_server-4] 	Waiting on external lifecycle transitions to activate
+[map_server-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-4] [INFO] [1792105652.958716692] [deskew.map_server]: Creating
+[lifecycle_manager-3] [INFO] [1792105653.614149902] [off.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-3] [INFO] [1792105653.614187203] [off.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-1] [INFO] [1792105653.614413230] [off.map_server]: Configuring
+[map_server-1] [INFO] [1792105653.614458106] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/own-hypotheses-20261016/motion-A/maps/off/map.yaml
+[map_server-1] [INFO] [1792105653.623995815] [map_io]: resolution: 0.05
+[map_server-1] [INFO] [1792105653.624022145] [map_io]: origin[0]: -6
+[map_server-1] [INFO] [1792105653.624027445] [map_io]: origin[1]: -14
+[map_server-1] [INFO] [1792105653.624030441] [map_io]: origin[2]: 0
+[map_server-1] [INFO] [1792105653.624033838] [map_io]: free_thresh: 0.196
+[map_server-1] [INFO] [1792105653.624037354] [map_io]: occupied_thresh: 0.65
+[map_server-1] [INFO] [1792105653.624041813] [map_io]: mode: trinary
+[map_server-1] [INFO] [1792105653.624045490] [map_io]: negate: 0
+[map_server-1] [INFO] [1792105653.624222197] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/own-hypotheses-20261016/motion-A/maps/off/map.pgm
+[map_server-1] [INFO] [1792105653.651302066] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/reference/own-hypotheses-20261016/motion-A/maps/off/map.pgm: 640 X 600 map @ 0.05 m/cell
+[lifecycle_manager-3] [INFO] [1792105653.661017975] [off.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-2] [INFO] [1792105653.661318559] [off.amcl]: Configuring
+[amcl-2] [INFO] [1792105653.661385276] [off.amcl]: initTransforms
+[amcl-2] [INFO] [1792105653.671860124] [off.amcl]: initPubSub
+[amcl-2] [INFO] [1792105653.680963163] [off.amcl]: Subscribed to map topic.
+[lifecycle_manager-3] [INFO] [1792105653.687394541] [off.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-1] [INFO] [1792105653.687620958] [off.map_server]: Activating
+[map_server-1] [INFO] [1792105653.690003772] [off.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-2] [INFO] [1792105653.691887680] [off.amcl]: Received a 640 X 600 map @ 0.050 m/pix
+[lifecycle_manager-3] [INFO] [1792105653.799785801] [off.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-3] [INFO] [1792105653.799824946] [off.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-2] [INFO] [1792105653.800056718] [off.amcl]: Activating
+[amcl-2] [INFO] [1792105653.800090823] [off.amcl]: initialPoseReceived
+[amcl-2] [INFO] [1792105653.800165506] [off.amcl]: Setting pose (0.518000): 8.323 7.681 -1.451
+[amcl-2] [INFO] [1792105653.800542065] [off.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-3] [INFO] [1792105653.905460628] [off.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-3] [INFO] [1792105653.905528187] [off.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-3] [INFO] [1792105653.905540972] [off.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[INFO] [lifecycle_manager-6]: process started with pid [288122]
+[lifecycle_manager-6] [INFO] [1792105655.137502563] [deskew.lifecycle_manager]: Creating
+[lifecycle_manager-6] [INFO] [1792105655.141503573] [deskew.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-6] [INFO] [1792105656.581059836] [deskew.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-6] [INFO] [1792105656.581162221] [deskew.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-4] [INFO] [1792105656.581764829] [deskew.map_server]: Configuring
+[map_server-4] [INFO] [1792105656.581826917] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/own-hypotheses-20261016/motion-A/maps/deskew/map.yaml
+[map_server-4] [INFO] [1792105656.586087748] [map_io]: resolution: 0.05
+[map_server-4] [INFO] [1792105656.586162029] [map_io]: origin[0]: -6
+[map_server-4] [INFO] [1792105656.586168572] [map_io]: origin[1]: -14
+[map_server-4] [INFO] [1792105656.586175715] [map_io]: origin[2]: 0
+[map_server-4] [INFO] [1792105656.586180164] [map_io]: free_thresh: 0.196
+[map_server-4] [INFO] [1792105656.586182568] [map_io]: occupied_thresh: 0.65
+[map_server-4] [INFO] [1792105656.586185995] [map_io]: mode: trinary
+[map_server-4] [INFO] [1792105656.586188840] [map_io]: negate: 0
+[map_server-4] [INFO] [1792105656.586316333] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/own-hypotheses-20261016/motion-A/maps/deskew/map.pgm
+[map_server-4] [INFO] [1792105656.610790935] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/reference/own-hypotheses-20261016/motion-A/maps/deskew/map.pgm: 640 X 600 map @ 0.05 m/cell
+[lifecycle_manager-6] [INFO] [1792105656.621089130] [deskew.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-5] [INFO] [1792105656.625935187] [deskew.amcl]: Configuring
+[amcl-5] [INFO] [1792105656.625992686] [deskew.amcl]: initTransforms
+[amcl-5] [INFO] [1792105656.636609503] [deskew.amcl]: initPubSub
+[amcl-5] [INFO] [1792105656.645158912] [deskew.amcl]: Subscribed to map topic.
+[lifecycle_manager-6] [INFO] [1792105656.652350666] [deskew.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-4] [INFO] [1792105656.652634091] [deskew.map_server]: Activating
+[map_server-4] [INFO] [1792105656.653877500] [deskew.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-5] [INFO] [1792105656.654498517] [deskew.amcl]: Received a 640 X 600 map @ 0.050 m/pix
+[lifecycle_manager-6] [INFO] [1792105657.019017724] [deskew.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-6] [INFO] [1792105657.019069282] [deskew.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-5] [INFO] [1792105657.019356164] [deskew.amcl]: Activating
+[amcl-5] [INFO] [1792105657.019392844] [deskew.amcl]: initialPoseReceived
+[amcl-5] [INFO] [1792105657.019470702] [deskew.amcl]: Setting pose (2.084000): 8.323 7.681 -1.451
+[amcl-5] [INFO] [1792105657.019819757] [deskew.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-6] [INFO] [1792105657.124791086] [deskew.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-6] [INFO] [1792105657.124839979] [deskew.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-6] [INFO] [1792105657.124859586] [deskew.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[amcl-2] [INFO] [1792105659.661406219] [off.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-5] [INFO] [1792105659.661445784] [deskew.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-2] [INFO] [1792105662.331862465] [off.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-5] [INFO] [1792105662.331880840] [deskew.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-2] [INFO] [1792105664.383020933] [off.amcl]: createLaserObject
+[amcl-5] [INFO] [1792105664.383017176] [deskew.amcl]: createLaserObject

@@ -51,6 +51,7 @@ SPAWN_YAW="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["sp
 MODE=mapping
 SLAM=true
 if [[ "$FLOW" == *-srrg-* ]]; then SLAM=false; fi
+if [[ "$FLOW" == *-own-* ]]; then SLAM=false; fi
 if [[ "$FLOW" == localization-* ]]; then MODE=localization; SLAM=false; fi
 URDF="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("urdf",sys.argv[2]))' "$RUN_DIR/runtime.json" "$REPO/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf")"
 BRIDGE="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("bridge_config",sys.argv[2]))' "$RUN_DIR/runtime.json" "$REPO/config/robot_profiles/omni-3d-v1/bridge_sensors.yaml")"
@@ -84,6 +85,11 @@ if [[ "$FLOW" == *-srrg-* ]]; then
   SRRG_PID=$!
   PIDS+=("$!")
   timeout 40 ros2 topic echo /scan sensor_msgs/msg/LaserScan --once --field header > "$RUN_DIR/logs/sensor-preflight.log" 2>&1
+fi
+if [[ "$FLOW" == mapping-own-* ]]; then
+  setsid python3 -u "$HERE/own_live.py" "$RUN_DIR" > "$RUN_DIR/logs/own-mapping.log" 2>&1 &
+  OWN_MAPPING_PID=$!
+  PIDS+=("$!")
 fi
 if [[ "$MODE" == mapping && "$FLOW" == *-probe-* ]]; then
   setsid python3 -u "$HERE/collect_probe_mapping.py" "$RUN_DIR" "$NATIVE_TRUTH" > "$RUN_DIR/logs/probe-mapping.log" 2>&1 &
@@ -170,14 +176,14 @@ else
   PIDS+=("$!")
 fi
 # Record the actual ROS inputs, independent of the visual screen capture.
-if [[ "$MODE" == localization || "$FLOW" == *-srrg-* ]]; then
+if [[ "$MODE" == localization || "$FLOW" == *-srrg-* || "$FLOW" == *-own-* ]]; then
   setsid python3 -u "$HERE/window_capture_heartbeat.py" "$RUN_DIR" > "$RUN_DIR/logs/window-capture.log" 2>&1 &
   PIDS+=("$!")
 fi
 setsid ros2 bag record -o "$RUN_DIR/input-bag" /clock /scan /points /tf /tf_static \
   /omni_drive_controller/odom /map /scan_degraded /depth/points /depth/image /study/imu /study/rolling > "$RUN_DIR/logs/bag.log" 2>&1 &
 PIDS+=("$!")
-if [[ "$AUTO" == true && "$FLOW" != mapping-fastlio-* ]]; then
+if [[ "$AUTO" == true && "$FLOW" != mapping-fastlio-* && "$FLOW" != mapping-own-motion ]]; then
   setsid bash "$HERE/auto_patrol.sh" "$RUN_DIR" > "$RUN_DIR/logs/patrol.log" 2>&1 &
   PIDS+=("$!")
 fi
@@ -211,6 +217,14 @@ if [[ -n "${FASTLIO_TRANSPORT_PID:-}" ]]; then
     [[ -f "$RUN_DIR/fastlio-transport-finished.json" ]] && break
     sleep .1
   done
+fi
+if [[ -n "${OWN_MAPPING_PID:-}" ]]; then
+  for ((own_wait=0; own_wait<300; own_wait++)); do
+    [[ -f "$RUN_DIR/own-finished.json" ]] && break
+    kill -0 "$OWN_MAPPING_PID" 2>/dev/null || break
+    sleep .1
+  done
+  [[ -f "$RUN_DIR/own-finished.json" ]] || { echo 'Own mapper did not finalize'; exit 10; }
 fi
 # Keep native windows alive until all Windows capture encoders flush their MP4s.
 # Destroying a WGC source first can leave an encoder waiting for a final frame.

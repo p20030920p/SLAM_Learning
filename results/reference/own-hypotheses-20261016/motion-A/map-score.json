@@ -1,0 +1,19 @@
+{
+  "methods": {
+    "deskew": {
+      "points": 1414,
+      "map_rmse_m": 0.045708888784647,
+      "static_retention": 1.0,
+      "dynamic_removal": null
+    },
+    "off": {
+      "points": 4285,
+      "map_rmse_m": 0.34102536032732533,
+      "static_retention": 1.0,
+      "dynamic_removal": null
+    }
+  },
+  "static_support_cells": 462,
+  "verified_ghost_cells": 0,
+  "scope": "10cm unique observed static support; 15cm coverage; geometry is support-distance RMSE, not exact wall-surface error; truth used only in this post-run scorer"
+}

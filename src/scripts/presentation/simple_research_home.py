@@ -198,8 +198,8 @@ def metric_table(zh):
             [
                 "DA ↑ / SA ↑",
                 label(
-                    "动态残影删除比例 / 静态保留比例；SRRG按空间支持覆盖计。",
-                    "Dynamic-trace removal / static retention; SRRG scores spatial-support coverage.",
+                    "动态残影删除比例 / 静态保留比例；二维按空间支持覆盖计。",
+                    "Dynamic-trace removal / static retention; 2D scores spatial-support coverage.",
                 ),
             ],
             [
@@ -919,6 +919,9 @@ def practice(doc, zh, previous):
 
 
 def publish_document(doc, zh):
+    if "<!-- OWN_HYPOTHESES_20261016 -->" in doc.read_text(encoding="utf-8"):
+        from own_research_home import publish_document as publish_own_document
+        return publish_own_document(doc, zh)
     from publish_home_experiments import sections, apply_home_layout
 
     text = doc.read_text(encoding="utf-8")
@@ -945,6 +948,9 @@ def publish_document(doc, zh):
 
 
 def publish():
+    if "<!-- OWN_HYPOTHESES_20261016 -->" in (ROOT / "README.md").read_text(encoding="utf-8"):
+        from own_research_home import publish as publish_own
+        return publish_own()
     for doc, zh in [(ROOT / "README.md", False), (ROOT / "docs/HOME.zh-CN.md", True)]:
         publish_document(doc, zh)
     for zh, name in [(False, "MAPPING-FOCUS.md"), (True, "MAPPING-FOCUS.zh-CN.md")]:

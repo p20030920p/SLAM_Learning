@@ -6,6 +6,9 @@ from simple_research_home import ROOT, SUITE
 
 
 def publish():
+    if "<!-- OWN_HYPOTHESES_20261016 -->" in (ROOT / "README.md").read_text(encoding="utf-8"):
+        from publish_own_gallery import publish as publish_own
+        return publish_own()
     lines = [
         '<!doctype html><html lang="zh-CN"><meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width,initial-scale=1">',

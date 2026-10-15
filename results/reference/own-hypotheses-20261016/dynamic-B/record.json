@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "kind": "native_direction_experiment",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Native run and real application capture; pose metrics use evaluation-only truth, 10Hz grid, max pose age 0.15s, 5s warmup; no truth to localizers",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-020225-localization-own-dynamic-method-live-c5d85d",
+  "source_session_sha256": "6e2554685d4a248204bd402ec5cbb3976d6215d5d109eb54739622bf8b8db2c6",
+  "metrics": {
+    "raw": {
+      "position_rmse_m": 0.05483414137737386,
+      "position_p95_m": 0.08502434853239546,
+      "yaw_rmse_deg": 1.4375934391183545,
+      "grid_coverage": 0.7587354409317804,
+      "success_fraction": 0.7587354409317804,
+      "grid_samples": 456,
+      "grid_expected": 601,
+      "native_samples": 290,
+      "limited": {
+        "rmse_m": 0.05522275635250194,
+        "samples": 355
+      },
+      "restored": {
+        "rmse_m": 0.05344580162323943,
+        "samples": 101
+      }
+    },
+    "temporal": {
+      "position_rmse_m": 0.059852011935714884,
+      "position_p95_m": 0.08566290480953351,
+      "yaw_rmse_deg": 1.5833837524308785,
+      "grid_coverage": 0.7587354409317804,
+      "success_fraction": 0.7587354409317804,
+      "grid_samples": 456,
+      "grid_expected": 601,
+      "native_samples": 290,
+      "limited": {
+        "rmse_m": 0.057724107233555096,
+        "samples": 355
+      },
+      "restored": {
+        "rmse_m": 0.06679555940559581,
+        "samples": 101
+      }
+    }
+  },
+  "timing": {
+    "executions/raw.mp4": {
+      "duration_s": 78.00000000000057,
+      "frames": 390,
+      "fps": 5,
+      "video_duration_s": 77.916667,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "executions/temporal.mp4": {
+      "duration_s": 78.00000000000057,
+      "frames": 390,
+      "fps": 5,
+      "video_duration_s": 78.0,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "input_bags": {
+    "input-bag_0.mcap": {
+      "sha256": "532aaf09804366b8699dba5c57b159afc2cc74c1cb5537d2a2218e121db0458b",
+      "bytes": 19328566,
+      "availability": "local_only"
+    }
+  },
+  "artifacts": {
+    "cases.json": {
+      "sha256": "7abb1a6a18cda2ddf4fd711874127f90aa27854d41fd5b6b680ded1050b7247b",
+      "bytes": 684,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "307b3951aa04aa379fbef45b2e3d30036ec8b47be75fd0c5406238169511dd88",
+      "bytes": 1377,
+      "availability": "portable"
+    },
+    "native-views.json": {
+      "sha256": "6cb4d1e5ce0f75ff810f5a17b69b5f7e38563301be8cd205b374a2f4102597a1",
+      "bytes": 862,
+      "availability": "portable"
+    },
+    "raw-samples.csv": {
+      "sha256": "50521e111b10e384038de1afb10a0e44faeb31a744d7dc42445af58a0432233c",
+      "bytes": 51872,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "30b46377604cdd57882134fa166390d016dd70b3463714b80722ee0d305f6d41",
+      "bytes": 908,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "6e2554685d4a248204bd402ec5cbb3976d6215d5d109eb54739622bf8b8db2c6",
+      "bytes": 21122,
+      "availability": "portable"
+    },
+    "temporal-samples.csv": {
+      "sha256": "549d7ab376343910416909f52d00ce5b47a1ef65c36ceb8a821eeb931744b94e",
+      "bytes": 51830,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "c247a02929c0d6411138d2daf76f1bfedb820abde734a99f5a3ecf663111c127",
+      "bytes": 1061206,
+      "availability": "portable"
+    },
+    "views.json": {
+      "sha256": "33bd41ab943e220ec7df0c8399fcfdbe48ecc9d1617fe775e25beddba45fd853",
+      "bytes": 500,
+      "availability": "portable"
+    },
+    "executions/raw.gif": {
+      "sha256": "f7328cbc3e979d6e7918949460626825cad9a498c61fbd5311913d2e6cc07604",
+      "bytes": 736699,
+      "availability": "portable"
+    },
+    "executions/raw.mp4": {
+      "sha256": "60cd35209e8818b0eccdd8e693862ac5f911b10b96c7fa2e701850f9a83e9ae9",
+      "bytes": 815645,
+      "availability": "portable"
+    },
+    "executions/temporal.gif": {
+      "sha256": "a930c87470f0f2db6e422289bf1363ae066fca19444728183f7781c311acc94f",
+      "bytes": 769833,
+      "availability": "portable"
+    },
+    "executions/temporal.mp4": {
+      "sha256": "a7f0443274521288f2ffa678deae94149afec292b53356d2ad5c756d98d353c6",
+      "bytes": 821730,
+      "availability": "portable"
+    },
+    "logs/bag.log": {
+      "sha256": "52d64ec31cac28b8721ae43c961ffe9f4e15e40e2072cfee5ff399a0c723987d",
+      "bytes": 1583,
+      "availability": "portable"
+    },
+    "logs/cmake.log": {
+      "sha256": "97e5be5e8b52950c0fe331d5bc4a22a7f967a76f6c036acf3686a9530a95dd09",
+      "bytes": 1126,
+      "availability": "portable"
+    },
+    "logs/localizers.log": {
+      "sha256": "ce173e764524eb285a370f28a9c828ce62f397a03daae37aa260d5d7b9a9f3fe",
+      "bytes": 9804,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "57e05134afc77185a25132f2dff258930be8b5e2e6d25935d6a3a2664f495f94",
+      "bytes": 11397,
+      "availability": "portable"
+    },
+    "logs/patrol.log": {
+      "sha256": "81569d78f52a74833d3c699444bd5439ea22eb5c54b45452ddc676f822df8c3d",
+      "bytes": 1577,
+      "availability": "portable"
+    },
+    "logs/rviz-raw.log": {
+      "sha256": "8ab331010cef7e109c6d92a69cb16f8d8167cfdbe21cafd275b4b5d827f6a62d",
+      "bytes": 1440,
+      "availability": "portable"
+    },
+    "logs/rviz-temporal.log": {
+      "sha256": "abc0c06961fab241ff484cf212cbb84b51b58fda6f3e11f34aa26d3288ee62c5",
+      "bytes": 1440,
+      "availability": "portable"
+    },
+    "logs/stack.log": {
+      "sha256": "bf4b33dbb3f6bb946c527650a47897e5607e09e9849e6370f03ae47e3af7a8b2",
+      "bytes": 12271,
+      "availability": "portable"
+    },
+    "logs/views.log": {
+      "sha256": "f9d73ab490a3140bcec0b3cf8036c5e7612ca7c27691a857da41c88d9dbe2654",
+      "bytes": 1864,
+      "availability": "portable"
+    },
+    "logs/window-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "maps/raw/map.pgm": {
+      "sha256": "5a06dd9d8a6ce3f855c72838ea298422fc1576e83ac133235eaed37f72ae7cb6",
+      "bytes": 384015,
+      "availability": "portable"
+    },
+    "maps/raw/map.yaml": {
+      "sha256": "5c375ee8dadfe0b22f7176e3554d13581a6f91a733a4ab5a32618cad78f37fb2",
+      "bytes": 124,
+      "availability": "portable"
+    },
+    "maps/temporal/map.pgm": {
+      "sha256": "758f6edd04b6405fb4db4a7f982324316168f01a04921efbf89d5d4139ff50e6",
+      "bytes": 384015,
+      "availability": "portable"
+    },
+    "maps/temporal/map.yaml": {
+      "sha256": "5c375ee8dadfe0b22f7176e3554d13581a6f91a733a4ab5a32618cad78f37fb2",
+      "bytes": 124,
+      "availability": "portable"
+    }
+  }
+}

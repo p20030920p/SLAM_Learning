@@ -7,6 +7,8 @@
  [switch]$Hypotheses,
  [switch]$Calibrated,
  [switch]$FastLioMaps,
+ [switch]$OwnMaps,
+ [switch]$MotionMap,
  [switch]$Keyboard
 )
 $ErrorActionPreference='Stop'
@@ -18,6 +20,10 @@ if($FastLioMaps){
 }
 if($Hypotheses){$flow='localization-probe-'+$Dimension.ToLower()+'-'+$Scene}
 if($Hypotheses -and $Calibrated){$flow='localization-probe-calibrated-'+$Dimension.ToLower()+'-'+$Scene}
+if($OwnMaps){
+ if($Dimension -ne '2D'){throw 'Own prototype maps currently use 2D AMCL'}
+ $flow='localization-own-'+$(if($MotionMap){'motion'}else{$Scene})
+}
 $id=(Get-Date -Format 'yyyyMMdd-HHmmss')+'-'+$flow+'-method-live-'+([guid]::NewGuid().ToString('N').Substring(0,6))
 $run=Join-Path $RepoRoot ('results\runs\presentation\'+$id)
 if($Hypotheses -and $Calibrated){$run=Join-Path $PresentationRoot ('原始会话\hypotheses-calibrated\'+$id)}

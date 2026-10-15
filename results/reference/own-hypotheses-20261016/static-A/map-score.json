@@ -1,0 +1,19 @@
+{
+  "methods": {
+    "raw": {
+      "points": 2280,
+      "map_rmse_m": 0.08835356048711035,
+      "static_retention": 0.9954682779456193,
+      "dynamic_removal": null
+    },
+    "temporal": {
+      "points": 1712,
+      "map_rmse_m": 0.08462943002367385,
+      "static_retention": 0.9561933534743202,
+      "dynamic_removal": null
+    }
+  },
+  "static_support_cells": 662,
+  "verified_ghost_cells": 0,
+  "scope": "10cm unique observed static support; 15cm coverage; geometry is support-distance RMSE, not exact wall-surface error; truth used only in this post-run scorer"
+}

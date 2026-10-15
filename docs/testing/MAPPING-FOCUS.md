@@ -3,103 +3,81 @@
 ## Hypothesis
 
 <!-- SIMPLE_HYPOTHESES_V2 -->
+<!-- OWN_HYPOTHESES_20261016 -->
 
 | Question | Hypothesis | Controls | Metrics |
 | --- | --- | --- | --- |
-| H1 / Q1 | Dynamic cleaning removes traces while retaining static structure and reduces held-out localization error. | Raw / SRRG | DA, SA, Eₘ, XY RMSE |
-| H2 / Q2 | FAST-LIO deskew reduces motion-induced map error and improves held-out localization accuracy. | Point compensation off / on | Eₘ, Cₘ, XYZ RMSE |
-| H3 / Q3 | Adding LiDAR-visible asymmetric static references reduces along-corridor localization error. | Original / landmark corridor | Eₘ, SA, along RMSE |
+| H1 / Q1 | Repeated hits plus free-ray confirmation reduce dynamic traces and improve held-out localization. | Own accumulation / own temporal cleaning | DA、SA、Eₘ、XY RMSE |
+| H2 / Q2 | Wheel-odometry compensation for point timestamps reduces map and held-out localization error. | Own compensation off / on | Eₘ、SA、XY RMSE |
+| H3 / Q3 | Detecting geometric degeneracy and retaining reliable static structures that constrain the weak direction reduces along-corridor error. | Own uniform threshold / own degeneracy-aware cleaning | SA、Eₘ、along RMSE |
 
-Goal: first measure map improvement, then test whether the same localizer has lower error on independent B.
-
-Mirror identification and physical reflections remain open within Q3; physical evidence stays at the top.
+All three interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.
 
 <a id="hypothesis-math"></a>
 
 ### Mathematical form
 
-A builds the map; B is a separate acquisition. Freeze A's map and run the same localizer on B. $`j`$ indexes the control, $`Z`$ denotes scans, $`T`$ is the sensor pose and $`p^{\ast}`$ is true position:
+A builds the maps; B is a separate acquisition. Freeze the maps and share B scans, odometry and AMCL settings across controls.
 
 ```math
-M_j = \mathcal{B}_j\bigl(Z^A,\hat{T}_j^A\bigr)
+M_j=\mathcal{B}_j(Z^A,\hat T_{\rm odom}^A),\qquad \hat T_{j,t}^B=\mathcal{L}_{\rm AMCL}(Z_{\leq t}^B,M_j)
 ```
 
 ```math
-\hat{T}_{j,t}^B = \mathcal{L}\bigl(Z_{\leq t}^B,M_j\bigr)
+E_L(j)=\sqrt{\frac{1}{N}\sum_t\lVert\hat p_{j,t}^B-p_t^{B,\ast}\rVert^2},\qquad \Delta E_L=E_L(\mathrm{baseline})-E_L(\mathrm{method})
 ```
-
-```math
-E_L(j) = \sqrt{\frac{1}{N}\sum_t\left\lVert\hat{p}_{j,t}^B-p_t^{B,\ast}\right\rVert^2}
-```
-
-```math
-\Delta E_L = E_L(\mathrm{baseline})-E_L(\mathrm{method})
-```
-
-$`\Delta E_L\gt 0`$ means improved localization; lower map error $`E_M`$ with $`\Delta E_L\leq 0`$ supports only map improvement. Test these predictions:
 
 **H1**
 
 ```math
-\mathrm{DA}_{\mathrm{SRRG}}\gt\mathrm{DA}_{\mathrm{Raw}},\qquad \mathrm{SA}_{\mathrm{SRRG}}\geq\mathrm{SA}_{\mathrm{Raw}}-\varepsilon
+H_c=\sum_b\mathbf{1}[\text{hit in time bin }b],\quad F_c=\sum_b\mathbf{1}[\text{free ray through }c],\quad K_c=\mathbf{1}[H_c\geq3\ \land\ H_c\geq1.5F_c]
 ```
 
 ```math
-E_M(\mathrm{SRRG})\lt E_M(\mathrm{Raw}),\qquad\Delta E_L\gt 0
+\mathrm{DA}_{\rm temporal}\gt\mathrm{DA}_{\rm raw},\quad\mathrm{SA}_{\rm temporal}\geq\mathrm{SA}_{\rm raw}-\varepsilon,\quad E_M(\mathrm{temporal})\lt E_M(\mathrm{raw}),\quad\Delta E_L\gt0
 ```
 
 **H2**
 
 ```math
-p_i^{\mathrm{end}}=T(t_{\mathrm{end}})^{-1}T(t_i)p_i
-```
-
-```math
-E_M(\mathrm{on})\lt E_M(\mathrm{off}),\qquad\Delta E_L\gt 0
+\tilde p_i=\hat T_{\rm odom}(t_e)^{-1}\hat T_{\rm odom}(t_i)p_i,\qquad E_M(\mathrm{on})\lt E_M(\mathrm{off}),\quad\Delta E_L\gt0
 ```
 
 **H3**
 
+Proposed solution: estimate the weak direction from observed local surface normals, then lower the deletion threshold for structures that constrain that direction, have repeated hits and have no contradicting free rays. Here n is a local normal, G approximates translational constraints and v is the weakest direction.
+
+
 ```math
-E_{\parallel}=\sqrt{\frac{1}{N}\sum_t\left[u^{\mathsf{T}}\left(\hat{p}_t-p_t^{\ast}\right)\right]^2}
+G=\sum_{c\in C}n_cn_c^{\mathsf T},\quad v_{\min}=\mathrm{eigvec}_{\min}(G),\quad R_c=\mathbf{1}[H_c\geq2,\ F_c=0,\ |n_c^{\mathsf T}v_{\min}|\gt0.7]
 ```
 
 ```math
-E_{\parallel}(\mathrm{landmark})\lt E_{\parallel}(\mathrm{original})
+D=\mathbf{1}[\lambda_{\min}(G)\lt0.25\lambda_{\max}(G)],\qquad K_c^{\rm protected}=\mathbf{1}[(H_c\geq5\land H_c\geq1.5F_c)\lor(D=1\land R_c=1)]
 ```
 
-$`\varepsilon=1`$ percentage point is the static-loss tolerance; $`u`$ is the corridor direction. This SRRG comparison includes pose optimization and maintenance; deletion alone at fixed poses remains untested. Truth is used only for scoring.
+```math
+E_{\parallel}=\sqrt{\frac1N\sum_t[u^{\mathsf T}(\hat p_t-p_t^\ast)]^2},\qquad E_{\parallel}(\mathrm{protected})\lt E_{\parallel}(\mathrm{strict})
+```
+
+Time bins: 0.5 s; free rays stop 15 cm before each return; static-loss tolerance ε = 1 percentage point. H3 keeps the corridor, route, sensors and localizer fixed and changes only the cleaning rule. It protects observed constraints; a corridor with no along-axis information still needs additional observations. Truth is used only for scoring.
 
 <a id="hypothesis-pseudocode"></a>
 
 ### Pseudocode
 
 ```text
-for scene in [static, dynamic, motion, corridor, corridor_landmarks]:
-    controls = methods_for(scene)
-    A, maps = record_A_and_build_maps(scene, controls)
-    map_metrics = score_and_freeze(maps)
-    B = record_new_localization_session(scene)
-    poses = same_localizer_for_all_maps(B, maps)
-    report(map_metrics, score_on_common_times(poses, B.truth))
-    save_native_recordings_and_input_hashes()
-compare_corridor_variants_on_common_elapsed_times()
+for scene in [static, dynamic, motion, corridor]:
+    A = acquire_scans_and_wheel_odometry(scene)
+    for control in controls_for(scene):
+        if H2: compensate_sector_points_by_interpolated_odometry()
+        update_hit_and_free_evidence_in_distinct_time_bins()
+        if H1: retain_temporally_supported_cells()
+        if H3: protect_supported_normals_along_the_weak_direction()
+        freeze_map(control)
+    B = acquire_a_separate_session(scene)
+    run_the_same_AMCL_on_all_frozen_maps(B)
+    score_map_and_localization_on_common_times_using_truth_only_here()
 ```
 
-For H3, acquire A/B in each corridor variant with the same route, speed, initial offset and localization settings.
-
-[Experiments and new recordings](../../README.md#practice-index)
-
-### Experiment design
-
-| Experiment | Scene | A mapping controls | Separate B localization |
-| --- | --- | --- | --- |
-| H1 | Static + dynamic | Raw / SRRG | AMCL |
-| H2 | Static scene: stationary, slow/fast turns, translation | FAST-LIO compensation off / on | GICP |
-| H3 | Original / landmark corridor | SRRG (retain Raw control) | AMCL |
-
-Reacquire A/B for each scene; within each scene share inputs and settings and change only the listed control. Existing 3D Raw/DUFOMap/BeautyMap tests are retained.
-
-```powershell
-./demo/record-hypotheses.ps1 -Suite results/reference/direction-YYYYMMDD-new
-```
+[Implementation, experiments and recordings](../../README.md#hypothesis-test-index)

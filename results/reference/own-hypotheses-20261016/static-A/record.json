@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "kind": "project_written_mapping_A",
+  "status": "executed",
+  "exit_code": 0,
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-015717-mapping-own-static-c304cc",
+  "scope": "10cm unique observed static support; 15cm coverage; geometry is support-distance RMSE, not exact wall-surface error; truth used only in this post-run scorer",
+  "timing": {
+    "duration_s": 65.20000000000039,
+    "frames": 326,
+    "fps": 5,
+    "video_duration_s": 65.2,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "methods": {
+    "raw": {
+      "points": 2280,
+      "map_rmse_m": 0.08835356048711035,
+      "static_retention": 0.9954682779456193,
+      "dynamic_removal": null
+    },
+    "temporal": {
+      "points": 1712,
+      "map_rmse_m": 0.08462943002367385,
+      "static_retention": 0.9561933534743202,
+      "dynamic_removal": null
+    }
+  },
+  "static_support_cells": 662,
+  "verified_ghost_cells": 0,
+  "input_bags": {
+    "input-bag_0.mcap": {
+      "sha256": "9edd3fa5115c5ab859ba319e2308fd93ab11f1f5e1163bbfafedd625f8528d73",
+      "bytes": 284669005,
+      "availability": "local_only"
+    }
+  },
+  "artifacts": {
+    "capture-filter.txt": {
+      "sha256": "f1588bc739583a0bc299ae62692d90e1662a042f145805ea910290901c30d8fb",
+      "bytes": 414,
+      "availability": "portable"
+    },
+    "capture-progress.txt": {
+      "sha256": "24cacd29658c46056adabaab23e924f668717694401ef4855754d2e0dc7631eb",
+      "bytes": 25446,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "940b54940f0c0fd12b50cdd18d619061cbeae0b2fa344431cad5125b8544d1d1",
+      "bytes": 274745,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "403ddf7327fef179b86672e32b512c5703acf6f11a97a90b3bcfe51249a8d9df",
+      "bytes": 346041,
+      "availability": "portable"
+    },
+    "map-score.json": {
+      "sha256": "e098829e27a32f21cbb80a8f7a152f5aa23a412510ffc5f4fb80d348adedbc73",
+      "bytes": 595,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "53b663977f390f08c76b7d88f3842bb19343c649f8abb301fb478569e3755b5b",
+      "bytes": 742,
+      "availability": "portable"
+    },
+    "own-finished.json": {
+      "sha256": "15d21a501abbbe0f520618035cd9f3a2d1fb38ed8cbfd28abc9cc57bcc84c481",
+      "bytes": 141,
+      "availability": "portable"
+    },
+    "own-inputs.npz": {
+      "sha256": "7e4bd8abd823a889339c5919544aa9017758213c35b2677ec0fc23135b38df15",
+      "bytes": 1733967,
+      "availability": "portable"
+    },
+    "own-odom.json": {
+      "sha256": "b8d8763a5bc4d1a07a879a6b0614b9f377e40d81654bfd2982ca4d6437f3b417",
+      "bytes": 364349,
+      "availability": "portable"
+    },
+    "own-scans.json": {
+      "sha256": "5a066ded9acec4f7322944e66e41ccb2590a5dc1555d74a3fbd85fc6511c7ff1",
+      "bytes": 90024,
+      "availability": "portable"
+    },
+    "own-score-inputs.npz": {
+      "sha256": "2f06ec8afe540fc78542126514c62e262bb869dc5a9ba6fff5c8f48e81e44541",
+      "bytes": 10321,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "77165c7db0c00e710dbef8e7ce8b63b0811d48b63f09feb13d5f20d3de3292dd",
+      "bytes": 384,
+      "availability": "portable"
+    },
+    "session-stopped.json": {
+      "sha256": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+      "bytes": 34,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "438bb90a386823518242682d31b7462950cc9e63d7468aa8710a454d90673669",
+      "bytes": 19318,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "3c517dcf22ff4a5850f03c4387aa38c94f069c3e570889167aaa6f7d512f0308",
+      "bytes": 901787,
+      "availability": "portable"
+    },
+    "video-probe.json": {
+      "sha256": "0b45b640ead31e6404022984a1c7222943328d9b10f4221f82af1d1c3a81bfba",
+      "bytes": 326,
+      "availability": "portable"
+    },
+    "logs/bag.log": {
+      "sha256": "3ccc602a8558225a9b35adac9a648bd3e8210c1b745b665e05522526ac9f6075",
+      "bytes": 1722,
+      "availability": "portable"
+    },
+    "logs/cmake.log": {
+      "sha256": "d2d77d31373bd68335760658d4dd92e0073f54f3339fe50236da870b6359abd4",
+      "bytes": 1126,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "d032749c19534e41bbb0cff62fd8643540d82dcc73eb744ec55c49270171578a",
+      "bytes": 7770,
+      "availability": "portable"
+    },
+    "logs/own-mapping.log": {
+      "sha256": "2e06a24e000184f27105321a6ed383aaa01071c9dca396ffcaa2d7f089b5e0a3",
+      "bytes": 3596,
+      "availability": "portable"
+    },
+    "logs/patrol.log": {
+      "sha256": "61b122f45b3a4d1edd1c4182e65fbbc16cfeea618917bc48ae1b4bd26968c39f",
+      "bytes": 2653,
+      "availability": "portable"
+    },
+    "logs/renderer.txt": {
+      "sha256": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+      "bytes": 1774,
+      "availability": "portable"
+    },
+    "logs/rviz.log": {
+      "sha256": "39a0a4b97952a5030390711d374eaaa604520d135b87ec29b7e31f6136029f28",
+      "bytes": 775,
+      "availability": "portable"
+    },
+    "logs/stack.log": {
+      "sha256": "caac2d9b6e635018a4c7cae6102356551b56ec65bfc2488736b7318022aec4e7",
+      "bytes": 11384,
+      "availability": "portable"
+    },
+    "maps/raw/map.pgm": {
+      "sha256": "9acb8b81088ed0cd9902dddc33bd9b55fbf990228726f56a26f6ba497b9c90a6",
+      "bytes": 384015,
+      "availability": "portable"
+    },
+    "maps/raw/map.yaml": {
+      "sha256": "5c375ee8dadfe0b22f7176e3554d13581a6f91a733a4ab5a32618cad78f37fb2",
+      "bytes": 124,
+      "availability": "portable"
+    },
+    "maps/raw/points.npy": {
+      "sha256": "12ff04e9e8133e6fcbbd07c32f8d8124d74c492bdab0a5091bfaed196de56e8a",
+      "bytes": 36608,
+      "availability": "portable"
+    },
+    "maps/temporal/map.pgm": {
+      "sha256": "2351ea27666a4fcf395797a94dc9928b005493eab061c23f41da7bd64d0c2381",
+      "bytes": 384015,
+      "availability": "portable"
+    },
+    "maps/temporal/map.yaml": {
+      "sha256": "5c375ee8dadfe0b22f7176e3554d13581a6f91a733a4ab5a32618cad78f37fb2",
+      "bytes": 124,
+      "availability": "portable"
+    },
+    "maps/temporal/points.npy": {
+      "sha256": "02303164bb16e4f4526ea9a387a1101fd43d4858a7692184ee53b3482eb72772",
+      "bytes": 27520,
+      "availability": "portable"
+    },
+    "source/own_live.py": {
+      "sha256": "789bac08ecde95461de4b89c5fa04bd3e129d75b1f578fd94ba9b4c58502e283",
+      "bytes": 8372,
+      "availability": "portable"
+    },
+    "source/own_mapping.py": {
+      "sha256": "8f1200eb6f878d6e373a9cd36f39d26ef02320a1b978dd457d7d962ad3dd6f73",
+      "bytes": 5365,
+      "availability": "portable"
+    },
+    "source/package_own_hypotheses.py": {
+      "sha256": "4fbeabadcb732ffadb2342b5d787d8142c7cca2aa295ce94866e062d97194194",
+      "bytes": 7561,
+      "availability": "portable"
+    }
+  }
+}

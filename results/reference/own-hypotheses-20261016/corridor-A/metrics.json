@@ -1,0 +1,24 @@
+{
+  "kind": "live_native_ui_session",
+  "status": "completed",
+  "failure": null,
+  "mode": "mapping",
+  "points_received": 661,
+  "scans_received": 661,
+  "mapping_frames": 66,
+  "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
+  "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
+  "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
+  "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
+  "cases": {},
+  "recording_interval_sim_s": [
+    7.023000000000001,
+    67.028
+  ],
+  "observed_map": {
+    "width": 640,
+    "height": 600,
+    "resolution_m": 0.05000000074505806,
+    "known_cells": 8173
+  }
+}

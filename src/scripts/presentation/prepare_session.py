@@ -30,7 +30,7 @@ if "-landmark-" in flow:
     world_path = landmark_world(world_path, run)
 spawn = [7.15, -3.1, 0.0] if scene == "corridor" else [8.0727, 7.5312, -1.5708]
 initial_offset = [1.0, 0.15, 0.12] if scene == "corridor" else [0.25, 0.15, 0.12]
-runtime = {"world": str(world_path), "spawn": spawn, "scene": scene,
+runtime = {"world": str(world_path), "spawn": spawn, "scene": scene, "flow": flow,
            "world_sha256": hashlib.sha256(world_path.read_bytes()).hexdigest(),
            "initial_offset": initial_offset, "scan_restore_after_s": 50.0 if scene == "corridor" else None}
 if "height-corridor" in flow:
@@ -44,7 +44,9 @@ cases = {}
 native_2d = mode == "localization" and not any(tag in flow for tag in ("-3d-", "-gicp-", "-ndt-", "-probe-"))
 if mode == "localization":
     marker_scene = ("landmark-" if "-landmark-" in flow else "") + mapping_scene
-    marker = repo / ".cache/presentation" / (f"mapping-srrg-{marker_scene}-latest.json" if native_2d else f"maps-{mapping_scene}-latest.json")
+    own_scene = "motion" if "motion" in flow else mapping_scene
+    marker_name = f"mapping-own-{own_scene}-latest.json" if "-own-" in flow else (f"mapping-srrg-{marker_scene}-latest.json" if native_2d else f"maps-{mapping_scene}-latest.json")
+    marker = repo / ".cache/presentation" / marker_name
     fallback = {"static": "robot-static", "dynamic": "robot-dynamic", "corridor": "robot-degradation"}[mapping_scene]
     maps = Path(json.loads(marker.read_text())["path"]) if marker.exists() else repo / f"results/reference/{fallback}/maps"
     if native_2d and not marker.exists():
@@ -69,6 +71,8 @@ if mode == "localization":
         if processing.get("world_sha256") != runtime["world_sha256"]:
             raise ValueError("Corridor geometry changed: record mapping-corridor A and rebuild maps first")
     methods = ("raw", "srrg") if native_2d else ("raw", "dufomap", "beautymap")
+    if "-own-" in flow:
+        methods = json.loads((maps.parent / "own-finished.json").read_text())["methods"]
     for method in methods:
         path = maps / method / "map.yaml"
         if not path.exists():
@@ -173,6 +177,19 @@ if "-srrg-" in flow:
 if "-fastlio-" in flow and mode == "mapping":
     from fastlio_study import configure as configure_fastlio
     config = configure_fastlio(repo, run, runtime, config)
+if "-own-" in flow and mode == "mapping":
+    import yaml
+    configured = yaml.safe_load(config)
+    vis = configured["Visualization Manager"]
+    vis["Global Options"]["Fixed Frame"] = "map"
+    vis["Displays"] = []
+    own_methods = ("off", "deskew") if "motion" in flow else (("strict", "protected") if scene == "corridor" else ("raw", "temporal"))
+    for method, color in zip(own_methods, ("170; 170; 170", "40; 180; 255")):
+        vis["Displays"].append({"Class": "rviz_default_plugins/PointCloud2", "Name": "OWN " + method, "Enabled": True,
+            "Topic": {"Value": "/own/" + method, "Reliability Policy": "Reliable", "Durability Policy": "Volatile", "Depth": 1},
+            "Style": "Points", "Size (Pixels)": 3, "Color Transformer": "FlatColor", "Color": color, "Position Transformer": "XYZ"})
+    vis["Views"]["Current"].update(X=7.15 if scene == "corridor" else 7.5, Y=-3.1 if scene == "corridor" else 4.5, Scale=40)
+    config = yaml.safe_dump(configured, sort_keys=False)
 (run / "live.rviz").write_text(config)
 if "-probe-" in flow and mode == "localization":
     from prepare_probe import views as prepare_probe_views
@@ -185,7 +202,8 @@ elif mode == "localization" and "-3d-" in flow:
     prepare_3d_views(config, cases, run, scene)
 elif os.environ.get("PRESENTATION_MULTI_VIEW") == "true" and mode == "localization":
     views = {}
-    for method, label in (("raw", "Raw"), ("srrg", "SRRG")):
+    display_methods = [(method, "OWN " + method) for method in methods] if "-own-" in flow else [("raw", "Raw"), ("srrg", "SRRG")]
+    for method, label in display_methods:
         case = "degraded_"+method if scene == "corridor" else method
         own = config.replace("Value: /raw/map\n", f"Value: /{case}/map\n")
         own = own.replace("Raw map + common AMCL (live)", label+" map + AMCL (LIVE)")
@@ -276,5 +294,11 @@ if "-srrg-" in flow:
 if flow.startswith("mapping-compare-"):
     manifest["scope"] = "provided-pose 3D map cleaning in periodic native batches; 2D view is projection; BeautyMap remains offline"
     manifest["input_to_localizers"] = "none: mapping comparison only; all displayed methods share completed batch inputs"
+if "-own-" in flow:
+    manifest["provided_mapping_poses"] = False
+    manifest["scope"] = "Project-written geometric prototypes, wheel odometry plus configured start anchor; no truth in algorithms; not a published-method reproduction"
+    manifest["input_to_localizers"] = "2D scans and wheel odometry, project-written frozen maps, identical native AMCL"
+    core = repo / "src/slam_learning/runtime/own_mapping.py"
+    manifest["assets"][str(core)] = hashlib.sha256(core.read_bytes()).hexdigest()
 (run / "session.json").write_text(json.dumps(manifest, indent=2) + "\n")
 print(json.dumps(manifest, indent=2), flush=True)
