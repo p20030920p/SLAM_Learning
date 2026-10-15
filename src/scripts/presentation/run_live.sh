@@ -162,7 +162,7 @@ else
   PIDS+=("$!")
 fi
 # Record the actual ROS inputs, independent of the visual screen capture.
-if [[ "$FLOW" == localization-probe-* || "$FLOW" == *-srrg-* ]]; then
+if [[ "$MODE" == localization || "$FLOW" == *-srrg-* ]]; then
   setsid python3 -u "$HERE/window_capture_heartbeat.py" "$RUN_DIR" > "$RUN_DIR/logs/window-capture.log" 2>&1 &
   PIDS+=("$!")
 fi

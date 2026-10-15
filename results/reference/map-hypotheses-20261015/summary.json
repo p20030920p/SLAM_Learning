@@ -1,0 +1,556 @@
+{
+  "schema_version": 1,
+  "kind": "map_quality_to_held_out_localization",
+  "status": "executed",
+  "protocol_sha256": "ae752728b74ba020db34579bda4df54cc1720df9aed4df4551c12c1159d5b49c",
+  "scenes": {
+    "static": {
+      "interval_sim_s": [
+        7.649000000000001,
+        97.656
+      ],
+      "grid_samples": 901,
+      "common_grid_samples": 895,
+      "methods": {
+        "raw": {
+          "output_coverage": 0.9944506104328524,
+          "success_fraction_all_grid": 0.9944506104328524,
+          "common_grid_samples": 895,
+          "common_xyz_rmse_m": 0.00763226988034994,
+          "common_xyz_p95_m": 0.014489179502850353,
+          "common_rotation_rmse_deg": 0.14359962521179684,
+          "available_xyz_rmse_m": 0.007629186164832618,
+          "paired_rmse_gain_m": 0.0
+        },
+        "dufomap": {
+          "output_coverage": 0.9988901220865705,
+          "success_fraction_all_grid": 0.9988901220865705,
+          "common_grid_samples": 895,
+          "common_xyz_rmse_m": 0.007373262080624652,
+          "common_xyz_p95_m": 0.014572853780882944,
+          "common_rotation_rmse_deg": 0.13983660012567667,
+          "available_xyz_rmse_m": 0.00736566013515009,
+          "paired_rmse_gain_m": 0.00025900779972528806
+        },
+        "beautymap": {
+          "output_coverage": 0.9977802441731409,
+          "success_fraction_all_grid": 0.9977802441731409,
+          "common_grid_samples": 895,
+          "common_xyz_rmse_m": 0.00828988900924194,
+          "common_xyz_p95_m": 0.012950438874384516,
+          "common_rotation_rmse_deg": 0.14710460702742278,
+          "available_xyz_rmse_m": 0.008283627805796084,
+          "paired_rmse_gain_m": -0.0006576191288920003
+        }
+      },
+      "map_quality": {
+        "kind": "static_mesh_distance_and_observed_surface_coverage",
+        "scene": "static",
+        "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c",
+        "maps": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c/author-maps-20261015-211123",
+        "reference_voxels": 23733,
+        "roi": {
+          "height_m": [
+            0.12,
+            2.2
+          ],
+          "sensor_distance_min_m": 0.45,
+          "voxel_m": 0.05
+        },
+        "surface_tolerance_m": 0.05,
+        "reference_static_hit_tolerance_m": 0.02,
+        "methods": {
+          "raw": {
+            "points": 684462,
+            "evaluated_voxels": 28903,
+            "surface_mean_m": 0.006314754486083984,
+            "surface_rmse_m": 0.01031690277159214,
+            "surface_p95_m": 0.024279499053955076,
+            "surface_precision_5cm": 0.9979240909248175,
+            "observed_static_coverage_5cm": 0.9999578645767496,
+            "static_retention": 1.0,
+            "dynamic_removal": null,
+            "map_sha256": "7ab9d2e565542ba955eeecbc340a7ea60218aa11b4dc2100b40dcbd69838e4c7"
+          },
+          "dufomap": {
+            "points": 684439,
+            "evaluated_voxels": 28884,
+            "surface_mean_m": 0.006306876428425312,
+            "surface_rmse_m": 0.010306733660399914,
+            "surface_p95_m": 0.024228286743164046,
+            "surface_precision_5cm": 0.9979227253842958,
+            "observed_static_coverage_5cm": 0.9999578645767496,
+            "static_retention": 0.999974110857309,
+            "dynamic_removal": null,
+            "map_sha256": "093c96976956573523fa07c7b829c7d75938e2b373bb57e71b5e1163d94a5319"
+          },
+          "beautymap": {
+            "points": 569243,
+            "evaluated_voxels": 20895,
+            "surface_mean_m": 0.006535110995173454,
+            "surface_rmse_m": 0.010446326807141304,
+            "surface_p95_m": 0.023803901672363244,
+            "surface_precision_5cm": 0.9976549413735344,
+            "observed_static_coverage_5cm": 0.7167235494880546,
+            "static_retention": 0.7723288877028563,
+            "dynamic_removal": null,
+            "map_sha256": "a68881fd15b714c54dff6f61889f5b76f801d4cb71f50d2a2e603eaf3efa111c"
+          }
+        },
+        "scope": "Exact nearest rendered static triangle distance; one retained point per 5cm voxel. Coverage of A-observed static surface reference only, not whole-world completeness. Self/ground excluded. Mapping poses supplied; no autonomous SLAM accuracy claim.",
+        "truth_in_estimators": false,
+        "inputs": {
+          "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S1_static.world": "95091c22b2889b350b87487d58ad640094537f665da4b75593a27601803dadba",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c/mapping-clouds.npz": "603824b2324ddbef92edc5e953a188c02ad9c368dd9229de161e53ef222b918c",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c/author-maps-20261015-211123/record.json": "94fe60c56a9d4dbcc57612ac0c88515a68530d7ea69b4631c97839bfd8c60f66",
+          "/mnt/d/workspace/be2/slam_learning_updated/.cache/map-hypotheses-20261015/geometry/competition_map_color_rules.dae": "2bd3f7aede714dbc5c9e30454012fea3993077ede8528a47dd9f5a32ad061c80",
+          "/mnt/d/workspace/be2/slam_learning_updated/.cache/map-hypotheses-20261015/geometry/model.sdf": "d4d0ed8d5b7a4f2c5c1354cd6cc1c332097b8baf7d397a11656a554249bd5f0c"
+        }
+      },
+      "record": "results/reference/map-hypotheses-20261015/static/localization-3d/record.json",
+      "source_sha256": "045df7d98d15aa174cc8fbadd49a5592d09c9fe2ed098db291978097ebbcc8c9",
+      "native_metrics_3d": {
+        "raw": {
+          "samples": 817,
+          "xyz_rmse_m": 0.007759462657944626,
+          "z_rmse_m": 0.0006035922623528963,
+          "rotation_rmse_deg": 0.14090652992136324,
+          "xyz_p95_m": 0.014522306170138577,
+          "post_warmup_5s_xyz_rmse_m": 0.007762710304138342
+        },
+        "dufomap": {
+          "samples": 849,
+          "xyz_rmse_m": 0.007389500206060149,
+          "z_rmse_m": 0.0005540579455227317,
+          "rotation_rmse_deg": 0.13879036357135255,
+          "xyz_p95_m": 0.014481827659878205,
+          "post_warmup_5s_xyz_rmse_m": 0.007374796099145861
+        },
+        "beautymap": {
+          "samples": 915,
+          "xyz_rmse_m": 0.00828852989280045,
+          "z_rmse_m": 0.0008360694067289091,
+          "rotation_rmse_deg": 0.1445666275373754,
+          "xyz_p95_m": 0.012887595563988344,
+          "post_warmup_5s_xyz_rmse_m": 0.008296313032537092
+        }
+      }
+    },
+    "dynamic": {
+      "interval_sim_s": [
+        8.663,
+        98.69600000000001
+      ],
+      "grid_samples": 901,
+      "common_grid_samples": 737,
+      "methods": {
+        "raw": {
+          "output_coverage": 0.9034406215316315,
+          "success_fraction_all_grid": 0.9034406215316315,
+          "common_grid_samples": 737,
+          "common_xyz_rmse_m": 0.010031627943982227,
+          "common_xyz_p95_m": 0.01355937762886612,
+          "common_rotation_rmse_deg": 0.1508371348959116,
+          "available_xyz_rmse_m": 0.010024217559250538,
+          "paired_rmse_gain_m": 0.0
+        },
+        "dufomap": {
+          "output_coverage": 0.9056603773584906,
+          "success_fraction_all_grid": 0.9056603773584906,
+          "common_grid_samples": 737,
+          "common_xyz_rmse_m": 0.00982665348780366,
+          "common_xyz_p95_m": 0.013389264937404225,
+          "common_rotation_rmse_deg": 0.14686654743874103,
+          "available_xyz_rmse_m": 0.00979863507367788,
+          "paired_rmse_gain_m": 0.00020497445617856727
+        },
+        "beautymap": {
+          "output_coverage": 0.9722530521642619,
+          "success_fraction_all_grid": 0.9722530521642619,
+          "common_grid_samples": 737,
+          "common_xyz_rmse_m": 0.011298844102374596,
+          "common_xyz_p95_m": 0.01620609978217277,
+          "common_rotation_rmse_deg": 0.19202945616786643,
+          "available_xyz_rmse_m": 0.011222395168900496,
+          "paired_rmse_gain_m": -0.0012672161583923685
+        }
+      },
+      "map_quality": {
+        "kind": "static_mesh_distance_and_observed_surface_coverage",
+        "scene": "dynamic",
+        "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211049-mapping-dynamic-2365b7",
+        "maps": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211049-mapping-dynamic-2365b7/author-maps-20261015-211319",
+        "reference_voxels": 23996,
+        "roi": {
+          "height_m": [
+            0.12,
+            2.2
+          ],
+          "sensor_distance_min_m": 0.45,
+          "voxel_m": 0.05
+        },
+        "surface_tolerance_m": 0.05,
+        "reference_static_hit_tolerance_m": 0.02,
+        "methods": {
+          "raw": {
+            "points": 684736,
+            "evaluated_voxels": 27520,
+            "surface_mean_m": 0.016464577987790108,
+            "surface_rmse_m": 0.07038062065839767,
+            "surface_p95_m": 0.02656078338623047,
+            "surface_precision_5cm": 0.9655886627906977,
+            "observed_static_coverage_5cm": 0.9998333055509252,
+            "static_retention": 1.0,
+            "dynamic_removal": 0.0,
+            "map_sha256": "7b387859a998f32567db0fc2fa59a83ae878118016f61ea93eb3123cf4f5de2c"
+          },
+          "dufomap": {
+            "points": 682071,
+            "evaluated_voxels": 27072,
+            "surface_mean_m": 0.010397529229521751,
+            "surface_rmse_m": 0.046702343970537186,
+            "surface_p95_m": 0.01867022588849066,
+            "surface_precision_5cm": 0.9806072695035462,
+            "observed_static_coverage_5cm": 0.9998333055509252,
+            "static_retention": 0.9998734430552613,
+            "dynamic_removal": 0.5067793279622715,
+            "map_sha256": "1eee225567fda0240268397187e3f87a30d9223ef84e9ca202a26d83e15b90a9"
+          },
+          "beautymap": {
+            "points": 574458,
+            "evaluated_voxels": 19815,
+            "surface_mean_m": 0.008355091325938702,
+            "surface_rmse_m": 0.03655196353793144,
+            "surface_p95_m": 0.018362426757812488,
+            "surface_precision_5cm": 0.9887963663890992,
+            "observed_static_coverage_5cm": 0.7380813468911486,
+            "static_retention": 0.8431135362953545,
+            "dynamic_removal": 0.719001768520338,
+            "map_sha256": "999edd367866fd3e84474ead13c089f13537b3d4ba3bb13e0df0594b2cf10597"
+          }
+        },
+        "scope": "Exact nearest rendered static triangle distance; one retained point per 5cm voxel. Coverage of A-observed static surface reference only, not whole-world completeness. Self/ground excluded. Mapping poses supplied; no autonomous SLAM accuracy claim.",
+        "truth_in_estimators": false,
+        "inputs": {
+          "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S2_dynamic.world": "6a5837880254d5647634247be12b6953438f87d5326682bcd2a376b2c6023e53",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211049-mapping-dynamic-2365b7/mapping-clouds.npz": "b4bda3ba030916caa14ec0ae9e6ba0f46b52eb360376c13019ed9de679f95057",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211049-mapping-dynamic-2365b7/author-maps-20261015-211319/record.json": "692d01d508ab9e18962f3ff8b014c872c95960e511e02d4612d58c106cc1e9fa",
+          "/mnt/d/workspace/be2/slam_learning_updated/.cache/map-hypotheses-20261015/geometry/competition_map_color_rules.dae": "2bd3f7aede714dbc5c9e30454012fea3993077ede8528a47dd9f5a32ad061c80",
+          "/mnt/d/workspace/be2/slam_learning_updated/.cache/map-hypotheses-20261015/geometry/model.sdf": "d4d0ed8d5b7a4f2c5c1354cd6cc1c332097b8baf7d397a11656a554249bd5f0c"
+        }
+      },
+      "record": "results/reference/map-hypotheses-20261015/dynamic/localization-3d/record.json",
+      "source_sha256": "f9dac877cc0c6b7987ba8aa515e1fed41c1348120f7e4ccd1468a77384cffb3f",
+      "native_metrics_3d": {
+        "raw": {
+          "samples": 872,
+          "xyz_rmse_m": 0.009857684222168605,
+          "z_rmse_m": 0.0010615488441025988,
+          "rotation_rmse_deg": 0.14750493682498506,
+          "xyz_p95_m": 0.01355564752952341,
+          "post_warmup_5s_xyz_rmse_m": 0.009970586034336237
+        },
+        "dufomap": {
+          "samples": 879,
+          "xyz_rmse_m": 0.009659976590893751,
+          "z_rmse_m": 0.0010680415336855507,
+          "rotation_rmse_deg": 0.1424075736203426,
+          "xyz_p95_m": 0.013275592495722669,
+          "post_warmup_5s_xyz_rmse_m": 0.009748147666333903
+        },
+        "beautymap": {
+          "samples": 939,
+          "xyz_rmse_m": 0.011050802140838294,
+          "z_rmse_m": 0.0013042062303448589,
+          "rotation_rmse_deg": 0.187907437485702,
+          "xyz_p95_m": 0.016127301667706203,
+          "post_warmup_5s_xyz_rmse_m": 0.011165495518404124
+        }
+      }
+    },
+    "corridor": {
+      "interval_sim_s": [
+        6.143000000000001,
+        126.144
+      ],
+      "grid_samples": 1201,
+      "common_grid_samples": 597,
+      "methods": {
+        "raw": {
+          "output_coverage": 0.5062447960033306,
+          "success_fraction_all_grid": 0.01498751040799334,
+          "common_grid_samples": 597,
+          "common_xyz_rmse_m": 3.908726984320595,
+          "common_xyz_p95_m": 7.04804523655408,
+          "common_rotation_rmse_deg": 0.23734474079255738,
+          "available_xyz_rmse_m": 3.925280710082929,
+          "paired_rmse_gain_m": 0.0
+        },
+        "dufomap": {
+          "output_coverage": 0.6394671107410491,
+          "success_fraction_all_grid": 0.013322231473771857,
+          "common_grid_samples": 597,
+          "common_xyz_rmse_m": 3.430938364755935,
+          "common_xyz_p95_m": 5.734899546101994,
+          "common_rotation_rmse_deg": 0.3001416574122347,
+          "available_xyz_rmse_m": 3.578426578069688,
+          "paired_rmse_gain_m": 0.4777886195646599
+        },
+        "beautymap": {
+          "output_coverage": 0.9958368026644463,
+          "success_fraction_all_grid": 0.5478767693588676,
+          "common_grid_samples": 597,
+          "common_xyz_rmse_m": 3.11205248792005,
+          "common_xyz_p95_m": 5.940264026602647,
+          "common_rotation_rmse_deg": 0.41034484529186954,
+          "available_xyz_rmse_m": 2.2091762159077613,
+          "paired_rmse_gain_m": 0.796674496400545
+        }
+      },
+      "limited": {
+        "interval_sim_s": [
+          6.143000000000001,
+          56.2
+        ],
+        "grid_samples": 501,
+        "common_grid_samples": 497,
+        "methods": {
+          "raw": {
+            "output_coverage": 0.998003992015968,
+            "success_fraction_all_grid": 0.029940119760479042,
+            "common_grid_samples": 497,
+            "common_xyz_rmse_m": 3.7005227575930935,
+            "common_xyz_p95_m": 7.179512460091548,
+            "common_rotation_rmse_deg": 0.223388962752814,
+            "available_xyz_rmse_m": 3.703377728245389,
+            "paired_rmse_gain_m": 0.0
+          },
+          "dufomap": {
+            "output_coverage": 0.9960079840319361,
+            "success_fraction_all_grid": 0.017964071856287425,
+            "common_grid_samples": 497,
+            "common_xyz_rmse_m": 3.164329070707863,
+            "common_xyz_p95_m": 5.544326212287095,
+            "common_rotation_rmse_deg": 0.3104489702765253,
+            "available_xyz_rmse_m": 3.1602839628162624,
+            "paired_rmse_gain_m": 0.5361936868852304
+          },
+          "beautymap": {
+            "output_coverage": 0.998003992015968,
+            "success_fraction_all_grid": 0.021956087824351298,
+            "common_grid_samples": 497,
+            "common_xyz_rmse_m": 3.3107191540142344,
+            "common_xyz_p95_m": 6.002706991827719,
+            "common_rotation_rmse_deg": 0.37013132478103355,
+            "available_xyz_rmse_m": 3.307494915472697,
+            "paired_rmse_gain_m": 0.389803603578859
+          }
+        }
+      },
+      "restored": {
+        "interval_sim_s": [
+          56.2,
+          126.144
+        ],
+        "grid_samples": 700,
+        "common_grid_samples": 100,
+        "methods": {
+          "raw": {
+            "output_coverage": 0.15428571428571428,
+            "success_fraction_all_grid": 0.004285714285714286,
+            "common_grid_samples": 100,
+            "common_xyz_rmse_m": 4.811653363622439,
+            "common_xyz_p95_m": 5.834292175319003,
+            "common_rotation_rmse_deg": 0.2971348440916408,
+            "available_xyz_rmse_m": 4.821303537004904,
+            "paired_rmse_gain_m": 0.0
+          },
+          "dufomap": {
+            "output_coverage": 0.3842857142857143,
+            "success_fraction_all_grid": 0.01,
+            "common_grid_samples": 100,
+            "common_xyz_rmse_m": 4.528839282867027,
+            "common_xyz_p95_m": 5.819490207464698,
+            "common_rotation_rmse_deg": 0.24249964497943677,
+            "available_xyz_rmse_m": 4.246422099829637,
+            "paired_rmse_gain_m": 0.28281408075541137
+          },
+          "beautymap": {
+            "output_coverage": 0.9942857142857143,
+            "success_fraction_all_grid": 0.9242857142857143,
+            "common_grid_samples": 100,
+            "common_xyz_rmse_m": 1.8284412105693293,
+            "common_xyz_p95_m": 3.112749882509062,
+            "common_rotation_rmse_deg": 0.5695347167562587,
+            "available_xyz_rmse_m": 0.7264188626647252,
+            "paired_rmse_gain_m": 2.9832121530531093
+          }
+        }
+      },
+      "full_observations": {
+        "interval_sim_s": [
+          6.143000000000001,
+          126.144
+        ],
+        "grid_samples": 1201,
+        "common_grid_samples": 260,
+        "methods": {
+          "raw": {
+            "output_coverage": 0.48126561199000834,
+            "success_fraction_all_grid": 0.009991673605328892,
+            "common_grid_samples": 260,
+            "common_xyz_rmse_m": 2.994712487621586,
+            "common_xyz_p95_m": 5.43879752148818,
+            "common_rotation_rmse_deg": 0.5389649208082409,
+            "available_xyz_rmse_m": 3.561226388901605,
+            "paired_rmse_gain_m": 0.0
+          },
+          "dufomap": {
+            "output_coverage": 0.2248126561199001,
+            "success_fraction_all_grid": 0.005828476269775187,
+            "common_grid_samples": 260,
+            "common_xyz_rmse_m": 3.027650160687304,
+            "common_xyz_p95_m": 5.416893954959889,
+            "common_rotation_rmse_deg": 0.5164029957244353,
+            "available_xyz_rmse_m": 3.0724658919914805,
+            "paired_rmse_gain_m": -0.03293767306571782
+          },
+          "beautymap": {
+            "output_coverage": 0.9966694421315571,
+            "success_fraction_all_grid": 0.9966694421315571,
+            "common_grid_samples": 260,
+            "common_xyz_rmse_m": 0.006080815982859062,
+            "common_xyz_p95_m": 0.007703254621747844,
+            "common_rotation_rmse_deg": 0.13607533498802554,
+            "available_xyz_rmse_m": 0.010444769658812155,
+            "paired_rmse_gain_m": 2.988631671638727
+          }
+        }
+      },
+      "map_quality": {
+        "kind": "static_mesh_distance_and_observed_surface_coverage",
+        "scene": "corridor",
+        "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e",
+        "maps": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538",
+        "reference_voxels": 20755,
+        "roi": {
+          "height_m": [
+            0.12,
+            2.2
+          ],
+          "sensor_distance_min_m": 0.45,
+          "voxel_m": 0.05
+        },
+        "surface_tolerance_m": 0.05,
+        "reference_static_hit_tolerance_m": 0.02,
+        "methods": {
+          "raw": {
+            "points": 657504,
+            "evaluated_voxels": 31890,
+            "surface_mean_m": 0.009719578549265862,
+            "surface_rmse_m": 0.014104328118264675,
+            "surface_p95_m": 0.027760118246078488,
+            "surface_precision_5cm": 0.9896205707118219,
+            "observed_static_coverage_5cm": 0.9998554565165021,
+            "static_retention": 1.0,
+            "dynamic_removal": null,
+            "map_sha256": "e5f409098c859bedc4f0324db935169e4cd98be682e10e63625c2f35d784cb44"
+          },
+          "dufomap": {
+            "points": 657504,
+            "evaluated_voxels": 31890,
+            "surface_mean_m": 0.009719578549265862,
+            "surface_rmse_m": 0.014104328118264675,
+            "surface_p95_m": 0.027760118246078488,
+            "surface_precision_5cm": 0.9896205707118219,
+            "observed_static_coverage_5cm": 0.9998554565165021,
+            "static_retention": 1.0,
+            "dynamic_removal": null,
+            "map_sha256": "e5f409098c859bedc4f0324db935169e4cd98be682e10e63625c2f35d784cb44"
+          },
+          "beautymap": {
+            "points": 656724,
+            "evaluated_voxels": 31663,
+            "surface_mean_m": 0.00971288327127695,
+            "surface_rmse_m": 0.01410753559321165,
+            "surface_p95_m": 0.027761995792388906,
+            "surface_precision_5cm": 0.9896409057890914,
+            "observed_static_coverage_5cm": 0.9941218983377499,
+            "static_retention": 0.9983834626490788,
+            "dynamic_removal": null,
+            "map_sha256": "3ac0ac16e256432e61e94926a9fdb81c664c120cc79d7f7f780048359b62a333"
+          }
+        },
+        "scope": "Exact nearest rendered static triangle distance; one retained point per 5cm voxel. Coverage of A-observed static surface reference only, not whole-world completeness. Self/ground excluded. Mapping poses supplied; no autonomous SLAM accuracy claim.",
+        "truth_in_estimators": false,
+        "inputs": {
+          "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S4_degradation.world": "e57fee1a83aa2b32b71d5ff4b19cdfed4cfae3d8330e12cc67ec4e807512bc6b",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/mapping-clouds.npz": "6cb84ff5a6714a959cd0657c868ffaefcf9b24b8694a2d61217efcee04a98b9f",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/record.json": "65854fe27090a81f0c2930a46de89fa416316bc61599280e36a4a171f8b3f63a",
+          "/mnt/d/workspace/be2/slam_learning_updated/.cache/map-hypotheses-20261015/geometry/competition_map_color_rules.dae": "2bd3f7aede714dbc5c9e30454012fea3993077ede8528a47dd9f5a32ad061c80",
+          "/mnt/d/workspace/be2/slam_learning_updated/.cache/map-hypotheses-20261015/geometry/model.sdf": "d4d0ed8d5b7a4f2c5c1354cd6cc1c332097b8baf7d397a11656a554249bd5f0c"
+        }
+      },
+      "record": "results/reference/map-hypotheses-20261015/corridor/localization-3d/record.json",
+      "source_sha256": "ab0a023725474f11211ecb84cf6fa00a09ca43130470aa65d8dd173bc9560ea9",
+      "native_metrics_3d": {
+        "raw": {
+          "samples": 553,
+          "xyz_rmse_m": 3.7307823221365766,
+          "z_rmse_m": 0.003731612043678054,
+          "rotation_rmse_deg": 0.2329626650335593,
+          "xyz_p95_m": 6.904601281422818,
+          "post_warmup_5s_xyz_rmse_m": 3.874460539611359
+        },
+        "dufomap": {
+          "samples": 648,
+          "xyz_rmse_m": 3.4114915034450135,
+          "z_rmse_m": 0.006118554438490443,
+          "rotation_rmse_deg": 0.3470925696870341,
+          "xyz_p95_m": 5.740422470488197,
+          "post_warmup_5s_xyz_rmse_m": 3.5073791898743196
+        },
+        "beautymap": {
+          "samples": 1057,
+          "xyz_rmse_m": 2.1828258024033014,
+          "z_rmse_m": 0.006529598629271932,
+          "rotation_rmse_deg": 0.30354665379117707,
+          "xyz_p95_m": 5.434233150695117,
+          "post_warmup_5s_xyz_rmse_m": 2.214016604176853
+        },
+        "full_raw": {
+          "samples": 439,
+          "xyz_rmse_m": 3.3970274616673577,
+          "z_rmse_m": 0.003072249876719435,
+          "rotation_rmse_deg": 0.48026609942090626,
+          "xyz_p95_m": 5.775001861076611,
+          "post_warmup_5s_xyz_rmse_m": 3.5327613078846194
+        },
+        "full_dufomap": {
+          "samples": 226,
+          "xyz_rmse_m": 2.7648839173177624,
+          "z_rmse_m": 0.0025429307451814414,
+          "rotation_rmse_deg": 0.4823561179056032,
+          "xyz_p95_m": 5.104177130975697,
+          "post_warmup_5s_xyz_rmse_m": 2.961540215255453
+        },
+        "full_beautymap": {
+          "samples": 1052,
+          "xyz_rmse_m": 0.041448091192094735,
+          "z_rmse_m": 0.0014329558927219446,
+          "rotation_rmse_deg": 0.1395730701877209,
+          "xyz_p95_m": 0.01772006081428745,
+          "post_warmup_5s_xyz_rmse_m": 0.010627253031500953
+        }
+      }
+    }
+  },
+  "scoring": "10Hz recording-time grid; latest causal native output age <=0.15s; pair RMSE only where all three maps have outputs. Missing outputs count as unsuccessful; report coverage and full grid success separately. No fitted trajectory alignment.",
+  "trials_per_scene": 1,
+  "truth_to_localizers": false,
+  "limitations": [
+    "Exploratory single run per scene; no population/significance claim",
+    "Given mapping poses; not complete autonomous SLAM",
+    "M4 controlled contamination trend and M5 matched geometry-selection mechanism remain untested"
+  ]
+}

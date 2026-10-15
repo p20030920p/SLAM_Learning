@@ -1,0 +1,43 @@
+{
+  "kind": "original_editable_conceptual_diagrams",
+  "checked_on": "2026-10-15",
+  "scope": "Functional SLAM overview and a non-exhaustive failure-factor taxonomy. Examples are explanatory possibilities, not results measured on this robot. No paper figure or experimental image is copied.",
+  "image_slots": "F01–F08 on slide 2 (Chinese) and slide 4 (English) are empty native editable shapes awaiting user evidence. They are not failed or missing experimental outputs.",
+  "interpretation": "The eight-category grouping and concrete example phrasing are our synthesis. Effects depend on sensor modality, geometry, initialization, algorithm and settings. Increasing density or removing more points is not assumed to improve localization monotonically.",
+  "references": [
+    {
+      "title": "Past, Present, and Future of Simultaneous Localization And Mapping: Towards the Robust-Perception Age",
+      "url": "https://arxiv.org/abs/1606.05830",
+      "used_for": "Joint state/map estimation, front-end/back-end organization, robustness, data association and long-term mapping context. The workflow is a functional abstraction, not the architecture of every implementation."
+    },
+    {
+      "title": "LIO-SAM: Tightly-coupled Lidar Inertial Odometry via Smoothing and Mapping",
+      "url": "https://arxiv.org/abs/2007.00258",
+      "used_for": "Motion-based deskewing, factor fusion, local matching and efficient map use; supports F02 and F08 mechanisms."
+    },
+    {
+      "title": "LIO-SAM author repository: input preparation and troubleshooting",
+      "url": "https://github.com/TixiaoShan/LIO-SAM",
+      "used_for": "Per-point timestamps, LiDAR–IMU frame alignment and timing; supports F02–F03. Requirements are implementation-specific rather than universal sensor requirements."
+    },
+    {
+      "title": "DynaSLAM: Tracking, Mapping and Inpainting in Dynamic Scenes",
+      "url": "https://arxiv.org/abs/1806.05620",
+      "used_for": "Dynamic observations can affect tracking and static-map estimation (F04). This visual-SLAM example does not establish the efficacy of this repository's LiDAR cleaners."
+    },
+    {
+      "title": "Detection and Utilization of Reflections in LiDAR Scans Through Plane Optimization and Plane SLAM",
+      "url": "https://arxiv.org/abs/2406.10494",
+      "used_for": "Glass/mirror readings may correspond to reflective planes, objects behind glass or reflected objects (F05); stationary surfaces can still produce unreliable geometry."
+    }
+  ],
+  "local_research_boundary": "The supplied-pose mapping A and independent localization B band summarizes the existing open question in docs/testing/MAPPING-FOCUS.md. Supplying mapping poses is an experimental control; full SLAM does not assume ground-truth pose. No gain from cleaning is claimed by these diagrams.",
+  "editing": {
+    "deck": "direction-analysis.editable.pptx",
+    "slides": {"1": "Chinese workflow", "2": "Chinese factors", "3": "English workflow", "4": "English factors"},
+    "slot_aspect_ratio": "116:72 (~1.61:1)",
+    "insert": "Select the slot, remove hint text and use Shape Fill > Picture, or replace it with one ordinary picture aligned to the same bounds. Keep the native factor, example and mechanism text separate.",
+    "export": "Save PPTX; run src/scripts/presentation/draw_direction_figures.ps1 -ExportOnly using Windows PowerShell to refresh PNG previews without rebuilding objects.",
+    "regeneration": "Plan/draw region regeneration replaces generated objects in that region, including its empty slots. Use ExportOnly after manual edits."
+  }
+}

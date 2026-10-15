@@ -1,6 +1,6 @@
 # Hypotheses from failure recordings, followed by small experiments
 
-This preserves earlier **pose-level exploration with frozen maps**. The current [mapping question and M1–M5](MAPPING-FOCUS.md) are separate; the Depth pose experiments do not validate a temporal depth gate for map updates.
+This preserves earlier **pose-level exploration with frozen maps**. The current [mapping question and M1/M4/M5](MAPPING-FOCUS.md) are separate; Depth trials change localization observations and do not validate the current contamination relationship or geometry-retention strategy.
 
 Map cleaning did not consistently improve localization, and native 3D GICP also diverged or stopped publishing in the original corridor. This motivates testing when to trust matching, which observations are missing, and how to propose and confirm recovery. [Earlier evidence and diagnosis](MAP-2D-3D.md).
 

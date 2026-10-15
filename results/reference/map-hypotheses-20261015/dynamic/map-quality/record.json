@@ -1,0 +1,64 @@
+{
+  "kind": "static_mesh_distance_and_observed_surface_coverage",
+  "scene": "dynamic",
+  "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211049-mapping-dynamic-2365b7",
+  "maps": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211049-mapping-dynamic-2365b7/author-maps-20261015-211319",
+  "reference_voxels": 23996,
+  "roi": {
+    "height_m": [
+      0.12,
+      2.2
+    ],
+    "sensor_distance_min_m": 0.45,
+    "voxel_m": 0.05
+  },
+  "surface_tolerance_m": 0.05,
+  "reference_static_hit_tolerance_m": 0.02,
+  "methods": {
+    "raw": {
+      "points": 684736,
+      "evaluated_voxels": 27520,
+      "surface_mean_m": 0.016464577987790108,
+      "surface_rmse_m": 0.07038062065839767,
+      "surface_p95_m": 0.02656078338623047,
+      "surface_precision_5cm": 0.9655886627906977,
+      "observed_static_coverage_5cm": 0.9998333055509252,
+      "static_retention": 1.0,
+      "dynamic_removal": 0.0,
+      "map_sha256": "7b387859a998f32567db0fc2fa59a83ae878118016f61ea93eb3123cf4f5de2c"
+    },
+    "dufomap": {
+      "points": 682071,
+      "evaluated_voxels": 27072,
+      "surface_mean_m": 0.010397529229521751,
+      "surface_rmse_m": 0.046702343970537186,
+      "surface_p95_m": 0.01867022588849066,
+      "surface_precision_5cm": 0.9806072695035462,
+      "observed_static_coverage_5cm": 0.9998333055509252,
+      "static_retention": 0.9998734430552613,
+      "dynamic_removal": 0.5067793279622715,
+      "map_sha256": "1eee225567fda0240268397187e3f87a30d9223ef84e9ca202a26d83e15b90a9"
+    },
+    "beautymap": {
+      "points": 574458,
+      "evaluated_voxels": 19815,
+      "surface_mean_m": 0.008355091325938702,
+      "surface_rmse_m": 0.03655196353793144,
+      "surface_p95_m": 0.018362426757812488,
+      "surface_precision_5cm": 0.9887963663890992,
+      "observed_static_coverage_5cm": 0.7380813468911486,
+      "static_retention": 0.8431135362953545,
+      "dynamic_removal": 0.719001768520338,
+      "map_sha256": "999edd367866fd3e84474ead13c089f13537b3d4ba3bb13e0df0594b2cf10597"
+    }
+  },
+  "scope": "Exact nearest rendered static triangle distance; one retained point per 5cm voxel. Coverage of A-observed static surface reference only, not whole-world completeness. Self/ground excluded. Mapping poses supplied; no autonomous SLAM accuracy claim.",
+  "truth_in_estimators": false,
+  "inputs": {
+    "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S2_dynamic.world": "6a5837880254d5647634247be12b6953438f87d5326682bcd2a376b2c6023e53",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211049-mapping-dynamic-2365b7/mapping-clouds.npz": "b4bda3ba030916caa14ec0ae9e6ba0f46b52eb360376c13019ed9de679f95057",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211049-mapping-dynamic-2365b7/author-maps-20261015-211319/record.json": "692d01d508ab9e18962f3ff8b014c872c95960e511e02d4612d58c106cc1e9fa",
+    "/mnt/d/workspace/be2/slam_learning_updated/.cache/map-hypotheses-20261015/geometry/competition_map_color_rules.dae": "2bd3f7aede714dbc5c9e30454012fea3993077ede8528a47dd9f5a32ad061c80",
+    "/mnt/d/workspace/be2/slam_learning_updated/.cache/map-hypotheses-20261015/geometry/model.sdf": "d4d0ed8d5b7a4f2c5c1354cd6cc1c332097b8baf7d397a11656a554249bd5f0c"
+  }
+}

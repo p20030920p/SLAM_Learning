@@ -3,6 +3,8 @@
 from pathlib import Path
 import re
 
+from publish_direction_figures import refresh_direction
+
 ROOT = Path(__file__).resolve().parents[3]
 
 SETUP_EN = """## Simulation sensors and chassis
@@ -39,30 +41,26 @@ SETUP_ZH = """## 仿真雷达与小车结构参数
 
 """
 
-HYP_EN = """The current question is about **map cleaning**. Test hypotheses in order; a failed condition stops a claim from propagating to localization. Existing pose-only Guard/Depth/Search experiments remain as a labelled exploratory appendix.
+HYP_EN = """The focused question has three linked tests: **joint map quality → contamination-dependent localization benefit → geometric conditions for that benefit**. M1 combines the former M1/M2; M4/M5 retain their identifiers for traceability. Projection is a representation/scoring diagnostic, not a separate M3 hypothesis.
 
-| Hypothesis, easy → hard | Existing simple test / outcome |
+| Hypothesis | Controlled test and current evidence |
 | --- | --- |
-| M1: temporal visibility can remove dynamic traces | Dynamic scene: DUFOMap removes 46.59% / BeautyMap 74.36% of 3D dynamic points; native 2D SRRG removes 42.31% of verified dynamic ghost cells. Different denominators; no cross-method ranking. |
-| M2: removal can preserve static constraints | Same scene: 3D static retention DUFOMap 99.998%, BeautyMap 81.15%; SRRG 2D static coverage 99.51%. BeautyMap's removal gain has a static-loss cost here. |
-| M3: a 3D cleaning gain survives 2D projection | Re-score the same maps: projected dynamic-cell removal is only 8.33% / 33.33%; supported only partially. Native 2D SRRG is a separate representation/control. |
-| M4: cleaner maps lower held-out pose error when ghosts corrupt useful constraints | Dynamic GICP XYZ RMSE Raw/DUFO/Beauty=0.98/0.98/1.04 cm: no benefit established. Vary contamination and repeat with a frozen localizer; this dose-response experiment is pending. SRRG's separate localization B is also pending. |
-| M5: a 2D lidar + depth camera can disambiguate occluded static structure | Existing Depth experiments test pose estimation only, with no stable general gain. A temporal depth visibility gate for map updates, compared with 2D-only SRRG and 3D reference, remains an untested mapping hypothesis. |
+| M1: suppress dynamic traces while limiting static-structure loss (former M1/M2 combined) | Score removal and retention jointly on the same inputs. DUFOMap: DA 46.59%, SA 99.998%; BeautyMap: DA 74.36%, SA 81.15%. Native 2D SRRG: ghost removal 42.31%, static coverage 99.51%, under its own definition. These are single-run observations, not a cross-representation ranking. |
+| M4: localization benefit depends on map contamination encountered during the test | Freeze the localizer and independent test B; vary map contamination in predefined regions while controlling static support. Predict a larger paired error/failure reduction when more misleading map support is encountered. Existing dynamic GICP XYZ RMSE Raw/DUFO/Beauty=0.98/0.98/1.04 cm establishes no gain; the controlled relationship and SRRG's separate B remain untested. |
+| M5: retained static geometry matters beyond aggregate removal/retention scores | Within one representation and comparable DA/SA, point and compute budgets, compare geometry-preserving retention with uniform/threshold-only retention. Predict better localization when repeatably visible, spatially distinct and complementary structures survive. This map-selection test is unrun; earlier Depth pose experiments do not validate it. |
 
-[Mapping question, paper links and controlled next tests](docs/testing/MAPPING-FOCUS.md) · [Map-quality evidence and failure timestamps](docs/testing/MAP-METRICS.zh-CN.md). Static and corridor scenes are controls: deleting points cannot create missing geometry. Persistent change needs a separate map-update test.
+[Exact hypotheses, controls and falsification](docs/testing/MAPPING-FOCUS.md) · [Map-quality evidence and failure timestamps](docs/testing/MAP-METRICS.zh-CN.md). A point/cell percentage difference alone does not measure lost localization benefit. Static and corridor scenes remain boundary controls; sensor additions and persistent-change updates are separate extensions.
 """
 
-HYP_ZH = """本轮问题聚焦**地图清理**。假设由易到难逐项检验；前提不成立，就不能继续推出定位收益。已有Guard／Depth／Search仅作为标明范围的定位探索附录保留。
+HYP_ZH = """围绕当前开放问题，依次检验**联合地图质量→污染条件下的定位收益→收益成立的几何条件**。M1合并原M1／M2；保留M4／M5编号以便对应历史记录。投影只作表示与评分诊断，不再单列M3假设。
 
-| 假设：由易到难 | 已有简单实验／结果 |
+| 假设 | 受控检验与现有证据 |
 | --- | --- |
-| M1：多帧可见性能够删除动态残影 | 动态场景：DUFOMap删除46.59%、BeautyMap删除74.36%的三维动态点；原生二维SRRG删除42.31%的已验证动态残影格。分母不同，不跨方法排名。 |
-| M2：删动态时能保留静态约束 | 同场景：三维静态保留DUFOMap为99.998%、BeautyMap为81.15%；SRRG二维静态覆盖为99.51%。BeautyMap本次删得更多，也损失更多静态支持。 |
-| M3：三维清理收益能保留到二维投影 | 同图重新评分：投影动态格删除仅8.33%／33.33%，只部分支持；原生二维SRRG是另一种表示和对照。 |
-| M4：残影污染有效约束时，地图更干净才能降低独立定位B误差 | 动态GICP的Raw／DUFO／Beauty XYZ RMSE为0.98／0.98／1.04 cm，尚无收益证据。固定定位器、逐级增加污染并重复的实验待做；SRRG独立定位B也待测。 |
-| M5：二维雷达＋深度相机能够区分遮挡与静态结构 | 已有Depth实验只检验定位，未见普遍稳定收益。将时序深度可见性用于地图更新门控，并对照二维SRRG和三维参照，仍是未验证的建图假设。 |
+| M1：抑制动态残影，同时限制静态结构损失（合并原M1／M2） | 同输入联合评价删除与保留：DUFOMap的DA为46.59%、SA为99.998%；BeautyMap的DA为74.36%、SA为81.15%。原生二维SRRG按自身定义得到残影删除42.31%、静态覆盖99.51%。这些是单轮观察，不跨表示排名。 |
+| M4：定位收益取决于测试时遇到的地图污染 | 固定定位器及独立测试B，在事先指定区域改变地图污染，并控制静态支持；假设遇到更多误导性地图支持时，清理带来的配对误差／失败改善更明显。已有动态GICP的Raw／DUFO／Beauty XYZ RMSE为0.98／0.98／1.04 cm，未建立收益；受控关系及SRRG独立定位B仍待测。 |
+| M5：保留的静态几何分布，会影响全局删除／保留分数之外的定位表现 | 在同一表示及相近DA／SA、点数和计算预算下，对比几何结构保护与均匀／仅阈值保留；假设保住可重复观测、具有区分度且方向互补的结构更有利于定位。该地图选择实验未运行，旧Depth定位实验不能验证它。 |
 
-[建图问题、论文依据与后续单因素实验](testing/MAPPING-FOCUS.zh-CN.md) · [地图指标与故障时间点](testing/MAP-METRICS.zh-CN.md)。静态和走廊是边界对照：删除点不能凭空增加缺失几何；持久变化需另测地图更新。
+[精确命题、对照与证伪条件](testing/MAPPING-FOCUS.zh-CN.md) · [地图指标与故障时间点](testing/MAP-METRICS.zh-CN.md)。点级与格级百分数不同，本身不能衡量定位收益损失。静态和走廊保留为边界对照；增加传感器与持久变化更新属于另行验证的扩展。
 """
 
 
@@ -70,8 +68,16 @@ def publish():
     for chinese, path in [(False, ROOT / "README.md"), (True, ROOT / "docs/HOME.zh-CN.md")]:
         text = path.read_text(encoding="utf-8")
         if "<!-- HOME_EXPERIMENTS_V2 -->" in text:
+            text = refresh_direction(text, chinese)
             from publish_home_experiments import refresh_document
 
+            heading = "假设" if chinese else "Hypothesis"
+            hypothesis = HYP_ZH if chinese else HYP_EN
+            text = re.sub(
+                rf"(?<=## {heading}\n\n).*?(?=\n\n## )",
+                lambda _: hypothesis.rstrip(), text, count=1, flags=re.S,
+            )
+            path.write_text(text, encoding="utf-8")
             refresh_document(path, chinese)
             continue
         text = text.split('\n\n<a id="mapping-hypothesis-tests"></a>')[0]
@@ -181,6 +187,7 @@ def publish():
         text = text.replace("The diagram below remains", "The diagram above remains").replace(
             "下图保留为此前定位", "上图保留为此前定位"
         )
+        text = refresh_direction(text, chinese)
         path.write_text(text, encoding="utf-8")
 
 

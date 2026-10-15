@@ -37,7 +37,7 @@ try{
   [IO.File]::WriteAllText("$run/executions/$case-filter.txt",$filter)
   $info=[Diagnostics.ProcessStartInfo]::new()
   $info.FileName=(Get-Command ffmpeg.exe).Source
-  $info.Arguments='-hide_banner -loglevel warning -filter_complex_threads 4 -filter_complex "'+$filter+'" -map "[out]" -r 12 -fps_mode cfr -c:v libx264 -threads 2 -preset veryfast -crf 22 -y "'+$run+'\executions\'+$case+'.mp4"'
+  $info.Arguments='-hide_banner -loglevel warning -filter_complex_threads 1 -filter_complex "'+$filter+'" -map "[out]" -r 12 -fps_mode cfr -c:v libx264 -threads 2 -preset veryfast -crf 22 -progress "'+$run+'\executions\'+$case+'-progress.txt" -y "'+$run+'\executions\'+$case+'.mp4"'
   $info.UseShellExecute=$false;$info.CreateNoWindow=$true
   $info.RedirectStandardInput=$true;$info.RedirectStandardError=$true
   $proc=[Diagnostics.Process]::new();$proc.StartInfo=$info;$null=$proc.Start()
@@ -46,6 +46,18 @@ try{
  }
  Start-Sleep -Seconds 4
  foreach($c in $captures){if($c.process.HasExited){throw ($c.case+': '+$c.stderr.Result)}}
+ $captureDeadline=(Get-Date).AddSeconds(30)
+ do{
+  $readyCaptures=0
+  foreach($c in $captures){
+   if($c.process.HasExited){throw ($c.case+': '+$c.stderr.Result)}
+   $progress=Join-Path $run ('executions/'+$c.case+'-progress.txt')
+   if((Test-Path $progress) -and (Select-String -LiteralPath $progress -Pattern '^frame=[1-9][0-9]*$' -Quiet)){$readyCaptures++}
+  }
+  if($readyCaptures -eq $captures.Count){break}
+  if((Get-Date)-gt $captureDeadline){throw 'Native-window capture produced no frames; experiment not started'}
+  Start-Sleep -Milliseconds 250
+ }while($true)
  [IO.File]::WriteAllText("$run/recording.capture",'Native window capture')
  [IO.File]::WriteAllText("$run/recording.started",(Get-Date -Format o))
  while(-not (Test-Path "$run/finished.json")){

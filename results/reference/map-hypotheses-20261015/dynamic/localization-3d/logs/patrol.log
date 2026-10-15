@@ -1,0 +1,18 @@
+[INFO] [1792088632.965102020] [patrol_waypoints]: patrol: 8 waypoints, speed 0.3 m/s, origin (8.0727, 7.5312, -1.5708), hold 1.0s, odom /omni_drive_controller/odom
+[INFO] [1792088640.355232260] [patrol_waypoints]: reached waypoint 1/8 (8.5, 7.6) (odom 0.02,0.14)
+[INFO] [1792088657.690363927] [patrol_waypoints]: reached waypoint 2/8 (5.3, 7.6) (odom -0.07,-2.48)
+[INFO] [1792088668.490558597] [patrol_waypoints]: reached waypoint 3/8 (5.3, 6.5) (odom 0.74,-2.74)
+[INFO] [1792088688.947369968] [patrol_waypoints]: reached waypoint 4/8 (8.2, 6.5) (odom 1.02,-0.17)
+[INFO] [1792088700.442350481] [patrol_waypoints]: reached waypoint 5/8 (8.2, 5.2) (odom 2.04,0.10)
+[INFO] [1792088708.118348785] [patrol_waypoints]: reached waypoint 6/8 (9.7, 5.2) (odom 2.30,1.33)
+[INFO] [1792088715.493279939] [patrol_waypoints]: reached waypoint 7/8 (9.7, 4.2) (odom 3.04,1.59)
+[INFO] [1792088731.017020787] [patrol_waypoints]: reached waypoint 8/8 (6.7, 4.2) (odom 3.32,-1.08)
+[INFO] [1792088731.022138126] [patrol_waypoints]: ROUTE_COMPLETE
+Traceback (most recent call last):
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py", line 148, in <module>
+    main()
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py", line 142, in main
+    node.pub.publish(Twist())
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/publisher.py", line 70, in publish
+    self.__publisher.publish(msg)
+rclpy._rclpy_pybind11.RCLError: Failed to publish: publisher's context is invalid, at ./src/rcl/publisher.c:423

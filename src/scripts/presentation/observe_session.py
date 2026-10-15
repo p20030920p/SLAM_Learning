@@ -340,6 +340,10 @@ class Observer:
             "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
             "cases": {},
         }
+        if self.started_sim is not None:
+            report["recording_interval_sim_s"] = [
+                self.started_sim, self.node.get_clock().now().nanoseconds * 1e-9
+            ]
         for case, rows in self.rows.items():
             array = np.asarray(rows)
             if len(rows):

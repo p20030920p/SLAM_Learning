@@ -1,0 +1,75 @@
+{
+  "frozen_utc": "2026-10-15T18:11:18.069851+00:00",
+  "scope": "New map-quality -> held-out localization batch; supplied mapping poses; simulation only",
+  "scenes": [
+    "static",
+    "dynamic",
+    "corridor"
+  ],
+  "methods": [
+    "raw",
+    "dufomap",
+    "beautymap"
+  ],
+  "trials_per_scene": 1,
+  "mapping_scan_budget": 60,
+  "mapping_duration_sim_s": 90,
+  "B_duration_sim_s": {
+    "static": 90,
+    "dynamic": 90,
+    "corridor": 120
+  },
+  "hypothesis_tests": {
+    "M1": "Joint map-error, observed-static-coverage and dynamic-removal measurement",
+    "M4": "Same frozen localizer and independent B; paired map comparison. This batch is not a controlled pollution dose-response test.",
+    "M5": "Full vs limited/restored corridor observations; geometry boundary check. This batch is not a matched-DA/SA geometry-selection ablation."
+  },
+  "surface_ROI": {
+    "z_m": [
+      0.12,
+      2.2
+    ],
+    "self_exclusion_m": 0.45,
+    "voxel_m": 0.05
+  },
+  "surface_tolerance_m": 0.05,
+  "reference_hit_tolerance_m": 0.02,
+  "pose_output_match_max_s": 0.15,
+  "pose_grid_hz": 10,
+  "pose_success": {
+    "position_m": 0.1,
+    "rotation_deg": 5
+  },
+  "B_truth_max_delta_s": 0.05,
+  "B_truth_input_to_estimators": false,
+  "localizer": "upstream GICP + wheel odometry; fixed parameters across maps",
+  "source_sha256": {
+    "src/scripts/presentation/score_hypothesis_maps.py": "d88c285321430a6f7bcc90ecaf7fa69dfb7f6524551bee6514a8f4f5bb2727e1",
+    "src/scripts/presentation/observe_session.py": "556204322d54c6148510fe791bc13d7726072115c627bf41b1bacdea2c9ecd89",
+    "src/scripts/presentation/build_maps.py": "e2128f1e57111b4233c2fd66dadf7f8454a09fd12776f1a5b4d503ae20f84491",
+    "src/scripts/presentation/native_beautymap.py": "c7e6493c04c8469c111627cf1b31990204fca134076e5040edf425dff9bb12c1",
+    "src/scripts/presentation/registration.launch.py": "41061edcf0657425c8711db96d762efca993e4495a92c4c1fada0ee43ae9c47a",
+    "src/scripts/presentation/prepare_3d.py": "a92d4cd297dd2d533f9d97a8b70fed8a22620271d47c952deedcb360b05b87a2",
+    "src/scripts/presentation/stress_scan.py": "98da9b7c82712a7cd5e9fee8dd19afa0d6f5ab4c315c81b8465148053795e7ae"
+  },
+  "interpretation": "Exploratory single session per scene. No success guarantee, autonomous SLAM, mirror or hardware claims. M4/M5 extended mechanisms remain pending.",
+  "capture_amendments": [
+    {
+      "utc": "2026-10-15T18:18:54.449079+00:00",
+      "reason": "First static B recording stalled in event-driven native-window capture; retry with native caption heartbeat only; estimator/sensor parameters unchanged",
+      "excluded_attempt": "results/runs/presentation/20261015-211538-localization-3d-static-method-live-8a3ea8",
+      "source_sha256": {
+        "src/scripts/presentation/run_live.sh": "7af08f3206a05159c898488b42e4812d9b4afc5381ed426e68aa0595ca71c0ce",
+        "src/scripts/presentation/window_capture_heartbeat.py": "8fa4a73dee722a7b788d93c856036d07788e9434fd455cf292f3c9472ab71190"
+      }
+    },
+    {
+      "utc": "2026-10-15T18:20:56.197807+00:00",
+      "reason": "Confirmed native sources deliver frames individually, while multi-source gfxcapture stalls with filter_complex_threads=4. Diagnostic graph with one filter thread delivered frames. Set one filter thread and require positive encoded frame count before starting B. Estimator parameters unchanged.",
+      "excluded_attempt": "results/runs/presentation/20261015-211925-localization-3d-static-method-live-3cb2bc",
+      "source_sha256": {
+        "demo/record-methods.ps1": "ea6b4ed66b5c00861ff9be15fd50e23752567c13f23f0dc38f0a8dcbfe9b2587"
+      }
+    }
+  ]
+}

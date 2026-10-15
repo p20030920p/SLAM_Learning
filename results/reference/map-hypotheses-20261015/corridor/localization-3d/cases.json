@@ -1,0 +1,116 @@
+{
+  "raw": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/raw/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/raw/map-3d.pcd",
+    "pose_topic": "/raw/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points_degraded",
+    "map_points_sha256": "e5f409098c859bedc4f0324db935169e4cd98be682e10e63625c2f35d784cb44"
+  },
+  "dufomap": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/dufomap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/dufomap/map-3d.pcd",
+    "pose_topic": "/dufomap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points_degraded",
+    "map_points_sha256": "e5f409098c859bedc4f0324db935169e4cd98be682e10e63625c2f35d784cb44"
+  },
+  "beautymap": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/beautymap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/beautymap/map-3d.pcd",
+    "pose_topic": "/beautymap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points_degraded",
+    "map_points_sha256": "3ac0ac16e256432e61e94926a9fdb81c664c120cc79d7f7f780048359b62a333"
+  },
+  "full_raw": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/raw/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/raw/map-3d.pcd",
+    "pose_topic": "/full_raw/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points",
+    "map_points_sha256": "e5f409098c859bedc4f0324db935169e4cd98be682e10e63625c2f35d784cb44"
+  },
+  "full_dufomap": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/dufomap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/dufomap/map-3d.pcd",
+    "pose_topic": "/full_dufomap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points",
+    "map_points_sha256": "e5f409098c859bedc4f0324db935169e4cd98be682e10e63625c2f35d784cb44"
+  },
+  "full_beautymap": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/beautymap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/beautymap/map-3d.pcd",
+    "pose_topic": "/full_beautymap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points",
+    "map_points_sha256": "3ac0ac16e256432e61e94926a9fdb81c664c120cc79d7f7f780048359b62a333"
+  }
+}

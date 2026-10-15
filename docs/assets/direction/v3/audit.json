@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "target_application": "Microsoft PowerPoint",
+  "microsoft_powerpoint_used": true,
+  "backend": "COM",
+  "renderer": "Microsoft PowerPoint 16.0 COM export",
+  "source": "direction-analysis.editable.pptx",
+  "source_editability": "All text, factor rows, slots, nodes and attached connectors are native objects. No diagram panel was flattened.",
+  "draw_adapter": "MCP native creation was attempted; ANSI decoding and uncontrolled text geometry in the bridge failed. Corrected through the same live COM object model with explicit UTF-8 JSON and fixed bounds; MCP structure audits and renderer exports used for verification.",
+  "canvas_points": [
+    960,
+    540
+  ],
+  "export_pixels": [
+    1920,
+    1080
+  ],
+  "native_object_count": 160,
+  "raster_count": 0,
+  "raster_declarations": [],
+  "reserved_image_fields": 16,
+  "palette_and_typography": "See design.json; Microsoft YaHei; native text 10–29 pt; 32 pt outer margins.",
+  "local_gates": [
+    {
+      "id": "Chinese workflow",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "Chinese factors header",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "Chinese F01–F02",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "Chinese F03–F04",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "Chinese F05–F06",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "Chinese F07–F08",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "Chinese factors footer",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "English workflow",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "English factors header",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "English F01–F02",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "English F03–F04",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "English F05–F06",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "English F07–F08",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    },
+    {
+      "id": "English factors footer",
+      "verdict": "pass",
+      "evidence": "Fresh native structure audit and PowerPoint renderer inspected."
+    }
+  ],
+  "slides": [
+    {
+      "index": 1,
+      "native_audit": {
+        "backend": "powerpoint",
+        "slide_index": 1,
+        "slide_size": {
+          "width": 960,
+          "height": 540
+        },
+        "object_counts": {
+          "total": 37,
+          "pictures": 0,
+          "native_or_composite": 37
+        },
+        "picture_audit": [],
+        "hard_failure_count": 0,
+        "warning_count": 0,
+        "findings_truncated": false,
+        "passed": true,
+        "findings": [],
+        "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry or decomposition operations, executed by the Drawer, rerendered, and audited again.",
+        "focus_policy": "preserve",
+        "backend_selection": {
+          "selected": "com",
+          "preference": "auto",
+          "locked": "com",
+          "locked_host": "powerpoint",
+          "host_preference": "powerpoint",
+          "mutation_count": 55
+        }
+      },
+      "reviewer": {
+        "semantic_text_accuracy": 1,
+        "editability": 1,
+        "geometry_alignment": 0.98,
+        "spacing_whitespace": 0.98,
+        "connector_clarity": 0.98,
+        "typography_color": 0.98,
+        "clipping_overlap_safety": 1,
+        "reference_correspondence": "not applicable: original design",
+        "verdict": "pass"
+      }
+    },
+    {
+      "index": 2,
+      "native_audit": {
+        "backend": "powerpoint",
+        "slide_index": 2,
+        "slide_size": {
+          "width": 960,
+          "height": 540
+        },
+        "object_counts": {
+          "total": 43,
+          "pictures": 0,
+          "native_or_composite": 43
+        },
+        "picture_audit": [],
+        "hard_failure_count": 0,
+        "warning_count": 0,
+        "findings_truncated": false,
+        "passed": true,
+        "findings": [],
+        "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry or decomposition operations, executed by the Drawer, rerendered, and audited again.",
+        "focus_policy": "preserve",
+        "backend_selection": {
+          "selected": "com",
+          "preference": "auto",
+          "locked": "com",
+          "locked_host": "powerpoint",
+          "host_preference": "powerpoint",
+          "mutation_count": 55
+        }
+      },
+      "reviewer": {
+        "semantic_text_accuracy": 1,
+        "editability": 1,
+        "geometry_alignment": 0.98,
+        "spacing_whitespace": 0.98,
+        "connector_clarity": 1,
+        "typography_color": 0.98,
+        "clipping_overlap_safety": 1,
+        "reference_correspondence": "not applicable: original design",
+        "verdict": "pass"
+      }
+    },
+    {
+      "index": 3,
+      "native_audit": {
+        "backend": "powerpoint",
+        "slide_index": 3,
+        "slide_size": {
+          "width": 960,
+          "height": 540
+        },
+        "object_counts": {
+          "total": 37,
+          "pictures": 0,
+          "native_or_composite": 37
+        },
+        "picture_audit": [],
+        "hard_failure_count": 0,
+        "warning_count": 0,
+        "findings_truncated": false,
+        "passed": true,
+        "findings": [],
+        "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry or decomposition operations, executed by the Drawer, rerendered, and audited again.",
+        "focus_policy": "preserve",
+        "backend_selection": {
+          "selected": "com",
+          "preference": "auto",
+          "locked": "com",
+          "locked_host": "powerpoint",
+          "host_preference": "powerpoint",
+          "mutation_count": 55
+        }
+      },
+      "reviewer": {
+        "semantic_text_accuracy": 1,
+        "editability": 1,
+        "geometry_alignment": 0.98,
+        "spacing_whitespace": 0.98,
+        "connector_clarity": 0.98,
+        "typography_color": 0.98,
+        "clipping_overlap_safety": 1,
+        "reference_correspondence": "not applicable: original design",
+        "verdict": "pass"
+      }
+    },
+    {
+      "index": 4,
+      "native_audit": {
+        "backend": "powerpoint",
+        "slide_index": 4,
+        "slide_size": {
+          "width": 960,
+          "height": 540
+        },
+        "object_counts": {
+          "total": 43,
+          "pictures": 0,
+          "native_or_composite": 43
+        },
+        "picture_audit": [],
+        "hard_failure_count": 0,
+        "warning_count": 0,
+        "findings_truncated": false,
+        "passed": true,
+        "findings": [],
+        "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry or decomposition operations, executed by the Drawer, rerendered, and audited again.",
+        "focus_policy": "preserve",
+        "backend_selection": {
+          "selected": "com",
+          "preference": "auto",
+          "locked": "com",
+          "locked_host": "powerpoint",
+          "host_preference": "powerpoint",
+          "mutation_count": 55
+        }
+      },
+      "reviewer": {
+        "semantic_text_accuracy": 1,
+        "editability": 1,
+        "geometry_alignment": 0.98,
+        "spacing_whitespace": 0.98,
+        "connector_clarity": 1,
+        "typography_color": 0.98,
+        "clipping_overlap_safety": 1,
+        "reference_correspondence": "not applicable: original design",
+        "verdict": "pass"
+      }
+    }
+  ],
+  "resolved_findings": [
+    {
+      "id": "CJK-decoding",
+      "correction": "Read design JSON using explicit UTF-8 and set native text via COM."
+    },
+    {
+      "id": "fixed-bounds",
+      "correction": "Native shapes / text frames use fixed planned bounds after text formatting."
+    },
+    {
+      "id": "CN-slot-orphan",
+      "correction": "Shorten slot hints to avoid isolated final characters."
+    },
+    {
+      "id": "EN-workflow-overflow",
+      "correction": "Shorten labels and use explicit line breaks; rerendered with zero hard failures."
+    }
+  ],
+  "unresolved_findings": [],
+  "content_ambiguity": "The factor taxonomy is non-exhaustive. All examples are conceptual and empty slots await user-provided empirical evidence; no measured gain is claimed.",
+  "whole_figure_verdict": "pass",
+  "exact_source_text_check": {
+    "native_text_objects": 108,
+    "passed": true,
+    "encoding_loss": false
+  }
+}

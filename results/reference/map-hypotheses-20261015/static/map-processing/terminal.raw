@@ -1,0 +1,244 @@
+Script started on 2026-10-15 21:11:23+03:00 [TERM="xterm" TTY="/dev/pts/5" COLUMNS="158" LINES="48"]
+SLAM Learning | FULL TERMINAL SESSION | normal elapsed time
+Started UTC: 2026-10-15T18:11:23+00:00
+Working directory: /mnt/d/workspace/be2/slam_learning_updated
+$ bash src/scripts/presentation/build_maps.sh static
+EXECUTING: native DUFOMap + BeautyMap on /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c/mapping-clouds.npz
+NATIVE MAP PROCESSING: raw; same 60 measured 3D scans
+NATIVE MAP PROCESSING: dufomap; same 60 measured 3D scans
+I20261015 21:11:29.646706 136096527495168 dufomap.cpp:52] Here is your dufomap config: 
+I20261015 21:11:29.649198 136096527495168 dufomap.cpp:53] Set resolution: 0.1, d_s: 0.2, d_p: 1, hit_extension: 1, ray_passthrough_hits: 0
+I20261015 21:11:29.649299 136096527495168 dufomap.cpp:54] Set num_threads: 2
+DUFOMap 1/60
+DUFOMap 2/60
+DUFOMap 3/60
+DUFOMap 4/60
+DUFOMap 5/60
+DUFOMap 6/60
+DUFOMap 7/60
+DUFOMap 8/60
+DUFOMap 9/60
+DUFOMap 10/60
+DUFOMap 11/60
+DUFOMap 12/60
+DUFOMap 13/60
+DUFOMap 14/60
+DUFOMap 15/60
+DUFOMap 16/60
+DUFOMap 17/60
+DUFOMap 18/60
+DUFOMap 19/60
+DUFOMap 20/60
+DUFOMap 21/60
+DUFOMap 22/60
+DUFOMap 23/60
+DUFOMap 24/60
+DUFOMap 25/60
+DUFOMap 26/60
+DUFOMap 27/60
+DUFOMap 28/60
+DUFOMap 29/60
+DUFOMap 30/60
+DUFOMap 31/60
+DUFOMap 32/60
+DUFOMap 33/60
+DUFOMap 34/60
+DUFOMap 35/60
+DUFOMap 36/60
+DUFOMap 37/60
+DUFOMap 38/60
+DUFOMap 39/60
+DUFOMap 40/60
+DUFOMap 41/60
+DUFOMap 42/60
+DUFOMap 43/60
+DUFOMap 44/60
+DUFOMap 45/60
+DUFOMap 46/60
+DUFOMap 47/60
+DUFOMap 48/60
+DUFOMap 49/60
+DUFOMap 50/60
+DUFOMap 51/60
+DUFOMap 52/60
+DUFOMap 53/60
+DUFOMap 54/60
+DUFOMap 55/60
+DUFOMap 56/60
+DUFOMap 57/60
+DUFOMap 58/60
+DUFOMap 59/60
+DUFOMap 60/60
+I20261015 21:11:30.579283 136096527495168 dufomap.cpp:108] Cleaned map saved to dufomap_output.pcd
+NATIVE MAP PROCESSING: beautymap; same 60 measured 3D scans
+NATIVE BEAUTYMAP COMMAND: /home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python -u /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c/author-maps-20261015-211123/beautymap-native/author-code/main.py --data_dir /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c/author-maps-20261015-211123/beautymap-native/input --dis_range 8 --xy_resolution 0.5 --h_res 0.2
+We will process the data in folder: [1m /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c/author-maps-20261015-211123/beautymap-native/input [0m
+[LOG] Min xyz: 3.6964190006256104, -6.301605224609375, -0.029576251283288002 
+[LOG] Max/Min value on x: 15.292550086975098/8.0, y: 22.65569496154785/8.0
+[LOG] Matrix order: 30
+
+Generating Map Binary tree:   0%|                                           | 0/268 [00:00<?, ?it/s]
+Generating Map Binary tree:  24%|███████▊                         | 63/268 [00:00<00:00, 628.89it/s]
+Generating Map Binary tree:  51%|████████████████▎               | 137/268 [00:00<00:00, 693.63it/s]
+Generating Map Binary tree:  77%|████████████████████████▋       | 207/268 [00:00<00:00, 693.76it/s]
+Generating Map Binary tree: 100%|████████████████████████████████| 268/268 [00:00<00:00, 671.32it/s]
+
+Processing Frames:   0%|                                                     | 0/60 [00:00<?, ?it/s]
+Processing Frames:  13%|██████                                       | 8/60 [00:00<00:00, 74.39it/s]
+Processing Frames:  27%|███████████▋                                | 16/60 [00:00<00:00, 69.16it/s]
+Processing Frames:  42%|██████████████████▎                         | 25/60 [00:00<00:00, 77.62it/s]
+Processing Frames:  55%|████████████████████████▏                   | 33/60 [00:00<00:00, 73.26it/s]
+Processing Frames:  68%|██████████████████████████████              | 41/60 [00:00<00:00, 69.52it/s]
+Processing Frames:  82%|███████████████████████████████████▉        | 49/60 [00:00<00:00, 66.51it/s]
+Processing Frames:  93%|█████████████████████████████████████████   | 56/60 [00:00<00:00, 65.34it/s]
+Processing Frames: 100%|████████████████████████████████████████████| 60/60 [00:00<00:00, 68.44it/s]
+shape: (32, 62, 62)
+len print: 32
+There are 115223 pts to remove
+BeautyMap Timings in seconds (s)
+       Component       	Total 	 Last 	 Mean 	StDev 	 Min  	 Max  	Steps
+[1m[31mTotal                  	1.9798	1.9798	1.9798	nan   	1.9798	1.9798	1    [0m
+[1m[32m  0. Map Generation    	0.9296	0.9296	0.9296	nan   	0.9296	0.9296	1    [0m
+[1m[33m  1. Query Generation  	0.7563	0.0120	0.0126	0.0030	0.0071	0.0224	60   [0m
+[1m[34m  2. Matrix Comparison 	0.0011	0.0000	0.0000	0.0000	0.0000	0.0001	60   [0m
+[1m[35m  3. Static Restoration	0.0965	0.0015	0.0016	0.0005	0.0008	0.0039	60   [0m
+[1m[36m  4. Fine Ground Seg   	0.0192	0.0003	0.0003	0.0001	0.0001	0.0007	60   [0m
+[1m[37m  5. One Scan Cost     	0.8739	0.0138	0.0146	0.0032	0.0085	0.0248	60   [0m
+main.py: All codes run successfully, Close now..
+[elapsed 20s | UTC 2026-10-15T18:11:44+00:00]
+{
+  "kind": "author_map_platform_adaptation",
+  "world_sha256": "95091c22b2889b350b87487d58ad640094537f665da4b75593a27601803dadba",
+  "source_recording": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c",
+  "input_sha256": "603824b2324ddbef92edc5e953a188c02ad9c368dd9229de161e53ef222b918c",
+  "selected_scan_ids": [
+    0,
+    1,
+    3,
+    5,
+    7,
+    8,
+    10,
+    12,
+    14,
+    15,
+    17,
+    19,
+    21,
+    22,
+    24,
+    26,
+    28,
+    29,
+    31,
+    33,
+    35,
+    37,
+    38,
+    40,
+    42,
+    44,
+    45,
+    47,
+    49,
+    51,
+    52,
+    54,
+    56,
+    58,
+    59,
+    61,
+    63,
+    65,
+    66,
+    68,
+    70,
+    72,
+    74,
+    75,
+    77,
+    79,
+    81,
+    82,
+    84,
+    86,
+    88,
+    89,
+    91,
+    93,
+    95,
+    96,
+    98,
+    100,
+    102,
+    104
+  ],
+  "parameters": {
+    "dufo_resolution": 0.1,
+    "dufo_ds": 0.2,
+    "dufo_dp": 1,
+    "beauty_range": 8,
+    "beauty_xy": 0.5,
+    "beauty_z": 0.2
+  },
+  "methods": {
+    "raw": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        3.0,
+        -7.0
+      ],
+      "width": 181,
+      "height": 321,
+      "points": 684462,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 5.069027039993671,
+      "raw_points": 684462
+    },
+    "dufomap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        3.0,
+        -7.0
+      ],
+      "width": 181,
+      "height": 321,
+      "points": 684439,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 5.7631433960050344,
+      "raw_points": 684462
+    },
+    "beautymap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        3.0,
+        -7.0
+      ],
+      "width": 181,
+      "height": 321,
+      "points": 569243,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 9.253782953004702,
+      "raw_points": 684462
+    }
+  },
+  "scope": "measured Sim2Real 3D point clouds with evaluation-provided mapping poses; not original-paper metrics",
+  "truth_to_held_out_localization": false
+}
+MAPS READY: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-210835-mapping-static-fe8b2c/author-maps-20261015-211123
+
+Command finished: exit 0; elapsed 24.37s; UTC 2026-10-15T18:11:47+00:00
+
+Script done on 2026-10-15 21:11:51+03:00 [COMMAND_EXIT_CODE="0"]

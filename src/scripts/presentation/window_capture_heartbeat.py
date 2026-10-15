@@ -16,11 +16,11 @@ def main():
     started = time.monotonic()
     with (run / "window-capture-heartbeat.jsonl").open("w") as log:
         while not (run / "session-stopped.json").exists():
-            result = subprocess.run(["xdotool", "search", "--name", "Gazebo Sim|SLAM LIVE - probe |SLAM LIVE - RViz2 - mapping-srrg-"], text=True, capture_output=True, check=False)
+            result = subprocess.run(["xdotool", "search", "--name", "Gazebo Sim|SLAM LIVE - probe |SLAM LIVE - 3D |SLAM LIVE - RViz2"], text=True, capture_output=True, check=False)
             for identity in result.stdout.splitlines():
                 name = subprocess.run(["xdotool", "getwindowname", identity], text=True, capture_output=True, check=False)
                 title = name.stdout.strip()
-                if title.startswith(("Gazebo Sim", "SLAM LIVE - probe ", "SLAM LIVE - RViz2 - mapping-srrg-")):
+                if title.startswith(("Gazebo Sim", "SLAM LIVE - probe ", "SLAM LIVE - 3D ", "SLAM LIVE - RViz2")):
                     titles.setdefault(identity, title.split(" | capture clock")[0])
             elapsed = int(time.monotonic() - started)
             for identity, title in titles.items():

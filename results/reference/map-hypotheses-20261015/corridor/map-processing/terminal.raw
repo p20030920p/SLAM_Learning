@@ -1,0 +1,238 @@
+Script started on 2026-10-15 21:15:38+03:00 [TERM="xterm" TTY="/dev/pts/5" COLUMNS="158" LINES="48"]
+SLAM Learning | FULL TERMINAL SESSION | normal elapsed time
+Started UTC: 2026-10-15T18:15:38+00:00
+Working directory: /mnt/d/workspace/be2/slam_learning_updated
+$ bash src/scripts/presentation/build_maps.sh corridor
+EXECUTING: native DUFOMap + BeautyMap on /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/mapping-clouds.npz
+NATIVE MAP PROCESSING: raw; same 60 measured 3D scans
+NATIVE MAP PROCESSING: dufomap; same 60 measured 3D scans
+I20261015 21:15:42.770782 125440759877632 dufomap.cpp:52] Here is your dufomap config: 
+I20261015 21:15:42.771753 125440759877632 dufomap.cpp:53] Set resolution: 0.1, d_s: 0.2, d_p: 1, hit_extension: 1, ray_passthrough_hits: 0
+I20261015 21:15:42.771769 125440759877632 dufomap.cpp:54] Set num_threads: 2
+DUFOMap 1/60
+DUFOMap 2/60
+DUFOMap 3/60
+DUFOMap 4/60
+DUFOMap 5/60
+DUFOMap 6/60
+DUFOMap 7/60
+DUFOMap 8/60
+DUFOMap 9/60
+DUFOMap 10/60
+DUFOMap 11/60
+DUFOMap 12/60
+DUFOMap 13/60
+DUFOMap 14/60
+DUFOMap 15/60
+DUFOMap 16/60
+DUFOMap 17/60
+DUFOMap 18/60
+DUFOMap 19/60
+DUFOMap 20/60
+DUFOMap 21/60
+DUFOMap 22/60
+DUFOMap 23/60
+DUFOMap 24/60
+DUFOMap 25/60
+DUFOMap 26/60
+DUFOMap 27/60
+DUFOMap 28/60
+DUFOMap 29/60
+DUFOMap 30/60
+DUFOMap 31/60
+DUFOMap 32/60
+DUFOMap 33/60
+DUFOMap 34/60
+DUFOMap 35/60
+DUFOMap 36/60
+DUFOMap 37/60
+DUFOMap 38/60
+DUFOMap 39/60
+DUFOMap 40/60
+DUFOMap 41/60
+DUFOMap 42/60
+DUFOMap 43/60
+DUFOMap 44/60
+DUFOMap 45/60
+DUFOMap 46/60
+DUFOMap 47/60
+DUFOMap 48/60
+DUFOMap 49/60
+DUFOMap 50/60
+DUFOMap 51/60
+DUFOMap 52/60
+DUFOMap 53/60
+DUFOMap 54/60
+DUFOMap 55/60
+DUFOMap 56/60
+DUFOMap 57/60
+DUFOMap 58/60
+DUFOMap 59/60
+DUFOMap 60/60
+I20261015 21:15:43.400475 125440759877632 dufomap.cpp:108] Cleaned map saved to dufomap_output.pcd
+NATIVE MAP PROCESSING: beautymap; same 60 measured 3D scans
+NATIVE BEAUTYMAP COMMAND: /home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python -u /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/beautymap-native/author-code/main.py --data_dir /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/beautymap-native/input --dis_range 8 --xy_resolution 0.5 --h_res 0.2
+We will process the data in folder: [1m /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538/beautymap-native/input [0m
+[LOG] Min xyz: -4.880417346954346, -5.857978820800781, -0.025377022102475166 
+[LOG] Max/Min value on x: 32.061519622802734/8.0, y: 13.503429412841797/8.0
+[LOG] Matrix order: 49
+
+Generating Map Binary tree:   0%|                                           | 0/326 [00:00<?, ?it/s]
+Generating Map Binary tree:  50%|███████████████▌               | 163/326 [00:00<00:00, 1559.72it/s]
+Generating Map Binary tree: 100%|███████████████████████████████| 326/326 [00:00<00:00, 1623.02it/s]
+
+Processing Frames:   0%|                                                     | 0/60 [00:00<?, ?it/s]
+Processing Frames:  22%|█████████▎                                 | 13/60 [00:00<00:00, 128.37it/s]
+Processing Frames:  43%|██████████████████▋                        | 26/60 [00:00<00:00, 128.99it/s]
+Processing Frames:  67%|████████████████████████████▋              | 40/60 [00:00<00:00, 133.47it/s]
+Processing Frames:  90%|██████████████████████████████████████▋    | 54/60 [00:00<00:00, 130.00it/s]
+Processing Frames: 100%|███████████████████████████████████████████| 60/60 [00:00<00:00, 130.63it/s]
+shape: (32, 81, 81)
+len print: 32
+There are 780 pts to remove
+BeautyMap Timings in seconds (s)
+       Component       	Total 	 Last 	 Mean 	StDev 	 Min  	 Max  	Steps
+[1m[31mTotal                  	1.0795	1.0795	1.0795	nan   	1.0795	1.0795	1    [0m
+[1m[32m  0. Map Generation    	0.5093	0.5093	0.5093	nan   	0.5093	0.5093	1    [0m
+[1m[33m  1. Query Generation  	0.4103	0.0065	0.0068	0.0007	0.0058	0.0086	60   [0m
+[1m[34m  2. Matrix Comparison 	0.0005	0.0000	0.0000	0.0000	0.0000	0.0001	60   [0m
+[1m[35m  3. Static Restoration	0.0411	0.0006	0.0007	0.0002	0.0005	0.0013	60   [0m
+[1m[36m  4. Fine Ground Seg   	0.0063	0.0001	0.0001	0.0000	0.0001	0.0002	60   [0m
+[1m[37m  5. One Scan Cost     	0.4584	0.0071	0.0076	0.0008	0.0064	0.0095	60   [0m
+main.py: All codes run successfully, Close now..
+{
+  "kind": "author_map_platform_adaptation",
+  "world_sha256": "e57fee1a83aa2b32b71d5ff4b19cdfed4cfae3d8330e12cc67ec4e807512bc6b",
+  "source_recording": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e",
+  "input_sha256": "6cb84ff5a6714a959cd0657c868ffaefcf9b24b8694a2d61217efcee04a98b9f",
+  "selected_scan_ids": [
+    0,
+    1,
+    3,
+    4,
+    6,
+    8,
+    9,
+    11,
+    13,
+    14,
+    16,
+    18,
+    19,
+    21,
+    23,
+    24,
+    26,
+    27,
+    29,
+    31,
+    32,
+    34,
+    36,
+    37,
+    39,
+    41,
+    42,
+    44,
+    46,
+    47,
+    49,
+    50,
+    52,
+    54,
+    55,
+    57,
+    59,
+    60,
+    62,
+    64,
+    65,
+    67,
+    69,
+    70,
+    72,
+    73,
+    75,
+    77,
+    78,
+    80,
+    82,
+    83,
+    85,
+    87,
+    88,
+    90,
+    92,
+    93,
+    95,
+    97
+  ],
+  "parameters": {
+    "dufo_resolution": 0.1,
+    "dufo_ds": 0.2,
+    "dufo_dp": 1,
+    "beauty_range": 8,
+    "beauty_xy": 0.5,
+    "beauty_z": 0.2
+  },
+  "methods": {
+    "raw": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        -6.0,
+        -7.0
+      ],
+      "width": 521,
+      "height": 161,
+      "points": 657504,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 3.6804299040086335,
+      "raw_points": 657504
+    },
+    "dufomap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        -6.0,
+        -7.0
+      ],
+      "width": 521,
+      "height": 161,
+      "points": 657504,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 4.57191933800641,
+      "raw_points": 657504
+    },
+    "beautymap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        -6.0,
+        -7.0
+      ],
+      "width": 521,
+      "height": 161,
+      "points": 656724,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 5.113063091994263,
+      "raw_points": 657504
+    }
+  },
+  "scope": "measured Sim2Real 3D point clouds with evaluation-provided mapping poses; not original-paper metrics",
+  "truth_to_held_out_localization": false
+}
+MAPS READY: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-211319-mapping-corridor-a7991e/author-maps-20261015-211538
+
+Command finished: exit 0; elapsed 17.14s; UTC 2026-10-15T18:15:53+00:00
+
+Script done on 2026-10-15 21:15:56+03:00 [COMMAND_EXIT_CODE="0"]
