@@ -11,44 +11,28 @@ Dynamic map cleaning · Static structure retention · Downstream localization
 
 English | [中文](docs/HOME.zh-CN.md)
 
-[Direction](#direction-analysis) · [Physical test problems](#problem-getting-from-physical-test) · [Open question](#open-question) · [Hypothesis](#hypothesis) · [Related works](#related-works) · [Metrics](#metrics)
+[Physical test problems](#problem-getting-from-physical-test) · [Direction](#direction-analysis) · [Open question](#open-question) · [Hypothesis](#hypothesis) · [Related works](#related-works) · [Metrics](#metrics)
 
 [Practice](#practice) · [Hypothesis test experiment](#hypothesis-test-experiment) · [Hardware experiment](#hardware-experiment) · [Branches](#branches)
 
 </div>
 
-## Direction analysis
-
-**1. The SLAM workflow: estimate pose and map together.** Observations pass through synchronization, calibration and deskewing; the front end forms matching constraints, the back end optimizes poses and other states, and mapping fuses observations at estimated poses. The map constrains later tracking. Loop retrieval needs geometric validation; a false loop can damage the map. A good prior map is not a prerequisite for starting SLAM.
-
-![Full SLAM workflow: observations, preprocessing, front end, back end, map integration and feedback, with loop validation and pose/map outputs](docs/assets/direction/v3/slam-workflow.en.png)
-
-**2. Factors and examples affecting robust localization and SLAM.** Read each entry as factor→example→mechanism. The eight families cover observations, motion, calibration, changing scenes and the algorithm/system. A stationary mirror can still create unreliable geometry. Dynamic removal, lasting-change updates and degeneracy detection require separate tests. Examples are analysis prompts; image slots await measured evidence.
-
-![Eight factor families and examples: sampling, motion, calibration, dynamics, reflective materials, degeneracy, drift and loops, representation and compute; independent image slots](docs/assets/direction/v3/slam-robustness-factors.en.png)
-
-The current research chain is **dynamic trace removal → static constraint retention → held-out localization test**. Mapping poses and the localizer are controlled while intervening at the map layer. Independent testing determines whether cleaner maps lower pose error. IR-MCL/AdaM-MCL remain localization references.
-
-[Editable PowerPoint source (slides 1–2 Chinese, 3–4 English)](docs/assets/direction/v3/direction-analysis.editable.pptx) · [Design and slot IDs](docs/assets/direction/v3/design.json) · [Sources and scope](docs/assets/direction/v3/sources.json) · [Figure checks](docs/assets/direction/v3/audit.json)
-
-<details>
-<summary>Insert your own images</summary>
-
-Open slide 4, select the appropriate dashed F01–F08 box, delete its hint text and choose **Shape Format → Shape Fill → Picture**. Slots have an approximately **1.61:1** aspect ratio; crop the image first if needed. Titles, examples and mechanisms remain independently editable. Alternatively, delete a slot and align an ordinary inserted picture to its former bounds.
-
-Use one clear phenomenon per field. For larger before/after comparisons, duplicate a slide and record matching viewpoints, frame IDs and conditions. Save the PPTX and export PNGs to replace the corresponding previews, or run the [export script](src/scripts/presentation/draw_direction_figures.ps1) with `-ExportOnly` to refresh all four previews without reconstructing objects.
-
-</details>
-
-| Deliverable | Content |
-| --- | --- |
-| Native reproduction | Author source/data/protocol, each paper's metrics and actual reproduced scope |
-| Robot tests | Sim2Real-AlgoBench omnidirectional chassis, native 2D and independent 3D LiDAR profiles, progressively harder mapping/localization/recovery |
-| Question analysis | Separate weak constraints from map mismatch; narrow using reproducible failures, keeping methods open |
-
-Semantic mapping and earlier projections remain in the [original repository](https://github.com/p20030920p/SLAM_Learning).
-
 ## Problem getting from Physical test
+
+<a id="physical-test-mirror"></a>
+
+### Mirror and incomplete mapping
+
+| Figure 1: mirror | Figure 2: incomplete mapping associated with the mirror |
+| --- | --- |
+| <a id="physical-test-mirror-photo"></a><a href="docs/media/physical-test/20261015-mirror/mirror-surface.jpg"><img src="docs/media/physical-test/20261015-mirror/mirror-surface.jpg" width="420" alt="Figure 1: mirror"></a> | <a id="physical-test-mirror-map"></a><a href="docs/media/physical-test/20261015-mirror/mirror-incomplete-map.png"><img src="docs/media/physical-test/20261015-mirror/mirror-incomplete-map.png" width="420" alt="Figure 2: incomplete mapping associated with the mirror"></a> |
+
+The red circle in Figure 2 is the user-provided annotation.
+
+**Analysis:**
+<!-- PHYSICAL_TEST_ANALYSIS:mirror -->
+
+<!-- /PHYSICAL_TEST_ANALYSIS:mirror -->
 
 <a id="physical-test-real"></a>
 
@@ -88,6 +72,53 @@ Semantic mapping and earlier projections remain in the [original repository](htt
 <!-- PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
 
 <!-- /PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
+
+## Direction analysis
+
+### 1. What does the research title ask?
+
+**Direction: robust localization and SLAM in dynamic environments.** The central question is: **when scenes change and observations can be unreliable, how can we build geometrically faithful maps that retain useful static constraints, and test whether these maps improve localization accuracy and continuity?**
+
+| Term | Research object | Evidence of progress |
+| --- | --- | --- |
+| Dynamic environments | Moving-object traces and persistent changes such as relocated furniture; these require different temporal decisions | Separate transient motion from genuine structural updates; measure removal and static retention |
+| Robust localization | Trustworthy poses under abnormal measurements, map mismatch or weak geometric constraints | Position/rotation error, P95, output coverage and failures together; current single runs do not establish general recovery |
+| SLAM | Joint pose and map estimation: poses align observations, while the map constrains subsequent tracking | Map geometry and coverage plus held-out localization; complete SLAM also requires testing with estimated mapping poses |
+
+Joint pose/map estimation is central to SLAM. [SLAM survey](https://arxiv.org/abs/1606.05830). Our current experiment supplies mapping poses to isolate the map intervention; that control does not establish complete autonomous SLAM.
+
+### 2. How does the physical evidence connect to the title?
+
+[The mirror in Figure 1 and incomplete mapping circled in Figure 2](#physical-test-mirror) provide a concrete starting point: **a stationary environment and reliable observations are separate properties.** Mirrors/glass can cause missing returns or reflected geometry, affecting map boundaries and later matching; see the [reflection study](https://arxiv.org/abs/2406.10494). The supplied images record the user's observation; isolating the cause requires raw scans, coverage and trajectory controls.
+
+We therefore separate **moving objects → dynamic traces** from **stationary mirrors → missing/reflected observations**. The first is the current cleaning experiment; the second is an extension motivated by hardware. Removing bad points still requires checking static loss and retaining uncertainty where observations are missing.
+
+### 3. The SLAM workflow and the important intervention points
+
+**Observations → preprocessing → front-end pose estimation → back-end optimization → map integration/maintenance → map-supported localization.** This is a functional workflow; implementations may interleave its stages.
+
+| Stage | Function and relevance | Our intervention |
+| --- | --- | --- |
+| ① Observations | Acquire scans/images and motion information; motion, mirrors, occlusion, range and sampling determine available evidence | The physical mirror issue starts here; distinguish missing observations from observed free space |
+| ② Preprocessing | Synchronize timestamps, calibrate extrinsics, compensate motion when applicable and flag unreliable observations | Avoid confusing timing/pose error with object motion; reflective-observation handling is an extension |
+| ③ Front end | Motion prediction, association and registration estimate the current pose | **Which map constraints survive** matters here; examine weak directions in corridors, beyond point counts |
+| ④ Back end | Combine neighboring-frame, sensor and geometrically validated loop constraints to improve trajectory consistency | Wrong poses misplace otherwise correct scans; bad associations/loops can damage the map |
+| ⑤ Map integration and maintenance | Fuse posed observations; handle dynamic traces, static retention and persistent changes | **M1 intervenes here; M5 selects which static geometry to retain** |
+| ⑥ Map use and evaluation | Feed the map into tracking/relocalization; in our experiment freeze map A and evaluate separate B | **M4 tests the ⑤→⑥ benefit; M5 tests whether retained structure supplies useful constraints** |
+
+The feedback is **pose error → misalignment → distorted/ghosted map → wrong matching → later pose error**. Useful maps need faithful geometry, static coverage, repeatability and structures that are visible and distinctive during localization; visual cleanliness alone is insufficient. [Workflow basis](https://arxiv.org/abs/1606.05830).
+
+### 4. Where exactly do our hypotheses enter?
+
+| Hypothesis | Intervention or test | Controls and metrics | Current status |
+| --- | --- | --- | --- |
+| **M1: reduce dynamic traces while bounding static loss** | ⑤ Observation selection/map cleaning | Same A and mapping poses; Raw/DUFOMap/BeautyMap; surface error, observed-static coverage and DA/SA | First joint scores exist for static, dynamic and corridor scenes; removal alone is insufficient |
+| **M4: under which contamination conditions does map improvement benefit localization?** | **⑤→⑥: change the map, fix the localizer and held-out B** | Paired RMSE gain, P95, rotation error and coverage; controlled pollution levels must also hold static support constant | Three-scene paired localization exists; the pollution dose-response test is pending |
+| **M5: which static structures should survive?** | **⑤ Geometry selection → ③/⑥ matching constraints** | Comparable DA/SA, point and compute budgets; geometry protection vs uniform/threshold retention; directional/spatial coverage and pose error | Corridor boundary observations exist; budget-matched geometry-selection ablation is pending |
+
+The current protocol is **acquire A → process and score maps (M1) → freeze maps → localize separate B (M4) → examine static-constraint conditions (M5)**. A mirror extension would first address observation reliability at ①/②, then use the same map/pose evaluation chain; current dynamic-cleaning recordings do not validate mirror handling.
+
+[Current experiments and metrics](#current-map-hypotheses) · [Exact hypotheses, controls and falsification](docs/testing/MAPPING-FOCUS.md)
 
 ## Open question
 

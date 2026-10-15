@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "kind": "user_provided_physical_test_images",
+  "status": "provided",
+  "scope": "User-supplied mirror photograph and annotated map screenshot; original bytes retained, no new accuracy or causal-isolation measurement",
+  "items": [
+    {
+      "figure": 1,
+      "path": "mirror-surface.jpg",
+      "caption": {
+        "zh": "镜面",
+        "en": "Mirror surface"
+      },
+      "caption_attribution": "user",
+      "source_name": "codex-clipboard-ee8d983a-aed1-4062-a915-dc425bb4394b.jpg",
+      "source_sha256": "c760bb2281f9a7edfa14b85560bebfc28c34433433ea055a0420c1872d9e81e2",
+      "dimensions": [
+        1706,
+        1280
+      ],
+      "edited": false,
+      "annotation": "Original user photograph"
+    },
+    {
+      "figure": 2,
+      "path": "mirror-incomplete-map.png",
+      "caption": {
+        "zh": "镜面导致的建图不全",
+        "en": "Incomplete mapping associated with the mirror"
+      },
+      "caption_attribution": "user",
+      "source_name": "codex-clipboard-e495af6a-3ec0-45ad-9fcc-eda917fd91b4.png",
+      "source_sha256": "75d251f1efccc168140deed0438df54976e1190aa9f27f91fc2d5840bf123346",
+      "dimensions": [
+        828,
+        756
+      ],
+      "edited": false,
+      "annotation": "User supplied the red circle in Figure 2; no annotation added during import"
+    }
+  ],
+  "artifacts": {
+    "mirror-incomplete-map.png": {
+      "sha256": "75d251f1efccc168140deed0438df54976e1190aa9f27f91fc2d5840bf123346",
+      "bytes": 72020,
+      "availability": "portable"
+    },
+    "mirror-surface.jpg": {
+      "sha256": "c760bb2281f9a7edfa14b85560bebfc28c34433433ea055a0420c1872d9e81e2",
+      "bytes": 141867,
+      "availability": "portable"
+    }
+  }
+}

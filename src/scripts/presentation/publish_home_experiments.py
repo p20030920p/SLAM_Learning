@@ -46,23 +46,23 @@ def apply_home_layout(text, zh):
     direction = "方向分析" if zh else "Direction analysis"
     question = "开放问题" if zh else "Open question"
     physical = "Problem getting from Physical test"
-    cluster = [direction, physical, question]
+    cluster = [physical, direction, question]
     keys = list(blocks)
     position = min(keys.index(key) for key in cluster if key in blocks)
     blocks.setdefault(physical, "## " + physical + "\n\n")
     order = [key for key in keys if key not in cluster]
     order[position:position] = cluster
     navigation = (
-        "[方向分析](#方向分析) · [实物测试问题](#problem-getting-from-physical-test) · "
+        "[实物测试问题](#problem-getting-from-physical-test) · [方向分析](#方向分析) · "
         "[开放问题](#开放问题) · [假设](#假设) · [相关工作](#相关工作) · [指标](#指标)"
         if zh
-        else "[Direction](#direction-analysis) · "
-        "[Physical test problems](#problem-getting-from-physical-test) · "
+        else "[Physical test problems](#problem-getting-from-physical-test) · "
+        "[Direction](#direction-analysis) · "
         "[Open question](#open-question) · [Hypothesis](#hypothesis) · "
         "[Related works](#related-works) · [Metrics](#metrics)"
     )
     prefix = re.sub(
-        r"^\[(?:Open question|Direction|开放问题|方向分析)\][^\n]*$",
+        r"^\[(?:Physical test problems|实物测试问题|Open question|Direction|开放问题|方向分析)\][^\n]*$",
         lambda _: navigation, prefix, count=1, flags=re.M,
     )
     return prefix + "".join(blocks[key].rstrip() + "\n\n" for key in order).rstrip() + "\n"

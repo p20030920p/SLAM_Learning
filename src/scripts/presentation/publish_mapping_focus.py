@@ -3,7 +3,7 @@
 from pathlib import Path
 import re
 
-from publish_direction_figures import refresh_direction
+from publish_direction_analysis import refresh_direction
 
 ROOT = Path(__file__).resolve().parents[3]
 
