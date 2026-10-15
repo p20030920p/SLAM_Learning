@@ -1,0 +1,1026 @@
+Registered class ImageData
+Registered class Cloud3D
+Registered class BaseCameraInfo
+Registered class PinholeCameraInfo
+Registered class SphericalCameraInfo
+Registered class MultiCameraInfo
+Registered class TraversabilityMap
+Registered class BaseImageMessage
+Registering message with tag: IMU_MESSAGE
+Registering message with tag: JOINT_STATE_MESSAGE
+Registered class JointStateMessage
+Registering message with tag: LASER_MESSAGE
+Registered class LaserMessage
+Registering message with tag: PINHOLE_IMAGE_MESSAGE
+Registered class PinholeImageMessage
+Registering message with tag: POSE_MESSAGE
+Registered class PoseMessage
+Registering message with tag: SPHERICAL_IMAGE_MESSAGE
+Registered class SphericalImageMessage
+Registering message with tag: STATIC_TRANSFORM
+Projector set in validator0
+Projector set in finder0x57ea460dbf10
+Projector set in validator0
+LASER_MESSAGEProjector set in finder0x57ea460dbf10
+Projector set in validator0x57ea460dd920
+
+Adding vertex: 0 Pose: 0 0 0
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 1
+
+Finding constraints... 1 candidate vertices to match
+>>>>>>>>>>Trying match: 1 0
+Reference cloud initial pose: -0.0166524  0.0451188   0.818293
+Current cloud initial pose: 0 0 0
+Trying align
+Initial guess-0.0215544 -0.0429932  -0.818293
+aligner->T()-0.0222961 -0.0433073  -0.817991
+Num Correspondences Validator2D: 708
+Num Inliers Validator2D: 693
+Inliers Ratio: 0.978814
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 2
+
+Finding constraints... 2 candidate vertices to match
+>>>>>>>>>>Trying match: 2 1
+Reference cloud initial pose: -0.0438417   0.173692     1.7094
+Current cloud initial pose: -0.0166491  0.0452304   0.818276
+Trying align
+Initial guess  -0.130987 -0.00918371   -0.891122
+aligner->T()  -0.131136 -0.00883135   -0.891121
+Num Correspondences Validator2D: 686
+Num Inliers Validator2D: 655
+Inliers Ratio: 0.954811
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 3
+
+Finding constraints... 3 candidate vertices to match
+>>>>>>>>>>Trying match: 3 2
+Reference cloud initial pose: -0.0904523   0.169629     2.6339
+Current cloud initial pose: -0.0437785   0.173712     1.7094
+Trying align
+Initial guess-0.0388021 -0.0262583  -0.924496
+aligner->T()-0.0386529 -0.0258597   -0.92436
+Num Correspondences Validator2D: 703
+Num Inliers Validator2D: 689
+Inliers Ratio: 0.980085
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 4
+
+Finding constraints... 4 candidate vertices to match
+>>>>>>>>>>Trying match: 4 3
+Reference cloud initial pose: -0.0937646   0.112481   -2.68742
+Current cloud initial pose: -0.0904137    0.16966     2.6339
+Trying align
+Initial guess-0.0280967 -0.0499122  -0.961867
+aligner->T()-0.0275444 -0.0491372  -0.961773
+Num Correspondences Validator2D: 707
+Num Inliers Validator2D: 691
+Inliers Ratio: 0.977369
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 5
+
+Finding constraints... 5 candidate vertices to match
+>>>>>>>>>>Trying match: 5 0
+Reference cloud initial pose:  -0.144267 -0.0490137    -1.8724
+Current cloud initial pose: 0 0 0
+Trying align
+Initial guess-0.0896558   0.123195     1.8724
+aligner->T()-0.0887176   0.122704     1.8726
+Num Correspondences Validator2D: 683
+Num Inliers Validator2D: 655
+Inliers Ratio: 0.959004
+Success. Adding edge as a closure candidate.
+Number of found closures: 1
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 6
+
+Finding constraints... 6 candidate vertices to match
+>>>>>>>>>>Trying match: 6 5
+Reference cloud initial pose: -0.175549 -0.642842   -1.5763
+Current cloud initial pose:  -0.144267 -0.0490137    -1.8724
+Trying align
+Initial guess-0.593992 0.0280168 -0.296103
+aligner->T()-0.593476 0.0280166 -0.296098
+Num Correspondences Validator2D: 583
+Num Inliers Validator2D: 560
+Inliers Ratio: 0.960549
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 7
+
+Finding constraints... 7 candidate vertices to match
+>>>>>>>>>>Trying match: 7 6
+Reference cloud initial pose: -0.177202  -1.24324  -1.56824
+Current cloud initial pose: -0.175578 -0.642662  -1.57633
+Trying align
+Initial guess  -0.600568  0.00316024 -0.00809094
+aligner->T()  -0.600467  0.00294881 -0.00817488
+Num Correspondences Validator2D: 591
+Num Inliers Validator2D: 577
+Inliers Ratio: 0.976311
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 8
+
+Finding constraints... 2 candidate vertices to match
+>>>>>>>>>>Trying match: 8 7
+Reference cloud initial pose: -0.177962  -1.84394  -1.56778
+Current cloud initial pose: -0.177174  -1.24319  -1.56825
+Trying align
+Initial guess   -0.600737   0.00259847 -0.000467351
+aligner->T()   -0.600734   0.00212571 -0.000499572
+Num Correspondences Validator2D: 595
+Num Inliers Validator2D: 588
+Inliers Ratio: 0.988235
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Clipping
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 9
+
+Finding constraints... 2 candidate vertices to match
+>>>>>>>>>>Trying match: 9 8
+Reference cloud initial pose: -0.178754  -2.43382   -1.5686
+Current cloud initial pose: -0.177901  -1.84392   -1.5678
+Trying align
+Initial guess -0.589891 0.00214927 0.00080158
+aligner->T()  -0.588131  0.00100688 9.02875e-05
+Num Correspondences Validator2D: 601
+Num Inliers Validator2D: 596
+Inliers Ratio: 0.991681
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 10
+
+Finding constraints... 3 candidate vertices to match
+>>>>>>>>>>Trying match: 10 9
+Reference cloud initial pose: -0.0561547   -2.60358  -0.626475
+Current cloud initial pose: -0.178626  -2.43317  -1.56874
+Trying align
+Initial guess-0.199125 0.0662455 -0.942265
+aligner->T()-0.200098 0.0654745 -0.942466
+Num Correspondences Validator2D: 681
+Num Inliers Validator2D: 679
+Inliers Ratio: 0.997063
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 11
+
+Finding constraints... 4 candidate vertices to match
+>>>>>>>>>>Trying match: 11 10
+Reference cloud initial pose:  0.434354  -2.72731 -0.163431
+Current cloud initial pose: -0.0558859   -2.60365  -0.626421
+Trying align
+Initial guess-0.503827 0.0422457  -0.46299
+aligner->T()-0.503809 0.0413629 -0.462767
+Num Correspondences Validator2D: 669
+Num Inliers Validator2D: 664
+Inliers Ratio: 0.992526
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 12
+
+Finding constraints... 4 candidate vertices to match
+>>>>>>>>>>Trying match: 12 11
+Reference cloud initial pose: 0.701891 -2.68657 0.786126
+Current cloud initial pose:  0.434324  -2.72711 -0.163487
+Trying align
+Initial guess-0.217747  0.160692 -0.949613
+aligner->T()-0.217179  0.161198 -0.949535
+Num Correspondences Validator2D: 684
+Num Inliers Validator2D: 677
+Inliers Ratio: 0.989766
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 13
+
+Finding constraints... 4 candidate vertices to match
+>>>>>>>>>>Trying match: 13 12
+Reference cloud initial pose: 0.818974 -2.12161  1.46173
+Current cloud initial pose: 0.701917 -2.68672 0.786128
+Trying align
+Initial guess-0.574494 0.0548519 -0.675606
+aligner->T()-0.575084 0.0550655  -0.67548
+Num Correspondences Validator2D: 656
+Num Inliers Validator2D: 641
+Inliers Ratio: 0.977134
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 14
+
+Finding constraints... 5 candidate vertices to match
+>>>>>>>>>>Trying match: 14 0
+Reference cloud initial pose: 0.877879 -1.52534  1.47929
+Current cloud initial pose: 0 0 0
+Trying align
+Initial guess 1.43873  1.01359 -1.47929
+aligner->T() 1.43719  1.01277 -1.47855
+Num Correspondences Validator2D: 481
+Num Inliers Validator2D: 416
+Inliers Ratio: 0.864865
+Success. Adding edge as a closure candidate.
+>>>>>>>>>>Trying match: 14 13
+Reference cloud initial pose: 0.877879 -1.52534  1.47929
+Current cloud initial pose: 0.818993 -2.12148  1.46175
+Trying align
+Initial guess -0.599032 0.00416313 -0.0175419
+aligner->T() -0.599044 0.00422749 -0.0174441
+Num Correspondences Validator2D: 644
+Num Inliers Validator2D: 619
+Inliers Ratio: 0.96118
+Success. Adding edge.
+Number of found closures: 1
+
+Loop Closure Checking.
+Best Chi2 = 0.028077
+Inliers = 2
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 15
+
+Finding constraints... 9 candidate vertices to match
+>>>>>>>>>>Trying match: 15 0
+Reference cloud initial pose:  0.935746 -0.928055   1.47944
+Current cloud initial pose: 0 0 0
+Trying align
+Initial guess 0.83882  1.01651 -1.47944
+aligner->T()0.836691  1.01592 -1.47821
+Num Correspondences Validator2D: 543
+Num Inliers Validator2D: 504
+Inliers Ratio: 0.928177
+Success. Adding edge as a closure candidate.
+>>>>>>>>>>Trying match: 15 14
+Reference cloud initial pose:  0.935746 -0.928055   1.47944
+Current cloud initial pose: 0.877887 -1.52533  1.47929
+Trying align
+Initial guess   -0.600067   0.00313019 -0.000153147
+aligner->T()  -0.599736  0.00322837 1.87915e-05
+Num Correspondences Validator2D: 631
+Num Inliers Validator2D: 627
+Inliers Ratio: 0.993661
+Success. Adding edge.
+Number of found closures: 1
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Clipping
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 16
+
+Finding constraints... 9 candidate vertices to match
+>>>>>>>>>>Trying match: 16 0
+Reference cloud initial pose:  0.995325 -0.313895   1.47991
+Current cloud initial pose: 0 0 0
+Trying align
+Initial guess0.222263  1.01971 -1.47991
+aligner->T()0.220315  1.01926 -1.47793
+Num Correspondences Validator2D: 582
+Num Inliers Validator2D: 575
+Inliers Ratio: 0.987972
+Success. Adding edge as a closure candidate.
+>>>>>>>>>>Trying match: 16 15
+Reference cloud initial pose:  0.995325 -0.313895   1.47991
+Current cloud initial pose:  0.935752 -0.928153   1.47945
+Trying align
+Initial guess    -0.61713   0.00357744 -0.000460841
+aligner->T()   -0.617063   0.00372056 -0.000292769
+Num Correspondences Validator2D: 572
+Num Inliers Validator2D: 565
+Inliers Ratio: 0.987762
+Success. Adding edge.
+Number of found closures: 1
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 17
+
+Finding constraints... 10 candidate vertices to match
+>>>>>>>>>>Trying match: 17 0
+Reference cloud initial pose:   1.11407 -0.100407  0.624861
+Current cloud initial pose: 0 0 0
+Trying align
+Initial guess-0.844823  0.733148 -0.624861
+aligner->T()-0.846199   0.73085 -0.622558
+Num Correspondences Validator2D: 565
+Num Inliers Validator2D: 554
+Inliers Ratio: 0.980531
+Success. Adding edge as a closure candidate.
+>>>>>>>>>>Trying match: 17 16
+Reference cloud initial pose:   1.11407 -0.100407  0.624861
+Current cloud initial pose:  0.995344 -0.313917   1.47991
+Trying align
+Initial guess-0.221191 -0.103714  0.855053
+aligner->T()-0.221322  -0.10367  0.854996
+Num Correspondences Validator2D: 662
+Num Inliers Validator2D: 651
+Inliers Ratio: 0.983384
+Success. Adding edge.
+Number of found closures: 1
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 18
+
+Finding constraints... 5 candidate vertices to match
+>>>>>>>>>>Trying match: 18 1
+Reference cloud initial pose:    1.69413 0.00303525  0.0937842
+Current cloud initial pose: -0.0166491  0.0452304   0.818276
+Trying align
+Initial guess-1.69931 0.202219 0.724492
+aligner->T()-1.69852 0.200236 0.726165
+Num Correspondences Validator2D: 466
+Num Inliers Validator2D: 443
+Inliers Ratio: 0.950644
+Success. Adding edge as a closure candidate.
+>>>>>>>>>>Trying match: 18 4
+Reference cloud initial pose:    1.69413 0.00303525  0.0937842
+Current cloud initial pose: -0.09379 0.112614 -2.68744
+Trying align
+Initial guess -1.7698  0.27653 -2.78123
+aligner->T()-1.76838 0.274831 -2.77981
+Num Correspondences Validator2D: 480
+Num Inliers Validator2D: 456
+Inliers Ratio: 0.95
+Success. Adding edge as a closure candidate.
+>>>>>>>>>>Trying match: 18 17
+Reference cloud initial pose:    1.69413 0.00303525  0.0937842
+Current cloud initial pose:    1.1141 -0.100394  0.624858
+Trying align
+Initial guess -0.587164 -0.0486575   0.531074
+aligner->T() -0.587498 -0.0492635   0.531049
+Num Correspondences Validator2D: 603
+Num Inliers Validator2D: 580
+Inliers Ratio: 0.961857
+Success. Adding edge.
+Number of found closures: 2
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 19
+
+Finding constraints... 5 candidate vertices to match
+>>>>>>>>>>Trying match: 19 1
+Reference cloud initial pose:  2.15612 0.142618 0.974826
+Current cloud initial pose: -0.0166491  0.0452304   0.818276
+Trying align
+Initial guess -1.3002  1.74353 -0.15655
+aligner->T() -1.30127   1.74231 -0.155047
+Num Correspondences Validator2D: 410
+Num Inliers Validator2D: 390
+Inliers Ratio: 0.951219
+Success. Adding edge as a closure candidate.
+>>>>>>>>>>Trying match: 19 18
+Reference cloud initial pose:  2.15612 0.142618 0.974826
+Current cloud initial pose:    1.69421 0.00318792  0.0937556
+Trying align
+Initial guess-0.374669  0.304015  -0.88107
+aligner->T()-0.373783  0.305132 -0.881049
+Num Correspondences Validator2D: 633
+Num Inliers Validator2D: 576
+Inliers Ratio: 0.909953
+Success. Adding edge.
+Number of found closures: 1
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 20
+
+Finding constraints... 4 candidate vertices to match
+>>>>>>>>>>Trying match: 20 19
+Reference cloud initial pose:  2.27697 0.670145  1.42392
+Current cloud initial pose:  2.15624 0.142221 0.974903
+Trying align
+Initial guess -0.53991 0.0421784 -0.449021
+aligner->T()-0.542446 0.0418734 -0.448512
+Num Correspondences Validator2D: 663
+Num Inliers Validator2D: 634
+Inliers Ratio: 0.956259
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Clipping
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 21
+
+Finding constraints... 3 candidate vertices to match
+>>>>>>>>>>Trying match: 21 20
+Reference cloud initial pose:   2.356 1.27097 1.44788
+Current cloud initial pose:  2.27703 0.670758  1.42383
+Trying align
+Initial guess -0.605369 0.00479054 -0.0240554
+aligner->T() -0.607002 0.00482519 -0.0245877
+Num Correspondences Validator2D: 643
+Num Inliers Validator2D: 623
+Inliers Ratio: 0.968896
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 22
+
+Finding constraints... 4 candidate vertices to match
+>>>>>>>>>>Trying match: 22 21
+Reference cloud initial pose:   2.4814  1.37411 0.588001
+Current cloud initial pose: 2.35608 1.27131 1.44785
+Trying align
+Initial guess -0.161296 -0.0160149   0.859852
+aligner->T() -0.161561 -0.0157652   0.859941
+Num Correspondences Validator2D: 684
+Num Inliers Validator2D: 636
+Inliers Ratio: 0.929825
+Success. Adding edge.
+Number of found closures: 0
+
+MERGER
+Vertices pending to merge:
+TRIGGERING SET finished
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 23
+
+Finding constraints... 3 candidate vertices to match
+>>>>>>>>>>Trying match: 23 22
+Reference cloud initial pose:  2.99725  1.47173 0.117327
+Current cloud initial pose:  2.48147  1.37409 0.587991
+Trying align
+Initial guess -0.523666 -0.0365925   0.470664
+aligner->T() -0.524961 -0.0386502   0.470895
+Num Correspondences Validator2D: 658
+Num Inliers Validator2D: 616
+Inliers Ratio: 0.93617
+Success. Adding edge.
+Number of found closures: 0
+
+Loop Closure Checking.
+Best Chi2 = 0.0379164
+Inliers = 7
+Results:
+Edge from: 18 to: 1. Chi2 = 0.00458252
+Is an inlier. Adding to Graph
+Edge from: 14 to: 0. Chi2 = 0.00320506
+Is an inlier. Adding to Graph
+Edge from: 15 to: 0. Chi2 = 0.000900472
+Is an inlier. Adding to Graph
+Edge from: 17 to: 0. Chi2 = 0.00473146
+Is an inlier. Adding to Graph
+Edge from: 16 to: 0. Chi2 = 0.00124131
+Is an inlier. Adding to Graph
+Edge from: 19 to: 1. Chi2 = 9.86076e-28
+Is an inlier. Adding to Graph
+Edge from: 18 to: 4. Chi2 = 0.0232556
+Is an inlier. Adding to Graph
+
+MERGER
+Vertices pending to merge:
+ Vertex: 0 Vertex: 15
+ Vertex: 0 Vertex: 14
+ Vertex: 0 Vertex: 16
+ Vertex: 0 Vertex: 17
+ Vertex: 1 Vertex: 19
+ Vertex: 1 Vertex: 18
+ Vertex: 4 Vertex: 18
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE
+Adding vertex: 24
+
+Finding constraints... 4 candidate vertices to match
+>>>>>>>>>>Trying match: 24 23
+Reference cloud initial pose:   3.17134   1.40372 -0.887842
+Current cloud initial pose:  2.99748  1.47273 0.116775
+Trying align
+Initial guess -0.163247 -0.0913174    1.00462
+aligner->T() -0.163487 -0.0918548    1.00476
+Num Correspondences Validator2D: 690
+Num Inliers Validator2D: 666
+Inliers Ratio: 0.965217
+Success. Adding edge.
+Number of found closures: 0
+
+Loop Closure Checking.
+Best Chi2 = 0.0210826
+Inliers = 6
+Results:
+Edge from: 18 to: 1. Chi2 = 0.00334081
+Is an inlier. Adding to Graph
+Edge from: 15 to: 0. Chi2 = 0.000582018
+Is an inlier. Adding to Graph
+Edge from: 17 to: 0. Chi2 = 0.00242481
+Is an inlier. Adding to Graph
+Edge from: 16 to: 0. Chi2 = 0.000444133
+Is an inlier. Adding to Graph
+Edge from: 19 to: 1. Chi2 = 4.93038e-28
+Is an inlier. Adding to Graph
+Edge from: 18 to: 4. Chi2 = 0.0142909
+Is an inlier. Adding to Graph
+
+MERGER
+Vertices pending to merge:
+ Vertex: 0 Vertex: 15
+ Vertex: 0 Vertex: 14
+ Vertex: 0 Vertex: 16
+ Vertex: 0 Vertex: 17
+ Vertex: 1 Vertex: 19
+ Vertex: 1 Vertex: 18
+ Vertex: 4 Vertex: 18
+TRIGGERING SET finished
+LASER_MESSAGE
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 25
+
+Finding constraints... 4 candidate vertices to match
+>>>>>>>>>>Trying match: 25 24
+Reference cloud initial pose:    3.249 0.828013 -1.51902
+Current cloud initial pose:   3.17145   1.40373 -0.887857
+Trying align
+Initial guess -0.578963 -0.0476544   0.631162
+aligner->T() -0.579018 -0.0482405   0.631133
+Num Correspondences Validator2D: 659
+Num Inliers Validator2D: 614
+Inliers Ratio: 0.931715
+Success. Adding edge.
+Number of found closures: 0
+
+Loop Closure Checking.
+Best Chi2 = 0.0203796
+Inliers = 5
+
+MERGER
+Vertices pending to merge:
+ Vertex: 0 Vertex: 15
+ Vertex: 0 Vertex: 14
+ Vertex: 0 Vertex: 16
+ Vertex: 0 Vertex: 17
+ Vertex: 1 Vertex: 19
+ Vertex: 1 Vertex: 18
+ Vertex: 4 Vertex: 18
+TRIGGERING SET finished
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+Adding vertex: 26
+
+Finding constraints... 4 candidate vertices to match
+>>>>>>>>>>Trying match: 26 25
+Reference cloud initial pose:  3.26976 0.227083  -1.5357
+Current cloud initial pose:  3.24915 0.828001 -1.51905
+Trying align
+Initial guess  -0.601271 0.000486425   0.0166477
+aligner->T()  -0.600495 0.000528532   0.0165595
+Num Correspondences Validator2D: 635
+Num Inliers Validator2D: 573
+Inliers Ratio: 0.902362
+Success. Adding edge.
+Number of found closures: 0
+
+Loop Closure Checking.
+Best Chi2 = 0.0174263
+Inliers = 4
+
+MERGER
+Vertices pending to merge:
+ Vertex: 0 Vertex: 15
+ Vertex: 0 Vertex: 14
+ Vertex: 0 Vertex: 16
+ Vertex: 0 Vertex: 17
+ Vertex: 1 Vertex: 19
+ Vertex: 1 Vertex: 18
+ Vertex: 4 Vertex: 18
+Merging vertices: 0 15 
+Initial guess0.837018  1.01586 -1.47901
+aligner->T()0.836992  1.01591 -1.47819
+Num Correspondences Validator2D: 535
+Num Inliers Validator2D: 496
+Inliers Ratio: 0.927103
+Initial guess0 0 0
+aligner->T() -0.00112313   0.00106439 -0.000977596
+Num Correspondences Validator2D: 442
+Num Inliers Validator2D: 394
+Inliers Ratio: 0.891403
+Initial guess0 0 0
+aligner->T()-0.000908135   0.00108184  -0.00100161
+Num Correspondences Validator2D: 589
+Num Inliers Validator2D: 575
+Inliers Ratio: 0.976231
+Initial guess0 0 0
+aligner->T()-0.000991545  0.000983393 -0.000906141
+Num Correspondences Validator2D: 619
+Num Inliers Validator2D: 609
+Inliers Ratio: 0.983845
+Initial guess0 0 0
+aligner->T()-0.000965692  0.000886865 -0.000899308
+Num Correspondences Validator2D: 616
+Num Inliers Validator2D: 614
+Inliers Ratio: 0.996753
+Initial guess0 0 0
+aligner->T() -0.00113119  0.000812587 -0.000885388
+Num Correspondences Validator2D: 618
+Num Inliers Validator2D: 611
+Inliers Ratio: 0.988673
+Initial guess0 0 0
+aligner->T() -0.00111627  0.000841457 -0.000898006
+Num Correspondences Validator2D: 661
+Num Inliers Validator2D: 661
+Inliers Ratio: 1
+Finished merge
+Edge from: 0 to: 1
+Edge from: 1 to: 0
+Edge from: 14 to: 0
+Edge from: 15 to: 0
+Edge from: 17 to: 0
+Edge from: 16 to: 0
+Vertices to connect: 1 15 14 16 17 
+Removing vertex: 0
+Removing vertices: 0 
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+TRIGGERING SET finished
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+int g2o::csparse_extension::cs_cholsolsymb(const cs_di*, number_t*, const cs_dis*, number_t*, int*): cholesky failed!
+Cholesky failure, writing debug.txt (Hessian loadable by Octave)
+inverse fail (numeric decomposition)

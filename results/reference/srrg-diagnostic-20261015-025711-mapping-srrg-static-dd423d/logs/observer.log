@@ -1,0 +1,54 @@
+Keyboard: i/k forward/back; j/l yaw; u/o lateral; space stop; q finish.
+LIVE sim=0.0s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=35 
+LIVE sim=2.4s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=93 
+LIVE sim=3.4s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=152 
+LIVE sim=4.3s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=211 
+LIVE sim=5.3s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=270 
+LIVE sim=6.3s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=328 
+LIVE sim=7.3s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=386 
+LIVE_READY: real Gazebo and RViz; independent truth synchronized.
+LIVE sim=8.3s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=444 
+LIVE sim=9.3s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=503 
+LIVE sim=10.2s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=561 
+LIVE sim=11.2s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=619 
+LIVE sim=12.2s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=678 
+LIVE sim=13.2s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=736 
+LIVE sim=14.2s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=795 
+LIVE sim=15.1s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=853 
+LIVE sim=16.1s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=911 
+LIVE sim=17.1s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=969 
+LIVE sim=18.0s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1027 
+LIVE sim=19.0s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1085 
+LIVE sim=19.9s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1143 
+LIVE sim=20.9s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1200 
+LIVE sim=21.9s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1259 
+LIVE sim=22.8s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1318 
+LIVE sim=23.8s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1375 
+LIVE sim=24.8s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1433 
+LIVE sim=25.7s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1491 
+LIVE sim=26.7s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1549 
+LIVE sim=27.7s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1607 
+LIVE sim=28.6s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1666 
+LIVE sim=29.6s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1724 
+LIVE sim=30.6s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1782 
+LIVE sim=31.6s cloud_frames=0 wall_cloud_rate=0.00Hz mapped_scans=0 matched_truth=1841 
+{
+  "kind": "live_native_ui_session",
+  "status": "completed",
+  "failure": null,
+  "mode": "mapping",
+  "points_received": 0,
+  "scans_received": 310,
+  "mapping_frames": 0,
+  "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
+  "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
+  "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
+  "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
+  "cases": {},
+  "observed_map": {
+    "width": 320,
+    "height": 440,
+    "resolution_m": 0.05000000074505806,
+    "known_cells": 425
+  }
+}

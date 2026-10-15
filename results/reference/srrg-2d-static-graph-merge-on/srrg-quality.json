@@ -1,0 +1,27 @@
+{
+  "kind": "srrg_observed_support_coverage",
+  "resolution_m": 0.1,
+  "coverage_tolerance_m": 0.15,
+  "static_cells": 648,
+  "dynamic_return_points": 0,
+  "dynamic_ghost_opportunities": 0,
+  "static_label_scope": "Observed scene support excluding self and moving-box boundary shell; unique 10cm cells",
+  "dynamic_label_scope": "Historical moving-box support later crossed by a real free ray; current occupancy and static overlap excluded",
+  "methods": {
+    "raw": {
+      "static_retention": 1.0,
+      "dynamic_removal": null,
+      "points": 243877
+    },
+    "srrg": {
+      "static_retention": 0.9969135802469136,
+      "dynamic_removal": null,
+      "points": 35609
+    }
+  },
+  "events": [],
+  "mapping_pose_xy_rmse_m": 0.008640188827011244,
+  "truth_sync_max_s": 0.009000000000000341,
+  "frames": 339,
+  "scope": "Single session native author map. Coverage after registration and fusion, not exact source-point deletion; cannot numerically rank against 3D subset metrics."
+}

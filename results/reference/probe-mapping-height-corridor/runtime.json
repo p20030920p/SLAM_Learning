@@ -1,0 +1,35 @@
+{
+  "world": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/height-control.world",
+  "spawn": [
+    7.15,
+    -3.1,
+    0.0
+  ],
+  "scene": "height-corridor",
+  "world_sha256": "a75643aa46953a02cc936445394c1c233b7d9db5952dbdb7f2100862e4d3da86",
+  "initial_offset": [
+    1.0,
+    0.15,
+    0.12
+  ],
+  "scan_restore_after_s": 50.0,
+  "derived_control": "original corridor plus two high geometric blocks; same ground-level corridor, route and initial offset",
+  "urdf": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-robot.urdf",
+  "bridge_config": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-bridge.yaml",
+  "sensor_arm": "3D lidar + depth camera",
+  "depth_sensor": {
+    "type": "Gazebo depth_camera",
+    "resolution": [
+      320,
+      240
+    ],
+    "horizontal_fov_deg": 80,
+    "near_far_m": [
+      0.25,
+      4.0
+    ],
+    "rate_hz": 10,
+    "extrinsics": "actual robot_state_publisher TF",
+    "noise": "ideal rendered depth; no hardware noise model"
+  }
+}

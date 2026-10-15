@@ -51,10 +51,7 @@ def main():
     image_label = QtWidgets.QLabel()
     image_label.setAlignment(QtCore.Qt.AlignCenter)
     layout.addWidget(image_label)
-    semantic = manifest["method"] in ("conceptgraphs", "hovsg")
-    legend = ("Native observation above.\n\nOrange: query candidate, not ground truth.\n\n"
-              "Saved snapshots where labeled. Final map for query stages." if semantic else
-              "Green: removed dynamic\nRed: removed static\nBlue: retained dynamic\nGray: static support\n\n"
+    legend = ("Green: removed dynamic\nRed: removed static\nBlue: retained dynamic\nGray: static support\n\n"
               "GT colors for evaluation only, excluded from mapper input.")
     source_label = QtWidgets.QLabel(legend+"\n\nMetric grid; display thinning only.")
     source_label.setWordWrap(True)
@@ -107,7 +104,7 @@ def main():
             marker.pose.position.x, marker.pose.position.y, marker.pose.position.z = manifest["focal_point"]
             marker.pose.position.z += 2
             marker.pose.orientation.w = 1.
-            marker.scale.z = .22 if manifest["method"] in ("conceptgraphs", "hovsg") else 1.
+            marker.scale.z = 1.
             marker.color.r = marker.color.g = marker.color.b = marker.color.a = 1.
             marker_pub.publish(marker)
             if previous != idx:

@@ -1,0 +1,30 @@
+We will process the data in folder: [1m /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/beautymap-native/input [0m
+[LOG] Min xyz: 3.6811745166778564, -6.298213958740234, -0.029576251283288002 
+[LOG] Max/Min value on x: 15.30622673034668/8.0, y: 22.63822650909424/8.0
+[LOG] Matrix order: 30
+
+Generating Map Binary tree:   0%|                                           | 0/269 [00:00<?, ?it/s]
+Generating Map Binary tree:  43%|█████████████▎                 | 115/269 [00:00<00:00, 1148.56it/s]
+Generating Map Binary tree:  86%|██████████████████████████▌    | 230/269 [00:00<00:00, 1001.88it/s]
+Generating Map Binary tree: 100%|████████████████████████████████| 269/269 [00:00<00:00, 836.70it/s]
+
+Processing Frames:   0%|                                                     | 0/60 [00:00<?, ?it/s]
+Processing Frames:  18%|███████▉                                   | 11/60 [00:00<00:00, 101.58it/s]
+Processing Frames:  37%|███████████████▊                           | 22/60 [00:00<00:00, 101.09it/s]
+Processing Frames:  55%|████████████████████████▏                   | 33/60 [00:00<00:00, 98.13it/s]
+Processing Frames:  73%|███████████████████████████████▌           | 44/60 [00:00<00:00, 100.49it/s]
+Processing Frames:  92%|███████████████████████████████████████▍   | 55/60 [00:00<00:00, 100.88it/s]
+Processing Frames: 100%|████████████████████████████████████████████| 60/60 [00:00<00:00, 99.11it/s]
+shape: (32, 62, 62)
+len print: 32
+There are 133042 pts to remove
+BeautyMap Timings in seconds (s)
+       Component       	Total 	 Last 	 Mean 	StDev 	 Min  	 Max  	Steps
+[1m[31mTotal                  	1.4578	1.4578	1.4578	nan   	1.4578	1.4578	1    [0m
+[1m[32m  0. Map Generation    	0.7110	0.7110	0.7110	nan   	0.7110	0.7110	1    [0m
+[1m[33m  1. Query Generation  	0.5080	0.0085	0.0085	0.0014	0.0060	0.0125	60   [0m
+[1m[34m  2. Matrix Comparison 	0.0008	0.0000	0.0000	0.0000	0.0000	0.0000	60   [0m
+[1m[35m  3. Static Restoration	0.0753	0.0012	0.0013	0.0006	0.0007	0.0051	60   [0m
+[1m[36m  4. Fine Ground Seg   	0.0188	0.0002	0.0003	0.0001	0.0001	0.0011	60   [0m
+[1m[37m  5. One Scan Cost     	0.6036	0.0099	0.0101	0.0014	0.0078	0.0142	60   [0m
+main.py: All codes run successfully, Close now..

@@ -1,0 +1,106 @@
+{
+  "plain": {
+    "dimension": "2d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "yaw": -1.4508,
+      "z": 0.0
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map-3d.pcd",
+    "method": "plain",
+    "localizer": "SE2 hypothesis probe",
+    "pose_topic": "/plain/probe_pose"
+  },
+  "guard": {
+    "dimension": "2d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "yaw": -1.4508,
+      "z": 0.0
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map-3d.pcd",
+    "method": "guard",
+    "localizer": "SE2 hypothesis probe",
+    "pose_topic": "/guard/probe_pose"
+  },
+  "depth": {
+    "dimension": "2d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "yaw": -1.4508,
+      "z": 0.0
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map-3d.pcd",
+    "method": "depth",
+    "localizer": "SE2 hypothesis probe",
+    "pose_topic": "/depth/probe_pose"
+  },
+  "search": {
+    "dimension": "2d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "yaw": -1.4508,
+      "z": 0.0
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map-3d.pcd",
+    "method": "search",
+    "localizer": "SE2 hypothesis probe",
+    "pose_topic": "/search/probe_pose"
+  },
+  "recover": {
+    "dimension": "2d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "yaw": -1.4508,
+      "z": 0.0
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map-3d.pcd",
+    "method": "recover",
+    "localizer": "SE2 hypothesis probe",
+    "pose_topic": "/recover/probe_pose"
+  },
+  "native": {
+    "dimension": "2d",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "yaw": -1.4508,
+      "z": 0.0
+    },
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map-3d.pcd",
+    "method": "native",
+    "localizer": "AMCL",
+    "pose_topic": "/native/amcl_pose",
+    "scan_topic": "/scan",
+    "cloud_topic": "/points"
+  }
+}

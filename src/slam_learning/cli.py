@@ -24,7 +24,7 @@ def find_root(value: str | None) -> Path:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Four-method mapping reproduction")
+    parser = argparse.ArgumentParser(description="Two-method mapping reproduction")
     sub = parser.add_subparsers(dest="action", required=True)
     for action in ("doctor", "fetch", "run", "report", "verify", "export", "cross-check", "render-reproduction", "_worker"):
         p = sub.add_parser(action)

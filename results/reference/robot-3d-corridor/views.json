@@ -1,0 +1,32 @@
+{
+  "raw": {
+    "method": "raw",
+    "dimension": "3d",
+    "title": "SLAM LIVE - 3D raw - RViz2",
+    "config": "view-raw.rviz",
+    "map_topic": "/raw/initial_map",
+    "pose_topic": "/raw/pcl_pose",
+    "tf_topic": "/raw/view/tf",
+    "scan_topic": "/points_degraded"
+  },
+  "dufomap": {
+    "method": "dufomap",
+    "dimension": "3d",
+    "title": "SLAM LIVE - 3D dufomap - RViz2",
+    "config": "view-dufomap.rviz",
+    "map_topic": "/dufomap/initial_map",
+    "pose_topic": "/dufomap/pcl_pose",
+    "tf_topic": "/dufomap/view/tf",
+    "scan_topic": "/points_degraded"
+  },
+  "beautymap": {
+    "method": "beautymap",
+    "dimension": "3d",
+    "title": "SLAM LIVE - 3D beautymap - RViz2",
+    "config": "view-beautymap.rviz",
+    "map_topic": "/beautymap/initial_map",
+    "pose_topic": "/beautymap/pcl_pose",
+    "tf_topic": "/beautymap/view/tf",
+    "scan_topic": "/points_degraded"
+  }
+}

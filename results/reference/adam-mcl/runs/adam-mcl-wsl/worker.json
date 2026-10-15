@@ -1,0 +1,51 @@
+{
+  "upstream": {
+    "name": "AdaM_MCL",
+    "url": "https://github.com/Runjian-Chen/AdaM_MCL",
+    "commit": "e8aedd2bae03816aabd5300e5ca2fe181b39d830",
+    "license": "MIT",
+    "checkout": "../AdaM_MCL",
+    "dirty": true,
+    "dirty_reason": "the documented compatibility patch is applied in the checkout"
+  },
+  "compatibility_patch": "compatibility.patch",
+  "python": "3.10.12",
+  "torch": "2.14.1+cu130",
+  "numpy": "2.2.6",
+  "opencv": "5.0.0",
+  "scipy": "1.15.3",
+  "scikit_learn": "1.7.2",
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+  "device": "cuda-training-cpu-filter",
+  "dataset": {
+    "id": "authored-simulation-surrogate",
+    "path": "Dataset/simulation (staged on the WSL filesystem)",
+    "authored_layouts": 21,
+    "hold_out_layout": 1,
+    "training_samples": 4200,
+    "validation_samples": 4200,
+    "evaluation_sequences": 10,
+    "evaluation_frames": 123,
+    "note": "The released Dataset/ directory ships empty: the authors' simulation maps, their evaluation sequences and the UPO/Bicocca datasets are external downloads. The layouts are authored by repro/make_maps.py and every sample and scan is produced by the authors' own Data_processor/synthetic_dataset.py and src/Generate_Path.py."
+  },
+  "training": {
+    "epochs_completed": 38,
+    "iterations_per_epoch": 64,
+    "iterations_executed": 2432,
+    "batch_size": 32,
+    "optimizer": "Adam, lr 0.001, weight_decay 1e-6",
+    "loss": "torch.nn.KLDivLoss(reduction='sum') / batch_size",
+    "published_checkpoint": "Trained_models/simulation_2_*/model_train_38epochs.pth",
+    "paper_budget": "cfg.DSOM_training_iters = 7200*4 iterations per epoch over 100 epochs, i.e. 2,880,000 optimizer steps",
+    "budget_ratio": "2432 executed steps against the authors' 2,880,000 default"
+  },
+  "evaluation": {
+    "update_mode": "Adaptive_Mixture_MCL",
+    "particles": 200,
+    "w_cut": 0.6,
+    "trials": 10,
+    "sequence": "0",
+    "sequence_frames": 123,
+    "command": "/home/qzl/.venvs/adam-mcl/bin/python Main.py --operation test_MCL --dataset simulation --subdataset 0 --update_mode Adaptive_Mixture_MCL --w_cut 0.6 --particle_num 200 --load_model Trained_models/simulation_2_*/model_train_38epochs.pth"
+  }
+}

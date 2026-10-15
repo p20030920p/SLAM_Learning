@@ -1,0 +1,50 @@
+{
+  "source_gif": "results/reference/ir-mcl/media/preview.gif",
+  "source_gif_sha256": "22b4e8bf79ce372fb3cd65e794b43df6ffa1d79a0b9f8e28dad2969970edaaed",
+  "source_gif_frames": 1543,
+  "source_gif_frame_delay_ms": 100,
+  "source_gif_dimensions": [
+    1600,
+    900
+  ],
+  "source_gif_duration_seconds": 154.3,
+  "playback_fps": 10,
+  "encoded_frames": 1543,
+  "expected_frames": 1543,
+  "encoded_duration_seconds": 154.3,
+  "dimensions": [
+    1600,
+    900
+  ],
+  "codec": "h264",
+  "pix_fmt": "yuv420p",
+  "command": [
+    "ffmpeg",
+    "-y",
+    "-v",
+    "error",
+    "-i",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/reference/ir-mcl/media/preview.gif",
+    "-r",
+    "10",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "medium",
+    "-crf",
+    "20",
+    "-pix_fmt",
+    "yuv420p",
+    "-movflags",
+    "+faststart",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/reference/ir-mcl/media/replay/replay.mp4"
+  ],
+  "qa_frame_stddev": [
+    59.826,
+    50.377,
+    52.18
+  ],
+  "full_decode_passed": true,
+  "frame_count_passed": true,
+  "scope": "Constant-rate re-encode of the saved localization frames; playback rate is not algorithm throughput"
+}

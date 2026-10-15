@@ -1,0 +1,136 @@
+{
+  "flow": "localization-3d-dynamic",
+  "mode": "localization",
+  "scene": "dynamic",
+  "robot": "Sim2Real omni-3d-v1",
+  "source_commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+  "world_scope": "local scenario adaptation; robot/source assets pinned separately",
+  "capture": "actual Windows Gazebo Sim, RViz2 and Windows Terminal windows",
+  "provided_mapping_poses": false,
+  "truth_input_to_localizers": false,
+  "input_to_localizers": "same live 3D point clouds and wheel odometry; Raw/DUFOMap/BeautyMap frozen 3D maps; no truth input",
+  "initial_pose_offset_m_rad": [
+    0.25,
+    0.15,
+    0.12
+  ],
+  "runtime": {
+    "world": "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S2_dynamic.world",
+    "spawn": [
+      8.0727,
+      7.5312,
+      -1.5708
+    ],
+    "scene": "dynamic",
+    "world_sha256": "6a5837880254d5647634247be12b6953438f87d5326682bcd2a376b2c6023e53",
+    "initial_offset": [
+      0.25,
+      0.15,
+      0.12
+    ],
+    "scan_restore_after_s": null
+  },
+  "assets": {
+    "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S2_dynamic.world": "6a5837880254d5647634247be12b6953438f87d5326682bcd2a376b2c6023e53",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py": "98a16348dd60ef9283e1288f33786323f7a734f47f530627975bfbc0886ea3a3",
+    "/root/projects/Sim2Real-AlgoBench/src/race_description/urdf/omni_car_ros2_control.urdf": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_historical_scores.py": "1535285d5850d97d49c31f37633099ac4bf9745e31596f2825089269492d0518",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_scan_geometry.py": "763c65f6555666ecde15e3ca256a2fbd28349eed84ebae4657708d26c9568747",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/author_live_bridge.py": "9bac862ecf2d73cbc016b8a3386f816dfc73a5758a494e8905e427a9873a1984",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/auto_patrol.sh": "ad0ec8b298ebad57b34b71e0bc5108acd53218b10e669b71ef9eed5f10d1b43d",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.py": "ee7f654a8e0e27c4c6a92120534cf7934cb54b6784c39d880f590b91ad6f2406",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.sh": "a80b1fee3e96f67be919695a80c16f83b985a92c909a26df74082706ad040efc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/case_view_tf.py": "272701c65e9f6f5413dacb422a780f32cd2ca5074e73871d5e35aecc03137948",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/CMakeLists.txt": "ba207c9369884d626545f51add00acffce3040f92bd6d2f2d262bf3b1577e9b5",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/diagnose_maps.py": "a49a0b26fef3f03d5a66ec144085eebc460ce41c4b5aa2657eb6f2cb9feaa705",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/gz_truth.cpp": "b89ef6633e9bd859a4333698e5acc89eb682e603b0448fd1308d113eb57657a3",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/localization.launch.py": "7c68ca137e90c6d3c4da5c47e9dc67559cdd4aae24526f828eae6c9595db5b43",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/make_corridor.py": "f4ba5ceae297f1b561186b9c94b6c6459ca75eea0379072becc7926c37bb3a13",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/native_beautymap.py": "c7e6493c04c8469c111627cf1b31990204fca134076e5040edf425dff9bb12c1",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/object_scene.py": "9012c731e34691b392e30ddfed309afa334c031389faa29678b6abf0c365d679",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/observe_session.py": "8d94087c30a2e1389f4427f7c8e88769d880d371d813efd67bbd97400f5c155a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_author.py": "d8a5f96ad0e29649a73b3f033da3b579ce6f6b29d60e2046f3ede8d0f718d7d6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_case_replays.py": "806106a8319524a3ef80d5e76790b191326052a85f8812a3f865fb4ae49ed384",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_live_author.py": "a1f256eb8827111bba1df097f08c06fb7310b7d8d0f9913590e923b25fd59206",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_session.py": "72b8471d40929f159239c1d043fb0ca15b652fe1f46b468c7ed8de84779d34d6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_3d.py": "a92d4cd297dd2d533f9d97a8b70fed8a22620271d47c952deedcb360b05b87a2",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_author_view.py": "008c67bf253363b39980f26f64937c4994aba69f6d3d0e88266efadb9d0e64d0",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_direction_assets.py": "85342c9d6187b6e14bc023a8d85e8613439747ca72cfbbfbf436dc456b436d87",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_rviz_overlay.py": "996bd10ec723998f524ca841d26edcd2c4a422a27e884404661288c0b83bb6cc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_session.py": "d215dca903f48d0cdb85e3b8acb7e9e87a14f9184bde95e0af3bebeca27bb4b3",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/rebuild_direction_figure.ps1": "bf6d56a6eaed442c9811263d892f3fb4276d0c73d54b1c614421fd67cfcd01c4",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/registration.launch.py": "41061edcf0657425c8711db96d762efca993e4495a92c4c1fada0ee43ae9c47a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_author_view.sh": "f75943429fe4c19e444078265763e3ac403ed0a3b1857f3a7fb8542718c274ec",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_live.sh": "57d90eb218839c7a2a925cc9a4d6ed79b187563fc33c092dbaec35fa197f7c8a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.py": "e76d3c8fd29ac58c4162d2d31155c9e2c8b030cb23f121d0055643e2acf92faa",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.sh": "4c0b1351199a0cb247bfc1f31d199f2e721e656ac0d2c6dc672b81848e9d168e",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/scenario_gpu.launch.py": "52db7103cd595f3e51a9408e696c2260efdd602c90df011c3f8fe930fa2b53fd",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/score_map_labels.py": "ad3862cdb884c6df059cc0270975f6bf3b431e3fc8bf3cbe3dac610daa8c724c",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stop_owned_session.py": "fff6428d328ed5940b700a9cf2e5cce5495fead5e56cbdb7abb11aef34c69043",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stress_scan.py": "98da9b7c82712a7cd5e9fee8dd19afa0d6f5ab4c315c81b8465148053795e7ae",
+    "/mnt/d/workspace/be2/slam_learning_updated/demo/presentation.ps1": "0cfe54be218d77f8f20d7950783c6501596af2c567d8de5b21c73e3b0f763573",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-234119-localization-3d-dynamic-method-live-b89312/gazebo-gui.config": "12ddd342b89eeadf2080dfdd470ecd7abe94c6bf50f8a7fc21777696f0ac1289",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-234119-localization-3d-dynamic-method-live-b89312/live.rviz": "6ccdb7e2842bbce3ba4e7c16e26a6ea9c0836e12e68dfd43f46180da32530d0f"
+  },
+  "cases": {
+    "raw": {
+      "method": "raw",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/raw/map.yaml",
+      "mapping_scene": "dynamic",
+      "initial_pose": {
+        "x": 8.3227,
+        "y": 7.6812000000000005,
+        "z": 0.0,
+        "yaw": -1.4508
+      },
+      "dimension": "3d",
+      "localizer": "GICP",
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/raw/map-3d.pcd",
+      "pose_topic": "/raw/pcl_pose",
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "cloud_topic": "/points",
+      "map_points_sha256": "f3d043a5b0c9a0a8bb8b652aac22e28a15d2ac13600c2ab72da8f7f5937a5028"
+    },
+    "dufomap": {
+      "method": "dufomap",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/dufomap/map.yaml",
+      "mapping_scene": "dynamic",
+      "initial_pose": {
+        "x": 8.3227,
+        "y": 7.6812000000000005,
+        "z": 0.0,
+        "yaw": -1.4508
+      },
+      "dimension": "3d",
+      "localizer": "GICP",
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/dufomap/map-3d.pcd",
+      "pose_topic": "/dufomap/pcl_pose",
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "cloud_topic": "/points",
+      "map_points_sha256": "e05140645aa3ecf267ba9ba40f0b8d2b2727ccd56855e4721aabf8490a093c7c"
+    },
+    "beautymap": {
+      "method": "beautymap",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/beautymap/map.yaml",
+      "mapping_scene": "dynamic",
+      "initial_pose": {
+        "x": 8.3227,
+        "y": 7.6812000000000005,
+        "z": 0.0,
+        "yaw": -1.4508
+      },
+      "dimension": "3d",
+      "localizer": "GICP",
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/beautymap/map-3d.pcd",
+      "pose_topic": "/beautymap/pcl_pose",
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "cloud_topic": "/points",
+      "map_points_sha256": "f5317b6f988bbec99afadfd3ae386ac0e6725fb4968dc107b7ecd8d1cb9e87b7"
+    }
+  },
+  "scope": "3D map cleaning with provided mapping-A poses and native GICP localization in fresh B; no full 3D SLAM or online map-update claim"
+}

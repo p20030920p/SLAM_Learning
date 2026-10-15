@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "dufomap",
+  "parent_record": "../../record.json",
+  "parent_sha256": "a8516f54362288eedc9d6e7047e045b2ac3226e0f722031eeea307387d1db06e",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-170202-localization-static-5abed0",
+  "case_configuration": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/dufomap/map.yaml",
+    "mapping_scene": "static"
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 290,
+    "position_rmse_m": 0.07082687844807128,
+    "yaw_rmse_deg": 1.0144212672991433,
+    "post_warmup_5s_samples": 288,
+    "post_warmup_5s_position_rmse_m": 0.06686510196540943,
+    "position_p95_m": 0.09485039377327938
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 5.0,
+    "common_end_s": 68.5,
+    "alignment": "none",
+    "frames": 509
+  },
+  "timing": {
+    "duration_s": 63.600000000000364,
+    "frames": 318,
+    "fps": 5,
+    "video_duration_s": 63.625,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": null,
+  "source_inputs": {
+    "dufomap-samples.csv": "149c311611349634fade8ac0564d3511f5434f3c30ef8707403b53cfde6fe1c4",
+    "truth.jsonl": "ee2ef7345e7b89d3d254d1f7e58aab85d2ca56989881d9ff4d920c40c6472a13",
+    "cases.json": "2422606f7f211941624a5f1a613b10f59505f3e711e7dd37da99b93f81b1064b",
+    "metrics.json": "5abebfd292e53a83f4c01e15f4a6dcda1bfcf753343fe68d16501d7883371d69",
+    "maps/dufomap/map.pgm": "040efe320426e4a2da5976e17a5da3bb7d2290d1babe64b009b39b44f649e6d8",
+    "maps/dufomap/map.yaml": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py results/reference/robot-static",
+  "renderer_sha256": "66b93ef4888f375b7ba23bc7d9a8e18fb61b6be7b1e15cb22f17828b44282355",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "782e2310bc91c738ac0f57618dd388d3830fc65526a775f84a93961ecd56606b",
+      "bytes": 88660,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "304aa1d534113650b873081c8a2681d56be312eb8a5e20452638c88f998bed58",
+      "bytes": 512348,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "cbe029caf7e7dea0168259542c54a15feebae26be94bed69020b9b71232353d8",
+      "bytes": 217309,
+      "availability": "portable"
+    }
+  }
+}

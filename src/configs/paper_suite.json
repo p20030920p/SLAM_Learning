@@ -30,32 +30,32 @@
       "status": "partial_reproduction"
     },
     {
-      "id": "conceptgraphs",
-      "name": "ConceptGraphs",
-      "year": 2024,
-      "paper": "https://arxiv.org/html/2309.16650v1",
-      "record": "results/reference/conceptgraphs/runs/conceptgraphs-wsl/record.json",
-      "command": ".venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py",
-      "media_record": "results/reference/conceptgraphs/media/replay/record.json",
+      "id": "adam-mcl",
+      "name": "AdaM-MCL",
+      "year": 2021,
+      "paper": "https://arxiv.org/html/2009.00211v3",
+      "record": "results/reference/adam-mcl/runs/adam-mcl-wsl/record.json",
+      "command": "bash results/reference/adam-mcl/harness/run_recorded_session.sh",
+      "media_record": "results/reference/adam-mcl/media/replay/recording.json",
       "cards": {
-        "en": "docs/papers/conceptgraphs.md",
-        "zh": "docs/papers/conceptgraphs.zh-CN.md"
+        "en": "docs/papers/adam-mcl.md",
+        "zh": "docs/papers/adam-mcl.zh-CN.md"
       },
       "status": "partial_reproduction"
     },
     {
-      "id": "hovsg",
-      "name": "HOV-SG",
-      "year": 2024,
-      "paper": "https://arxiv.org/html/2403.17846v2",
-      "record": "results/reference/hovsg/runs/hovsg-wsl-resolved/record.json",
-      "command": ".venv-hovsg/bin/python src/scripts/methods/run_hovsg.py",
-      "media_record": null,
+      "id": "ir-mcl",
+      "name": "IR-MCL",
+      "year": 2023,
+      "paper": "https://arxiv.org/abs/2210.03113",
+      "record": "results/reference/ir-mcl/runs/ir-mcl-wsl/record.json",
+      "command": "bash results/reference/ir-mcl/runs/ir-mcl-wsl/reproduce.sh",
+      "media_record": "results/reference/ir-mcl/media/replay/record.json",
       "cards": {
-        "en": "docs/papers/hovsg.md",
-        "zh": "docs/papers/hovsg.zh-CN.md"
+        "en": "docs/papers/ir-mcl.md",
+        "zh": "docs/papers/ir-mcl.zh-CN.md"
       },
-      "status": "in_progress"
+      "status": "partial_reproduction"
     }
   ]
 }

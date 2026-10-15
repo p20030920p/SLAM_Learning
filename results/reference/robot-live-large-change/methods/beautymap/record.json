@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "beautymap",
+  "parent_record": "../../record.json",
+  "parent_sha256": "d3c92ec6b2b42ed0957eb823c4a9882aa345a1f68009e4038d4e1d156018c722",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-201755-localization-large-change-method-live-05fc93",
+  "case_configuration": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap/map.yaml",
+    "mapping_scene": "static",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    }
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 290,
+    "position_rmse_m": 0.06385346939237221,
+    "yaw_rmse_deg": 1.0388999351001589,
+    "post_warmup_5s_samples": 289,
+    "post_warmup_5s_position_rmse_m": 0.06162187997522721,
+    "position_p95_m": 0.07248843484621388
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 5.8,
+    "common_end_s": 71.1,
+    "alignment": "none",
+    "frames": 523
+  },
+  "timing": {
+    "duration_s": 65.40000000000039,
+    "frames": 327,
+    "fps": 5,
+    "video_duration_s": 65.375,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": null,
+  "source_inputs": {
+    "beautymap-samples.csv": "b869f1911091c34e85d5e6f46a01670367b56d64ca9b381bf7f9d84c27aaf8fb",
+    "truth.jsonl": "774a03ca44b7a87ff0fdf0570199dba059222204327f317ce07c44a80bba4363",
+    "cases.json": "cfc3fc2ba8c4fae1f569a8b781d2f0b6ff653168a33f061f5817ee41942adb26",
+    "metrics.json": "ea41d2efe52fb84f55b07e929df30225c0709aed5aa8600aca04d1332a76e8f4",
+    "maps/beautymap/map.pgm": "eb35c804e1bf86ba80093ab83b712ff0bdb08ee5afd42a5c01ea25eb76df85b8",
+    "maps/beautymap/map.yaml": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py D:/workspace/be2/slam_learning_updated/results/reference/robot-live-large-change",
+  "renderer_sha256": "428ee2b92af7b594780c82aedfbc09da65e1c7e21d3799f0c2ffe7bf68a029d4",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "cd680f39b2954cb96ef5d18bb92d0955f6bd6e351734f68264011c3e587346e4",
+      "bytes": 90166,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "c75cd9da27de3d1202a22cd59489326db311a1d4294ad6e8b8ad62e2f05ca92f",
+      "bytes": 497797,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "360f0e62904e343edadf659890c4115e892dce40495129f40b218fb6e3c51d48",
+      "bytes": 212852,
+      "availability": "portable"
+    }
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "kind": "native_desktop_mapping",
+  "status": "executed",
+  "exit_code": 0,
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-005045-mapping-probe-corridor-e4f0aa",
+  "command": "mapping-probe-corridor",
+  "scope": "actual mapping-A lidar/depth sensor capture, supplied poses checked against truth + URDF; no full 3D SLAM claim; no truth in localization B",
+  "metrics": {
+    "kind": "live_native_ui_session",
+    "status": "completed",
+    "failure": null,
+    "mode": "mapping",
+    "points_received": 983,
+    "scans_received": 987,
+    "mapping_frames": 99,
+    "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
+    "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
+    "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
+    "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
+    "cases": {},
+    "observed_map": {
+      "width": 481,
+      "height": 111,
+      "resolution_m": 0.05000000074505806,
+      "known_cells": 30979
+    }
+  },
+  "metrics_3d": {},
+  "truth_input_to_localizers": false,
+  "case_maps": {},
+  "recorded_inputs": {
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-005045-mapping-probe-corridor-e4f0aa\\mapping-clouds.npz": {
+      "sha256": "a9638962bed9cd2cb4c227fb81acd0b95cd8bd6555168e2f0c7c17ca99782639",
+      "bytes": 11275684,
+      "availability": "local_only"
+    },
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-005045-mapping-probe-corridor-e4f0aa\\input-bag\\input-bag_0.mcap": {
+      "sha256": "2a4eef4c0acca4493b6ae7eb48f9a1bf306cb9b16062bc7b26fd9cd9bb40a48c",
+      "bytes": 2223927681,
+      "availability": "local_only"
+    }
+  },
+  "robot_motion_xy_span_m": [
+    3.4075224741495393,
+    0.1985624344628838
+  ],
+  "result_replay": null,
+  "timing": {
+    "execution": {
+      "duration_s": 96.00000000000082,
+      "frames": 480,
+      "fps": 5,
+      "video_duration_s": 95.933333,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "native_views": [],
+  "restoration": {},
+  "artifacts": {
+    "capture-filter.txt": {
+      "sha256": "e498ee29f018f0f836732a92100d1f0d6253dba07a5371c1865e48bbb5c583ff",
+      "bytes": 659,
+      "availability": "portable"
+    },
+    "cases.json": {
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "bytes": 3,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "688ab36ecd496b44a88934235b5511823a54950dff1fea2024bd5dffbfe60fb5",
+      "bytes": 1753400,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "dfd3d0b1df7fbe54bd504ba209941111b1a58557999dd6ecca3e5d5f899aea38",
+      "bytes": 3683192,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "ceca7cc3d4b9250f7db25e5ef310926e1a27f6da0e93711606aa48ae4f0786d2",
+      "bytes": 469997,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "b54327405e34059f5d9ec793784132d49a9a1e4a248e956b265b6f9a76b9215c",
+      "bytes": 500809,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "a924c06c9136efec7abf2dbd19f0458b6f379a04ec7fa47d74846f87ff29a130",
+      "bytes": 500842,
+      "availability": "portable"
+    },
+    "mapping-clouds.npz": {
+      "sha256": "a9638962bed9cd2cb4c227fb81acd0b95cd8bd6555168e2f0c7c17ca99782639",
+      "bytes": 11275684,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "ab0aca9b71aa72b588b024522fa4f13b89422cc0892af0838ac0843e1663963a",
+      "bytes": 685,
+      "availability": "portable"
+    },
+    "probe-bridge.yaml": {
+      "sha256": "5de81346ae0cbf54335616605446a89a90694d76282212f128b7865297a27f53",
+      "bytes": 2060,
+      "availability": "portable"
+    },
+    "probe-mapping-inputs.json": {
+      "sha256": "720ea3cfff77c76b4f5e5112ed3b595183a65135b6a6e20e6a8a25bc24547315",
+      "bytes": 34385,
+      "availability": "portable"
+    },
+    "probe-mapping-inputs.npz": {
+      "sha256": "471c8dee32b9398c6d953bf496bd40b3e5129a4a5bda1f361db742ba085975cd",
+      "bytes": 3396922,
+      "availability": "portable"
+    },
+    "probe-robot.urdf": {
+      "sha256": "ded3a24b7439a1dcbe5edbde94bb041e01eee63791daae31ac1d3cc643010542",
+      "bytes": 11907,
+      "availability": "portable"
+    },
+    "provided-pose-audit.json": {
+      "sha256": "2c6628900efd7b1da0720110a285732d9a42a54c0c02892141dd00fb73e07cde",
+      "bytes": 301,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "9feebba8e218c763d4b9b59c846f5fc988b2af03b2cbf148c96e00afa9e711ae",
+      "bytes": 1013,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "8a359fc69680903184d469df449a50871452d8164e4a16d248861c1d61383051",
+      "bytes": 10185,
+      "availability": "portable"
+    },
+    "slam-map.pgm": {
+      "sha256": "f7e0c94419985e3624be38162a2111b1d1485c78650d4a9cfd00a6b9f3f3a3a6",
+      "bytes": 53406,
+      "availability": "portable"
+    },
+    "timing.json": {
+      "sha256": "f5a00bae2c90ddbe6d38d6c7e6dd06e42d6d0af1359a4e297f7a7c4b0246618b",
+      "bytes": 227,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "9bd05631f437adafd444641795a5cd0430ca774e7ff5cc18a09d0b7c3998346c",
+      "bytes": 1392890,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "ee80aafc0d4c68f5feb95a0a9f6a59a592d3ff476315d528e533c8741b777c8f",
+      "bytes": 10605,
+      "availability": "portable"
+    },
+    "logs/patrol.log": {
+      "sha256": "d0c2df82b6342b1388c53f751b34ee9890595c007a1b9d5d276ab7f1487048a0",
+      "bytes": 2402,
+      "availability": "portable"
+    },
+    "logs/renderer.txt": {
+      "sha256": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+      "bytes": 1774,
+      "availability": "portable"
+    },
+    "logs/rviz.log": {
+      "sha256": "25cb27ae8e771d7360379d13c9105f44656930ea33b422ef5ccb3b2c27f56226",
+      "bytes": 3935,
+      "availability": "portable"
+    },
+    "logs/sensor-preflight.log": {
+      "sha256": "c667c90d4062706ae5f2cf008cc9cbedc4d383a8e5a4683a160be376038343b5",
+      "bytes": 62,
+      "availability": "portable"
+    },
+    "probe-maps/depth.npy": {
+      "sha256": "3464c33b154846375ec5379227199120881fabfe69ed37710bda924fa5dcffac",
+      "bytes": 145688,
+      "availability": "portable"
+    },
+    "probe-maps/record.json": {
+      "sha256": "8c10dc33ef82372f5f00191b449efc97ca302aabd465002c85074074f82a1394",
+      "bytes": 894,
+      "availability": "portable"
+    },
+    "probe-maps/lidar2d/map.pgm": {
+      "sha256": "1b312f2f6f85d8baa541d34ee7f5ebfa3a19ad342487904fddc8abdb9832dcb2",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "probe-maps/lidar2d/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "probe-maps/lidar2d/points.npy": {
+      "sha256": "fb8c9a9fca5b29636390b7b66a58d0e59dfce8d39b6adc6c0116294bdcc4b81a",
+      "bytes": 18752,
+      "availability": "portable"
+    },
+    "probe-maps/lidar3d/map.pgm": {
+      "sha256": "67930b3bb02be21a7b7bcbc59ba2edaca9cd896c6000dd863b2d4616a8f1cc00",
+      "bytes": 83896,
+      "availability": "portable"
+    },
+    "probe-maps/lidar3d/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "probe-maps/lidar3d/points.npy": {
+      "sha256": "761c0eadf7c0f3720fd61b579da20fe26805b8d18bf9db088d87621b8da6744b",
+      "bytes": 575936,
+      "availability": "portable"
+    }
+  },
+  "probe_mapping_A": {
+    "scope": "mapping A provided poses independently reconstructed from Gazebo model truth and fixed-joint URDF extrinsics",
+    "checked_sensor_poses": 310,
+    "max_truth_delta_s": 0.008000000000009777,
+    "max_transform_element_error": 8.881784197001252e-16,
+    "truth_to_localization_B": false
+  }
+}

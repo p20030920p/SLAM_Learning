@@ -1,0 +1,151 @@
+{
+  "source_record": "results/reference/adam-mcl/runs/adam-mcl-wsl/record.json",
+  "source_record_sha256": "92149143d9532e6e207a3a7b0a197d9104ddb2e21c07568b12163e93c20e7435",
+  "clips": [
+    {
+      "name": "adam-mcl",
+      "sha256": "3e8cb1949c12780143ae44876842cbfe20238a35d6d7e2d0482380a4b879f56d",
+      "source_record": "results/reference/adam-mcl/runs/adam-mcl-wsl/record.json",
+      "record_sha256": "92149143d9532e6e207a3a7b0a197d9104ddb2e21c07568b12163e93c20e7435",
+      "start_seconds": 8.5,
+      "end_seconds": 37.5,
+      "source_values_seconds": [
+        [
+          8.5,
+          14.5
+        ],
+        [
+          31.5,
+          37.5
+        ]
+      ],
+      "source_metadata": {
+        "programs": [],
+        "streams": [
+          {
+            "width": 1280,
+            "height": 800,
+            "r_frame_rate": "12/1",
+            "avg_frame_rate": "12/1",
+            "nb_frames": "6749"
+          }
+        ],
+        "format": {
+          "duration": "562.417000"
+        }
+      },
+      "duration_seconds": 12.0,
+      "dimensions": [
+        640,
+        714
+      ],
+      "source_video_dimensions": [
+        1280,
+        800
+      ],
+      "source_intervals_seconds": [
+        [
+          8.5,
+          14.5
+        ],
+        [
+          31.5,
+          37.5
+        ]
+      ],
+      "source_fps": "12/1",
+      "sampling_filter": "crop=700:782:0:0,scale=640:-2:flags=neighbor,setpts=PTS-STARTPTS,concat=n=2:v=1",
+      "preview_duration_seconds": 12.0,
+      "timing_policy": "Continuous real-time excerpts of the recorded session, concatenated in time order; crop and nearest-neighbour upscale of the live particle panel only. No frame-rate change and no frame removed inside an interval, so playback rate equals the recorded run.",
+      "expected_frames": 144,
+      "source_video": "results/reference/adam-mcl/media/replay/replay.mp4",
+      "decoded_frames": 144,
+      "gif_duration_seconds": 12.01,
+      "gif_delay_counts_ms": {
+        "80": 95,
+        "90": 49
+      },
+      "frame_count_and_timing_passed": true,
+      "palette_colors": 32,
+      "dither": "none",
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "8.5",
+          "-t",
+          "6.0",
+          "-i",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/reference/adam-mcl/media/replay/replay.mp4",
+          "-ss",
+          "31.5",
+          "-t",
+          "6.0",
+          "-i",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/reference/adam-mcl/media/replay/replay.mp4",
+          "-filter_complex_threads",
+          "1",
+          "-filter_complex",
+          "[0:v]crop=700:782:0:0,scale=640:-2:flags=neighbor,setpts=PTS-STARTPTS[c0];[1:v]crop=700:782:0:0,scale=640:-2:flags=neighbor,setpts=PTS-STARTPTS[c1];[c0][c1]concat=n=2:v=1[animated];[animated]palettegen=max_colors=32:reserve_transparent=1:stats_mode=diff[pal]",
+          "-map",
+          "[pal]",
+          "-frames:v",
+          "1",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/reference/adam-mcl/media/replay/preview.palette.png"
+        ],
+        [
+          "nice",
+          "-n",
+          "10",
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-threads",
+          "1",
+          "-ss",
+          "8.5",
+          "-t",
+          "6.0",
+          "-i",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/reference/adam-mcl/media/replay/replay.mp4",
+          "-ss",
+          "31.5",
+          "-t",
+          "6.0",
+          "-i",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/reference/adam-mcl/media/replay/replay.mp4",
+          "-i",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/reference/adam-mcl/media/replay/preview.palette.png",
+          "-filter_complex_threads",
+          "1",
+          "-filter_complex",
+          "[0:v]crop=700:782:0:0,scale=640:-2:flags=neighbor,setpts=PTS-STARTPTS[c0];[1:v]crop=700:782:0:0,scale=640:-2:flags=neighbor,setpts=PTS-STARTPTS[c1];[c0][c1]concat=n=2:v=1[animated];[animated][2:v]paletteuse=dither=none:diff_mode=rectangle[gif]",
+          "-map",
+          "[gif]",
+          "-threads",
+          "1",
+          "-vsync",
+          "0",
+          "-loop",
+          "0",
+          "-gifflags",
+          "+transdiff",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/reference/adam-mcl/media/preview.gif"
+        ]
+      ]
+    }
+  ],
+  "note": "The source video is the complete recording of the evaluation session produced by src/scripts/media/record_session.py; the GIF is two continuous excerpts of it."
+}

@@ -1,0 +1,29 @@
+{
+  "raw": {
+    "method": "raw",
+    "title": "SLAM LIVE - raw - RViz2",
+    "config": "view-raw.rviz",
+    "map_topic": "/raw/map",
+    "pose_topic": "/raw/amcl_pose",
+    "tf_topic": "/raw/view/tf",
+    "scan_topic": "/scan"
+  },
+  "dufomap": {
+    "method": "dufomap",
+    "title": "SLAM LIVE - dufomap - RViz2",
+    "config": "view-dufomap.rviz",
+    "map_topic": "/dufomap/map",
+    "pose_topic": "/dufomap/amcl_pose",
+    "tf_topic": "/dufomap/view/tf",
+    "scan_topic": "/scan"
+  },
+  "beautymap": {
+    "method": "beautymap",
+    "title": "SLAM LIVE - beautymap - RViz2",
+    "config": "view-beautymap.rviz",
+    "map_topic": "/beautymap/map",
+    "pose_topic": "/beautymap/amcl_pose",
+    "tf_topic": "/beautymap/view/tf",
+    "scan_topic": "/scan"
+  }
+}

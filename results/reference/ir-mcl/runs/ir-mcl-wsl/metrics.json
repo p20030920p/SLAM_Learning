@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "method": "ir-mcl",
+  "sequence": "data/ipblab/loc_test/test1",
+  "upstream": {
+    "repository": "https://github.com/PRBonn/ir-mcl",
+    "commit": "aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5"
+  },
+  "scans_total": 1543,
+  "scans_scored": 1354,
+  "scoring_window": {
+    "rule": "evo reduce_to_time_range(20) on both trajectories, as called by utils.summary_loc",
+    "dropped": "scans with timestamp <= 20 s (global-localization warm-up)",
+    "path_length_m": 38.535,
+    "duration_seconds": 143.402
+  },
+  "particles": {
+    "initial": 100000,
+    "after_convergence": 5000,
+    "convergence_rule": "first frame with timestamp > 20 s"
+  },
+  "lidar": {
+    "beams_on_sensor": 1041,
+    "beams_used": 32,
+    "max_range_m": 10.0
+  },
+  "measured": {
+    "location_rmse_cm": 5.32,
+    "location_lt5_pct": 61.74,
+    "location_lt10_pct": 96.01,
+    "location_lt20_pct": 100.0,
+    "yaw_rmse_deg": 1.07,
+    "yaw_lt0_5_pct": 47.64,
+    "yaw_lt1_pct": 75.85,
+    "yaw_lt2_pct": 93.57
+  },
+  "measured_counts_within_scored_window": {
+    "location_lt5_count": 836,
+    "location_lt5_of": 1354,
+    "location_lt5_pct_check": 61.74,
+    "location_lt10_count": 1300,
+    "location_lt10_of": 1354,
+    "location_lt10_pct_check": 96.01,
+    "location_lt20_count": 1354,
+    "location_lt20_of": 1354,
+    "location_lt20_pct_check": 100.0,
+    "yaw_lt0_5_count": 645,
+    "yaw_lt0_5_of": 1354,
+    "yaw_lt0_5_pct_check": 47.64,
+    "yaw_lt1_count": 1027,
+    "yaw_lt1_of": 1354,
+    "yaw_lt1_pct_check": 75.85,
+    "yaw_lt2_count": 1267,
+    "yaw_lt2_of": 1354,
+    "yaw_lt2_pct_check": 93.57
+  },
+  "paper": {
+    "source": "https://arxiv.org/html/2210.03113v2#S4.SS2",
+    "table": "Section IV-B, global localization performance; self-recorded IPBLab sequences 1-5",
+    "row": "Seq 1 / IR-MCL",
+    "values": {
+      "location_rmse_cm": 5.13,
+      "location_lt5_pct": 63.15,
+      "location_lt10_pct": 97.27,
+      "location_lt20_pct": 100.0,
+      "yaw_rmse_deg": 1.05,
+      "yaw_lt0_5_pct": 47.12,
+      "yaw_lt1_pct": 74.59,
+      "yaw_lt2_pct": 94.24
+    },
+    "row_identification": "Each of the six paper percentages is exactly one integer count over 1354 samples (855, 1317, 1354, 638, 1010, 1276), and 1354 is the scored window the repository's own evaluation produces for this sequence; the row is therefore the same window we score.",
+    "not_used": "The upstream README's supplementary memory-cost table reports 6.62 cm / 1.11 deg for NOF; that is an aggregate over the whole self-recorded dataset, not the Seq-1 row."
+  },
+  "wall_time_seconds": {
+    "stage1": 194,
+    "stage2": 425
+  },
+  "environment": {
+    "python": "3.10.12",
+    "numpy": "2.2.6",
+    "torch": "2.14.1+cu130",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "pybind11_build_time": "3.1.0"
+  },
+  "local_intermediates_not_redistributed": {
+    "path": "tmp/repro/ir-mcl/results/ipblab/loc_test/test1/loc_results.npz",
+    "note": "1543 x 100000 x 4 float32 particle history, 255 MB; stays in the working checkout"
+  }
+}

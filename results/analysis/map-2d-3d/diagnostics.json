@@ -1,0 +1,156 @@
+{
+  "capture_diagnostics": [
+    {
+      "run_id": "20261014-233138-localization-3d-static-method-live-7ecda8",
+      "note": "capture preflight rejected a mismatched RViz title; patrol recording never began",
+      "source_metrics_sha256": "d5ee9da34a0d25b7fef573744935c785c861b27e8fe9c9e9e56350dea7933f34",
+      "recording_started": false,
+      "native_xy_metrics": {
+        "raw": {
+          "samples": 121,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.00899240714172159,
+          "yaw_rmse_deg": 0.07380210835462901,
+          "post_warmup_5s_samples": 75,
+          "post_warmup_5s_position_rmse_m": 0.00899267786656805,
+          "position_p95_m": 0.008995702489268481
+        },
+        "dufomap": {
+          "samples": 118,
+          "dropped_unsynchronized": 0,
+          "position_rmse_m": 0.008991968907051307,
+          "yaw_rmse_deg": 0.0738005858911249,
+          "post_warmup_5s_samples": 75,
+          "post_warmup_5s_position_rmse_m": 0.008992496997776985,
+          "position_p95_m": 0.00899522649164226
+        },
+        "beautymap": {
+          "samples": 124,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.009840355127268894,
+          "yaw_rmse_deg": 0.07398861205344989,
+          "post_warmup_5s_samples": 78,
+          "post_warmup_5s_position_rmse_m": 0.00980544242812224,
+          "position_p95_m": 0.00992556853722191
+        }
+      }
+    },
+    {
+      "run_id": "20261014-233253-localization-3d-static-method-live-2a277f",
+      "note": "90s native trial completed; BeautyMap encoder did not finalize; diagnostic only",
+      "source_metrics_sha256": "04dfa4ad7fed4381f381579b5c9ff78ea87c912e1be9181b5cd94b2dad599a52",
+      "recording_started": true,
+      "native_xy_metrics": {
+        "raw": {
+          "samples": 946,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.009532713316854215,
+          "yaw_rmse_deg": 0.1261192308786203,
+          "post_warmup_5s_samples": 900,
+          "post_warmup_5s_position_rmse_m": 0.00955951244799318,
+          "position_p95_m": 0.014451919054281805
+        },
+        "dufomap": {
+          "samples": 949,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.009710423567824563,
+          "yaw_rmse_deg": 0.13037339498580827,
+          "post_warmup_5s_samples": 903,
+          "post_warmup_5s_position_rmse_m": 0.009745624112871127,
+          "position_p95_m": 0.014357638461908708
+        },
+        "beautymap": {
+          "samples": 1018,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.010567892477179493,
+          "yaw_rmse_deg": 0.1382087369434561,
+          "post_warmup_5s_samples": 972,
+          "post_warmup_5s_position_rmse_m": 0.010597503561346186,
+          "position_p95_m": 0.01431024336115885
+        }
+      }
+    },
+    {
+      "run_id": "20261014-233832-localization-3d-large-change-method-live-7199da",
+      "note": "90s native trial completed; incomplete capture finalization; diagnostic only",
+      "source_metrics_sha256": "0bf418a2f2d429528df2305422ee9c30cae5a62f56e47b0bb038df8998731ced",
+      "recording_started": true,
+      "native_xy_metrics": {
+        "raw": {
+          "samples": 878,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.011606623810776227,
+          "yaw_rmse_deg": 0.20805646828912344,
+          "post_warmup_5s_samples": 834,
+          "post_warmup_5s_position_rmse_m": 0.011751194654565722,
+          "position_p95_m": 0.01575877884617233
+        },
+        "dufomap": {
+          "samples": 890,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.008950303581543615,
+          "yaw_rmse_deg": 0.12392783656280164,
+          "post_warmup_5s_samples": 847,
+          "post_warmup_5s_position_rmse_m": 0.008976745646776798,
+          "position_p95_m": 0.014546991351989093
+        },
+        "beautymap": {
+          "samples": 949,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.011794931386848909,
+          "yaw_rmse_deg": 0.1548643519793792,
+          "post_warmup_5s_samples": 903,
+          "post_warmup_5s_position_rmse_m": 0.011947652551131458,
+          "position_p95_m": 0.01492820047873022
+        }
+      }
+    },
+    {
+      "run_id": "20261014-234442-localization-3d-static-method-live-d5bd07",
+      "note": "90s native trial completed; Raw encoder did not finalize; diagnostic only",
+      "source_metrics_sha256": "b953ef50662a8c63e5872fac14a5f403c8ca4c086a36a1efbeffed64b024eb60",
+      "recording_started": true,
+      "native_xy_metrics": {
+        "raw": {
+          "samples": 861,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.01002768984169754,
+          "yaw_rmse_deg": 0.13952216766828124,
+          "post_warmup_5s_samples": 817,
+          "post_warmup_5s_position_rmse_m": 0.010080830607004272,
+          "position_p95_m": 0.014446138360184714
+        },
+        "dufomap": {
+          "samples": 869,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.009767573605193982,
+          "yaw_rmse_deg": 0.12332120334232523,
+          "post_warmup_5s_samples": 825,
+          "post_warmup_5s_position_rmse_m": 0.009807270916259304,
+          "position_p95_m": 0.014367638783031256
+        },
+        "beautymap": {
+          "samples": 939,
+          "dropped_unsynchronized": 1,
+          "position_rmse_m": 0.010768227374984068,
+          "yaw_rmse_deg": 0.13109435943504769,
+          "post_warmup_5s_samples": 895,
+          "post_warmup_5s_position_rmse_m": 0.010808215750895833,
+          "position_p95_m": 0.014333118534537816
+        }
+      }
+    }
+  ],
+  "truth_copy_recovery": {
+    "run_id": "20261014-234119-localization-3d-dynamic-method-live-b89312",
+    "collector_source": "/root/slam-presentation-truth/20261014-234119-localization-3d-dynamic-method-live-b89312.jsonl",
+    "copied_truth_sha256": "283e5c475f58d8db505b1007fe5d83ae5ea769924692e028f1d9a77e98056ed2",
+    "note": "Retained original native collector bytes copied after session shutdown; all XY and SE(3) scores independently recomputed and validated. Estimator outputs were unchanged."
+  },
+  "object_truth_tail": {
+    "discarded_shutdown_bytes": 373,
+    "note": "Only the final malformed non-obstacle shutdown line was excluded; every scored scan retains synchronized model/link truth. Original source hash remains in map audit."
+  },
+  "native_mapper_console_sha256": "f2ff013a9285411b88b4b26e18b8002cf8c1482a4ada95e7c820e71eafa5897f",
+  "scope": "capture failures are not algorithm failures; current clips selected for complete capture, not lower pose error; original runs preserved locally"
+}

@@ -1,0 +1,218 @@
+{
+  "flow": "localization-probe-2d-height-corridor",
+  "mode": "localization",
+  "scene": "corridor",
+  "robot": "Sim2Real omni chassis with 2D lidar + depth camera",
+  "source_commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+  "world_scope": "local scenario adaptation; robot/source assets pinned separately",
+  "capture": "actual Windows Gazebo Sim, RViz2 and Windows Terminal windows",
+  "provided_mapping_poses": false,
+  "truth_input_to_localizers": false,
+  "input_to_localizers": "actual lidar, optional 4m depth and wheel odometry; no simulator truth in B",
+  "initial_pose_offset_m_rad": [
+    1.0,
+    0.15,
+    0.12
+  ],
+  "runtime": {
+    "world": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-011027-localization-probe-2d-height-corridor-method-live-f3cf54/height-control.world",
+    "spawn": [
+      7.15,
+      -3.1,
+      0.0
+    ],
+    "scene": "height-corridor",
+    "world_sha256": "a75643aa46953a02cc936445394c1c233b7d9db5952dbdb7f2100862e4d3da86",
+    "initial_offset": [
+      1.0,
+      0.15,
+      0.12
+    ],
+    "scan_restore_after_s": 50.0,
+    "derived_control": "original corridor plus two high geometric blocks; same ground-level corridor, route and initial offset",
+    "urdf": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-011027-localization-probe-2d-height-corridor-method-live-f3cf54/probe-robot.urdf",
+    "bridge_config": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-011027-localization-probe-2d-height-corridor-method-live-f3cf54/probe-bridge.yaml",
+    "sensor_arm": "2D lidar + depth camera",
+    "depth_sensor": {
+      "type": "Gazebo depth_camera",
+      "resolution": [
+        320,
+        240
+      ],
+      "horizontal_fov_deg": 80,
+      "near_far_m": [
+        0.25,
+        4.0
+      ],
+      "rate_hz": 10,
+      "extrinsics": "actual robot_state_publisher TF",
+      "noise": "ideal rendered depth; no hardware noise model"
+    }
+  },
+  "assets": {
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-011027-localization-probe-2d-height-corridor-method-live-f3cf54/height-control.world": "a75643aa46953a02cc936445394c1c233b7d9db5952dbdb7f2100862e4d3da86",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py": "98a16348dd60ef9283e1288f33786323f7a734f47f530627975bfbc0886ea3a3",
+    "/root/projects/Sim2Real-AlgoBench/src/race_description/urdf/omni_car_ros2_control.urdf": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_historical_scores.py": "1535285d5850d97d49c31f37633099ac4bf9745e31596f2825089269492d0518",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_scan_geometry.py": "763c65f6555666ecde15e3ca256a2fbd28349eed84ebae4657708d26c9568747",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/author_live_bridge.py": "9bac862ecf2d73cbc016b8a3386f816dfc73a5758a494e8905e427a9873a1984",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/auto_patrol.sh": "bc0f542cc8370521c73d0aa42ad0284c960808bb670a6337d43d6164889ec7c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.py": "ee7f654a8e0e27c4c6a92120534cf7934cb54b6784c39d880f590b91ad6f2406",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.sh": "a80b1fee3e96f67be919695a80c16f83b985a92c909a26df74082706ad040efc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_probe_maps.py": "dce1c81669717721b28113006677ffc5418c263beaf50de8196181ebe7fefc07",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/case_view_tf.py": "272701c65e9f6f5413dacb422a780f32cd2ca5074e73871d5e35aecc03137948",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/CMakeLists.txt": "ba207c9369884d626545f51add00acffce3040f92bd6d2f2d262bf3b1577e9b5",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/collect_probe_mapping.py": "abf9402295538784c08828b5c51b039f6850d0f53113a717fe7795da74bca7fb",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/diagnose_maps.py": "a49a0b26fef3f03d5a66ec144085eebc460ce41c4b5aa2657eb6f2cb9feaa705",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/diagnose_probe_observability.py": "b118e4ac2a147b84ef839c24f6e4f05667a1d98fd45f426569ed0945cbed88bb",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/freeze_probe_protocol.py": "9e78a0eed904ea895b87adcb5ff80b6c95bb8a87a662ff1b48066df4684896ee",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/gz_truth.cpp": "b89ef6633e9bd859a4333698e5acc89eb682e603b0448fd1308d113eb57657a3",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/localization.launch.py": "7c68ca137e90c6d3c4da5c47e9dc67559cdd4aae24526f828eae6c9595db5b43",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/make_corridor.py": "f4ba5ceae297f1b561186b9c94b6c6459ca75eea0379072becc7926c37bb3a13",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/mapping_ablations.sh": "536d4cf15257d3fa05888ae25546738cdd92c3ca246d5f54b7e5b62f546c3aac",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/map_review.py": "7432e5066b0f3b8255f2852e23b203ee8c4c60091a3306e6074ff8694c865bd6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/native_beautymap.py": "c7e6493c04c8469c111627cf1b31990204fca134076e5040edf425dff9bb12c1",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/object_scene.py": "9012c731e34691b392e30ddfed309afa334c031389faa29678b6abf0c365d679",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/observe_session.py": "22f8b46dd345a0decc16db541adf35cdfbc54e4bd784caf9c0bb23b8099d30bd",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_author.py": "d8a5f96ad0e29649a73b3f033da3b579ce6f6b29d60e2046f3ede8d0f718d7d6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_case_replays.py": "806106a8319524a3ef80d5e76790b191326052a85f8812a3f865fb4ae49ed384",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_live_author.py": "a1f256eb8827111bba1df097f08c06fb7310b7d8d0f9913590e923b25fd59206",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_map_audit.py": "34906afa9aa627e10a8744b1187f55cea6f35929c99792f9eb108aa2795d6fbf",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_map_review.py": "8da232127b5a837489e7788a1212384e5749fe782ff02a3f4c3324ed9897291b",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_session.py": "1fd9025b69be187377557070c1af8c9d6ebe02607086ad4f6e5f3ffaf4812c38",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_3d.py": "a92d4cd297dd2d533f9d97a8b70fed8a22620271d47c952deedcb360b05b87a2",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_author_view.py": "008c67bf253363b39980f26f64937c4994aba69f6d3d0e88266efadb9d0e64d0",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_direction_assets.py": "85342c9d6187b6e14bc023a8d85e8613439747ca72cfbbfbf436dc456b436d87",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_probe.py": "2bea6c2117ebf89cc4b5e9175c8000c6d1dc508e36d4f312540dfbb4f6a52674",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_rviz_overlay.py": "996bd10ec723998f524ca841d26edcd2c4a422a27e884404661288c0b83bb6cc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_session.py": "e17080af3db02ff14583d696f0d38607eadc31b837c1202e9cbe5f494a3ff7f8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_localizer.py": "2b262c201dde7c1ad6f0156606867927b4f5863c40a2d4dd00f38fd0239ca93a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_sensors.py": "7e30ef6eda99b1b8bb6fa13f442c810bca24b8c2b6e850b8619d13ab6fbc22da",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/rebuild_direction_figure.ps1": "bf6d56a6eaed442c9811263d892f3fb4276d0c73d54b1c614421fd67cfcd01c4",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/registration.launch.py": "41061edcf0657425c8711db96d762efca993e4495a92c4c1fada0ee43ae9c47a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/render_probe_gallery.py": "04e4c12e2075b2ce85ed91f709111c09049b9e70e3ad7aeae304927f76c1360a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_author_view.sh": "f75943429fe4c19e444078265763e3ac403ed0a3b1857f3a7fb8542718c274ec",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_live.sh": "86911fa13c86825edab52fbb03c35ce7f3727e8be9497cabc1fc6bb8476eff76",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_map_review.sh": "1f6d91bab9d0fe1763f8e1caedc4d69d5b18aab7bd66db84d5859d4cebbf5b04",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.py": "e76d3c8fd29ac58c4162d2d31155c9e2c8b030cb23f121d0055643e2acf92faa",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.sh": "4c0b1351199a0cb247bfc1f31d199f2e721e656ac0d2c6dc672b81848e9d168e",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/scenario_gpu.launch.py": "52db7103cd595f3e51a9408e696c2260efdd602c90df011c3f8fe930fa2b53fd",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/score_map_labels.py": "de403e72ac78f9ce2cea0e0945a3b6f0a2609d7b449cbf3d57a59dba4635f075",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stop_owned_session.py": "fff6428d328ed5940b700a9cf2e5cce5495fead5e56cbdb7abb11aef34c69043",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stress_scan.py": "98da9b7c82712a7cd5e9fee8dd19afa0d6f5ab4c315c81b8465148053795e7ae",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/summarize_probe_runs.py": "a50f6379627ba525b10e438cff3a56c1bc66e91db58effea03e7236f5b36a3b2",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/window_capture_heartbeat.py": "0f9c4077a16d4536cdf6f5f6c403a8fbc3fbc5461cdf2f38620a130e5651b8c2",
+    "/mnt/d/workspace/be2/slam_learning_updated/demo/presentation.ps1": "db4fae68e15f9f3cca56713bccd914aac03cdbb0aa6579c3db71018fda7accbe",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-011027-localization-probe-2d-height-corridor-method-live-f3cf54/gazebo-gui.config": "62ac88584fb31ea219094db0ad83903af964475d1661efb5e833376d7bd49c9c",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-011027-localization-probe-2d-height-corridor-method-live-f3cf54/live.rviz": "25127d3faa30240bd48eed5756a8157b0a08888ee74281d6aa11e132bd849273"
+  },
+  "cases": {
+    "plain": {
+      "dimension": "2d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map.yaml",
+      "mapping_scene": "height-corridor",
+      "initial_pose": {
+        "x": 8.15,
+        "y": -2.95,
+        "yaw": 0.12,
+        "z": 0.0
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map-3d.pcd",
+      "method": "plain",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/plain/probe_pose"
+    },
+    "guard": {
+      "dimension": "2d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map.yaml",
+      "mapping_scene": "height-corridor",
+      "initial_pose": {
+        "x": 8.15,
+        "y": -2.95,
+        "yaw": 0.12,
+        "z": 0.0
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map-3d.pcd",
+      "method": "guard",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/guard/probe_pose"
+    },
+    "depth": {
+      "dimension": "2d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map.yaml",
+      "mapping_scene": "height-corridor",
+      "initial_pose": {
+        "x": 8.15,
+        "y": -2.95,
+        "yaw": 0.12,
+        "z": 0.0
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map-3d.pcd",
+      "method": "depth",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/depth/probe_pose"
+    },
+    "search": {
+      "dimension": "2d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map.yaml",
+      "mapping_scene": "height-corridor",
+      "initial_pose": {
+        "x": 8.15,
+        "y": -2.95,
+        "yaw": 0.12,
+        "z": 0.0
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map-3d.pcd",
+      "method": "search",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/search/probe_pose"
+    },
+    "recover": {
+      "dimension": "2d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map.yaml",
+      "mapping_scene": "height-corridor",
+      "initial_pose": {
+        "x": 8.15,
+        "y": -2.95,
+        "yaw": 0.12,
+        "z": 0.0
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map-3d.pcd",
+      "method": "recover",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/recover/probe_pose"
+    },
+    "native": {
+      "dimension": "2d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map.yaml",
+      "mapping_scene": "height-corridor",
+      "initial_pose": {
+        "x": 8.15,
+        "y": -2.95,
+        "yaw": 0.12,
+        "z": 0.0
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar2d/map-3d.pcd",
+      "method": "native",
+      "localizer": "AMCL",
+      "pose_topic": "/native/amcl_pose",
+      "scan_topic": "/scan_degraded",
+      "cloud_topic": "/points_degraded"
+    }
+  },
+  "source_robot_profile": "omni-3d-v1 adapted; generated URDF is the authoritative sensor inventory",
+  "scope": "hypothesis prototypes, planar ground-robot pose; 2D arm has no 3D lidar; frozen provided-pose mapping A"
+}

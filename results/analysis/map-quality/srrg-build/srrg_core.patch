@@ -1,0 +1,60 @@
+diff --git a/src/srrg_messages/base_image_message.cpp b/src/srrg_messages/base_image_message.cpp
+index ba91fd8..c00d53a 100644
+--- a/src/srrg_messages/base_image_message.cpp
++++ b/src/srrg_messages/base_image_message.cpp
+@@ -69,9 +69,9 @@ namespace srrg_core {
+     /*
+     if (extension == "png" || extension =="ppm") {
+       _image = cv::imread(full_filename.c_str(), CV_LOAD_IMAGE_COLOR);
+-      cv::cvtColor(_image, _image, CV_BGR2RGB);
++      cv::cvtColor(_image, _image, cv::COLOR_BGR2RGB);
+     } else {
+-      _image = cv::imread(full_filename.c_str(), CV_LOAD_IMAGE_ANYDEPTH);
++      _image = cv::imread(full_filename.c_str(), cv::IMREAD_ANYDEPTH);
+     }
+     */
+   }
+@@ -89,7 +89,7 @@ namespace srrg_core {
+     //_image.copyTo(image_to_write);
+     if (_image.type()==CV_8UC3) {
+       cv::Mat image_to_write;
+-      cv::cvtColor(_image, image_to_write, CV_BGR2RGB);
++      cv::cvtColor(_image, image_to_write, cv::COLOR_BGR2RGB);
+       cv::imwrite(full_filename.c_str(), image_to_write);
+     } else {
+       cv::imwrite(full_filename.c_str(), _image);
+diff --git a/src/srrg_messages/base_image_message.h b/src/srrg_messages/base_image_message.h
+index 2e9f825..2ac5e28 100644
+--- a/src/srrg_messages/base_image_message.h
++++ b/src/srrg_messages/base_image_message.h
+@@ -1,7 +1,7 @@
+ #pragma once
+ #include <string>
+ #include <iostream>
+-#include <opencv/cv.h>
++#include <opencv2/opencv.hpp>
+ #include "base_sensor_message.h"
+ #include "srrg_types/image_data.h"
+ 
+diff --git a/src/srrg_types/image_data.cpp b/src/srrg_types/image_data.cpp
+index dab7347..96fa243 100644
+--- a/src/srrg_types/image_data.cpp
++++ b/src/srrg_types/image_data.cpp
+@@ -19,7 +19,7 @@ namespace srrg_core {
+       bytes_read+=is.gcount();
+     }
+     buf.resize(bytes_read);
+-    _image = cv::imdecode(buf,CV_LOAD_IMAGE_ANYDEPTH | CV_LOAD_IMAGE_ANYCOLOR);
++    _image = cv::imdecode(buf,cv::IMREAD_ANYDEPTH | cv::IMREAD_ANYCOLOR);
+     //if (_image.type()==CV_8UC3)
+     //cv::cvtColor(_image, _image, CV_RGB2BGR);
+     return true;
+@@ -29,7 +29,7 @@ namespace srrg_core {
+     std::vector<unsigned char> buf;
+     cv::Mat image_to_write=_image;
+     if (_image.type()==CV_8UC3){
+-      cv::cvtColor(_image, image_to_write, CV_BGR2RGB);
++      cv::cvtColor(_image, image_to_write, cv::COLOR_BGR2RGB);
+     }
+     cv::imencode(std::string(".")+const_extension(), image_to_write, buf);
+     os.write(reinterpret_cast<char*>(&buf[0]), buf.size());

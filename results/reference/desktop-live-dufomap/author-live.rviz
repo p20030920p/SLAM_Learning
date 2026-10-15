@@ -1,0 +1,94 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Current native retained/map state
+      Enabled: true
+      Topic:
+        Value: /author/map
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        Depth: 5
+      Style: Points
+      Size (Pixels): 2
+      Color Transformer: FlatColor
+      Color: 180; 185; 195
+      Position Transformer: XYZ
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Current native removed points
+      Enabled: true
+      Topic:
+        Value: /author/removed
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        Depth: 5
+      Style: Points
+      Size (Pixels): 5
+      Color Transformer: FlatColor
+      Color: 255; 60; 70
+      Position Transformer: XYZ
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Current scan (display thinned)
+      Enabled: true
+      Topic:
+        Value: /author/input
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        Depth: 5
+      Style: Points
+      Size (Pixels): 3
+      Color Transformer: FlatColor
+      Color: 60; 210; 255
+      Position Transformer: XYZ
+    - Class: rviz_default_plugins/PointCloud2
+      Name: Native IR-MCL particles (display thinned)
+      Enabled: false
+      Topic:
+        Value: /author/particles
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+        Depth: 5
+      Style: Points
+      Size (Pixels): 3
+      Color Transformer: FlatColor
+      Color: 255; 190; 40
+      Position Transformer: XYZ
+    - Class: rviz_default_plugins/Path
+      Name: Live particle estimate
+      Enabled: false
+      Topic:
+        Value: /author/path
+      Color: 60; 160; 255
+      Line Width: 0.04
+    - Class: rviz_default_plugins/Path
+      Name: Reference for display only
+      Enabled: false
+      Topic:
+        Value: /author/truth
+      Color: 60; 230; 140
+      Line Width: 0.04
+    - Class: rviz_default_plugins/Marker
+      Name: Current native frame and processing phase
+      Enabled: true
+      Topic:
+        Value: /author/status
+  Global Options:
+    Fixed Frame: author_map
+    Background Color: 18; 22; 28
+    Frame Rate: 15
+  Tools: []
+  Views:
+    Current:
+      Class: rviz_default_plugins/TopDownOrtho
+      Target Frame: author_map
+      Scale: 8
+      X: 15.0
+      Y: 10.0
+Window Geometry:
+  Width: 1200
+  Height: 760
+  X: 0
+  Y: 0

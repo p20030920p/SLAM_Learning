@@ -1,0 +1,52 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-15-01-05-40-475509-DESKTOP-GI2390C-152964
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [map_server-1]: process started with pid [152988]
+[INFO] [amcl-2]: process started with pid [152990]
+[amcl-2] [INFO] [1792015540.566504942] [native.amcl]: 
+[amcl-2] 	amcl lifecycle node launched. 
+[amcl-2] 	Waiting on external lifecycle transitions to activate
+[amcl-2] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-2] [INFO] [1792015540.569924161] [native.amcl]: Creating
+[map_server-1] [INFO] [1792015540.577632106] [native.map_server]: 
+[map_server-1] 	map_server lifecycle node launched. 
+[map_server-1] 	Waiting on external lifecycle transitions to activate
+[map_server-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-1] [INFO] [1792015540.577732664] [native.map_server]: Creating
+[INFO] [lifecycle_manager-3]: process started with pid [153134]
+[lifecycle_manager-3] [INFO] [1792015542.564355153] [native.lifecycle_manager]: Creating
+[lifecycle_manager-3] [INFO] [1792015542.568592969] [native.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-3] [INFO] [1792015543.011599595] [native.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-3] [INFO] [1792015543.011654382] [native.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-1] [INFO] [1792015543.012422977] [native.map_server]: Configuring
+[map_server-1] [INFO] [1792015543.012475691] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map.yaml
+[map_server-1] [INFO] [1792015543.015254805] [map_io]: resolution: 0.05
+[map_server-1] [INFO] [1792015543.015283198] [map_io]: origin[0]: 3
+[map_server-1] [INFO] [1792015543.015288728] [map_io]: origin[1]: -7
+[map_server-1] [INFO] [1792015543.015291308] [map_io]: origin[2]: 0
+[map_server-1] [INFO] [1792015543.015294132] [map_io]: free_thresh: 0.196
+[map_server-1] [INFO] [1792015543.015296659] [map_io]: occupied_thresh: 0.65
+[map_server-1] [INFO] [1792015543.015300127] [map_io]: mode: trinary
+[map_server-1] [INFO] [1792015543.015303585] [map_io]: negate: 0
+[map_server-1] [INFO] [1792015543.015483478] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map.pgm
+[map_server-1] [INFO] [1792015543.023972163] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003244-mapping-probe-static-6b74d0/probe-maps/lidar2d/map.pgm: 181 X 321 map @ 0.05 m/cell
+[lifecycle_manager-3] [INFO] [1792015543.030613208] [native.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-2] [INFO] [1792015543.030917070] [native.amcl]: Configuring
+[amcl-2] [INFO] [1792015543.030995818] [native.amcl]: initTransforms
+[amcl-2] [INFO] [1792015543.039557255] [native.amcl]: initPubSub
+[amcl-2] [INFO] [1792015543.047255584] [native.amcl]: Subscribed to map topic.
+[lifecycle_manager-3] [INFO] [1792015543.054925362] [native.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-1] [INFO] [1792015543.055124205] [native.map_server]: Activating
+[map_server-1] [INFO] [1792015543.055334383] [native.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-2] [INFO] [1792015543.055512129] [native.amcl]: Received a 181 X 321 map @ 0.050 m/pix
+[lifecycle_manager-3] [INFO] [1792015543.159414425] [native.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-3] [INFO] [1792015543.159476190] [native.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-2] [INFO] [1792015543.159780485] [native.amcl]: Activating
+[amcl-2] [INFO] [1792015543.159814514] [native.amcl]: initialPoseReceived
+[amcl-2] [INFO] [1792015543.159878384] [native.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-2] [INFO] [1792015543.160329391] [native.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-3] [INFO] [1792015543.265455099] [native.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-3] [INFO] [1792015543.265514306] [native.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-3] [INFO] [1792015543.265524510] [native.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[amcl-2] [INFO] [1792015550.502398200] [native.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-2] [INFO] [1792015553.204571877] [native.amcl]: Message Filter dropping message: frame 'lidar_link' at time 5.000 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-2] [INFO] [1792015553.842735357] [native.amcl]: createLaserObject

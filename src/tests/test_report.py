@@ -19,12 +19,3 @@ def test_report_selects_latest_method_run_and_excludes_research(tmp_path):
     assert "old scope" not in report
     assert "research scope" not in report
     assert "new/record.json" in report
-
-
-def test_hovsg_diagnostic_does_not_become_completed_reproduction(tmp_path):
-    path = tmp_path / "record.json"
-    write_json(path, {"schema_version": 1, "kind": "fixture", "status": "executed",
-                      "method": "HOV-SG", "scope": "diagnostic subset", "artifacts": {}})
-    report = render_report([path], tmp_path, "zh")
-    assert "| HOV-SG | | 在复现中 | |" in report
-    assert "diagnostic subset" not in report

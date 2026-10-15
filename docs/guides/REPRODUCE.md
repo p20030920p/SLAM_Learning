@@ -11,18 +11,6 @@ uv run --project src slam-study run --method dufomap
 uv run --project src slam-study run --method beautymap
 ```
 
-```bash
-bash src/scripts/setup/setup_semantic.sh
-.venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py
-```
-
-HOV-SG is in progress; its environment and diagnostic entry remain available.
-
-```bash
-bash src/scripts/setup/setup_hovsg.sh
-.venv-hovsg/bin/python src/scripts/methods/run_hovsg.py
-```
-
 ## Checks
 
 ```bash

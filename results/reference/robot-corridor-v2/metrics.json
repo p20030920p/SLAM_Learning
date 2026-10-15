@@ -1,0 +1,74 @@
+{
+  "kind": "live_native_ui_session",
+  "status": "completed",
+  "failure": null,
+  "mode": "localization",
+  "points_received": 1143,
+  "mapping_frames": 0,
+  "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
+  "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
+  "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
+  "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
+  "cases": {
+    "raw": {
+      "samples": 508,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.716034538089802,
+      "yaw_rmse_deg": 0.8136684104818286,
+      "post_warmup_5s_samples": 507,
+      "post_warmup_5s_position_rmse_m": 0.715332054240382,
+      "position_p95_m": 1.1028605863340522
+    },
+    "dufomap": {
+      "samples": 508,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.716034538089802,
+      "yaw_rmse_deg": 0.8136684104818286,
+      "post_warmup_5s_samples": 507,
+      "post_warmup_5s_position_rmse_m": 0.715332054240382,
+      "position_p95_m": 1.1028605863340522
+    },
+    "beautymap": {
+      "samples": 508,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.716034538089802,
+      "yaw_rmse_deg": 0.8136684104818286,
+      "post_warmup_5s_samples": 507,
+      "post_warmup_5s_position_rmse_m": 0.715332054240382,
+      "position_p95_m": 1.1028605863340522
+    },
+    "degraded_raw": {
+      "samples": 508,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.7252638342027142,
+      "yaw_rmse_deg": 0.8545970026150744,
+      "post_warmup_5s_samples": 507,
+      "post_warmup_5s_position_rmse_m": 0.7245884033776361,
+      "position_p95_m": 1.3255847178358051
+    },
+    "degraded_dufomap": {
+      "samples": 508,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.7252638342027142,
+      "yaw_rmse_deg": 0.8545970026150744,
+      "post_warmup_5s_samples": 507,
+      "post_warmup_5s_position_rmse_m": 0.7245884033776361,
+      "position_p95_m": 1.3255847178358051
+    },
+    "degraded_beautymap": {
+      "samples": 508,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.7252638342027142,
+      "yaw_rmse_deg": 0.8545970026150744,
+      "post_warmup_5s_samples": 507,
+      "post_warmup_5s_position_rmse_m": 0.7245884033776361,
+      "position_p95_m": 1.3255847178358051
+    }
+  },
+  "observed_map": {
+    "width": 521,
+    "height": 161,
+    "resolution_m": 0.05000000074505806,
+    "known_cells": 32255
+  }
+}

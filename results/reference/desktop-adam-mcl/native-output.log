@@ -1,0 +1,2094 @@
+# /home/qzl/.venvs/adam-mcl/bin/python Main.py --operation test_MCL --dataset simulation --subdataset 0 --update_mode Adaptive_Mixture_MCL --w_cut 0.6 --particle_num 200 --load_model /mnt/d/workspace/be2/tmp/repro/AdaM_MCL/Trained_models/simulation_2_2026-10-14 07:52:21.602839/model_train_38epochs.pth
+# ADAM_MCL_TRIALS=1
+[94mUpdate Iteration 1[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+[ WARN:0@2.794] global loadsave.cpp:1089 imwrite_ Unsupported depth image for selected encoder is fallbacked to CV_8U.
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 200
+Sampling update: 0
+Ground truth: 118.0 46.0 1.5707963267948966
+Estimation: [61.97167055] [61.49967515] [0.08651709]
+[92mError in position: [0m[3379.41363117]
+[92mError in orientation: [0m[2.20308485]
+[92mWeight of estimation: [0m[0.25953572]
+[92mTime cost: [0m2.5483734607696533
+[94mUpdate Iteration 2[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 60
+Sampling update: 140
+Ground truth: 117.0 46.0 1.5707963267948966
+Estimation: [58.18072384] [58.72393361] [-0.35245078]
+[92mError in position: [0m[3621.60573431]
+[92mError in orientation: [0m[3.69887943]
+[92mWeight of estimation: [0m[0.38456607]
+[92mTime cost: [0m0.6885113716125488
+[94mUpdate Iteration 3[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 71
+Sampling update: 129
+Ground truth: 116.0 46.0 1.5707963267948966
+Estimation: [50.59640032] [63.84791965] [-0.24375242]
+[92mError in position: [0m[4596.1790866]
+[92mError in orientation: [0m[3.29258714]
+[92mWeight of estimation: [0m[1.98457102]
+[92mTime cost: [0m0.6601550579071045
+[94mUpdate Iteration 4[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 75
+Sampling update: 125
+Ground truth: 115.0 46.0 1.5707963267948966
+Estimation: [47.5285696] [59.80224317] [-0.32656007]
+[92mError in position: [0m[4742.8958361]
+[92mError in orientation: [0m[3.59996131]
+[92mWeight of estimation: [0m[0.45738243]
+[92mTime cost: [0m0.7314093112945557
+[94mUpdate Iteration 5[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 83
+Sampling update: 117
+Ground truth: 114.0 46.0 1.5707963267948966
+Estimation: [44.68958043] [54.54309229] [-0.37672522]
+[92mError in position: [0m[4876.91868747]
+[92mError in orientation: [0m[3.79284016]
+[92mWeight of estimation: [0m[0.95659538]
+[92mTime cost: [0m0.8540751934051514
+[94mUpdate Iteration 6[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 85
+Sampling update: 115
+Ground truth: 113.0 46.0 1.5707963267948966
+Estimation: [50.9871909] [51.27934396] [-0.50791926]
+[92mError in position: [0m[3873.45996526]
+[92mError in orientation: [0m[4.3210585]
+[92mWeight of estimation: [0m[1.27976885]
+[92mTime cost: [0m0.858849048614502
+[94mUpdate Iteration 7[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 77
+Sampling update: 123
+Ground truth: 112.0 46.0 1.5707963267948966
+Estimation: [48.76041889] [52.23114189] [-0.39344223]
+[92mError in position: [0m[4038.0717476]
+[92mError in orientation: [0m[3.85823312]
+[92mWeight of estimation: [0m[1.50698817]
+[92mTime cost: [0m0.7953512668609619
+[94mUpdate Iteration 8[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 79
+Sampling update: 121
+Ground truth: 111.0 46.0 1.5707963267948966
+Estimation: [53.31521932] [48.28843751] [-0.29500414]
+[92mError in position: [0m[3332.77086816]
+[92mError in orientation: [0m[3.48121139]
+[92mWeight of estimation: [0m[1.46514009]
+[92mTime cost: [0m0.7401082515716553
+[94mUpdate Iteration 9[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 73
+Sampling update: 127
+Ground truth: 110.0 46.0 1.5707963267948966
+Estimation: [52.15170292] [47.51176807] [-0.46647424]
+[92mError in position: [0m[3348.71091727]
+[92mError in orientation: [0m[4.15047137]
+[92mWeight of estimation: [0m[1.46626843]
+[92mTime cost: [0m0.6097779273986816
+[94mUpdate Iteration 10[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 95
+Sampling update: 105
+Ground truth: 109.0 46.0 1.5707963267948966
+Estimation: [53.92382901] [48.48303697] [-0.21498094]
+[92mError in position: [0m[3039.55008315]
+[92mError in orientation: [0m[3.18900044]
+[92mWeight of estimation: [0m[1.50797421]
+[92mTime cost: [0m0.6160838603973389
+[94mUpdate Iteration 11[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 67
+Sampling update: 133
+Ground truth: 108.0 46.0 1.5707963267948966
+Estimation: [58.50287115] [56.40716506] [-0.05249555]
+[92mError in position: [0m[2558.27484925]
+[92mError in orientation: [0m[2.6350765]
+[92mWeight of estimation: [0m[0.98439066]
+[92mTime cost: [0m0.34662842750549316
+[94mUpdate Iteration 12[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 68
+Sampling update: 132
+Ground truth: 107.0 46.0 1.5707963267948966
+Estimation: [59.04418591] [53.2780194] [-0.10877354]
+[92mError in position: [0m[2352.72967131]
+[92mError in orientation: [0m[2.82095495]
+[92mWeight of estimation: [0m[1.4332219]
+[92mTime cost: [0m0.36533117294311523
+[94mUpdate Iteration 13[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 71
+Sampling update: 129
+Ground truth: 106.0 46.0 1.5707963267948966
+Estimation: [60.33874728] [56.03543644] [0.00061397]
+[92mError in position: [0m[2185.65998437]
+[92mError in orientation: [0m[2.46547265]
+[92mWeight of estimation: [0m[0.3812124]
+[92mTime cost: [0m0.385941743850708
+[94mUpdate Iteration 14[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 73
+Sampling update: 127
+Ground truth: 105.0 46.0 1.5707963267948966
+Estimation: [61.98998422] [58.84757797] [-0.38285219]
+[92mError in position: [0m[2014.92171698]
+[92mError in orientation: [0m[3.81674253]
+[92mWeight of estimation: [0m[0.56365907]
+[92mTime cost: [0m0.3914468288421631
+[94mUpdate Iteration 15[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 59
+Sampling update: 141
+Ground truth: 104.0 46.0 0.0
+Estimation: [50.11130091] [69.05898784] [-0.91792318]
+[92mError in position: [0m[3435.70880947]
+[92mError in orientation: [0m[0.84258297]
+[92mWeight of estimation: [0m[1.35108203]
+[92mTime cost: [0m0.3482491970062256
+[94mUpdate Iteration 16[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 77
+Sampling update: 123
+Ground truth: 104.0 47.0 0.0
+Estimation: [55.75127174] [62.32794148] [-0.57995775]
+[92mError in position: [0m[2562.88556868]
+[92mError in orientation: [0m[0.33635099]
+[92mWeight of estimation: [0m[0.70890907]
+[92mTime cost: [0m1.3744282722473145
+[94mUpdate Iteration 17[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 68
+Sampling update: 132
+Ground truth: 104.0 48.0 0.0
+Estimation: [60.93504606] [60.30778317] [-0.50136865]
+[92mError in position: [0m[2006.07178453]
+[92mError in orientation: [0m[0.25137052]
+[92mWeight of estimation: [0m[0.71341055]
+[92mTime cost: [0m0.39898037910461426
+[94mUpdate Iteration 18[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 81
+Sampling update: 119
+Ground truth: 104.0 49.0 0.0
+Estimation: [65.8681652] [51.11190559] [-0.60806284]
+[92mError in position: [0m[1458.49697007]
+[92mError in orientation: [0m[0.36974041]
+[92mWeight of estimation: [0m[1.57809364]
+[92mTime cost: [0m0.39945101737976074
+[94mUpdate Iteration 19[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 82
+Sampling update: 118
+Ground truth: 104.0 50.0 1.5707963267948966
+Estimation: [61.88327411] [43.34182623] [-0.90531927]
+[92mError in position: [0m[1818.14987738]
+[92mError in orientation: [0m[6.13114845]
+[92mWeight of estimation: [0m[1.4693127]
+[92mTime cost: [0m0.43521881103515625
+[94mUpdate Iteration 20[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 60
+Sampling update: 140
+Ground truth: 103.0 50.0 1.5707963267948966
+Estimation: [49.46623972] [65.51222136] [-1.45243817]
+[92mError in position: [0m[3106.49250148]
+[92mError in orientation: [0m[9.13994682]
+[92mWeight of estimation: [0m[1.53080832]
+[92mTime cost: [0m0.33997035026550293
+[94mUpdate Iteration 21[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 58
+Sampling update: 142
+Ground truth: 102.0 50.0 1.5707963267948966
+Estimation: [55.10907039] [71.27045669] [-1.06724176]
+[92mError in position: [0m[2651.19160733]
+[92mError in orientation: [0m[6.95924493]
+[92mWeight of estimation: [0m[2.40400542]
+[92mTime cost: [0m0.34381818771362305
+[94mUpdate Iteration 22[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 56
+Sampling update: 144
+Ground truth: 101.0 50.0 1.5707963267948966
+Estimation: [52.04883298] [78.53332274] [-0.92287241]
+[92mError in position: [0m[3210.36725915]
+[92mError in orientation: [0m[6.21838374]
+[92mWeight of estimation: [0m[2.09008642]
+[92mTime cost: [0m0.3498959541320801
+[94mUpdate Iteration 23[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 67
+Sampling update: 133
+Ground truth: 100.0 50.0 1.5707963267948966
+Estimation: [63.91407001] [80.31551371] [-1.40618247]
+[92mError in position: [0m[2221.22471508]
+[92mError in orientation: [0m[8.86240274]
+[92mWeight of estimation: [0m[1.9507755]
+[92mTime cost: [0m0.3986351490020752
+[94mUpdate Iteration 24[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 61
+Sampling update: 139
+Ground truth: 99.0 50.0 1.5707963267948966
+Estimation: [63.4724597] [64.36741476] [-1.12767882]
+[92mError in position: [0m[1468.62872672]
+[92mError in orientation: [0m[7.2817681]
+[92mWeight of estimation: [0m[2.21668324]
+[92mTime cost: [0m0.37032413482666016
+[94mUpdate Iteration 25[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 65
+Sampling update: 135
+Ground truth: 98.0 50.0 1.5707963267948966
+Estimation: [59.15485292] [57.19776145] [-1.60299974]
+[92mError in position: [0m[1560.7532213]
+[92mError in orientation: [0m[10.07298146]
+[92mWeight of estimation: [0m[0.81694247]
+[92mTime cost: [0m0.36716651916503906
+[94mUpdate Iteration 26[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 54
+Sampling update: 146
+Ground truth: 97.0 50.0 1.5707963267948966
+Estimation: [63.25889821] [58.93276386] [-1.3110004]
+[92mError in position: [0m[1218.2562199]
+[92mError in orientation: [0m[8.30475237]
+[92mWeight of estimation: [0m[2.22715897]
+[92mTime cost: [0m0.3177645206451416
+[94mUpdate Iteration 27[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 64
+Sampling update: 136
+Ground truth: 96.0 50.0 1.5707963267948966
+Estimation: [63.10151388] [62.86015767] [-0.63957405]
+[92mError in position: [0m[1247.69404414]
+[92mError in orientation: [0m[4.88573718]
+[92mWeight of estimation: [0m[1.23829675]
+[92mTime cost: [0m0.33432722091674805
+[94mUpdate Iteration 28[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 59
+Sampling update: 141
+Ground truth: 95.0 50.0 1.5707963267948966
+Estimation: [59.96580265] [65.65307875] [-0.89361539]
+[92mError in position: [0m[1472.41385838]
+[92mError in orientation: [0m[6.07332512]
+[92mWeight of estimation: [0m[1.23112507]
+[92mTime cost: [0m0.4667954444885254
+[94mUpdate Iteration 29[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 69
+Sampling update: 131
+Ground truth: 94.0 50.0 1.5707963267948966
+Estimation: [64.31377993] [63.7773675] [-0.56400257]
+[92mError in position: [0m[1071.08751719]
+[92mError in orientation: [0m[4.55736632]
+[92mWeight of estimation: [0m[1.11063324]
+[92mTime cost: [0m0.6338746547698975
+[94mUpdate Iteration 30[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 59
+Sampling update: 141
+Ground truth: 93.0 50.0 1.5707963267948966
+Estimation: [65.77045908] [64.28927215] [-0.18252067]
+[92mError in position: [0m[945.6311975]
+[92mError in orientation: [0m[3.07412049]
+[92mWeight of estimation: [0m[1.68431748]
+[92mTime cost: [0m-0.17160439491271973
+[94mUpdate Iteration 31[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 66
+Sampling update: 134
+Ground truth: 92.0 50.0 1.5707963267948966
+Estimation: [66.44413462] [60.55306788] [-0.18931007]
+[92mError in position: [0m[764.46949702]
+[92mError in orientation: [0m[3.09797454]
+[92mWeight of estimation: [0m[1.98475808]
+[92mTime cost: [0m0.34136486053466797
+[94mUpdate Iteration 32[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 63
+Sampling update: 137
+Ground truth: 91.0 50.0 0.0
+Estimation: [67.94518978] [59.63116874] [-0.02537668]
+[92mError in position: [0m[624.28368577]
+[92mError in orientation: [0m[0.00064398]
+[92mWeight of estimation: [0m[1.48799858]
+[92mTime cost: [0m0.3561370372772217
+[94mUpdate Iteration 33[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 62
+Sampling update: 138
+Ground truth: 91.0 51.0 0.0
+Estimation: [67.1464464] [61.08685687] [-0.04772654]
+[92mError in position: [0m[670.73670074]
+[92mError in orientation: [0m[0.00227782]
+[92mWeight of estimation: [0m[1.09290987]
+[92mTime cost: [0m0.33953142166137695
+[94mUpdate Iteration 34[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 56
+Sampling update: 144
+Ground truth: 91.0 52.0 0.0
+Estimation: [65.80750917] [58.40574817] [-0.18518666]
+[92mError in position: [0m[675.69520409]
+[92mError in orientation: [0m[0.0342941]
+[92mWeight of estimation: [0m[2.00543613]
+[92mTime cost: [0m0.29424500465393066
+[94mUpdate Iteration 35[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 53
+Sampling update: 147
+Ground truth: 91.0 53.0 0.0
+Estimation: [67.40326003] [65.75609086] [-0.39830645]
+[92mError in position: [0m[719.52399112]
+[92mError in orientation: [0m[0.15864803]
+[92mWeight of estimation: [0m[1.42386552]
+[92mTime cost: [0m0.3045005798339844
+[94mUpdate Iteration 36[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 55
+Sampling update: 145
+Ground truth: 91.0 54.0 0.0
+Estimation: [70.72569869] [71.91183202] [-0.40629703]
+[92mError in position: [0m[731.88101997]
+[92mError in orientation: [0m[0.16507728]
+[92mWeight of estimation: [0m[1.42228871]
+[92mTime cost: [0m0.31052708625793457
+[94mUpdate Iteration 37[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 57
+Sampling update: 143
+Ground truth: 91.0 55.0 0.0
+Estimation: [66.82405532] [76.84719559] [-1.05109088]
+[92mError in position: [0m[1061.77625624]
+[92mError in orientation: [0m[1.10479204]
+[92mWeight of estimation: [0m[1.83192474]
+[92mTime cost: [0m0.3784213066101074
+[94mUpdate Iteration 38[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 62
+Sampling update: 138
+Ground truth: 91.0 56.0 0.0
+Estimation: [70.19412525] [73.219419] [-0.6475486]
+[92mError in position: [0m[729.39281496]
+[92mError in orientation: [0m[0.41931919]
+[92mWeight of estimation: [0m[1.04633427]
+[92mTime cost: [0m0.43199968338012695
+[94mUpdate Iteration 39[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 81
+Sampling update: 119
+Ground truth: 91.0 57.0 0.0
+Estimation: [65.5493835] [69.6497462] [-0.40313564]
+[92mError in position: [0m[807.74995912]
+[92mError in orientation: [0m[0.16251834]
+[92mWeight of estimation: [0m[1.78953654]
+[92mTime cost: [0m0.43195557594299316
+[94mUpdate Iteration 40[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 59
+Sampling update: 141
+Ground truth: 91.0 58.0 0.0
+Estimation: [68.43091217] [73.65524146] [-0.51778672]
+[92mError in position: [0m[754.45031045]
+[92mError in orientation: [0m[0.26810309]
+[92mWeight of estimation: [0m[1.38502356]
+[92mTime cost: [0m0.3915407657623291
+[94mUpdate Iteration 41[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 68
+Sampling update: 132
+Ground truth: 91.0 59.0 0.0
+Estimation: [66.8195945] [78.77563852] [-0.32341442]
+[92mError in position: [0m[975.7678889]
+[92mError in orientation: [0m[0.10459688]
+[92mWeight of estimation: [0m[2.19899814]
+[92mTime cost: [0m0.3978562355041504
+[94mUpdate Iteration 42[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 63
+Sampling update: 137
+Ground truth: 91.0 60.0 0.0
+Estimation: [64.75673175] [84.29924825] [-0.62183954]
+[92mError in position: [0m[1279.16259388]
+[92mError in orientation: [0m[0.38668441]
+[92mWeight of estimation: [0m[2.66252986]
+[92mTime cost: [0m0.3611280918121338
+[94mUpdate Iteration 43[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 72
+Sampling update: 128
+Ground truth: 91.0 61.0 0.0
+Estimation: [65.06957648] [73.18232084] [-0.73505889]
+[92mError in position: [0m[820.79580532]
+[92mError in orientation: [0m[0.54031158]
+[92mWeight of estimation: [0m[2.64354882]
+[92mTime cost: [0m0.37169337272644043
+[94mUpdate Iteration 44[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 77
+Sampling update: 123
+Ground truth: 91.0 62.0 0.0
+Estimation: [70.09328852] [75.85812113] [-1.02194539]
+[92mError in position: [0m[629.13810613]
+[92mError in orientation: [0m[1.04437238]
+[92mWeight of estimation: [0m[2.90928895]
+[92mTime cost: [0m0.36896800994873047
+[94mUpdate Iteration 45[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 77
+Sampling update: 123
+Ground truth: 91.0 63.0 0.0
+Estimation: [72.22782267] [72.70714681] [-0.73034193]
+[92mError in position: [0m[446.62334064]
+[92mError in orientation: [0m[0.53339933]
+[92mWeight of estimation: [0m[2.7506964]
+[92mTime cost: [0m0.3889350891113281
+[94mUpdate Iteration 46[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 76
+Sampling update: 124
+Ground truth: 91.0 64.0 1.5707963267948966
+Estimation: [74.91227148] [78.24930071] [-0.3863376]
+[92mError in position: [0m[461.85757958]
+[92mError in orientation: [0m[3.83037321]
+[92mWeight of estimation: [0m[1.52955488]
+[92mTime cost: [0m0.3813016414642334
+[94mUpdate Iteration 47[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 85
+Sampling update: 115
+Ground truth: 90.0 64.0 1.5707963267948966
+Estimation: [73.59245816] [76.56641781] [-0.60366525]
+[92mError in position: [0m[427.12228594]
+[92mError in orientation: [0m[4.72828316]
+[92mWeight of estimation: [0m[1.5475168]
+[92mTime cost: [0m0.41354870796203613
+[94mUpdate Iteration 48[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 75
+Sampling update: 125
+Ground truth: 89.0 64.0 1.5707963267948966
+Estimation: [71.53473994] [77.19390673] [-0.52492524]
+[92mError in position: [0m[479.11448373]
+[92mError in orientation: [0m[4.3920489]
+[92mWeight of estimation: [0m[1.78695053]
+[92mTime cost: [0m0.4336669445037842
+[94mUpdate Iteration 49[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 74
+Sampling update: 126
+Ground truth: 88.0 64.0 1.5707963267948966
+Estimation: [64.65956848] [74.5072612] [-0.48971783]
+[92mError in position: [0m[655.17828143]
+[92mError in orientation: [0m[4.24571858]
+[92mWeight of estimation: [0m[2.37663932]
+[92mTime cost: [0m0.5105900764465332
+[94mUpdate Iteration 50[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 60
+Sampling update: 140
+Ground truth: 87.0 64.0 0.0
+Estimation: [63.63523669] [67.84131147] [-0.20214618]
+[92mError in position: [0m[560.66783823]
+[92mError in orientation: [0m[0.04086308]
+[92mWeight of estimation: [0m[2.97531312]
+[92mTime cost: [0m0.43167614936828613
+[94mUpdate Iteration 51[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 65
+Sampling update: 135
+Ground truth: 87.0 65.0 0.0
+Estimation: [60.7131773] [69.16626492] [-0.06098883]
+[92mError in position: [0m[708.35481103]
+[92mError in orientation: [0m[0.00371964]
+[92mWeight of estimation: [0m[1.43297388]
+[92mTime cost: [0m0.43303680419921875
+[94mUpdate Iteration 52[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 52
+Sampling update: 148
+Ground truth: 87.0 66.0 0.0
+Estimation: [60.78635253] [69.87193987] [-0.11770673]
+[92mError in position: [0m[702.14723194]
+[92mError in orientation: [0m[0.01385487]
+[92mWeight of estimation: [0m[1.17113575]
+[92mTime cost: [0m0.3540666103363037
+[94mUpdate Iteration 53[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 60
+Sampling update: 140
+Ground truth: 87.0 67.0 0.0
+Estimation: [67.99212429] [68.42965448] [-0.20416317]
+[92mError in position: [0m[363.34325077]
+[92mError in orientation: [0m[0.0416826]
+[92mWeight of estimation: [0m[2.17856911]
+[92mTime cost: [0m0.3760108947753906
+[94mUpdate Iteration 54[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 45
+Sampling update: 155
+Ground truth: 87.0 68.0 0.0
+Estimation: [66.37198962] [65.66120198] [-0.32643981]
+[92mError in position: [0m[430.98478825]
+[92mError in orientation: [0m[0.10656295]
+[92mWeight of estimation: [0m[2.67048299]
+[92mTime cost: [0m0.29958558082580566
+[94mUpdate Iteration 55[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 56
+Sampling update: 144
+Ground truth: 87.0 69.0 0.0
+Estimation: [55.31405071] [76.63491634] [-0.74427427]
+[92mError in position: [0m[1062.29132993]
+[92mError in orientation: [0m[0.55394419]
+[92mWeight of estimation: [0m[1.61440859]
+[92mTime cost: [0m0.36441731452941895
+[94mUpdate Iteration 56[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 76
+Sampling update: 124
+Ground truth: 87.0 70.0 0.0
+Estimation: [56.67612481] [82.26615002] [-0.71187607]
+[92mError in position: [0m[1069.99584275]
+[92mError in orientation: [0m[0.50676754]
+[92mWeight of estimation: [0m[1.02046216]
+[92mTime cost: [0m0.4263896942138672
+[94mUpdate Iteration 57[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 67
+Sampling update: 133
+Ground truth: 87.0 71.0 0.0
+Estimation: [59.4319871] [74.48637781] [-0.43248695]
+[92mError in position: [0m[772.15016548]
+[92mError in orientation: [0m[0.18704496]
+[92mWeight of estimation: [0m[2.14137081]
+[92mTime cost: [0m0.4176676273345947
+[94mUpdate Iteration 58[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 54
+Sampling update: 146
+Ground truth: 87.0 72.0 0.0
+Estimation: [53.00251882] [67.92594263] [-0.32828681]
+[92mError in position: [0m[1172.42666992]
+[92mError in orientation: [0m[0.10777223]
+[92mWeight of estimation: [0m[2.4224786]
+[92mTime cost: [0m0.3721022605895996
+[94mUpdate Iteration 59[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 70
+Sampling update: 130
+Ground truth: 87.0 73.0 0.0
+Estimation: [57.61263147] [68.08226149] [0.21423858]
+[92mError in position: [0m[887.80158143]
+[92mError in orientation: [0m[0.04589817]
+[92mWeight of estimation: [0m[2.26199135]
+[92mTime cost: [0m0.4027683734893799
+[94mUpdate Iteration 60[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 72
+Sampling update: 128
+Ground truth: 87.0 74.0 0.0
+Estimation: [60.75717796] [63.58433385] [-0.16980112]
+[92mError in position: [0m[797.17181004]
+[92mError in orientation: [0m[0.02883242]
+[92mWeight of estimation: [0m[0.20482898]
+[92mTime cost: [0m0.40242934226989746
+[94mUpdate Iteration 61[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 62
+Sampling update: 138
+Ground truth: 87.0 75.0 0.0
+Estimation: [59.13338618] [65.39597265] [-0.08621332]
+[92mError in position: [0m[868.78550726]
+[92mError in orientation: [0m[0.00743274]
+[92mWeight of estimation: [0m[0.93670238]
+[92mTime cost: [0m0.36080384254455566
+[94mUpdate Iteration 62[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 62
+Sampling update: 138
+Ground truth: 87.0 76.0 0.0
+Estimation: [57.43080396] [67.12762933] [0.00027371]
+[92mError in position: [0m[953.05631591]
+[92mError in orientation: [0m[7.49181131e-08]
+[92mWeight of estimation: [0m[1.55447599]
+[92mTime cost: [0m0.3695402145385742
+[94mUpdate Iteration 63[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 54
+Sampling update: 146
+Ground truth: 87.0 77.0 0.0
+Estimation: [60.38063644] [64.72794828] [-0.37451929]
+[92mError in position: [0m[859.19377007]
+[92mError in orientation: [0m[0.1402647]
+[92mWeight of estimation: [0m[0.22484872]
+[92mTime cost: [0m0.3371260166168213
+[94mUpdate Iteration 64[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 64
+Sampling update: 136
+Ground truth: 52.0 65.0 -1.5707963267948966
+Estimation: [59.89124925] [70.54332959] [-0.57839093]
+[92mError in position: [0m[93.00031762]
+[92mError in orientation: [0m[0.98486847]
+[92mWeight of estimation: [0m[2.72316014]
+[92mTime cost: [0m0.3852810859680176
+[94mUpdate Iteration 65[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 66
+Sampling update: 134
+Ground truth: 53.0 65.0 -1.5707963267948966
+Estimation: [62.69349025] [68.41541139] [-0.36252665]
+[92mError in position: [0m[105.62878819]
+[92mError in orientation: [0m[1.4599156]
+[92mWeight of estimation: [0m[0.64293091]
+[92mTime cost: [0m0.3755800724029541
+[94mUpdate Iteration 66[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 73
+Sampling update: 127
+Ground truth: 54.0 65.0 -1.5707963267948966
+Estimation: [59.08997428] [70.8143979] [-0.12922497]
+[92mError in position: [0m[59.71506117]
+[92mError in orientation: [0m[2.07812797]
+[92mWeight of estimation: [0m[2.08434882]
+[92mTime cost: [0m0.37798476219177246
+[94mUpdate Iteration 67[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 75
+Sampling update: 125
+Ground truth: 55.0 65.0 -1.5707963267948966
+Estimation: [55.34545805] [75.91254026] [-0.09656553]
+[92mError in position: [0m[119.20287627]
+[92mError in orientation: [0m[2.17335644]
+[92mWeight of estimation: [0m[2.25741509]
+[92mTime cost: [0m0.3950462341308594
+[94mUpdate Iteration 68[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 88
+Sampling update: 112
+Ground truth: 56.0 65.0 -1.5707963267948966
+Estimation: [57.06265731] [82.6375529] [0.18559081]
+[92mError in position: [0m[312.212513]
+[92mError in orientation: [0m[3.08489578]
+[92mWeight of estimation: [0m[2.73435206]
+[92mTime cost: [0m0.434175968170166
+[94mUpdate Iteration 69[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 83
+Sampling update: 117
+Ground truth: 57.0 65.0 0.0
+Estimation: [48.24577191] [70.45878358] [-0.58570843]
+[92mError in position: [0m[106.43482751]
+[92mError in orientation: [0m[0.34305436]
+[92mWeight of estimation: [0m[2.27417078]
+[92mTime cost: [0m0.4168822765350342
+[94mUpdate Iteration 70[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 107
+Sampling update: 93
+Ground truth: 57.0 66.0 0.0
+Estimation: [47.72618235] [75.68220976] [-0.30408371]
+[92mError in position: [0m[179.74887973]
+[92mError in orientation: [0m[0.09246691]
+[92mWeight of estimation: [0m[1.44462158]
+[92mTime cost: [0m0.5215139389038086
+[94mUpdate Iteration 71[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 107
+Sampling update: 93
+Ground truth: 57.0 67.0 0.0
+Estimation: [50.06173138] [84.70938668] [0.18950219]
+[92mError in position: [0m[361.76194816]
+[92mError in orientation: [0m[0.03591108]
+[92mWeight of estimation: [0m[1.44007627]
+[92mTime cost: [0m0.52787184715271
+[94mUpdate Iteration 72[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 125
+Sampling update: 75
+Ground truth: 57.0 68.0 0.0
+Estimation: [54.33617596] [97.34627172] [0.64836135]
+[92mError in position: [0m[868.29962244]
+[92mError in orientation: [0m[0.42037244]
+[92mWeight of estimation: [0m[3.03266746]
+[92mTime cost: [0m0.5274558067321777
+[94mUpdate Iteration 73[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 139
+Sampling update: 61
+Ground truth: 57.0 69.0 0.0
+Estimation: [53.36111201] [102.77290031] [0.83721622]
+[92mError in position: [0m[1153.85030104]
+[92mError in orientation: [0m[0.700931]
+[92mWeight of estimation: [0m[2.63428271]
+[92mTime cost: [0m0.5898942947387695
+[94mUpdate Iteration 74[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 90
+Sampling update: 110
+Ground truth: 57.0 70.0 0.0
+Estimation: [53.16892102] [83.11726003] [0.09932855]
+[92mError in position: [0m[186.73967691]
+[92mError in orientation: [0m[0.00986616]
+[92mWeight of estimation: [0m[1.50526457]
+[92mTime cost: [0m0.42430663108825684
+[94mUpdate Iteration 75[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 70
+Sampling update: 130
+Ground truth: 57.0 71.0 0.0
+Estimation: [50.52041809] [51.09574601] [-0.82249907]
+[92mError in position: [0m[438.16430869]
+[92mError in orientation: [0m[0.67650472]
+[92mWeight of estimation: [0m[1.15962669]
+[92mTime cost: [0m0.42124509811401367
+[94mUpdate Iteration 76[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 66
+Sampling update: 134
+Ground truth: 57.0 72.0 -1.5707963267948966
+Estimation: [55.45596008] [46.43624348] [-0.22817899]
+[92mError in position: [0m[655.88970648]
+[92mError in orientation: [0m[1.80262131]
+[92mWeight of estimation: [0m[2.15863494]
+[92mTime cost: [0m0.37453722953796387
+[94mUpdate Iteration 77[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 61
+Sampling update: 139
+Ground truth: 58.0 72.0 -1.5707963267948966
+Estimation: [59.31361382] [47.43888729] [-0.5119988]
+[92mError in position: [0m[604.97383868]
+[92mError in orientation: [0m[1.12105221]
+[92mWeight of estimation: [0m[1.91691142]
+[92mTime cost: [0m0.37235045433044434
+[94mUpdate Iteration 78[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 57
+Sampling update: 143
+Ground truth: 59.0 72.0 -1.5707963267948966
+Estimation: [64.30629825] [49.10441391] [-0.35843397]
+[92mError in position: [0m[552.3646635]
+[92mError in orientation: [0m[1.46982249]
+[92mWeight of estimation: [0m[2.2085515]
+[92mTime cost: [0m0.3832080364227295
+[94mUpdate Iteration 79[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 53
+Sampling update: 147
+Ground truth: 60.0 72.0 -1.5707963267948966
+Estimation: [66.56634856] [56.6568083] [-0.07992438]
+[92mError in position: [0m[278.5304648]
+[92mError in orientation: [0m[2.22269915]
+[92mWeight of estimation: [0m[1.90800708]
+[92mTime cost: [0m0.3305785655975342
+[94mUpdate Iteration 80[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 59
+Sampling update: 141
+Ground truth: 61.0 72.0 -1.5707963267948966
+Estimation: [69.39164459] [52.32836288] [-0.21761109]
+[92mError in position: [0m[457.39300593]
+[92mError in orientation: [0m[1.83111029]
+[92mWeight of estimation: [0m[2.11127073]
+[92mTime cost: [0m0.3008573055267334
+[94mUpdate Iteration 81[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 57
+Sampling update: 143
+Ground truth: 62.0 72.0 -1.5707963267948966
+Estimation: [64.31956951] [53.12056926] [-0.28499475]
+[92mError in position: [0m[361.81330789]
+[92mError in orientation: [0m[1.65328569]
+[92mWeight of estimation: [0m[1.59331817]
+[92mTime cost: [0m0.34133052825927734
+[94mUpdate Iteration 82[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 51
+Sampling update: 149
+Ground truth: 63.0 72.0 -1.5707963267948966
+Estimation: [64.62902575] [61.50301287] [-0.0289948]
+[92mError in position: [0m[112.84046371]
+[92mError in orientation: [0m[2.37715194]
+[92mWeight of estimation: [0m[2.06684983]
+[92mTime cost: [0m0.3144855499267578
+[94mUpdate Iteration 83[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 63
+Sampling update: 137
+Ground truth: 64.0 72.0 -1.5707963267948966
+Estimation: [66.13152323] [58.55863063] [-0.20558853]
+[92mError in position: [0m[185.21380186]
+[92mError in orientation: [0m[1.86379232]
+[92mWeight of estimation: [0m[2.13353485]
+[92mTime cost: [0m0.33583712577819824
+[94mUpdate Iteration 84[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 67
+Sampling update: 133
+Ground truth: 65.0 72.0 -1.5707963267948966
+Estimation: [63.76506566] [61.03501833] [-0.19348728]
+[92mError in position: [0m[121.75588593]
+[92mError in orientation: [0m[1.8969802]
+[92mWeight of estimation: [0m[1.44727543]
+[92mTime cost: [0m0.3685262203216553
+[94mUpdate Iteration 85[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 74
+Sampling update: 126
+Ground truth: 66.0 72.0 -1.5707963267948966
+Estimation: [62.13677616] [61.49004812] [-0.39798825]
+[92mError in position: [0m[125.38358685]
+[92mError in orientation: [0m[1.3754788]
+[92mWeight of estimation: [0m[0.56896504]
+[92mTime cost: [0m0.4017932415008545
+[94mUpdate Iteration 86[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 69
+Sampling update: 131
+Ground truth: 67.0 72.0 -1.5707963267948966
+Estimation: [61.68906361] [61.82832002] [-0.51364864]
+[92mError in position: [0m[131.66911895]
+[92mError in orientation: [0m[1.11756123]
+[92mWeight of estimation: [0m[0.42647496]
+[92mTime cost: [0m0.34504079818725586
+[94mUpdate Iteration 87[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 56
+Sampling update: 144
+Ground truth: 68.0 72.0 -1.5707963267948966
+Estimation: [65.61983824] [64.80715228] [-0.37249931]
+[92mError in position: [0m[57.40222831]
+[92mError in orientation: [0m[1.43591574]
+[92mWeight of estimation: [0m[1.94459434]
+[92mTime cost: [0m0.309873104095459
+[94mUpdate Iteration 88[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 66
+Sampling update: 134
+Ground truth: 69.0 72.0 -1.5707963267948966
+Estimation: [72.07297285] [63.62766005] [-0.25535588]
+[92mError in position: [0m[79.53923846]
+[92mError in orientation: [0m[1.73038356]
+[92mWeight of estimation: [0m[2.2288476]
+[92mTime cost: [0m0.3686385154724121
+[94mUpdate Iteration 89[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 61
+Sampling update: 139
+Ground truth: 70.0 72.0 -1.5707963267948966
+Estimation: [59.80392567] [66.10940855] [-0.29924366]
+[92mError in position: [0m[138.65899926]
+[92mError in orientation: [0m[1.61684617]
+[92mWeight of estimation: [0m[1.67733572]
+[92mTime cost: [0m0.3794422149658203
+[94mUpdate Iteration 90[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 60
+Sampling update: 140
+Ground truth: 71.0 72.0 -1.5707963267948966
+Estimation: [64.44904231] [63.53681593] [-0.47199993]
+[92mError in position: [0m[114.5405313]
+[92mError in orientation: [0m[1.20735352]
+[92mWeight of estimation: [0m[1.33749167]
+[92mTime cost: [0m0.37942075729370117
+[94mUpdate Iteration 91[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 62
+Sampling update: 138
+Ground truth: 72.0 72.0 -1.5707963267948966
+Estimation: [63.58554939] [64.24626509] [-0.17913779]
+[92mError in position: [0m[130.92338411]
+[92mError in orientation: [0m[1.93671348]
+[92mWeight of estimation: [0m[0.97907933]
+[92mTime cost: [0m0.41258716583251953
+[94mUpdate Iteration 92[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 60
+Sampling update: 140
+Ground truth: 73.0 72.0 -1.5707963267948966
+Estimation: [67.04720351] [65.81101008] [-0.27739043]
+[92mError in position: [0m[73.73938233]
+[92mError in orientation: [0m[1.67289881]
+[92mWeight of estimation: [0m[1.29740013]
+[92mTime cost: [0m0.41324472427368164
+[94mUpdate Iteration 93[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 67
+Sampling update: 133
+Ground truth: 74.0 72.0 -1.5707963267948966
+Estimation: [64.82247683] [61.49883688] [-0.20688561]
+[92mError in position: [0m[194.50135848]
+[92mError in orientation: [0m[1.86025244]
+[92mWeight of estimation: [0m[1.2549165]
+[92mTime cost: [0m0.38898181915283203
+[94mUpdate Iteration 94[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 61
+Sampling update: 139
+Ground truth: 75.0 72.0 -1.5707963267948966
+Estimation: [63.56263764] [63.80558879] [-0.12470012]
+[92mError in position: [0m[197.96163272]
+[92mError in orientation: [0m[2.09119423]
+[92mWeight of estimation: [0m[0.75268884]
+[92mTime cost: [0m0.36153244972229004
+[94mUpdate Iteration 95[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 49
+Sampling update: 151
+Ground truth: 76.0 72.0 -1.5707963267948966
+Estimation: [65.20307709] [60.42084721] [-0.06499715]
+[92mError in position: [0m[250.65032355]
+[92mError in orientation: [0m[2.26743116]
+[92mWeight of estimation: [0m[1.26706667]
+[92mTime cost: [0m0.2858092784881592
+[94mUpdate Iteration 96[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 68
+Sampling update: 132
+Ground truth: 77.0 72.0 -1.5707963267948966
+Estimation: [64.79296215] [56.10433768] [-0.30141311]
+[92mError in position: [0m[401.6838538]
+[92mError in orientation: [0m[1.61133374]
+[92mWeight of estimation: [0m[1.43534123]
+[92mTime cost: [0m0.3560638427734375
+[94mUpdate Iteration 97[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 61
+Sampling update: 139
+Ground truth: 78.0 72.0 0.0
+Estimation: [66.82196595] [59.20575427] [0.08422989]
+[92mError in position: [0m[288.64116896]
+[92mError in orientation: [0m[0.00709468]
+[92mWeight of estimation: [0m[0.91694677]
+[92mTime cost: [0m0.34165072441101074
+[94mUpdate Iteration 98[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 67
+Sampling update: 133
+Ground truth: 78.0 73.0 0.0
+Estimation: [66.19420787] [59.04463818] [-0.2325153]
+[92mError in position: [0m[334.1288513]
+[92mError in orientation: [0m[0.05406337]
+[92mWeight of estimation: [0m[1.72395042]
+[92mTime cost: [0m0.3660917282104492
+[94mUpdate Iteration 99[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 61
+Sampling update: 139
+Ground truth: 78.0 74.0 0.0
+Estimation: [64.39132061] [59.0728939] [-0.07782684]
+[92mError in position: [0m[408.0146513]
+[92mError in orientation: [0m[0.00605702]
+[92mWeight of estimation: [0m[1.06941489]
+[92mTime cost: [0m0.3339664936065674
+[94mUpdate Iteration 100[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 53
+Sampling update: 147
+Ground truth: 78.0 75.0 0.0
+Estimation: [70.51807656] [57.99211604] [-0.14615047]
+[92mError in position: [0m[345.24729502]
+[92mError in orientation: [0m[0.02135996]
+[92mWeight of estimation: [0m[2.16888146]
+[92mTime cost: [0m0.3070945739746094
+[94mUpdate Iteration 101[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 69
+Sampling update: 131
+Ground truth: 78.0 76.0 0.0
+Estimation: [69.5196123] [55.85626559] [-0.32530618]
+[92mError in position: [0m[477.68701176]
+[92mError in orientation: [0m[0.10582411]
+[92mWeight of estimation: [0m[2.73241124]
+[92mTime cost: [0m0.3649461269378662
+[94mUpdate Iteration 102[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 64
+Sampling update: 136
+Ground truth: 78.0 77.0 0.0
+Estimation: [65.72287405] [58.25168335] [-0.25115025]
+[92mError in position: [0m[502.22719863]
+[92mError in orientation: [0m[0.06307645]
+[92mWeight of estimation: [0m[1.9256283]
+[92mTime cost: [0m0.35601067543029785
+[94mUpdate Iteration 103[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 73
+Sampling update: 127
+Ground truth: 78.0 78.0 0.0
+Estimation: [61.34566487] [60.58556753] [-0.13501015]
+[92mError in position: [0m[580.62933714]
+[92mError in orientation: [0m[0.01822774]
+[92mWeight of estimation: [0m[0.14343217]
+[92mTime cost: [0m0.39574646949768066
+[94mUpdate Iteration 104[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 72
+Sampling update: 128
+Ground truth: 78.0 79.0 0.0
+Estimation: [60.75294096] [61.8232956] [-0.21295055]
+[92mError in position: [0m[592.50021983]
+[92mError in orientation: [0m[0.04534794]
+[92mWeight of estimation: [0m[0.17349523]
+[92mTime cost: [0m0.37908411026000977
+[94mUpdate Iteration 105[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 70
+Sampling update: 130
+Ground truth: 78.0 80.0 0.0
+Estimation: [62.48420651] [64.68670176] [-0.10784983]
+[92mError in position: [0m[475.23695054]
+[92mError in orientation: [0m[0.01163159]
+[92mWeight of estimation: [0m[0.97372921]
+[92mTime cost: [0m0.36767578125
+[94mUpdate Iteration 106[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 69
+Sampling update: 131
+Ground truth: 78.0 81.0 0.0
+Estimation: [66.32442748] [62.23958199] [-0.27847244]
+[92mError in position: [0m[488.27227746]
+[92mError in orientation: [0m[0.0775469]
+[92mWeight of estimation: [0m[1.39207502]
+[92mTime cost: [0m0.3632545471191406
+[94mUpdate Iteration 107[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 60
+Sampling update: 140
+Ground truth: 78.0 82.0 0.0
+Estimation: [67.33461546] [64.69033968] [-0.20759696]
+[92mError in position: [0m[413.37476784]
+[92mError in orientation: [0m[0.0430965]
+[92mWeight of estimation: [0m[1.57352847]
+[92mTime cost: [0m0.3880612850189209
+[94mUpdate Iteration 108[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 61
+Sampling update: 139
+Ground truth: 78.0 83.0 0.0
+Estimation: [67.31672371] [57.74819786] [-0.12218215]
+[92mError in position: [0m[751.78590355]
+[92mError in orientation: [0m[0.01492848]
+[92mWeight of estimation: [0m[1.83356029]
+[92mTime cost: [0m0.38533926010131836
+[94mUpdate Iteration 109[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 67
+Sampling update: 133
+Ground truth: 78.0 84.0 0.0
+Estimation: [68.55944569] [63.99201507] [-0.26239025]
+[92mError in position: [0m[489.44352658]
+[92mError in orientation: [0m[0.06884864]
+[92mWeight of estimation: [0m[2.12740138]
+[92mTime cost: [0m0.4063856601715088
+[94mUpdate Iteration 110[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 72
+Sampling update: 128
+Ground truth: 78.0 85.0 0.0
+Estimation: [69.06774022] [59.40378646] [-0.10219507]
+[92mError in position: [0m[734.95141245]
+[92mError in orientation: [0m[0.01044383]
+[92mWeight of estimation: [0m[1.2749169]
+[92mTime cost: [0m0.41489624977111816
+[94mUpdate Iteration 111[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 73
+Sampling update: 127
+Ground truth: 78.0 86.0 0.0
+Estimation: [73.38885956] [61.12478241] [0.12150795]
+[92mError in position: [0m[640.03906607]
+[92mError in orientation: [0m[0.01476418]
+[92mWeight of estimation: [0m[2.64110804]
+[92mTime cost: [0m0.42052650451660156
+[94mUpdate Iteration 112[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 74
+Sampling update: 126
+Ground truth: 78.0 87.0 0.0
+Estimation: [75.13511744] [63.03977284] [-0.05795788]
+[92mError in position: [0m[582.30003766]
+[92mError in orientation: [0m[0.00335912]
+[92mWeight of estimation: [0m[2.75424298]
+[92mTime cost: [0m0.40474891662597656
+[94mUpdate Iteration 113[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 87
+Sampling update: 113
+Ground truth: 78.0 88.0 0.0
+Estimation: [73.04338341] [68.95382167] [-0.07536634]
+[92mError in position: [0m[387.32495691]
+[92mError in orientation: [0m[0.00568008]
+[92mWeight of estimation: [0m[2.83577063]
+[92mTime cost: [0m-0.17140769958496094
+[94mUpdate Iteration 114[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 87
+Sampling update: 113
+Ground truth: 78.0 89.0 0.0
+Estimation: [72.95511509] [68.87732575] [-0.02107824]
+[92mError in position: [0m[430.37288275]
+[92mError in orientation: [0m[0.00044429]
+[92mWeight of estimation: [0m[2.59303281]
+[92mTime cost: [0m0.46018266677856445
+[94mUpdate Iteration 115[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 88
+Sampling update: 112
+Ground truth: 78.0 90.0 -1.5707963267948966
+Estimation: [72.4763967] [73.21073728] [-0.51547255]
+[92mError in position: [0m[312.38953616]
+[92mError in orientation: [0m[1.11370828]
+[92mWeight of estimation: [0m[2.25552662]
+[92mTime cost: [0m0.47237515449523926
+[94mUpdate Iteration 116[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 77
+Sampling update: 123
+Ground truth: 79.0 90.0 -1.5707963267948966
+Estimation: [70.97077297] [69.01477995] [-0.50020196]
+[92mError in position: [0m[504.84794725]
+[92mError in orientation: [0m[1.1461723]
+[92mWeight of estimation: [0m[2.12947099]
+[92mTime cost: [0m0.4382030963897705
+[94mUpdate Iteration 117[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 95
+Sampling update: 105
+Ground truth: 80.0 90.0 -1.5707963267948966
+Estimation: [73.40934483] [72.42272331] [-0.62008215]
+[92mError in position: [0m[352.39739133]
+[92mError in orientation: [0m[0.90385744]
+[92mWeight of estimation: [0m[2.15906372]
+[92mTime cost: [0m0.5277390480041504
+[94mUpdate Iteration 118[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 97
+Sampling update: 103
+Ground truth: 81.0 90.0 -1.5707963267948966
+Estimation: [76.23062087] [78.71875938] [-0.74324601]
+[92mError in position: [0m[150.01336714]
+[92mError in orientation: [0m[0.68483953]
+[92mWeight of estimation: [0m[2.04043074]
+[92mTime cost: [0m0.4609816074371338
+[94mUpdate Iteration 119[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 92
+Sampling update: 108
+Ground truth: 82.0 90.0 -1.5707963267948966
+Estimation: [59.77759291] [83.6222326] [-1.39006891]
+[92mError in position: [0m[534.51129368]
+[92mError in orientation: [0m[0.0326624]
+[92mWeight of estimation: [0m[1.80568337]
+[92mTime cost: [0m0.4578206539154053
+[94mUpdate Iteration 120[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 101
+Sampling update: 99
+Ground truth: 83.0 90.0 -1.5707963267948966
+Estimation: [58.37372482] [90.05204804] [-1.70499879]
+[92mError in position: [0m[606.45613807]
+[92mError in orientation: [0m[0.0180103]
+[92mWeight of estimation: [0m[1.34972478]
+[92mTime cost: [0m0.47556090354919434
+[94mUpdate Iteration 121[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 56
+Sampling update: 144
+Ground truth: 84.0 90.0 -1.5707963267948966
+Estimation: [66.4399185] [76.94677714] [-0.99411879]
+[92mError in position: [0m[478.74308924]
+[92mError in orientation: [0m[0.33255698]
+[92mWeight of estimation: [0m[1.67534514]
+[92mTime cost: [0m0.33332300186157227
+[94mUpdate Iteration 122[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 84
+Sampling update: 116
+Ground truth: 85.0 90.0 -1.5707963267948966
+Estimation: [51.059729] [90.76675711] [-1.83322405]
+[92mError in position: [0m[1152.52991228]
+[92mError in orientation: [0m[0.06886831]
+[92mWeight of estimation: [0m[1.49547728]
+[92mTime cost: [0m0.41458845138549805
+[94mUpdate Iteration 123[0m
+Update Mode: Adaptive_Mixture_MCL
+Random_Produce: True
+DL Aided MCL updating......
+Building KDtree for previous time step......
+Finish building KDtree.
+Updating particle set......
+Finish updating particle set.
+Update statistics: 
+Motion update: 106
+Sampling update: 94
+Ground truth: 86.0 90.0 -1.5707963267948966
+Estimation: [51.59648086] [89.42881702] [-1.81793709]
+[92mError in position: [0m[1183.92837905]
+[92mError in orientation: [0m[0.06107856]
+[92mWeight of estimation: [0m[1.35383814]
+[92mTime cost: [0m0.49069857597351074

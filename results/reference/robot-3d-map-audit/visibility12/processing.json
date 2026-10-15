@@ -1,0 +1,131 @@
+{
+  "kind": "author_map_platform_adaptation",
+  "world_sha256": "6a5837880254d5647634247be12b6953438f87d5326682bcd2a376b2c6023e53",
+  "source_recording": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043",
+  "input_sha256": "559d9ae0d26e1dffa379a7602003b111853a770bee50fd73e3beafdc5dc7b2e4",
+  "selected_scan_ids": [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    15,
+    17,
+    19,
+    21,
+    23,
+    25,
+    27,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+    43,
+    45,
+    47,
+    49,
+    51,
+    53,
+    55,
+    58,
+    60,
+    62,
+    64,
+    66,
+    68,
+    71,
+    73,
+    75,
+    77,
+    79,
+    81,
+    83,
+    86,
+    88,
+    90,
+    92,
+    94,
+    96,
+    99,
+    101,
+    103,
+    105,
+    107,
+    109,
+    111,
+    114,
+    116,
+    118,
+    120,
+    122,
+    124,
+    127
+  ],
+  "parameters": {
+    "dufo_resolution": 0.1,
+    "dufo_ds": 0.2,
+    "dufo_dp": 1,
+    "beauty_range": 12.0,
+    "beauty_xy": 0.5,
+    "beauty_z": 0.2
+  },
+  "methods": {
+    "raw": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        3.0,
+        -7.0
+      ],
+      "width": 181,
+      "height": 321,
+      "points": 685047,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 4.158186508000654,
+      "raw_points": 685047
+    },
+    "dufomap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        3.0,
+        -7.0
+      ],
+      "width": 181,
+      "height": 321,
+      "points": 681736,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 4.945589978000498,
+      "raw_points": 685047
+    },
+    "beautymap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        3.0,
+        -7.0
+      ],
+      "width": 181,
+      "height": 321,
+      "points": 522872,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 7.492416765999224,
+      "raw_points": 685047
+    }
+  },
+  "scope": "measured Sim2Real 3D point clouds with evaluation-provided mapping poses; not original-paper metrics",
+  "truth_to_held_out_localization": false
+}

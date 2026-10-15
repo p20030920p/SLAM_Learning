@@ -1,0 +1,71 @@
+{
+  "raw": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b/author-maps-20261014-213412/raw/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    }
+  },
+  "dufomap": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b/author-maps-20261014-213412/dufomap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    }
+  },
+  "beautymap": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b/author-maps-20261014-213412/beautymap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    }
+  },
+  "degraded_raw": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b/author-maps-20261014-213412/raw/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "scan_topic": "/scan_degraded"
+  },
+  "degraded_dufomap": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b/author-maps-20261014-213412/dufomap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "scan_topic": "/scan_degraded"
+  },
+  "degraded_beautymap": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-213219-mapping-corridor-73cb7b/author-maps-20261014-213412/beautymap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "scan_topic": "/scan_degraded"
+  }
+}

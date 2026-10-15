@@ -1,0 +1,37 @@
+{
+  "maps": "results\\runs\\presentation\\20261014-163637-mapping-dynamic-14d0bc\\author-maps-20261014-170210",
+  "methods": {
+    "raw": {
+      "points": 684850,
+      "removed_fraction": 0.0,
+      "occupied_3d_voxels_0p1m": 16971,
+      "removed_3d_voxels": 0,
+      "new_3d_voxels": 0,
+      "changed_2d_pixels": 0,
+      "raw_occupied_2d_pixels": 3266,
+      "points_sha256": "bdbc860eb52089a6c6b76ce27ec273ba6e423c3dbc2681ab6f6a80f1f9ddeba9"
+    },
+    "dufomap": {
+      "points": 682102,
+      "removed_fraction": 0.004012557494341817,
+      "occupied_3d_voxels_0p1m": 16778,
+      "removed_3d_voxels": 193,
+      "new_3d_voxels": 0,
+      "changed_2d_pixels": 16,
+      "raw_occupied_2d_pixels": 3266,
+      "points_sha256": "f8caf2432f106f6bc05de3688e0f5756672a1e36e4241cf84f51de0008476fc7"
+    },
+    "beautymap": {
+      "points": 558301,
+      "removed_fraction": 0.18478352923997954,
+      "occupied_3d_voxels_0p1m": 14402,
+      "removed_3d_voxels": 2569,
+      "new_3d_voxels": 0,
+      "changed_2d_pixels": 301,
+      "raw_occupied_2d_pixels": 3266,
+      "points_sha256": "b52d1070813de5edcb2dc5eea28f406d57c493a95648eb35f49753b9bbb9d625"
+    }
+  },
+  "voxel_size_m": 0.1,
+  "scope": "representation differences only; neither geometric map error nor static/dynamic accuracy"
+}

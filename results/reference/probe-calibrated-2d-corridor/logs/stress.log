@@ -1,0 +1,20 @@
+OBSERVATION EVENT: {"stamp_s": 1.572, "elapsed_s": 0.0, "phase": "limited", "beams": 72, "range_max_m": 3.5, "angle_span_deg": 239.99999999999997, "finite_returns": 58}
+OBSERVATION EVENT: {"stamp_s": 60.9, "elapsed_s": 50.0, "phase": "restored", "beams": 720, "range_max_m": 12.0, "angle_span_deg": 359.9997094895892, "finite_returns": 676}
+Traceback (most recent call last):
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stress_scan.py", line 95, in <module>
+    main()
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stress_scan.py", line 85, in main
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 785, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException

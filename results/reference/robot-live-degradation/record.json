@@ -1,0 +1,595 @@
+{
+  "schema_version": 1,
+  "kind": "native_desktop_localization",
+  "status": "executed",
+  "exit_code": 0,
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-202003-localization-degradation-method-live-adc675",
+  "command": "localization-degradation",
+  "scope": "Sim2Real same chassis; native 2D slam_toolbox/AMCL; 3D mapping with supplied poses; no 3D SLAM claim",
+  "metrics": {
+    "kind": "live_native_ui_session",
+    "status": "completed",
+    "failure": null,
+    "mode": "localization",
+    "points_received": 1018,
+    "mapping_frames": 0,
+    "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
+    "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
+    "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
+    "score_sampling": "AMCL pose updates; nearest truth within 0.05 simulation seconds",
+    "cases": {
+      "raw": {
+        "samples": 476,
+        "dropped_unsynchronized": 0,
+        "position_rmse_m": 0.5345863995742579,
+        "yaw_rmse_deg": 0.8377866010703512,
+        "post_warmup_5s_samples": 475,
+        "post_warmup_5s_position_rmse_m": 0.5331337868199404,
+        "position_p95_m": 1.0407693213317195
+      },
+      "dufomap": {
+        "samples": 476,
+        "dropped_unsynchronized": 0,
+        "position_rmse_m": 0.5345863995742579,
+        "yaw_rmse_deg": 0.8377866010703512,
+        "post_warmup_5s_samples": 475,
+        "post_warmup_5s_position_rmse_m": 0.5331337868199404,
+        "position_p95_m": 1.0407693213317195
+      },
+      "beautymap": {
+        "samples": 476,
+        "dropped_unsynchronized": 0,
+        "position_rmse_m": 0.5345863995742579,
+        "yaw_rmse_deg": 0.8377866010703512,
+        "post_warmup_5s_samples": 475,
+        "post_warmup_5s_position_rmse_m": 0.5331337868199404,
+        "position_p95_m": 1.0407693213317195
+      },
+      "degraded_raw": {
+        "samples": 476,
+        "dropped_unsynchronized": 0,
+        "position_rmse_m": 0.7565809874548056,
+        "yaw_rmse_deg": 0.8330232236554526,
+        "post_warmup_5s_samples": 475,
+        "post_warmup_5s_position_rmse_m": 0.7559545242729899,
+        "position_p95_m": 1.0788711260217292
+      },
+      "degraded_dufomap": {
+        "samples": 476,
+        "dropped_unsynchronized": 0,
+        "position_rmse_m": 0.7565809874548056,
+        "yaw_rmse_deg": 0.8330232236554526,
+        "post_warmup_5s_samples": 475,
+        "post_warmup_5s_position_rmse_m": 0.7559545242729899,
+        "position_p95_m": 1.0788711260217292
+      },
+      "degraded_beautymap": {
+        "samples": 476,
+        "dropped_unsynchronized": 0,
+        "position_rmse_m": 0.7565809874548056,
+        "yaw_rmse_deg": 0.8330232236554526,
+        "post_warmup_5s_samples": 475,
+        "post_warmup_5s_position_rmse_m": 0.7559545242729899,
+        "position_p95_m": 1.0788711260217292
+      }
+    },
+    "observed_map": {
+      "width": 441,
+      "height": 101,
+      "resolution_m": 0.05000000074505806,
+      "known_cells": 24432
+    }
+  },
+  "truth_input_to_localizers": false,
+  "case_maps": {
+    "raw": {
+      "yaml_sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "pgm_sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "processing_record_sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d"
+    },
+    "dufomap": {
+      "yaml_sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "pgm_sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "processing_record_sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d"
+    },
+    "beautymap": {
+      "yaml_sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "pgm_sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "processing_record_sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d"
+    },
+    "degraded_raw": {
+      "yaml_sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "pgm_sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "processing_record_sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d"
+    },
+    "degraded_dufomap": {
+      "yaml_sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "pgm_sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "processing_record_sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d"
+    },
+    "degraded_beautymap": {
+      "yaml_sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "pgm_sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "processing_record_sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "mapping_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d"
+    }
+  },
+  "recorded_inputs": {
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-202003-localization-degradation-method-live-adc675\\input-bag\\input-bag_0.mcap": {
+      "sha256": "a5d5925cc7aa294860881f7543a756f6681ea4ce5ef380e61df848e36bc1defe",
+      "bytes": 410849557,
+      "availability": "local_only"
+    }
+  },
+  "robot_motion_xy_span_m": [
+    3.4067809276497805,
+    0.195083622475706
+  ],
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 4.9,
+    "common_end_s": 103.3,
+    "alignment": "none",
+    "frames": 788
+  },
+  "timing": {
+    "execution": {
+      "duration_s": 117.80000000000113,
+      "frames": 589,
+      "fps": 5,
+      "video_duration_s": 117.75,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "degraded_raw": {
+      "duration_s": 117.80000000000113,
+      "frames": 589,
+      "fps": 5,
+      "video_duration_s": 117.75,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "degraded_dufomap": {
+      "duration_s": 118.60000000000115,
+      "frames": 593,
+      "fps": 5,
+      "video_duration_s": 118.5,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "degraded_beautymap": {
+      "duration_s": 119.00000000000115,
+      "frames": 595,
+      "fps": 5,
+      "video_duration_s": 118.916667,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "result": {
+      "duration_s": 98.60000000000086,
+      "frames": 493,
+      "fps": 5,
+      "video_duration_s": 98.5,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "native_views": [
+    {
+      "mirror_file": "S4-\u8d70\u5eca\u9000\u5316__B-\u5b9a\u4f4d__degraded_raw-map_AMCL_\u72ec\u7acbRViz\u5b9e\u65f6__20261014-202003-adc675.mp4",
+      "map_topic": "/degraded_raw/map",
+      "case": "degraded_raw",
+      "video": "executions/degraded_raw.mp4",
+      "tf_topic": "/degraded_raw/view/tf",
+      "pose_topic": "/degraded_raw/amcl_pose",
+      "window_title": "SLAM LIVE - degraded_raw - RViz2",
+      "sha256": "85e9aa24d8ec53a682371abc5259c798a18b1527e938b51dd8c48a5cd45d0646"
+    },
+    {
+      "mirror_file": "S4-\u8d70\u5eca\u9000\u5316__B-\u5b9a\u4f4d__degraded_dufomap-map_AMCL_\u72ec\u7acbRViz\u5b9e\u65f6__20261014-202003-adc675.mp4",
+      "map_topic": "/degraded_dufomap/map",
+      "case": "degraded_dufomap",
+      "video": "executions/degraded_dufomap.mp4",
+      "tf_topic": "/degraded_dufomap/view/tf",
+      "pose_topic": "/degraded_dufomap/amcl_pose",
+      "window_title": "SLAM LIVE - degraded_dufomap - RViz2",
+      "sha256": "a614bd35165ff15315fa8343a06e765faa415ed4ab9b90ab18c5529ba37d9334"
+    },
+    {
+      "mirror_file": "S4-\u8d70\u5eca\u9000\u5316__B-\u5b9a\u4f4d__degraded_beautymap-map_AMCL_\u72ec\u7acbRViz\u5b9e\u65f6__20261014-202003-adc675.mp4",
+      "map_topic": "/degraded_beautymap/map",
+      "case": "degraded_beautymap",
+      "video": "executions/degraded_beautymap.mp4",
+      "tf_topic": "/degraded_beautymap/view/tf",
+      "pose_topic": "/degraded_beautymap/amcl_pose",
+      "window_title": "SLAM LIVE - degraded_beautymap - RViz2",
+      "sha256": "58bce2cd260056e20b85cd1a6e176629a9c176b44b5289691d977d3d25a8adb9"
+    }
+  ],
+  "restoration": {
+    "raw": {
+      "restore_stamp_s": 58.5,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 0.0,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "dufomap": {
+      "restore_stamp_s": 58.5,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 0.0,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "beautymap": {
+      "restore_stamp_s": 58.5,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 0.0,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "degraded_raw": {
+      "restore_stamp_s": 58.5,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 31.299999999999997,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "degraded_dufomap": {
+      "restore_stamp_s": 58.5,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 31.299999999999997,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    },
+    "degraded_beautymap": {
+      "restore_stamp_s": 58.5,
+      "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+      "sustained_convergence_delay_s": 31.299999999999997,
+      "converged": true,
+      "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+    }
+  },
+  "artifacts": {
+    "beautymap-samples.csv": {
+      "sha256": "e7093c2ba9e151f4c0c2f017ef7630a2bb8f1d00b9c572970df58c46e7c4e308",
+      "bytes": 87016,
+      "availability": "portable"
+    },
+    "cases.json": {
+      "sha256": "e7d1622786b9ac788d8661b0b0e9c1202ccae55d49ac0326f2df613c85010070",
+      "bytes": 2214,
+      "availability": "portable"
+    },
+    "degraded_beautymap-samples.csv": {
+      "sha256": "74d73d6a93629835a45093fa936218dab8952ec132090e4050c9e6f65802aee5",
+      "bytes": 86705,
+      "availability": "portable"
+    },
+    "degraded_dufomap-samples.csv": {
+      "sha256": "74d73d6a93629835a45093fa936218dab8952ec132090e4050c9e6f65802aee5",
+      "bytes": 86705,
+      "availability": "portable"
+    },
+    "degraded_raw-samples.csv": {
+      "sha256": "d59222b1e817d63eab5901883fbd39eb2e50f39b1a9f0795378fe2b7f71eba2b",
+      "bytes": 86723,
+      "availability": "portable"
+    },
+    "dufomap-samples.csv": {
+      "sha256": "e7093c2ba9e151f4c0c2f017ef7630a2bb8f1d00b9c572970df58c46e7c4e308",
+      "bytes": 87016,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "9b6b1b40f4ea308876521610c9a4b60ea3f605be2c09ac5fbd14ae10a6e54bdc",
+      "bytes": 2002032,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "85e9aa24d8ec53a682371abc5259c798a18b1527e938b51dd8c48a5cd45d0646",
+      "bytes": 3616638,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "36dd0e43fa25d8e3d23cc5d5dde0004c9cf55551473dfe77594680387528cfdb",
+      "bytes": 578319,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "9c8a60a8b7f9dba05e3427b274e766f203c66a79d69d267a0d4ea8ac53d3173b",
+      "bytes": 551830,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "7c9ef039c8128aba4dbbc43c3fbf90d8ff8dcfcc449abd9b48e7ab1b8dbb0e7e",
+      "bytes": 550988,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "13d68c7f077ef856e66087b21b980daf53088257777fb1f93cfedff323d3ad73",
+      "bytes": 2526,
+      "availability": "portable"
+    },
+    "native-views.json": {
+      "sha256": "0d01e665518878c0854feb78fe567b68ec8ad052da209dace6e06b1f941a1609",
+      "bytes": 1609,
+      "availability": "portable"
+    },
+    "raw-samples.csv": {
+      "sha256": "e7093c2ba9e151f4c0c2f017ef7630a2bb8f1d00b9c572970df58c46e7c4e308",
+      "bytes": 87016,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "af46edd168701aac6bb2cee857f3d89475113499a48f4751dd5bc3764ae9d249",
+      "bytes": 1650354,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "3c8488f815339a9bfc8c0c8ea20b0461e130401c617661adbcc64eb9f40579c5",
+      "bytes": 660652,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "c7d816b2a10ee36c1320beb792bbb8cb3674434681736b062e4d61a23454fb0e",
+      "bytes": 317,
+      "availability": "portable"
+    },
+    "scan-stress.jsonl": {
+      "sha256": "ef04093bd2d9530dddda180510525eedbc693f5842078074811025f960d73bf9",
+      "bytes": 157941,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "38b2c059832c06cc8a53e0d55c18504b4b8ea124265cf22bed03ede7e23fb50b",
+      "bytes": 8672,
+      "availability": "portable"
+    },
+    "slam-map.pgm": {
+      "sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "bytes": 44556,
+      "availability": "portable"
+    },
+    "timing.json": {
+      "sha256": "5ec4d01fc1b0e9e1d5ec8e470340d9fe5c1b6713a3f21b5b73f4e724f6c9f4c9",
+      "bytes": 1121,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "669f336ae72c1c1d12ea5af8f4492a2cdd2d276b1776607cb6724f4c5e631d5e",
+      "bytes": 1489781,
+      "availability": "portable"
+    },
+    "view-degraded_beautymap.rviz": {
+      "sha256": "343a24bd87316cf953ce3aeb091b332a47984722fa3f88e3917795612cf0629b",
+      "bytes": 3768,
+      "availability": "portable"
+    },
+    "view-degraded_dufomap.rviz": {
+      "sha256": "0f274c4ba1f14e22cd6c4292474b58f5cc46de6101dfc53c585060c9b106738d",
+      "bytes": 3752,
+      "availability": "portable"
+    },
+    "view-degraded_raw.rviz": {
+      "sha256": "3b4cade6ce1966440e3b86b2511c560f498b6028270de7eebc2f63ea4d0123f6",
+      "bytes": 3720,
+      "availability": "portable"
+    },
+    "view-updates.jsonl": {
+      "sha256": "6f0759af2dd974f22c354f5b4f558c721e718bd77ad9409b574a76f37ac1032e",
+      "bytes": 263736,
+      "availability": "portable"
+    },
+    "views.json": {
+      "sha256": "7f3a6510272a0740649aa8ff43896e8e7114b435d656fc0f0a682ca2b7bf57ce",
+      "bytes": 955,
+      "availability": "portable"
+    },
+    "executions/degraded_beautymap-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "executions/degraded_beautymap-filter.txt": {
+      "sha256": "c7536c3343c4b9f7d0afec5720e6c9bd22823d610a171ba3a20998e9c106fc36",
+      "bytes": 677,
+      "availability": "portable"
+    },
+    "executions/degraded_beautymap-mid.png": {
+      "sha256": "fa4e6bf2302089ad9ee2f0a017fd5dcfaffdc00b2855d8b127dd6dcdb3a87165",
+      "bytes": 554206,
+      "availability": "portable"
+    },
+    "executions/degraded_beautymap-probe.json": {
+      "sha256": "97fb011cfa0bd40e2354b48ddb03b798b7124c7bf872c7ec1df37d7a0893a4b9",
+      "bytes": 333,
+      "availability": "portable"
+    },
+    "executions/degraded_beautymap.gif": {
+      "sha256": "81a5abef4452e5558317dab9882c99243804068f0e66fa3ee4f836981f11e513",
+      "bytes": 2216525,
+      "availability": "portable"
+    },
+    "executions/degraded_beautymap.mp4": {
+      "sha256": "58bce2cd260056e20b85cd1a6e176629a9c176b44b5289691d977d3d25a8adb9",
+      "bytes": 3643858,
+      "availability": "portable"
+    },
+    "executions/degraded_dufomap-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "executions/degraded_dufomap-filter.txt": {
+      "sha256": "ea80a5d99f5e6c252171dda2c7f74d10eb7dbfd5c33791e9de572b0a81f685d8",
+      "bytes": 675,
+      "availability": "portable"
+    },
+    "executions/degraded_dufomap-mid.png": {
+      "sha256": "0d49ac384148482300eb517c39835b9ef29a387f26b8a3d4287ae8c9237015a6",
+      "bytes": 551574,
+      "availability": "portable"
+    },
+    "executions/degraded_dufomap-probe.json": {
+      "sha256": "b855b1a4dc226be23c27eb579f9d9325b89da6c937f7e43b145aeefd933350bc",
+      "bytes": 333,
+      "availability": "portable"
+    },
+    "executions/degraded_dufomap.gif": {
+      "sha256": "aa1aa83ac37287458514892cf59aac7954a09465ffc7f8093da08eb6e6e1ae40",
+      "bytes": 2208843,
+      "availability": "portable"
+    },
+    "executions/degraded_dufomap.mp4": {
+      "sha256": "a614bd35165ff15315fa8343a06e765faa415ed4ab9b90ab18c5529ba37d9334",
+      "bytes": 3581533,
+      "availability": "portable"
+    },
+    "executions/degraded_raw-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "executions/degraded_raw-filter.txt": {
+      "sha256": "21e6317c5c18586aabc73eaf065a4a297ddc0e37a538f3b00894e61b9b938ac8",
+      "bytes": 671,
+      "availability": "portable"
+    },
+    "executions/degraded_raw-mid.png": {
+      "sha256": "7c9ef039c8128aba4dbbc43c3fbf90d8ff8dcfcc449abd9b48e7ab1b8dbb0e7e",
+      "bytes": 550988,
+      "availability": "portable"
+    },
+    "executions/degraded_raw-probe.json": {
+      "sha256": "ff1578c32516dab4a5499e2d53ad5f94eef8c8d0f1453aaf45260d37404bcd4d",
+      "bytes": 333,
+      "availability": "portable"
+    },
+    "executions/degraded_raw.gif": {
+      "sha256": "9b6b1b40f4ea308876521610c9a4b60ea3f605be2c09ac5fbd14ae10a6e54bdc",
+      "bytes": 2002032,
+      "availability": "portable"
+    },
+    "executions/degraded_raw.mp4": {
+      "sha256": "85e9aa24d8ec53a682371abc5259c798a18b1527e938b51dd8c48a5cd45d0646",
+      "bytes": 3616638,
+      "availability": "portable"
+    },
+    "logs/localizers.log": {
+      "sha256": "7df9362ddb664e90ea9511ee8e537c910509c940c61bfdd0de96800344a300ab",
+      "bytes": 29662,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "54450582158b63c3c9d0a0a7d2b4146191fd76e40251cb0a0a28ca66c0dfde69",
+      "bytes": 28271,
+      "availability": "portable"
+    },
+    "logs/patrol.log": {
+      "sha256": "48219fcd25fb873871e2fbb2087174a973ad1d599320aa627a967ba88e248c9d",
+      "bytes": 2402,
+      "availability": "portable"
+    },
+    "logs/renderer.txt": {
+      "sha256": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+      "bytes": 1774,
+      "availability": "portable"
+    },
+    "logs/stress.log": {
+      "sha256": "2e1133ee4a68628c9a7488fa3beb26c9a78984b4b567687c98f932ee6ec74ca9",
+      "bytes": 1466,
+      "availability": "portable"
+    },
+    "maps/beautymap/map.pgm": {
+      "sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "bytes": 44556,
+      "availability": "portable"
+    },
+    "maps/beautymap/map.yaml": {
+      "sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/beautymap/processing.json": {
+      "sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "bytes": 2182,
+      "availability": "portable"
+    },
+    "maps/degraded_beautymap/map.pgm": {
+      "sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "bytes": 44556,
+      "availability": "portable"
+    },
+    "maps/degraded_beautymap/map.yaml": {
+      "sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/degraded_beautymap/processing.json": {
+      "sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "bytes": 2182,
+      "availability": "portable"
+    },
+    "maps/degraded_dufomap/map.pgm": {
+      "sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "bytes": 44556,
+      "availability": "portable"
+    },
+    "maps/degraded_dufomap/map.yaml": {
+      "sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/degraded_dufomap/processing.json": {
+      "sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "bytes": 2182,
+      "availability": "portable"
+    },
+    "maps/degraded_raw/map.pgm": {
+      "sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "bytes": 44556,
+      "availability": "portable"
+    },
+    "maps/degraded_raw/map.yaml": {
+      "sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/degraded_raw/processing.json": {
+      "sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "bytes": 2182,
+      "availability": "portable"
+    },
+    "maps/dufomap/map.pgm": {
+      "sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "bytes": 44556,
+      "availability": "portable"
+    },
+    "maps/dufomap/map.yaml": {
+      "sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/dufomap/processing.json": {
+      "sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "bytes": 2182,
+      "availability": "portable"
+    },
+    "maps/raw/map.pgm": {
+      "sha256": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+      "bytes": 44556,
+      "availability": "portable"
+    },
+    "maps/raw/map.yaml": {
+      "sha256": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/raw/processing.json": {
+      "sha256": "05f72aa973b8741f5d17a89095a9b48e114db1753533a145a0515e7d1b4db33f",
+      "bytes": 2182,
+      "availability": "portable"
+    }
+  }
+}

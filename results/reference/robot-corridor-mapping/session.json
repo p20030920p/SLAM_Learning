@@ -1,0 +1,58 @@
+{
+  "flow": "mapping-corridor",
+  "mode": "mapping",
+  "scene": "corridor",
+  "robot": "Sim2Real omni-3d-v1",
+  "source_commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+  "capture": "actual Windows Gazebo Sim, RViz2 and Windows Terminal windows",
+  "provided_mapping_poses": true,
+  "truth_input_to_localizers": false,
+  "input_to_localizers": "same live /scan and wheel odometry, different frozen author-derived maps",
+  "initial_pose_offset_m_rad": [
+    1.0,
+    0.15,
+    0.12
+  ],
+  "runtime": {
+    "world": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d/corridor.world",
+    "spawn": [
+      7.15,
+      -3.1,
+      0.0
+    ],
+    "scene": "corridor",
+    "initial_offset": [
+      1.0,
+      0.15,
+      0.12
+    ],
+    "scan_restore_after_s": 50.0
+  },
+  "assets": {
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d/corridor.world": "a9fc57a79405bb72bc3d9a7b9f5ed4472f1dfbc4af9ca57739a14f3d2c28b3a9",
+    "/root/projects/Sim2Real-AlgoBench/scenario_variants/race_nodes/patrol_waypoints.py": "98a16348dd60ef9283e1288f33786323f7a734f47f530627975bfbc0886ea3a3",
+    "/root/projects/Sim2Real-AlgoBench/src/race_description/urdf/omni_car_ros2_control.urdf": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_historical_scores.py": "1535285d5850d97d49c31f37633099ac4bf9745e31596f2825089269492d0518",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/auto_patrol.sh": "ae82b152962a0159cacb452709b9bae10414214bd727f918769c54cfbdc24dce",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.py": "7061912310ae8d726d852b230537b70a5e13ae88a9ffc594729c01542a5eaeff",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.sh": "a80b1fee3e96f67be919695a80c16f83b985a92c909a26df74082706ad040efc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/CMakeLists.txt": "ba207c9369884d626545f51add00acffce3040f92bd6d2f2d262bf3b1577e9b5",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/gz_truth.cpp": "a228364ef922c8c10f2c8a6e0b257ff8be728905d2652cef2e52804f85b61306",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/localization.launch.py": "663b67f75684aae2d31d471b6e15ae97cd4f7c8ab1b68cfe9a8aa02a0907dc0e",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/native_beautymap.py": "c7e6493c04c8469c111627cf1b31990204fca134076e5040edf425dff9bb12c1",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/observe_session.py": "57b8fe913579d2ce4b4c06ba7f4da761cd73b30775c0ba5a3218e0ba477d06db",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_rviz_overlay.py": "996bd10ec723998f524ca841d26edcd2c4a422a27e884404661288c0b83bb6cc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_session.py": "dd74fa7c1dfe7f7a6e0c8533413380b96a1d7fde8f737adc1949bbb55a796002",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_live.sh": "cc80d5374258f005092af45f6ef91f56d774638c388d75753b63fd5e99355b66",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.py": "3c1e04b37105fed30a4609f891f7b8b5bc88ad6314eefeef08c214c86f354349",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.sh": "149240c091c5cda742fc9cfca16b0e43cb981ffe73e45198df6523d497510d26",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/scenario_gpu.launch.py": "43b14be5f962cf2c179e3e2cc1f708694fb22805418f3a3ee0dbf2d80b19b03d",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stop_owned_session.py": "fff6428d328ed5940b700a9cf2e5cce5495fead5e56cbdb7abb11aef34c69043",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stress_scan.py": "e444705694ce16a3fe30965446aad3eeb8c1a5a662b931135b9687051a121bed",
+    "/mnt/d/workspace/be2/slam_learning_updated/demo/presentation.ps1": "012f1b7233d3f7b3325423a1b4df2a7cd64518fd1eb5c6fb416e5ba1a7046caf",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d/gazebo-gui.config": "24429b554b2959e4c3edb023f72dafb5ca55053ae912d0351e7f2dbef37c6860",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d/live.rviz": "bb448d1ba39389aeab26bbbd84d2cc19e38dd1c703a4a885e737a78c2efd7ea0"
+  },
+  "cases": {}
+}

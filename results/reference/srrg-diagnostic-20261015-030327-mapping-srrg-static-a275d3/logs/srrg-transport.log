@@ -1,0 +1,71 @@
+SRRG STATUS: {"stamp_s": 4.5, "elapsed_s": null, "range_max_effective_m": 12.0, "finite_beams": 718, "phase": "full", "native_latency_s": 0.015422124000906479, "pose": [0, 0, 0], "status": 2, "vertices": 1, "base_pose": [8.0727, 7.5312, -1.5708], "clean_points": 1436}
+SRRG native t=5.3s phase=full status=2 graph=1 clean=1436 raw=3590 callback=0.007s
+SRRG native t=6.3s phase=full status=2 graph=1 clean=1436 raw=7180 callback=0.006s
+SRRG native t=7.3s phase=full status=2 graph=1 clean=1436 raw=10770 callback=0.008s
+SRRG native t=8.3s phase=full status=2 graph=1 clean=1436 raw=14360 callback=0.007s
+SRRG native t=9.3s phase=full status=2 graph=1 clean=1436 raw=17950 callback=0.007s
+SRRG native t=10.3s phase=full status=2 graph=1 clean=1436 raw=21540 callback=0.007s
+SRRG native t=11.3s phase=full status=2 graph=1 clean=1436 raw=25130 callback=0.008s
+SRRG native t=12.3s phase=full status=2 graph=1 clean=1436 raw=28720 callback=0.008s
+SRRG native t=13.3s phase=full status=2 graph=1 clean=1436 raw=32310 callback=0.007s
+SRRG native t=14.3s phase=full status=2 graph=1 clean=1436 raw=35900 callback=0.007s
+SRRG native t=15.3s phase=full status=2 graph=1 clean=1436 raw=39490 callback=0.007s
+SRRG STATUS: {"stamp_s": 15.9, "elapsed_s": 1.8000000000000007, "range_max_effective_m": 12.0, "finite_beams": 718, "phase": "full", "native_latency_s": 0.015296279001631774, "pose": [-0.00192525703, 0.0149575518, 0.254093438], "status": 0, "vertices": 1, "base_pose": [8.072575468295772, 7.531198751934638, -1.316706562], "clean_points": 1441}
+SRRG native t=16.3s phase=full status=0 graph=1 clean=1451 raw=43081 callback=0.015s
+SRRG native t=17.3s phase=full status=0 graph=2 clean=2245 raw=46677 callback=0.016s
+SRRG native t=18.3s phase=full status=0 graph=3 clean=3074 raw=50274 callback=0.016s
+SRRG native t=19.3s phase=full status=0 graph=4 clean=3937 raw=53871 callback=0.017s
+SRRG native t=20.3s phase=full status=0 graph=5 clean=4848 raw=57463 callback=0.017s
+SRRG native t=21.3s phase=full status=0 graph=6 clean=5792 raw=61045 callback=0.012s
+SRRG native t=22.3s phase=full status=0 graph=6 clean=5864 raw=64627 callback=0.018s
+SRRG native t=23.3s phase=full status=0 graph=7 clean=6895 raw=68227 callback=0.013s
+SRRG native t=24.3s phase=full status=0 graph=7 clean=6922 raw=71827 callback=0.020s
+SRRG native t=25.3s phase=full status=0 graph=8 clean=8013 raw=75427 callback=0.015s
+SRRG native t=26.3s phase=full status=0 graph=8 clean=8068 raw=79027 callback=0.023s
+SRRG native t=27.3s phase=full status=0 graph=9 clean=8974 raw=82627 callback=0.025s
+SRRG native t=28.3s phase=full status=0 graph=9 clean=9072 raw=86227 callback=0.016s
+SRRG native t=29.3s phase=full status=0 graph=9 clean=9088 raw=89827 callback=0.018s
+SRRG native t=30.3s phase=full status=0 graph=10 clean=10123 raw=93427 callback=0.024s
+SRRG native t=31.3s phase=full status=0 graph=11 clean=11206 raw=97027 callback=0.025s
+SRRG native t=32.3s phase=full status=0 graph=11 clean=11189 raw=100627 callback=0.026s
+SRRG native t=33.3s phase=full status=0 graph=11 clean=11198 raw=104227 callback=0.017s
+SRRG native t=34.3s phase=full status=0 graph=12 clean=12257 raw=107827 callback=0.020s
+SRRG native t=35.3s phase=full status=0 graph=12 clean=12289 raw=111427 callback=0.026s
+SRRG native t=36.3s phase=full status=0 graph=13 clean=13438 raw=115027 callback=0.029s
+SRRG native t=37.3s phase=full status=0 graph=13 clean=13445 raw=118627 callback=0.018s
+SRRG native t=38.3s phase=full status=0 graph=14 clean=14504 raw=122227 callback=0.030s
+SRRG native t=39.3s phase=full status=0 graph=14 clean=14531 raw=125827 callback=0.024s
+Traceback (most recent call last):
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/live.py", line 133, in <module>
+    rclpy.spin_once(live.node,timeout_sec=.05)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 226, in spin_once
+    executor.spin_once(timeout_sec=timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 918, in _spin_once_impl
+    raise handler.exception()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/task.py", line 286, in _execute_coroutine_step
+    result = coro.send(None)
+             ^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 592, in handler
+    await call_coroutine()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 480, in _execute
+    await await_or_execute(sub.callback, *msg_tuple)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 115, in await_or_execute
+    return callback(*args)
+           ^^^^^^^^^^^^^^^
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/live.py", line 78, in on_scan
+    before=time.monotonic(); reply=self.exchange('S '+' '.join(map(str,data))); latency=time.monotonic()-before
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/live.py", line 54, in exchange
+    return json.loads(reply)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)

@@ -1,0 +1,27 @@
+We will process the data in folder: [1m /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d/author-maps-20261014-172116/beautymap-native/input [0m
+[LOG] Min xyz: -2.8663840293884277, -4.654156684875488, -0.029613813385367393 
+[LOG] Max/Min value on x: 28.032224655151367/8.0, y: 11.070513010025024/8.0
+[LOG] Matrix order: 41
+
+Generating Map Binary tree:   0%|                                           | 0/269 [00:00<?, ?it/s]
+Generating Map Binary tree:  57%|█████████████████▋             | 154/269 [00:00<00:00, 1538.72it/s]
+Generating Map Binary tree: 100%|███████████████████████████████| 269/269 [00:00<00:00, 1679.08it/s]
+
+Processing Frames:   0%|                                                     | 0/60 [00:00<?, ?it/s]
+Processing Frames:  27%|███████████▍                               | 16/60 [00:00<00:00, 151.50it/s]
+Processing Frames:  53%|██████████████████████▉                    | 32/60 [00:00<00:00, 149.58it/s]
+Processing Frames:  78%|█████████████████████████████████▋         | 47/60 [00:00<00:00, 148.21it/s]
+Processing Frames: 100%|███████████████████████████████████████████| 60/60 [00:00<00:00, 148.29it/s]
+shape: (32, 73, 73)
+len print: 32
+There are 6554 pts to remove
+BeautyMap Timings in seconds (s)
+       Component       	Total 	 Last 	 Mean 	StDev 	 Min  	 Max  	Steps
+[1m[31mTotal                  	0.9279	0.9279	0.9279	nan   	0.9279	0.9279	1    [0m
+[1m[32m  0. Map Generation    	0.4218	0.4218	0.4218	nan   	0.4218	0.4218	1    [0m
+[1m[33m  1. Query Generation  	0.3510	0.0059	0.0058	0.0005	0.0049	0.0074	60   [0m
+[1m[34m  2. Matrix Comparison 	0.0004	0.0000	0.0000	0.0000	0.0000	0.0000	60   [0m
+[1m[35m  3. Static Restoration	0.0471	0.0007	0.0008	0.0002	0.0006	0.0012	60   [0m
+[1m[36m  4. Fine Ground Seg   	0.0054	0.0001	0.0001	0.0000	0.0001	0.0001	60   [0m
+[1m[37m  5. One Scan Cost     	0.4040	0.0066	0.0067	0.0006	0.0056	0.0087	60   [0m
+main.py: All codes run successfully, Close now..

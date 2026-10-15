@@ -1,0 +1,62 @@
+{
+  "method": "adam-mcl",
+  "kind": "author_desktop_execution",
+  "started_unix": 1791988619.0245872,
+  "capture": "actual Windows Terminal window",
+  "status": "executed",
+  "wrapper_sha256": "268a9e9c9b848395608b4b84935db2105db5d41e9497f9ff5b3f6fa8df1c0360",
+  "sources": {
+    "/mnt/d/workspace/be2/tmp/repro/AdaM_MCL/Trained_models/simulation_2_2026-10-14 07:52:21.602839/model_train_38epochs.pth": "e02510a4ad3d195d14f030687ca2fbfefc217d6e43bbe51eeca08227ae7c40ef"
+  },
+  "artifacts": {
+    "dashboard.log": {
+      "sha256": "1d5f3e2c06f22782c0808845c543f554d8eae3ed4056e09238aeac00c0fd5f11",
+      "bytes": 12405966
+    },
+    "native-output.log": {
+      "sha256": "bfc81ab03b545ce431c56becb358083d5b61d870d48c51700d525df445ea95b0",
+      "bytes": 69150
+    },
+    "ready.json": {
+      "sha256": "3a6478366a991ab5d7c6031f8ee1f1d9bdf56b72cd323e40038c0c9b03c8eb91",
+      "bytes": 30
+    },
+    "AdaM_MCL/Code/requirements.txt": {
+      "sha256": "96ec38c3bb8085096ae795d805fbb583846397f74d2ce291b020582647ea5e6e",
+      "bytes": 93
+    },
+    "AdaM_MCL/Code/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 17:37:13.031222_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_orientation.txt": {
+      "sha256": "bf8193fd96fe2fc0d3a1327e7b7e3f0de3aa437f031d95927f67726018031aed",
+      "bytes": 3075
+    },
+    "AdaM_MCL/Code/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 17:37:13.031222_update_mode_Adaptive_Mixture_MCL_particle_num_200/error_position.txt": {
+      "sha256": "d85a1b45ab1191f2a286c7109db3284df35187db7dc72197708b5d739bfac771",
+      "bytes": 3075
+    },
+    "AdaM_MCL/Code/logs4MCL/simulation/0/Adaptive_Mixture_MCL_200_particles_0.6/log_time_2026-10-14 17:37:13.031222_update_mode_Adaptive_Mixture_MCL_particle_num_200/time_consumption.txt": {
+      "sha256": "a4a5523829963ec92e77f60c838a9b7e4859a26409e10030add2659ab43644ea",
+      "bytes": 3077
+    }
+  },
+  "scope": "author code; authored 128-cell surrogate; existing 2432-step checkpoint; fresh 123-update x 1-trial inference; no paper numeric comparison",
+  "command": [
+    "/home/qzl/.venvs/adam-mcl/bin/python",
+    "-u",
+    "repro/live_eval.py",
+    "--python",
+    "/home/qzl/.venvs/adam-mcl/bin/python",
+    "--subdataset",
+    "0",
+    "--particles",
+    "200",
+    "--model",
+    "/mnt/d/workspace/be2/tmp/repro/AdaM_MCL/Trained_models/simulation_2_2026-10-14 07:52:21.602839/model_train_38epochs.pth",
+    "--trials",
+    "1",
+    "--log",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-173656-author-adam-mcl-f2821e/native-output.log"
+  ],
+  "exit_code": 0,
+  "finished_unix": 1791988688.837949,
+  "wall_seconds": 69.81336236000061
+}

@@ -11,18 +11,6 @@ uv run --project src slam-study run --method dufomap
 uv run --project src slam-study run --method beautymap
 ```
 
-```bash
-bash src/scripts/setup/setup_semantic.sh
-.venv-semantic/bin/python src/scripts/methods/run_conceptgraphs.py
-```
-
-HOV-SG 在复现中，环境与试跑入口保留如下。
-
-```bash
-bash src/scripts/setup/setup_hovsg.sh
-.venv-hovsg/bin/python src/scripts/methods/run_hovsg.py
-```
-
 ## 检查
 
 ```bash

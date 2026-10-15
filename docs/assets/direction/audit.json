@@ -1,0 +1,179 @@
+{
+  "kind": "bilingual_direction_figure_review",
+  "application": "Microsoft PowerPoint",
+  "backend": "COM",
+  "renderer": "Microsoft PowerPoint",
+  "objects_per_slide": 40,
+  "pictures_per_slide": 6,
+  "group_members": 12,
+  "deep_objects_per_slide": 51,
+  "native_reconstructable_objects_editable": true,
+  "regional_reviews": {
+    "zh-CN": "A/B/C/D passed structure and visual checks; whole figure passed",
+    "en": "A/B/C/D passed structure and visual checks; whole figure corrected and passed"
+  },
+  "visual_review": {
+    "no_unresolved_clipping_or_overlap": true,
+    "clear_connector_lanes": true,
+    "atomic_picture_fields": true,
+    "readable_text": true
+  },
+  "corrections": [
+    "Grouped irregular pose-hypothesis glyph with 12 editable members; its intentionally irregular spatial arrangement is not an aligned data row",
+    "Reserved arrow lanes outside method labels",
+    "Moved footer inside slide bounds",
+    "Set Chinese East Asian font explicitly"
+  ],
+  "whole_figure": {
+    "zh-CN": {
+      "backend": "powerpoint",
+      "slide_index": 1,
+      "slide_size": {
+        "width": 960,
+        "height": 540
+      },
+      "object_counts": {
+        "total": 40,
+        "pictures": 6,
+        "native_or_composite": 34
+      },
+      "picture_audit": [
+        {
+          "name": "chassis",
+          "area_ratio": 0.0438,
+          "raster_reason": "One user-supplied photograph of the physical chassis",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "sensors",
+          "area_ratio": 0.0377,
+          "raster_reason": "One user-supplied photograph of the actual sensors",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "scan2",
+          "area_ratio": 0.035,
+          "raster_reason": "One actual LaserScan geometric field from the recorded ROS bag; no axes or labels are rasterized",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "scan3",
+          "area_ratio": 0.0328,
+          "raster_reason": "One dense actual 3D LiDAR scan, rendered from recorded point data",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "map3",
+          "area_ratio": 0.0706,
+          "raster_reason": "One dense recorded 3D map field from controlled provided-pose mapping A",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "gazebo",
+          "area_ratio": 0.057,
+          "raster_reason": "One simulator-rendered corridor viewport from our genuine live video; UI, Terminal and RViz excluded",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        }
+      ],
+      "hard_failure_count": 0,
+      "warning_count": 0,
+      "findings_truncated": false,
+      "passed": true,
+      "findings": [],
+      "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry or decomposition operations, executed by the Drawer, rerendered, and audited again."
+    },
+    "en": {
+      "backend": "powerpoint",
+      "slide_index": 1,
+      "slide_size": {
+        "width": 960,
+        "height": 540
+      },
+      "object_counts": {
+        "total": 40,
+        "pictures": 6,
+        "native_or_composite": 34
+      },
+      "picture_audit": [
+        {
+          "name": "chassis",
+          "area_ratio": 0.0438,
+          "raster_reason": "One user-supplied photograph of the physical chassis",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "sensors",
+          "area_ratio": 0.0377,
+          "raster_reason": "One user-supplied photograph of the actual sensors",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "scan2",
+          "area_ratio": 0.035,
+          "raster_reason": "One actual LaserScan geometric field from the recorded ROS bag; no axes or labels are rasterized",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "scan3",
+          "area_ratio": 0.0328,
+          "raster_reason": "One dense actual 3D LiDAR scan, rendered from recorded point data",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "map3",
+          "area_ratio": 0.0706,
+          "raster_reason": "One dense recorded 3D map field from controlled provided-pose mapping A",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        },
+        {
+          "name": "gazebo",
+          "area_ratio": 0.057,
+          "raster_reason": "One simulator-rendered corridor viewport from our genuine live video; UI, Terminal and RViz excluded",
+          "source_is_tightly_cropped": "True",
+          "atomic_raster_unit": "True",
+          "contains_reconstructable_content": "False",
+          "decomposition_note": "One independent photographic or dense geometric field; captions, process boxes and all arrows remain separate native objects."
+        }
+      ],
+      "hard_failure_count": 0,
+      "warning_count": 0,
+      "findings_truncated": false,
+      "passed": true,
+      "findings": [],
+      "reviewer_contract": "Every hard finding must be converted by the Corrector into named geometry or decomposition operations, executed by the Drawer, rerendered, and audited again."
+    }
+  }
+}

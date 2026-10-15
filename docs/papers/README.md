@@ -1,10 +1,10 @@
-# Four Methods
+# Paper reproductions
 
 English | [中文](README.zh-CN.md)
 
-| Method | Status |
+| Method | Current scope |
 | --- | --- |
-| [DUFOMap](dufomap.md) | Scoped reproduction |
-| [BeautyMap](beautymap.md) | Scoped reproduction |
-| [ConceptGraphs](conceptgraphs.md) | Scoped reproduction |
-| [HOV-SG](hovsg.md) | In progress |
+| [DUFOMap](dufomap.md) | Map-quality reproduction on specified data/protocol |
+| [BeautyMap](beautymap.md) | Map-quality reproduction on specified data/protocol |
+| [IR-MCL](ir-mcl.md) | IPBLab Seq 1 localization with retained trajectory evidence |
+| [AdaM-MCL](adam-mcl.md) | Authored-data pipeline demonstration; 0/10 sustained convergence, no paper-value comparison |

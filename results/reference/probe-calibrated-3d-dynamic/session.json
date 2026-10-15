@@ -1,0 +1,224 @@
+{
+  "flow": "localization-probe-calibrated-3d-dynamic",
+  "mode": "localization",
+  "scene": "dynamic",
+  "robot": "Sim2Real omni chassis with 3D lidar + depth camera",
+  "source_commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+  "world_scope": "local scenario adaptation; robot/source assets pinned separately",
+  "capture": "actual Windows Gazebo Sim, RViz2 and Windows Terminal windows",
+  "provided_mapping_poses": false,
+  "truth_input_to_localizers": false,
+  "input_to_localizers": "actual lidar, optional 4m depth and wheel odometry; no simulator truth in B",
+  "initial_pose_offset_m_rad": [
+    0.25,
+    0.15,
+    0.12
+  ],
+  "runtime": {
+    "world": "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S2_dynamic.world",
+    "spawn": [
+      8.0727,
+      7.5312,
+      -1.5708
+    ],
+    "scene": "dynamic",
+    "world_sha256": "6a5837880254d5647634247be12b6953438f87d5326682bcd2a376b2c6023e53",
+    "initial_offset": [
+      0.25,
+      0.15,
+      0.12
+    ],
+    "scan_restore_after_s": null,
+    "urdf": "/mnt/f/be2\u6f14\u8bb2/\u539f\u59cb\u4f1a\u8bdd/hypotheses-calibrated/20261015-020831-localization-probe-calibrated-3d-dynamic-method-live-67928c/probe-robot.urdf",
+    "bridge_config": "/mnt/f/be2\u6f14\u8bb2/\u539f\u59cb\u4f1a\u8bdd/hypotheses-calibrated/20261015-020831-localization-probe-calibrated-3d-dynamic-method-live-67928c/probe-bridge.yaml",
+    "sensor_arm": "3D lidar + depth camera",
+    "depth_sensor": {
+      "type": "Gazebo depth_camera",
+      "resolution": [
+        320,
+        240
+      ],
+      "horizontal_fov_deg": 80,
+      "near_far_m": [
+        0.25,
+        4.0
+      ],
+      "rate_hz": 10,
+      "extrinsics": "actual robot_state_publisher TF",
+      "noise": "ideal rendered depth; no hardware noise model"
+    }
+  },
+  "assets": {
+    "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S2_dynamic.world": "6a5837880254d5647634247be12b6953438f87d5326682bcd2a376b2c6023e53",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py": "98a16348dd60ef9283e1288f33786323f7a734f47f530627975bfbc0886ea3a3",
+    "/root/projects/Sim2Real-AlgoBench/src/race_description/urdf/omni_car_ros2_control.urdf": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_coarse_replay.py": "a86374385b87f61d4118c8bf70820996e508a1889718e9e9c538094658f39d7f",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_historical_scores.py": "1535285d5850d97d49c31f37633099ac4bf9745e31596f2825089269492d0518",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_scan_geometry.py": "763c65f6555666ecde15e3ca256a2fbd28349eed84ebae4657708d26c9568747",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/author_live_bridge.py": "9bac862ecf2d73cbc016b8a3386f816dfc73a5758a494e8905e427a9873a1984",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/auto_patrol.sh": "bc0f542cc8370521c73d0aa42ad0284c960808bb670a6337d43d6164889ec7c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.py": "ee7f654a8e0e27c4c6a92120534cf7934cb54b6784c39d880f590b91ad6f2406",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.sh": "a80b1fee3e96f67be919695a80c16f83b985a92c909a26df74082706ad040efc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_probe_maps.py": "dce1c81669717721b28113006677ffc5418c263beaf50de8196181ebe7fefc07",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/case_view_tf.py": "5b4661745328fd187bb1fe732f1cf6075c1580b4c23a5015b4b3fea7a54e4149",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/CMakeLists.txt": "ba207c9369884d626545f51add00acffce3040f92bd6d2f2d262bf3b1577e9b5",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/collect_probe_mapping.py": "abf9402295538784c08828b5c51b039f6850d0f53113a717fe7795da74bca7fb",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/diagnose_maps.py": "a49a0b26fef3f03d5a66ec144085eebc460ce41c4b5aa2657eb6f2cb9feaa705",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/diagnose_probe_observability.py": "684590036875de002095679c0a0e2db5a83b3d4fb8199d1219cda6bd54e3ffcd",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/freeze_calibrated_protocol.py": "9d663841d78b8fd9e5c9f3fe484a87ccc4c89933a7f37b0342d25980a8a9b209",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/freeze_probe_protocol.py": "9e78a0eed904ea895b87adcb5ff80b6c95bb8a87a662ff1b48066df4684896ee",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/gz_truth.cpp": "b89ef6633e9bd859a4333698e5acc89eb682e603b0448fd1308d113eb57657a3",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/localization.launch.py": "7c68ca137e90c6d3c4da5c47e9dc67559cdd4aae24526f828eae6c9595db5b43",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/make_corridor.py": "f4ba5ceae297f1b561186b9c94b6c6459ca75eea0379072becc7926c37bb3a13",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/mapping_ablations.sh": "536d4cf15257d3fa05888ae25546738cdd92c3ca246d5f54b7e5b62f546c3aac",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/map_review.py": "7432e5066b0f3b8255f2852e23b203ee8c4c60091a3306e6074ff8694c865bd6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/native_beautymap.py": "c7e6493c04c8469c111627cf1b31990204fca134076e5040edf425dff9bb12c1",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/object_scene.py": "9012c731e34691b392e30ddfed309afa334c031389faa29678b6abf0c365d679",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/observe_session.py": "e080069b6dc6ffe68ad3fed9408a713f98dc805057e26246822aed15b52a21cc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_author.py": "d8a5f96ad0e29649a73b3f033da3b579ce6f6b29d60e2046f3ede8d0f718d7d6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_case_replays.py": "806106a8319524a3ef80d5e76790b191326052a85f8812a3f865fb4ae49ed384",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_live_author.py": "a1f256eb8827111bba1df097f08c06fb7310b7d8d0f9913590e923b25fd59206",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_map_audit.py": "34906afa9aa627e10a8744b1187f55cea6f35929c99792f9eb108aa2795d6fbf",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_map_review.py": "8da232127b5a837489e7788a1212384e5749fe782ff02a3f4c3324ed9897291b",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_probe_mapping.py": "0c1896a4a5752c14b5dfaa259dbf0bdfaf600bfb3609b9007aa1327ab613398d",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_session.py": "2018bbe51860e803b0f1f60640639cd2a86ced4115bfe0865bc7945f7e2a0496",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_3d.py": "a92d4cd297dd2d533f9d97a8b70fed8a22620271d47c952deedcb360b05b87a2",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_author_view.py": "008c67bf253363b39980f26f64937c4994aba69f6d3d0e88266efadb9d0e64d0",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_direction_assets.py": "85342c9d6187b6e14bc023a8d85e8613439747ca72cfbbfbf436dc456b436d87",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_probe.py": "2bea6c2117ebf89cc4b5e9175c8000c6d1dc508e36d4f312540dfbb4f6a52674",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_rviz_overlay.py": "996bd10ec723998f524ca841d26edcd2c4a422a27e884404661288c0b83bb6cc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_session.py": "cf7ccd33c39043564bbea13cff1320a3525704db511aa142ff290c54652fd133",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_sensors.py": "7e30ef6eda99b1b8bb6fa13f442c810bca24b8c2b6e850b8619d13ab6fbc22da",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/publish_probe_experiments.py": "4df8fd5ce5f919a18faec629c92135f7cf8750fee5f274b97a2c323d40c58c59",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/rebuild_direction_figure.ps1": "bf6d56a6eaed442c9811263d892f3fb4276d0c73d54b1c614421fd67cfcd01c4",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/refine_saved_probe.py": "d7d05d042b70857b8a73519235bd54961f1f7b693891c3ea08c57d7a098b1b81",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/registration.launch.py": "41061edcf0657425c8711db96d762efca993e4495a92c4c1fada0ee43ae9c47a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/render_probe_gallery.py": "ac197a368f73b2923fb036309524b17103d1a4e63eca8893e58746b318323fd6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/repair_probe_boundary.py": "b83f88aed50bd411947b3318ae1103582bc7b9dcdea8a23ddb7e7f06b0c04e7a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_author_view.sh": "f75943429fe4c19e444078265763e3ac403ed0a3b1857f3a7fb8542718c274ec",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_live.sh": "23de653edf14cc388de79b04bedcb30be05492a185d66accd4b5eb042d989da1",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_map_review.sh": "1f6d91bab9d0fe1763f8e1caedc4d69d5b18aab7bd66db84d5859d4cebbf5b04",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.py": "e76d3c8fd29ac58c4162d2d31155c9e2c8b030cb23f121d0055643e2acf92faa",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.sh": "4c0b1351199a0cb247bfc1f31d199f2e721e656ac0d2c6dc672b81848e9d168e",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/scenario_gpu.launch.py": "52db7103cd595f3e51a9408e696c2260efdd602c90df011c3f8fe930fa2b53fd",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/score_map_labels.py": "de403e72ac78f9ce2cea0e0945a3b6f0a2609d7b449cbf3d57a59dba4635f075",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stop_owned_session.py": "fff6428d328ed5940b700a9cf2e5cce5495fead5e56cbdb7abb11aef34c69043",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stress_scan.py": "98da9b7c82712a7cd5e9fee8dd19afa0d6f5ab4c315c81b8465148053795e7ae",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/summarize_probe_runs.py": "7be23730e50c8bec9cdddc98ed37ce375ebd4f8c7c5b52625f774fe117d1f859",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/window_capture_heartbeat.py": "0f9c4077a16d4536cdf6f5f6c403a8fbc3fbc5461cdf2f38620a130e5651b8c2",
+    "/mnt/d/workspace/be2/slam_learning_updated/demo/presentation.ps1": "db4fae68e15f9f3cca56713bccd914aac03cdbb0aa6579c3db71018fda7accbe",
+    "/mnt/f/be2\u6f14\u8bb2/\u539f\u59cb\u4f1a\u8bdd/hypotheses-calibrated/20261015-020831-localization-probe-calibrated-3d-dynamic-method-live-67928c/gazebo-gui.config": "12ddd342b89eeadf2080dfdd470ecd7abe94c6bf50f8a7fc21777696f0ac1289",
+    "/mnt/f/be2\u6f14\u8bb2/\u539f\u59cb\u4f1a\u8bdd/hypotheses-calibrated/20261015-020831-localization-probe-calibrated-3d-dynamic-method-live-67928c/live.rviz": "695722cecb6b7481f34eb3a497713d7b20c083fb6fc3bc3399a202c3f284a19c"
+  },
+  "cases": {
+    "plain": {
+      "dimension": "3d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map.yaml",
+      "mapping_scene": "dynamic",
+      "initial_pose": {
+        "x": 8.3227,
+        "y": 7.6812000000000005,
+        "yaw": -1.4508,
+        "z": 0.09413998817578456
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map-3d.pcd",
+      "method": "plain",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/plain/probe_pose"
+    },
+    "guard": {
+      "dimension": "3d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map.yaml",
+      "mapping_scene": "dynamic",
+      "initial_pose": {
+        "x": 8.3227,
+        "y": 7.6812000000000005,
+        "yaw": -1.4508,
+        "z": 0.09413998817578456
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map-3d.pcd",
+      "method": "guard",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/guard/probe_pose"
+    },
+    "depth": {
+      "dimension": "3d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map.yaml",
+      "mapping_scene": "dynamic",
+      "initial_pose": {
+        "x": 8.3227,
+        "y": 7.6812000000000005,
+        "yaw": -1.4508,
+        "z": 0.09413998817578456
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map-3d.pcd",
+      "method": "depth",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/depth/probe_pose"
+    },
+    "search": {
+      "dimension": "3d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map.yaml",
+      "mapping_scene": "dynamic",
+      "initial_pose": {
+        "x": 8.3227,
+        "y": 7.6812000000000005,
+        "yaw": -1.4508,
+        "z": 0.09413998817578456
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map-3d.pcd",
+      "method": "search",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/search/probe_pose"
+    },
+    "recover": {
+      "dimension": "3d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map.yaml",
+      "mapping_scene": "dynamic",
+      "initial_pose": {
+        "x": 8.3227,
+        "y": 7.6812000000000005,
+        "yaw": -1.4508,
+        "z": 0.09413998817578456
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map-3d.pcd",
+      "method": "recover",
+      "localizer": "SE2 hypothesis probe",
+      "pose_topic": "/recover/probe_pose"
+    },
+    "native": {
+      "dimension": "3d",
+      "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map.yaml",
+      "mapping_scene": "dynamic",
+      "initial_pose": {
+        "x": 8.3227,
+        "y": 7.6812000000000005,
+        "yaw": -1.4508,
+        "z": 0.0
+      },
+      "native_map_odom_tf": true,
+      "broadcast_tf": false,
+      "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4/probe-maps/lidar3d/map-3d.pcd",
+      "method": "native",
+      "localizer": "GICP",
+      "pose_topic": "/native/pcl_pose",
+      "scan_topic": "/scan",
+      "cloud_topic": "/points"
+    }
+  },
+  "scope": "hypothesis prototypes, planar ground-robot pose; 2D arm has no 3D lidar; frozen provided-pose mapping A",
+  "source_robot_profile": "omni-3d-v1 adapted; generated URDF is the authoritative sensor inventory"
+}

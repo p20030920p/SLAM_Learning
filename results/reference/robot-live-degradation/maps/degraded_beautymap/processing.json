@@ -1,0 +1,122 @@
+{
+  "kind": "author_map_platform_adaptation",
+  "source_recording": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d",
+  "input_sha256": "3e3baea4dd2383901eb10f492db262d8c3002253393cf3f4f2a9c7b20ca7c117",
+  "selected_scan_ids": [
+    0,
+    1,
+    2,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    20,
+    21,
+    23,
+    24,
+    25,
+    27,
+    28,
+    29,
+    31,
+    32,
+    33,
+    35,
+    36,
+    37,
+    39,
+    40,
+    42,
+    43,
+    44,
+    46,
+    47,
+    48,
+    50,
+    51,
+    52,
+    54,
+    55,
+    56,
+    58,
+    59,
+    61,
+    62,
+    63,
+    65,
+    66,
+    67,
+    69,
+    70,
+    71,
+    73,
+    74,
+    75,
+    77,
+    78,
+    80
+  ],
+  "methods": {
+    "raw": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        -4.0,
+        -6.0
+      ],
+      "width": 441,
+      "height": 101,
+      "points": 655414,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 2.321336147000693,
+      "raw_points": 655414
+    },
+    "dufomap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        -4.0,
+        -6.0
+      ],
+      "width": 441,
+      "height": 101,
+      "points": 655414,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 2.967815902999064,
+      "raw_points": 655414
+    },
+    "beautymap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        -4.0,
+        -6.0
+      ],
+      "width": 441,
+      "height": 101,
+      "points": 648860,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 4.459527699998944,
+      "raw_points": 655414
+    }
+  },
+  "scope": "measured Sim2Real 3D point clouds with evaluation-provided mapping poses; not original-paper metrics",
+  "truth_to_held_out_localization": false
+}

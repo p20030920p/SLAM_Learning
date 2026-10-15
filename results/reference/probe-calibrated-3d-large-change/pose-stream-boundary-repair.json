@@ -1,0 +1,51 @@
+[
+  {
+    "case": "plain",
+    "recovered_rows": 2,
+    "stamps_s": [
+      4.4,
+      100.9
+    ],
+    "source": "actual emitted sensor-only estimator poses in probe-updates.jsonl; nearest independent truth <=0.05s",
+    "reason": "ROS observer boundary omission; original observer CSV retained; no interpolation or missing-output zero fill"
+  },
+  {
+    "case": "guard",
+    "recovered_rows": 2,
+    "stamps_s": [
+      4.4,
+      100.9
+    ],
+    "source": "actual emitted sensor-only estimator poses in probe-updates.jsonl; nearest independent truth <=0.05s",
+    "reason": "ROS observer boundary omission; original observer CSV retained; no interpolation or missing-output zero fill"
+  },
+  {
+    "case": "depth",
+    "recovered_rows": 2,
+    "stamps_s": [
+      4.4,
+      100.9
+    ],
+    "source": "actual emitted sensor-only estimator poses in probe-updates.jsonl; nearest independent truth <=0.05s",
+    "reason": "ROS observer boundary omission; original observer CSV retained; no interpolation or missing-output zero fill"
+  },
+  {
+    "case": "search",
+    "recovered_rows": 2,
+    "stamps_s": [
+      4.4,
+      100.9
+    ],
+    "source": "actual emitted sensor-only estimator poses in probe-updates.jsonl; nearest independent truth <=0.05s",
+    "reason": "ROS observer boundary omission; original observer CSV retained; no interpolation or missing-output zero fill"
+  },
+  {
+    "case": "recover",
+    "recovered_rows": 1,
+    "stamps_s": [
+      100.9
+    ],
+    "source": "actual emitted sensor-only estimator poses in probe-updates.jsonl; nearest independent truth <=0.05s",
+    "reason": "ROS observer boundary omission; original observer CSV retained; no interpolation or missing-output zero fill"
+  }
+]

@@ -1,0 +1,230 @@
+{
+  "scope": "All development and infrastructure failures retained, separate from algorithm-negative outcomes. Raw bags/videos remain local; selected logs are portable. No failure is converted into a zero-error score.",
+  "attempts": [
+    {
+      "run_id": "20261015-003103-mapping-probe-static-544828",
+      "category": "infrastructure",
+      "reason": "Gazebo EGL initialization failed before usable mapping data; fresh mapping A was collected.",
+      "raw_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-003103-mapping-probe-static-544828",
+      "portable_files_sha256": {
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/bag.log": "907c1ee60a653956827d66858b4e417758ab2216b4c6e685c7ea5d1a90e483e0",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/cmake.log": "d2d77d31373bd68335760658d4dd92e0073f54f3339fe50236da870b6359abd4",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/observer.log": "beb2f9a0d0172381f12c665d5a1d1b020b420497a012acaf85cafe8e512354bf",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/patrol.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/probe-mapping.log": "4ba43abecf1714dfda64cb3f3201418ec04690ba1b83ca181a2b3a6cf72af095",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/renderer.txt": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/rviz.log": "02cb289a32ecdc73147389bff44bad71bca9ef1c98c413f4075a00cabe244420",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/stack.log": "9971db457a172568b965450d3b161cae9e2a9d3aa08b7c241c70de26b2af8887",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/session-stopped.json": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/metrics.json": "6e99fedbe3d6f79d1fe1db8bea3fcb3ea66cff832c1eb30a2580062912cd617f",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003103-mapping-probe-static-544828/session.json": "f07a3a6f66345c00961fc9bd153d8d05fdffd54dea3f331c750f9e8cab3e8c3c"
+      }
+    },
+    {
+      "run_id": "20261015-003834-localization-probe-2d-static-method-live-fa0730",
+      "category": "implementation",
+      "reason": "rclpy callback exposed deque.append signature mismatch; fixed callback wrapper before the formal protocol.",
+      "raw_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-003834-localization-probe-2d-static-method-live-fa0730",
+      "portable_files_sha256": {
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/cmake.log": "6fed77349244a6c2cde64bd2d06f26aa89a013b2b02e31fc0d0f9de5bf04a17e",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/localizers.log": "1246405b3a90ba054a2041ec990b4682fda4a4a66417b55680b12a9d22a9bb59",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/probes.log": "005786a1aab0b4375598604ca29a5ca79d3b069da84317c467a0924942f63164",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/renderer.txt": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/sensor-preflight.log": "6809a63fe7301cbd5ca48e5b37538fd2f359d5079149936efce179239f6773bb",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/stack.log": "eb05d14d11a816fe7324cd852a18ecf8ba37592ea5848ca5c7e6981a7201402d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/failed.json": "5b7b171765b868983bc3594ab0a4f3f22795334bbc22f5c4c1ab9bb0e821d003",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/session-stopped.json": "e17f5dc603be0f0d2ddf0aaf6f686e34f64c81329710297b279498fdbee8f74b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/probe-config.json": "3d8feecd30ce8f0b2ccfa7f8b8453b7c904334727a7a0ca4a9fc2d517989ad94",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003834-localization-probe-2d-static-method-live-fa0730/session.json": "a810d0e3354d2d9eea18a228fce3a7f3d2619395e09f3aaf2242025108f01e54"
+      }
+    },
+    {
+      "run_id": "20261015-003909-localization-probe-2d-static-method-live-9d7471",
+      "category": "implementation",
+      "reason": "Unbuffered sensor pairing discarded many depth frames; replaced by timestamped buffers before the formal protocol.",
+      "raw_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-003909-localization-probe-2d-static-method-live-9d7471",
+      "portable_files_sha256": {
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/bag.log": "81a95c25504200b40a619e14ebd82a993ef03a43b903b8e94a302c9c4b510938",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/cmake.log": "f8fbd72c4cb0e520b7d103d26bbe31f0bd0b2210b3728bc062519ba7c03bbad2",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/localizers.log": "31b7ea2910129a86cebeb28194446680086672d4a9fa7b6fdf572b9d8dd1bfb6",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/observer.log": "8fdf2d44f957265230a812dfe158a8aa223185a468cc8c0b4295180360fe083b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/patrol.log": "a73af6e897842d27749e985b26851f01c79c1571500935e79ea6d1a5b99fed5a",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/probes.log": "7d861762113c2e9747f76f4d71ee640a5f393407073c64407f4762f4505dac03",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/renderer.txt": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/rviz-recover.log": "25a31fbc96ca955e8c66ca898fe538cfceb14ce4c1b8edb66384a5854c347a09",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/sensor-preflight.log": "7889409418a569fa1c854f0234918cdc92e6d702d727cf9f7bd77a7823c4867a",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/stack.log": "ed1abe3ca9418149f3dd5143934ffc14bdfba86d85f46c3e4cb693680d5bf61b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/views.log": "f31410f963f0c12ce9548cb7d2da1edba0ed1cd105c7dc0fe14c8f2bca34692e",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/session-stopped.json": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/metrics.json": "d3d7c44d60a613a08918cac7a8870c03b3a23af126382f144fc478b9068af6e3",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/probe-config.json": "3d8feecd30ce8f0b2ccfa7f8b8453b7c904334727a7a0ca4a9fc2d517989ad94",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-003909-localization-probe-2d-static-method-live-9d7471/session.json": "7afd76223bfc47b22bd83e601d5aab3f5b798a610c7eb99af3738301166218c2"
+      }
+    },
+    {
+      "run_id": "20261015-004557-localization-probe-2d-static-method-live-f2c034",
+      "category": "development-trial",
+      "reason": "Buffered depth prototype before final temporal compensation and trigger settings; not pooled into formal results.",
+      "raw_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-004557-localization-probe-2d-static-method-live-f2c034",
+      "portable_files_sha256": {
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/bag.log": "496af52bfedca9bd02c3661818230164aee62a1c0bce3beb71a43a7c30718213",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/cmake.log": "d2d77d31373bd68335760658d4dd92e0073f54f3339fe50236da870b6359abd4",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/localizers.log": "7d62d8a7e87d16ffc2c3edd9abac362c9e363fc4c6a95456cb2aa875a65cf5b8",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/observer.log": "e3e0be04f1a9b5946b37838504944f1e6fd2f3e5e939e0a0058f105f118380a7",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/patrol.log": "499db531cec3d623dafd6d659d33a2c1a02acf3355034a24852cebcdac16df0a",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/probes.log": "63c00eacaa4845dec9bca316fc8638de6ffd96228c13c5822a51d12b575122ea",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/renderer.txt": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/rviz-recover.log": "1b6397094d80abdfd8d433a3f1278ddec5dc9382654ced14ec2dd610d353f2e0",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/sensor-preflight.log": "1caaad3072a21d75080ab95a757862c638d37b5c02fe37a47392a1db9edfd882",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/stack.log": "12b5017ff21e12418fb002aa8f680b331ed643c0bf5a3e654cdf99120217813c",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/views.log": "f9d73ab490a3140bcec0b3cf8036c5e7612ca7c27691a857da41c88d9dbe2654",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/session-stopped.json": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/metrics.json": "945d6405694adae43c172bbed0d24f537ead13bc07b5e17148d5e189c309cbf5",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/probe-config.json": "212915f4a6e1ce3fb95358bdb6c4db7e2fb285b2f8dbcde51385e571cb5a0fe5",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004557-localization-probe-2d-static-method-live-f2c034/session.json": "05be0e5db8ba33e78fe655093ec34a7bb70e6a1f41e90ffde56b05e871ecf75d"
+      }
+    },
+    {
+      "run_id": "20261015-004825-localization-probe-2d-dynamic-method-live-add23d",
+      "category": "development-trial",
+      "reason": "Development trial before final depth motion compensation and recovery triggers; not a formal comparison.",
+      "raw_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-004825-localization-probe-2d-dynamic-method-live-add23d",
+      "portable_files_sha256": {
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/bag.log": "2249937360385383b5c4b19058b733b2d9c06b71e2995663e79ab953da307fc7",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/cmake.log": "25c39319f249faec92156b491eed147f2e1bc7baed9d74fba9b6855727537a5d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/localizers.log": "906b720196c619cb36523422466f453c122920d1e1d9b52f5e977420abc4b98c",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/observer.log": "51756cb9b5db3b9fbcd60f13d30c014859c939cbb8c3cfb7873137edbb119441",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/patrol.log": "6a51ceab253a3d5c34b25245895adeb14173693aa10563d56a47fbdaeb8552ca",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/probes.log": "6335e199a471d52ba0775c1923b845b294d7a5a3b38187327f7794cb8eef8dd0",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/renderer.txt": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/rviz-recover.log": "f814f0127a6f2882f2fa37e5048aff8ff613656a0493449b9ecc4925b3d6fa90",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/sensor-preflight.log": "76685abce0bbbe2b89e304a2db57bb51685de2af67528a0b25d458bc3262819c",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/stack.log": "6c35cf4a3d5f752d01946a3e5092c657388d07a124fe8168d9523e6562a3875d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/views.log": "f9d73ab490a3140bcec0b3cf8036c5e7612ca7c27691a857da41c88d9dbe2654",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/session-stopped.json": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/metrics.json": "12074701b28e2b2ee93d96762443c778efbcb30984bd9cf0c8937da916873466",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/probe-config.json": "121a9c6fc110e995efb45442b368e95c75dac468440f0fbd45c7d43560de64a3",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-004825-localization-probe-2d-dynamic-method-live-add23d/session.json": "79595719821da80e1e1faeb45d574672cd9cf335e9af04f82c1d48d6749efcbf"
+      }
+    },
+    {
+      "run_id": "20261015-005603-localization-probe-2d-static-method-live-c58ed5",
+      "category": "capture",
+      "reason": "Windows Graphics Capture did not finalize MP4. Sensor estimates survived, but this is not a usable formal video. Native title heartbeat added for static-window frame delivery.",
+      "raw_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-005603-localization-probe-2d-static-method-live-c58ed5",
+      "portable_files_sha256": {
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/bag.log": "5fc61f79aabf88a67e25b03797c34908ee2b7b8463eb7ad7f04af468fe6ad58b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/cmake.log": "7751c2b6b59f4f85a5bcdc269c594116d3ee0eaccd5d013129182a369147feac",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/localizers.log": "bef63abc6d9f06a851e79f5f0344b8e63bb744b6f2ebfd79130e6a4f3a38783b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/observer.log": "5e238ace75cc24f9cc7f428b49202c41c689bf8c43e84267dafbf2fa995a954d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/patrol.log": "cfa34796e33a8979920235dde58b7be57dcd69b39067716080245083699a9255",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/probes.log": "8eda5b99a8f9d1833576d9bb50e481d71c2280de802a41073a2b5d74f26afb75",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/renderer.txt": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/rviz-recover.log": "307f7cf175b160e5b4d7b9f11a6feeef7665c0e3bfaf25bbba35db3607ca14c8",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/sensor-preflight.log": "c6212cff7ced58e587c820c006050e955db5edf77e068195e958b2735121ef08",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/stack.log": "46e2b1b0635f4d62c8a5cde4edc0806d6d19da17a77bfeb54235794d5c3d8228",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/views.log": "f9d73ab490a3140bcec0b3cf8036c5e7612ca7c27691a857da41c88d9dbe2654",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/session-stopped.json": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/metrics.json": "09d5d3729a516d24ce2c87b7455fe2135ffcd55dc137573f9a55cfd6a453b5cf",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/probe-config.json": "f84c6d3ae63f6c65fb0112bc94046a01947efc0bcd7f8ef50953f13d6a615e5f",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-005603-localization-probe-2d-static-method-live-c58ed5/session.json": "5c03dfc424b7df7537e3b70836f3e6edd907999b793778ffcd3c668027d4f234"
+      }
+    },
+    {
+      "run_id": "20261015-011312-localization-probe-3d-static-method-live-dd8f13",
+      "category": "infrastructure",
+      "reason": "Preflight could not infer the ROS scan type before discovery completed; fixed explicit LaserScan type and longer readiness wait.",
+      "raw_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-011312-localization-probe-3d-static-method-live-dd8f13",
+      "portable_files_sha256": {
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/cmake.log": "aae8f06c4e958da1070c2088db4cc1aec961655509c1d39552520abe282fc4a6",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/localizers.log": "7eccbf4247fd1edbb15e6f679654ae9e8dd9f2d4bbc3594852c115ff39e95907",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/probes.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/renderer.txt": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/sensor-preflight.log": "6809a63fe7301cbd5ca48e5b37538fd2f359d5079149936efce179239f6773bb",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/stack.log": "649a13b21d79c257e78401127f166a37a09f84ab5aef22cd3e7125dbe7c7cab6",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/failed.json": "5b7b171765b868983bc3594ab0a4f3f22795334bbc22f5c4c1ab9bb0e821d003",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/session-stopped.json": "e17f5dc603be0f0d2ddf0aaf6f686e34f64c81329710297b279498fdbee8f74b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/probe-config.json": "7d7a1b54b0b13d2041850a134b2c59a459d8868741e64ddfda325bfb46d14342",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-011312-localization-probe-3d-static-method-live-dd8f13/session.json": "fd60d7275ea4d3cb65b8bbef8a1d28a81d3da21be1f3a3297f2f391d96c4b6fd"
+      }
+    },
+    {
+      "run_id": "20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f",
+      "category": "readiness",
+      "reason": "Calibration-prefix readiness detection and/or retained initial AMCL pose were not observed. Fixed prefix handling, Transient Local pose subscription, and UTF-8 script/JSON handling; no algorithm result selected from this attempt.",
+      "raw_run": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f",
+      "portable_files_sha256": {
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/bag.log": "e25c5afa87eff5cd0fef748a506564201258381ee05210ce955e1e97cba47dcf",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/cmake.log": "f85970b0278a4820bd9ad21bbfc494b90b43c5141719d9e04db7bb495f67f21f",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/localizers.log": "13673f8ad9e9b2352116f89cbf5651d0c93e750773cb4484f8f176849c78f86a",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/observer.log": "3fe624f12fdefe96086dd4abbddeab13600f768fe88f592e21fa52be0d7db5e3",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/patrol.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/probes.log": "22a1ed9b4165f927ab1d9b8e1f6b79db2c0c13bd24aa11301e3e124015426dda",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/renderer.txt": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/rviz-recover.log": "e8896353326cb39c9918ad9eb9f448e6b405058641f4458a55adf2bf29a87fa6",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/sensor-preflight.log": "82e2a4ee6eb6455b00a351d830162e0b5ff20bbb561d7450116ab4314c5f002a",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/stack.log": "b086ccdd483ada7c8f982187a4a7a2badc2dbebc29aa55a2a3510960c5183674",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/views.log": "f31410f963f0c12ce9548cb7d2da1edba0ed1cd105c7dc0fe14c8f2bca34692e",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/window-capture.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/session-stopped.json": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/probe-config.json": "f9384d39ff40e9afb4e14674ee9ff268887529b118fa12ebcb4ab4169f23c05d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f/session.json": "9bcc7837549799b3d85cde2ee69298a38ee9a6a8cdb4e29b64ba9c2a791e799f"
+      }
+    },
+    {
+      "run_id": "20261015-014707-localization-probe-calibrated-2d-static-method-live-257282",
+      "category": "readiness",
+      "reason": "Calibration-prefix readiness detection and/or retained initial AMCL pose were not observed. Fixed prefix handling, Transient Local pose subscription, and UTF-8 script/JSON handling; no algorithm result selected from this attempt.",
+      "raw_run": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-014707-localization-probe-calibrated-2d-static-method-live-257282",
+      "portable_files_sha256": {
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/bag.log": "cc81394feea34e3a13451fb1c42a43fcee9a6c13112ecc15c8ed0f2f5c592465",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/cmake.log": "c35ab01ff4e17c8510d20c5f7de34ae3d2b8862f143e16b9095e27977683394f",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/localizers.log": "07c8aa7b1e06f6e4952e33c50593b1434a57871a12c9d64242cdfaff32fcc347",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/observer.log": "d0756088ebe762ad1723d179bb3e6cd23e42d210a7a401671279b949e1c7fd7c",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/patrol.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/probes.log": "f2abe2bd4eea5eeaaeaec6bc7e1209c63f7976d4ba9fd4ce2aeac3b81655c8d1",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/renderer.txt": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/rviz-recover.log": "148f16f04fc6e8379cff48300074abea2b6e745a7a4efc5626d83864d154d6b2",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/sensor-preflight.log": "7dc07bcbad2b2574cbb043cdca0e942ba04a392beb21a03227cf05ed6e490592",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/stack.log": "b4027cd5f29637c183e5530f4c7e355b0a5b9317c38fce0da0df032e2f23ee25",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/views.log": "f9d73ab490a3140bcec0b3cf8036c5e7612ca7c27691a857da41c88d9dbe2654",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/window-capture.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/session-stopped.json": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/probe-config.json": "f9384d39ff40e9afb4e14674ee9ff268887529b118fa12ebcb4ab4169f23c05d",
+        "results/analysis/hypotheses/diagnostic-logs/20261015-014707-localization-probe-calibrated-2d-static-method-live-257282/session.json": "5dfde0e2e94c0458bb4589f9a4e89c71db8472c5b100dc916ad2319ea2471698"
+      }
+    }
+  ],
+  "initial_protocol_diagnostics": {
+    "protocol": "results/analysis/hypotheses/protocol.json",
+    "summary": "results/analysis/hypotheses/summary.json",
+    "records": [
+      "results/reference/probe-2d-corridor/record.json",
+      "results/reference/probe-2d-dynamic/record.json",
+      "results/reference/probe-2d-height-corridor/record.json",
+      "results/reference/probe-2d-large-change/record.json",
+      "results/reference/probe-2d-static/record.json",
+      "results/reference/probe-3d-corridor/record.json",
+      "results/reference/probe-3d-dynamic/record.json",
+      "results/reference/probe-3d-height-corridor/record.json",
+      "results/reference/probe-3d-large-change/record.json",
+      "results/reference/probe-3d-static/record.json"
+    ],
+    "reason": "Initial prototype z=0 reference error; replaced as primary results by fresh A-height-calibrated runs, not retroactively rescored."
+  },
+  "observer_boundary_repair": {
+    "run_id": "20261015-012043-localization-probe-3d-dynamic-method-live-0b10dc",
+    "reason": "Recovered three actually emitted first poses from publisher logs. Original observer CSV and repair source retained in portable record. Never fill an interval where the algorithm emitted no output."
+  },
+  "initial_refinement_records": [
+    "results/reference/probe-refinement-2d-corridor/record.json",
+    "results/reference/probe-refinement-2d-height-corridor/record.json",
+    "results/reference/probe-refinement-3d-corridor/record.json",
+    "results/reference/probe-refinement-3d-height-corridor/record.json"
+  ],
+  "development_video_archive": {
+    "previous_directory": "F:/be2\u5a55\u65c7\ue189",
+    "current_directory": "F:/be2\u6f14\u8bb2/\u8bca\u65ad\u5f55\u50cf/\u65e9\u671f\u7f16\u7801\u8def\u5f84",
+    "reason": "Preserved the three development videos initially written to an incorrectly decoded Unicode directory. No frames or estimates changed."
+  }
+}

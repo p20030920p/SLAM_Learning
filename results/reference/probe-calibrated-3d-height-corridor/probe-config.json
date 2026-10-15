@@ -1,0 +1,108 @@
+{
+  "dimension": "3d",
+  "maps": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps",
+  "lidar_map": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/lidar3d/points.npy",
+  "depth_map": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005251-mapping-probe-height-corridor-c2754b/probe-maps/depth.npy",
+  "parameters": {
+    "map_voxel_m": 0.06,
+    "scan_voxel_m": 0.08,
+    "scan_period_s": 0.3,
+    "maximum_points_per_sensor": 850,
+    "normal_neighbors": 12,
+    "maximum_iterations": 12,
+    "plain_correspondence_m": 1.0,
+    "guard_correspondence_m": 0.5,
+    "huber_m": 0.08,
+    "weak_eigenvalue_ratio": 0.02,
+    "odom_regularizer": 0.003,
+    "search_translation_radius_m": 2.0,
+    "search_translation_step_m": 0.4,
+    "search_yaw_radius_deg": 30,
+    "search_yaw_step_deg": 10,
+    "search_period_s": 3.0,
+    "search_min_score": 0.65,
+    "search_distinct_margin": 0.025,
+    "search_confirmations": 2,
+    "search_consistency_translation_m": 0.25,
+    "search_consistency_yaw_deg": 8,
+    "search_trigger": "unconfirmed startup, rank<3, median residual>0.08m, or inlier fraction<0.6"
+  },
+  "scan_topic": "/scan_degraded",
+  "cloud_topic": "/points_degraded",
+  "truth_input_to_localizers": false,
+  "pose_dof": "x/y/yaw; z fixed to mapping-A calibrated reference; roll/pitch=0",
+  "depth_time_alignment": "nearest <=0.12s; wheel-odometry transform from depth stamp to lidar stamp; two callback threads",
+  "mapping_A_record_sha256": "2f0cd0b976a52f48cf8bac5393a376cf2b267f27370d2915769bc4e0f3006d49",
+  "variants": {
+    "plain": {
+      "guarded": false,
+      "depth": false,
+      "recovery": false
+    },
+    "guard": {
+      "guarded": true,
+      "depth": false,
+      "recovery": false
+    },
+    "depth": {
+      "guarded": true,
+      "depth": true,
+      "recovery": false
+    },
+    "search": {
+      "guarded": true,
+      "depth": false,
+      "recovery": true
+    },
+    "recover": {
+      "guarded": true,
+      "depth": true,
+      "recovery": true
+    }
+  },
+  "source_sha256": {
+    "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+    "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+    "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+    "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+  },
+  "ground_z_m": 0.09413998817395625,
+  "frame_alignment": {
+    "ground_z_m": 0.09413998817395625,
+    "provided_pose_count": 98,
+    "height_p10_p90_m": [
+      0.09413968279916654,
+      0.094139988177286
+    ],
+    "source": "median body height reconstructed from mapping-A supplied sensor poses and actual URDF extrinsics",
+    "mapping_A_pose_archive_sha256": "4521d56f34c236683b9275e81f59f760febbf4475e2e243d0f98e71ca284f4fa",
+    "mapping_A_urdf_sha256": "ded3a24b7439a1dcbe5edbde94bb041e01eee63791daae31ac1d3cc643010542",
+    "body_from_sensor": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        -0.3
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "localization_B_truth_used": false
+  }
+}

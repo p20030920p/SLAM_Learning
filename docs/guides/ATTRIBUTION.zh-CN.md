@@ -7,14 +7,12 @@
 | 来源 | 检查的许可／来源 |
 | --- | --- |
 | DUFOMap、DynamicMap Benchmark | 固定源码快照中的 BSD 3-Clause；作者及提交见 [upstreams.json](../../src/configs/upstreams.json) |
-| ConceptGraphs | [MIT](https://github.com/concept-graphs/concept-graphs/blob/main/LICENSE)；固定版本见 [semantic.json](../../src/configs/semantic.json) |
-| HOV-SG | [MIT](https://github.com/hovsg/HOV-SG/blob/main/LICENSE)；固定版本见 [hovsg.json](../../src/configs/hovsg.json) |
 | BeautyMap | 检查的源码根目录无独立许可文件；[作者源码](https://github.com/MKJia/BeautyMap)下载至私有缓存，披露补丁及来源 |
+| AdaM_MCL（DSOM、AdaM MCL） | 固定快照 [Runjian-Chen/AdaM_MCL](https://github.com/Runjian-Chen/AdaM_MCL/tree/e8aedd2bae03816aabd5300e5ca2fe181b39d830) 提交 `e8aedd2bae` 为 MIT；作者 `Dataset/` 与 `Trained_models/` 上游为空目录，未再分发 |
 | KITTI-00 teaser | [DynamicMap 发布](https://zenodo.org/records/10886629)；数据配置固定完整归档哈希，不提交原始扫描 |
-| Replica room0 渲染 | 基于 [Replica](https://github.com/facebookresearch/Replica-Dataset) 的 [NICE-SLAM 数据](https://github.com/cvg/nice-slam/blob/master/scripts/download_replica.sh)，保存解压成员哈希 |
-| SAM／CLIP 权重 | [semantic.json](../../src/configs/semantic.json)固定来源版本及完整哈希，不提交权重 |
+| IR-MCL | 仓库无许可文件；固定快照 [作者源库](https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5) 及其预训练权重仅用于研究复现。取自 range-mcl 的文件头部标注 MIT 并署名作者 |
 | 录制呈现 | [RECORDING](RECORDING.zh-CN.md)标明 Sim2Real-AlgoBench 约定来源，未复制其源码 |
-
-Replica 的[研究条款](https://github.com/facebookresearch/Replica-Dataset/blob/main/LICENSE)限定非商业或非营利研究／教育的数据使用及发布，并规定访问条件。语义 GIF／MP4／封面包含为本研究生成的 Replica 派生观测，不作为重新 MIT 授权的数据集。数据／权重依据其条款从原文档来源下载。
+| 机器人模型扩展 | [Sim2Real-AlgoBench](https://github.com/p20030920p/Sim2Real-AlgoBench) 的 MIT 机器人 URDF 与桥接配置；保留[上游许可](../../config/robot_profiles/omni-3d-v1/LICENSE)，固定来源与资产哈希见[模型检查](../testing/robot-model.json) |
+| 本机现场场景与驱动 | [世界](../../config/presentation/worlds)及[巡航／启动脚本](../../src/scripts/presentation)保留本地 Sim2Real 场景适配；这些变体不属于固定上游提交。复用上游 CAD、底盘与控制包及许可，各次记录区分本地场景和原机器人哈希。本轮未新增分发作者算法源码、下载数据或权重。 |
 
 PDF 嵌入本机许可中文字体的子集，不单独分发字体文件。[AI 披露](DISCLOSURE.zh-CN.md)披露 AI 参与及申请人需要亲自核查的内容。每张图都链接实测运行，或明确标记为未执行实验的预留。

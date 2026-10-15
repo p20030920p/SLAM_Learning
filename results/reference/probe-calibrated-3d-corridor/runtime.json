@@ -1,0 +1,34 @@
+{
+  "world": "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S4_degradation.world",
+  "spawn": [
+    7.15,
+    -3.1,
+    0.0
+  ],
+  "scene": "corridor",
+  "world_sha256": "e57fee1a83aa2b32b71d5ff4b19cdfed4cfae3d8330e12cc67ec4e807512bc6b",
+  "initial_offset": [
+    1.0,
+    0.15,
+    0.12
+  ],
+  "scan_restore_after_s": 50.0,
+  "urdf": "/mnt/f/be2\u6f14\u8bb2/\u539f\u59cb\u4f1a\u8bdd/hypotheses-calibrated/20261015-021343-localization-probe-calibrated-3d-degradation-method-live-c53ca6/probe-robot.urdf",
+  "bridge_config": "/mnt/f/be2\u6f14\u8bb2/\u539f\u59cb\u4f1a\u8bdd/hypotheses-calibrated/20261015-021343-localization-probe-calibrated-3d-degradation-method-live-c53ca6/probe-bridge.yaml",
+  "sensor_arm": "3D lidar + depth camera",
+  "depth_sensor": {
+    "type": "Gazebo depth_camera",
+    "resolution": [
+      320,
+      240
+    ],
+    "horizontal_fov_deg": 80,
+    "near_far_m": [
+      0.25,
+      4.0
+    ],
+    "rate_hz": 10,
+    "extrinsics": "actual robot_state_publisher TF",
+    "noise": "ideal rendered depth; no hardware noise model"
+  }
+}

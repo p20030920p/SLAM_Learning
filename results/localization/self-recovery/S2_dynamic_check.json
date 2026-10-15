@@ -1,0 +1,97 @@
+{
+  "video": "/mnt/d/workspace/be2/slam_learning_updated/results/localization/self-recovery/S2_dynamic.mp4",
+  "probe": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 15.0,
+    "nb_frames": 1200,
+    "duration_s": 80.0,
+    "bytes": 1190402
+  },
+  "frames": {
+    "first": {
+      "t_s": 1.6,
+      "left": {
+        "mean": 139.41,
+        "std": 44.79,
+        "nonblack_frac": 1.0,
+        "distinct_rows": 11886
+      },
+      "right": {
+        "mean": 49.07,
+        "std": 69.67,
+        "nonblack_frac": 0.9999,
+        "distinct_rows": 15502
+      }
+    },
+    "mid": {
+      "t_s": 40.0,
+      "left": {
+        "mean": 139.39,
+        "std": 44.75,
+        "nonblack_frac": 1.0,
+        "distinct_rows": 11855
+      },
+      "right": {
+        "mean": 56.16,
+        "std": 75.51,
+        "nonblack_frac": 0.9999,
+        "distinct_rows": 16736
+      }
+    },
+    "last": {
+      "t_s": 78.4,
+      "left": {
+        "mean": 139.39,
+        "std": 44.76,
+        "nonblack_frac": 1.0,
+        "distinct_rows": 11745
+      },
+      "right": {
+        "mean": 58.71,
+        "std": 78.05,
+        "nonblack_frac": 0.9999,
+        "distinct_rows": 15232
+      }
+    }
+  },
+  "robot_motion": {
+    "trail_at_t_a": {
+      "pixels": 1096,
+      "span_x": 465,
+      "span_y": 1043
+    },
+    "trail_at_t_b": {
+      "pixels": 1590,
+      "span_x": 462,
+      "span_y": 1043
+    },
+    "trail_pixel_growth": 494,
+    "moved": true,
+    "note": "trail pixel count, not bounding box: a patrol fills its area in instead of extending, so span saturates while the robot still moves"
+  },
+  "right_half_change": {
+    "t_a_s": 16.0,
+    "t_b_s": 64.0,
+    "changed_frac": 0.0648,
+    "mean_abs_diff": 10.13,
+    "mapped_frac_t_a": 0.8702,
+    "mapped_frac_t_b": 0.8978,
+    "mapped_growth": 0.0277,
+    "free_frac_t_a": 0.1189,
+    "free_frac_t_b": 0.1558
+  },
+  "display": {
+    "before": "pid=484 uptime_s=8125",
+    "after": "pid=484 uptime_s=8265",
+    "changed_during_capture": false
+  },
+  "verdict": {
+    "left_rendered": true,
+    "right_drawn": true,
+    "right_map_grew": true,
+    "robot_moved": true,
+    "display_stable": true,
+    "pass": true
+  }
+}

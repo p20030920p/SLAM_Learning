@@ -1,0 +1,14 @@
+{
+  "recover": {
+    "method": "comparison",
+    "dimension": "3d",
+    "title": "SLAM LIVE - probe 3D CALIBRATED - RViz2",
+    "config": "view-recover.rviz",
+    "map_topic": "/probe/map_points",
+    "pose_topic": "/recover/probe_pose",
+    "tf_topic": "/recover/view/tf",
+    "scan_topic": "/depth/points",
+    "display_scope": "six labelled paths/poses; live depth aligned by recover estimate; no truth displayed",
+    "full_pose_display_tf": true
+  }
+}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -10,6 +11,7 @@ from pathlib import Path
 import numpy as np
 
 from slam_learning.core.pcd import read_pcd
+from slam_learning.runtime.live_capture import dufomap_snapshot
 
 
 def dufomap_run(sequence: Path, output: Path, parameters: dict, frames: int) -> dict:
@@ -31,9 +33,11 @@ def dufomap_run(sequence: Path, output: Path, parameters: dict, frames: int) -> 
         mapper.run(points[mask], cloud.viewpoint, cloud_transform=False)
         # Author demo accumulates ALL input points, including those excluded from integration.
         accumulated.append(points)
+        dufomap_snapshot(mapper, i, points, accumulated)
         if (i + 1) % 20 == 0 or i == len(paths) - 1:
             print(f"DUFOMap frame {i + 1}/{len(paths)}", flush=True)
     mapper.oncePropagateCluster(if_propagate=True, if_cluster=False)
+    dufomap_snapshot(mapper, len(paths)-1, points, accumulated, final=True)
     mapper.outputMap(np.concatenate(accumulated), voxel_map=False)
     produced = Path.cwd() / "dufomap_output.pcd"
     if not produced.is_file():
@@ -70,6 +74,18 @@ def beautymap_run(sequence: Path, output: Path, upstream: Path, parameters: dict
     (output.parent / "compatibility.patch").write_text(
         "\n".join(f"- {before}\n+ {after}" for before, after in changes.items())
         + "\n" + json.dumps(dtype_changes, indent=2) + "\n", encoding="utf-8")
+    if os.environ.get("SLAM_AUTHOR_LIVE"):
+        import difflib
+        entry = work / "main.py"
+        original = entry.read_text(encoding="utf-8")
+        anchor = "        timer[5].stop()\n\n    # extract all dynamic points"
+        if original.count(anchor) != 1:
+            raise ValueError("BeautyMap instrumentation anchor changed")
+        changed = original.replace("from lib.bee_tree import BEETree", "from lib.bee_tree import BEETree\nfrom slam_learning.runtime.live_capture import beauty_snapshot")
+        changed = changed.replace(anchor, "        timer[5].stop()\n        beauty_snapshot(Mpts, global_trigger, global_ground_trigger, Qpts.original_points, file_cnt)\n\n    # extract all dynamic points")
+        entry.write_text(changed, encoding="utf-8")
+        (output.parent / "instrumentation.patch").write_text("".join(difflib.unified_diff(
+            original.splitlines(True), changed.splitlines(True), fromfile="a/main.py", tofile="b/main.py")), encoding="utf-8")
     # Avoid GT labels reaching the algorithm: convert GT geometry to unlabeled XYZ raw_map.
     staged = output.parent / "input"
     staged.mkdir()
@@ -106,4 +122,7 @@ def worker(root: Path, method: str, output_dir: Path, frames: int) -> None:
         details = beautymap_run(sequence, output, root / ".cache/upstream/beautymap",
                                 specification["parameters"], frames)
     from slam_learning.core.provenance import write_json
+    if os.environ.get("SLAM_AUTHOR_LIVE"):
+        details["live_observation"] = {"snapshot_folder": os.environ["SLAM_AUTHOR_LIVE"],
+                                        "scope": "Read-only current-state snapshots; display sampling only; observer overhead included"}
     write_json(output_dir / "worker.json", details)

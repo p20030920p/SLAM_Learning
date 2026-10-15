@@ -15,7 +15,6 @@ import json, sys
 from pathlib import Path
 m=json.loads(Path(sys.argv[1]).read_text())
 x,y,z=m['focal_point']
-semantic=m['method'] in ('conceptgraphs','hovsg')
 text=f'''Panels: []
 Visualization Manager:
   Class: ""
@@ -27,7 +26,7 @@ Visualization Manager:
     - Class: rviz_default_plugins/Grid
       Name: Metric grid
       Enabled: true
-      Cell Size: {0.5 if semantic else 5}
+      Cell Size: 5
       Plane Cell Count: 50
       Color: 60; 75; 90
     - Class: rviz_default_plugins/PointCloud2

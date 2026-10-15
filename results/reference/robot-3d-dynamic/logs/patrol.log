@@ -1,0 +1,37 @@
+[INFO] [1792010521.697970839] [patrol_waypoints]: patrol: 8 waypoints, speed 0.3 m/s, origin (8.0727, 7.5312, -1.5708), hold 1.0s, odom /omni_drive_controller/odom
+[INFO] [1792010528.906915230] [patrol_waypoints]: reached waypoint 1/8 (8.5, 7.6) (odom 0.02,0.14)
+[INFO] [1792010545.673309693] [patrol_waypoints]: reached waypoint 2/8 (5.3, 7.6) (odom -0.07,-2.47)
+[INFO] [1792010553.292462713] [patrol_waypoints]: reached waypoint 3/8 (5.3, 6.5) (odom 0.74,-2.74)
+[INFO] [1792010568.471170018] [patrol_waypoints]: reached waypoint 4/8 (8.2, 6.5) (odom 1.01,-0.17)
+[INFO] [1792010577.111537387] [patrol_waypoints]: reached waypoint 5/8 (8.2, 5.2) (odom 2.04,0.10)
+[INFO] [1792010587.621030910] [patrol_waypoints]: reached waypoint 6/8 (9.7, 5.2) (odom 2.31,1.33)
+[INFO] [1792010594.980568602] [patrol_waypoints]: reached waypoint 7/8 (9.7, 4.2) (odom 3.04,1.59)
+[INFO] [1792010614.622764743] [patrol_waypoints]: reached waypoint 8/8 (6.7, 4.2) (odom 3.32,-1.08)
+[INFO] [1792010614.630376030] [patrol_waypoints]: ROUTE_COMPLETE
+Traceback (most recent call last):
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py", line 140, in main
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 785, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py", line 148, in <module>
+    main()
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py", line 142, in main
+    node.pub.publish(Twist())
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/publisher.py", line 70, in publish
+    self.__publisher.publish(msg)
+rclpy._rclpy_pybind11.RCLError: Failed to publish: publisher's context is invalid, at ./src/rcl/publisher.c:423

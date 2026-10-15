@@ -1,0 +1,221 @@
+NATIVE MAP PROCESSING: raw; same 60 measured 3D scans
+NATIVE MAP PROCESSING: dufomap; same 60 measured 3D scans
+I20261014 23:39:03.527994 126444490866688 dufomap.cpp:52] Here is your dufomap config: 
+I20261014 23:39:03.528748 126444490866688 dufomap.cpp:53] Set resolution: 0.1, d_s: 0.2, d_p: 1, hit_extension: 1, ray_passthrough_hits: 0
+I20261014 23:39:03.528769 126444490866688 dufomap.cpp:54] Set num_threads: 2
+DUFOMap 1/60
+DUFOMap 2/60
+DUFOMap 3/60
+DUFOMap 4/60
+DUFOMap 5/60
+DUFOMap 6/60
+DUFOMap 7/60
+DUFOMap 8/60
+DUFOMap 9/60
+DUFOMap 10/60
+DUFOMap 11/60
+DUFOMap 12/60
+DUFOMap 13/60
+DUFOMap 14/60
+DUFOMap 15/60
+DUFOMap 16/60
+DUFOMap 17/60
+DUFOMap 18/60
+DUFOMap 19/60
+DUFOMap 20/60
+DUFOMap 21/60
+DUFOMap 22/60
+DUFOMap 23/60
+DUFOMap 24/60
+DUFOMap 25/60
+DUFOMap 26/60
+DUFOMap 27/60
+DUFOMap 28/60
+DUFOMap 29/60
+DUFOMap 30/60
+DUFOMap 31/60
+DUFOMap 32/60
+DUFOMap 33/60
+DUFOMap 34/60
+DUFOMap 35/60
+DUFOMap 36/60
+DUFOMap 37/60
+DUFOMap 38/60
+DUFOMap 39/60
+DUFOMap 40/60
+DUFOMap 41/60
+DUFOMap 42/60
+DUFOMap 43/60
+DUFOMap 44/60
+DUFOMap 45/60
+DUFOMap 46/60
+DUFOMap 47/60
+DUFOMap 48/60
+DUFOMap 49/60
+DUFOMap 50/60
+DUFOMap 51/60
+DUFOMap 52/60
+DUFOMap 53/60
+DUFOMap 54/60
+DUFOMap 55/60
+DUFOMap 56/60
+DUFOMap 57/60
+DUFOMap 58/60
+DUFOMap 59/60
+DUFOMap 60/60
+I20261014 23:39:04.507603 126444490866688 dufomap.cpp:108] Cleaned map saved to dufomap_output.pcd
+NATIVE MAP PROCESSING: beautymap; same 60 measured 3D scans
+NATIVE BEAUTYMAP COMMAND: /home/qzl/projects/SLAM_Author_Originals/envs/lidar/bin/python -u /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/beautymap-native/author-code/main.py --data_dir /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/beautymap-native/input --dis_range 8 --xy_resolution 0.5 --h_res 0.2
+We will process the data in folder: [1m /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/author-maps-20261014-233857/beautymap-native/input [0m
+[LOG] Min xyz: 3.6811745166778564, -6.298213958740234, -0.029576251283288002 
+[LOG] Max/Min value on x: 15.30622673034668/8.0, y: 22.63822650909424/8.0
+[LOG] Matrix order: 30
+
+Generating Map Binary tree:   0%|                                           | 0/269 [00:00<?, ?it/s]
+Generating Map Binary tree:  43%|█████████████▎                 | 115/269 [00:00<00:00, 1148.56it/s]
+Generating Map Binary tree:  86%|██████████████████████████▌    | 230/269 [00:00<00:00, 1001.88it/s]
+Generating Map Binary tree: 100%|████████████████████████████████| 269/269 [00:00<00:00, 836.70it/s]
+
+Processing Frames:   0%|                                                     | 0/60 [00:00<?, ?it/s]
+Processing Frames:  18%|███████▉                                   | 11/60 [00:00<00:00, 101.58it/s]
+Processing Frames:  37%|███████████████▊                           | 22/60 [00:00<00:00, 101.09it/s]
+Processing Frames:  55%|████████████████████████▏                   | 33/60 [00:00<00:00, 98.13it/s]
+Processing Frames:  73%|███████████████████████████████▌           | 44/60 [00:00<00:00, 100.49it/s]
+Processing Frames:  92%|███████████████████████████████████████▍   | 55/60 [00:00<00:00, 100.88it/s]
+Processing Frames: 100%|████████████████████████████████████████████| 60/60 [00:00<00:00, 99.11it/s]
+shape: (32, 62, 62)
+len print: 32
+There are 133042 pts to remove
+BeautyMap Timings in seconds (s)
+       Component       	Total 	 Last 	 Mean 	StDev 	 Min  	 Max  	Steps
+[1m[31mTotal                  	1.4578	1.4578	1.4578	nan   	1.4578	1.4578	1    [0m
+[1m[32m  0. Map Generation    	0.7110	0.7110	0.7110	nan   	0.7110	0.7110	1    [0m
+[1m[33m  1. Query Generation  	0.5080	0.0085	0.0085	0.0014	0.0060	0.0125	60   [0m
+[1m[34m  2. Matrix Comparison 	0.0008	0.0000	0.0000	0.0000	0.0000	0.0000	60   [0m
+[1m[35m  3. Static Restoration	0.0753	0.0012	0.0013	0.0006	0.0007	0.0051	60   [0m
+[1m[36m  4. Fine Ground Seg   	0.0188	0.0002	0.0003	0.0001	0.0001	0.0011	60   [0m
+[1m[37m  5. One Scan Cost     	0.6036	0.0099	0.0101	0.0014	0.0078	0.0142	60   [0m
+main.py: All codes run successfully, Close now..
+{
+  "kind": "author_map_platform_adaptation",
+  "world_sha256": "6a5837880254d5647634247be12b6953438f87d5326682bcd2a376b2c6023e53",
+  "source_recording": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043",
+  "input_sha256": "559d9ae0d26e1dffa379a7602003b111853a770bee50fd73e3beafdc5dc7b2e4",
+  "selected_scan_ids": [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    15,
+    17,
+    19,
+    21,
+    23,
+    25,
+    27,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+    43,
+    45,
+    47,
+    49,
+    51,
+    53,
+    55,
+    58,
+    60,
+    62,
+    64,
+    66,
+    68,
+    71,
+    73,
+    75,
+    77,
+    79,
+    81,
+    83,
+    86,
+    88,
+    90,
+    92,
+    94,
+    96,
+    99,
+    101,
+    103,
+    105,
+    107,
+    109,
+    111,
+    114,
+    116,
+    118,
+    120,
+    122,
+    124,
+    127
+  ],
+  "methods": {
+    "raw": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        3.0,
+        -7.0
+      ],
+      "width": 181,
+      "height": 321,
+      "points": 685047,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 4.730981389002409,
+      "raw_points": 685047
+    },
+    "dufomap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        3.0,
+        -7.0
+      ],
+      "width": 181,
+      "height": 321,
+      "points": 681736,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 5.387982897002075,
+      "raw_points": 685047
+    },
+    "beautymap": {
+      "resolution_m": 0.05,
+      "height_band_m": [
+        0.12,
+        1.2
+      ],
+      "origin_xy_m": [
+        3.0,
+        -7.0
+      ],
+      "width": 181,
+      "height": 321,
+      "points": 552009,
+      "projection": "common raw observed rays every fourth point; one-cell occupied dilation; no world geometry",
+      "seconds": 7.30135852600506,
+      "raw_points": 685047
+    }
+  },
+  "scope": "measured Sim2Real 3D point clouds with evaluation-provided mapping poses; not original-paper metrics",
+  "truth_to_held_out_localization": false
+}

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "kind": "native_case_replay",
+  "status": "executed",
+  "exit_code": 0,
+  "case": "degraded_raw",
+  "parent_record": "../../record.json",
+  "parent_sha256": "0c8c34f531082f6b46d0eff64b736d5a9d9ff84f326281226e84962aea4a54fe",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-202003-localization-degradation-method-live-adc675",
+  "case_configuration": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-171852-mapping-corridor-3f082d/author-maps-20261014-172116/raw/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "scan_topic": "/scan_degraded"
+  },
+  "scope": "Single-case rendering of saved native AMCL poses; shared live execution; no new inference",
+  "metrics": {
+    "samples": 476,
+    "position_rmse_m": 0.7565809874548056,
+    "yaw_rmse_deg": 0.8330232236554526,
+    "post_warmup_5s_samples": 475,
+    "post_warmup_5s_position_rmse_m": 0.7559545242729899,
+    "position_p95_m": 1.0788711260217292
+  },
+  "result_replay": {
+    "frame_sampling": "latest saved AMCL update at each 8fps simulation timestamp",
+    "common_start_s": 4.9,
+    "common_end_s": 103.3,
+    "alignment": "none",
+    "frames": 788
+  },
+  "timing": {
+    "duration_s": 98.60000000000086,
+    "frames": 493,
+    "fps": 5,
+    "video_duration_s": 98.5,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "restoration": {
+    "restore_stamp_s": 58.5,
+    "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+    "sustained_convergence_delay_s": 31.299999999999997,
+    "converged": true,
+    "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+  },
+  "source_inputs": {
+    "degraded_raw-samples.csv": "d59222b1e817d63eab5901883fbd39eb2e50f39b1a9f0795378fe2b7f71eba2b",
+    "truth.jsonl": "669f336ae72c1c1d12ea5af8f4492a2cdd2d276b1776607cb6724f4c5e631d5e",
+    "cases.json": "e7d1622786b9ac788d8661b0b0e9c1202ccae55d49ac0326f2df613c85010070",
+    "metrics.json": "13d68c7f077ef856e66087b21b980daf53088257777fb1f93cfedff323d3ad73",
+    "maps/degraded_raw/map.pgm": "7647c46cb5ff8873887b21f4ec95d0ede02f333d76d84238e364cc40620a269e",
+    "maps/degraded_raw/map.yaml": "357030fc877477c9acafd224e164ebe3e12d526ce22fde36eb22d6e11de10d8b",
+    "scan-stress.jsonl": "ef04093bd2d9530dddda180510525eedbc693f5842078074811025f960d73bf9"
+  },
+  "command": "python src/scripts/presentation/package_case_replays.py D:/workspace/be2/slam_learning_updated/results/reference/robot-live-degradation",
+  "renderer_sha256": "428ee2b92af7b594780c82aedfbc09da65e1c7e21d3799f0c2ffe7bf68a029d4",
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "9dff5934203d23024cb98b211d22ec0e520a93acbb3010bbfda9dd5022e8dacb",
+      "bytes": 107851,
+      "availability": "portable"
+    },
+    "result.gif": {
+      "sha256": "09ddf5ad4f93aa3e4e8f20251b6e4850e810196d4d63d9a4db5f2adf4bcf67a2",
+      "bytes": 1051452,
+      "availability": "portable"
+    },
+    "result.mp4": {
+      "sha256": "07ab3edcf899ab29414cab6db5bd3a3893d54af19dc26ca052bd0b69fb4ae905",
+      "bytes": 421256,
+      "availability": "portable"
+    }
+  }
+}

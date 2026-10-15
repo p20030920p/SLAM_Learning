@@ -1,0 +1,302 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-14-20-13-59-459399-DESKTOP-GI2390C-77540
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [map_server-1]: process started with pid [77652]
+[INFO] [amcl-2]: process started with pid [77653]
+[INFO] [lifecycle_manager-3]: process started with pid [77654]
+[INFO] [map_server-4]: process started with pid [77655]
+[INFO] [amcl-5]: process started with pid [77656]
+[INFO] [lifecycle_manager-6]: process started with pid [77657]
+[INFO] [map_server-7]: process started with pid [77658]
+[INFO] [amcl-8]: process started with pid [77659]
+[INFO] [lifecycle_manager-9]: process started with pid [77660]
+[INFO] [map_server-10]: process started with pid [77661]
+[INFO] [amcl-11]: process started with pid [77662]
+[INFO] [lifecycle_manager-12]: process started with pid [77663]
+[INFO] [map_server-13]: process started with pid [77664]
+[INFO] [amcl-14]: process started with pid [77665]
+[INFO] [lifecycle_manager-15]: process started with pid [77670]
+[INFO] [map_server-16]: process started with pid [77672]
+[INFO] [amcl-17]: process started with pid [77681]
+[INFO] [lifecycle_manager-18]: process started with pid [77686]
+[lifecycle_manager-6] [INFO] [1791998041.822585048] [dufomap.lifecycle_manager]: Creating
+[lifecycle_manager-15] [INFO] [1791998041.825180365] [clean_dufomap.lifecycle_manager]: Creating
+[lifecycle_manager-6] [INFO] [1791998041.826973518] [dufomap.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-15] [INFO] [1791998041.828732956] [clean_dufomap.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[map_server-13] [INFO] [1791998042.047708378] [clean_dufomap.map_server]: 
+[map_server-13] 	map_server lifecycle node launched. 
+[map_server-13] 	Waiting on external lifecycle transitions to activate
+[map_server-13] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-13] [INFO] [1791998042.047808885] [clean_dufomap.map_server]: Creating
+[lifecycle_manager-9] [INFO] [1791998042.054739306] [beautymap.lifecycle_manager]: Creating
+[map_server-1] [INFO] [1791998042.056960668] [raw.map_server]: 
+[map_server-1] 	map_server lifecycle node launched. 
+[map_server-1] 	Waiting on external lifecycle transitions to activate
+[map_server-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-1] [INFO] [1791998042.057049041] [raw.map_server]: Creating
+[lifecycle_manager-3] [INFO] [1791998042.062805242] [raw.lifecycle_manager]: Creating
+[lifecycle_manager-9] [INFO] [1791998042.064674090] [beautymap.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-3] [INFO] [1791998042.081094105] [raw.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-12] [INFO] [1791998042.083310955] [clean_raw.lifecycle_manager]: Creating
+[lifecycle_manager-12] [INFO] [1791998042.108883452] [clean_raw.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[map_server-16] [INFO] [1791998042.111722965] [clean_beautymap.map_server]: 
+[map_server-16] 	map_server lifecycle node launched. 
+[map_server-16] 	Waiting on external lifecycle transitions to activate
+[map_server-16] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-16] [INFO] [1791998042.112323852] [clean_beautymap.map_server]: Creating
+[amcl-8] [INFO] [1791998042.124349292] [beautymap.amcl]: 
+[amcl-8] 	amcl lifecycle node launched. 
+[amcl-8] 	Waiting on external lifecycle transitions to activate
+[amcl-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-10] [INFO] [1791998042.132230616] [clean_raw.map_server]: 
+[map_server-10] 	map_server lifecycle node launched. 
+[map_server-10] 	Waiting on external lifecycle transitions to activate
+[map_server-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-10] [INFO] [1791998042.132368940] [clean_raw.map_server]: Creating
+[amcl-8] [INFO] [1791998042.133695476] [beautymap.amcl]: Creating
+[amcl-11] [INFO] [1791998042.154398802] [clean_raw.amcl]: 
+[amcl-11] 	amcl lifecycle node launched. 
+[amcl-11] 	Waiting on external lifecycle transitions to activate
+[amcl-11] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-17] [INFO] [1791998042.155319177] [clean_beautymap.amcl]: 
+[amcl-17] 	amcl lifecycle node launched. 
+[amcl-17] 	Waiting on external lifecycle transitions to activate
+[amcl-17] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-4] [INFO] [1791998042.163336765] [dufomap.map_server]: 
+[map_server-4] 	map_server lifecycle node launched. 
+[map_server-4] 	Waiting on external lifecycle transitions to activate
+[map_server-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-4] [INFO] [1791998042.163449469] [dufomap.map_server]: Creating
+[amcl-11] [INFO] [1791998042.167140940] [clean_raw.amcl]: Creating
+[amcl-17] [INFO] [1791998042.168414901] [clean_beautymap.amcl]: Creating
+[lifecycle_manager-3] [INFO] [1791998042.172442561] [raw.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-3] [INFO] [1791998042.172668207] [raw.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[lifecycle_manager-18] [INFO] [1791998042.172465810] [clean_beautymap.lifecycle_manager]: Creating
+[map_server-7] [INFO] [1791998042.174960199] [beautymap.map_server]: 
+[map_server-7] 	map_server lifecycle node launched. 
+[map_server-7] 	Waiting on external lifecycle transitions to activate
+[map_server-7] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-7] [INFO] [1791998042.175232373] [beautymap.map_server]: Creating
+[amcl-2] [INFO] [1791998042.185550616] [raw.amcl]: 
+[amcl-2] 	amcl lifecycle node launched. 
+[amcl-2] 	Waiting on external lifecycle transitions to activate
+[amcl-2] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[lifecycle_manager-18] [INFO] [1791998042.190531817] [clean_beautymap.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[amcl-2] [INFO] [1791998042.193295477] [raw.amcl]: Creating
+[amcl-14] [INFO] [1791998042.204884365] [clean_dufomap.amcl]: 
+[amcl-14] 	amcl lifecycle node launched. 
+[amcl-14] 	Waiting on external lifecycle transitions to activate
+[amcl-14] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-5] [INFO] [1791998042.206867889] [dufomap.amcl]: 
+[amcl-5] 	amcl lifecycle node launched. 
+[amcl-5] 	Waiting on external lifecycle transitions to activate
+[amcl-5] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-14] [INFO] [1791998042.209829091] [clean_dufomap.amcl]: Creating
+[amcl-5] [INFO] [1791998042.212175675] [dufomap.amcl]: Creating
+[lifecycle_manager-6] [INFO] [1791998042.235512032] [dufomap.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-6] [INFO] [1791998042.235611112] [dufomap.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[lifecycle_manager-15] [INFO] [1791998042.252398063] [clean_dufomap.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-15] [INFO] [1791998042.252479849] [clean_dufomap.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-13] [INFO] [1791998042.253579860] [clean_dufomap.map_server]: Configuring
+[map_server-13] [INFO] [1791998042.253627650] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/dufomap/map.yaml
+[map_server-13] [INFO] [1791998042.257279854] [map_io]: resolution: 0.05
+[map_server-13] [INFO] [1791998042.257291763] [map_io]: origin[0]: 3
+[map_server-13] [INFO] [1791998042.257295242] [map_io]: origin[1]: -7
+[map_server-13] [INFO] [1791998042.257297417] [map_io]: origin[2]: 0
+[map_server-13] [INFO] [1791998042.257299695] [map_io]: free_thresh: 0.196
+[map_server-13] [INFO] [1791998042.257302015] [map_io]: occupied_thresh: 0.65
+[map_server-13] [INFO] [1791998042.257305080] [map_io]: mode: trinary
+[map_server-13] [INFO] [1791998042.257307596] [map_io]: negate: 0
+[map_server-13] [INFO] [1791998042.257436830] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/dufomap/map.pgm
+[map_server-13] [INFO] [1791998042.269247684] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/dufomap/map.pgm: 181 X 321 map @ 0.05 m/cell
+[lifecycle_manager-15] [INFO] [1791998042.281478046] [clean_dufomap.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[lifecycle_manager-12] [INFO] [1791998042.770870853] [clean_raw.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1791998042.770984450] [clean_raw.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-10] [INFO] [1791998042.771343183] [clean_raw.map_server]: Configuring
+[map_server-10] [INFO] [1791998042.771396295] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/raw/map.yaml
+[map_server-10] [INFO] [1791998042.774760328] [map_io]: resolution: 0.05
+[map_server-10] [INFO] [1791998042.774788039] [map_io]: origin[0]: 3
+[map_server-10] [INFO] [1791998042.774793009] [map_io]: origin[1]: -7
+[map_server-10] [INFO] [1791998042.774795287] [map_io]: origin[2]: 0
+[map_server-10] [INFO] [1791998042.774797897] [map_io]: free_thresh: 0.196
+[map_server-10] [INFO] [1791998042.774800185] [map_io]: occupied_thresh: 0.65
+[map_server-10] [INFO] [1791998042.774803302] [map_io]: mode: trinary
+[map_server-10] [INFO] [1791998042.774806036] [map_io]: negate: 0
+[map_server-10] [INFO] [1791998042.774949270] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/raw/map.pgm
+[map_server-10] [INFO] [1791998042.788980768] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/raw/map.pgm: 181 X 321 map @ 0.05 m/cell
+[lifecycle_manager-18] [INFO] [1791998042.805322519] [clean_beautymap.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-18] [INFO] [1791998042.805383067] [clean_beautymap.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-16] [INFO] [1791998042.805745994] [clean_beautymap.map_server]: Configuring
+[map_server-16] [INFO] [1791998042.805803134] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap/map.yaml
+[map_server-16] [INFO] [1791998042.809679831] [map_io]: resolution: 0.05
+[map_server-16] [INFO] [1791998042.809714780] [map_io]: origin[0]: 3
+[map_server-16] [INFO] [1791998042.809720330] [map_io]: origin[1]: -7
+[map_server-16] [INFO] [1791998042.809722619] [map_io]: origin[2]: 0
+[map_server-16] [INFO] [1791998042.809725218] [map_io]: free_thresh: 0.196
+[map_server-16] [INFO] [1791998042.809727517] [map_io]: occupied_thresh: 0.65
+[map_server-16] [INFO] [1791998042.809730914] [map_io]: mode: trinary
+[map_server-16] [INFO] [1791998042.809733803] [map_io]: negate: 0
+[map_server-16] [INFO] [1791998042.809861815] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap/map.pgm
+[map_server-16] [INFO] [1791998042.820978170] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163140-mapping-static-24597a/author-maps-20261014-165909/beautymap/map.pgm: 181 X 321 map @ 0.05 m/cell
+[map_server-4] [INFO] [1791998042.827244764] [dufomap.map_server]: Configuring
+[map_server-4] [INFO] [1791998042.827423320] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/dufomap/map.yaml
+[lifecycle_manager-12] [INFO] [1791998042.833725359] [clean_raw.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-11] [INFO] [1791998042.837336434] [clean_raw.amcl]: Configuring
+[amcl-11] [INFO] [1791998042.837423967] [clean_raw.amcl]: initTransforms
+[lifecycle_manager-18] [INFO] [1791998042.844637053] [clean_beautymap.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[map_server-4] [INFO] [1791998042.845151877] [map_io]: resolution: 0.05
+[map_server-4] [INFO] [1791998042.845167275] [map_io]: origin[0]: 3
+[map_server-4] [INFO] [1791998042.845170754] [map_io]: origin[1]: -7
+[map_server-4] [INFO] [1791998042.845172815] [map_io]: origin[2]: 0
+[map_server-4] [INFO] [1791998042.845175186] [map_io]: free_thresh: 0.196
+[map_server-4] [INFO] [1791998042.845177444] [map_io]: occupied_thresh: 0.65
+[map_server-4] [INFO] [1791998042.845180788] [map_io]: mode: trinary
+[map_server-4] [INFO] [1791998042.845183584] [map_io]: negate: 0
+[map_server-4] [INFO] [1791998042.845322397] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/dufomap/map.pgm
+[amcl-17] [INFO] [1791998042.847675884] [clean_beautymap.amcl]: Configuring
+[amcl-17] [INFO] [1791998042.847750690] [clean_beautymap.amcl]: initTransforms
+[map_server-1] [INFO] [1791998042.862904136] [raw.map_server]: Configuring
+[map_server-1] [INFO] [1791998042.862995449] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/raw/map.yaml
+[amcl-14] [INFO] [1791998042.863369238] [clean_dufomap.amcl]: Configuring
+[amcl-14] [INFO] [1791998042.863437676] [clean_dufomap.amcl]: initTransforms
+[amcl-11] [INFO] [1791998042.865074868] [clean_raw.amcl]: initPubSub
+[lifecycle_manager-9] [INFO] [1791998042.867391050] [beautymap.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-9] [INFO] [1791998042.867418191] [beautymap.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-1] [INFO] [1791998042.868786327] [map_io]: resolution: 0.05
+[map_server-1] [INFO] [1791998042.868831310] [map_io]: origin[0]: 3
+[map_server-1] [INFO] [1791998042.868841251] [map_io]: origin[1]: -7
+[map_server-1] [INFO] [1791998042.868848531] [map_io]: origin[2]: 0
+[map_server-1] [INFO] [1791998042.868852994] [map_io]: free_thresh: 0.196
+[map_server-1] [INFO] [1791998042.868856235] [map_io]: occupied_thresh: 0.65
+[map_server-1] [INFO] [1791998042.868860999] [map_io]: mode: trinary
+[map_server-1] [INFO] [1791998042.868865141] [map_io]: negate: 0
+[map_server-1] [INFO] [1791998042.869053980] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/raw/map.pgm
+[map_server-4] [INFO] [1791998042.870383841] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/dufomap/map.pgm: 181 X 321 map @ 0.05 m/cell
+[map_server-7] [INFO] [1791998042.871478124] [beautymap.map_server]: Configuring
+[map_server-7] [INFO] [1791998042.871700214] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/beautymap/map.yaml
+[map_server-7] [INFO] [1791998042.876135683] [map_io]: resolution: 0.05
+[map_server-7] [INFO] [1791998042.876158827] [map_io]: origin[0]: 3
+[map_server-7] [INFO] [1791998042.876163104] [map_io]: origin[1]: -7
+[map_server-7] [INFO] [1791998042.876166003] [map_io]: origin[2]: 0
+[map_server-7] [INFO] [1791998042.876168934] [map_io]: free_thresh: 0.196
+[map_server-7] [INFO] [1791998042.876171823] [map_io]: occupied_thresh: 0.65
+[map_server-7] [INFO] [1791998042.876175779] [map_io]: mode: trinary
+[map_server-7] [INFO] [1791998042.876179144] [map_io]: negate: 0
+[map_server-7] [INFO] [1791998042.876339517] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/beautymap/map.pgm
+[amcl-17] [INFO] [1791998042.880002159] [clean_beautymap.amcl]: initPubSub
+[map_server-1] [INFO] [1791998042.891985118] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/raw/map.pgm: 181 X 321 map @ 0.05 m/cell
+[amcl-14] [INFO] [1791998042.896551902] [clean_dufomap.amcl]: initPubSub
+[amcl-11] [INFO] [1791998042.896799569] [clean_raw.amcl]: Subscribed to map topic.
+[map_server-7] [INFO] [1791998042.899848973] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-163637-mapping-dynamic-14d0bc/author-maps-20261014-170210/beautymap/map.pgm: 181 X 321 map @ 0.05 m/cell
+[amcl-17] [INFO] [1791998042.902716869] [clean_beautymap.amcl]: Subscribed to map topic.
+[lifecycle_manager-6] [INFO] [1791998042.906632015] [dufomap.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-5] [INFO] [1791998042.907383477] [dufomap.amcl]: Configuring
+[amcl-5] [INFO] [1791998042.907450880] [dufomap.amcl]: initTransforms
+[lifecycle_manager-9] [INFO] [1791998042.919782221] [beautymap.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[lifecycle_manager-3] [INFO] [1791998042.920140742] [raw.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-2] [INFO] [1791998042.920496891] [raw.amcl]: Configuring
+[amcl-2] [INFO] [1791998042.920569036] [raw.amcl]: initTransforms
+[amcl-8] [INFO] [1791998042.921003761] [beautymap.amcl]: Configuring
+[amcl-8] [INFO] [1791998042.921064091] [beautymap.amcl]: initTransforms
+[amcl-14] [INFO] [1791998042.922610145] [clean_dufomap.amcl]: Subscribed to map topic.
+[lifecycle_manager-18] [INFO] [1791998042.923456219] [clean_beautymap.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[lifecycle_manager-12] [INFO] [1791998042.924693483] [clean_raw.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-16] [INFO] [1791998042.924944641] [clean_beautymap.map_server]: Activating
+[map_server-16] [INFO] [1791998042.925397141] [clean_beautymap.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-17] [INFO] [1791998042.926337686] [clean_beautymap.amcl]: Received a 181 X 321 map @ 0.050 m/pix
+[map_server-10] [INFO] [1791998042.932042617] [clean_raw.map_server]: Activating
+[map_server-10] [INFO] [1791998042.932313335] [clean_raw.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-11] [INFO] [1791998042.937481974] [clean_raw.amcl]: Received a 181 X 321 map @ 0.050 m/pix
+[lifecycle_manager-15] [INFO] [1791998042.942831054] [clean_dufomap.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-13] [INFO] [1791998042.943670059] [clean_dufomap.map_server]: Activating
+[map_server-13] [INFO] [1791998042.944635202] [clean_dufomap.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-14] [INFO] [1791998042.946117510] [clean_dufomap.amcl]: Received a 181 X 321 map @ 0.050 m/pix
+[amcl-8] [INFO] [1791998042.961793607] [beautymap.amcl]: initPubSub
+[amcl-5] [INFO] [1791998042.969442279] [dufomap.amcl]: initPubSub
+[amcl-2] [INFO] [1791998042.979080144] [raw.amcl]: initPubSub
+[amcl-8] [INFO] [1791998043.002148232] [beautymap.amcl]: Subscribed to map topic.
+[amcl-5] [INFO] [1791998043.002946003] [dufomap.amcl]: Subscribed to map topic.
+[amcl-2] [INFO] [1791998043.015173563] [raw.amcl]: Subscribed to map topic.
+[lifecycle_manager-6] [INFO] [1791998043.022344421] [dufomap.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-4] [INFO] [1791998043.023939466] [dufomap.map_server]: Activating
+[map_server-4] [INFO] [1791998043.027888801] [dufomap.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-5] [INFO] [1791998043.028344926] [dufomap.amcl]: Received a 181 X 321 map @ 0.050 m/pix
+[lifecycle_manager-3] [INFO] [1791998043.030008305] [raw.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-1] [INFO] [1791998043.030405150] [raw.map_server]: Activating
+[map_server-1] [INFO] [1791998043.030794001] [raw.map_server]: Creating bond (map_server) to lifecycle manager.
+[lifecycle_manager-9] [INFO] [1791998043.030951382] [beautymap.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-7] [INFO] [1791998043.031206743] [beautymap.map_server]: Activating
+[amcl-2] [INFO] [1791998043.031709279] [raw.amcl]: Received a 181 X 321 map @ 0.050 m/pix
+[map_server-7] [INFO] [1791998043.032693130] [beautymap.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-8] [INFO] [1791998043.033083736] [beautymap.amcl]: Received a 181 X 321 map @ 0.050 m/pix
+[lifecycle_manager-12] [INFO] [1791998043.038779344] [clean_raw.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-12] [INFO] [1791998043.038810255] [clean_raw.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-11] [INFO] [1791998043.039109408] [clean_raw.amcl]: Activating
+[amcl-11] [INFO] [1791998043.039149587] [clean_raw.amcl]: initialPoseReceived
+[amcl-11] [INFO] [1791998043.039216399] [clean_raw.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-11] [INFO] [1791998043.039523620] [clean_raw.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-18] [INFO] [1791998043.040644471] [clean_beautymap.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-18] [INFO] [1791998043.040695243] [clean_beautymap.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-17] [INFO] [1791998043.043755969] [clean_beautymap.amcl]: Activating
+[amcl-17] [INFO] [1791998043.043795651] [clean_beautymap.amcl]: initialPoseReceived
+[amcl-17] [INFO] [1791998043.043863105] [clean_beautymap.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-17] [INFO] [1791998043.044242926] [clean_beautymap.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-15] [INFO] [1791998043.069150558] [clean_dufomap.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-15] [INFO] [1791998043.069191761] [clean_dufomap.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-14] [INFO] [1791998043.069944679] [clean_dufomap.amcl]: Activating
+[amcl-14] [INFO] [1791998043.069986110] [clean_dufomap.amcl]: initialPoseReceived
+[amcl-14] [INFO] [1791998043.070065339] [clean_dufomap.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-14] [INFO] [1791998043.070453827] [clean_dufomap.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-9] [INFO] [1791998043.140995129] [beautymap.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-9] [INFO] [1791998043.141053108] [beautymap.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-8] [INFO] [1791998043.141495031] [beautymap.amcl]: Activating
+[amcl-8] [INFO] [1791998043.141527919] [beautymap.amcl]: initialPoseReceived
+[amcl-8] [INFO] [1791998043.141593603] [beautymap.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-8] [INFO] [1791998043.141988616] [beautymap.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-6] [INFO] [1791998043.146104188] [dufomap.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-6] [INFO] [1791998043.146159920] [dufomap.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-5] [INFO] [1791998043.146583876] [dufomap.amcl]: Activating
+[amcl-5] [INFO] [1791998043.146618203] [dufomap.amcl]: initialPoseReceived
+[amcl-5] [INFO] [1791998043.146694688] [dufomap.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-5] [INFO] [1791998043.147233509] [dufomap.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-3] [INFO] [1791998043.148107200] [raw.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-3] [INFO] [1791998043.148134673] [raw.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-2] [INFO] [1791998043.148830812] [raw.amcl]: Activating
+[amcl-2] [INFO] [1791998043.148866248] [raw.amcl]: initialPoseReceived
+[amcl-2] [INFO] [1791998043.148935980] [raw.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-2] [INFO] [1791998043.149343098] [raw.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1791998043.161177287] [clean_raw.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-12] [INFO] [1791998043.161219413] [clean_raw.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1791998043.161227500] [clean_raw.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[lifecycle_manager-18] [INFO] [1791998043.167150785] [clean_beautymap.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-18] [INFO] [1791998043.167207946] [clean_beautymap.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-18] [INFO] [1791998043.167223044] [clean_beautymap.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[lifecycle_manager-15] [INFO] [1791998043.182880512] [clean_dufomap.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-15] [INFO] [1791998043.182942302] [clean_dufomap.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-15] [INFO] [1791998043.182950544] [clean_dufomap.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[lifecycle_manager-9] [INFO] [1791998043.253279135] [beautymap.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-9] [INFO] [1791998043.253338553] [beautymap.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-9] [INFO] [1791998043.253350110] [beautymap.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[lifecycle_manager-3] [INFO] [1791998043.263264559] [raw.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-3] [INFO] [1791998043.263341726] [raw.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-3] [INFO] [1791998043.263351512] [raw.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[lifecycle_manager-6] [INFO] [1791998043.264287065] [dufomap.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-6] [INFO] [1791998043.264315625] [dufomap.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-6] [INFO] [1791998043.264327885] [dufomap.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[amcl-2] [INFO] [1791998049.599888511] [raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-14] [INFO] [1791998049.599983194] [clean_dufomap.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-8] [INFO] [1791998049.599990437] [beautymap.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-11] [INFO] [1791998049.599904768] [clean_raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-5] [INFO] [1791998049.600116896] [dufomap.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-17] [INFO] [1791998049.600254591] [clean_beautymap.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-17] [INFO] [1791998052.280496458] [clean_beautymap.amcl]: createLaserObject
+[amcl-11] [INFO] [1791998052.282313665] [clean_raw.amcl]: createLaserObject
+[amcl-14] [INFO] [1791998052.286040111] [clean_dufomap.amcl]: createLaserObject
+[amcl-2] [INFO] [1791998052.288929656] [raw.amcl]: createLaserObject
+[amcl-8] [INFO] [1791998052.290484314] [beautymap.amcl]: createLaserObject
+[amcl-5] [INFO] [1791998052.291150034] [dufomap.amcl]: createLaserObject
+[amcl-2] [INFO] [1791998052.425174339] [raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-5] [INFO] [1791998052.425252670] [dufomap.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-14] [INFO] [1791998052.425415345] [clean_dufomap.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-11] [INFO] [1791998052.425452853] [clean_raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-17] [INFO] [1791998052.425479455] [clean_beautymap.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-8] [INFO] [1791998052.438677315] [beautymap.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'

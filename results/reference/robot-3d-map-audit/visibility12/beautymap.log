@@ -1,0 +1,32 @@
+We will process the data in folder: [1m /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-233545-mapping-dynamic-a37043/ablation-visibility12/beautymap-native/input [0m
+[LOG] Min xyz: 3.6811745166778564, -6.298213958740234, -0.029576251283288002 
+[LOG] Max/Min value on x: 19.30622673034668/12.0, y: 26.63822650909424/12.0
+[LOG] Matrix order: 30
+
+Generating Map Binary tree:   0%|                                           | 0/269 [00:00<?, ?it/s]
+Generating Map Binary tree:  34%|███████████▎                     | 92/269 [00:00<00:00, 883.06it/s]
+Generating Map Binary tree:  69%|██████████████████████▏         | 186/269 [00:00<00:00, 912.47it/s]
+Generating Map Binary tree: 100%|████████████████████████████████| 269/269 [00:00<00:00, 892.37it/s]
+
+Processing Frames:   0%|                                                     | 0/60 [00:00<?, ?it/s]
+Processing Frames:  15%|██████▊                                      | 9/60 [00:00<00:00, 79.96it/s]
+Processing Frames:  30%|█████████████▏                              | 18/60 [00:00<00:00, 82.67it/s]
+Processing Frames:  45%|███████████████████▊                        | 27/60 [00:00<00:00, 57.14it/s]
+Processing Frames:  58%|█████████████████████████▋                  | 35/60 [00:00<00:00, 60.94it/s]
+Processing Frames:  72%|███████████████████████████████▌            | 43/60 [00:00<00:00, 64.24it/s]
+Processing Frames:  85%|█████████████████████████████████████▍      | 51/60 [00:00<00:00, 66.43it/s]
+Processing Frames:  98%|███████████████████████████████████████████▎| 59/60 [00:00<00:00, 69.06it/s]
+Processing Frames: 100%|████████████████████████████████████████████| 60/60 [00:00<00:00, 67.13it/s]
+shape: (32, 78, 78)
+len print: 32
+There are 162351 pts to remove
+BeautyMap Timings in seconds (s)
+       Component       	Total 	 Last 	 Mean 	StDev 	 Min  	 Max  	Steps
+[1m[31mTotal                  	1.7602	1.7602	1.7602	nan   	1.7602	1.7602	1    [0m
+[1m[32m  0. Map Generation    	0.7152	0.7152	0.7152	nan   	0.7152	0.7152	1    [0m
+[1m[33m  1. Query Generation  	0.6704	0.0091	0.0112	0.0115	0.0066	0.0983	60   [0m
+[1m[34m  2. Matrix Comparison 	0.0010	0.0000	0.0000	0.0000	0.0000	0.0001	60   [0m
+[1m[35m  3. Static Restoration	0.1785	0.0033	0.0030	0.0005	0.0018	0.0042	60   [0m
+[1m[36m  4. Fine Ground Seg   	0.0408	0.0008	0.0007	0.0003	0.0003	0.0019	60   [0m
+[1m[37m  5. One Scan Cost     	0.8915	0.0132	0.0149	0.0116	0.0093	0.1022	60   [0m
+main.py: All codes run successfully, Close now..

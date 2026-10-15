@@ -1,0 +1,38 @@
+<!doctype html><meta charset="utf-8"><title>SRRG 二维建图</title><style>body{font:18px system-ui;max-width:1100px;margin:30px auto;color:#193b55}table{border-collapse:collapse;width:100%}td,th{border:1px solid #bbb;padding:9px}video{width:100%}a{color:#175bc4}</style>
+<h1>原生二维建图 · SRRG</h1><p>动态残影删除／静态覆盖保留；原始图灰色、作者维护图蓝色。旧三维清理图投影结果保留在原目录。</p><table><tr><th>场景</th><th>跳转</th></tr>
+<tr><td>纯静态</td><td><a href="#static">视频与指标</a></td></tr>
+<tr><td>运动障碍物</td><td><a href="#dynamic">视频与指标</a></td></tr>
+<tr><td>持久结构变化</td><td><a href="#large-change">视频与指标</a></td></tr>
+<tr><td>走廊退化</td><td><a href="#corridor">视频与指标</a></td></tr>
+</table>
+<h2 id="static">纯静态 · 2D</h2><table><tr><th>方法</th><th>地图类型</th><th>指标效果</th></tr>
+<tr><td>Raw</td><td>原生二维点图</td><td>动态残影删除 N/A；静态覆盖保留 100.00%</td></tr>
+<tr><td>srrg_mapper2d</td><td>原生二维点图</td><td>动态残影删除 N/A；静态覆盖保留 99.84%</td></tr>
+</table><p>建图轨迹XY RMSE 0.71cm；定位B尚未测试。</p>
+<video controls preload="none" src="../results/reference/srrg-2d-static/execution.mp4"></video>
+<h2 id="dynamic">运动障碍物 · 2D</h2><table><tr><th>方法</th><th>地图类型</th><th>指标效果</th></tr>
+<tr><td>Raw</td><td>原生二维点图</td><td>动态残影删除 0.00%；静态覆盖保留 100.00%</td></tr>
+<tr><td>srrg_mapper2d</td><td>原生二维点图</td><td>动态残影删除 42.31%；静态覆盖保留 99.51%</td></tr>
+</table><p>建图轨迹XY RMSE 0.64cm；定位B尚未测试。</p>
+<video controls preload="none" src="../results/reference/srrg-2d-dynamic/execution.mp4"></video>
+<h2 id="large-change">持久结构变化 · 2D</h2><table><tr><th>方法</th><th>地图类型</th><th>指标效果</th></tr>
+<tr><td>Raw</td><td>原生二维点图</td><td>动态残影删除 N/A；静态覆盖保留 100.00%</td></tr>
+<tr><td>srrg_mapper2d</td><td>原生二维点图</td><td>动态残影删除 N/A；静态覆盖保留 99.71%</td></tr>
+</table><p>建图轨迹XY RMSE 0.46cm；定位B尚未测试。</p>
+<video controls preload="none" src="../results/reference/srrg-2d-large-change/execution.mp4"></video>
+<h2 id="corridor">走廊退化 · 2D</h2><table><tr><th>方法</th><th>地图类型</th><th>指标效果</th></tr>
+<tr><td>Raw</td><td>原生二维点图</td><td>动态残影删除 N/A；静态覆盖保留 83.43%</td></tr>
+<tr><td>srrg_mapper2d</td><td>原生二维点图</td><td>动态残影删除 N/A；静态覆盖保留 82.24%</td></tr>
+</table><p>建图轨迹XY RMSE 83.23cm；定位B尚未测试。</p>
+<video controls preload="none" src="../results/reference/srrg-2d-corridor/execution.mp4"></video>
+<table><tr><th>事件</th><th>仿真秒</th><th>视频定位（约）</th></tr>
+<tr><td>建图跟踪重置</td><td>11.1</td><td><a href="../results/reference/srrg-2d-corridor/execution.mp4#t=4.6">4.6s</a></td></tr>
+<tr><td>观测受限</td><td>7.5</td><td><a href="../results/reference/srrg-2d-corridor/execution.mp4#t=2.7">2.7s</a></td></tr>
+<tr><td>观测恢复</td><td>57.6</td><td><a href="../results/reference/srrg-2d-corridor/execution.mp4#t=50.9">50.9s</a></td></tr>
+<tr><td>持续位置偏差超过20cm</td><td>11.5</td><td><a href="../results/reference/srrg-2d-corridor/execution.mp4#t=5.0">5.0s</a></td></tr>
+</table>
+<h2 id="diagnostics">保留的失败与额外对照</h2>
+<p>联调失败（已修复，保留原片）</p><video controls preload="none" src="../results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/execution.mp4"></video>
+<p>联调失败（已修复，保留原片）</p><video controls preload="none" src="../results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/execution.mp4"></video>
+<p>图合并开启：最后成功66.0s后数值崩溃</p><video controls preload="none" src="../results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/execution.mp4"></video>
+<p>静态：图合并开启额外对照</p><video controls preload="none" src="../results/reference/srrg-2d-static-graph-merge-on/execution.mp4"></video>

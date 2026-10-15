@@ -2,11 +2,23 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import shutil
+from datetime import datetime, timezone
 from pathlib import Path
 
-from run_conceptgraphs import sha, timestamp
+
+def sha(path):
+    h = hashlib.sha256()
+    with Path(path).open("rb") as f:
+        for data in iter(lambda: f.read(4 * 1024 * 1024), b""):
+            h.update(data)
+    return h.hexdigest()
+
+
+def timestamp():
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 def main():

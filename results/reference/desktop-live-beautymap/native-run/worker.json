@@ -1,0 +1,36 @@
+{
+  "frames": 141,
+  "compatibility_patch": {
+    "iterator": {
+      "metadata[key] = map(int, value.split())": "metadata[key] = list(map(int, value.split()))",
+      "metadata[key] = map(float, value.split())": "metadata[key] = list(map(float, value.split()))"
+    },
+    "bitmask_width": {
+      "main.py": {
+        "replacement": "dtype=int -> dtype=np.int64",
+        "count": 2
+      },
+      "lib/bee_tree.py": {
+        "replacement": "dtype=int -> dtype=np.int64",
+        "count": 12
+      }
+    }
+  },
+  "author_command": [
+    "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-202609-author-live-beautymap-dbdf18/experiment/results/runs/beautymap-b9f4a4723ce8/author-code/main.py",
+    "--data_dir",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-202609-author-live-beautymap-dbdf18/experiment/results/runs/beautymap-b9f4a4723ce8/input",
+    "--dis_range",
+    "40",
+    "--xy_resolution",
+    "1.0",
+    "--h_res",
+    "0.5"
+  ],
+  "algorithm_input": "Only XYZ and VIEWPOINT in both map/scans; all intensity annotations stripped",
+  "live_observation": {
+    "snapshot_folder": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-202609-author-live-beautymap-dbdf18/live",
+    "scope": "Read-only current-state snapshots; display sampling only; observer overhead included"
+  }
+}

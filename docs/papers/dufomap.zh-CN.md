@@ -4,6 +4,26 @@
 
 **KITTI-00，141 帧雷达扫描。** 利用观测到的空闲空间识别动态点，并用位姿裕量保护静态结构。
 
+## 原文数据集与场景
+
+| 评估 | 数据／场景 |
+| --- | --- |
+| 三维地图清理定量实验 | KITTI 00城镇／01高速，64线；Argoverse 2城市交通，两个32线传感器；半室内运动行人，16线。 |
+| 定性迁移展示 | MCD VIRAL测绘数据：不同离散站位的Leica RTC360扫描；DOALS拥挤车站，128线；两层建筑，Livox Mid-360。 |
+| 被评估任务 | 给定位姿下对扫描点分类。原文区分使用全部扫描的后处理，与只使用已累积观测的在线DUFOMap⋆。 |
+
+[原文§IV-A／§V](https://arxiv.org/html/2403.01449v1#S4)。§V-E明确指出稀疏采样是限制，§V-C验证位姿误差会影响分类。本次KITTI-00并未覆盖所有数据集或在线基准。
+
+## 看视频前：本次观察效果
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| DUFOMap | 三维去动态点地图 | SA 97.98% / DA 98.70%；清理有效 |
+
+**待排查假设：**稀疏射线、遮挡或重访不足可能使空闲空间证据不足；位姿误差也可能破坏这类证据。先检查可见性与具体点的保留决策，再归因定位失效。这是诊断推断，尚未确认是本实验的失效原因。
+
+下面保留的是历史结果回放；[最新真实执行](../../results/reference/desktop-live-dufomap/execution.mp4)观察的是一次新的原生运行。
+
 ![DUFOMap](../../results/reference/dufomap/media/preview.gif)
 
 [完整视频](../../results/reference/dufomap/media/replay/replay.mp4) · [原始记录](../../results/reference/dufomap/runs/dufomap-wsl/record.json) · [时间核对](../../results/reference/dufomap/media/timing.json)

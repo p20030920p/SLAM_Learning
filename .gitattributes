@@ -9,3 +9,16 @@ results/localization/static-dynamic/** -text whitespace=-blank-at-eol
 *.pdf binary
 
 docs/media/hardware/** -text whitespace=-blank-at-eol
+
+# Preserve inspected upstream URDF bytes, including the exporter's comment spacing.
+config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf -text whitespace=-blank-at-eol
+config/presentation/worlds/** -text whitespace=-blank-at-eol
+# Native configuration/stdout bytes are hash-bound, including trailing empty lines.
+results/reference/robot-*/** whitespace=-blank-at-eol,-blank-at-eof
+results/reference/desktop-*/** whitespace=-blank-at-eol,-blank-at-eof
+results/reference/probe-*/** whitespace=-blank-at-eol,-blank-at-eof
+results/reference/srrg-*/** whitespace=-blank-at-eol,-blank-at-eof
+results/analysis/hypotheses/** -text whitespace=-blank-at-eol,-blank-at-eof
+# Preserve the hash-bound native mapper console, including author whitespace.
+results/analysis/map-2d-3d/baseline-native-mappers.log -text whitespace=-blank-at-eol,-blank-at-eof
+results/analysis/map-quality/srrg-build/** -text whitespace=-blank-at-eol,-blank-at-eof

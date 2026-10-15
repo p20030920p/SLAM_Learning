@@ -1,0 +1,101 @@
+{
+  "video": "/mnt/d/workspace/be2/slam_learning_updated/results/localization/self-recovery/S4_degradation.mp4",
+  "probe": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 15.0,
+    "nb_frames": 1050,
+    "duration_s": 70.0,
+    "bytes": 582297
+  },
+  "frames": {
+    "first": {
+      "t_s": 1.4,
+      "left": {
+        "mean": 187.95,
+        "std": 33.92,
+        "nonblack_frac": 1.0,
+        "distinct_rows": 1341
+      },
+      "right": {
+        "mean": 27.71,
+        "std": 37.21,
+        "nonblack_frac": 0.9999,
+        "distinct_rows": 14366
+      }
+    },
+    "mid": {
+      "t_s": 35.0,
+      "left": {
+        "mean": 187.93,
+        "std": 33.92,
+        "nonblack_frac": 1.0,
+        "distinct_rows": 1301
+      },
+      "right": {
+        "mean": 27.79,
+        "std": 37.53,
+        "nonblack_frac": 0.9999,
+        "distinct_rows": 14342
+      }
+    },
+    "last": {
+      "t_s": 68.6,
+      "left": {
+        "mean": 187.94,
+        "std": 33.92,
+        "nonblack_frac": 1.0,
+        "distinct_rows": 1281
+      },
+      "right": {
+        "mean": 27.85,
+        "std": 37.71,
+        "nonblack_frac": 0.9999,
+        "distinct_rows": 13636
+      }
+    }
+  },
+  "robot_motion": {
+    "trail_at_t_a": {
+      "pixels": 903,
+      "span_x": 465,
+      "span_y": 1039
+    },
+    "trail_at_t_b": {
+      "pixels": 1132,
+      "span_x": 462,
+      "span_y": 1043
+    },
+    "trail_pixel_growth": 229,
+    "moved": true,
+    "note": "trail pixel count, not bounding box: a patrol fills its area in instead of extending, so span saturates while the robot still moves"
+  },
+  "right_half_change": {
+    "t_a_s": 14.0,
+    "t_b_s": 56.0,
+    "changed_frac": 0.0017,
+    "mean_abs_diff": 0.51,
+    "free_frac_t_a": 0.0277,
+    "free_frac_t_b": 0.0276,
+    "free_growth": -0.0001,
+    "mapped_frac_t_a": 0.9781,
+    "mapped_frac_t_b": 0.9781,
+    "mapped_growth": 0.0
+  },
+  "display": {
+    "before": "pid=484 uptime_s=18907",
+    "after": "pid=484 uptime_s=19008",
+    "changed_during_capture": false
+  },
+  "localization_evidence": "",
+  "map_expected_static": false,
+  "verdict": {
+    "left_rendered": true,
+    "right_drawn": true,
+    "right_map_grew": true,
+    "robot_moved": true,
+    "display_stable": true,
+    "growth_criterion": "map_grew",
+    "pass": true
+  }
+}

@@ -1,0 +1,2615 @@
+{
+  "scope": "post-TF sensor/odom inputs; no truth or world geometry",
+  "frames": [
+    {
+      "frame": 0,
+      "stamp_s": 3.6,
+      "depth_delta_s": 0.10000000000000009,
+      "depth_odom_delta_s": 0.014000000000000234,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.005999999999999783,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 1,
+      "stamp_s": 5.6,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999997797,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999997797,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 2,
+      "stamp_s": 5.9,
+      "depth_delta_s": 0.10000000000000053,
+      "depth_odom_delta_s": 0.0019999999999997797,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 3,
+      "stamp_s": 6.3,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0009999999999994458,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0009999999999994458,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 4,
+      "stamp_s": 6.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999997797,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999997797,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 5,
+      "stamp_s": 8.8,
+      "depth_delta_s": 0.09999999999999964,
+      "depth_odom_delta_s": 0.002000000000000668,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 6,
+      "stamp_s": 9.2,
+      "depth_delta_s": 0.09999999999999964,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 7,
+      "stamp_s": 9.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.002000000000000668,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 8,
+      "stamp_s": 9.8,
+      "depth_delta_s": 0.09999999999999964,
+      "depth_odom_delta_s": 0.002000000000000668,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 9,
+      "stamp_s": 10.2,
+      "depth_delta_s": 0.09999999999999964,
+      "depth_odom_delta_s": 0.0009999999999994458,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 10,
+      "stamp_s": 10.5,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 11,
+      "stamp_s": 10.8,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 12,
+      "stamp_s": 11.2,
+      "depth_delta_s": 0.5,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 13,
+      "stamp_s": 11.5,
+      "depth_delta_s": 0.40000000000000036,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 14,
+      "stamp_s": 11.8,
+      "depth_delta_s": 0.09999999999999964,
+      "depth_odom_delta_s": 0.002000000000000668,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 15,
+      "stamp_s": 12.2,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.002000000000000668,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 16,
+      "stamp_s": 12.5,
+      "depth_delta_s": 0.09999999999999964,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 17,
+      "stamp_s": 12.8,
+      "depth_delta_s": 0.20000000000000107,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 18,
+      "stamp_s": 13.2,
+      "depth_delta_s": 0.09999999999999964,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 19,
+      "stamp_s": 13.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0009999999999994458,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0009999999999994458,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 20,
+      "stamp_s": 13.8,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 21,
+      "stamp_s": 14.2,
+      "depth_delta_s": 0.09999999999999964,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0030000000000001137,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 22,
+      "stamp_s": 14.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.002000000000000668,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 23,
+      "stamp_s": 14.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000012221,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 24,
+      "stamp_s": 15.2,
+      "depth_delta_s": 0.20000000000000107,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.008000000000000895,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 25,
+      "stamp_s": 15.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.002000000000000668,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 26,
+      "stamp_s": 15.8,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.002000000000000668,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 27,
+      "stamp_s": 16.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 254
+    },
+    {
+      "frame": 28,
+      "stamp_s": 16.5,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 29,
+      "stamp_s": 16.8,
+      "depth_delta_s": 0.5,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 30,
+      "stamp_s": 17.1,
+      "depth_delta_s": 0.3999999999999986,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 31,
+      "stamp_s": 17.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000012221,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 595
+    },
+    {
+      "frame": 32,
+      "stamp_s": 17.8,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 522
+    },
+    {
+      "frame": 33,
+      "stamp_s": 18.1,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 34,
+      "stamp_s": 18.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 717
+    },
+    {
+      "frame": 35,
+      "stamp_s": 18.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 654
+    },
+    {
+      "frame": 36,
+      "stamp_s": 19.1,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 37,
+      "stamp_s": 19.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 291
+    },
+    {
+      "frame": 38,
+      "stamp_s": 19.8,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 39,
+      "stamp_s": 20.1,
+      "depth_delta_s": 0.09999999999999787,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 84
+    },
+    {
+      "frame": 40,
+      "stamp_s": 20.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 167
+    },
+    {
+      "frame": 41,
+      "stamp_s": 20.8,
+      "depth_delta_s": 0.09999999999999787,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 264
+    },
+    {
+      "frame": 42,
+      "stamp_s": 21.1,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 43,
+      "stamp_s": 21.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 221
+    },
+    {
+      "frame": 44,
+      "stamp_s": 21.8,
+      "depth_delta_s": 0.09999999999999787,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 393
+    },
+    {
+      "frame": 45,
+      "stamp_s": 22.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 462
+    },
+    {
+      "frame": 46,
+      "stamp_s": 22.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 546
+    },
+    {
+      "frame": 47,
+      "stamp_s": 22.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000012221,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 631
+    },
+    {
+      "frame": 48,
+      "stamp_s": 23.1,
+      "depth_delta_s": 0.09999999999999787,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 678
+    },
+    {
+      "frame": 49,
+      "stamp_s": 23.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 686
+    },
+    {
+      "frame": 50,
+      "stamp_s": 23.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 696
+    },
+    {
+      "frame": 51,
+      "stamp_s": 24.1,
+      "depth_delta_s": 0.09999999999999787,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 699
+    },
+    {
+      "frame": 52,
+      "stamp_s": 24.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 699
+    },
+    {
+      "frame": 53,
+      "stamp_s": 24.8,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 700
+    },
+    {
+      "frame": 54,
+      "stamp_s": 25.1,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 55,
+      "stamp_s": 25.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 697
+    },
+    {
+      "frame": 56,
+      "stamp_s": 25.8,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 57,
+      "stamp_s": 26.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000012221,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 697
+    },
+    {
+      "frame": 58,
+      "stamp_s": 26.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 696
+    },
+    {
+      "frame": 59,
+      "stamp_s": 26.8,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 673
+    },
+    {
+      "frame": 60,
+      "stamp_s": 27.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 653
+    },
+    {
+      "frame": 61,
+      "stamp_s": 27.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 650
+    },
+    {
+      "frame": 62,
+      "stamp_s": 27.8,
+      "depth_delta_s": 0.09999999999999787,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 608
+    },
+    {
+      "frame": 63,
+      "stamp_s": 28.1,
+      "depth_delta_s": 0.09999999999999787,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 599
+    },
+    {
+      "frame": 64,
+      "stamp_s": 28.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 599
+    },
+    {
+      "frame": 65,
+      "stamp_s": 28.8,
+      "depth_delta_s": 0.09999999999999787,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 570
+    },
+    {
+      "frame": 66,
+      "stamp_s": 29.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 554
+    },
+    {
+      "frame": 67,
+      "stamp_s": 29.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 511
+    },
+    {
+      "frame": 68,
+      "stamp_s": 29.8,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 69,
+      "stamp_s": 30.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000012221,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 486
+    },
+    {
+      "frame": 70,
+      "stamp_s": 30.5,
+      "depth_delta_s": 0.1999999999999993,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0030000000000001137,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 71,
+      "stamp_s": 30.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000012221,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000012221,
+      "lidar_points": 850,
+      "depth_points": 456
+    },
+    {
+      "frame": 72,
+      "stamp_s": 31.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 442
+    },
+    {
+      "frame": 73,
+      "stamp_s": 31.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 473
+    },
+    {
+      "frame": 74,
+      "stamp_s": 31.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0019999999999988916,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0019999999999988916,
+      "lidar_points": 850,
+      "depth_points": 487
+    },
+    {
+      "frame": 75,
+      "stamp_s": 32.1,
+      "depth_delta_s": 0.19999999999999574,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 76,
+      "stamp_s": 32.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 415
+    },
+    {
+      "frame": 77,
+      "stamp_s": 32.9,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 347
+    },
+    {
+      "frame": 78,
+      "stamp_s": 33.2,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 312
+    },
+    {
+      "frame": 79,
+      "stamp_s": 33.6,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 80,
+      "stamp_s": 34.0,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 221
+    },
+    {
+      "frame": 81,
+      "stamp_s": 34.4,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 82,
+      "stamp_s": 34.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 181
+    },
+    {
+      "frame": 83,
+      "stamp_s": 35.1,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 164
+    },
+    {
+      "frame": 84,
+      "stamp_s": 35.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 141
+    },
+    {
+      "frame": 85,
+      "stamp_s": 35.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 124
+    },
+    {
+      "frame": 86,
+      "stamp_s": 36.2,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 121
+    },
+    {
+      "frame": 87,
+      "stamp_s": 36.6,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 102
+    },
+    {
+      "frame": 88,
+      "stamp_s": 37.0,
+      "depth_delta_s": 0.3999999999999986,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 89,
+      "stamp_s": 37.4,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 183
+    },
+    {
+      "frame": 90,
+      "stamp_s": 37.7,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 157
+    },
+    {
+      "frame": 91,
+      "stamp_s": 38.1,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 92,
+      "stamp_s": 38.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 181
+    },
+    {
+      "frame": 93,
+      "stamp_s": 38.9,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 215
+    },
+    {
+      "frame": 94,
+      "stamp_s": 39.2,
+      "depth_delta_s": 0.19999999999999574,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 95,
+      "stamp_s": 39.6,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 178
+    },
+    {
+      "frame": 96,
+      "stamp_s": 40.0,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0009999999999976694,
+      "lidar_points": 850,
+      "depth_points": 181
+    },
+    {
+      "frame": 97,
+      "stamp_s": 40.4,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0009999999999976694,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 98,
+      "stamp_s": 40.7,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 99,
+      "stamp_s": 41.1,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 148
+    },
+    {
+      "frame": 100,
+      "stamp_s": 41.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 159
+    },
+    {
+      "frame": 101,
+      "stamp_s": 41.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0009999999999976694,
+      "lidar_points": 850,
+      "depth_points": 157
+    },
+    {
+      "frame": 102,
+      "stamp_s": 42.2,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0030000000000001137,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0030000000000001137,
+      "lidar_points": 850,
+      "depth_points": 200
+    },
+    {
+      "frame": 103,
+      "stamp_s": 42.6,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 303
+    },
+    {
+      "frame": 104,
+      "stamp_s": 43.0,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 419
+    },
+    {
+      "frame": 105,
+      "stamp_s": 43.4,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 519
+    },
+    {
+      "frame": 106,
+      "stamp_s": 43.7,
+      "depth_delta_s": 0.19999999999999574,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 107,
+      "stamp_s": 44.1,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 583
+    },
+    {
+      "frame": 108,
+      "stamp_s": 44.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 622
+    },
+    {
+      "frame": 109,
+      "stamp_s": 44.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 654
+    },
+    {
+      "frame": 110,
+      "stamp_s": 45.2,
+      "depth_delta_s": 0.19999999999999574,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 111,
+      "stamp_s": 45.6,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 671
+    },
+    {
+      "frame": 112,
+      "stamp_s": 46.0,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0009999999999976694,
+      "lidar_points": 850,
+      "depth_points": 681
+    },
+    {
+      "frame": 113,
+      "stamp_s": 46.4,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 696
+    },
+    {
+      "frame": 114,
+      "stamp_s": 46.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 692
+    },
+    {
+      "frame": 115,
+      "stamp_s": 47.1,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 694
+    },
+    {
+      "frame": 116,
+      "stamp_s": 47.5,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 117,
+      "stamp_s": 47.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 498
+    },
+    {
+      "frame": 118,
+      "stamp_s": 48.2,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 470
+    },
+    {
+      "frame": 119,
+      "stamp_s": 48.6,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 396
+    },
+    {
+      "frame": 120,
+      "stamp_s": 49.0,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 320
+    },
+    {
+      "frame": 121,
+      "stamp_s": 49.4,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0009999999999976694,
+      "lidar_points": 850,
+      "depth_points": 260
+    },
+    {
+      "frame": 122,
+      "stamp_s": 49.7,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 258
+    },
+    {
+      "frame": 123,
+      "stamp_s": 50.1,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 243
+    },
+    {
+      "frame": 124,
+      "stamp_s": 50.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 235
+    },
+    {
+      "frame": 125,
+      "stamp_s": 50.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 219
+    },
+    {
+      "frame": 126,
+      "stamp_s": 51.2,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 211
+    },
+    {
+      "frame": 127,
+      "stamp_s": 51.6,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 220
+    },
+    {
+      "frame": 128,
+      "stamp_s": 52.0,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0009999999999976694,
+      "lidar_points": 850,
+      "depth_points": 200
+    },
+    {
+      "frame": 129,
+      "stamp_s": 52.4,
+      "depth_delta_s": 0.19999999999999574,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 130,
+      "stamp_s": 52.7,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 207
+    },
+    {
+      "frame": 131,
+      "stamp_s": 53.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 187
+    },
+    {
+      "frame": 132,
+      "stamp_s": 53.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 435
+    },
+    {
+      "frame": 133,
+      "stamp_s": 53.9,
+      "depth_delta_s": 0.19999999999999574,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 134,
+      "stamp_s": 54.2,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 135,
+      "stamp_s": 54.6,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 693
+    },
+    {
+      "frame": 136,
+      "stamp_s": 55.0,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 744
+    },
+    {
+      "frame": 137,
+      "stamp_s": 55.4,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 701
+    },
+    {
+      "frame": 138,
+      "stamp_s": 55.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 672
+    },
+    {
+      "frame": 139,
+      "stamp_s": 56.1,
+      "depth_delta_s": 0.19999999999999574,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 140,
+      "stamp_s": 56.5,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 618
+    },
+    {
+      "frame": 141,
+      "stamp_s": 56.9,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 565
+    },
+    {
+      "frame": 142,
+      "stamp_s": 57.2,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 541
+    },
+    {
+      "frame": 143,
+      "stamp_s": 57.6,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 510
+    },
+    {
+      "frame": 144,
+      "stamp_s": 58.0,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 482
+    },
+    {
+      "frame": 145,
+      "stamp_s": 58.4,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 472
+    },
+    {
+      "frame": 146,
+      "stamp_s": 58.7,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 419
+    },
+    {
+      "frame": 147,
+      "stamp_s": 59.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 414
+    },
+    {
+      "frame": 148,
+      "stamp_s": 59.5,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 149,
+      "stamp_s": 59.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0009999999999976694,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0009999999999976694,
+      "lidar_points": 850,
+      "depth_points": 461
+    },
+    {
+      "frame": 150,
+      "stamp_s": 60.2,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 418
+    },
+    {
+      "frame": 151,
+      "stamp_s": 60.6,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 537
+    },
+    {
+      "frame": 152,
+      "stamp_s": 61.0,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 552
+    },
+    {
+      "frame": 153,
+      "stamp_s": 61.4,
+      "depth_delta_s": 0.19999999999999574,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0009999999999976694,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 154,
+      "stamp_s": 61.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 615
+    },
+    {
+      "frame": 155,
+      "stamp_s": 62.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 622
+    },
+    {
+      "frame": 156,
+      "stamp_s": 62.5,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 646
+    },
+    {
+      "frame": 157,
+      "stamp_s": 62.9,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 639
+    },
+    {
+      "frame": 158,
+      "stamp_s": 63.2,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 640
+    },
+    {
+      "frame": 159,
+      "stamp_s": 63.6,
+      "depth_delta_s": 0.10000000000000142,
+      "depth_odom_delta_s": 0.0020000000000024443,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 640
+    },
+    {
+      "frame": 160,
+      "stamp_s": 64.0,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0030000000000001137,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000024443,
+      "lidar_points": 850,
+      "depth_points": 647
+    },
+    {
+      "frame": 161,
+      "stamp_s": 64.4,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 162,
+      "stamp_s": 64.8,
+      "depth_delta_s": 0.5999999999999943,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 163,
+      "stamp_s": 65.2,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0040000000000048885,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 164,
+      "stamp_s": 65.6,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.003999999999990678,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.003999999999990678,
+      "lidar_points": 850,
+      "depth_points": 297
+    },
+    {
+      "frame": 165,
+      "stamp_s": 65.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 326
+    },
+    {
+      "frame": 166,
+      "stamp_s": 66.3,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 402
+    },
+    {
+      "frame": 167,
+      "stamp_s": 66.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 421
+    },
+    {
+      "frame": 168,
+      "stamp_s": 67.1,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 440
+    },
+    {
+      "frame": 169,
+      "stamp_s": 67.4,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 447
+    },
+    {
+      "frame": 170,
+      "stamp_s": 67.8,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.000999999999990564,
+      "lidar_points": 850,
+      "depth_points": 438
+    },
+    {
+      "frame": 171,
+      "stamp_s": 68.2,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.000999999999990564,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 420
+    },
+    {
+      "frame": 172,
+      "stamp_s": 68.6,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 427
+    },
+    {
+      "frame": 173,
+      "stamp_s": 68.9,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 435
+    },
+    {
+      "frame": 174,
+      "stamp_s": 69.3,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 436
+    },
+    {
+      "frame": 175,
+      "stamp_s": 69.7,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 176,
+      "stamp_s": 70.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 431
+    },
+    {
+      "frame": 177,
+      "stamp_s": 70.4,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 178,
+      "stamp_s": 70.8,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 179,
+      "stamp_s": 71.2,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.007999999999995566,
+      "lidar_points": 850,
+      "depth_points": 371
+    },
+    {
+      "frame": 180,
+      "stamp_s": 71.6,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 369
+    },
+    {
+      "frame": 181,
+      "stamp_s": 71.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 350
+    },
+    {
+      "frame": 182,
+      "stamp_s": 72.3,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 337
+    },
+    {
+      "frame": 183,
+      "stamp_s": 72.7,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 330
+    },
+    {
+      "frame": 184,
+      "stamp_s": 73.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 315
+    },
+    {
+      "frame": 185,
+      "stamp_s": 73.4,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 291
+    },
+    {
+      "frame": 186,
+      "stamp_s": 73.8,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 187,
+      "stamp_s": 74.2,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 227
+    },
+    {
+      "frame": 188,
+      "stamp_s": 74.6,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 214
+    },
+    {
+      "frame": 189,
+      "stamp_s": 74.9,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 174
+    },
+    {
+      "frame": 190,
+      "stamp_s": 75.3,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 191,
+      "stamp_s": 75.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 192,
+      "stamp_s": 76.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 193,
+      "stamp_s": 76.4,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 194,
+      "stamp_s": 76.8,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 195,
+      "stamp_s": 77.2,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 196,
+      "stamp_s": 77.6,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 197,
+      "stamp_s": 77.9,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.000999999999990564,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 198,
+      "stamp_s": 78.3,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 199,
+      "stamp_s": 78.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 200,
+      "stamp_s": 79.1,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 201,
+      "stamp_s": 79.4,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 202,
+      "stamp_s": 79.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 203,
+      "stamp_s": 80.2,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 204,
+      "stamp_s": 80.6,
+      "depth_delta_s": 0.19999999999998863,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 205,
+      "stamp_s": 80.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 206,
+      "stamp_s": 81.3,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.000999999999990564,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.000999999999990564,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 207,
+      "stamp_s": 81.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 208,
+      "stamp_s": 82.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 209,
+      "stamp_s": 82.4,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 210,
+      "stamp_s": 82.8,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 211,
+      "stamp_s": 83.2,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 212,
+      "stamp_s": 83.6,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 213,
+      "stamp_s": 83.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 214,
+      "stamp_s": 84.3,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 215,
+      "stamp_s": 84.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 216,
+      "stamp_s": 85.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 217,
+      "stamp_s": 85.4,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 218,
+      "stamp_s": 85.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 219,
+      "stamp_s": 86.2,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 220,
+      "stamp_s": 86.6,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 221,
+      "stamp_s": 86.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 222,
+      "stamp_s": 87.3,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 223,
+      "stamp_s": 87.7,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 224,
+      "stamp_s": 88.1,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 225,
+      "stamp_s": 88.4,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 226,
+      "stamp_s": 88.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.000999999999990564,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.000999999999990564,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 227,
+      "stamp_s": 89.2,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 228,
+      "stamp_s": 89.6,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 229,
+      "stamp_s": 89.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 230,
+      "stamp_s": 90.3,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0030000000000001137,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 231,
+      "stamp_s": 90.7,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 232,
+      "stamp_s": 91.1,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 233,
+      "stamp_s": 91.4,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 234,
+      "stamp_s": 91.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.000999999999990564,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.000999999999990564,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 235,
+      "stamp_s": 92.2,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0010000000000047748,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 236,
+      "stamp_s": 92.6,
+      "depth_delta_s": 0.19999999999998863,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 237,
+      "stamp_s": 92.9,
+      "depth_delta_s": 0.5,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 238,
+      "stamp_s": 93.3,
+      "depth_delta_s": 0.4000000000000057,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.000999999999990564,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 239,
+      "stamp_s": 93.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 240,
+      "stamp_s": 94.1,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.0030000000000001137,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 241,
+      "stamp_s": 94.4,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 242,
+      "stamp_s": 94.8,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 243,
+      "stamp_s": 95.2,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 244,
+      "stamp_s": 95.6,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 245,
+      "stamp_s": 95.9,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 246,
+      "stamp_s": 96.3,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 247,
+      "stamp_s": 96.7,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 248,
+      "stamp_s": 97.1,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0030000000000001137,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 249,
+      "stamp_s": 97.4,
+      "depth_delta_s": 0.19999999999998863,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0030000000000001137,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 250,
+      "stamp_s": 97.8,
+      "depth_delta_s": 0.10000000000000853,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 251,
+      "stamp_s": 98.2,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 252,
+      "stamp_s": 98.6,
+      "depth_delta_s": 0.20000000000000284,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 253,
+      "stamp_s": 98.9,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 254,
+      "stamp_s": 99.3,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.0010000000000047748,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 255,
+      "stamp_s": 99.7,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0020000000000095497,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0020000000000095497,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 256,
+      "stamp_s": 100.1,
+      "depth_delta_s": 0.29999999999999716,
+      "depth_odom_delta_s": null,
+      "depth_motion_compensated": false,
+      "odom_delta_s": 0.000999999999990564,
+      "lidar_points": 850,
+      "depth_points": 0
+    },
+    {
+      "frame": 257,
+      "stamp_s": 100.4,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.0030000000000001137,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0030000000000001137,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 258,
+      "stamp_s": 100.8,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.000999999999990564,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.000999999999990564,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 259,
+      "stamp_s": 101.2,
+      "depth_delta_s": 0.09999999999999432,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.0030000000000001137,
+      "lidar_points": 850,
+      "depth_points": 149
+    },
+    {
+      "frame": 260,
+      "stamp_s": 101.6,
+      "depth_delta_s": 0.0,
+      "depth_odom_delta_s": 0.001999999999995339,
+      "depth_motion_compensated": true,
+      "odom_delta_s": 0.001999999999995339,
+      "lidar_points": 850,
+      "depth_points": 149
+    }
+  ]
+}

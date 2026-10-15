@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "kind": "author_desktop_demo",
+  "status": "executed",
+  "exit_code": 0,
+  "method": "dufomap",
+  "command": [
+    "/home/qzl/projects/SLAM_Learning/.venv/bin/python",
+    "-m",
+    "slam_learning.cli",
+    "_worker",
+    "--root",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-202413-author-live-dufomap-2551ae/experiment",
+    "--method",
+    "dufomap",
+    "--output",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261014-202413-author-live-dufomap-2551ae/experiment/results/runs/dufomap-9958d09fff88",
+    "--frames",
+    "0"
+  ],
+  "scope": "141 released KITTI-00 scans, pinned author pipeline; paper comparison as native record",
+  "metrics": {
+    "counts": {
+      "kept_static": 16917434,
+      "removed_static": 348813,
+      "removed_dynamic": 94738,
+      "kept_dynamic": 1245
+    },
+    "SA": 97.97979838930834,
+    "DA": 98.70289530437681,
+    "AA": 98.34068223458615,
+    "HA": 98.34001762682132,
+    "gt_points": 17362230,
+    "map_points": 15995399,
+    "threshold_m": 0.05,
+    "evaluator": "independent scipy nearest-neighbor implementation of benchmark rule; no PCL cross-check claimed"
+  },
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-202413-author-live-dufomap-2551ae",
+  "live_state": {
+    "enabled": true,
+    "scope": "Actual RViz+terminal capture during new author execution; read-only current state, display thinning; observer overhead included"
+  },
+  "timing": {
+    "execution": {
+      "duration_s": 61.600000000000335,
+      "frames": 308,
+      "fps": 5,
+      "video_duration_s": 61.666667,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "artifacts": {
+    "author-live.rviz": {
+      "sha256": "b324c2c736b55b40055a36d930d2504857008b71a258f679236b1cf3a87a7a77",
+      "bytes": 2477,
+      "availability": "portable"
+    },
+    "author-rviz.log": {
+      "sha256": "6721ca5541bee81d04242d9641721ca214101df5695aed1316fdcae4b45a5551",
+      "bytes": 474,
+      "availability": "portable"
+    },
+    "capture-filter.txt": {
+      "sha256": "66f85fa69c02b3312df36e54953195d149429082af4bf5a6ed92dd411606e9ab",
+      "bytes": 450,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "8474ac30f2689fab94c4d18999581b7b5181b1bce075b91d0b8487baa560be11",
+      "bytes": 308838,
+      "availability": "portable"
+    },
+    "execution.json": {
+      "sha256": "bd8053cc38bd2ee4cd6fbd1eb0c3be251283b7ac96ef3127a370c98dcfc5fc5a",
+      "bytes": 11405,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "6ba66340c5c289f506963e7b3dc192cc7fd2efc768c1bb43909964b7b4d8edf2",
+      "bytes": 916646,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "1289d53bc14a19e51e8d7a98c53d68267100be1bb9266df9fa83bc6a0bb5a1e3",
+      "bytes": 150806,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "a1642651eec2a0edb17c116aa72e4ce42ac33603317429b94244bdb524f793bf",
+      "bytes": 570937,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "9e0c776f959a4a98163b58a40ea85c30d4272f94c8ed795b09c7065ff22e9e64",
+      "bytes": 628740,
+      "availability": "portable"
+    },
+    "live-events.jsonl": {
+      "sha256": "4213786eb3934da31ef7eaa8dc4b2ac908615e87a6fd5d6e63869e39867e42b0",
+      "bytes": 14173,
+      "availability": "portable"
+    },
+    "live-published.jsonl": {
+      "sha256": "a175deac35ba68bcacde154bb5ae83c5a7380288cf9759bace42d17fd5fe0d35",
+      "bytes": 15986,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "4837ac8fbfd489b6c8c6b08d972449bf8745af4fbf3796cb925267287c9f05d7",
+      "bytes": 448,
+      "availability": "portable"
+    },
+    "terminal.log": {
+      "sha256": "ba9a39d484f912fb6cff7f82caeefb49e2b67804a3cc18ec30dd306245bdb28b",
+      "bytes": 12517,
+      "availability": "portable"
+    },
+    "timing.json": {
+      "sha256": "02f4c053791d42876070c72de3bab842e52afb9c626ad72dda40594f447ed28f",
+      "bytes": 228,
+      "availability": "portable"
+    },
+    "native-run/metrics.json": {
+      "sha256": "e43b3371a9b3f15923f177b41b66194b05a717c3ea702b20640a1050b5e4e676",
+      "bytes": 432,
+      "availability": "portable"
+    },
+    "native-run/record.json": {
+      "sha256": "568302a661434754dfe8a115ad132a77468d6371cbd41b9999fa308085c6dff2",
+      "bytes": 12938,
+      "availability": "portable"
+    },
+    "native-run/run.log": {
+      "sha256": "bb1304769fe1d6b6769bbb8847e25c2dd116165a0a0b2b0b4476eccc9db4d534",
+      "bytes": 575,
+      "availability": "portable"
+    },
+    "native-run/worker.json": {
+      "sha256": "94ddbc81b992535e53b55fc594950fce1e19f664961fc500593416b37a01d95e",
+      "bytes": 394,
+      "availability": "portable"
+    }
+  },
+  "native_output_path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-202413-author-live-dufomap-2551ae\\native-run\\cleaned.pcd"
+}

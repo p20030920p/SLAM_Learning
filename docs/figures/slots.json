@@ -28,15 +28,28 @@
       "source_artifact": "media/preview.gif"
     },
     {
-      "id": "conceptgraphs",
+      "id": "adam-mcl",
       "status": "published",
-      "path": "results/reference/conceptgraphs/media/preview.gif",
+      "path": "results/reference/adam-mcl/media/preview.gif",
       "caption": {
-        "en": "ConceptGraphs saved-map replay",
-        "zh": "ConceptGraphs 已保存结果回放"
+        "en": "AdaM-MCL recorded evaluation session",
+        "zh": "AdaM-MCL 评测会话录制"
       },
       "source_records": [
-        "results/reference/conceptgraphs/record.json"
+        "results/reference/adam-mcl/record.json"
+      ],
+      "source_artifact": "media/preview.gif"
+    },
+    {
+      "id": "ir-mcl",
+      "status": "published",
+      "path": "results/reference/ir-mcl/media/preview.gif",
+      "caption": {
+        "en": "IR-MCL saved localization replay",
+        "zh": "IR-MCL 已保存定位结果回放"
+      },
+      "source_records": [
+        "results/reference/ir-mcl/record.json"
       ],
       "source_artifact": "media/preview.gif"
     },
@@ -78,6 +91,1247 @@
         "docs/media/hardware/record.json"
       ],
       "source_artifact": "l2.gif"
+    },
+    {
+      "id": "robot-corridor-mapping-execution",
+      "status": "published",
+      "path": "results/reference/robot-corridor-mapping/execution.gif",
+      "caption": {
+        "en": "robot-corridor-mapping: execution",
+        "zh": "robot-corridor-mapping：现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-corridor-mapping/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "robot-degradation-execution",
+      "status": "published",
+      "path": "results/reference/robot-degradation/execution.gif",
+      "caption": {
+        "en": "robot-degradation: execution",
+        "zh": "robot-degradation：现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-degradation/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "robot-degradation-result",
+      "status": "published",
+      "path": "results/reference/robot-degradation/result.gif",
+      "caption": {
+        "en": "robot-degradation: result",
+        "zh": "robot-degradation：本次结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-degradation/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-dynamic-execution",
+      "status": "published",
+      "path": "results/reference/robot-dynamic/execution.gif",
+      "caption": {
+        "en": "robot-dynamic: execution",
+        "zh": "robot-dynamic：现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-dynamic/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "robot-dynamic-result",
+      "status": "published",
+      "path": "results/reference/robot-dynamic/result.gif",
+      "caption": {
+        "en": "robot-dynamic: result",
+        "zh": "robot-dynamic：本次结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-dynamic/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-dynamic-mapping-execution",
+      "status": "published",
+      "path": "results/reference/robot-dynamic-mapping/execution.gif",
+      "caption": {
+        "en": "robot-dynamic-mapping: execution",
+        "zh": "robot-dynamic-mapping：现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-dynamic-mapping/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "robot-large-change-execution",
+      "status": "published",
+      "path": "results/reference/robot-large-change/execution.gif",
+      "caption": {
+        "en": "robot-large-change: execution",
+        "zh": "robot-large-change：现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-large-change/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "robot-large-change-result",
+      "status": "published",
+      "path": "results/reference/robot-large-change/result.gif",
+      "caption": {
+        "en": "robot-large-change: result",
+        "zh": "robot-large-change：本次结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-large-change/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-static-execution",
+      "status": "published",
+      "path": "results/reference/robot-static/execution.gif",
+      "caption": {
+        "en": "robot-static: execution",
+        "zh": "robot-static：现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-static/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "robot-static-result",
+      "status": "published",
+      "path": "results/reference/robot-static/result.gif",
+      "caption": {
+        "en": "robot-static: result",
+        "zh": "robot-static：本次结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-static/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-static-mapping-execution",
+      "status": "published",
+      "path": "results/reference/robot-static-mapping/execution.gif",
+      "caption": {
+        "en": "robot-static-mapping: execution",
+        "zh": "robot-static-mapping：现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-static-mapping/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "desktop-adam-mcl-execution",
+      "status": "published",
+      "path": "results/reference/desktop-adam-mcl/execution.gif",
+      "caption": {
+        "en": "desktop-adam-mcl: execution",
+        "zh": "desktop-adam-mcl：现场执行"
+      },
+      "source_records": [
+        "results/reference/desktop-adam-mcl/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "desktop-adam-mcl-result",
+      "status": "published",
+      "path": "results/reference/desktop-adam-mcl/result.gif",
+      "caption": {
+        "en": "desktop-adam-mcl: result",
+        "zh": "desktop-adam-mcl：本次结果回放"
+      },
+      "source_records": [
+        "results/reference/desktop-adam-mcl/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "desktop-beautymap-execution",
+      "status": "published",
+      "path": "results/reference/desktop-beautymap/execution.gif",
+      "caption": {
+        "en": "desktop-beautymap: execution",
+        "zh": "desktop-beautymap：现场执行"
+      },
+      "source_records": [
+        "results/reference/desktop-beautymap/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "desktop-beautymap-result",
+      "status": "published",
+      "path": "results/reference/desktop-beautymap/result.gif",
+      "caption": {
+        "en": "desktop-beautymap: result",
+        "zh": "desktop-beautymap：本次结果回放"
+      },
+      "source_records": [
+        "results/reference/desktop-beautymap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "desktop-dufomap-execution",
+      "status": "published",
+      "path": "results/reference/desktop-dufomap/execution.gif",
+      "caption": {
+        "en": "desktop-dufomap: execution",
+        "zh": "desktop-dufomap：现场执行"
+      },
+      "source_records": [
+        "results/reference/desktop-dufomap/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "desktop-dufomap-result",
+      "status": "published",
+      "path": "results/reference/desktop-dufomap/result.gif",
+      "caption": {
+        "en": "desktop-dufomap: result",
+        "zh": "desktop-dufomap：本次结果回放"
+      },
+      "source_records": [
+        "results/reference/desktop-dufomap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "desktop-ir-mcl-execution",
+      "status": "published",
+      "path": "results/reference/desktop-ir-mcl/execution.gif",
+      "caption": {
+        "en": "desktop-ir-mcl: execution",
+        "zh": "desktop-ir-mcl：现场执行"
+      },
+      "source_records": [
+        "results/reference/desktop-ir-mcl/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "desktop-ir-mcl-result",
+      "status": "published",
+      "path": "results/reference/desktop-ir-mcl/result.gif",
+      "caption": {
+        "en": "desktop-ir-mcl: result",
+        "zh": "desktop-ir-mcl：本次结果回放"
+      },
+      "source_records": [
+        "results/reference/desktop-ir-mcl/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-static-raw-result",
+      "status": "published",
+      "path": "results/reference/robot-static/methods/raw/result.gif",
+      "caption": {
+        "en": "Pure static: raw, saved native AMCL result replay",
+        "zh": "纯静态：raw 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-static/methods/raw/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-static-dufomap-result",
+      "status": "published",
+      "path": "results/reference/robot-static/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Pure static: dufomap, saved native AMCL result replay",
+        "zh": "纯静态：dufomap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-static/methods/dufomap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-static-beautymap-result",
+      "status": "published",
+      "path": "results/reference/robot-static/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Pure static: beautymap, saved native AMCL result replay",
+        "zh": "纯静态：beautymap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-static/methods/beautymap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-dynamic-raw-result",
+      "status": "published",
+      "path": "results/reference/robot-dynamic/methods/raw/result.gif",
+      "caption": {
+        "en": "Moving obstacles: raw, saved native AMCL result replay",
+        "zh": "运动障碍物：raw 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-dynamic/methods/raw/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-dynamic-dufomap-result",
+      "status": "published",
+      "path": "results/reference/robot-dynamic/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Moving obstacles: dufomap, saved native AMCL result replay",
+        "zh": "运动障碍物：dufomap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-dynamic/methods/dufomap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-dynamic-beautymap-result",
+      "status": "published",
+      "path": "results/reference/robot-dynamic/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Moving obstacles: beautymap, saved native AMCL result replay",
+        "zh": "运动障碍物：beautymap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-dynamic/methods/beautymap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-dynamic-clean_raw-result",
+      "status": "published",
+      "path": "results/reference/robot-dynamic/methods/clean_raw/result.gif",
+      "caption": {
+        "en": "Moving obstacles: clean_raw, saved native AMCL result replay",
+        "zh": "运动障碍物：clean_raw 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-dynamic/methods/clean_raw/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-dynamic-clean_dufomap-result",
+      "status": "published",
+      "path": "results/reference/robot-dynamic/methods/clean_dufomap/result.gif",
+      "caption": {
+        "en": "Moving obstacles: clean_dufomap, saved native AMCL result replay",
+        "zh": "运动障碍物：clean_dufomap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-dynamic/methods/clean_dufomap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-dynamic-clean_beautymap-result",
+      "status": "published",
+      "path": "results/reference/robot-dynamic/methods/clean_beautymap/result.gif",
+      "caption": {
+        "en": "Moving obstacles: clean_beautymap, saved native AMCL result replay",
+        "zh": "运动障碍物：clean_beautymap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-dynamic/methods/clean_beautymap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-large-change-raw-result",
+      "status": "published",
+      "path": "results/reference/robot-large-change/methods/raw/result.gif",
+      "caption": {
+        "en": "Persistent change: raw, saved native AMCL result replay",
+        "zh": "持久结构变化：raw 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-large-change/methods/raw/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-large-change-dufomap-result",
+      "status": "published",
+      "path": "results/reference/robot-large-change/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Persistent change: dufomap, saved native AMCL result replay",
+        "zh": "持久结构变化：dufomap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-large-change/methods/dufomap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-large-change-beautymap-result",
+      "status": "published",
+      "path": "results/reference/robot-large-change/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Persistent change: beautymap, saved native AMCL result replay",
+        "zh": "持久结构变化：beautymap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-large-change/methods/beautymap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-degradation-raw-result",
+      "status": "published",
+      "path": "results/reference/robot-degradation/methods/raw/result.gif",
+      "caption": {
+        "en": "Corridor degradation: raw, saved native AMCL result replay",
+        "zh": "走廊退化：raw 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-degradation/methods/raw/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-degradation-dufomap-result",
+      "status": "published",
+      "path": "results/reference/robot-degradation/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Corridor degradation: dufomap, saved native AMCL result replay",
+        "zh": "走廊退化：dufomap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-degradation/methods/dufomap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-degradation-beautymap-result",
+      "status": "published",
+      "path": "results/reference/robot-degradation/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Corridor degradation: beautymap, saved native AMCL result replay",
+        "zh": "走廊退化：beautymap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-degradation/methods/beautymap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-degradation-degraded_raw-result",
+      "status": "published",
+      "path": "results/reference/robot-degradation/methods/degraded_raw/result.gif",
+      "caption": {
+        "en": "Corridor degradation: degraded_raw, saved native AMCL result replay",
+        "zh": "走廊退化：degraded_raw 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-degradation/methods/degraded_raw/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-degradation-degraded_dufomap-result",
+      "status": "published",
+      "path": "results/reference/robot-degradation/methods/degraded_dufomap/result.gif",
+      "caption": {
+        "en": "Corridor degradation: degraded_dufomap, saved native AMCL result replay",
+        "zh": "走廊退化：degraded_dufomap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-degradation/methods/degraded_dufomap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-degradation-degraded_beautymap-result",
+      "status": "published",
+      "path": "results/reference/robot-degradation/methods/degraded_beautymap/result.gif",
+      "caption": {
+        "en": "Corridor degradation: degraded_beautymap, saved native AMCL result replay",
+        "zh": "走廊退化：degraded_beautymap 原生 AMCL 保存结果回放"
+      },
+      "source_records": [
+        "results/reference/robot-degradation/methods/degraded_beautymap/record.json"
+      ],
+      "source_artifact": "result.gif"
+    },
+    {
+      "id": "robot-live-static-raw-native",
+      "status": "published",
+      "path": "results/reference/robot-live-static/executions/raw.gif",
+      "caption": {
+        "en": "Pure static: actual Raw RViz live execution",
+        "zh": "纯静态：Raw 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-raw-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-static/methods/raw/result.gif",
+      "caption": {
+        "en": "Pure static: Raw saved native updates",
+        "zh": "纯静态：Raw 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/methods/raw/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-dufomap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-static/executions/dufomap.gif",
+      "caption": {
+        "en": "Pure static: actual DUFOMap RViz live execution",
+        "zh": "纯静态：DUFOMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-dufomap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-static/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Pure static: DUFOMap saved native updates",
+        "zh": "纯静态：DUFOMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/methods/dufomap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-beautymap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-static/executions/beautymap.gif",
+      "caption": {
+        "en": "Pure static: actual BeautyMap RViz live execution",
+        "zh": "纯静态：BeautyMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-static-beautymap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-static/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Pure static: BeautyMap saved native updates",
+        "zh": "纯静态：BeautyMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-static/methods/beautymap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-raw-native",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/executions/raw.gif",
+      "caption": {
+        "en": "Moving obstacles: actual Raw RViz live execution",
+        "zh": "运动障碍物：Raw 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-raw-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/methods/raw/result.gif",
+      "caption": {
+        "en": "Moving obstacles: Raw saved native updates",
+        "zh": "运动障碍物：Raw 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/methods/raw/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-dufomap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/executions/dufomap.gif",
+      "caption": {
+        "en": "Moving obstacles: actual DUFOMap RViz live execution",
+        "zh": "运动障碍物：DUFOMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-dufomap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Moving obstacles: DUFOMap saved native updates",
+        "zh": "运动障碍物：DUFOMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/methods/dufomap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-beautymap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/executions/beautymap.gif",
+      "caption": {
+        "en": "Moving obstacles: actual BeautyMap RViz live execution",
+        "zh": "运动障碍物：BeautyMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-dynamic-beautymap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-dynamic/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Moving obstacles: BeautyMap saved native updates",
+        "zh": "运动障碍物：BeautyMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-dynamic/methods/beautymap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-raw-native",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/executions/raw.gif",
+      "caption": {
+        "en": "Persistent change: actual Raw RViz live execution",
+        "zh": "持久结构变化：Raw 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-raw-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/methods/raw/result.gif",
+      "caption": {
+        "en": "Persistent change: Raw saved native updates",
+        "zh": "持久结构变化：Raw 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/methods/raw/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-dufomap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/executions/dufomap.gif",
+      "caption": {
+        "en": "Persistent change: actual DUFOMap RViz live execution",
+        "zh": "持久结构变化：DUFOMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-dufomap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/methods/dufomap/result.gif",
+      "caption": {
+        "en": "Persistent change: DUFOMap saved native updates",
+        "zh": "持久结构变化：DUFOMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/methods/dufomap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-beautymap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/executions/beautymap.gif",
+      "caption": {
+        "en": "Persistent change: actual BeautyMap RViz live execution",
+        "zh": "持久结构变化：BeautyMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-large-change-beautymap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-large-change/methods/beautymap/result.gif",
+      "caption": {
+        "en": "Persistent change: BeautyMap saved native updates",
+        "zh": "持久结构变化：BeautyMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-large-change/methods/beautymap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_raw-native",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/executions/degraded_raw.gif",
+      "caption": {
+        "en": "Corridor degradation: actual Raw RViz live execution",
+        "zh": "走廊退化：Raw 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_raw-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/methods/degraded_raw/result.gif",
+      "caption": {
+        "en": "Corridor degradation: Raw saved native updates",
+        "zh": "走廊退化：Raw 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/methods/degraded_raw/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_dufomap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/executions/degraded_dufomap.gif",
+      "caption": {
+        "en": "Corridor degradation: actual DUFOMap RViz live execution",
+        "zh": "走廊退化：DUFOMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_dufomap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/methods/degraded_dufomap/result.gif",
+      "caption": {
+        "en": "Corridor degradation: DUFOMap saved native updates",
+        "zh": "走廊退化：DUFOMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/methods/degraded_dufomap/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_beautymap-native",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/executions/degraded_beautymap.gif",
+      "caption": {
+        "en": "Corridor degradation: actual BeautyMap RViz live execution",
+        "zh": "走廊退化：BeautyMap 独立 RViz 现场执行"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/record.json"
+      ]
+    },
+    {
+      "id": "robot-live-degradation-degraded_beautymap-replay",
+      "status": "published",
+      "path": "results/reference/robot-live-degradation/methods/degraded_beautymap/result.gif",
+      "caption": {
+        "en": "Corridor degradation: BeautyMap saved native updates",
+        "zh": "走廊退化：BeautyMap 本次原生更新回放"
+      },
+      "source_records": [
+        "results/reference/robot-live-degradation/methods/degraded_beautymap/record.json"
+      ]
+    },
+    {
+      "id": "desktop-live-dufomap",
+      "status": "published",
+      "path": "results/reference/desktop-live-dufomap/execution.gif",
+      "caption": {
+        "en": "dufomap: actual native computation and live RViz",
+        "zh": "dufomap：原生计算与实时 RViz"
+      },
+      "source_records": [
+        "results/reference/desktop-live-dufomap/record.json"
+      ]
+    },
+    {
+      "id": "desktop-live-beautymap",
+      "status": "published",
+      "path": "results/reference/desktop-live-beautymap/execution.gif",
+      "caption": {
+        "en": "beautymap: actual native computation and live RViz",
+        "zh": "beautymap：原生计算与实时 RViz"
+      },
+      "source_records": [
+        "results/reference/desktop-live-beautymap/record.json"
+      ]
+    },
+    {
+      "id": "desktop-live-ir-mcl",
+      "status": "published",
+      "path": "results/reference/desktop-live-ir-mcl/execution.gif",
+      "caption": {
+        "en": "ir-mcl: actual native computation and live RViz",
+        "zh": "ir-mcl：原生计算与实时 RViz"
+      },
+      "source_records": [
+        "results/reference/desktop-live-ir-mcl/record.json"
+      ]
+    },
+    {
+      "id": "probe-2d-corridor",
+      "status": "published",
+      "path": "results/reference/probe-2d-corridor/execution.gif",
+      "caption": {
+        "en": "probe-2d-corridor: actual native windows",
+        "zh": "probe-2d-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-2d-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-2d-dynamic",
+      "status": "published",
+      "path": "results/reference/probe-2d-dynamic/execution.gif",
+      "caption": {
+        "en": "probe-2d-dynamic: actual native windows",
+        "zh": "probe-2d-dynamic：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-2d-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "probe-2d-height-corridor",
+      "status": "published",
+      "path": "results/reference/probe-2d-height-corridor/execution.gif",
+      "caption": {
+        "en": "probe-2d-height-corridor: actual native windows",
+        "zh": "probe-2d-height-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-2d-height-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-2d-large-change",
+      "status": "published",
+      "path": "results/reference/probe-2d-large-change/execution.gif",
+      "caption": {
+        "en": "probe-2d-large-change: actual native windows",
+        "zh": "probe-2d-large-change：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-2d-large-change/record.json"
+      ]
+    },
+    {
+      "id": "probe-2d-static",
+      "status": "published",
+      "path": "results/reference/probe-2d-static/execution.gif",
+      "caption": {
+        "en": "probe-2d-static: actual native windows",
+        "zh": "probe-2d-static：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-2d-static/record.json"
+      ]
+    },
+    {
+      "id": "probe-3d-corridor",
+      "status": "published",
+      "path": "results/reference/probe-3d-corridor/execution.gif",
+      "caption": {
+        "en": "probe-3d-corridor: actual native windows",
+        "zh": "probe-3d-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-3d-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-3d-dynamic",
+      "status": "published",
+      "path": "results/reference/probe-3d-dynamic/execution.gif",
+      "caption": {
+        "en": "probe-3d-dynamic: actual native windows",
+        "zh": "probe-3d-dynamic：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-3d-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "probe-3d-height-corridor",
+      "status": "published",
+      "path": "results/reference/probe-3d-height-corridor/execution.gif",
+      "caption": {
+        "en": "probe-3d-height-corridor: actual native windows",
+        "zh": "probe-3d-height-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-3d-height-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-3d-large-change",
+      "status": "published",
+      "path": "results/reference/probe-3d-large-change/execution.gif",
+      "caption": {
+        "en": "probe-3d-large-change: actual native windows",
+        "zh": "probe-3d-large-change：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-3d-large-change/record.json"
+      ]
+    },
+    {
+      "id": "probe-3d-static",
+      "status": "published",
+      "path": "results/reference/probe-3d-static/execution.gif",
+      "caption": {
+        "en": "probe-3d-static: actual native windows",
+        "zh": "probe-3d-static：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-3d-static/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-2d-corridor",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-2d-corridor/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-2d-corridor: actual native windows",
+        "zh": "probe-calibrated-2d-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-2d-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-2d-dynamic",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-2d-dynamic/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-2d-dynamic: actual native windows",
+        "zh": "probe-calibrated-2d-dynamic：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-2d-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-2d-height-corridor",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-2d-height-corridor/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-2d-height-corridor: actual native windows",
+        "zh": "probe-calibrated-2d-height-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-2d-height-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-2d-large-change",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-2d-large-change/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-2d-large-change: actual native windows",
+        "zh": "probe-calibrated-2d-large-change：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-2d-large-change/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-2d-static",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-2d-static/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-2d-static: actual native windows",
+        "zh": "probe-calibrated-2d-static：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-2d-static/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-3d-corridor",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-3d-corridor/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-3d-corridor: actual native windows",
+        "zh": "probe-calibrated-3d-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-3d-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-3d-dynamic",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-3d-dynamic/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-3d-dynamic: actual native windows",
+        "zh": "probe-calibrated-3d-dynamic：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-3d-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-3d-height-corridor",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-3d-height-corridor/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-3d-height-corridor: actual native windows",
+        "zh": "probe-calibrated-3d-height-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-3d-height-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-3d-large-change",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-3d-large-change/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-3d-large-change: actual native windows",
+        "zh": "probe-calibrated-3d-large-change：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-3d-large-change/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-3d-static",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-3d-static/execution.gif",
+      "caption": {
+        "en": "probe-calibrated-3d-static: actual native windows",
+        "zh": "probe-calibrated-3d-static：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-3d-static/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-refinement-2d-corridor",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-refinement-2d-corridor/result.gif",
+      "caption": {
+        "en": "probe-calibrated-refinement-2d-corridor: saved-output replay after offline inference",
+        "zh": "probe-calibrated-refinement-2d-corridor：离线重算后的保存输出回放"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-refinement-2d-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-refinement-2d-height-corridor",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-refinement-2d-height-corridor/result.gif",
+      "caption": {
+        "en": "probe-calibrated-refinement-2d-height-corridor: saved-output replay after offline inference",
+        "zh": "probe-calibrated-refinement-2d-height-corridor：离线重算后的保存输出回放"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-refinement-2d-height-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-refinement-3d-corridor",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-refinement-3d-corridor/result.gif",
+      "caption": {
+        "en": "probe-calibrated-refinement-3d-corridor: saved-output replay after offline inference",
+        "zh": "probe-calibrated-refinement-3d-corridor：离线重算后的保存输出回放"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-refinement-3d-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-calibrated-refinement-3d-height-corridor",
+      "status": "published",
+      "path": "results/reference/probe-calibrated-refinement-3d-height-corridor/result.gif",
+      "caption": {
+        "en": "probe-calibrated-refinement-3d-height-corridor: saved-output replay after offline inference",
+        "zh": "probe-calibrated-refinement-3d-height-corridor：离线重算后的保存输出回放"
+      },
+      "source_records": [
+        "results/reference/probe-calibrated-refinement-3d-height-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-mapping-corridor",
+      "status": "published",
+      "path": "results/reference/probe-mapping-corridor/execution.gif",
+      "caption": {
+        "en": "probe-mapping-corridor: actual native windows",
+        "zh": "probe-mapping-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-mapping-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-mapping-dynamic",
+      "status": "published",
+      "path": "results/reference/probe-mapping-dynamic/execution.gif",
+      "caption": {
+        "en": "probe-mapping-dynamic: actual native windows",
+        "zh": "probe-mapping-dynamic：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-mapping-dynamic/record.json"
+      ]
+    },
+    {
+      "id": "probe-mapping-height-corridor",
+      "status": "published",
+      "path": "results/reference/probe-mapping-height-corridor/execution.gif",
+      "caption": {
+        "en": "probe-mapping-height-corridor: actual native windows",
+        "zh": "probe-mapping-height-corridor：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-mapping-height-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-mapping-static",
+      "status": "published",
+      "path": "results/reference/probe-mapping-static/execution.gif",
+      "caption": {
+        "en": "probe-mapping-static: actual native windows",
+        "zh": "probe-mapping-static：真实窗口录制"
+      },
+      "source_records": [
+        "results/reference/probe-mapping-static/record.json"
+      ]
+    },
+    {
+      "id": "probe-refinement-2d-corridor",
+      "status": "published",
+      "path": "results/reference/probe-refinement-2d-corridor/result.gif",
+      "caption": {
+        "en": "probe-refinement-2d-corridor: saved-output replay after offline inference",
+        "zh": "probe-refinement-2d-corridor：离线重算后的保存输出回放"
+      },
+      "source_records": [
+        "results/reference/probe-refinement-2d-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-refinement-2d-height-corridor",
+      "status": "published",
+      "path": "results/reference/probe-refinement-2d-height-corridor/result.gif",
+      "caption": {
+        "en": "probe-refinement-2d-height-corridor: saved-output replay after offline inference",
+        "zh": "probe-refinement-2d-height-corridor：离线重算后的保存输出回放"
+      },
+      "source_records": [
+        "results/reference/probe-refinement-2d-height-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-refinement-3d-corridor",
+      "status": "published",
+      "path": "results/reference/probe-refinement-3d-corridor/result.gif",
+      "caption": {
+        "en": "probe-refinement-3d-corridor: saved-output replay after offline inference",
+        "zh": "probe-refinement-3d-corridor：离线重算后的保存输出回放"
+      },
+      "source_records": [
+        "results/reference/probe-refinement-3d-corridor/record.json"
+      ]
+    },
+    {
+      "id": "probe-refinement-3d-height-corridor",
+      "status": "published",
+      "path": "results/reference/probe-refinement-3d-height-corridor/result.gif",
+      "caption": {
+        "en": "probe-refinement-3d-height-corridor: saved-output replay after offline inference",
+        "zh": "probe-refinement-3d-height-corridor：离线重算后的保存输出回放"
+      },
+      "source_records": [
+        "results/reference/probe-refinement-3d-height-corridor/record.json"
+      ]
+    },
+    {
+      "id": "srrg-static-2d",
+      "status": "published",
+      "path": "results/reference/srrg-2d-static/execution.gif",
+      "caption": {
+        "zh": "纯静态 · 原生二维SRRG建图",
+        "en": "Pure static · native SRRG 2D mapping"
+      },
+      "source_records": [
+        "results/reference/srrg-2d-static/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "srrg-dynamic-2d",
+      "status": "published",
+      "path": "results/reference/srrg-2d-dynamic/execution.gif",
+      "caption": {
+        "zh": "运动障碍物 · 原生二维SRRG建图",
+        "en": "Moving obstacles · native SRRG 2D mapping"
+      },
+      "source_records": [
+        "results/reference/srrg-2d-dynamic/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "srrg-large-change-2d",
+      "status": "published",
+      "path": "results/reference/srrg-2d-large-change/execution.gif",
+      "caption": {
+        "zh": "持久结构变化 · 原生二维SRRG建图",
+        "en": "Persistent change · native SRRG 2D mapping"
+      },
+      "source_records": [
+        "results/reference/srrg-2d-large-change/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "srrg-corridor-2d",
+      "status": "published",
+      "path": "results/reference/srrg-2d-corridor/execution.gif",
+      "caption": {
+        "zh": "走廊退化 · 原生二维SRRG建图",
+        "en": "Corridor degradation · native SRRG 2D mapping"
+      },
+      "source_records": [
+        "results/reference/srrg-2d-corridor/record.json"
+      ],
+      "source_artifact": "execution.gif"
     }
   ]
 }

@@ -1,0 +1,392 @@
+{
+  "schema_version": 1,
+  "kind": "native_map_point_audit",
+  "status": "executed",
+  "exit_code": 0,
+  "configurations": {
+    "baseline": {
+      "parameters": {
+        "dufo_resolution": 0.1,
+        "dufo_ds": 0.2,
+        "dufo_dp": 1,
+        "beauty_range": 8,
+        "beauty_xy": 0.5,
+        "beauty_z": 0.2
+      },
+      "metrics": {
+        "raw": {
+          "static_retention": 1.0,
+          "dynamic_removal": 0.0,
+          "removed_static_points": 0,
+          "retained_dynamic_points": 7076
+        },
+        "dufomap": {
+          "static_retention": 0.9999793464935509,
+          "dynamic_removal": 0.46594120972300734,
+          "removed_static_points": 14,
+          "retained_dynamic_points": 3779
+        },
+        "beautymap": {
+          "static_retention": 0.8115249516486661,
+          "dynamic_removal": 0.743640474844545,
+          "removed_static_points": 127758,
+          "retained_dynamic_points": 1814
+        }
+      },
+      "source_outputs": {
+        "raw": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\author-maps-20261014-233857\\raw\\points.npy",
+          "sha256": "f3d043a5b0c9a0a8bb8b652aac22e28a15d2ac13600c2ab72da8f7f5937a5028"
+        },
+        "dufomap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\author-maps-20261014-233857\\dufomap\\points.npy",
+          "sha256": "e05140645aa3ecf267ba9ba40f0b8d2b2727ccd56855e4721aabf8490a093c7c"
+        },
+        "beautymap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\author-maps-20261014-233857\\beautymap\\points.npy",
+          "sha256": "f5317b6f988bbec99afadfd3ae386ac0e6725fb4968dc107b7ecd8d1cb9e87b7"
+        }
+      },
+      "source_scan_count": 60
+    },
+    "visibility12": {
+      "parameters": {
+        "dufo_resolution": 0.1,
+        "dufo_ds": 0.2,
+        "dufo_dp": 1,
+        "beauty_range": 12.0,
+        "beauty_xy": 0.5,
+        "beauty_z": 0.2
+      },
+      "metrics": {
+        "raw": {
+          "static_retention": 1.0,
+          "dynamic_removal": 0.0,
+          "removed_static_points": 0,
+          "retained_dynamic_points": 7076
+        },
+        "dufomap": {
+          "static_retention": 0.9999793464935509,
+          "dynamic_removal": 0.46594120972300734,
+          "removed_static_points": 14,
+          "retained_dynamic_points": 3779
+        },
+        "beautymap": {
+          "static_retention": 0.7688857875845871,
+          "dynamic_removal": 0.7767100056529113,
+          "removed_static_points": 156661,
+          "retained_dynamic_points": 1580
+        }
+      },
+      "source_outputs": {
+        "raw": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-visibility12\\raw\\points.npy",
+          "sha256": "f3d043a5b0c9a0a8bb8b652aac22e28a15d2ac13600c2ab72da8f7f5937a5028"
+        },
+        "dufomap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-visibility12\\dufomap\\points.npy",
+          "sha256": "e05140645aa3ecf267ba9ba40f0b8d2b2727ccd56855e4721aabf8490a093c7c"
+        },
+        "beautymap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-visibility12\\beautymap\\points.npy",
+          "sha256": "cfb7c978efc87562fffca042afa1b6e6ecadc129b8b30cd92df27a9dbec3856a"
+        }
+      },
+      "source_scan_count": 60
+    },
+    "allscans": {
+      "parameters": {
+        "dufo_resolution": 0.1,
+        "dufo_ds": 0.2,
+        "dufo_dp": 1,
+        "beauty_range": 8,
+        "beauty_xy": 0.5,
+        "beauty_z": 0.2
+      },
+      "metrics": {
+        "raw": {
+          "static_retention": 1.0,
+          "dynamic_removal": 0.0,
+          "removed_static_points": 0,
+          "retained_dynamic_points": 7076
+        },
+        "dufomap": {
+          "static_retention": 0.9999793464935509,
+          "dynamic_removal": 0.5134256642170718,
+          "removed_static_points": 14,
+          "retained_dynamic_points": 3443
+        },
+        "beautymap": {
+          "static_retention": 0.8083575889096571,
+          "dynamic_removal": 0.7384115319389486,
+          "removed_static_points": 129905,
+          "retained_dynamic_points": 1851
+        }
+      },
+      "source_outputs": {
+        "raw": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-allscans\\raw\\points.npy",
+          "sha256": "3ddfd5391eeabb18d9baadbc10d0003be5f0d72870c3c9e2c112142e511bc425"
+        },
+        "dufomap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-allscans\\dufomap\\points.npy",
+          "sha256": "84636b33dfcbe1691c64d1068b4649ff3aa92959e1b4fa7ef42948449aa942c6"
+        },
+        "beautymap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-allscans\\beautymap\\points.npy",
+          "sha256": "182a7adcffad12ee070fef62e81316fc50cef945cde86a38f0408e68c050cefe"
+        }
+      },
+      "source_scan_count": 128
+    },
+    "dufo02": {
+      "parameters": {
+        "dufo_resolution": 0.2,
+        "dufo_ds": 0.2,
+        "dufo_dp": 1,
+        "beauty_range": 8,
+        "beauty_xy": 0.5,
+        "beauty_z": 0.2
+      },
+      "metrics": {
+        "raw": {
+          "static_retention": 1.0,
+          "dynamic_removal": 0.0,
+          "removed_static_points": 0,
+          "retained_dynamic_points": 7076
+        },
+        "dufomap": {
+          "static_retention": 0.9999822969944723,
+          "dynamic_removal": 0.5091859807801018,
+          "removed_static_points": 12,
+          "retained_dynamic_points": 3473
+        },
+        "beautymap": {
+          "static_retention": 0.8115249516486661,
+          "dynamic_removal": 0.743640474844545,
+          "removed_static_points": 127758,
+          "retained_dynamic_points": 1814
+        }
+      },
+      "source_outputs": {
+        "raw": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-dufo02\\raw\\points.npy",
+          "sha256": "f3d043a5b0c9a0a8bb8b652aac22e28a15d2ac13600c2ab72da8f7f5937a5028"
+        },
+        "dufomap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-dufo02\\dufomap\\points.npy",
+          "sha256": "3d765e644b9e12fe41720d5631a302bcac22c28ef583c013bb08fcd3d7bbae79"
+        },
+        "beautymap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-dufo02\\beautymap\\points.npy",
+          "sha256": "f5317b6f988bbec99afadfd3ae386ac0e6725fb4968dc107b7ecd8d1cb9e87b7"
+        }
+      },
+      "source_scan_count": 60
+    },
+    "beautyz05": {
+      "parameters": {
+        "dufo_resolution": 0.1,
+        "dufo_ds": 0.2,
+        "dufo_dp": 1,
+        "beauty_range": 8,
+        "beauty_xy": 0.5,
+        "beauty_z": 0.5
+      },
+      "metrics": {
+        "raw": {
+          "static_retention": 1.0,
+          "dynamic_removal": 0.0,
+          "removed_static_points": 0,
+          "retained_dynamic_points": 7076
+        },
+        "dufomap": {
+          "static_retention": 0.9999793464935509,
+          "dynamic_removal": 0.46594120972300734,
+          "removed_static_points": 14,
+          "retained_dynamic_points": 3779
+        },
+        "beautymap": {
+          "static_retention": 0.8987388083811929,
+          "dynamic_removal": 0.42933860938383267,
+          "removed_static_points": 68640,
+          "retained_dynamic_points": 4038
+        }
+      },
+      "source_outputs": {
+        "raw": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-beautyz05\\raw\\points.npy",
+          "sha256": "f3d043a5b0c9a0a8bb8b652aac22e28a15d2ac13600c2ab72da8f7f5937a5028"
+        },
+        "dufomap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-beautyz05\\dufomap\\points.npy",
+          "sha256": "e05140645aa3ecf267ba9ba40f0b8d2b2727ccd56855e4721aabf8490a093c7c"
+        },
+        "beautymap": {
+          "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\ablation-beautyz05\\beautymap\\points.npy",
+          "sha256": "7032b628dd6d5976630eb6936a6f4e59e1ef4fecf07200fff78857984edc16e7"
+        }
+      },
+      "source_scan_count": 60
+    }
+  },
+  "scored_static_points": 677851,
+  "scored_dynamic_points": 7076,
+  "ambiguous_points": 120,
+  "scope": "every configuration scored on the identical 60-scan baseline points; simulator moving-box labels; 2cm surface tolerance, 5cm ambiguous shell, self-return exclusion .45m; not paper benchmark ground truth",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043",
+  "source_input_hashes": {
+    "results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\mapping-clouds.npz": "559d9ae0d26e1dffa379a7602003b111853a770bee50fd73e3beafdc5dc7b2e4",
+    "results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\object-truth.jsonl": "04c2c3158591437cb502fad75a948721f5fb99bd97dc0154a3bafcbd03693fe1",
+    "results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\object-geometry.json": "07fce1366ac1f3cc3b307e0348d51a622b087a25dd106e5165fbd68aae61265f",
+    "results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\object-scene.pbtxt": "bf44dabff8d8f04c56e5e2b1045e9645208a9e485eb457c21023f8d69fc695da"
+  },
+  "truth_input_to_held_out_localizers": false,
+  "artifacts": {
+    "baseline-geometry-score.json": {
+      "sha256": "7c8d88cae6600f807fa4c6bcb42fd744a28817351120fb8f3d048d2e4a2fb15e",
+      "bytes": 1994,
+      "availability": "portable"
+    },
+    "object-geometry.json": {
+      "sha256": "07fce1366ac1f3cc3b307e0348d51a622b087a25dd106e5165fbd68aae61265f",
+      "bytes": 694,
+      "availability": "portable"
+    },
+    "object-scene.pbtxt": {
+      "sha256": "bf44dabff8d8f04c56e5e2b1045e9645208a9e485eb457c21023f8d69fc695da",
+      "bytes": 17510,
+      "availability": "portable"
+    },
+    "point-label-inputs.npz": {
+      "sha256": "f892b09f202324509ee166a96ef042eeb5acf6a97948e81f06dba8f447b40011",
+      "bytes": 6842040,
+      "availability": "portable"
+    },
+    "allscans/beautymap-compatibility.patch": {
+      "sha256": "96d53d772f0c61f6c58f947d99cbe345f170cc1c21aaa85b3431130be15ce6da",
+      "bytes": 2374,
+      "availability": "portable"
+    },
+    "allscans/beautymap.log": {
+      "sha256": "4c1fd57d47ccea147b4f8735b7942aa093160f192bf42208bbe4379f15fa20eb",
+      "bytes": 4063,
+      "availability": "portable"
+    },
+    "allscans/processing-source.json": {
+      "sha256": "fb4e5a05cc80a3dfd429e25b73243813bf0d216d80593d555d6475f4e5880470",
+      "bytes": 2995,
+      "availability": "portable"
+    },
+    "allscans/processing.json": {
+      "sha256": "aad2a014ea9d8924701c669370caf800a7c337b4a1451664a2990ad2b14715f4",
+      "bytes": 3194,
+      "availability": "portable"
+    },
+    "allscans/retention-masks.npz": {
+      "sha256": "6659cb28416e0aef365f8ec9294be43a4d1a4af5f4d06620934ce651fe889b83",
+      "bytes": 10410,
+      "availability": "portable"
+    },
+    "baseline/beautymap-compatibility.patch": {
+      "sha256": "96d53d772f0c61f6c58f947d99cbe345f170cc1c21aaa85b3431130be15ce6da",
+      "bytes": 2374,
+      "availability": "portable"
+    },
+    "baseline/beautymap.log": {
+      "sha256": "a9a14c13d6e7caf7fcbe0cbab735ea9134d5efc8f16eb42e0490a5366ac89589",
+      "bytes": 2783,
+      "availability": "portable"
+    },
+    "baseline/processing-source.json": {
+      "sha256": "d6e8d8fc690f2606f1aefca77bd888c092a2572141712add0ef53aa87f7bc402",
+      "bytes": 2279,
+      "availability": "portable"
+    },
+    "baseline/processing.json": {
+      "sha256": "8af4c913b154100f43a894a165613297820c25eae7ab44baa556af98183fe97d",
+      "bytes": 2711,
+      "availability": "portable"
+    },
+    "baseline/retention-masks.npz": {
+      "sha256": "7896ea13dc675cee3c16c0f014444fbbe0d94e870ba245802a4782f5ae41a321",
+      "bytes": 10420,
+      "availability": "portable"
+    },
+    "beautyz05/beautymap-compatibility.patch": {
+      "sha256": "96d53d772f0c61f6c58f947d99cbe345f170cc1c21aaa85b3431130be15ce6da",
+      "bytes": 2374,
+      "availability": "portable"
+    },
+    "beautyz05/beautymap.log": {
+      "sha256": "6843213c3d41aa631f4502547380f27a1813e5f4bdd61eed1bd7f8a699a77235",
+      "bytes": 2777,
+      "availability": "portable"
+    },
+    "beautyz05/processing-source.json": {
+      "sha256": "e2f7f9d78c57124aa275a1ab6aa655af34dbe98eb6bff0c5d9c2f638133ca5c6",
+      "bytes": 2434,
+      "availability": "portable"
+    },
+    "beautyz05/processing.json": {
+      "sha256": "ff9f46e94f9d45a66debd64dde990393cae0b186640e8fba1efc627e221f8666",
+      "bytes": 2565,
+      "availability": "portable"
+    },
+    "beautyz05/retention-masks.npz": {
+      "sha256": "e7b9fa177f76df23645e992e90aa2642dda3caec6f0f6168ec94887e863d7efc",
+      "bytes": 8102,
+      "availability": "portable"
+    },
+    "dufo02/beautymap-compatibility.patch": {
+      "sha256": "96d53d772f0c61f6c58f947d99cbe345f170cc1c21aaa85b3431130be15ce6da",
+      "bytes": 2374,
+      "availability": "portable"
+    },
+    "dufo02/beautymap.log": {
+      "sha256": "dbdf60e692c66fc5988399de1cfe34479382b4545fe11c75670020772c976290",
+      "bytes": 2485,
+      "availability": "portable"
+    },
+    "dufo02/processing-source.json": {
+      "sha256": "1bee3c251a1d52dbdc74403bbaafd21490982816b3e8e692548b272c158a3665",
+      "bytes": 2434,
+      "availability": "portable"
+    },
+    "dufo02/processing.json": {
+      "sha256": "540ad2816730b19fcac29dcea1039049814d62cac5593a39c08d8cd54c9f7070",
+      "bytes": 2565,
+      "availability": "portable"
+    },
+    "dufo02/retention-masks.npz": {
+      "sha256": "cecd375bde68c9cb26a19899e2351bf86117e4712de070601af481a3d18227c3",
+      "bytes": 10538,
+      "availability": "portable"
+    },
+    "visibility12/beautymap-compatibility.patch": {
+      "sha256": "96d53d772f0c61f6c58f947d99cbe345f170cc1c21aaa85b3431130be15ce6da",
+      "bytes": 2374,
+      "availability": "portable"
+    },
+    "visibility12/beautymap.log": {
+      "sha256": "20905d5db08944c8843943e38a03240a9b4dc34bc249ad44475a26abbe1b5df4",
+      "bytes": 3089,
+      "availability": "portable"
+    },
+    "visibility12/processing-source.json": {
+      "sha256": "aa12f869ca38479f3f2fcbe6711ebc7f412136e0f69f21846aea24a472b30dd0",
+      "bytes": 2437,
+      "availability": "portable"
+    },
+    "visibility12/processing.json": {
+      "sha256": "3354d9a7632ae7db3fba971d95a9e1f52e2e115e854f90c146f79f96000eb21e",
+      "bytes": 2568,
+      "availability": "portable"
+    },
+    "visibility12/retention-masks.npz": {
+      "sha256": "19a9abf8b654b5ae3cbf3dd2c8c64bf49d812b6085ce3607aeb3ee317c6f9bac",
+      "bytes": 9854,
+      "availability": "portable"
+    }
+  }
+}

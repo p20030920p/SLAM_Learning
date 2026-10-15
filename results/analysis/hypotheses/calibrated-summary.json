@@ -1,0 +1,1540 @@
+{
+  "batch": {
+    "diagnostics": [
+      {
+        "finished_at": "2026-10-15T01:46:11.1932344+03:00",
+        "error": "Three live RViz views not ready: F:\\be2\u5a55\u65c7\ue189\\\u9358\u71b7\ue750\u6d7c\u6c33\u763d\\hypotheses-calibrated\\20261015-014210-localization-probe-calibrated-2d-static-method-live-10e07f",
+        "state": "failed"
+      },
+      {
+        "finished_at": "2026-10-15T01:51:07.6988269+03:00",
+        "error": "Three live RViz views not ready: F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-014707-localization-probe-calibrated-2d-static-method-live-257282",
+        "state": "failed"
+      }
+    ],
+    "scope": "Mapping-A calibrated height; four original scenes plus explicitly derived height control; fixed settings; all fresh captures retained",
+    "finished_at": "2026-10-15T02:19:49.1790949+03:00",
+    "runs": [
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-015403-localization-probe-calibrated-2d-static-method-live-af60d9",
+        "run_id": "20261015-015403-localization-probe-calibrated-2d-static-method-live-af60d9",
+        "scene": "static",
+        "dimension": "2D"
+      },
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-015615-localization-probe-calibrated-2d-dynamic-method-live-a5367a",
+        "run_id": "20261015-015615-localization-probe-calibrated-2d-dynamic-method-live-a5367a",
+        "scene": "dynamic",
+        "dimension": "2D"
+      },
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-015833-localization-probe-calibrated-2d-large-change-method-live-c5f2c8",
+        "run_id": "20261015-015833-localization-probe-calibrated-2d-large-change-method-live-c5f2c8",
+        "scene": "large-change",
+        "dimension": "2D"
+      },
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-020044-localization-probe-calibrated-2d-degradation-method-live-88b009",
+        "run_id": "20261015-020044-localization-probe-calibrated-2d-degradation-method-live-88b009",
+        "scene": "degradation",
+        "dimension": "2D"
+      },
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-020328-localization-probe-calibrated-2d-height-corridor-method-live-88548b",
+        "run_id": "20261015-020328-localization-probe-calibrated-2d-height-corridor-method-live-88548b",
+        "scene": "height-corridor",
+        "dimension": "2D"
+      },
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-020612-localization-probe-calibrated-3d-static-method-live-3a07c4",
+        "run_id": "20261015-020612-localization-probe-calibrated-3d-static-method-live-3a07c4",
+        "scene": "static",
+        "dimension": "3D"
+      },
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-020831-localization-probe-calibrated-3d-dynamic-method-live-67928c",
+        "run_id": "20261015-020831-localization-probe-calibrated-3d-dynamic-method-live-67928c",
+        "scene": "dynamic",
+        "dimension": "3D"
+      },
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-021120-localization-probe-calibrated-3d-large-change-method-live-12bde3",
+        "run_id": "20261015-021120-localization-probe-calibrated-3d-large-change-method-live-12bde3",
+        "scene": "large-change",
+        "dimension": "3D"
+      },
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-021343-localization-probe-calibrated-3d-degradation-method-live-c53ca6",
+        "run_id": "20261015-021343-localization-probe-calibrated-3d-degradation-method-live-c53ca6",
+        "scene": "degradation",
+        "dimension": "3D"
+      },
+      {
+        "path": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-021645-localization-probe-calibrated-3d-height-corridor-method-live-ee1aea",
+        "run_id": "20261015-021645-localization-probe-calibrated-3d-height-corridor-method-live-ee1aea",
+        "scene": "height-corridor",
+        "dimension": "3D"
+      }
+    ],
+    "resumed_at": "2026-10-15T01:54:02.9245905+03:00",
+    "status": "completed",
+    "started_at": "2026-10-15T01:42:10.4395651+03:00"
+  },
+  "protocol_sha256": "ac759b85b1de4227b37d568f25e8679fd34b9d10d4c15a660f70ca9533c9dc45",
+  "conditions": [
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-015403-localization-probe-calibrated-2d-static-method-live-af60d9\\evidence\\record.json",
+      "source_record_sha256": "89a3dd676150f1bb2c81cf531ae127a9a512f9ee3b07fc8bf846904877dde41d",
+      "dimension": "2d",
+      "scene": "static",
+      "shared_prototype_frames": 264,
+      "depth_used_frames": 219,
+      "depth_stale_or_absent_frames": 45,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": 0.00026178180682359664
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.057228029967756555
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 0.0
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": 8.326672684688674e-17
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.05722802996775664
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 0.14837787218248,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 3.9,
+          "last_output_s": 99.4,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.1486396539893036,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 3.9,
+          "last_output_s": 99.4,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.20586768395706015,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 3.9,
+          "last_output_s": 99.4,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.1486396539893036,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 3.9,
+          "last_output_s": 99.4,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.20586768395706023,
+          "xyz_rmse_cm": null,
+          "samples": 264,
+          "first_output_s": 3.9,
+          "last_output_s": 99.4,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 6.823643823345645,
+          "xyz_rmse_cm": null,
+          "samples": 287,
+          "first_output_s": 3.9,
+          "last_output_s": 73.2,
+          "max_output_gap_s": 10.799999999999999,
+          "initial_sustained_delay_from_first_probe_output_s": 11.799999999999999,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-2d-static/record.json",
+      "plot_sha256": "c1cfdcaf1cf31f99116313b4033f894f458b88cbdcd1ddc45fc06acd2427bc17"
+    },
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-015615-localization-probe-calibrated-2d-dynamic-method-live-a5367a\\evidence\\record.json",
+      "source_record_sha256": "18bbbfd6fafffffa7d030b25fa7d2413411814e186e084e5aebf53d96466ed34",
+      "dimension": "2d",
+      "scene": "dynamic",
+      "shared_prototype_frames": 265,
+      "depth_used_frames": 181,
+      "depth_stale_or_absent_frames": 84,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -0.180570494544792
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": -0.006834269756147288
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 0.0
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -2.824712115601091e-07
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": -0.006834552227358848
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 0.366217488977997,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 3.7,
+          "last_output_s": 99.7,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.185646994433205,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 3.7,
+          "last_output_s": 99.7,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.17881272467705772,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 3.7,
+          "last_output_s": 99.7,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.185646994433205,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 3.7,
+          "last_output_s": 99.7,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.17881244220584616,
+          "xyz_rmse_cm": null,
+          "samples": 265,
+          "first_output_s": 3.7,
+          "last_output_s": 99.7,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 7.076874032403105,
+          "xyz_rmse_cm": null,
+          "samples": 292,
+          "first_output_s": 3.8,
+          "last_output_s": 72.3,
+          "max_output_gap_s": 9.899999999999999,
+          "initial_sustained_delay_from_first_probe_output_s": 11.3,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-2d-dynamic/record.json",
+      "plot_sha256": "a194cc5f3c785b332d081a9db76e47246070bc097eb955641db6bb92cea12749"
+    },
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-015833-localization-probe-calibrated-2d-large-change-method-live-c5f2c8\\evidence\\record.json",
+      "source_record_sha256": "91d03fe52567ae37aa77c9d1a18b2d10fd18e27929f9f47d4b3d52bc03da4d09",
+      "dimension": "2d",
+      "scene": "large-change",
+      "shared_prototype_frames": 263,
+      "depth_used_frames": 187,
+      "depth_stale_or_absent_frames": 76,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -7.489302063982164
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.0007500572221752488
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 0.0
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": 2.3724756381682255e-06
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.0007524296978134171
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 7.980737305358536,
+          "xyz_rmse_cm": null,
+          "samples": 263,
+          "first_output_s": 4.0,
+          "last_output_s": 99.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.49143524137637207,
+          "xyz_rmse_cm": null,
+          "samples": 263,
+          "first_output_s": 4.0,
+          "last_output_s": 99.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.4921852985985473,
+          "xyz_rmse_cm": null,
+          "samples": 263,
+          "first_output_s": 4.0,
+          "last_output_s": 99.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.49143524137637207,
+          "xyz_rmse_cm": null,
+          "samples": 263,
+          "first_output_s": 4.0,
+          "last_output_s": 99.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.4921876710741855,
+          "xyz_rmse_cm": null,
+          "samples": 263,
+          "first_output_s": 4.0,
+          "last_output_s": 99.3,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 6.275277690918083,
+          "xyz_rmse_cm": null,
+          "samples": 288,
+          "first_output_s": 4.1,
+          "last_output_s": 71.3,
+          "max_output_gap_s": 8.9,
+          "initial_sustained_delay_from_first_probe_output_s": 10.1,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-2d-large-change/record.json",
+      "plot_sha256": "d4a62bea70039507e15603d3d5bbefacf6a2efb4b2f452d5cf322ef1177a4e0a"
+    },
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-020044-localization-probe-calibrated-2d-degradation-method-live-88b009\\evidence\\record.json",
+      "source_record_sha256": "eccead9b27ed79f2f4251c120205e53329225883b13ee744793a6769353df0e1",
+      "dimension": "2d",
+      "scene": "corridor",
+      "shared_prototype_frames": 338,
+      "depth_used_frames": 195,
+      "depth_stale_or_absent_frames": 143,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -937.205131787756
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.06219937675675169
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": -30.078505422439434
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -30.108206814442752
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.032497984753433684
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 1037.6878614434186,
+          "xyz_rmse_cm": null,
+          "samples": 338,
+          "first_output_s": 5.6,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 2.0,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "guard": {
+          "xy_rmse_cm": 100.4827296556625,
+          "xyz_rmse_cm": null,
+          "samples": 338,
+          "first_output_s": 5.6,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 2.0,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "depth": {
+          "xy_rmse_cm": 100.54492903241925,
+          "xyz_rmse_cm": null,
+          "samples": 338,
+          "first_output_s": 5.6,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 2.0,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "search": {
+          "xy_rmse_cm": 70.40422423322306,
+          "xyz_rmse_cm": null,
+          "samples": 338,
+          "first_output_s": 5.6,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 2.0,
+          "initial_sustained_delay_from_first_probe_output_s": 61.1,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 5.800000000000004,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "recover": {
+          "xy_rmse_cm": 70.4367222179765,
+          "xyz_rmse_cm": null,
+          "samples": 338,
+          "first_output_s": 5.6,
+          "last_output_s": 130.5,
+          "max_output_gap_s": 2.0,
+          "initial_sustained_delay_from_first_probe_output_s": 61.1,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 5.800000000000004,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "native": {
+          "xy_rmse_cm": 100.61199358949462,
+          "xyz_rmse_cm": null,
+          "samples": 600,
+          "first_output_s": 5.5,
+          "last_output_s": 130.8,
+          "max_output_gap_s": 11.3,
+          "initial_sustained_delay_from_first_probe_output_s": 101.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 45.699999999999996,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-2d-corridor/record.json",
+      "plot_sha256": "4cc2d81da52532eed9ee81a9b4d75b47eb4000bf73aea404b4128ef108a85e00"
+    },
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-020328-localization-probe-calibrated-2d-height-corridor-method-live-88548b\\evidence\\record.json",
+      "source_record_sha256": "bafe25d265d565d766e328173411be981028ae9d6ed8b3934900519588aaa69c",
+      "dimension": "2d",
+      "scene": "height-corridor",
+      "shared_prototype_frames": 345,
+      "depth_used_frames": 239,
+      "depth_stale_or_absent_frames": 106,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -184.39232010276464
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": -0.3812054857072269
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": -30.223106028351594
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -79.61388651110578
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": -49.77198596846141
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 285.54103122918127,
+          "xyz_rmse_cm": null,
+          "samples": 345,
+          "first_output_s": 5.2,
+          "last_output_s": 130.8,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "guard": {
+          "xy_rmse_cm": 101.14871112641663,
+          "xyz_rmse_cm": null,
+          "samples": 345,
+          "first_output_s": 5.2,
+          "last_output_s": 130.8,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "depth": {
+          "xy_rmse_cm": 100.7675056407094,
+          "xyz_rmse_cm": null,
+          "samples": 345,
+          "first_output_s": 5.2,
+          "last_output_s": 130.8,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "search": {
+          "xy_rmse_cm": 70.92560509806503,
+          "xyz_rmse_cm": null,
+          "samples": 345,
+          "first_output_s": 5.2,
+          "last_output_s": 130.8,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": 60.7,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 5.000000000000007,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "recover": {
+          "xy_rmse_cm": 21.15361912960363,
+          "xyz_rmse_cm": null,
+          "samples": 345,
+          "first_output_s": 5.2,
+          "last_output_s": 130.8,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": 55.9,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 3,
+          "wrong_acceptance_events": 2,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 0.20000000000000284,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "native": {
+          "xy_rmse_cm": 66.99593902121492,
+          "xyz_rmse_cm": null,
+          "samples": 620,
+          "first_output_s": 5.2,
+          "last_output_s": 130.7,
+          "max_output_gap_s": 8.5,
+          "initial_sustained_delay_from_first_probe_output_s": 67.39999999999999,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 60.9,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 11.699999999999996,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-2d-height-corridor/record.json",
+      "plot_sha256": "23446227e1dd1a0c638c27e5951565b1521bf9f3a3e91840134f4b683291a6a4"
+    },
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-020612-localization-probe-calibrated-3d-static-method-live-3a07c4\\evidence\\record.json",
+      "source_record_sha256": "40338ba51055329161aac29a756fe4a31113d8c7a6bf235e1855fe925d38d960",
+      "dimension": "3d",
+      "scene": "static",
+      "shared_prototype_frames": 266,
+      "depth_used_frames": 184,
+      "depth_stale_or_absent_frames": 82,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -0.0001457900873938489
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.09292455535901302
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 0.0
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": 5.522520324680036e-06
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.0929300778793377
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 0.11987540561255014,
+          "xyz_rmse_cm": 0.119875410468282,
+          "samples": 266,
+          "first_output_s": 4.8,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.11972961551924365,
+          "xyz_rmse_cm": 0.11972962038088815,
+          "samples": 266,
+          "first_output_s": 4.8,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.21265417300267378,
+          "xyz_rmse_cm": 0.21265417573990117,
+          "samples": 266,
+          "first_output_s": 4.8,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.11972961551924365,
+          "xyz_rmse_cm": 0.11972962038088815,
+          "samples": 266,
+          "first_output_s": 4.8,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.21265969552306951,
+          "xyz_rmse_cm": 0.21265969826022585,
+          "samples": 266,
+          "first_output_s": 4.8,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.4000000000000057,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 1.0783759889851334,
+          "xyz_rmse_cm": 1.0833579581860593,
+          "samples": 994,
+          "first_output_s": 1.8,
+          "last_output_s": 101.6,
+          "max_output_gap_s": 0.2999999999999998,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-3d-static/record.json",
+      "plot_sha256": "79ccb8bd5897048f98ea52f58199d3293ce11ac49bc2d3f77ab632ba191dd0c1"
+    },
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-020831-localization-probe-calibrated-3d-dynamic-method-live-67928c\\evidence\\record.json",
+      "source_record_sha256": "0e721c8cf0da49ca1e018a79e1d8888cbf6c4aa66635279ec7d48cac0f6ac9fd",
+      "dimension": "3d",
+      "scene": "dynamic",
+      "shared_prototype_frames": 258,
+      "depth_used_frames": 154,
+      "depth_stale_or_absent_frames": 104,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -0.0400747884044691
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": -0.0026542206430476833
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": 6.185409406889164e-10
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": 1.009986203256985e-05
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": -0.002644121399556054
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 0.17027585166277945,
+          "xyz_rmse_cm": 0.17027585348048904,
+          "samples": 258,
+          "first_output_s": 4.4,
+          "last_output_s": 98.7,
+          "max_output_gap_s": 1.0999999999999996,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.1302010626988347,
+          "xyz_rmse_cm": 0.13020106507601995,
+          "samples": 258,
+          "first_output_s": 4.4,
+          "last_output_s": 98.7,
+          "max_output_gap_s": 1.0999999999999996,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.1275468420063183,
+          "xyz_rmse_cm": 0.12754684443297226,
+          "samples": 258,
+          "first_output_s": 4.4,
+          "last_output_s": 98.7,
+          "max_output_gap_s": 1.0999999999999996,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.13020106331737563,
+          "xyz_rmse_cm": 0.13020106569456089,
+          "samples": 258,
+          "first_output_s": 4.4,
+          "last_output_s": 98.7,
+          "max_output_gap_s": 1.0999999999999996,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.12755694186854305,
+          "xyz_rmse_cm": 0.12755694429500483,
+          "samples": 258,
+          "first_output_s": 4.4,
+          "last_output_s": 98.7,
+          "max_output_gap_s": 1.0999999999999996,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 1.3853606501596407,
+          "xyz_rmse_cm": 1.3927167229390738,
+          "samples": 951,
+          "first_output_s": 2.0,
+          "last_output_s": 99.4,
+          "max_output_gap_s": 0.40000000000000036,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-3d-dynamic/record.json",
+      "plot_sha256": "a337b27cfae6fd044004a883a21eac323c45f903d1bb16d210016eb84a2ea842"
+    },
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-021120-localization-probe-calibrated-3d-large-change-method-live-12bde3\\evidence\\record.json",
+      "source_record_sha256": "cece9e9c46a23af73f05be788480e7785cbccf486c33619c78711d8de2c25627",
+      "dimension": "3d",
+      "scene": "large-change",
+      "shared_prototype_frames": 264,
+      "depth_used_frames": 163,
+      "depth_stale_or_absent_frames": 101,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -3.449096194400552
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.10786851070454448
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": -8.326672684688674e-16
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -7.344891361782402e-11
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.1078685106310964
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 3.687295243103942,
+          "xyz_rmse_cm": 3.6872952432717465,
+          "samples": 264,
+          "first_output_s": 4.4,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 0.7000000000000002,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "guard": {
+          "xy_rmse_cm": 0.23819904627358812,
+          "xyz_rmse_cm": 0.23819904887119456,
+          "samples": 264,
+          "first_output_s": 4.4,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 0.7000000000000002,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "depth": {
+          "xy_rmse_cm": 0.34606755778780096,
+          "xyz_rmse_cm": 0.34606755957573904,
+          "samples": 264,
+          "first_output_s": 4.4,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 0.7000000000000002,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "search": {
+          "xy_rmse_cm": 0.23819904627358732,
+          "xyz_rmse_cm": 0.23819904887119372,
+          "samples": 264,
+          "first_output_s": 4.4,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 0.7000000000000002,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "recover": {
+          "xy_rmse_cm": 0.34606755771435205,
+          "xyz_rmse_cm": 0.3460675595022901,
+          "samples": 264,
+          "first_output_s": 4.4,
+          "last_output_s": 100.9,
+          "max_output_gap_s": 0.7000000000000002,
+          "initial_sustained_delay_from_first_probe_output_s": 0.0,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        },
+        "native": {
+          "xy_rmse_cm": 1.237276773953974,
+          "xyz_rmse_cm": 1.2472622555524264,
+          "samples": 950,
+          "first_output_s": 5.5,
+          "last_output_s": 101.2,
+          "max_output_gap_s": 0.40000000000000036,
+          "initial_sustained_delay_from_first_probe_output_s": 1.0999999999999996,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": null
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-3d-large-change/record.json",
+      "plot_sha256": "1289488f2873026b453ec0a5ae1cfeff4200ab35dfc1b62cbcdde817084deb39"
+    },
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-021343-localization-probe-calibrated-3d-degradation-method-live-c53ca6\\evidence\\record.json",
+      "source_record_sha256": "9efbb2b42bfdde9e97dce62d00d90ed47a18fd506065308a07a147087534dfb6",
+      "dimension": "3d",
+      "scene": "corridor",
+      "shared_prototype_frames": 247,
+      "depth_used_frames": 122,
+      "depth_stale_or_absent_frames": 125,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": -632.8840957480026
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.12171445984094476
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": -43.72481382735311
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -43.05789591603608
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 0.7886323711579735
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 733.3790058260363,
+          "xyz_rmse_cm": 733.3790058260371,
+          "samples": 247,
+          "first_output_s": 5.7,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.700000000000003,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "guard": {
+          "xy_rmse_cm": 100.49491007802773,
+          "xyz_rmse_cm": 100.49491007803451,
+          "samples": 247,
+          "first_output_s": 5.7,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.700000000000003,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "depth": {
+          "xy_rmse_cm": 100.6166245378687,
+          "xyz_rmse_cm": 100.61662453787545,
+          "samples": 247,
+          "first_output_s": 5.7,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.700000000000003,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "search": {
+          "xy_rmse_cm": 56.77009625066945,
+          "xyz_rmse_cm": 56.7700962506814,
+          "samples": 247,
+          "first_output_s": 5.7,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.700000000000003,
+          "initial_sustained_delay_from_first_probe_output_s": 63.7,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 1,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 6.200000000000003,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "recover": {
+          "xy_rmse_cm": 57.55872862182758,
+          "xyz_rmse_cm": 57.55872862183937,
+          "samples": 247,
+          "first_output_s": 5.7,
+          "last_output_s": 132.8,
+          "max_output_gap_s": 2.700000000000003,
+          "initial_sustained_delay_from_first_probe_output_s": 64.1,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 4,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 6.599999999999994,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "native": {
+          "xy_rmse_cm": 397.8186037048613,
+          "xyz_rmse_cm": 397.8193239924452,
+          "samples": 712,
+          "first_output_s": 2.3,
+          "last_output_s": 75.6,
+          "max_output_gap_s": 0.5,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.2,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-3d-corridor/record.json",
+      "plot_sha256": "ff3950992c4376157b7b5eaca66d21f0a61125129186ee4ce418cf1fb61a00f9"
+    },
+    {
+      "source_record": "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\hypotheses-calibrated\\20261015-021645-localization-probe-calibrated-3d-height-corridor-method-live-ee1aea\\evidence\\record.json",
+      "source_record_sha256": "08c4d921f7455c7a0be2fcfa8fee93d912854d618207d7c710983f89fda23f49",
+      "dimension": "3d",
+      "scene": "height-corridor",
+      "shared_prototype_frames": 203,
+      "depth_used_frames": 124,
+      "depth_stale_or_absent_frames": 79,
+      "depth_synchronized_empty_frames": 0,
+      "comparisons": {
+        "H1": {
+          "before": "plain",
+          "after": "guard",
+          "after_minus_before_cm": 53.75967025945571
+        },
+        "H2": {
+          "before": "guard",
+          "after": "depth",
+          "after_minus_before_cm": 0.017556146709637233
+        },
+        "H3_lidar": {
+          "before": "guard",
+          "after": "search",
+          "after_minus_before_cm": -52.657503495195385
+        },
+        "H3_depth": {
+          "before": "depth",
+          "after": "recover",
+          "after_minus_before_cm": -49.59274618825723
+        },
+        "depth_in_recovery": {
+          "before": "search",
+          "after": "recover",
+          "after_minus_before_cm": 3.0823134536477923
+        }
+      },
+      "methods": {
+        "plain": {
+          "xy_rmse_cm": 46.60188143321355,
+          "xyz_rmse_cm": 46.60188143322669,
+          "samples": 203,
+          "first_output_s": 5.6,
+          "last_output_s": 132.5,
+          "max_output_gap_s": 4.1000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": 66.10000000000001,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.0,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 8.700000000000003,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "guard": {
+          "xy_rmse_cm": 100.36155169267631,
+          "xyz_rmse_cm": 100.3615516926824,
+          "samples": 203,
+          "first_output_s": 5.6,
+          "last_output_s": 132.5,
+          "max_output_gap_s": 4.1000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.0,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "depth": {
+          "xy_rmse_cm": 100.37910783938595,
+          "xyz_rmse_cm": 100.37910783939203,
+          "samples": 203,
+          "first_output_s": 5.6,
+          "last_output_s": 132.5,
+          "max_output_gap_s": 4.1000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.0,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "search": {
+          "xy_rmse_cm": 47.70404819747417,
+          "xyz_rmse_cm": 47.70404819748701,
+          "samples": 203,
+          "first_output_s": 5.6,
+          "last_output_s": 132.5,
+          "max_output_gap_s": 4.1000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": 66.10000000000001,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 2,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.0,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 8.700000000000003,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "recover": {
+          "xy_rmse_cm": 50.78636165112276,
+          "xyz_rmse_cm": 50.786361651134804,
+          "samples": 203,
+          "first_output_s": 5.6,
+          "last_output_s": 132.5,
+          "max_output_gap_s": 4.1000000000000085,
+          "initial_sustained_delay_from_first_probe_output_s": 70.2,
+          "initial_sustained_status": true,
+          "candidate_acceptance_events": 3,
+          "wrong_acceptance_events": 1,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.0,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": 12.799999999999997,
+            "converged": true,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        },
+        "native": {
+          "xy_rmse_cm": 512.7782314210199,
+          "xyz_rmse_cm": 512.7852805584114,
+          "samples": 716,
+          "first_output_s": 2.5,
+          "last_output_s": 75.1,
+          "max_output_gap_s": 0.20000000000000284,
+          "initial_sustained_delay_from_first_probe_output_s": null,
+          "initial_sustained_status": false,
+          "candidate_acceptance_events": 0,
+          "wrong_acceptance_events": 0,
+          "unscored_acceptance_events": 0,
+          "restoration": {
+            "restore_stamp_s": 63.0,
+            "criterion": "position <0.1m and absolute yaw <5deg for 5 simulation seconds, >=8 native updates",
+            "sustained_convergence_delay_s": null,
+            "converged": false,
+            "scope": "recovery of an offset initial belief when full observations return; no physical kidnapping"
+          }
+        }
+      },
+      "source_sha256": {
+        "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53",
+        "probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+        "frame_prior.py": "bf3feedb842642d7802edea0168473e6a9a794095543f3d608bcadc9a6b335d5",
+        "prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51"
+      },
+      "public_record": "results/reference/probe-calibrated-3d-height-corridor/record.json",
+      "plot_sha256": "3c9f5c25b344e0f1d1b30b77f52504a0ec44235a4eb7e278fc633d9079eb1811"
+    }
+  ]
+}

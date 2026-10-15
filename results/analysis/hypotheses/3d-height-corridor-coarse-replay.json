@@ -1,0 +1,21 @@
+{
+  "parent_sha256": "0abe19919b34ce8b34148bb14d91096b5e2ba59723a96dfe9d3b25fc9f4eb00c",
+  "frames_per_case": 258,
+  "maximum_deltas": {
+    "search": {
+      "position_delta_m": 1.7763568394002505e-15,
+      "yaw_delta_rad": 4.440892098500626e-16
+    },
+    "recover": {
+      "position_delta_m": 1.7763568394002505e-15,
+      "yaw_delta_rad": 4.440892098500626e-16
+    }
+  },
+  "passed_1e_minus_5_m_rad": true,
+  "truth_read": false,
+  "offline_environment": {
+    "python": "3.10.19",
+    "numpy": "1.26.4",
+    "scipy": "1.14.1"
+  }
+}

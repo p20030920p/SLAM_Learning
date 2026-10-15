@@ -1,0 +1,33 @@
+{
+  "flow": "mapping-static",
+  "mode": "mapping",
+  "scene": "static",
+  "robot": "Sim2Real omni-3d-v1",
+  "source_commit": "53324d40def0dd753b4a99021b8fe596955a1ecd",
+  "capture": "actual Windows Gazebo Sim, RViz2 and Windows Terminal windows",
+  "provided_mapping_poses": true,
+  "truth_input_to_localizers": false,
+  "input_to_localizers": "same live /scan and wheel odometry, different frozen author-derived maps",
+  "initial_pose_offset_m_rad": [
+    0.25,
+    0.15,
+    0.12
+  ],
+  "assets": {
+    "/root/projects/Sim2Real-AlgoBench/scenario_variants/worlds/S1_static.world": "95091c22b2889b350b87487d58ad640094537f665da4b75593a27601803dadba",
+    "/root/projects/Sim2Real-AlgoBench/scenario_variants/race_nodes/patrol_waypoints.py": "98a16348dd60ef9283e1288f33786323f7a734f47f530627975bfbc0886ea3a3",
+    "/root/projects/Sim2Real-AlgoBench/src/race_description/urdf/omni_car_ros2_control.urdf": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/auto_patrol.sh": "6517ba32a4b007527ea6fc0c20eaf2d8d391de909a87044def63c7a3b7f43876",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/CMakeLists.txt": "ba207c9369884d626545f51add00acffce3040f92bd6d2f2d262bf3b1577e9b5",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/gz_truth.cpp": "a228364ef922c8c10f2c8a6e0b257ff8be728905d2652cef2e52804f85b61306",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/localization.launch.py": "7d0675ebda42b464313c7a60bebf8e1580bdecffde7d819b4ed696f0116643e3",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/observe_session.py": "f02bf716805cdc46beb0fa3f29ec7064b3a16b708426fc2a5da318d5397475e8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_rviz_overlay.py": "996bd10ec723998f524ca841d26edcd2c4a422a27e884404661288c0b83bb6cc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_session.py": "80f473b62e96886cf6a3562ac9b833808a56329a30b714df8e50489b5c94bed9",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_live.sh": "38c9d844601e3508b843aa582ecb77cf04caff47ba032358fba33e0186e372be",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/scenario_gpu.launch.py": "8a90f55fc2aa18cd542ee29aaf4ad180f06c220a08672d9ad3924dd5e0427675",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stop_owned_session.py": "fff6428d328ed5940b700a9cf2e5cce5495fead5e56cbdb7abb11aef34c69043"
+  },
+  "cases": {}
+}

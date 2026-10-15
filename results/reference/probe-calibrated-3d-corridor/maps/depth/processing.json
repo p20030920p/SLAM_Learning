@@ -1,0 +1,26 @@
+{
+  "kind": "probe_mapping_A",
+  "source_recording": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-005045-mapping-probe-corridor-e4f0aa",
+  "world_sha256": "e57fee1a83aa2b32b71d5ff4b19cdfed4cfae3d8330e12cc67ec4e807512bc6b",
+  "provided_mapping_poses": true,
+  "truth_to_localization_B": false,
+  "inputs": {
+    "mapping-clouds.npz": "a9638962bed9cd2cb4c227fb81acd0b95cd8bd6555168e2f0c7c17ca99782639",
+    "probe-mapping-inputs.npz": "471c8dee32b9398c6d953bf496bd40b3e5129a4a5bda1f361db742ba085975cd",
+    "probe-mapping-inputs.json": "720ea3cfff77c76b4f5e5112ed3b595183a65135b6a6e20e6a8a25bc24547315"
+  },
+  "maps": {
+    "lidar2d": {
+      "raw_points": 79783,
+      "voxel_points": 1552
+    },
+    "depth": {
+      "raw_points": 460217,
+      "voxel_points": 12130
+    },
+    "lidar3d": {
+      "raw_points": 1084818,
+      "voxel_points": 47984
+    }
+  }
+}

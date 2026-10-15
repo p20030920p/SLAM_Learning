@@ -1,0 +1,43 @@
+{
+  "frozen_at_utc": "2026-10-14T22:45:31.564256+00:00",
+  "parent_protocol_sha256": "ac759b85b1de4227b37d568f25e8679fd34b9d10d4c15a660f70ca9533c9dc45",
+  "hypothesis": "A 0.4m coarse grid plus weak-direction projection can leave a 0.2m offset. A 0.1m local candidate grid and checks against evaluated spatially distinct alternatives may remove it when visible height structure distinguishes position; a plain parallel corridor should remain ambiguous.",
+  "settings": {
+    "coarse_translation_step_m": 0.4,
+    "fine_translation_radius_m": 0.3,
+    "fine_translation_step_m": 0.1,
+    "fine_yaw_offsets_deg": [
+      -2,
+      0,
+      2
+    ],
+    "uniqueness_pool": "all evaluated coarse/fine positions and refined modes outside 0.35m / 0.15rad",
+    "unchanged": "H1/H2 residuals, motion prior, score>=0.65, distinct margin>=0.025 and two-confirmation gate"
+  },
+  "conditions": [
+    {
+      "dimension": "2d",
+      "scene": "corridor"
+    },
+    {
+      "dimension": "2d",
+      "scene": "height-corridor"
+    },
+    {
+      "dimension": "3d",
+      "scene": "corridor"
+    },
+    {
+      "dimension": "3d",
+      "scene": "height-corridor"
+    }
+  ],
+  "input_scope": "exact same saved lidar/depth/odometry arrays as the completed native B trial; no new Gazebo simulation",
+  "truth_input": false,
+  "video_scope": "measured output replay after new offline inference; no live-Gazebo or real-time claim",
+  "controls": "retained coarse LiDAR Search and Depth + Search; new fine LiDAR and fine Depth, same H1/H2 and initial beliefs",
+  "source_sha256": {
+    "refined_probe.py": "997a45172495050d456b569ef46fcb5b7836b9b22f3b4e65ce82f9f49e68fd87",
+    "recovery_probe.py": "095f3a37cca1417e2e0636a1022c7d21b1fbf9b17042fe901b8b33a5638e3d53"
+  }
+}

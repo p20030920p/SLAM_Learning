@@ -1,0 +1,26 @@
+{
+  "kind": "probe_mapping_A",
+  "source_recording": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-003535-mapping-probe-dynamic-2c03f4",
+  "world_sha256": "6a5837880254d5647634247be12b6953438f87d5326682bcd2a376b2c6023e53",
+  "provided_mapping_poses": true,
+  "truth_to_localization_B": false,
+  "inputs": {
+    "mapping-clouds.npz": "e791f5a2c1325c123e14b3f4f9ecc3af375889fc5573d906e9b388fdc2676cb0",
+    "probe-mapping-inputs.npz": "87d4a39098b3a7e86874f621bec5912fbfaedf57695c316787a8497e3b35a3bd",
+    "probe-mapping-inputs.json": "02e0bc017a4c3d115609384f80a9652bec4436ed02e79f48d06cca560979f43c"
+  },
+  "maps": {
+    "lidar2d": {
+      "raw_points": 82767,
+      "voxel_points": 1694
+    },
+    "depth": {
+      "raw_points": 556798,
+      "voxel_points": 13637
+    },
+    "lidar3d": {
+      "raw_points": 1084722,
+      "voxel_points": 43529
+    }
+  }
+}

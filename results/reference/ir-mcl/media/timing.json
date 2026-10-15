@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "method": "ir-mcl",
+  "source_record": "results/reference/ir-mcl/runs/ir-mcl-wsl/record.json",
+  "source_record_sha256": "ab2970dd1aeeefb191fe1ae7798791f575b7a331c3557ba9e24f70fd12432c25",
+  "clips": [
+    {
+      "name": "ir-mcl",
+      "sha256": "c216fa28f0cd93b38a449f15b59dc0ee6fc2463b28cc429943076dc253791d2b",
+      "bytes": 1141373,
+      "source_video": "results/reference/ir-mcl/media/replay/replay.mp4",
+      "source_record": "results/reference/ir-mcl/media/replay/record.json",
+      "record_sha256": "4e9a999d89275d9d001202871947454883dc2a37af6586c7e49317bf8365bf09",
+      "dimensions": [
+        1600,
+        900
+      ],
+      "source_fps": "10/1",
+      "duration_seconds": 154.3,
+      "expected_frames": 1543,
+      "decoded_frames": 1543,
+      "source_intervals_seconds": [
+        [
+          0,
+          154.3
+        ]
+      ],
+      "sampling_filter": "setpts=PTS-STARTPTS",
+      "preview_duration_seconds": 154.3,
+      "gif_frame_count": 1543,
+      "gif_frame_delay_ms": 100,
+      "gif_duration_seconds": 154.3,
+      "timing_policy": "Every saved localization frame is kept; constant-rate re-encode, no cuts or downsampling",
+      "frame_count_and_timing_passed": true,
+      "full_decode_passed": true,
+      "commands": [
+        [
+          "ffmpeg",
+          "-y",
+          "-v",
+          "error",
+          "-i",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/reference/ir-mcl/media/preview.gif",
+          "-r",
+          "10",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "medium",
+          "-crf",
+          "20",
+          "-pix_fmt",
+          "yuv420p",
+          "-movflags",
+          "+faststart",
+          "/mnt/d/workspace/be2/slam_learning_updated/results/reference/ir-mcl/media/replay/replay.mp4"
+        ]
+      ],
+      "scans_total": 1543,
+      "scans_scored": 1354
+    }
+  ],
+  "note": "Replay of a saved localization run. Playback rate is not algorithm throughput."
+}
