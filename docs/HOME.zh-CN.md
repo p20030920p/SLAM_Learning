@@ -172,9 +172,8 @@
 | --- | --- | --- | --- |
 | H1 / Q1 | 重复命中＋自由射线确认能减少动态残影，并改善独立定位。 | 自写累积图 / 自写时序清图 | A：DA、SA；B：XY RMSE |
 | H2 / Q2 | 用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。 | 自写补偿关 / 开 | A：Eₘ；B：XY RMSE |
-| H3 / Q3 | 检测几何退化并按弱方向的约束贡献保留可靠静态结构，能减少沿廊定位误差。 | 自写统一阈值 / 自写退化感知清图 | A：额外保留格数；B：沿廊 RMSE |
 
-三项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。
+两项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。
 
 <a id="hypothesis-math"></a>
 
@@ -208,37 +207,19 @@ H_c=\sum_b\mathbf{1}[\text{hit in time bin }b],\quad F_c=\sum_b\mathbf{1}[\text{
 \tilde p_i=\hat T_{\rm odom}(t_e)^{-1}\hat T_{\rm odom}(t_i)p_i,\qquad E_M(\mathrm{on})\lt E_M(\mathrm{off}),\quad\Delta E_L\gt0
 ```
 
-**H3**
-
-解决方案：从已观测结构的局部法线估计约束较弱的方向；对该方向有约束贡献、至少两次命中且没有自由射线反证的结构，降低删除阈值。下面n为局部法线，G为平移约束的近似矩阵，v为最弱方向。
-
-
-```math
-G=\sum_{c\in C}n_cn_c^{\mathsf T},\quad v_{\min}=\mathrm{eigvec}_{\min}(G),\quad R_c=\mathbf{1}[H_c\geq2,\ F_c=0,\ |n_c^{\mathsf T}v_{\min}|\gt0.7]
-```
-
-```math
-D=\mathbf{1}[\lambda_{\min}(G)\lt0.25\lambda_{\max}(G)],\qquad K_c^{\rm protected}=\mathbf{1}[(H_c\geq5\land H_c\geq1.5F_c)\lor(D=1\land R_c=1)]
-```
-
-```math
-E_{\parallel}=\sqrt{\frac1N\sum_t[u^{\mathsf T}(\hat p_t-p_t^\ast)]^2},\qquad E_{\parallel}(\mathrm{protected})\lt E_{\parallel}(\mathrm{strict})
-```
-
-时间箱0.5秒；自由射线在回波前15 cm停止；静态损失容差ε＝1个百分点。H3保持走廊、路线、传感器和定位器相同，仅切换清图规则。它保护已有观测提供的约束；完全缺少沿廊信息时仍需额外观测，不能凭空恢复位置。真值仅用于评分。
+时间箱0.5秒；自由射线在回波前15 cm停止；静态损失容差ε＝1个百分点。真值仅用于评分。
 
 <a id="hypothesis-pseudocode"></a>
 
 ### 伪代码
 
 ```text
-for scene in [static, dynamic, motion, corridor]:
+for scene in [static, dynamic, motion]:
     A = acquire_scans_and_wheel_odometry(scene)
     for control in controls_for(scene):
         if H2: compensate_sector_points_by_interpolated_odometry()
         update_hit_and_free_evidence_in_distinct_time_bins()
         if H1: retain_temporally_supported_cells()
-        if H3: protect_supported_normals_along_the_weak_direction()
         freeze_map(control)
     B = acquire_a_separate_session(scene)
     run_the_same_AMCL_on_all_frozen_maps(B)
@@ -311,7 +292,7 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 
 ![SRRG · original point-cloud Fig. 7](assets/related/20261016-pointcloud/srrg-fig7.png)
 
-来源：Lázaro等，*Efficient Long-term Mapping in Dynamic Environments*，IROS 2018，图7，第6页。[原文](https://iris.uniroma1.it/handle/11573/1340118) · [作者代码](https://gitlab.com/srrg-software/srrg_mapper2d)。二维点云和里程计经过配准、局部图维护与位姿图优化；对应H1的动态地图维护，也需要检查H3中的几何约束。
+来源：Lázaro等，*Efficient Long-term Mapping in Dynamic Environments*，IROS 2018，图7，第6页。[原文](https://iris.uniroma1.it/handle/11573/1340118) · [作者代码](https://gitlab.com/srrg-software/srrg_mapper2d)。二维点云和里程计经过配准、局部图维护与位姿图优化；对应H1的动态地图维护，也需要检查Q3中的几何约束。
 <!-- /SRRG_RELATED -->
 
 <!-- FASTLIO_RELATED -->
@@ -334,7 +315,6 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 | DA ↑ / SA ↑ | 仅评清图A：动态删除比例／静态保留比例；无动态时只列SA。二维按观测支持、三维按点评分。 |
 | Eₘ ↓ | 去畸变A：地图点到静态参考几何的距离RMSE，cm。 |
 | XY / XYZ RMSE ↓ | 冻结地图后的定位B：二维／三维位置误差，cm。 |
-| 沿廊 RMSE ↓ | H3受限观测阶段：沿走廊方向的位置误差，cm。 |
 | 角度RMSE ↓ | 仅在评价姿态时报告偏航或三维旋转误差，度；A里程计误差单独标注。 |
 
 ### 实验证据
@@ -939,9 +919,8 @@ KITTI-00，141帧；本项只评价地图清理。
 | H1 静态保留 | [A](#own-static-a) | [B](#own-static-b) |
 | H1 动态清理 | [A](#own-dynamic-a) | [B](#own-dynamic-b) |
 | H2 里程计去畸变 | [A](#own-motion-a) | [B](#own-motion-b) |
-| H3 退化约束保护 | [A](#own-corridor-a) | [B](#own-corridor-b) |
 
-设备同Practice的全向轮机器人；算法仅使用二维雷达和轮式里程计。H2将三个真实时刻的扇区组合为滚动扫描，保留各点原采样时刻；未使用FAST-LIO。H3保持同一走廊，只切换地图保留规则。
+设备同Practice的全向轮机器人；算法仅使用二维雷达和轮式里程计。H2将三个真实时刻的扇区组合为滚动扫描，保留各点原采样时刻；未使用FAST-LIO。
 
 [自写算法](../src/slam_learning/runtime/own_mapping.py) · [一键录制](../demo/record-own-hypotheses.ps1)
 
@@ -1073,49 +1052,4 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 
 [↑ 目录](#hypothesis-test-index)
 
-<a id="own-corridor-a"></a>
-
-### H3 · 退化约束保护 · A
-
-| 保护规则额外保留的栅格数 | 冻结地图字节相同 |
-| --- | --- |
-| 0 | 是 |
-
-本轮保护规则未改变最终地图；B中的随机误差差别不能视为地图干预带来的改善。
-
-| 建图录像：灰色为基线，蓝色为自写干预 |
-| --- |
-| <a href="../results/reference/own-hypotheses-20261016/corridor-A/execution.mp4"><img src="../results/reference/own-hypotheses-20261016/corridor-A/execution.gif" width="840" loading="lazy" alt="H3 · 退化约束保护 A"></a> |
-
-[记录](../results/reference/own-hypotheses-20261016/corridor-A/record.json)
-
-**分析：**
-<!-- OWN_ANALYSIS:corridor-a -->
-
-<!-- /OWN_ANALYSIS:corridor-a -->
-
-<a id="own-corridor-b"></a>
-
-### H3 · 退化约束保护 · B
-
-仅用前50秒受限扫描阶段的沿廊RMSE检验弱方向定位。
-
-| 地图／AMCL | 沿廊 RMSE / cm ↓ |
-| --- | --- |
-| degraded_strict | 80.56 |
-| degraded_protected | 80.56 |
-
-| degraded_strict | degraded_protected |
-| --- | --- |
-| <a href="../results/reference/own-hypotheses-20261016/corridor-B/executions/degraded_strict.mp4"><img src="../results/reference/own-hypotheses-20261016/corridor-B/executions/degraded_strict.gif" width="420" loading="lazy" alt="degraded_strict B"></a> | <a href="../results/reference/own-hypotheses-20261016/corridor-B/executions/degraded_protected.mp4"><img src="../results/reference/own-hypotheses-20261016/corridor-B/executions/degraded_protected.gif" width="420" loading="lazy" alt="degraded_protected B"></a> |
-
-[共同时间点评分](../results/reference/own-hypotheses-20261016/corridor-B/time-grid-score.json) · [记录](../results/reference/own-hypotheses-20261016/corridor-B/record.json)
-
-**分析：**
-<!-- OWN_ANALYSIS:corridor-b -->
-
-<!-- /OWN_ANALYSIS:corridor-b -->
-
-[↑ 目录](#hypothesis-test-index)
-
-H1用DA/SA评清图，静态对照只看SA；H2用Eₘ评地图几何；H3检查保护规则是否增加保留格数，再看B沿廊误差。定位预热5秒后使用共同10 Hz时间点，最新输出最多滞后0.15秒；样本数与输出缺失情况见原始评分记录。建图指标改善但B误差不降时，只支持建图结论。
+H1用DA/SA评清图，静态对照只看SA；H2用Eₘ评地图几何。定位预热5秒后使用共同10 Hz时间点，最新输出最多滞后0.15秒；样本数与输出缺失情况见原始评分记录。建图指标改善但B误差不降时，只支持建图结论。

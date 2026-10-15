@@ -18,9 +18,8 @@ def definitions(zh):
     text += table([s("问题", "Question"), s("一句话假设", "Hypothesis"), s("对照方法", "Controls"), s("指标", "Metrics")], [
         ["H1 / Q1", s("重复命中＋自由射线确认能减少动态残影，并改善独立定位。", "Repeated hits plus free-ray confirmation reduce dynamic traces and improve held-out localization."), s("自写累积图 / 自写时序清图", "Own accumulation / own temporal cleaning"), s("A：DA、SA；B：XY RMSE", "A: DA, SA; B: XY RMSE")],
         ["H2 / Q2", s("用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。", "Wheel-odometry compensation for point timestamps reduces map and held-out localization error."), s("自写补偿关 / 开", "Own compensation off / on"), s("A：Eₘ；B：XY RMSE", "A: Eₘ; B: XY RMSE")],
-        ["H3 / Q3", s("检测几何退化并按弱方向的约束贡献保留可靠静态结构，能减少沿廊定位误差。", "Detecting geometric degeneracy and retaining reliable static structures that constrain the weak direction reduces along-corridor error."), s("自写统一阈值 / 自写退化感知清图", "Own uniform threshold / own degeneracy-aware cleaning"), s("A：额外保留格数；B：沿廊 RMSE", "A: additional retained cells; B: along RMSE")],
     ])
-    text += s("三项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。", "All three interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.") + "\n\n"
+    text += s("两项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。", "Both interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.") + "\n\n"
     text += '<a id="hypothesis-math"></a>\n\n### ' + s("数学表达", "Mathematical form") + "\n\n"
     text += s("A建图、B独立采集；冻结地图后，各对照使用相同B扫描、里程计和AMCL参数。", "A builds the maps; B is a separate acquisition. Freeze the maps and share B scans, odometry and AMCL settings across controls.") + "\n\n"
     text += s("DA/SA只衡量清图的删除与保留比例，不代表几何精度或定位精度。B评估在既有地图中运动时的定位误差；本轮未测完整导航任务的到达效果。", "DA/SA measure removal and retention, not geometric or localization accuracy. B evaluates localization while moving through an existing map; complete navigation-task outcomes were not measured.") + "\n\n"
@@ -48,34 +47,16 @@ H_c=\sum_b\mathbf{1}[\text{hit in time bin }b],\quad F_c=\sum_b\mathbf{1}[\text{
 \tilde p_i=\hat T_{\rm odom}(t_e)^{-1}\hat T_{\rm odom}(t_i)p_i,\qquad E_M(\mathrm{on})\lt E_M(\mathrm{off}),\quad\Delta E_L\gt0
 ```
 
-**H3**
-
 """
-    text += s("解决方案：从已观测结构的局部法线估计约束较弱的方向；对该方向有约束贡献、至少两次命中且没有自由射线反证的结构，降低删除阈值。下面n为局部法线，G为平移约束的近似矩阵，v为最弱方向。", "Proposed solution: estimate the weak direction from observed local surface normals, then lower the deletion threshold for structures that constrain that direction, have repeated hits and have no contradicting free rays. Here n is a local normal, G approximates translational constraints and v is the weakest direction.") + "\n\n"
-    text += r"""
-```math
-G=\sum_{c\in C}n_cn_c^{\mathsf T},\quad v_{\min}=\mathrm{eigvec}_{\min}(G),\quad R_c=\mathbf{1}[H_c\geq2,\ F_c=0,\ |n_c^{\mathsf T}v_{\min}|\gt0.7]
-```
-
-```math
-D=\mathbf{1}[\lambda_{\min}(G)\lt0.25\lambda_{\max}(G)],\qquad K_c^{\rm protected}=\mathbf{1}[(H_c\geq5\land H_c\geq1.5F_c)\lor(D=1\land R_c=1)]
-```
-
-```math
-E_{\parallel}=\sqrt{\frac1N\sum_t[u^{\mathsf T}(\hat p_t-p_t^\ast)]^2},\qquad E_{\parallel}(\mathrm{protected})\lt E_{\parallel}(\mathrm{strict})
-```
-
-"""
-    text += s("时间箱0.5秒；自由射线在回波前15 cm停止；静态损失容差ε＝1个百分点。H3保持走廊、路线、传感器和定位器相同，仅切换清图规则。它保护已有观测提供的约束；完全缺少沿廊信息时仍需额外观测，不能凭空恢复位置。真值仅用于评分。", "Time bins: 0.5 s; free rays stop 15 cm before each return; static-loss tolerance ε = 1 percentage point. H3 keeps the corridor, route, sensors and localizer fixed and changes only the cleaning rule. It protects observed constraints; a corridor with no along-axis information still needs additional observations. Truth is used only for scoring.") + "\n\n"
+    text += s("时间箱0.5秒；自由射线在回波前15 cm停止；静态损失容差ε＝1个百分点。真值仅用于评分。", "Time bins: 0.5 s; free rays stop 15 cm before each return; static-loss tolerance ε = 1 percentage point. Truth is used only for scoring.") + "\n\n"
     text += '<a id="hypothesis-pseudocode"></a>\n\n### ' + s("伪代码", "Pseudocode") + "\n\n"
     text += """```text
-for scene in [static, dynamic, motion, corridor]:
+for scene in [static, dynamic, motion]:
     A = acquire_scans_and_wheel_odometry(scene)
     for control in controls_for(scene):
         if H2: compensate_sector_points_by_interpolated_odometry()
         update_hit_and_free_evidence_in_distinct_time_bins()
         if H1: retain_temporally_supported_cells()
-        if H3: protect_supported_normals_along_the_weak_direction()
         freeze_map(control)
     B = acquire_a_separate_session(scene)
     run_the_same_AMCL_on_all_frozen_maps(B)
@@ -162,41 +143,32 @@ def hypothesis_tests(doc, zh):
     text = '<a id="hypothesis-test"></a>\n\n## Hypothesis test\n\n<a id="hypothesis-test-index"></a>\n\n'
     text += s("自写方法的实验。每个场景重新采集A/B；同一场景各对照共享输入。每组1轮，固定参数，不根据真值调参。", "Experiments for project-written methods. Reacquire A/B per scene and share inputs across its controls. One trial per control, fixed parameters, no truth-based tuning.") + "\n\n"
     index = []
-    for scene, name in [("static", s("H1 静态保留", "H1 Static retention")), ("dynamic", s("H1 动态清理", "H1 Dynamic cleaning")), ("motion", s("H2 里程计去畸变", "H2 Odometry deskew")), ("corridor", s("H3 退化约束保护", "H3 Weak-axis protection"))]:
+    for scene, name in [("static", s("H1 静态保留", "H1 Static retention")), ("dynamic", s("H1 动态清理", "H1 Dynamic cleaning")), ("motion", s("H2 里程计去畸变", "H2 Odometry deskew"))]:
         index.append([name, f"[A](#own-{scene}-a)", f"[B](#own-{scene}-b)"])
     text += table([s("实验", "Experiment"), s("建图与指标", "Mapping and scores"), s("独立定位与指标", "Held-out localization and scores")], index)
-    text += s("设备同Practice的全向轮机器人；算法仅使用二维雷达和轮式里程计。H2将三个真实时刻的扇区组合为滚动扫描，保留各点原采样时刻；未使用FAST-LIO。H3保持同一走廊，只切换地图保留规则。", "Use the same omni robot as Practice; algorithms use only 2D LiDAR and wheel odometry. H2 combines sectors from three actual scan times, preserving each point timestamp, without FAST-LIO. H3 keeps the same corridor and changes only map retention.") + "\n\n"
+    text += s("设备同Practice的全向轮机器人；算法仅使用二维雷达和轮式里程计。H2将三个真实时刻的扇区组合为滚动扫描，保留各点原采样时刻；未使用FAST-LIO。", "Use the same omni robot as Practice; algorithms use only 2D LiDAR and wheel odometry. H2 combines sectors from three actual scan times, preserving each point timestamp, without FAST-LIO.") + "\n\n"
     text += link("src/slam_learning/runtime/own_mapping.py", s("自写算法", "Own algorithms")) + " · " + link("demo/record-own-hypotheses.ps1", s("一键录制", "Record all")) + "\n\n"
     text += s("H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31–39秒。", "H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 s, translation 31–39 s.") + "\n\n"
-    for scene, name in [("static", "H1 · " + s("静态保留", "Static retention")), ("dynamic", "H1 · " + s("动态清理", "Dynamic cleaning")), ("motion", "H2 · " + s("里程计去畸变", "Odometry deskew")), ("corridor", "H3 · " + s("退化约束保护", "Weak-axis protection"))]:
+    for scene, name in [("static", "H1 · " + s("静态保留", "Static retention")), ("dynamic", "H1 · " + s("动态清理", "Dynamic cleaning")), ("motion", "H2 · " + s("里程计去畸变", "Odometry deskew"))]:
         a, b = f"{SUITE}/{scene}-A", f"{SUITE}/{scene}-B"
         ar = json.loads((ROOT / a / "record.json").read_text())
         br = json.loads((ROOT / b / "time-grid-score.json").read_text())
         text += f'<a id="own-{scene}-a"></a>\n\n### {name} · A\n\n'
-        controls = ("off", "deskew") if scene == "motion" else (("strict", "protected") if scene == "corridor" else ("raw", "temporal"))
+        controls = ("off", "deskew") if scene == "motion" else ("raw", "temporal")
         if scene in ("static", "dynamic"):
             headers = [s("对照", "Control")] + (["DA ↑"] if scene == "dynamic" else []) + ["SA ↑"]
             rows = [[method] + ([pct(ar["methods"][method]["dynamic_removal"])] if scene == "dynamic" else []) + [pct(ar["methods"][method]["static_retention"])] for method in controls]
             text += table(headers, rows)
         elif scene == "motion":
             text += table([s("对照", "Control"), "Eₘ / cm ↓"], [[method, num(ar["methods"][method]["map_rmse_m"], 100)] for method in controls])
-        if scene == "corridor":
-            extra = ar["methods"]["protected"]["points"] - ar["methods"]["strict"]["points"]
-            same_map = (ROOT / a / "maps/strict/map.pgm").read_bytes() == (ROOT / a / "maps/protected/map.pgm").read_bytes()
-            text += table([s("保护规则额外保留的栅格数", "Additional cells retained by protection"), s("冻结地图字节相同", "Frozen maps are byte-identical")], [[extra, s("是", "Yes") if same_map else s("否", "No")]])
-            if same_map:
-                text += s("本轮保护规则未改变最终地图；B中的随机误差差别不能视为地图干预带来的改善。", "The protection rule did not change the final map in this trial; random differences in B cannot establish improvement from the map intervention.") + "\n\n"
         text += table([s("建图录像：灰色为基线，蓝色为自写干预", "Mapping: grey baseline, blue own intervention")], [[media(a + "/execution", name + " A", 840)]])
         text += link(a + "/record.json", s("记录", "Record")) + "\n\n**" + s("分析：", "Analysis:") + "**\n<!-- OWN_ANALYSIS:" + scene + "-a -->\n\n<!-- /OWN_ANALYSIS:" + scene + "-a -->\n\n"
         text += f'<a id="own-{scene}-b"></a>\n\n### {name} · B\n\n'
-        if scene == "corridor":
-            text += s("仅用前50秒受限扫描阶段的沿廊RMSE检验弱方向定位。", "Use along-corridor RMSE during the first 50 s of limited observations to test weak-direction localization.") + "\n\n"
-        selected = {key: m for key, m in br["methods"].items() if (key.startswith("degraded_") if scene == "corridor" else True)}
-        score_label = s("沿廊 RMSE / cm ↓", "Along RMSE / cm ↓") if scene == "corridor" else "XY RMSE / cm ↓"
-        text += table([s("地图／AMCL", "Map / AMCL"), score_label], [[key, num((m.get("limited") or {}).get("along_x_rmse_m") if scene == "corridor" else (m.get("common") or {}).get("rmse_m"), 100)] for key, m in selected.items()])
+        selected = br["methods"]
+        text += table([s("地图／AMCL", "Map / AMCL"), "XY RMSE / cm ↓"], [[key, num((m.get("common") or {}).get("rmse_m"), 100)] for key, m in selected.items()])
         text += table(list(selected), [[media(b + "/executions/" + key, key + " B") for key in selected]])
         text += link(b + "/time-grid-score.json", s("共同时间点评分", "Common-time scores")) + " · " + link(b + "/record.json", s("记录", "Record")) + "\n\n**" + s("分析：", "Analysis:") + "**\n<!-- OWN_ANALYSIS:" + scene + "-b -->\n\n<!-- /OWN_ANALYSIS:" + scene + "-b -->\n\n[↑ " + s("目录", "Contents") + "](#hypothesis-test-index)\n\n"
-    text += s("H1用DA/SA评清图，静态对照只看SA；H2用Eₘ评地图几何；H3检查保护规则是否增加保留格数，再看B沿廊误差。定位预热5秒后使用共同10 Hz时间点，最新输出最多滞后0.15秒；样本数与输出缺失情况见原始评分记录。建图指标改善但B误差不降时，只支持建图结论。", "H1 uses DA/SA for cleaning and only SA in its static control; H2 uses Eₘ for map geometry; H3 checks additional retained cells, then B along-corridor error. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; sample counts and missing outputs remain in the score records. Better mapping scores without lower B error support only the mapping claim.") + "\n\n"
+    text += s("H1用DA/SA评清图，静态对照只看SA；H2用Eₘ评地图几何。定位预热5秒后使用共同10 Hz时间点，最新输出最多滞后0.15秒；样本数与输出缺失情况见原始评分记录。建图指标改善但B误差不降时，只支持建图结论。", "H1 uses DA/SA for cleaning and only SA in its static control; H2 uses Eₘ for map geometry. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; sample counts and missing outputs remain in the score records. Better mapping scores without lower B error support only the mapping claim.") + "\n\n"
     return text
 
 
@@ -213,7 +185,7 @@ def publish_document(doc, zh):
         elif key in ("Practice", "实践"):
             value = practice(doc, zh, previous)
         elif key in ("Related works", "相关工作"):
-            value = related(value, doc, zh)
+            value = related(value, doc, zh).replace("H3", "Q3")
             value = re.sub(r"\[[^\]]+\]\(#experiment-h2\)", "[FAST-LIO Practice](#practice-fastlio)", value)
             value = value.replace("#experiment-h1", "#practice-srrg").replace("#experiment-h3", "#practice-srrg-corridor")
         elif key in ("Metrics", "指标"):

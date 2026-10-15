@@ -217,12 +217,6 @@ def metric_table(zh):
                 ),
             ],
             [
-                label("沿廊 RMSE ↓", "Along RMSE ↓"),
-                label(
-                    "H3受限观测阶段：沿走廊方向的位置误差，cm。", "H3 during limited observations: position error along the corridor, cm."
-                ),
-            ],
-            [
                 label("角度RMSE ↓", "Angular RMSE ↓"),
                 label("仅在评价姿态时报告偏航或三维旋转误差，度；A里程计误差单独标注。", "Yaw or 3D rotation error when pose orientation is evaluated, degrees; A odometry is labelled separately."),
             ],

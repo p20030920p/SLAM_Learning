@@ -24,7 +24,7 @@ def page(title, groups, out):
 
 def publish():
     own = []
-    for scene, title in [("static", "H1 静态"), ("dynamic", "H1 动态"), ("motion", "H2 里程计去畸变"), ("corridor", "H3 退化约束保护")]:
+    for scene, title in [("static", "H1 静态"), ("dynamic", "H1 动态"), ("motion", "H2 里程计去畸变")]:
         clips = [(f"{SUITE}/{scene}-A/execution.mp4", title + " · A · 自写方法对照")]
         folder = ROOT / SUITE / (scene + "-B/executions")
         clips += [(p.relative_to(ROOT).as_posix(), title + " · B · " + p.stem + " map / AMCL") for p in sorted(folder.glob("*.mp4"))]

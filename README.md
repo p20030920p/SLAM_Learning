@@ -172,9 +172,8 @@ The core question is:
 | --- | --- | --- | --- |
 | H1 / Q1 | Repeated hits plus free-ray confirmation reduce dynamic traces and improve held-out localization. | Own accumulation / own temporal cleaning | A: DA, SA; B: XY RMSE |
 | H2 / Q2 | Wheel-odometry compensation for point timestamps reduces map and held-out localization error. | Own compensation off / on | A: Eₘ; B: XY RMSE |
-| H3 / Q3 | Detecting geometric degeneracy and retaining reliable static structures that constrain the weak direction reduces along-corridor error. | Own uniform threshold / own degeneracy-aware cleaning | A: additional retained cells; B: along RMSE |
 
-All three interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.
+Both interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.
 
 <a id="hypothesis-math"></a>
 
@@ -208,37 +207,19 @@ H_c=\sum_b\mathbf{1}[\text{hit in time bin }b],\quad F_c=\sum_b\mathbf{1}[\text{
 \tilde p_i=\hat T_{\rm odom}(t_e)^{-1}\hat T_{\rm odom}(t_i)p_i,\qquad E_M(\mathrm{on})\lt E_M(\mathrm{off}),\quad\Delta E_L\gt0
 ```
 
-**H3**
-
-Proposed solution: estimate the weak direction from observed local surface normals, then lower the deletion threshold for structures that constrain that direction, have repeated hits and have no contradicting free rays. Here n is a local normal, G approximates translational constraints and v is the weakest direction.
-
-
-```math
-G=\sum_{c\in C}n_cn_c^{\mathsf T},\quad v_{\min}=\mathrm{eigvec}_{\min}(G),\quad R_c=\mathbf{1}[H_c\geq2,\ F_c=0,\ |n_c^{\mathsf T}v_{\min}|\gt0.7]
-```
-
-```math
-D=\mathbf{1}[\lambda_{\min}(G)\lt0.25\lambda_{\max}(G)],\qquad K_c^{\rm protected}=\mathbf{1}[(H_c\geq5\land H_c\geq1.5F_c)\lor(D=1\land R_c=1)]
-```
-
-```math
-E_{\parallel}=\sqrt{\frac1N\sum_t[u^{\mathsf T}(\hat p_t-p_t^\ast)]^2},\qquad E_{\parallel}(\mathrm{protected})\lt E_{\parallel}(\mathrm{strict})
-```
-
-Time bins: 0.5 s; free rays stop 15 cm before each return; static-loss tolerance ε = 1 percentage point. H3 keeps the corridor, route, sensors and localizer fixed and changes only the cleaning rule. It protects observed constraints; a corridor with no along-axis information still needs additional observations. Truth is used only for scoring.
+Time bins: 0.5 s; free rays stop 15 cm before each return; static-loss tolerance ε = 1 percentage point. Truth is used only for scoring.
 
 <a id="hypothesis-pseudocode"></a>
 
 ### Pseudocode
 
 ```text
-for scene in [static, dynamic, motion, corridor]:
+for scene in [static, dynamic, motion]:
     A = acquire_scans_and_wheel_odometry(scene)
     for control in controls_for(scene):
         if H2: compensate_sector_points_by_interpolated_odometry()
         update_hit_and_free_evidence_in_distinct_time_bins()
         if H1: retain_temporally_supported_cells()
-        if H3: protect_supported_normals_along_the_weak_direction()
         freeze_map(control)
     B = acquire_a_separate_session(scene)
     run_the_same_AMCL_on_all_frozen_maps(B)
@@ -309,7 +290,7 @@ Our run uses an authored 128-cell map and a 2432-step checkpoint: 123 filter upd
 
 ![SRRG · original point-cloud Fig. 7](docs/assets/related/20261016-pointcloud/srrg-fig7.png)
 
-Source: Lázaro et al., *Efficient Long-term Mapping in Dynamic Environments*, IROS 2018, Fig. 7, page 6. [Paper](https://iris.uniroma1.it/handle/11573/1340118) · [Author code](https://gitlab.com/srrg-software/srrg_mapper2d). Registration, local maintenance and graph optimization connect H1 to geometric conditions in H3.
+Source: Lázaro et al., *Efficient Long-term Mapping in Dynamic Environments*, IROS 2018, Fig. 7, page 6. [Paper](https://iris.uniroma1.it/handle/11573/1340118) · [Author code](https://gitlab.com/srrg-software/srrg_mapper2d). Registration, local maintenance and graph optimization connect H1 to geometric conditions in Q3.
 <!-- /SRRG_RELATED -->
 
 <!-- FASTLIO_RELATED -->
@@ -332,7 +313,6 @@ Source: Xu et al., *FAST-LIO2: Fast Direct LiDAR-inertial Odometry*, Fig. 12, pa
 | DA ↑ / SA ↑ | Cleaning A only: dynamic removal / static retention; omit DA without dynamics. Units are observed support in 2D and points in 3D. |
 | Eₘ ↓ | Deskew A: map-point distance RMSE to static reference geometry, cm. |
 | XY / XYZ RMSE ↓ | Localization B on frozen maps: 2D / 3D position error, cm. |
-| Along RMSE ↓ | H3 during limited observations: position error along the corridor, cm. |
 | Angular RMSE ↓ | Yaw or 3D rotation error when pose orientation is evaluated, degrees; A odometry is labelled separately. |
 
 ### Evidence
@@ -937,9 +917,8 @@ Experiments for project-written methods. Reacquire A/B per scene and share input
 | H1 Static retention | [A](#own-static-a) | [B](#own-static-b) |
 | H1 Dynamic cleaning | [A](#own-dynamic-a) | [B](#own-dynamic-b) |
 | H2 Odometry deskew | [A](#own-motion-a) | [B](#own-motion-b) |
-| H3 Weak-axis protection | [A](#own-corridor-a) | [B](#own-corridor-b) |
 
-Use the same omni robot as Practice; algorithms use only 2D LiDAR and wheel odometry. H2 combines sectors from three actual scan times, preserving each point timestamp, without FAST-LIO. H3 keeps the same corridor and changes only map retention.
+Use the same omni robot as Practice; algorithms use only 2D LiDAR and wheel odometry. H2 combines sectors from three actual scan times, preserving each point timestamp, without FAST-LIO.
 
 [Own algorithms](src/slam_learning/runtime/own_mapping.py) · [Record all](demo/record-own-hypotheses.ps1)
 
@@ -1071,49 +1050,4 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 [↑ Contents](#hypothesis-test-index)
 
-<a id="own-corridor-a"></a>
-
-### H3 · Weak-axis protection · A
-
-| Additional cells retained by protection | Frozen maps are byte-identical |
-| --- | --- |
-| 0 | Yes |
-
-The protection rule did not change the final map in this trial; random differences in B cannot establish improvement from the map intervention.
-
-| Mapping: grey baseline, blue own intervention |
-| --- |
-| <a href="results/reference/own-hypotheses-20261016/corridor-A/execution.mp4"><img src="results/reference/own-hypotheses-20261016/corridor-A/execution.gif" width="840" loading="lazy" alt="H3 · Weak-axis protection A"></a> |
-
-[Record](results/reference/own-hypotheses-20261016/corridor-A/record.json)
-
-**Analysis:**
-<!-- OWN_ANALYSIS:corridor-a -->
-
-<!-- /OWN_ANALYSIS:corridor-a -->
-
-<a id="own-corridor-b"></a>
-
-### H3 · Weak-axis protection · B
-
-Use along-corridor RMSE during the first 50 s of limited observations to test weak-direction localization.
-
-| Map / AMCL | Along RMSE / cm ↓ |
-| --- | --- |
-| degraded_strict | 80.56 |
-| degraded_protected | 80.56 |
-
-| degraded_strict | degraded_protected |
-| --- | --- |
-| <a href="results/reference/own-hypotheses-20261016/corridor-B/executions/degraded_strict.mp4"><img src="results/reference/own-hypotheses-20261016/corridor-B/executions/degraded_strict.gif" width="420" loading="lazy" alt="degraded_strict B"></a> | <a href="results/reference/own-hypotheses-20261016/corridor-B/executions/degraded_protected.mp4"><img src="results/reference/own-hypotheses-20261016/corridor-B/executions/degraded_protected.gif" width="420" loading="lazy" alt="degraded_protected B"></a> |
-
-[Common-time scores](results/reference/own-hypotheses-20261016/corridor-B/time-grid-score.json) · [Record](results/reference/own-hypotheses-20261016/corridor-B/record.json)
-
-**Analysis:**
-<!-- OWN_ANALYSIS:corridor-b -->
-
-<!-- /OWN_ANALYSIS:corridor-b -->
-
-[↑ Contents](#hypothesis-test-index)
-
-H1 uses DA/SA for cleaning and only SA in its static control; H2 uses Eₘ for map geometry; H3 checks additional retained cells, then B along-corridor error. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; sample counts and missing outputs remain in the score records. Better mapping scores without lower B error support only the mapping claim.
+H1 uses DA/SA for cleaning and only SA in its static control; H2 uses Eₘ for map geometry. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; sample counts and missing outputs remain in the score records. Better mapping scores without lower B error support only the mapping claim.
