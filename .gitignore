@@ -12,6 +12,8 @@ results/runs/
 results/local-reproduction*.md
 data/
 *.pcd
+# Exact small frozen-map inputs used by the published FAST-LIO/GICP experiment.
+!results/reference/direction-*/fastlio-maps/*/map-3d.pcd
 *.bag
 *.db3
 *.pt

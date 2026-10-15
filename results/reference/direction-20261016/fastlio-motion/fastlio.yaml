@@ -1,0 +1,45 @@
+/**:
+  ros__parameters:
+    common.imu_topic: /study/imu_ready
+    common.lid_topic: /study/rolling
+    common.time_offset_lidar_to_imu: 0.0
+    common.time_sync_en: false
+    cube_side_length: 100.0
+    feature_extract_enable: false
+    filter_size_map: 0.1
+    filter_size_surf: 0.1
+    mapping.acc_cov: 0.01
+    mapping.b_acc_cov: 0.0001
+    mapping.b_gyr_cov: 0.0001
+    mapping.det_range: 12.0
+    mapping.extrinsic_R:
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+    - 0.0
+    - 0.0
+    - 0.0
+    - 1.0
+    mapping.extrinsic_T:
+    - 0.0
+    - 0.0
+    - 0.3
+    mapping.extrinsic_est_en: false
+    mapping.fov_degree: 360.0
+    mapping.gyr_cov: 0.001
+    max_iteration: 4
+    pcd_save.pcd_save_en: false
+    point_filter_num: 1
+    preprocess.blind: 0.4
+    preprocess.lidar_type: 2
+    preprocess.scan_line: 16
+    preprocess.scan_rate: 3
+    preprocess.timestamp_unit: 0
+    publish.dense_publish_en: true
+    publish.path_en: true
+    publish.scan_bodyframe_pub_en: true
+    publish.scan_publish_en: true
+    runtime_pos_log_enable: false
+    use_sim_time: true

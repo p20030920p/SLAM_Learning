@@ -53,7 +53,9 @@ class Observer:
         self.args = args
         self.run = args.run
         session_flow = json.loads((self.run / "session.json").read_text())["flow"]
-        self.simple_probe = ("-probe-" in session_flow and "-2d-" in session_flow) or "-srrg-" in session_flow
+        self.simple_probe = (("-probe-" in session_flow and "-2d-" in session_flow)
+                             or "-srrg-" in session_flow
+                             or json.loads((self.run / "runtime.json").read_text()).get("sensor_arm", "").startswith("2D lidar"))
         self.node = rclpy.create_node("presentation_observer")
         self.node.set_parameters([rclpy.parameter.Parameter("use_sim_time", value=True)])
         self.tf = Buffer()

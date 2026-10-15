@@ -1,5 +1,5 @@
 ﻿param(
-  [ValidateSet('mapping-srrg-static','mapping-srrg-dynamic','mapping-srrg-large-change','mapping-srrg-corridor','mapping-static','mapping-dynamic','mapping-corridor','mapping-probe-static','mapping-probe-dynamic','mapping-probe-corridor','mapping-probe-height-corridor','localization-static','localization-dynamic','localization-large-change','localization-degradation','localization-ndt-static','localization-gicp-static','localization-ndt-dynamic','localization-gicp-dynamic')]
+  [ValidateSet('mapping-fastlio-static','mapping-fastlio-dynamic','mapping-fastlio-corridor','mapping-srrg-landmark-corridor','mapping-srrg-static','mapping-srrg-dynamic','mapping-srrg-large-change','mapping-srrg-corridor','mapping-static','mapping-dynamic','mapping-corridor','mapping-probe-static','mapping-probe-dynamic','mapping-probe-corridor','mapping-probe-height-corridor','localization-static','localization-dynamic','localization-large-change','localization-degradation','localization-ndt-static','localization-gicp-static','localization-ndt-dynamic','localization-gicp-dynamic')]
   [string]$Flow='mapping-static',
   [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
   [string]$PresentationRoot='F:\be2演讲',
@@ -22,7 +22,7 @@ $title='SLAM-LIVE-'+$Flow+'-'+$runId.Substring($runId.Length-6)
 $autoText=if ($Auto) {'true'} else {'false'}
 if ($Duration -le 0) {$Duration=86400}
 $terminalArgs="-w new --pos 0,740 --size 200,13 new-tab --title $title --suppressApplicationTitle wsl.exe -d Ubuntu-24.04 -- bash $repoWsl/src/scripts/presentation/run_live.sh $Flow $runWsl $Duration $autoText"
-Start-Process -FilePath (Get-Command wt.exe).Source -ArgumentList $terminalArgs
+Start-Process -FilePath (Get-Command wt.exe).Source -WindowStyle Hidden -ArgumentList $terminalArgs
 $deadline=(Get-Date).AddMinutes(3)
 while (-not (Test-Path -LiteralPath (Join-Path $run 'ready.json'))) {
   if (Test-Path -LiteralPath (Join-Path $run 'failed.json')) {throw ('Session failed: '+(Get-Content (Join-Path $run 'failed.json') -Raw))}
@@ -32,7 +32,7 @@ while (-not (Test-Path -LiteralPath (Join-Path $run 'ready.json'))) {
 $video=Join-Path $run 'execution.mp4'
 $recorder=$null
 if ($Record) {
-  $filter="gfxcapture=window_title=^Gazebo Sim.*:max_framerate=15:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[gz];gfxcapture=window_title=^SLAM LIVE - RViz2.*:max_framerate=15:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[rv];[gz][rv]hstack=inputs=2[gui];gfxcapture=window_title=^$title.*:max_framerate=15:capture_border=1,hwdownload,format=bgra,scale=1920:360:force_original_aspect_ratio=decrease,pad=1920:360:(ow-iw)/2:(oh-ih)/2[cli];[gui][cli]vstack=inputs=2,format=yuv420p[out]"
+  $filter="gfxcapture=window_title=^Gazebo Sim.*:max_framerate=15:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[gz];gfxcapture=window_title=^SLAM LIVE - RViz2.*:max_framerate=15:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[rv];[gz][rv]hstack=inputs=2,format=yuv420p[out]"
   $filterPath=Join-Path $run 'capture-filter.txt'
   [IO.File]::WriteAllText($filterPath,$filter,[Text.UTF8Encoding]::new($false))
   $argsText='-hide_banner -loglevel warning -filter_complex "'+$filter+'" -map "[out]" -r 15 -fps_mode cfr -c:v libx264 -preset veryfast -crf 21 -y "'+$video+'"'

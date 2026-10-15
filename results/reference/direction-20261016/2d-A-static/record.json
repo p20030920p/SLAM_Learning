@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "kind": "frozen_actual_native_2d_mapping_a",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Previously recorded actual A that generated the maps used in this new B; no new A execution claimed. Geometry metric is 10cm-voxel point distance to observed static support, not exact surface RMSE.",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261015-200512-mapping-srrg-static-ea0fb0",
+  "methods": {
+    "raw": {
+      "static_retention": 1.0,
+      "dynamic_removal": null,
+      "points": 254656,
+      "observed_static_support_distance_rmse_m": 0.030225467127300402
+    },
+    "srrg": {
+      "static_retention": 0.9984917043740573,
+      "dynamic_removal": null,
+      "points": 35583,
+      "observed_static_support_distance_rmse_m": 0.026367268551680933
+    }
+  },
+  "timing": {
+    "duration_s": 65.20000000000039,
+    "frames": 326,
+    "fps": 5,
+    "video_duration_s": 65.133333,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "artifacts": {
+    "execution.gif": {
+      "sha256": "b67bb9b8c663b1e896ba6178c5c27966e03818735736689713826a3673a4fbdd",
+      "bytes": 882025,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "83458bbe8d60eb8968ccdd10ee5a299aed3c6ba01673a1bf7e040a4610c482b4",
+      "bytes": 1355813,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "2c215dc7c3e66b12ece8fcd79c39b29c55c01db1c169378006a6f9a0a4cbf2fb",
+      "bytes": 728,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "4a5777d0b5237d3f17c28b3327408c7153cb84e1eef7d9f44a5b7069cfcef0a4",
+      "bytes": 14873,
+      "availability": "portable"
+    },
+    "srrg-final.npy": {
+      "sha256": "ac1e04220f9cc7e1d74c018f1afa8e67ebd8ebdfec052cf7a8499d295dda6f3c",
+      "bytes": 284792,
+      "availability": "portable"
+    },
+    "srrg-frames.jsonl": {
+      "sha256": "54272ad2c7a330e0f9c6cf8112f8961815735e2f91d0d980049e67b26aaa59b6",
+      "bytes": 128881,
+      "availability": "portable"
+    },
+    "srrg-inputs.jsonl": {
+      "sha256": "ef837d3280f99337beceb4e63fb53b12d53691cb5b15eca2462f65082aca0595",
+      "bytes": 5127418,
+      "availability": "portable"
+    },
+    "srrg-quality-inputs.npz": {
+      "sha256": "6ff851218dbdbcc95253f0c43aec905697cb3ed0fc1b5574e187544b809f260d",
+      "bytes": 1655331,
+      "availability": "portable"
+    },
+    "srrg-quality.json": {
+      "sha256": "d3650e7f24dd12a5cfd5c02d5e2afdb1f48879e761d07a335494809b764dab46",
+      "bytes": 8228,
+      "availability": "portable"
+    },
+    "srrg-raw.npy": {
+      "sha256": "963dd0f2a5a1f432487a7dbcf0ae9afd957be35d871ab9320a7f8e5ece3ca2e0",
+      "bytes": 2037376,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "b9dae2d4e633124883438fd6804c5bb8e712d1bdd066d348414259f679c0c792",
+      "bytes": 1117221,
+      "availability": "portable"
+    },
+    "maps/record.json": {
+      "sha256": "8edd62451381100ccd2c87fd5e6fb28827087c129005df6bf623fdbb51a2e3ce",
+      "bytes": 240,
+      "availability": "portable"
+    },
+    "maps/raw/map.pgm": {
+      "sha256": "55ff3987bae88badefb805c7410a1948418522244fd19b73e484a455ea8906e8",
+      "bytes": 58116,
+      "availability": "portable"
+    },
+    "maps/raw/map.yaml": {
+      "sha256": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42",
+      "bytes": 122,
+      "availability": "portable"
+    },
+    "maps/srrg/map.pgm": {
+      "sha256": "0d1e154d110fcf977e3e554279d4a2c0eebfa40ed79cfe92517a98ef1fd61c05",
+      "bytes": 58116,
+      "availability": "portable"
+    },
+    "maps/srrg/map.yaml": {
+      "sha256": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42",
+      "bytes": 122,
+      "availability": "portable"
+    }
+  }
+}

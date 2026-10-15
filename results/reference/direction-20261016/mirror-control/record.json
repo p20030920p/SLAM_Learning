@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "kind": "controlled_missing_return_semantics",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Fixed-pose replay of one real Gazebo 2D scan; synthetic angular dropout, no physical mirror model or detector; no localization claim",
+  "source_sha256": "8b6ed46a47570dd4b7a42092675d93391f8c3c4404c49ff75ac08e47e4c6665b",
+  "source_record": "results\\reference\\srrg-2d-static\\srrg-inputs.jsonl",
+  "masked_beams": 136,
+  "resolution_m": 0.05,
+  "metrics": {
+    "unknown": {
+      "wrongly_cleared_boundary_cells": 0,
+      "reference_boundary_cells": 115,
+      "boundary_retention": 1.0
+    },
+    "incorrect_free": {
+      "wrongly_cleared_boundary_cells": 115,
+      "reference_boundary_cells": 115,
+      "boundary_retention": 0.0
+    }
+  },
+  "reference": "Observed real boundary endpoints in the masked sector, not hidden truth",
+  "artifacts": {
+    "control-replay.gif": {
+      "sha256": "8a09e63763bd78169fde75cb4d46e137eeb7e2da7e84f20c9e44e6d5a27fcdf6",
+      "bytes": 28830,
+      "availability": "portable"
+    },
+    "inputs.npz": {
+      "sha256": "21f96362995b5f7a2690002443c842168bb201b72e24e10e03c0fd50c485de48",
+      "bytes": 6998,
+      "availability": "portable"
+    },
+    "result.png": {
+      "sha256": "17052fefe6dfde55e5198ed44a384e67b2cf95e22e7788476ea37fb492858ec7",
+      "bytes": 8707,
+      "availability": "portable"
+    },
+    "updates.json": {
+      "sha256": "b3032e0723950c1611448a215485c87dc5796f54fbfbfa2020d3c765be508b6d",
+      "bytes": 7742,
+      "availability": "portable"
+    }
+  }
+}

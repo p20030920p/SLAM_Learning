@@ -1,5 +1,9 @@
 # srrg_mapper2d：原生二维动态环境建图
 
+**原文实验：不复现。** 本页保留此前作者代码迁移与自有场景记录；当前Raw／SRRG与独立AMCL B见[新实践](../HOME.zh-CN.md#direction-experiments-20261016)。下方旧数值对应此前采集，不与新的A／B记录混用。
+
+![原文图1，第2页：系统流程](../assets/related/20261016/srrg-fig1.png)
+
 [实践入口](../HOME.zh-CN.md#srrg-2d) · [极简 GIF 表](../MINIMAL.zh-CN.md)
 
 Lázaro、Capobianco、Grisetti，*Efficient Long-term Mapping in Dynamic Environments*，IROS 2018。[论文记录与开放版 PDF](https://iris.uniroma1.it/handle/11573/1340118) · [作者建图库](https://gitlab.com/srrg-software/srrg_mapper2d) · [ROS 入口](https://gitlab.com/srrg-software/srrg_mapper2d_ros) · [二维配准与合并代码](https://gitlab.com/srrg-software/srrg_scan_matcher)。

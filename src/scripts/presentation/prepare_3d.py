@@ -38,7 +38,7 @@ def views(config_text, cases, run, scene):
     displays[:] = [display for display in displays if display["Class"] not in
                    ("rviz_default_plugins/Map", "rviz_default_plugins/LaserScan")]
     result = {}
-    for index, method in enumerate(("raw", "dufomap", "beautymap")):
+    for index, method in enumerate(name for name in cases if not name.startswith("full_")):
         config = yaml.safe_load(yaml.safe_dump(base))
         case = cases[method]
         own = config["Visualization Manager"]["Displays"]

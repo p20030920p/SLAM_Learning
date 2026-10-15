@@ -1,0 +1,61 @@
+{
+  "kind": "live_native_ui_session",
+  "status": "completed",
+  "failure": null,
+  "mode": "localization",
+  "points_received": 0,
+  "scans_received": 814,
+  "mapping_frames": 0,
+  "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
+  "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
+  "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
+  "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
+  "cases": {
+    "raw": {
+      "samples": 355,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.47837441294864624,
+      "yaw_rmse_deg": 1.084172130596102,
+      "post_warmup_5s_samples": 354,
+      "post_warmup_5s_position_rmse_m": 0.47602532226274885,
+      "position_p95_m": 0.9986085433258568
+    },
+    "srrg": {
+      "samples": 355,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.8313107684144354,
+      "yaw_rmse_deg": 1.020953332886767,
+      "post_warmup_5s_samples": 354,
+      "post_warmup_5s_position_rmse_m": 0.8307474779948278,
+      "position_p95_m": 1.1707969134019804
+    },
+    "degraded_raw": {
+      "samples": 355,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.752224894844822,
+      "yaw_rmse_deg": 1.4909903584354953,
+      "post_warmup_5s_samples": 354,
+      "post_warmup_5s_position_rmse_m": 0.7513669535585263,
+      "position_p95_m": 1.0007233965748803
+    },
+    "degraded_srrg": {
+      "samples": 355,
+      "dropped_unsynchronized": 0,
+      "position_rmse_m": 0.5275219150965715,
+      "yaw_rmse_deg": 1.0655859082731902,
+      "post_warmup_5s_samples": 354,
+      "post_warmup_5s_position_rmse_m": 0.5255255015178784,
+      "position_p95_m": 1.0124989936999227
+    }
+  },
+  "recording_interval_sim_s": [
+    11.397,
+    83.399
+  ],
+  "observed_map": {
+    "width": 521,
+    "height": 141,
+    "resolution_m": 0.05000000074505806,
+    "known_cells": 26649
+  }
+}

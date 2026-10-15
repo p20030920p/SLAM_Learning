@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "kind": "native_direction_experiment",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Native run and real application capture; pose metrics use evaluation-only truth, 10Hz grid, max pose age 0.15s, 5s warmup; no truth to localizers",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-003213-mapping-fastlio-static-f0064f",
+  "source_session_sha256": "e624e86900a702479994d8a826dd7d1cdfa395288e85078936c0d5b65ffb697f",
+  "metrics": {},
+  "timing": {
+    "execution.mp4": {
+      "duration_s": 50.20000000000017,
+      "frames": 251,
+      "fps": 5,
+      "video_duration_s": 50.2,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "input_bags": {
+    "input-bag_0.mcap": {
+      "sha256": "bf9d3337c72ca18257df691aa2f1e11e350fc361ee392a2c5c554a26ba73d95e",
+      "bytes": 274934996,
+      "availability": "local_only"
+    }
+  },
+  "artifacts": {
+    "cases.json": {
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "bytes": 3,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "eabe7c31b65a4ba30f3ba727851bab753ade9f709536f6cd19bc3007a389459b",
+      "bytes": 554465,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "5f029f15eb12cad8a14825fcc39d7f0092d81ef6c98056ef90523eba5700e638",
+      "bytes": 831394,
+      "availability": "portable"
+    },
+    "fastlio-bridge.yaml": {
+      "sha256": "30f9f8393b4a97a401557b0f61479659add12e668249715f8b050560f1874684",
+      "bytes": 1681,
+      "availability": "portable"
+    },
+    "fastlio-deskew-clouds.npz": {
+      "sha256": "d8fcc4681197b80287cc4d302ff5fb82ca1e6e65aa5f614e688cb55820493452",
+      "bytes": 7264418,
+      "availability": "portable"
+    },
+    "fastlio-deskew.jsonl": {
+      "sha256": "32e5166f44a72909830a414db83ce784ab6907f0d2e7b258574a0c1be9a8ad97",
+      "bytes": 32433,
+      "availability": "portable"
+    },
+    "fastlio-imu.urdf": {
+      "sha256": "72454168b6fc6d5cdc2d28912fca23b92a04251fe161d5f4fdfe70a36d7efdbf",
+      "bytes": 11144,
+      "availability": "portable"
+    },
+    "fastlio-no_deskew-clouds.npz": {
+      "sha256": "4bd5289f55c01fa3139c317e77272c8ea9899a9a15d3f0cd3b7b3638c493f84c",
+      "bytes": 7318220,
+      "availability": "portable"
+    },
+    "fastlio-no_deskew.jsonl": {
+      "sha256": "b37a06fee7b3ac6bdf116c9cda5914ac27f4dfdf0007e4cd4ebef98d87abb0fc",
+      "bytes": 32298,
+      "availability": "portable"
+    },
+    "fastlio-transport-finished.json": {
+      "sha256": "ef33273889d90f6c79db483f554f779145b341ae7f506eda335c9df9458e8747",
+      "bytes": 44,
+      "availability": "portable"
+    },
+    "fastlio-world.sdf": {
+      "sha256": "3af53f3c754c5afc42d29346194e6af74d169dda694fe03567b669852d92dc3d",
+      "bytes": 1857,
+      "availability": "portable"
+    },
+    "fastlio.yaml": {
+      "sha256": "0b52607b71f79ff666697c0e90940da5208117e62018597c523304226733444e",
+      "bytes": 1076,
+      "availability": "portable"
+    },
+    "imu.jsonl": {
+      "sha256": "a33bc4ec49c6f00745c6df2c6d7fcc8591f0a6edfb1212185b9a130011e8b81d",
+      "bytes": 1795327,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "aac7f738c0ea9c470061a7c25da7d60a392668825a6b45f6d760f157f2ab2775",
+      "bytes": 757,
+      "availability": "portable"
+    },
+    "rolling-scans.jsonl": {
+      "sha256": "bba16b7af6191db8a4fc70ebfefacb0441d2ec290af35f2f1920a2806f301bd0",
+      "bytes": 17863,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "88f4d16eda390aa5642d458ed158bae157213fa4fc051a173cd13b8a0ff102f9",
+      "bytes": 798,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "e624e86900a702479994d8a826dd7d1cdfa395288e85078936c0d5b65ffb697f",
+      "bytes": 17588,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "a3cd5321d17c6344b5c7293ba0fd750638153b8c1fb64f56f37a54b179dacf8d",
+      "bytes": 766261,
+      "availability": "portable"
+    },
+    "logs/bag.log": {
+      "sha256": "165f82f6675c419c9bc236b9769581668fe5d64d814e1e779240858006070f08",
+      "bytes": 1896,
+      "availability": "portable"
+    },
+    "logs/cmake.log": {
+      "sha256": "bd2d5ebd39317d84bf1ac64a6f6972cff0f73ec14354ce4d824572d3e4ee2e8b",
+      "bytes": 1126,
+      "availability": "portable"
+    },
+    "logs/fastlio-transport.log": {
+      "sha256": "befbab44a479cc4d60c22d0b1d7b6534472cc1bab4280ffd8faa9d57ac7d6685",
+      "bytes": 773,
+      "availability": "portable"
+    },
+    "logs/fastlio.log": {
+      "sha256": "567c5504e649e7e6b2b9a5a2c391206079562adc61159bfe8378be488a73a8f2",
+      "bytes": 1383,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "c864f4c6e8d220d20fce1dfd775dddbde630364163145ec559ac5c5e4f9c606f",
+      "bytes": 6879,
+      "availability": "portable"
+    },
+    "logs/rviz.log": {
+      "sha256": "3526dd921a169d6628cc48cf73f452744f1f16cd40043e84404fc229f8f924be",
+      "bytes": 501,
+      "availability": "portable"
+    },
+    "logs/stack.log": {
+      "sha256": "d25eafbc4087f2b5c35f408e033904b9c728a933f85188d5d1f85cd12862604c",
+      "bytes": 14778,
+      "availability": "portable"
+    }
+  }
+}

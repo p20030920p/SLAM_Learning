@@ -1,16 +1,21 @@
 ﻿param(
- [ValidateSet('static','dynamic','large-change','degradation','height-corridor')][string]$Scene='static',
+ [ValidateSet('static','dynamic','large-change','degradation','landmark-degradation','height-corridor')][string]$Scene='static',
  [ValidateSet('2D','3D')][string]$Dimension='2D',
  [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
  [string]$PresentationRoot='F:\be2演讲',
  [double]$Duration=90,
  [switch]$Hypotheses,
  [switch]$Calibrated,
+ [switch]$FastLioMaps,
  [switch]$Keyboard
 )
 $ErrorActionPreference='Stop'
 $flow='localization-'+$Scene
 if($Dimension -eq '3D'){$flow='localization-3d-'+$Scene}
+if($FastLioMaps){
+ if($Dimension -ne '3D'){throw 'Fast-LIO fixed-map B requires 3D'}
+ $flow='localization-fastlio-3d-'+$Scene
+}
 if($Hypotheses){$flow='localization-probe-'+$Dimension.ToLower()+'-'+$Scene}
 if($Hypotheses -and $Calibrated){$flow='localization-probe-calibrated-'+$Dimension.ToLower()+'-'+$Scene}
 $id=(Get-Date -Format 'yyyyMMdd-HHmmss')+'-'+$flow+'-method-live-'+([guid]::NewGuid().ToString('N').Substring(0,6))
@@ -21,7 +26,7 @@ $rw='/mnt/'+$run.Substring(0,1).ToLower()+'/'+$run.Substring(3).Replace('\','/')
 $rootw='/mnt/'+$RepoRoot.Substring(0,1).ToLower()+'/'+$RepoRoot.Substring(3).Replace('\','/')
 $title='SLAM-LIVE-METHODS-'+$Scene+'-'+$id.Substring($id.Length-6)
 $automatic=if($Keyboard){'false'}else{'true'}
-Start-Process -FilePath (Get-Command wt.exe).Source -ArgumentList "-w new --pos 0,740 --size 200,13 new-tab --title $title --suppressApplicationTitle wsl.exe -d Ubuntu-24.04 -- bash $rootw/src/scripts/presentation/run_live.sh $flow $rw $Duration $automatic true"
+Start-Process -FilePath (Get-Command wt.exe).Source -WindowStyle Hidden -ArgumentList "-w new --pos 0,740 --size 200,13 new-tab --title $title --suppressApplicationTitle wsl.exe -d Ubuntu-24.04 -- bash $rootw/src/scripts/presentation/run_live.sh $flow $rw $Duration $automatic true"
 $deadline=(Get-Date).AddMinutes(4)
 while(-not (Test-Path "$run/ready.json") -or -not (Test-Path "$run/views-ready.json")){
  if(Test-Path "$run/failed.json"){throw "Startup failed: $run"}
@@ -33,7 +38,7 @@ $captures=@()
 try{
  foreach($item in $views.PSObject.Properties){
   $case=$item.Name; $viewTitle=$item.Value.title
-  $filter="gfxcapture=window_title=^Gazebo Sim.*:max_framerate=12:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[gz];gfxcapture=window_title=^$viewTitle.*:max_framerate=12:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[rv];[gz][rv]hstack=inputs=2[gui];gfxcapture=window_title=^$title.*:max_framerate=12:capture_border=1,hwdownload,format=bgra,scale=1920:360:force_original_aspect_ratio=decrease,pad=1920:360:(ow-iw)/2:(oh-ih)/2[cli];[gui][cli]vstack=inputs=2,format=yuv420p[out]"
+  $filter="gfxcapture=window_title=^Gazebo Sim.*:max_framerate=12:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[gz];gfxcapture=window_title=^$viewTitle.*:max_framerate=12:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[rv];[gz][rv]hstack=inputs=2,format=yuv420p[out]"
   [IO.File]::WriteAllText("$run/executions/$case-filter.txt",$filter)
   $info=[Diagnostics.ProcessStartInfo]::new()
   $info.FileName=(Get-Command ffmpeg.exe).Source

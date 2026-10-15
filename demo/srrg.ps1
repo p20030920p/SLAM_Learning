@@ -4,9 +4,11 @@ param(
  [string]$PresentationRoot='F:\be2演讲',
  [double]$Duration=65,
  [switch]$Keyboard,
+ [switch]$Landmarks,
  [switch]$All
 )
 $ErrorActionPreference='Stop'
+if($Landmarks){$Scene='corridor'}
 $rw='/mnt/'+$RepoRoot.Substring(0,1).ToLower()+'/'+$RepoRoot.Substring(3).Replace('\','/')
 if($All){
  foreach($item in @('static','dynamic','large-change','corridor')){
@@ -20,10 +22,11 @@ if(-not $server){
  Start-Process wsl.exe -WindowStyle Hidden -ArgumentList "-d Ubuntu-20.04 -u root -- python3 -u $serverPath"
  Start-Sleep -Seconds 1
 }
-$presentationArgs=@{Flow='mapping-srrg-'+$Scene;RepoRoot=$RepoRoot;PresentationRoot=$PresentationRoot;Duration=$Duration;Record=$true}
+$srrgFlow='mapping-srrg-'+$(if($Landmarks){'landmark-'}else{''})+$Scene
+$presentationArgs=@{Flow=$srrgFlow;RepoRoot=$RepoRoot;PresentationRoot=$PresentationRoot;Duration=$Duration;Record=$true}
 if(-not $Keyboard){$presentationArgs.Auto=$true}
 & "$PSScriptRoot/presentation.ps1" @presentationArgs
-$marker=Get-Content "$RepoRoot/.cache/presentation/mapping-srrg-$Scene-latest.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+$marker=Get-Content "$RepoRoot/.cache/presentation/$srrgFlow-latest.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $run=[IO.Path]::GetFullPath($marker.path)
 $deadline=(Get-Date).AddSeconds(30)
 while(-not (Test-Path "$run/session-stopped.json")){

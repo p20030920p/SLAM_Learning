@@ -71,6 +71,10 @@ def publish():
             text = refresh_direction(text, chinese)
             from publish_home_experiments import refresh_document
 
+            if "<!-- DIRECTION_HYPOTHESES_20261016 -->" in text:
+                refresh_document(path, chinese)
+                continue
+
             heading = "假设" if chinese else "Hypothesis"
             hypothesis = HYP_ZH if chinese else HYP_EN
             text = re.sub(

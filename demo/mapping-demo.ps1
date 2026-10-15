@@ -1,12 +1,24 @@
 param(
   [ValidateSet('2D','3D')][string]$Dimension='3D',
-  [ValidateSet('all','raw','dufomap','beautymap','choose')][string]$Method='all',
+  [ValidateSet('all','raw','srrg','dufomap','beautymap','choose')][string]$Method='all',
   [ValidateSet('static','dynamic','large-change','corridor','choose')][string]$Scene='choose',
   [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
   [double]$Duration=86400,
   [switch]$Auto
 )
 $ErrorActionPreference='Stop'
+if ($Dimension -eq '2D') {
+  if ($Method -in @('dufomap','beautymap')) {throw '2D uses native Raw / SRRG. DUFOMap and BeautyMap remain available in 3D.'}
+  if ($Scene -eq 'choose') {
+    Write-Host 'Scene: 1 static / 2 moving obstacles / 3 persistent change / 4 corridor'
+    $answer=Read-Host 'Choose [default 2]'
+    $Scene=switch ($answer) {'1' {'static'} '3' {'large-change'} '4' {'corridor'} default {'dynamic'}}
+  }
+  Write-Host 'Native 2D comparison: Raw scan accumulation / author SRRG maintained map.'
+  & "$PSScriptRoot/srrg.ps1" -Scene $Scene -RepoRoot $RepoRoot -Duration $Duration -Keyboard:(-not $Auto)
+  return
+}
+if ($Method -eq 'srrg') {throw 'SRRG is the native 2D arm; use -Dimension 2D.'}
 if (-not ('MappingDemoWindows' -as [type])) {
 Add-Type @'
 using System;

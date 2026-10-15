@@ -1,0 +1,22 @@
+{
+  "deskew": {
+    "method": "deskew",
+    "dimension": "3d",
+    "title": "SLAM LIVE - 3D deskew - RViz2",
+    "config": "view-deskew.rviz",
+    "map_topic": "/deskew/initial_map",
+    "pose_topic": "/deskew/pcl_pose",
+    "tf_topic": "/deskew/view/tf",
+    "scan_topic": "/points"
+  },
+  "no_deskew": {
+    "method": "no_deskew",
+    "dimension": "3d",
+    "title": "SLAM LIVE - 3D no_deskew - RViz2",
+    "config": "view-no_deskew.rviz",
+    "map_topic": "/no_deskew/initial_map",
+    "pose_topic": "/no_deskew/pcl_pose",
+    "tf_topic": "/no_deskew/view/tf",
+    "scan_topic": "/points"
+  }
+}

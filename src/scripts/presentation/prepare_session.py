@@ -25,6 +25,9 @@ world_path = repo / f"config/presentation/worlds/{level}.world"
 if "height-corridor" in flow:
     from probe_sensors import height_control_world
     world_path = height_control_world(world_path, run)
+if "-landmark-" in flow:
+    from direction_landmarks import landmark_world
+    world_path = landmark_world(world_path, run)
 spawn = [7.15, -3.1, 0.0] if scene == "corridor" else [8.0727, 7.5312, -1.5708]
 initial_offset = [1.0, 0.15, 0.12] if scene == "corridor" else [0.25, 0.15, 0.12]
 runtime = {"world": str(world_path), "spawn": spawn, "scene": scene,
@@ -38,24 +41,44 @@ if "-probe-" in flow:
     from probe_sensors import configure as configure_probe_sensors
     configure_probe_sensors(repo, run, flow, runtime)
 cases = {}
+native_2d = mode == "localization" and not any(tag in flow for tag in ("-3d-", "-gicp-", "-ndt-", "-probe-"))
 if mode == "localization":
-    marker = repo / ".cache/presentation" / f"maps-{mapping_scene}-latest.json"
+    marker_scene = ("landmark-" if "-landmark-" in flow else "") + mapping_scene
+    marker = repo / ".cache/presentation" / (f"mapping-srrg-{marker_scene}-latest.json" if native_2d else f"maps-{mapping_scene}-latest.json")
     fallback = {"static": "robot-static", "dynamic": "robot-dynamic", "corridor": "robot-degradation"}[mapping_scene]
     maps = Path(json.loads(marker.read_text())["path"]) if marker.exists() else repo / f"results/reference/{fallback}/maps"
-    if scene == "corridor" and "-probe-" not in flow:
+    if native_2d and not marker.exists():
+        maps = repo / f"results/reference/direction-20261016/2d-A-{mapping_scene}"
+        if not (maps / "runtime.json").is_file():
+            raise FileNotFoundError("Record native SRRG mapping A before localization B")
+    if native_2d:
+        # Markers are written by Windows capture; normalize them for Linux ROS.
+        if ":\\" in str(maps):
+            value = str(maps)
+            maps = Path("/mnt/" + value[0].lower() + "/" + value[3:].replace("\\", "/"))
+        source_runtime = json.loads((maps / "runtime.json").read_text())
+        if scene != "large-change" and source_runtime["world_sha256"] != runtime["world_sha256"]:
+            raise ValueError("Native 2D mapping world differs from localization world")
+        runtime["mapping_source"] = str(maps)
+        maps = maps / "maps"
+        from srrg.prepare import sensor_profile
+        sensor_profile(repo, run, runtime)
+        (run / "runtime.json").write_text(json.dumps(runtime, indent=2) + "\n")
+    if scene == "corridor" and "-probe-" not in flow and not native_2d:
         processing = json.loads((maps / "record.json").read_text())
         if processing.get("world_sha256") != runtime["world_sha256"]:
             raise ValueError("Corridor geometry changed: record mapping-corridor A and rebuild maps first")
-    for method in ("raw", "dufomap", "beautymap"):
+    methods = ("raw", "srrg") if native_2d else ("raw", "dufomap", "beautymap")
+    for method in methods:
         path = maps / method / "map.yaml"
         if not path.exists():
             raise FileNotFoundError(path)
         cases[method] = {"method": method, "map_yaml": str(path), "mapping_scene": mapping_scene,
                          "initial_pose": {"x": spawn[0]+initial_offset[0], "y": spawn[1]+initial_offset[1], "z": 0.0, "yaw": spawn[2]+initial_offset[2]}}
     if scene == "corridor":
-        for method in ("raw", "dufomap", "beautymap"):
+        for method in methods:
             cases["degraded_"+method] = {**cases[method], "scan_topic": "/scan_degraded"}
-    if scene == "dynamic":
+    if scene == "dynamic" and not native_2d:
         static_marker = repo / ".cache/presentation/maps-static-latest.json"
         if static_marker.exists():
             static_maps = Path(json.loads(static_marker.read_text())["path"])
@@ -74,9 +97,12 @@ if mode == "localization":
             raise FileNotFoundError("Native 3D map missing; process mapping A first: " + str(pcd))
         cases = {name: {**cases["raw"], "localizer": algorithm, "map_pcd": str(pcd),
                         "pose_topic": f"/{name}/pcl_pose", "native_map_odom_tf": True}}
-    if "-3d-" in flow and "-probe-" not in flow:
+    if "-3d-" in flow and "-probe-" not in flow and "-fastlio-" not in flow:
         from prepare_3d import configure
         cases = configure(cases, maps, run, scene)
+    if "-fastlio-" in flow:
+        from fastlio_fixed_maps import configure as configure_fastlio_maps
+        cases = configure_fastlio_maps(repo, run, spawn, initial_offset)
     if "-probe-" in flow:
         from prepare_probe import configure as configure_probe
         cases = configure_probe(repo, run, runtime)
@@ -144,6 +170,9 @@ if "-probe-" in flow:
 if "-srrg-" in flow:
     from srrg.prepare import configure as configure_srrg
     config = configure_srrg(repo, run, runtime, config)
+if "-fastlio-" in flow and mode == "mapping":
+    from fastlio_study import configure as configure_fastlio
+    config = configure_fastlio(repo, run, runtime, config)
 (run / "live.rviz").write_text(config)
 if "-probe-" in flow and mode == "localization":
     from prepare_probe import views as prepare_probe_views
@@ -156,7 +185,7 @@ elif mode == "localization" and "-3d-" in flow:
     prepare_3d_views(config, cases, run, scene)
 elif os.environ.get("PRESENTATION_MULTI_VIEW") == "true" and mode == "localization":
     views = {}
-    for method, label in (("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")):
+    for method, label in (("raw", "Raw"), ("srrg", "SRRG")):
         case = "degraded_"+method if scene == "corridor" else method
         own = config.replace("Value: /raw/map\n", f"Value: /{case}/map\n")
         own = own.replace("Raw map + common AMCL (live)", label+" map + AMCL (LIVE)")

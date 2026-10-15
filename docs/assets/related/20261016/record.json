@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "kind": "original_paper_figure_excerpts",
+  "status": "provided",
+  "sources": [
+    {
+      "name": "srrg",
+      "url": "https://iris.uniroma1.it/retrieve/e383532b-3b20-15e8-e053-a505fe0a3de9/Lazaro_postprint_Efficient_2018.pdf",
+      "pdf_sha256": "7c8702c63a0c0f014a788c6327cb62b3de8ce7f1e42977cf491ffed373a8404b",
+      "page_1based": 2,
+      "figure": 1,
+      "render_long_edge_px": 2600,
+      "crop_xywh_px": [
+        1170,
+        166,
+        510,
+        550
+      ],
+      "artifact": "srrg-fig1.png",
+      "scope": "Original paper figure excerpt; no redrawing; paper experiment not reproduced"
+    },
+    {
+      "name": "fastlio2",
+      "url": "https://raw.githubusercontent.com/hku-mars/FAST_LIO/main/doc/Fast_LIO_2.pdf",
+      "pdf_sha256": "25ee5a7a43c3775a842f858ea23b91867fb18d21a7f17b730cd9ae19e77c74e4",
+      "page_1based": 4,
+      "figure": 1,
+      "render_long_edge_px": 2600,
+      "crop_xywh_px": [
+        150,
+        175,
+        1710,
+        482
+      ],
+      "artifact": "fastlio2-fig1.png",
+      "scope": "Original paper figure excerpt; no redrawing; paper experiment not reproduced"
+    }
+  ],
+  "artifacts": {
+    "fastlio2-fig1.png": {
+      "sha256": "c108444995420469f872d9bd3669391ec3b77a92f09b97dac381b28f16dd83d7",
+      "bytes": 176472,
+      "availability": "portable"
+    },
+    "srrg-fig1.png": {
+      "sha256": "6c2b5e5fda438320841b09142b066112b41aa6077550a3b75f21ac2f80c62053",
+      "bytes": 43190,
+      "availability": "portable"
+    }
+  }
+}

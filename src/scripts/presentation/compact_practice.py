@@ -52,6 +52,12 @@ def render_practice(doc, zh, previous, *, root, scenes, packages, read, quality,
         key, cn, en = scene
         folder = f"results/reference/srrg-2d-{key}"
         data = read(folder + "/record.json")
+        actual_folder = f"results/reference/direction-20261016/2d-A-{key}"
+        current_a = (root / actual_folder / "record.json").exists()
+        if current_a:
+            folder = actual_folder
+            actual = read(folder + "/record.json")
+            data = {"map_quality": actual["methods"], "audit": read(folder + "/srrg-quality.json")}
         headings = [
             label("方法", "Method"),
             "DA",
@@ -79,7 +85,10 @@ def render_practice(doc, zh, previous, *, root, scenes, packages, read, quality,
                 "#### " + label("原生二维建图 · Raw / SRRG", "Native 2D mapping · Raw / SRRG"),
                 "",
                 table(headings, rows),
-                record_link(folder) + " · " + label("独立定位 B：待测", "Held-out localization B: pending"),
+                record_link(folder) + " · " + (
+                    label("独立定位B见下表", "Held-out B in the table below") if current_a
+                    else label("独立定位 B：待测", "Held-out localization B: pending")
+                ),
                 "",
                 clips([("Raw / SRRG", folder + "/execution.gif", None)]),
                 analysis_slot(previous, f"srrg-{key}-2d", zh),
@@ -88,6 +97,9 @@ def render_practice(doc, zh, previous, *, root, scenes, packages, read, quality,
 
     def localization(scene, dimension):
         key, cn, en = scene
+        if dimension == "2d":
+            from direction_practice_20261016 import render_2d
+            return render_2d(doc, zh, previous, scene, root=root, link=link, analysis_slot=analysis_slot)
         folder = "results/reference/" + packages[dimension][scenes.index(scene)]
         data = read(folder + "/record.json")
         map_metrics = quality(key, dimension)
@@ -194,7 +206,7 @@ def render_practice(doc, zh, previous, *, root, scenes, packages, read, quality,
     if current:
         index_start = next(i for i, line in enumerate(lines) if line.startswith("| "))
         lines[index_start:index_start] = [
-            "[" + label("新假设实验", "New hypothesis tests") + "](#current-map-hypotheses) · "
+            "[" + label("新假设实验", "New hypothesis tests") + "](#direction-experiments-20261016) · "
             + " · ".join(f"[{cn if zh else en}](#current-hypothesis-{key})"
                          for key, cn, en in (("static", "静态", "Static"), ("dynamic", "动态", "Dynamic"),
                                             ("corridor", "长廊", "Corridor"))),
@@ -277,20 +289,20 @@ def render_practice(doc, zh, previous, *, root, scenes, packages, read, quality,
         (
             "二维建图任务",
             "2D mapping task",
-            "Raw累计图 vs SRRG维护图；作者节点自估位姿、已知起点；主组关闭图合并，独立定位B待测",
-            "Raw accumulation vs SRRG maintenance; estimated mapping poses, known start, graph merging off; independent localization B pending",
+            "Raw累计图 vs SRRG维护图；作者节点自估位姿、已知起点；主组关闭图合并，独立AMCL B见本轮实验",
+            "Raw accumulation vs SRRG maintenance; estimated mapping poses, known start, graph merging off; separate AMCL B in the current experiment",
         ),
         (
             "地图与定位任务",
             "Map/localization task",
-            "给定位姿建图A → Raw / DUFOMap / BeautyMap → 冻结地图 → 独立B；二维固定AMCL，三维固定GICP",
-            "Supplied-pose mapping A → Raw / DUFOMap / BeautyMap → frozen map → independent B; fixed AMCL in 2D and GICP in 3D",
+            "二维：作者SRRG自估位姿建图A → Raw／SRRG → AMCL B；三维：给定位姿A → Raw／DUFOMap／BeautyMap → GICP B",
+            "2D: native estimated-pose A → Raw/SRRG → AMCL B; 3D: supplied-pose A → Raw/DUFOMap/BeautyMap → GICP B",
         ),
         (
             "地图表示",
             "Map representation",
-            "二维投影0.05 m格、Z=0.12–1.20 m、一格膨胀；三维保留完整点云；SRRG为原生二维",
-            "2D projection: 0.05 m cells, Z=0.12–1.20 m, one-cell dilation; full 3D clouds; SRRG is native 2D",
+            "二维使用原生SRRG点图与占据导出；三维保留完整点云；二维不再测试DUFOMap／BeautyMap投影",
+            "Native SRRG 2D point maps and occupancy export; full 3D clouds; no projected DUFOMap/BeautyMap 2D arms",
         ),
         (
             "定位评分",
@@ -328,8 +340,8 @@ def render_practice(doc, zh, previous, *, root, scenes, packages, read, quality,
         ),
         (
             "DA / SA 口径",
-            "SRRG：10 cm去重支持格、15 cm覆盖容差；二维投影：5 cm动静专属格；三维：带标签源点",
-            "SRRG: 10 cm support cells, 15 cm coverage tolerance; projected 2D: exclusive 5 cm cells; 3D: labelled source points",
+            "SRRG：10 cm去重支持格、15 cm覆盖容差；三维：带标签源点",
+            "SRRG: 10 cm support cells, 15 cm coverage tolerance; 3D: labelled source points",
         ),
         (
             "RMSE ↓",
@@ -370,7 +382,14 @@ def render_practice(doc, zh, previous, *, root, scenes, packages, read, quality,
         "",
     ]
     if current:
-        lines += [render_current(doc, zh, previous, root=root, link=link, analysis_slot=analysis_slot),
+        from direction_practice_20261016 import render as render_direction
+        new_direction = render_direction(doc, zh, previous, root=root, link=link, analysis_slot=analysis_slot)
+        if new_direction:
+            lines += [new_direction,"<details>","<summary>"+label("此前三维给定位姿实验（原记录保留）","Previous 3D supplied-pose experiment (original records retained)")+"</summary>",""]
+        lines += [render_current(doc, zh, previous, root=root, link=link, analysis_slot=analysis_slot)]
+        if new_direction:
+            lines += ["</details>",""]
+        lines += [
                   "<details>", "<summary>" + label("此前基线与补充实验", "Earlier baselines and supplementary experiments")
                   + "</summary>", ""]
     for i, key in enumerate(["static", "dynamic", "corridor"], 1):

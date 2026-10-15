@@ -1,0 +1,29 @@
+{
+  "scope": "Excluded development attempts; original runs and captures retained locally; not used in final accuracy tables",
+  "attempts": [
+    {
+      "run": "20261016-002011-mapping-fastlio-static-c7df6a",
+      "reason": "Incomplete paired cloud sampling and invalid range audit; superseded"
+    },
+    {
+      "run": "20261016-002357-mapping-fastlio-static-b4b6de",
+      "reason": "Adapter forwarded nonfinite far-range returns before finite-input fix; invalid ablation"
+    },
+    {
+      "run": "20261016-002826-localization-fastlio-3d-static-method-live-fe7e3d",
+      "reason": "Maps came from the excluded nonfinite-input A; superseded by corrected A/B"
+    },
+    {
+      "run": "20261016-001134-localization-dynamic-method-live-9824e5",
+      "reason": "Post-run shell finalization failed; not used"
+    },
+    {
+      "run": "20261016-001322-localization-degradation-method-live-2a4edc",
+      "reason": "Native terminal capture source unavailable; no usable recording"
+    },
+    {
+      "run": "20261016-001910-mapping-fastlio-static-e567c5",
+      "reason": "Presentation lock busy; no experiment executed"
+    }
+  ]
+}

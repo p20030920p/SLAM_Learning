@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "kind": "native_direction_experiment",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Native run and real application capture; pose metrics use evaluation-only truth, 10Hz grid, max pose age 0.15s, 5s warmup; no truth to localizers",
+  "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-002152-mapping-srrg-landmark-corridor-dbe89d",
+  "source_session_sha256": "0254286ac0ecb73cf4754130dd787edd1048df3ca0e1e4270525a84e5d4d4064",
+  "metrics": {},
+  "timing": {
+    "execution.mp4": {
+      "duration_s": 68.00000000000043,
+      "frames": 340,
+      "fps": 5,
+      "video_duration_s": 68.066667,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "input_bags": {
+    "input-bag_0.mcap": {
+      "sha256": "9f2361e47125c7894cdaad2b11b01aec2946c8d9d0f8c8051eb84a6e663e1074",
+      "bytes": 57530901,
+      "availability": "local_only"
+    }
+  },
+  "artifacts": {
+    "cases.json": {
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "bytes": 3,
+      "availability": "portable"
+    },
+    "execution.gif": {
+      "sha256": "ecfeae044e154aea555ffea7f8a0eb0fecd28d4548df43a7cb2085c9d12c9479",
+      "bytes": 554968,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "8ee7b59c8ad7cdfb468bfb0536503ca364be7a1c2f15c1bfe1d199f257acaee2",
+      "bytes": 812157,
+      "availability": "portable"
+    },
+    "landmark-corridor.world": {
+      "sha256": "82d22e539904d2156dad1d9214d80d9f650dd02570a9fe4c5cd5c050457d4756",
+      "bytes": 13473,
+      "availability": "portable"
+    },
+    "metrics.json": {
+      "sha256": "b492eac79e94cc0fe0b38f10fc35cb0b12d5b241dbb3aeee0ba508136b0772f2",
+      "bytes": 764,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "db7f77efc586697b59a9ae35eab176384ec4d3a640443ad740b15c90f9a264c3",
+      "bytes": 804,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "0254286ac0ecb73cf4754130dd787edd1048df3ca0e1e4270525a84e5d4d4064",
+      "bytes": 18436,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "43bd0c1c429d68338f9671c440899ab080bc58d0654516d9d1921a923e53ddec",
+      "bytes": 993132,
+      "availability": "portable"
+    },
+    "logs/bag.log": {
+      "sha256": "1856d676e80dcbe43ab895ccc57c91d748c1327bf6e9af10fa83798fda6f1e51",
+      "bytes": 1754,
+      "availability": "portable"
+    },
+    "logs/cmake.log": {
+      "sha256": "bd2d5ebd39317d84bf1ac64a6f6972cff0f73ec14354ce4d824572d3e4ee2e8b",
+      "bytes": 1126,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "841f876b695d3aa4fbd0f7828b174d2d3630d9fa3ada6dd0f13e23b1090e95d2",
+      "bytes": 7208,
+      "availability": "portable"
+    },
+    "logs/patrol.log": {
+      "sha256": "fb47de7c4d3c63a4911228b6b19ffe994de0787c5074003caeb407b3ef7aab6d",
+      "bytes": 2196,
+      "availability": "portable"
+    },
+    "logs/rviz.log": {
+      "sha256": "700d1cdf9cc604a31b9d60a5bb86c9dd418a0237ea2d8687efadab0b7adfffaa",
+      "bytes": 2259,
+      "availability": "portable"
+    },
+    "logs/sensor-preflight.log": {
+      "sha256": "a24e1c61092759d16a319ff730570dd041f356c9027ab78bb7e53d13c42f24f4",
+      "bytes": 61,
+      "availability": "portable"
+    },
+    "logs/srrg-author.log": {
+      "sha256": "05f2ccd0b121a94c322f21fba113e663a8f7b1fe0e990a41650d92b473bc9581",
+      "bytes": 529385,
+      "availability": "portable"
+    },
+    "logs/srrg-transport.log": {
+      "sha256": "5ed1e3e1f1722b14774017392ac954a63635c8eb8909252b135fa810f2dafc9a",
+      "bytes": 6197,
+      "availability": "portable"
+    },
+    "logs/stack.log": {
+      "sha256": "7576dac47dd7e57b49e6e667533ddaba7feab9927dfd0f8655ddfbedf81aa92e",
+      "bytes": 10542,
+      "availability": "portable"
+    },
+    "logs/window-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    }
+  }
+}

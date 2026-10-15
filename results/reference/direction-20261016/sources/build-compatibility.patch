@@ -1,0 +1,46 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index be3040b..a200f2c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -5,17 +5,17 @@ if(NOT CMAKE_BUILD_TYPE)
+   set(CMAKE_BUILD_TYPE Release)
+ endif()
+ 
+-ADD_COMPILE_OPTIONS(-std=c++14)
+-ADD_COMPILE_OPTIONS(-std=c++14)
+-set(CMAKE_CXX_FLAGS "-std=c++14 -O3")
++ADD_COMPILE_OPTIONS(-std=c++17)
++ADD_COMPILE_OPTIONS(-std=c++17)
++set(CMAKE_CXX_FLAGS "-std=c++17 -O3")
+ 
+ add_definitions(-DROOT_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/\")
+ 
+ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fexceptions")
+-set(CMAKE_CXX_STANDARD 14)
++set(CMAKE_CXX_STANDARD 17)
+ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ set(CMAKE_CXX_EXTENSIONS OFF)
+-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread -std=c++0x -std=c++14 -fexceptions")
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -pthread -std=c++17 -std=c++17 -fexceptions")
+ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+ 
+ message("Current CPU archtecture: ${CMAKE_SYSTEM_PROCESSOR}")
+diff --git a/src/IMU_Processing.hpp b/src/IMU_Processing.hpp
+index f35378f..7ef4cc8 100644
+--- a/src/IMU_Processing.hpp
++++ b/src/IMU_Processing.hpp
+@@ -1,3 +1,4 @@
++#include <cstdlib>
+ #include <cmath>
+ #include <math.h>
+ #include <deque>
+@@ -298,6 +299,9 @@ void ImuProcess::UndistortPcl(const MeasureGroup &meas, esekfom::esekf<state_ikf
+   last_imu_ = meas.imu.back();
+   last_lidar_end_time_ = pcl_end_time;
+ 
++  // Study ablation: keep IMU prediction/state; skip point correction only.
++  if (std::getenv("FASTLIO_STUDY_NO_DESKEW")) return;
++
+   /*** undistort each lidar point (backward propagation) ***/
+   if (pcl_out.points.begin() == pcl_out.points.end()) return;
+   auto it_pcl = pcl_out.points.end() - 1;

@@ -27,7 +27,7 @@
 | --- | --- |
 | <a id="physical-test-mirror-photo"></a><a href="media/physical-test/20261015-mirror/mirror-surface.jpg"><img src="media/physical-test/20261015-mirror/mirror-surface.jpg" width="420" alt="图1：镜面"></a> | <a id="physical-test-mirror-map"></a><a href="media/physical-test/20261015-mirror/mirror-incomplete-map.png"><img src="media/physical-test/20261015-mirror/mirror-incomplete-map.png" width="420" alt="图2：镜面导致的建图不全"></a> |
 
-图2红圈为用户标注的问题区域。
+从图2中可以看出，当出现镜面的情况下，建图会难以继续，这是建图中的一个问题之一，在定位时候也是如此，没法扫描出边界
 
 **分析：**
 <!-- PHYSICAL_TEST_ANALYSIS:mirror -->
@@ -36,26 +36,21 @@
 
 <a id="physical-test-real"></a>
 
-### 1. 实物现场
+### 实物现场
 
 <a href="media/physical-test/20261015/real.gif"><img src="media/physical-test/20261015/real.gif" width="360" loading="lazy" alt="实物现场"></a>
 
-12.17 s
 
-**分析：**
+
 <!-- PHYSICAL_TEST_ANALYSIS:real -->
 
 <!-- /PHYSICAL_TEST_ANALYSIS:real -->
 
 <a id="physical-test-rviz-static"></a>
 
-### 2. RViz 静态视频
+### RViz 静态视频
 
 <a href="media/physical-test/20261015/rviz_Static.gif"><img src="media/physical-test/20261015/rviz_Static.gif" width="960" loading="lazy" alt="RViz 静态视频"></a>
-
-17.11 s
-
-**分析：**
 <!-- PHYSICAL_TEST_ANALYSIS:rviz-static -->
 
 <!-- /PHYSICAL_TEST_ANALYSIS:rviz-static -->
@@ -66,9 +61,9 @@
 
 <a href="media/physical-test/20261015/rviz_dyn.gif"><img src="media/physical-test/20261015/rviz_dyn.gif" width="960" loading="lazy" alt="RViz 动态视频"></a>
 
-24.38 s
 
-**分析：**
+
+**分析：**从视频中，其一，可以看出，由于运动速度过快，导致建图过程中建图的畸变；其次，从动态视频中可以看出，由于动态人的出现，导致建图中间出现了污染点。
 <!-- PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
 
 <!-- /PHYSICAL_TEST_ANALYSIS:rviz-dynamic -->
@@ -77,72 +72,86 @@
 
 ### 1. 题目究竟在研究什么？
 
-**方向：动态环境中的鲁棒定位与 SLAM。** 核心问题是：**环境会变化、观测也可能不可靠时，怎样建立几何可信、保留有效静态约束的地图，并检验它能否让定位更准确、更连续？**
+**方向：动态环境中的鲁棒定位与 SLAM。**
 
-| 题目中的词 | 研究对象 | 怎样判断有进展 |
-| --- | --- | --- |
-| 动态环境 | 运动物体形成的残影，以及物体搬动等持久变化；两者需要不同的时序判断 | 区分短时运动与应当更新的真实结构，检查动态删除和静态保留 |
-| 鲁棒定位 | 异常观测、地图失配或几何约束不足时，机器人位姿是否仍可信 | 同时看位置／旋转误差、P95、输出覆盖与失败；当前单轮实验不等于验证了普遍恢复能力 |
-| SLAM | 位姿与地图的联合估计；位姿负责对齐观测，地图又为后续定位提供约束 | 既检查地图几何误差与覆盖，也检查独立定位；完整 SLAM 还要验证自估位姿下的闭环表现 |
+建图-定位，他们不是单一的，而是相辅相成的，
 
-SLAM 的基础是联合估计位姿与地图。[SLAM 综述](https://arxiv.org/abs/1606.05830)。本轮把建图位姿作为已知条件，先隔离地图层的作用；这项控制不代表完整 SLAM 已经解决。
+测试方式：使用不同的建图，再跑统一的定位方法，看看误差是否会减小
 
-### 2. 实物问题为什么与题目有关？
 
-[图1的镜面与图2红圈中的建图不全](#physical-test-mirror)给出了具体研究入口：**“环境静止”与“观测可靠”是两个判断。** 镜面／玻璃可能带来缺失回波或反射造成的错误几何，影响地图边界和后续匹配；相关机制见[反射观测研究](https://arxiv.org/abs/2406.10494)。两张图记录了用户指出的现象，具体缺失原因仍需结合原始扫描、覆盖和轨迹做对照。
+以下是我对定位的理解
 
-因此分开处理两条问题线：**运动物体 → 动态残影；静态镜面 → 观测缺失／反射异常。** 前者对应当前清图实验；后者是从实物提出的扩展问题。删掉错误点以后，还必须检查真实结构是否被误删、缺测区域是否仍然未知。
+* 在我看来定位的本质：是在运动先验的条件下，根据当前观测，进行地图一致性评分，推断机器人位姿和可信度
+  * 以AMCL和GICP为例，AMCL维护粒子位姿分布，通过观测一致性更新权重并重采样；GICP用几何一致性优化位姿
+  * 地图决定了定位能够使用哪些参照，能够将输入的传感器数据通过地图比对来进行定位
 
-### 3. SLAM 的流程，以及哪些位置重要
+因此，我们的目标是：优化建图，以优化定位
 
-**观测 → 预处理 → 前端位姿估计 → 后端优化 → 地图融合／维护 → 地图支持后续定位。** 这是功能流程；不同系统可以交错执行这些环节。
+* 运动的物体会形成残影，污染建图，影响静态建图保留--**我们主要做这个**
 
-| 步骤 | 做什么、为什么影响题目 | 我们关注的位置 |
-| --- | --- | --- |
-| ① 观测 | 采集激光／图像与运动信息；运动目标、镜面、遮挡、距离与采样密度决定可用信息 | 实物镜面问题首先发生在这里；需要区分缺测与真实空闲空间 |
-| ② 预处理 | 同步时间、校准外参、按传感器条件补偿运动畸变，标记不可靠观测 | 避免把时间／位姿误差误判为动态；镜面观测处理属于可扩展入口 |
-| ③ 前端定位 | 运动预测、数据关联、扫描匹配，估计当前位姿 | **地图中留下什么约束**会影响这里；走廊要检查弱约束方向，而不只看点数 |
-| ④ 后端优化 | 综合相邻帧、多传感器及经过验证的回环约束，修正轨迹一致性 | 位姿错会把正确扫描融合到错误位置；错误关联／回环也会反过来损坏地图 |
-| ⑤ 地图融合与维护 | 按位姿整合扫描，处理动态残影、结构保留和持久变化 | **M1 的主要干预点；M5 在这里选择保留哪些静态几何** |
-| ⑥ 地图使用与检验 | 地图反馈给后续跟踪／重定位；实验中冻结 A 地图，用独立 B 检验定位 | **M4 检验⑤→⑥的收益，M5检验保留下来的结构是否真正提供约束** |
+  * 运动检测与剔除--剔除动态物体的情况下，尽可能保留静态结构
 
-关键反馈是 **位姿误差 → 对齐错误 → 地图错层／重影 → 匹配错误 → 后续位姿误差**。因此，“好地图”需要几何可信、有效结构有覆盖、重复观测一致，而且结构在定位时可见、有区分度；仅仅看起来更干净还不够。[流程依据](https://arxiv.org/abs/1606.05830)。
+    * 2D Lidar-SRRG √
 
-### 4. 我们的假设具体放在哪里？
+    * 3D Lidar-DUFOMap, Beauty Map √
 
-| 假设 | 干预或检验位置 | 对照与指标 | 当前进度 |
-| --- | --- | --- | --- |
-| **M1：减少动态残影，同时限制静态损失** | ⑤ 地图观测筛选／清理 | 同一 A、相同建图位姿，对比 Raw／DUFOMap／BeautyMap；看表面误差、已观测静态覆盖、DA／SA | 静态、动态、长廊已有首轮联合评分；不以单项删除率判定成功 |
-| **M4：地图改善在什么污染条件下转化为定位收益？** | **⑤→⑥：换地图，固定定位器和独立 B** | 比较配对 RMSE 改善、P95、旋转误差和输出覆盖；污染梯度实验还要控制静态支持 | 已有三场景地图配对定位；受控污染剂量关系待测 |
-| **M5：哪些静态结构值得保留？** | **⑤ 的几何选择 → ③／⑥ 的匹配约束** | 在相近 DA／SA、点数与预算下，比较几何保护与均匀／阈值保留；检查方向、空间覆盖与定位误差 | 长廊已作边界观察；匹配预算的几何保护消融待测 |
+      ![image-20261015222612651](media/direction/20261016-user/image-20261015222612651.png)
 
-我们的当前验证路线是 **A 采集 → 地图处理与地图质量评分（M1）→ 冻结地图 → 独立 B 定位（M4）→ 分析静态约束条件（M5）**。镜面扩展先处理①／②的观测可靠性，再进入同一套地图与定位评测；现有动态清理录像不能代替镜面验证。
+    * Depth/RGB Camera- DynaSLAM![image-20261015222431746](media/direction/20261016-user/image-20261015222431746.png)
 
-[本轮实践与指标](#current-map-hypotheses) · [精确命题、对照与证伪条件](testing/MAPPING-FOCUS.zh-CN.md)
+* 传感器本身的运动会导致运动畸变，进而引起定位漂移和地图错位
+
+  * 速度过快/转弯时，导致里程计漂移
+    * ![image-20261015230734740](media/direction/20261016-user/image-20261015230734740.png)
+    * 解决方案：Fast-LIO：融合LiDAR与IMU，估计扫描期间的传感器运动并进行点补偿，再进行配准；在快速运动下是否稳定，需要实验验证![image-20261015231926970](media/direction/20261016-user/image-20261015231926970.png)
+    * 个人的小理解：多传感器融合本身也是解决这个问题的好方法，因为可以通过视觉，雷达，里程计等多方面比对；这样即使传感器本身较差也能做的比较好；但是本身多传感器融合就很难
+
+* 特殊的障碍物/退化的环境，会导致定位失准和建图失效
+
+  * 镜面
+    * ![image-20261015230454037](media/direction/20261016-user/image-20261015230454037.png)
+  * 长廊
+    * ![image-20261015234829998](media/direction/20261016-user/image-20261015234829998.png)
+    * 由于特征相同的位置太多，所以无法判断实际位置，很容易出现定位系统失效的问题
+    * 一些简单的提案：在长廊中间放入二维码等容易辨认的，并在地图上标注他的位置，作为一个标志，
+
+* 在地图建好后，要进行维护和优化，这样才能长久地对定位友好
+
+  * 家具移动位置的时候，更新地图的--Khronos
+    * 为什么要更新地图：能够根据这个变动的速度，判断，这个地图是长期静止，偶尔搬动-在建图中标记为静态结构；快速变动-动态结构![image-20261016000012003](media/direction/20261016-user/image-20261016000012003.png)
+    * 这里也可以回答我在课堂上没有说的内容，分割和识别在本方向中，可以辅助判断哪些结构适合保留；语义类别本身不能判断物体当前是否在运动，在定位的时候是否使用作为参考；对于导航来说，可以在地图中标记出新的位置，有利于导航和抓取
+
+根据如上，我提出核心问题：
+
+**在动态环境下，怎样建立几何可信、保留有效静态约束的地图，并检验它能否让定位更准确、更连续？**
 
 ## 开放问题
 
-**大方向：变化环境中的可靠建图与定位。** 原来的“退化与大变动下定位自恢复”适合作为长期方向，但同时跨越建图、配准、重定位和多传感器融合，对当前论文与实验过于开放。
+**大方向：使用什么样的策略，能够实现变化环境中的可靠建图，进而实现可靠定位。**
 
-**本轮小问题：在给定多帧扫描和建图位姿的条件下，如何删除动态障碍物残影，同时保留静态结构；这种地图改善在什么污染和几何条件下，能够降低独立定位的误差？** 先验证地图，再检验定位；不把“地图更干净”直接写成“保证定位准确”。[问题边界与论文依据](testing/MAPPING-FOCUS.zh-CN.md) · [原自恢复背景](self-recovery/DESIGN.zh-CN.md)。
+**小问题1：在给定多帧扫描和建图位姿的条件下，如何删除动态障碍物残影，同时保留静态结构；这种地图改善在什么污染和几何条件下，能够降低独立定位的误差？**
+
+**小问题2：如何在其他条件不变的情况下，减少机器人／传感器快速运动或旋转时产生的运动畸变** 。
+
+**小问题3：如何识别特殊障碍物/应对退化场景如长廊，尽可能避免他对建图部分的影响，进而减少定位误差** 。
 
 <a id="mapping-hypothesis-tests"></a>
 
 ## 假设
 
-<!-- HOME_HYPOTHESIS_PROGRESS -->
-**新一轮已完成静态、动态、长廊的A建图→清图→独立B定位。** [实践数值与新录像](#current-map-hypotheses)同时报告地图表面误差、已观测静态覆盖和定位误差／输出覆盖。每场景1轮；M4污染剂量关系、M5匹配预算的几何保护消融及SRRG独立B仍待测。下方Guard／Depth／Search折叠为历史定位探索。
-<!-- /HOME_HYPOTHESIS_PROGRESS -->
+<!-- DIRECTION_HYPOTHESES_20261016 -->
 
-围绕当前开放问题，依次检验**联合地图质量→污染条件下的定位收益→收益成立的几何条件**。M1合并原M1／M2；保留M4／M5编号以便对应历史记录。投影只作表示与评分诊断，不再单列M3假设。
+三个假设逐一对应现在的三个开放问题。统一检验链是 **输入可靠性／地图处理 → 地图几何与覆盖 → 冻结地图 → 独立 B 定位**；地图更干净不自动代表定位更准。
 
-| 假设 | 受控检验与现有证据 |
-| --- | --- |
-| M1：抑制动态残影，同时限制静态结构损失（合并原M1／M2） | 同输入联合评价删除与保留：DUFOMap的DA为46.59%、SA为99.998%；BeautyMap的DA为74.36%、SA为81.15%。原生二维SRRG按自身定义得到残影删除42.31%、静态覆盖99.51%。这些是单轮观察，不跨表示排名。 |
-| M4：定位收益取决于测试时遇到的地图污染 | 固定定位器及独立测试B，在事先指定区域改变地图污染，并控制静态支持；假设遇到更多误导性地图支持时，清理带来的配对误差／失败改善更明显。已有动态GICP的Raw／DUFO／Beauty XYZ RMSE为0.98／0.98／1.04 cm，未建立收益；受控关系及SRRG独立定位B仍待测。 |
-| M5：保留的静态几何分布，会影响全局删除／保留分数之外的定位表现 | 在同一表示及相近DA／SA、点数和计算预算下，对比几何结构保护与均匀／仅阈值保留；假设保住可重复观测、具有区分度且方向互补的结构更有利于定位。该地图选择实验未运行，旧Depth定位实验不能验证它。 |
+| 对应问题 | 新假设 | 干预、对照与指标 |
+| --- | --- | --- |
+| 问题1 · 动态残影 | **H1：在可重复观测、位姿可信且静态约束足够的条件下，动态处理能在限制静态损失的同时减少残影；当残影进入定位匹配区域时，独立定位有机会受益。** | 2D：Raw／SRRG；3D：Raw／DUFOMap／BeautyMap不变。地图看DA、SA、几何误差与覆盖；同一B、同一AMCL／GICP看位置／旋转RMSE、P95、有效输出覆盖和失败。收益必须实测。 |
+| 问题2 · 自身运动畸变 | **H2：在相同逐点时间、IMU、外参、扫描和轨迹下，FAST-LIO的点运动补偿能减少快速平移／旋转造成的几何误差；这种改善需要继续由独立定位验证。** | FAST-LIO2正常去畸变 vs 仅关闭点补偿的消融，IMU状态传播保留。分静止、慢转、快转、平移阶段；记录扫描跨度、姿态变化、地图表面误差、里程计误差和覆盖，再冻结地图测试B。 |
+| 问题3 · 特殊观测与退化 | **H3：区分“观测不可靠”与“几何缺少约束”，分别采用观测有效性管理和可重复的非对称地标，比统一删点更可能保住地图的定位价值。** | **E3a镜面：**比较缺测标未知与误当自由空间，报告错误占据／错误清空／未知比例及定位；外观识别和真实反射仍需实物验证。**E3b长廊：**原场景 vs 加入雷达可见非对称几何标志的派生场景，同配置建图和定位；看沿廊误差、覆盖、失败及地标处几何覆盖。 |
 
-[精确命题、对照与证伪条件](testing/MAPPING-FOCUS.zh-CN.md) · [地图指标与故障时间点](testing/MAP-METRICS.zh-CN.md)。点级与格级百分数不同，本身不能衡量定位收益损失。静态和走廊保留为边界对照；增加传感器与持久变化更新属于另行验证的扩展。
+**实验控制：**原生二维与三维分别报告，不能跨表示排名。SRRG使用作者估计位姿，因此其端到端结果不能单独归因于删除模块。运动物体的运动与机器人自身运动分开。长廊加地标明确改变环境；不能据此声称算法自动消除了所有退化。仅给地图加不存在的点、把缺测补成墙或向算法输入真值，不能作为成功结果。
+
+[新实验、指标与录制](#direction-experiments-20261016) · [完整实验协议](testing/MAPPING-FOCUS.zh-CN.md) · [旧M1／M4／M5版本](testing/MAPPING-FOCUS-20261015.zh-CN.md)
 
 ## 相关工作
 
@@ -151,9 +160,10 @@ SLAM 的基础是联合估计位姿与地图。[SLAM 综述](https://arxiv.org/a
 
 | 方法／算法类型 | 原库复现GIF | 评价指标与本次范围 | 适用方向 |
 | --- | --- | --- | --- |
+| <a id="related-fast_lio"></a>[FAST-LIO / FAST-LIO2](papers/fast_lio.zh-CN.md) | <img src="assets/related/20261016/fastlio2-fig1.png" width="230" alt="FAST-LIO2 original Fig. 1"> | 原文实验：**不复现**；原图与方法介绍，自有场景测试见Practice |  |
+| <a id="related-srrg_mapper2d"></a>[SRRG / srrg_mapper2d](papers/srrg_mapper2d.zh-CN.md) | <img src="assets/related/20261016/srrg-fig1.png" width="230" alt="SRRG original Fig. 1"> | 原文实验：**不复现**；原图与方法介绍，自有场景测试见Practice |  |
 | <a id="related-dufomap"></a>[DUFOMap](papers/dufomap.md)<br>三维地图清理 | <a href="../results/reference/desktop-live-dufomap/execution.mp4"><img src="../results/reference/desktop-live-dufomap/execution.gif" width="230" loading="lazy" alt="DUFOMap · 现场实录"></a><br>[现场实录](../results/reference/desktop-live-dufomap/execution.mp4) | SA 97.98% / DA 98.7%<br>KITTI-00 · 141 帧；清理有效<br>[记录](../results/reference/desktop-live-dufomap/record.json) |  |
 | <a id="related-beautymap"></a>[BeautyMap](papers/beautymap.md)<br>三维离线地图清理 | <a href="../results/reference/desktop-live-beautymap/execution.mp4"><img src="../results/reference/desktop-live-beautymap/execution.gif" width="230" loading="lazy" alt="BeautyMap · 现场实录"></a><br>[现场实录](../results/reference/desktop-live-beautymap/execution.mp4) | SA 96.95% / DA 98.34%<br>KITTI-00 · 141 帧；清理有效<br>[记录](../results/reference/desktop-live-beautymap/record.json) |  |
-| <a id="related-srrg_mapper2d"></a>[srrg_mapper2d](papers/srrg_mapper2d.zh-CN.md)<br>原生二维动态建图 | <a href="../results/reference/srrg-2d-dynamic/execution.mp4"><img src="../results/reference/srrg-2d-dynamic/execution.gif" width="230" loading="lazy" alt="srrg_mapper2d · 现场实录"></a><br>[现场实录](../results/reference/srrg-2d-dynamic/execution.mp4) | DA 42.31% / SA 99.51%<br>Gazebo单轮动态场景；已编译作者原库，四场景见Practice；定位B待测<br>[记录](../results/reference/srrg-2d-dynamic/record.json) |  |
 | <a id="related-ir-mcl"></a>[IR-MCL](papers/ir-mcl.md)<br>二维神经场定位 | <a href="../results/reference/desktop-live-ir-mcl/execution.mp4"><img src="../results/reference/desktop-live-ir-mcl/execution.gif" width="230" loading="lazy" alt="IR-MCL · 现场实录"></a><br>[现场实录](../results/reference/desktop-live-ir-mcl/execution.mp4) | RMSE 5.31 cm / 1.07°<br>Bonn IPBLab Seq 1<br>[记录](../results/reference/desktop-live-ir-mcl/record.json) |  |
 | <a id="related-adam-mcl"></a>[AdaM-MCL](papers/adam-mcl.md)<br>学习提议＋粒子定位 | <a href="../results/reference/desktop-adam-mcl/execution.mp4"><img src="../results/reference/desktop-adam-mcl/execution.gif" width="230" loading="lazy" alt="AdaM-MCL · 现场实录"></a><br>[现场实录](../results/reference/desktop-adam-mcl/execution.mp4)<br><a href="../results/reference/desktop-adam-mcl/result.mp4"><img src="../results/reference/desktop-adam-mcl/result.gif" width="230" loading="lazy" alt="AdaM-MCL · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/desktop-adam-mcl/result.mp4) | RMSE 32.23 格；自建128格地图、2432步训练；历史10轮持续收敛0/10，不能比较论文米制精度<br>[记录](../results/reference/desktop-adam-mcl/record.json) |  |
 <!-- /HOME_RELATED_TABLE -->
@@ -201,15 +211,24 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 [Result MP4](../results/reference/desktop-adam-mcl/result.mp4)
 
 <!-- SRRG_RELATED -->
-### srrg_mapper2d · 原生二维动态残影维护
+### SRRG · 原生二维动态环境建图
 
-[IROS 2018 论文](https://iris.uniroma1.it/handle/11573/1340118) · [作者建图库](https://gitlab.com/srrg-software/srrg_mapper2d) · [ROS入口](https://gitlab.com/srrg-software/srrg_mapper2d_ros) · [merger2d.cpp](https://gitlab.com/srrg-software/srrg_scan_matcher/-/blob/master/src/merger2d.cpp)。
+**原文实验：不复现。** 使用论文原图介绍方法；自有Gazebo场景中的作者代码测试独立列在[Practice](#srrg-2d)，不等于复现LCAS／MIT Stata长期多会话实验。
 
-原文针对连续二维点云的长期动态环境建图，使用 LCAS–STRANDS 与 MIT Stata Center；动态处理嵌在多帧配准／合并和图维护中。已编译并完成本机同四场景录制。
+![SRRG 原文图1：系统流程](assets/related/20261016/srrg-fig1.png)
 
-[2D 实践：视频与指标](#srrg-2d) · [失败诊断](#srrg-diagnostics) · [原文适用条件](papers/srrg_mapper2d.zh-CN.md)
-
+来源：Lázaro等，*Efficient Long-term Mapping in Dynamic Environments*，IROS 2018，图1，第2页。[原文](https://iris.uniroma1.it/handle/11573/1340118) · [作者代码](https://gitlab.com/srrg-software/srrg_mapper2d)。二维点云和里程计经过配准、局部图维护与位姿图优化；对应H1的动态地图维护，也需要检查H3中的几何约束。
 <!-- /SRRG_RELATED -->
+
+<!-- FASTLIO_RELATED -->
+### FAST-LIO / FAST-LIO2 · LiDAR–IMU运动估计与点补偿
+
+**原文实验：不复现。** 下面是FAST-LIO2论文的原图。本文的FAST-LIO实现测试使用官方ROS2分支、FAST-LIO2直接配准路径；同名软件包与初版论文需要区分。自有场景消融见[新假设实验](#direction-experiments-20261016)。
+
+![FAST-LIO2 原文图1：系统流程](assets/related/20261016/fastlio2-fig1.png)
+
+来源：Xu等，*FAST-LIO2: Fast Direct LiDAR-inertial Odometry*，图1，第4页。[FAST-LIO论文](https://arxiv.org/abs/2010.08196) · [FAST-LIO2论文](https://arxiv.org/abs/2107.06829) · [官方ROS2代码](https://github.com/hku-mars/FAST_LIO/tree/ROS2)。IMU传播与逐点反向补偿对应H2；ikd-Tree维护的是增量空间数据结构，不能直接当成动态物体去除或镜面检测器。
+<!-- /FASTLIO_RELATED -->
 <!-- /HOME_RELATED_DETAILS -->
 
 </details>
@@ -316,7 +335,7 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 [实验设置](#practice-setup) · [指标说明](#practice-metrics)
 
-[新假设实验](#current-map-hypotheses) · [静态](#current-hypothesis-static) · [动态](#current-hypothesis-dynamic) · [长廊](#current-hypothesis-corridor)
+[新假设实验](#direction-experiments-20261016) · [静态](#current-hypothesis-static) · [动态](#current-hypothesis-dynamic) · [长廊](#current-hypothesis-corridor)
 
 <details>
 <summary>此前基线目录</summary>
@@ -349,9 +368,9 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | 物理硬件 | 已有实体底盘、Unitree L2、RealSense D435；本节SLAM结果为仿真；新假设组另列运行机 |
 | 场景 | 静态房间、运动箱体、平行长廊；持久结构变化放入补充实验 |
 | 长廊设置 | 历史记录包含72束 / 3.5 m受限扫描，录制后50仿真秒恢复；定位初值有偏移，三维另限240°视场 |
-| 二维建图任务 | Raw累计图 vs SRRG维护图；作者节点自估位姿、已知起点；主组关闭图合并，独立定位B待测 |
-| 地图与定位任务 | 给定位姿建图A → Raw / DUFOMap / BeautyMap → 冻结地图 → 独立B；二维固定AMCL，三维固定GICP |
-| 地图表示 | 二维投影0.05 m格、Z=0.12–1.20 m、一格膨胀；三维保留完整点云；SRRG为原生二维 |
+| 二维建图任务 | Raw累计图 vs SRRG维护图；作者节点自估位姿、已知起点；主组关闭图合并，独立AMCL B见本轮实验 |
+| 地图与定位任务 | 二维：作者SRRG自估位姿建图A → Raw／SRRG → AMCL B；三维：给定位姿A → Raw／DUFOMap／BeautyMap → GICP B |
+| 地图表示 | 二维使用原生SRRG点图与占据导出；三维保留完整点云；二维不再测试DUFOMap／BeautyMap投影 |
 | 定位评分 | 真值仅评分，同步≤0.05仿真秒；原始流保留初始化，新假设表按共同录制时段评分；不拟合轨迹、不补零 |
 
 [机器人URDF](../config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf) · [场景文件](../config/presentation/worlds) · [传感器分组](../src/scripts/presentation/probe_sensors.py) · [实物器材记录](media/hardware/record.json)
@@ -366,7 +385,7 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | --- | --- |
 | DA ↑ | 动态删除比例；无动态分母为 N/A |
 | SA ↑ | 静态保留／覆盖比例；三类表的样本定义见下行 |
-| DA / SA 口径 | SRRG：10 cm去重支持格、15 cm覆盖容差；二维投影：5 cm动静专属格；三维：带标签源点 |
+| DA / SA 口径 | SRRG：10 cm去重支持格、15 cm覆盖容差；三维：带标签源点 |
 | RMSE ↓ | 位置误差均方根，cm；建图轨迹与独立定位分列，二维XY、三维XYZ |
 | 角度 RMSE ↓ | 二维偏航角 / 三维完整旋转误差的均方根，° |
 | P95 ↓ / N | 位置误差95分位数 / 有效评分位姿数量；仅统计实际有效输出 |
@@ -375,6 +394,170 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | — / N/A | 未评分或未记录 / 不适用 |
 
 [完整计算定义](#指标)
+
+<a id="direction-experiments-20261016"></a>
+
+### 当前三个开放问题：H1／H2／H3
+
+[E1 · H1](#direction-e1) · [E2 · H2](#direction-e2) · [E3a · H3](#direction-e3a) · [E3b · H3](#direction-e3b)
+
+| 实验设置 | 实际内容 |
+| --- | --- |
+| 场景／机器人 | 原静态、动态、长廊；Sim2Real三轮全向底盘；全部为仿真 |
+| E1 | 2D原生雷达720束＋轮式里程计；A冻结图，独立B用相同AMCL；3D原Raw／DUFOMap／BeautyMap和GICP不变 |
+| E2 | 独立IMU变体200Hz；三帧各取120°实测扇区，扫描跨度约0.2s；FAST-LIO2点补偿开／关 |
+| E3a | 同一真实仿真扫描的固定缺测扇区回放；只检查未知／自由空间语义 |
+| E3b | 原长廊 vs 新增两处0.24×0.24×0.9m非对称侧向几何标志，分别录A／B |
+
+定位表按共同10Hz真值网格重新计算误差，前5s预热，位姿年龄≤0.15s。新鲜更新覆盖受AMCL运动触发发布影响，不能直接当成失跟率。少量单轮结果用于探索。
+
+<a id="direction-e1"></a>
+
+#### E1 · H1 · 动态残影 → 地图 → 独立定位
+
+| 场景 | Map | DA | SA | 地图支持距离RMSE / cm | B XY RMSE / cm |
+| --- | --- | --- | --- | --- | --- |
+| 静态 | Raw | N/A | 100.00% | 3.02 | 4.39 |
+| 静态 | SRRG | N/A | 99.85% | 2.64 | 5.00 |
+| 动态 | Raw | 0.00% | 100.00% | 51.05 | 5.05 |
+| 动态 | SRRG | 40.96% | 100.00% | 28.45 | 4.55 |
+| 长廊 | Raw | N/A | 83.43% | 13.12 | 97.03 |
+| 长廊 | SRRG | N/A | 82.24% | 11.33 | 104.25 |
+
+地图支持距离：10cm体素点到已观测静态支持的最近距离，不是精确表面误差；SA为15cm容差的静态覆盖。下方二维栏给出各方法新录像。A使用实际对应的历史采集，B为本轮新运行。
+
+[静态A](../results/reference/direction-20261016/2d-A-static/record.json) · [GIF](../results/reference/direction-20261016/2d-A-static/execution.gif)
+[动态A](../results/reference/direction-20261016/2d-A-dynamic/record.json) · [GIF](../results/reference/direction-20261016/2d-A-dynamic/execution.gif)
+[长廊A](../results/reference/direction-20261016/2d-A-corridor/record.json) · [GIF](../results/reference/direction-20261016/2d-A-corridor/execution.gif)
+
+<details>
+<summary>E1 · 三场景独立B新录像</summary>
+
+**静态 · raw**
+
+<a href="../results/reference/direction-20261016/2d-static/executions/raw.mp4"><img src="../results/reference/direction-20261016/2d-static/executions/raw.gif" width="480" loading="lazy" alt="静态 · raw"></a>
+
+**静态 · srrg**
+
+<a href="../results/reference/direction-20261016/2d-static/executions/srrg.mp4"><img src="../results/reference/direction-20261016/2d-static/executions/srrg.gif" width="480" loading="lazy" alt="静态 · srrg"></a>
+
+**动态 · raw**
+
+<a href="../results/reference/direction-20261016/2d-dynamic/executions/raw.mp4"><img src="../results/reference/direction-20261016/2d-dynamic/executions/raw.gif" width="480" loading="lazy" alt="动态 · raw"></a>
+
+**动态 · srrg**
+
+<a href="../results/reference/direction-20261016/2d-dynamic/executions/srrg.mp4"><img src="../results/reference/direction-20261016/2d-dynamic/executions/srrg.gif" width="480" loading="lazy" alt="动态 · srrg"></a>
+
+**长廊 · raw**
+
+<a href="../results/reference/direction-20261016/2d-corridor/executions/degraded_raw.mp4"><img src="../results/reference/direction-20261016/2d-corridor/executions/degraded_raw.gif" width="480" loading="lazy" alt="长廊 · raw"></a>
+
+**长廊 · srrg**
+
+<a href="../results/reference/direction-20261016/2d-corridor/executions/degraded_srrg.mp4"><img src="../results/reference/direction-20261016/2d-corridor/executions/degraded_srrg.gif" width="480" loading="lazy" alt="长廊 · srrg"></a>
+
+</details>
+
+
+**分析：**
+<!-- PRACTICE_ANALYSIS:direction-h1 -->
+
+<!-- /PRACTICE_ANALYSIS:direction-h1 -->
+
+<a id="direction-e2"></a>
+
+#### E2 · H2 · FAST-LIO2 · 运动畸变
+
+| 方法 | Map RMSE / cm | Map P95 / cm | 5cm静态覆盖 | 自身里程计XYZ RMSE / cm | N |
+| --- | --- | --- | --- | --- | --- |
+| 点补偿开启 | 4.54 | 2.26 | 94.34% | 0.99 | 133 |
+| 仅点补偿关闭 | 13.59 | 32.45 | 81.77% | 3.32 | 133 |
+
+地图为共同时间的原生注册扫描累计，含地面与漂移点，不是ikd-Tree原生导出。只用一次初始位姿对齐。先过滤无效回波，并在3s静止稳定后送入IMU与扫描；静止、慢转、快转和平移分阶段记录。
+
+**FAST-LIO2 同输入双组 · 绿色开启补偿／橙色关闭**
+
+<a href="../results/reference/direction-20261016/fastlio-motion/execution.mp4"><img src="../results/reference/direction-20261016/fastlio-motion/execution.gif" width="640" loading="lazy" alt="FAST-LIO2 同输入双组 · 绿色开启补偿／橙色关闭"></a>
+
+[地图与里程计评分](../results/reference/direction-20261016/fastlio-maps/score.json)
+
+| 阶段 | On XYZ / cm | Off XYZ / cm | On rotation / ° | Off rotation / ° |
+| --- | --- | --- | --- | --- |
+| 静止 | 0.16 | 0.12 | 0.03 | 0.02 |
+| 慢转 | 0.43 | 1.30 | 0.15 | 0.95 |
+| 快转 | 0.80 | 3.07 | 0.28 | 4.39 |
+| 平移 | 1.32 | 5.10 | 0.24 | 3.41 |
+
+| 冻结地图 | B XYZ RMSE / cm | Rotation / ° | P95 / cm | 新鲜更新覆盖 | N |
+| --- | --- | --- | --- | --- | --- |
+| deskew | 1.56 | 0.60 | 2.64 | 100.00% | 551 |
+| no_deskew | 12.41 | 3.38 | 17.40 | 100.00% | 551 |
+
+**B · deskew**
+
+<a href="../results/reference/direction-20261016/fastlio-B/executions/deskew.mp4"><img src="../results/reference/direction-20261016/fastlio-B/executions/deskew.gif" width="480" loading="lazy" alt="B · deskew"></a>
+
+**B · no_deskew**
+
+<a href="../results/reference/direction-20261016/fastlio-B/executions/no_deskew.mp4"><img src="../results/reference/direction-20261016/fastlio-B/executions/no_deskew.gif" width="480" loading="lazy" alt="B · no_deskew"></a>
+
+**分析：**
+<!-- PRACTICE_ANALYSIS:direction-h2 -->
+
+<!-- /PRACTICE_ANALYSIS:direction-h2 -->
+
+<a id="direction-e3a"></a>
+
+#### E3a · H3 · 镜面缺测边界检查
+
+| 更新规则 | 误清空边界格 | 参考边界格 | 边界保留 |
+| --- | --- | --- | --- |
+| unknown | 0 | 115 | 100.00% |
+| incorrect_free | 115 | 115 | 0.00% |
+
+<a href="../results/reference/direction-20261016/mirror-control/record.json"><img src="../results/reference/direction-20261016/mirror-control/control-replay.gif" width="640" loading="lazy" alt="E3a controlled scan replay"></a>
+
+这是固定姿态、受控缺测的数据回放，不是镜面物理实录，不验证镜面识别或定位收益。
+
+**分析：**
+<!-- PRACTICE_ANALYSIS:direction-h3-mirror -->
+
+<!-- /PRACTICE_ANALYSIS:direction-h3-mirror -->
+
+<a id="direction-e3b"></a>
+
+#### E3b · H3 · 长廊几何干预
+
+| 场景 | Map | 前50s沿廊RMSE / cm | 横向RMSE / cm | N | 新鲜更新覆盖 |
+| --- | --- | --- | --- | --- | --- |
+| 原长廊 | degraded_raw | 109.29 | 6.31 | 223 | 88.06% |
+| 原长廊 | degraded_srrg | 100.82 | 4.05 | 223 | 88.06% |
+| 加非对称地标 | degraded_raw | 75.54 | 6.95 | 223 | 51.94% |
+| 加非对称地标 | degraded_srrg | 58.06 | 5.51 | 223 | 51.94% |
+
+**派生长廊A · 新录制**
+
+<a href="../results/reference/direction-20261016/corridor-landmark-mapping/execution.mp4"><img src="../results/reference/direction-20261016/corridor-landmark-mapping/execution.gif" width="640" loading="lazy" alt="派生长廊A · 新录制"></a>
+
+**B · degraded_raw**
+
+<a href="../results/reference/direction-20261016/2d-landmark-corridor/executions/degraded_raw.mp4"><img src="../results/reference/direction-20261016/2d-landmark-corridor/executions/degraded_raw.gif" width="480" loading="lazy" alt="B · degraded_raw"></a>
+
+**B · degraded_srrg**
+
+<a href="../results/reference/direction-20261016/2d-landmark-corridor/executions/degraded_srrg.mp4"><img src="../results/reference/direction-20261016/2d-landmark-corridor/executions/degraded_srrg.gif" width="480" loading="lazy" alt="B · degraded_srrg"></a>
+
+[四组共同时间评分](../results/reference/direction-20261016/corridor-comparison.json)
+
+**分析：**
+<!-- PRACTICE_ANALYSIS:direction-h3-corridor -->
+
+<!-- /PRACTICE_ANALYSIS:direction-h3-corridor -->
+
+
+<details>
+<summary>此前三维给定位姿实验（原记录保留）</summary>
 
 <a id="current-map-hypotheses"></a>
 
@@ -562,6 +745,8 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 <!-- /PRACTICE_ANALYSIS:current-hypothesis-corridor -->
 
+</details>
+
 <details>
 <summary>此前基线与补充实验</summary>
 
@@ -585,17 +770,17 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | 方法 | DA | SA | 建图轨迹 XY RMSE / cm |
 | --- | --- | --- | --- |
 | Raw | N/A | 100% | — |
-| SRRG | N/A | 99.84% | 0.71 |
+| SRRG | N/A | 99.85% | 0.73 |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[记录](../results/reference/srrg-2d-static/record.json) · 独立定位 B：待测
+[记录](../results/reference/direction-20261016/2d-A-static/record.json) · 独立定位B见下表
 
 <details>
 <summary>视频</summary>
 
 **Raw / SRRG**
 
-<a href="../results/reference/srrg-2d-static/execution.mp4"><img src="../results/reference/srrg-2d-static/execution.gif" width="200" loading="lazy" alt="Raw / SRRG · 现场实录"></a><br>[现场实录](../results/reference/srrg-2d-static/execution.mp4)
+<a href="../results/reference/direction-20261016/2d-A-static/execution.mp4"><img src="../results/reference/direction-20261016/2d-A-static/execution.gif" width="200" loading="lazy" alt="Raw / SRRG · 现场实录"></a><br>[现场实录](../results/reference/direction-20261016/2d-A-static/execution.mp4)
 
 </details>
 
@@ -606,34 +791,20 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 <a id="scene-static-2d"></a>
 
-#### 二维投影地图 + AMCL
+#### 原生二维地图 + AMCL · Raw / SRRG
 
-<!-- HOME_EXPERIMENT_TABLE -->
-| 地图 | DA | SA | XY RMSE / cm | yaw RMSE / ° | P95 / cm | N |
+| Map | XY RMSE / cm | yaw RMSE / ° | P95 / cm | P(e>25cm) | 新鲜更新覆盖 | N |
 | --- | --- | --- | --- | --- | --- | --- |
-| Raw | N/A | 100% | 7.28 | 1.03 | 10.74 | 290 |
-| DUFOMap | N/A | 100% | 7.28 | 1.03 | 10.74 | 290 |
-| BeautyMap | N/A | 96.51% | 6.89 | 1.05 | 8.44 | 290 |
-<!-- /HOME_EXPERIMENT_TABLE -->
+| Raw | 4.39 | 1.37 | 7.14 | 0.00% | 81.67% | 450 |
+| SRRG | 5.00 | 1.44 | 8.52 | 0.00% | 81.67% | 450 |
 
-[记录](../results/reference/robot-live-static/record.json) · [地图评分](../results/analysis/map-quality/static.json)
-
-<details>
-<summary>视频</summary>
+[评分](../results/reference/direction-20261016/2d-static/time-grid-score.json) · [记录](../results/reference/direction-20261016/2d-static/record.json)
 
 **Raw**
+<a href="../results/reference/direction-20261016/2d-static/executions/raw.mp4"><img src="../results/reference/direction-20261016/2d-static/executions/raw.gif" width="480" loading="lazy" alt="Raw native AMCL recording"></a>
 
-<a href="../results/reference/robot-live-static/executions/raw.mp4"><img src="../results/reference/robot-live-static/executions/raw.gif" width="200" loading="lazy" alt="Raw · 现场实录"></a><br>[现场实录](../results/reference/robot-live-static/executions/raw.mp4)<br><a href="../results/reference/robot-live-static/methods/raw/result.mp4"><img src="../results/reference/robot-live-static/methods/raw/result.gif" width="200" loading="lazy" alt="Raw · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-live-static/methods/raw/result.mp4)
-
-**DUFOMap**
-
-<a href="../results/reference/robot-live-static/executions/dufomap.mp4"><img src="../results/reference/robot-live-static/executions/dufomap.gif" width="200" loading="lazy" alt="DUFOMap · 现场实录"></a><br>[现场实录](../results/reference/robot-live-static/executions/dufomap.mp4)<br><a href="../results/reference/robot-live-static/methods/dufomap/result.mp4"><img src="../results/reference/robot-live-static/methods/dufomap/result.gif" width="200" loading="lazy" alt="DUFOMap · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-live-static/methods/dufomap/result.mp4)
-
-**BeautyMap**
-
-<a href="../results/reference/robot-live-static/executions/beautymap.mp4"><img src="../results/reference/robot-live-static/executions/beautymap.gif" width="200" loading="lazy" alt="BeautyMap · 现场实录"></a><br>[现场实录](../results/reference/robot-live-static/executions/beautymap.mp4)<br><a href="../results/reference/robot-live-static/methods/beautymap/result.mp4"><img src="../results/reference/robot-live-static/methods/beautymap/result.gif" width="200" loading="lazy" alt="BeautyMap · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-live-static/methods/beautymap/result.mp4)
-
-</details>
+**SRRG**
+<a href="../results/reference/direction-20261016/2d-static/executions/srrg.mp4"><img src="../results/reference/direction-20261016/2d-static/executions/srrg.gif" width="480" loading="lazy" alt="SRRG native AMCL recording"></a>
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-static-2d -->
@@ -691,17 +862,17 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | 方法 | DA | SA | 建图轨迹 XY RMSE / cm |
 | --- | --- | --- | --- |
 | Raw | 0% | 100% | — |
-| SRRG | 42.31% | 99.51% | 0.64 |
+| SRRG | 40.96% | 100% | 0.64 |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[记录](../results/reference/srrg-2d-dynamic/record.json) · 独立定位 B：待测
+[记录](../results/reference/direction-20261016/2d-A-dynamic/record.json) · 独立定位B见下表
 
 <details>
 <summary>视频</summary>
 
 **Raw / SRRG**
 
-<a href="../results/reference/srrg-2d-dynamic/execution.mp4"><img src="../results/reference/srrg-2d-dynamic/execution.gif" width="200" loading="lazy" alt="Raw / SRRG · 现场实录"></a><br>[现场实录](../results/reference/srrg-2d-dynamic/execution.mp4)
+<a href="../results/reference/direction-20261016/2d-A-dynamic/execution.mp4"><img src="../results/reference/direction-20261016/2d-A-dynamic/execution.gif" width="200" loading="lazy" alt="Raw / SRRG · 现场实录"></a><br>[现场实录](../results/reference/direction-20261016/2d-A-dynamic/execution.mp4)
 
 </details>
 
@@ -712,34 +883,20 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 <a id="scene-dynamic-2d"></a>
 
-#### 二维投影地图 + AMCL
+#### 原生二维地图 + AMCL · Raw / SRRG
 
-<!-- HOME_EXPERIMENT_TABLE -->
-| 地图 | DA | SA | XY RMSE / cm | yaw RMSE / ° | P95 / cm | N |
+| Map | XY RMSE / cm | yaw RMSE / ° | P95 / cm | P(e>25cm) | 新鲜更新覆盖 | N |
 | --- | --- | --- | --- | --- | --- | --- |
-| Raw | 0% | 100% | 7.52 | 1.78 | 13.93 | 291 |
-| DUFOMap | 8.33% | 100% | 8.19 | 1.76 | 12.83 | 291 |
-| BeautyMap | 33.33% | 96.64% | 7.29 | 1.79 | 13.41 | 291 |
-<!-- /HOME_EXPERIMENT_TABLE -->
+| Raw | 5.05 | 3.01 | 7.25 | 0.00% | 45.92% | 276 |
+| SRRG | 4.55 | 3.00 | 7.25 | 0.00% | 45.92% | 276 |
 
-[记录](../results/reference/robot-2d-dynamic-matched/record.json) · [地图评分](../results/analysis/map-quality/projected-dynamic.json)
-
-<details>
-<summary>视频</summary>
+[评分](../results/reference/direction-20261016/2d-dynamic/time-grid-score.json) · [记录](../results/reference/direction-20261016/2d-dynamic/record.json)
 
 **Raw**
+<a href="../results/reference/direction-20261016/2d-dynamic/executions/raw.mp4"><img src="../results/reference/direction-20261016/2d-dynamic/executions/raw.gif" width="480" loading="lazy" alt="Raw native AMCL recording"></a>
 
-<a href="../results/reference/robot-2d-dynamic-matched/executions/raw.mp4"><img src="../results/reference/robot-2d-dynamic-matched/executions/raw.gif" width="200" loading="lazy" alt="Raw · 现场实录"></a><br>[现场实录](../results/reference/robot-2d-dynamic-matched/executions/raw.mp4)<br><a href="../results/reference/robot-2d-dynamic-matched/methods/raw/result.mp4"><img src="../results/reference/robot-2d-dynamic-matched/methods/raw/result.gif" width="200" loading="lazy" alt="Raw · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-2d-dynamic-matched/methods/raw/result.mp4)
-
-**DUFOMap**
-
-<a href="../results/reference/robot-2d-dynamic-matched/executions/dufomap.mp4"><img src="../results/reference/robot-2d-dynamic-matched/executions/dufomap.gif" width="200" loading="lazy" alt="DUFOMap · 现场实录"></a><br>[现场实录](../results/reference/robot-2d-dynamic-matched/executions/dufomap.mp4)<br><a href="../results/reference/robot-2d-dynamic-matched/methods/dufomap/result.mp4"><img src="../results/reference/robot-2d-dynamic-matched/methods/dufomap/result.gif" width="200" loading="lazy" alt="DUFOMap · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-2d-dynamic-matched/methods/dufomap/result.mp4)
-
-**BeautyMap**
-
-<a href="../results/reference/robot-2d-dynamic-matched/executions/beautymap.mp4"><img src="../results/reference/robot-2d-dynamic-matched/executions/beautymap.gif" width="200" loading="lazy" alt="BeautyMap · 现场实录"></a><br>[现场实录](../results/reference/robot-2d-dynamic-matched/executions/beautymap.mp4)<br><a href="../results/reference/robot-2d-dynamic-matched/methods/beautymap/result.mp4"><img src="../results/reference/robot-2d-dynamic-matched/methods/beautymap/result.gif" width="200" loading="lazy" alt="BeautyMap · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-2d-dynamic-matched/methods/beautymap/result.mp4)
-
-</details>
+**SRRG**
+<a href="../results/reference/direction-20261016/2d-dynamic/executions/srrg.mp4"><img src="../results/reference/direction-20261016/2d-dynamic/executions/srrg.gif" width="480" loading="lazy" alt="SRRG native AMCL recording"></a>
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-dynamic-2d -->
@@ -800,14 +957,14 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 | SRRG | N/A | 82.24% | 83.23 |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[记录](../results/reference/srrg-2d-corridor/record.json) · 独立定位 B：待测
+[记录](../results/reference/direction-20261016/2d-A-corridor/record.json) · 独立定位B见下表
 
 <details>
 <summary>视频</summary>
 
 **Raw / SRRG**
 
-<a href="../results/reference/srrg-2d-corridor/execution.mp4"><img src="../results/reference/srrg-2d-corridor/execution.gif" width="200" loading="lazy" alt="Raw / SRRG · 现场实录"></a><br>[现场实录](../results/reference/srrg-2d-corridor/execution.mp4)
+<a href="../results/reference/direction-20261016/2d-A-corridor/execution.mp4"><img src="../results/reference/direction-20261016/2d-A-corridor/execution.gif" width="200" loading="lazy" alt="Raw / SRRG · 现场实录"></a><br>[现场实录](../results/reference/direction-20261016/2d-A-corridor/execution.mp4)
 
 </details>
 
@@ -818,34 +975,20 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 <a id="scene-corridor-2d"></a>
 
-#### 二维投影地图 + AMCL
+#### 原生二维地图 + AMCL · Raw / SRRG
 
-<!-- HOME_EXPERIMENT_TABLE -->
-| 地图 | DA | SA | XY RMSE / cm | yaw RMSE / ° | P95 / cm | N |
+| Map | XY RMSE / cm | yaw RMSE / ° | P95 / cm | P(e>25cm) | 新鲜更新覆盖 | N |
 | --- | --- | --- | --- | --- | --- | --- |
-| Raw | N/A | 100% | 72.53 | 0.85 | 132.56 | 508 |
-| DUFOMap | N/A | 100% | 72.53 | 0.85 | 132.56 | 508 |
-| BeautyMap | N/A | 100% | 72.53 | 0.85 | 132.56 | 508 |
-<!-- /HOME_EXPERIMENT_TABLE -->
+| Raw | 97.03 | 1.63 | 124.41 | 86.46% | 88.08% | 591 |
+| SRRG | 104.25 | 1.16 | 121.31 | 100.00% | 88.08% | 591 |
 
-[记录](../results/reference/robot-corridor-v2/record.json) · [地图评分](../results/analysis/map-quality/corridor.json)
-
-<details>
-<summary>视频</summary>
+[评分](../results/reference/direction-20261016/2d-corridor/time-grid-score.json) · [记录](../results/reference/direction-20261016/2d-corridor/record.json)
 
 **Raw**
+<a href="../results/reference/direction-20261016/2d-corridor/executions/degraded_raw.mp4"><img src="../results/reference/direction-20261016/2d-corridor/executions/degraded_raw.gif" width="480" loading="lazy" alt="Raw native AMCL recording"></a>
 
-<a href="../results/reference/robot-corridor-v2/executions/degraded_raw.mp4"><img src="../results/reference/robot-corridor-v2/executions/degraded_raw.gif" width="200" loading="lazy" alt="Raw · 现场实录"></a><br>[现场实录](../results/reference/robot-corridor-v2/executions/degraded_raw.mp4)<br><a href="../results/reference/robot-corridor-v2/methods/degraded_raw/result.mp4"><img src="../results/reference/robot-corridor-v2/methods/degraded_raw/result.gif" width="200" loading="lazy" alt="Raw · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-corridor-v2/methods/degraded_raw/result.mp4)
-
-**DUFOMap**
-
-<a href="../results/reference/robot-corridor-v2/executions/degraded_dufomap.mp4"><img src="../results/reference/robot-corridor-v2/executions/degraded_dufomap.gif" width="200" loading="lazy" alt="DUFOMap · 现场实录"></a><br>[现场实录](../results/reference/robot-corridor-v2/executions/degraded_dufomap.mp4)<br><a href="../results/reference/robot-corridor-v2/methods/degraded_dufomap/result.mp4"><img src="../results/reference/robot-corridor-v2/methods/degraded_dufomap/result.gif" width="200" loading="lazy" alt="DUFOMap · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-corridor-v2/methods/degraded_dufomap/result.mp4)
-
-**BeautyMap**
-
-<a href="../results/reference/robot-corridor-v2/executions/degraded_beautymap.mp4"><img src="../results/reference/robot-corridor-v2/executions/degraded_beautymap.gif" width="200" loading="lazy" alt="BeautyMap · 现场实录"></a><br>[现场实录](../results/reference/robot-corridor-v2/executions/degraded_beautymap.mp4)<br><a href="../results/reference/robot-corridor-v2/methods/degraded_beautymap/result.mp4"><img src="../results/reference/robot-corridor-v2/methods/degraded_beautymap/result.gif" width="200" loading="lazy" alt="BeautyMap · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-corridor-v2/methods/degraded_beautymap/result.mp4)
-
-</details>
+**SRRG**
+<a href="../results/reference/direction-20261016/2d-corridor/executions/degraded_srrg.mp4"><img src="../results/reference/direction-20261016/2d-corridor/executions/degraded_srrg.gif" width="480" loading="lazy" alt="SRRG native AMCL recording"></a>
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-corridor-2d -->
@@ -935,36 +1078,9 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 <a id="scene-change-2d"></a>
 
-#### 二维投影地图 + AMCL
+#### 原生二维地图 + AMCL · Raw / SRRG
 
-<!-- HOME_EXPERIMENT_TABLE -->
-| 地图 | DA | SA | XY RMSE / cm | yaw RMSE / ° | P95 / cm | N |
-| --- | --- | --- | --- | --- | --- | --- |
-| Raw | N/A | 100% | 6.84 | 1.02 | 8.89 | 290 |
-| DUFOMap | N/A | 100% | 6.84 | 1.02 | 8.89 | 290 |
-| BeautyMap | N/A | 96.51% | 6.39 | 1.04 | 7.25 | 290 |
-<!-- /HOME_EXPERIMENT_TABLE -->
-
-[记录](../results/reference/robot-live-large-change/record.json) · [地图评分](../results/analysis/map-quality/static.json)
-
-设置：冻结静态 A 旧图，B 中不更新地图；DA／SA 为旧图 A 数值。
-
-<details>
-<summary>视频</summary>
-
-**Raw**
-
-<a href="../results/reference/robot-live-large-change/executions/raw.mp4"><img src="../results/reference/robot-live-large-change/executions/raw.gif" width="200" loading="lazy" alt="Raw · 现场实录"></a><br>[现场实录](../results/reference/robot-live-large-change/executions/raw.mp4)<br><a href="../results/reference/robot-live-large-change/methods/raw/result.mp4"><img src="../results/reference/robot-live-large-change/methods/raw/result.gif" width="200" loading="lazy" alt="Raw · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-live-large-change/methods/raw/result.mp4)
-
-**DUFOMap**
-
-<a href="../results/reference/robot-live-large-change/executions/dufomap.mp4"><img src="../results/reference/robot-live-large-change/executions/dufomap.gif" width="200" loading="lazy" alt="DUFOMap · 现场实录"></a><br>[现场实录](../results/reference/robot-live-large-change/executions/dufomap.mp4)<br><a href="../results/reference/robot-live-large-change/methods/dufomap/result.mp4"><img src="../results/reference/robot-live-large-change/methods/dufomap/result.gif" width="200" loading="lazy" alt="DUFOMap · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-live-large-change/methods/dufomap/result.mp4)
-
-**BeautyMap**
-
-<a href="../results/reference/robot-live-large-change/executions/beautymap.mp4"><img src="../results/reference/robot-live-large-change/executions/beautymap.gif" width="200" loading="lazy" alt="BeautyMap · 现场实录"></a><br>[现场实录](../results/reference/robot-live-large-change/executions/beautymap.mp4)<br><a href="../results/reference/robot-live-large-change/methods/beautymap/result.mp4"><img src="../results/reference/robot-live-large-change/methods/beautymap/result.gif" width="200" loading="lazy" alt="BeautyMap · 结果回放（无新推理）"></a><br>[结果回放（无新推理）](../results/reference/robot-live-large-change/methods/beautymap/result.mp4)
-
-</details>
+独立B待测；本栏不再展示DUFOMap／BeautyMap二维投影。
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-change-2d -->

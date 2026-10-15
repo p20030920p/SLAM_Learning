@@ -1,0 +1,201 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-16-00-18-03-395334-DESKTOP-GI2390C-254968
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [map_server-1]: process started with pid [255082]
+[INFO] [amcl-2]: process started with pid [255083]
+[amcl-2] [INFO] [1792099083.557656303] [raw.amcl]: 
+[amcl-2] 	amcl lifecycle node launched. 
+[amcl-2] 	Waiting on external lifecycle transitions to activate
+[amcl-2] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-1] [INFO] [1792099083.560057164] [raw.map_server]: 
+[map_server-1] 	map_server lifecycle node launched. 
+[map_server-1] 	Waiting on external lifecycle transitions to activate
+[map_server-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-1] [INFO] [1792099083.560172252] [raw.map_server]: Creating
+[amcl-2] [INFO] [1792099083.560423369] [raw.amcl]: Creating
+[INFO] [lifecycle_manager-3]: process started with pid [255250]
+[lifecycle_manager-3] [INFO] [1792099085.545227775] [raw.lifecycle_manager]: Creating
+[lifecycle_manager-3] [INFO] [1792099085.548878327] [raw.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-3] [INFO] [1792099085.983916136] [raw.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-3] [INFO] [1792099085.983970028] [raw.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-1] [INFO] [1792099085.984269559] [raw.map_server]: Configuring
+[map_server-1] [INFO] [1792099085.984322710] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/raw/map.yaml
+[map_server-1] [INFO] [1792099085.987749696] [map_io]: resolution: 0.05
+[map_server-1] [INFO] [1792099085.987786225] [map_io]: origin[0]: -6
+[map_server-1] [INFO] [1792099085.987792748] [map_io]: origin[1]: -7
+[map_server-1] [INFO] [1792099085.987795974] [map_io]: origin[2]: 0
+[map_server-1] [INFO] [1792099085.987799180] [map_io]: free_thresh: 0.196
+[map_server-1] [INFO] [1792099085.987802075] [map_io]: occupied_thresh: 0.65
+[map_server-1] [INFO] [1792099085.987805782] [map_io]: mode: trinary
+[map_server-1] [INFO] [1792099085.987808989] [map_io]: negate: 0
+[map_server-1] [INFO] [1792099085.988000220] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/raw/map.pgm
+[map_server-1] [INFO] [1792099085.998571057] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/raw/map.pgm: 521 X 141 map @ 0.05 m/cell
+[lifecycle_manager-3] [INFO] [1792099086.006621919] [raw.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-2] [INFO] [1792099086.006956908] [raw.amcl]: Configuring
+[amcl-2] [INFO] [1792099086.007022152] [raw.amcl]: initTransforms
+[amcl-2] [INFO] [1792099086.017219427] [raw.amcl]: initPubSub
+[amcl-2] [INFO] [1792099086.024509447] [raw.amcl]: Subscribed to map topic.
+[lifecycle_manager-3] [INFO] [1792099086.031666290] [raw.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-1] [INFO] [1792099086.031917850] [raw.map_server]: Activating
+[map_server-1] [INFO] [1792099086.032213299] [raw.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-2] [INFO] [1792099086.032825111] [raw.amcl]: Received a 521 X 141 map @ 0.050 m/pix
+[lifecycle_manager-3] [INFO] [1792099086.138096605] [raw.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-3] [INFO] [1792099086.138208456] [raw.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-2] [INFO] [1792099086.138526833] [raw.amcl]: Activating
+[amcl-2] [INFO] [1792099086.138578701] [raw.amcl]: initialPoseReceived
+[amcl-2] [INFO] [1792099086.138652190] [raw.amcl]: Setting pose (0.000000): 8.150 -2.950 0.120
+[amcl-2] [INFO] [1792099086.139084598] [raw.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-3] [INFO] [1792099086.243692713] [raw.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-3] [INFO] [1792099086.243743559] [raw.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-3] [INFO] [1792099086.243751544] [raw.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[INFO] [map_server-4]: process started with pid [255288]
+[INFO] [amcl-5]: process started with pid [255289]
+[amcl-5] [INFO] [1792099086.534916881] [srrg.amcl]: 
+[amcl-5] 	amcl lifecycle node launched. 
+[amcl-5] 	Waiting on external lifecycle transitions to activate
+[amcl-5] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-5] [INFO] [1792099086.539099342] [srrg.amcl]: Creating
+[map_server-4] [INFO] [1792099086.544696670] [srrg.map_server]: 
+[map_server-4] 	map_server lifecycle node launched. 
+[map_server-4] 	Waiting on external lifecycle transitions to activate
+[map_server-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-4] [INFO] [1792099086.544810596] [srrg.map_server]: Creating
+[INFO] [lifecycle_manager-6]: process started with pid [255385]
+[lifecycle_manager-6] [INFO] [1792099088.559349774] [srrg.lifecycle_manager]: Creating
+[lifecycle_manager-6] [INFO] [1792099088.564726265] [srrg.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[INFO] [map_server-7]: process started with pid [255439]
+[INFO] [amcl-8]: process started with pid [255440]
+[lifecycle_manager-6] [INFO] [1792099089.500548763] [srrg.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-6] [INFO] [1792099089.500617954] [srrg.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-4] [INFO] [1792099089.504014079] [srrg.map_server]: Configuring
+[map_server-4] [INFO] [1792099089.504097757] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/srrg/map.yaml
+[map_server-4] [INFO] [1792099089.507460628] [map_io]: resolution: 0.05
+[map_server-4] [INFO] [1792099089.507482730] [map_io]: origin[0]: -6
+[map_server-4] [INFO] [1792099089.507488090] [map_io]: origin[1]: -7
+[map_server-4] [INFO] [1792099089.507490404] [map_io]: origin[2]: 0
+[map_server-4] [INFO] [1792099089.507492949] [map_io]: free_thresh: 0.196
+[map_server-4] [INFO] [1792099089.507495213] [map_io]: occupied_thresh: 0.65
+[map_server-4] [INFO] [1792099089.507498289] [map_io]: mode: trinary
+[map_server-4] [INFO] [1792099089.507501174] [map_io]: negate: 0
+[map_server-4] [INFO] [1792099089.507618307] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/srrg/map.pgm
+[map_server-4] [INFO] [1792099089.520635476] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/srrg/map.pgm: 521 X 141 map @ 0.05 m/cell
+[lifecycle_manager-6] [INFO] [1792099089.543619231] [srrg.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-5] [INFO] [1792099089.543979474] [srrg.amcl]: Configuring
+[amcl-5] [INFO] [1792099089.544046521] [srrg.amcl]: initTransforms
+[amcl-8] [INFO] [1792099089.558741592] [degraded_raw.amcl]: 
+[amcl-8] 	amcl lifecycle node launched. 
+[amcl-8] 	Waiting on external lifecycle transitions to activate
+[amcl-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-7] [INFO] [1792099089.559623509] [degraded_raw.map_server]: 
+[map_server-7] 	map_server lifecycle node launched. 
+[map_server-7] 	Waiting on external lifecycle transitions to activate
+[map_server-7] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-7] [INFO] [1792099089.559715112] [degraded_raw.map_server]: Creating
+[amcl-8] [INFO] [1792099089.561413458] [degraded_raw.amcl]: Creating
+[amcl-5] [INFO] [1792099089.574043228] [srrg.amcl]: initPubSub
+[amcl-5] [INFO] [1792099089.584249201] [srrg.amcl]: Subscribed to map topic.
+[lifecycle_manager-6] [INFO] [1792099089.591188232] [srrg.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-4] [INFO] [1792099089.591387375] [srrg.map_server]: Activating
+[map_server-4] [INFO] [1792099089.591680280] [srrg.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-5] [INFO] [1792099089.591984808] [srrg.amcl]: Received a 521 X 141 map @ 0.050 m/pix
+[lifecycle_manager-6] [INFO] [1792099089.698443260] [srrg.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-6] [INFO] [1792099089.698500268] [srrg.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-5] [INFO] [1792099089.698782207] [srrg.amcl]: Activating
+[amcl-5] [INFO] [1792099089.698817444] [srrg.amcl]: initialPoseReceived
+[amcl-5] [INFO] [1792099089.698900952] [srrg.amcl]: Setting pose (1.520000): 8.150 -2.950 0.120
+[amcl-5] [INFO] [1792099089.699310859] [srrg.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-6] [INFO] [1792099089.805741208] [srrg.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-6] [INFO] [1792099089.805806933] [srrg.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-6] [INFO] [1792099089.805817002] [srrg.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[INFO] [lifecycle_manager-9]: process started with pid [255512]
+[lifecycle_manager-9] [INFO] [1792099092.003322801] [degraded_raw.lifecycle_manager]: Creating
+[lifecycle_manager-9] [INFO] [1792099092.019313170] [degraded_raw.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-9] [INFO] [1792099092.430429361] [degraded_raw.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-9] [INFO] [1792099092.430499925] [degraded_raw.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[INFO] [map_server-10]: process started with pid [255574]
+[INFO] [amcl-11]: process started with pid [255575]
+[amcl-11] [INFO] [1792099092.564471642] [degraded_srrg.amcl]: 
+[amcl-11] 	amcl lifecycle node launched. 
+[amcl-11] 	Waiting on external lifecycle transitions to activate
+[amcl-11] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-10] [INFO] [1792099092.564690808] [degraded_srrg.map_server]: 
+[map_server-10] 	map_server lifecycle node launched. 
+[map_server-10] 	Waiting on external lifecycle transitions to activate
+[map_server-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-10] [INFO] [1792099092.564803771] [degraded_srrg.map_server]: Creating
+[amcl-11] [INFO] [1792099092.568858960] [degraded_srrg.amcl]: Creating
+[map_server-7] [INFO] [1792099092.726783936] [degraded_raw.map_server]: Configuring
+[map_server-7] [INFO] [1792099092.726852356] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/raw/map.yaml
+[map_server-7] [INFO] [1792099092.734304648] [map_io]: resolution: 0.05
+[map_server-7] [INFO] [1792099092.734329756] [map_io]: origin[0]: -6
+[map_server-7] [INFO] [1792099092.734334385] [map_io]: origin[1]: -7
+[map_server-7] [INFO] [1792099092.734337551] [map_io]: origin[2]: 0
+[map_server-7] [INFO] [1792099092.734340777] [map_io]: free_thresh: 0.196
+[map_server-7] [INFO] [1792099092.734343933] [map_io]: occupied_thresh: 0.65
+[map_server-7] [INFO] [1792099092.734348451] [map_io]: mode: trinary
+[map_server-7] [INFO] [1792099092.734352068] [map_io]: negate: 0
+[map_server-7] [INFO] [1792099092.734544103] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/raw/map.pgm
+[map_server-7] [INFO] [1792099092.747393481] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/raw/map.pgm: 521 X 141 map @ 0.05 m/cell
+[lifecycle_manager-9] [INFO] [1792099092.771457873] [degraded_raw.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-8] [INFO] [1792099092.771744757] [degraded_raw.amcl]: Configuring
+[amcl-8] [INFO] [1792099092.771803499] [degraded_raw.amcl]: initTransforms
+[amcl-8] [INFO] [1792099092.797268391] [degraded_raw.amcl]: initPubSub
+[amcl-8] [INFO] [1792099092.821087923] [degraded_raw.amcl]: Subscribed to map topic.
+[lifecycle_manager-9] [INFO] [1792099092.844602002] [degraded_raw.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-7] [INFO] [1792099092.845942418] [degraded_raw.map_server]: Activating
+[map_server-7] [INFO] [1792099092.846215175] [degraded_raw.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-8] [INFO] [1792099092.847093335] [degraded_raw.amcl]: Received a 521 X 141 map @ 0.050 m/pix
+[lifecycle_manager-9] [INFO] [1792099092.953930650] [degraded_raw.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-9] [INFO] [1792099092.953966117] [degraded_raw.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-8] [INFO] [1792099092.954772000] [degraded_raw.amcl]: Activating
+[amcl-8] [INFO] [1792099092.954803510] [degraded_raw.amcl]: initialPoseReceived
+[amcl-8] [INFO] [1792099092.954862412] [degraded_raw.amcl]: Setting pose (1.922000): 8.150 -2.950 0.120
+[amcl-8] [INFO] [1792099092.956297483] [degraded_raw.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-9] [INFO] [1792099093.062100200] [degraded_raw.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-9] [INFO] [1792099093.062169822] [degraded_raw.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-9] [INFO] [1792099093.062178449] [degraded_raw.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[amcl-5] [INFO] [1792099093.577292098] [srrg.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-2] [INFO] [1792099093.577559350] [raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-8] [INFO] [1792099093.581406284] [degraded_raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[INFO] [lifecycle_manager-12]: process started with pid [255713]
+[lifecycle_manager-12] [INFO] [1792099094.661037942] [degraded_srrg.lifecycle_manager]: Creating
+[lifecycle_manager-12] [INFO] [1792099094.666323090] [degraded_srrg.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-12] [INFO] [1792099096.365214556] [degraded_srrg.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1792099096.365259441] [degraded_srrg.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-10] [INFO] [1792099096.366422695] [degraded_srrg.map_server]: Configuring
+[map_server-10] [INFO] [1792099096.366659644] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/srrg/map.yaml
+[map_server-10] [INFO] [1792099096.370899901] [map_io]: resolution: 0.05
+[map_server-10] [INFO] [1792099096.370939597] [map_io]: origin[0]: -6
+[map_server-10] [INFO] [1792099096.370945989] [map_io]: origin[1]: -7
+[map_server-10] [INFO] [1792099096.370949235] [map_io]: origin[2]: 0
+[map_server-10] [INFO] [1792099096.370952882] [map_io]: free_thresh: 0.196
+[map_server-10] [INFO] [1792099096.370956248] [map_io]: occupied_thresh: 0.65
+[map_server-10] [INFO] [1792099096.370960536] [map_io]: mode: trinary
+[map_server-10] [INFO] [1792099096.370964013] [map_io]: negate: 0
+[map_server-10] [INFO] [1792099096.371210480] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/srrg/map.pgm
+[amcl-2] [INFO] [1792099096.375438835] [raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-5] [INFO] [1792099096.375498990] [srrg.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.800 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[map_server-10] [INFO] [1792099096.381244425] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/maps/srrg/map.pgm: 521 X 141 map @ 0.05 m/cell
+[lifecycle_manager-12] [INFO] [1792099096.399426500] [degraded_srrg.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-11] [INFO] [1792099096.400533272] [degraded_srrg.amcl]: Configuring
+[amcl-11] [INFO] [1792099096.400879458] [degraded_srrg.amcl]: initTransforms
+[amcl-8] [INFO] [1792099096.401979314] [degraded_raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 4.600 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-11] [INFO] [1792099096.423734291] [degraded_srrg.amcl]: initPubSub
+[amcl-11] [INFO] [1792099096.439809019] [degraded_srrg.amcl]: Subscribed to map topic.
+[lifecycle_manager-12] [INFO] [1792099096.454478226] [degraded_srrg.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-10] [INFO] [1792099096.455105586] [degraded_srrg.map_server]: Activating
+[map_server-10] [INFO] [1792099096.455544237] [degraded_srrg.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-11] [INFO] [1792099096.455702386] [degraded_srrg.amcl]: Received a 521 X 141 map @ 0.050 m/pix
+[lifecycle_manager-12] [INFO] [1792099096.564914357] [degraded_srrg.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-12] [INFO] [1792099096.564981274] [degraded_srrg.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-11] [INFO] [1792099096.565599075] [degraded_srrg.amcl]: Activating
+[amcl-11] [INFO] [1792099096.565663197] [degraded_srrg.amcl]: initialPoseReceived
+[amcl-11] [INFO] [1792099096.565763637] [degraded_srrg.amcl]: Setting pose (5.295000): 8.150 -2.950 0.120
+[amcl-11] [INFO] [1792099096.566615361] [degraded_srrg.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1792099096.680036362] [degraded_srrg.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-12] [INFO] [1792099096.680074524] [degraded_srrg.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1792099096.680081828] [degraded_srrg.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[amcl-11] [INFO] [1792099096.795745550] [degraded_srrg.amcl]: Message Filter dropping message: frame 'lidar_link' at time 5.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-2] [INFO] [1792099097.291359008] [raw.amcl]: createLaserObject
+[amcl-5] [INFO] [1792099097.291530193] [srrg.amcl]: createLaserObject
+[amcl-11] [INFO] [1792099097.295867945] [degraded_srrg.amcl]: createLaserObject
+[amcl-8] [INFO] [1792099097.296456726] [degraded_raw.amcl]: createLaserObject

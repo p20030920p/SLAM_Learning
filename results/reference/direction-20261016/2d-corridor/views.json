@@ -1,0 +1,20 @@
+{
+  "degraded_raw": {
+    "method": "raw",
+    "title": "SLAM LIVE - degraded_raw - RViz2",
+    "config": "view-degraded_raw.rviz",
+    "map_topic": "/degraded_raw/map",
+    "pose_topic": "/degraded_raw/amcl_pose",
+    "tf_topic": "/degraded_raw/view/tf",
+    "scan_topic": "/scan_degraded"
+  },
+  "degraded_srrg": {
+    "method": "srrg",
+    "title": "SLAM LIVE - degraded_srrg - RViz2",
+    "config": "view-degraded_srrg.rviz",
+    "map_topic": "/degraded_srrg/map",
+    "pose_topic": "/degraded_srrg/amcl_pose",
+    "tf_topic": "/degraded_srrg/view/tf",
+    "scan_topic": "/scan_degraded"
+  }
+}

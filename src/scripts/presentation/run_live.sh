@@ -18,6 +18,7 @@ REPO="$(cd "$HERE/../../.." && pwd)"
 export S2R_REPO="${S2R_REPO:-/root/projects/Sim2Real-AlgoBench}"
 source /opt/ros/jazzy/setup.bash
 source "$S2R_REPO/install/setup.bash"
+if [[ "$FLOW" == *-fastlio-* ]]; then source /root/fastlio-study-ws/install/setup.bash; fi
 if [[ "$FLOW" == *-ndt-* || "$FLOW" == *-gicp-* || "$FLOW" == *-3d-* ]]; then
   source /root/slam-alternative-ws/build_ws/install/setup.bash
 fi
@@ -87,6 +88,13 @@ fi
 if [[ "$MODE" == mapping && "$FLOW" == *-probe-* ]]; then
   setsid python3 -u "$HERE/collect_probe_mapping.py" "$RUN_DIR" "$NATIVE_TRUTH" > "$RUN_DIR/logs/probe-mapping.log" 2>&1 &
   PROBE_MAPPING_PID=$!
+  PIDS+=("$!")
+fi
+if [[ "$FLOW" == mapping-fastlio-* ]]; then
+  setsid python3 -u "$HERE/fastlio_transport.py" "$RUN_DIR" > "$RUN_DIR/logs/fastlio-transport.log" 2>&1 &
+  FASTLIO_TRANSPORT_PID=$!
+  PIDS+=("$!")
+  setsid ros2 launch "$HERE/fastlio_study.launch.py" "run:=$RUN_DIR" > "$RUN_DIR/logs/fastlio.log" 2>&1 &
   PIDS+=("$!")
 fi
 if [[ "$MODE" == mapping && "$FLOW" == *dynamic* ]]; then
@@ -167,9 +175,9 @@ if [[ "$MODE" == localization || "$FLOW" == *-srrg-* ]]; then
   PIDS+=("$!")
 fi
 setsid ros2 bag record -o "$RUN_DIR/input-bag" /clock /scan /points /tf /tf_static \
-  /omni_drive_controller/odom /map /scan_degraded /depth/points /depth/image > "$RUN_DIR/logs/bag.log" 2>&1 &
+  /omni_drive_controller/odom /map /scan_degraded /depth/points /depth/image /study/imu /study/rolling > "$RUN_DIR/logs/bag.log" 2>&1 &
 PIDS+=("$!")
-if [[ "$AUTO" == true ]]; then
+if [[ "$AUTO" == true && "$FLOW" != mapping-fastlio-* ]]; then
   setsid bash "$HERE/auto_patrol.sh" "$RUN_DIR" > "$RUN_DIR/logs/patrol.log" 2>&1 &
   PIDS+=("$!")
 fi
@@ -197,6 +205,12 @@ if [[ -n "${SRRG_PID:-}" ]]; then
     sleep .1
   done
   [[ -f "$RUN_DIR/srrg-finished.json" ]] || { echo 'Native SRRG did not finalize; see author/transport logs'; exit 8; }
+fi
+if [[ -n "${FASTLIO_TRANSPORT_PID:-}" ]]; then
+  for ((fl_wait=0; fl_wait<100; fl_wait++)); do
+    [[ -f "$RUN_DIR/fastlio-transport-finished.json" ]] && break
+    sleep .1
+  done
 fi
 # Keep native windows alive until all Windows capture encoders flush their MP4s.
 # Destroying a WGC source first can leave an encoder waiting for a final frame.

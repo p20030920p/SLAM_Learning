@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "kind": "corridor_geometry_common_elapsed_grid",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Exploratory environment intervention; 10Hz common elapsed grid, pose age<=0.15s across all four methods. Environment changes; no universal algorithmic recovery claim.",
+  "common_samples": 322,
+  "expected_samples": 670,
+  "methods": {
+    "original-degraded_raw": {
+      "all": {
+        "samples": 322,
+        "xy_rmse_m": 0.9805015001894494,
+        "along_rmse_m": 0.9788530468800152,
+        "across_rmse_m": 0.0568322486575326
+      },
+      "limited": {
+        "samples": 223,
+        "xy_rmse_m": 1.0947579123168052,
+        "along_rmse_m": 1.0929381182654054,
+        "across_rmse_m": 0.06309640419805619
+      },
+      "restored": {
+        "samples": 99,
+        "xy_rmse_m": 0.6536689619970766,
+        "along_rmse_m": 0.6524917017828843,
+        "across_rmse_m": 0.03921340310163247
+      },
+      "fresh_coverage": 0.8805970149253731
+    },
+    "original-degraded_srrg": {
+      "all": {
+        "samples": 322,
+        "xy_rmse_m": 1.0460501219119565,
+        "along_rmse_m": 1.0452900847373947,
+        "across_rmse_m": 0.039868487577400975
+      },
+      "limited": {
+        "samples": 223,
+        "xy_rmse_m": 1.0089678592921139,
+        "along_rmse_m": 1.0081564230610451,
+        "across_rmse_m": 0.04045698611203503
+      },
+      "restored": {
+        "samples": 99,
+        "xy_rmse_m": 1.1251106193422094,
+        "along_rmse_m": 1.1244513726836713,
+        "across_rmse_m": 0.038509949706765606
+      },
+      "fresh_coverage": 0.8805970149253731
+    },
+    "landmark-degraded_raw": {
+      "all": {
+        "samples": 322,
+        "xy_rmse_m": 0.7434946416510453,
+        "along_rmse_m": 0.740562560564972,
+        "across_rmse_m": 0.06596496079941379
+      },
+      "limited": {
+        "samples": 223,
+        "xy_rmse_m": 0.7585500852064653,
+        "along_rmse_m": 0.7553637831383248,
+        "across_rmse_m": 0.06945348723925622
+      },
+      "restored": {
+        "samples": 99,
+        "xy_rmse_m": 0.7084107492295035,
+        "along_rmse_m": 0.706086772931807,
+        "across_rmse_m": 0.057334620559079036
+      },
+      "fresh_coverage": 0.5194029850746269
+    },
+    "landmark-degraded_srrg": {
+      "all": {
+        "samples": 322,
+        "xy_rmse_m": 0.5112832302089891,
+        "along_rmse_m": 0.5080254697163212,
+        "across_rmse_m": 0.05762519945691626
+      },
+      "limited": {
+        "samples": 223,
+        "xy_rmse_m": 0.5831882802978687,
+        "along_rmse_m": 0.5805784596281456,
+        "across_rmse_m": 0.055111001556814525
+      },
+      "restored": {
+        "samples": 99,
+        "xy_rmse_m": 0.2900711022031718,
+        "along_rmse_m": 0.28316447948292883,
+        "across_rmse_m": 0.06292155348149739
+      },
+      "fresh_coverage": 0.5194029850746269
+    }
+  },
+  "inputs": {
+    "results\\reference\\direction-20261016\\2d-corridor\\degraded_raw-samples.csv": "b92d9f069b80e14524f563270eba09735c51c71b7f6db684c4022faa893e3dd6",
+    "results\\reference\\direction-20261016\\2d-corridor\\degraded_srrg-samples.csv": "588917223c9bcefd6281f3d533625002b09ddc6a97f1f46d29bf710870d500da",
+    "results\\reference\\direction-20261016\\2d-landmark-corridor\\degraded_raw-samples.csv": "a7b9adbb653c6c1284b1c6b782567e92af99a0658a7e2f22c9cf7fc02c6f641d",
+    "results\\reference\\direction-20261016\\2d-landmark-corridor\\degraded_srrg-samples.csv": "0841c742a4eb9c227097ef22b9c5a62c1edeefb1ca35ce8934d0682e480b3928"
+  }
+}

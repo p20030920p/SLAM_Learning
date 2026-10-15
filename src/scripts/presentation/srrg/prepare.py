@@ -6,7 +6,7 @@ import yaml
 import os
 
 
-def configure(repo, run, runtime, config):
+def sensor_profile(repo, run, runtime):
     tree = ET.parse(repo / "config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf")
     robot = tree.getroot()
     for element in list(robot):
@@ -24,6 +24,10 @@ def configure(repo, run, runtime, config):
     runtime.update(
         urdf=str(urdf), bridge_config=str(bridge_path), sensor_arm="2D lidar + wheel odometry; no 3D lidar"
     )
+
+
+def configure(repo, run, runtime, config):
+    sensor_profile(repo, run, runtime)
     runtime["srrg_graph_merge"] = False
     if runtime["scene"] == "large-change" and os.environ.get("SRRG_STATIC_PRIOR"):
         runtime["srrg_prior"] = os.environ["SRRG_STATIC_PRIOR"]

@@ -270,9 +270,12 @@ def refresh_document(doc, zh):
     hyp = hyp.replace(
         needle, needle + "\n" + progress_start + "\n" + progress + "\n<!-- /HOME_HYPOTHESIS_PROGRESS -->\n", 1
     )
+    current_direction = "<!-- DIRECTION_HYPOTHESES_20261016 -->" in text
+    if current_direction:
+        hyp = blocks[hypothesis]
     replacements = {
         hypothesis: hyp,
-        related_title: related(doc, zh, blocks[related_title]),
+        related_title: blocks[related_title] if current_direction else related(doc, zh, blocks[related_title]),
         practice_title: practice(doc, zh, blocks[practice_title]),
     }
     if has_current_batch:
@@ -307,6 +310,9 @@ def main():
     for doc, zh in ((ROOT / "README.md", False), (ROOT / "docs/HOME.zh-CN.md", True)):
         refresh_document(doc, zh)
         print("Organized:", doc.relative_to(ROOT))
+    if (ROOT / "results/reference/direction-20261016/fastlio-B/score-3d.json").exists():
+        from publish_direction_gallery import publish
+        publish()
 
 
 if __name__ == "__main__":
