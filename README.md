@@ -49,6 +49,7 @@ Latest author-code runs; datasets and failure analysis are in each paper card. S
 | BeautyMap | 3D offline-cleaned map | SA 96.95% / DA 98.34%; cleaning works |
 | IR-MCL | Neural occupancy field | RMSE 5.31 cm / 1.07°; Seq-1 localization works |
 | AdaM-MCL | Authored 128-cell grid | RMSE 32.23 cells; historical sustained convergence 0/10 |
+| srrg_mapper2d | Native 2D point map (Gazebo) | Ghost removal 42.31% / static coverage 99.51% |
 
 ### DUFOMap — dynamic-point removal during map integration
 
@@ -103,6 +104,17 @@ Our run uses an authored 128-cell map and a 2432-step checkpoint: 123 filter upd
 ![AdaM-MCL saved result replay](results/reference/desktop-adam-mcl/result.gif)
 
 [Result MP4](results/reference/desktop-adam-mcl/result.mp4)
+
+<!-- SRRG_RELATED -->
+### srrg_mapper2d · native 2D dynamic-map maintenance
+
+[IROS 2018 论文](https://iris.uniroma1.it/handle/11573/1340118) · [作者建图库](https://gitlab.com/srrg-software/srrg_mapper2d) · [ROS入口](https://gitlab.com/srrg-software/srrg_mapper2d_ros) · [merger2d.cpp](https://gitlab.com/srrg-software/srrg_scan_matcher/-/blob/master/src/merger2d.cpp)。
+
+The paper evaluates long-term dynamic 2D mapping on LCAS–STRANDS and MIT Stata Center, integrating dynamic handling into scan alignment, merging and graph maintenance. The author libraries have now been compiled and tested in all four local scenes.
+
+[2D 实践：视频与指标](#srrg-2d) · [失败诊断](#srrg-diagnostics) · [原文适用条件](docs/papers/srrg_mapper2d.zh-CN.md)
+
+<!-- /SRRG_RELATED -->
 
 ## Hypothesis
 
@@ -196,20 +208,125 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 [AI use](docs/guides/DISCLOSURE.md) · [Sources/licenses](docs/guides/ATTRIBUTION.md) · [Citation](docs/CITATION.cff) · [License](src/LICENSE)
 ## Practice
 
+[极简：全部 GIF 与指标](docs/MINIMAL.zh-CN.md)
+
 [Keyboard demos](demo/README.md) · [Video gallery](demo/gallery.html) · [Code Notebook](notebooks/presentation/SLAM_实验逐步展示.ipynb).
 
 <a id="practice-index"></a>
 
 | Scene | 2D · AMCL | 3D · GICP |
 | --- | --- | --- |
-| Pure static | [View recordings](#scene-static-2d) | [View recordings](#scene-static-3d) |
-| Moving obstacles | [View recordings](#scene-dynamic-2d) | [View recordings](#scene-dynamic-3d) |
-| Persistent change | [View recordings](#scene-change-2d) | [View recordings](#scene-change-3d) |
-| Corridor degradation | [View recordings](#scene-corridor-2d) | [View recordings](#scene-corridor-3d) |
+| Pure static | [SRRG mapping](#srrg-static-2d) / [Legacy localization](#scene-static-2d) | [View recordings](#scene-static-3d) |
+| Moving obstacles | [SRRG mapping](#srrg-dynamic-2d) / [Legacy localization](#scene-dynamic-2d) | [View recordings](#scene-dynamic-3d) |
+| Persistent change | [SRRG mapping](#srrg-large-change-2d) / [Legacy localization](#scene-change-2d) | [View recordings](#scene-change-3d) |
+| Corridor degradation | [SRRG mapping](#srrg-corridor-2d) / [Legacy localization](#scene-corridor-2d) | [View recordings](#scene-corridor-3d) |
 
 [3D map cleaning results](#map-review-3d) · [Hypotheses and new experiments](#hypothesis-experiments)
 
-**Localization error with different maps.** 2D uses AMCL and XY RMSE; 3D directly uses complete point maps with the same upstream GICP and XYZ RMSE. Units: cm; all published native updates, one trial per condition. Mapping uses supplied poses; localization receives no truth. These are not stable rankings.
+**Map-cleaning metrics: dynamic removal and static retention; higher is better.** Legacy projections score unique 5cm cells; native SRRG uses 10cm support and 15cm coverage tolerance; 3D scores source points. These definitions differ. N/A means no dynamic samples. Persistent-change old maps score static A only; no B update was tested. Pose RMSE is reported separately. Legacy DUFOMap/BeautyMap projections remain as cross-dimensional references; native 2D SRRG is added below.
+
+<!-- SRRG_PRACTICE -->
+<a id="srrg-2d"></a>
+
+### Native 2D mapping · srrg_mapper2d
+
+[↑ Practice index](#practice-index)
+
+Actual 2D lidar and wheel odometry, with no 3D lidar or truth registration. Native author Mapper2D registration and pose graph; the main group uses the author default with graph merging off and local projective merging on. The numerical failure with graph merging on is retained separately.
+
+Metrics use unique 10cm observed support and 15cm coverage tolerance. Ghost removal scores only historical dynamic positions later verified free by actual rays, excluding current objects. Raw accumulation uses each frame’s then-current estimate; SRRG also optimizes the graph. This is an end-to-end comparison, distinct from exact 3D point retention.
+
+<a id="srrg-static-2d"></a>
+
+#### Pure static · 2D
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Native 2D point map | Ghost removal N/A; static coverage 100.00% |
+| srrg_mapper2d | Native 2D point map | Ghost removal N/A; static coverage 99.84% |
+
+Mapping trajectory XY RMSE (not held-out localization B): 0.71 cm.
+
+No native tracker reset or sustained 20cm pose warning was logged; this does not guarantee perfect map geometry.
+
+![SRRG Pure static actual native mapping](results/reference/srrg-2d-static/execution.gif)
+
+[MP4](results/reference/srrg-2d-static/execution.mp4) · [record](results/reference/srrg-2d-static/record.json)
+
+<a id="srrg-dynamic-2d"></a>
+
+#### Moving obstacles · 2D
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Native 2D point map | Ghost removal 0.00%; static coverage 100.00% |
+| srrg_mapper2d | Native 2D point map | Ghost removal 42.31%; static coverage 99.51% |
+
+Mapping trajectory XY RMSE (not held-out localization B): 0.64 cm.
+
+No native tracker reset or sustained 20cm pose warning was logged; this does not guarantee perfect map geometry.
+
+![SRRG Moving obstacles actual native mapping](results/reference/srrg-2d-dynamic/execution.gif)
+
+[MP4](results/reference/srrg-2d-dynamic/execution.mp4) · [record](results/reference/srrg-2d-dynamic/record.json)
+
+<a id="srrg-large-change-2d"></a>
+
+#### Persistent change · 2D
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Native 2D point map | Ghost removal N/A; static coverage 100.00% |
+| srrg_mapper2d | Native 2D point map | Ghost removal N/A; static coverage 99.71% |
+
+Mapping trajectory XY RMSE (not held-out localization B): 0.46 cm.
+
+Loads the static-A author map and calls the native multi-session update with a known start. This short route does not reproduce the paper’s long-term evaluation.
+
+Retention of observed added structures: 98.90% (91 support cells). This scene adds structures without removing old ones; dynamic removal is N/A.
+
+No native tracker reset or sustained 20cm pose warning was logged; this does not guarantee perfect map geometry.
+
+![SRRG Persistent change actual native mapping](results/reference/srrg-2d-large-change/execution.gif)
+
+[MP4](results/reference/srrg-2d-large-change/execution.mp4) · [record](results/reference/srrg-2d-large-change/record.json)
+
+<a id="srrg-corridor-2d"></a>
+
+#### Corridor degradation · 2D
+
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | Native 2D point map | Ghost removal N/A; static coverage 83.43% |
+| srrg_mapper2d | Native 2D point map | Ghost removal N/A; static coverage 82.24% |
+
+Mapping trajectory XY RMSE (not held-out localization B): 83.23 cm.
+
+The first 50 recording simulation seconds retain 72 rays within 3.5m in the original 720 angular bins; other bins are invalid, then full observations return.
+
+| Event | Simulation seconds | Video time (approx.) |
+| --- | --- | --- |
+| native_mapper_reset | 11.1 | [4.6s](results/reference/srrg-2d-corridor/execution.mp4#t=4.6) |
+| observation_change | 7.5 | [2.7s](results/reference/srrg-2d-corridor/execution.mp4#t=2.7) |
+| observation_change | 57.6 | [50.9s](results/reference/srrg-2d-corridor/execution.mp4#t=50.9) |
+| pose_error_warning | 11.5 | [5.0s](results/reference/srrg-2d-corridor/execution.mp4#t=5.0) |
+
+![SRRG Corridor degradation actual native mapping](results/reference/srrg-2d-corridor/execution.gif)
+
+[MP4](results/reference/srrg-2d-corridor/execution.mp4) · [record](results/reference/srrg-2d-corridor/record.json)
+
+<a id="srrg-diagnostics"></a>
+
+#### Retained failure diagnostics
+
+| Video | Outcome |
+| --- | --- |
+| [GIF](results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/execution.gif) · [MP4](results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/execution.mp4) · [record](results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/record.json) | 联调失败：Eigen ABI不一致（首次运动） |
+| [GIF](results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/execution.gif) · [MP4](results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/execution.mp4) · [record](results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/record.json) | 联调失败：作者stdout诊断污染传输；已隔离 |
+| [GIF](results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/execution.gif) · [MP4](results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/execution.mp4) · [record](results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/record.json) | 图合并开启：最后成功输出仿真66.0s／录制55.4s，随后g2o数值分解失败并崩溃；不是动态清理率为零。 |
+
+[Paper datasets and scope](docs/papers/srrg_mapper2d.zh-CN.md) · [Metrics and degradation timestamps](docs/testing/MAP-METRICS.zh-CN.md)
+<!-- /SRRG_PRACTICE -->
 
 ### 2D · AMCL
 
@@ -217,9 +334,11 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 2D projection | XY RMSE 7.28 cm; no loss |
-| DUFOMap | Dynamic-point-cleaned 2D projection | XY RMSE 7.28 cm; same as Raw |
-| BeautyMap | Offline-cleaned 2D projection | XY RMSE 6.89 cm; slightly below Raw |
+| Raw | Raw 2D projection | Dynamic cell removal N/A; static retention 100.00% |
+| DUFOMap | Dynamic-point-cleaned 2D projection | Dynamic cell removal N/A; static retention 100.00% |
+| BeautyMap | Offline-cleaned 2D projection | Dynamic cell removal N/A; static retention 96.51% |
+
+Localization separately (XY RMSE, cm): Raw 7.28 / DUFOMap 7.28 / BeautyMap 6.89.
 
 Raw and DUFOMap projections are identical; BeautyMap is 0.39 cm lower in this run. Recovery was not tested.
 
@@ -227,9 +346,11 @@ Raw and DUFOMap projections are identical; BeautyMap is 0.39 cm lower in this ru
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 2D projection | XY RMSE 7.52 cm; no loss |
-| DUFOMap | Dynamic-point-cleaned 2D projection | XY RMSE 8.19 cm; above Raw this run |
-| BeautyMap | Offline-cleaned 2D projection | XY RMSE 7.29 cm; below Raw this run |
+| Raw | Raw 2D projection | Dynamic cell removal 0.00%; static retention 100.00% |
+| DUFOMap | Dynamic-point-cleaned 2D projection | Dynamic cell removal 8.33%; static retention 100.00% |
+| BeautyMap | Offline-cleaned 2D projection | Dynamic cell removal 33.33%; static retention 96.64% |
+
+Localization separately (XY RMSE, cm): Raw 7.52 / DUFOMap 8.19 / BeautyMap 7.29.
 
 Paired new mapping A: DUFOMap is 0.67 cm higher, BeautyMap 0.23 cm lower. One trial gives no stable ranking; the previous run is retained.
 
@@ -237,9 +358,11 @@ Paired new mapping A: DUFOMap is 0.67 cm higher, BeautyMap 0.23 cm lower. One tr
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 2D projection | XY RMSE 6.84 cm; no loss |
-| DUFOMap | Dynamic-point-cleaned 2D projection | XY RMSE 6.84 cm; same as Raw |
-| BeautyMap | Offline-cleaned 2D projection | XY RMSE 6.39 cm; slightly below Raw |
+| Raw | Raw 2D projection | Dynamic cell removal N/A; static retention 100.00% (static-A old map) |
+| DUFOMap | Dynamic-point-cleaned 2D projection | Dynamic cell removal N/A; static retention 100.00% (static-A old map) |
+| BeautyMap | Offline-cleaned 2D projection | Dynamic cell removal N/A; static retention 96.51% (static-A old map) |
+
+Localization separately (XY RMSE, cm): Raw 6.84 / DUFOMap 6.84 / BeautyMap 6.39.
 
 Frozen old maps; no online map update was called, and the route did not induce loss.
 
@@ -247,9 +370,11 @@ Frozen old maps; no online map update was called, and the route did not induce l
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 2D projection | XY RMSE 72.53 cm; recovery delay 13.3 s |
-| DUFOMap | Dynamic-point-cleaned 2D projection | XY RMSE 72.53 cm; recovery delay 13.3 s |
-| BeautyMap | Offline-cleaned 2D projection | XY RMSE 72.53 cm; recovery delay 13.3 s |
+| Raw | Raw 2D projection | Dynamic cell removal N/A; static retention 100.00% |
+| DUFOMap | Dynamic-point-cleaned 2D projection | Dynamic cell removal N/A; static retention 100.00% |
+| BeautyMap | Offline-cleaned 2D projection | Dynamic cell removal N/A; static retention 100.00% |
+
+Localization separately (XY RMSE, cm): Raw 72.53 / DUFOMap 72.53 / BeautyMap 72.53.
 
 The three projected maps are identical; 13.3 s corrects an offset initial belief and cannot distinguish cleaning.
 
@@ -259,9 +384,11 @@ The three projected maps are identical; 13.3 s corrects an offset initial belief
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 3D point map | XYZ RMSE 0.95 cm; tracking retained |
-| DUFOMap | Dynamic-point-cleaned 3D map | XYZ RMSE 0.99 cm; no observed gain |
-| BeautyMap | Offline-cleaned 3D map | XYZ RMSE 1.07 cm; no observed gain |
+| Raw | Raw 3D point map | Dynamic point removal N/A; static retention 100.00% |
+| DUFOMap | Dynamic-point-cleaned 3D map | Dynamic point removal N/A; static retention 100.00% |
+| BeautyMap | Offline-cleaned 3D map | Dynamic point removal N/A; static retention 83.33% |
+
+Localization separately (XYZ RMSE, cm): Raw 0.95 / DUFOMap 0.99 / BeautyMap 1.07.
 
 No moving contamination needs cleaning; no localization improvement in this trial.
 
@@ -269,9 +396,11 @@ No moving contamination needs cleaning; no localization improvement in this tria
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 3D point map | XYZ RMSE 0.98 cm; tracking retained |
-| DUFOMap | Dynamic-point-cleaned 3D map | XYZ RMSE 0.98 cm; no observed gain |
-| BeautyMap | Offline-cleaned 3D map | XYZ RMSE 1.04 cm; no observed gain |
+| Raw | Raw 3D point map | Dynamic point removal 0.00%; static retention 100.00% |
+| DUFOMap | Dynamic-point-cleaned 3D map | Dynamic point removal 46.59%; static retention 100.00% |
+| BeautyMap | Offline-cleaned 3D map | Dynamic point removal 74.36%; static retention 81.15% |
+
+Localization separately (XYZ RMSE, cm): Raw 0.98 / DUFOMap 0.98 / BeautyMap 1.04.
 
 Native cleaning removes dynamic map points, without a clear downstream GICP gain.
 
@@ -279,9 +408,11 @@ Native cleaning removes dynamic map points, without a clear downstream GICP gain
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 3D point map | XYZ RMSE 0.93 cm; tracking retained |
-| DUFOMap | Dynamic-point-cleaned 3D map | XYZ RMSE 1.01 cm; no observed gain |
-| BeautyMap | Offline-cleaned 3D map | XYZ RMSE 1.04 cm; no observed gain |
+| Raw | Raw 3D point map | Dynamic point removal N/A; static retention 100.00% (static-A old map) |
+| DUFOMap | Dynamic-point-cleaned 3D map | Dynamic point removal N/A; static retention 100.00% (static-A old map) |
+| BeautyMap | Offline-cleaned 3D map | Dynamic point removal N/A; static retention 83.33% (static-A old map) |
+
+Localization separately (XYZ RMSE, cm): Raw 0.93 / DUFOMap 1.01 / BeautyMap 1.04.
 
 Static-A 3D maps remain frozen; change detection/updating was not executed. No localization gain.
 
@@ -289,9 +420,11 @@ Static-A 3D maps remain frozen; change detection/updating was not executed. No l
 
 | Method | Map type | Metric / effect |
 | --- | --- | --- |
-| Raw | Raw 3D point map | XYZ RMSE 474.38 cm; insufficient post-restore updates |
-| DUFOMap | Dynamic-point-cleaned 3D map | XYZ RMSE 497.05 cm; no sustained convergence |
-| BeautyMap | Offline-cleaned 3D map | XYZ RMSE 592.00 cm; no sustained convergence |
+| Raw | Raw 3D point map | Dynamic point removal N/A; static retention 100.00% |
+| DUFOMap | Dynamic-point-cleaned 3D map | Dynamic point removal N/A; static retention 100.00% |
+| BeautyMap | Offline-cleaned 3D map | Dynamic point removal N/A; static retention 99.90% |
+
+Localization separately (XYZ RMSE, cm): Raw 474.38 / DUFOMap 497.05 / BeautyMap 592.00.
 
 Raw and DUFOMap 3D maps are byte-identical yet tracking differs. Output coverage is unequal; do not rank cleaners.
 
@@ -316,6 +449,14 @@ Yaw differences are wrapped to $[-\pi,\pi]$ before RMS and converted to degrees.
 <a id="scene-static-2d"></a>
 
 ### Pure static
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | 2D | Dynamic cell removal N/A; static retention 100.00% |
+| DUFOMap | 2D | Dynamic cell removal N/A; static retention 100.00% |
+| BeautyMap | 2D | Dynamic cell removal N/A; static retention 96.51% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ Back to Practice index](#practice-index)
 
@@ -369,6 +510,14 @@ This route did not induce loss; recovery remains untested.
 
 ### Moving obstacles
 
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | 2D | Dynamic cell removal 0.00%; static retention 100.00% |
+| DUFOMap | 2D | Dynamic cell removal 8.33%; static retention 100.00% |
+| BeautyMap | 2D | Dynamic cell removal 33.33%; static retention 96.64% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
+
 [↑ Back to Practice index](#practice-index)
 
 Localizer: AMCL; 291 updates per case, position RMSE includes initialization.
@@ -418,6 +567,14 @@ Localizer: AMCL; 291 updates per case, position RMSE includes initialization.
 <a id="scene-change-2d"></a>
 
 ### Persistent change
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | 2D | Dynamic cell removal N/A; static retention 100.00% (static-A old map) |
+| DUFOMap | 2D | Dynamic cell removal N/A; static retention 100.00% (static-A old map) |
+| BeautyMap | 2D | Dynamic cell removal N/A; static retention 96.51% (static-A old map) |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ Back to Practice index](#practice-index)
 
@@ -470,6 +627,14 @@ This route did not induce loss; recovery remains untested.
 <a id="scene-corridor-2d"></a>
 
 ### Corridor degradation
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | 2D | Dynamic cell removal N/A; static retention 100.00% |
+| DUFOMap | 2D | Dynamic cell removal N/A; static retention 100.00% |
+| BeautyMap | 2D | Dynamic cell removal N/A; static retention 100.00% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ Back to Practice index](#practice-index)
 
@@ -547,6 +712,14 @@ Real RViz result review of saved native outputs; no new inference. Grey: backgro
 
 ### Pure static · 3D
 
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | 3D | Dynamic point removal N/A; static retention 100.00% |
+| DUFOMap | 3D | Dynamic point removal N/A; static retention 100.00% |
+| BeautyMap | 3D | Dynamic point removal N/A; static retention 83.33% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
+
 [↑ Back to Practice index](#practice-index)
 
 No moving contamination needs cleaning; no localization improvement in this trial.
@@ -572,6 +745,14 @@ No moving contamination needs cleaning; no localization improvement in this tria
 <a id="scene-dynamic-3d"></a>
 
 ### Moving obstacles · 3D
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | 3D | Dynamic point removal 0.00%; static retention 100.00% |
+| DUFOMap | 3D | Dynamic point removal 46.59%; static retention 100.00% |
+| BeautyMap | 3D | Dynamic point removal 74.36%; static retention 81.15% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ Back to Practice index](#practice-index)
 
@@ -599,6 +780,14 @@ Native cleaning removes dynamic map points, without a clear downstream GICP gain
 
 ### Persistent change · 3D
 
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | 3D | Dynamic point removal N/A; static retention 100.00% (static-A old map) |
+| DUFOMap | 3D | Dynamic point removal N/A; static retention 100.00% (static-A old map) |
+| BeautyMap | 3D | Dynamic point removal N/A; static retention 83.33% (static-A old map) |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
+
 [↑ Back to Practice index](#practice-index)
 
 Static-A 3D maps remain frozen; change detection/updating was not executed. No localization gain.
@@ -624,6 +813,14 @@ Static-A 3D maps remain frozen; change detection/updating was not executed. No l
 <a id="scene-corridor-3d"></a>
 
 ### Corridor degradation · 3D
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| Method | Map type | Metric / effect |
+| --- | --- | --- |
+| Raw | 3D | Dynamic point removal N/A; static retention 100.00% |
+| DUFOMap | 3D | Dynamic point removal N/A; static retention 100.00% |
+| BeautyMap | 3D | Dynamic point removal N/A; static retention 99.90% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ Back to Practice index](#practice-index)
 

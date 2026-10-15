@@ -1280,6 +1280,58 @@
       "source_records": [
         "results/reference/probe-refinement-3d-height-corridor/record.json"
       ]
+    },
+    {
+      "id": "srrg-static-2d",
+      "status": "published",
+      "path": "results/reference/srrg-2d-static/execution.gif",
+      "caption": {
+        "zh": "纯静态 · 原生二维SRRG建图",
+        "en": "Pure static · native SRRG 2D mapping"
+      },
+      "source_records": [
+        "results/reference/srrg-2d-static/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "srrg-dynamic-2d",
+      "status": "published",
+      "path": "results/reference/srrg-2d-dynamic/execution.gif",
+      "caption": {
+        "zh": "运动障碍物 · 原生二维SRRG建图",
+        "en": "Moving obstacles · native SRRG 2D mapping"
+      },
+      "source_records": [
+        "results/reference/srrg-2d-dynamic/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "srrg-large-change-2d",
+      "status": "published",
+      "path": "results/reference/srrg-2d-large-change/execution.gif",
+      "caption": {
+        "zh": "持久结构变化 · 原生二维SRRG建图",
+        "en": "Persistent change · native SRRG 2D mapping"
+      },
+      "source_records": [
+        "results/reference/srrg-2d-large-change/record.json"
+      ],
+      "source_artifact": "execution.gif"
+    },
+    {
+      "id": "srrg-corridor-2d",
+      "status": "published",
+      "path": "results/reference/srrg-2d-corridor/execution.gif",
+      "caption": {
+        "zh": "走廊退化 · 原生二维SRRG建图",
+        "en": "Corridor degradation · native SRRG 2D mapping"
+      },
+      "source_records": [
+        "results/reference/srrg-2d-corridor/record.json"
+      ],
+      "source_artifact": "execution.gif"
     }
   ]
 }

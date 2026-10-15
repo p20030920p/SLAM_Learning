@@ -1,0 +1,26 @@
+{
+  "kind": "projected_unique_cell_coverage",
+  "resolution_m": 0.05,
+  "height_band_m": [
+    0.12,
+    1.2
+  ],
+  "static_cells": 1162,
+  "dynamic_cells": 168,
+  "excluded_overlap_cells": 2,
+  "scope": "Observed static/dynamic-exclusive input cells scored on actual occupied projection; includes existing one-cell map dilation; distinct from 3D point retention and online ghost removal",
+  "methods": {
+    "raw": {
+      "static_retention": 1.0,
+      "dynamic_removal": 0.0
+    },
+    "dufomap": {
+      "static_retention": 1.0,
+      "dynamic_removal": 0.08333333333333333
+    },
+    "beautymap": {
+      "static_retention": 0.9664371772805508,
+      "dynamic_removal": 0.3333333333333333
+    }
+  }
+}

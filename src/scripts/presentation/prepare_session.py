@@ -141,6 +141,9 @@ if "-ndt-" in flow or "-gicp-" in flow:
 if "-probe-" in flow:
     from probe_sensors import add_depth_display
     config = add_depth_display(config)
+if "-srrg-" in flow:
+    from srrg.prepare import configure as configure_srrg
+    config = configure_srrg(repo, run, runtime, config)
 (run / "live.rviz").write_text(config)
 if "-probe-" in flow and mode == "localization":
     from prepare_probe import views as prepare_probe_views
@@ -235,5 +238,11 @@ if "-probe-" in flow:
     manifest["source_robot_profile"] = "omni-3d-v1 adapted; generated URDF is the authoritative sensor inventory"
     manifest["input_to_localizers"] = "actual lidar, optional 4m depth and wheel odometry; no simulator truth in B"
     manifest["scope"] = "hypothesis prototypes, planar ground-robot pose; 2D arm has no 3D lidar; frozen provided-pose mapping A"
+if "-srrg-" in flow:
+    manifest["provided_mapping_poses"] = False
+    manifest["robot"] = runtime["sensor_arm"]
+    manifest["input_to_localizers"] = "actual 2D LaserScan, wheel odometry and measured laser TF; fixed known start anchor only"
+    manifest["scope"] = "native author Mapper2D, local projective merger and graph merger; one short session per scene, not full long-term multi-session reproduction"
+    manifest["assets"].update({str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in (repo / "src/scripts/presentation/srrg").glob("*") if p.is_file()})
 (run / "session.json").write_text(json.dumps(manifest, indent=2) + "\n")
 print(json.dumps(manifest, indent=2), flush=True)

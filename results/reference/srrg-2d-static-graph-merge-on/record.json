@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "kind": "srrg_native_2d_mapping",
+  "status": "executed",
+  "exit_code": 0,
+  "source_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-030543-mapping-srrg-static-08564b",
+  "command": "mapping-srrg-static",
+  "scope": "Actual Gazebo + RViz + Terminal capture; native author 2D mapping, not a 3D projection. Single short session unless explicit prior present.",
+  "map_quality": {
+    "raw": {
+      "static_retention": 1.0,
+      "dynamic_removal": null,
+      "points": 243877
+    },
+    "srrg": {
+      "static_retention": 0.9969135802469136,
+      "dynamic_removal": null,
+      "points": 35609
+    }
+  },
+  "audit": {
+    "kind": "srrg_observed_support_coverage",
+    "resolution_m": 0.1,
+    "coverage_tolerance_m": 0.15,
+    "static_cells": 648,
+    "dynamic_return_points": 0,
+    "dynamic_ghost_opportunities": 0,
+    "static_label_scope": "Observed scene support excluding self and moving-box boundary shell; unique 10cm cells",
+    "dynamic_label_scope": "Historical moving-box support later crossed by a real free ray; current occupancy and static overlap excluded",
+    "methods": {
+      "raw": {
+        "static_retention": 1.0,
+        "dynamic_removal": null,
+        "points": 243877
+      },
+      "srrg": {
+        "static_retention": 0.9969135802469136,
+        "dynamic_removal": null,
+        "points": 35609
+      }
+    },
+    "events": [],
+    "mapping_pose_xy_rmse_m": 0.008640188827011244,
+    "truth_sync_max_s": 0.009000000000000341,
+    "frames": 339,
+    "scope": "Single session native author map. Coverage after registration and fusion, not exact source-point deletion; cannot numerically rank against 3D subset metrics."
+  },
+  "capture": {
+    "programs": [],
+    "streams": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "15/1",
+        "nb_frames": "988"
+      }
+    ],
+    "format": {
+      "duration": "65.866667",
+      "size": "1323726"
+    }
+  },
+  "gif_timing": {
+    "duration_s": 65.8000000000004,
+    "frames": 329,
+    "fps": 5,
+    "video_duration_s": 65.866667,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "adapter_sources_at_packaging": {
+    "src/scripts/presentation/srrg/build.py": "a3bdd2bf49708b96a41696b41ca943f78cacf92f6764b59fde1194b4224e34d4",
+    "src/scripts/presentation/srrg/evaluate.py": "adddaf14f331b185be1bedf324ab6e75769a06ae01ce0eb140160cdd5abdc50e",
+    "src/scripts/presentation/srrg/live.py": "d1aedcdc82e7256ae9c90561f4723c5cb8a9d8efcf365ea4e88356972aa290e7",
+    "src/scripts/presentation/srrg/package.py": "ba3a2986a5f41b005610dbfa61c5f45786c379787d0643f810459142c5e55f0b",
+    "src/scripts/presentation/srrg/prepare.py": "173b08057c42d1455651ed5eba806ae8556777d0e1630e8c975de8b78cb78249",
+    "src/scripts/presentation/srrg/replay_prior.py": "16afb0c7b3423a4663d43ea05ddad58b186cba92f677a04a018f73d6171fb8e8",
+    "src/scripts/presentation/srrg/server.py": "e5b9e03e7484a9dd8988ba31700dd7389006f0967aa6260b0116316b536ddc3c",
+    "src/scripts/presentation/srrg/worker.cpp": "1c5c043240bfa59702d2a931bf43e60458adc39abf86159ed5a25d988617da3b"
+  },
+  "sources_at_capture": {
+    "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S1_static.world": "95091c22b2889b350b87487d58ad640094537f665da4b75593a27601803dadba",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py": "98a16348dd60ef9283e1288f33786323f7a734f47f530627975bfbc0886ea3a3",
+    "/root/projects/Sim2Real-AlgoBench/src/race_description/urdf/omni_car_ros2_control.urdf": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_coarse_replay.py": "a86374385b87f61d4118c8bf70820996e508a1889718e9e9c538094658f39d7f",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_historical_scores.py": "1535285d5850d97d49c31f37633099ac4bf9745e31596f2825089269492d0518",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_scan_geometry.py": "763c65f6555666ecde15e3ca256a2fbd28349eed84ebae4657708d26c9568747",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/author_live_bridge.py": "9bac862ecf2d73cbc016b8a3386f816dfc73a5758a494e8905e427a9873a1984",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/auto_patrol.sh": "bc0f542cc8370521c73d0aa42ad0284c960808bb670a6337d43d6164889ec7c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.py": "ee7f654a8e0e27c4c6a92120534cf7934cb54b6784c39d880f590b91ad6f2406",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.sh": "a80b1fee3e96f67be919695a80c16f83b985a92c909a26df74082706ad040efc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_probe_maps.py": "dce1c81669717721b28113006677ffc5418c263beaf50de8196181ebe7fefc07",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/case_view_tf.py": "5b4661745328fd187bb1fe732f1cf6075c1580b4c23a5015b4b3fea7a54e4149",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/CMakeLists.txt": "ba207c9369884d626545f51add00acffce3040f92bd6d2f2d262bf3b1577e9b5",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/collect_probe_mapping.py": "abf9402295538784c08828b5c51b039f6850d0f53113a717fe7795da74bca7fb",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/diagnose_maps.py": "a49a0b26fef3f03d5a66ec144085eebc460ce41c4b5aa2657eb6f2cb9feaa705",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/diagnose_probe_observability.py": "684590036875de002095679c0a0e2db5a83b3d4fb8199d1219cda6bd54e3ffcd",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/freeze_calibrated_protocol.py": "9d663841d78b8fd9e5c9f3fe484a87ccc4c89933a7f37b0342d25980a8a9b209",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/freeze_probe_protocol.py": "9e78a0eed904ea895b87adcb5ff80b6c95bb8a87a662ff1b48066df4684896ee",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/gz_truth.cpp": "b89ef6633e9bd859a4333698e5acc89eb682e603b0448fd1308d113eb57657a3",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/localization.launch.py": "7c68ca137e90c6d3c4da5c47e9dc67559cdd4aae24526f828eae6c9595db5b43",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/make_corridor.py": "f4ba5ceae297f1b561186b9c94b6c6459ca75eea0379072becc7926c37bb3a13",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/mapping_ablations.sh": "536d4cf15257d3fa05888ae25546738cdd92c3ca246d5f54b7e5b62f546c3aac",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/map_quality_report.py": "97e42bc031b2d24c62f7165e915d375b5c0e407900527869de83bd05a22c5e74",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/map_review.py": "7432e5066b0f3b8255f2852e23b203ee8c4c60091a3306e6074ff8694c865bd6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/native_beautymap.py": "c7e6493c04c8469c111627cf1b31990204fca134076e5040edf425dff9bb12c1",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/object_scene.py": "9012c731e34691b392e30ddfed309afa334c031389faa29678b6abf0c365d679",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/observe_session.py": "4be77cf1fb02e946f4ffecf85ad906d4a9666c87f1dd7ab935bb434d72179fab",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_author.py": "d8a5f96ad0e29649a73b3f033da3b579ce6f6b29d60e2046f3ede8d0f718d7d6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_case_replays.py": "806106a8319524a3ef80d5e76790b191326052a85f8812a3f865fb4ae49ed384",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_live_author.py": "a1f256eb8827111bba1df097f08c06fb7310b7d8d0f9913590e923b25fd59206",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_map_audit.py": "34906afa9aa627e10a8744b1187f55cea6f35929c99792f9eb108aa2795d6fbf",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_map_review.py": "8da232127b5a837489e7788a1212384e5749fe782ff02a3f4c3324ed9897291b",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_probe_mapping.py": "0c1896a4a5752c14b5dfaa259dbf0bdfaf600bfb3609b9007aa1327ab613398d",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_session.py": "2018bbe51860e803b0f1f60640639cd2a86ced4115bfe0865bc7945f7e2a0496",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_3d.py": "a92d4cd297dd2d533f9d97a8b70fed8a22620271d47c952deedcb360b05b87a2",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_author_view.py": "008c67bf253363b39980f26f64937c4994aba69f6d3d0e88266efadb9d0e64d0",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_direction_assets.py": "85342c9d6187b6e14bc023a8d85e8613439747ca72cfbbfbf436dc456b436d87",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_probe.py": "2bea6c2117ebf89cc4b5e9175c8000c6d1dc508e36d4f312540dfbb4f6a52674",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_rviz_overlay.py": "996bd10ec723998f524ca841d26edcd2c4a422a27e884404661288c0b83bb6cc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_session.py": "3bbc6b948fc5da89efeb7861755f377c8c35dfcd7511d81ef0319d1ce3373f87",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_sensors.py": "7e30ef6eda99b1b8bb6fa13f442c810bca24b8c2b6e850b8619d13ab6fbc22da",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/publish_map_quality.py": "1808878707d3b594d35d121edc92018823ef06692959dec6a691499189f342e8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/publish_probe_experiments.py": "7be4c57328bf3c3ff8e0387dbc169170b53d6566ac885105b4bd1a0994d912e2",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/rebuild_direction_figure.ps1": "bf6d56a6eaed442c9811263d892f3fb4276d0c73d54b1c614421fd67cfcd01c4",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/refine_saved_probe.py": "d7d05d042b70857b8a73519235bd54961f1f7b693891c3ea08c57d7a098b1b81",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/registration.launch.py": "41061edcf0657425c8711db96d762efca993e4495a92c4c1fada0ee43ae9c47a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/render_probe_gallery.py": "8f398a0d580d0c981077670b5217d8dee3d223e46e054457d772de369641a55c",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/repair_probe_boundary.py": "b83f88aed50bd411947b3318ae1103582bc7b9dcdea8a23ddb7e7f06b0c04e7a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_author_view.sh": "f75943429fe4c19e444078265763e3ac403ed0a3b1857f3a7fb8542718c274ec",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_live.sh": "3ea6e8b16541dbc9bd79db3480aab25fe585576ab2e4253d5b149bd705c5fac3",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_map_review.sh": "1f6d91bab9d0fe1763f8e1caedc4d69d5b18aab7bd66db84d5859d4cebbf5b04",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.py": "e76d3c8fd29ac58c4162d2d31155c9e2c8b030cb23f121d0055643e2acf92faa",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.sh": "4c0b1351199a0cb247bfc1f31d199f2e721e656ac0d2c6dc672b81848e9d168e",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/scenario_gpu.launch.py": "52db7103cd595f3e51a9408e696c2260efdd602c90df011c3f8fe930fa2b53fd",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/score_map_labels.py": "de403e72ac78f9ce2cea0e0945a3b6f0a2609d7b449cbf3d57a59dba4635f075",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stop_owned_session.py": "fff6428d328ed5940b700a9cf2e5cce5495fead5e56cbdb7abb11aef34c69043",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stress_scan.py": "98da9b7c82712a7cd5e9fee8dd19afa0d6f5ab4c315c81b8465148053795e7ae",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/summarize_probe_runs.py": "c780f9bdf9fb478613495e368f6792b33e9c78c671dfddc6c8540b36689f5fc9",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/window_capture_heartbeat.py": "96248bcb0cefe1099a9ba5d404e07e8d9f76aceaa1bd22825a46fa571f748e69",
+    "/mnt/d/workspace/be2/slam_learning_updated/demo/presentation.ps1": "867928aff53e52dc471268ae338b744cefa763de1a49ce592bc956cc63437014",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-030543-mapping-srrg-static-08564b/gazebo-gui.config": "12ddd342b89eeadf2080dfdd470ecd7abe94c6bf50f8a7fc21777696f0ac1289",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-030543-mapping-srrg-static-08564b/live.rviz": "6dbe50a5fe8c43ca95da02f36cc5a7bc45e2015917f39e124a1d55cf00847996",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/build.py": "a3bdd2bf49708b96a41696b41ca943f78cacf92f6764b59fde1194b4224e34d4",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/evaluate.py": "adddaf14f331b185be1bedf324ab6e75769a06ae01ce0eb140160cdd5abdc50e",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/live.py": "ca61e47b6374691a51c082a09df7634744de837c6d08a8bc299417ee4ff72377",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/prepare.py": "f4c9167db893c9c0b605d872a72240dd171a412b5a69da56a49f1ed9c28f2233",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/server.py": "afb2d1c53e1e090efe337b192d3fad4a054f6e0c198a7f58ccc9f1efc7744d93",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/worker.cpp": "41ce04ca6046ddfdf8b3eefd57c3633ff3659f55fe3f54dbaa745f608c67cd5f"
+  },
+  "native_versions": {
+    "srrg_mapper2d": "5ea162d1d90b25f916f25240b653e97e2758210e",
+    "srrg_scan_matcher": "e070f08f6663132d1de3e49869132581091972d7"
+  },
+  "truth_input_to_mapper": false,
+  "fixed_start_anchor": [
+    8.0727,
+    7.5312,
+    -1.5708
+  ],
+  "multi_session_prior": null,
+  "artifacts": {
+    "execution.gif": {
+      "sha256": "c9d06f80965ced189ffed3c72d08211dc3880379c0fddb2ba5770c552295b59d",
+      "bytes": 859383,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "b9ef3c9dcccd1a69f95b56ff14ecdd28a1e7bc31fab551f529e0491621c33bb3",
+      "bytes": 1323726,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "7a95f59bbbbb9d8d36ee5a8d18463fc02b4d56c732aa6f102ea2c5d7ffd6c47e",
+      "bytes": 423513,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "9154c1134bb53665c55e864e614a8af8cdf36df814b0aabae7be2e05d56bcc3e",
+      "bytes": 454463,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "92944b5d9cc67bb2b0c63a61d993e3ce31b86dcbe79ba7881e53efb185fe9567",
+      "bytes": 443100,
+      "availability": "portable"
+    },
+    "live.rviz": {
+      "sha256": "6dbe50a5fe8c43ca95da02f36cc5a7bc45e2015917f39e124a1d55cf00847996",
+      "bytes": 2786,
+      "availability": "portable"
+    },
+    "logs/bag.log": {
+      "sha256": "ad39df57e999d5a5ee85be280af8ac3a71e6dfe6e927854ca45b2a0ee650222b",
+      "bytes": 1643,
+      "availability": "portable"
+    },
+    "logs/cmake.log": {
+      "sha256": "42e6f02dc8db08d49011e4922981ad4adbe905c192a429ea7c9f1b0f0932c9ac",
+      "bytes": 1797,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "67a07595ff1dffbf774d9db2b05d93a2affb2aa47f0c274eb70d972335d30463",
+      "bytes": 7303,
+      "availability": "portable"
+    },
+    "logs/patrol.log": {
+      "sha256": "f7321aa4e3672ec649c96b78cd3721a38acba26bd3b668dce9abc67752a7b192",
+      "bytes": 2653,
+      "availability": "portable"
+    },
+    "logs/renderer.txt": {
+      "sha256": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+      "bytes": 1774,
+      "availability": "portable"
+    },
+    "logs/rviz.log": {
+      "sha256": "5d8fec1a39f30b7d4b204f66974f979b6debde40530e2f944a80a2c51037b7a9",
+      "bytes": 1353,
+      "availability": "portable"
+    },
+    "logs/sensor-preflight.log": {
+      "sha256": "d1e7e65114e99b29b007ecdab6c87f26ec55994809a054fb5056319a44c1f2a2",
+      "bytes": 61,
+      "availability": "portable"
+    },
+    "logs/srrg-author.log": {
+      "sha256": "c56a7d954bfbf297aa92033bec196993fcc39c52708585fa1d265db3fcdb651c",
+      "bytes": 24962,
+      "availability": "portable"
+    },
+    "logs/srrg-transport.log": {
+      "sha256": "6cb067bf9f3f5f5db9650152799d5a89ea617c7c5a2cf4af8e24d3db818317b0",
+      "bytes": 6434,
+      "availability": "portable"
+    },
+    "logs/stack.log": {
+      "sha256": "2b5b9acf04f5162d1691866d62cecccf2fdfd389fd403ff0dccdf7f59b7170e1",
+      "bytes": 10670,
+      "availability": "portable"
+    },
+    "logs/window-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "recording.started": {
+      "sha256": "e74643ed8ccf6ebe286395fb9a4b741346428945a9ec68711ae73b5a0d9869c8",
+      "bytes": 33,
+      "availability": "portable"
+    },
+    "recording.stopped": {
+      "sha256": "bc5850c0f8ba6e48fcc5451874277da959fbdd69826a693eede8b47fa7a334e1",
+      "bytes": 33,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "ddad5451d105b82ffd7969d2583b53082b2b8f8cf650bc3723f1d36c7b628d70",
+      "bytes": 699,
+      "availability": "portable"
+    },
+    "session-stopped.json": {
+      "sha256": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+      "bytes": 34,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "ae2489dd87b03bb4fc0ae3d70bc5641845fc3b1217999ed08478e4fecb0baea9",
+      "bytes": 13207,
+      "availability": "portable"
+    },
+    "srrg-2d.urdf": {
+      "sha256": "5952db4f8a29a501700b4a518ea18ecdb61afb1042ca04ac70879759728948f5",
+      "bytes": 9694,
+      "availability": "portable"
+    },
+    "srrg-bridge.yaml": {
+      "sha256": "08c14b517565208bfc7885af5774237070b25d136e56056f48cbde80c285ab3d",
+      "bytes": 1367,
+      "availability": "portable"
+    },
+    "srrg-final.npy": {
+      "sha256": "da8ed68c582aeab63fe2677f3224699938b24afd72ccddda552ed93407887a6c",
+      "bytes": 285000,
+      "availability": "portable"
+    },
+    "srrg-finished.json": {
+      "sha256": "c318f49563eba6e0a57ee97f3377f59fa3bcd65ebf2a20e478af3e4ecbdf31d7",
+      "bytes": 54,
+      "availability": "portable"
+    },
+    "srrg-frames.jsonl": {
+      "sha256": "1f642bc112b543d1067c4f077b154785e0a0337f2fb2e0b804aa57dd4d28093b",
+      "bytes": 108772,
+      "availability": "portable"
+    },
+    "srrg-inputs.jsonl": {
+      "sha256": "1488722615d514c9a266fccf29efbcf04926413715794579bf6a87d733fbc1ca",
+      "bytes": 4910464,
+      "availability": "portable"
+    },
+    "srrg-quality-inputs.npz": {
+      "sha256": "0c3e09db5bb4f0b8ee438c30afca2a8855721f6fe818b8bae86b5ae4e1ed31c0",
+      "bytes": 1658135,
+      "availability": "portable"
+    },
+    "srrg-quality.json": {
+      "sha256": "95dad386ae1685417fe7e1c2335a0ae06ad3fe05d60c0ffdc3513d890dd9b866",
+      "bytes": 986,
+      "availability": "portable"
+    },
+    "srrg-raw.npy": {
+      "sha256": "3b7619312fd97363c5b1a64a6436d4e287d1a30807464b337cb14c9d8d94a795",
+      "bytes": 1951144,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "d9905318caa9d308822f287c1e5576e27b56ac7f2e4d660ff2d34ca4d701a17e",
+      "bytes": 1024966,
+      "availability": "portable"
+    },
+    "maps/raw/map.pgm": {
+      "sha256": "09b47566105f758833665df59afa2dde6dcdf1fb734629514d9eb4666b0597b2",
+      "bytes": 58116,
+      "availability": "portable"
+    },
+    "maps/raw/map.yaml": {
+      "sha256": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42",
+      "bytes": 122,
+      "availability": "portable"
+    },
+    "maps/record.json": {
+      "sha256": "8edd62451381100ccd2c87fd5e6fb28827087c129005df6bf623fdbb51a2e3ce",
+      "bytes": 240,
+      "availability": "portable"
+    },
+    "maps/srrg/map.pgm": {
+      "sha256": "49cbcccdb007e8ed92fe8042c05bd4a74f9d29fbaf5c57138e257412cae8ea12",
+      "bytes": 58116,
+      "availability": "portable"
+    },
+    "maps/srrg/map.yaml": {
+      "sha256": "1b9f268975346596965bb590fb8c36cec4f17ddfbc4dcb3dee3bc43323db7a42",
+      "bytes": 122,
+      "availability": "portable"
+    },
+    "srrg-map-snapshots.npz": {
+      "sha256": "91924d7872310b20c88dd9d7f67f96b28f598723d8ad19ebb43dde8efc8becd1",
+      "bytes": 7597119,
+      "availability": "portable"
+    }
+  },
+  "snapshot_export": {
+    "scope": "All clean-map snapshots and timestamps retained; quadratic raw-history duplicates stay in original run and are reconstructible from saved scan+pose inputs",
+    "original_sha256": "7f729e2ee5bbae7f91789a23d83fff6ab3df455996ac73266b340de490b12e5f",
+    "original_path": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-030543-mapping-srrg-static-08564b/srrg-snapshots.npz"
+  }
+}

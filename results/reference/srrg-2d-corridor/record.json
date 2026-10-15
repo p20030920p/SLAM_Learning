@@ -1,0 +1,1216 @@
+{
+  "schema_version": 1,
+  "kind": "srrg_native_2d_mapping",
+  "status": "executed",
+  "exit_code": 0,
+  "source_run": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d",
+  "command": "mapping-srrg-corridor",
+  "scope": "Actual Gazebo + RViz + Terminal capture; native author 2D mapping, not a 3D projection. Single short session unless explicit prior present.",
+  "map_quality": {
+    "raw": {
+      "static_retention": 0.8343283582089552,
+      "dynamic_removal": null,
+      "points": 56492
+    },
+    "srrg": {
+      "static_retention": 0.8223880597014925,
+      "dynamic_removal": null,
+      "points": 15141
+    }
+  },
+  "audit": {
+    "kind": "srrg_observed_support_coverage",
+    "resolution_m": 0.1,
+    "coverage_tolerance_m": 0.15,
+    "static_cells": 670,
+    "dynamic_return_points": 0,
+    "dynamic_ghost_opportunities": 0,
+    "new_structure_cells": 0,
+    "static_label_scope": "Observed scene support excluding self and moving-box boundary shell; unique 10cm cells",
+    "dynamic_label_scope": "Historical moving-box support later crossed by a real free ray; current occupancy and static overlap excluded",
+    "methods": {
+      "raw": {
+        "static_retention": 0.8343283582089552,
+        "dynamic_removal": null,
+        "points": 56492
+      },
+      "srrg": {
+        "static_retention": 0.8223880597014925,
+        "dynamic_removal": null,
+        "points": 15141
+      }
+    },
+    "events": [
+      {
+        "kind": "native_mapper_reset",
+        "criterion": "BadCorrespondences: native tracker map reset",
+        "stamp_s": 11.1,
+        "recording_sim_elapsed_s": 3.5999999999999996,
+        "approx_mp4_s": 4.552714109420776
+      },
+      {
+        "kind": "observation_change",
+        "criterion": "limited",
+        "stamp_s": 7.5,
+        "recording_sim_elapsed_s": 0.0,
+        "approx_mp4_s": 2.7234017848968506
+      },
+      {
+        "kind": "observation_change",
+        "criterion": "full",
+        "stamp_s": 57.6,
+        "recording_sim_elapsed_s": 50.1,
+        "approx_mp4_s": 50.880186319351196
+      },
+      {
+        "kind": "pose_error_warning",
+        "criterion": "XY error >0.2m sustained >=2.8s, independent truth, not a map-failure label",
+        "stamp_s": 11.5,
+        "recording_sim_elapsed_s": 4.0,
+        "approx_mp4_s": 4.9607038497924805
+      }
+    ],
+    "map_geometry_timeline": [
+      {
+        "stamp_s": 4.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 5.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 6.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 7.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 8.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 9.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 10.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 11.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 12.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 13.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 14.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 15.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 16.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 17.3,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 18.5,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 19.6,
+        "map_points_over_20cm_from_observed_static_fraction": 0.022026431718061675
+      },
+      {
+        "stamp_s": 20.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 21.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 22.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 23.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 24.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 25.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 26.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 27.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 28.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 29.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 30.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 31.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 32.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 33.7,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0017889087656529517
+      },
+      {
+        "stamp_s": 35.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 36.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 37.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 38.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 39.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 40.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 41.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 42.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 43.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 44.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 45.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 46.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 47.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 48.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0
+      },
+      {
+        "stamp_s": 49.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.004471771939631079
+      },
+      {
+        "stamp_s": 50.2,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0002770850651149903
+      },
+      {
+        "stamp_s": 51.6,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0002765486725663717
+      },
+      {
+        "stamp_s": 53.1,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0002757859900717044
+      },
+      {
+        "stamp_s": 55.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0002755580049600441
+      },
+      {
+        "stamp_s": 56.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.000267022696929239
+      },
+      {
+        "stamp_s": 57.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.00025516713447307985
+      },
+      {
+        "stamp_s": 58.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.020766471587691147
+      },
+      {
+        "stamp_s": 59.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.020549224733794134
+      },
+      {
+        "stamp_s": 60.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.02889141373153709
+      },
+      {
+        "stamp_s": 61.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.029283990345937247
+      },
+      {
+        "stamp_s": 62.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.029336325745431227
+      },
+      {
+        "stamp_s": 63.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.034739803094233475
+      },
+      {
+        "stamp_s": 64.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.04099470638926505
+      },
+      {
+        "stamp_s": 65.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.045799011532125206
+      },
+      {
+        "stamp_s": 66.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.06779661016949153
+      },
+      {
+        "stamp_s": 67.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.05006940313305572
+      },
+      {
+        "stamp_s": 68.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.04446262956901255
+      },
+      {
+        "stamp_s": 69.0,
+        "map_points_over_20cm_from_observed_static_fraction": 0.0522591181273816
+      },
+      {
+        "stamp_s": 70.9,
+        "map_points_over_20cm_from_observed_static_fraction": 0.05320917858330562
+      }
+    ],
+    "mapping_pose_xy_rmse_m": 0.8322681043381659,
+    "truth_sync_max_s": 0.008000000000002672,
+    "frames": 291,
+    "scope": "Single session native author map. Coverage after registration and fusion, not exact source-point deletion; cannot numerically rank against 3D subset metrics."
+  },
+  "capture": {
+    "programs": [],
+    "streams": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "15/1",
+        "nb_frames": "976"
+      }
+    ],
+    "format": {
+      "duration": "65.066667",
+      "size": "1175604"
+    }
+  },
+  "gif_timing": {
+    "duration_s": 65.00000000000038,
+    "frames": 325,
+    "fps": 5,
+    "video_duration_s": 65.066667,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "adapter_sources_at_packaging": {
+    "src/scripts/presentation/srrg/build.py": "a3bdd2bf49708b96a41696b41ca943f78cacf92f6764b59fde1194b4224e34d4",
+    "src/scripts/presentation/srrg/evaluate.py": "26c11d505e057c3f70021808065afaa442a3a54b89a91e1409f85126bb8310d6",
+    "src/scripts/presentation/srrg/export_grid.py": "14a1de001882fd35d70e788b97b8c6e7980a88a06b776a567316bf9123256bd0",
+    "src/scripts/presentation/srrg/live.py": "399e4b418a72ad0a7cb9f7ec4677c9839e2b72093c66391ac2a2a016b4637573",
+    "src/scripts/presentation/srrg/package.py": "856314bf63190d1cc14b870604ba747e940f591ef7ecda0c0010246487ed7e3e",
+    "src/scripts/presentation/srrg/prepare.py": "9f97f1fc092a7835499d50ecc4d12d0df398d48961f037316683c12726177b4f",
+    "src/scripts/presentation/srrg/publish.py": "16013d0b846f8907f5021fa257dea46f7db59af7f1691ff6ee63a2c8b5ab8f6f",
+    "src/scripts/presentation/srrg/replay_prior.py": "16afb0c7b3423a4663d43ea05ddad58b186cba92f677a04a018f73d6171fb8e8",
+    "src/scripts/presentation/srrg/server.py": "b2545c075e3cc04a2f4638909796f787041ef58ad7cdb4934d6d115d61737458",
+    "src/scripts/presentation/srrg/verify.py": "9706e3c6b7939df2b53eb91cc8887978518a24ef180aefc3bcf85c81b162b6c8",
+    "src/scripts/presentation/srrg/worker.cpp": "03f0cf71b41d3a09150d7ac598434b1e585fdc97f228ee8be98583f248b512bc"
+  },
+  "sources_at_capture": {
+    "/mnt/d/workspace/be2/slam_learning_updated/config/presentation/worlds/S4_degradation.world": "e57fee1a83aa2b32b71d5ff4b19cdfed4cfae3d8330e12cc67ec4e807512bc6b",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py": "98a16348dd60ef9283e1288f33786323f7a734f47f530627975bfbc0886ea3a3",
+    "/root/projects/Sim2Real-AlgoBench/src/race_description/urdf/omni_car_ros2_control.urdf": "a8c4338746532c4781d5ebe783ae41f120c096f0bdc93840cb343ca4c50345c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf": "b136831e51f4316bc60e20ed29999c7beee9e08c3c8684183ba3d8eefe889118",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_coarse_replay.py": "a86374385b87f61d4118c8bf70820996e508a1889718e9e9c538094658f39d7f",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_historical_scores.py": "1535285d5850d97d49c31f37633099ac4bf9745e31596f2825089269492d0518",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/audit_scan_geometry.py": "763c65f6555666ecde15e3ca256a2fbd28349eed84ebae4657708d26c9568747",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/author_live_bridge.py": "9bac862ecf2d73cbc016b8a3386f816dfc73a5758a494e8905e427a9873a1984",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/auto_patrol.sh": "bc0f542cc8370521c73d0aa42ad0284c960808bb670a6337d43d6164889ec7c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.py": "ee7f654a8e0e27c4c6a92120534cf7934cb54b6784c39d880f590b91ad6f2406",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_maps.sh": "a80b1fee3e96f67be919695a80c16f83b985a92c909a26df74082706ad040efc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/build_probe_maps.py": "dce1c81669717721b28113006677ffc5418c263beaf50de8196181ebe7fefc07",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/case_view_tf.py": "5b4661745328fd187bb1fe732f1cf6075c1580b4c23a5015b4b3fea7a54e4149",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/CMakeLists.txt": "ba207c9369884d626545f51add00acffce3040f92bd6d2f2d262bf3b1577e9b5",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/collect_probe_mapping.py": "abf9402295538784c08828b5c51b039f6850d0f53113a717fe7795da74bca7fb",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/diagnose_maps.py": "a49a0b26fef3f03d5a66ec144085eebc460ce41c4b5aa2657eb6f2cb9feaa705",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/diagnose_probe_observability.py": "684590036875de002095679c0a0e2db5a83b3d4fb8199d1219cda6bd54e3ffcd",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/freeze_calibrated_protocol.py": "9d663841d78b8fd9e5c9f3fe484a87ccc4c89933a7f37b0342d25980a8a9b209",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/freeze_probe_protocol.py": "9e78a0eed904ea895b87adcb5ff80b6c95bb8a87a662ff1b48066df4684896ee",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/gz_truth.cpp": "b89ef6633e9bd859a4333698e5acc89eb682e603b0448fd1308d113eb57657a3",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/localization.launch.py": "7c68ca137e90c6d3c4da5c47e9dc67559cdd4aae24526f828eae6c9595db5b43",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/make_corridor.py": "f4ba5ceae297f1b561186b9c94b6c6459ca75eea0379072becc7926c37bb3a13",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/mapping_ablations.sh": "536d4cf15257d3fa05888ae25546738cdd92c3ca246d5f54b7e5b62f546c3aac",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/map_quality_report.py": "97e42bc031b2d24c62f7165e915d375b5c0e407900527869de83bd05a22c5e74",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/map_review.py": "7432e5066b0f3b8255f2852e23b203ee8c4c60091a3306e6074ff8694c865bd6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/native_beautymap.py": "c7e6493c04c8469c111627cf1b31990204fca134076e5040edf425dff9bb12c1",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/object_scene.py": "9012c731e34691b392e30ddfed309afa334c031389faa29678b6abf0c365d679",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/observe_session.py": "30042f57925233c8085b821e391386bb08cab4cf0ac42942aa5eed5e03ede142",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_author.py": "d8a5f96ad0e29649a73b3f033da3b579ce6f6b29d60e2046f3ede8d0f718d7d6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_case_replays.py": "806106a8319524a3ef80d5e76790b191326052a85f8812a3f865fb4ae49ed384",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_live_author.py": "a1f256eb8827111bba1df097f08c06fb7310b7d8d0f9913590e923b25fd59206",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_map_audit.py": "34906afa9aa627e10a8744b1187f55cea6f35929c99792f9eb108aa2795d6fbf",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_map_review.py": "8da232127b5a837489e7788a1212384e5749fe782ff02a3f4c3324ed9897291b",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_probe_mapping.py": "0c1896a4a5752c14b5dfaa259dbf0bdfaf600bfb3609b9007aa1327ab613398d",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/package_session.py": "2018bbe51860e803b0f1f60640639cd2a86ced4115bfe0865bc7945f7e2a0496",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_3d.py": "a92d4cd297dd2d533f9d97a8b70fed8a22620271d47c952deedcb360b05b87a2",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_author_view.py": "008c67bf253363b39980f26f64937c4994aba69f6d3d0e88266efadb9d0e64d0",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_calibrated_probe.py": "7d021eadf846755a86b9986326a80885d2294636ada8cfa0c3915de336b29d51",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_direction_assets.py": "85342c9d6187b6e14bc023a8d85e8613439747ca72cfbbfbf436dc456b436d87",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_probe.py": "2bea6c2117ebf89cc4b5e9175c8000c6d1dc508e36d4f312540dfbb4f6a52674",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_rviz_overlay.py": "996bd10ec723998f524ca841d26edcd2c4a422a27e884404661288c0b83bb6cc",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/prepare_session.py": "3bbc6b948fc5da89efeb7861755f377c8c35dfcd7511d81ef0319d1ce3373f87",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_localizer.py": "e04fc8775d3fe99fbbb48a19af5d79b75720bafe8c36d4feca8c8bd2bb2d22fb",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/probe_sensors.py": "7e30ef6eda99b1b8bb6fa13f442c810bca24b8c2b6e850b8619d13ab6fbc22da",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/publish_map_quality.py": "1808878707d3b594d35d121edc92018823ef06692959dec6a691499189f342e8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/publish_probe_experiments.py": "7be4c57328bf3c3ff8e0387dbc169170b53d6566ac885105b4bd1a0994d912e2",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/rebuild_direction_figure.ps1": "bf6d56a6eaed442c9811263d892f3fb4276d0c73d54b1c614421fd67cfcd01c4",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/refine_saved_probe.py": "d7d05d042b70857b8a73519235bd54961f1f7b693891c3ea08c57d7a098b1b81",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/registration.launch.py": "41061edcf0657425c8711db96d762efca993e4495a92c4c1fada0ee43ae9c47a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/render_probe_gallery.py": "8f398a0d580d0c981077670b5217d8dee3d223e46e054457d772de369641a55c",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/repair_probe_boundary.py": "b83f88aed50bd411947b3318ae1103582bc7b9dcdea8a23ddb7e7f06b0c04e7a",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_author_view.sh": "f75943429fe4c19e444078265763e3ac403ed0a3b1857f3a7fb8542718c274ec",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_live.sh": "3ea6e8b16541dbc9bd79db3480aab25fe585576ab2e4253d5b149bd705c5fac3",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_map_review.sh": "1f6d91bab9d0fe1763f8e1caedc4d69d5b18aab7bd66db84d5859d4cebbf5b04",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.py": "e76d3c8fd29ac58c4162d2d31155c9e2c8b030cb23f121d0055643e2acf92faa",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/run_original.sh": "4c0b1351199a0cb247bfc1f31d199f2e721e656ac0d2c6dc672b81848e9d168e",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/scenario_gpu.launch.py": "52db7103cd595f3e51a9408e696c2260efdd602c90df011c3f8fe930fa2b53fd",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/score_map_labels.py": "de403e72ac78f9ce2cea0e0945a3b6f0a2609d7b449cbf3d57a59dba4635f075",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stop_owned_session.py": "fff6428d328ed5940b700a9cf2e5cce5495fead5e56cbdb7abb11aef34c69043",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/stress_scan.py": "98da9b7c82712a7cd5e9fee8dd19afa0d6f5ab4c315c81b8465148053795e7ae",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/summarize_probe_runs.py": "c780f9bdf9fb478613495e368f6792b33e9c78c671dfddc6c8540b36689f5fc9",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/window_capture_heartbeat.py": "96248bcb0cefe1099a9ba5d404e07e8d9f76aceaa1bd22825a46fa571f748e69",
+    "/mnt/d/workspace/be2/slam_learning_updated/demo/presentation.ps1": "867928aff53e52dc471268ae338b744cefa763de1a49ce592bc956cc63437014",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/gazebo-gui.config": "62ac88584fb31ea219094db0ad83903af964475d1661efb5e833376d7bd49c9c",
+    "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/live.rviz": "5c193b9e8c8b3586db55d8bc5ba06060fc60219195c9a91a380abeb9175ba724",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/build.py": "a3bdd2bf49708b96a41696b41ca943f78cacf92f6764b59fde1194b4224e34d4",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/evaluate.py": "26c11d505e057c3f70021808065afaa442a3a54b89a91e1409f85126bb8310d6",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/live.py": "399e4b418a72ad0a7cb9f7ec4677c9839e2b72093c66391ac2a2a016b4637573",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/package.py": "7c74845bae52b05c05463d61e7e78e1dad9497f3b3c436b717b26458f87cebcb",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/prepare.py": "9f97f1fc092a7835499d50ecc4d12d0df398d48961f037316683c12726177b4f",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/publish.py": "b27e13ee3f6e17006665be8a138f6f7c51f60aa961a4198b7e4fbdb816b60949",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/replay_prior.py": "16afb0c7b3423a4663d43ea05ddad58b186cba92f677a04a018f73d6171fb8e8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/server.py": "b2545c075e3cc04a2f4638909796f787041ef58ad7cdb4934d6d115d61737458",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/verify.py": "9706e3c6b7939df2b53eb91cc8887978518a24ef180aefc3bcf85c81b162b6c8",
+    "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/worker.cpp": "03f0cf71b41d3a09150d7ac598434b1e585fdc97f228ee8be98583f248b512bc"
+  },
+  "native_versions": {
+    "srrg_mapper2d": "5ea162d1d90b25f916f25240b653e97e2758210e",
+    "srrg_scan_matcher": "e070f08f6663132d1de3e49869132581091972d7"
+  },
+  "truth_input_to_mapper": false,
+  "fixed_start_anchor": [
+    7.15,
+    -3.1,
+    0.0
+  ],
+  "multi_session_prior": null,
+  "artifacts": {
+    "execution.gif": {
+      "sha256": "7d99c5ee0c1c58fd1627a8a2ed25c3dbe918a4cfc9ac08f1f48a832dd4e3441d",
+      "bytes": 694789,
+      "availability": "portable"
+    },
+    "execution.mp4": {
+      "sha256": "a15a9ebdc9b360b704bf01cb37e1e05dbac98803364c01d124f1a9797f71b9bc",
+      "bytes": 1175604,
+      "availability": "portable"
+    },
+    "frame-first.png": {
+      "sha256": "9f8580a269c77dea6fa5c28daaef8248d25f699e4a90df5ffc283b3d04c208c1",
+      "bytes": 395976,
+      "availability": "portable"
+    },
+    "frame-last.png": {
+      "sha256": "d69e113b0b1cc6878178c55ec770607c0645bf306a92ab1274e2fb5933a0dc68",
+      "bytes": 441332,
+      "availability": "portable"
+    },
+    "frame-mid.png": {
+      "sha256": "b6eed7756fb53a283c500da2e4b793b59fa39747ebc7d3ba757b713e05ace14f",
+      "bytes": 423042,
+      "availability": "portable"
+    },
+    "live.rviz": {
+      "sha256": "5c193b9e8c8b3586db55d8bc5ba06060fc60219195c9a91a380abeb9175ba724",
+      "bytes": 2787,
+      "availability": "portable"
+    },
+    "logs/bag.log": {
+      "sha256": "77c603c592cafc6aa388820acf1692d7fac72dfa0c7741b264da2fe72f035812",
+      "bytes": 1645,
+      "availability": "portable"
+    },
+    "logs/cmake.log": {
+      "sha256": "0c1a64e5941032a9cd88f6d63a5403fd6946f0cb3dd29f4460ee64caef84ff07",
+      "bytes": 1797,
+      "availability": "portable"
+    },
+    "logs/observer.log": {
+      "sha256": "721a8dec0f3b060b443b8c701d6463e27d23ed68de5b457b4984b39aba5bb7df",
+      "bytes": 7215,
+      "availability": "portable"
+    },
+    "logs/patrol.log": {
+      "sha256": "a9d4947f773c72be147f0086d9674f2928c83557e6cdef387ce0d309180a241c",
+      "bytes": 2196,
+      "availability": "portable"
+    },
+    "logs/renderer.txt": {
+      "sha256": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+      "bytes": 1774,
+      "availability": "portable"
+    },
+    "logs/rviz.log": {
+      "sha256": "946fbd89fca9c9b06d63c0a3841bf86125b859cd76578221a294de06e13f5bd2",
+      "bytes": 2295,
+      "availability": "portable"
+    },
+    "logs/sensor-preflight.log": {
+      "sha256": "a07b5f71674ee5f1d34e3c62041c0920bc8c3e0e86015cd3f28857842d50d5d4",
+      "bytes": 62,
+      "availability": "portable"
+    },
+    "logs/srrg-author.log": {
+      "sha256": "64080956956e96005d3392dc94855f77995de40972f233147fcb96879bdb4bdc",
+      "bytes": 621341,
+      "availability": "portable"
+    },
+    "logs/srrg-transport.log": {
+      "sha256": "0c6260a816273591742d5ba45dbe2b42c490839a5f615f37923aaf36b51663c8",
+      "bytes": 6113,
+      "availability": "portable"
+    },
+    "logs/stack.log": {
+      "sha256": "66743a84f4b16599fa8bc63380521b08851d6cbe1a717b8404abef4e2c8942a2",
+      "bytes": 10915,
+      "availability": "portable"
+    },
+    "logs/window-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "availability": "portable"
+    },
+    "maps/raw/map.pgm": {
+      "sha256": "42736ae3035fd712c47dce4417f91ec57ff1d91554cae70f71f6ac602a6be610",
+      "bytes": 73476,
+      "availability": "portable"
+    },
+    "maps/raw/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "maps/record.json": {
+      "sha256": "8edd62451381100ccd2c87fd5e6fb28827087c129005df6bf623fdbb51a2e3ce",
+      "bytes": 240,
+      "availability": "portable"
+    },
+    "maps/srrg/map.pgm": {
+      "sha256": "8795fa8f24edee78835e77704a989cc9468fa14516c2a099f84fa2a3536ff8aa",
+      "bytes": 73476,
+      "availability": "portable"
+    },
+    "maps/srrg/map.yaml": {
+      "sha256": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+      "bytes": 123,
+      "availability": "portable"
+    },
+    "prior-cloud-00000.dat": {
+      "sha256": "bfc76b20ac448ac578a4ad62ecfea071969e8266ff5795737b9de3957a85ede9",
+      "bytes": 4124,
+      "availability": "portable"
+    },
+    "prior-cloud-00001.dat": {
+      "sha256": "39d68b30ea8f82a4e52be1733cfb201e0a602b046f87d5995e21e89cac352f4f",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00002.dat": {
+      "sha256": "3d575b9d222436cd638b08d7b3cf55d8c0ee36e6a730d8b01d5d1f18a93ee36e",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00003.dat": {
+      "sha256": "f4ed6c23f29f22d8a293c85281c0df45ac63c41363e280aae92f65cf4b0854d3",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00004.dat": {
+      "sha256": "6e161b83ebe79c30b3c7b21feed270b65c18b5ab3cb4b90d97432e930e171da7",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00005.dat": {
+      "sha256": "47c1663d95f50e7f649cbc6588fdff013b5ec2605f102d38bc311f0b8bb0f5bf",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00006.dat": {
+      "sha256": "a3e713c874bfea3fb42ef64ca70c774822b68b0f2f9ad6586c4488a227451787",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00007.dat": {
+      "sha256": "d935b73cebfa8e13e5b53a1fb6eaf9f74455aefef8853145389cd0f3d3232ce0",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00008.dat": {
+      "sha256": "79f7e4a3b48cb10289b6c35f4119dcf7ce0b7040f53e632bd2fde3a3aa659ff8",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00009.dat": {
+      "sha256": "8eaab7507183f4753c5effb396892a5cd4fb21802e0523bba2c67ccc0b5199cf",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00010.dat": {
+      "sha256": "328b4ddd28a1754d668a87d5582bef5919eb1d0999d945882fe9a451aa644198",
+      "bytes": 6772,
+      "availability": "portable"
+    },
+    "prior-cloud-00011.dat": {
+      "sha256": "aa073732c84c62312d8d6fde5f281af573b81ea648e75ff3cc5889d7303adec9",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00012.dat": {
+      "sha256": "cbf793cc1c6f5b15b74297a584b504ceb69f4cf38087a4599b59bffa9aec2bce",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00013.dat": {
+      "sha256": "23d283c154e216d973336bd9229d59460aa3782d422632eabba7a16a71ff1f93",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00014.dat": {
+      "sha256": "9424844b236281d9d5fa137ea553147fad3b8eecad874f6bfd2950d65501f39c",
+      "bytes": 6052,
+      "availability": "portable"
+    },
+    "prior-cloud-00015.dat": {
+      "sha256": "d4ec8d58a1d170db24eb4fa23008c8f0d1dde1064ec9c57220bf40e085604a7a",
+      "bytes": 5892,
+      "availability": "portable"
+    },
+    "prior-cloud-00016.dat": {
+      "sha256": "443c7834463f37844c6090bbc16ffa376c983b933a63978b67017d087e1ffb1b",
+      "bytes": 5892,
+      "availability": "portable"
+    },
+    "prior-cloud-00017.dat": {
+      "sha256": "323cbe4ee091a329275b4423bcad011da7c115b3fef08037a12008bfab8bc4b6",
+      "bytes": 5892,
+      "availability": "portable"
+    },
+    "prior-cloud-00018.dat": {
+      "sha256": "69e4b2838799eef4247ee5f772f50d9fcfe4baac6aa2341900ce1cc969fc7161",
+      "bytes": 6052,
+      "availability": "portable"
+    },
+    "prior-cloud-00019.dat": {
+      "sha256": "b2c46a8d0a3449197dcae8b49b535fdcb078c042efdf31e85f642788e4ccf65e",
+      "bytes": 6172,
+      "availability": "portable"
+    },
+    "prior-cloud-00020.dat": {
+      "sha256": "4d61525cc5f1a284ffd1eee6d3c7ae33cf9464b18475501e63d08c2307f0ba5f",
+      "bytes": 6112,
+      "availability": "portable"
+    },
+    "prior-cloud-00021.dat": {
+      "sha256": "6f4ec38d4ba605aa1ad5dcdcecb83aa5f5814310f76e417ffccbf25b4e6aa2e5",
+      "bytes": 6092,
+      "availability": "portable"
+    },
+    "prior-cloud-00022.dat": {
+      "sha256": "b37586f70447a321d5cec2678ae93de017d1b02412d30680636b2125e9c1f589",
+      "bytes": 6052,
+      "availability": "portable"
+    },
+    "prior-cloud-00023.dat": {
+      "sha256": "ea984d6a39b4871a9a90ed5fc341172a739576084cd5208817ba278e8845206b",
+      "bytes": 5932,
+      "availability": "portable"
+    },
+    "prior-cloud-00024.dat": {
+      "sha256": "d0e6d55616f92849a291b933936c0292da71b541653ce28f76de9142cfa99e75",
+      "bytes": 5952,
+      "availability": "portable"
+    },
+    "prior-cloud-00025.dat": {
+      "sha256": "80127b18d079c908107e2a721ed2999e54ac311eee26883e7011993dcfc65b1f",
+      "bytes": 5972,
+      "availability": "portable"
+    },
+    "prior-cloud-00026.dat": {
+      "sha256": "0d3e4ec3142772bd3f283da60eff55fd6864d60c8581149ec087302ee1836009",
+      "bytes": 5892,
+      "availability": "portable"
+    },
+    "prior-cloud-00027.dat": {
+      "sha256": "29ba018400238ab78fc185aafe23c1d59e0fd0bf26c9c7c5348aba2affe9dd69",
+      "bytes": 6432,
+      "availability": "portable"
+    },
+    "prior-cloud-00028.dat": {
+      "sha256": "08d1f57702f0a9cbb33cd9f5ad94477ac7d4d150299fdb7ba565b76ce262c136",
+      "bytes": 6552,
+      "availability": "portable"
+    },
+    "prior-cloud-00029.dat": {
+      "sha256": "c31619c3bfd2bcf9fccc050dba4d2ce91632d10ad2d9962671f7d8a6f4c636bb",
+      "bytes": 6632,
+      "availability": "portable"
+    },
+    "prior-cloud-00030.dat": {
+      "sha256": "7105f3b220a8757b9eb167f4ba38cb339e75bc617b316b649b34260e3016c588",
+      "bytes": 6832,
+      "availability": "portable"
+    },
+    "prior-cloud-00031.dat": {
+      "sha256": "34e2871bf4cf2abfc89a7d74e39f815ba48a7f10eedb644a96af6c0d19e48307",
+      "bytes": 6832,
+      "availability": "portable"
+    },
+    "prior-cloud-00032.dat": {
+      "sha256": "02d615e878be6e82e2dff7ef1e1cfa5e30f6d62525af7f67e8d51be84b4e33a2",
+      "bytes": 6912,
+      "availability": "portable"
+    },
+    "prior-cloud-00033.dat": {
+      "sha256": "9415ad3586f995fade8becb4f5759a16a3567ea89232b5973caf966985fb079b",
+      "bytes": 6932,
+      "availability": "portable"
+    },
+    "prior-cloud-00034.dat": {
+      "sha256": "fed0e09af6ec7fd025723fa575813ba74b1673807263ed860b629709b9830a3b",
+      "bytes": 6952,
+      "availability": "portable"
+    },
+    "prior-cloud-00035.dat": {
+      "sha256": "cff8fa69ab90bd58d87eeb7f5c1be69fab7311a66bf7de061fd79615523b7d7c",
+      "bytes": 6952,
+      "availability": "portable"
+    },
+    "prior-cloud-00036.dat": {
+      "sha256": "d6ee14a01d8c38fd5d7269f1842ae4bf077b30273c727cb1ffaef4cf9b919f00",
+      "bytes": 6972,
+      "availability": "portable"
+    },
+    "prior-cloud-00037.dat": {
+      "sha256": "8bf240d04dd947fbf2f05a6c238596bbfa7eabea8ef869ff15e159e431fa3b25",
+      "bytes": 6992,
+      "availability": "portable"
+    },
+    "prior-cloud-00038.dat": {
+      "sha256": "478b08a02def2478a18d47723280247f5fcbd31322b8fc41e6549c68e02b75a7",
+      "bytes": 6992,
+      "availability": "portable"
+    },
+    "prior-cloud-00039.dat": {
+      "sha256": "fd3fc77b3d25e5645147a44f731a775a7ba49ab8f0dcccfde59c0f8e21d6f8e5",
+      "bytes": 6992,
+      "availability": "portable"
+    },
+    "prior-cloud-00040.dat": {
+      "sha256": "61aba027eae860caac3c542e9787b3d775ed8179dc2eec446892b6b8bbb354c4",
+      "bytes": 7032,
+      "availability": "portable"
+    },
+    "prior-cloud-00041.dat": {
+      "sha256": "1103d75229864e59a199523ce7f4c279d55b5d7d6a3524c61dfad967fa91790a",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00042.dat": {
+      "sha256": "046d28ddff1b3b0c34220a8b612a507d570cd221600f744389d92626c7427def",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00043.dat": {
+      "sha256": "c134b85563973c2ed2b42995289c9ab4202dc3ca5f018d4b4d7705e85c093df3",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00044.dat": {
+      "sha256": "b8283162f38cb0530bbf6cd22f343686a358db567112e2d2e3f98e9a7af081ec",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00045.dat": {
+      "sha256": "392a67cd301f538027fc08bfe7024a0b6bd6847cd3f836a3a9f9aa171d64a180",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00046.dat": {
+      "sha256": "14c304457149a1c674a589d1ed39df847342e07c3979d4017bcfc75bcdc33dfb",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00047.dat": {
+      "sha256": "5dc6a6f0090a81e9c032a4a08d79c5eac4ce7c200125387e38bb01fd5a4ab1e7",
+      "bytes": 6872,
+      "availability": "portable"
+    },
+    "prior-cloud-00048.dat": {
+      "sha256": "e2b371bcd40ba47791c790e7dba365702b02df16884b00705d2c2c7e8bc54584",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00049.dat": {
+      "sha256": "850b1dd24761052f8f8e8f812696a884f3610331f9377b1fd95fb23f866ef422",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00050.dat": {
+      "sha256": "83d749fba4dbfd5bad1e303f90c283896d41ad19cd623aab4e12baeb3898f6e7",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00051.dat": {
+      "sha256": "4a2d5fa31b9dbcf5f03f03207ed574cfe565f0115670ff4da6ad925e32272510",
+      "bytes": 6112,
+      "availability": "portable"
+    },
+    "prior-cloud-00052.dat": {
+      "sha256": "c05628c7ab957e47df7e1b2a89409c40151efad15e6862ee4ade8c2440d4dc56",
+      "bytes": 5892,
+      "availability": "portable"
+    },
+    "prior-cloud-00053.dat": {
+      "sha256": "b1d99613fd5f78b042bbd1560ac55e9d70b229fd51b9a6ebedeceeaa75b91bc6",
+      "bytes": 6232,
+      "availability": "portable"
+    },
+    "prior-cloud-00054.dat": {
+      "sha256": "df1a7ca80f4b084d4c4767a238e82950e78acf8fad987c3a0db025b6edd14236",
+      "bytes": 6112,
+      "availability": "portable"
+    },
+    "prior-cloud-00055.dat": {
+      "sha256": "632e7bb0bea93cf9d5aa40711fd754e80c3b76fd4e62e7a7c25416b73f26d9ab",
+      "bytes": 6152,
+      "availability": "portable"
+    },
+    "prior-cloud-00056.dat": {
+      "sha256": "28c3b739c40d480b186b38b42a12f37d061dd238d5926e7f7b8c2726f0b178f7",
+      "bytes": 6172,
+      "availability": "portable"
+    },
+    "prior-cloud-00057.dat": {
+      "sha256": "de43b5877f00fe9376c611ceb9797afab658628122b07b9ad047eef97bd15ded",
+      "bytes": 6172,
+      "availability": "portable"
+    },
+    "prior-cloud-00058.dat": {
+      "sha256": "8306069c6a335acb9dabcca43c9289bc82dda594a7dcd63b85cbf118d1edcd84",
+      "bytes": 5972,
+      "availability": "portable"
+    },
+    "prior-cloud-00059.dat": {
+      "sha256": "a1958416b2436f4b40cabecc1e562c9714f12a3378f93222cd0b5fa4440445d7",
+      "bytes": 6052,
+      "availability": "portable"
+    },
+    "prior-cloud-00060.dat": {
+      "sha256": "1d0a40cb5ecf37771aa4af3371dad7887d4f80f845ff9af03de26fa7d8f3cbc7",
+      "bytes": 6152,
+      "availability": "portable"
+    },
+    "prior-cloud-00061.dat": {
+      "sha256": "e15dfbdaba9033cd1cefc90d48dbf717e4c6eb35e8c0820201421c5e6ff4e8d1",
+      "bytes": 6052,
+      "availability": "portable"
+    },
+    "prior-cloud-00062.dat": {
+      "sha256": "92456052012cff720de49097249b494d25f90421dd0c49a6ebbd78632d691330",
+      "bytes": 6432,
+      "availability": "portable"
+    },
+    "prior-cloud-00063.dat": {
+      "sha256": "ee776707935437247a050b7a1951133ceb0951a952e1c09018153aa68bb1bef7",
+      "bytes": 6812,
+      "availability": "portable"
+    },
+    "prior-cloud-00064.dat": {
+      "sha256": "f16821b8bb3ed7671b2422fb19412ff1872faf01ab13ff3a06411d20c08165a3",
+      "bytes": 6772,
+      "availability": "portable"
+    },
+    "prior-cloud-00065.dat": {
+      "sha256": "2ba59cbcec43b374fc52207c2a923237d4f72afc2ce5346d91782590b7ea92e7",
+      "bytes": 6852,
+      "availability": "portable"
+    },
+    "prior-cloud-00066.dat": {
+      "sha256": "1910380bdf80dee6ce01b60a464b9fd187a9d6fcfa305dcb4c26c98ff987414a",
+      "bytes": 6932,
+      "availability": "portable"
+    },
+    "prior-cloud-00067.dat": {
+      "sha256": "652914477e341b1bb83c205fca803b1b129207f02439ef66a235ed0e82336bda",
+      "bytes": 6972,
+      "availability": "portable"
+    },
+    "prior-cloud-00068.dat": {
+      "sha256": "71639ba64a3d3c0c0b7fb126bb9a5fa8fae960e2a4872dfcb7b9800c1656f735",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00069.dat": {
+      "sha256": "b6e5c5d704b1bf5765354e975c420795240f60f5f02ad770fd51ad7eed798338",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00070.dat": {
+      "sha256": "a884aa4f99cb368ca52e07bb8340b721db3e2c7a942b94982471f51eaf8db04e",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00071.dat": {
+      "sha256": "b1b626814e30570990f7ec9a6d0ab19779a846b7a569088273c66d24266135f7",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00072.dat": {
+      "sha256": "80d52d13ca7da7ec35e7327f60c0f053498405ffd82e5792236b46ff5f269e60",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00073.dat": {
+      "sha256": "91fa45b703cbe81755ab205fce0fe30d4fd025911e26ed3ff45249a0c2f6ad1e",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00074.dat": {
+      "sha256": "c34b57630ef61c288e4e3cb9ae7d904f6bad027057b48a451b093b867207426d",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00075.dat": {
+      "sha256": "db91f6830abada8f65bd58aedc52fe9f090865edd500913419ca62d770ced3ae",
+      "bytes": 6932,
+      "availability": "portable"
+    },
+    "prior-cloud-00076.dat": {
+      "sha256": "e22f7d590778375afee2eef4711623b61fcb093512b56376818a1d5b3469b872",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00077.dat": {
+      "sha256": "ca52b37536535bb0000525f8834534ee790984b40c6e35ca57c3598ebd4df1ea",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00078.dat": {
+      "sha256": "213b27b8589bea7ee853ba2f9268940732d199e7dd7c05aecbf3c8b79d8fd147",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00079.dat": {
+      "sha256": "4cc178dc3bbe7a234cca0162301ac28729d983d4c2feeca04a4666394ff80b46",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00080.dat": {
+      "sha256": "0655e8ebb5764f29da49f1c406d963f98a4ecf58f39772e937e412803c14a7c4",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00081.dat": {
+      "sha256": "ac869a269a54aba144aee737fd1d3781b44408c7590e877487af8b008c2067fe",
+      "bytes": 6872,
+      "availability": "portable"
+    },
+    "prior-cloud-00082.dat": {
+      "sha256": "46973379e1aec2787d1cfc0106d61c0490613b83c6f5f67c8e3d1fda400a1d90",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00083.dat": {
+      "sha256": "c591568d8a4c449bf7cf7386b1d586b8208f076a3e28646b8f2f11175fa7e948",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00084.dat": {
+      "sha256": "787d4adfc57c6d2f56691fd1ad996773a29863a36e47a7d7d1222b77d6d32688",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00085.dat": {
+      "sha256": "88da15232619a9e8bd806ea538974ce05f60907deb8ea5f2178ed34c820b27a5",
+      "bytes": 6072,
+      "availability": "portable"
+    },
+    "prior-cloud-00086.dat": {
+      "sha256": "66bf8716d90816723447175d8e3b4a61238455fd0c41ea2a2f042eec9bf87984",
+      "bytes": 5892,
+      "availability": "portable"
+    },
+    "prior-cloud-00087.dat": {
+      "sha256": "5660c019f02d2780acf22d0e830870cc87ccdf56b45c76e0b0599aab5de2df85",
+      "bytes": 5952,
+      "availability": "portable"
+    },
+    "prior-cloud-00088.dat": {
+      "sha256": "f339c0ed4dfbc561c2eaff70f95b39ef84c0916a2586cd93a35e1865d4dd1df0",
+      "bytes": 5892,
+      "availability": "portable"
+    },
+    "prior-cloud-00089.dat": {
+      "sha256": "4cd9ba76fecb825c693df5b24b9435ab778212e9122aeec8b63a3be2999fb45a",
+      "bytes": 6012,
+      "availability": "portable"
+    },
+    "prior-cloud-00090.dat": {
+      "sha256": "3228076e95d6b7a0b0fb8d10d07c3566f5e2b6262893031df835f6779b47037a",
+      "bytes": 6072,
+      "availability": "portable"
+    },
+    "prior-cloud-00091.dat": {
+      "sha256": "0d461c037a37dc17d9b5b6d9fce85bf49f358d5673a82d4ee495c5ab6ff8bec9",
+      "bytes": 5992,
+      "availability": "portable"
+    },
+    "prior-cloud-00092.dat": {
+      "sha256": "74b6703633dad62e0cefc4973d88d3464887c8f500daa25b1dfc5ca90df3a09c",
+      "bytes": 6092,
+      "availability": "portable"
+    },
+    "prior-cloud-00093.dat": {
+      "sha256": "458eac22311fbc1452919ebc01573a6a59fc3838d929c5deaca285b5e2568765",
+      "bytes": 5952,
+      "availability": "portable"
+    },
+    "prior-cloud-00094.dat": {
+      "sha256": "12c3fa92e15c1a3e92dce5c8e9eb703a01c287abaf8a3f956c2e0dc0306f6c22",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00095.dat": {
+      "sha256": "0f683b1320426dd7a2a5075bed88dc09503babf003422c798f6325aad40e7cc3",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00096.dat": {
+      "sha256": "50dfa1a7ad6f206b5f74e28836f0603224769ef3bee5a59898b311f054dfcccf",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00097.dat": {
+      "sha256": "db95da67c7476aee735d050b46ac37ace5a8a6ea8bf34a6efb8b05ae37fc2f81",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00098.dat": {
+      "sha256": "2aac9e68c11a858765e90e4f6fd11dcea3d88b2a0da1003d07976470fdf11a31",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00099.dat": {
+      "sha256": "1970115651edbf55853161288d24512bfdb561c5201afda8b1c97ea67a01ac60",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00100.dat": {
+      "sha256": "1f2ff579c1d3b1b9dc7ad9920de90c72cc39e3f7c1f5e91b7b66b86bf28b2540",
+      "bytes": 7052,
+      "availability": "portable"
+    },
+    "prior-cloud-00101.dat": {
+      "sha256": "7930c7cc15e6e78129863ae25de9df55f213a328e117c34dbd2ba4e72f7464eb",
+      "bytes": 18692,
+      "availability": "portable"
+    },
+    "prior-cloud-00102.dat": {
+      "sha256": "80579a97aab27fd23ad4ca4319df2b57bea2319e26036b85282041a86b6df5a5",
+      "bytes": 32744,
+      "availability": "portable"
+    },
+    "prior-cloud-00103.dat": {
+      "sha256": "91e76aab400cdf7cf1f48b16adbd2bfdc01e7342b03e321cef091673eaf66727",
+      "bytes": 32536,
+      "availability": "portable"
+    },
+    "prior-cloud-00104.dat": {
+      "sha256": "52e953935d3181a1d3f2ca190a900ac8fce191241c2f7887eb5d2ba2f8b7e642",
+      "bytes": 24672,
+      "availability": "portable"
+    },
+    "prior-cloud-00105.dat": {
+      "sha256": "58bb37285fda3b84426dd0d658d1f08970ae6bdcb2d25c06c1d498fd9265aad8",
+      "bytes": 24992,
+      "availability": "portable"
+    },
+    "prior-cloud-00106.dat": {
+      "sha256": "a9fd70332da3d0668a8012b042b4f5c5d5b3962d5b9a790d4dccb3a6fe7087cb",
+      "bytes": 27420,
+      "availability": "portable"
+    },
+    "prior-cloud-00107.dat": {
+      "sha256": "aae1aacd6e241dc9da1a777030c660c67fc69cc5c46c82ae3eb7190efffd773e",
+      "bytes": 36524,
+      "availability": "portable"
+    },
+    "prior-cloud-00108.dat": {
+      "sha256": "683a906bedb0de8fbd0856940727d11b5e9c3251be6dd325544e652105a5d5a0",
+      "bytes": 36684,
+      "availability": "portable"
+    },
+    "prior-cloud-00109.dat": {
+      "sha256": "ead96cb052f6d567e036503a5515209a38397dbb4e77fe7acab9958737152cf2",
+      "bytes": 50900,
+      "availability": "portable"
+    },
+    "prior-cloud-00110.dat": {
+      "sha256": "ead96cb052f6d567e036503a5515209a38397dbb4e77fe7acab9958737152cf2",
+      "bytes": 50900,
+      "availability": "portable"
+    },
+    "prior.g2o": {
+      "sha256": "9a986acec89d71406a50db0830e4fbf2713fe8282d4ed080cca0b8498d39ec3d",
+      "bytes": 469035,
+      "availability": "portable"
+    },
+    "recording.started": {
+      "sha256": "3a7c99caf32e9c58ad5ef6b6b7d53dd0a9edcf1bbba804f3f41776bd59b31cfd",
+      "bytes": 33,
+      "availability": "portable"
+    },
+    "recording.stopped": {
+      "sha256": "dc4a5d380b4f90f20d654e07e3ef2a21a9f4a6906d033c938644d3f28871e7cf",
+      "bytes": 33,
+      "availability": "portable"
+    },
+    "runtime.json": {
+      "sha256": "e83ed20abb132dfff8c62c8d08ce6a95da3d65ea3075e88158fcb11ab9e83bbc",
+      "bytes": 730,
+      "availability": "portable"
+    },
+    "session-stopped.json": {
+      "sha256": "de863de498bdc1f83af3df30aeabb15c38690ba408fe0e9638cb9f437321cf6b",
+      "bytes": 34,
+      "availability": "portable"
+    },
+    "session.json": {
+      "sha256": "d5a7fc2dad67f0446fb771fed6f6c7e30faf30e86f2cbe2c1d889ebaa3182d7e",
+      "bytes": 13892,
+      "availability": "portable"
+    },
+    "srrg-2d.urdf": {
+      "sha256": "5952db4f8a29a501700b4a518ea18ecdb61afb1042ca04ac70879759728948f5",
+      "bytes": 9694,
+      "availability": "portable"
+    },
+    "srrg-bridge.yaml": {
+      "sha256": "08c14b517565208bfc7885af5774237070b25d136e56056f48cbde80c285ab3d",
+      "bytes": 1367,
+      "availability": "portable"
+    },
+    "srrg-final.npy": {
+      "sha256": "c498b8bf124e72584c165734c0d9a2724bc09b7642905769ddc1c2c699328d4f",
+      "bytes": 121256,
+      "availability": "portable"
+    },
+    "srrg-finished.json": {
+      "sha256": "2bc73a22458d844cb04bebad57723bc6b842ddb259565af17f4f26890c31b052",
+      "bytes": 55,
+      "availability": "portable"
+    },
+    "srrg-frames.jsonl": {
+      "sha256": "9e7d319796c85553ddbf0416728de8c9cb6028c9acbdbc914dc189c98eff8446",
+      "bytes": 106214,
+      "availability": "portable"
+    },
+    "srrg-inputs.jsonl": {
+      "sha256": "b9fe295c1e8cab98047bbf4afe7c05189261668ed158d6981ba9b1263592d5e8",
+      "bytes": 2001091,
+      "availability": "portable"
+    },
+    "srrg-quality-inputs.npz": {
+      "sha256": "3326a1d9a87fb7cad61a1da63f8917443105b5329414e4a659dd2b6b65bda816",
+      "bytes": 485876,
+      "availability": "portable"
+    },
+    "srrg-quality.json": {
+      "sha256": "c6c1211207f946c518012fe6ea2ee91af4d97f1272e993ccc3ce862e06a41b7c",
+      "bytes": 8669,
+      "availability": "portable"
+    },
+    "srrg-raw.npy": {
+      "sha256": "c1398878084d1bc5cff3b35d7bc4d6db7422ed233843b17e47ca13d69238e432",
+      "bytes": 452064,
+      "availability": "portable"
+    },
+    "truth.jsonl": {
+      "sha256": "c84f5b5f8a8dded7400a1f7a41150831767d97b11d22a8a6b1574652921747f2",
+      "bytes": 974153,
+      "availability": "portable"
+    },
+    "srrg-map-snapshots.npz": {
+      "sha256": "588ecc1560e9ab6209262c09b236dc8c65004545c311cbcd7f94ccb89dd28356",
+      "bytes": 1404562,
+      "availability": "portable"
+    }
+  },
+  "snapshot_export": {
+    "scope": "All clean-map snapshots and timestamps retained; quadratic raw-history duplicates stay in original run and are reconstructible from saved scan+pose inputs",
+    "original_sha256": "9ec1414657f4e3f54629a68dbbc146cb6cd0846a408a1170dd1d44fbc8085a93",
+    "original_path": "/mnt/d/workspace/be2/slam_learning_updated/results/runs/presentation/20261015-031728-mapping-srrg-corridor-97da1d/srrg-snapshots.npz"
+  }
+}

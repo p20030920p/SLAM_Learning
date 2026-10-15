@@ -1,0 +1,81 @@
+Catchpoint 1 (throw)
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Registered class ImageData
+Registered class Cloud3D
+Registered class BaseCameraInfo
+Registered class PinholeCameraInfo
+Registered class SphericalCameraInfo
+Registered class MultiCameraInfo
+Registered class TraversabilityMap
+Registered class BaseImageMessage
+Registering message with tag: IMU_MESSAGE
+Registering message with tag: JOINT_STATE_MESSAGE
+Registered class JointStateMessage
+Registering message with tag: LASER_MESSAGE
+Registered class LaserMessage
+Registering message with tag: PINHOLE_IMAGE_MESSAGE
+Registered class PinholeImageMessage
+Registering message with tag: POSE_MESSAGE
+Registered class PoseMessage
+Registering message with tag: SPHERICAL_IMAGE_MESSAGE
+Registered class SphericalImageMessage
+Registering message with tag: STATIC_TRANSFORM
+Projector set in validator0
+Projector set in finder0x555555a283c0
+Projector set in validator0
+LASER_MESSAGEProjector set in finder0x555555a283c0
+Projector set in validator0x555555a979a0
+
+Adding vertex: 0 Pose: 0 0 0
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE SKIPPED
+LASER_MESSAGE
+
+Catchpoint 1 (exception thrown), 0x00007ffff7d89662 in __cxa_throw () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#0  0x00007ffff7d89662 in __cxa_throw () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#1  0x00007ffff7d7d4e2 in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#2  0x00007ffff7fb7282 in __gnu_cxx::new_allocator<float>::allocate (this=0x555555bb5758, __n=35184372086220) at /usr/include/c++/9/ext/new_allocator.h:102
+#3  std::allocator_traits<std::allocator<float> >::allocate (__a=..., __n=35184372086220) at /usr/include/c++/9/bits/alloc_traits.h:443
+#4  std::_Vector_base<float, std::allocator<float> >::_M_allocate (this=0x555555bb5758, __n=35184372086220) at /usr/include/c++/9/bits/stl_vector.h:343
+#5  std::vector<float, std::allocator<float> >::_M_allocate_and_copy<__gnu_cxx::__normal_iterator<float const*, std::vector<float, std::allocator<float> > > > (this=0x555555bb5758, __last=..., __first=..., __n=35184372086220) at /usr/include/c++/9/bits/stl_vector.h:1508
+#6  std::vector<float, std::allocator<float> >::operator= (this=this@entry=0x555555bb5758, __x=std::vector of length 35184372086220, capacity 0 = {...}) at /usr/include/c++/9/bits/vector.tcc:226
+#7  0x00007ffff7fb5115 in srrg_core::LaserMessage::operator= (this=0x555555bb55c0) at /usr/include/eigen3/Eigen/src/Core/util/Meta.h:300
+#8  srrg_mapper2d::Mapper2D::compute (this=0x7fffffffd9b0, las=0x7fffffffd580) at /root/srrg-reproduction-ws/src/srrg_mapper2d/src/mapper2d.cpp:63
+#9  0x000055555555e896 in main (argc=<optimized out>, argv=<optimized out>) at /mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/srrg/worker.cpp:45
+#3  std::allocator_traits<std::allocator<float> >::allocate (__a=..., __n=35184372086220) at /usr/include/c++/9/bits/alloc_traits.h:443
+443	      { return __a.allocate(__n); }
+No locals.
+No symbol "las" in current context.

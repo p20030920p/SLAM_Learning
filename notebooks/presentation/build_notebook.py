@@ -42,7 +42,7 @@ def make_notebook():
 | --- | --- | --- |
 """ + "\n".join(f"| {title} | [查看](#baseline-2d-{scene}) | [查看](#baseline-3d-{scene}) |" for scene, title in SCENES[:4]) + """
 
-[四篇原库](#authors) · [逐条误差复算](#score-recompute) · [走廊持续恢复](#corridor-recovery) · [NDT／GICP早期静态试验](#early-3d) · [末尾：开放问题、假设与简单实验](#hypotheses)
+[四篇原库](#authors) · [原生二维SRRG](#srrg-2d) · [逐条误差复算](#score-recompute) · [走廊持续恢复](#corridor-recovery) · [NDT／GICP早期静态试验](#early-3d) · [末尾：开放问题、假设与简单实验](#hypotheses)
 """)
     code(r"""from pathlib import Path
 import json, csv, hashlib, subprocess, os
@@ -50,7 +50,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from IPython.display import display, HTML, Image
 from experiment_tools import local_url, videos, package, verify_files, table
-from experiment_tools import baseline_scene, probe_scene, refinement_scene
+from experiment_tools import baseline_scene, probe_scene, refinement_scene, srrg_scene
 ROOT = Path.cwd()
 DATA = ROOT / 'evidence' if (ROOT / 'evidence').exists() else ROOT.parent.parent / 'results/reference'
 ANALYSIS = ROOT / 'analysis/hypotheses' if (ROOT / 'evidence').exists() else ROOT.parent.parent / 'results/analysis/hypotheses'
@@ -108,16 +108,45 @@ if RUN_LIVE:
 videos('{name}', result=False)
 print(read(DATA / '{name}' / 'runtime.json'))
 print(read(DATA / '{name}' / 'metrics.json'))""")
-    md("## 5. 二维：每种地图的现场执行与保存结果")
+    md('''<a id="srrg-2d"></a>
+
+## 5. 原生二维 SRRG 建图
+
+[↑ 返回目录](#notebook-index)
+
+论文用连续二维扫描和里程计维护动态环境地图，在 LCAS–STRANDS／MIT Stata Center 长期、多会话记录中测试。本次是同四类环境的短路线适用性测试，不宣称完成长期论文复现。灰色为按各帧估计累计的原始点，蓝色为作者维护图；不以真值配准。
+
+[纯静态](#srrg-static) · [运动障碍物](#srrg-dynamic) · [持久变化](#srrg-large-change) · [走廊退化](#srrg-corridor) · [失败诊断](#srrg-failures)
+
+主组关闭作者默认关闭的图合并，保留局部动态点融合。持久变化组加载静态A旧图，执行多会话更新；变化只增加结构，动态删除率为N/A。
+
+退化输入保留原720角度格，其中72束为实测值、其余无效，3.5m有效距离，录制后50仿真秒恢复。直接72项数组被作者入口拒绝，不能悄悄补点。旧固定地图实验只能给出定位异常时间，不能当作建图故障时间。
+''')
+    for scene,title in SCENES[:4]:
+        md(f'<a id="srrg-{scene}"></a>\n\n### {title} · 原生二维\n\n[↑ 返回目录](#notebook-index)')
+        code(f"srrg_scene('{scene}')")
+    md('''<a id="srrg-failures"></a>
+
+### SRRG 失败与额外对照（保留）
+
+前两次是联调错误：Eigen ABI不同和stdout诊断污染传输，均已修复。图合并开启的动态组在最后成功输出仿真66.0s／录制55.4s后出现g2o数值分解失败；关闭图合并的独立新会话完整结束。这提示图维护／数值兼容问题，独立会话本身不足以证明单一因果，也不能据此否定论文。额外静态图合并开启组可运行。
+''')
+    code("""for name in ('srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d',
+             'srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3',
+             'srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d',
+             'srrg-2d-static-graph-merge-on'):
+    print(name, read(DATA/name/'record.json')['status'])
+    videos(name, result=False)""")
+    md("## 5b. 保留的三维清理图二维投影：每种地图的现场执行与保存结果")
     for scene, title in SCENES[:4]:
-        name = "robot-corridor-v2" if scene == "corridor" else "robot-live-" + scene
+        name = "robot-corridor-v2" if scene == "corridor" else 'robot-2d-dynamic-matched' if scene=='dynamic' else "robot-live-" + scene
         md(f'<a id="baseline-2d-{scene}"></a>\n\n### {title} · 2D\n\n[↑ 返回目录](#notebook-index)')
         code(f"# 三列表格先于视频；从CSV复算XY，走廊使用受限观测组。\nbaseline_scene('{name}', '2d', prefix={'degraded_' if scene == 'corridor' else ''!r})")
     md('<a id="score-recompute"></a>\n\n## 6. 实测误差：逐条时间关联与 RMSE\n\n[↑ 返回目录](#notebook-index)')
     code("""# e_i = hypot(estimate_x-truth_x, estimate_y-truth_y)
 # RMSE = sqrt(mean(e_i**2)); yaw = atan2(sin(delta),cos(delta))
 # 包含初始化；不拟合坐标；匹配上限 0.05 仿真秒。
-for name in ('robot-live-static','robot-live-dynamic','robot-live-large-change','robot-corridor-v2'):
+for name in ('robot-live-static','robot-2d-dynamic-matched','robot-live-large-change','robot-corridor-v2'):
     folder = DATA / name
     truth = [json.loads(line) for line in (folder/'truth.jsonl').read_text().splitlines()]
     stamps = np.array([row['stamp_s'] for row in truth])
@@ -321,6 +350,7 @@ def prepare_bundle(destination: Path):
         shutil.copytree(REPO / "results" / "reference" / name, destination / "evidence" / name,
                         dirs_exist_ok=True)
     shutil.copytree(REPO / "results/analysis/hypotheses", destination / "analysis/hypotheses", dirs_exist_ok=True)
+    shutil.copytree(REPO / "results/analysis/map-quality", destination / "analysis/map-quality", dirs_exist_ok=True)
     erratum_dir = destination / "evidence" / "adam-mcl"
     erratum_dir.mkdir(exist_ok=True)
     for filename in ["ERRATUM.md", "score-erratum.json"]:

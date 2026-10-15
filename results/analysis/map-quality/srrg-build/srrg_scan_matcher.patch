@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a0cc0b1..e5be49d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -3,7 +3,7 @@ project(srrg_scan_matcher)
+ 
+ find_package(srrg_cmake_modules REQUIRED)
+ set(CMAKE_MODULE_PATH ${srrg_cmake_modules_INCLUDE_DIRS})
+-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=gnu++11 -march=native")
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=gnu++11 ")
+ set(CMAKE_BUILD_TYPE Release)
+ 
+ ## Find catkin macros and libraries

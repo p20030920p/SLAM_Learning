@@ -53,7 +53,7 @@ class Observer:
         self.args = args
         self.run = args.run
         session_flow = json.loads((self.run / "session.json").read_text())["flow"]
-        self.simple_probe = "-probe-" in session_flow and "-2d-" in session_flow
+        self.simple_probe = ("-probe-" in session_flow and "-2d-" in session_flow) or "-srrg-" in session_flow
         self.node = rclpy.create_node("presentation_observer")
         self.node.set_parameters([rclpy.parameter.Parameter("use_sim_time", value=True)])
         self.tf = Buffer()
@@ -309,6 +309,8 @@ class Observer:
                     raise RuntimeError("Simulation did not advance within the wall-time limit")
                 if (self.run / "STOP").exists():
                     break
+                if (self.run / "srrg-failed.json").exists():
+                    raise RuntimeError("Native SRRG mapper failed; see srrg-failed.json and author stderr")
         except Exception as error:
             self.failure = str(error)
             raise

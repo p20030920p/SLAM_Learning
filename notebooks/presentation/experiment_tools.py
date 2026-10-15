@@ -17,6 +17,12 @@ from IPython.display import HTML, Markdown, display
 from PIL import Image
 
 PACKAGES = (
+    "robot-2d-dynamic-matched", "robot-3d-map-audit",
+    "srrg-2d-static-graph-merge-on",
+    "srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d",
+    "srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3",
+    "srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d",
+    *(f"srrg-2d-{scene}" for scene in ("static", "dynamic", "large-change", "corridor")),
     "robot-supp-static", "robot-supp-dynamic", "robot-supp-large-change", "robot-corridor-v2-mapping",
     "robot-live-static", "robot-live-dynamic", "robot-live-large-change", "robot-corridor-v2",
     "desktop-live-dufomap", "desktop-live-beautymap", "desktop-live-ir-mcl", "desktop-adam-mcl",
@@ -102,7 +108,7 @@ def expected_media():
     for dimension in ("2d", "3d"):
         for scene in ("static", "dynamic", "large-change", "corridor"):
             name = f"robot-3d-{scene}" if dimension == "3d" else (
-                "robot-corridor-v2" if scene == "corridor" else f"robot-live-{scene}")
+                "robot-corridor-v2" if scene == "corridor" else 'robot-2d-dynamic-matched' if scene=='dynamic' else f"robot-live-{scene}")
             record = read_json(package(name) / "record.json")
             for view in record["native_views"]:
                 files.append(f"{name}/{view['video']}")
@@ -114,6 +120,8 @@ def expected_media():
                      ("static", "dynamic", "large-change", "corridor", "height-corridor"))
         files.extend(f"probe-calibrated-refinement-{dimension}-{scene}/result.mp4" for scene in
                      ("corridor", "height-corridor"))
+    files.extend(f'srrg-2d-{scene}/execution.mp4' for scene in ('static','dynamic','large-change','corridor'))
+    files.extend(f'{name}/execution.mp4' for name in PACKAGES if name.startswith('srrg-diagnostic-') or name=='srrg-2d-static-graph-merge-on')
     return set(files)
 
 
@@ -149,16 +157,12 @@ def baseline_scene(name: str, dimension: str, prefix: str = ""):
     values = {case: measured_rmse(name, prefix + case, dimension) for case in ("raw", "dufomap", "beautymap")}
     rows = []
     for case, label in (("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")):
-        difference = values[case] - values["raw"]
-        comparison = "" if case == "raw" else ("；接近Raw" if abs(difference) < .01 else
-                     f"；较Raw{'低' if difference < 0 else '高'}{abs(difference):.2f}cm")
         map_type = {"raw": "原始", "dufomap": "去动态点", "beautymap": "离线清理"}[case]
         map_type += "二维投影图" if dimension == "2d" else "三维点云图"
-        rows.append([label, map_type, f"{'XY' if dimension == '2d' else 'XYZ'} RMSE {values[case]:.2f}cm"
-                     + comparison + recovery_text(record, prefix + case)])
+        rows.append([label, map_type, map_quality_text(name,dimension,case)])
     table(["方法", "地图类型", "指标效果"], rows)
-    display(Markdown("同场景单轮结果，RMSE包含初始化；小差异不作排名。"
-                     "地图清理不等于恢复能力，缺失定位输出不补零。"))
+    table(["方法", "独立下游定位指标"],[[c,f"{'XY' if dimension=='2d' else 'XYZ'} RMSE {v:.2f}cm"+recovery_text(record,prefix+c)] for c,v in values.items()])
+    display(Markdown("地图清理看动态删除与静态保留；二维为5cm唯一格，三维为原点保留。无动态目标记N/A。定位RMSE包含初始化，单轮小差异不排名；缺失定位输出不补零。"))
     for view in record["native_views"]:
         case = view["case"]
         show_video(package(name) / view["video"], f"{case} · 真实窗口执行")
@@ -166,6 +170,35 @@ def baseline_scene(name: str, dimension: str, prefix: str = ""):
         replay = package(name) / "methods" / sample_case / "result.mp4"
         if dimension == "2d":
             show_video(replay, f"{case} · 保存结果回放，无新推理")
+
+
+def map_quality_text(name,dimension,case):
+    analysis=ROOT/'analysis/map-quality' if (ROOT/'evidence').exists() else ROOT.parent.parent/'results/analysis/map-quality'
+    if 'dynamic' in name:
+        data=read_json(analysis/'projected-dynamic.json')['methods'] if dimension=='2d' else read_json(package('robot-3d-map-audit')/'record.json')['configurations']['baseline']['metrics']
+    else:
+        scene='corridor' if 'corridor' in name else 'static'
+        data=read_json(analysis/f'{scene}.json')[dimension]
+    v=data[case]
+    unit='格' if dimension=='2d' else '点'
+    da='N/A' if v['dynamic_removal'] is None else f"{v['dynamic_removal']*100:.2f}%"
+    suffix='（静态A旧图；未更新B）' if 'large-change' in name else ''
+    return f"动态{unit}删除 {da}；静态{unit}保留 {v['static_retention']*100:.2f}%"+suffix
+
+
+def srrg_scene(scene):
+    name=f'srrg-2d-{scene}'
+    r=read_json(package(name)/'record.json')
+    rows=[]
+    for key,label in [('raw','Raw'),('srrg','srrg_mapper2d')]:
+        v=r['map_quality'][key]
+        da=v['dynamic_removal']
+        rows.append([label,'原生二维点图',f"动态残影删除 {'N/A' if da is None else f'{da*100:.2f}%'}；静态覆盖保留 {v['static_retention']*100:.2f}%"])
+    table(['方法','地图类型','指标效果'],rows)
+    display(Markdown('10cm观测支持、15cm覆盖容差；只评价后续实测射线验证为空的动态残影。端到端地图维护指标，不能与3D精确点删除率直接排名。'))
+    print('建图轨迹XY RMSE cm:',r['audit']['mapping_pose_xy_rmse_m']*100)
+    print('事件:',r['audit']['events'])
+    videos(name,result=False)
 
 
 def probe_scene(dimension: str, scene: str):

@@ -49,6 +49,7 @@
 | BeautyMap | 三维离线清理地图 | SA 96.95% / DA 98.34%；清理有效 |
 | IR-MCL | 神经占据场 | RMSE 5.31 cm / 1.07°；Seq 1定位有效 |
 | AdaM-MCL | 自建128格栅格图 | RMSE 32.23格；历史持续收敛0/10 |
+| srrg_mapper2d | 原生二维点图（Gazebo） | 动态残影删除42.31% / 静态覆盖保留99.51% |
 
 ### DUFOMap — 在地图积分过程中去除动态点
 
@@ -103,6 +104,17 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 ![AdaM-MCL saved result replay](../results/reference/desktop-adam-mcl/result.gif)
 
 [Result MP4](../results/reference/desktop-adam-mcl/result.mp4)
+
+<!-- SRRG_RELATED -->
+### srrg_mapper2d · 原生二维动态残影维护
+
+[IROS 2018 论文](https://iris.uniroma1.it/handle/11573/1340118) · [作者建图库](https://gitlab.com/srrg-software/srrg_mapper2d) · [ROS入口](https://gitlab.com/srrg-software/srrg_mapper2d_ros) · [merger2d.cpp](https://gitlab.com/srrg-software/srrg_scan_matcher/-/blob/master/src/merger2d.cpp)。
+
+原文针对连续二维点云的长期动态环境建图，使用 LCAS–STRANDS 与 MIT Stata Center；动态处理嵌在多帧配准／合并和图维护中。已编译并完成本机同四场景录制。
+
+[2D 实践：视频与指标](#srrg-2d) · [失败诊断](#srrg-diagnostics) · [原文适用条件](papers/srrg_mapper2d.zh-CN.md)
+
+<!-- /SRRG_RELATED -->
 
 ## 假设
 
@@ -196,20 +208,125 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 [AI 使用](guides/DISCLOSURE.zh-CN.md) · [来源／许可](guides/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [许可](../src/LICENSE)
 ## 实践
 
+[极简：全部 GIF 与指标](MINIMAL.zh-CN.md)
+
 [键盘演示](../demo/README.md) · [视频目录](../demo/gallery.html) · [代码 Notebook](../notebooks/presentation/SLAM_实验逐步展示.ipynb)。
 
 <a id="practice-index"></a>
 
 | 场景 | 2D · AMCL | 3D · GICP |
 | --- | --- | --- |
-| 纯静态 | [查看录像](#scene-static-2d) | [查看录像](#scene-static-3d) |
-| 运动障碍物 | [查看录像](#scene-dynamic-2d) | [查看录像](#scene-dynamic-3d) |
-| 持久结构变化 | [查看录像](#scene-change-2d) | [查看录像](#scene-change-3d) |
-| 走廊退化 | [查看录像](#scene-corridor-2d) | [查看录像](#scene-corridor-3d) |
+| 纯静态 | [SRRG建图](#srrg-static-2d) / [旧投影定位](#scene-static-2d) | [查看录像](#scene-static-3d) |
+| 运动障碍物 | [SRRG建图](#srrg-dynamic-2d) / [旧投影定位](#scene-dynamic-2d) | [查看录像](#scene-dynamic-3d) |
+| 持久结构变化 | [SRRG建图](#srrg-large-change-2d) / [旧投影定位](#scene-change-2d) | [查看录像](#scene-change-3d) |
+| 走廊退化 | [SRRG建图](#srrg-corridor-2d) / [旧投影定位](#scene-corridor-2d) | [查看录像](#scene-corridor-3d) |
 
 [三维地图清理结果](#map-review-3d) · [开放问题：假设与新实验](#hypothesis-experiments)
 
-**不同地图下的定位误差。**2D使用AMCL，报XY RMSE；3D直接使用三维点云地图和同一原库GICP，报XYZ RMSE，单位均为cm。包含全部原生已发布输出；单次结果不构成稳定排名。三维建图使用给定位姿融合与清理，真值不进入定位器。
+**地图清理主指标：动态障碍物删除率、静态障碍物保留率，越高越好。** 旧二维投影按5cm唯一格评分；新SRRG按10cm观测支持、15cm覆盖容差评分；三维评分源点。口径不同不排名。静态／走廊无动态样本，删除率记N/A；持久变化旧图仅评分静态A，未测试B在线更新。定位RMSE另列，不能代替地图清理效果。原二维DUFOMap／BeautyMap投影保留为跨维参考；新增原生二维SRRG见下方。
+
+<!-- SRRG_PRACTICE -->
+<a id="srrg-2d"></a>
+
+### 原生二维建图 · srrg_mapper2d
+
+[↑ 实践目录](#practice-index)
+
+本组实际使用二维雷达和轮式里程计，无三维雷达、无真值配准。调用作者完整Mapper2D配准与位姿图；主组按作者默认关闭图合并，局部投影融合开启。图合并开启的数值失败单独保留。
+
+指标：10cm唯一观测支持、15cm覆盖容差；只对后来实测射线确认为空的历史动态位置计算删除率，排除当前动态物体。原始图按各帧当时估计累计，SRRG还进行图优化，属于端到端维护对照。百分数不可与三维精确点保留率直接排名。
+
+<a id="srrg-static-2d"></a>
+
+#### 纯静态 · 2D
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原生二维点图 | 动态残影删除 N/A；静态覆盖保留 100.00% |
+| srrg_mapper2d | 原生二维点图 | 动态残影删除 N/A；静态覆盖保留 99.84% |
+
+建图轨迹XY RMSE（非固定地图定位B）: 0.71 cm.
+
+本轮未记录作者跟踪器重置或持续20cm定位预警；不能据此保证所有地图几何无误。
+
+![SRRG Pure static actual native mapping](../results/reference/srrg-2d-static/execution.gif)
+
+[MP4](../results/reference/srrg-2d-static/execution.mp4) · [record](../results/reference/srrg-2d-static/record.json)
+
+<a id="srrg-dynamic-2d"></a>
+
+#### 运动障碍物 · 2D
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原生二维点图 | 动态残影删除 0.00%；静态覆盖保留 100.00% |
+| srrg_mapper2d | 原生二维点图 | 动态残影删除 42.31%；静态覆盖保留 99.51% |
+
+建图轨迹XY RMSE（非固定地图定位B）: 0.64 cm.
+
+本轮未记录作者跟踪器重置或持续20cm定位预警；不能据此保证所有地图几何无误。
+
+![SRRG Moving obstacles actual native mapping](../results/reference/srrg-2d-dynamic/execution.gif)
+
+[MP4](../results/reference/srrg-2d-dynamic/execution.mp4) · [record](../results/reference/srrg-2d-dynamic/record.json)
+
+<a id="srrg-large-change-2d"></a>
+
+#### 持久结构变化 · 2D
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原生二维点图 | 动态残影删除 N/A；静态覆盖保留 100.00% |
+| srrg_mapper2d | 原生二维点图 | 动态残影删除 N/A；静态覆盖保留 99.71% |
+
+建图轨迹XY RMSE（非固定地图定位B）: 0.46 cm.
+
+实际加载静态A旧图，已知会话起点，调用作者多会话入口更新。该短路线不能覆盖论文的长期多会话结论。
+
+当前可见新增结构覆盖保留 98.90%（91个观测格）；本场景只增加结构，没有旧结构被搬走，动态删除率为N/A。
+
+本轮未记录作者跟踪器重置或持续20cm定位预警；不能据此保证所有地图几何无误。
+
+![SRRG Persistent change actual native mapping](../results/reference/srrg-2d-large-change/execution.gif)
+
+[MP4](../results/reference/srrg-2d-large-change/execution.mp4) · [record](../results/reference/srrg-2d-large-change/record.json)
+
+<a id="srrg-corridor-2d"></a>
+
+#### 走廊退化 · 2D
+
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 原生二维点图 | 动态残影删除 N/A；静态覆盖保留 83.43% |
+| srrg_mapper2d | 原生二维点图 | 动态残影删除 N/A；静态覆盖保留 82.24% |
+
+建图轨迹XY RMSE（非固定地图定位B）: 83.23 cm.
+
+前50个录制仿真秒限制72束／3.5m；保留720角度格，其余无效，随后恢复。
+
+| 事件 | 仿真秒 | 视频定位（约） |
+| --- | --- | --- |
+| 建图跟踪重置 | 11.1 | [4.6s](../results/reference/srrg-2d-corridor/execution.mp4#t=4.6) |
+| 观测受限 | 7.5 | [2.7s](../results/reference/srrg-2d-corridor/execution.mp4#t=2.7) |
+| 观测恢复 | 57.6 | [50.9s](../results/reference/srrg-2d-corridor/execution.mp4#t=50.9) |
+| 定位偏差持续超过20cm | 11.5 | [5.0s](../results/reference/srrg-2d-corridor/execution.mp4#t=5.0) |
+
+![SRRG Corridor degradation actual native mapping](../results/reference/srrg-2d-corridor/execution.gif)
+
+[MP4](../results/reference/srrg-2d-corridor/execution.mp4) · [record](../results/reference/srrg-2d-corridor/record.json)
+
+<a id="srrg-diagnostics"></a>
+
+#### 保留的失败诊断
+
+| 视频 | 结果 |
+| --- | --- |
+| [GIF](../results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/execution.gif) · [MP4](../results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/execution.mp4) · [record](../results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/record.json) | 联调失败：Eigen ABI不一致（首次运动） |
+| [GIF](../results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/execution.gif) · [MP4](../results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/execution.mp4) · [record](../results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/record.json) | 联调失败：作者stdout诊断污染传输；已隔离 |
+| [GIF](../results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/execution.gif) · [MP4](../results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/execution.mp4) · [record](../results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/record.json) | 图合并开启：最后成功输出仿真66.0s／录制55.4s，随后g2o数值分解失败并崩溃；不是动态清理率为零。 |
+
+[原文数据与适用性](papers/srrg_mapper2d.zh-CN.md) · [指标与退化时间说明](testing/MAP-METRICS.zh-CN.md)
+<!-- /SRRG_PRACTICE -->
 
 ### 2D · AMCL
 
@@ -217,9 +334,11 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始二维投影图 | XY RMSE 7.28 cm；未失效 |
-| DUFOMap | 去动态点二维投影图 | XY RMSE 7.28 cm；与Raw相同 |
-| BeautyMap | 离线清理二维投影图 | XY RMSE 6.89 cm；比Raw略低 |
+| Raw | 原始二维投影图 | 动态格删除 N/A；静态格保留 100.00% |
+| DUFOMap | 去动态点二维投影图 | 动态格删除 N/A；静态格保留 100.00% |
+| BeautyMap | 离线清理二维投影图 | 动态格删除 N/A；静态格保留 96.51% |
+
+定位另列 (XY RMSE, cm): Raw 7.28 / DUFOMap 7.28 / BeautyMap 6.89.
 
 Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
@@ -227,9 +346,11 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始二维投影图 | XY RMSE 7.52 cm；未失效 |
-| DUFOMap | 去动态点二维投影图 | XY RMSE 8.19 cm；本次高于Raw |
-| BeautyMap | 离线清理二维投影图 | XY RMSE 7.29 cm；本次低于Raw |
+| Raw | 原始二维投影图 | 动态格删除 0.00%；静态格保留 100.00% |
+| DUFOMap | 去动态点二维投影图 | 动态格删除 8.33%；静态格保留 100.00% |
+| BeautyMap | 离线清理二维投影图 | 动态格删除 33.33%；静态格保留 96.64% |
+
+定位另列 (XY RMSE, cm): Raw 7.52 / DUFOMap 8.19 / BeautyMap 7.29.
 
 新建图A配对结果：DUFOMap高0.67 cm，BeautyMap低0.23 cm；单次结果无稳定排名，旧一轮结果保留。
 
@@ -237,9 +358,11 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始二维投影图 | XY RMSE 6.84 cm；未失效 |
-| DUFOMap | 去动态点二维投影图 | XY RMSE 6.84 cm；与Raw相同 |
-| BeautyMap | 离线清理二维投影图 | XY RMSE 6.39 cm；比Raw略低 |
+| Raw | 原始二维投影图 | 动态格删除 N/A；静态格保留 100.00%（静态A旧图） |
+| DUFOMap | 去动态点二维投影图 | 动态格删除 N/A；静态格保留 100.00%（静态A旧图） |
+| BeautyMap | 离线清理二维投影图 | 动态格删除 N/A；静态格保留 96.51%（静态A旧图） |
+
+定位另列 (XY RMSE, cm): Raw 6.84 / DUFOMap 6.84 / BeautyMap 6.39.
 
 旧图定位；未调用在线地图更新，本路线未诱发失效。
 
@@ -247,9 +370,11 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始二维投影图 | XY RMSE 72.53 cm；恢复延迟13.3 s |
-| DUFOMap | 去动态点二维投影图 | XY RMSE 72.53 cm；恢复延迟13.3 s |
-| BeautyMap | 离线清理二维投影图 | XY RMSE 72.53 cm；恢复延迟13.3 s |
+| Raw | 原始二维投影图 | 动态格删除 N/A；静态格保留 100.00% |
+| DUFOMap | 去动态点二维投影图 | 动态格删除 N/A；静态格保留 100.00% |
+| BeautyMap | 离线清理二维投影图 | 动态格删除 N/A；静态格保留 100.00% |
+
+定位另列 (XY RMSE, cm): Raw 72.53 / DUFOMap 72.53 / BeautyMap 72.53.
 
 三张投影图相同；13.3 s是初始信念偏移纠正，不能区分清理效果。
 
@@ -259,9 +384,11 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始三维点云图 | XYZ RMSE 0.95 cm；未失效 |
-| DUFOMap | 三维去动态点图 | XYZ RMSE 0.99 cm；未见改善 |
-| BeautyMap | 三维离线清理图 | XYZ RMSE 1.07 cm；未见改善 |
+| Raw | 原始三维点云图 | 动态点删除 N/A；静态点保留 100.00% |
+| DUFOMap | 三维去动态点图 | 动态点删除 N/A；静态点保留 100.00% |
+| BeautyMap | 三维离线清理图 | 动态点删除 N/A；静态点保留 83.33% |
+
+定位另列 (XYZ RMSE, cm): Raw 0.95 / DUFOMap 0.99 / BeautyMap 1.07.
 
 无动态污染需要清理，本次三维定位未见改善。
 
@@ -269,9 +396,11 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始三维点云图 | XYZ RMSE 0.98 cm；未失效 |
-| DUFOMap | 三维去动态点图 | XYZ RMSE 0.98 cm；未见改善 |
-| BeautyMap | 三维离线清理图 | XYZ RMSE 1.04 cm；未见改善 |
+| Raw | 原始三维点云图 | 动态点删除 0.00%；静态点保留 100.00% |
+| DUFOMap | 三维去动态点图 | 动态点删除 46.59%；静态点保留 100.00% |
+| BeautyMap | 三维离线清理图 | 动态点删除 74.36%；静态点保留 81.15% |
+
+定位另列 (XYZ RMSE, cm): Raw 0.98 / DUFOMap 0.98 / BeautyMap 1.04.
 
 三维清理确实去除了动态点，但GICP定位仍未见明显收益。
 
@@ -279,9 +408,11 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始三维点云图 | XYZ RMSE 0.93 cm；未失效 |
-| DUFOMap | 三维去动态点图 | XYZ RMSE 1.01 cm；未见改善 |
-| BeautyMap | 三维离线清理图 | XYZ RMSE 1.04 cm；未见改善 |
+| Raw | 原始三维点云图 | 动态点删除 N/A；静态点保留 100.00%（静态A旧图） |
+| DUFOMap | 三维去动态点图 | 动态点删除 N/A；静态点保留 100.00%（静态A旧图） |
+| BeautyMap | 三维离线清理图 | 动态点删除 N/A；静态点保留 83.33%（静态A旧图） |
+
+定位另列 (XYZ RMSE, cm): Raw 0.93 / DUFOMap 1.01 / BeautyMap 1.04.
 
 复用静态三维旧图；未执行变化检测或更新，未见定位改善。
 
@@ -289,9 +420,11 @@ Raw与DUFOMap投影相同；BeautyMap本次低0.39 cm，未测试恢复。
 
 | 方法 | 地图类型 | 指标效果 |
 | --- | --- | --- |
-| Raw | 原始三维点云图 | XYZ RMSE 474.38 cm；恢复后输出不足 |
-| DUFOMap | 三维去动态点图 | XYZ RMSE 497.05 cm；未持续收敛 |
-| BeautyMap | 三维离线清理图 | XYZ RMSE 592.00 cm；未持续收敛 |
+| Raw | 原始三维点云图 | 动态点删除 N/A；静态点保留 100.00% |
+| DUFOMap | 三维去动态点图 | 动态点删除 N/A；静态点保留 100.00% |
+| BeautyMap | 三维离线清理图 | 动态点删除 N/A；静态点保留 99.90% |
+
+定位另列 (XYZ RMSE, cm): Raw 474.38 / DUFOMap 497.05 / BeautyMap 592.00.
 
 Raw与DUFOMap三维图字节相同却得到不同结果；有效输出覆盖不同，不能据此排名。
 
@@ -316,6 +449,14 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 <a id="scene-static-2d"></a>
 
 ### 纯静态
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 2D | 动态格删除 N/A；静态格保留 100.00% |
+| DUFOMap | 2D | 动态格删除 N/A；静态格保留 100.00% |
+| BeautyMap | 2D | 动态格删除 N/A；静态格保留 96.51% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ 返回目录](#practice-index)
 
@@ -369,6 +510,14 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 
 ### 运动障碍物
 
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 2D | 动态格删除 0.00%；静态格保留 100.00% |
+| DUFOMap | 2D | 动态格删除 8.33%；静态格保留 100.00% |
+| BeautyMap | 2D | 动态格删除 33.33%；静态格保留 96.64% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
+
 [↑ 返回目录](#practice-index)
 
 定位器：AMCL；每组291次更新，位置RMSE含初始化。
@@ -418,6 +567,14 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 <a id="scene-change-2d"></a>
 
 ### 持久结构变化
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 2D | 动态格删除 N/A；静态格保留 100.00%（静态A旧图） |
+| DUFOMap | 2D | 动态格删除 N/A；静态格保留 100.00%（静态A旧图） |
+| BeautyMap | 2D | 动态格删除 N/A；静态格保留 96.51%（静态A旧图） |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ 返回目录](#practice-index)
 
@@ -470,6 +627,14 @@ $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\f
 <a id="scene-corridor-2d"></a>
 
 ### 走廊退化
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 2D | 动态格删除 N/A；静态格保留 100.00% |
+| DUFOMap | 2D | 动态格删除 N/A；静态格保留 100.00% |
+| BeautyMap | 2D | 动态格删除 N/A；静态格保留 100.00% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ 返回目录](#practice-index)
 
@@ -547,6 +712,14 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 
 ### 纯静态 · 3D
 
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 3D | 动态点删除 N/A；静态点保留 100.00% |
+| DUFOMap | 3D | 动态点删除 N/A；静态点保留 100.00% |
+| BeautyMap | 3D | 动态点删除 N/A；静态点保留 83.33% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
+
 [↑ 返回目录](#practice-index)
 
 无动态污染需要清理，本次三维定位未见改善。
@@ -572,6 +745,14 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 <a id="scene-dynamic-3d"></a>
 
 ### 运动障碍物 · 3D
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 3D | 动态点删除 0.00%；静态点保留 100.00% |
+| DUFOMap | 3D | 动态点删除 46.59%；静态点保留 100.00% |
+| BeautyMap | 3D | 动态点删除 74.36%；静态点保留 81.15% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ 返回目录](#practice-index)
 
@@ -599,6 +780,14 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 
 ### 持久结构变化 · 3D
 
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 3D | 动态点删除 N/A；静态点保留 100.00%（静态A旧图） |
+| DUFOMap | 3D | 动态点删除 N/A；静态点保留 100.00%（静态A旧图） |
+| BeautyMap | 3D | 动态点删除 N/A；静态点保留 83.33%（静态A旧图） |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
+
 [↑ 返回目录](#practice-index)
 
 复用静态三维旧图；未执行变化检测或更新，未见定位改善。
@@ -624,6 +813,14 @@ AMCL，508次更新；RMSE含1 m初值偏移。三张投影地图相同。
 <a id="scene-corridor-3d"></a>
 
 ### 走廊退化 · 3D
+
+<!-- MAP_QUALITY_VIDEO_TABLE -->
+| 方法 | 地图类型 | 指标效果 |
+| --- | --- | --- |
+| Raw | 3D | 动态点删除 N/A；静态点保留 100.00% |
+| DUFOMap | 3D | 动态点删除 N/A；静态点保留 100.00% |
+| BeautyMap | 3D | 动态点删除 N/A；静态点保留 99.90% |
+<!-- /MAP_QUALITY_VIDEO_TABLE -->
 
 [↑ 返回目录](#practice-index)
 

@@ -48,6 +48,7 @@ SPAWN_Y="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["spaw
 SPAWN_YAW="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["spawn"][2])' "$RUN_DIR/runtime.json")"
 MODE=mapping
 SLAM=true
+if [[ "$FLOW" == *-srrg-* ]]; then SLAM=false; fi
 if [[ "$FLOW" == localization-* ]]; then MODE=localization; SLAM=false; fi
 URDF="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("urdf",sys.argv[2]))' "$RUN_DIR/runtime.json" "$REPO/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf")"
 BRIDGE="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("bridge_config",sys.argv[2]))' "$RUN_DIR/runtime.json" "$REPO/config/robot_profiles/omni-3d-v1/bridge_sensors.yaml")"
@@ -76,6 +77,12 @@ setsid "$REPO/.cache/presentation/truth-build/gz_truth" \
   /world/competition_world/dynamic_pose/info omni_car "$NATIVE_TRUTH" &
 TRUTH_PID=$!
 PIDS+=("$!")
+if [[ "$FLOW" == *-srrg-* ]]; then
+  setsid python3 -u "$HERE/srrg/live.py" "$RUN_DIR" > "$RUN_DIR/logs/srrg-transport.log" 2>&1 &
+  SRRG_PID=$!
+  PIDS+=("$!")
+  timeout 40 ros2 topic echo /scan sensor_msgs/msg/LaserScan --once --field header > "$RUN_DIR/logs/sensor-preflight.log" 2>&1
+fi
 if [[ "$MODE" == mapping && "$FLOW" == *-probe-* ]]; then
   setsid python3 -u "$HERE/collect_probe_mapping.py" "$RUN_DIR" "$NATIVE_TRUTH" > "$RUN_DIR/logs/probe-mapping.log" 2>&1 &
   PROBE_MAPPING_PID=$!
@@ -138,7 +145,7 @@ else
   PIDS+=("$!")
 fi
 # Record the actual ROS inputs, independent of the visual screen capture.
-if [[ "$FLOW" == localization-probe-* ]]; then
+if [[ "$FLOW" == localization-probe-* || "$FLOW" == *-srrg-* ]]; then
   setsid python3 -u "$HERE/window_capture_heartbeat.py" "$RUN_DIR" > "$RUN_DIR/logs/window-capture.log" 2>&1 &
   PIDS+=("$!")
 fi
@@ -165,6 +172,14 @@ if [[ -n "${PROBE_LOCALIZER_PID:-}" ]]; then
     [[ -f "$RUN_DIR/probe-B-inputs.json" ]] && break
     sleep .1
   done
+fi
+if [[ -n "${SRRG_PID:-}" ]]; then
+  for ((srrg_wait=0; srrg_wait<200; srrg_wait++)); do
+    [[ -f "$RUN_DIR/srrg-finished.json" ]] && break
+    kill -0 "$SRRG_PID" 2>/dev/null || break
+    sleep .1
+  done
+  [[ -f "$RUN_DIR/srrg-finished.json" ]] || { echo 'Native SRRG did not finalize; see author/transport logs'; exit 8; }
 fi
 # Keep native windows alive until all Windows capture encoders flush their MP4s.
 # Destroying a WGC source first can leave an encoder waiting for a final frame.

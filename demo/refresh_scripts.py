@@ -18,7 +18,7 @@ for name in LEGACY:
         path.unlink()
 for name in ("presentation.ps1", "record-methods.ps1", "original-live.ps1",
              "original.ps1", "build-maps.ps1", "stop-presentation.ps1", "record-map-review.ps1",
-             "record-probes.ps1", "record-all-probes.ps1", "build-probe-maps.ps1", "refine-probes.ps1"):
+             "record-probes.ps1", "record-all-probes.ps1", "build-probe-maps.ps1", "refine-probes.ps1", "srrg.ps1"):
     (TARGET / name).write_text((SOURCE / name).read_text(encoding="utf-8-sig"), encoding="utf-8-sig")
 
 
@@ -75,6 +75,10 @@ for number, dimension, scene, label in ((51, "2D", "corridor", "原走廊"), (52
                                         (53, "3D", "corridor", "原走廊"), (54, "3D", "height-corridor", "高处对照")):
     bat(f"{number}-{dimension}_{label}_封存输入细化.bat", ps("refine-probes.ps1", f"-Dimension {dimension} -Scene {scene}"))
 bat("55-自动重算四组细化_封存输入.bat", ps("refine-probes.ps1", "-All"))
+bat("56-查看SRRG二维视频与指标.bat", r'start "" "F:\be2演讲\本轮成片\mapping-2d\index.html"')
+for number,scene,label in ((57,'static','静态'),(58,'dynamic','运动障碍物'),(59,'large-change','持久变化_加载旧图'),(60,'corridor','走廊退化')):
+    bat(f'{number}-SRRG二维_{label}.bat',ps('srrg.ps1',f'-Scene {scene}'))
+bat('61-自动录制SRRG二维四场景.bat',ps('srrg.ps1','-All'))
 (TARGET / "使用说明.md").write_text(r"""# 当前现场脚本
 
 - 00：打开最新视频目录。
@@ -92,6 +96,8 @@ bat("55-自动重算四组细化_封存输入.bat", ps("refine-probes.ps1", "-Al
 - 45–49：三维雷达＋同一深度相机，对应相同五个场景。
 - 50：自动录制并验证全部十组。缺少地图A时先采集；已有地图时复用。每组包含Plain、H1 Guard、H2 Depth、H3 LiDAR Search、H3 Depth + Search，以及原生AMCL／GICP参照，真实窗口共同录制。
 - 51–54：分别对二维／三维原走廊和高处对照的封存输入重新计算粗到细候选；55自动重算四组。输出视频是保存位姿的结果回放，没有新增Gazebo实录。
+- 56：SRRG二维视频、地图指标和失败诊断；57–60：相同四类环境的作者原生二维建图，61顺序录制全部四组。静态组导出作者旧图后，持久变化组加载旧图开启多会话更新。需要 Ubuntu-20.04 / Noetic 作者库，首次构建用源库 src/scripts/presentation/srrg/build.py。
+- SRRG主对照保持作者默认关闭图合并；局部动态点融合开启。开启图合并的数值失败单独保留。旧20–24入口仍为三维清理图的二维投影参照。
 - 论文-实时-*：DUFOMap / BeautyMap / IR-MCL 原库计算与 RViz 当前状态。
 - 论文-adam-mcl：一次受限数据试验，单位为格，不作为论文精度复现。
 - 09：正常结束活动仿真。
