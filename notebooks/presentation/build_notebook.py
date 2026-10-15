@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+import re
 
 import nbformat
 from nbclient import NotebookClient
@@ -42,8 +43,21 @@ def make_notebook():
 | --- | --- | --- |
 """ + "\n".join(f"| {title} | [查看](#baseline-2d-{scene}) | [查看](#baseline-3d-{scene}) |" for scene, title in SCENES[:4]) + """
 
-[四篇原库](#authors) · [原生二维SRRG](#srrg-2d) · [逐条误差复算](#score-recompute) · [走廊持续恢复](#corridor-recovery) · [NDT／GICP早期静态试验](#early-3d) · [末尾：开放问题、假设与简单实验](#hypotheses)
+[建图问题与器材](#mapping-focus) · [四篇原库](#authors) · [原生二维SRRG](#srrg-2d) · [逐条误差复算](#score-recompute) · [走廊持续恢复](#corridor-recovery) · [历史定位探索](#hypotheses) · [末尾：建图假设逐项验证](#mapping-checks)
 """)
+    article = (REPO / "docs/HOME.zh-CN.md").read_text(encoding="utf-8")
+    mapping = article.split("## 开放问题\n\n", 1)[1].split("\n\n## 方向分析", 1)[0]
+    equipment = article.split("## 仿真雷达与小车结构参数\n\n", 1)[1].split("\n\n## 实践", 1)[0]
+    def cloud_links(text):
+        def replace(match):
+            target = match.group(1)
+            if target.startswith(("http", "#")):
+                return match.group(0)
+            path = (REPO / "docs" / target).resolve().relative_to(REPO).as_posix()
+            return f"](https://github.com/p20030920p/slam_learning_updated/blob/main/{path})"
+        return re.sub(r"\]\(([^)]+)\)", replace, text)
+    md('<a id="mapping-focus"></a>\n\n## 建图层问题与实验边界\n\n' + cloud_links(mapping))
+    md("## 仿真雷达与小车结构参数\n\n" + cloud_links(equipment))
     code(r"""from pathlib import Path
 import json, csv, hashlib, subprocess, os
 import numpy as np
@@ -196,6 +210,8 @@ print("NDT latest trial:", read(DATA / "robot-ndt-static" / "metrics.json")["cas
         md(f'<a id="baseline-3d-{scene}"></a>\n\n### {title} · 3D\n\n[↑ 返回目录](#notebook-index)')
         code(f"# 同一三维GICP，只改变地图；从完整位姿CSV复算XYZ。\nbaseline_scene('robot-3d-{scene}', '3d')")
     append_hypotheses(md, code)
+    mapping_checks = article.split('<a id="mapping-hypothesis-tests"></a>', 1)[1]
+    md('<a id="mapping-checks"></a>\n\n' + cloud_links(mapping_checks.strip()))
     nb=nbformat.v4.new_notebook(cells=cells)
     nb.metadata['kernelspec']={'display_name':'SLAM 展示 (Python 3.10)','language':'python','name':'slam-presentation'}
     return nb
@@ -204,9 +220,11 @@ print("NDT latest trial:", read(DATA / "robot-ndt-static" / "metrics.json")["cas
 def append_hypotheses(md, code):
     md("""<a id="hypotheses"></a>
 
-## 10. 从开放问题提出假设，再做简单实验
+## 10. 历史定位探索：假设与简单实验
 
 [↑ 返回总目录](#notebook-index)
+
+此节保留此前Guard／Depth／Search定位原型。地图冻结，不能作为新的动态建图假设M5的验证；当前建图问题与逐项证据见文末。
 
 - **H1 Guard**：稳健残差、较小对应门槛、弱方向抑制和里程计正则，检验能否减轻错误匹配。组合实验不能分辨单个组件的贡献。
 - **H2 Depth**：真实4m深度相机提供二维切片以外的高度线索；若仍是平行墙，更多点不保证更多定位信息。

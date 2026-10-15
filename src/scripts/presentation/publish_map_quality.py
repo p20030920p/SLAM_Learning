@@ -105,7 +105,7 @@ def replace_tables(path, chinese):
     path.write_text(text, encoding="utf-8")
 
 
-def minimal():
+def legacy_minimal():
     out = ROOT / "docs/MINIMAL.zh-CN.md"
     slots = json.loads((ROOT / "docs/figures/slots.json").read_text())["slots"]
     captions = {s["path"]: s["caption"].get("zh", s["id"]) for s in slots if s.get("status") == "published"}
@@ -211,4 +211,6 @@ if __name__ == "__main__":
     if "--minimal-only" not in sys.argv:
         replace_tables(ROOT / "README.md", False)
         replace_tables(ROOT / "docs/HOME.zh-CN.md", True)
-    minimal()
+    from publish_minimal import render
+
+    render()

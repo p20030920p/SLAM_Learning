@@ -151,7 +151,7 @@ if "-probe-" in flow and mode == "localization":
     if "-calibrated-" in flow:
         from prepare_calibrated_probe import views as calibrated_views
         calibrated_views(run)
-elif "-3d-" in flow:
+elif mode == "localization" and "-3d-" in flow:
     from prepare_3d import views as prepare_3d_views
     prepare_3d_views(config, cases, run, scene)
 elif os.environ.get("PRESENTATION_MULTI_VIEW") == "true" and mode == "localization":
@@ -230,7 +230,7 @@ manifest = {
 if "-ndt-" in flow or "-gicp-" in flow:
     manifest["input_to_localizers"] = "live 3D /points, wheel odometry and frozen Raw 3D prior map"
     manifest["scope"] = "3D fixed-map scan registration; no new map update, IMU or deskew claim"
-if "-3d-" in flow:
+if mode == "localization" and "-3d-" in flow:
     manifest["input_to_localizers"] = "same live 3D point clouds and wheel odometry; Raw/DUFOMap/BeautyMap frozen 3D maps; no truth input"
     manifest["scope"] = "3D map cleaning with provided mapping-A poses and native GICP localization in fresh B; no full 3D SLAM or online map-update claim"
 if "-probe-" in flow:
@@ -244,5 +244,8 @@ if "-srrg-" in flow:
     manifest["input_to_localizers"] = "actual 2D LaserScan, wheel odometry and measured laser TF; fixed known start anchor only"
     manifest["scope"] = "native author Mapper2D, local projective merger and graph merger; one short session per scene, not full long-term multi-session reproduction"
     manifest["assets"].update({str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in (repo / "src/scripts/presentation/srrg").glob("*") if p.is_file()})
+if flow.startswith("mapping-compare-"):
+    manifest["scope"] = "provided-pose 3D map cleaning in periodic native batches; 2D view is projection; BeautyMap remains offline"
+    manifest["input_to_localizers"] = "none: mapping comparison only; all displayed methods share completed batch inputs"
 (run / "session.json").write_text(json.dumps(manifest, indent=2) + "\n")
 print(json.dumps(manifest, indent=2), flush=True)

@@ -7796,7 +7796,7 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e3478976">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b4eadcfa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7835,11 +7835,77 @@ a.anchor-link {
 </tr>
 </tbody>
 </table>
-<p><a href="#authors">四篇原库</a> · <a href="#srrg-2d">原生二维SRRG</a> · <a href="#score-recompute">逐条误差复算</a> · <a href="#corridor-recovery">走廊持续恢复</a> · <a href="#early-3d">NDT／GICP早期静态试验</a> · <a href="#hypotheses">末尾：开放问题、假设与简单实验</a></p>
+<p><a href="#mapping-focus">建图问题与器材</a> · <a href="#authors">四篇原库</a> · <a href="#srrg-2d">原生二维SRRG</a> · <a href="#score-recompute">逐条误差复算</a> · <a href="#corridor-recovery">走廊持续恢复</a> · <a href="#hypotheses">历史定位探索</a> · <a href="#mapping-checks">末尾：建图假设逐项验证</a></p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3e1fa498">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5869c981">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a id="mapping-focus"></a></p>
+<h2 id="%E5%BB%BA%E5%9B%BE%E5%B1%82%E9%97%AE%E9%A2%98%E4%B8%8E%E5%AE%9E%E9%AA%8C%E8%BE%B9%E7%95%8C">建图层问题与实验边界<a class="anchor-link" href="#%E5%BB%BA%E5%9B%BE%E5%B1%82%E9%97%AE%E9%A2%98%E4%B8%8E%E5%AE%9E%E9%AA%8C%E8%BE%B9%E7%95%8C">¶</a></h2><p><strong>大方向：变化环境中的可靠建图与定位。</strong> 原来的“退化与大变动下定位自恢复”适合作为长期方向，但同时跨越建图、配准、重定位和多传感器融合，对当前论文与实验过于开放。</p>
+<p><strong>本轮小问题：在给定多帧扫描和建图位姿的条件下，如何删除动态障碍物残影，同时保留静态结构；这种地图改善在什么污染和几何条件下，能够降低独立定位的误差？</strong> 先验证地图，再检验定位；不把“地图更干净”直接写成“保证定位准确”。<a href="https://github.com/p20030920p/slam_learning_updated/blob/main/docs/testing/MAPPING-FOCUS.zh-CN.md">问题边界与论文依据</a> · <a href="https://github.com/p20030920p/slam_learning_updated/blob/main/docs/self-recovery/DESIGN.zh-CN.md">原自恢复背景</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48423af3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="%E4%BB%BF%E7%9C%9F%E9%9B%B7%E8%BE%BE%E4%B8%8E%E5%B0%8F%E8%BD%A6%E7%BB%93%E6%9E%84%E5%8F%82%E6%95%B0">仿真雷达与小车结构参数<a class="anchor-link" href="#%E4%BB%BF%E7%9C%9F%E9%9B%B7%E8%BE%BE%E4%B8%8E%E5%B0%8F%E8%BD%A6%E7%BB%93%E6%9E%84%E5%8F%82%E6%95%B0">¶</a></h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>实际设置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>Sim2Real全向底盘；ROS 2 Jazzy＋Gazebo Harmonic；理想仿真传感器，实体测试待做</td>
+</tr>
+<tr>
+<td>底盘结构</td>
+<td>三个全向轮，间隔120°；轮半径0.06364 m；轮心到车体中心0.1934 m；碰撞圆柱半径0.20 m、高0.14 m</td>
+</tr>
+<tr>
+<td>质量／接触</td>
+<td>base_link为0.953513 kg，每轮0.20 kg；滚子以球形接触和方向摩擦近似，μ=0.02／2.0</td>
+</tr>
+<tr>
+<td>二维雷达</td>
+<td>通用gpu_lidar，720束、360°、10 Hz、0.08–12 m；相对base_link安装位置(0.06, 0, 0.16) m</td>
+</tr>
+<tr>
+<td>三维雷达</td>
+<td>通用gpu_lidar，水平720×垂直16束、360°×30°（±15°）、10 Hz、0.08–12 m；安装位置(0, 0, 0.30) m</td>
+</tr>
+<tr>
+<td>RGB相机</td>
+<td>640×480、15 Hz、水平视场80°；安装位置(0.18, 0, 0.12) m</td>
+</tr>
+<tr>
+<td>深度假设组</td>
+<td>实际渲染depth_camera：320×240、10 Hz、水平80°、0.25–4 m；未加实体噪声模型；原生二维／SRRG组移除三维雷达</td>
+</tr>
+<tr>
+<td>地图表示</td>
+<td>三维源点；旧二维投影为0.05 m格、世界Z=0.12–1.20 m、一格占据膨胀；SRRG使用独立的原生二维地图及覆盖容差</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/p20030920p/slam_learning_updated/blob/main/config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf">实际机器人URDF</a> · <a href="https://github.com/p20030920p/slam_learning_updated/blob/main/src/scripts/presentation/probe_sensors.py">深度相机和传感器分组</a> · <a href="https://github.com/p20030920p/slam_learning_updated/blob/main/src/scripts/presentation/build_maps.py">地图投影</a>。安装位置相对base_link，不能当作离地高度；仿真16线雷达没有指定商用型号。</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75ba53b2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7891,7 +7957,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9058de4e">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2c07c251">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7902,7 +7968,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b127002c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17be29b2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7990,7 +8056,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=c44a6f08">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=9b9eeafb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8023,7 +8089,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fd49e900">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6d7c8392">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8111,7 +8177,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=c5fc60b3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=adfceb98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8144,7 +8210,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=81e052fe">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dbcb0f88">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8220,7 +8286,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=95621150">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=1dcfb5d0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8253,7 +8319,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=942b9c1d">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cd569b5d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8339,7 +8405,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=bc6521d9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=664a27cb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8373,7 +8439,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bdae735f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f3bcbebf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8383,7 +8449,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=edf3fe31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b1db1e2a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8420,7 +8486,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1953311c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2ed8cc89">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8430,7 +8496,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4ed4fb92">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=418174e1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8479,7 +8545,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ed104abc">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2642bc9a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8489,7 +8555,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=c3df77f4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=c2853448">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8570,7 +8636,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9afa6f6c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40ee5937">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8607,7 +8673,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2baaf0a8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3512ea38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8644,7 +8710,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23e59c1c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16ee9c0c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8682,7 +8748,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ee1448c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd9e0699">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8698,7 +8764,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=631bdedd">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=eb3c934d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8709,7 +8775,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19478559">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=eb074885">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8756,7 +8822,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6d341c56">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0dd83fed">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8767,7 +8833,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23f4bd1b">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1e196aa7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8814,7 +8880,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ce2fa6e8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12ea66ae">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8825,7 +8891,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6fb4f081">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8dd28e14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8872,7 +8938,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0c5c3d4a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1da740c4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8883,7 +8949,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a86e02e4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3b8967a4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8930,7 +8996,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15f76ca2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3d3bb0a5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8941,7 +9007,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b0ecc6a9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=94cb42ef">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9019,7 +9085,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=044acf41">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fd23ec49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9030,7 +9096,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=77b63bcd">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a96edca0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9041,7 +9107,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fa71f888">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7b37805e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9117,7 +9183,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c7da2868">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0f6db880">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9128,7 +9194,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84dbf130">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62a9b497">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9204,7 +9270,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59bc2a8c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1cc8561f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9215,7 +9281,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77f74c23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=486e4454">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9291,7 +9357,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6cceaca0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3c46c9b7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9302,7 +9368,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2e4448b3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=060bc1f1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9378,7 +9444,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27d15cad">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=768d24dd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9389,7 +9455,7 @@ desktop-live-beautymap SA 96.95294524629469 DA 98.33824739797673 HA 97.640682987
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5676ff13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4eaf34ce">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9441,17 +9507,17 @@ robot-2d-dynamic-matched dufomap-samples N= 291 RMSE cm= 8.186796407189753 yaw d
 robot-2d-dynamic-matched raw-samples N= 291 RMSE cm= 7.519897011405143 yaw deg= 1.776054667799004
 robot-live-large-change beautymap-samples N= 290 RMSE cm= 6.3853469392372215 yaw deg= 1.0388999351001589
 robot-live-large-change dufomap-samples N= 290 RMSE cm= 6.837866295344007 yaw deg= 1.0198390984575956
-robot-live-large-change raw-samples N= 290 RMSE cm= 6.837866295344007 yaw deg= 1.0198390984575956
-robot-corridor-v2 beautymap-samples N= 508 RMSE cm= 71.6034538089802 yaw deg= 0.8136684104818286
-robot-corridor-v2 degraded_beautymap-samples N= 508 RMSE cm= 72.52638342027143 yaw deg= 0.8545970026150744
-robot-corridor-v2 degraded_dufomap-samples N= 508 RMSE cm= 72.52638342027143 yaw deg= 0.8545970026150744
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>robot-corridor-v2 degraded_raw-samples N= 508 RMSE cm= 72.52638342027143 yaw deg= 0.8545970026150744
+<pre>robot-live-large-change raw-samples N= 290 RMSE cm= 6.837866295344007 yaw deg= 1.0198390984575956
+robot-corridor-v2 beautymap-samples N= 508 RMSE cm= 71.6034538089802 yaw deg= 0.8136684104818286
+robot-corridor-v2 degraded_beautymap-samples N= 508 RMSE cm= 72.52638342027143 yaw deg= 0.8545970026150744
+robot-corridor-v2 degraded_dufomap-samples N= 508 RMSE cm= 72.52638342027143 yaw deg= 0.8545970026150744
+robot-corridor-v2 degraded_raw-samples N= 508 RMSE cm= 72.52638342027143 yaw deg= 0.8545970026150744
 robot-corridor-v2 dufomap-samples N= 508 RMSE cm= 71.6034538089802 yaw deg= 0.8136684104818286
 robot-corridor-v2 raw-samples N= 508 RMSE cm= 71.6034538089802 yaw deg= 0.8136684104818286
 </pre>
@@ -9460,7 +9526,7 @@ robot-corridor-v2 raw-samples N= 508 RMSE cm= 71.6034538089802 yaw deg= 0.813668
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ffc823e7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fc0e3882">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9471,7 +9537,7 @@ robot-corridor-v2 raw-samples N= 508 RMSE cm= 71.6034538089802 yaw deg= 0.813668
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5cfc9a40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6cceac3f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9559,7 +9625,7 @@ robot-corridor-v2 raw-samples N= 508 RMSE cm= 71.6034538089802 yaw deg= 0.813668
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c9facd03">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9f1b6eb4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9570,7 +9636,7 @@ robot-corridor-v2 raw-samples N= 508 RMSE cm= 71.6034538089802 yaw deg= 0.813668
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=626132f1">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3a26fd78">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9635,7 +9701,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=515e2c5b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b110d13f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9646,7 +9712,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2ebb0432">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=133880f9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9657,7 +9723,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=baf85032">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c4187646">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9715,7 +9781,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f87f1797">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=824be564">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9726,7 +9792,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f282954e">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fa948f81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9784,7 +9850,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=be8783af">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6d4f6baf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9795,7 +9861,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6addacd7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=587a555a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9853,7 +9919,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76168fe5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e70b3a08">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9864,7 +9930,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55e71a52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ada16759">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9922,14 +9988,15 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8cc37701">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d6528d6c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="hypotheses"></a></p>
-<h2 id="10.-%E4%BB%8E%E5%BC%80%E6%94%BE%E9%97%AE%E9%A2%98%E6%8F%90%E5%87%BA%E5%81%87%E8%AE%BE%EF%BC%8C%E5%86%8D%E5%81%9A%E7%AE%80%E5%8D%95%E5%AE%9E%E9%AA%8C">10. 从开放问题提出假设，再做简单实验<a class="anchor-link" href="#10.-%E4%BB%8E%E5%BC%80%E6%94%BE%E9%97%AE%E9%A2%98%E6%8F%90%E5%87%BA%E5%81%87%E8%AE%BE%EF%BC%8C%E5%86%8D%E5%81%9A%E7%AE%80%E5%8D%95%E5%AE%9E%E9%AA%8C">¶</a></h2><p><a href="#notebook-index">↑ 返回总目录</a></p>
+<h2 id="10.-%E5%8E%86%E5%8F%B2%E5%AE%9A%E4%BD%8D%E6%8E%A2%E7%B4%A2%EF%BC%9A%E5%81%87%E8%AE%BE%E4%B8%8E%E7%AE%80%E5%8D%95%E5%AE%9E%E9%AA%8C">10. 历史定位探索：假设与简单实验<a class="anchor-link" href="#10.-%E5%8E%86%E5%8F%B2%E5%AE%9A%E4%BD%8D%E6%8E%A2%E7%B4%A2%EF%BC%9A%E5%81%87%E8%AE%BE%E4%B8%8E%E7%AE%80%E5%8D%95%E5%AE%9E%E9%AA%8C">¶</a></h2><p><a href="#notebook-index">↑ 返回总目录</a></p>
+<p>此节保留此前Guard／Depth／Search定位原型。地图冻结，不能作为新的动态建图假设M5的验证；当前建图问题与逐项证据见文末。</p>
 <ul>
 <li><strong>H1 Guard</strong>：稳健残差、较小对应门槛、弱方向抑制和里程计正则，检验能否减轻错误匹配。组合实验不能分辨单个组件的贡献。</li>
 <li><strong>H2 Depth</strong>：真实4m深度相机提供二维切片以外的高度线索；若仍是平行墙，更多点不保证更多定位信息。</li>
@@ -9978,7 +10045,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4f5d6574">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0cef918e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10028,7 +10095,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3423f472">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26a23a86">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10039,7 +10106,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e2439f20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67dcde8f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10050,7 +10117,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f6c1426e">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d682b4ed">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10096,7 +10163,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b795c288">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f4b4cc97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10107,7 +10174,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4994f82c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1bedac3f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10153,7 +10220,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7f21e8ef">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6e6ebb4e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10164,7 +10231,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a011c3e8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27dff82f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10210,7 +10277,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cb099570">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8e78b8cd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10221,7 +10288,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28d03928">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5f3e63a6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10261,7 +10328,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12d8888b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=77fa8dc6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10273,7 +10340,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b696bd13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d6333e70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10313,7 +10380,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38370154">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3e1a854a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10324,7 +10391,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=500fc3e3">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1d6f2daf">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10335,7 +10402,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68230f69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e481b616">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10375,7 +10442,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1ff323bb">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1eb15fce">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10386,7 +10453,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53a61d90">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a43f9870">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10426,7 +10493,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=be86e017">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6e2b0aa2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10437,7 +10504,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14bee048">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c110a72e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10477,7 +10544,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2bc7e886">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6d4af927">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10488,7 +10555,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c6e8d42a">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c89c1a47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10534,7 +10601,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d3d6c023">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28a84dc1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10546,7 +10613,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=394241e9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=81c4935e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10592,7 +10659,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=507cdceb">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7b286a5e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10626,7 +10693,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2e71e0ed">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49f8d5b7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10637,7 +10704,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51093249">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22a9b7cd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10676,7 +10743,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e92e01e7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f749810e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10687,7 +10754,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=eb43ca4a">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d6a74d8b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10726,7 +10793,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a03134f9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9dafacbe">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10737,7 +10804,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d4392f7c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7c398c8e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10776,7 +10843,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e778d8c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6f5ba631">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10787,7 +10854,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49607c8b">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dc8c9bb5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10826,7 +10893,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0d7a28fa">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91909d8b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10837,7 +10904,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9bfecbf4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=544253ee">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10898,7 +10965,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bf7d4c9a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=679927ca">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10916,7 +10983,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b3b500f6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cfd7f2e1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10954,7 +11021,7 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=b5e0033f">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell celltag_manual-live-launch" id="cell-id=de991fee">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10991,6 +11058,49 @@ NDT latest trial: {'ndt': {'samples': 402, 'dropped_unsynchronized': 1, 'positio
 封存输入重新推理，结果回放: powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\workspace\be2\slam_learning_updated\demo\refine-probes.ps1 -All
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=af50ed5f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a id="mapping-checks"></a></p>
+<h2 id="%E5%BB%BA%E5%9B%BE%E5%81%87%E8%AE%BE%E4%B8%8E%E9%80%90%E9%A1%B9%E9%AA%8C%E8%AF%81">建图假设与逐项验证<a class="anchor-link" href="#%E5%BB%BA%E5%9B%BE%E5%81%87%E8%AE%BE%E4%B8%8E%E9%80%90%E9%A1%B9%E9%AA%8C%E8%AF%81">¶</a></h2><p>本轮问题聚焦<strong>地图清理</strong>。假设由易到难逐项检验；前提不成立，就不能继续推出定位收益。已有Guard／Depth／Search仅作为标明范围的定位探索附录保留。</p>
+<table>
+<thead>
+<tr>
+<th>假设：由易到难</th>
+<th>已有简单实验／结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1：多帧可见性能够删除动态残影</td>
+<td>动态场景：DUFOMap删除46.59%、BeautyMap删除74.36%的三维动态点；原生二维SRRG删除42.31%的已验证动态残影格。分母不同，不跨方法排名。</td>
+</tr>
+<tr>
+<td>M2：删动态时能保留静态约束</td>
+<td>同场景：三维静态保留DUFOMap为99.998%、BeautyMap为81.15%；SRRG二维静态覆盖为99.51%。BeautyMap本次删得更多，也损失更多静态支持。</td>
+</tr>
+<tr>
+<td>M3：三维清理收益能保留到二维投影</td>
+<td>同图重新评分：投影动态格删除仅8.33%／33.33%，只部分支持；原生二维SRRG是另一种表示和对照。</td>
+</tr>
+<tr>
+<td>M4：残影污染有效约束时，地图更干净才能降低独立定位B误差</td>
+<td>动态GICP的Raw／DUFO／Beauty XYZ RMSE为0.98／0.98／1.04 cm，尚无收益证据。固定定位器、逐级增加污染并重复的实验待做；SRRG独立定位B也待测。</td>
+</tr>
+<tr>
+<td>M5：二维雷达＋深度相机能够区分遮挡与静态结构</td>
+<td>已有Depth实验只检验定位，未见普遍稳定收益。将时序深度可见性用于地图更新门控，并对照二维SRRG和三维参照，仍是未验证的建图假设。</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/p20030920p/slam_learning_updated/blob/main/docs/testing/MAPPING-FOCUS.zh-CN.md">建图问题、论文依据与后续单因素实验</a> · <a href="https://github.com/p20030920p/slam_learning_updated/blob/main/docs/testing/MAP-METRICS.zh-CN.md">地图指标与故障时间点</a>。静态和走廊是边界对照：删除点不能凭空增加缺失几何；持久变化需另测地图更新。</p>
 </div>
 </div>
 </div>

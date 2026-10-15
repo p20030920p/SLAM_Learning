@@ -2,6 +2,8 @@
 
 [English](DESIGN.md) | 中文
 
+本页保留大范围自恢复问题的背景分析。当前问题已[收窄到动态建图](../testing/MAPPING-FOCUS.zh-CN.md)：控制位姿，只干预地图层；自恢复作为长期方向。
+
 **大方向：Robust localization and SLAM in dynamic environments，动态环境中的鲁棒定位与 SLAM。** 在这一方向下保留开放问题：**在退化与大变动环境中，什么样的策略能够有效地让定位系统自恢复？** 当前成果目标是作者原库复现，以及使用 Sim2Real-AlgoBench 机器人逐步加难的点云建图和定位测试。
 
 ## 这个开放问题是否有道理

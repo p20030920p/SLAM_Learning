@@ -4,6 +4,18 @@ from pathlib import Path
 SOURCE = Path(__file__).resolve().parent
 TARGET = Path(r"F:\be2演讲\实机脚本").resolve()
 TARGET.mkdir(parents=True, exist_ok=True)
+PPT_TARGET = Path(r"F:\be2演讲\ppt")
+PPT_TARGET.mkdir(parents=True, exist_ok=True)
+for number, dimension, method, label in (
+    (1, "2D", "all", "二维投影-三方法同屏"),
+    (2, "3D", "all", "三维-三方法同屏"),
+    (3, "2D", "choose", "二维投影-单方法选择"),
+    (4, "3D", "choose", "三维-单方法选择"),
+):
+    command = f'powershell.exe -NoProfile -ExecutionPolicy Bypass -File "{SOURCE / "mapping-demo.ps1"}" -Dimension {dimension} -Method {method}'
+    (PPT_TARGET / f"{number:02d}-{label}-键盘建图.bat").write_bytes(
+        ("@echo off\nchcp 65001 >nul\n" + command + "\npause\n").replace("\n", "\r\n").encode("utf-8")
+    )
 LEGACY = (
     "03-静态定位对照.bat", "04-动态定位与论文地图对照.bat",
     "06-退化定位与观测恢复.bat", "07-持久结构变化定位.bat",
@@ -16,7 +28,7 @@ for name in LEGACY:
         raise ValueError("Cleanup escaped the named script directory")
     if path.is_file():
         path.unlink()
-for name in ("presentation.ps1", "record-methods.ps1", "original-live.ps1",
+for name in ("presentation.ps1", "mapping-demo.ps1", "record-methods.ps1", "original-live.ps1",
              "original.ps1", "build-maps.ps1", "stop-presentation.ps1", "record-map-review.ps1",
              "record-probes.ps1", "record-all-probes.ps1", "build-probe-maps.ps1", "refine-probes.ps1", "srrg.ps1"):
     (TARGET / name).write_text((SOURCE / name).read_text(encoding="utf-8-sig"), encoding="utf-8-sig")

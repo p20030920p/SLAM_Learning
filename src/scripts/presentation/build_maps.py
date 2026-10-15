@@ -67,6 +67,8 @@ def main():
     parser.add_argument("--beauty-range", type=float, default=8)
     parser.add_argument("--beauty-xy", type=float, default=.5)
     parser.add_argument("--beauty-z", type=float, default=.2)
+    parser.add_argument("--methods", nargs="+", choices=("raw", "dufomap", "beautymap"),
+                        default=["raw", "dufomap", "beautymap"])
     args = parser.parse_args()
     sys.path.insert(0, str(args.physical_root / "src"))
     from native_beautymap import run_beautymap
@@ -87,7 +89,7 @@ def main():
     args.output.mkdir(parents=True, exist_ok=False)
     write_pcd(args.output / "raw-map.pcd", raw)
     records = {}
-    for method in ("raw", "dufomap", "beautymap"):
+    for method in args.methods:
         started = time.perf_counter()
         print(f"NATIVE MAP PROCESSING: {method}; same {len(scans)} measured 3D scans", flush=True)
         points = raw

@@ -4,30 +4,32 @@
 
 **Robust localization and SLAM in dynamic environments**
 
-Robust localization and SLAM in dynamic environments · Localization self-recovery
+Dynamic map cleaning · Static structure retention · Downstream localization
 
 [![CPU reproducibility](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](src/pyproject.toml)
 
-English | [中文](docs/HOME.zh-CN.md)
+English | [中文](docs/HOME.zh-CN.md) | [Minimal English](docs/MINIMAL.md) | [极简中文](docs/MINIMAL.zh-CN.md)
 
 [Open question](#open-question) · [Direction](#direction-analysis) · [Related works](#related-works) · [Hypothesis](#hypothesis)
 
-[Results](#reproduction-results) · [Evidence](#evidence) · [Hypothesis](#hypothesis) · [Branches](#branches)
+[Results](#reproduction-results) · [Evidence](#evidence) · [Hypothesis](#hypothesis) · [Simulation setup](#simulation-sensors-and-chassis) · [Branches](#branches)
 
 </div>
 
 ## Open question
 
-**What strategies enable localization self-recovery under degradation and substantial environmental change?** Analyze failure mechanisms, recovery targets and boundaries before choosing a strategy. Deliver author-code reproductions and progressively harder point-cloud mapping/localization tests on the Sim2Real-AlgoBench robot. [Question analysis](docs/self-recovery/DESIGN.md) · [Robot test protocol](docs/testing/PROTOCOL.md) · [Chinese talk](docs/self-recovery/TALK.zh-CN.md) · [Status](docs/self-recovery/STATUS.zh-CN.md).
+**Broad direction: reliable mapping and localization in changing environments.** Self-recovery under degradation and large change spans mapping, registration, relocalization and sensor fusion; it is too broad for the present paper set and experiments.
+
+**Focused question: given multi-frame scans and mapping poses, how can dynamic traces be removed while retaining static structure, and under which contamination and geometry conditions does this map improvement reduce held-out localization error?** Validate the map first, then test localization; cleaning does not guarantee accurate pose. [Scope and paper basis](docs/testing/MAPPING-FOCUS.md) · [Earlier recovery background](docs/self-recovery/DESIGN.md).
 
 ## Direction analysis
 
-**SLAM (Simultaneous Localization and Mapping)** estimates motion while building a map. The direction includes dynamic-environment mapping, localization and SLAM; self-recovery is an open question within it.
+**SLAM** estimates motion and a map jointly. The current intervention is at the map layer, controlling mapping poses and the downstream localizer. Dynamic cleaning, persistent-change updates and corridor observability are separate mechanisms. IR-MCL/AdaM-MCL remain localization references.
 
 ![SLAM pose-map estimation and recovery: physical chassis and sensors, Gazebo scans, provided-pose map and corridor](docs/assets/slam-recovery-flow.en.v2.png)
 
-The open question concerns recovery of pose estimation after failure, influenced by observation quality and map validity. A narrower candidate is: **after geometric observations become informative again, how can fixed-map localization avoid false convergence and confirm recovery?** [Editable English diagram](docs/assets/slam-recovery-flow.en.v2.pptx) · [Image sources](docs/assets/direction/sources.json). Hardware photographs document the existing chassis/sensors; physical tests remain pending.
+The current chain is **dynamic trace removal → static constraint retention → held-out localization test**. The diagram above remains an earlier recovery-context illustration, rather than the current focused research framework. [Earlier editable diagram](docs/assets/slam-recovery-flow.en.v2.pptx) · [Image sources](docs/assets/direction/sources.json). Hardware photographs document existing equipment; physical experiments remain pending.
 
 | Deliverable | Content |
 | --- | --- |
@@ -118,7 +120,17 @@ The paper evaluates long-term dynamic 2D mapping on LCAS–STRANDS and MIT Stata
 
 ## Hypothesis
 
-Test whether cleaner maps also improve recovery, better nominal observation models expand recovery range, and remaining stable structure limits recovery against obsolete maps. Complete native reproduction and progressive tests before choosing an intervention. [Analysis and counterexamples](docs/self-recovery/DESIGN.md).
+The current question is about **map cleaning**. Test hypotheses in order; a failed condition stops a claim from propagating to localization. Existing pose-only Guard/Depth/Search experiments remain as a labelled exploratory appendix.
+
+| Hypothesis, easy → hard | Existing simple test / outcome |
+| --- | --- |
+| M1: temporal visibility can remove dynamic traces | Dynamic scene: DUFOMap removes 46.59% / BeautyMap 74.36% of 3D dynamic points; native 2D SRRG removes 42.31% of verified dynamic ghost cells. Different denominators; no cross-method ranking. |
+| M2: removal can preserve static constraints | Same scene: 3D static retention DUFOMap 99.998%, BeautyMap 81.15%; SRRG 2D static coverage 99.51%. BeautyMap's removal gain has a static-loss cost here. |
+| M3: a 3D cleaning gain survives 2D projection | Re-score the same maps: projected dynamic-cell removal is only 8.33% / 33.33%; supported only partially. Native 2D SRRG is a separate representation/control. |
+| M4: cleaner maps lower held-out pose error when ghosts corrupt useful constraints | Dynamic GICP XYZ RMSE Raw/DUFO/Beauty=0.98/0.98/1.04 cm: no benefit established. Vary contamination and repeat with a frozen localizer; this dose-response experiment is pending. SRRG's separate localization B is also pending. |
+| M5: a 2D lidar + depth camera can disambiguate occluded static structure | Existing Depth experiments test pose estimation only, with no stable general gain. A temporal depth visibility gate for map updates, compared with 2D-only SRRG and 3D reference, remains an untested mapping hypothesis. |
+
+[Mapping question, paper links and controlled next tests](docs/testing/MAPPING-FOCUS.md) · [Map-quality evidence and failure timestamps](docs/testing/MAP-METRICS.zh-CN.md). Static and corridor scenes are controls: deleting points cannot create missing geometry. Persistent change needs a separate map-update test.
 
 ## Reproduction results
 
@@ -206,6 +218,21 @@ Authored 128-cell indoor plan, one held-out scene, 123 filter updates, 200 parti
 
 
 [AI use](docs/guides/DISCLOSURE.md) · [Sources/licenses](docs/guides/ATTRIBUTION.md) · [Citation](docs/CITATION.cff) · [License](src/LICENSE)
+## Simulation sensors and chassis
+
+| Item | Actual configuration |
+| --- | --- |
+| Platform | Sim2Real omni chassis; ROS 2 Jazzy + Gazebo Harmonic; ideal simulated sensors, physical tests pending |
+| Chassis | Three omni wheels, 120° spacing; wheel radius 0.06364 m; wheel-centre radius 0.1934 m; collision cylinder radius 0.20 m, height 0.14 m |
+| Mass / contact | Base link 0.953513 kg; each wheel 0.20 kg; passive rollers approximated by spherical contact and directional friction, μ=0.02 / 2.0 |
+| 2D lidar | Generic gpu_lidar, 720 rays, 360°, 10 Hz, 0.08–12 m; base_link offset (0.06, 0, 0.16) m |
+| 3D lidar | Generic gpu_lidar, 720 azimuth × 16 elevation samples, 360° × 30° (±15°), 10 Hz, 0.08–12 m; offset (0, 0, 0.30) m |
+| RGB camera | 640×480, 15 Hz, 80° horizontal FOV; offset (0.18, 0, 0.12) m |
+| Depth hypothesis arm | Actual rendered depth_camera: 320×240, 10 Hz, 80° horizontal FOV, 0.25–4 m; no hardware noise model; native 2D/SRRG arms omit the 3D lidar |
+| Map representation | 3D source points; legacy 2D projection: 0.05 m cells, world Z=0.12–1.20 m, one-cell occupied dilation; SRRG has its own native 2D map and scoring tolerance |
+
+[Actual robot URDF](config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf) · [Depth/sensor-arm generation](src/scripts/presentation/probe_sensors.py) · [Map projection](src/scripts/presentation/build_maps.py). Sensor offsets are relative to base_link, not height above the floor. The 16-line simulator is not a claim of a specific commercial lidar model.
+
 ## Practice
 
 [极简：全部 GIF 与指标](docs/MINIMAL.zh-CN.md)
@@ -435,6 +462,10 @@ Raw and DUFOMap 3D maps are byte-identical yet tracking differs. Output coverage
 Each saved native pose update is paired with independent Gazebo robot truth within **0.05 simulation seconds**. Both use the same map/world frame; no spatial fitting is applied. The scored files include initialization and retain rejected timestamp counts.
 
 $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\frac1N\sum_{i=1}^N e_i^2}.$$
+
+Native 3D GICP uses full 3D maps/clouds and XYZ outputs in `*-poses3d.csv`, with the same ≤0.05 s synchronization rule. Missing outputs are not filled with zero; report count, first/last timestamp and common coverage. Unequal corridor coverage prevents ranking whole-run RMSE. Dynamic removal/static retention are separate map metrics.
+
+$$e_{i,xyz}=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2+(\hat z_i-z_i)^2},\quad \mathrm{RMSE}_{xyz}=100\sqrt{\frac1N\sum_{i=1}^N e_{i,xyz}^2}\;\text{cm}.$$
 
 Yaw differences are wrapped to $[-\pi,\pi]$ before RMS and converted to degrees. Metres × 100 gives centimetres. **Live execution** records real computation in wall time; **Measured result replay** draws saved estimates and truth in simulation time, with no new inference. The replay curve is instantaneous error, while its RMSE label uses the full scored CSV. [CSV, window rules and recovery criterion](docs/testing/LIVE.md#how-errors-are-calculated) · [Executable score code](src/scripts/presentation/observe_session.py).
 
@@ -913,7 +944,9 @@ Actual native Gazebo + RViz + Terminal. The RViz viewport fills its window and i
 
 <a id="hypothesis-experiments"></a>
 
-## Hypotheses and small experiments
+## Earlier localization hypotheses and small experiments
+
+This appendix preserves earlier pose-level exploration with frozen maps; it does not validate dynamic mapping.
 
 The earlier results suggest three directions to test:
 
@@ -1265,3 +1298,20 @@ An approximately 20cm plateau in the initial height control motivated a 0.1m ref
 - **Bounded search and recovery checks**: after full observations return in the original corridor, lidar search reaches sustained convergence in 5.8s/6.2s for 2D/3D. High scores and two consistent proposals are not sufficient: coarse depth search accepted an approximately 20cm bias in the 2D height control, which refinement corrected.
 
 [Detailed diagnosis and next directions](docs/testing/HYPOTHESES.md#hypothesis-findings) · [Per-frame summary](results/analysis/hypotheses/calibrated-summary.json) · [Initial trials and unsuccessful refinements](demo/hypotheses-diagnostics.html). These ideal simulations use supplied-pose mapping A and frozen-map localization B. Autonomous mapping using only inexpensive sensors, physical kidnapping and hardware performance remain untested.
+
+
+<a id="mapping-hypothesis-tests"></a>
+
+## Mapping hypotheses and sequential checks
+
+The current question is about **map cleaning**. Test hypotheses in order; a failed condition stops a claim from propagating to localization. Existing pose-only Guard/Depth/Search experiments remain as a labelled exploratory appendix.
+
+| Hypothesis, easy → hard | Existing simple test / outcome |
+| --- | --- |
+| M1: temporal visibility can remove dynamic traces | Dynamic scene: DUFOMap removes 46.59% / BeautyMap 74.36% of 3D dynamic points; native 2D SRRG removes 42.31% of verified dynamic ghost cells. Different denominators; no cross-method ranking. |
+| M2: removal can preserve static constraints | Same scene: 3D static retention DUFOMap 99.998%, BeautyMap 81.15%; SRRG 2D static coverage 99.51%. BeautyMap's removal gain has a static-loss cost here. |
+| M3: a 3D cleaning gain survives 2D projection | Re-score the same maps: projected dynamic-cell removal is only 8.33% / 33.33%; supported only partially. Native 2D SRRG is a separate representation/control. |
+| M4: cleaner maps lower held-out pose error when ghosts corrupt useful constraints | Dynamic GICP XYZ RMSE Raw/DUFO/Beauty=0.98/0.98/1.04 cm: no benefit established. Vary contamination and repeat with a frozen localizer; this dose-response experiment is pending. SRRG's separate localization B is also pending. |
+| M5: a 2D lidar + depth camera can disambiguate occluded static structure | Existing Depth experiments test pose estimation only, with no stable general gain. A temporal depth visibility gate for map updates, compared with 2D-only SRRG and 3D reference, remains an untested mapping hypothesis. |
+
+[Mapping question, paper links and controlled next tests](docs/testing/MAPPING-FOCUS.md) · [Map-quality evidence and failure timestamps](docs/testing/MAP-METRICS.zh-CN.md). Static and corridor scenes are controls: deleting points cannot create missing geometry. Persistent change needs a separate map-update test.

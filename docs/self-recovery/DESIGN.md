@@ -2,6 +2,8 @@
 
 English | [中文](DESIGN.zh-CN.md)
 
+This page preserves the broad recovery background. The current [focused mapping question](../testing/MAPPING-FOCUS.md) controls poses and intervenes at the map layer; recovery is a longer-term direction.
+
 **Direction: Robust localization and SLAM in dynamic environments.** Retain the open question: **What strategies enable localization self-recovery under degradation and substantial environmental change?** Deliver author-code reproductions and progressively harder point-cloud mapping/localization tests on the Sim2Real-AlgoBench robot.
 
 ## Is the question reasonable

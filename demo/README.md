@@ -49,3 +49,14 @@ Live execution 是当前计算的窗口实录；Measured result replay 绘制该
 新结果在 `F:\be2演讲\本轮成片\hypotheses`，按2D／3D分开，页面自带可跳转目录和三列表格。录屏准备阶段定位器已开始计算；早于视频的起始误差与接受事件保存在CSV和日志中。
 
 校准版原始会话位于 `F:\be2演讲\原始会话\hypotheses-calibrated`。车体高度由独立建图A位姿与实际URDF外参得到，定位B不读取真值；固定高度只用于本轮平坦地面。首轮高度设置错误的十组与无效细化结果保留为排查档案。
+## 现场建图对比：四个演示入口
+
+`F:\be2演讲\ppt`中的四个BAT分别打开二维投影／三维的三窗口对比和单方法选择。先选静态、运动障碍、持久变化或走廊；单方法入口再选Raw／DUFOMap／BeautyMap。Gazebo与键盘终端同时打开，三方法使用同一份已完成批次的实测输入。
+
+键盘在MAP-KEYBOARD终端：i/k前后、j/l转向、u/o横移、空格停止、q结束。保持按键或重复按键驱动，0.4秒无输入自动停止；默认手动控制。每15仿真秒请求一次新的清理批次，实际刷新间隔还取决于原库计算时间；窗口显示批次数据截止时间。首次至少收集5帧，清理结束前显示等待。
+
+三方法入口将三个RViz排在上方，Gazebo与键盘终端排在下方；单方法入口将RViz排在右侧，Gazebo与键盘排在左侧。只排布本次新开的窗口。
+
+**范围：**两种视图都使用实际16线三维扫描和提供的同步建图位姿；二维是同一清理图的投影，原生二维方法另见SRRG。DUFOMap／BeautyMap原库在独立环境中实际计算，BeautyMap仍为离线批次清理。此入口展示建图输入与清理结果，不把给定位姿当作算法定位，也不启动固定地图AMCL冒充建图。
+
+入口源：[mapping-demo.ps1](mapping-demo.ps1)。需要程序调用时可传`-Dimension 2D|3D -Method all|raw|dufomap|beautymap -Scene static|dynamic|large-change|corridor`；`-Auto`仅用于可重复演示，默认关闭。两次演示串行启动，先q结束上一场。脚本生成器为[refresh_scripts.py](refresh_scripts.py)。

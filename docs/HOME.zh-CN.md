@@ -4,30 +4,32 @@
 
 **动态环境中的鲁棒定位与 SLAM**
 
-动态环境中的鲁棒定位与 SLAM · 定位系统自恢复
+动态残影清理 · 静态结构保留 · 下游定位检验
 
 [![CPU reproducibility](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml/badge.svg)](https://github.com/p20030920p/slam_learning_updated/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10-3776AB)](../src/pyproject.toml)
 
-[English](../README.md) | 中文
+[English](../README.md) | 中文 | [Minimal English](MINIMAL.md) | [极简中文](MINIMAL.zh-CN.md)
 
 [开放问题](#开放问题) · [方向分析](#方向分析) · [相关工作](#相关工作) · [假设](#假设)
 
-[复现结果](#复现结果) · [实验证据](#实验证据) · [假设](#假设) · [分支](#分支)
+[复现结果](#复现结果) · [实验证据](#实验证据) · [假设](#假设) · [器材参数](#仿真雷达与小车结构参数) · [分支](#分支)
 
 </div>
 
 ## 开放问题
 
-**在退化与大变动环境中，什么样的策略能够有效地让定位系统自恢复？** 先分析失效原因、恢复目标和适用边界，再选择策略。成果包括作者原库复现，以及使用 Sim2Real-AlgoBench 机器人逐步加难的点云建图与定位测试。[问题分析与收窄](self-recovery/DESIGN.zh-CN.md) · [机器人测试协议](testing/PROTOCOL.zh-CN.md) · [汇报稿](self-recovery/TALK.zh-CN.md) · [接续状态](self-recovery/STATUS.zh-CN.md)。
+**大方向：变化环境中的可靠建图与定位。** 原来的“退化与大变动下定位自恢复”适合作为长期方向，但同时跨越建图、配准、重定位和多传感器融合，对当前论文与实验过于开放。
+
+**本轮小问题：在给定多帧扫描和建图位姿的条件下，如何删除动态障碍物残影，同时保留静态结构；这种地图改善在什么污染和几何条件下，能够降低独立定位的误差？** 先验证地图，再检验定位；不把“地图更干净”直接写成“保证定位准确”。[问题边界与论文依据](testing/MAPPING-FOCUS.zh-CN.md) · [原自恢复背景](self-recovery/DESIGN.zh-CN.md)。
 
 ## 方向分析
 
-**SLAM（Simultaneous Localization and Mapping）**在构建地图的同时估计自身运动。大方向包含动态环境下的建图、定位和 SLAM，自恢复是其中的开放问题。
+**SLAM**同时估计运动和地图。本轮控制建图位姿与定位器，把干预放在地图层；动态清理、持久变化更新、走廊几何退化分开讨论。IRMCL／AdaM-MCL属于定位参照，不作为动态建图方法。
 
 ![SLAM 位姿与地图估计及恢复：实体底盘与传感器、Gazebo 扫描、给定位姿地图与走廊](assets/slam-recovery-flow.zh-CN.v2.png)
 
-开放问题属于**位姿估计失效后的恢复**，受观测质量与地图有效性影响。可收窄为：**几何观测重新充分后，固定地图定位如何避免错误收敛，并确认持续恢复？** [可编辑中文流程图](assets/slam-recovery-flow.zh-CN.v2.pptx) · [图像来源](assets/direction/sources.json)。照片为已有底盘与传感器，实体测试仍待测。
+当前研究主线是**动态残影删除→静态约束保留→独立定位检验**。上图保留为此前定位自恢复方向的背景图，不代表本轮聚焦后的研究框架。[原可编辑图](assets/slam-recovery-flow.zh-CN.v2.pptx) · [图像来源](assets/direction/sources.json)。照片为已有器材，实体实验待测。
 
 | 成果 | 内容 |
 | --- | --- |
@@ -118,7 +120,17 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 
 ## 假设
 
-待检验：地图更干净是否也更容易恢复，更好的正常观测模型是否扩大恢复范围，剩余稳定结构怎样限制地图过期后的恢复。先完成原库复现与逐级测试，再根据可重复失败选择恢复策略。[分析与反例](self-recovery/DESIGN.zh-CN.md)。
+本轮问题聚焦**地图清理**。假设由易到难逐项检验；前提不成立，就不能继续推出定位收益。已有Guard／Depth／Search仅作为标明范围的定位探索附录保留。
+
+| 假设：由易到难 | 已有简单实验／结果 |
+| --- | --- |
+| M1：多帧可见性能够删除动态残影 | 动态场景：DUFOMap删除46.59%、BeautyMap删除74.36%的三维动态点；原生二维SRRG删除42.31%的已验证动态残影格。分母不同，不跨方法排名。 |
+| M2：删动态时能保留静态约束 | 同场景：三维静态保留DUFOMap为99.998%、BeautyMap为81.15%；SRRG二维静态覆盖为99.51%。BeautyMap本次删得更多，也损失更多静态支持。 |
+| M3：三维清理收益能保留到二维投影 | 同图重新评分：投影动态格删除仅8.33%／33.33%，只部分支持；原生二维SRRG是另一种表示和对照。 |
+| M4：残影污染有效约束时，地图更干净才能降低独立定位B误差 | 动态GICP的Raw／DUFO／Beauty XYZ RMSE为0.98／0.98／1.04 cm，尚无收益证据。固定定位器、逐级增加污染并重复的实验待做；SRRG独立定位B也待测。 |
+| M5：二维雷达＋深度相机能够区分遮挡与静态结构 | 已有Depth实验只检验定位，未见普遍稳定收益。将时序深度可见性用于地图更新门控，并对照二维SRRG和三维参照，仍是未验证的建图假设。 |
+
+[建图问题、论文依据与后续单因素实验](testing/MAPPING-FOCUS.zh-CN.md) · [地图指标与故障时间点](testing/MAP-METRICS.zh-CN.md)。静态和走廊是边界对照：删除点不能凭空增加缺失几何；持久变化需另测地图更新。
 
 ## 复现结果
 
@@ -206,6 +218,21 @@ KITTI-00，141 扫描公开数据；完整设置：体素 0.1 m、d_s=0.2 m、d_
 
 
 [AI 使用](guides/DISCLOSURE.zh-CN.md) · [来源／许可](guides/ATTRIBUTION.zh-CN.md) · [引用](CITATION.cff) · [许可](../src/LICENSE)
+## 仿真雷达与小车结构参数
+
+| 项目 | 实际设置 |
+| --- | --- |
+| 平台 | Sim2Real全向底盘；ROS 2 Jazzy＋Gazebo Harmonic；理想仿真传感器，实体测试待做 |
+| 底盘结构 | 三个全向轮，间隔120°；轮半径0.06364 m；轮心到车体中心0.1934 m；碰撞圆柱半径0.20 m、高0.14 m |
+| 质量／接触 | base_link为0.953513 kg，每轮0.20 kg；滚子以球形接触和方向摩擦近似，μ=0.02／2.0 |
+| 二维雷达 | 通用gpu_lidar，720束、360°、10 Hz、0.08–12 m；相对base_link安装位置(0.06, 0, 0.16) m |
+| 三维雷达 | 通用gpu_lidar，水平720×垂直16束、360°×30°（±15°）、10 Hz、0.08–12 m；安装位置(0, 0, 0.30) m |
+| RGB相机 | 640×480、15 Hz、水平视场80°；安装位置(0.18, 0, 0.12) m |
+| 深度假设组 | 实际渲染depth_camera：320×240、10 Hz、水平80°、0.25–4 m；未加实体噪声模型；原生二维／SRRG组移除三维雷达 |
+| 地图表示 | 三维源点；旧二维投影为0.05 m格、世界Z=0.12–1.20 m、一格占据膨胀；SRRG使用独立的原生二维地图及覆盖容差 |
+
+[实际机器人URDF](../config/robot_profiles/omni-3d-v1/omni_car_lidar3d.urdf) · [深度相机和传感器分组](../src/scripts/presentation/probe_sensors.py) · [地图投影](../src/scripts/presentation/build_maps.py)。安装位置相对base_link，不能当作离地高度；仿真16线雷达没有指定商用型号。
+
 ## 实践
 
 [极简：全部 GIF 与指标](MINIMAL.zh-CN.md)
@@ -435,6 +462,10 @@ Raw与DUFOMap三维图字节相同却得到不同结果；有效输出覆盖不�
 每条原生定位输出按时间与独立 Gazebo 机器人真值关联，最近时间差必须 **≤0.05 个仿真秒**。二者使用相同地图／世界坐标，不做空间拟合；评分包含初始化阶段，并记录时间不匹配的丢弃数量。
 
 $$e_i=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2},\quad \mathrm{RMSE}_{xy}=\sqrt{\frac1N\sum_{i=1}^N e_i^2}.$$
+
+三维GICP使用完整三维地图和点云，读取`*-poses3d.csv`的原生XYZ输出，按相同≤0.05s同步规则计算下式。缺失输出不补零；须同时检查有效数量、首末时间及共同覆盖。走廊三方法输出覆盖不同，不能直接用整段RMSE排名。地图动态删除／静态保留是另一组指标。
+
+$$e_{i,xyz}=\sqrt{(\hat x_i-x_i)^2+(\hat y_i-y_i)^2+(\hat z_i-z_i)^2},\quad \mathrm{RMSE}_{xyz}=100\sqrt{\frac1N\sum_{i=1}^N e_{i,xyz}^2}\;\text{cm}.$$
 
 偏航差先折回 $[-\pi,\pi]$，再求均方根并转换成度；米乘 100 得到厘米。**Live execution** 是按真实时间录制的现场计算；**Measured result replay** 按仿真时间绘制已保存估计与真值，不重新运行算法。曲线显示每时刻误差，RMSE 标注来自完整评分 CSV。[CSV、窗口与恢复判据](testing/LIVE.zh-CN.md) · [可执行评分代码](../src/scripts/presentation/observe_session.py)。
 
@@ -913,7 +944,9 @@ Raw与DUFOMap三维图字节相同却得到不同结果；有效输出覆盖不�
 
 <a id="hypothesis-experiments"></a>
 
-## 开放问题：假设与简单实验
+## 历史定位探索：假设与简单实验
+
+此附录保留此前的定位层探索；地图冻结，不能据此声称验证了动态建图。
 
 根据此前录像，先提出三个方向，再做对应实验：
 
@@ -1265,3 +1298,20 @@ Raw与DUFOMap三维图字节相同却得到不同结果；有效输出覆盖不�
 - **有界搜索＋恢复确认**：原走廊完整观测恢复后，雷达搜索在二维／三维分别用5.8／6.2s持续收敛。几何分数高、连续两次一致仍不保证正确：二维粗深度搜索曾确认约20cm偏差，细化实验才纠正它。
 
 [详细原因与后续方向](testing/HYPOTHESES.zh-CN.md#hypothesis-findings) · [逐帧汇总](../results/analysis/hypotheses/calibrated-summary.json) · [首轮与无效细化录像](../demo/hypotheses-diagnostics.html)。本轮是给定位姿建图A、冻结图定位B的理想仿真，尚未验证仅廉价传感器的自主建图、实际绑架恢复或实体效果。
+
+
+<a id="mapping-hypothesis-tests"></a>
+
+## 建图假设与逐项验证
+
+本轮问题聚焦**地图清理**。假设由易到难逐项检验；前提不成立，就不能继续推出定位收益。已有Guard／Depth／Search仅作为标明范围的定位探索附录保留。
+
+| 假设：由易到难 | 已有简单实验／结果 |
+| --- | --- |
+| M1：多帧可见性能够删除动态残影 | 动态场景：DUFOMap删除46.59%、BeautyMap删除74.36%的三维动态点；原生二维SRRG删除42.31%的已验证动态残影格。分母不同，不跨方法排名。 |
+| M2：删动态时能保留静态约束 | 同场景：三维静态保留DUFOMap为99.998%、BeautyMap为81.15%；SRRG二维静态覆盖为99.51%。BeautyMap本次删得更多，也损失更多静态支持。 |
+| M3：三维清理收益能保留到二维投影 | 同图重新评分：投影动态格删除仅8.33%／33.33%，只部分支持；原生二维SRRG是另一种表示和对照。 |
+| M4：残影污染有效约束时，地图更干净才能降低独立定位B误差 | 动态GICP的Raw／DUFO／Beauty XYZ RMSE为0.98／0.98／1.04 cm，尚无收益证据。固定定位器、逐级增加污染并重复的实验待做；SRRG独立定位B也待测。 |
+| M5：二维雷达＋深度相机能够区分遮挡与静态结构 | 已有Depth实验只检验定位，未见普遍稳定收益。将时序深度可见性用于地图更新门控，并对照二维SRRG和三维参照，仍是未验证的建图假设。 |
+
+[建图问题、论文依据与后续单因素实验](testing/MAPPING-FOCUS.zh-CN.md) · [地图指标与故障时间点](testing/MAP-METRICS.zh-CN.md)。静态和走廊是边界对照：删除点不能凭空增加缺失几何；持久变化需另测地图更新。
