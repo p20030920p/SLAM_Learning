@@ -75,8 +75,8 @@ Observation from Figure 2: the mirror region lacks a usable mapped boundary, whi
 | Test 4 · `4.mp4` | Test 5 · `5.mp4` |
 | --- | --- |
 | <a href="docs/media/physical-test/20261016-additional/4.gif"><img src="docs/media/physical-test/20261016-additional/4.gif" width="420" loading="lazy" alt="Physical test 4"></a> | <a href="docs/media/physical-test/20261016-additional/5.gif"><img src="docs/media/physical-test/20261016-additional/5.gif" width="420" loading="lazy" alt="Physical test 5"></a> |
-| **Test 6 · `6.mp4`** | **Test 7 · `7.mp4`** |
-| <a href="docs/media/physical-test/20261016-additional/6.gif"><img src="docs/media/physical-test/20261016-additional/6.gif" width="420" loading="lazy" alt="Physical test 6"></a> | <a href="docs/media/physical-test/20261016-additional/7.gif"><img src="docs/media/physical-test/20261016-additional/7.gif" width="420" loading="lazy" alt="Physical test 7"></a> |
+| **Test 7 · `7.mp4`** | **Test 6 · `6.mp4`** |
+| <a href="docs/media/physical-test/20261016-additional/7.gif"><img src="docs/media/physical-test/20261016-additional/7.gif" width="420" loading="lazy" alt="Physical test 7"></a> | <a href="docs/media/physical-test/20261016-additional/6.gif"><img src="docs/media/physical-test/20261016-additional/6.gif" width="420" loading="lazy" alt="Physical test 6"></a> |
 
 **Analysis:**
 <!-- PHYSICAL_TEST_ANALYSIS:additional-four -->
@@ -231,6 +231,8 @@ M_0=\{\mathbf x_c:h(c)>0\},
 \qquad
 M_1=\{\mathbf x_c:h(c)\ge3\ \land\ h(c)\ge1.5f(c)\}.
 ```
+Here $`M_0`$ is this experiment's Raw: 5 cm occupied cells accumulated using the known start and wheel-odometry poses, retaining cells hit at least once. Valid-range filtering, gridding and shared inflation still apply. $`M_1`$ adds only the temporal retention condition above.
+
 **H1 to test:** the rule satisfies the cleaning criterion above and yields $`E_{{\rm loc},1}<E_{{\rm loc},0}`$. The values 3 and 1.5 are fixed heuristic parameters, not definitions of static structure or cleanliness; sparsely observed static cells may also be removed.
 
 **H2: align point timestamps, then test geometry and localization separately.**
@@ -404,6 +406,7 @@ This section practices methods in Related works. A = mapping; B = a separate loc
 | No. | Method / subexperiment | Go directly |
 | --- | --- | --- |
 | P0 | Setup and devices | [Open experiment](#practice-setup) |
+| P0.1 | Raw baseline definitions | [Open experiment](#raw-baseline-definitions) |
 | P1.1 | SRRG · Static | [A](#h1-static-a) / [B](#h1-static-b) |
 | P1.2 | SRRG · Dynamic | [A](#h1-dynamic-a) / [B](#h1-dynamic-b) |
 | P1.3 | SRRG · Original corridor | [A](#h3-original-a) / [B](#h3-original-b) |
@@ -445,6 +448,21 @@ This section practices methods in Related works. A = mapping; B = a separate loc
 [Short definitions in Metrics](#metrics)
 
 A measures cleaning or geometry for the task; B measures localization on frozen maps. B uses common 10 Hz times after 5 s warmup, with pose age ≤0.15 s; counts and missing outputs remain in records. One run per arm; complete navigation outcomes were not measured.
+
+<a id="raw-baseline-definitions"></a>
+
+### Raw baseline definitions
+
+**Meaning of Raw.** Raw labels this repository's accumulated baseline without dynamic-map cleaning. It is not a standalone SLAM/localization algorithm or completely unprocessed sensor data.
+
+| Context | How Raw is built | Downstream localization |
+| --- | --- | --- |
+| Own H1 | Transform valid 2D returns using the known start, wheel odometry and sensor extrinsic; retain each 5 cm cell hit at least once, without retracting earlier occupied cells or applying H1 temporal filtering. | Frozen-map AMCL |
+| Practice: SRRG 2D comparison | Accumulate returns using SRRG's online sensor-pose estimate at each frame; do not reproject accumulated historical points with the final optimized graph. SRRG output additionally includes map maintenance and graph optimization. | Frozen-map AMCL |
+| Practice: Raw / DUFOMap / BeautyMap 3D comparison | Transform and concatenate 3D scans using provided sensor poses from controlled mapping A, without DUFOMap/BeautyMap cleaning. A uses supplied simulation poses. | Frozen-map GICP; no truth input in B |
+
+These Raw maps and pose sources differ between experiments; compare within the matched experiment. The SRRG comparison includes pose optimization and map maintenance, not just a deletion-rule ablation. H2 calls its baseline Off: only point-time compensation is disabled. FAST-LIO Practice Off still retains LiDAR–IMU estimation.
+
 
 <a id="practice-srrg"></a>
 
@@ -991,8 +1009,8 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 | Control | SA ↑ |
 | --- | --- |
-| raw | 99.55% |
-| temporal | 95.62% |
+| M₀ · Raw: wheel-pose accumulation | 99.55% |
+| M₁ · Temporal: temporal filtering | 95.62% |
 
 | Mapping: grey baseline, blue own intervention |
 | --- |
@@ -1011,10 +1029,10 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 | Map / AMCL | XY RMSE / cm ↓ |
 | --- | --- |
-| raw | 4.74 |
-| temporal | 5.68 |
+| M₀ · Raw: wheel-pose accumulation | 4.74 |
+| M₁ · Temporal: temporal filtering | 5.68 |
 
-| raw | temporal |
+| M₀ · Raw: wheel-pose accumulation | M₁ · Temporal: temporal filtering |
 | --- | --- |
 | <a href="results/reference/own-hypotheses-20261016/static-B/executions/raw.mp4"><img src="results/reference/own-hypotheses-20261016/static-B/executions/raw.gif" width="420" loading="lazy" alt="raw B"></a> | <a href="results/reference/own-hypotheses-20261016/static-B/executions/temporal.mp4"><img src="results/reference/own-hypotheses-20261016/static-B/executions/temporal.gif" width="420" loading="lazy" alt="temporal B"></a> |
 
@@ -1033,8 +1051,8 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 | Control | DA ↑ | SA ↑ |
 | --- | --- | --- |
-| raw | 5.13% | 99.50% |
-| temporal | 94.87% | 92.55% |
+| M₀ · Raw: wheel-pose accumulation | 5.13% | 99.50% |
+| M₁ · Temporal: temporal filtering | 94.87% | 92.55% |
 
 | Mapping: grey baseline, blue own intervention |
 | --- |
@@ -1053,10 +1071,10 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 | Map / AMCL | XY RMSE / cm ↓ |
 | --- | --- |
-| raw | 5.72 |
-| temporal | 6.11 |
+| M₀ · Raw: wheel-pose accumulation | 5.72 |
+| M₁ · Temporal: temporal filtering | 6.11 |
 
-| raw | temporal |
+| M₀ · Raw: wheel-pose accumulation | M₁ · Temporal: temporal filtering |
 | --- | --- |
 | <a href="results/reference/own-hypotheses-20261016/dynamic-B/executions/raw.mp4"><img src="results/reference/own-hypotheses-20261016/dynamic-B/executions/raw.gif" width="420" loading="lazy" alt="raw B"></a> | <a href="results/reference/own-hypotheses-20261016/dynamic-B/executions/temporal.mp4"><img src="results/reference/own-hypotheses-20261016/dynamic-B/executions/temporal.gif" width="420" loading="lazy" alt="temporal B"></a> |
 
@@ -1075,8 +1093,8 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 | Control | Map RMSE / cm ↓ |
 | --- | --- |
-| off | 34.10 |
-| deskew | 4.57 |
+| M₀ · Off: uncompensated | 34.10 |
+| M₁ · On: motion compensated | 4.57 |
 
 | Mapping: grey baseline, blue own intervention |
 | --- |
@@ -1095,10 +1113,10 @@ H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 
 
 | Map / AMCL | XY RMSE / cm ↓ |
 | --- | --- |
-| off | 4.70 |
-| deskew | 4.71 |
+| M₀ · Off: uncompensated | 4.70 |
+| M₁ · On: motion compensated | 4.71 |
 
-| off | deskew |
+| M₀ · Off: uncompensated | M₁ · On: motion compensated |
 | --- | --- |
 | <a href="results/reference/own-hypotheses-20261016/motion-B/executions/off.mp4"><img src="results/reference/own-hypotheses-20261016/motion-B/executions/off.gif" width="420" loading="lazy" alt="off B"></a> | <a href="results/reference/own-hypotheses-20261016/motion-B/executions/deskew.mp4"><img src="results/reference/own-hypotheses-20261016/motion-B/executions/deskew.gif" width="420" loading="lazy" alt="deskew B"></a> |
 

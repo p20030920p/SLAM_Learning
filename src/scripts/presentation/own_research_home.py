@@ -4,7 +4,7 @@ import json
 import os
 import re
 
-from hypothesis_notation import github_math, math_sections, pseudocode
+from hypothesis_notation import github_math, math_sections, pseudocode, raw_baselines
 from publish_home_experiments import apply_home_layout, sections
 from simple_research_home import ROOT, metrics, num, pct, practice as paper_practice, related, table
 
@@ -57,6 +57,7 @@ def practice(doc, zh, previous):
     sr, corridor, fast = map(expand_single_video, (sr, corridor, fast))
     index = [
         ["P0", s("实验设置与设备", "Setup and devices"), "[↗](#practice-setup)"],
+        ["P0.1", s("Raw基线定义与区别", "Raw baseline definitions"), "[↗](#raw-baseline-definitions)"],
         ["P1.1", "SRRG · " + s("静态", "Static"), "[A](#h1-static-a) / [B](#h1-static-b)"],
         ["P1.2", "SRRG · " + s("动态", "Dynamic"), "[A](#h1-dynamic-a) / [B](#h1-dynamic-b)"],
         ["P1.3", "SRRG · " + s("原长廊", "Original corridor"), "[A](#h3-original-a) / [B](#h3-original-b)"],
@@ -83,7 +84,8 @@ def practice(doc, zh, previous):
         kitti_rows.append([title, num(data["DA"]) + "%", num(data["SA"]) + "%", preview, f'[{s("记录", "Record")}]({href(folder + "/record.json")})'])
     kitti += s("KITTI-00，141帧；本项只评价地图清理。", "KITTI-00, 141 scans; this experiment evaluates map cleaning only.") + "\n\n"
     kitti += table([s("方法", "Method"), "DA ↑", "SA ↑", s("点云实录节选（点击看完整录像）", "Point-cloud excerpt (click for full recording)"), s("记录", "Record")], kitti_rows)
-    text += setup + sr + corridor + fast + kitti + rest
+    raw = '<a id="raw-baseline-definitions"></a>\n\n### ' + s("Raw基线定义", "Raw baseline definitions") + "\n\n" + github_math(raw_baselines(zh)) + "\n\n"
+    text += setup + raw + sr + corridor + fast + kitti + rest
     for anchor, name, folder, video, preview, score_text in [
         ("practice-irmcl", "IR-MCL", "results/reference/desktop-live-ir-mcl", "execution", "docs/media/related-pointcloud/20261016/ir-mcl.gif", "XY RMSE 5.31 cm / yaw 1.07°"),
         ("practice-adam", "AdaM-MCL", "results/reference/desktop-adam-mcl", "result", "results/reference/desktop-adam-mcl/result.gif", s("RMSE 32.23格；持续收敛0/10；保存结果回放", "RMSE 32.23 cells; sustained convergence 0/10; saved-result replay")),
@@ -103,6 +105,13 @@ def hypothesis_tests(doc, zh):
         return f"[{caption}]({href(path)})"
     def media(path, label, width=420):
         return f'<a href="{href(path + ".mp4")}"><img src="{href(path + ".gif")}" width="{width}" loading="lazy" alt="{label}"></a>'
+    def method_label(key):
+        return {
+            "raw": s("M₀ · Raw：轮速位姿累积", "M₀ · Raw: wheel-pose accumulation"),
+            "temporal": s("M₁ · Temporal：时序过滤", "M₁ · Temporal: temporal filtering"),
+            "off": s("M₀ · Off：不补偿", "M₀ · Off: uncompensated"),
+            "deskew": s("M₁ · On：运动补偿", "M₁ · On: motion compensated"),
+        }[key]
     text = '<a id="hypothesis-test"></a>\n\n## Hypothesis test\n\n<a id="hypothesis-test-index"></a>\n\n'
     text += s("自写方法的实验。每个场景重新采集A/B；同一场景各对照共享输入。每组1轮，固定参数，不根据真值调参。", "Experiments for project-written methods. Reacquire A/B per scene and share inputs across its controls. One trial per control, fixed parameters, no truth-based tuning.") + "\n\n"
     index = []
@@ -120,16 +129,16 @@ def hypothesis_tests(doc, zh):
         controls = ("off", "deskew") if scene == "motion" else ("raw", "temporal")
         if scene in ("static", "dynamic"):
             headers = [s("对照", "Control")] + (["DA ↑"] if scene == "dynamic" else []) + ["SA ↑"]
-            rows = [[method] + ([pct(ar["methods"][method]["dynamic_removal"])] if scene == "dynamic" else []) + [pct(ar["methods"][method]["static_retention"])] for method in controls]
+            rows = [[method_label(method)] + ([pct(ar["methods"][method]["dynamic_removal"])] if scene == "dynamic" else []) + [pct(ar["methods"][method]["static_retention"])] for method in controls]
             text += table(headers, rows)
         elif scene == "motion":
-            text += table([s("对照", "Control"), s("地图 RMSE / cm ↓", "Map RMSE / cm ↓")], [[method, num(ar["methods"][method]["map_rmse_m"], 100)] for method in controls])
+            text += table([s("对照", "Control"), s("地图 RMSE / cm ↓", "Map RMSE / cm ↓")], [[method_label(method), num(ar["methods"][method]["map_rmse_m"], 100)] for method in controls])
         text += table([s("建图录像：灰色为基线，蓝色为自写干预", "Mapping: grey baseline, blue own intervention")], [[media(a + "/execution", name + " A", 840)]])
         text += link(a + "/record.json", s("记录", "Record")) + "\n\n**" + s("分析：", "Analysis:") + "**\n<!-- OWN_ANALYSIS:" + scene + "-a -->\n\n<!-- /OWN_ANALYSIS:" + scene + "-a -->\n\n"
         text += f'<a id="own-{scene}-b"></a>\n\n### {name} · B\n\n'
         selected = br["methods"]
-        text += table([s("地图／AMCL", "Map / AMCL"), "XY RMSE / cm ↓"], [[key, num((m.get("common") or {}).get("rmse_m"), 100)] for key, m in selected.items()])
-        text += table(list(selected), [[media(b + "/executions/" + key, key + " B") for key in selected]])
+        text += table([s("地图／AMCL", "Map / AMCL"), "XY RMSE / cm ↓"], [[method_label(key), num((m.get("common") or {}).get("rmse_m"), 100)] for key, m in selected.items()])
+        text += table([method_label(key) for key in selected], [[media(b + "/executions/" + key, key + " B") for key in selected]])
         text += link(b + "/time-grid-score.json", s("共同时间点评分", "Common-time scores")) + " · " + link(b + "/record.json", s("记录", "Record")) + "\n\n**" + s("分析：", "Analysis:") + "**\n<!-- OWN_ANALYSIS:" + scene + "-b -->\n\n<!-- /OWN_ANALYSIS:" + scene + "-b -->\n\n[↑ " + s("目录", "Contents") + "](#hypothesis-test-index)\n\n"
     text += s("H1用DA/SA评清图，静态对照只看SA；H2用地图到静态支持的单向RMSE评分。定位预热5秒后使用共同10 Hz时间点，最新输出最多滞后0.15秒；样本数与输出缺失情况见原始评分记录。建图指标改善但B误差不降时，只支持建图结论。", "H1 uses DA/SA for cleaning and only SA in its static control; H2 uses one-way map-to-static-support RMSE. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; sample counts and missing outputs remain in the score records. Better mapping scores without lower B error support only the mapping claim.") + "\n\n"
     return text

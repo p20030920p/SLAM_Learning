@@ -68,6 +68,8 @@ M_0=\{\mathbf x_c:h(c)>0\},
 \qquad
 M_1=\{\mathbf x_c:h(c)\ge3\ \land\ h(c)\ge1.5f(c)\}.
 ```
+Here $`M_0`$ is this experiment's Raw: 5 cm occupied cells accumulated using the known start and wheel-odometry poses, retaining cells hit at least once. Valid-range filtering, gridding and shared inflation still apply. $`M_1`$ adds only the temporal retention condition above.
+
 **H1 to test:** the rule satisfies the cleaning criterion above and yields $`E_{{\rm loc},1}<E_{{\rm loc},0}`$. The values 3 and 1.5 are fixed heuristic parameters, not definitions of static structure or cleanliness; sparsely observed static cells may also be removed.
 
 **H2: align point timestamps, then test geometry and localization separately.**

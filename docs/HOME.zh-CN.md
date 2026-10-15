@@ -75,8 +75,8 @@
 | 测试4 · `4.mp4` | 测试5 · `5.mp4` |
 | --- | --- |
 | <a href="media/physical-test/20261016-additional/4.gif"><img src="media/physical-test/20261016-additional/4.gif" width="420" loading="lazy" alt="实物测试4"></a> | <a href="media/physical-test/20261016-additional/5.gif"><img src="media/physical-test/20261016-additional/5.gif" width="420" loading="lazy" alt="实物测试5"></a> |
-| **测试6 · `6.mp4`** | **测试7 · `7.mp4`** |
-| <a href="media/physical-test/20261016-additional/6.gif"><img src="media/physical-test/20261016-additional/6.gif" width="420" loading="lazy" alt="实物测试6"></a> | <a href="media/physical-test/20261016-additional/7.gif"><img src="media/physical-test/20261016-additional/7.gif" width="420" loading="lazy" alt="实物测试7"></a> |
+| **测试7 · `7.mp4`** | **测试6 · `6.mp4`** |
+| <a href="media/physical-test/20261016-additional/7.gif"><img src="media/physical-test/20261016-additional/7.gif" width="420" loading="lazy" alt="实物测试7"></a> | <a href="media/physical-test/20261016-additional/6.gif"><img src="media/physical-test/20261016-additional/6.gif" width="420" loading="lazy" alt="实物测试6"></a> |
 
 **分析：**
 <!-- PHYSICAL_TEST_ANALYSIS:additional-four -->
@@ -231,6 +231,8 @@ M_0=\{\mathbf x_c:h(c)>0\},
 \qquad
 M_1=\{\mathbf x_c:h(c)\ge3\ \land\ h(c)\ge1.5f(c)\}.
 ```
+这里$`M_0`$就是本项Raw：已知起点＋轮速里程计位姿累积的5 cm占据格，至少命中一次就保留；有效距离筛选、栅格化与公共膨胀仍然执行。$`M_1`$仅增加上述时序保留条件。
+
 **要检验的H1：**该规则满足上述清理改善条件，并使$`E_{{\rm loc},1}<E_{{\rm loc},0}`$。3与1.5是本轮固定的启发式参数；规则本身不是“静态”或“干净”的定义，低命中的静态结构也可能被删。
 
 **H2：统一采样时刻，再分别检验几何与定位。**
@@ -406,6 +408,7 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 | 编号 | 方法／下属实验 | 直达 |
 | --- | --- | --- |
 | P0 | 实验设置与设备 | [进入实验](#practice-setup) |
+| P0.1 | Raw基线定义与区别 | [进入实验](#raw-baseline-definitions) |
 | P1.1 | SRRG · 静态 | [A](#h1-static-a) / [B](#h1-static-b) |
 | P1.2 | SRRG · 动态 | [A](#h1-dynamic-a) / [B](#h1-dynamic-b) |
 | P1.3 | SRRG · 原长廊 | [A](#h3-original-a) / [B](#h3-original-b) |
@@ -447,6 +450,21 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 [简短定义见指标表](#指标)
 
 A按任务评价清图或几何；B评价冻结地图后的定位。B使用共同10 Hz时间点，预热5秒，输出滞后≤0.15秒；样本数与缺失情况见记录。每组1轮，未测完整导航到达效果。
+
+<a id="raw-baseline-definitions"></a>
+
+### Raw基线定义
+
+**Raw的含义。** Raw是本库对“未做地图动态清理的累积基线”的标签，不是一个独立SLAM或定位算法，也不表示完全未经预处理的数据。
+
+| 使用位置 | Raw如何生成 | 后续定位 |
+| --- | --- | --- |
+| 自写H1 | 用已知起点、轮速里程计和传感器外参，把有效二维回波变到同一坐标系；5 cm栅格至少命中一次就保留，只累计、不回撤，不用H1时序过滤。 | 冻结后用AMCL |
+| Practice：SRRG二维对照 | 用SRRG每帧当时估计的传感器位姿直接累计回波；历史累计点不按最终图优化结果重新投影。SRRG输出另含地图维护与图优化。 | 冻结后用AMCL |
+| Practice：Raw／DUFOMap／BeautyMap三维对照 | 用受控建图A提供的传感器位姿变换并拼接三维扫描，不调用DUFOMap或BeautyMap清理。该A使用提供的仿真位姿。 | 冻结后用GICP；B不输入真值 |
+
+因此，不同实验的Raw不是同一张图，位姿来源也不相同；只能在各自匹配的对照内比较。SRRG这一组是包含位姿优化与地图维护的端到端对照，不是只改变删除规则的消融。H2基线另称Off，只关闭逐点运动补偿；FAST-LIO实践的Off仍保留LiDAR–IMU估计。
+
 
 <a id="practice-srrg"></a>
 
@@ -993,8 +1011,8 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 
 | 对照 | SA ↑ |
 | --- | --- |
-| raw | 99.55% |
-| temporal | 95.62% |
+| M₀ · Raw：轮速位姿累积 | 99.55% |
+| M₁ · Temporal：时序过滤 | 95.62% |
 
 | 建图录像：灰色为基线，蓝色为自写干预 |
 | --- |
@@ -1013,10 +1031,10 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 
 | 地图／AMCL | XY RMSE / cm ↓ |
 | --- | --- |
-| raw | 4.74 |
-| temporal | 5.68 |
+| M₀ · Raw：轮速位姿累积 | 4.74 |
+| M₁ · Temporal：时序过滤 | 5.68 |
 
-| raw | temporal |
+| M₀ · Raw：轮速位姿累积 | M₁ · Temporal：时序过滤 |
 | --- | --- |
 | <a href="../results/reference/own-hypotheses-20261016/static-B/executions/raw.mp4"><img src="../results/reference/own-hypotheses-20261016/static-B/executions/raw.gif" width="420" loading="lazy" alt="raw B"></a> | <a href="../results/reference/own-hypotheses-20261016/static-B/executions/temporal.mp4"><img src="../results/reference/own-hypotheses-20261016/static-B/executions/temporal.gif" width="420" loading="lazy" alt="temporal B"></a> |
 
@@ -1035,8 +1053,8 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 
 | 对照 | DA ↑ | SA ↑ |
 | --- | --- | --- |
-| raw | 5.13% | 99.50% |
-| temporal | 94.87% | 92.55% |
+| M₀ · Raw：轮速位姿累积 | 5.13% | 99.50% |
+| M₁ · Temporal：时序过滤 | 94.87% | 92.55% |
 
 | 建图录像：灰色为基线，蓝色为自写干预 |
 | --- |
@@ -1055,10 +1073,10 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 
 | 地图／AMCL | XY RMSE / cm ↓ |
 | --- | --- |
-| raw | 5.72 |
-| temporal | 6.11 |
+| M₀ · Raw：轮速位姿累积 | 5.72 |
+| M₁ · Temporal：时序过滤 | 6.11 |
 
-| raw | temporal |
+| M₀ · Raw：轮速位姿累积 | M₁ · Temporal：时序过滤 |
 | --- | --- |
 | <a href="../results/reference/own-hypotheses-20261016/dynamic-B/executions/raw.mp4"><img src="../results/reference/own-hypotheses-20261016/dynamic-B/executions/raw.gif" width="420" loading="lazy" alt="raw B"></a> | <a href="../results/reference/own-hypotheses-20261016/dynamic-B/executions/temporal.mp4"><img src="../results/reference/own-hypotheses-20261016/dynamic-B/executions/temporal.gif" width="420" loading="lazy" alt="temporal B"></a> |
 
@@ -1077,8 +1095,8 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 
 | 对照 | 地图 RMSE / cm ↓ |
 | --- | --- |
-| off | 34.10 |
-| deskew | 4.57 |
+| M₀ · Off：不补偿 | 34.10 |
+| M₁ · On：运动补偿 | 4.57 |
 
 | 建图录像：灰色为基线，蓝色为自写干预 |
 | --- |
@@ -1097,10 +1115,10 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 
 | 地图／AMCL | XY RMSE / cm ↓ |
 | --- | --- |
-| off | 4.70 |
-| deskew | 4.71 |
+| M₀ · Off：不补偿 | 4.70 |
+| M₁ · On：运动补偿 | 4.71 |
 
-| off | deskew |
+| M₀ · Off：不补偿 | M₁ · On：运动补偿 |
 | --- | --- |
 | <a href="../results/reference/own-hypotheses-20261016/motion-B/executions/off.mp4"><img src="../results/reference/own-hypotheses-20261016/motion-B/executions/off.gif" width="420" loading="lazy" alt="off B"></a> | <a href="../results/reference/own-hypotheses-20261016/motion-B/executions/deskew.mp4"><img src="../results/reference/own-hypotheses-20261016/motion-B/executions/deskew.gif" width="420" loading="lazy" alt="deskew B"></a> |
 

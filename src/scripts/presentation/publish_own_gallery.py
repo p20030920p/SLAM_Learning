@@ -11,7 +11,7 @@ def page(title, groups, out):
         f"<title>{title}</title>",
         '<style>body{max-width:1200px;margin:24px auto;padding:0 20px;font:16px/1.7 system-ui;background:#f4f6f8}nav{position:sticky;top:0;padding:12px;background:white}section{margin:24px 0}article{background:white;padding:16px;margin:16px 0}video{width:100%;max-width:960px}a{color:#075ca8}</style>',
         f"<h1>{title}</h1>", '<nav><a href="gallery.html">Practice · 论文方法实践</a> · <a href="hypotheses.html">Hypothesis test · 自写方法</a> · <a href="../docs/HOME.zh-CN.md">中文首页</a></nav>',
-        '<p>A按任务看清图比例或地图几何；B看冻结地图后的定位误差。DA/SA不表示定位精度；完整导航到达效果尚未测试。<a href="../docs/HOME.zh-CN.md#指标">指标与数值</a></p>']
+        '<p>A按任务看清图比例或地图几何；B看冻结地图后的定位误差。DA/SA不表示定位精度；完整导航到达效果尚未测试。<a href="../docs/HOME.zh-CN.md#指标">指标与数值</a> · <a href="../docs/HOME.zh-CN.md#raw-baseline-definitions">Raw基线定义</a></p>']
     for anchor, label, clips in groups:
         content.append(f'<section id="{anchor}"><h2>{escape(label)}</h2>')
         for path, caption in clips:
