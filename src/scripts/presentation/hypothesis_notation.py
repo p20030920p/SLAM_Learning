@@ -54,36 +54,20 @@ def pseudocode():
     A = acquire_scans_and_wheel_odometry(scene)
     if test == H1:
         M0 = integrate_A_with_wheel_poses(A)
-        h, s, f = initialize_grid_evidence()
-        M1 = empty_map()
-        previous_wheel, previous_corrected = None, None
+        M1, h, s, f = initialize_map_and_evidence()
         for scan in A.in_time_order():
-            wheel = sensor_pose_from_wheel_odometry(scan)
-            predicted = wheel if previous_wheel is None else previous_corrected @ inverse(previous_wheel) @ wheel
+            predicted = wheel_increment_from_previous_corrected_pose(scan)
             reference = previous_retained_cells_with_support(M1, s, min_bins=3)
-            corrected = own_robust_SE2_alignment_or_wheel_fallback(scan, predicted, reference)
-            points = transform_scan(scan, corrected)
-            bin = floor(scan.time / 0.5)
-            add_hits_once_per_cell_and_bin(h, points, bin)
-            add_neighborhood_support_once_per_bin(s, points, bin, radius=0.10)
-            add_free_crossings_once_per_bin(f, points, corrected, bin, stop_before_return=0.15)
+            pose = own_robust_alignment_or_wheel_fallback(scan, predicted, reference)
+            update_binned_evidence(h, s, f, scan, pose, bin_s=0.5, radius=0.10, stop_margin=0.15)
             M1 = cell_centers_where((h > 0) & ((f < 3) | (f < 1.5 * s)))
-            previous_wheel, previous_corrected = wheel, corrected
     else:
-        M0 = integrate_A(A, point_compensation=False)
-        M1 = integrate_A(A, point_compensation=True)  # no H1 filtering
+        M0, M1 = integrate_A_deskew_off_and_on(A)  # no H1 filtering
     freeze(M0, M1)
     B = acquire_independent_scans_and_wheel_odometry(scene)
-    positions = {}
-    for m, map in [(0, M0), (1, M1)]:
-        positions[m] = same_AMCL(B.scans, B.odometry, grid_of(map), same_initial_config)
-    # Truth enters only here; references are shared across controls
-    S, D = scoring_references_from_A_truth(A)
-    if test == H1:
-        score_SA(M0, M1, S)
-        if scene == dynamic: score_DA(M0, M1, D)
-    if test == H2: score_map_RMSE(M0, M1, S)
-    score_position_RMSE(positions, B_truth, common_valid_times)
+    positions = [same_AMCL(B, map, same_initial_config) for map in (M0, M1)]
+    score_maps_with_A_truth(test, scene, M0, M1)  # H1: SA (+ DA if dynamic); H2: map RMSE
+    score_position_RMSE(positions, B_truth, common_valid_times)  # truth only for scoring
 """
 
 
