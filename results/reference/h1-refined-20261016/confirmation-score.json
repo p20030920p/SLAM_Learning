@@ -1,0 +1,571 @@
+{
+  "status": "executed",
+  "kind": "predeclared_three_fresh_B_pooled_score",
+  "methods": {
+    "raw": {
+      "common": {
+        "rmse_m": 0.05819721190370734,
+        "samples": 1171
+      }
+    },
+    "temporal": {
+      "common": {
+        "rmse_m": 0.04652843138732026,
+        "samples": 1171
+      }
+    }
+  },
+  "fresh_dynamic_trials": 3,
+  "common_grid_samples": 1171,
+  "H1_conditions_met_this_batch": true,
+  "map_criterion": true,
+  "scope": "Same maps and AMCL parameters in all trials. Pool squared errors over each trial's common valid 10 Hz times; no trial selected by outcome. Not proof of general statistical significance.",
+  "sessions": {
+    "static-B": {
+      "score": {
+        "schema_version": 1,
+        "kind": "paired_common_truth_grid_score",
+        "status": "executed",
+        "exit_code": 0,
+        "scope": "10Hz grid after 5s; latest native pose age<=0.15s; errors recomputed against interpolated grid truth; common timestamps across cases. Fresh-update coverage is affected by AMCL motion-triggered publishing and is not tracking-loss rate.",
+        "common_grid_samples": 462,
+        "grid_expected": 601,
+        "methods": {
+          "raw": {
+            "fresh_update_grid_coverage": 0.7687188019966722,
+            "common": {
+              "samples": 462,
+              "rmse_m": 0.05435427196386344,
+              "p95_m": 0.09064991510606729,
+              "along_x_rmse_m": 0.04045775926670375,
+              "across_y_rmse_m": 0.036298162430611805,
+              "yaw_rmse_deg": 1.47762177143912,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "limited": {
+              "samples": 359,
+              "rmse_m": 0.05058078987846753,
+              "p95_m": 0.0884092537725654,
+              "along_x_rmse_m": 0.03050351490550761,
+              "across_y_rmse_m": 0.040347885733197454,
+              "yaw_rmse_deg": 1.5351698385983605,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "restored": {
+              "samples": 103,
+              "rmse_m": 0.06583705138375473,
+              "p95_m": 0.09438948711966484,
+              "along_x_rmse_m": 0.06402205811203197,
+              "across_y_rmse_m": 0.01535230959845327,
+              "yaw_rmse_deg": 1.256606496505832,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            }
+          },
+          "temporal": {
+            "fresh_update_grid_coverage": 0.7687188019966722,
+            "common": {
+              "samples": 462,
+              "rmse_m": 0.046406246341215804,
+              "p95_m": 0.07880167720351128,
+              "along_x_rmse_m": 0.041644372567333686,
+              "across_y_rmse_m": 0.020476472668765747,
+              "yaw_rmse_deg": 1.0582725524592351,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "limited": {
+              "samples": 359,
+              "rmse_m": 0.051065162845757614,
+              "p95_m": 0.08335020614129367,
+              "along_x_rmse_m": 0.04601686187803686,
+              "across_y_rmse_m": 0.022138185999792816,
+              "yaw_rmse_deg": 1.0919408417270589,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "restored": {
+              "samples": 103,
+              "rmse_m": 0.023890665945522704,
+              "p95_m": 0.04093526641254242,
+              "along_x_rmse_m": 0.019957290308632306,
+              "across_y_rmse_m": 0.01313280179008003,
+              "yaw_rmse_deg": 0.9314590994975153,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            }
+          }
+        },
+        "inputs": {
+          "metrics.json": "2fe269548d043fd77c3a0b1db178ed1ef0a0e32fe477e42fbdbd8b14b56de375",
+          "truth.jsonl": "984dae3ce52ee70079346cf6a54c495e372e44f3e63ad483d49291de9975cff5",
+          "raw-samples.csv": "34b563bc30738c2c293ee5c426ab805e45ee16b44dec61e7af0eb156401a0531",
+          "temporal-samples.csv": "2f71dced2217989c3be93e987e0343129ec7f1cc9f47e4d8aeffa9ce0953530a"
+        }
+      },
+      "source_run": "F:\\be2演讲\\原始会话\\h1-refined-20261016\\20261016-041721-localization-own-static-method-live-b20224",
+      "input_bags": {
+        "F:\\be2演讲\\原始会话\\h1-refined-20261016\\20261016-041721-localization-own-static-method-live-b20224\\input-bag\\input-bag_0.mcap": {
+          "sha256": "8662d72c5e6d456e111bfa25022dee6be05bb0d94e2652685d0c3d3bd5322cb1",
+          "bytes": 19389128,
+          "availability": "local_only"
+        }
+      }
+    },
+    "dynamic-B": {
+      "score": {
+        "schema_version": 1,
+        "kind": "paired_common_truth_grid_score",
+        "status": "executed",
+        "exit_code": 0,
+        "scope": "10Hz grid after 5s; latest native pose age<=0.15s; errors recomputed against interpolated grid truth; common timestamps across cases. Fresh-update coverage is affected by AMCL motion-triggered publishing and is not tracking-loss rate.",
+        "common_grid_samples": 260,
+        "grid_expected": 601,
+        "methods": {
+          "raw": {
+            "fresh_update_grid_coverage": 0.43261231281198004,
+            "common": {
+              "samples": 260,
+              "rmse_m": 0.04948615356747633,
+              "p95_m": 0.07734929271062904,
+              "along_x_rmse_m": 0.034638396468016065,
+              "across_y_rmse_m": 0.035342055472600664,
+              "yaw_rmse_deg": 2.229651661938437,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "limited": {
+              "samples": 214,
+              "rmse_m": 0.044879168681542715,
+              "p95_m": 0.07336694105732411,
+              "along_x_rmse_m": 0.023786462268661563,
+              "across_y_rmse_m": 0.038057114897058396,
+              "yaw_rmse_deg": 2.4026468162779206,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "restored": {
+              "samples": 46,
+              "rmse_m": 0.06686825616936751,
+              "p95_m": 0.08255507613207093,
+              "along_x_rmse_m": 0.06441585581447407,
+              "across_y_rmse_m": 0.017943277371234117,
+              "yaw_rmse_deg": 1.1150140362265846,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            }
+          },
+          "temporal": {
+            "fresh_update_grid_coverage": 0.43261231281198004,
+            "common": {
+              "samples": 260,
+              "rmse_m": 0.047486688605568796,
+              "p95_m": 0.07364897484253552,
+              "along_x_rmse_m": 0.04508919021447718,
+              "across_y_rmse_m": 0.014898003910757742,
+              "yaw_rmse_deg": 2.1940028324165075,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "limited": {
+              "samples": 214,
+              "rmse_m": 0.0513925112564221,
+              "p95_m": 0.07381665814877535,
+              "along_x_rmse_m": 0.049152417680069616,
+              "across_y_rmse_m": 0.015007666355748047,
+              "yaw_rmse_deg": 2.3801003334518263,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "restored": {
+              "samples": 46,
+              "rmse_m": 0.02140781500644702,
+              "p95_m": 0.049244882408387106,
+              "along_x_rmse_m": 0.01586193436237591,
+              "across_y_rmse_m": 0.014376841851878895,
+              "yaw_rmse_deg": 0.9238951760106835,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            }
+          }
+        },
+        "inputs": {
+          "metrics.json": "b3ab362cfbdd254c33351b1b916db6ec1697eaed7dfbfae1a64961fc1e3507cb",
+          "truth.jsonl": "e3ec0f3905c0dd79687d9dc8a72034cb313ea5f86eba40cae20c67aceaeadd0c",
+          "raw-samples.csv": "b8965687d0e9c5dab2bb5981d71ce6c07de4994059f6f1a07b7917c7c8153beb",
+          "temporal-samples.csv": "3fa0de77bf293ce282159739a25860ba223de6b2400900485d9471dcc49414f0"
+        }
+      },
+      "source_run": "F:\\be2演讲\\原始会话\\h1-refined-20261016\\20261016-041916-localization-own-dynamic-method-live-aae00f",
+      "input_bags": {
+        "F:\\be2演讲\\原始会话\\h1-refined-20261016\\20261016-041916-localization-own-dynamic-method-live-aae00f\\input-bag\\input-bag_0.mcap": {
+          "sha256": "71a025dd2acfd21ef4fcb0a55c9824aaa0675170fd8db3e1bb2aee25fdeda6ff",
+          "bytes": 19069050,
+          "availability": "local_only"
+        }
+      }
+    },
+    "dynamic-B2": {
+      "score": {
+        "schema_version": 1,
+        "kind": "paired_common_truth_grid_score",
+        "status": "executed",
+        "exit_code": 0,
+        "scope": "10Hz grid after 5s; latest native pose age<=0.15s; errors recomputed against interpolated grid truth; common timestamps across cases. Fresh-update coverage is affected by AMCL motion-triggered publishing and is not tracking-loss rate.",
+        "common_grid_samples": 461,
+        "grid_expected": 601,
+        "methods": {
+          "raw": {
+            "fresh_update_grid_coverage": 0.7670549084858569,
+            "common": {
+              "samples": 461,
+              "rmse_m": 0.055478236322976146,
+              "p95_m": 0.08787633841375654,
+              "along_x_rmse_m": 0.04275743026785173,
+              "across_y_rmse_m": 0.035350203145070966,
+              "yaw_rmse_deg": 1.4923469133668512,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "limited": {
+              "samples": 360,
+              "rmse_m": 0.047602216736410526,
+              "p95_m": 0.07766954430123235,
+              "along_x_rmse_m": 0.02994349281880547,
+              "across_y_rmse_m": 0.03700484125125181,
+              "yaw_rmse_deg": 1.3964924896046165,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "restored": {
+              "samples": 101,
+              "rmse_m": 0.07727616833714258,
+              "p95_m": 0.10810248348166314,
+              "along_x_rmse_m": 0.07175443625057742,
+              "across_y_rmse_m": 0.028686356883233153,
+              "yaw_rmse_deg": 1.792790632268839,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            }
+          },
+          "temporal": {
+            "fresh_update_grid_coverage": 0.7670549084858569,
+            "common": {
+              "samples": 461,
+              "rmse_m": 0.04556670152571191,
+              "p95_m": 0.07911575157174397,
+              "along_x_rmse_m": 0.040860549791376266,
+              "across_y_rmse_m": 0.02016779012881126,
+              "yaw_rmse_deg": 0.9866819455812481,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "limited": {
+              "samples": 360,
+              "rmse_m": 0.04924052584880364,
+              "p95_m": 0.08577267038460364,
+              "along_x_rmse_m": 0.04404454146476104,
+              "across_y_rmse_m": 0.02201607941995224,
+              "yaw_rmse_deg": 1.0469949300796633,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "restored": {
+              "samples": 101,
+              "rmse_m": 0.028893611241016574,
+              "p95_m": 0.051856267417381294,
+              "along_x_rmse_m": 0.026570787235009365,
+              "across_y_rmse_m": 0.011350508193859098,
+              "yaw_rmse_deg": 0.732357535632631,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            }
+          }
+        },
+        "inputs": {
+          "metrics.json": "aeb6af19a66962c3317ee552a27151131ca109d5a4ab96c3c8107fa3486fb588",
+          "truth.jsonl": "e010276360ff09bb86966e5cc3e84084dfa4169a7c379332ba3209f0cdca27c9",
+          "raw-samples.csv": "4a207519d2f0512de2ed93c58aee6f06926f3c145a2a5244a5b682f82c320ea4",
+          "temporal-samples.csv": "faa12bd35169bb91710661c0424dd742ee09646065428420d90e1399615af81b"
+        }
+      },
+      "source_run": "F:\\be2演讲\\原始会话\\h1-refined-20261016\\20261016-042115-localization-own-dynamic-method-live-3dcb0b",
+      "input_bags": {
+        "F:\\be2演讲\\原始会话\\h1-refined-20261016\\20261016-042115-localization-own-dynamic-method-live-3dcb0b\\input-bag\\input-bag_0.mcap": {
+          "sha256": "8510960fd567bca066e9e773e981ff0354e5f74bf592aaff427746c3b1e7dda0",
+          "bytes": 19272391,
+          "availability": "local_only"
+        }
+      }
+    },
+    "dynamic-B3": {
+      "score": {
+        "schema_version": 1,
+        "kind": "paired_common_truth_grid_score",
+        "status": "executed",
+        "exit_code": 0,
+        "scope": "10Hz grid after 5s; latest native pose age<=0.15s; errors recomputed against interpolated grid truth; common timestamps across cases. Fresh-update coverage is affected by AMCL motion-triggered publishing and is not tracking-loss rate.",
+        "common_grid_samples": 450,
+        "grid_expected": 601,
+        "methods": {
+          "raw": {
+            "fresh_update_grid_coverage": 0.7487520798668885,
+            "common": {
+              "samples": 450,
+              "rmse_m": 0.06515771596495261,
+              "p95_m": 0.12346176708505595,
+              "along_x_rmse_m": 0.05187867979073838,
+              "across_y_rmse_m": 0.03942246228915026,
+              "yaw_rmse_deg": 1.7367378059322802,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "limited": {
+              "samples": 352,
+              "rmse_m": 0.04887953093896942,
+              "p95_m": 0.07512813235062334,
+              "along_x_rmse_m": 0.030054892073593447,
+              "across_y_rmse_m": 0.03854752919783989,
+              "yaw_rmse_deg": 1.677648839896076,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "restored": {
+              "samples": 98,
+              "rmse_m": 0.10446589960276349,
+              "p95_m": 0.1350443432892095,
+              "along_x_rmse_m": 0.09546708249625603,
+              "across_y_rmse_m": 0.04241651022264451,
+              "yaw_rmse_deg": 1.934145941320162,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            }
+          },
+          "temporal": {
+            "fresh_update_grid_coverage": 0.7487520798668885,
+            "common": {
+              "samples": 450,
+              "rmse_m": 0.04694228628098941,
+              "p95_m": 0.07755554510335781,
+              "along_x_rmse_m": 0.04349018292671818,
+              "across_y_rmse_m": 0.01766867935888127,
+              "yaw_rmse_deg": 1.1406897347779184,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "limited": {
+              "samples": 352,
+              "rmse_m": 0.05105424977646486,
+              "p95_m": 0.07910091109308476,
+              "along_x_rmse_m": 0.04753919650789152,
+              "across_y_rmse_m": 0.018616154694827212,
+              "yaw_rmse_deg": 1.2180807752498644,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            },
+            "restored": {
+              "samples": 98,
+              "rmse_m": 0.027499422750009713,
+              "p95_m": 0.04282539750442822,
+              "along_x_rmse_m": 0.02382267247232687,
+              "across_y_rmse_m": 0.013736758273333323,
+              "yaw_rmse_deg": 0.8034248701318658,
+              "over_25cm_fraction": 0.0,
+              "over_10deg_fraction": 0.0
+            }
+          }
+        },
+        "inputs": {
+          "metrics.json": "9feab663591889ef76ddbd25010b19ee95dc49faec587fa13afed0d0e816bb79",
+          "truth.jsonl": "335be691c47cf4d9f78d2cf33aa7eca202c0a87bb86390a9ff42e43fd68af5eb",
+          "raw-samples.csv": "68d742191182ea5a7da8906a730e38def0f430b17c6e7c8de0bb49c67be5287c",
+          "temporal-samples.csv": "ecb50eb7c1a4e02b2944018e219cbf51b80e95984f2788680d53633bdafb1415"
+        }
+      },
+      "source_run": "F:\\be2演讲\\原始会话\\h1-refined-20261016\\20261016-042306-localization-own-dynamic-method-live-d2503b",
+      "input_bags": {
+        "F:\\be2演讲\\原始会话\\h1-refined-20261016\\20261016-042306-localization-own-dynamic-method-live-d2503b\\input-bag\\input-bag_0.mcap": {
+          "sha256": "38b5b983c36e9a3f5516f406c49d180221b3c640f8837489451cb7cd765791c7",
+          "bytes": 19323680,
+          "availability": "local_only"
+        }
+      }
+    }
+  },
+  "development_replay_reproduces_original_negative_result": true,
+  "development_B": {
+    "schema_version": 1,
+    "kind": "paired_common_truth_grid_score",
+    "status": "executed",
+    "exit_code": 0,
+    "scope": "10Hz grid after 5s; latest native pose age<=0.15s; errors recomputed against interpolated grid truth; common timestamps across cases. Fresh-update coverage is affected by AMCL motion-triggered publishing and is not tracking-loss rate.",
+    "common_grid_samples": 456,
+    "grid_expected": 601,
+    "methods": {
+      "raw": {
+        "fresh_update_grid_coverage": 0.7587354409317804,
+        "common": {
+          "samples": 456,
+          "rmse_m": 0.057184194269614366,
+          "p95_m": 0.08736140926370868,
+          "along_x_rmse_m": 0.044883100589326354,
+          "across_y_rmse_m": 0.03543359078266567,
+          "yaw_rmse_deg": 1.4350170966778566,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        },
+        "limited": {
+          "samples": 355,
+          "rmse_m": 0.05387019387328007,
+          "p95_m": 0.08612545473979111,
+          "along_x_rmse_m": 0.037273194938706226,
+          "across_y_rmse_m": 0.0388935306575012,
+          "yaw_rmse_deg": 1.4977561342693826,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        },
+        "restored": {
+          "samples": 101,
+          "rmse_m": 0.06755455522852015,
+          "p95_m": 0.08739821666670926,
+          "along_x_rmse_m": 0.06489979732748499,
+          "across_y_rmse_m": 0.018751912941738835,
+          "yaw_rmse_deg": 1.1885047786625536,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        }
+      },
+      "filter_only": {
+        "fresh_update_grid_coverage": 0.7587354409317804,
+        "common": {
+          "samples": 456,
+          "rmse_m": 0.05663052498568546,
+          "p95_m": 0.10297433201189268,
+          "along_x_rmse_m": 0.0429093145587408,
+          "across_y_rmse_m": 0.0369568273023183,
+          "yaw_rmse_deg": 1.537824561580181,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        },
+        "limited": {
+          "samples": 355,
+          "rmse_m": 0.04657570497982465,
+          "p95_m": 0.07661472508523222,
+          "along_x_rmse_m": 0.025514467051099127,
+          "across_y_rmse_m": 0.038965475301426,
+          "yaw_rmse_deg": 1.5635438743640289,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        },
+        "restored": {
+          "samples": 101,
+          "rmse_m": 0.08279159543427751,
+          "p95_m": 0.11734542981351223,
+          "along_x_rmse_m": 0.07761868456481288,
+          "across_y_rmse_m": 0.028806042438716872,
+          "yaw_rmse_deg": 1.4437943155124624,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        }
+      },
+      "align_only": {
+        "fresh_update_grid_coverage": 0.7587354409317804,
+        "common": {
+          "samples": 456,
+          "rmse_m": 0.04857512440394916,
+          "p95_m": 0.08877170616348057,
+          "along_x_rmse_m": 0.04504234262352423,
+          "across_y_rmse_m": 0.018185985863961005,
+          "yaw_rmse_deg": 0.7473728282964891,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        },
+        "limited": {
+          "samples": 355,
+          "rmse_m": 0.0531815979493525,
+          "p95_m": 0.09410183816178885,
+          "along_x_rmse_m": 0.0498451155787214,
+          "across_y_rmse_m": 0.018540410281071985,
+          "yaw_rmse_deg": 0.8181184078536362,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        },
+        "restored": {
+          "samples": 101,
+          "rmse_m": 0.026683186791662233,
+          "p95_m": 0.03998570841870131,
+          "along_x_rmse_m": 0.020664323209866,
+          "across_y_rmse_m": 0.016881297451230796,
+          "yaw_rmse_deg": 0.4114495985942877,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        }
+      },
+      "temporal": {
+        "fresh_update_grid_coverage": 0.7587354409317804,
+        "common": {
+          "samples": 456,
+          "rmse_m": 0.044090026578997236,
+          "p95_m": 0.06890627827763302,
+          "along_x_rmse_m": 0.04079257631319268,
+          "across_y_rmse_m": 0.016730097473387124,
+          "yaw_rmse_deg": 0.7137109794410489,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        },
+        "limited": {
+          "samples": 355,
+          "rmse_m": 0.046050413361295964,
+          "p95_m": 0.07186492253784835,
+          "along_x_rmse_m": 0.04234429061557376,
+          "across_y_rmse_m": 0.01809976858995878,
+          "yaw_rmse_deg": 0.7605906426074813,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        },
+        "restored": {
+          "samples": 101,
+          "rmse_m": 0.036370600646351815,
+          "p95_m": 0.055555151950507906,
+          "along_x_rmse_m": 0.03479370693465325,
+          "across_y_rmse_m": 0.010593325687519936,
+          "yaw_rmse_deg": 0.516193019350378,
+          "over_25cm_fraction": 0.0,
+          "over_10deg_fraction": 0.0
+        }
+      }
+    },
+    "inputs": {
+      "metrics.json": "4097f53f4b32e1f3ae6a7ef7c4315333f4defec95ffbcc8d38050bfe4ef95527",
+      "truth.jsonl": "c247a02929c0d6411138d2daf76f1bfedb820abde734a99f5a3ecf663111c127",
+      "align_only-samples.csv": "a2e876b0da370f9ac776f37028d91e96c3056bfe691607f55f1b1444d61ebb8b",
+      "filter_only-samples.csv": "cd714b588f562adcfa8098ca55837906349e3374c2bf34fb064b2948307c5b35",
+      "raw-samples.csv": "9c92583265c2722198b7b93b872e9c4e21fdc302e966fc9f474578c49299be2f",
+      "temporal-samples.csv": "33bad43b75ba34d6bb8689ab634b2c6a1afdd2bb65cf83f79e943d37639a378e"
+    }
+  },
+  "algorithm_sources": {
+    "own_mapping.py": "f1fa2ff0402ac120a8c9214eee45f4d9c233610eaf6c7399b95e6bb5f404a2d5",
+    "own_refinement.py": "5fdf75a9142dace2bab44ebf2db9d85256650022b6ed549c2c104ad635d0aee1"
+  },
+  "maps_unchanged": true,
+  "cleanup_only_previous_confirmation": {
+    "record": "results/reference/h1-supported-20261016/confirmation-score.json",
+    "methods": {
+      "raw": {
+        "common": {
+          "rmse_m": 0.06015781123839617,
+          "samples": 1209
+        }
+      },
+      "temporal": {
+        "common": {
+          "rmse_m": 0.06063055932567986,
+          "samples": 1209
+        }
+      }
+    }
+  }
+}

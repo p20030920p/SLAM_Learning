@@ -1,0 +1,58 @@
+{
+  "locked_at": "2026-10-16T04:06:00.087452+03:00",
+  "algorithm_sha256": "f1fa2ff0402ac120a8c9214eee45f4d9c233610eaf6c7399b95e6bb5f404a2d5",
+  "development_B": "Historical dynamic B, including failed after-free pilot; never reported as independent confirmation",
+  "fresh_confirmations": [
+    {
+      "scene": "static",
+      "trials": 1
+    },
+    {
+      "scene": "dynamic",
+      "trials": 3
+    }
+  ],
+  "primary_controls": [
+    "raw",
+    "temporal"
+  ],
+  "unchanged_AMCL_sha256": "7c68ca137e90c6d3c4da5c47e9dc67559cdd4aae24526f828eae6c9595db5b43",
+  "primary_score": "Same 10 Hz common-time grid, age <=0.15 s, warmup 5 s; pooled squared position errors across all three fresh dynamic B sessions",
+  "representative_video": "First fresh B, selected by acquisition order; all further B recordings retained",
+  "parameters": {
+    "bin_s": 0.5,
+    "neighbor_m": 0.1,
+    "min_free_bins": 3,
+    "free_support_ratio": 1.5
+  },
+  "maps": {
+    "static": {
+      "maps/after_free/map.pgm": "70f5bdc73254d074e792891e0b5a27eb0bd02fe78e6ac899732fa67b470d0a2e",
+      "maps/after_free/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+      "maps/after_free/points.npy": "a3c8aa719272acecabb9505f7a8727ab57c174d5f4edeb5c24a41182d690c39f",
+      "maps/legacy/map.pgm": "2351ea27666a4fcf395797a94dc9928b005493eab061c23f41da7bd64d0c2381",
+      "maps/legacy/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+      "maps/legacy/points.npy": "02303164bb16e4f4526ea9a387a1101fd43d4858a7692184ee53b3482eb72772",
+      "maps/raw/map.pgm": "9acb8b81088ed0cd9902dddc33bd9b55fbf990228726f56a26f6ba497b9c90a6",
+      "maps/raw/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+      "maps/raw/points.npy": "12ff04e9e8133e6fcbbd07c32f8d8124d74c492bdab0a5091bfaed196de56e8a",
+      "maps/temporal/map.pgm": "0e433cd40238f475bc43fed6aaec458b599f89859ecfd58dad52486ad6a33824",
+      "maps/temporal/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+      "maps/temporal/points.npy": "dc324d591f0315606b4b937226f31931f4c36376e18d1fb45a6480df39e578e8"
+    },
+    "dynamic": {
+      "maps/after_free/map.pgm": "5d9f083c6a209576df2c1e1e62cd9b1c88c34700bdad663e30602337372b61de",
+      "maps/after_free/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+      "maps/after_free/points.npy": "c11a08884e66867322f1130c20e8d32a827d2b84b2905aae2af8aeaf9c55aff9",
+      "maps/legacy/map.pgm": "758f6edd04b6405fb4db4a7f982324316168f01a04921efbf89d5d4139ff50e6",
+      "maps/legacy/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+      "maps/legacy/points.npy": "4b2d8b00bac8db768673bf33cb832f0e52fad7bf4c09206f387ba08921a7ce25",
+      "maps/raw/map.pgm": "5a06dd9d8a6ce3f855c72838ea298422fc1576e83ac133235eaed37f72ae7cb6",
+      "maps/raw/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+      "maps/raw/points.npy": "789f86fa75559db588bd1219bdea85672e28efe1ce3c7db6fcab967cee118871",
+      "maps/temporal/map.pgm": "7d71a87eb88d57ece0b39f2e63f97fb490f18bac320f44bb5b4e28b1c11d82ef",
+      "maps/temporal/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+      "maps/temporal/points.npy": "02074b6551c5773f78c6ff4c3256688533b5ab15655d44ea6179efe4120a38e9"
+    }
+  }
+}

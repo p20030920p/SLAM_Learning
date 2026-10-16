@@ -10,6 +10,8 @@ from simple_research_home import ROOT, metrics, num, pct, practice as paper_prac
 
 MARKER = "<!-- OWN_HYPOTHESES_20261016 -->"
 SUITE = "results/reference/own-hypotheses-20261016"
+H1_SUITE = "results/reference/h1-refined-20261016"
+H1_FILTER_SUITE = "results/reference/h1-supported-20261016"
 
 
 def definitions(zh):
@@ -17,7 +19,7 @@ def definitions(zh):
         return cn if zh else en
     text = '<a id="mapping-hypothesis-tests"></a>\n\n## ' + s("假设", "Hypothesis") + "\n\n<!-- SIMPLE_HYPOTHESES_V2 -->\n" + MARKER + "\n\n"
     text += table([s("问题", "Question"), s("一句话假设", "Hypothesis"), s("对照方法", "Controls"), s("指标", "Metrics")], [
-        ["H1 / Q1", s("跨时间命中与空闲证据过滤，在静态保留损失≤1个百分点时减少动态残影，并改善独立定位。", "Temporal hit/free filtering removes more dynamic traces with at most one percentage point of static loss and improves held-out localization."), s("M₀：自写累积图 / M₁：自写时序过滤", "M₀: own accumulation / M₁: temporal filtering"), s("A：DA、SA；B：XY RMSE", "A: DA, SA; B: XY RMSE")],
+        ["H1 / Q1", s("自写静态支持对齐与时序清理，在静态保留损失≤1个百分点时减少残影，并改善独立定位。", "Own supported alignment and temporal cleaning remove traces with at most one percentage point of static loss and improve held-out localization."), s("M₀：轮速累积图 / M₁：自写对齐＋清理", "M₀: wheel-pose accumulation / M₁: own alignment + cleaning"), s("A：DA、SA；B：XY RMSE", "A: DA, SA; B: XY RMSE")],
         ["H2 / Q2", s("用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。", "Wheel-odometry compensation for point timestamps reduces map and held-out localization error."), s("M₀：补偿关 / M₁：补偿开", "M₀: compensation off / M₁: on"), s("A：地图RMSE；B：XY RMSE", "A: map RMSE; B: XY RMSE")],
     ])
     text += s("两项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。", "Both interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.") + "\n\n"
@@ -108,23 +110,38 @@ def hypothesis_tests(doc, zh):
     def method_label(key):
         return {
             "raw": s("M₀ · Raw：轮速位姿累积", "M₀ · Raw: wheel-pose accumulation"),
-            "temporal": s("M₁ · Temporal：时序过滤", "M₁ · Temporal: temporal filtering"),
+            "temporal": s("M₁ · Align+Temporal：自写对齐＋清理", "M₁ · Align+Temporal: own alignment + cleaning"),
             "off": s("M₀ · Off：不补偿", "M₀ · Off: uncompensated"),
             "deskew": s("M₁ · On：运动补偿", "M₁ · On: motion compensated"),
         }[key]
     text = '<a id="hypothesis-test"></a>\n\n## Hypothesis test\n\n<a id="hypothesis-test-index"></a>\n\n'
-    text += s("自写方法的实验。每个场景重新采集A/B；同一场景各对照共享输入。每组1轮，固定参数，不根据真值调参。", "Experiments for project-written methods. Reacquire A/B per scene and share inputs across its controls. One trial per control, fixed parameters, no truth-based tuning.") + "\n\n"
+    text += s("自写方法实验。H1重用同一原始A重算地图，旧B用于开发消融；固定规则后，另采静态B一次、动态B三次。H2保留原单轮A/B。每轮对照共享扫描、里程计、AMCL参数与初始化。", "Experiments for project-written methods. H1 rebuilds maps from the same original A and uses old B for development ablation. After fixing the rule, acquire one fresh static B and three fresh dynamic B sessions. H2 retains its original single A/B trial. Each paired trial shares scans, odometry, AMCL parameters and initialization.") + "\n\n"
     index = []
     for scene, name in [("static", s("H1 静态保留", "H1 Static retention")), ("dynamic", s("H1 动态清理", "H1 Dynamic cleaning")), ("motion", s("H2 里程计去畸变", "H2 Odometry deskew"))]:
         index.append([name, f"[A](#own-{scene}-a)", f"[B](#own-{scene}-b)"])
+    index.insert(0, [s("H1 旧B开发消融", "H1 old-B development ablation"), "—", "[↗](#h1-revision-ablation)"])
     text += table([s("实验", "Experiment"), s("建图与指标", "Mapping and scores"), s("独立定位与指标", "Held-out localization and scores")], index)
     text += s("设备同Practice的全向轮机器人；算法仅使用二维雷达和轮式里程计。H2将三个真实时刻的扇区组合为滚动扫描，保留各点原采样时刻；未使用FAST-LIO。", "Use the same omni robot as Practice; algorithms use only 2D LiDAR and wheel odometry. H2 combines sectors from three actual scan times, preserving each point timestamp, without FAST-LIO.") + "\n\n"
-    text += link("src/slam_learning/runtime/own_mapping.py", s("自写算法", "Own algorithms")) + " · " + link("demo/record-own-hypotheses.ps1", s("一键录制", "Record all")) + "\n\n"
+    text += link("src/slam_learning/runtime/own_mapping.py", s("自写清理", "Own cleaner")) + " · " + link("src/slam_learning/runtime/own_refinement.py", s("自写对齐", "Own alignment")) + " · " + link("demo/record-h1-revision.ps1", s("H1验证录制", "Record H1 confirmation")) + " · " + link(H1_SUITE + "/confirmation-protocol.json", s("采集前固定设置", "Settings fixed before acquisition")) + "\n\n"
     text += s("H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31–39秒。", "H2 recording phases: stationary 0–7 s, slow turn 7–15 s, fast turns 15–31 s, translation 31–39 s.") + "\n\n"
+    text += '<a id="h1-revision-ablation"></a>\n\n### ' + s("H1 · 旧B开发消融", "H1 · Old-B development ablation") + "\n\n"
+    text += s("旧规则SA损失6.95个百分点；A轮速位姿RMSE还有7.74 cm。只清理无法修正地图位姿偏差，因此最终加入自写鲁棒二维对齐。下表重跑相同旧B，只用于开发消融，不混入最终新B评分。", "The old rule loses 6.95 percentage points of SA, while A wheel-pose RMSE is 7.74 cm. Cleaning cannot correct mapping-pose error, so the final method adds own robust 2D alignment. This table reruns the same old B for development ablation and is excluded from final fresh-B scores.") + "\n\n"
+    aq = json.loads((ROOT / H1_FILTER_SUITE / "dynamic-A/record.json").read_text())["methods"]
+    dq = json.loads((ROOT / H1_FILTER_SUITE / "dynamic-replay/trial-1/time-grid-score.json").read_text())["methods"]
+    ablation = [("raw", "Raw"), ("legacy", s("旧逐格过滤", "Old per-cell filtering")), ("after_free", s("后续空闲确认（中间版）", "Later-free confirmation (pilot)")), ("temporal", s("近邻时序：只清理", "Neighborhood temporal: filter only"))]
+    ablation_rows = [[name, pct(aq[key]["dynamic_removal"]), pct(aq[key]["static_retention"]), num(dq[key]["common"]["rmse_m"], 100)] for key, name in ablation]
+    aligned_a = json.loads((ROOT / H1_SUITE / "dynamic-A/record.json").read_text())["methods"]
+    aligned_b = json.loads((ROOT / H1_SUITE / "dynamic-replay/trial-1/time-grid-score.json").read_text())["methods"]
+    ablation_rows += [[name, pct(aligned_a[key]["dynamic_removal"]), pct(aligned_a[key]["static_retention"]), num(aligned_b[key]["common"]["rmse_m"], 100)] for key, name in [("align_only", s("只做自写对齐", "Own alignment only")), ("temporal", s("自写对齐＋清理（最终）", "Own alignment + cleaning (final)"))]]
+    text += table([s("方法", "Method"), "DA ↑", "SA ↑", "XY RMSE / cm ↓"], ablation_rows)
+    text += link(H1_SUITE + "/dynamic-replay/trial-1/record.json", s("原生AMCL重跑记录", "Native AMCL rerun record")) + " · " + link(SUITE + "/dynamic-B/record.json", s("原始负结果保留", "Original negative result")) + "\n\n"
+    text += s("只清理版本另采三次B：Raw 6.02 cm、只清理6.06 cm，仍未改善；该批次完整保留。下方主实验使用最终联合方法重新采集的B。", "Three fresh B sessions for filter-only yielded Raw 6.02 cm and filter-only 6.06 cm, without improvement; that full batch is retained. The main experiment below uses another fresh B batch for the final joint method.") + " " + link(H1_FILTER_SUITE + "/confirmation-score.json", s("只清理验证记录", "Filter-only confirmation")) + "\n\n"
     for scene, name in [("static", "H1 · " + s("静态保留", "Static retention")), ("dynamic", "H1 · " + s("动态清理", "Dynamic cleaning")), ("motion", "H2 · " + s("里程计去畸变", "Odometry deskew"))]:
-        a, b = f"{SUITE}/{scene}-A", f"{SUITE}/{scene}-B"
+        current_suite = SUITE if scene == "motion" else H1_SUITE
+        a, b = f"{current_suite}/{scene}-A", f"{current_suite}/{scene}-B"
         ar = json.loads((ROOT / a / "record.json").read_text())
-        br = json.loads((ROOT / b / "time-grid-score.json").read_text())
+        score_path = H1_SUITE + "/confirmation-score.json" if scene == "dynamic" else b + "/time-grid-score.json"
+        br = json.loads((ROOT / score_path).read_text())
         text += f'<a id="own-{scene}-a"></a>\n\n### {name} · A\n\n'
         controls = ("off", "deskew") if scene == "motion" else ("raw", "temporal")
         if scene in ("static", "dynamic"):
@@ -133,13 +150,29 @@ def hypothesis_tests(doc, zh):
             text += table(headers, rows)
         elif scene == "motion":
             text += table([s("对照", "Control"), s("地图 RMSE / cm ↓", "Map RMSE / cm ↓")], [[method_label(method), num(ar["methods"][method]["map_rmse_m"], 100)] for method in controls])
-        text += table([s("建图录像：灰色为基线，蓝色为自写干预", "Mapping: grey baseline, blue own intervention")], [[media(a + "/execution", name + " A", 840)]])
+        if scene == "motion":
+            text += table([s("建图录像：灰色为基线，蓝色为自写干预", "Mapping: grey baseline, blue own intervention")], [[media(a + "/execution", name + " A", 840)]])
+        else:
+            text += table([s("原始A采集实录（旧算法画面）", "Original A acquisition (old algorithm view)"), s("同一A重放清图：灰Raw，蓝新版", "Same A reprocessed: grey Raw, blue revised")],
+                          [[media(f"{SUITE}/{scene}-A/execution", name + " original A"), media(a + "/execution", name + " revised A input replay")]])
         text += link(a + "/record.json", s("记录", "Record")) + "\n\n**" + s("分析：", "Analysis:") + "**\n<!-- OWN_ANALYSIS:" + scene + "-a -->\n\n<!-- /OWN_ANALYSIS:" + scene + "-a -->\n\n"
         text += f'<a id="own-{scene}-b"></a>\n\n### {name} · B\n\n'
         selected = br["methods"]
-        text += table([s("地图／AMCL", "Map / AMCL"), "XY RMSE / cm ↓"], [[method_label(key), num((m.get("common") or {}).get("rmse_m"), 100)] for key, m in selected.items()])
-        text += table([method_label(key) for key in selected], [[media(b + "/executions/" + key, key + " B") for key in selected]])
-        text += link(b + "/time-grid-score.json", s("共同时间点评分", "Common-time scores")) + " · " + link(b + "/record.json", s("记录", "Record")) + "\n\n**" + s("分析：", "Analysis:") + "**\n<!-- OWN_ANALYSIS:" + scene + "-b -->\n\n<!-- /OWN_ANALYSIS:" + scene + "-b -->\n\n[↑ " + s("目录", "Contents") + "](#hypothesis-test-index)\n\n"
+        if scene == "motion":
+            text += table([s("地图／AMCL", "Map / AMCL"), "XY RMSE / cm ↓"], [[method_label(key), num((m.get("common") or {}).get("rmse_m"), 100)] for key, m in selected.items()])
+            text += table([method_label(key) for key in selected], [[media(b + "/executions/" + key, key + " B") for key in selected]])
+        else:
+            text += s("另采B，冻结地图后使用相同AMCL。", "Acquire fresh B and use the same AMCL on frozen maps.") + " "
+            text += (s("下表为三次B的共同时间样本合并RMSE；GIF固定展示第1轮。", "The table pools common-time samples from all three B sessions; GIFs always show trial 1.") if scene == "dynamic" else s("本项为一次静态对照。", "One static control session.")) + "\n\n"
+            text += table([s("地图／AMCL", "Map / AMCL"), "XY RMSE / cm ↓", s("定位实录（点击MP4）", "Localization recording (click MP4)")], [[method_label(key), num((m.get("common") or {}).get("rmse_m"), 100), media(b + "/executions/" + key, key + " fresh B")] for key, m in selected.items()])
+            if scene == "dynamic":
+                rows = []
+                for trial, suffix in ((1, ""), (2, "2"), (3, "3")):
+                    trial_folder = H1_SUITE + "/dynamic-B" + suffix
+                    trial_score = json.loads((ROOT / trial_folder / "time-grid-score.json").read_text())["methods"]
+                    rows.append([str(trial), num(trial_score["raw"]["common"]["rmse_m"], 100), num(trial_score["temporal"]["common"]["rmse_m"], 100), link(trial_folder + "/executions/raw.mp4", "Raw MP4") + " · " + link(trial_folder + "/executions/temporal.mp4", "Temporal MP4")])
+                text += table([s("轮次", "Trial"), "Raw / cm", "Temporal / cm", s("完整录像", "Full recordings")], rows)
+        text += link(score_path, s("共同时间点评分", "Common-time scores")) + " · " + link(b + "/record.json", s("记录", "Record")) + "\n\n**" + s("分析：", "Analysis:") + "**\n<!-- OWN_ANALYSIS:" + scene + "-b -->\n\n<!-- /OWN_ANALYSIS:" + scene + "-b -->\n\n[↑ " + s("目录", "Contents") + "](#hypothesis-test-index)\n\n"
     text += s("H1用DA/SA评清图，静态对照只看SA；H2用地图到静态支持的单向RMSE评分。定位预热5秒后使用共同10 Hz时间点，最新输出最多滞后0.15秒；样本数与输出缺失情况见原始评分记录。建图指标改善但B误差不降时，只支持建图结论。", "H1 uses DA/SA for cleaning and only SA in its static control; H2 uses one-way map-to-static-support RMSE. Localization uses common 10 Hz times after 5 s warmup, with output age at most 0.15 s; sample counts and missing outputs remain in the score records. Better mapping scores without lower B error support only the mapping claim.") + "\n\n"
     return text
 

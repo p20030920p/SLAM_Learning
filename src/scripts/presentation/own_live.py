@@ -18,6 +18,7 @@ from tf2_ros import Buffer, TransformListener
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from slam_learning.runtime.own_mapping import RayEvidence, deskew, interpolate_pose, pose2, transform
+from slam_learning.runtime.own_refinement import refine_scan_pose
 
 
 def stamp(msg):
@@ -44,6 +45,8 @@ class Live:
         self.parts, self.scans, self.archive = [], [], {}
         self.last = self.last_publish = -1e9
         self.start = None
+        self.refine = not self.motion and self.runtime["scene"] != "corridor"
+        self.previous_wheel = self.previous_refined = None
         self.cmd = self.node.create_publisher(Twist, "/cmd_vel", 10)
         self.clouds = {name: self.node.create_publisher(PointCloud2, f"/own/{name}", 1) for name in self.methods}
         self.map_pub = self.node.create_publisher(OccupancyGrid, "/map", QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL))
@@ -123,8 +126,19 @@ class Live:
                 self.parts = []
             else:
                 world = transform(points, sensor_pose)
-                for evidence in self.evidence.values():
-                    evidence.add(world, sensor_pose[:2, 2], t)
+                if self.refine:
+                    self.evidence["raw"].add(world, sensor_pose[:2, 2], t)
+                    grid = self.evidence["temporal"]
+                    support = grid.mask("temporal") & (grid.support_hits >= 3)
+                    reference = grid.origin + (np.argwhere(support)[:, ::-1] + .5) * grid.resolution
+                    predicted = sensor_pose if self.previous_wheel is None else self.previous_refined @ np.linalg.inv(self.previous_wheel) @ sensor_pose
+                    refined = refine_scan_pose(points, predicted, reference)
+                    grid.add(transform(points, refined), refined[:2, 2], t)
+                    self.previous_wheel, self.previous_refined = sensor_pose, refined
+                    self.scans[-1]["refined_sensor_pose"] = refined.tolist()
+                else:
+                    for evidence in self.evidence.values():
+                        evidence.add(world, sensor_pose[:2, 2], t)
             if t - self.last_publish >= 1.:
                 self.publish(t)
 
@@ -153,7 +167,7 @@ class Live:
         np.savez_compressed(self.run / "own-inputs.npz", **self.archive)
         (self.run / "own-scans.json").write_text(json.dumps(self.scans))
         (self.run / "own-odom.json").write_text(json.dumps(list(self.odometry)))
-        (self.run / "own-finished.json").write_text(json.dumps({"methods": self.methods, "scans": len(self.scans), "truth_used": False, "mapping_pose": "interpolated wheel odometry and fixed configured start"}))
+        (self.run / "own-finished.json").write_text(json.dumps({"methods": self.methods, "scans": len(self.scans), "truth_used": False, "mapping_pose": "wheel odometry + own supported alignment for Temporal" if self.refine else "interpolated wheel odometry and fixed configured start"}))
 
 
 if __name__ == "__main__":

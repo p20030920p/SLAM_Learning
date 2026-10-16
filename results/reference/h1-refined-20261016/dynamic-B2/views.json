@@ -1,0 +1,20 @@
+{
+  "raw": {
+    "method": "raw",
+    "title": "SLAM LIVE - raw - RViz2",
+    "config": "view-raw.rviz",
+    "map_topic": "/raw/map",
+    "pose_topic": "/raw/amcl_pose",
+    "tf_topic": "/raw/view/tf",
+    "scan_topic": "/scan"
+  },
+  "temporal": {
+    "method": "temporal",
+    "title": "SLAM LIVE - temporal - RViz2",
+    "config": "view-temporal.rviz",
+    "map_topic": "/temporal/map",
+    "pose_topic": "/temporal/amcl_pose",
+    "tf_topic": "/temporal/view/tf",
+    "scan_topic": "/scan"
+  }
+}

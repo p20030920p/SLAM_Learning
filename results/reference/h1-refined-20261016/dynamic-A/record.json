@@ -1,0 +1,47 @@
+{
+  "status": "executed",
+  "kind": "own_static_support_alignment_and_cleaning",
+  "A_source": "results/reference/own-hypotheses-20261016/dynamic-A",
+  "methods": {
+    "raw": {
+      "points": 2732,
+      "static_retention": 0.9950331125827815,
+      "dynamic_removal": 0.05128205128205128
+    },
+    "filter_only": {
+      "points": 2407,
+      "static_retention": 0.9917218543046358,
+      "dynamic_removal": 0.7948717948717948
+    },
+    "align_only": {
+      "points": 1427,
+      "static_retention": 1.0,
+      "dynamic_removal": 0.0
+    },
+    "temporal": {
+      "points": 1228,
+      "static_retention": 0.9966887417218543,
+      "dynamic_removal": 0.5897435897435898
+    }
+  },
+  "pose_diagnostic": {
+    "wheel_rmse_m": 0.07737776300340235,
+    "aligned_rmse_m": 0.02412794450717907
+  },
+  "frozen_map_sha256": {
+    "maps/align_only/map.pgm": "1169dff4587849dca2664659ce85789776934713539f5db3f41b61e025bd9cb5",
+    "maps/align_only/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/align_only/points.npy": "89baeec67a1b87f31a9a8ecb96c6310a674b17cb86d23b64578fe118345af50b",
+    "maps/filter_only/map.pgm": "7d71a87eb88d57ece0b39f2e63f97fb490f18bac320f44bb5b4e28b1c11d82ef",
+    "maps/filter_only/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/filter_only/points.npy": "02074b6551c5773f78c6ff4c3256688533b5ab15655d44ea6179efe4120a38e9",
+    "maps/raw/map.pgm": "5a06dd9d8a6ce3f855c72838ea298422fc1576e83ac133235eaed37f72ae7cb6",
+    "maps/raw/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/raw/points.npy": "789f86fa75559db588bd1219bdea85672e28efe1ce3c7db6fcab967cee118871",
+    "maps/temporal/map.pgm": "44e4ad1c23644cf8a2fa97f4510dc35caf0cdf948b9c5935157a7295b083db74",
+    "maps/temporal/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/temporal/points.npy": "aaa2e4d14d32bd8874e52732cc2d3a30a30a77bab82c43c9477340371d34c847"
+  },
+  "truth_used_by_algorithm": false,
+  "scope": "Same recorded A. Raw uses wheel poses; filter_only adds cleaning; align_only adds own robust SE(2) alignment; temporal combines both. Truth only enters post-run scoring. This is a joint mapping intervention, not a pure-deletion claim."
+}

@@ -1,0 +1,21 @@
+{
+  "status": "executed",
+  "kind": "native_AMCL_fixed_B_input_replay",
+  "bag_sha256": {
+    "input-bag_0.mcap": "532aaf09804366b8699dba5c57b159afc2cc74c1cb5537d2a2218e121db0458b"
+  },
+  "scan_messages": 727,
+  "scan_bytes_sha256": "9db6722472c60a2ef1235226cf446308d823002e65bb41c4510c147b52875adb",
+  "rate": 2.0,
+  "truth_to_AMCL": false,
+  "frozen_maps_unchanged": true,
+  "native_pose_counts": {
+    "raw": 290,
+    "legacy": 290,
+    "after_free": 290,
+    "temporal": 290
+  },
+  "AMCL_parameters": "Unchanged localization.launch.py; one separate native AMCL process per map (four cases).",
+  "scope": "Same measured independent B as historical experiment; reprocessing, not a new acquisition. Repeat trials assess replay reproducibility, not independent statistical trials.",
+  "original_AMCL_description": "Unchanged localization.launch.py; three separate native AMCL processes."
+}

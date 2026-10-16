@@ -1,0 +1,303 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-10-16-04-03-05-511269-DESKTOP-GI2390C-318779
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [map_server-1]: process started with pid [318782]
+[INFO] [amcl-2]: process started with pid [318783]
+[amcl-2] [INFO] [1792112585.662221088] [raw.amcl]: 
+[amcl-2] 	amcl lifecycle node launched. 
+[amcl-2] 	Waiting on external lifecycle transitions to activate
+[amcl-2] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-2] [INFO] [1792112585.663527816] [raw.amcl]: Creating
+[map_server-1] [INFO] [1792112585.739688641] [raw.map_server]: 
+[map_server-1] 	map_server lifecycle node launched. 
+[map_server-1] 	Waiting on external lifecycle transitions to activate
+[map_server-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-1] [INFO] [1792112585.740973773] [raw.map_server]: Creating
+[INFO] [lifecycle_manager-3]: process started with pid [318814]
+[lifecycle_manager-3] [INFO] [1792112587.640500753] [raw.lifecycle_manager]: Creating
+[lifecycle_manager-3] [INFO] [1792112587.659479555] [raw.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-3] [INFO] [1792112587.740321772] [raw.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-3] [INFO] [1792112587.740372559] [raw.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-1] [INFO] [1792112587.740622574] [raw.map_server]: Configuring
+[map_server-1] [INFO] [1792112587.740674122] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/raw/map.yaml
+[map_server-1] [INFO] [1792112587.743237270] [map_io]: resolution: 0.05
+[map_server-1] [INFO] [1792112587.743267539] [map_io]: origin[0]: -6
+[map_server-1] [INFO] [1792112587.743273171] [map_io]: origin[1]: -14
+[map_server-1] [INFO] [1792112587.743275596] [map_io]: origin[2]: 0
+[map_server-1] [INFO] [1792112587.743278225] [map_io]: free_thresh: 0.196
+[map_server-1] [INFO] [1792112587.743280558] [map_io]: occupied_thresh: 0.65
+[map_server-1] [INFO] [1792112587.743283735] [map_io]: mode: trinary
+[map_server-1] [INFO] [1792112587.743286322] [map_io]: negate: 0
+[map_server-1] [INFO] [1792112587.743783895] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/raw/map.pgm
+[map_server-1] [INFO] [1792112587.760231457] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/raw/map.pgm: 640 X 600 map @ 0.05 m/cell
+[lifecycle_manager-3] [INFO] [1792112587.766658435] [raw.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-2] [INFO] [1792112587.766927592] [raw.amcl]: Configuring
+[amcl-2] [INFO] [1792112587.767025534] [raw.amcl]: initTransforms
+[amcl-2] [INFO] [1792112587.775820218] [raw.amcl]: initPubSub
+[amcl-2] [INFO] [1792112587.784167913] [raw.amcl]: Subscribed to map topic.
+[lifecycle_manager-3] [INFO] [1792112587.787458324] [raw.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-1] [INFO] [1792112587.787654764] [raw.map_server]: Activating
+[map_server-1] [INFO] [1792112587.788288169] [raw.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-2] [INFO] [1792112587.788649479] [raw.amcl]: Received a 640 X 600 map @ 0.050 m/pix
+[lifecycle_manager-3] [INFO] [1792112587.892564424] [raw.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-3] [INFO] [1792112587.892620701] [raw.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-2] [INFO] [1792112587.892830501] [raw.amcl]: Activating
+[amcl-2] [INFO] [1792112587.892858994] [raw.amcl]: initialPoseReceived
+[amcl-2] [INFO] [1792112587.892919137] [raw.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-2] [INFO] [1792112587.893294090] [raw.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-3] [INFO] [1792112587.996751223] [raw.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-3] [INFO] [1792112587.996801828] [raw.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-3] [INFO] [1792112587.996809611] [raw.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[INFO] [map_server-4]: process started with pid [318834]
+[INFO] [amcl-5]: process started with pid [318835]
+[amcl-5] [INFO] [1792112588.637173270] [legacy.amcl]: 
+[amcl-5] 	amcl lifecycle node launched. 
+[amcl-5] 	Waiting on external lifecycle transitions to activate
+[amcl-5] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-5] [INFO] [1792112588.637567261] [legacy.amcl]: Creating
+[map_server-4] [INFO] [1792112588.646295820] [legacy.map_server]: 
+[map_server-4] 	map_server lifecycle node launched. 
+[map_server-4] 	Waiting on external lifecycle transitions to activate
+[map_server-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-4] [INFO] [1792112588.646416990] [legacy.map_server]: Creating
+[INFO] [lifecycle_manager-6]: process started with pid [318866]
+[lifecycle_manager-6] [INFO] [1792112590.634737042] [legacy.lifecycle_manager]: Creating
+[lifecycle_manager-6] [INFO] [1792112590.637833416] [legacy.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-6] [INFO] [1792112591.077909024] [legacy.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-6] [INFO] [1792112591.077970527] [legacy.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-4] [INFO] [1792112591.078245709] [legacy.map_server]: Configuring
+[map_server-4] [INFO] [1792112591.078296690] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/legacy/map.yaml
+[map_server-4] [INFO] [1792112591.081535148] [map_io]: resolution: 0.05
+[map_server-4] [INFO] [1792112591.081570837] [map_io]: origin[0]: -6
+[map_server-4] [INFO] [1792112591.081577463] [map_io]: origin[1]: -14
+[map_server-4] [INFO] [1792112591.081580467] [map_io]: origin[2]: 0
+[map_server-4] [INFO] [1792112591.081583826] [map_io]: free_thresh: 0.196
+[map_server-4] [INFO] [1792112591.081586850] [map_io]: occupied_thresh: 0.65
+[map_server-4] [INFO] [1792112591.081590939] [map_io]: mode: trinary
+[map_server-4] [INFO] [1792112591.081594531] [map_io]: negate: 0
+[map_server-4] [INFO] [1792112591.081731876] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/legacy/map.pgm
+[map_server-4] [INFO] [1792112591.098957087] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/legacy/map.pgm: 640 X 600 map @ 0.05 m/cell
+[lifecycle_manager-6] [INFO] [1792112591.104975797] [legacy.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-5] [INFO] [1792112591.105227230] [legacy.amcl]: Configuring
+[amcl-5] [INFO] [1792112591.105296222] [legacy.amcl]: initTransforms
+[amcl-5] [INFO] [1792112591.112821138] [legacy.amcl]: initPubSub
+[amcl-5] [INFO] [1792112591.120438231] [legacy.amcl]: Subscribed to map topic.
+[lifecycle_manager-6] [INFO] [1792112591.124265797] [legacy.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-4] [INFO] [1792112591.124463144] [legacy.map_server]: Activating
+[map_server-4] [INFO] [1792112591.125053094] [legacy.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-5] [INFO] [1792112591.125606903] [legacy.amcl]: Received a 640 X 600 map @ 0.050 m/pix
+[lifecycle_manager-6] [INFO] [1792112591.229884194] [legacy.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-6] [INFO] [1792112591.229944602] [legacy.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-5] [INFO] [1792112591.230186704] [legacy.amcl]: Activating
+[amcl-5] [INFO] [1792112591.230217369] [legacy.amcl]: initialPoseReceived
+[amcl-5] [INFO] [1792112591.230280476] [legacy.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-5] [INFO] [1792112591.230616923] [legacy.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-6] [INFO] [1792112591.334492231] [legacy.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-6] [INFO] [1792112591.334543708] [legacy.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-6] [INFO] [1792112591.334551339] [legacy.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[INFO] [map_server-7]: process started with pid [318886]
+[INFO] [amcl-8]: process started with pid [318887]
+[amcl-8] [INFO] [1792112591.633455019] [after_free.amcl]: 
+[amcl-8] 	amcl lifecycle node launched. 
+[amcl-8] 	Waiting on external lifecycle transitions to activate
+[amcl-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-8] [INFO] [1792112591.634014406] [after_free.amcl]: Creating
+[map_server-7] [INFO] [1792112591.641254275] [after_free.map_server]: 
+[map_server-7] 	map_server lifecycle node launched. 
+[map_server-7] 	Waiting on external lifecycle transitions to activate
+[map_server-7] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-7] [INFO] [1792112591.641366455] [after_free.map_server]: Creating
+[INFO] [lifecycle_manager-9]: process started with pid [318918]
+[lifecycle_manager-9] [INFO] [1792112593.628556272] [after_free.lifecycle_manager]: Creating
+[lifecycle_manager-9] [INFO] [1792112593.631080637] [after_free.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[INFO] [map_server-10]: process started with pid [318935]
+[INFO] [amcl-11]: process started with pid [318936]
+[amcl-11] [INFO] [1792112594.673053269] [temporal.amcl]: 
+[amcl-11] 	amcl lifecycle node launched. 
+[amcl-11] 	Waiting on external lifecycle transitions to activate
+[amcl-11] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-11] [INFO] [1792112594.673430934] [temporal.amcl]: Creating
+[map_server-10] [INFO] [1792112594.674834057] [temporal.map_server]: 
+[map_server-10] 	map_server lifecycle node launched. 
+[map_server-10] 	Waiting on external lifecycle transitions to activate
+[map_server-10] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-10] [INFO] [1792112594.674907735] [temporal.map_server]: Creating
+[lifecycle_manager-9] [INFO] [1792112595.315732239] [after_free.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-9] [INFO] [1792112595.315787964] [after_free.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-7] [INFO] [1792112595.316057149] [after_free.map_server]: Configuring
+[map_server-7] [INFO] [1792112595.316103761] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/after_free/map.yaml
+[map_server-7] [INFO] [1792112595.318697217] [map_io]: resolution: 0.05
+[map_server-7] [INFO] [1792112595.318724619] [map_io]: origin[0]: -6
+[map_server-7] [INFO] [1792112595.318730437] [map_io]: origin[1]: -14
+[map_server-7] [INFO] [1792112595.318732830] [map_io]: origin[2]: 0
+[map_server-7] [INFO] [1792112595.318735506] [map_io]: free_thresh: 0.196
+[map_server-7] [INFO] [1792112595.318737909] [map_io]: occupied_thresh: 0.65
+[map_server-7] [INFO] [1792112595.318741244] [map_io]: mode: trinary
+[map_server-7] [INFO] [1792112595.318744092] [map_io]: negate: 0
+[map_server-7] [INFO] [1792112595.318906005] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/after_free/map.pgm
+[map_server-7] [INFO] [1792112595.338094393] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/after_free/map.pgm: 640 X 600 map @ 0.05 m/cell
+[lifecycle_manager-9] [INFO] [1792112595.345742858] [after_free.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-8] [INFO] [1792112595.345992267] [after_free.amcl]: Configuring
+[amcl-8] [INFO] [1792112595.346054317] [after_free.amcl]: initTransforms
+[amcl-8] [INFO] [1792112595.356229865] [after_free.amcl]: initPubSub
+[amcl-8] [INFO] [1792112595.365204968] [after_free.amcl]: Subscribed to map topic.
+[lifecycle_manager-9] [INFO] [1792112595.370164010] [after_free.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-7] [INFO] [1792112595.370401314] [after_free.map_server]: Activating
+[map_server-7] [INFO] [1792112595.371332791] [after_free.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-8] [INFO] [1792112595.372092896] [after_free.amcl]: Received a 640 X 600 map @ 0.050 m/pix
+[lifecycle_manager-9] [INFO] [1792112595.476355458] [after_free.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-9] [INFO] [1792112595.476417457] [after_free.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-8] [INFO] [1792112595.476664620] [after_free.amcl]: Activating
+[amcl-8] [INFO] [1792112595.476697151] [after_free.amcl]: initialPoseReceived
+[amcl-8] [INFO] [1792112595.476759759] [after_free.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-8] [INFO] [1792112595.477046827] [after_free.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-9] [INFO] [1792112595.582324724] [after_free.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-9] [INFO] [1792112595.582378036] [after_free.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-9] [INFO] [1792112595.582385923] [after_free.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[INFO] [lifecycle_manager-12]: process started with pid [318970]
+[lifecycle_manager-12] [INFO] [1792112596.666954960] [temporal.lifecycle_manager]: Creating
+[lifecycle_manager-12] [INFO] [1792112596.669583141] [temporal.lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-12] [INFO] [1792112598.349786870] [temporal.lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1792112598.349844267] [temporal.lifecycle_manager]: [34m[1mConfiguring map_server[0m[0m
+[map_server-10] [INFO] [1792112598.350177532] [temporal.map_server]: Configuring
+[map_server-10] [INFO] [1792112598.350227398] [map_io]: Loading yaml file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/temporal/map.yaml
+[map_server-10] [INFO] [1792112598.353096574] [map_io]: resolution: 0.05
+[map_server-10] [INFO] [1792112598.353130595] [map_io]: origin[0]: -6
+[map_server-10] [INFO] [1792112598.353137296] [map_io]: origin[1]: -14
+[map_server-10] [INFO] [1792112598.353140205] [map_io]: origin[2]: 0
+[map_server-10] [INFO] [1792112598.353143418] [map_io]: free_thresh: 0.196
+[map_server-10] [INFO] [1792112598.353146470] [map_io]: occupied_thresh: 0.65
+[map_server-10] [INFO] [1792112598.353150221] [map_io]: mode: trinary
+[map_server-10] [INFO] [1792112598.353153779] [map_io]: negate: 0
+[map_server-10] [INFO] [1792112598.353368102] [map_io]: Loading image_file: /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/temporal/map.pgm
+[map_server-10] [INFO] [1792112598.370581435] [map_io]: Read map /mnt/d/workspace/be2/slam_learning_updated/results/reference/h1-supported-20261016/dynamic-A/maps/temporal/map.pgm: 640 X 600 map @ 0.05 m/cell
+[lifecycle_manager-12] [INFO] [1792112598.377836158] [temporal.lifecycle_manager]: [34m[1mConfiguring amcl[0m[0m
+[amcl-11] [INFO] [1792112598.378082232] [temporal.amcl]: Configuring
+[amcl-11] [INFO] [1792112598.378173914] [temporal.amcl]: initTransforms
+[amcl-11] [INFO] [1792112598.386900619] [temporal.amcl]: initPubSub
+[amcl-11] [INFO] [1792112598.396435452] [temporal.amcl]: Subscribed to map topic.
+[lifecycle_manager-12] [INFO] [1792112598.400869837] [temporal.lifecycle_manager]: [34m[1mActivating map_server[0m[0m
+[map_server-10] [INFO] [1792112598.401088338] [temporal.map_server]: Activating
+[map_server-10] [INFO] [1792112598.402069926] [temporal.map_server]: Creating bond (map_server) to lifecycle manager.
+[amcl-11] [INFO] [1792112598.402887907] [temporal.amcl]: Received a 640 X 600 map @ 0.050 m/pix
+[lifecycle_manager-12] [INFO] [1792112598.507455196] [temporal.lifecycle_manager]: Server map_server connected with bond.
+[lifecycle_manager-12] [INFO] [1792112598.507508356] [temporal.lifecycle_manager]: [34m[1mActivating amcl[0m[0m
+[amcl-11] [INFO] [1792112598.507751600] [temporal.amcl]: Activating
+[amcl-11] [INFO] [1792112598.507788166] [temporal.amcl]: initialPoseReceived
+[amcl-11] [INFO] [1792112598.507845594] [temporal.amcl]: Setting pose (0.000000): 8.323 7.681 -1.451
+[amcl-11] [INFO] [1792112598.508125698] [temporal.amcl]: Creating bond (amcl) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1792112598.613613731] [temporal.lifecycle_manager]: Server amcl connected with bond.
+[lifecycle_manager-12] [INFO] [1792112598.613664225] [temporal.lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1792112598.613671665] [temporal.lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[amcl-5] [INFO] [1792112604.515920073] [legacy.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-8] [INFO] [1792112604.515954013] [after_free.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-11] [INFO] [1792112604.515975593] [temporal.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-2] [INFO] [1792112604.515884705] [raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 2.200 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-2] [INFO] [1792112605.239021979] [raw.amcl]: createLaserObject
+[amcl-5] [INFO] [1792112605.239033389] [legacy.amcl]: createLaserObject
+[amcl-11] [INFO] [1792112605.239053511] [temporal.amcl]: createLaserObject
+[amcl-8] [INFO] [1792112605.239055350] [after_free.amcl]: createLaserObject
+[amcl-5] [INFO] [1792112608.647858136] [legacy.amcl]: Message Filter dropping message: frame 'lidar_link' at time 9.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-2] [INFO] [1792112608.647887583] [raw.amcl]: Message Filter dropping message: frame 'lidar_link' at time 9.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-11] [INFO] [1792112608.647904386] [temporal.amcl]: Message Filter dropping message: frame 'lidar_link' at time 9.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[amcl-8] [INFO] [1792112608.647944077] [after_free.amcl]: Message Filter dropping message: frame 'lidar_link' at time 9.700 for reason 'the timestamp on the message is earlier than all the data in the transform cache'
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[amcl-11] [INFO] [1792112646.674092656] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-11] [INFO] [1792112646.674196275] [temporal.amcl]: Running Nav2 LifecycleNode rcl preshutdown (amcl)
+[amcl-11] [INFO] [1792112646.674248713] [temporal.amcl]: Deactivating
+[amcl-11] [INFO] [1792112646.674270306] [temporal.amcl]: Destroying bond (amcl) to lifecycle manager.
+[map_server-10] [INFO] [1792112646.674099980] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_server-10] [INFO] [1792112646.674196742] [temporal.map_server]: Running Nav2 LifecycleNode rcl preshutdown (map_server)
+[map_server-10] [INFO] [1792112646.674248734] [temporal.map_server]: Deactivating
+[map_server-10] [INFO] [1792112646.674259881] [temporal.map_server]: Destroying bond (map_server) to lifecycle manager.
+[amcl-8] [INFO] [1792112646.674131097] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-8] [INFO] [1792112646.674198455] [after_free.amcl]: Running Nav2 LifecycleNode rcl preshutdown (amcl)
+[amcl-8] [INFO] [1792112646.674264525] [after_free.amcl]: Deactivating
+[amcl-8] [INFO] [1792112646.674288199] [after_free.amcl]: Destroying bond (amcl) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1792112646.674082950] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-12] [INFO] [1792112646.674229132] [temporal.lifecycle_manager]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager)
+[lifecycle_manager-12] [INFO] [1792112646.674262958] [temporal.lifecycle_manager]: [34m[1mTerminating bond timer...[0m[0m
+[lifecycle_manager-9] [INFO] [1792112646.674148381] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-9] [INFO] [1792112646.674211083] [after_free.lifecycle_manager]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager)
+[lifecycle_manager-9] [INFO] [1792112646.674233793] [after_free.lifecycle_manager]: [34m[1mTerminating bond timer...[0m[0m
+[lifecycle_manager-6] [INFO] [1792112646.674149830] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-6] [INFO] [1792112646.674265245] [legacy.lifecycle_manager]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager)
+[lifecycle_manager-6] [INFO] [1792112646.674322835] [legacy.lifecycle_manager]: [34m[1mTerminating bond timer...[0m[0m
+[lifecycle_manager-3] [INFO] [1792112646.674192345] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-3] [INFO] [1792112646.674261579] [raw.lifecycle_manager]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager)
+[lifecycle_manager-3] [INFO] [1792112646.674280161] [raw.lifecycle_manager]: [34m[1mTerminating bond timer...[0m[0m
+[amcl-5] [INFO] [1792112646.674264708] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-5] [INFO] [1792112646.674378986] [legacy.amcl]: Running Nav2 LifecycleNode rcl preshutdown (amcl)
+[amcl-5] [INFO] [1792112646.674423686] [legacy.amcl]: Deactivating
+[amcl-5] [INFO] [1792112646.674438048] [legacy.amcl]: Destroying bond (amcl) to lifecycle manager.
+[map_server-4] [INFO] [1792112646.674292859] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_server-4] [INFO] [1792112646.674363625] [legacy.map_server]: Running Nav2 LifecycleNode rcl preshutdown (map_server)
+[map_server-4] [INFO] [1792112646.674410200] [legacy.map_server]: Deactivating
+[map_server-4] [INFO] [1792112646.674420353] [legacy.map_server]: Destroying bond (map_server) to lifecycle manager.
+[map_server-7] [INFO] [1792112646.674412954] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_server-7] [INFO] [1792112646.674478659] [after_free.map_server]: Running Nav2 LifecycleNode rcl preshutdown (map_server)
+[map_server-7] [INFO] [1792112646.674524312] [after_free.map_server]: Deactivating
+[map_server-7] [INFO] [1792112646.674533795] [after_free.map_server]: Destroying bond (map_server) to lifecycle manager.
+[INFO] [lifecycle_manager-12]: sending signal 'SIGINT' to process[lifecycle_manager-12]
+[INFO] [amcl-11]: sending signal 'SIGINT' to process[amcl-11]
+[INFO] [map_server-10]: sending signal 'SIGINT' to process[map_server-10]
+[INFO] [lifecycle_manager-9]: sending signal 'SIGINT' to process[lifecycle_manager-9]
+[INFO] [amcl-8]: sending signal 'SIGINT' to process[amcl-8]
+[INFO] [map_server-7]: sending signal 'SIGINT' to process[map_server-7]
+[INFO] [lifecycle_manager-6]: sending signal 'SIGINT' to process[lifecycle_manager-6]
+[ERROR] [map_server-10]: process has died [pid 318935, exit code -2, cmd '/opt/ros/jazzy/lib/nav2_map_server/map_server --ros-args -r __node:=map_server -r __ns:=/temporal --params-file /tmp/launch_params_a3qed4b_'].
+[ERROR] [lifecycle_manager-9]: process has died [pid 318918, exit code -2, cmd '/opt/ros/jazzy/lib/nav2_lifecycle_manager/lifecycle_manager --ros-args -r __node:=lifecycle_manager -r __ns:=/after_free --params-file /tmp/launch_params_rvdhn9wn'].
+[INFO] [amcl-5]: sending signal 'SIGINT' to process[amcl-5]
+[ERROR] [amcl-11]: process has died [pid 318936, exit code -2, cmd '/opt/ros/jazzy/lib/nav2_amcl/amcl --ros-args -r __node:=amcl -r __ns:=/temporal --params-file /tmp/launch_params_7vn9dq0l'].
+[ERROR] [map_server-7]: process has died [pid 318886, exit code -2, cmd '/opt/ros/jazzy/lib/nav2_map_server/map_server --ros-args -r __node:=map_server -r __ns:=/after_free --params-file /tmp/launch_params_2oiqxxzh'].
+[INFO] [map_server-4]: sending signal 'SIGINT' to process[map_server-4]
+[ERROR] [amcl-5]: process has died [pid 318835, exit code -2, cmd '/opt/ros/jazzy/lib/nav2_amcl/amcl --ros-args -r __node:=amcl -r __ns:=/legacy --params-file /tmp/launch_params_8ggrhug_'].
+[INFO] [lifecycle_manager-3]: sending signal 'SIGINT' to process[lifecycle_manager-3]
+[INFO] [amcl-2]: sending signal 'SIGINT' to process[amcl-2]
+[INFO] [map_server-1]: sending signal 'SIGINT' to process[map_server-1]
+[ERROR] [map_server-4]: process has died [pid 318834, exit code -2, cmd '/opt/ros/jazzy/lib/nav2_map_server/map_server --ros-args -r __node:=map_server -r __ns:=/legacy --params-file /tmp/launch_params__lax0hjj'].
+[amcl-2] [INFO] [1792112646.674500695] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-2] [INFO] [1792112646.674585975] [raw.amcl]: Running Nav2 LifecycleNode rcl preshutdown (amcl)
+[amcl-2] [INFO] [1792112646.675466949] [raw.amcl]: Deactivating
+[amcl-2] [INFO] [1792112646.675486930] [raw.amcl]: Destroying bond (amcl) to lifecycle manager.
+[ERROR] [map_server-1]: process has died [pid 318782, exit code -2, cmd '/opt/ros/jazzy/lib/nav2_map_server/map_server --ros-args -r __node:=map_server -r __ns:=/raw --params-file /tmp/launch_params_hl8ddphg'].
+[map_server-1] [INFO] [1792112646.674666832] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_server-1] [INFO] [1792112646.674724889] [raw.map_server]: Running Nav2 LifecycleNode rcl preshutdown (map_server)
+[map_server-1] [INFO] [1792112646.674765805] [raw.map_server]: Deactivating
+[map_server-1] [INFO] [1792112646.674817807] [raw.map_server]: Destroying bond (map_server) to lifecycle manager.
+[amcl-8] [INFO] [1792112646.684539528] [after_free.amcl]: Cleaning up
+[map_server-10] [INFO] [1792112646.684540963] [temporal.map_server]: Cleaning up
+[map_server-10] [INFO] [1792112646.684565661] [temporal.map_server]: Destroying bond (map_server) to lifecycle manager.
+[amcl-11] [INFO] [1792112646.684581655] [temporal.amcl]: Cleaning up
+[map_server-4] [INFO] [1792112646.684695260] [legacy.map_server]: Cleaning up
+[map_server-4] [INFO] [1792112646.684722696] [legacy.map_server]: Destroying bond (map_server) to lifecycle manager.
+[amcl-5] [INFO] [1792112646.684722859] [legacy.amcl]: Cleaning up
+[map_server-7] [INFO] [1792112646.684800719] [after_free.map_server]: Cleaning up
+[map_server-7] [INFO] [1792112646.684828957] [after_free.map_server]: Destroying bond (map_server) to lifecycle manager.
+[map_server-1] [INFO] [1792112646.685036854] [raw.map_server]: Cleaning up
+[map_server-1] [INFO] [1792112646.685104861] [raw.map_server]: Destroying bond (map_server) to lifecycle manager.
+[amcl-2] [INFO] [1792112646.686215040] [raw.amcl]: Cleaning up
+[amcl-5] [INFO] [1792112646.688324962] [legacy.amcl]: Destroying bond (amcl) to lifecycle manager.
+[amcl-8] [INFO] [1792112646.688337458] [after_free.amcl]: Destroying bond (amcl) to lifecycle manager.
+[amcl-11] [INFO] [1792112646.688607925] [temporal.amcl]: Destroying bond (amcl) to lifecycle manager.
+[map_server-1] [INFO] [1792112646.689637242] [raw.map_server]: Destroying
+[map_server-4] [INFO] [1792112646.692763950] [legacy.map_server]: Destroying
+[map_server-10] [INFO] [1792112646.695798317] [temporal.map_server]: Destroying
+[amcl-11] [INFO] [1792112646.696831246] [temporal.amcl]: Destroying
+[lifecycle_manager-9] [INFO] [1792112646.700350995] [after_free.lifecycle_manager]: Destroying lifecycle_manager
+[amcl-5] [INFO] [1792112646.701631610] [legacy.amcl]: Destroying
+[map_server-7] [INFO] [1792112646.702635022] [after_free.map_server]: Destroying
+[amcl-8] [INFO] [1792112646.703662970] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-3] [INFO] [1792112648.703848175] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-3] [INFO] [1792112648.704666361] [raw.lifecycle_manager]: Destroying lifecycle_manager
+[amcl-8] [INFO] [1792112648.705369273] [after_free.amcl]: Destroying
+[lifecycle_manager-12] [INFO] [1792112648.705419304] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-12] [INFO] [1792112648.706482574] [temporal.lifecycle_manager]: Destroying lifecycle_manager
+[amcl-2] [INFO] [1792112648.711958120] [raw.amcl]: Destroying bond (amcl) to lifecycle manager.
+[amcl-2] [INFO] [1792112648.713248653] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-2] [INFO] [1792112648.713392843] [raw.amcl]: Destroying
+[INFO] [lifecycle_manager-3]: process has finished cleanly [pid 318814]
+[INFO] [lifecycle_manager-12]: process has finished cleanly [pid 318970]
+[INFO] [amcl-8]: process has finished cleanly [pid 318887]
+[INFO] [amcl-2]: process has finished cleanly [pid 318783]
+[ERROR] [lifecycle_manager-6]: process[lifecycle_manager-6] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [lifecycle_manager-6]: sending signal 'SIGTERM' to process[lifecycle_manager-6]

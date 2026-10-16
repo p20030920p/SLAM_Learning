@@ -1,0 +1,33 @@
+{
+  "maps": {
+    "maps/align_only/map.pgm": "1169dff4587849dca2664659ce85789776934713539f5db3f41b61e025bd9cb5",
+    "maps/align_only/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/align_only/points.npy": "89baeec67a1b87f31a9a8ecb96c6310a674b17cb86d23b64578fe118345af50b",
+    "maps/filter_only/map.pgm": "7d71a87eb88d57ece0b39f2e63f97fb490f18bac320f44bb5b4e28b1c11d82ef",
+    "maps/filter_only/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/filter_only/points.npy": "02074b6551c5773f78c6ff4c3256688533b5ab15655d44ea6179efe4120a38e9",
+    "maps/raw/map.pgm": "5a06dd9d8a6ce3f855c72838ea298422fc1576e83ac133235eaed37f72ae7cb6",
+    "maps/raw/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/raw/points.npy": "789f86fa75559db588bd1219bdea85672e28efe1ce3c7db6fcab967cee118871",
+    "maps/temporal/map.pgm": "44e4ad1c23644cf8a2fa97f4510dc35caf0cdf948b9c5935157a7295b083db74",
+    "maps/temporal/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/temporal/points.npy": "aaa2e4d14d32bd8874e52732cc2d3a30a30a77bab82c43c9477340371d34c847"
+  },
+  "algorithm_sources": {
+    "own_mapping.py": "f1fa2ff0402ac120a8c9214eee45f4d9c233610eaf6c7399b95e6bb5f404a2d5",
+    "own_refinement.py": "5fdf75a9142dace2bab44ebf2db9d85256650022b6ed549c2c104ad635d0aee1"
+  },
+  "truth_used_in_builder": false,
+  "parameters": {
+    "time_bin_s": 0.5,
+    "neighborhood_m": 0.1,
+    "free_bins": 3,
+    "free_support_ratio": 1.5,
+    "match_distance_m": 0.3,
+    "trim_fraction": 0.7,
+    "Huber_distance_m": 0.05,
+    "max_correction_m": 0.15,
+    "max_correction_rad": 0.05,
+    "iterations": 12
+  }
+}

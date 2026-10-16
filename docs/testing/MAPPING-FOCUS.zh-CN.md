@@ -7,7 +7,7 @@
 
 | 问题 | 一句话假设 | 对照方法 | 指标 |
 | --- | --- | --- | --- |
-| H1 / Q1 | 跨时间命中与空闲证据过滤，在静态保留损失≤1个百分点时减少动态残影，并改善独立定位。 | M₀：自写累积图 / M₁：自写时序过滤 | A：DA、SA；B：XY RMSE |
+| H1 / Q1 | 自写静态支持对齐与时序清理，在静态保留损失≤1个百分点时减少残影，并改善独立定位。 | M₀：轮速累积图 / M₁：自写对齐＋清理 | A：DA、SA；B：XY RMSE |
 | H2 / Q2 | 用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。 | M₀：补偿关 / M₁：补偿开 | A：地图RMSE；B：XY RMSE |
 
 两项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。
@@ -27,7 +27,7 @@ E_{{\rm loc},m}=
 \sqrt{\frac{1}{|\mathcal T|}\sum_{k\in\mathcal T}
 \|\hat{\mathbf p}_{m,k}-\mathbf p_k^*\|_2^2}.
 ```
-直接比较$`E_{{\rm loc},1}<E_{{\rm loc},0}`$，不再另设差值符号。当前使用预热5秒后的10 Hz时间点，输出滞后不超过0.15秒；不为空的共同时间集才评分。真值只用于事后评分，B评的是定位，尚未测完整导航到达效果。
+直接比较$`E_{{\rm loc},1}<E_{{\rm loc},0}`$，不再另设差值符号。当前使用预热5秒后的10 Hz时间点，输出滞后不超过0.15秒；不为空的共同时间集才评分。H1多轮时，$`k`$同时索引轮次与时刻，合并全部共同有效样本。真值只用于事后评分，B评的是定位，尚未测完整导航到达效果。
 
 **H1：先定义“动态残影清理改善”，再检验规则。**
 
@@ -55,22 +55,47 @@ d(\mathbf q,M)=\min_{\mathbf x\in M}\|\mathbf q-\mathbf x\|_2.
 ```
 该定义只针对已观测支持上的动态残影；不据此宣称整张地图完整、几何准确或镜面问题已解决。
 
-**实现规则。** $`c`$为栅格，$`\mathbf x_c`$为其中心，$`b`$为0.5秒时间箱。$`h(c)`$统计至少有一次回波命中的时间箱数，$`f(c)`$统计至少有一次截断自由射线穿过的时间箱数；每箱各最多计一次，自由射线在回波前15 cm停止：
+**修订为联合建图方法。** Raw仍用轮速位姿直接累积。干预先用前序时序支持点修正逐帧对齐，再清理动态残影；这包含位姿修正与清理，不是只改变删除规则。两项贡献由“只清理／只对齐”消融区分。
+
+$`T_k^o`$是第$`k`$帧的轮速传感器位姿，$`T_k`$是修正位姿；均从传感器系到固定地图系。$`\mathcal R_{k-1}`$来自前序保留地图中至少3个时间箱支持的点，算法不读取真值。轮速增量给出预测：
 
 ```math
-h(c)=\sum_b\mathbf1[\text{hit in bin }b\text{ at }c],
-\qquad
-f(c)=\sum_b\mathbf1[\text{free ray in bin }b\text{ through }c].
+T_{k,0}=T_{k-1}(T_{k-1}^o)^{-1}T_k^o.
+```
+
+$`\mathbf z`$为二维扫描点，$`T\mathbf z`$指旋转和平移后的二维坐标。每次迭代令$`\mathbf p=T_k\mathbf z`$，在$`\mathcal R_{k-1}`$找最近点$`\mathbf q`$；从距离小于0.30 m的对应中保留最接近的70%（至少30对），组成$`\mathcal C_k`$。按下式求二维刚体增量，最多12次：
+
+```math
+w_{\mathbf p}=\min\!\left(1,\frac{0.05}{\max(\|\mathbf p-\mathbf q\|_2,10^{-9})}\right),
 ```
 
 ```math
-M_0=\{\mathbf x_c:h(c)>0\},
-\qquad
-M_1=\{\mathbf x_c:h(c)\ge3\ \land\ h(c)\ge1.5f(c)\}.
+\Delta T=\arg\min_{U\in\mathrm{SE}(2)}\sum_{(\mathbf p,\mathbf q)\in\mathcal C_k}
+w_{\mathbf p}\|U\mathbf p-\mathbf q\|_2^2,
+\qquad T_k\leftarrow\Delta T T_k.
 ```
-这里$`M_0`$就是本项Raw：已知起点＋轮速里程计位姿累积的5 cm占据格，至少命中一次就保留；有效距离筛选、栅格化与公共膨胀仍然执行。$`M_1`$仅增加上述时序保留条件。
+参照不足80点、对应不足30对或总修正超过0.15 m／0.05 rad时使用轮速预测。初帧使用已知起点与轮速位姿。然后在修正位姿下统计5 cm栅格：$`h(c)`$为该格命中时间箱数，$`s(c)`$为0.10 m近邻命中支持箱数，$`f(c)`$为空闲穿越箱数；每箱各最多一次。自由射线在回波前15 cm停止。
 
-**要检验的H1：**该规则满足上述清理改善条件，并使$`E_{{\rm loc},1}<E_{{\rm loc},0}`$。3与1.5是本轮固定的启发式参数；规则本身不是“静态”或“干净”的定义，低命中的静态结构也可能被删。
+```math
+h(c)=\sum_b\mathbf1[\text{hit at }c\text{ in bin }b],
+\qquad \widetilde M=\{\mathbf x_c:h(c)>0\}.
+```
+
+```math
+s(c)=\sum_b\mathbf1[\exists c':\|\mathbf x_{c'}-\mathbf x_c\|_2\le0.10,
+\ \text{hit at }c'\text{ in bin }b].
+```
+
+```math
+f(c)=\sum_b\mathbf1[\text{free ray through }c\text{ in bin }b].
+```
+
+```math
+M_1=\{\mathbf x_c\in \widetilde M:f(c)<3\ \lor\ f(c)<1.5s(c)\}.
+```
+即：至少3个空闲时间箱，且空闲证据至少为近邻命中支持的1.5倍，才删除。同一箱可同时计入$`s,f`$，它们是证据计数，不是互斥概率。少见本身不等于动态；邻域支持允许同一墙面的回波落在相邻格中，不向未观测格补点。算法不使用语义标签或真值；两组距离筛选、栅格化、自由区与膨胀规则相同。
+
+**要检验的H1：**联合方法相对轮速Raw满足清理改善条件，并降低另采B的定位误差。所有参数在最终新B采集前固定；旧B用于开发消融。旧逐格规则和只清理版本的负结果全部保留，不能将联合方法的收益全归因于动态去除。
 
 **H2：统一采样时刻，再分别检验几何与定位。**
 
@@ -106,9 +131,14 @@ E_{{\rm loc},1}<E_{{\rm loc},0}.
 for test, scene in [(H1, static), (H1, dynamic), (H2, motion)]:
     A = acquire_scans_and_wheel_odometry(scene)
     if test == H1:
-        h, f = count_time_bins_with_hits_and_free_rays(A, bin_seconds=0.5)
-        M0 = cell_centers_where(h > 0)
-        M1 = cell_centers_where((h >= 3) & (h >= 1.5 * f))
+        M0 = integrate_A_with_wheel_poses(A)
+        corrected_poses = align_scans_to_previous_supported_map(A)  # own implementation
+        h, s, f = initialize_grid_evidence()
+        for bin in A.project_with(corrected_poses).time_bins(seconds=0.5):
+            add_hits_once_per_cell(h, bin)
+            add_neighborhood_hit_support_once(s, bin, radius=0.10)
+            add_truncated_free_ray_evidence_once(f, bin, stop_before_return=0.15)
+        M1 = cell_centers_where((h > 0) & ((f < 3) | (f < 1.5 * s)))
     else:
         M0 = integrate_A(A, point_compensation=False)
         M1 = integrate_A(A, point_compensation=True)  # no H1 filtering

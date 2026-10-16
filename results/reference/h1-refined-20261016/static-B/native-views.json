@@ -1,0 +1,22 @@
+[
+  {
+    "tf_topic": "/raw/view/tf",
+    "map_topic": "/raw/map",
+    "window_title": "SLAM LIVE - raw - RViz2",
+    "case": "raw",
+    "video": "executions/raw.mp4",
+    "mirror_file": "S1-纯静态__2D__B-定位__raw-map_AMCL_独立RViz实时__20261016-041721-b20224.mp4",
+    "sha256": "0b43a9f282ed94e245cd212e9be0852d86bc48f1096155d8080554769199f243",
+    "pose_topic": "/raw/amcl_pose"
+  },
+  {
+    "tf_topic": "/temporal/view/tf",
+    "map_topic": "/temporal/map",
+    "window_title": "SLAM LIVE - temporal - RViz2",
+    "case": "temporal",
+    "video": "executions/temporal.mp4",
+    "mirror_file": "S1-纯静态__2D__B-定位__temporal-map_AMCL_独立RViz实时__20261016-041721-b20224.mp4",
+    "sha256": "3c995d5d8886865a5df3d88be6bfc393a7718b7ef144aa0ace21846aefc135e3",
+    "pose_topic": "/temporal/amcl_pose"
+  }
+]

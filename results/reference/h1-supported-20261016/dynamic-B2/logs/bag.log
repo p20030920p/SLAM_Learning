@@ -1,0 +1,19 @@
+[WARN] [ros2bag]: Positional "topics" argument deprecated. Please use optional "--topics" argument instead.
+stdin is not a terminal device. Keyboard handling disabled.[37;1m2026-10-16 04:11:24.084 [31;1m[[37;1mRTPS_TRANSPORT_SHM[31;1m Error] [37mFailed init_port fastrtps_port7006: open_and_lock_file failed[34;1m -> Function [36mopen_port_internal[m
+[INFO] [1792113084.095295159] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1792113084.095311420] [rosbag2_recorder]: Event publisher thread: Started
+[INFO] [1792113084.102794617] [rosbag2_recorder]: Starting recording to '/mnt/f/be2演讲/原始会话/h1-supported-20261016/20261016-041112-localization-own-dynamic-method-live-b8295a/input-bag'
+[INFO] [1792113084.111097927] [rosbag2_recorder]: Listening for topics...
+[INFO] [1792113084.111635364] [rosbag2_recorder]: Recording...
+[INFO] [1792113084.111230977] [rosbag2_recorder]: Topics discovery started.
+[INFO] [1792113084.297040092] [rosbag2_recorder]: Subscribed to topic '/tf'
+[INFO] [1792113085.410810278] [rosbag2_recorder]: Subscribed to topic '/tf_static'
+[INFO] [1792113086.357782933] [rosbag2_recorder]: Subscribed to topic '/clock'
+[INFO] [1792113086.365460749] [rosbag2_recorder]: Subscribed to topic '/scan'
+[INFO] [1792113096.096599798] [rosbag2_recorder]: Subscribed to topic '/omni_drive_controller/odom'
+[INFO] [1792113177.915903669] [rosbag2_recorder]: Topics discovery stopped.
+[INFO] [1792113177.916496151] [rosbag2_recorder]: Pausing recording.
+[INFO] [1792113177.917156330] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1792113177.965224815] [rosbag2_recorder]: Recording stopped
+[WARN] [1792113177.966139890] [rosbag2_recorder]: Number of messages lost on the transport layer: 34
+[INFO] [1792113179.263673531] [rosbag2_recorder]: Event publisher thread: Exited

@@ -170,7 +170,7 @@
 
 | 问题 | 一句话假设 | 对照方法 | 指标 |
 | --- | --- | --- | --- |
-| H1 / Q1 | 跨时间命中与空闲证据过滤，在静态保留损失≤1个百分点时减少动态残影，并改善独立定位。 | M₀：自写累积图 / M₁：自写时序过滤 | A：DA、SA；B：XY RMSE |
+| H1 / Q1 | 自写静态支持对齐与时序清理，在静态保留损失≤1个百分点时减少残影，并改善独立定位。 | M₀：轮速累积图 / M₁：自写对齐＋清理 | A：DA、SA；B：XY RMSE |
 | H2 / Q2 | 用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。 | M₀：补偿关 / M₁：补偿开 | A：地图RMSE；B：XY RMSE |
 
 两项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。
@@ -190,7 +190,7 @@ E_{{\rm loc},m}=
 \sqrt{\frac{1}{|\mathcal T|}\sum_{k\in\mathcal T}
 \|\hat{\mathbf p}_{m,k}-\mathbf p_k^*\|_2^2}.
 ```
-直接比较$`E_{{\rm loc},1}<E_{{\rm loc},0}`$，不再另设差值符号。当前使用预热5秒后的10 Hz时间点，输出滞后不超过0.15秒；不为空的共同时间集才评分。真值只用于事后评分，B评的是定位，尚未测完整导航到达效果。
+直接比较$`E_{{\rm loc},1}<E_{{\rm loc},0}`$，不再另设差值符号。当前使用预热5秒后的10 Hz时间点，输出滞后不超过0.15秒；不为空的共同时间集才评分。H1多轮时，$`k`$同时索引轮次与时刻，合并全部共同有效样本。真值只用于事后评分，B评的是定位，尚未测完整导航到达效果。
 
 **H1：先定义“动态残影清理改善”，再检验规则。**
 
@@ -218,22 +218,47 @@ d(\mathbf q,M)=\min_{\mathbf x\in M}\|\mathbf q-\mathbf x\|_2.
 ```
 该定义只针对已观测支持上的动态残影；不据此宣称整张地图完整、几何准确或镜面问题已解决。
 
-**实现规则。** $`c`$为栅格，$`\mathbf x_c`$为其中心，$`b`$为0.5秒时间箱。$`h(c)`$统计至少有一次回波命中的时间箱数，$`f(c)`$统计至少有一次截断自由射线穿过的时间箱数；每箱各最多计一次，自由射线在回波前15 cm停止：
+**修订为联合建图方法。** Raw仍用轮速位姿直接累积。干预先用前序时序支持点修正逐帧对齐，再清理动态残影；这包含位姿修正与清理，不是只改变删除规则。两项贡献由“只清理／只对齐”消融区分。
+
+$`T_k^o`$是第$`k`$帧的轮速传感器位姿，$`T_k`$是修正位姿；均从传感器系到固定地图系。$`\mathcal R_{k-1}`$来自前序保留地图中至少3个时间箱支持的点，算法不读取真值。轮速增量给出预测：
 
 ```math
-h(c)=\sum_b\mathbf1[\text{hit in bin }b\text{ at }c],
-\qquad
-f(c)=\sum_b\mathbf1[\text{free ray in bin }b\text{ through }c].
+T_{k,0}=T_{k-1}(T_{k-1}^o)^{-1}T_k^o.
+```
+
+$`\mathbf z`$为二维扫描点，$`T\mathbf z`$指旋转和平移后的二维坐标。每次迭代令$`\mathbf p=T_k\mathbf z`$，在$`\mathcal R_{k-1}`$找最近点$`\mathbf q`$；从距离小于0.30 m的对应中保留最接近的70%（至少30对），组成$`\mathcal C_k`$。按下式求二维刚体增量，最多12次：
+
+```math
+w_{\mathbf p}=\min\!\left(1,\frac{0.05}{\max(\|\mathbf p-\mathbf q\|_2,10^{-9})}\right),
 ```
 
 ```math
-M_0=\{\mathbf x_c:h(c)>0\},
-\qquad
-M_1=\{\mathbf x_c:h(c)\ge3\ \land\ h(c)\ge1.5f(c)\}.
+\Delta T=\arg\min_{U\in\mathrm{SE}(2)}\sum_{(\mathbf p,\mathbf q)\in\mathcal C_k}
+w_{\mathbf p}\|U\mathbf p-\mathbf q\|_2^2,
+\qquad T_k\leftarrow\Delta T T_k.
 ```
-这里$`M_0`$就是本项Raw：已知起点＋轮速里程计位姿累积的5 cm占据格，至少命中一次就保留；有效距离筛选、栅格化与公共膨胀仍然执行。$`M_1`$仅增加上述时序保留条件。
+参照不足80点、对应不足30对或总修正超过0.15 m／0.05 rad时使用轮速预测。初帧使用已知起点与轮速位姿。然后在修正位姿下统计5 cm栅格：$`h(c)`$为该格命中时间箱数，$`s(c)`$为0.10 m近邻命中支持箱数，$`f(c)`$为空闲穿越箱数；每箱各最多一次。自由射线在回波前15 cm停止。
 
-**要检验的H1：**该规则满足上述清理改善条件，并使$`E_{{\rm loc},1}<E_{{\rm loc},0}`$。3与1.5是本轮固定的启发式参数；规则本身不是“静态”或“干净”的定义，低命中的静态结构也可能被删。
+```math
+h(c)=\sum_b\mathbf1[\text{hit at }c\text{ in bin }b],
+\qquad \widetilde M=\{\mathbf x_c:h(c)>0\}.
+```
+
+```math
+s(c)=\sum_b\mathbf1[\exists c':\|\mathbf x_{c'}-\mathbf x_c\|_2\le0.10,
+\ \text{hit at }c'\text{ in bin }b].
+```
+
+```math
+f(c)=\sum_b\mathbf1[\text{free ray through }c\text{ in bin }b].
+```
+
+```math
+M_1=\{\mathbf x_c\in \widetilde M:f(c)<3\ \lor\ f(c)<1.5s(c)\}.
+```
+即：至少3个空闲时间箱，且空闲证据至少为近邻命中支持的1.5倍，才删除。同一箱可同时计入$`s,f`$，它们是证据计数，不是互斥概率。少见本身不等于动态；邻域支持允许同一墙面的回波落在相邻格中，不向未观测格补点。算法不使用语义标签或真值；两组距离筛选、栅格化、自由区与膨胀规则相同。
+
+**要检验的H1：**联合方法相对轮速Raw满足清理改善条件，并降低另采B的定位误差。所有参数在最终新B采集前固定；旧B用于开发消融。旧逐格规则和只清理版本的负结果全部保留，不能将联合方法的收益全归因于动态去除。
 
 **H2：统一采样时刻，再分别检验几何与定位。**
 
@@ -269,9 +294,14 @@ E_{{\rm loc},1}<E_{{\rm loc},0}.
 for test, scene in [(H1, static), (H1, dynamic), (H2, motion)]:
     A = acquire_scans_and_wheel_odometry(scene)
     if test == H1:
-        h, f = count_time_bins_with_hits_and_free_rays(A, bin_seconds=0.5)
-        M0 = cell_centers_where(h > 0)
-        M1 = cell_centers_where((h >= 3) & (h >= 1.5 * f))
+        M0 = integrate_A_with_wheel_poses(A)
+        corrected_poses = align_scans_to_previous_supported_map(A)  # own implementation
+        h, s, f = initialize_grid_evidence()
+        for bin in A.project_with(corrected_poses).time_bins(seconds=0.5):
+            add_hits_once_per_cell(h, bin)
+            add_neighborhood_hit_support_once(s, bin, radius=0.10)
+            add_truncated_free_ray_evidence_once(f, bin, stop_before_return=0.15)
+        M1 = cell_centers_where((h > 0) & ((f < 3) | (f < 1.5 * s)))
     else:
         M0 = integrate_A(A, point_compensation=False)
         M1 = integrate_A(A, point_compensation=True)  # no H1 filtering
@@ -463,7 +493,7 @@ A按任务评价清图或几何；B评价冻结地图后的定位，均预热5�
 | Practice：SRRG二维对照 | 用SRRG每帧当时估计的传感器位姿直接累计回波；历史累计点不按最终图优化结果重新投影。SRRG输出另含地图维护与图优化。 | 冻结后用AMCL |
 | Practice：Raw／DUFOMap／BeautyMap三维对照 | 用受控建图A提供的传感器位姿变换并拼接三维扫描，不调用DUFOMap或BeautyMap清理。该A使用提供的仿真位姿。 | 冻结后用GICP；B不输入真值 |
 
-因此，不同实验的Raw不是同一张图，位姿来源也不相同；只能在各自匹配的对照内比较。SRRG这一组是包含位姿优化与地图维护的端到端对照，不是只改变删除规则的消融。H2基线另称Off，只关闭逐点运动补偿；FAST-LIO实践的Off仍保留LiDAR–IMU估计。
+因此，不同实验的Raw不是同一张图，位姿来源也不相同；只能在各自匹配的对照内比较。SRRG这一组是包含位姿优化与地图维护的端到端对照，不是只改变删除规则的消融。当前H1干预还包含自写位姿对齐，Raw不含该对齐；仅清理／仅对齐消融区分两者贡献。H2基线另称Off，只关闭逐点运动补偿；FAST-LIO实践的Off仍保留LiDAR–IMU估计。
 
 
 <a id="practice-srrg"></a>
@@ -1040,19 +1070,39 @@ AMCL按运动阈值触发发布；上述样本数只计输出滞后≤0.15秒的
 
 <a id="hypothesis-test-index"></a>
 
-自写方法的实验。每个场景重新采集A/B；同一场景各对照共享输入。每组1轮，固定参数，不根据真值调参。
+自写方法实验。H1重用同一原始A重算地图，旧B用于开发消融；固定规则后，另采静态B一次、动态B三次。H2保留原单轮A/B。每轮对照共享扫描、里程计、AMCL参数与初始化。
 
 | 实验 | 建图与指标 | 独立定位与指标 |
 | --- | --- | --- |
+| H1 旧B开发消融 | — | [↗](#h1-revision-ablation) |
 | H1 静态保留 | [A](#own-static-a) | [B](#own-static-b) |
 | H1 动态清理 | [A](#own-dynamic-a) | [B](#own-dynamic-b) |
 | H2 里程计去畸变 | [A](#own-motion-a) | [B](#own-motion-b) |
 
 设备同Practice的全向轮机器人；算法仅使用二维雷达和轮式里程计。H2将三个真实时刻的扇区组合为滚动扫描，保留各点原采样时刻；未使用FAST-LIO。
 
-[自写算法](../src/slam_learning/runtime/own_mapping.py) · [一键录制](../demo/record-own-hypotheses.ps1)
+[自写清理](../src/slam_learning/runtime/own_mapping.py) · [自写对齐](../src/slam_learning/runtime/own_refinement.py) · [H1验证录制](../demo/record-h1-revision.ps1) · [采集前固定设置](../results/reference/h1-refined-20261016/confirmation-protocol.json)
 
 H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31–39秒。
+
+<a id="h1-revision-ablation"></a>
+
+### H1 · 旧B开发消融
+
+旧规则SA损失6.95个百分点；A轮速位姿RMSE还有7.74 cm。只清理无法修正地图位姿偏差，因此最终加入自写鲁棒二维对齐。下表重跑相同旧B，只用于开发消融，不混入最终新B评分。
+
+| 方法 | DA ↑ | SA ↑ | XY RMSE / cm ↓ |
+| --- | --- | --- | --- |
+| Raw | 5.13% | 99.50% | 5.72 |
+| 旧逐格过滤 | 94.87% | 92.55% | 6.11 |
+| 后续空闲确认（中间版） | 29.49% | 99.50% | 5.81 |
+| 近邻时序：只清理 | 79.49% | 99.17% | 5.66 |
+| 只做自写对齐 | 0.00% | 100.00% | 4.86 |
+| 自写对齐＋清理（最终） | 58.97% | 99.67% | 4.41 |
+
+[原生AMCL重跑记录](../results/reference/h1-refined-20261016/dynamic-replay/trial-1/record.json) · [原始负结果保留](../results/reference/own-hypotheses-20261016/dynamic-B/record.json)
+
+只清理版本另采三次B：Raw 6.02 cm、只清理6.06 cm，仍未改善；该批次完整保留。下方主实验使用最终联合方法重新采集的B。 [只清理验证记录](../results/reference/h1-supported-20261016/confirmation-score.json)
 
 <a id="own-static-a"></a>
 
@@ -1061,13 +1111,13 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 | 对照 | SA ↑ |
 | --- | --- |
 | M₀ · Raw：轮速位姿累积 | 99.55% |
-| M₁ · Temporal：时序过滤 | 95.62% |
+| M₁ · Align+Temporal：自写对齐＋清理 | 100.00% |
 
-| 建图录像：灰色为基线，蓝色为自写干预 |
-| --- |
-| <a href="../results/reference/own-hypotheses-20261016/static-A/execution.mp4"><img src="../results/reference/own-hypotheses-20261016/static-A/execution.gif" width="840" loading="lazy" alt="H1 · 静态保留 A"></a> |
+| 原始A采集实录（旧算法画面） | 同一A重放清图：灰Raw，蓝新版 |
+| --- | --- |
+| <a href="../results/reference/own-hypotheses-20261016/static-A/execution.mp4"><img src="../results/reference/own-hypotheses-20261016/static-A/execution.gif" width="420" loading="lazy" alt="H1 · 静态保留 original A"></a> | <a href="../results/reference/h1-refined-20261016/static-A/execution.mp4"><img src="../results/reference/h1-refined-20261016/static-A/execution.gif" width="420" loading="lazy" alt="H1 · 静态保留 revised A input replay"></a> |
 
-[记录](../results/reference/own-hypotheses-20261016/static-A/record.json)
+[记录](../results/reference/h1-refined-20261016/static-A/record.json)
 
 **分析：**
 <!-- OWN_ANALYSIS:static-a -->
@@ -1078,16 +1128,14 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 
 ### H1 · 静态保留 · B
 
-| 地图／AMCL | XY RMSE / cm ↓ |
-| --- | --- |
-| M₀ · Raw：轮速位姿累积 | 4.74 |
-| M₁ · Temporal：时序过滤 | 5.68 |
+另采B，冻结地图后使用相同AMCL。 本项为一次静态对照。
 
-| M₀ · Raw：轮速位姿累积 | M₁ · Temporal：时序过滤 |
-| --- | --- |
-| <a href="../results/reference/own-hypotheses-20261016/static-B/executions/raw.mp4"><img src="../results/reference/own-hypotheses-20261016/static-B/executions/raw.gif" width="420" loading="lazy" alt="raw B"></a> | <a href="../results/reference/own-hypotheses-20261016/static-B/executions/temporal.mp4"><img src="../results/reference/own-hypotheses-20261016/static-B/executions/temporal.gif" width="420" loading="lazy" alt="temporal B"></a> |
+| 地图／AMCL | XY RMSE / cm ↓ | 定位实录（点击MP4） |
+| --- | --- | --- |
+| M₀ · Raw：轮速位姿累积 | 5.44 | <a href="../results/reference/h1-refined-20261016/static-B/executions/raw.mp4"><img src="../results/reference/h1-refined-20261016/static-B/executions/raw.gif" width="420" loading="lazy" alt="raw fresh B"></a> |
+| M₁ · Align+Temporal：自写对齐＋清理 | 4.64 | <a href="../results/reference/h1-refined-20261016/static-B/executions/temporal.mp4"><img src="../results/reference/h1-refined-20261016/static-B/executions/temporal.gif" width="420" loading="lazy" alt="temporal fresh B"></a> |
 
-[共同时间点评分](../results/reference/own-hypotheses-20261016/static-B/time-grid-score.json) · [记录](../results/reference/own-hypotheses-20261016/static-B/record.json)
+[共同时间点评分](../results/reference/h1-refined-20261016/static-B/time-grid-score.json) · [记录](../results/reference/h1-refined-20261016/static-B/record.json)
 
 **分析：**
 <!-- OWN_ANALYSIS:static-b -->
@@ -1103,13 +1151,13 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 | 对照 | DA ↑ | SA ↑ |
 | --- | --- | --- |
 | M₀ · Raw：轮速位姿累积 | 5.13% | 99.50% |
-| M₁ · Temporal：时序过滤 | 94.87% | 92.55% |
+| M₁ · Align+Temporal：自写对齐＋清理 | 58.97% | 99.67% |
 
-| 建图录像：灰色为基线，蓝色为自写干预 |
-| --- |
-| <a href="../results/reference/own-hypotheses-20261016/dynamic-A/execution.mp4"><img src="../results/reference/own-hypotheses-20261016/dynamic-A/execution.gif" width="840" loading="lazy" alt="H1 · 动态清理 A"></a> |
+| 原始A采集实录（旧算法画面） | 同一A重放清图：灰Raw，蓝新版 |
+| --- | --- |
+| <a href="../results/reference/own-hypotheses-20261016/dynamic-A/execution.mp4"><img src="../results/reference/own-hypotheses-20261016/dynamic-A/execution.gif" width="420" loading="lazy" alt="H1 · 动态清理 original A"></a> | <a href="../results/reference/h1-refined-20261016/dynamic-A/execution.mp4"><img src="../results/reference/h1-refined-20261016/dynamic-A/execution.gif" width="420" loading="lazy" alt="H1 · 动态清理 revised A input replay"></a> |
 
-[记录](../results/reference/own-hypotheses-20261016/dynamic-A/record.json)
+[记录](../results/reference/h1-refined-20261016/dynamic-A/record.json)
 
 **分析：**
 <!-- OWN_ANALYSIS:dynamic-a -->
@@ -1120,16 +1168,20 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 
 ### H1 · 动态清理 · B
 
-| 地图／AMCL | XY RMSE / cm ↓ |
-| --- | --- |
-| M₀ · Raw：轮速位姿累积 | 5.72 |
-| M₁ · Temporal：时序过滤 | 6.11 |
+另采B，冻结地图后使用相同AMCL。 下表为三次B的共同时间样本合并RMSE；GIF固定展示第1轮。
 
-| M₀ · Raw：轮速位姿累积 | M₁ · Temporal：时序过滤 |
-| --- | --- |
-| <a href="../results/reference/own-hypotheses-20261016/dynamic-B/executions/raw.mp4"><img src="../results/reference/own-hypotheses-20261016/dynamic-B/executions/raw.gif" width="420" loading="lazy" alt="raw B"></a> | <a href="../results/reference/own-hypotheses-20261016/dynamic-B/executions/temporal.mp4"><img src="../results/reference/own-hypotheses-20261016/dynamic-B/executions/temporal.gif" width="420" loading="lazy" alt="temporal B"></a> |
+| 地图／AMCL | XY RMSE / cm ↓ | 定位实录（点击MP4） |
+| --- | --- | --- |
+| M₀ · Raw：轮速位姿累积 | 5.82 | <a href="../results/reference/h1-refined-20261016/dynamic-B/executions/raw.mp4"><img src="../results/reference/h1-refined-20261016/dynamic-B/executions/raw.gif" width="420" loading="lazy" alt="raw fresh B"></a> |
+| M₁ · Align+Temporal：自写对齐＋清理 | 4.65 | <a href="../results/reference/h1-refined-20261016/dynamic-B/executions/temporal.mp4"><img src="../results/reference/h1-refined-20261016/dynamic-B/executions/temporal.gif" width="420" loading="lazy" alt="temporal fresh B"></a> |
 
-[共同时间点评分](../results/reference/own-hypotheses-20261016/dynamic-B/time-grid-score.json) · [记录](../results/reference/own-hypotheses-20261016/dynamic-B/record.json)
+| 轮次 | Raw / cm | Temporal / cm | 完整录像 |
+| --- | --- | --- | --- |
+| 1 | 4.95 | 4.75 | [Raw MP4](../results/reference/h1-refined-20261016/dynamic-B/executions/raw.mp4) · [Temporal MP4](../results/reference/h1-refined-20261016/dynamic-B/executions/temporal.mp4) |
+| 2 | 5.55 | 4.56 | [Raw MP4](../results/reference/h1-refined-20261016/dynamic-B2/executions/raw.mp4) · [Temporal MP4](../results/reference/h1-refined-20261016/dynamic-B2/executions/temporal.mp4) |
+| 3 | 6.52 | 4.69 | [Raw MP4](../results/reference/h1-refined-20261016/dynamic-B3/executions/raw.mp4) · [Temporal MP4](../results/reference/h1-refined-20261016/dynamic-B3/executions/temporal.mp4) |
+
+[共同时间点评分](../results/reference/h1-refined-20261016/confirmation-score.json) · [记录](../results/reference/h1-refined-20261016/dynamic-B/record.json)
 
 **分析：**
 <!-- OWN_ANALYSIS:dynamic-b -->

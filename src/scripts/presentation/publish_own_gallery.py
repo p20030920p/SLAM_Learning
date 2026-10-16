@@ -2,7 +2,7 @@
 
 from html import escape
 
-from own_research_home import ROOT, SUITE
+from own_research_home import ROOT, SUITE, H1_SUITE
 from simple_research_home import SUITE as PAPER_SUITE
 
 
@@ -26,9 +26,17 @@ def publish():
     own = []
     for scene, title in [("static", "H1 静态"), ("dynamic", "H1 动态"), ("motion", "H2 里程计去畸变")]:
         clips = [(f"{SUITE}/{scene}-A/execution.mp4", title + " · A · 自写方法对照")]
-        folder = ROOT / SUITE / (scene + "-B/executions")
+        selected_suite = SUITE if scene == "motion" else H1_SUITE
+        if scene != "motion":
+            clips[0] = (clips[0][0], title + " · 原始A采集，旧算法画面")
+            clips.append((f"{H1_SUITE}/{scene}-A/execution.mp4", title + " · 同一A重放，由新版自写算法重新计算"))
+        folder = ROOT / selected_suite / (scene + "-B/executions")
         clips += [(p.relative_to(ROOT).as_posix(), title + " · B · " + p.stem + " map / AMCL") for p in sorted(folder.glob("*.mp4"))]
+        if scene == "dynamic":
+            for trial in (2, 3):
+                clips += [(p.relative_to(ROOT).as_posix(), title + f" · 新B第{trial}轮 · " + p.stem + " map / AMCL") for p in sorted((ROOT / H1_SUITE / f"dynamic-B{trial}/executions").glob("*.mp4"))]
         own.append((scene, title, clips))
+    own.append(("h1-historical", "H1 · 历史负结果保留", [(f"{SUITE}/{scene}-B/executions/{method}.mp4", scene + " · 旧H1 · " + method) for scene in ("static", "dynamic") for method in ("raw", "temporal")]))
     page("Hypothesis test · 自写方法实验", own, "demo/hypotheses.html")
     paper = []
     clips = []

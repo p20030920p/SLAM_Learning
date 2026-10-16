@@ -13,7 +13,7 @@ def raw_baselines(zh):
 | Practice：SRRG二维对照 | 用SRRG每帧当时估计的传感器位姿直接累计回波；历史累计点不按最终图优化结果重新投影。SRRG输出另含地图维护与图优化。 | 冻结后用AMCL |
 | Practice：Raw／DUFOMap／BeautyMap三维对照 | 用受控建图A提供的传感器位姿变换并拼接三维扫描，不调用DUFOMap或BeautyMap清理。该A使用提供的仿真位姿。 | 冻结后用GICP；B不输入真值 |
 
-因此，不同实验的Raw不是同一张图，位姿来源也不相同；只能在各自匹配的对照内比较。SRRG这一组是包含位姿优化与地图维护的端到端对照，不是只改变删除规则的消融。H2基线另称Off，只关闭逐点运动补偿；FAST-LIO实践的Off仍保留LiDAR–IMU估计。
+因此，不同实验的Raw不是同一张图，位姿来源也不相同；只能在各自匹配的对照内比较。SRRG这一组是包含位姿优化与地图维护的端到端对照，不是只改变删除规则的消融。当前H1干预还包含自写位姿对齐，Raw不含该对齐；仅清理／仅对齐消融区分两者贡献。H2基线另称Off，只关闭逐点运动补偿；FAST-LIO实践的Off仍保留LiDAR–IMU估计。
 """
     return """**Meaning of Raw.** Raw labels this repository's accumulated baseline without dynamic-map cleaning. It is not a standalone SLAM/localization algorithm or completely unprocessed sensor data.
 
@@ -23,7 +23,7 @@ def raw_baselines(zh):
 | Practice: SRRG 2D comparison | Accumulate returns using SRRG's online sensor-pose estimate at each frame; do not reproject accumulated historical points with the final optimized graph. SRRG output additionally includes map maintenance and graph optimization. | Frozen-map AMCL |
 | Practice: Raw / DUFOMap / BeautyMap 3D comparison | Transform and concatenate 3D scans using provided sensor poses from controlled mapping A, without DUFOMap/BeautyMap cleaning. A uses supplied simulation poses. | Frozen-map GICP; no truth input in B |
 
-These Raw maps and pose sources differ between experiments; compare within the matched experiment. The SRRG comparison includes pose optimization and map maintenance, not just a deletion-rule ablation. H2 calls its baseline Off: only point-time compensation is disabled. FAST-LIO Practice Off still retains LiDAR–IMU estimation.
+These Raw maps and pose sources differ between experiments; compare within the matched experiment. The SRRG comparison includes pose optimization and map maintenance, not just a deletion-rule ablation. Current H1 also adds own pose alignment, which Raw does not use; filter-only / alignment-only ablations distinguish their contributions. H2 calls its baseline Off: only point-time compensation is disabled. FAST-LIO Practice Off still retains LiDAR–IMU estimation.
 """
 
 
@@ -52,8 +52,8 @@ E_{{\rm loc},m}=
 $$
 """
     common += s(
-        "直接比较$E_{{\\rm loc},1}<E_{{\\rm loc},0}$，不再另设差值符号。当前使用预热5秒后的10 Hz时间点，输出滞后不超过0.15秒；不为空的共同时间集才评分。真值只用于事后评分，B评的是定位，尚未测完整导航到达效果。\n",
-        "Compare $E_{{\\rm loc},1}<E_{{\\rm loc},0}$ directly, without another difference symbol. Current scoring uses 10 Hz times after 5 s warmup and outputs no older than 0.15 s; an empty common set is not scored. Truth is used only for post-run evaluation. B tests localization; complete navigation outcomes were not measured.\n")
+        "直接比较$E_{{\\rm loc},1}<E_{{\\rm loc},0}$，不再另设差值符号。当前使用预热5秒后的10 Hz时间点，输出滞后不超过0.15秒；不为空的共同时间集才评分。H1多轮时，$k$同时索引轮次与时刻，合并全部共同有效样本。真值只用于事后评分，B评的是定位，尚未测完整导航到达效果。\n",
+        "Compare $E_{{\\rm loc},1}<E_{{\\rm loc},0}$ directly, without another difference symbol. Current scoring uses 10 Hz times after 5 s warmup and outputs no older than 0.15 s; an empty common set is not scored. Across H1 trials, $k$ indexes both trial and time, pooling all common valid samples. Truth is used only for post-run evaluation. B tests localization; complete navigation outcomes were not measured.\n")
 
     h1 = s(
         """**H1：先定义“动态残影清理改善”，再检验规则。**
@@ -98,30 +98,63 @@ $$
     h1 += s(
         """该定义只针对已观测支持上的动态残影；不据此宣称整张地图完整、几何准确或镜面问题已解决。
 
-**实现规则。** $c$为栅格，$\\mathbf x_c$为其中心，$b$为0.5秒时间箱。$h(c)$统计至少有一次回波命中的时间箱数，$f(c)$统计至少有一次截断自由射线穿过的时间箱数；每箱各最多计一次，自由射线在回波前15 cm停止：
+**修订为联合建图方法。** Raw仍用轮速位姿直接累积。干预先用前序时序支持点修正逐帧对齐，再清理动态残影；这包含位姿修正与清理，不是只改变删除规则。两项贡献由“只清理／只对齐”消融区分。
+
+$T_k^o$是第$k$帧的轮速传感器位姿，$T_k$是修正位姿；均从传感器系到固定地图系。$\\mathcal R_{k-1}$来自前序保留地图中至少3个时间箱支持的点，算法不读取真值。轮速增量给出预测：
 """,
         """This definition concerns dynamic traces on observed support; it does not establish global completeness, geometric accuracy or removal of mirror artifacts.
 
-**Implementation rule.** $c$ is a cell, $\\mathbf x_c$ its center, and $b$ a 0.5 s time bin. $h(c)$ counts bins with at least one endpoint hit; $f(c)$ counts bins with at least one truncated free ray through the cell. Count each once per bin; free rays stop 15 cm before a return:
+**Revised joint mapping method.** Raw still accumulates wheel-odometry poses. The intervention first aligns scans to preceding temporally supported points, then cleans dynamic traces. It changes both pose alignment and cleaning; filter-only / alignment-only ablations separate their contributions.
+
+$T_k^o$ is the wheel-derived sensor pose and $T_k$ its correction, both sensor-to-map transforms. $\\mathcal R_{k-1}$ contains retained points supported by at least three earlier time bins. No truth enters the algorithm. Predict with the wheel increment:
 """)
     h1 += r"""
 $$
-h(c)=\sum_b\mathbf1[\text{hit in bin }b\text{ at }c],
-\qquad
-f(c)=\sum_b\mathbf1[\text{free ray in bin }b\text{ through }c].
+T_{k,0}=T_{k-1}(T_{k-1}^o)^{-1}T_k^o.
+$$
+
+"""
+    h1 += s(
+        "$\\mathbf z$为二维扫描点，$T\\mathbf z$指旋转和平移后的二维坐标。每次迭代令$\\mathbf p=T_k\\mathbf z$，在$\\mathcal R_{k-1}$找最近点$\\mathbf q$；从距离小于0.30 m的对应中保留最接近的70%（至少30对），组成$\\mathcal C_k$。按下式求二维刚体增量，最多12次：\n",
+        "$\\mathbf z$ is a 2D scan point; $T\\mathbf z$ denotes its rotated and translated 2D coordinates. At each iteration set $\\mathbf p=T_k\\mathbf z$ and find its nearest $\\mathbf q$ in $\\mathcal R_{k-1}$. From correspondences within 0.30 m keep the closest 70% (at least 30 pairs) as $\\mathcal C_k$. Solve the weighted 2D rigid increment below, at most 12 times:\n")
+    h1 += r"""
+$$
+w_{\mathbf p}=\min\!\left(1,\frac{0.05}{\max(\|\mathbf p-\mathbf q\|_2,10^{-9})}\right),
 $$
 
 $$
-M_0=\{\mathbf x_c:h(c)>0\},
-\qquad
-M_1=\{\mathbf x_c:h(c)\ge3\ \land\ h(c)\ge1.5f(c)\}.
+\Delta T=\arg\min_{U\in\mathrm{SE}(2)}\sum_{(\mathbf p,\mathbf q)\in\mathcal C_k}
+w_{\mathbf p}\|U\mathbf p-\mathbf q\|_2^2,
+\qquad T_k\leftarrow\Delta T T_k.
 $$
 """
-    h1 += s("这里$M_0$就是本项Raw：已知起点＋轮速里程计位姿累积的5 cm占据格，至少命中一次就保留；有效距离筛选、栅格化与公共膨胀仍然执行。$M_1$仅增加上述时序保留条件。\n\n",
-            "Here $M_0$ is this experiment's Raw: 5 cm occupied cells accumulated using the known start and wheel-odometry poses, retaining cells hit at least once. Valid-range filtering, gridding and shared inflation still apply. $M_1$ adds only the temporal retention condition above.\n\n")
     h1 += s(
-        "**要检验的H1：**该规则满足上述清理改善条件，并使$E_{{\\rm loc},1}<E_{{\\rm loc},0}$。3与1.5是本轮固定的启发式参数；规则本身不是“静态”或“干净”的定义，低命中的静态结构也可能被删。\n",
-        "**H1 to test:** the rule satisfies the cleaning criterion above and yields $E_{{\\rm loc},1}<E_{{\\rm loc},0}$. The values 3 and 1.5 are fixed heuristic parameters, not definitions of static structure or cleanliness; sparsely observed static cells may also be removed.\n")
+        "参照不足80点、对应不足30对或总修正超过0.15 m／0.05 rad时使用轮速预测。初帧使用已知起点与轮速位姿。然后在修正位姿下统计5 cm栅格：$h(c)$为该格命中时间箱数，$s(c)$为0.10 m近邻命中支持箱数，$f(c)$为空闲穿越箱数；每箱各最多一次。自由射线在回波前15 cm停止。\n",
+        "Use the wheel prediction when reference support is below 80 points, correspondences below 30, or the total correction exceeds 0.15 m / 0.05 rad. Initialize from the known start and wheel pose. In the corrected 5 cm grid, $h(c)$ counts own hits, $s(c)$ counts hits within 0.10 m, and $f(c)$ counts free crossings, each once per 0.5 s bin. Free rays stop 15 cm before returns.\n")
+    h1 += r"""
+$$
+h(c)=\sum_b\mathbf1[\text{hit at }c\text{ in bin }b],
+\qquad \widetilde M=\{\mathbf x_c:h(c)>0\}.
+$$
+
+$$
+s(c)=\sum_b\mathbf1[\exists c':\|\mathbf x_{c'}-\mathbf x_c\|_2\le0.10,
+\ \text{hit at }c'\text{ in bin }b].
+$$
+
+$$
+f(c)=\sum_b\mathbf1[\text{free ray through }c\text{ in bin }b].
+$$
+
+$$
+M_1=\{\mathbf x_c\in \widetilde M:f(c)<3\ \lor\ f(c)<1.5s(c)\}.
+$$
+"""
+    h1 += s("即：至少3个空闲时间箱，且空闲证据至少为近邻命中支持的1.5倍，才删除。同一箱可同时计入$s,f$，它们是证据计数，不是互斥概率。少见本身不等于动态；邻域支持允许同一墙面的回波落在相邻格中，不向未观测格补点。算法不使用语义标签或真值；两组距离筛选、栅格化、自由区与膨胀规则相同。\n\n",
+            "Delete only with at least three free bins and free evidence at least 1.5 times neighborhood hit support. A bin can contribute to both $s,f$; these are evidence counts, not mutually exclusive probabilities. Rare observations alone do not imply motion. Neighborhood support accommodates hits landing in adjacent cells without adding unobserved occupied cells. No semantics or truth enters the algorithm; range filtering, gridding, free-space generation and inflation are shared.\n\n")
+    h1 += s(
+        "**要检验的H1：**联合方法相对轮速Raw满足清理改善条件，并降低另采B的定位误差。所有参数在最终新B采集前固定；旧B用于开发消融。旧逐格规则和只清理版本的负结果全部保留，不能将联合方法的收益全归因于动态去除。\n",
+        "**H1 to test:** the joint method meets the cleaning criterion relative to wheel-pose Raw and reduces error on fresh B. All parameters are fixed before final B acquisition; old B is for development ablation. Preserve negative results from per-cell filtering and filter-only revisions. Do not attribute the joint gain entirely to dynamic removal.\n")
 
     h2 = s(
         """**H2：统一采样时刻，再分别检验几何与定位。**
@@ -177,9 +210,14 @@ def pseudocode():
     return """for test, scene in [(H1, static), (H1, dynamic), (H2, motion)]:
     A = acquire_scans_and_wheel_odometry(scene)
     if test == H1:
-        h, f = count_time_bins_with_hits_and_free_rays(A, bin_seconds=0.5)
-        M0 = cell_centers_where(h > 0)
-        M1 = cell_centers_where((h >= 3) & (h >= 1.5 * f))
+        M0 = integrate_A_with_wheel_poses(A)
+        corrected_poses = align_scans_to_previous_supported_map(A)  # own implementation
+        h, s, f = initialize_grid_evidence()
+        for bin in A.project_with(corrected_poses).time_bins(seconds=0.5):
+            add_hits_once_per_cell(h, bin)
+            add_neighborhood_hit_support_once(s, bin, radius=0.10)
+            add_truncated_free_ray_evidence_once(f, bin, stop_before_return=0.15)
+        M1 = cell_centers_where((h > 0) & ((f < 3) | (f < 1.5 * s)))
     else:
         M0 = integrate_A(A, point_compensation=False)
         M1 = integrate_A(A, point_compensation=True)  # no H1 filtering

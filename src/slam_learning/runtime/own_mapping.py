@@ -45,6 +45,13 @@ class RayEvidence:
         self.free = np.zeros(shape, np.int32)
         self.hit_bin = np.full(shape, -1, np.int32)
         self.free_bin = np.full(shape, -1, np.int32)
+        self.last_support_bin = np.full(shape, -1, np.int32)
+        self.support_hits = np.zeros(shape, np.int32)
+        self.clear_bins = np.zeros(shape, np.int32)
+        self.clear_bin = np.full(shape, -1, np.int32)
+        radius = int(np.ceil(.10 / resolution))
+        yy, xx = np.mgrid[-radius:radius+1, -radius:radius+1]
+        self.support_kernel = (xx * resolution) ** 2 + (yy * resolution) ** 2 <= .10 ** 2 + 1e-12
 
     def cells(self, points):
         cells = np.floor((points - self.origin) / self.resolution).astype(int)
@@ -60,6 +67,12 @@ class RayEvidence:
             fresh = self.hit_bin[y, x] != epoch
             self.hits[y[fresh], x[fresh]] += 1
             self.hit_bin[y, x] = epoch
+            supported = np.zeros(self.hits.shape, bool)
+            supported[y, x] = True
+            supported = binary_dilation(supported, structure=self.support_kernel)
+            self.support_hits[supported & (self.last_support_bin != epoch)] += 1
+            self.last_support_bin[supported] = epoch
+            self.clear_bins[supported] = 0
         rays = []
         for endpoint in points[::2]:
             distance = np.linalg.norm(endpoint - sensor)
@@ -73,10 +86,21 @@ class RayEvidence:
             fresh = self.free_bin[y, x] != epoch
             self.free[y[fresh], x[fresh]] += 1
             self.free_bin[y, x] = epoch
+            # Positive removal evidence must follow the latest nearby hit.
+            # One full bin separates a hit from a clearing vote; an unobserved
+            # or seldom-observed cell is never removed just for being rare.
+            cleared = (self.hits[y, x] > 0) & (epoch > self.last_support_bin[y, x] + 1)
+            cleared &= self.clear_bin[y, x] != epoch
+            self.clear_bins[y[cleared], x[cleared]] += 1
+            self.clear_bin[y[cleared], x[cleared]] = epoch
 
     def mask(self, method):
         if method in ("raw", "off", "deskew"):
             return self.hits > 0
+        if method == "temporal":
+            return (self.hits > 0) & ((self.free < 3) | (self.free < 1.5 * self.support_hits))
+        if method == "after_free":
+            return (self.hits > 0) & (self.clear_bins < 3)
         required = 5 if method in ("strict", "protected") else 3
         mask = (self.hits >= required) & (self.hits >= 1.5 * self.free)
         if method == "protected":

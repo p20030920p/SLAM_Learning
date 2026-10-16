@@ -1,0 +1,40 @@
+{
+  "kind": "project_written_mapping_A_input_replay",
+  "status": "executed",
+  "A_source": "results/reference/own-hypotheses-20261016/dynamic-A",
+  "source_inputs": {
+    "own-inputs.npz": "4b28f81fd18d743488c2944ad1d4a2a527831b7bfd2254acb8088a9f347ecdb8",
+    "own-scans.json": "6c91bd97c6e60538246a7ecbffed44ee017f4226c26399daa270f003feb01d33",
+    "own-odom.json": "1f61e64df857aa1208ccffc47348b315dc3f8b29df43898836fae05fe7c26851"
+  },
+  "scope": "Same recorded A laser endpoints and wheel-derived sensor poses, no truth in builder. Raw/legacy/new maps rebuilt from identical float32 archive. Evaluation uses the original shared A references.",
+  "methods": {
+    "raw": {
+      "points": 2732,
+      "static_retention": 0.9950331125827815,
+      "dynamic_removal": 0.05128205128205128
+    },
+    "legacy": {
+      "points": 1722,
+      "static_retention": 0.9254966887417219,
+      "dynamic_removal": 0.9487179487179487
+    },
+    "temporal": {
+      "points": 2610,
+      "static_retention": 0.9950331125827815,
+      "dynamic_removal": 0.2948717948717949
+    }
+  },
+  "frozen_map_sha256": {
+    "maps/legacy/map.pgm": "758f6edd04b6405fb4db4a7f982324316168f01a04921efbf89d5d4139ff50e6",
+    "maps/legacy/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/legacy/points.npy": "4b2d8b00bac8db768673bf33cb832f0e52fad7bf4c09206f387ba08921a7ce25",
+    "maps/raw/map.pgm": "5a06dd9d8a6ce3f855c72838ea298422fc1576e83ac133235eaed37f72ae7cb6",
+    "maps/raw/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/raw/points.npy": "789f86fa75559db588bd1219bdea85672e28efe1ce3c7db6fcab967cee118871",
+    "maps/temporal/map.pgm": "5d9f083c6a209576df2c1e1e62cd9b1c88c34700bdad663e30602337372b61de",
+    "maps/temporal/map.yaml": "ce99fa0b3b55985db9debb6efd0c092101ed792a8734fc3a1775833094f43a8c",
+    "maps/temporal/points.npy": "c11a08884e66867322f1130c20e8d32a827d2b84b2905aae2af8aeaf9c55aff9"
+  },
+  "cleaning_criterion_satisfied": true
+}

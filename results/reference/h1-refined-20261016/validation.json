@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "original_raw_and_legacy_maps_reproduced_exactly": true,
+  "old_B_negative_RMSE_reproduced_exactly": true,
+  "frozen_maps_unchanged": true,
+  "algorithm_and_AMCL_unchanged_during_fresh_B": true,
+  "fresh_B_sessions": 4,
+  "A_replays_reproduce_all_maps": true,
+  "truth_to_algorithms": false,
+  "homepages": {
+    "README.md": {
+      "physical_direction_questions_related_unchanged": true,
+      "paper_practice_experiments_unchanged": true,
+      "H2_experiment_unchanged": true,
+      "H1_new_B_rows_rendered_with_GIF": 4,
+      "broken_hypothesis_links": 0
+    },
+    "docs/HOME.zh-CN.md": {
+      "physical_direction_questions_related_unchanged": true,
+      "paper_practice_experiments_unchanged": true,
+      "H2_experiment_unchanged": true,
+      "H1_new_B_rows_rendered_with_GIF": 4,
+      "broken_hypothesis_links": 0
+    }
+  },
+  "new_H1_videos_fully_decoded": 20,
+  "old_negative_results_preserved": true,
+  "score_definition_unchanged": true,
+  "unit_tests": {
+    "passed": 9,
+    "files": [
+      "test_own_mapping.py",
+      "test_own_refinement.py"
+    ]
+  },
+  "native_ROS_adapter_import": "passed",
+  "PowerShell_parsing": "passed",
+  "Notebook_H2_cells_and_outputs_preserved": true,
+  "F_notebook_matches_repo": true,
+  "video_catalog": {
+    "videos": 494,
+    "first_frames_decoded": 494,
+    "broken_links": 0
+  },
+  "improvement_fraction": 0.20050411582764738,
+  "all_three_final_dynamic_trials_improved": true
+}
