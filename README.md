@@ -323,11 +323,9 @@ Grouped by algorithm family. Click a GIF for the full video. The application-dir
 | <a id="related-beautymap"></a>[BeautyMap](docs/papers/beautymap.md)<br>Offline 3D map cleaning | <a href="results/reference/desktop-live-beautymap/execution.mp4"><img src="docs/media/related-pointcloud/20261016/beautymap.gif" width="280" loading="lazy" alt="beautymap · Point-cloud capture excerpt"></a><br>[Point-cloud capture excerpt](results/reference/desktop-live-beautymap/execution.mp4) | SA 96.95% / DA 98.34%<br>KITTI-00 · 141 scans; cleaning demonstrated<br>[Record](results/reference/desktop-live-beautymap/record.json) |  |
 | <a id="related-amcl"></a>[AMCL / Nav2](https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl)<br>2D particle localization | <a href="https://github.com/ros-navigation/docs.nav2.org/blob/8f6571b599d6b1e899f11ac58c5c1982d3b0a8b5/docs/getting_started/quickstart/assets/rviz/navstack_ready.png"><img src="docs/assets/related/20261016-localizers/amcl-nav2-original.png" width="280" loading="lazy" alt="AMCL: original Nav2 repository localization screenshot"></a><br>Original Nav2 documentation-repository image | Common 2D frozen-map localizer; XY / yaw RMSE. Source illustration, not our recording; [method](#related-amcl-details) |  |
 | <a id="related-gicp"></a>[GICP](https://github.com/avsegal/gicp)<br>3D geometric registration | <a href="https://www.robots.ox.ac.uk/~avsegal/generalized_icp.html"><img src="docs/assets/related/20261016-localizers/gicp-author-original.jpg" width="280" loading="lazy" alt="GICP: original point-cloud illustration from the algorithm author"></a><br>Original GICP author-page image | Common 3D frozen-map localizer; XYZ / rotation RMSE. Author illustration, not our recording; [method](#related-gicp-details) |  |
-| <a id="related-ir-mcl"></a>[IR-MCL](docs/papers/ir-mcl.md)<br>2D neural-field localization | <a href="results/reference/desktop-live-ir-mcl/execution.mp4"><img src="docs/media/related-pointcloud/20261016/ir-mcl.gif" width="280" loading="lazy" alt="ir-mcl · Point-cloud capture excerpt"></a><br>[Point-cloud capture excerpt](results/reference/desktop-live-ir-mcl/execution.mp4) | RMSE 5.31 cm / 1.07°<br>Bonn IPBLab Seq 1<br>[Record](results/reference/desktop-live-ir-mcl/record.json) |  |
-| <a id="related-adam-mcl"></a>[AdaM-MCL](docs/papers/adam-mcl.md)<br>Learned proposals + particle localization | <a href="results/reference/desktop-adam-mcl/result.mp4"><img src="results/reference/desktop-adam-mcl/result.gif" width="280" loading="lazy" alt="AdaM-MCL · 2D particle-result replay"></a><br>2D particle-result replay | RMSE 32.23 cells; authored 128-cell map, 2432 training steps; historical sustained convergence 0/10, no comparison to paper metre-scale accuracy<br>[Record](results/reference/desktop-adam-mcl/record.json) |  |
 <!-- /HOME_RELATED_TABLE -->
 
-See [Metrics](#metrics) for SA/DA and pose-RMSE definitions. SRRG scores 2D observed support; DUFOMap/BeautyMap score 3D points. IR-MCL/AdaM-MCL do not clean maps.
+See [Metrics](#metrics) for SA/DA and pose-RMSE definitions. SRRG scores 2D observed support; DUFOMap/BeautyMap score 3D points.
 
 <details>
 <summary>Inputs, processing and reproduction boundaries</summary>
@@ -348,24 +346,6 @@ In the live video, gray points are retained, red points are removed, and cyan po
 Gray/red show retained/removed points. Watch the cumulative removal decisions, rather than interpreting the complete initial map as online SLAM. KITTI-00, 141 scans; SA 96.95% / DA 98.34%. Cleaner maps may help downstream localization, but that requires a separate test.
 
 [Live MP4](results/reference/desktop-live-beautymap/execution.mp4) · [record](results/reference/desktop-live-beautymap/record.json)
-
-### IR-MCL — localize with a neural observation model
-
-**Input:** a pretrained neural occupancy field, measured 2D scans and motion input. **Process:** each particle represents a possible robot pose; the field renders a predicted scan at that pose, scan agreement changes particle weights, and resampling concentrates the belief. **Output:** an estimated pose and particle distribution. [Paper, original code and protocol](docs/papers/ir-mcl.md).
-
-In RViz, the map supplies context, yellow particles show pose hypotheses, blue is the displayed estimate and green is the reference trajectory. Watch particle concentration and agreement with the reference. The displayed weighted particle mean is an observer; scoring uses the native saved estimate. Bonn IPBLab Seq 1: 1543 processed / 1354 scored poses, fresh RMSE 5.31 cm / 1.07°. This author-data run is separate from deployment into Gazebo.
-
-[Live MP4](results/reference/desktop-live-ir-mcl/execution.mp4) · [record](results/reference/desktop-live-ir-mcl/record.json)
-
-### AdaM-MCL — combine learned proposals and particle tracking
-
-**Input:** a map, laser observation, motion input and trained proposal model. **Process:** the learned model proposes candidate poses; the adaptive mixture combines proposals with conventional particle tracking. **Output:** pose belief, including hypotheses after a kidnapping event. [Paper and limits](docs/papers/adam-mcl.md).
-
-Our run uses an authored 128-cell map and a 2432-step checkpoint: 123 filter updates, RMSE 32.23 cells. The released paper dataset/checkpoint was unavailable. This verifies a limited original-code workflow; it neither reproduces the paper's metre-scale scores nor demonstrates successful recovery. [Score correction](results/reference/adam-mcl/ERRATUM.md).
-
-[Live MP4](results/reference/desktop-adam-mcl/execution.mp4) · [record](results/reference/desktop-adam-mcl/record.json)
-
-[Result MP4](results/reference/desktop-adam-mcl/result.mp4)
 
 <!-- SRRG_RELATED -->
 ### SRRG · Native 2D dynamic-environment mapping
@@ -437,10 +417,6 @@ Source: Xu et al., *FAST-LIO2: Fast Direct LiDAR-inertial Odometry*, Fig. 12, pa
 | SA | 83.40 | 83.3978 |
 | DA | 82.41 | 82.4092 |
 
-| IR-MCL · Metric | Paper, Seq 1 | Reproduced |
-| --- | ---: | ---: |
-| Location RMSE (cm) | 5.13 | 5.32 |
-| Yaw RMSE (deg) | 1.05 | 1.07 |
 
 ## Practice
 
@@ -1179,7 +1155,7 @@ H1 uses DA/SA for cleaning and only SA in its static control; H2 uses one-way ma
 
 ## References
 
-Entries are numbered in the order the works appear in [Related works](#related-works), each row's paper followed by the implementation named there; [10] is the KITTI-00 teaser dataset behind the DUFOMap and BeautyMap rows. Titles, author lists, volumes and pages follow the indexed publisher records (OpenAlex), checked 2026-10-16; online resources were accessed the same day.
+Entries are numbered in the order the works appear in [Related works](#related-works), each row's paper followed by the implementation named there. Titles, author lists, volumes and pages follow the indexed publisher records (OpenAlex), checked 2026-10-16; online resources were accessed the same day.
 
 [1] W. Xu and F. Zhang, "FAST-LIO: A Fast, Robust LiDAR-Inertial Odometry Package by Tightly-Coupled Iterated Kalman Filter," *IEEE Robotics and Automation Letters*, vol. 6, no. 2, pp. 3317–3324, 2021, doi: [10.1109/LRA.2021.3064227](https://doi.org/10.1109/LRA.2021.3064227). arXiv: [2010.08196](https://arxiv.org/abs/2010.08196).
 
@@ -1199,24 +1175,19 @@ Entries are numbered in the order the works appear in [Related works](#related-w
 
 [9] M. Jia, "BeautyMap," GitHub repository. [Online]. Available: https://github.com/MKJia/BeautyMap
 
-[10] Q. Zhang, D. Duberg, R. Geng, M. Jia, L. Wang, and P. Jensfelt, "A Dynamic Points Removal Benchmark in Point Cloud Maps," in *Proc. IEEE 26th Int. Conf. on Intelligent Transportation Systems (ITSC)*, 2023, pp. 608–614, doi: [10.1109/ITSC57777.2023.10422094](https://doi.org/10.1109/ITSC57777.2023.10422094).
 
-[11] ros-navigation, "nav2_amcl," Nav2, GitHub repository. [Online]. Available: https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl
+[10] ros-navigation, "nav2_amcl," Nav2, GitHub repository. [Online]. Available: https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl
 
-[12] A. Segal, D. Haehnel, and S. Thrun, "Generalized-ICP," in *Robotics: Science and Systems V*, 2009, doi: [10.15607/RSS.2009.V.021](https://doi.org/10.15607/RSS.2009.V.021); also published as a chapter, pp. 161–168, doi: [10.7551/mitpress/8727.003.0022](https://doi.org/10.7551/mitpress/8727.003.0022).
+[11] A. Segal, D. Haehnel, and S. Thrun, "Generalized-ICP," in *Robotics: Science and Systems V*, 2009, doi: [10.15607/RSS.2009.V.021](https://doi.org/10.15607/RSS.2009.V.021); also published as a chapter, pp. 161–168, doi: [10.7551/mitpress/8727.003.0022](https://doi.org/10.7551/mitpress/8727.003.0022).
 
-[13] A. Segal, "gicp," GitHub repository. [Online]. Available: https://github.com/avsegal/gicp
+[12] A. Segal, "gicp," GitHub repository. [Online]. Available: https://github.com/avsegal/gicp
 
-[14] Point Cloud Library, "pcl::GeneralizedIterativeClosestPoint." [Online]. Available: https://pointclouds.org/documentation/classpcl_1_1_generalized_iterative_closest_point.html
+[13] Point Cloud Library, "pcl::GeneralizedIterativeClosestPoint." [Online]. Available: https://pointclouds.org/documentation/classpcl_1_1_generalized_iterative_closest_point.html
 
-[15] rsasaki0109, "lidar_localization_ros2," GitHub repository. [Online]. Available: https://github.com/rsasaki0109/lidar_localization_ros2
+[14] rsasaki0109, "lidar_localization_ros2," GitHub repository. [Online]. Available: https://github.com/rsasaki0109/lidar_localization_ros2
 
-[16] H. Kuang, X. Chen, T. Guadagnino, N. Zimmerman, J. Behley, and C. Stachniss, "IR-MCL: Implicit Representation-Based Online Global Localization," *IEEE Robotics and Automation Letters*, vol. 8, no. 3, pp. 1627–1634, 2023, doi: [10.1109/LRA.2023.3239318](https://doi.org/10.1109/LRA.2023.3239318). arXiv: [2210.03113](https://arxiv.org/abs/2210.03113).
 
-[17] PRBonn, Photogrammetry and Robotics Lab, University of Bonn, "ir-mcl," GitHub repository, commit aab8c91. [Online]. Available: https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5
 
-[18] R. Chen, H. Yin, Y. Jiao, G. Dissanayake, Y. Wang, and R. Xiong, "Deep Samplable Observation Model for Global Localization and Kidnapping," *IEEE Robotics and Automation Letters*, vol. 6, no. 2, pp. 2296–2303, 2021, doi: [10.1109/LRA.2021.3061339](https://doi.org/10.1109/LRA.2021.3061339). arXiv: [2009.00211](https://arxiv.org/abs/2009.00211).
 
-[19] R. Chen, "AdaM_MCL (DSOM)," GitHub repository, commit e8aedd2. [Online]. Available: https://github.com/Runjian-Chen/AdaM_MCL/tree/e8aedd2bae03816aabd5300e5ca2fe181b39d830
 
-The AMCL row refers to the Nav2 implementation [11], so its statistical origin is not cited. Upstream licences, pinned commits and fetch provenance are in [Sources, credits and asset scope](docs/guides/ATTRIBUTION.md).
+The AMCL row refers to the Nav2 implementation [10], so its statistical origin is not cited. Upstream licences, pinned commits and fetch provenance are in [Sources, credits and asset scope](docs/guides/ATTRIBUTION.md).
