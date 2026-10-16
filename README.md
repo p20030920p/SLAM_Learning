@@ -326,12 +326,14 @@ for test, scene in [(H1, static), (H1, dynamic), (H2, motion)]:
 <!-- HOME_RELATED_TABLE -->
 Grouped by algorithm family. Click a GIF for the full video. The application-direction column is intentionally blank. Different data protocols prevent cross-row ranking.
 
-| Method / algorithm family | Native GIF / original point-cloud figure | Measured metrics and scope | Application direction |
+| Method / algorithm family | Native GIF / original-source illustration | Measured metrics and scope | Application direction |
 | --- | --- | --- | --- |
 | <a id="related-fast_lio"></a>[FAST-LIO / FAST-LIO2](docs/papers/fast_lio.md) | <img src="docs/assets/related/20261016-pointcloud/fastlio2-fig12.png" width="280" alt="FAST-LIO2 original Fig. 12: point-cloud map"> | Original-paper experiments: **not reproduced**; original figure and method summary; custom-scene tests in Practice |  |
 | <a id="related-srrg_mapper2d"></a>[SRRG / srrg_mapper2d](docs/papers/srrg_mapper2d.md) | <img src="docs/assets/related/20261016-pointcloud/srrg-fig7.png" width="280" alt="SRRG original Fig. 7: point-cloud map"> | Original-paper experiments: **not reproduced**; original figure and method summary; custom-scene tests in Practice |  |
 | <a id="related-dufomap"></a>[DUFOMap](docs/papers/dufomap.md)<br>3D map cleaning | <a href="results/reference/desktop-live-dufomap/execution.mp4"><img src="docs/media/related-pointcloud/20261016/dufomap.gif" width="280" loading="lazy" alt="dufomap · Point-cloud capture excerpt"></a><br>[Point-cloud capture excerpt](results/reference/desktop-live-dufomap/execution.mp4) | SA 97.98% / DA 98.7%<br>KITTI-00 · 141 scans; cleaning demonstrated<br>[Record](results/reference/desktop-live-dufomap/record.json) |  |
 | <a id="related-beautymap"></a>[BeautyMap](docs/papers/beautymap.md)<br>Offline 3D map cleaning | <a href="results/reference/desktop-live-beautymap/execution.mp4"><img src="docs/media/related-pointcloud/20261016/beautymap.gif" width="280" loading="lazy" alt="beautymap · Point-cloud capture excerpt"></a><br>[Point-cloud capture excerpt](results/reference/desktop-live-beautymap/execution.mp4) | SA 96.95% / DA 98.34%<br>KITTI-00 · 141 scans; cleaning demonstrated<br>[Record](results/reference/desktop-live-beautymap/record.json) |  |
+| <a id="related-amcl"></a>[AMCL / Nav2](https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl)<br>2D particle localization | <a href="https://github.com/ros-navigation/docs.nav2.org/blob/8f6571b599d6b1e899f11ac58c5c1982d3b0a8b5/docs/getting_started/quickstart/assets/rviz/navstack_ready.png"><img src="docs/assets/related/20261016-localizers/amcl-nav2-original.png" width="280" loading="lazy" alt="AMCL: original Nav2 repository localization screenshot"></a><br>Original Nav2 documentation-repository image | Common 2D frozen-map localizer; XY / yaw RMSE. Source illustration, not our recording; [method](#related-amcl-details) |  |
+| <a id="related-gicp"></a>[GICP](https://github.com/avsegal/gicp)<br>3D geometric registration | <a href="https://www.robots.ox.ac.uk/~avsegal/generalized_icp.html"><img src="docs/assets/related/20261016-localizers/gicp-author-original.jpg" width="280" loading="lazy" alt="GICP: original point-cloud illustration from the algorithm author"></a><br>Original GICP author-page image | Common 3D frozen-map localizer; XYZ / rotation RMSE. Author illustration, not our recording; [method](#related-gicp-details) |  |
 | <a id="related-ir-mcl"></a>[IR-MCL](docs/papers/ir-mcl.md)<br>2D neural-field localization | <a href="results/reference/desktop-live-ir-mcl/execution.mp4"><img src="docs/media/related-pointcloud/20261016/ir-mcl.gif" width="280" loading="lazy" alt="ir-mcl · Point-cloud capture excerpt"></a><br>[Point-cloud capture excerpt](results/reference/desktop-live-ir-mcl/execution.mp4) | RMSE 5.31 cm / 1.07°<br>Bonn IPBLab Seq 1<br>[Record](results/reference/desktop-live-ir-mcl/record.json) |  |
 | <a id="related-adam-mcl"></a>[AdaM-MCL](docs/papers/adam-mcl.md)<br>Learned proposals + particle localization | <a href="results/reference/desktop-adam-mcl/result.mp4"><img src="results/reference/desktop-adam-mcl/result.gif" width="280" loading="lazy" alt="AdaM-MCL · 2D particle-result replay"></a><br>2D particle-result replay | RMSE 32.23 cells; authored 128-cell map, 2432 training steps; historical sustained convergence 0/10, no comparison to paper metre-scale accuracy<br>[Record](results/reference/desktop-adam-mcl/record.json) |  |
 <!-- /HOME_RELATED_TABLE -->
@@ -395,6 +397,32 @@ Source: Lázaro et al., *Efficient Long-term Mapping in Dynamic Environments*, I
 
 Source: Xu et al., *FAST-LIO2: Fast Direct LiDAR-inertial Odometry*, Fig. 12, page 16. [FAST-LIO](https://arxiv.org/abs/2010.08196) · [FAST-LIO2](https://arxiv.org/abs/2107.06829) · [Official ROS2 code](https://github.com/hku-mars/FAST_LIO/tree/ROS2). IMU propagation and backward point compensation address H2. The incremental spatial index is not a dynamic-object removal or mirror detector.
 <!-- /FASTLIO_RELATED -->
+<!-- LOCALIZERS_RELATED -->
+<a id="related-amcl-details"></a>
+
+### AMCL · Localization in a prebuilt 2D map
+
+**Input → process → output:** a fixed occupancy grid, laser scans and odometry → particle motion prediction, scan-to-map weighting, resampling and adaptive particle counts → planar position, yaw and pose uncertainty. AMCL localizes; it does not build or clean the map.
+
+<img src="docs/assets/related/20261016-localizers/amcl-nav2-original.png" width="680" alt="Original Nav2 repository screenshot: robot and AMCL particles in the map">
+
+**Image source:** [original Nav2 documentation-repository image](https://github.com/ros-navigation/docs.nav2.org/blob/8f6571b599d6b1e899f11ac58c5c1982d3b0a8b5/docs/getting_started/quickstart/assets/rviz/navstack_ready.png), showing the robot, particle distribution and navigation-stack layers; not our recording. [Official AMCL code](https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl).
+
+**Role here:** 2D Practice and our H1/H2 use AMCL on frozen A maps with independently acquired B. Paired controls share scans, odometry, parameters and initialization; evaluate XY localization RMSE and yaw when relevant. Map remnants and lost static constraints affect observation weights. DA/SA do not evaluate AMCL. Custom-scene tests are in [Practice](#practice-index) and [Hypothesis test](#hypothesis-test-index); original-paper benchmarks are not reproduced.
+
+<a id="related-gicp-details"></a>
+
+### GICP · Register a 3D scan to a fixed point-cloud map
+
+**Input → process → output:** a fixed 3D point-cloud map, a current scan and an initial pose prediction → establish correspondences, weight residuals using local surface covariances on both sides, and iteratively solve a rigid transform → 3D position and orientation. GICP is originally a registration algorithm; a localization system uses it for scan-to-map matching. It does not remove dynamic objects itself.
+
+<img src="docs/assets/related/20261016-localizers/gicp-author-original.jpg" width="400" alt="Original point-cloud illustration from the GICP author page">
+
+**Image source:** [original GICP author-page image](https://www.robots.ox.ac.uk/~avsegal/generalized_icp.html). The author's reference repository contains no image; this uses the author's own point-cloud illustration, not our recording. [Reference code](https://github.com/avsegal/gicp) · [PCL implementation](https://pointclouds.org/documentation/classpcl_1_1_generalized_iterative_closest_point.html) · [ROS2 localization framework used here](https://github.com/rsasaki0109/lidar_localization_ros2).
+
+**Role here:** 3D Practice freezes Raw/DUFOMap/BeautyMap A maps and applies the same GICP configuration to fresh B clouds and wheel odometry, evaluating XYZ and full-rotation RMSE. The preceding methods clean the maps; GICP evaluates downstream localization. Local registration depends on initialization and geometric constraints; small angular errors can coexist with metre-scale longitudinal drift in corridors. See [3D Practice](#scene-static-3d). Our installed ROS2/PCL implementation is distinct from the author's reference code; original-paper benchmarks are not reproduced.
+<!-- /LOCALIZERS_RELATED -->
+
 <!-- /HOME_RELATED_DETAILS -->
 
 </details>

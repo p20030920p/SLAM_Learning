@@ -315,7 +315,8 @@ def related(previous, doc, zh):
     text = text.replace("#srrg-2d", "#experiment-h1").replace(
         "#direction-experiments-20261016", "#experiment-h2"
     )
-    return text
+    from related_localizers import related_localizers
+    return related_localizers(text, doc, zh)
 
 
 def practice(doc, zh, previous):

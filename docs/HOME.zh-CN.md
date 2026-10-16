@@ -326,12 +326,14 @@ for test, scene in [(H1, static), (H1, dynamic), (H2, motion)]:
 <!-- HOME_RELATED_TABLE -->
 按算法类型排列；GIF可直接查看，点击可播放完整视频。适用方向列保留空白，供后续填写。各行数据协议不同，不跨数据集排名。
 
-| 方法／算法类型 | 原库复现GIF／原文点云图 | 评价指标与本次范围 | 适用方向 |
+| 方法／算法类型 | 原库实录GIF／原始图示 | 评价指标与本次范围 | 适用方向 |
 | --- | --- | --- | --- |
 | <a id="related-fast_lio"></a>[FAST-LIO / FAST-LIO2](papers/fast_lio.zh-CN.md) | <img src="assets/related/20261016-pointcloud/fastlio2-fig12.png" width="280" alt="FAST-LIO2 original Fig. 12: point-cloud map"> | 原文实验：**不复现**；原图与方法介绍，自有场景测试见Practice |  |
 | <a id="related-srrg_mapper2d"></a>[SRRG / srrg_mapper2d](papers/srrg_mapper2d.zh-CN.md) | <img src="assets/related/20261016-pointcloud/srrg-fig7.png" width="280" alt="SRRG original Fig. 7: point-cloud map"> | 原文实验：**不复现**；原图与方法介绍，自有场景测试见Practice |  |
 | <a id="related-dufomap"></a>[DUFOMap](papers/dufomap.md)<br>三维地图清理 | <a href="../results/reference/desktop-live-dufomap/execution.mp4"><img src="media/related-pointcloud/20261016/dufomap.gif" width="280" loading="lazy" alt="dufomap · 点云实录节选"></a><br>[点云实录节选](../results/reference/desktop-live-dufomap/execution.mp4) | SA 97.98% / DA 98.7%<br>KITTI-00 · 141 帧；清理有效<br>[记录](../results/reference/desktop-live-dufomap/record.json) |  |
 | <a id="related-beautymap"></a>[BeautyMap](papers/beautymap.md)<br>三维离线地图清理 | <a href="../results/reference/desktop-live-beautymap/execution.mp4"><img src="media/related-pointcloud/20261016/beautymap.gif" width="280" loading="lazy" alt="beautymap · 点云实录节选"></a><br>[点云实录节选](../results/reference/desktop-live-beautymap/execution.mp4) | SA 96.95% / DA 98.34%<br>KITTI-00 · 141 帧；清理有效<br>[记录](../results/reference/desktop-live-beautymap/record.json) |  |
+| <a id="related-amcl"></a>[AMCL / Nav2](https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl)<br>二维粒子定位 | <a href="https://github.com/ros-navigation/docs.nav2.org/blob/8f6571b599d6b1e899f11ac58c5c1982d3b0a8b5/docs/getting_started/quickstart/assets/rviz/navstack_ready.png"><img src="assets/related/20261016-localizers/amcl-nav2-original.png" width="280" loading="lazy" alt="AMCL: original Nav2 repository localization screenshot"></a><br>Nav2官方文档库原图 | 二维冻结地图定位器；看XY／偏航RMSE。原库图示，非本项目实录；[方法说明](#related-amcl-details) |  |
+| <a id="related-gicp"></a>[GICP](https://github.com/avsegal/gicp)<br>三维几何配准 | <a href="https://www.robots.ox.ac.uk/~avsegal/generalized_icp.html"><img src="assets/related/20261016-localizers/gicp-author-original.jpg" width="280" loading="lazy" alt="GICP: original point-cloud illustration from the algorithm author"></a><br>GICP作者主页原图 | 三维冻结地图定位器；看XYZ／旋转RMSE。原作者图示，非本项目实录；[方法说明](#related-gicp-details) |  |
 | <a id="related-ir-mcl"></a>[IR-MCL](papers/ir-mcl.md)<br>二维神经场定位 | <a href="../results/reference/desktop-live-ir-mcl/execution.mp4"><img src="media/related-pointcloud/20261016/ir-mcl.gif" width="280" loading="lazy" alt="ir-mcl · 点云实录节选"></a><br>[点云实录节选](../results/reference/desktop-live-ir-mcl/execution.mp4) | RMSE 5.31 cm / 1.07°<br>Bonn IPBLab Seq 1<br>[记录](../results/reference/desktop-live-ir-mcl/record.json) |  |
 | <a id="related-adam-mcl"></a>[AdaM-MCL](papers/adam-mcl.md)<br>学习提议＋粒子定位 | <a href="../results/reference/desktop-adam-mcl/result.mp4"><img src="../results/reference/desktop-adam-mcl/result.gif" width="280" loading="lazy" alt="AdaM-MCL · 二维粒子结果回放"></a><br>二维粒子结果回放 | RMSE 32.23 格；自建128格地图、2432步训练；历史10轮持续收敛0/10，不能比较论文米制精度<br>[记录](../results/reference/desktop-adam-mcl/record.json) |  |
 <!-- /HOME_RELATED_TABLE -->
@@ -397,6 +399,32 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 
 来源：Xu等，*FAST-LIO2: Fast Direct LiDAR-inertial Odometry*，图12，第16页。[FAST-LIO论文](https://arxiv.org/abs/2010.08196) · [FAST-LIO2论文](https://arxiv.org/abs/2107.06829) · [官方ROS2代码](https://github.com/hku-mars/FAST_LIO/tree/ROS2)。IMU传播与逐点反向补偿对应H2；ikd-Tree维护的是增量空间数据结构，不能直接当成动态物体去除或镜面检测器。
 <!-- /FASTLIO_RELATED -->
+<!-- LOCALIZERS_RELATED -->
+<a id="related-amcl-details"></a>
+
+### AMCL · 在已建好的二维地图中定位
+
+**输入 → 处理 → 输出：**固定二维占据栅格地图、激光扫描与里程计 → 粒子运动预测、扫描与地图匹配加权、重采样及自适应粒子数量 → 平面位置、偏航与位姿不确定性。AMCL负责定位，不构建或清理地图。
+
+<img src="assets/related/20261016-localizers/amcl-nav2-original.png" width="680" alt="Nav2官方文档库原图：地图中的机器人与AMCL粒子分布">
+
+**图源：**[Nav2官方文档库原图](https://github.com/ros-navigation/docs.nav2.org/blob/8f6571b599d6b1e899f11ac58c5c1982d3b0a8b5/docs/getting_started/quickstart/assets/rviz/navstack_ready.png)，展示机器人、粒子分布及导航栈图层；非本项目录制。[AMCL官方代码](https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl)。
+
+**与本文的关系：**二维Practice及自写H1／H2均使用AMCL，在冻结A地图后处理独立B；对照共用扫描、里程计、参数及初始化，评价XY定位误差，按需要报告偏航误差。地图残影或静态约束损失会改变扫描匹配权重；DA／SA不用于评价AMCL。自有场景测试见[Practice](#practice-index)与[Hypothesis test](#hypothesis-test-index)，不复现原文基准实验。
+
+<a id="related-gicp-details"></a>
+
+### GICP · 将三维扫描配准到固定点云地图
+
+**输入 → 处理 → 输出：**固定三维点云地图、当前扫描与初始位姿预测 → 建立对应，利用两侧局部表面协方差加权残差，迭代求解刚体变换 → 三维位置与姿态。原始GICP是配准算法；接入定位系统后用于扫描到地图定位，本身不执行动态清理。
+
+<img src="assets/related/20261016-localizers/gicp-author-original.jpg" width="400" alt="GICP作者主页原始点云示意图">
+
+**图源：**[GICP作者主页原图](https://www.robots.ox.ac.uk/~avsegal/generalized_icp.html)；作者参考库未提供图片，采用作者主页点云图，非本项目实录。[原始参考代码](https://github.com/avsegal/gicp) · [PCL实现说明](https://pointclouds.org/documentation/classpcl_1_1_generalized_iterative_closest_point.html) · [本文使用的ROS2定位框架](https://github.com/rsasaki0109/lidar_localization_ros2)。
+
+**与本文的关系：**三维Practice将Raw／DUFOMap／BeautyMap的A地图冻结，用相同GICP配置处理新B点云与轮速里程计，评价XYZ及三维旋转RMSE。地图清理由前述方法完成，GICP只检验下游定位。局部配准依赖初值和几何约束；长廊中角度误差小也可能伴随纵向米级漂移。自有场景测试见[三维Practice](#scene-static-3d)；当前安装版ROS2/PCL实现不等同于作者参考库复现，也不复现原文基准实验。
+<!-- /LOCALIZERS_RELATED -->
+
 <!-- /HOME_RELATED_DETAILS -->
 
 </details>
