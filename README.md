@@ -1155,39 +1155,20 @@ H1 uses DA/SA for cleaning and only SA in its static control; H2 uses one-way ma
 
 ## References
 
-Entries are numbered in the order the works appear in [Related works](#related-works), each row's paper followed by the implementation named there. Titles, author lists, volumes and pages follow the indexed publisher records (OpenAlex), checked 2026-10-16; online resources were accessed the same day.
+Entries follow the order of [Related works](#related-works) and cite the work named in each row; implementations are linked in the Related works details above. The AMCL row names the Nav2 implementation, which has no paper of its own. Titles, author lists, volumes and pages follow the indexed publisher records (OpenAlex), checked 2026-10-16; the online resource was accessed the same day.
 
 [1] W. Xu and F. Zhang, "FAST-LIO: A Fast, Robust LiDAR-Inertial Odometry Package by Tightly-Coupled Iterated Kalman Filter," *IEEE Robotics and Automation Letters*, vol. 6, no. 2, pp. 3317–3324, 2021, doi: [10.1109/LRA.2021.3064227](https://doi.org/10.1109/LRA.2021.3064227). arXiv: [2010.08196](https://arxiv.org/abs/2010.08196).
 
 [2] W. Xu, Y. Cai, D. He, J. Lin, and F. Zhang, "FAST-LIO2: Fast Direct LiDAR-Inertial Odometry," *IEEE Transactions on Robotics*, vol. 38, no. 4, pp. 2053–2073, 2022, doi: [10.1109/TRO.2022.3141876](https://doi.org/10.1109/TRO.2022.3141876). arXiv: [2107.06829](https://arxiv.org/abs/2107.06829).
 
-[3] MaRS Laboratory, The University of Hong Kong, "FAST-LIO / FAST-LIO2, ROS 2 branch," GitHub repository. [Online]. Available: https://github.com/hku-mars/FAST_LIO/tree/ROS2
+[3] M. T. Lázaro, R. Capobianco, and G. Grisetti, "Efficient Long-term Mapping in Dynamic Environments," in *Proc. IEEE/RSJ Int. Conf. on Intelligent Robots and Systems (IROS)*, 2018, pp. 153–160, doi: [10.1109/IROS.2018.8594310](https://doi.org/10.1109/IROS.2018.8594310).
 
-[4] M. T. Lázaro, R. Capobianco, and G. Grisetti, "Efficient Long-term Mapping in Dynamic Environments," in *Proc. IEEE/RSJ Int. Conf. on Intelligent Robots and Systems (IROS)*, 2018, pp. 153–160, doi: [10.1109/IROS.2018.8594310](https://doi.org/10.1109/IROS.2018.8594310).
+[4] D. Duberg, Q. Zhang, M. Jia, and P. Jensfelt, "DUFOMap: Efficient Dynamic Awareness Mapping," *IEEE Robotics and Automation Letters*, vol. 9, no. 6, pp. 5038–5045, 2024, doi: [10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658). arXiv: [2403.01449](https://arxiv.org/abs/2403.01449).
 
-[5] srrg-software, "srrg_mapper2d and srrg_mapper2d_ros," GitLab repositories. [Online]. Available: https://gitlab.com/srrg-software/srrg_mapper2d and https://gitlab.com/srrg-software/srrg_mapper2d_ros
+[5] M. Jia, Q. Zhang, B. Yang, J. Wu, M. Liu, and P. Jensfelt, "BeautyMap: Binary-Encoded Adaptable Ground Matrix for Dynamic Points Removal in Global Maps," *IEEE Robotics and Automation Letters*, vol. 9, no. 7, pp. 6256–6263, 2024, doi: [10.1109/LRA.2024.3402625](https://doi.org/10.1109/LRA.2024.3402625). arXiv: [2405.07283](https://arxiv.org/abs/2405.07283).
 
-[6] D. Duberg, Q. Zhang, M. Jia, and P. Jensfelt, "DUFOMap: Efficient Dynamic Awareness Mapping," *IEEE Robotics and Automation Letters*, vol. 9, no. 6, pp. 5038–5045, 2024, doi: [10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658). arXiv: [2403.01449](https://arxiv.org/abs/2403.01449).
+[6] ros-navigation, "nav2_amcl," Nav2, GitHub repository. [Online]. Available: https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl
 
-[7] KTH-RPL, "DUFOMap," GitHub repository. [Online]. Available: https://github.com/KTH-RPL/dufomap
+[7] A. Segal, D. Haehnel, and S. Thrun, "Generalized-ICP," in *Robotics: Science and Systems V*, 2009, doi: [10.15607/RSS.2009.V.021](https://doi.org/10.15607/RSS.2009.V.021); also published as a chapter, pp. 161–168, doi: [10.7551/mitpress/8727.003.0022](https://doi.org/10.7551/mitpress/8727.003.0022).
 
-[8] M. Jia, Q. Zhang, B. Yang, J. Wu, M. Liu, and P. Jensfelt, "BeautyMap: Binary-Encoded Adaptable Ground Matrix for Dynamic Points Removal in Global Maps," *IEEE Robotics and Automation Letters*, vol. 9, no. 7, pp. 6256–6263, 2024, doi: [10.1109/LRA.2024.3402625](https://doi.org/10.1109/LRA.2024.3402625). arXiv: [2405.07283](https://arxiv.org/abs/2405.07283).
-
-[9] M. Jia, "BeautyMap," GitHub repository. [Online]. Available: https://github.com/MKJia/BeautyMap
-
-
-[10] ros-navigation, "nav2_amcl," Nav2, GitHub repository. [Online]. Available: https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl
-
-[11] A. Segal, D. Haehnel, and S. Thrun, "Generalized-ICP," in *Robotics: Science and Systems V*, 2009, doi: [10.15607/RSS.2009.V.021](https://doi.org/10.15607/RSS.2009.V.021); also published as a chapter, pp. 161–168, doi: [10.7551/mitpress/8727.003.0022](https://doi.org/10.7551/mitpress/8727.003.0022).
-
-[12] A. Segal, "gicp," GitHub repository. [Online]. Available: https://github.com/avsegal/gicp
-
-[13] Point Cloud Library, "pcl::GeneralizedIterativeClosestPoint." [Online]. Available: https://pointclouds.org/documentation/classpcl_1_1_generalized_iterative_closest_point.html
-
-[14] rsasaki0109, "lidar_localization_ros2," GitHub repository. [Online]. Available: https://github.com/rsasaki0109/lidar_localization_ros2
-
-
-
-
-
-The AMCL row refers to the Nav2 implementation [10], so its statistical origin is not cited. Upstream licences, pinned commits and fetch provenance are in [Sources, credits and asset scope](docs/guides/ATTRIBUTION.md).
+The AMCL row refers to the Nav2 implementation [6], so its statistical origin is not cited. Upstream licences, pinned commits and fetch provenance are in [Sources, credits and asset scope](docs/guides/ATTRIBUTION.md).
