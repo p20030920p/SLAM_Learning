@@ -16,112 +16,184 @@ Both interventions are implemented in this repository; AMCL is the common downst
 
 ### Mathematical form
 
-**Experiment convention.** A builds the maps; B is acquired independently. In each experiment, $`M_0`$ is the baseline and $`M_1`$ the intervention. Build both from the same A, freeze them, and evaluate with the same B, AMCL parameters and initialization configuration.
+**Core: use temporal support for scan alignment and dynamic-trace cleaning to build a 2D map for subsequent localization.** H2 separately tests point-time compensation. Each equation group is explained below; **the three bold, boxed equations are the core algorithm equations**.
 
-$`M`$ denotes a nonempty point set of occupied-cell centers in the formulas below. Score pre-inflation points in the same frame; AMCL uses each arm's corresponding full grid, generated and inflated by the same rule. Coordinates are in metres; tables convert errors to cm. Empty maps are mapping failures.
+**Experiment convention.** A builds the maps; B is acquired independently. Within each experiment, $`M_0`$ is the baseline and $`M_1`$ the intervention. Build both from the same A, freeze them, then evaluate with identical B scans, odometry, AMCL parameters and initialization. Truth enters post-run evaluation only.
 
-**Localization improvement.** $`\hat{\mathbf p}_{m,k}`$ is the estimated 2D robot position on $`M_m`$, and $`\mathbf p_k^*`$ is truth at that time; $`m\in\{0,1\}`$. $`\mathcal T`$ contains common scoring times with valid outputs from both controls:
+| Symbol | Meaning |
+| --- | --- |
+| $`T_k^o`$ / $`T_k`$ | Wheel-derived sensor pose / H1-corrected pose at frame $`k`$, both sensor-to-fixed-map transforms |
+| $`c`$ / $`\mathbf x_c`$ | A 5 cm grid cell / its center |
+| $`b`$ | A 0.5 s time bin; each evidence type contributes at most once per bin |
+| $`\mathbf1[\cdot]`$ | Indicator: 1 if true, otherwise 0 |
+| $`M`$ | A nonempty set of occupied-cell centers, distinguished from the full grid used by AMCL |
 
-```math
-E_{{\rm loc},m}=
-\sqrt{\frac{1}{|\mathcal T|}\sum_{k\in\mathcal T}
-\|\hat{\mathbf p}_{m,k}-\mathbf p_k^*\|_2^2}.
-```
-Compare $`E_{{\rm loc},1}<E_{{\rm loc},0}`$ directly, without another difference symbol. Current scoring uses 10 Hz times after 5 s warmup and outputs no older than 0.15 s; an empty common set is not scored. Across H1 trials, $`k`$ indexes both trial and time, pooling all common valid samples. Truth is used only for post-run evaluation. B tests localization; complete navigation outcomes were not measured.
+Coordinates are in metres; experiment tables convert distance errors to cm. Score point sets in the same frame before inflation; generate and inflate AMCL grids by the same rule across controls. An empty map is a mapping failure.
 
-**H1: define improved dynamic-trace cleaning before testing the rule.**
-
-$`S`$ is a nonempty set of observed static reference positions from A. $`D`$ contains historical dynamic positions later verified free by measured rays, excluding overlap with static support or current obstacles. Both controls share $`S,D`$; current scoring deduplicates in 10 cm cells. Pose truth and object labels construct evaluation references only and never enter the cleaner.
-
-$`d(\mathbf q,M)`$ is the distance to the nearest map point, with fixed tolerance $`r=0.15\,\mathrm m`$:
+**1. Common evaluation equation: localization RMSE on frozen maps.**
 
 ```math
-d(\mathbf q,M)=\min_{\mathbf x\in M}\|\mathbf q-\mathbf x\|_2.
+E_{{\rm loc},m}=\sqrt{\frac{1}{|\mathcal T|}\sum_{k\in\mathcal T}\|\hat{\mathbf p}_{m,k}-\mathbf p_k^*\|_2^2}.
 ```
 
-```math
-\mathrm{SA}(M)=\frac{\sum_{\mathbf q\in S}\mathbf1[d(\mathbf q,M)\le r]}{|S|},
-\qquad
-\mathrm{DA}(M)=\frac{\sum_{\mathbf q\in D}\mathbf1[d(\mathbf q,M)>r]}{|D|}.
-```
-Ratios in formulas are 0–1; tables display percentages. DA is undefined for empty $`D`$; static controls use SA only. These are coverage / noncoverage rates of 2D reference positions, not exact source-point retention.
+$`\hat{\mathbf p}_{m,k}`$ is the estimated 2D robot position on $`M_m`$; $`\mathbf p_k^*`$ is position truth at the same time; $`m\in\{0,1\}`$. Square each position distance, average, then take the square root. Test localization improvement with $`E_{{\rm loc},1}<E_{{\rm loc},0}`$.
 
-**Operational relative definition: more dynamic traces are removed, with at most one percentage point of static-retention loss relative to the baseline.**
+$`\mathcal T`$ contains only common times with valid outputs from both controls. Current scoring uses 10 Hz times after 5 s warmup and outputs no older than 0.15 s; an empty set is not scored. Across H1 trials, $`k`$ indexes both trial and time, pooling all common valid samples. Missing-output times are excluded, so this RMSE is not localization success rate. Complete navigation arrival outcomes were not measured.
 
-```math
-\mathrm{DA}(M_1)>\mathrm{DA}(M_0)
-\quad\land\quad
-\mathrm{SA}(M_1)\ge\mathrm{SA}(M_0)-0.01.
-```
-This definition concerns dynamic traces on observed support; it does not establish global completeness, geometric accuracy or removal of mirror artifacts.
+**Spoken explanation:** freeze the A maps, apply the same localizer to independent B, and check whether the map change reduces pose error. This is an evaluation requirement; the algorithm does not directly minimize AMCL error.
 
-**Revised joint mapping method.** Raw still accumulates wheel-odometry poses. The intervention first aligns scans to preceding temporally supported points, then cleans dynamic traces. It changes both pose alignment and cleaning; filter-only / alignment-only ablations separate their contributions.
+**H1: align using previous temporal support, then remove traces using free-space counterevidence.** Raw accumulates wheel-derived poses. The intervention changes both alignment and cleaning; alignment-only / filter-only ablations distinguish their contributions.
 
-$`T_k^o`$ is the wheel-derived sensor pose and $`T_k`$ its correction, both sensor-to-map transforms. $`\mathcal R_{k-1}`$ contains retained points supported by at least three earlier time bins. No truth enters the algorithm. Predict with the wheel increment:
+**2. Predict the current pose using the wheel increment.**
 
 ```math
 T_{k,0}=T_{k-1}(T_{k-1}^o)^{-1}T_k^o.
 ```
 
-$`\mathbf z`$ is a 2D scan point; $`T\mathbf z`$ denotes its rotated and translated 2D coordinates. At each iteration set $`\mathbf p=T_k\mathbf z`$ and find its nearest $`\mathbf q`$ in $`\mathcal R_{k-1}`$. From correspondences within 0.30 m keep the closest 70% (at least 30 pairs) as $`\mathcal C_k`$. Solve the weighted 2D rigid increment below, at most 12 times:
+$`(T_{k-1}^o)^{-1}T_k^o`$ is the wheel-derived motion between frames. Compose it with the previously corrected pose $`T_{k-1}`$ to obtain the current initial estimate $`T_{k,0}`$. Initialize the first frame using the known start and wheel pose; the algorithm does not read pose truth.
+
+**Spoken explanation:** wheel odometry supplies the short motion increment, and prediction continues from the previous corrected pose.
+
+**3. Downweight poorer correspondences.** At each iteration set $`\mathbf p=T_k\mathbf z`$, where $`\mathbf z`$ is a 2D scan point; $`\mathbf q`$ is its nearest point in the previous reference:
 
 ```math
-w_{\mathbf p}=\min\!\left(1,\frac{0.05}{\max(\|\mathbf p-\mathbf q\|_2,10^{-9})}\right),
+w_{\mathbf p}=\min\!\left(1,\frac{0.05}{\max(\|\mathbf p-\mathbf q\|_2,10^{-9})}\right).
+```
+
+Distances up to 5 cm receive weight 1; larger distances receive progressively smaller weights. $`10^{-9}`$ prevents division by zero. The weight describes correspondence reliability, not a probability of motion, and does not identify every moving object.
+
+**4. Core equation I: robust scan alignment.**
+
+```math
+\boxed{\boldsymbol{\Delta T=\arg\min_{U\in\mathrm{SE}(2)}\sum_{(\mathbf p,\mathbf q)\in\mathcal C_k}w_{\mathbf p}\|U\mathbf p-\mathbf q\|_2^2}}
 ```
 
 ```math
-\Delta T=\arg\min_{U\in\mathrm{SE}(2)}\sum_{(\mathbf p,\mathbf q)\in\mathcal C_k}
-w_{\mathbf p}\|U\mathbf p-\mathbf q\|_2^2,
-\qquad T_k\leftarrow\Delta T T_k.
-```
-Use the wheel prediction when reference support is below 80 points, correspondences below 30, or the total correction exceeds 0.15 m / 0.05 rad. Initialize from the known start and wheel pose. In the corrected 5 cm grid, $`h(c)`$ counts own hits, $`s(c)`$ counts hits within 0.10 m, and $`f(c)`$ counts free crossings, each once per 0.5 s bin. Free rays stop 15 cm before returns.
-
-```math
-h(c)=\sum_b\mathbf1[\text{hit at }c\text{ in bin }b],
-\qquad \widetilde M=\{\mathbf x_c:h(c)>0\}.
+T_k\leftarrow\Delta T T_k.
 ```
 
+$`U\in\mathrm{SE}(2)`$ permits only 2D rotation and translation; $`\mathcal C_k`$ is the current correspondence set. Minimize the sum of weighted squared transformed distances, update the pose by the rigid increment $`\Delta T`$, and recompute correspondences each iteration, up to 12 iterations.
+
+The reference $`\mathcal R_{k-1}`$ contains only retained prior-map positions with neighborhood support from at least three time bins. Correspondences must be within 0.30 m; retain the closest 70% with at least 30 pairs. Fall back to wheel prediction with fewer than 80 reference points, fewer than 30 pairs, or a total correction exceeding 0.15 m / 0.05 rad relative to prediction. These are implementation parameters, not novelty claims.
+
+**Spoken explanation:** use repeatedly supported prior structure to correct the current pose, while correspondence selection and weighting reduce unreliable matches. This is local sequential correction, without global pose-graph optimization.
+
+**5. Direct-hit evidence and candidate map.** Accumulate under corrected poses:
+
 ```math
-s(c)=\sum_b\mathbf1[\exists c':\|\mathbf x_{c'}-\mathbf x_c\|_2\le0.10,
-\ \text{hit at }c'\text{ in bin }b].
+h(c)=\sum_b\mathbf1[\text{hit at }c\text{ in bin }b],\qquad\widetilde M=\{\mathbf x_c:h(c)>0\}.
 ```
+
+$`h(c)`$ counts bins that directly hit cell $`c`$; repeated high-rate returns within a bin count once. $`\widetilde M`$ contains positions hit at least once. It uses corrected poses and differs from the wheel-pose baseline $`M_0`$.
+
+**6. Neighborhood hit support.**
+
+```math
+s(c)=\sum_b\mathbf1[\exists c':\|\mathbf x_{c'}-\mathbf x_c\|_2\le0.10,\ \text{hit at }c'\text{ in bin }b].
+```
+
+$`s(c)`$ counts bins with a hit within 10 cm of $`c`$. Returns from the same wall can still contribute support when small measurement or pose errors place them in adjacent cells. Neighborhood evidence changes decisions; it does not invent occupied points at unobserved positions.
+
+**Spoken explanation:** check whether nearby structure continues to be observed while allowing small shifts between neighboring cells.
+
+**7. Free-crossing evidence.**
 
 ```math
 f(c)=\sum_b\mathbf1[\text{free ray through }c\text{ in bin }b].
 ```
 
-```math
-M_1=\{\mathbf x_c\in \widetilde M:f(c)<3\ \lor\ f(c)<1.5s(c)\}.
-```
-Delete only with at least three free bins and free evidence at least 1.5 times neighborhood hit support. A bin can contribute to both $`s,f`$; these are evidence counts, not mutually exclusive probabilities. Rare observations alone do not imply motion. Neighborhood support accommodates hits landing in adjacent cells without adding unobserved occupied cells. No semantics or truth enters the algorithm; range filtering, gridding, free-space generation and inflation are shared.
+$`f(c)`$ counts bins with a valid measurement ray crossing $`c`$. Rays stop 15 cm before the return to allow endpoint uncertainty. Unobserved or occluded positions cannot simply be marked free. A bin can contribute to both $`s,f`$: these are evidence counts, not mutually exclusive probabilities. Different bins are not necessarily statistically independent either.
 
-**H1 to test:** the joint method meets the cleaning criterion relative to wheel-pose Raw and reduces error on fresh B. All parameters are fixed before final B acquisition; old B is for development ablation. Preserve negative results from per-cell filtering and filter-only revisions. Do not attribute the joint gain entirely to dynamic removal.
-
-**H2: align point timestamps, then test geometry and localization separately.**
-
-$`\mathbf z_i=(x_i,y_i,1)^{\mathsf T}`$ is a sensor-local homogeneous point acquired at $`t_i`$. Wheel odometry plus the sensor extrinsic provides $`\hat T(t)\in\mathrm{SE}(2)`$, mapping the instantaneous sensor frame to a fixed map frame. $`t_e`$ is the scan-end time:
+**8. Core equation II: trace-cleaning rule.**
 
 ```math
-\bar{\mathbf z}_i=\hat T(t_e)^{-1}\hat T(t_i)\mathbf z_i.
+\boxed{\boldsymbol{M_1=\{\mathbf x_c\in\widetilde M:f(c)<3\ \lor\ f(c)<1.5s(c)\}}}
 ```
-Transform first to the fixed frame, then to the scan-end sensor frame. $`M_0`$ treats mixed-time points as acquired at $`t_e`$; $`M_1`$ applies the compensation above. Both are integrated using $`\hat T(t_e)`$ with all other steps fixed; H2 does not additionally enable H1 filtering.
 
-Construct $`S`$ afresh from this experiment's A and use the same nearest-distance definition $`d`$. Current geometry scoring is:
+Equivalently, delete only when $`f(c)\ge3`$ and $`f(c)\ge1.5s(c)`$: at least three distinct bins supply free-space counterevidence, reaching 1.5 times the neighborhood hit support. A corner seen only once and never revisited is not deleted merely for being rare. The rule does not guarantee removal of every moving object.
+
+**Spoken explanation: deletion requires sufficient counterevidence; rare observations alone do not justify deletion.** The retained map and temporal support then inform the next alignment step, forming sequential feedback.
+
+**9. Nearest distance used for scoring.**
 
 ```math
-E_{\rm map}(M)=
-\sqrt{\frac1{|M|}\sum_{\mathbf x\in M}d(\mathbf x,S)^2}.
+d(\mathbf q,M)=\min_{\mathbf x\in M}\|\mathbf q-\mathbf x\|_2.
 ```
-This is a one-way map-to-observed-static-support distance RMSE; it does not alone measure completeness. An empty map is a mapping failure, not a geometric improvement.
 
-**H2 to test:**
+Find the map point nearest reference position $`\mathbf q`$. A smaller distance means the reference position is closer to the map. This definition serves evaluation, not the algorithm's motion decision.
+
+**10. Static coverage SA and trace removal DA.** $`S`$ is a nonempty set of observed static reference positions from A. $`D`$ contains historical dynamic positions later verified free by rays, excluding overlap with static support or current obstacles. Both controls share $`S,D`$, deduplicated in 10 cm cells, with matching tolerance $`r=0.15\,\mathrm m`$:
 
 ```math
-E_{\rm map}(M_1)<E_{\rm map}(M_0)
-\quad\land\quad
-E_{{\rm loc},1}<E_{{\rm loc},0}.
+\mathrm{SA}(M)=\frac{\sum_{\mathbf q\in S}\mathbf1[d(\mathbf q,M)\le r]}{|S|},\qquad\mathrm{DA}(M)=\frac{\sum_{\mathbf q\in D}\mathbf1[d(\mathbf q,M)>r]}{|D|}.
 ```
-If only the first inequality holds, only the geometry-score claim is supported. These are single exploratory trials; repeat trials are needed to establish consistent benefit.
+
+SA is the fraction of static reference positions still covered by the map; DA is the fraction of historical trace positions no longer covered. Formulas use 0–1; tables show percentages. DA is undefined for empty $`D`$. These are 2D position-coverage scores, not exact source-point retention or geometric accuracy. Truth and object labels construct evaluation references only and do not enter the algorithm.
+
+**11. Cleaning-improvement condition and H1 prediction.**
+
+```math
+\mathrm{DA}(M_1)>\mathrm{DA}(M_0)\quad\land\quad\mathrm{SA}(M_1)\ge\mathrm{SA}(M_0)-0.01.
+```
+
+The study defines improved cleaning as removing more traces while losing at most one percentage point of static coverage relative to baseline. This concerns observed support; it establishes neither global completeness, geometric accuracy nor a solution to mirror artifacts.
+
+H1 also requires independent-B localization improvement. The full prediction can be written together:
+
+```math
+\mathrm{DA}(M_1)>\mathrm{DA}(M_0),\qquad\mathrm{SA}(M_1)\ge\mathrm{SA}(M_0)-0.01,\qquad E_{{\rm loc},1}<E_{{\rm loc},0}.
+```
+
+**Spoken explanation:** first check trace removal and static support, then check independent localization on the frozen maps. Old B is used for development ablation; parameters are fixed before final fresh B. The joint gain cannot be attributed entirely to dynamic removal.
+
+**H2: bring point samples to a common reference time, then test map geometry and localization separately.**
+
+**12. Core equation III: motion-distortion compensation.** $`\mathbf z_i=(x_i,y_i,1)^{\mathsf T}`$ is a local homogeneous point acquired at $`t_i`$. Wheel-odometry interpolation plus sensor extrinsics provides $`\hat T(t)\in\mathrm{SE}(2)`$ from that sensor frame to the fixed map frame. $`t_e`$ is scan end:
+
+```math
+\boxed{\boldsymbol{\bar{\mathbf z}_i=\hat T(t_e)^{-1}\hat T(t_i)\mathbf z_i}}
+```
+
+Read right to left: $`\hat T(t_i)`$ moves the point to the fixed frame, then $`\hat T(t_e)^{-1}`$ moves it into the scan-end sensor frame. $`M_0`$ treats mixed-time points as acquired at $`t_e`$; $`M_1`$ compensates first. Integrate both with $`\hat T(t_e)`$ and hold all other steps fixed. H2 does not additionally enable H1 filtering.
+
+**Spoken explanation:** use estimated robot motion to express points measured at different times in one reference frame. This compensates robot motion, not object motion, and depends on odometry quality.
+
+**13. Map geometry error.** Construct static references $`S`$ afresh from this experiment's A and reuse nearest distance $`d`$:
+
+```math
+E_{\rm map}(M)=\sqrt{\frac1{|M|}\sum_{\mathbf x\in M}d(\mathbf x,S)^2}.
+```
+
+Find each map point's nearest static reference, square the distance, average and take the square root. This is a one-way map-to-observed-static-support distance and does not alone measure completeness. An empty map is a mapping failure.
+
+**14. Joint H2 test condition.**
+
+```math
+E_{\rm map}(M_1)<E_{\rm map}(M_0)\quad\land\quad E_{{\rm loc},1}<E_{{\rm loc},0}.
+```
+
+After a lower geometry score, independently test for lower localization error. If only the first inequality holds, only geometry-score improvement is supported. H2 remains a single exploratory trial; consistent benefit requires repeat validation.
+
+<a id="hypothesis-srrg-comparison"></a>
+
+### Innovation and conceptual comparison with SRRG
+
+**Innovation and conceptual comparison with SRRG.** Here SRRG refers to Lázaro et al., *Efficient Long-term Mapping in Dynamic Environments* (IROS 2018), and its 2D mapping code. It already includes point/normal registration, free-space fusion, a pose graph and long-term multi-session map maintenance. Alignment plus cleaning, or using free space to remove dynamics, is therefore not itself a first-of-its-kind contribution over SRRG. [Paper, Section III](https://iris.uniroma1.it/handle/11573/1340118).
+
+| Aspect | Main idea in the SRRG paper | Current approach |
+| --- | --- | --- |
+| Map representation | 2D local point clouds with normals and a pose graph | Grid counts of hits, neighborhood support and free crossings |
+| Registration | Point/normal correspondences with odometry initialization / prior | Robust point-to-point alignment to previously supported positions |
+| Dynamic handling | Project to a common viewpoint, compare ranges, then merge, add or replace points | Accumulate free-space counterevidence across time bins; delete only when conditions hold |
+| Small misalignments | Geometric correspondence and point-cloud merging | Neighborhood hits allow returns to fall into adjacent cells |
+| System scope | Full SLAM, global graph optimization and long-term maintenance | Current local sequential intervention without global pose-graph or long-term multi-session mechanisms |
+| Evaluation focus here | Practice the authors' map-maintenance pipeline | Relate cleaning / retention to independent localization on frozen maps |
+
+**Candidate contribution: explicit neighborhood temporal evidence jointly selects registration references and decides trace deletion, with independent localization testing the map's downstream value.** The concrete difference is the organization of time bins, neighborhood support and deletion counterevidence. Parameter choices, local implementation and standard robust registration do not establish novelty. Independent B is an evaluation design; the algorithm does not directly optimize AMCL error. H2 uses standard relative-pose compensation and is not claimed as a separate first-of-its-kind contribution over SRRG.
+
+Conservative evidence could reduce deletion caused by isolated anomalous observations while delaying adaptation to real changes; both need testing. The open research claim is whether this evidence design better balances static-support retention and trace removal under pose perturbations, sparse observations and dynamic occlusion. **These are implemented design differences, not established literature novelty. Metric effectiveness is not compared with SRRG here, and no performance superiority is claimed.**
+
+**Presentation wording:** we study how dynamic mapping affects later localization. Compared with SRRG's projective fusion and complete graph maintenance, we explicitly accumulate neighborhood support and free-space evidence across time: repeatedly supported structure assists alignment, and sufficient free-space counterevidence removes historical traces. Current validation asks whether this evidence design preserves useful localization structure; comparative performance against SRRG has not been established.
 
 <a id="hypothesis-pseudocode"></a>
 
@@ -132,13 +204,21 @@ for test, scene in [(H1, static), (H1, dynamic), (H2, motion)]:
     A = acquire_scans_and_wheel_odometry(scene)
     if test == H1:
         M0 = integrate_A_with_wheel_poses(A)
-        corrected_poses = align_scans_to_previous_supported_map(A)  # own implementation
         h, s, f = initialize_grid_evidence()
-        for bin in A.project_with(corrected_poses).time_bins(seconds=0.5):
-            add_hits_once_per_cell(h, bin)
-            add_neighborhood_hit_support_once(s, bin, radius=0.10)
-            add_truncated_free_ray_evidence_once(f, bin, stop_before_return=0.15)
-        M1 = cell_centers_where((h > 0) & ((f < 3) | (f < 1.5 * s)))
+        M1 = empty_map()
+        previous_wheel, previous_corrected = None, None
+        for scan in A.in_time_order():
+            wheel = sensor_pose_from_wheel_odometry(scan)
+            predicted = wheel if previous_wheel is None else previous_corrected @ inverse(previous_wheel) @ wheel
+            reference = previous_retained_cells_with_support(M1, s, min_bins=3)
+            corrected = own_robust_SE2_alignment_or_wheel_fallback(scan, predicted, reference)
+            points = transform_scan(scan, corrected)
+            bin = floor(scan.time / 0.5)
+            add_hits_once_per_cell_and_bin(h, points, bin)
+            add_neighborhood_support_once_per_bin(s, points, bin, radius=0.10)
+            add_free_crossings_once_per_bin(f, points, corrected, bin, stop_before_return=0.15)
+            M1 = cell_centers_where((h > 0) & ((f < 3) | (f < 1.5 * s)))
+            previous_wheel, previous_corrected = wheel, corrected
     else:
         M0 = integrate_A(A, point_compensation=False)
         M1 = integrate_A(A, point_compensation=True)  # no H1 filtering

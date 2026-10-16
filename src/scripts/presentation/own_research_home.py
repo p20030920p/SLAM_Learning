@@ -4,7 +4,7 @@ import json
 import os
 import re
 
-from hypothesis_notation import github_math, math_sections, pseudocode, raw_baselines
+from hypothesis_notation import github_math, math_sections, pseudocode, raw_baselines, srrg_comparison
 from publish_home_experiments import apply_home_layout, sections
 from simple_research_home import ROOT, metrics, num, pct, practice as paper_practice, related, table
 
@@ -26,6 +26,8 @@ def definitions(zh):
     text += '<a id="hypothesis-math"></a>\n\n### ' + s("数学表达", "Mathematical form") + "\n\n"
     parts = math_sections(zh)
     text += github_math("\n\n".join(parts.values())) + "\n\n"
+    text += '<a id="hypothesis-srrg-comparison"></a>\n\n### ' + s("创新点与SRRG思路对比", "Innovation and conceptual comparison with SRRG") + "\n\n"
+    text += github_math(srrg_comparison(zh)) + "\n\n"
     text += '<a id="hypothesis-pseudocode"></a>\n\n### ' + s("伪代码", "Pseudocode") + "\n\n"
     fence = chr(96) * 3
     text += fence + "text\n" + pseudocode() + fence + "\n\n"
