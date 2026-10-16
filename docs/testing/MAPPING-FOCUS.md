@@ -40,17 +40,15 @@ $`\hat{\mathbf p}_{m,k}`$ is the estimated 2D robot position on $`M_m`$; $`\math
 
 $`\mathcal T`$ contains only common times with valid outputs from both controls. Current scoring uses 10 Hz times after 5 s warmup and outputs no older than 0.15 s; an empty set is not scored. Across H1 trials, $`k`$ indexes both trial and time, pooling all common valid samples. Missing-output times are excluded, so this RMSE is not localization success rate. Complete navigation arrival outcomes were not measured.
 
-**Spoken explanation:** freeze the A maps, apply the same localizer to independent B, and check whether the map change reduces pose error. This is an evaluation requirement; the algorithm does not directly minimize AMCL error.
+**Evaluation scope.** Freeze the A maps and apply the same localizer to independent B to evaluate the effect of map changes on localization error. The current algorithm does not directly minimize AMCL error.
 
 **H1: first correct each 2D scan's position and heading, then use repeated observations to decide which occupied records to remove, and finally test whether the resulting map improves a separate localization session.**
 
-**During mapping:** wheel odometry supplies an approximate scan pose. Align it to structure observed in multiple earlier time bins to reduce the accumulation of the same wall at different positions. This includes pose correction as well as point removal.
+**Mapping procedure:** wheel odometry supplies an initial scan pose. Align it to structure observed in multiple earlier time bins to reduce misaligned accumulation of the same static structure. The procedure includes both pose correction and occupancy filtering.
 
-**When to delete:** divide the map into 5 cm cells and observations into 0.5 s bins. Repeated measurements within one bin contribute once per evidence type. For each cell, separately count bins with a return within 10 cm and bins with a valid free ray crossing the cell. Rays stop 15 cm before returns. Delete an occupied record only when free crossings occur in at least three bins and their count is at least 1.5 times neighborhood hit support. Being rarely observed or subsequently occluded is not sufficient evidence of motion.
+**Deletion conditions:** divide the map into 5 cm cells and observations into 0.5 s bins. Repeated measurements within one bin contribute once per evidence type. For each cell, separately count bins with a return within 10 cm and bins with a valid free ray crossing the cell. Rays stop 15 cm before returns. Delete an occupied record only when free crossings occur in at least three bins and their count is at least 1.5 times neighborhood hit support. Sparse observations or subsequent occlusion alone are not motion criteria.
 
-**What to test:** hypothesize that alignment plus cleaning removes more dynamic traces than wheel-pose accumulation while losing at most one percentage point of observed static-reference coverage. Stop updating the maps, acquire independent B, and run the same AMCL on both frozen maps to test for lower XY position RMSE on the intervention map. A's DA/SA evaluate cleaning and retention; B's localization RMSE evaluates the downstream effect. Assess these separately.
-
-**Presentation wording:** “I first place each scan more accurately. For every map position, I then check whether returns repeatedly support nearby structure or whether measurement rays repeatedly pass through the position. I clear an occupied record only with enough crossing evidence relative to nearby hit support. Finally, I freeze the maps and use a separate acquisition to test whether localization error decreases while static structure is retained.”
+**Validation target:** hypothesize that alignment plus cleaning removes more dynamic traces than wheel-pose accumulation while losing at most one percentage point of observed static-reference coverage. Stop updating the maps, acquire independent B, and run the same AMCL on both frozen maps to test for lower XY position RMSE on the intervention map. A's DA/SA evaluate cleaning and retention; B's localization RMSE evaluates the downstream effect. Assess these separately.
 
 Raw accumulates wheel-derived poses only. The current intervention includes both alignment and cleaning; alignment-only / filter-only ablations distinguish their contributions. The equations below explain each step.
 
@@ -61,8 +59,6 @@ T_{k,0}=T_{k-1}(T_{k-1}^o)^{-1}T_k^o.
 ```
 
 $`(T_{k-1}^o)^{-1}T_k^o`$ is the wheel-derived motion between frames. Compose it with the previously corrected pose $`T_{k-1}`$ to obtain the current initial estimate $`T_{k,0}`$. Initialize the first frame using the known start and wheel pose; the algorithm does not read pose truth.
-
-**Spoken explanation:** wheel odometry supplies the short motion increment, and prediction continues from the previous corrected pose.
 
 **3. Downweight poorer correspondences.** At each iteration set $`\mathbf p=T_k\mathbf z`$, where $`\mathbf z`$ is a 2D scan point; $`\mathbf q`$ is its nearest point in the previous reference:
 
@@ -86,7 +82,7 @@ $`U\in\mathrm{SE}(2)`$ permits only 2D rotation and translation; $`\mathcal C_k`
 
 The reference $`\mathcal R_{k-1}`$ contains only retained prior-map positions with neighborhood support from at least three time bins. Correspondences must be within 0.30 m; retain the closest 70% with at least 30 pairs. Fall back to wheel prediction with fewer than 80 reference points, fewer than 30 pairs, or a total correction exceeding 0.15 m / 0.05 rad relative to prediction. These are implementation parameters, not novelty claims.
 
-**Spoken explanation:** use repeatedly supported prior structure to correct the current pose, while correspondence selection and weighting reduce unreliable matches. This is local sequential correction, without global pose-graph optimization.
+This module performs local sequential pose correction without global pose-graph optimization.
 
 **5. Direct-hit evidence and candidate map.** Accumulate under corrected poses:
 
@@ -104,8 +100,6 @@ s(c)=\sum_b\mathbf1[\exists c':\|\mathbf x_{c'}-\mathbf x_c\|_2\le0.10,\ \text{h
 
 $`s(c)`$ counts bins with a hit within 10 cm of $`c`$. Returns from the same wall can still contribute support when small measurement or pose errors place them in adjacent cells. Neighborhood evidence changes decisions; it does not invent occupied points at unobserved positions.
 
-**Spoken explanation:** check whether nearby structure continues to be observed while allowing small shifts between neighboring cells.
-
 **7. Free-crossing evidence.**
 
 ```math
@@ -122,7 +116,7 @@ $`f(c)`$ counts bins with a valid measurement ray crossing $`c`$. Rays stop 15 c
 
 Equivalently, delete only when $`f(c)\ge3`$ and $`f(c)\ge1.5s(c)`$: at least three distinct bins supply free-space counterevidence, reaching 1.5 times the neighborhood hit support. A corner seen only once and never revisited is not deleted merely for being rare. The rule does not guarantee removal of every moving object.
 
-**Spoken explanation: deletion requires sufficient counterevidence; rare observations alone do not justify deletion.** The retained map and temporal support then inform the next alignment step, forming sequential feedback.
+**Deletion principle: deletion requires sufficient counterevidence; rare observations alone do not justify deletion.** The retained map and temporal support then inform the next alignment step, forming sequential feedback.
 
 **9. Nearest distance used for scoring.**
 
@@ -154,7 +148,7 @@ H1 also requires independent-B localization improvement. The full prediction can
 \mathrm{DA}(M_1)>\mathrm{DA}(M_0),\qquad\mathrm{SA}(M_1)\ge\mathrm{SA}(M_0)-0.01,\qquad E_{{\rm loc},1}<E_{{\rm loc},0}.
 ```
 
-**Spoken explanation:** first check trace removal and static support, then check independent localization on the frozen maps. Old B is used for development ablation; parameters are fixed before final fresh B. The joint gain cannot be attributed entirely to dynamic removal.
+**Validation protocol.** Old B is used for development ablation; parameters are fixed before final fresh B acquisition. Evaluate map cleaning and independent localization separately. The joint gain cannot be attributed entirely to dynamic removal.
 
 **H2: bring point samples to a common reference time, then test map geometry and localization separately.**
 
@@ -166,7 +160,7 @@ H1 also requires independent-B localization improvement. The full prediction can
 
 Read right to left: $`\hat T(t_i)`$ moves the point to the fixed frame, then $`\hat T(t_e)^{-1}`$ moves it into the scan-end sensor frame. $`M_0`$ treats mixed-time points as acquired at $`t_e`$; $`M_1`$ compensates first. Integrate both with $`\hat T(t_e)`$ and hold all other steps fixed. H2 does not additionally enable H1 filtering.
 
-**Spoken explanation:** use estimated robot motion to express points measured at different times in one reference frame. This compensates robot motion, not object motion, and depends on odometry quality.
+The transform expresses points acquired at different times in one reference frame. It compensates robot motion, not object motion; compensation quality depends on odometry accuracy.
 
 **13. Map geometry error.** Construct static references $`S`$ afresh from this experiment's A and reuse nearest distance $`d`$:
 
@@ -202,8 +196,6 @@ After a lower geometry score, independently test for lower localization error. I
 **Candidate contribution: explicit neighborhood temporal evidence jointly selects registration references and decides trace deletion, with independent localization testing the map's downstream value.** The concrete difference is the organization of time bins, neighborhood support and deletion counterevidence. Parameter choices, local implementation and standard robust registration do not establish novelty. Independent B is an evaluation design; the algorithm does not directly optimize AMCL error. H2 uses standard relative-pose compensation and is not claimed as a separate first-of-its-kind contribution over SRRG.
 
 Conservative evidence could reduce deletion caused by isolated anomalous observations while delaying adaptation to real changes; both need testing. The open research claim is whether this evidence design better balances static-support retention and trace removal under pose perturbations, sparse observations and dynamic occlusion. **These are implemented design differences, not established literature novelty. Metric effectiveness is not compared with SRRG here, and no performance superiority is claimed.**
-
-**Presentation wording:** we study how dynamic mapping affects later localization. Compared with SRRG's projective fusion and complete graph maintenance, we explicitly accumulate neighborhood support and free-space evidence across time: repeatedly supported structure assists alignment, and sufficient free-space counterevidence removes historical traces. Current validation asks whether this evidence design preserves useful localization structure; comparative performance against SRRG has not been established.
 
 <a id="hypothesis-pseudocode"></a>
 
