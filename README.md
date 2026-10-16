@@ -1155,7 +1155,7 @@ H1 uses DA/SA for cleaning and only SA in its static control; H2 uses one-way ma
 
 ## References
 
-Entries follow the order of [Related works](#related-works) and cite the work named in each row; implementations are linked in the Related works details above. The AMCL row names the Nav2 implementation, which has no paper of its own. Titles, author lists, volumes and pages follow the indexed publisher records (OpenAlex), checked 2026-10-16; the online resource was accessed the same day.
+The AMCL row names the Nav2 implementation, which has no paper of its own. Titles, author lists, volumes and pages follow the indexed publisher records (OpenAlex), checked 2026-10-16; the online resource was accessed the same day.
 
 [1] W. Xu and F. Zhang, "FAST-LIO: A Fast, Robust LiDAR-Inertial Odometry Package by Tightly-Coupled Iterated Kalman Filter," *IEEE Robotics and Automation Letters*, vol. 6, no. 2, pp. 3317–3324, 2021, doi: [10.1109/LRA.2021.3064227](https://doi.org/10.1109/LRA.2021.3064227). arXiv: [2010.08196](https://arxiv.org/abs/2010.08196).
 
