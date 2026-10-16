@@ -114,9 +114,9 @@ E_{\rm map}(M_1)<E_{\rm map}(M_0)\quad\land\quad E_{{\rm loc},1}<E_{{\rm loc},0}
 
 | Aspect | SRRG | Current H1 |
 | --- | --- | --- |
-| Registration | Point/normal correspondences with odometry | Robust point-to-point alignment to temporally supported positions |
-| Map maintenance | Common-view projection, range comparison and point-cloud fusion | Bin-wise neighborhood hits and free counterevidence; delete only at threshold |
-| System scope | Pose-graph optimization and long-term multi-session maintenance | Local sequential processing; independent B tests downstream localization |
+| Registration | Points + normals | Temporal support + robust alignment |
+| Cleaning | Projection + fusion | Temporal evidence + threshold deletion |
+| Scope | Global SLAM + long-term mapping | Local updates + held-out localization |
 
 H2 uses standard relative-pose compensation and is not claimed as a separate innovation.
 
