@@ -27,7 +27,17 @@ $\mathcal T$ contains only common times with valid outputs from both controls. C
 <!-- /HYPOTHESIS_PART:common -->
 
 <!-- HYPOTHESIS_PART:h1 -->
-**H1: align using previous temporal support, then remove traces using free-space counterevidence.** Raw accumulates wheel-derived poses. The intervention changes both alignment and cleaning; alignment-only / filter-only ablations distinguish their contributions.
+**H1: first correct each 2D scan's position and heading, then use repeated observations to decide which occupied records to remove, and finally test whether the resulting map improves a separate localization session.**
+
+**During mapping:** wheel odometry supplies an approximate scan pose. Align it to structure observed in multiple earlier time bins to reduce the accumulation of the same wall at different positions. This includes pose correction as well as point removal.
+
+**When to delete:** divide the map into 5 cm cells and observations into 0.5 s bins. Repeated measurements within one bin contribute once per evidence type. For each cell, separately count bins with a return within 10 cm and bins with a valid free ray crossing the cell. Rays stop 15 cm before returns. Delete an occupied record only when free crossings occur in at least three bins and their count is at least 1.5 times neighborhood hit support. Being rarely observed or subsequently occluded is not sufficient evidence of motion.
+
+**What to test:** hypothesize that alignment plus cleaning removes more dynamic traces than wheel-pose accumulation while losing at most one percentage point of observed static-reference coverage. Stop updating the maps, acquire independent B, and run the same AMCL on both frozen maps to test for lower XY position RMSE on the intervention map. A's DA/SA evaluate cleaning and retention; B's localization RMSE evaluates the downstream effect. Assess these separately.
+
+**Presentation wording:** “I first place each scan more accurately. For every map position, I then check whether returns repeatedly support nearby structure or whether measurement rays repeatedly pass through the position. I clear an occupied record only with enough crossing evidence relative to nearby hit support. Finally, I freeze the maps and use a separate acquisition to test whether localization error decreases while static structure is retained.”
+
+Raw accumulates wheel-derived poses only. The current intervention includes both alignment and cleaning; alignment-only / filter-only ablations distinguish their contributions. The equations below explain each step.
 
 **2. Predict the current pose using the wheel increment.**
 
