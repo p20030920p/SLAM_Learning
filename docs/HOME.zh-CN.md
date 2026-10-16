@@ -13,7 +13,7 @@
 
 [实物测试问题](#problem-getting-from-physical-test) · [方向分析](#方向分析) · [开放问题](#开放问题) · [假设](#假设) · [相关工作](#相关工作) · [指标](#指标)
 
-[实践](#practice-index) · [Hypothesis test](#hypothesis-test-index)
+[实践](#practice-index) · [Hypothesis test](#hypothesis-test-index) · [引用与 DOI](#references)
 
 </div>
 
@@ -1176,3 +1176,38 @@ H2录像阶段：静止0–7秒、慢转7–15秒、快转15–31秒、平移31�
 [↑ 目录](#hypothesis-test-index)
 
 H1用DA/SA评清图，静态对照只看SA；H2用地图到静态支持的单向RMSE评分。定位预热5秒后使用共同10 Hz时间点，最新输出最多滞后0.15秒；样本数与输出缺失情况见原始评分记录。建图指标改善但B误差不降时，只支持建图结论。
+
+<a id="references"></a>
+
+## 引用与 DOI
+
+[相关工作](#相关工作)中各条目对应的论文与 DOI。本库复现的四个方法排在前面，其后是基线方法与 KITTI-00 节选数据来源。
+
+| 编号 | 方法 | 文献 | DOI |
+| --- | --- | --- | --- |
+| R1 | [SRRG / srrg_mapper2d](#related-srrg_mapper2d) | M. T. Lázaro, R. Capobianco, G. Grisetti, "Efficient Long-term Mapping in Dynamic Environments," *2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)*, pp. 153–160. | [10.1109/IROS.2018.8594310](https://doi.org/10.1109/IROS.2018.8594310) |
+| R2 | [DUFOMap](#related-dufomap) | D. Duberg, Q. Zhang, M. Jia, P. Jensfelt, "DUFOMap: Efficient Dynamic Awareness Mapping," *IEEE Robotics and Automation Letters*, 9(6):5038–5045, 2024. | [10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) |
+| R3 | [BeautyMap](#related-beautymap) | M. Jia, Q. Zhang, B. Yang, J. Wu, M. Liu, P. Jensfelt, "BeautyMap: Binary-Encoded Adaptable Ground Matrix for Dynamic Points Removal in Global Maps," *IEEE Robotics and Automation Letters*, 9(7):6256–6263, 2024. | [10.1109/LRA.2024.3402625](https://doi.org/10.1109/LRA.2024.3402625) |
+| R4 | [IR-MCL](#related-ir-mcl) | H. Kuang, X. Chen, T. Guadagnino, N. Zimmerman, J. Behley, C. Stachniss, "IR-MCL: Implicit Representation-Based Online Global Localization," *IEEE Robotics and Automation Letters*, 8(3):1627–1634, 2023. | [10.1109/LRA.2023.3239318](https://doi.org/10.1109/LRA.2023.3239318) |
+| R5 | [AdaM-MCL](#related-adam-mcl) | R. Chen, H. Yin, Y. Jiao, G. Dissanayake, Y. Wang, R. Xiong, "Deep Samplable Observation Model for Global Localization and Kidnapping," *IEEE Robotics and Automation Letters*, 6(2):2296–2303, 2021. | [10.1109/LRA.2021.3061339](https://doi.org/10.1109/LRA.2021.3061339) |
+| R6 | [FAST-LIO](#related-fast_lio) | W. Xu, F. Zhang, "FAST-LIO: A Fast, Robust LiDAR-Inertial Odometry Package by Tightly-Coupled Iterated Kalman Filter," *IEEE Robotics and Automation Letters*, 6(2):3317–3324, 2021. | [10.1109/LRA.2021.3064227](https://doi.org/10.1109/LRA.2021.3064227) |
+| R7 | [FAST-LIO2](#related-fast_lio) | W. Xu, Y. Cai, D. He, J. Lin, F. Zhang, "FAST-LIO2: Fast Direct LiDAR-Inertial Odometry," *IEEE Transactions on Robotics*, 38(4):2053–2073, 2022. | [10.1109/TRO.2022.3141876](https://doi.org/10.1109/TRO.2022.3141876) |
+| R8 | [GICP](#related-gicp) | A. Segal, D. Haehnel, S. Thrun, "Generalized-ICP," *Robotics: Science and Systems V*, 2009. | [10.15607/RSS.2009.V.021](https://doi.org/10.15607/RSS.2009.V.021) |
+| R9 | DUFOMap 与 BeautyMap 两行使用的 KITTI-00 141 帧节选数据 | Q. Zhang, D. Duberg, R. Geng, M. Jia, L. Wang, P. Jensfelt, "A Dynamic Points Removal Benchmark in Point Cloud Maps," *2023 IEEE 26th International Conference on Intelligent Transportation Systems (ITSC)*, pp. 608–614. | [10.1109/ITSC57777.2023.10422094](https://doi.org/10.1109/ITSC57777.2023.10422094) |
+
+DOI 于 2026-10-16 按出版方索引元数据（OpenAlex 记录）核对；作者顺序、卷号与页码取自出版方记录。有预印本的工作在[相关工作](#相关工作)中给的是 arXiv 版本：FAST-LIO、FAST-LIO2、DUFOMap、BeautyMap、IR-MCL、AdaM-MCL。GICP 另有 2010 年 MIT Press 章节版，DOI 10.7551/mitpress/8727.003.0022，pp. 161–168。
+
+[相关工作](#相关工作)中提到的实现没有 DOI，按仓库列出；有固定版本的按固定版本给出。
+
+| 方法 | 实现 |
+| --- | --- |
+| SRRG | [srrg_mapper2d](https://gitlab.com/srrg-software/srrg_mapper2d) · [ROS 入口](https://gitlab.com/srrg-software/srrg_mapper2d_ros) |
+| DUFOMap | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) |
+| BeautyMap | [MKJia/BeautyMap](https://github.com/MKJia/BeautyMap) |
+| IR-MCL | [PRBonn/ir-mcl @ aab8c91](https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5) |
+| AdaM-MCL / DSOM | [Runjian-Chen/AdaM_MCL @ e8aedd2](https://github.com/Runjian-Chen/AdaM_MCL/tree/e8aedd2bae03816aabd5300e5ca2fe181b39d830) |
+| FAST-LIO / FAST-LIO2 | [hku-mars/FAST_LIO，ROS 2 分支](https://github.com/hku-mars/FAST_LIO/tree/ROS2) |
+| AMCL / Nav2 | [nav2_amcl](https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl) |
+| GICP | [avsegal/gicp](https://github.com/avsegal/gicp) · [PCL 实现](https://pointclouds.org/documentation/classpcl_1_1_generalized_iterative_closest_point.html) · [本库使用的 ROS 2 定位框架](https://github.com/rsasaki0109/lidar_localization_ros2) |
+
+AMCL 一行指 Nav2 实现，因此上文不引用其统计来源文献。上游许可、固定提交与获取来源见[来源、版权与资产范围](guides/ATTRIBUTION.md)。
