@@ -7,7 +7,7 @@
 
 | Question | Hypothesis and method | Controls | Metrics |
 | --- | --- | --- | --- |
-| H1 / Q1 | **Align first:** use structure observed in multiple earlier time bins to correct the current 2D scan's position and heading.<br>**Then clean:** count evidence once per 0.5 s bin. For each 5 cm cell, count bins with a return within its 10 cm neighborhood and bins with valid free rays crossing the cell. Delete its occupied record only with at least three free-crossing bins and free evidence at least 1.5 times neighborhood hit support; rare observations alone do not justify deletion.<br>**Hypothesis to test:** relative to wheel-pose accumulation, remove more dynamic traces while losing at most one percentage point of static-reference coverage; then obtain lower XY localization RMSE with independent B and the same AMCL on frozen maps. | M₀: wheel-pose accumulation / M₁: own alignment + cleaning | A: DA, SA; B: XY RMSE |
+| H1 / Q1 | In 2D LiDAR mapping, structure observed in multiple earlier time bins corrects the current scan's position and heading; 0.5 s bins count returns within each 5 cm cell's 10 cm neighborhood and valid free rays crossing that cell; an occupied record is deleted only with at least three free-crossing bins and free evidence at least 1.5 times neighborhood hit support; the hypothesis is that this method removes more dynamic traces than wheel-pose accumulation while limiting static-reference coverage loss to one percentage point, and yields lower XY localization RMSE with independent B and identical AMCL on frozen maps. | M₀: wheel-pose accumulation / M₁: own alignment + cleaning | A: DA, SA; B: XY RMSE |
 | H2 / Q2 | Wheel-odometry compensation for point timestamps reduces map and held-out localization error. | M₀: compensation off / M₁: on | A: map RMSE; B: XY RMSE |
 
 Both interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.
@@ -42,13 +42,11 @@ $`\mathcal T`$ contains only common times with valid outputs from both controls.
 
 **Evaluation scope.** Freeze the A maps and apply the same localizer to independent B to evaluate the effect of map changes on localization error. The current algorithm does not directly minimize AMCL error.
 
-**H1: first correct each 2D scan's position and heading, then use repeated observations to decide which occupied records to remove, and finally test whether the resulting map improves a separate localization session.**
+**H1: 2D scan-pose correction and temporal occupancy filtering.**
 
-**Mapping procedure:** wheel odometry supplies an initial scan pose. Align it to structure observed in multiple earlier time bins to reduce misaligned accumulation of the same static structure. The procedure includes both pose correction and occupancy filtering.
+Wheel odometry supplies the initial scan pose; structure observed in multiple earlier time bins corrects its position and heading to reduce misaligned accumulation of static structure; the map uses 5 cm cells and observations are grouped into 0.5 s bins, counting returns within each cell's 10 cm neighborhood and valid free rays crossing that cell, once per evidence type per bin; rays stop 15 cm before returns; an occupied record is deleted only with at least three free-crossing bins and free evidence at least 1.5 times neighborhood hit support, while sparse observations or subsequent occlusion alone are not motion criteria.
 
-**Deletion conditions:** divide the map into 5 cm cells and observations into 0.5 s bins. Repeated measurements within one bin contribute once per evidence type. For each cell, separately count bins with a return within 10 cm and bins with a valid free ray crossing the cell. Rays stop 15 cm before returns. Delete an occupied record only when free crossings occur in at least three bins and their count is at least 1.5 times neighborhood hit support. Sparse observations or subsequent occlusion alone are not motion criteria.
-
-**Validation target:** hypothesize that alignment plus cleaning removes more dynamic traces than wheel-pose accumulation while losing at most one percentage point of observed static-reference coverage. Stop updating the maps, acquire independent B, and run the same AMCL on both frozen maps to test for lower XY position RMSE on the intervention map. A's DA/SA evaluate cleaning and retention; B's localization RMSE evaluates the downstream effect. Assess these separately.
+The hypothesis is that this method removes more dynamic traces than wheel-pose accumulation while limiting observed static-reference coverage loss to one percentage point; frozen maps are evaluated with independently acquired B and identical AMCL configuration to test whether the intervention yields lower XY position RMSE; A's DA/SA evaluate cleaning and retention, and B's localization RMSE evaluates the downstream effect separately.
 
 Raw accumulates wheel-derived poses only. The current intervention includes both alignment and cleaning; alignment-only / filter-only ablations distinguish their contributions. The equations below explain each step.
 
