@@ -465,12 +465,6 @@ This section practices methods in Related works. A = mapping; B = a separate loc
 | P3.2 | DUFOMap / BeautyMap · 3D · Dynamic | [A](#scene-dynamic-3d) / [B](#scene-dynamic-3d-b) |
 | P3.3 | DUFOMap / BeautyMap · 3D · Corridor | [A](#scene-corridor-3d) / [B](#scene-corridor-3d-b) |
 | P3.4 | DUFOMap / BeautyMap · 3D · Changed world | [A](#scene-change-3d) / [B](#scene-change-3d-b) |
-| P4 | IR-MCL · Bonn | [Open experiment](#practice-irmcl) |
-| P5 | AdaM-MCL | [Open experiment](#practice-adam) |
-| P6.1 | NDT / GICP | [Open experiment](#supp-registrations) |
-| P6.2 | slam_toolbox / AMCL | [Open experiment](#supp-acquisition) |
-| P6.3 | Saved-cloud replay | [Open experiment](#map-review-3d) |
-| P6.4 | Failure diagnostics | [Open experiment](#srrg-diagnostics) |
 
 <a id="practice-setup"></a>
 
@@ -1008,74 +1002,6 @@ AMCL publishes after motion thresholds are met; the count includes only common t
 <!-- PRACTICE_ANALYSIS:srrg-large-change-2d -->
 
 <!-- /PRACTICE_ANALYSIS:srrg-large-change-2d -->
-
-[↑ Contents](#practice-index)
-
-<a id="map-review-3d"></a>
-
-#### Saved point-cloud replay
-
-| Saved results; no new inference |
-| --- |
-| <a href="results/reference/robot-3d-map-review-v2/execution.mp4"><img src="results/reference/robot-3d-map-review-v2/execution.gif" width="340" loading="lazy" alt="Saved results; no new inference"></a> |
-
-
-<a id="supp-registrations"></a>
-
-#### Raw · NDT / GICP
-
-| Method | XY RMSE / cm | yaw / ° | Evidence |
-| --- | --- | --- | --- |
-| NDT initial | 34.43 | 0.15 | [Record](results/reference/robot-ndt-static-initial/record.json) · [MP4](results/reference/robot-ndt-static-initial/execution.mp4) |
-| NDT | 0.93 | 0.17 | [Record](results/reference/robot-ndt-static/record.json) · [MP4](results/reference/robot-ndt-static/execution.mp4) |
-| GICP | 1.09 | 0.16 | [Record](results/reference/robot-gicp-static/record.json) · [MP4](results/reference/robot-gicp-static/execution.mp4) |
-
-
-<a id="supp-acquisition"></a>
-
-#### Additional acquisition and localization
-
-| Scene | Method | Scan frames | Record | Recording |
-| --- | --- | --- | --- | --- |
-| Static | slam_toolbox | 54 | [Record](results/reference/robot-supp-static/record.json) | [MP4](results/reference/robot-supp-static/execution.mp4) |
-| Dynamic | slam_toolbox | 55 | [Record](results/reference/robot-supp-dynamic/record.json) | [MP4](results/reference/robot-supp-dynamic/execution.mp4) |
-| Changed world | AMCL | — | [Record](results/reference/robot-supp-large-change/record.json) | [MP4](results/reference/robot-supp-large-change/execution.mp4) |
-
-
-<a id="srrg-diagnostics"></a>
-
-#### SRRG failed runs
-
-| Stage | Status | Record | Recording |
-| --- | --- | --- | --- |
-| Eigen ABI | diagnostic_failed | [Record](results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/record.json) | [MP4](results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/execution.mp4) |
-| stdout | diagnostic_failed | [Record](results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/record.json) | [MP4](results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/execution.mp4) |
-| g2o | diagnostic_failed | [Record](results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/record.json) | [MP4](results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/execution.mp4) |
-
-
-[↑ Contents](#practice-index)
-
-<a id="practice-irmcl"></a>
-
-### IR-MCL
-
-| Recording | Metrics | Record |
-| --- | --- | --- |
-| <a href="results/reference/desktop-live-ir-mcl/execution.mp4"><img src="docs/media/related-pointcloud/20261016/ir-mcl.gif" width="340" alt="IR-MCL"></a> | XY RMSE 5.31 cm / yaw 1.07° | [Record](results/reference/desktop-live-ir-mcl/record.json) |
-
-**Analysis:**
-
-[↑ Contents](#practice-index)
-
-<a id="practice-adam"></a>
-
-### AdaM-MCL
-
-| Recording | Metrics | Record |
-| --- | --- | --- |
-| <a href="results/reference/desktop-adam-mcl/result.mp4"><img src="results/reference/desktop-adam-mcl/result.gif" width="340" alt="AdaM-MCL"></a> | RMSE 32.23 cells; sustained convergence 0/10; saved-result replay | [Record](results/reference/desktop-adam-mcl/record.json) |
-
-**Analysis:**
 
 [↑ Contents](#practice-index)
 

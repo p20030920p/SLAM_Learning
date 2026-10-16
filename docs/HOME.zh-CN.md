@@ -467,12 +467,6 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 | P3.2 | DUFOMap / BeautyMap · 3D · 动态 | [A](#scene-dynamic-3d) / [B](#scene-dynamic-3d-b) |
 | P3.3 | DUFOMap / BeautyMap · 3D · 长廊 | [A](#scene-corridor-3d) / [B](#scene-corridor-3d-b) |
 | P3.4 | DUFOMap / BeautyMap · 3D · 结构变化 | [A](#scene-change-3d) / [B](#scene-change-3d-b) |
-| P4 | IR-MCL · Bonn | [进入实验](#practice-irmcl) |
-| P5 | AdaM-MCL | [进入实验](#practice-adam) |
-| P6.1 | NDT / GICP | [进入实验](#supp-registrations) |
-| P6.2 | slam_toolbox / AMCL | [进入实验](#supp-acquisition) |
-| P6.3 | 保存点云回放 | [进入实验](#map-review-3d) |
-| P6.4 | 失败诊断 | [进入实验](#srrg-diagnostics) |
 
 <a id="practice-setup"></a>
 
@@ -1010,74 +1004,6 @@ AMCL按运动阈值触发发布；上述样本数只计输出滞后≤0.15秒的
 <!-- PRACTICE_ANALYSIS:srrg-large-change-2d -->
 
 <!-- /PRACTICE_ANALYSIS:srrg-large-change-2d -->
-
-[↑ 目录](#practice-index)
-
-<a id="map-review-3d"></a>
-
-#### 保存点云回放
-
-| 已保存结果，无新推理 |
-| --- |
-| <a href="../results/reference/robot-3d-map-review-v2/execution.mp4"><img src="../results/reference/robot-3d-map-review-v2/execution.gif" width="340" loading="lazy" alt="已保存结果，无新推理"></a> |
-
-
-<a id="supp-registrations"></a>
-
-#### Raw · NDT / GICP
-
-| 方法 | XY RMSE / cm | yaw / ° | 证据 |
-| --- | --- | --- | --- |
-| NDT initial | 34.43 | 0.15 | [记录](../results/reference/robot-ndt-static-initial/record.json) · [MP4](../results/reference/robot-ndt-static-initial/execution.mp4) |
-| NDT | 0.93 | 0.17 | [记录](../results/reference/robot-ndt-static/record.json) · [MP4](../results/reference/robot-ndt-static/execution.mp4) |
-| GICP | 1.09 | 0.16 | [记录](../results/reference/robot-gicp-static/record.json) · [MP4](../results/reference/robot-gicp-static/execution.mp4) |
-
-
-<a id="supp-acquisition"></a>
-
-#### 补充采集与定位
-
-| 场景 | 方法 | 扫描帧数 | 记录 | 录制 |
-| --- | --- | --- | --- | --- |
-| 静态 | slam_toolbox | 54 | [记录](../results/reference/robot-supp-static/record.json) | [MP4](../results/reference/robot-supp-static/execution.mp4) |
-| 动态 | slam_toolbox | 55 | [记录](../results/reference/robot-supp-dynamic/record.json) | [MP4](../results/reference/robot-supp-dynamic/execution.mp4) |
-| 结构变化 | AMCL | — | [记录](../results/reference/robot-supp-large-change/record.json) | [MP4](../results/reference/robot-supp-large-change/execution.mp4) |
-
-
-<a id="srrg-diagnostics"></a>
-
-#### SRRG失败记录
-
-| 环节 | 状态 | 记录 | 录制 |
-| --- | --- | --- | --- |
-| Eigen ABI | diagnostic_failed | [记录](../results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/record.json) | [MP4](../results/reference/srrg-diagnostic-20261015-025711-mapping-srrg-static-dd423d/execution.mp4) |
-| stdout | diagnostic_failed | [记录](../results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/record.json) | [MP4](../results/reference/srrg-diagnostic-20261015-030327-mapping-srrg-static-a275d3/execution.mp4) |
-| g2o | diagnostic_failed | [记录](../results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/record.json) | [MP4](../results/reference/srrg-diagnostic-20261015-030729-mapping-srrg-dynamic-14123d/execution.mp4) |
-
-
-[↑ 目录](#practice-index)
-
-<a id="practice-irmcl"></a>
-
-### IR-MCL
-
-| 录像 | 指标 | 记录 |
-| --- | --- | --- |
-| <a href="../results/reference/desktop-live-ir-mcl/execution.mp4"><img src="media/related-pointcloud/20261016/ir-mcl.gif" width="340" alt="IR-MCL"></a> | XY RMSE 5.31 cm / yaw 1.07° | [记录](../results/reference/desktop-live-ir-mcl/record.json) |
-
-**分析：**
-
-[↑ 目录](#practice-index)
-
-<a id="practice-adam"></a>
-
-### AdaM-MCL
-
-| 录像 | 指标 | 记录 |
-| --- | --- | --- |
-| <a href="../results/reference/desktop-adam-mcl/result.mp4"><img src="../results/reference/desktop-adam-mcl/result.gif" width="340" alt="AdaM-MCL"></a> | RMSE 32.23格；持续收敛0/10；保存结果回放 | [记录](../results/reference/desktop-adam-mcl/record.json) |
-
-**分析：**
 
 [↑ 目录](#practice-index)
 
