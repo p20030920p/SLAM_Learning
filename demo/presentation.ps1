@@ -3,13 +3,16 @@
   [string]$Flow='mapping-static',
   [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
   [string]$PresentationRoot='F:\be2演讲',
+  [string]$RunRoot='',
   [double]$Duration=90,
   [switch]$Auto,
-  [switch]$Record
+  [switch]$Record,
+  [switch]$View3D
 )
 $ErrorActionPreference='Stop'
 $runId=(Get-Date -Format 'yyyyMMdd-HHmmss')+'-'+$Flow+'-'+([guid]::NewGuid().ToString('N').Substring(0,6))
 $run=Join-Path $RepoRoot ('results\runs\presentation\'+$runId)
+if($RunRoot){$run=Join-Path $RunRoot $runId}
 New-Item -ItemType Directory -Path $run -Force | Out-Null
 function Convert-ToWslPath([string]$path) {
   $absolute=[IO.Path]::GetFullPath($path)
@@ -21,7 +24,8 @@ $repoWsl=Convert-ToWslPath $RepoRoot
 $title='SLAM-LIVE-'+$Flow+'-'+$runId.Substring($runId.Length-6)
 $autoText=if ($Auto) {'true'} else {'false'}
 if ($Duration -le 0) {$Duration=86400}
-$terminalArgs="-w new --pos 0,740 --size 200,13 new-tab --title $title --suppressApplicationTitle wsl.exe -d Ubuntu-24.04 -- bash $repoWsl/src/scripts/presentation/run_live.sh $Flow $runWsl $Duration $autoText"
+$viewProfile=if($View3D){'3d'}else{'default'}
+$terminalArgs="-w new --pos 0,740 --size 200,13 new-tab --title $title --suppressApplicationTitle wsl.exe -d Ubuntu-24.04 -- bash $repoWsl/src/scripts/presentation/run_live.sh $Flow $runWsl $Duration $autoText false raw,dufomap,beautymap $viewProfile"
 Start-Process -FilePath (Get-Command wt.exe).Source -WindowStyle Hidden -ArgumentList $terminalArgs
 $deadline=(Get-Date).AddMinutes(3)
 while (-not (Test-Path -LiteralPath (Join-Path $run 'ready.json'))) {
@@ -33,6 +37,7 @@ $video=Join-Path $run 'execution.mp4'
 $recorder=$null
 if ($Record) {
   $filter="gfxcapture=window_title=^Gazebo Sim.*:max_framerate=15:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[gz];gfxcapture=window_title=^SLAM LIVE - RViz2.*:max_framerate=15:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[rv];[gz][rv]hstack=inputs=2,format=yuv420p[out]"
+  if($View3D){$filter=$filter.Replace('scale=960:720','scale=480:900').Replace('pad=960:720','pad=480:900');$filter=$filter.Replace('format=bgra,scale=480:900:force_original_aspect_ratio=decrease,pad=480:900:(ow-iw)/2:(oh-ih)/2[rv]','format=bgra,scale=1440:900:force_original_aspect_ratio=decrease,pad=1440:900:(ow-iw)/2:(oh-ih)/2[rv]')}
   $filterPath=Join-Path $run 'capture-filter.txt'
   [IO.File]::WriteAllText($filterPath,$filter,[Text.UTF8Encoding]::new($false))
   $argsText='-hide_banner -loglevel warning -filter_complex_threads 1 -filter_complex "'+$filter+'" -map "[out]" -r 15 -fps_mode cfr -c:v libx264 -threads 2 -preset veryfast -crf 21 -progress "'+$run+'\capture-progress.txt" -y "'+$video+'"'

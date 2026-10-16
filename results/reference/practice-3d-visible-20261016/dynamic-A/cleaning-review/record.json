@@ -1,0 +1,48 @@
+{
+  "kind": "saved_map_cleaning_result_visualization",
+  "status": "rendered",
+  "new_inference": false,
+  "source_record": "results/reference/practice-3d-visible-20261016/dynamic-A/record.json",
+  "scope": "Camera orbit over exactly the stored A map outputs. Retention colors use a 1e-5 m membership query on a display-only sample; no new DA/SA score or cleaner execution.",
+  "source_maps": {
+    "raw": {
+      "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\practice-3d-visible-20261016\\dynamic-A\\maps\\raw\\points.npy",
+      "sha256": "6663dbe7c02bb73b2f5ce120a418732eb2adbd3b871a009dc1e7b3695ccce1b3"
+    },
+    "dufomap": {
+      "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\practice-3d-visible-20261016\\dynamic-A\\maps\\dufomap\\points.npy",
+      "sha256": "cd6954c8ceefc9ea8111c93e7d3bcdd323862c95b090cae29230f43c82cb6ad8"
+    },
+    "beautymap": {
+      "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\practice-3d-visible-20261016\\dynamic-A\\maps\\beautymap\\points.npy",
+      "sha256": "d9396dbed6c4048d8e9689be3c987f8216eecaf87bb18deed5a4cca017cbf894"
+    }
+  },
+  "full_map_points": {
+    "raw": 684513,
+    "dufomap": 682587,
+    "beautymap": 595667
+  },
+  "display_raw_points": 8000,
+  "timing": {
+    "duration_s": 8.000000000000004,
+    "frames": 40,
+    "fps": 5,
+    "video_duration_s": 8.0,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "b2ad69d4f5c8d87d5405783b72ea55838c4ae6ad3637887ea38a829eb577f181",
+      "bytes": 100829
+    },
+    "result.gif": {
+      "sha256": "91a1a7e1d9fda9a5299a9882ed2f4ceab55e71c4d93aa0667829045b9f246a43",
+      "bytes": 1011888
+    },
+    "result.mp4": {
+      "sha256": "ed4a6452034a2998b29e5620079e22ea62e5afa849749b09e3024dee173c5d51",
+      "bytes": 1118591
+    }
+  }
+}

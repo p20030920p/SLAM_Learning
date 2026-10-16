@@ -69,6 +69,7 @@ class Observer:
         self.last_cloud = -math.inf
         self.odom, self.map_transform = None, None
         self.points_received = 0
+        self.cloud_receipts = []
         self.scans_received = 0
         self.map_info = None
         self.started_sim = None
@@ -143,6 +144,7 @@ class Observer:
     def on_cloud(self, msg):
         self.points_received += 1
         stamp = seconds(msg.header.stamp)
+        self.cloud_receipts.append(stamp)
         if self.args.mode == "mapping" and stamp - self.last_cloud >= 1.0:
             self.pending.append(("cloud", None, msg))
             self.last_cloud = stamp
@@ -328,6 +330,7 @@ class Observer:
             archive["poses"] = np.asarray(self.poses)
             archive["stamps"] = np.asarray(self.cloud_stamps)
             np.savez_compressed(self.run / "mapping-clouds.npz", **archive)
+        (self.run / "input-cloud-stamps.json").write_text(json.dumps(self.cloud_receipts))
         report = {
             "kind": "live_native_ui_session",
             "status": "failed" if self.failure else "completed",

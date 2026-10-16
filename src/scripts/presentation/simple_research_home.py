@@ -331,9 +331,9 @@ def practice(doc, zh, previous):
     def ref(path, name):
         return f"[{name}]({href(path)})"
 
-    def localization_video(folder, method, label_text):
+    def localization_video(folder, method, label_text, width=320):
         path = folder + "/executions/" + method
-        return f'<a href="{href(path + ".mp4")}"><img src="{href(path + ".gif")}" width="320" loading="lazy" alt="{label_text} · localization B"></a>'
+        return f'<a href="{href(path + ".mp4")}"><img src="{href(path + ".gif")}" width="{width}" loading="lazy" alt="{label_text} · localization B"></a>'
 
     def frozen_b(folder, selected):
         data = read(folder + "/score.json")
@@ -341,7 +341,7 @@ def practice(doc, zh, previous):
         for key, name in selected:
             method = data["methods"][key]
             rows.append([name, num(method["position_rmse_m"], 100), num(method["rotation_rmse_deg"]),
-                         localization_video(folder, key, name), ref(folder + "/record.json", label("记录", "Record"))])
+                         localization_video(folder, key, name, 480 if data["dimension"] == "3D" else 320), ref(folder + "/record.json", label("记录", "Record"))])
         dimensions = "XYZ" if data["dimension"] == "3D" else "XY"
         return table([label("冻结地图", "Frozen map"), dimensions + " RMSE / cm ↓",
                       label("旋转 RMSE / °", "Rotation RMSE / °") if data["dimension"] == "3D" else "yaw RMSE / °", label("定位B实录（点击看MP4）", "Localization B (click for MP4)"),
@@ -479,8 +479,8 @@ def practice(doc, zh, previous):
         + ")",
         "",
         label(
-            "A按任务评价清图或几何；B评价冻结地图后的定位。B使用共同10 Hz时间点，预热5秒，输出滞后≤0.15秒；样本数与缺失情况见记录。每组1轮，未测完整导航到达效果。",
-            "A measures cleaning or geometry for the task; B measures localization on frozen maps. B uses common 10 Hz times after 5 s warmup, with pose age ≤0.15 s; counts and missing outputs remain in records. One run per arm; complete navigation outcomes were not measured.",
+            "A按任务评价清图或几何；B评价冻结地图后的定位，均预热5秒。P3三维按三组共同扫描时间戳评分；其他组沿用共同10 Hz时间点、输出滞后≤0.15秒。样本与缺失情况见记录。每组1轮，未测完整导航到达效果。",
+            "A measures cleaning or geometry; B measures localization after 5 s warmup. P3 3D uses scan timestamps common to all three outputs; other groups retain common 10 Hz times with pose age ≤0.15 s. Counts and missing outputs remain in records. One trial per arm; complete navigation outcomes were not measured.",
         ),
         "",
     ]
@@ -730,17 +730,29 @@ def practice(doc, zh, previous):
     blank("h3-scores")
 
     heading("baseline-3d", label("三维地图与独立定位", "3D maps and held-out localization"), 3)
+    visible_suite = "results/reference/practice-3d-visible-20261016"
+    compared = [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")]
     lines += [
         label(
-            "沿用原建图A的Raw／DUFOMap／BeautyMap；重新采集独立B，三张冻结地图使用同一GICP与B扫描。录像是Gazebo＋RViz实时窗口；B期间不更新地图。",
-            "Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use identical GICP settings and B scans on the three frozen maps. Videos capture live Gazebo + RViz windows; maps are not updated in B.",
+            "本轮重新采集三维A，执行Raw／DUFOMap／BeautyMap清图，再冻结地图、另采B；三组共享B点云和固定GICP参数。A/B均为Gazebo＋RViz实时录屏；B不更新地图。",
+            "Reacquire 3D A, run Raw/DUFOMap/BeautyMap, freeze the maps, then acquire separate B. All three localizers share B clouds and fixed GICP parameters. A/B videos capture live Gazebo + RViz windows; B does not update maps.",
         ),
         "",
         label(
-            "A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要显示slam_toolbox二维栅格。三维清图输入来自16线XYZ点云，用给定仿真真值位姿拼接；本项未验证完整三维SLAM。B不输入真值。",
-            "A records both 2D /scan and 3D /points. The original TopDownOrtho recording primarily shows the slam_toolbox 2D occupancy grid. Cleaning uses 16-channel XYZ clouds assembled with supplied simulation ground-truth poses; this is not a full 3D SLAM evaluation. B receives no truth input.",
+            "A显示16线XYZ实时点云及墙体高度，采用斜视角；清图仍用给定仿真位姿拼接，以隔离清图影响，本项未验证完整三维SLAM。B：灰色＝冻结地图，绿色＝当前扫描，粉色＝估计位姿，青色＝估计轨迹；B不输入真值。",
+            "A shows live 16-channel XYZ clouds and wall height in an oblique view. A uses supplied simulation poses to isolate cleaning, rather than evaluate full 3D SLAM. B: grey = frozen map, green = current scan, pink = estimated pose, cyan = estimated path. B receives no truth input.",
         ),
-        ref("results/reference/practice-map-cleaning-review-20261016/acquisition-dimension-audit.json", label("采集维度核查", "Acquisition dimension audit")),
+        "",
+        label(
+            "这是受控仿真：三维雷达未配置噪声模型，B使用轮式里程计与固定起点偏差（0.25 m、0.15 m、0.12 rad）；未测全局重定位或完整导航。冻结只停止更新，清图是否改善定位需看B误差。",
+            "This controlled simulation has no configured 3D LiDAR noise model. B uses wheel odometry and fixed initial offsets (0.25 m, 0.15 m, 0.12 rad); global relocalization and complete navigation are not tested. Freezing stops updates; localization benefit from cleaning requires lower B error.",
+        ),
+        "",
+        label(
+            "本轮XYZ/旋转RMSE按三组共同的扫描时间戳计算，真值插值到同一时刻；旧表的10 Hz最新位姿评分混入了输出滞后，不能与本轮直接比较。",
+            "XYZ/rotation RMSE now uses common scan timestamps, with truth interpolated to the same instant. The previous 10 Hz latest-pose score mixed in output age and is not directly comparable.",
+        ),
+        ref(visible_suite + "/audit.json", label("维度、地图与评分核查", "Dimension, map and scoring audit")) + " · " + ref("results/reference/practice-frozen-20261016", label("历史记录", "Historical records")),
         "",
     ]
     for scene, title in [
@@ -750,25 +762,18 @@ def practice(doc, zh, previous):
         ("change", label("结构变化", "Changed world")),
     ]:
         heading("scene-" + scene + "-3d", title + " · 3D")
-        folder = "results/reference/robot-3d-" + ("large-change" if scene == "change" else scene)
-        map_metrics = quality("large-change" if scene == "change" else scene, "3d")
-        rows, mapping_rows = [], []
-        for key, name in [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")]:
-            mapping_rows.append([name] + ([old_pct(map_metrics[key]["dynamic_removal"])] if scene == "dynamic" else []) + [old_pct(map_metrics[key]["static_retention"])])
-        b_folder = "results/reference/practice-frozen-20261016/3d-" + scene
-        b_table, b_score = frozen_b(b_folder, [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")])
         a_scene = "static" if scene == "change" else scene
-        acquisition = {"static":"robot-static-mapping", "dynamic":"robot-3d-dynamic-mapping", "corridor":"robot-corridor-v2-mapping"}[a_scene]
-        acquisition_folder = "results/reference/" + acquisition
-        processing = read(b_folder + "/mapping-A-processing.json")
-        assert read(acquisition_folder + "/record.json")["source_run"].replace("\\", "/").split("/presentation/")[-1] == processing["source_recording"].split("/presentation/")[-1]
-        review_folder = "results/reference/robot-3d-map-review-v2" if a_scene == "dynamic" else "results/reference/practice-map-cleaning-review-20261016/" + a_scene
-        review_file = "execution" if a_scene == "dynamic" else "result"
+        acquisition_folder = visible_suite + "/" + a_scene + "-A"
+        map_metrics = read(acquisition_folder + "/map-score.json")["methods"]
+        mapping_rows = [[name] + ([pct(map_metrics[key]["dynamic_removal"])] if scene == "dynamic" else []) + [pct(map_metrics[key]["static_retention"])] for key, name in compared]
+        b_folder = visible_suite + "/" + scene + "-B"
+        b_table, b_score = frozen_b(b_folder, compared)
+        review_folder = acquisition_folder + "/cleaning-review"
         def a_video(folder, filename, caption):
             path = folder + "/" + filename
             return f'<a href="{href(path + ".mp4")}"><img src="{href(path + ".gif")}" width="420" loading="lazy" alt="{caption}"></a>'
-        a_media = table([label("A · 采集现场录屏（二维显示）", "A · Acquisition recording (2D display)"), label("A · 清图结果回放（Raw / DUFOMap / BeautyMap）", "A · Saved cleaning results (Raw / DUFOMap / BeautyMap)")],
-                        [[a_video(acquisition_folder, "execution", "mapping A acquisition (2D display)"), a_video(review_folder, review_file, "saved map cleaning results")]])
+        a_media = table([label("A · 三维实时采集", "A · Live 3D acquisition"), label("A · 清图结果回放（Raw / DUFOMap / BeautyMap）", "A · Saved cleaning results (Raw / DUFOMap / BeautyMap)")],
+                        [[a_video(acquisition_folder, "execution", "live 3D mapping A acquisition"), a_video(review_folder, "result", "saved map cleaning results")]])
         if scene == "change":
             lines += [label("本组冻结静态A地图，在结构变化场景重新采集B；A表沿用这三张静态地图的清理评分。", "This group freezes static-A maps and acquires B in the changed world; the A table retains cleaning scores for those static maps."), ""]
         lines += [
@@ -779,7 +784,7 @@ def practice(doc, zh, previous):
             "",
             ref(acquisition_folder + "/record.json", label("A采集记录", "A acquisition record")) + " · " + ref(review_folder + "/record.json", label("清图展示记录", "Cleaning review record")),
             "",
-            ref(b_folder + "/mapping-A-processing.json", label("建图A处理记录", "Mapping A processing record")),
+            ref(acquisition_folder + "/maps/record.json", label("建图A处理记录", "Mapping A processing record")),
             "",
             f'<a id="scene-{scene}-3d-b"></a>',
             "",
@@ -788,19 +793,23 @@ def practice(doc, zh, previous):
             b_table.rstrip(),
             "<!-- /HOME_EXPERIMENT_TABLE -->",
             "",
-            ref(b_folder + "/score.json", label("共同时间点评分", "Common-time scores")) + " · " + label("共同有效样本：", "Common valid samples: ") + str(b_score["common_grid_samples"]) + "/" + str(b_score["expected_grid_samples"]),
+            ref(b_folder + "/score.json", label("共同扫描时刻评分", "Common-scan-time scores")) + " · " + label("共同有效扫描：", "Common valid scans: ") + str(b_score["common_scan_samples"]) + "/" + str(b_score["observed_input_scan_samples"]),
             "",
         ]
         if scene == "corridor":
+            same_maps = read(b_folder + "/record.json")["identical_raw_dufomap_map"]
+            assert same_maps, "Reassess the identical-map explanation for this new suite"
             lines += [label(
-                "前50秒限制观测，随后恢复完整扫描；RMSE只比较共同新鲜输出的时间点，不能据此排名整体稳定性。",
-                "Observations are restricted for 50 s, then restored. RMSE uses common times with fresh outputs and cannot rank overall stability.",
+                "前50秒限制观测，随后恢复完整扫描；本轮三组均出现米级漂移。Raw与DUFOMap冻结地图逐字节相同；独立进程的扫描处理历史可能不同，单次定位差异不能解释为清图收益。",
+                "Observations are restricted for 50 s, then restored; all three cases drift by metres in this trial. Raw and DUFOMap frozen maps are byte-identical; separate processes can have different scan histories, so a single-run pose difference cannot be attributed to cleaning.",
             ), ""]
-            coverage = ", ".join(name + " " + pct(b_score["methods"][key]["fresh_grid_coverage"]) for key, name in [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")])
-            lines += [label("新鲜输出覆盖：", "Fresh-output coverage: ") + coverage + label("。这是输出时效性，不是定位成功率。", ". This measures output freshness, not localization success."), ""]
-        elif b_score["common_grid_samples"] < .95 * b_score["expected_grid_samples"]:
-            coverage = ", ".join(name + " " + pct(b_score["methods"][key]["fresh_grid_coverage"]) for key, name in [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")])
-            lines += [label("新鲜输出覆盖：", "Fresh-output coverage: ") + coverage + label("；RMSE只覆盖共同有效时段，不表示完整时段的稳定性。", "; RMSE covers common valid times and does not describe stability over the full interval."), ""]
+        coverage = ", ".join(name + " " + pct(b_score["methods"][key]["scan_output_coverage"]) for key, name in compared)
+        lines += [label("有效扫描输出比例：", "Valid scan-output fraction: ") + coverage + label("；仅表示有输出，不是定位成功率，RMSE只覆盖共同有效扫描。", "; output availability is not localization success; RMSE covers common valid scans only."), ""]
+        if scene == "static":
+            removed = map_metrics["raw"]["points"] - map_metrics["dufomap"]["points"]
+            lines += [label(f"DUFOMap仅删除{removed}/{map_metrics['raw']['points']}个点，15 cm占据格与Raw一致；静态组没有动态污染，预期定位变化很小。", f"DUFOMap removes only {removed}/{map_metrics['raw']['points']} points, with identical occupied 15 cm cells to Raw. There is no dynamic pollution in this static case, so little pose change is expected."), ""]
+        elif scene == "dynamic":
+            lines += [label("DA/SA描述动态删除与静态保留；删掉残影不保证GICP约束增强。误差未降低时，只支持清图结果。", "DA/SA describe dynamic removal and static retention; removing traces does not guarantee stronger GICP constraints. Without lower B error, the result supports cleaning only."), ""]
         blank("scene-" + scene + "-3d")
 
     heading("practice-appendix", label("补充实验", "Supplementary experiments"), 3)

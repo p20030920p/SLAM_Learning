@@ -1,0 +1,59 @@
+{
+  "raw": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/dynamic-A/maps/raw/map.yaml",
+    "mapping_scene": "dynamic",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/dynamic-A/maps/raw/map-3d.pcd",
+    "pose_topic": "/raw/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points",
+    "map_points_sha256": "6663dbe7c02bb73b2f5ce120a418732eb2adbd3b871a009dc1e7b3695ccce1b3"
+  },
+  "dufomap": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/dynamic-A/maps/dufomap/map.yaml",
+    "mapping_scene": "dynamic",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/dynamic-A/maps/dufomap/map-3d.pcd",
+    "pose_topic": "/dufomap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points",
+    "map_points_sha256": "cd6954c8ceefc9ea8111c93e7d3bcdd323862c95b090cae29230f43c82cb6ad8"
+  },
+  "beautymap": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/dynamic-A/maps/beautymap/map.yaml",
+    "mapping_scene": "dynamic",
+    "initial_pose": {
+      "x": 8.3227,
+      "y": 7.6812000000000005,
+      "z": 0.0,
+      "yaw": -1.4508
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/dynamic-A/maps/beautymap/map-3d.pcd",
+    "pose_topic": "/beautymap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points",
+    "map_points_sha256": "d9396dbed6c4048d8e9689be3c987f8216eecaf87bb18deed5a4cca017cbf894"
+  }
+}

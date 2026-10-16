@@ -1,0 +1,76 @@
+{
+  "reason": "Frozen map was too faint at alpha .28 / 1 px. Re-recorded after increasing display alpha to .70 / 2 px; localization parameters and maps unchanged.",
+  "selection_basis": "Display legibility, not lower localization error. Both runs and all three first-run videos are preserved locally and indexed.",
+  "first_source": "F:\\be2演讲\\原始会话\\practice-3d-visible-20261016\\早期低对比显示\\static-B",
+  "first_record_sha256": "ea55a9b11685a9e9010dc36307b87a3126bba605322274695b9208089ebf0783",
+  "first_scores": {
+    "dimension": "3D",
+    "scope": "Exact common native scan-header timestamps after 5 s; truth interpolated at those same times. No holding an earlier pose against later truth. No trajectory alignment; truth only for scoring.",
+    "common_scan_samples": 532,
+    "observed_input_scan_samples": 600,
+    "methods": {
+      "raw": {
+        "position_rmse_m": 0.008928389093247176,
+        "rotation_rmse_deg": 0.1557924783801661,
+        "common_samples": 532,
+        "valid_native_samples": 561,
+        "invalid_rows": 0,
+        "scan_output_coverage": 0.935
+      },
+      "dufomap": {
+        "position_rmse_m": 0.009243076103695123,
+        "rotation_rmse_deg": 0.16232345376012366,
+        "common_samples": 532,
+        "valid_native_samples": 565,
+        "invalid_rows": 0,
+        "scan_output_coverage": 0.9416666666666667
+      },
+      "beautymap": {
+        "position_rmse_m": 0.009652176947930365,
+        "rotation_rmse_deg": 0.18269132586092054,
+        "common_samples": 532,
+        "valid_native_samples": 596,
+        "invalid_rows": 0,
+        "scan_output_coverage": 0.9933333333333333
+      }
+    }
+  },
+  "first_map_pcd_sha256": {
+    "raw": "335cabc34ad974816c1ac0a4e036c01431699854bc9004265dfd2e9a25845ce3",
+    "dufomap": "fb546658acb31b118878bd0b909d0474b663954512df9112c45224d8cd95c5db",
+    "beautymap": "6ba6f1b35f4fbc047d68dd6c4681c30e20f4e2ac1e9d1ec54a12f8e38d5680f0"
+  },
+  "final_source": "results/reference/practice-3d-visible-20261016/static-B",
+  "final_scores": {
+    "dimension": "3D",
+    "scope": "Exact common native scan-header timestamps after 5 s; truth interpolated at those same times. No holding an earlier pose against later truth. No trajectory alignment; truth only for scoring.",
+    "common_scan_samples": 458,
+    "observed_input_scan_samples": 600,
+    "methods": {
+      "raw": {
+        "position_rmse_m": 0.009237950601709266,
+        "rotation_rmse_deg": 0.16239091521379306,
+        "common_samples": 458,
+        "valid_native_samples": 527,
+        "invalid_rows": 0,
+        "scan_output_coverage": 0.8783333333333333
+      },
+      "dufomap": {
+        "position_rmse_m": 0.009833749190779792,
+        "rotation_rmse_deg": 0.1841132537357754,
+        "common_samples": 458,
+        "valid_native_samples": 521,
+        "invalid_rows": 0,
+        "scan_output_coverage": 0.8683333333333333
+      },
+      "beautymap": {
+        "position_rmse_m": 0.0114055203922172,
+        "rotation_rmse_deg": 0.21106085928584079,
+        "common_samples": 458,
+        "valid_native_samples": 584,
+        "invalid_rows": 0,
+        "scan_output_coverage": 0.9733333333333334
+      }
+    }
+  }
+}

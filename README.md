@@ -447,7 +447,7 @@ This section practices methods in Related works. A = mapping; B = a separate loc
 
 [Short definitions in Metrics](#metrics)
 
-A measures cleaning or geometry for the task; B measures localization on frozen maps. B uses common 10 Hz times after 5 s warmup, with pose age ≤0.15 s; counts and missing outputs remain in records. One run per arm; complete navigation outcomes were not measured.
+A measures cleaning or geometry; B measures localization after 5 s warmup. P3 3D uses scan timestamps common to all three outputs; other groups retain common 10 Hz times with pose age ≤0.15 s. Counts and missing outputs remain in records. One trial per arm; complete navigation outcomes were not measured.
 
 <a id="raw-baseline-definitions"></a>
 
@@ -715,10 +715,14 @@ KITTI-00, 141 scans; this experiment evaluates map cleaning only.
 
 ### 3D maps and held-out localization
 
-Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use identical GICP settings and B scans on the three frozen maps. Videos capture live Gazebo + RViz windows; maps are not updated in B.
+Reacquire 3D A, run Raw/DUFOMap/BeautyMap, freeze the maps, then acquire separate B. All three localizers share B clouds and fixed GICP parameters. A/B videos capture live Gazebo + RViz windows; B does not update maps.
 
-A records both 2D /scan and 3D /points. The original TopDownOrtho recording primarily shows the slam_toolbox 2D occupancy grid. Cleaning uses 16-channel XYZ clouds assembled with supplied simulation ground-truth poses; this is not a full 3D SLAM evaluation. B receives no truth input.
-[Acquisition dimension audit](results/reference/practice-map-cleaning-review-20261016/acquisition-dimension-audit.json)
+A shows live 16-channel XYZ clouds and wall height in an oblique view. A uses supplied simulation poses to isolate cleaning, rather than evaluate full 3D SLAM. B: grey = frozen map, green = current scan, pink = estimated pose, cyan = estimated path. B receives no truth input.
+
+This controlled simulation has no configured 3D LiDAR noise model. B uses wheel odometry and fixed initial offsets (0.25 m, 0.15 m, 0.12 rad); global relocalization and complete navigation are not tested. Freezing stops updates; localization benefit from cleaning requires lower B error.
+
+XYZ/rotation RMSE now uses common scan timestamps, with truth interpolated to the same instant. The previous 10 Hz latest-pose score mixed in output age and is not directly comparable.
+[Dimension, map and scoring audit](results/reference/practice-3d-visible-20261016/audit.json) · [Historical records](results/reference/practice-frozen-20261016)
 
 <a id="scene-static-3d"></a>
 
@@ -728,21 +732,21 @@ A records both 2D /scan and 3D /points. The original TopDownOrtho recording prim
 
 | Map | SA ↑ |
 | --- | --- |
-| Raw | 100% |
-| DUFOMap | 99.999% |
-| BeautyMap | 83.33% |
+| Raw | 100.00% |
+| DUFOMap | 99.99% |
+| BeautyMap | 87.71% |
 
 
-| A · Acquisition recording (2D display) | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| A · Live 3D acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
 | --- | --- |
-| <a href="results/reference/robot-static-mapping/execution.mp4"><img src="results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="results/reference/practice-3d-visible-20261016/static-A/execution.mp4"><img src="results/reference/practice-3d-visible-20261016/static-A/execution.gif" width="420" loading="lazy" alt="live 3D mapping A acquisition"></a> | <a href="results/reference/practice-3d-visible-20261016/static-A/cleaning-review/result.mp4"><img src="results/reference/practice-3d-visible-20261016/static-A/cleaning-review/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
 
-[A acquisition record](results/reference/robot-static-mapping/record.json) · [Cleaning review record](results/reference/practice-map-cleaning-review-20261016/static/record.json)
+[A acquisition record](results/reference/practice-3d-visible-20261016/static-A/record.json) · [Cleaning review record](results/reference/practice-3d-visible-20261016/static-A/cleaning-review/record.json)
 
-[Mapping A processing record](results/reference/practice-frozen-20261016/3d-static/mapping-A-processing.json)
+[Mapping A processing record](results/reference/practice-3d-visible-20261016/static-A/maps/record.json)
 
 <a id="scene-static-3d-b"></a>
 
@@ -751,12 +755,16 @@ The right panel reviews saved cleaning outputs without new inference; click a GI
 <!-- HOME_EXPERIMENT_TABLE -->
 | Frozen map | XYZ RMSE / cm ↓ | Rotation RMSE / ° | Localization B (click for MP4) | Evidence |
 | --- | --- | --- | --- | --- |
-| Raw | 1.60 | 1.63 | <a href="results/reference/practice-frozen-20261016/3d-static/executions/raw.mp4"><img src="results/reference/practice-frozen-20261016/3d-static/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-static/record.json) |
-| DUFOMap | 1.62 | 1.51 | <a href="results/reference/practice-frozen-20261016/3d-static/executions/dufomap.mp4"><img src="results/reference/practice-frozen-20261016/3d-static/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-static/record.json) |
-| BeautyMap | 1.45 | 1.29 | <a href="results/reference/practice-frozen-20261016/3d-static/executions/beautymap.mp4"><img src="results/reference/practice-frozen-20261016/3d-static/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-static/record.json) |
+| Raw | 0.92 | 0.16 | <a href="results/reference/practice-3d-visible-20261016/static-B/executions/raw.mp4"><img src="results/reference/practice-3d-visible-20261016/static-B/executions/raw.gif" width="480" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/static-B/record.json) |
+| DUFOMap | 0.98 | 0.18 | <a href="results/reference/practice-3d-visible-20261016/static-B/executions/dufomap.mp4"><img src="results/reference/practice-3d-visible-20261016/static-B/executions/dufomap.gif" width="480" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/static-B/record.json) |
+| BeautyMap | 1.14 | 0.21 | <a href="results/reference/practice-3d-visible-20261016/static-B/executions/beautymap.mp4"><img src="results/reference/practice-3d-visible-20261016/static-B/executions/beautymap.gif" width="480" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/static-B/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[Common-time scores](results/reference/practice-frozen-20261016/3d-static/score.json) · Common valid samples: 601/601
+[Common-scan-time scores](results/reference/practice-3d-visible-20261016/static-B/score.json) · Common valid scans: 458/600
+
+Valid scan-output fraction: Raw 87.83%, DUFOMap 86.83%, BeautyMap 97.33%; output availability is not localization success; RMSE covers common valid scans only.
+
+DUFOMap removes only 39/684477 points, with identical occupied 15 cm cells to Raw. There is no dynamic pollution in this static case, so little pose change is expected.
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:scene-static-3d -->
@@ -773,21 +781,21 @@ The right panel reviews saved cleaning outputs without new inference; click a GI
 
 | Map | DA ↑ | SA ↑ |
 | --- | --- | --- |
-| Raw | 0% | 100% |
-| DUFOMap | 46.59% | 99.998% |
-| BeautyMap | 74.36% | 81.15% |
+| Raw | 0.00% | 100.00% |
+| DUFOMap | 52.20% | 99.99% |
+| BeautyMap | 71.81% | 87.33% |
 
 
-| A · Acquisition recording (2D display) | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| A · Live 3D acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
 | --- | --- |
-| <a href="results/reference/robot-3d-dynamic-mapping/execution.mp4"><img src="results/reference/robot-3d-dynamic-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="results/reference/robot-3d-map-review-v2/execution.mp4"><img src="results/reference/robot-3d-map-review-v2/execution.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="results/reference/practice-3d-visible-20261016/dynamic-A/execution.mp4"><img src="results/reference/practice-3d-visible-20261016/dynamic-A/execution.gif" width="420" loading="lazy" alt="live 3D mapping A acquisition"></a> | <a href="results/reference/practice-3d-visible-20261016/dynamic-A/cleaning-review/result.mp4"><img src="results/reference/practice-3d-visible-20261016/dynamic-A/cleaning-review/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
 
-[A acquisition record](results/reference/robot-3d-dynamic-mapping/record.json) · [Cleaning review record](results/reference/robot-3d-map-review-v2/record.json)
+[A acquisition record](results/reference/practice-3d-visible-20261016/dynamic-A/record.json) · [Cleaning review record](results/reference/practice-3d-visible-20261016/dynamic-A/cleaning-review/record.json)
 
-[Mapping A processing record](results/reference/practice-frozen-20261016/3d-dynamic/mapping-A-processing.json)
+[Mapping A processing record](results/reference/practice-3d-visible-20261016/dynamic-A/maps/record.json)
 
 <a id="scene-dynamic-3d-b"></a>
 
@@ -796,12 +804,16 @@ The right panel reviews saved cleaning outputs without new inference; click a GI
 <!-- HOME_EXPERIMENT_TABLE -->
 | Frozen map | XYZ RMSE / cm ↓ | Rotation RMSE / ° | Localization B (click for MP4) | Evidence |
 | --- | --- | --- | --- | --- |
-| Raw | 1.33 | 0.99 | <a href="results/reference/practice-frozen-20261016/3d-dynamic/executions/raw.mp4"><img src="results/reference/practice-frozen-20261016/3d-dynamic/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
-| DUFOMap | 1.34 | 1.18 | <a href="results/reference/practice-frozen-20261016/3d-dynamic/executions/dufomap.mp4"><img src="results/reference/practice-frozen-20261016/3d-dynamic/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
-| BeautyMap | 1.29 | 0.99 | <a href="results/reference/practice-frozen-20261016/3d-dynamic/executions/beautymap.mp4"><img src="results/reference/practice-frozen-20261016/3d-dynamic/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
+| Raw | 1.18 | 0.22 | <a href="results/reference/practice-3d-visible-20261016/dynamic-B/executions/raw.mp4"><img src="results/reference/practice-3d-visible-20261016/dynamic-B/executions/raw.gif" width="480" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/dynamic-B/record.json) |
+| DUFOMap | 1.00 | 0.17 | <a href="results/reference/practice-3d-visible-20261016/dynamic-B/executions/dufomap.mp4"><img src="results/reference/practice-3d-visible-20261016/dynamic-B/executions/dufomap.gif" width="480" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/dynamic-B/record.json) |
+| BeautyMap | 1.39 | 0.25 | <a href="results/reference/practice-3d-visible-20261016/dynamic-B/executions/beautymap.mp4"><img src="results/reference/practice-3d-visible-20261016/dynamic-B/executions/beautymap.gif" width="480" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/dynamic-B/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[Common-time scores](results/reference/practice-frozen-20261016/3d-dynamic/score.json) · Common valid samples: 600/601
+[Common-scan-time scores](results/reference/practice-3d-visible-20261016/dynamic-B/score.json) · Common valid scans: 554/600
+
+Valid scan-output fraction: Raw 96.50%, DUFOMap 95.17%, BeautyMap 99.67%; output availability is not localization success; RMSE covers common valid scans only.
+
+DA/SA describe dynamic removal and static retention; removing traces does not guarantee stronger GICP constraints. Without lower B error, the result supports cleaning only.
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:scene-dynamic-3d -->
@@ -818,21 +830,21 @@ The right panel reviews saved cleaning outputs without new inference; click a GI
 
 | Map | SA ↑ |
 | --- | --- |
-| Raw | 100% |
-| DUFOMap | 100% |
-| BeautyMap | 99.9% |
+| Raw | 100.00% |
+| DUFOMap | 100.00% |
+| BeautyMap | 99.84% |
 
 
-| A · Acquisition recording (2D display) | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| A · Live 3D acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
 | --- | --- |
-| <a href="results/reference/robot-corridor-v2-mapping/execution.mp4"><img src="results/reference/robot-corridor-v2-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/corridor/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/corridor/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="results/reference/practice-3d-visible-20261016/corridor-A/execution.mp4"><img src="results/reference/practice-3d-visible-20261016/corridor-A/execution.gif" width="420" loading="lazy" alt="live 3D mapping A acquisition"></a> | <a href="results/reference/practice-3d-visible-20261016/corridor-A/cleaning-review/result.mp4"><img src="results/reference/practice-3d-visible-20261016/corridor-A/cleaning-review/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
 
-[A acquisition record](results/reference/robot-corridor-v2-mapping/record.json) · [Cleaning review record](results/reference/practice-map-cleaning-review-20261016/corridor/record.json)
+[A acquisition record](results/reference/practice-3d-visible-20261016/corridor-A/record.json) · [Cleaning review record](results/reference/practice-3d-visible-20261016/corridor-A/cleaning-review/record.json)
 
-[Mapping A processing record](results/reference/practice-frozen-20261016/3d-corridor/mapping-A-processing.json)
+[Mapping A processing record](results/reference/practice-3d-visible-20261016/corridor-A/maps/record.json)
 
 <a id="scene-corridor-3d-b"></a>
 
@@ -841,16 +853,16 @@ The right panel reviews saved cleaning outputs without new inference; click a GI
 <!-- HOME_EXPERIMENT_TABLE -->
 | Frozen map | XYZ RMSE / cm ↓ | Rotation RMSE / ° | Localization B (click for MP4) | Evidence |
 | --- | --- | --- | --- | --- |
-| Raw | 582.43 | 1.77 | <a href="results/reference/practice-frozen-20261016/3d-corridor/executions/raw.mp4"><img src="results/reference/practice-frozen-20261016/3d-corridor/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-corridor/record.json) |
-| DUFOMap | 423.89 | 1.74 | <a href="results/reference/practice-frozen-20261016/3d-corridor/executions/dufomap.mp4"><img src="results/reference/practice-frozen-20261016/3d-corridor/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-corridor/record.json) |
-| BeautyMap | 526.67 | 1.69 | <a href="results/reference/practice-frozen-20261016/3d-corridor/executions/beautymap.mp4"><img src="results/reference/practice-frozen-20261016/3d-corridor/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-corridor/record.json) |
+| Raw | 756.40 | 5.65 | <a href="results/reference/practice-3d-visible-20261016/corridor-B/executions/raw.mp4"><img src="results/reference/practice-3d-visible-20261016/corridor-B/executions/raw.gif" width="480" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/corridor-B/record.json) |
+| DUFOMap | 449.10 | 0.49 | <a href="results/reference/practice-3d-visible-20261016/corridor-B/executions/dufomap.mp4"><img src="results/reference/practice-3d-visible-20261016/corridor-B/executions/dufomap.gif" width="480" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/corridor-B/record.json) |
+| BeautyMap | 482.16 | 0.43 | <a href="results/reference/practice-3d-visible-20261016/corridor-B/executions/beautymap.mp4"><img src="results/reference/practice-3d-visible-20261016/corridor-B/executions/beautymap.gif" width="480" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/corridor-B/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[Common-time scores](results/reference/practice-frozen-20261016/3d-corridor/score.json) · Common valid samples: 304/601
+[Common-scan-time scores](results/reference/practice-3d-visible-20261016/corridor-B/score.json) · Common valid scans: 381/599
 
-Observations are restricted for 50 s, then restored. RMSE uses common times with fresh outputs and cannot rank overall stability.
+Observations are restricted for 50 s, then restored; all three cases drift by metres in this trial. Raw and DUFOMap frozen maps are byte-identical; separate processes can have different scan histories, so a single-run pose difference cannot be attributed to cleaning.
 
-Fresh-output coverage: Raw 65.72%, DUFOMap 84.53%, BeautyMap 85.86%. This measures output freshness, not localization success.
+Valid scan-output fraction: Raw 74.29%, DUFOMap 69.95%, BeautyMap 94.49%; output availability is not localization success; RMSE covers common valid scans only.
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:scene-corridor-3d -->
@@ -869,21 +881,21 @@ This group freezes static-A maps and acquires B in the changed world; the A tabl
 
 | Map | SA ↑ |
 | --- | --- |
-| Raw | 100% |
-| DUFOMap | 99.999% |
-| BeautyMap | 83.33% |
+| Raw | 100.00% |
+| DUFOMap | 99.99% |
+| BeautyMap | 87.71% |
 
 
-| A · Acquisition recording (2D display) | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| A · Live 3D acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
 | --- | --- |
-| <a href="results/reference/robot-static-mapping/execution.mp4"><img src="results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="results/reference/practice-3d-visible-20261016/static-A/execution.mp4"><img src="results/reference/practice-3d-visible-20261016/static-A/execution.gif" width="420" loading="lazy" alt="live 3D mapping A acquisition"></a> | <a href="results/reference/practice-3d-visible-20261016/static-A/cleaning-review/result.mp4"><img src="results/reference/practice-3d-visible-20261016/static-A/cleaning-review/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
 
-[A acquisition record](results/reference/robot-static-mapping/record.json) · [Cleaning review record](results/reference/practice-map-cleaning-review-20261016/static/record.json)
+[A acquisition record](results/reference/practice-3d-visible-20261016/static-A/record.json) · [Cleaning review record](results/reference/practice-3d-visible-20261016/static-A/cleaning-review/record.json)
 
-[Mapping A processing record](results/reference/practice-frozen-20261016/3d-change/mapping-A-processing.json)
+[Mapping A processing record](results/reference/practice-3d-visible-20261016/static-A/maps/record.json)
 
 <a id="scene-change-3d-b"></a>
 
@@ -892,14 +904,14 @@ The right panel reviews saved cleaning outputs without new inference; click a GI
 <!-- HOME_EXPERIMENT_TABLE -->
 | Frozen map | XYZ RMSE / cm ↓ | Rotation RMSE / ° | Localization B (click for MP4) | Evidence |
 | --- | --- | --- | --- | --- |
-| Raw | 2.03 | 1.93 | <a href="results/reference/practice-frozen-20261016/3d-change/executions/raw.mp4"><img src="results/reference/practice-frozen-20261016/3d-change/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-change/record.json) |
-| DUFOMap | 2.02 | 1.93 | <a href="results/reference/practice-frozen-20261016/3d-change/executions/dufomap.mp4"><img src="results/reference/practice-frozen-20261016/3d-change/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-change/record.json) |
-| BeautyMap | 2.15 | 1.94 | <a href="results/reference/practice-frozen-20261016/3d-change/executions/beautymap.mp4"><img src="results/reference/practice-frozen-20261016/3d-change/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-change/record.json) |
+| Raw | 1.06 | 0.23 | <a href="results/reference/practice-3d-visible-20261016/change-B/executions/raw.mp4"><img src="results/reference/practice-3d-visible-20261016/change-B/executions/raw.gif" width="480" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/change-B/record.json) |
+| DUFOMap | 1.08 | 0.24 | <a href="results/reference/practice-3d-visible-20261016/change-B/executions/dufomap.mp4"><img src="results/reference/practice-3d-visible-20261016/change-B/executions/dufomap.gif" width="480" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/change-B/record.json) |
+| BeautyMap | 1.24 | 0.27 | <a href="results/reference/practice-3d-visible-20261016/change-B/executions/beautymap.mp4"><img src="results/reference/practice-3d-visible-20261016/change-B/executions/beautymap.gif" width="480" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-3d-visible-20261016/change-B/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[Common-time scores](results/reference/practice-frozen-20261016/3d-change/score.json) · Common valid samples: 474/601
+[Common-scan-time scores](results/reference/practice-3d-visible-20261016/change-B/score.json) · Common valid scans: 486/599
 
-Fresh-output coverage: Raw 88.85%, DUFOMap 89.52%, BeautyMap 98.17%; RMSE covers common valid times and does not describe stability over the full interval.
+Valid scan-output fraction: Raw 91.32%, DUFOMap 90.32%, BeautyMap 97.33%; output availability is not localization success; RMSE covers common valid scans only.
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:scene-change-3d -->

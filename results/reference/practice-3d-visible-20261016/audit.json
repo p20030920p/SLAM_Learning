@@ -1,0 +1,337 @@
+{
+  "status": "passed",
+  "suite": "results/reference/practice-3d-visible-20261016",
+  "recordings": {
+    "live_3d_acquisition": 3,
+    "live_3d_frozen_map_localization": 12,
+    "saved_cleaning_reviews": 3
+  },
+  "A": {
+    "static": {
+      "sealed_artifacts_verified": 38,
+      "observed_scans": 75,
+      "channels_in_first_scan": 16,
+      "first_scan_height_span_m": 2.016404151916504,
+      "map_quality": {
+        "methods": {
+          "raw": {
+            "static_retention": 1.0,
+            "dynamic_removal": null,
+            "points": 684477,
+            "occupied_15cm_voxels": 7673,
+            "voxel_overlap_with_raw": 1.0
+          },
+          "dufomap": {
+            "static_retention": 0.9999430221906653,
+            "dynamic_removal": null,
+            "points": 684438,
+            "occupied_15cm_voxels": 7673,
+            "voxel_overlap_with_raw": 1.0
+          },
+          "beautymap": {
+            "static_retention": 0.8771090920513034,
+            "dynamic_removal": null,
+            "points": 600361,
+            "occupied_15cm_voxels": 6803,
+            "voxel_overlap_with_raw": 0.886615404665711
+          }
+        },
+        "static_points": 684477,
+        "dynamic_points": 0,
+        "scope": "Same selected A points; ignore self returns below .45 m; dynamic labels from synchronized moving-box geometry; DA/SA are point retention/removal ratios."
+      },
+      "point_labels": {
+        "path": "results/reference/practice-3d-visible-20261016/label-evidence/static.npy",
+        "sha256": "3d14180965616e9cbb72cef059e3a6a2ea147ce12c96a06501dc62f0b0d1a655",
+        "values": {
+          "0": "static",
+          "1": "dynamic",
+          "-1": "unscored self/boundary"
+        }
+      },
+      "mapping_poses": "provided simulation poses; controlled cleaning, not full 3D SLAM"
+    },
+    "dynamic": {
+      "sealed_artifacts_verified": 43,
+      "observed_scans": 76,
+      "channels_in_first_scan": 16,
+      "first_scan_height_span_m": 2.016404151916504,
+      "map_quality": {
+        "methods": {
+          "raw": {
+            "static_retention": 1.0,
+            "dynamic_removal": 0.0,
+            "points": 684513,
+            "occupied_15cm_voxels": 7831,
+            "voxel_overlap_with_raw": 1.0
+          },
+          "dufomap": {
+            "static_retention": 0.9999074695567498,
+            "dynamic_removal": 0.5219949565704679,
+            "points": 682587,
+            "occupied_15cm_voxels": 7761,
+            "voxel_overlap_with_raw": 0.9910611671561742
+          },
+          "beautymap": {
+            "static_retention": 0.873312604555729,
+            "dynamic_removal": 0.7181283272625385,
+            "points": 595667,
+            "occupied_15cm_voxels": 6804,
+            "voxel_overlap_with_raw": 0.8688545524198698
+          }
+        },
+        "static_points": 680857,
+        "dynamic_points": 3569,
+        "scope": "Same selected A points; ignore self returns below .45 m; dynamic labels from synchronized moving-box geometry; DA/SA are point retention/removal ratios."
+      },
+      "point_labels": {
+        "path": "results/reference/practice-3d-visible-20261016/label-evidence/dynamic.npy",
+        "sha256": "c39eea380fcc4b230188a5bf352d1ac6bdb0fd5eb16fdb58d60eae7701f881a7",
+        "values": {
+          "0": "static",
+          "1": "dynamic",
+          "-1": "unscored self/boundary"
+        }
+      },
+      "mapping_poses": "provided simulation poses; controlled cleaning, not full 3D SLAM"
+    },
+    "corridor": {
+      "sealed_artifacts_verified": 39,
+      "observed_scans": 76,
+      "channels_in_first_scan": 16,
+      "first_scan_height_span_m": 2.2051212787628174,
+      "map_quality": {
+        "methods": {
+          "raw": {
+            "static_retention": 1.0,
+            "dynamic_removal": null,
+            "points": 656510,
+            "occupied_15cm_voxels": 8342,
+            "voxel_overlap_with_raw": 1.0
+          },
+          "dufomap": {
+            "static_retention": 1.0,
+            "dynamic_removal": null,
+            "points": 656510,
+            "occupied_15cm_voxels": 8342,
+            "voxel_overlap_with_raw": 1.0
+          },
+          "beautymap": {
+            "static_retention": 0.9983899712114057,
+            "dynamic_removal": null,
+            "points": 655453,
+            "occupied_15cm_voxels": 8327,
+            "voxel_overlap_with_raw": 0.9982018700551426
+          }
+        },
+        "static_points": 656510,
+        "dynamic_points": 0,
+        "scope": "Same selected A points; ignore self returns below .45 m; dynamic labels from synchronized moving-box geometry; DA/SA are point retention/removal ratios."
+      },
+      "point_labels": {
+        "path": "results/reference/practice-3d-visible-20261016/label-evidence/corridor.npy",
+        "sha256": "02077e982f926ae6b3bf9a4637b6ed4700feb5c0473f92f8aa4715683c1f9b3b",
+        "values": {
+          "0": "static",
+          "1": "dynamic",
+          "-1": "unscored self/boundary"
+        }
+      },
+      "mapping_poses": "provided simulation poses; controlled cleaning, not full 3D SLAM"
+    }
+  },
+  "B": {
+    "static": {
+      "sealed_artifacts_verified": 50,
+      "maps_unchanged": true,
+      "identical_raw_dufomap_map": false,
+      "native_loaded_map_points": {
+        "raw": 684477,
+        "dufomap": 684438,
+        "beautymap": 600361
+      },
+      "scores": {
+        "dimension": "3D",
+        "scope": "Exact common native scan-header timestamps after 5 s; truth interpolated at those same times. No holding an earlier pose against later truth. No trajectory alignment; truth only for scoring.",
+        "common_scan_samples": 458,
+        "observed_input_scan_samples": 600,
+        "methods": {
+          "raw": {
+            "position_rmse_m": 0.009237950601709266,
+            "rotation_rmse_deg": 0.16239091521379306,
+            "common_samples": 458,
+            "valid_native_samples": 527,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.8783333333333333
+          },
+          "dufomap": {
+            "position_rmse_m": 0.009833749190779792,
+            "rotation_rmse_deg": 0.1841132537357754,
+            "common_samples": 458,
+            "valid_native_samples": 521,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.8683333333333333
+          },
+          "beautymap": {
+            "position_rmse_m": 0.0114055203922172,
+            "rotation_rmse_deg": 0.21106085928584079,
+            "common_samples": 458,
+            "valid_native_samples": 584,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.9733333333333334
+          }
+        }
+      }
+    },
+    "dynamic": {
+      "sealed_artifacts_verified": 50,
+      "maps_unchanged": true,
+      "identical_raw_dufomap_map": false,
+      "native_loaded_map_points": {
+        "raw": 684513,
+        "dufomap": 682587,
+        "beautymap": 595667
+      },
+      "scores": {
+        "dimension": "3D",
+        "scope": "Exact common native scan-header timestamps after 5 s; truth interpolated at those same times. No holding an earlier pose against later truth. No trajectory alignment; truth only for scoring.",
+        "common_scan_samples": 554,
+        "observed_input_scan_samples": 600,
+        "methods": {
+          "raw": {
+            "position_rmse_m": 0.011754407863041749,
+            "rotation_rmse_deg": 0.21894079366007319,
+            "common_samples": 554,
+            "valid_native_samples": 579,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.965
+          },
+          "dufomap": {
+            "position_rmse_m": 0.010047116643457508,
+            "rotation_rmse_deg": 0.1736905152383747,
+            "common_samples": 554,
+            "valid_native_samples": 571,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.9516666666666667
+          },
+          "beautymap": {
+            "position_rmse_m": 0.0138815389597143,
+            "rotation_rmse_deg": 0.25407649041357255,
+            "common_samples": 554,
+            "valid_native_samples": 598,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.9966666666666667
+          }
+        }
+      }
+    },
+    "corridor": {
+      "sealed_artifacts_verified": 53,
+      "maps_unchanged": true,
+      "identical_raw_dufomap_map": true,
+      "native_loaded_map_points": {
+        "raw": 656510,
+        "dufomap": 656510,
+        "beautymap": 655453
+      },
+      "scores": {
+        "dimension": "3D",
+        "scope": "Exact common native scan-header timestamps after 5 s; truth interpolated at those same times. No holding an earlier pose against later truth. No trajectory alignment; truth only for scoring.",
+        "common_scan_samples": 381,
+        "observed_input_scan_samples": 599,
+        "methods": {
+          "raw": {
+            "position_rmse_m": 7.5640130688023115,
+            "rotation_rmse_deg": 5.650525853234636,
+            "common_samples": 381,
+            "valid_native_samples": 445,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.7429048414023373
+          },
+          "dufomap": {
+            "position_rmse_m": 4.490965460053787,
+            "rotation_rmse_deg": 0.48625982612255964,
+            "common_samples": 381,
+            "valid_native_samples": 419,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.6994991652754591
+          },
+          "beautymap": {
+            "position_rmse_m": 4.821648365106927,
+            "rotation_rmse_deg": 0.42939028640439547,
+            "common_samples": 381,
+            "valid_native_samples": 566,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.9449081803005008
+          }
+        }
+      }
+    },
+    "change": {
+      "sealed_artifacts_verified": 50,
+      "maps_unchanged": true,
+      "identical_raw_dufomap_map": false,
+      "native_loaded_map_points": {
+        "raw": 684477,
+        "dufomap": 684438,
+        "beautymap": 600361
+      },
+      "scores": {
+        "dimension": "3D",
+        "scope": "Exact common native scan-header timestamps after 5 s; truth interpolated at those same times. No holding an earlier pose against later truth. No trajectory alignment; truth only for scoring.",
+        "common_scan_samples": 486,
+        "observed_input_scan_samples": 599,
+        "methods": {
+          "raw": {
+            "position_rmse_m": 0.01059127221230128,
+            "rotation_rmse_deg": 0.22933551405421,
+            "common_samples": 486,
+            "valid_native_samples": 547,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.9131886477462438
+          },
+          "dufomap": {
+            "position_rmse_m": 0.010820606862536943,
+            "rotation_rmse_deg": 0.2351967228501582,
+            "common_samples": 486,
+            "valid_native_samples": 541,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.9031719532554258
+          },
+          "beautymap": {
+            "position_rmse_m": 0.012414230703982529,
+            "rotation_rmse_deg": 0.2731966952790143,
+            "common_samples": 486,
+            "valid_native_samples": 583,
+            "invalid_rows": 0,
+            "scan_output_coverage": 0.9732888146911519
+          }
+        }
+      }
+    }
+  },
+  "score_protocol": "Common finite native scan-stamped poses after 5 s warmup; XYZ and full SO(3) rotation RMSE; truth interpolated to the same time; no trajectory alignment.",
+  "previous_score_issue": "The historical latest-pose 10 Hz grid also measured output-age displacement/rotation. Its numbers are retained in historical records and must not be compared directly with scan-time RMSE.",
+  "interpretation": [
+    "Freezing disables map updates; it is not an accuracy improvement method.",
+    "DA/SA are point removal/retention ratios, not localization accuracy.",
+    "Near-identical static maps can give near-identical poses.",
+    "Identical Raw/DUFOMap corridor maps cannot support a causal cleaning benefit; separate-process scan histories and numerical instability remain confounds.",
+    "Single trials do not establish significance; valid scan-output fraction is not localization success."
+  ],
+  "native_localizer": {
+    "source": "/root/slam-alternative-ws/src/lidar_localization_ros2",
+    "revision": "ba9f7f06dbe80aeabff602c37d712dfaa948241d",
+    "worktree_clean_at_audit": true,
+    "label": "Installed native GICP with common fixed configuration, not claimed as unmodified upstream paper implementation.",
+    "scan_stamp_trace": [
+      "component_subscribers.cpp:803 passes msg->header.stamp to applyAcceptedAlignmentPipelineResult",
+      "component_alignment.cpp:651 passes stamp to publishCurrentPose",
+      "component_pose_publisher.cpp:6 assigns stamp to output pose header"
+    ],
+    "visual_map_voxel_m": 0.08,
+    "scan_voxel_m": 0.15,
+    "voxel_caveat": "Occupied 15 cm cells are an audit diagnostic, not a claim about registration-target downsampling."
+  },
+  "static_display_retry": "display-rerecording.json"
+}

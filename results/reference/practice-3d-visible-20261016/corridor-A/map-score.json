@@ -1,0 +1,28 @@
+{
+  "methods": {
+    "raw": {
+      "static_retention": 1.0,
+      "dynamic_removal": null,
+      "points": 656510,
+      "occupied_15cm_voxels": 8342,
+      "voxel_overlap_with_raw": 1.0
+    },
+    "dufomap": {
+      "static_retention": 1.0,
+      "dynamic_removal": null,
+      "points": 656510,
+      "occupied_15cm_voxels": 8342,
+      "voxel_overlap_with_raw": 1.0
+    },
+    "beautymap": {
+      "static_retention": 0.9983899712114057,
+      "dynamic_removal": null,
+      "points": 655453,
+      "occupied_15cm_voxels": 8327,
+      "voxel_overlap_with_raw": 0.9982018700551426
+    }
+  },
+  "static_points": 656510,
+  "dynamic_points": 0,
+  "scope": "Same selected A points; ignore self returns below .45 m; dynamic labels from synchronized moving-box geometry; DA/SA are point retention/removal ratios."
+}

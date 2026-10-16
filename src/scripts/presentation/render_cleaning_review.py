@@ -15,11 +15,13 @@ from package_frozen_practice import ROOT, read, sha, windows_path, write
 from package_session import gif
 
 
-def render(scene):
+def render(scene, maps=None, output=None, source_record=None):
     source = ROOT / "results/reference/practice-frozen-20261016" / ("3d-" + scene)
-    cases = read(source / "cases.json")
-    maps = windows_path(cases["raw"]["map_yaml"]).parent.parent
-    output = ROOT / "results/reference/practice-map-cleaning-review-20261016" / scene
+    if maps is None:
+        cases = read(source / "cases.json")
+        maps = windows_path(cases["raw"]["map_yaml"]).parent.parent
+    if output is None:
+        output = ROOT / "results/reference/practice-map-cleaning-review-20261016" / scene
     output.mkdir(parents=True, exist_ok=True)
     raw = np.load(maps / "raw/points.npy", allow_pickle=False)
     sample = raw[np.linspace(0, len(raw)-1, min(8000, len(raw)), dtype=int)]
@@ -67,7 +69,7 @@ def render(scene):
     assert status==0
     timing=gif(video,output / "result.gif")
     write(output / "record.json",{"kind":"saved_map_cleaning_result_visualization","status":"rendered",
-          "new_inference":False,"source_frozen_B_record":source.relative_to(ROOT).as_posix()+"/record.json",
+          "new_inference":False,"source_record":source_record or source.relative_to(ROOT).as_posix()+"/record.json",
           "scope":"Camera orbit over exactly the stored A map outputs. Retention colors use a 1e-5 m membership query on a display-only sample; no new DA/SA score or cleaner execution.",
           "source_maps":hashes,"full_map_points":counts,"display_raw_points":len(sample),"timing":timing,
           "artifacts":{path.name:{"sha256":sha(path),"bytes":path.stat().st_size} for path in output.iterdir() if path.is_file() and path.name!="record.json"}})

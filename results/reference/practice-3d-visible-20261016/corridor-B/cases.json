@@ -1,0 +1,59 @@
+{
+  "raw": {
+    "method": "raw",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/corridor-A/maps/raw/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/corridor-A/maps/raw/map-3d.pcd",
+    "pose_topic": "/raw/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points_degraded",
+    "map_points_sha256": "4048fd138920f56278fb148ffb287f7cc5c0cf8ae58e32762cb6d04f74a02859"
+  },
+  "dufomap": {
+    "method": "dufomap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/corridor-A/maps/dufomap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/corridor-A/maps/dufomap/map-3d.pcd",
+    "pose_topic": "/dufomap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points_degraded",
+    "map_points_sha256": "4048fd138920f56278fb148ffb287f7cc5c0cf8ae58e32762cb6d04f74a02859"
+  },
+  "beautymap": {
+    "method": "beautymap",
+    "map_yaml": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/corridor-A/maps/beautymap/map.yaml",
+    "mapping_scene": "corridor",
+    "initial_pose": {
+      "x": 8.15,
+      "y": -2.95,
+      "z": 0.0,
+      "yaw": 0.12
+    },
+    "dimension": "3d",
+    "localizer": "GICP",
+    "map_pcd": "/mnt/d/workspace/be2/slam_learning_updated/results/reference/practice-3d-visible-20261016/corridor-A/maps/beautymap/map-3d.pcd",
+    "pose_topic": "/beautymap/pcl_pose",
+    "native_map_odom_tf": true,
+    "broadcast_tf": false,
+    "cloud_topic": "/points_degraded",
+    "map_points_sha256": "5645155947120115ccae4b02d56e699103094403957656b9c26cbc06fe5edf13"
+  }
+}

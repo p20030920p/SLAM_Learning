@@ -7,6 +7,7 @@ DURATION="${3:-90}"
 AUTO="${4:-false}"
 export PRESENTATION_MULTI_VIEW="${5:-false}"
 export PRESENTATION_COMPARE_METHODS="${6:-raw,dufomap,beautymap}"
+export PRESENTATION_VIEW_PROFILE="${7:-default}"
 mkdir -p "$RUN_DIR/logs"
 startup_failure() {
   local status=$?

@@ -190,6 +190,9 @@ if "-own-" in flow and mode == "mapping":
             "Style": "Points", "Size (Pixels)": 3, "Color Transformer": "FlatColor", "Color": color, "Position Transformer": "XYZ"})
     vis["Views"]["Current"].update(X=7.15 if scene == "corridor" else 7.5, Y=-3.1 if scene == "corridor" else 4.5, Scale=40)
     config = yaml.safe_dump(configured, sort_keys=False)
+if mode == "mapping" and os.environ.get("PRESENTATION_VIEW_PROFILE") == "3d":
+    from prepare_3d import acquisition
+    config = acquisition(config, scene)
 (run / "live.rviz").write_text(config)
 if "-probe-" in flow and mode == "localization":
     from prepare_probe import views as prepare_probe_views

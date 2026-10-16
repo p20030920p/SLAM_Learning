@@ -34,7 +34,8 @@ $rw='/mnt/'+$run.Substring(0,1).ToLower()+'/'+$run.Substring(3).Replace('\','/')
 $rootw='/mnt/'+$RepoRoot.Substring(0,1).ToLower()+'/'+$RepoRoot.Substring(3).Replace('\','/')
 $title='SLAM-LIVE-METHODS-'+$Scene+'-'+$id.Substring($id.Length-6)
 $automatic=if($Keyboard){'false'}else{'true'}
-Start-Process -FilePath (Get-Command wt.exe).Source -WindowStyle Hidden -ArgumentList "-w new --pos 0,740 --size 200,13 new-tab --title $title --suppressApplicationTitle wsl.exe -d Ubuntu-24.04 -- bash $rootw/src/scripts/presentation/run_live.sh $flow $rw $Duration $automatic true"
+$viewProfile=if($Dimension -eq '3D'){'3d'}else{'default'}
+Start-Process -FilePath (Get-Command wt.exe).Source -WindowStyle Hidden -ArgumentList "-w new --pos 0,740 --size 200,13 new-tab --title $title --suppressApplicationTitle wsl.exe -d Ubuntu-24.04 -- bash $rootw/src/scripts/presentation/run_live.sh $flow $rw $Duration $automatic true raw,dufomap,beautymap $viewProfile"
 $deadline=(Get-Date).AddMinutes(4)
 while(-not (Test-Path "$run/ready.json") -or -not (Test-Path "$run/views-ready.json")){
  if(Test-Path "$run/failed.json"){throw "Startup failed: $run"}
@@ -47,6 +48,7 @@ try{
  foreach($item in $views.PSObject.Properties){
   $case=$item.Name; $viewTitle=$item.Value.title
   $filter="gfxcapture=window_title=^Gazebo Sim.*:max_framerate=12:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[gz];gfxcapture=window_title=^$viewTitle.*:max_framerate=12:capture_border=1,hwdownload,format=bgra,scale=960:720:force_original_aspect_ratio=decrease,pad=960:720:(ow-iw)/2:(oh-ih)/2[rv];[gz][rv]hstack=inputs=2,format=yuv420p[out]"
+  if($Dimension -eq '3D'){$filter=$filter.Replace('scale=960:720','scale=480:900').Replace('pad=960:720','pad=480:900');$filter=$filter.Replace('format=bgra,scale=480:900:force_original_aspect_ratio=decrease,pad=480:900:(ow-iw)/2:(oh-ih)/2[rv]','format=bgra,scale=1440:900:force_original_aspect_ratio=decrease,pad=1440:900:(ow-iw)/2:(oh-ih)/2[rv]')}
   [IO.File]::WriteAllText("$run/executions/$case-filter.txt",$filter)
   $info=[Diagnostics.ProcessStartInfo]::new()
   $info.FileName=(Get-Command ffmpeg.exe).Source

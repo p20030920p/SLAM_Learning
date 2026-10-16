@@ -1,0 +1,43 @@
+{
+  "kind": "gazebo_geometry_point_classification",
+  "methods": {
+    "raw": {
+      "static_retention": 1.0,
+      "dynamic_removal": 0.0,
+      "static_false_removal": 0.0,
+      "dynamic_residual": 1.0,
+      "retained_dynamic_points": 3569,
+      "removed_static_points": 0
+    },
+    "dufomap": {
+      "static_retention": 0.9999074695567498,
+      "dynamic_removal": 0.5219949565704679,
+      "static_false_removal": 9.253044325019388e-05,
+      "dynamic_residual": 0.4780050434295321,
+      "retained_dynamic_points": 1706,
+      "removed_static_points": 63
+    },
+    "beautymap": {
+      "static_retention": 0.873312604555729,
+      "dynamic_removal": 0.7181283272625385,
+      "static_false_removal": 0.126687395444271,
+      "dynamic_residual": 0.2818716727374615,
+      "retained_dynamic_points": 1006,
+      "removed_static_points": 86256
+    }
+  },
+  "static_points": 680857,
+  "dynamic_points": 3569,
+  "unscored_ambiguous_points": 87,
+  "discarded_incomplete_shutdown_tail_bytes": 0,
+  "positive_surface_distance_p95_m": 0.006149513639935766,
+  "label_tolerance_m": 0.02,
+  "ambiguous_shell_m": 0.05,
+  "inputs": {
+    "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\practice-3d-visible-20261016\\20261016-033356-mapping-dynamic-6467cd\\mapping-clouds.npz": "5eb705a260a6e4a0d2eed4e6fef484c8d54668122b804180ecf704b08528e5a0",
+    "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\practice-3d-visible-20261016\\20261016-033356-mapping-dynamic-6467cd\\object-truth.jsonl": "22910b0929d266410813a2211e13a556c9d55ecdcb78c1e259a9e4fdfa5d50b4",
+    "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\practice-3d-visible-20261016\\20261016-033356-mapping-dynamic-6467cd\\object-geometry.json": "07fce1366ac1f3cc3b307e0348d51a622b087a25dd106e5165fbd68aae61265f",
+    "F:\\be2\u6f14\u8bb2\\\u539f\u59cb\u4f1a\u8bdd\\practice-3d-visible-20261016\\20261016-033356-mapping-dynamic-6467cd\\object-scene.pbtxt": "bf44dabff8d8f04c56e5e2b1045e9645208a9e485eb457c21023f8d69fc695da"
+  },
+  "scope": "three actual moving-box surface labels on selected mapping-A points; not hand-labelled paper data; truth never enters held-out localization"
+}

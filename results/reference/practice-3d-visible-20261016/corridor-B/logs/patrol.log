@@ -1,0 +1,32 @@
+[INFO] [1792111470.723191491] [patrol_waypoints]: patrol: 10 waypoints, speed 0.3 m/s, origin (7.15, -3.1, 0.0), hold 1.0s, odom /omni_drive_controller/odom
+[INFO] [1792111483.054829312] [patrol_waypoints]: reached waypoint 1/10 (9.15, -3.1) (odom 1.70,0.00)
+[INFO] [1792111504.887350894] [patrol_waypoints]: reached waypoint 2/10 (5.15, -3.1) (odom -1.70,-0.01)
+[INFO] [1792111527.022367603] [patrol_waypoints]: reached waypoint 3/10 (9.15, -3.1) (odom 1.70,0.01)
+[INFO] [1792111551.513565364] [patrol_waypoints]: reached waypoint 4/10 (5.15, -3.1) (odom -1.71,-0.01)
+Traceback (most recent call last):
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py", line 140, in main
+    rclpy.spin(node)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 247, in spin
+    executor.spin_once()
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 926, in spin_once
+    self._spin_once_impl(timeout_sec)
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 907, in _spin_once_impl
+    handler, entity, node = self.wait_for_ready_callbacks(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 877, in wait_for_ready_callbacks
+    return next(self._cb_iter)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/executors.py", line 785, in _wait_for_ready_callbacks
+    raise ExternalShutdownException()
+rclpy.executors.ExternalShutdownException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py", line 148, in <module>
+    main()
+  File "/mnt/d/workspace/be2/slam_learning_updated/src/scripts/presentation/patrol_waypoints.py", line 142, in main
+    node.pub.publish(Twist())
+  File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/publisher.py", line 70, in publish
+    self.__publisher.publish(msg)
+rclpy._rclpy_pybind11.RCLError: Failed to publish: publisher's context is invalid, at ./src/rcl/publisher.c:423

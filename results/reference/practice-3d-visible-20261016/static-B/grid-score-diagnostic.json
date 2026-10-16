@@ -1,0 +1,40 @@
+{
+  "kind": "held_out_frozen_map_localization",
+  "dimension": "3D",
+  "scope": "Fresh B; native estimates; truth only for scoring; no trajectory alignment; 10 Hz after 5 s; latest pose age <= 0.15 s; common times across displayed controls",
+  "expected_grid_samples": 601,
+  "common_grid_samples": 598,
+  "recording_interval_sim_s": [
+    7.737,
+    72.74000000000001
+  ],
+  "methods": {
+    "raw": {
+      "native_rows": 626,
+      "invalid_rows": 0,
+      "common_samples": 598,
+      "position_rmse_m": 0.016006048336182216,
+      "rotation_rmse_deg": 1.4635612666816702,
+      "fresh_grid_coverage": 0.9983361064891847,
+      "own_valid_position_rmse_m": 0.016003501342556053
+    },
+    "dufomap": {
+      "native_rows": 620,
+      "invalid_rows": 0,
+      "common_samples": 598,
+      "position_rmse_m": 0.01661497454003364,
+      "rotation_rmse_deg": 1.5625298245239454,
+      "fresh_grid_coverage": 0.9966722129783694,
+      "own_valid_position_rmse_m": 0.016625712284822614
+    },
+    "beautymap": {
+      "native_rows": 688,
+      "invalid_rows": 0,
+      "common_samples": 598,
+      "position_rmse_m": 0.014559847177959053,
+      "rotation_rmse_deg": 1.1164083827018811,
+      "fresh_grid_coverage": 0.9983361064891847,
+      "own_valid_position_rmse_m": 0.014582678467407127
+    }
+  }
+}

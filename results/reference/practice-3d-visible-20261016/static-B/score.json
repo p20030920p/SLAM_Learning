@@ -1,0 +1,32 @@
+{
+  "dimension": "3D",
+  "scope": "Exact common native scan-header timestamps after 5 s; truth interpolated at those same times. No holding an earlier pose against later truth. No trajectory alignment; truth only for scoring.",
+  "common_scan_samples": 458,
+  "observed_input_scan_samples": 600,
+  "methods": {
+    "raw": {
+      "position_rmse_m": 0.009237950601709266,
+      "rotation_rmse_deg": 0.16239091521379306,
+      "common_samples": 458,
+      "valid_native_samples": 527,
+      "invalid_rows": 0,
+      "scan_output_coverage": 0.8783333333333333
+    },
+    "dufomap": {
+      "position_rmse_m": 0.009833749190779792,
+      "rotation_rmse_deg": 0.1841132537357754,
+      "common_samples": 458,
+      "valid_native_samples": 521,
+      "invalid_rows": 0,
+      "scan_output_coverage": 0.8683333333333333
+    },
+    "beautymap": {
+      "position_rmse_m": 0.0114055203922172,
+      "rotation_rmse_deg": 0.21106085928584079,
+      "common_samples": 458,
+      "valid_native_samples": 584,
+      "invalid_rows": 0,
+      "scan_output_coverage": 0.9733333333333334
+    }
+  }
+}

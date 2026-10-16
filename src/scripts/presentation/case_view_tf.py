@@ -10,6 +10,7 @@ import rclpy
 from scipy.spatial.transform import Rotation
 from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped, TransformStamped
 from nav_msgs.msg import Odometry, Path as RosPath
+from visualization_msgs.msg import Marker, MarkerArray
 from rclpy.qos import DurabilityPolicy, QoSProfile, ReliabilityPolicy
 from tf2_msgs.msg import TFMessage
 
@@ -25,6 +26,7 @@ class Views:
         self.run, self.odom = run, None
         self.specs = json.loads((run / "views.json").read_text())
         self.transforms, self.paths, self.pubs = {}, {}, {}
+        self.pose_markers = {}
         self.log = (run / "view-updates.jsonl").open("w")
         durable = QoSProfile(depth=10, durability=DurabilityPolicy.TRANSIENT_LOCAL,
                              reliability=ReliabilityPolicy.RELIABLE)
@@ -34,6 +36,7 @@ class Views:
                                self.node.create_publisher(RosPath, f"/{case}/view/path", 5))
             self.paths[case] = RosPath()
             self.paths[case].header.frame_id = "map"
+            self.pose_markers[case]=self.node.create_publisher(MarkerArray,f"/{case}/view/markers",5)
             self.node.create_subscription(PoseWithCovarianceStamped, self.specs[case]["pose_topic"],
                                           lambda msg, name=case: self.pose(name, msg), 20)
         self.node.create_subscription(Odometry, "/omni_drive_controller/odom", self.on_odom, 30)
@@ -55,6 +58,11 @@ class Views:
         if self.odom is None:
             return
         pose, odom = msg.pose.pose, self.odom.pose.pose
+        values=[pose.position.x,pose.position.y,pose.position.z,pose.orientation.x,pose.orientation.y,pose.orientation.z,pose.orientation.w]
+        if not np.isfinite(values).all() or np.linalg.norm(values[3:])<.5:
+            self.log.write(json.dumps({"case":case,"event":"invalid_native_pose_not_displayed"})+"\n")
+            self.log.flush()
+            return
         angle = yaw(pose.orientation)-yaw(odom.orientation)
         c, s = math.cos(angle), math.sin(angle)
         self.transforms[case] = (pose.position.x-c*odom.position.x+s*odom.position.y,
@@ -73,6 +81,15 @@ class Views:
         path.header.stamp = msg.header.stamp
         path.poses.append(point)
         self.pubs[case][2].publish(path)
+        marker=Marker(header=copy.deepcopy(msg.header),ns="native_pose",id=0,type=Marker.SPHERE,action=Marker.ADD)
+        marker.pose=copy.deepcopy(pose)
+        marker.scale.x=marker.scale.y=marker.scale.z=.28
+        marker.color.r,marker.color.g,marker.color.b,marker.color.a=1.0,.1,.65,1.0
+        arrow=Marker(header=copy.deepcopy(msg.header),ns="native_pose",id=1,type=Marker.ARROW,action=Marker.ADD)
+        arrow.pose=copy.deepcopy(pose)
+        arrow.scale.x,arrow.scale.y,arrow.scale.z=.8,.12,.16
+        arrow.color=copy.deepcopy(marker.color)
+        self.pose_markers[case].publish(MarkerArray(markers=[marker,arrow]))
         self.log.write(json.dumps({"case": case, "stamp_s": msg.header.stamp.sec+msg.header.stamp.nanosec*1e-9,
                                    "updates": len(path.poses), "map_topic": self.specs[case]["map_topic"],
                                    "pose_topic": self.specs[case]["pose_topic"], "tf_topic": f"/{case}/view/tf"})+"\n")

@@ -1,4 +1,4 @@
-"""Unmodified upstream NDT/GICP localizer on the live Sim2Real 3D sensor."""
+"""Installed native NDT/GICP localizer on the live Sim2Real 3D sensor."""
 import json
 import math
 from pathlib import Path
@@ -29,6 +29,9 @@ def start(context):
             "transform_epsilon": .001, "score_threshold": 2.0,
             "gicp_max_correspondence_distance": 1.0, "enable_debug": True,
         }
+        if case.get("dimension") == "3d":
+            # Published map density affects RViz only, not the registration target.
+            params.update({"viz_downsample": True, "viz_voxel_leaf_size": .08})
         actions.extend([
             Node(package="nav2_map_server", executable="map_server", name="map_server", namespace=name,
                  parameters=[{"use_sim_time": True, "yaml_filename": case["map_yaml"], "frame_id": "map"}]),

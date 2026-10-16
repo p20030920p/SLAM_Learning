@@ -449,7 +449,7 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 
 [简短定义见指标表](#指标)
 
-A按任务评价清图或几何；B评价冻结地图后的定位。B使用共同10 Hz时间点，预热5秒，输出滞后≤0.15秒；样本数与缺失情况见记录。每组1轮，未测完整导航到达效果。
+A按任务评价清图或几何；B评价冻结地图后的定位，均预热5秒。P3三维按三组共同扫描时间戳评分；其他组沿用共同10 Hz时间点、输出滞后≤0.15秒。样本与缺失情况见记录。每组1轮，未测完整导航到达效果。
 
 <a id="raw-baseline-definitions"></a>
 
@@ -717,10 +717,14 @@ KITTI-00，141帧；本项只评价地图清理。
 
 ### 三维地图与独立定位
 
-沿用原建图A的Raw／DUFOMap／BeautyMap；重新采集独立B，三张冻结地图使用同一GICP与B扫描。录像是Gazebo＋RViz实时窗口；B期间不更新地图。
+本轮重新采集三维A，执行Raw／DUFOMap／BeautyMap清图，再冻结地图、另采B；三组共享B点云和固定GICP参数。A/B均为Gazebo＋RViz实时录屏；B不更新地图。
 
-A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要显示slam_toolbox二维栅格。三维清图输入来自16线XYZ点云，用给定仿真真值位姿拼接；本项未验证完整三维SLAM。B不输入真值。
-[采集维度核查](../results/reference/practice-map-cleaning-review-20261016/acquisition-dimension-audit.json)
+A显示16线XYZ实时点云及墙体高度，采用斜视角；清图仍用给定仿真位姿拼接，以隔离清图影响，本项未验证完整三维SLAM。B：灰色＝冻结地图，绿色＝当前扫描，粉色＝估计位姿，青色＝估计轨迹；B不输入真值。
+
+这是受控仿真：三维雷达未配置噪声模型，B使用轮式里程计与固定起点偏差（0.25 m、0.15 m、0.12 rad）；未测全局重定位或完整导航。冻结只停止更新，清图是否改善定位需看B误差。
+
+本轮XYZ/旋转RMSE按三组共同的扫描时间戳计算，真值插值到同一时刻；旧表的10 Hz最新位姿评分混入了输出滞后，不能与本轮直接比较。
+[维度、地图与评分核查](../results/reference/practice-3d-visible-20261016/audit.json) · [历史记录](../results/reference/practice-frozen-20261016)
 
 <a id="scene-static-3d"></a>
 
@@ -730,21 +734,21 @@ A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要�
 
 | 地图 | SA ↑ |
 | --- | --- |
-| Raw | 100% |
-| DUFOMap | 99.999% |
-| BeautyMap | 83.33% |
+| Raw | 100.00% |
+| DUFOMap | 99.99% |
+| BeautyMap | 87.71% |
 
 
-| A · 采集现场录屏（二维显示） | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
+| A · 三维实时采集 | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
 | --- | --- |
-| <a href="../results/reference/robot-static-mapping/execution.mp4"><img src="../results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="../results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="../results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="../results/reference/practice-3d-visible-20261016/static-A/execution.mp4"><img src="../results/reference/practice-3d-visible-20261016/static-A/execution.gif" width="420" loading="lazy" alt="live 3D mapping A acquisition"></a> | <a href="../results/reference/practice-3d-visible-20261016/static-A/cleaning-review/result.mp4"><img src="../results/reference/practice-3d-visible-20261016/static-A/cleaning-review/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 右侧展示已保存的清图结果，不是新推理；点击GIF可看完整MP4。
 
-[A采集记录](../results/reference/robot-static-mapping/record.json) · [清图展示记录](../results/reference/practice-map-cleaning-review-20261016/static/record.json)
+[A采集记录](../results/reference/practice-3d-visible-20261016/static-A/record.json) · [清图展示记录](../results/reference/practice-3d-visible-20261016/static-A/cleaning-review/record.json)
 
-[建图A处理记录](../results/reference/practice-frozen-20261016/3d-static/mapping-A-processing.json)
+[建图A处理记录](../results/reference/practice-3d-visible-20261016/static-A/maps/record.json)
 
 <a id="scene-static-3d-b"></a>
 
@@ -753,12 +757,16 @@ A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要�
 <!-- HOME_EXPERIMENT_TABLE -->
 | 冻结地图 | XYZ RMSE / cm ↓ | 旋转 RMSE / ° | 定位B实录（点击看MP4） | 证据 |
 | --- | --- | --- | --- | --- |
-| Raw | 1.60 | 1.63 | <a href="../results/reference/practice-frozen-20261016/3d-static/executions/raw.mp4"><img src="../results/reference/practice-frozen-20261016/3d-static/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-static/record.json) |
-| DUFOMap | 1.62 | 1.51 | <a href="../results/reference/practice-frozen-20261016/3d-static/executions/dufomap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-static/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-static/record.json) |
-| BeautyMap | 1.45 | 1.29 | <a href="../results/reference/practice-frozen-20261016/3d-static/executions/beautymap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-static/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-static/record.json) |
+| Raw | 0.92 | 0.16 | <a href="../results/reference/practice-3d-visible-20261016/static-B/executions/raw.mp4"><img src="../results/reference/practice-3d-visible-20261016/static-B/executions/raw.gif" width="480" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/static-B/record.json) |
+| DUFOMap | 0.98 | 0.18 | <a href="../results/reference/practice-3d-visible-20261016/static-B/executions/dufomap.mp4"><img src="../results/reference/practice-3d-visible-20261016/static-B/executions/dufomap.gif" width="480" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/static-B/record.json) |
+| BeautyMap | 1.14 | 0.21 | <a href="../results/reference/practice-3d-visible-20261016/static-B/executions/beautymap.mp4"><img src="../results/reference/practice-3d-visible-20261016/static-B/executions/beautymap.gif" width="480" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/static-B/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[共同时间点评分](../results/reference/practice-frozen-20261016/3d-static/score.json) · 共同有效样本：601/601
+[共同扫描时刻评分](../results/reference/practice-3d-visible-20261016/static-B/score.json) · 共同有效扫描：458/600
+
+有效扫描输出比例：Raw 87.83%, DUFOMap 86.83%, BeautyMap 97.33%；仅表示有输出，不是定位成功率，RMSE只覆盖共同有效扫描。
+
+DUFOMap仅删除39/684477个点，15 cm占据格与Raw一致；静态组没有动态污染，预期定位变化很小。
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-static-3d -->
@@ -775,21 +783,21 @@ A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要�
 
 | 地图 | DA ↑ | SA ↑ |
 | --- | --- | --- |
-| Raw | 0% | 100% |
-| DUFOMap | 46.59% | 99.998% |
-| BeautyMap | 74.36% | 81.15% |
+| Raw | 0.00% | 100.00% |
+| DUFOMap | 52.20% | 99.99% |
+| BeautyMap | 71.81% | 87.33% |
 
 
-| A · 采集现场录屏（二维显示） | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
+| A · 三维实时采集 | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
 | --- | --- |
-| <a href="../results/reference/robot-3d-dynamic-mapping/execution.mp4"><img src="../results/reference/robot-3d-dynamic-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="../results/reference/robot-3d-map-review-v2/execution.mp4"><img src="../results/reference/robot-3d-map-review-v2/execution.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="../results/reference/practice-3d-visible-20261016/dynamic-A/execution.mp4"><img src="../results/reference/practice-3d-visible-20261016/dynamic-A/execution.gif" width="420" loading="lazy" alt="live 3D mapping A acquisition"></a> | <a href="../results/reference/practice-3d-visible-20261016/dynamic-A/cleaning-review/result.mp4"><img src="../results/reference/practice-3d-visible-20261016/dynamic-A/cleaning-review/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 右侧展示已保存的清图结果，不是新推理；点击GIF可看完整MP4。
 
-[A采集记录](../results/reference/robot-3d-dynamic-mapping/record.json) · [清图展示记录](../results/reference/robot-3d-map-review-v2/record.json)
+[A采集记录](../results/reference/practice-3d-visible-20261016/dynamic-A/record.json) · [清图展示记录](../results/reference/practice-3d-visible-20261016/dynamic-A/cleaning-review/record.json)
 
-[建图A处理记录](../results/reference/practice-frozen-20261016/3d-dynamic/mapping-A-processing.json)
+[建图A处理记录](../results/reference/practice-3d-visible-20261016/dynamic-A/maps/record.json)
 
 <a id="scene-dynamic-3d-b"></a>
 
@@ -798,12 +806,16 @@ A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要�
 <!-- HOME_EXPERIMENT_TABLE -->
 | 冻结地图 | XYZ RMSE / cm ↓ | 旋转 RMSE / ° | 定位B实录（点击看MP4） | 证据 |
 | --- | --- | --- | --- | --- |
-| Raw | 1.33 | 0.99 | <a href="../results/reference/practice-frozen-20261016/3d-dynamic/executions/raw.mp4"><img src="../results/reference/practice-frozen-20261016/3d-dynamic/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
-| DUFOMap | 1.34 | 1.18 | <a href="../results/reference/practice-frozen-20261016/3d-dynamic/executions/dufomap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-dynamic/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
-| BeautyMap | 1.29 | 0.99 | <a href="../results/reference/practice-frozen-20261016/3d-dynamic/executions/beautymap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-dynamic/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
+| Raw | 1.18 | 0.22 | <a href="../results/reference/practice-3d-visible-20261016/dynamic-B/executions/raw.mp4"><img src="../results/reference/practice-3d-visible-20261016/dynamic-B/executions/raw.gif" width="480" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/dynamic-B/record.json) |
+| DUFOMap | 1.00 | 0.17 | <a href="../results/reference/practice-3d-visible-20261016/dynamic-B/executions/dufomap.mp4"><img src="../results/reference/practice-3d-visible-20261016/dynamic-B/executions/dufomap.gif" width="480" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/dynamic-B/record.json) |
+| BeautyMap | 1.39 | 0.25 | <a href="../results/reference/practice-3d-visible-20261016/dynamic-B/executions/beautymap.mp4"><img src="../results/reference/practice-3d-visible-20261016/dynamic-B/executions/beautymap.gif" width="480" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/dynamic-B/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[共同时间点评分](../results/reference/practice-frozen-20261016/3d-dynamic/score.json) · 共同有效样本：600/601
+[共同扫描时刻评分](../results/reference/practice-3d-visible-20261016/dynamic-B/score.json) · 共同有效扫描：554/600
+
+有效扫描输出比例：Raw 96.50%, DUFOMap 95.17%, BeautyMap 99.67%；仅表示有输出，不是定位成功率，RMSE只覆盖共同有效扫描。
+
+DA/SA描述动态删除与静态保留；删掉残影不保证GICP约束增强。误差未降低时，只支持清图结果。
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-dynamic-3d -->
@@ -820,21 +832,21 @@ A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要�
 
 | 地图 | SA ↑ |
 | --- | --- |
-| Raw | 100% |
-| DUFOMap | 100% |
-| BeautyMap | 99.9% |
+| Raw | 100.00% |
+| DUFOMap | 100.00% |
+| BeautyMap | 99.84% |
 
 
-| A · 采集现场录屏（二维显示） | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
+| A · 三维实时采集 | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
 | --- | --- |
-| <a href="../results/reference/robot-corridor-v2-mapping/execution.mp4"><img src="../results/reference/robot-corridor-v2-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="../results/reference/practice-map-cleaning-review-20261016/corridor/result.mp4"><img src="../results/reference/practice-map-cleaning-review-20261016/corridor/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="../results/reference/practice-3d-visible-20261016/corridor-A/execution.mp4"><img src="../results/reference/practice-3d-visible-20261016/corridor-A/execution.gif" width="420" loading="lazy" alt="live 3D mapping A acquisition"></a> | <a href="../results/reference/practice-3d-visible-20261016/corridor-A/cleaning-review/result.mp4"><img src="../results/reference/practice-3d-visible-20261016/corridor-A/cleaning-review/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 右侧展示已保存的清图结果，不是新推理；点击GIF可看完整MP4。
 
-[A采集记录](../results/reference/robot-corridor-v2-mapping/record.json) · [清图展示记录](../results/reference/practice-map-cleaning-review-20261016/corridor/record.json)
+[A采集记录](../results/reference/practice-3d-visible-20261016/corridor-A/record.json) · [清图展示记录](../results/reference/practice-3d-visible-20261016/corridor-A/cleaning-review/record.json)
 
-[建图A处理记录](../results/reference/practice-frozen-20261016/3d-corridor/mapping-A-processing.json)
+[建图A处理记录](../results/reference/practice-3d-visible-20261016/corridor-A/maps/record.json)
 
 <a id="scene-corridor-3d-b"></a>
 
@@ -843,16 +855,16 @@ A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要�
 <!-- HOME_EXPERIMENT_TABLE -->
 | 冻结地图 | XYZ RMSE / cm ↓ | 旋转 RMSE / ° | 定位B实录（点击看MP4） | 证据 |
 | --- | --- | --- | --- | --- |
-| Raw | 582.43 | 1.77 | <a href="../results/reference/practice-frozen-20261016/3d-corridor/executions/raw.mp4"><img src="../results/reference/practice-frozen-20261016/3d-corridor/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-corridor/record.json) |
-| DUFOMap | 423.89 | 1.74 | <a href="../results/reference/practice-frozen-20261016/3d-corridor/executions/dufomap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-corridor/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-corridor/record.json) |
-| BeautyMap | 526.67 | 1.69 | <a href="../results/reference/practice-frozen-20261016/3d-corridor/executions/beautymap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-corridor/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-corridor/record.json) |
+| Raw | 756.40 | 5.65 | <a href="../results/reference/practice-3d-visible-20261016/corridor-B/executions/raw.mp4"><img src="../results/reference/practice-3d-visible-20261016/corridor-B/executions/raw.gif" width="480" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/corridor-B/record.json) |
+| DUFOMap | 449.10 | 0.49 | <a href="../results/reference/practice-3d-visible-20261016/corridor-B/executions/dufomap.mp4"><img src="../results/reference/practice-3d-visible-20261016/corridor-B/executions/dufomap.gif" width="480" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/corridor-B/record.json) |
+| BeautyMap | 482.16 | 0.43 | <a href="../results/reference/practice-3d-visible-20261016/corridor-B/executions/beautymap.mp4"><img src="../results/reference/practice-3d-visible-20261016/corridor-B/executions/beautymap.gif" width="480" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/corridor-B/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[共同时间点评分](../results/reference/practice-frozen-20261016/3d-corridor/score.json) · 共同有效样本：304/601
+[共同扫描时刻评分](../results/reference/practice-3d-visible-20261016/corridor-B/score.json) · 共同有效扫描：381/599
 
-前50秒限制观测，随后恢复完整扫描；RMSE只比较共同新鲜输出的时间点，不能据此排名整体稳定性。
+前50秒限制观测，随后恢复完整扫描；本轮三组均出现米级漂移。Raw与DUFOMap冻结地图逐字节相同；独立进程的扫描处理历史可能不同，单次定位差异不能解释为清图收益。
 
-新鲜输出覆盖：Raw 65.72%, DUFOMap 84.53%, BeautyMap 85.86%。这是输出时效性，不是定位成功率。
+有效扫描输出比例：Raw 74.29%, DUFOMap 69.95%, BeautyMap 94.49%；仅表示有输出，不是定位成功率，RMSE只覆盖共同有效扫描。
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-corridor-3d -->
@@ -871,21 +883,21 @@ A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要�
 
 | 地图 | SA ↑ |
 | --- | --- |
-| Raw | 100% |
-| DUFOMap | 99.999% |
-| BeautyMap | 83.33% |
+| Raw | 100.00% |
+| DUFOMap | 99.99% |
+| BeautyMap | 87.71% |
 
 
-| A · 采集现场录屏（二维显示） | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
+| A · 三维实时采集 | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
 | --- | --- |
-| <a href="../results/reference/robot-static-mapping/execution.mp4"><img src="../results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="../results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="../results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="../results/reference/practice-3d-visible-20261016/static-A/execution.mp4"><img src="../results/reference/practice-3d-visible-20261016/static-A/execution.gif" width="420" loading="lazy" alt="live 3D mapping A acquisition"></a> | <a href="../results/reference/practice-3d-visible-20261016/static-A/cleaning-review/result.mp4"><img src="../results/reference/practice-3d-visible-20261016/static-A/cleaning-review/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 右侧展示已保存的清图结果，不是新推理；点击GIF可看完整MP4。
 
-[A采集记录](../results/reference/robot-static-mapping/record.json) · [清图展示记录](../results/reference/practice-map-cleaning-review-20261016/static/record.json)
+[A采集记录](../results/reference/practice-3d-visible-20261016/static-A/record.json) · [清图展示记录](../results/reference/practice-3d-visible-20261016/static-A/cleaning-review/record.json)
 
-[建图A处理记录](../results/reference/practice-frozen-20261016/3d-change/mapping-A-processing.json)
+[建图A处理记录](../results/reference/practice-3d-visible-20261016/static-A/maps/record.json)
 
 <a id="scene-change-3d-b"></a>
 
@@ -894,14 +906,14 @@ A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要�
 <!-- HOME_EXPERIMENT_TABLE -->
 | 冻结地图 | XYZ RMSE / cm ↓ | 旋转 RMSE / ° | 定位B实录（点击看MP4） | 证据 |
 | --- | --- | --- | --- | --- |
-| Raw | 2.03 | 1.93 | <a href="../results/reference/practice-frozen-20261016/3d-change/executions/raw.mp4"><img src="../results/reference/practice-frozen-20261016/3d-change/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-change/record.json) |
-| DUFOMap | 2.02 | 1.93 | <a href="../results/reference/practice-frozen-20261016/3d-change/executions/dufomap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-change/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-change/record.json) |
-| BeautyMap | 2.15 | 1.94 | <a href="../results/reference/practice-frozen-20261016/3d-change/executions/beautymap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-change/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-change/record.json) |
+| Raw | 1.06 | 0.23 | <a href="../results/reference/practice-3d-visible-20261016/change-B/executions/raw.mp4"><img src="../results/reference/practice-3d-visible-20261016/change-B/executions/raw.gif" width="480" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/change-B/record.json) |
+| DUFOMap | 1.08 | 0.24 | <a href="../results/reference/practice-3d-visible-20261016/change-B/executions/dufomap.mp4"><img src="../results/reference/practice-3d-visible-20261016/change-B/executions/dufomap.gif" width="480" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/change-B/record.json) |
+| BeautyMap | 1.24 | 0.27 | <a href="../results/reference/practice-3d-visible-20261016/change-B/executions/beautymap.mp4"><img src="../results/reference/practice-3d-visible-20261016/change-B/executions/beautymap.gif" width="480" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-3d-visible-20261016/change-B/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[共同时间点评分](../results/reference/practice-frozen-20261016/3d-change/score.json) · 共同有效样本：474/601
+[共同扫描时刻评分](../results/reference/practice-3d-visible-20261016/change-B/score.json) · 共同有效扫描：486/599
 
-新鲜输出覆盖：Raw 88.85%, DUFOMap 89.52%, BeautyMap 98.17%；RMSE只覆盖共同有效时段，不表示完整时段的稳定性。
+有效扫描输出比例：Raw 91.32%, DUFOMap 90.32%, BeautyMap 97.33%；仅表示有输出，不是定位成功率，RMSE只覆盖共同有效扫描。
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-change-3d -->

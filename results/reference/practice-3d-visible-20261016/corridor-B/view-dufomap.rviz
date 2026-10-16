@@ -1,0 +1,86 @@
+Panels: []
+Visualization Manager:
+  Class: ''
+  Displays:
+  - Alpha: 0.35
+    Cell Size: 1
+    Class: rviz_default_plugins/Grid
+    Color: 60; 70; 82
+    Enabled: true
+    Name: Arena grid (1 m)
+    Plane Cell Count: 60
+  - Class: rviz_default_plugins/PointCloud2
+    Name: CURRENT SCAN - GREEN
+    Enabled: true
+    Topic:
+      Value: /points_degraded
+      Reliability Policy: Best Effort
+      Durability Policy: Volatile
+      Depth: 5
+    Style: Points
+    Size (Pixels): 3
+    Color Transformer: FlatColor
+    Color: 55; 255; 120
+    Position Transformer: XYZ
+    Decay Time: 0.15
+    Alpha: 1.0
+  - Class: rviz_default_plugins/PointCloud2
+    Name: Frozen dufomap 3D map
+    Enabled: true
+    Topic:
+      Value: /dufomap/initial_map
+      Reliability Policy: Reliable
+      Durability Policy: Transient Local
+      Depth: 1
+    Color: 205; 210; 220
+    Style: Points
+    Size (Pixels): 2
+    Color Transformer: FlatColor
+    Alpha: 0.7
+    Position Transformer: XYZ
+  - Class: rviz_default_plugins/MarkerArray
+    Name: GICP POSE - PINK
+    Enabled: true
+    Topic:
+      Value: /dufomap/view/markers
+      Reliability Policy: Reliable
+      Durability Policy: Volatile
+      Depth: 1
+    Color: 80; 180; 255
+  - Class: rviz_default_plugins/Path
+    Name: Native GICP trajectory
+    Enabled: true
+    Topic:
+      Value: /dufomap/view/path
+      Reliability Policy: Reliable
+      Durability Policy: Volatile
+      Depth: 1
+    Color: 40; 210; 255
+    Line Width: 0.1
+    Line Style: Billboards
+  Global Options:
+    Background Color: 18; 22; 28
+    Fixed Frame: map
+    Frame Rate: 15
+  Tools: []
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: 3D map comparison
+      Target Frame: map
+      Distance: 15.0
+      Pitch: 0.85
+      Yaw: 0.8
+      Focal Point:
+        X: 7.15
+        Y: -3.1
+        Z: 0.5
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 900
+  Hide Left Dock: true
+  Hide Right Dock: true
+  Width: 1320
+  X: 500
+  Y: 0

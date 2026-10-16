@@ -1,0 +1,32 @@
+[
+  {
+    "mirror_file": "S1-纯静态__3D__B-定位__raw-map_GICP_独立RViz实时__20261016-034906-d546d4.mp4",
+    "case": "raw",
+    "video": "executions/raw.mp4",
+    "map_topic": "/raw/initial_map",
+    "sha256": "9c032a91998077c710d40fc6ee312698dac3651356d455fbf024919ceae0d051",
+    "window_title": "SLAM LIVE - 3D raw - RViz2",
+    "pose_topic": "/raw/pcl_pose",
+    "tf_topic": "/raw/view/tf"
+  },
+  {
+    "mirror_file": "S1-纯静态__3D__B-定位__dufomap-map_GICP_独立RViz实时__20261016-034906-d546d4.mp4",
+    "case": "dufomap",
+    "video": "executions/dufomap.mp4",
+    "map_topic": "/dufomap/initial_map",
+    "sha256": "06c679db17e8b9ed5ef4911fde1bbf719fc669abf4781bb884c44e789a5ce86e",
+    "window_title": "SLAM LIVE - 3D dufomap - RViz2",
+    "pose_topic": "/dufomap/pcl_pose",
+    "tf_topic": "/dufomap/view/tf"
+  },
+  {
+    "mirror_file": "S1-纯静态__3D__B-定位__beautymap-map_GICP_独立RViz实时__20261016-034906-d546d4.mp4",
+    "case": "beautymap",
+    "video": "executions/beautymap.mp4",
+    "map_topic": "/beautymap/initial_map",
+    "sha256": "b80d204f5163c7d2894a9619098ed8e42bf14064e9c7d939da501a4d96cf7ee3",
+    "window_title": "SLAM LIVE - 3D beautymap - RViz2",
+    "pose_topic": "/beautymap/pcl_pose",
+    "tf_topic": "/beautymap/view/tf"
+  }
+]
