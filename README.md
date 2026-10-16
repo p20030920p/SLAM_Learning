@@ -1179,33 +1179,44 @@ H1 uses DA/SA for cleaning and only SA in its static control; H2 uses one-way ma
 
 ## References
 
-Papers behind the rows in [Related works](#related-works), with DOIs. The four reproduced methods come first, then the baselines and the source of the KITTI-00 teaser data.
+Entries are numbered in the order the works appear in [Related works](#related-works), each row's paper followed by the implementation named there; [10] is the KITTI-00 teaser dataset behind the DUFOMap and BeautyMap rows. DOIs were resolved from indexed publisher metadata (OpenAlex records) on 2026-10-16; author lists, volumes and pages follow the publisher record.
 
-| # | Work | Citation | DOI |
-| --- | --- | --- | --- |
-| R1 | [SRRG / srrg_mapper2d](#related-srrg_mapper2d) | M. T. Lázaro, R. Capobianco, G. Grisetti, "Efficient Long-term Mapping in Dynamic Environments," *2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)*, pp. 153–160. | [10.1109/IROS.2018.8594310](https://doi.org/10.1109/IROS.2018.8594310) |
-| R2 | [DUFOMap](#related-dufomap) | D. Duberg, Q. Zhang, M. Jia, P. Jensfelt, "DUFOMap: Efficient Dynamic Awareness Mapping," *IEEE Robotics and Automation Letters*, 9(6):5038–5045, 2024. | [10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658) |
-| R3 | [BeautyMap](#related-beautymap) | M. Jia, Q. Zhang, B. Yang, J. Wu, M. Liu, P. Jensfelt, "BeautyMap: Binary-Encoded Adaptable Ground Matrix for Dynamic Points Removal in Global Maps," *IEEE Robotics and Automation Letters*, 9(7):6256–6263, 2024. | [10.1109/LRA.2024.3402625](https://doi.org/10.1109/LRA.2024.3402625) |
-| R4 | [IR-MCL](#related-ir-mcl) | H. Kuang, X. Chen, T. Guadagnino, N. Zimmerman, J. Behley, C. Stachniss, "IR-MCL: Implicit Representation-Based Online Global Localization," *IEEE Robotics and Automation Letters*, 8(3):1627–1634, 2023. | [10.1109/LRA.2023.3239318](https://doi.org/10.1109/LRA.2023.3239318) |
-| R5 | [AdaM-MCL](#related-adam-mcl) | R. Chen, H. Yin, Y. Jiao, G. Dissanayake, Y. Wang, R. Xiong, "Deep Samplable Observation Model for Global Localization and Kidnapping," *IEEE Robotics and Automation Letters*, 6(2):2296–2303, 2021. | [10.1109/LRA.2021.3061339](https://doi.org/10.1109/LRA.2021.3061339) |
-| R6 | [FAST-LIO](#related-fast_lio) | W. Xu, F. Zhang, "FAST-LIO: A Fast, Robust LiDAR-Inertial Odometry Package by Tightly-Coupled Iterated Kalman Filter," *IEEE Robotics and Automation Letters*, 6(2):3317–3324, 2021. | [10.1109/LRA.2021.3064227](https://doi.org/10.1109/LRA.2021.3064227) |
-| R7 | [FAST-LIO2](#related-fast_lio) | W. Xu, Y. Cai, D. He, J. Lin, F. Zhang, "FAST-LIO2: Fast Direct LiDAR-Inertial Odometry," *IEEE Transactions on Robotics*, 38(4):2053–2073, 2022. | [10.1109/TRO.2022.3141876](https://doi.org/10.1109/TRO.2022.3141876) |
-| R8 | [GICP](#related-gicp) | A. Segal, D. Haehnel, S. Thrun, "Generalized-ICP," *Robotics: Science and Systems V*, 2009. | [10.15607/RSS.2009.V.021](https://doi.org/10.15607/RSS.2009.V.021) |
-| R9 | KITTI-00 141-scan teaser used by the DUFOMap and BeautyMap rows | Q. Zhang, D. Duberg, R. Geng, M. Jia, L. Wang, P. Jensfelt, "A Dynamic Points Removal Benchmark in Point Cloud Maps," *2023 IEEE 26th International Conference on Intelligent Transportation Systems (ITSC)*, pp. 608–614. | [10.1109/ITSC57777.2023.10422094](https://doi.org/10.1109/ITSC57777.2023.10422094) |
+[1] W. Xu and F. Zhang, "FAST-LIO: A fast, robust LiDAR-inertial odometry package by tightly-coupled iterated Kalman filter," *IEEE Robotics and Automation Letters*, vol. 6, no. 2, pp. 3317–3324, 2021, doi: [10.1109/LRA.2021.3064227](https://doi.org/10.1109/LRA.2021.3064227). arXiv: [2010.08196](https://arxiv.org/abs/2010.08196).
 
-DOIs were resolved from the indexed publisher metadata (OpenAlex records) on 2026-10-16; author lists, volumes and pages follow the publisher record. Where a work also circulates as a preprint, [Related works](#related-works) links the arXiv version: FAST-LIO, FAST-LIO2, DUFOMap, BeautyMap, IR-MCL and AdaM-MCL. GICP also appears as a 2010 MIT Press chapter, DOI 10.7551/mitpress/8727.003.0022, pp. 161–168.
+[2] W. Xu, Y. Cai, D. He, J. Lin, and F. Zhang, "FAST-LIO2: Fast direct LiDAR-inertial odometry," *IEEE Transactions on Robotics*, vol. 38, no. 4, pp. 2053–2073, 2022, doi: [10.1109/TRO.2022.3141876](https://doi.org/10.1109/TRO.2022.3141876). arXiv: [2107.06829](https://arxiv.org/abs/2107.06829).
 
-Implementations named in [Related works](#related-works) are cited by repository rather than DOI, at the pinned revision where one is recorded.
+[3] HKU MaRS Laboratory, "FAST-LIO / FAST-LIO2, ROS 2 branch," GitHub repository. [Online]. Available: https://github.com/hku-mars/FAST_LIO/tree/ROS2
 
-| Work | Implementation |
-| --- | --- |
-| SRRG | [srrg_mapper2d](https://gitlab.com/srrg-software/srrg_mapper2d) · [ROS entry](https://gitlab.com/srrg-software/srrg_mapper2d_ros) |
-| DUFOMap | [KTH-RPL/dufomap](https://github.com/KTH-RPL/dufomap) |
-| BeautyMap | [MKJia/BeautyMap](https://github.com/MKJia/BeautyMap) |
-| IR-MCL | [PRBonn/ir-mcl @ aab8c91](https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5) |
-| AdaM-MCL / DSOM | [Runjian-Chen/AdaM_MCL @ e8aedd2](https://github.com/Runjian-Chen/AdaM_MCL/tree/e8aedd2bae03816aabd5300e5ca2fe181b39d830) |
-| FAST-LIO / FAST-LIO2 | [hku-mars/FAST_LIO, ROS 2 branch](https://github.com/hku-mars/FAST_LIO/tree/ROS2) |
-| AMCL / Nav2 | [nav2_amcl](https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl) |
-| GICP | [avsegal/gicp](https://github.com/avsegal/gicp) · [PCL implementation](https://pointclouds.org/documentation/classpcl_1_1_generalized_iterative_closest_point.html) · [ROS 2 localization framework used here](https://github.com/rsasaki0109/lidar_localization_ros2) |
+[4] M. T. Lázaro, R. Capobianco, and G. Grisetti, "Efficient long-term mapping in dynamic environments," in *Proc. IEEE/RSJ Int. Conf. on Intelligent Robots and Systems (IROS)*, 2018, pp. 153–160, doi: [10.1109/IROS.2018.8594310](https://doi.org/10.1109/IROS.2018.8594310).
 
-The AMCL row refers to the Nav2 implementation, so its statistical origin is not cited above. Upstream licences, pinned commits and fetch provenance are in [Sources, credits and asset scope](docs/guides/ATTRIBUTION.md).
+[5] SRRG software group, "srrg_mapper2d and srrg_mapper2d_ros," GitLab repositories. [Online]. Available: https://gitlab.com/srrg-software/srrg_mapper2d and https://gitlab.com/srrg-software/srrg_mapper2d_ros
+
+[6] D. Duberg, Q. Zhang, M. Jia, and P. Jensfelt, "DUFOMap: Efficient dynamic awareness mapping," *IEEE Robotics and Automation Letters*, vol. 9, no. 6, pp. 5038–5045, 2024, doi: [10.1109/LRA.2024.3387658](https://doi.org/10.1109/LRA.2024.3387658). arXiv: [2403.01449](https://arxiv.org/abs/2403.01449).
+
+[7] KTH RPL, "DUFOMap," GitHub repository. [Online]. Available: https://github.com/KTH-RPL/dufomap
+
+[8] M. Jia, Q. Zhang, B. Yang, J. Wu, M. Liu, and P. Jensfelt, "BeautyMap: Binary-encoded adaptable ground matrix for dynamic points removal in global maps," *IEEE Robotics and Automation Letters*, vol. 9, no. 7, pp. 6256–6263, 2024, doi: [10.1109/LRA.2024.3402625](https://doi.org/10.1109/LRA.2024.3402625). arXiv: [2405.07283](https://arxiv.org/abs/2405.07283).
+
+[9] "BeautyMap," GitHub repository. [Online]. Available: https://github.com/MKJia/BeautyMap
+
+[10] Q. Zhang, D. Duberg, R. Geng, M. Jia, L. Wang, and P. Jensfelt, "A dynamic points removal benchmark in point cloud maps," in *Proc. IEEE 26th Int. Conf. on Intelligent Transportation Systems (ITSC)*, 2023, pp. 608–614, doi: [10.1109/ITSC57777.2023.10422094](https://doi.org/10.1109/ITSC57777.2023.10422094).
+
+[11] "nav2_amcl," Nav2, GitHub repository. [Online]. Available: https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl
+
+[12] A. Segal, D. Haehnel, and S. Thrun, "Generalized-ICP," in *Robotics: Science and Systems V*, 2009, doi: [10.15607/RSS.2009.V.021](https://doi.org/10.15607/RSS.2009.V.021); also published as a chapter, pp. 161–168, doi: [10.7551/mitpress/8727.003.0022](https://doi.org/10.7551/mitpress/8727.003.0022).
+
+[13] "gicp," GitHub repository. [Online]. Available: https://github.com/avsegal/gicp
+
+[14] Point Cloud Library, "pcl::GeneralizedIterativeClosestPoint." [Online]. Available: https://pointclouds.org/documentation/classpcl_1_1_generalized_iterative_closest_point.html
+
+[15] "lidar_localization_ros2," GitHub repository. [Online]. Available: https://github.com/rsasaki0109/lidar_localization_ros2
+
+[16] H. Kuang, X. Chen, T. Guadagnino, N. Zimmerman, J. Behley, and C. Stachniss, "IR-MCL: Implicit representation-based online global localization," *IEEE Robotics and Automation Letters*, vol. 8, no. 3, pp. 1627–1634, 2023, doi: [10.1109/LRA.2023.3239318](https://doi.org/10.1109/LRA.2023.3239318). arXiv: [2210.03113](https://arxiv.org/abs/2210.03113).
+
+[17] "ir-mcl," GitHub repository, commit aab8c91. [Online]. Available: https://github.com/PRBonn/ir-mcl/tree/aab8c91b37e59f94442d8eddfa2f920ab1ecc4c5
+
+[18] R. Chen, H. Yin, Y. Jiao, G. Dissanayake, Y. Wang, and R. Xiong, "Deep samplable observation model for global localization and kidnapping," *IEEE Robotics and Automation Letters*, vol. 6, no. 2, pp. 2296–2303, 2021, doi: [10.1109/LRA.2021.3061339](https://doi.org/10.1109/LRA.2021.3061339). arXiv: [2009.00211](https://arxiv.org/abs/2009.00211).
+
+[19] "AdaM_MCL (DSOM)," GitHub repository, commit e8aedd2. [Online]. Available: https://github.com/Runjian-Chen/AdaM_MCL/tree/e8aedd2bae03816aabd5300e5ca2fe181b39d830
+
+The AMCL row refers to the Nav2 implementation [11], so its statistical origin is not cited. Upstream licences, pinned commits and fetch provenance are in [Sources, credits and asset scope](docs/guides/ATTRIBUTION.md).
