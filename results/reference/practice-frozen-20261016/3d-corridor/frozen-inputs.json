@@ -1,0 +1,26 @@
+{
+  "source_A_or_prior_record": "results/reference/robot-3d-corridor/record.json",
+  "source_record_sha256": "d27f31de3a119a09687aa4e0a3c5e27106a7b5662f8e0207d946c6d26abb4cdb",
+  "dimension": "3D",
+  "scene": "degradation",
+  "methods": [
+    "raw",
+    "dufomap",
+    "beautymap"
+  ],
+  "scope": "Use the existing mapping A/prior; acquire fresh B; do not update maps in B",
+  "map_sha256": {
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\raw\\map.yaml": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\raw\\map.pgm": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\raw\\map-3d.pcd": "fb380b3a15f69e3ba04c7479c43b6372713db0b3bd6969a323edff505a8e9670",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\raw\\points.npy": "2a84a65ed68ea7e9183771fb88d7d0406edaa4207062e043b2595ae9b5d0b725",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\dufomap\\map.yaml": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\dufomap\\map.pgm": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\dufomap\\map-3d.pcd": "fb380b3a15f69e3ba04c7479c43b6372713db0b3bd6969a323edff505a8e9670",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\dufomap\\points.npy": "2a84a65ed68ea7e9183771fb88d7d0406edaa4207062e043b2595ae9b5d0b725",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\beautymap\\map.yaml": "26b6bd8599839ea7309c1579bbdb426703b9696edf63e1f459a955ae755e3fb5",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\beautymap\\map.pgm": "8febc6fd4c2d59e56625946d4cb9ab7c470fe52ec5fb5b00677322e09d8ced30",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\beautymap\\map-3d.pcd": "618d093895e63556c21502e9a247e126e22bec9621cd566ad182046a15765c16",
+    "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\beautymap\\points.npy": "b002c77653c0751309200cc658da64788e813484277d9e86ad4899893e744225"
+  }
+}

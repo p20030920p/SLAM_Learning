@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "kind": "native_frozen_map_practice",
+  "status": "executed",
+  "exit_code": 0,
+  "source_run": "F:\\be2演讲\\原始会话\\practice-frozen-20261016\\20261016-030855-localization-large-change-method-live-b4a2a7",
+  "frozen_maps_unchanged": true,
+  "truth_input_to_localizers": false,
+  "source_A_or_prior_record": "results/reference/srrg-2d-large-change/record.json",
+  "mapping_A_processing_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\reference\\srrg-2d-large-change\\maps\\record.json",
+  "mapping_A_processing_sha256": "8edd62451381100ccd2c87fd5e6fb28827087c129005df6bf623fdbb51a2e3ce",
+  "score": {
+    "kind": "held_out_frozen_map_localization",
+    "dimension": "2D",
+    "scope": "Fresh B; native estimates; truth only for scoring; no trajectory alignment; 10 Hz after 5 s; latest pose age <= 0.15 s; common times across displayed controls",
+    "expected_grid_samples": 601,
+    "common_grid_samples": 273,
+    "recording_interval_sim_s": [
+      10.477,
+      75.47800000000001
+    ],
+    "methods": {
+      "raw": {
+        "native_rows": 289,
+        "invalid_rows": 0,
+        "common_samples": 273,
+        "position_rmse_m": 0.053979980695989076,
+        "rotation_rmse_deg": 2.862553894319145,
+        "fresh_grid_coverage": 0.454242928452579,
+        "own_valid_position_rmse_m": 0.053979980695989076
+      },
+      "srrg": {
+        "native_rows": 289,
+        "invalid_rows": 0,
+        "common_samples": 273,
+        "position_rmse_m": 0.04355383283173576,
+        "rotation_rmse_deg": 2.645533359029275,
+        "fresh_grid_coverage": 0.454242928452579,
+        "own_valid_position_rmse_m": 0.04355383283173576
+      }
+    }
+  },
+  "timing": {
+    "raw": {
+      "duration_s": 72.00000000000048,
+      "frames": 360,
+      "fps": 5,
+      "video_duration_s": 71.916667,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "srrg": {
+      "duration_s": 72.00000000000048,
+      "frames": 360,
+      "fps": 5,
+      "video_duration_s": 71.916667,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "recorded_inputs": {
+    "F:\\be2演讲\\原始会话\\practice-frozen-20261016\\20261016-030855-localization-large-change-method-live-b4a2a7\\input-bag\\input-bag_0.mcap": {
+      "sha256": "688110822701e5882f27fc273cb361194934df2575f6c7b24de2daa52d98e784",
+      "bytes": 20005383,
+      "availability": "local_only"
+    }
+  },
+  "artifacts": {
+    "cases.json": {
+      "sha256": "3902d1452b07e7290a056dbe9f8847314253635d6ee9b878e12bd27420a8e867",
+      "bytes": 610
+    },
+    "frozen-inputs.json": {
+      "sha256": "591271ba82cc57950754dab01c5707faeb8011ce891a2ec9ba903df4ca3d49bf",
+      "bytes": 1119
+    },
+    "mapping-A-processing.json": {
+      "sha256": "8edd62451381100ccd2c87fd5e6fb28827087c129005df6bf623fdbb51a2e3ce",
+      "bytes": 240
+    },
+    "metrics.json": {
+      "sha256": "fca952b584c5ba36ddd81e8b19f0b435dc23f535be42b4fe9dd33095568c4843",
+      "bytes": 1374
+    },
+    "native-views.json": {
+      "sha256": "c59d073d0570c331b6f8ec1f2e53b03c992a9e85a8669b5b760eaf881d494d65",
+      "bytes": 828
+    },
+    "raw-samples.csv": {
+      "sha256": "055d359cecb1e8f1638fcd9741141159233b40414bbb2b4cc198e31efc002399",
+      "bytes": 51862
+    },
+    "recording.started": {
+      "sha256": "835ed5db49da2134e9657b122914e3ff20c63856ef21f24f0fc32ff7ddf021be",
+      "bytes": 33
+    },
+    "recording.stopped": {
+      "sha256": "ee4a07aae157a04268fc4148aad73d44d55906823e507023185881d57b6da244",
+      "bytes": 33
+    },
+    "runtime.json": {
+      "sha256": "e14d2740a0033e2e41d96cef4022477649a87ddedee6afcf4f7335c28b6e7f20",
+      "bytes": 899
+    },
+    "score.json": {
+      "sha256": "469a67ffd8fff29b65713e5d53d94dfbc107471ad1888e85f6d1904e3e3c8bbd",
+      "bytes": 1019
+    },
+    "session.json": {
+      "sha256": "7be7ca9a4d95799a3e527982f3b3bed9ccabddf4fae4fe47a1a58cd2f6ba061d",
+      "bytes": 21073
+    },
+    "srrg-samples.csv": {
+      "sha256": "7bfd7c1180db33a4a9b8101c80fbdae626e53f18a244d04327e96e7430064719",
+      "bytes": 51994
+    },
+    "truth.jsonl": {
+      "sha256": "540e7eec8210cc927343e87519b2d3382b43a3186401b49bd525419550ea1a3e",
+      "bytes": 1017545
+    },
+    "view-raw.rviz": {
+      "sha256": "e704478fc726c212969abe100e96fc5037a0521cb369241bcee65bbca9fb7359",
+      "bytes": 3606
+    },
+    "view-srrg.rviz": {
+      "sha256": "fdc174d2e85aeac6c9dbf3765cb684841444fdc2cc6e977c3ff6755eb8688ec1",
+      "bytes": 3614
+    },
+    "view-updates.jsonl": {
+      "sha256": "526683bf1b75bf04d2e92de5a75453b2872558e214ef37273f793ef380ac77a4",
+      "bytes": 78390
+    },
+    "views.json": {
+      "sha256": "fade3d56f4574e55c7572d560ff24a480af54f4dea278849f47f1dd7c1f00c9e",
+      "bytes": 472
+    },
+    "window-capture-heartbeat.jsonl": {
+      "sha256": "29cbaa3a286ee27bc9602518cd2a1156a870cb717e1599a4020d66403f197f11",
+      "bytes": 11152
+    },
+    "executions/raw-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "executions/raw-filter.txt": {
+      "sha256": "d6b02304930c58589e53ec96a7c0eb7547f405dd6d8505016ca10cbe60cdc308",
+      "bytes": 420
+    },
+    "executions/raw-first.png": {
+      "sha256": "08af6face5999f3c398cf6c238750381ec1aa2717d72b8ba734c31f549342628",
+      "bytes": 210721
+    },
+    "executions/raw-last.png": {
+      "sha256": "7dca948d55ac184b88f4d638f7487131da0aa060a5d4c9cffc78b51b9787493f",
+      "bytes": 217249
+    },
+    "executions/raw-mid.png": {
+      "sha256": "feb4eb17707ce300c9d07872a1974d62bf4687003513a5a124d1f49671d588d5",
+      "bytes": 218235
+    },
+    "executions/raw-probe.json": {
+      "sha256": "f040283584ab04d42e1d33da06b452745ab259481112445b91e487bdc7b6b78d",
+      "bytes": 326
+    },
+    "executions/raw.gif": {
+      "sha256": "7169dfe534ccdbb9f45e3a1ee69c286d6c74031f7f3fd37530a57d24f2b5f202",
+      "bytes": 633265
+    },
+    "executions/raw.mp4": {
+      "sha256": "5bd73f10568bcef1e23ad8011c459d3906e6f28072dc6d79e1218fd0674f2d02",
+      "bytes": 833555
+    },
+    "executions/srrg-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "executions/srrg-filter.txt": {
+      "sha256": "b7d67893b8769725d07174e4bae16a83d257ef39a6464cd261df0e7e90760024",
+      "bytes": 421
+    },
+    "executions/srrg-first.png": {
+      "sha256": "55b92f876969de9dc659c5cc704528831c92f870d8797dfc9e4f0f904b3db464",
+      "bytes": 212022
+    },
+    "executions/srrg-last.png": {
+      "sha256": "7aeeee791784e2547c8d4c502ae0782f674a6e40ef06bbe9d04150e7bdc4941b",
+      "bytes": 217183
+    },
+    "executions/srrg-mid.png": {
+      "sha256": "794b6dd0c801c7f947ba93179dd1cc86af94fbac9a39a9a7014e7dfe8be7babf",
+      "bytes": 216726
+    },
+    "executions/srrg-probe.json": {
+      "sha256": "1c4cff26757ba49d4ef043dbd3e82053417957085bb21faea8e5ff97ff756baa",
+      "bytes": 326
+    },
+    "executions/srrg.gif": {
+      "sha256": "d468c98dde30e257da5a59f67c5dd7edc1f01982eea739f48ee0cc991583db2b",
+      "bytes": 642572
+    },
+    "executions/srrg.mp4": {
+      "sha256": "4246677c2862946ccd6ebb6bf87ee47c9d02bae3d956ea71795ff06aaa6be719",
+      "bytes": 812124
+    },
+    "logs/bag.log": {
+      "sha256": "71bce55b7b3f03b469d2cac0ec67c291e4fc25df38416719c2182244f172072f",
+      "bytes": 1489
+    },
+    "logs/cmake.log": {
+      "sha256": "97e5be5e8b52950c0fe331d5bc4a22a7f967a76f6c036acf3686a9530a95dd09",
+      "bytes": 1126
+    },
+    "logs/localizers.log": {
+      "sha256": "e167a3ad4eab3cdc69b06847f1c9b2e9b8594a108278913adef1ab565c1ba15d",
+      "bytes": 9609
+    },
+    "logs/observer.log": {
+      "sha256": "162c5922a5902e5929edda06bad42fb9aa7419ffc0a31fcf3e27df23c597c70f",
+      "bytes": 10622
+    },
+    "logs/patrol.log": {
+      "sha256": "bf0e22ece7ccc06440eeb14008c83097c48e1939804a3689139b1e2fb78de07c",
+      "bytes": 2653
+    },
+    "logs/renderer.txt": {
+      "sha256": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+      "bytes": 1774
+    },
+    "logs/rviz-raw.log": {
+      "sha256": "c84e64252033cd66e6affe02598f623ad55d974dbe238b8f9775df754a95a4d3",
+      "bytes": 1086
+    },
+    "logs/rviz-srrg.log": {
+      "sha256": "3ea4902dd3d6763a291c257191d8765a4104465e0fab87e887bb7ce5a5c7e0d0",
+      "bytes": 1086
+    },
+    "logs/stack.log": {
+      "sha256": "00553cde54dfcdb4967bec73633fc7174dd102a4d7490bb09298e5fecf77ea36",
+      "bytes": 10542
+    },
+    "logs/views.log": {
+      "sha256": "f9d73ab490a3140bcec0b3cf8036c5e7612ca7c27691a857da41c88d9dbe2654",
+      "bytes": 1864
+    },
+    "logs/window-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

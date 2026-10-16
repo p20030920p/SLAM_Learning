@@ -331,6 +331,22 @@ def practice(doc, zh, previous):
     def ref(path, name):
         return f"[{name}]({href(path)})"
 
+    def localization_video(folder, method, label_text):
+        path = folder + "/executions/" + method
+        return f'<a href="{href(path + ".mp4")}"><img src="{href(path + ".gif")}" width="320" loading="lazy" alt="{label_text} · localization B"></a>'
+
+    def frozen_b(folder, selected):
+        data = read(folder + "/score.json")
+        rows = []
+        for key, name in selected:
+            method = data["methods"][key]
+            rows.append([name, num(method["position_rmse_m"], 100), num(method["rotation_rmse_deg"]),
+                         localization_video(folder, key, name), ref(folder + "/record.json", label("记录", "Record"))])
+        dimensions = "XYZ" if data["dimension"] == "3D" else "XY"
+        return table([label("冻结地图", "Frozen map"), dimensions + " RMSE / cm ↓",
+                      label("旋转 RMSE / °", "Rotation RMSE / °") if data["dimension"] == "3D" else "yaw RMSE / °", label("定位B实录（点击看MP4）", "Localization B (click for MP4)"),
+                      label("证据", "Evidence")], rows), data
+
     lines = [
         "## " + label("实践", "Practice"),
         "",
@@ -525,6 +541,7 @@ def practice(doc, zh, previous):
                     name,
                     num(v["rmse_m"], 100),
                     num(v["yaw_rmse_deg"]),
+                    localization_video(folder, prefix + key, name),
                 ]
             )
         lines.extend(
@@ -534,15 +551,13 @@ def practice(doc, zh, previous):
                         label("地图", "Map"),
                         "XY RMSE / cm",
                         "yaw / °",
+                        label("定位B实录（点击看MP4）", "Localization B (click for MP4)"),
                     ],
                     rows,
                 ),
                 ref(folder + "/time-grid-score.json", label("评分", "Scores")),
                 "",
             ]
-        )
-        media(
-            folder, [("executions/" + prefix + key, name) for key, name in [("raw", "Raw"), ("srrg", "SRRG")]]
         )
         blank(anchor)
 
@@ -645,6 +660,7 @@ def practice(doc, zh, previous):
                     name,
                     num(m["xyz_rmse_m"], 100),
                     num(m["rotation_rmse_deg"]),
+                    localization_video(folder, key, name + " map"),
                 ]
             )
         lines += [
@@ -653,13 +669,13 @@ def practice(doc, zh, previous):
                     label("A点补偿", "A compensation"),
                     "XYZ RMSE / cm",
                     label("旋转 / °", "Rotation / °"),
+                    label("定位B实录（点击看MP4）", "Localization B (click for MP4)"),
                 ],
                 rows,
             ),
             ref(folder + "/score-3d.json", label("评分", "Scores")),
             "",
         ]
-    media(folder, [("executions/no_deskew", "Off map"), ("executions/deskew", "On map")])
     blank("h2-b")
 
     heading("experiment-h3", "H3 · " + label("长廊静态参照", "Corridor static references"), 3)
@@ -713,11 +729,11 @@ def practice(doc, zh, previous):
         ]
     blank("h3-scores")
 
-    heading("baseline-3d", label("三维原测试", "Existing 3D tests"), 3)
+    heading("baseline-3d", label("三维地图与独立定位", "3D maps and held-out localization"), 3)
     lines += [
         label(
-            "保留原Raw／DUFOMap／BeautyMap及GICP结果；各表的评分窗口见记录。",
-            "Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for scoring windows.",
+            "沿用原建图A的Raw／DUFOMap／BeautyMap；重新采集独立B，三张冻结地图使用同一GICP与B扫描。录像是Gazebo＋RViz实时窗口；B期间不更新地图。",
+            "Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use identical GICP settings and B scans on the three frozen maps. Videos capture live Gazebo + RViz windows; maps are not updated in B.",
         ),
         "",
     ]
@@ -729,49 +745,39 @@ def practice(doc, zh, previous):
     ]:
         heading("scene-" + scene + "-3d", title + " · 3D")
         folder = "results/reference/robot-3d-" + ("large-change" if scene == "change" else scene)
-        data = read(folder + "/record.json")["metrics_3d"]
         map_metrics = quality("large-change" if scene == "change" else scene, "3d")
         rows, mapping_rows = [], []
         for key, name in [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")]:
-            m = data[key]
             mapping_rows.append([name] + ([old_pct(map_metrics[key]["dynamic_removal"])] if scene == "dynamic" else []) + [old_pct(map_metrics[key]["static_retention"])])
-            rows.append(
-                [
-                    name,
-                    num(m["xyz_rmse_m"], 100),
-                    num(m["rotation_rmse_deg"]),
-                ]
-            )
+        b_folder = "results/reference/practice-frozen-20261016/3d-" + scene
+        b_table, b_score = frozen_b(b_folder, [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")])
+        if scene == "change":
+            lines += [label("本组冻结静态A地图，在结构变化场景重新采集B；A表沿用这三张静态地图的清理评分。", "This group freezes static-A maps and acquires B in the changed world; the A table retains cleaning scores for those static maps."), ""]
         lines += [
             "**" + label("A · 地图清理", "A · Map cleaning") + "**\n",
             table([label("地图", "Map")] + (["DA ↑"] if scene == "dynamic" else []) + ["SA ↑"], mapping_rows),
+            ref(b_folder + "/mapping-A-processing.json", label("建图A处理记录", "Mapping A processing record")),
+            "",
+            f'<a id="scene-{scene}-3d-b"></a>',
+            "",
             "**" + label("B · 冻结地图后定位", "B · Localization on frozen maps") + "**\n",
             "<!-- HOME_EXPERIMENT_TABLE -->",
-            table(
-                [
-                    label("地图", "Map"),
-                    "XYZ RMSE / cm",
-                    label("旋转 RMSE / °", "Rotation RMSE / °"),
-                ],
-                rows,
-            ).rstrip(),
+            b_table.rstrip(),
             "<!-- /HOME_EXPERIMENT_TABLE -->",
             "",
-            ref(folder + "/record.json", label("记录", "Record")),
+            ref(b_folder + "/score.json", label("共同时间点评分", "Common-time scores")) + " · " + label("共同有效样本：", "Common valid samples: ") + str(b_score["common_grid_samples"]) + "/" + str(b_score["expected_grid_samples"]),
             "",
         ]
         if scene == "corridor":
             lines += [label(
-                "本组有效定位输出区间不同；RMSE只覆盖有输出的时段，不能据此排名稳定性。缺失输出详情见记录。",
-                "Valid localization intervals differ in this group; RMSE covers available outputs only and cannot rank stability. See records for missing outputs.",
+                "前50秒限制观测，随后恢复完整扫描；RMSE只比较共同新鲜输出的时间点，不能据此排名整体稳定性。",
+                "Observations are restricted for 50 s, then restored. RMSE uses common times with fresh outputs and cannot rank overall stability.",
             ), ""]
-        media(
-            folder,
-            [
-                ("executions/" + key, name)
-                for key, name in [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")]
-            ],
-        )
+            coverage = ", ".join(name + " " + pct(b_score["methods"][key]["fresh_grid_coverage"]) for key, name in [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")])
+            lines += [label("新鲜输出覆盖：", "Fresh-output coverage: ") + coverage + label("。这是输出时效性，不是定位成功率。", ". This measures output freshness, not localization success."), ""]
+        elif b_score["common_grid_samples"] < .95 * b_score["expected_grid_samples"]:
+            coverage = ", ".join(name + " " + pct(b_score["methods"][key]["fresh_grid_coverage"]) for key, name in [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")])
+            lines += [label("新鲜输出覆盖：", "Fresh-output coverage: ") + coverage + label("；RMSE只覆盖共同有效时段，不表示完整时段的稳定性。", "; RMSE covers common valid times and does not describe stability over the full interval."), ""]
         blank("scene-" + scene + "-3d")
 
     heading("practice-appendix", label("补充实验", "Supplementary experiments"), 3)
@@ -784,14 +790,12 @@ def practice(doc, zh, previous):
                 label("方法", "Method"),
                 "SA",
                 label("新增结构覆盖", "New structure coverage"),
-                label("独立B", "Separate B"),
             ],
             [
                 [
                     name,
                     pct(data[key]["static_retention"]),
                     pct(data[key].get("new_structure_retention")),
-                    label("未测", "Not tested"),
                 ]
                 for key, name in [("raw", "Raw"), ("srrg", "SRRG")]
             ],
@@ -800,6 +804,12 @@ def practice(doc, zh, previous):
         "",
     ]
     media(folder, [("execution", "SRRG changed-world A")])
+    lines += ['<a id="supp-srrg-b"></a>', "", "**" + label("B · 冻结地图后定位", "B · Localization on frozen maps") + "**\n",
+              label("冻结持久变化建图A的两张地图；在相同变化场景重新采集B，用相同AMCL定位。", "Freeze both maps from persistent-change mapping A; acquire fresh B in the changed world and localize with identical AMCL settings."), ""]
+    b_folder = "results/reference/practice-frozen-20261016/srrg-change"
+    b_table, b_score = frozen_b(b_folder, [("raw", "Raw"), ("srrg", "SRRG")])
+    lines += [b_table, ref(b_folder + "/score.json", label("共同时间点评分", "Common-time scores")) + " · " + label("共同有效样本：", "Common valid samples: ") + str(b_score["common_grid_samples"]) + "/" + str(b_score["expected_grid_samples"]), ""]
+    lines += [label("AMCL按运动阈值触发发布；上述样本数只计输出滞后≤0.15秒的共同时间点，不代表定位成功率。", "AMCL publishes after motion thresholds are met; the count includes only common times with pose age ≤0.15 s and is not a localization success rate."), ""]
     blank("srrg-large-change-2d")
     heading("map-review-3d", label("保存点云回放", "Saved point-cloud replay"))
     media(

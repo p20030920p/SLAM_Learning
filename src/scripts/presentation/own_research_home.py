@@ -53,7 +53,7 @@ def practice(doc, zh, previous):
     fast = fast.replace('id="experiment-h2"', 'id="practice-fastlio"')
     corridor = corridor.replace('id="experiment-h3"', 'id="practice-srrg-corridor"')
     def expand_single_video(block):
-        return "\n".join(line.replace('width="340"', 'width="840"') if line.count("<img") == 1 else line for line in block.split("\n"))
+        return "\n".join(line.replace('width="340"', 'width="840"') if line.count("<img") == 1 and "localization B" not in line else line for line in block.split("\n"))
     sr, corridor, fast = map(expand_single_video, (sr, corridor, fast))
     index = [
         ["P0", s("实验设置与设备", "Setup and devices"), "[↗](#practice-setup)"],
@@ -61,13 +61,13 @@ def practice(doc, zh, previous):
         ["P1.1", "SRRG · " + s("静态", "Static"), "[A](#h1-static-a) / [B](#h1-static-b)"],
         ["P1.2", "SRRG · " + s("动态", "Dynamic"), "[A](#h1-dynamic-a) / [B](#h1-dynamic-b)"],
         ["P1.3", "SRRG · " + s("原长廊", "Original corridor"), "[A](#h3-original-a) / [B](#h3-original-b)"],
-        ["P1.4", "SRRG · " + s("结构变化", "Persistent change"), "[A](#supp-srrg)"],
+        ["P1.4", "SRRG · " + s("结构变化", "Persistent change"), "[A](#supp-srrg) / [B](#supp-srrg-b)"],
         ["P2.1", "FAST-LIO · " + s("建图与运动阶段", "Mapping and motion phases"), "[A](#h2-a) / [" + s("静止", "Stationary") + "](#h2-stationary) / [" + s("慢转", "Slow turn") + "](#h2-slow) / [" + s("快转", "Fast turn") + "](#h2-fast) / [" + s("平移", "Translation") + "](#h2-translation)"],
         ["P2.2", "FAST-LIO · " + s("冻结地图定位", "Frozen-map localization"), "[B](#h2-b)"],
     ]
     index.append(["P3.0", "DUFOMap / BeautyMap · KITTI-00", "[" + s("清图实践", "Map-cleaning practice") + "](#practice-kitti)"])
     for number, scene, cn, en in [(1, "static", "静态", "Static"), (2, "dynamic", "动态", "Dynamic"), (3, "corridor", "长廊", "Corridor"), (4, "change", "结构变化", "Changed world")]:
-        index.append([f"P3.{number}", "DUFOMap / BeautyMap · 3D · " + s(cn, en), f"[A/B](#scene-{scene}-3d)"])
+        index.append([f"P3.{number}", "DUFOMap / BeautyMap · 3D · " + s(cn, en), f"[A](#scene-{scene}-3d) / [B](#scene-{scene}-3d-b)"])
     index += [["P4", "IR-MCL · Bonn", "[↗](#practice-irmcl)"], ["P5", "AdaM-MCL", "[↗](#practice-adam)"],
         ["P6.1", "NDT / GICP", "[↗](#supp-registrations)"], ["P6.2", "slam_toolbox / AMCL", "[↗](#supp-acquisition)"],
         ["P6.3", s("保存点云回放", "Saved-cloud replay"), "[↗](#map-review-3d)"], ["P6.4", s("失败诊断", "Failure diagnostics"), "[↗](#srrg-diagnostics)"]]

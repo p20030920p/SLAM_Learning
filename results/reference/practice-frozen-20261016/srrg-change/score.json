@@ -1,0 +1,31 @@
+{
+  "kind": "held_out_frozen_map_localization",
+  "dimension": "2D",
+  "scope": "Fresh B; native estimates; truth only for scoring; no trajectory alignment; 10 Hz after 5 s; latest pose age <= 0.15 s; common times across displayed controls",
+  "expected_grid_samples": 601,
+  "common_grid_samples": 273,
+  "recording_interval_sim_s": [
+    10.477,
+    75.47800000000001
+  ],
+  "methods": {
+    "raw": {
+      "native_rows": 289,
+      "invalid_rows": 0,
+      "common_samples": 273,
+      "position_rmse_m": 0.053979980695989076,
+      "rotation_rmse_deg": 2.862553894319145,
+      "fresh_grid_coverage": 0.454242928452579,
+      "own_valid_position_rmse_m": 0.053979980695989076
+    },
+    "srrg": {
+      "native_rows": 289,
+      "invalid_rows": 0,
+      "common_samples": 273,
+      "position_rmse_m": 0.04355383283173576,
+      "rotation_rmse_deg": 2.645533359029275,
+      "fresh_grid_coverage": 0.454242928452579,
+      "own_valid_position_rmse_m": 0.04355383283173576
+    }
+  }
+}

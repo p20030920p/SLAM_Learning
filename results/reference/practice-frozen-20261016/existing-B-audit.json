@@ -1,0 +1,74 @@
+{
+  "status": "verified",
+  "scope": "Validate existing 2D SRRG and FAST-LIO B records and videos; these eight clips are reused, not claimed as fresh runs",
+  "groups": [
+    {
+      "group": "static",
+      "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-011112-localization-static-method-live-366b2d",
+      "frozen_map_files_match_A": true,
+      "videos": [
+        {
+          "method": "raw",
+          "video": "results/reference/direction-20261016-v2/2d-static/executions/raw.mp4",
+          "sha256": "cc2dfec22798452b8bd9a06b668cd9cf60e9a8066b28b0dbad4e93dc042fcfe5"
+        },
+        {
+          "method": "srrg",
+          "video": "results/reference/direction-20261016-v2/2d-static/executions/srrg.mp4",
+          "sha256": "8b96288c0bac98c6674ced3d33a0acb891c2c5c30e9e435fc84706a390a1238e"
+        }
+      ]
+    },
+    {
+      "group": "dynamic",
+      "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-011457-localization-dynamic-method-live-3d3c7d",
+      "frozen_map_files_match_A": true,
+      "videos": [
+        {
+          "method": "raw",
+          "video": "results/reference/direction-20261016-v2/2d-dynamic/executions/raw.mp4",
+          "sha256": "36bc521f3d603067854660ffc3b489f2b41dd7b0b00f6cf4cd055f8440b1515d"
+        },
+        {
+          "method": "srrg",
+          "video": "results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.mp4",
+          "sha256": "6f65134d8571a646179b4df80c4728ac971bb993b4739178192a53ef7257a7cd"
+        }
+      ]
+    },
+    {
+      "group": "corridor",
+      "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-012402-localization-degradation-method-live-d936b9",
+      "frozen_map_files_match_A": true,
+      "videos": [
+        {
+          "method": "degraded_raw",
+          "video": "results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.mp4",
+          "sha256": "e3dc322dd03f2a13a4391296319d4c2000b225322c2ec9bae9efbd4a986076ef"
+        },
+        {
+          "method": "degraded_srrg",
+          "video": "results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.mp4",
+          "sha256": "c6a05929780d8167e58f82c10bf9eb76a0f4d22c40a63279d90f17dba2442972"
+        }
+      ]
+    },
+    {
+      "group": "fastlio",
+      "source_run": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261016-013218-localization-fastlio-3d-static-method-live-006dce",
+      "frozen_map_files_match_A": true,
+      "videos": [
+        {
+          "method": "no_deskew",
+          "video": "results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.mp4",
+          "sha256": "3d96b3b5d02e530032fe1e81bbf84c39c5031d4b7c58ee018d45e3baf87e17d1"
+        },
+        {
+          "method": "deskew",
+          "video": "results/reference/direction-20261016-v2/fastlio-B/executions/deskew.mp4",
+          "sha256": "4cad4a83669d84c9afe04e684ae1962996e00ab3d93578ac3a6559e2191b28e0"
+        }
+      ]
+    }
+  ]
+}

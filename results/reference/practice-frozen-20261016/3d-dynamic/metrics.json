@@ -1,0 +1,52 @@
+{
+  "kind": "live_native_ui_session",
+  "status": "completed",
+  "failure": null,
+  "mode": "localization",
+  "points_received": 717,
+  "scans_received": 717,
+  "mapping_frames": 0,
+  "truth_source": "Gazebo Pose_V named omni_car, top-level simulation timestamp",
+  "truth_used_for": "evaluation/display; provided poses only in controlled mapping A",
+  "score_alignment": "none; native author-derived maps and truth share world/map coordinates",
+  "score_sampling": "native estimator pose updates; nearest truth within 0.05 simulation seconds",
+  "cases": {
+    "raw": {
+      "samples": 698,
+      "dropped_unsynchronized": 1,
+      "position_rmse_m": 0.010956775189462746,
+      "yaw_rmse_deg": 0.16138170324859225,
+      "post_warmup_5s_samples": 651,
+      "post_warmup_5s_position_rmse_m": 0.011018067045877895,
+      "position_p95_m": 0.02001250465663299
+    },
+    "dufomap": {
+      "samples": 695,
+      "dropped_unsynchronized": 1,
+      "position_rmse_m": 0.011283920043074672,
+      "yaw_rmse_deg": 0.16803526081234899,
+      "post_warmup_5s_samples": 649,
+      "post_warmup_5s_position_rmse_m": 0.01136245081486705,
+      "position_p95_m": 0.02009990163321226
+    },
+    "beautymap": {
+      "samples": 710,
+      "dropped_unsynchronized": 1,
+      "position_rmse_m": 0.011222953618615415,
+      "yaw_rmse_deg": 0.163387014518707,
+      "post_warmup_5s_samples": 662,
+      "post_warmup_5s_position_rmse_m": 0.011223228569167914,
+      "position_p95_m": 0.020310177325416127
+    }
+  },
+  "recording_interval_sim_s": [
+    8.038,
+    73.03800000000001
+  ],
+  "observed_map": {
+    "width": 181,
+    "height": 321,
+    "resolution_m": 0.05000000074505806,
+    "known_cells": 23881
+  }
+}

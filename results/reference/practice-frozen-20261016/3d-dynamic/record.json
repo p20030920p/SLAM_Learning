@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "kind": "native_frozen_map_practice",
+  "status": "executed",
+  "exit_code": 0,
+  "source_run": "F:\\be2演讲\\原始会话\\practice-frozen-20261016\\20261016-030034-localization-3d-dynamic-method-live-597f5f",
+  "frozen_maps_unchanged": true,
+  "truth_input_to_localizers": false,
+  "score": {
+    "kind": "held_out_frozen_map_localization",
+    "dimension": "3D",
+    "scope": "Fresh B; native estimates; truth only for scoring; no trajectory alignment; 10 Hz after 5 s; latest pose age <= 0.15 s; common times across displayed controls",
+    "expected_grid_samples": 601,
+    "common_grid_samples": 600,
+    "recording_interval_sim_s": [
+      8.038,
+      73.03800000000001
+    ],
+    "methods": {
+      "raw": {
+        "native_rows": 698,
+        "invalid_rows": 0,
+        "common_samples": 600,
+        "position_rmse_m": 0.013305741989383753,
+        "rotation_rmse_deg": 0.9907351109059734,
+        "fresh_grid_coverage": 0.9983361064891847,
+        "own_valid_position_rmse_m": 0.013305741989383753
+      },
+      "dufomap": {
+        "native_rows": 695,
+        "invalid_rows": 0,
+        "common_samples": 600,
+        "position_rmse_m": 0.013445356448050198,
+        "rotation_rmse_deg": 1.182845229303344,
+        "fresh_grid_coverage": 0.9983361064891847,
+        "own_valid_position_rmse_m": 0.013445356448050198
+      },
+      "beautymap": {
+        "native_rows": 710,
+        "invalid_rows": 0,
+        "common_samples": 600,
+        "position_rmse_m": 0.01292242225974323,
+        "rotation_rmse_deg": 0.985288994415281,
+        "fresh_grid_coverage": 1.0,
+        "own_valid_position_rmse_m": 0.01291240908137247
+      }
+    }
+  },
+  "timing": {
+    "raw": {
+      "duration_s": 112.00000000000105,
+      "frames": 560,
+      "fps": 5,
+      "video_duration_s": 112.083333,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "dufomap": {
+      "duration_s": 112.00000000000105,
+      "frames": 560,
+      "fps": 5,
+      "video_duration_s": 112.083333,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    },
+    "beautymap": {
+      "duration_s": 112.00000000000105,
+      "frames": 560,
+      "fps": 5,
+      "video_duration_s": 112.0,
+      "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+    }
+  },
+  "recorded_inputs": {
+    "F:\\be2演讲\\原始会话\\practice-frozen-20261016\\20261016-030034-localization-3d-dynamic-method-live-597f5f\\input-bag\\input-bag_0.mcap": {
+      "sha256": "ead7c4992d83b8f296c497e4a1aa6b4ff7236dfbbd0aefe50ae6e0a6bd72ee63",
+      "bytes": 282926211,
+      "availability": "local_only"
+    }
+  },
+  "artifacts": {
+    "beautymap-poses3d.csv": {
+      "sha256": "8d8d208b171a964952adabfceb9ce8be4b4d0a737ecd2a4d10839c81272697cb",
+      "bytes": 217823
+    },
+    "beautymap-samples.csv": {
+      "sha256": "fc998ab7656d481ca9a2d21a8f03c99d95da9587fe51b3f6d5b397eea9194cea",
+      "bytes": 127188
+    },
+    "cases.json": {
+      "sha256": "3d0e798a4c9d0c585d4cef803cdc24497bafe355b7f06dbbcd0bd16d0ddf66c7",
+      "bytes": 2411
+    },
+    "dufomap-poses3d.csv": {
+      "sha256": "ab5399626f6392d5c2e6ea0ab18c0fb6e42a130bb888ff3e3e906d3109b98de5",
+      "bytes": 213424
+    },
+    "dufomap-samples.csv": {
+      "sha256": "268a0a0b45a34bc85e188372e9033edc1382c9ba42a364740d4d77266b33698e",
+      "bytes": 124376
+    },
+    "frozen-inputs.json": {
+      "sha256": "6095a44e4447d73bfb4a88a62e17b888c6a143a2d7f4a10a4be83fe79aadef12",
+      "bytes": 3228
+    },
+    "metrics.json": {
+      "sha256": "a02fbd259bdeb2c3e730831b91dc1bf9603fe5e4b4b2fadf7376efdadd38745f",
+      "bytes": 1699
+    },
+    "native-views.json": {
+      "sha256": "bbe6f45a36b9b07d7662cc976483e9d145718bbb8c080ad6df12ccad037d46eb",
+      "bytes": 1339
+    },
+    "raw-poses3d.csv": {
+      "sha256": "44bff666271b1dba40cf134852f7ac219148802313133da474f3ed62b3423ef4",
+      "bytes": 214409
+    },
+    "raw-samples.csv": {
+      "sha256": "7cec0c834e0d276ea3fecc567d087caa3c8c6f6c48d5c93918d5a303c763b354",
+      "bytes": 125004
+    },
+    "recording.started": {
+      "sha256": "47458851016c10850bc451cea914f6cd1894baefb191a79545ed4c2447c65d60",
+      "bytes": 33
+    },
+    "recording.stopped": {
+      "sha256": "cd39cf0bfb4b789cca11c6598e4a0fb72190789f9b176a6ca8aaf7fee0f4dc6c",
+      "bytes": 33
+    },
+    "runtime.json": {
+      "sha256": "206fd274f45ec1849da035384f7810742d5734fe670400df0b17d538657abc35",
+      "bytes": 391
+    },
+    "score.json": {
+      "sha256": "110cfc45af0d1fd1a7dd9390953fea7dbea0b72f45cf2b3439bce820f2c31ca6",
+      "bytes": 1322
+    },
+    "session.json": {
+      "sha256": "e096c8c029797db1bd722661b8fda081e41815690fc819a915e8858ef2f6214f",
+      "bytes": 22582
+    },
+    "truth.jsonl": {
+      "sha256": "e9098b957140a60c1c904f92c78203ab218402f757a9b1390148e57a02b22a64",
+      "bytes": 1456647
+    },
+    "view-beautymap.rviz": {
+      "sha256": "730122c40c29b559272724aa29de15caf5c709580f6aac8d0b631c1de230e0a8",
+      "bytes": 3035
+    },
+    "view-dufomap.rviz": {
+      "sha256": "55fc2d06f6cc6da676f62679831835d609b16196554e2d72f21509dd6fe20e7d",
+      "bytes": 3026
+    },
+    "view-raw.rviz": {
+      "sha256": "f1f3e4253c35485d77166f20a0e3023e04a316056d8417353356198f2e77b7bb",
+      "bytes": 3010
+    },
+    "view-updates.jsonl": {
+      "sha256": "51bdd0cc2010d4adc3cd91ff99516e520d50ec55fa02e99c35499c23d1fe715c",
+      "bytes": 313565
+    },
+    "views.json": {
+      "sha256": "c531ca7e6bed8840c28b5d4fb5246ded460a20cc87925bf220da1a169e3a1063",
+      "bytes": 871
+    },
+    "window-capture-heartbeat.jsonl": {
+      "sha256": "bdae84bdfe85b788d2bede29ce2572383952cf2c45eefc406cfd435a5477c3e7",
+      "bytes": 38155
+    },
+    "executions/beautymap-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "executions/beautymap-filter.txt": {
+      "sha256": "b3412e2ff93a24de8e75abe0352dba48da1254c51bb769b40dd203a2b2ff96c5",
+      "bytes": 429
+    },
+    "executions/beautymap-first.png": {
+      "sha256": "63b3ece0b2ee822f8f16fa26adc0f033639f136b8d701a7ccdf0ca4e1d5c1b6b",
+      "bytes": 552388
+    },
+    "executions/beautymap-last.png": {
+      "sha256": "6a4751642ad2a637b904c3f548fe25081807266c6b5696ebdc821643e7bb5e0d",
+      "bytes": 562330
+    },
+    "executions/beautymap-mid.png": {
+      "sha256": "427f38ab8e19a68d3210cfdaf3573549cccc891c15c4c065b478a4b535650f35",
+      "bytes": 562850
+    },
+    "executions/beautymap-probe.json": {
+      "sha256": "2f9256726866b11daca2a19e473509b4dabcd949340ae7bead83feee7d1d129d",
+      "bytes": 329
+    },
+    "executions/beautymap.gif": {
+      "sha256": "f74698fa3d1d3a6a6cc9cb17c9344fa9234a3aaa2c835434b377a1ec2fc1d6c4",
+      "bytes": 1812920
+    },
+    "executions/beautymap.mp4": {
+      "sha256": "c281546de20b20581255d76a4f21ff97ed682988de16afb70b80bb958ea5cdeb",
+      "bytes": 5290187
+    },
+    "executions/dufomap-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "executions/dufomap-filter.txt": {
+      "sha256": "90ccc1d2dcd006000ef99904970a8c974626ddb28c165e9ff65b16d34e72d3af",
+      "bytes": 427
+    },
+    "executions/dufomap-first.png": {
+      "sha256": "1902baedca332f8688a908287bd206a2d3574d5956a8b164f2a42548b4ce7768",
+      "bytes": 568156
+    },
+    "executions/dufomap-last.png": {
+      "sha256": "54d5672586b692c7fbf2e2adc5d1b591423a7865f3a240120935cbf0011ecabb",
+      "bytes": 577289
+    },
+    "executions/dufomap-mid.png": {
+      "sha256": "f7c862ba1cdef7020bc496d73708d640296c41b81a28ad3cf91457a9c563f0d8",
+      "bytes": 577342
+    },
+    "executions/dufomap-probe.json": {
+      "sha256": "6a8cf607e82e6a0e69af80c0d96522d8c82efda88bfd0cdbe50ce98859bb87df",
+      "bytes": 329
+    },
+    "executions/dufomap.gif": {
+      "sha256": "76e4d2ff4f05cc07d74bc523304be873cfc9d98747871adafae45225fcaecae0",
+      "bytes": 1633319
+    },
+    "executions/dufomap.mp4": {
+      "sha256": "09aa2e4ed32a15cae3c72cdc1cd07b18fd02d6b2f25e98f087aeb97253ab52f8",
+      "bytes": 5083963
+    },
+    "executions/raw-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "executions/raw-filter.txt": {
+      "sha256": "7d7a5d1be5c8bed0020083cfc326a8c87694a2d975ec6c01395baa2e9e2f4810",
+      "bytes": 423
+    },
+    "executions/raw-first.png": {
+      "sha256": "6ce32b1b0d319a8a6d0448fa2e98f09e3e530ac6c3a2a07db3e915a1fb8912b7",
+      "bytes": 568952
+    },
+    "executions/raw-last.png": {
+      "sha256": "577469c589d8cbf7a5f57bf4efdb8419325fbe86b2d90d9667325e0f21c31e25",
+      "bytes": 577946
+    },
+    "executions/raw-mid.png": {
+      "sha256": "c062842b63b40903e94782c755abc48b33249367578e3a444249271389964af9",
+      "bytes": 577359
+    },
+    "executions/raw-probe.json": {
+      "sha256": "10f49406f3a7ad5eea08fac6f3a6280156fa39b3500d6b0ee62a10ab13960ef7",
+      "bytes": 329
+    },
+    "executions/raw.gif": {
+      "sha256": "7cf76d28479da0a42f7e172ee0d70a3ee9586be845b310a9b1ae3be260e8cf6a",
+      "bytes": 1618215
+    },
+    "executions/raw.mp4": {
+      "sha256": "aafd1022cdbbfab142f4be0ccf43ed634fdb0cbd00c0fc291c19a0d4907ca3af",
+      "bytes": 5060487
+    },
+    "logs/bag.log": {
+      "sha256": "ca7d3231a9f2ef2858b646743437e76dbdb7fed870aedf1b25d2769852b0a9a6",
+      "bytes": 41535
+    },
+    "logs/cmake.log": {
+      "sha256": "97e5be5e8b52950c0fe331d5bc4a22a7f967a76f6c036acf3686a9530a95dd09",
+      "bytes": 1126
+    },
+    "logs/localizers.log": {
+      "sha256": "18ca8864f11301d536506846b75ef4900b1e477ead960d16728b3ed6fd4854d0",
+      "bytes": 1603867
+    },
+    "logs/observer.log": {
+      "sha256": "9b215f1b82d85b0ed78ff279aa22ace63f01a2ee6b5d0ac8fbefdddc4ed61d01",
+      "bytes": 17943
+    },
+    "logs/patrol.log": {
+      "sha256": "b08feef1264d36ee33d6d0617de1852b6b42fab5b01d57f66fd0ae4d9d27adcc",
+      "bytes": 2653
+    },
+    "logs/renderer.txt": {
+      "sha256": "9171fc2caa09e81e70c36767b52db6e53879d891b0a65c666adf9f1648647c7d",
+      "bytes": 1774
+    },
+    "logs/rviz-beautymap.log": {
+      "sha256": "f07eb6e7735020690a006f928b03452054c0ce6d2636af59033fae4eb0cd069f",
+      "bytes": 600
+    },
+    "logs/rviz-dufomap.log": {
+      "sha256": "4abb9f981942335348ea1bd23c75198c18c1871c9f0e24d3e10ab20e8d20b910",
+      "bytes": 598
+    },
+    "logs/rviz-raw.log": {
+      "sha256": "b6d52fc08f8a873548a464503959042ebb560c77b6ebce39a3d555b2fa10f9de",
+      "bytes": 594
+    },
+    "logs/stack.log": {
+      "sha256": "c00c5f867043816b774db8ad2efbcf53cec1227ce5716ef07ed5c0875ac5acc3",
+      "bytes": 12834
+    },
+    "logs/views.log": {
+      "sha256": "bb05c4fdf6fb262ba6eb12e81189c3122cdeba151b35983806bee96a00e58e27",
+      "bytes": 2603
+    },
+    "logs/window-capture.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "mapping-A-processing.json": {
+      "sha256": "d6e8d8fc690f2606f1aefca77bd888c092a2572141712add0ef53aa87f7bc402",
+      "bytes": 2279
+    }
+  },
+  "source_A_or_prior_record": "results/reference/robot-3d-dynamic/record.json",
+  "mapping_A_processing_record": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043\\author-maps-20261014-233857\\record.json",
+  "mapping_A_processing_sha256": "d6e8d8fc690f2606f1aefca77bd888c092a2572141712add0ef53aa87f7bc402"
+}

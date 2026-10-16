@@ -412,14 +412,14 @@ RViz 中地图提供环境参照，黄色粒子是候选位置，蓝色是显示
 | P1.1 | SRRG · 静态 | [A](#h1-static-a) / [B](#h1-static-b) |
 | P1.2 | SRRG · 动态 | [A](#h1-dynamic-a) / [B](#h1-dynamic-b) |
 | P1.3 | SRRG · 原长廊 | [A](#h3-original-a) / [B](#h3-original-b) |
-| P1.4 | SRRG · 结构变化 | [A](#supp-srrg) |
+| P1.4 | SRRG · 结构变化 | [A](#supp-srrg) / [B](#supp-srrg-b) |
 | P2.1 | FAST-LIO · 建图与运动阶段 | [A](#h2-a) / [静止](#h2-stationary) / [慢转](#h2-slow) / [快转](#h2-fast) / [平移](#h2-translation) |
 | P2.2 | FAST-LIO · 冻结地图定位 | [B](#h2-b) |
 | P3.0 | DUFOMap / BeautyMap · KITTI-00 | [清图实践](#practice-kitti) |
-| P3.1 | DUFOMap / BeautyMap · 3D · 静态 | [A/B](#scene-static-3d) |
-| P3.2 | DUFOMap / BeautyMap · 3D · 动态 | [A/B](#scene-dynamic-3d) |
-| P3.3 | DUFOMap / BeautyMap · 3D · 长廊 | [A/B](#scene-corridor-3d) |
-| P3.4 | DUFOMap / BeautyMap · 3D · 结构变化 | [A/B](#scene-change-3d) |
+| P3.1 | DUFOMap / BeautyMap · 3D · 静态 | [A](#scene-static-3d) / [B](#scene-static-3d-b) |
+| P3.2 | DUFOMap / BeautyMap · 3D · 动态 | [A](#scene-dynamic-3d) / [B](#scene-dynamic-3d-b) |
+| P3.3 | DUFOMap / BeautyMap · 3D · 长廊 | [A](#scene-corridor-3d) / [B](#scene-corridor-3d-b) |
+| P3.4 | DUFOMap / BeautyMap · 3D · 结构变化 | [A](#scene-change-3d) / [B](#scene-change-3d-b) |
 | P4 | IR-MCL · Bonn | [进入实验](#practice-irmcl) |
 | P5 | AdaM-MCL | [进入实验](#practice-adam) |
 | P6.1 | NDT / GICP | [进入实验](#supp-registrations) |
@@ -503,18 +503,13 @@ A按任务评价清图或几何；B评价冻结地图后的定位。B使用共�
 
 #### 静态 · B
 
-| 地图 | XY RMSE / cm | yaw / ° |
-| --- | --- | --- |
-| Raw | 5.03 | 2.88 |
-| SRRG | 5.84 | 2.91 |
+| 地图 | XY RMSE / cm | yaw / ° | 定位B实录（点击看MP4） |
+| --- | --- | --- | --- |
+| Raw | 5.03 | 2.88 | <a href="../results/reference/direction-20261016-v2/2d-static/executions/raw.mp4"><img src="../results/reference/direction-20261016-v2/2d-static/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> |
+| SRRG | 5.84 | 2.91 | <a href="../results/reference/direction-20261016-v2/2d-static/executions/srrg.mp4"><img src="../results/reference/direction-20261016-v2/2d-static/executions/srrg.gif" width="320" loading="lazy" alt="SRRG · localization B"></a> |
 
 
 [评分](../results/reference/direction-20261016-v2/2d-static/time-grid-score.json)
-
-| Raw | SRRG |
-| --- | --- |
-| <a href="../results/reference/direction-20261016-v2/2d-static/executions/raw.mp4"><img src="../results/reference/direction-20261016-v2/2d-static/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="../results/reference/direction-20261016-v2/2d-static/executions/srrg.mp4"><img src="../results/reference/direction-20261016-v2/2d-static/executions/srrg.gif" width="340" loading="lazy" alt="SRRG"></a> |
-
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:h1-static-b -->
@@ -551,18 +546,13 @@ A按任务评价清图或几何；B评价冻结地图后的定位。B使用共�
 
 #### 动态 · B
 
-| 地图 | XY RMSE / cm | yaw / ° |
-| --- | --- | --- |
-| Raw | 5.53 | 0.76 |
-| SRRG | 5.13 | 0.70 |
+| 地图 | XY RMSE / cm | yaw / ° | 定位B实录（点击看MP4） |
+| --- | --- | --- | --- |
+| Raw | 5.53 | 0.76 | <a href="../results/reference/direction-20261016-v2/2d-dynamic/executions/raw.mp4"><img src="../results/reference/direction-20261016-v2/2d-dynamic/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> |
+| SRRG | 5.13 | 0.70 | <a href="../results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.mp4"><img src="../results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.gif" width="320" loading="lazy" alt="SRRG · localization B"></a> |
 
 
 [评分](../results/reference/direction-20261016-v2/2d-dynamic/time-grid-score.json)
-
-| Raw | SRRG |
-| --- | --- |
-| <a href="../results/reference/direction-20261016-v2/2d-dynamic/executions/raw.mp4"><img src="../results/reference/direction-20261016-v2/2d-dynamic/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="../results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.mp4"><img src="../results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.gif" width="340" loading="lazy" alt="SRRG"></a> |
-
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:h1-dynamic-b -->
@@ -603,18 +593,13 @@ A按任务评价清图或几何；B评价冻结地图后的定位。B使用共�
 
 #### 原长廊 · B
 
-| 地图 | XY RMSE / cm | yaw / ° |
-| --- | --- | --- |
-| Raw | 113.30 | 1.38 |
-| SRRG | 102.72 | 1.08 |
+| 地图 | XY RMSE / cm | yaw / ° | 定位B实录（点击看MP4） |
+| --- | --- | --- | --- |
+| Raw | 113.30 | 1.38 | <a href="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.mp4"><img src="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> |
+| SRRG | 102.72 | 1.08 | <a href="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.mp4"><img src="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.gif" width="320" loading="lazy" alt="SRRG · localization B"></a> |
 
 
 [评分](../results/reference/direction-20261016-v2/2d-corridor/time-grid-score.json)
-
-| Raw | SRRG |
-| --- | --- |
-| <a href="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.mp4"><img src="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.mp4"><img src="../results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.gif" width="340" loading="lazy" alt="SRRG"></a> |
-
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:h3-original-b -->
@@ -702,18 +687,13 @@ A按任务评价清图或几何；B评价冻结地图后的定位。B使用共�
 
 #### B · 冻结地图后GICP定位
 
-| A点补偿 | XYZ RMSE / cm | 旋转 / ° |
-| --- | --- | --- |
-| 关 | 14.03 | 3.62 |
-| 开 | 2.04 | 0.87 |
+| A点补偿 | XYZ RMSE / cm | 旋转 / ° | 定位B实录（点击看MP4） |
+| --- | --- | --- | --- |
+| 关 | 14.03 | 3.62 | <a href="../results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.mp4"><img src="../results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.gif" width="320" loading="lazy" alt="关 map · localization B"></a> |
+| 开 | 2.04 | 0.87 | <a href="../results/reference/direction-20261016-v2/fastlio-B/executions/deskew.mp4"><img src="../results/reference/direction-20261016-v2/fastlio-B/executions/deskew.gif" width="320" loading="lazy" alt="开 map · localization B"></a> |
 
 
 [评分](../results/reference/direction-20261016-v2/fastlio-B/score-3d.json)
-
-| Off map | On map |
-| --- | --- |
-| <a href="../results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.mp4"><img src="../results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.gif" width="340" loading="lazy" alt="Off map"></a> | <a href="../results/reference/direction-20261016-v2/fastlio-B/executions/deskew.mp4"><img src="../results/reference/direction-20261016-v2/fastlio-B/executions/deskew.gif" width="340" loading="lazy" alt="On map"></a> |
-
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:h2-b -->
@@ -735,9 +715,9 @@ KITTI-00，141帧；本项只评价地图清理。
 
 <a id="baseline-3d"></a>
 
-### 三维原测试
+### 三维地图与独立定位
 
-保留原Raw／DUFOMap／BeautyMap及GICP结果；各表的评分窗口见记录。
+沿用原建图A的Raw／DUFOMap／BeautyMap；重新采集独立B，三张冻结地图使用同一GICP与B扫描。录像是Gazebo＋RViz实时窗口；B期间不更新地图。
 
 <a id="scene-static-3d"></a>
 
@@ -752,22 +732,21 @@ KITTI-00，141帧；本项只评价地图清理。
 | BeautyMap | 83.33% |
 
 
+[建图A处理记录](../results/reference/practice-frozen-20261016/3d-static/mapping-A-processing.json)
+
+<a id="scene-static-3d-b"></a>
+
 **B · 冻结地图后定位**
 
 <!-- HOME_EXPERIMENT_TABLE -->
-| 地图 | XYZ RMSE / cm | 旋转 RMSE / ° |
-| --- | --- | --- |
-| Raw | 0.95 | 0.15 |
-| DUFOMap | 0.99 | 0.16 |
-| BeautyMap | 1.07 | 0.17 |
+| 冻结地图 | XYZ RMSE / cm ↓ | 旋转 RMSE / ° | 定位B实录（点击看MP4） | 证据 |
+| --- | --- | --- | --- | --- |
+| Raw | 1.60 | 1.63 | <a href="../results/reference/practice-frozen-20261016/3d-static/executions/raw.mp4"><img src="../results/reference/practice-frozen-20261016/3d-static/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-static/record.json) |
+| DUFOMap | 1.62 | 1.51 | <a href="../results/reference/practice-frozen-20261016/3d-static/executions/dufomap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-static/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-static/record.json) |
+| BeautyMap | 1.45 | 1.29 | <a href="../results/reference/practice-frozen-20261016/3d-static/executions/beautymap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-static/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-static/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[记录](../results/reference/robot-3d-static/record.json)
-
-| Raw | DUFOMap | BeautyMap |
-| --- | --- | --- |
-| <a href="../results/reference/robot-3d-static/executions/raw.mp4"><img src="../results/reference/robot-3d-static/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="../results/reference/robot-3d-static/executions/dufomap.mp4"><img src="../results/reference/robot-3d-static/executions/dufomap.gif" width="340" loading="lazy" alt="DUFOMap"></a> | <a href="../results/reference/robot-3d-static/executions/beautymap.mp4"><img src="../results/reference/robot-3d-static/executions/beautymap.gif" width="340" loading="lazy" alt="BeautyMap"></a> |
-
+[共同时间点评分](../results/reference/practice-frozen-20261016/3d-static/score.json) · 共同有效样本：601/601
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-static-3d -->
@@ -789,22 +768,21 @@ KITTI-00，141帧；本项只评价地图清理。
 | BeautyMap | 74.36% | 81.15% |
 
 
+[建图A处理记录](../results/reference/practice-frozen-20261016/3d-dynamic/mapping-A-processing.json)
+
+<a id="scene-dynamic-3d-b"></a>
+
 **B · 冻结地图后定位**
 
 <!-- HOME_EXPERIMENT_TABLE -->
-| 地图 | XYZ RMSE / cm | 旋转 RMSE / ° |
-| --- | --- | --- |
-| Raw | 0.98 | 0.17 |
-| DUFOMap | 0.98 | 0.18 |
-| BeautyMap | 1.04 | 0.17 |
+| 冻结地图 | XYZ RMSE / cm ↓ | 旋转 RMSE / ° | 定位B实录（点击看MP4） | 证据 |
+| --- | --- | --- | --- | --- |
+| Raw | 1.33 | 0.99 | <a href="../results/reference/practice-frozen-20261016/3d-dynamic/executions/raw.mp4"><img src="../results/reference/practice-frozen-20261016/3d-dynamic/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
+| DUFOMap | 1.34 | 1.18 | <a href="../results/reference/practice-frozen-20261016/3d-dynamic/executions/dufomap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-dynamic/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
+| BeautyMap | 1.29 | 0.99 | <a href="../results/reference/practice-frozen-20261016/3d-dynamic/executions/beautymap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-dynamic/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[记录](../results/reference/robot-3d-dynamic/record.json)
-
-| Raw | DUFOMap | BeautyMap |
-| --- | --- | --- |
-| <a href="../results/reference/robot-3d-dynamic/executions/raw.mp4"><img src="../results/reference/robot-3d-dynamic/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="../results/reference/robot-3d-dynamic/executions/dufomap.mp4"><img src="../results/reference/robot-3d-dynamic/executions/dufomap.gif" width="340" loading="lazy" alt="DUFOMap"></a> | <a href="../results/reference/robot-3d-dynamic/executions/beautymap.mp4"><img src="../results/reference/robot-3d-dynamic/executions/beautymap.gif" width="340" loading="lazy" alt="BeautyMap"></a> |
-
+[共同时间点评分](../results/reference/practice-frozen-20261016/3d-dynamic/score.json) · 共同有效样本：600/601
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-dynamic-3d -->
@@ -826,24 +804,25 @@ KITTI-00，141帧；本项只评价地图清理。
 | BeautyMap | 99.9% |
 
 
+[建图A处理记录](../results/reference/practice-frozen-20261016/3d-corridor/mapping-A-processing.json)
+
+<a id="scene-corridor-3d-b"></a>
+
 **B · 冻结地图后定位**
 
 <!-- HOME_EXPERIMENT_TABLE -->
-| 地图 | XYZ RMSE / cm | 旋转 RMSE / ° |
-| --- | --- | --- |
-| Raw | 474.38 | 0.53 |
-| DUFOMap | 497.05 | 0.48 |
-| BeautyMap | 592.00 | 49.16 |
+| 冻结地图 | XYZ RMSE / cm ↓ | 旋转 RMSE / ° | 定位B实录（点击看MP4） | 证据 |
+| --- | --- | --- | --- | --- |
+| Raw | 582.43 | 1.77 | <a href="../results/reference/practice-frozen-20261016/3d-corridor/executions/raw.mp4"><img src="../results/reference/practice-frozen-20261016/3d-corridor/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-corridor/record.json) |
+| DUFOMap | 423.89 | 1.74 | <a href="../results/reference/practice-frozen-20261016/3d-corridor/executions/dufomap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-corridor/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-corridor/record.json) |
+| BeautyMap | 526.67 | 1.69 | <a href="../results/reference/practice-frozen-20261016/3d-corridor/executions/beautymap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-corridor/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-corridor/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[记录](../results/reference/robot-3d-corridor/record.json)
+[共同时间点评分](../results/reference/practice-frozen-20261016/3d-corridor/score.json) · 共同有效样本：304/601
 
-本组有效定位输出区间不同；RMSE只覆盖有输出的时段，不能据此排名稳定性。缺失输出详情见记录。
+前50秒限制观测，随后恢复完整扫描；RMSE只比较共同新鲜输出的时间点，不能据此排名整体稳定性。
 
-| Raw | DUFOMap | BeautyMap |
-| --- | --- | --- |
-| <a href="../results/reference/robot-3d-corridor/executions/raw.mp4"><img src="../results/reference/robot-3d-corridor/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="../results/reference/robot-3d-corridor/executions/dufomap.mp4"><img src="../results/reference/robot-3d-corridor/executions/dufomap.gif" width="340" loading="lazy" alt="DUFOMap"></a> | <a href="../results/reference/robot-3d-corridor/executions/beautymap.mp4"><img src="../results/reference/robot-3d-corridor/executions/beautymap.gif" width="340" loading="lazy" alt="BeautyMap"></a> |
-
+新鲜输出覆盖：Raw 65.72%, DUFOMap 84.53%, BeautyMap 85.86%。这是输出时效性，不是定位成功率。
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-corridor-3d -->
@@ -856,6 +835,8 @@ KITTI-00，141帧；本项只评价地图清理。
 
 #### 结构变化 · 3D
 
+本组冻结静态A地图，在结构变化场景重新采集B；A表沿用这三张静态地图的清理评分。
+
 **A · 地图清理**
 
 | 地图 | SA ↑ |
@@ -865,22 +846,23 @@ KITTI-00，141帧；本项只评价地图清理。
 | BeautyMap | 83.33% |
 
 
+[建图A处理记录](../results/reference/practice-frozen-20261016/3d-change/mapping-A-processing.json)
+
+<a id="scene-change-3d-b"></a>
+
 **B · 冻结地图后定位**
 
 <!-- HOME_EXPERIMENT_TABLE -->
-| 地图 | XYZ RMSE / cm | 旋转 RMSE / ° |
-| --- | --- | --- |
-| Raw | 0.93 | 0.17 |
-| DUFOMap | 1.01 | 0.19 |
-| BeautyMap | 1.04 | 0.17 |
+| 冻结地图 | XYZ RMSE / cm ↓ | 旋转 RMSE / ° | 定位B实录（点击看MP4） | 证据 |
+| --- | --- | --- | --- | --- |
+| Raw | 2.03 | 1.93 | <a href="../results/reference/practice-frozen-20261016/3d-change/executions/raw.mp4"><img src="../results/reference/practice-frozen-20261016/3d-change/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-change/record.json) |
+| DUFOMap | 2.02 | 1.93 | <a href="../results/reference/practice-frozen-20261016/3d-change/executions/dufomap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-change/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-change/record.json) |
+| BeautyMap | 2.15 | 1.94 | <a href="../results/reference/practice-frozen-20261016/3d-change/executions/beautymap.mp4"><img src="../results/reference/practice-frozen-20261016/3d-change/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/3d-change/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[记录](../results/reference/robot-3d-large-change/record.json)
+[共同时间点评分](../results/reference/practice-frozen-20261016/3d-change/score.json) · 共同有效样本：474/601
 
-| Raw | DUFOMap | BeautyMap |
-| --- | --- | --- |
-| <a href="../results/reference/robot-3d-large-change/executions/raw.mp4"><img src="../results/reference/robot-3d-large-change/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="../results/reference/robot-3d-large-change/executions/dufomap.mp4"><img src="../results/reference/robot-3d-large-change/executions/dufomap.gif" width="340" loading="lazy" alt="DUFOMap"></a> | <a href="../results/reference/robot-3d-large-change/executions/beautymap.mp4"><img src="../results/reference/robot-3d-large-change/executions/beautymap.gif" width="340" loading="lazy" alt="BeautyMap"></a> |
-
+新鲜输出覆盖：Raw 88.85%, DUFOMap 89.52%, BeautyMap 98.17%；RMSE只覆盖共同有效时段，不表示完整时段的稳定性。
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:scene-change-3d -->
@@ -897,10 +879,10 @@ KITTI-00，141帧；本项只评价地图清理。
 
 #### SRRG · 持久结构变化
 
-| 方法 | SA | 新增结构覆盖 | 独立B |
-| --- | --- | --- | --- |
-| Raw | 100.00% | 100.00% | 未测 |
-| SRRG | 99.71% | 98.90% | 未测 |
+| 方法 | SA | 新增结构覆盖 |
+| --- | --- | --- |
+| Raw | 100.00% | 100.00% |
+| SRRG | 99.71% | 98.90% |
 
 
 [记录](../results/reference/srrg-2d-large-change/record.json)
@@ -909,6 +891,22 @@ KITTI-00，141帧；本项只评价地图清理。
 | --- |
 | <a href="../results/reference/srrg-2d-large-change/execution.mp4"><img src="../results/reference/srrg-2d-large-change/execution.gif" width="340" loading="lazy" alt="SRRG changed-world A"></a> |
 
+
+<a id="supp-srrg-b"></a>
+
+**B · 冻结地图后定位**
+
+冻结持久变化建图A的两张地图；在相同变化场景重新采集B，用相同AMCL定位。
+
+| 冻结地图 | XY RMSE / cm ↓ | yaw RMSE / ° | 定位B实录（点击看MP4） | 证据 |
+| --- | --- | --- | --- | --- |
+| Raw | 5.40 | 2.86 | <a href="../results/reference/practice-frozen-20261016/srrg-change/executions/raw.mp4"><img src="../results/reference/practice-frozen-20261016/srrg-change/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/srrg-change/record.json) |
+| SRRG | 4.36 | 2.65 | <a href="../results/reference/practice-frozen-20261016/srrg-change/executions/srrg.mp4"><img src="../results/reference/practice-frozen-20261016/srrg-change/executions/srrg.gif" width="320" loading="lazy" alt="SRRG · localization B"></a> | [记录](../results/reference/practice-frozen-20261016/srrg-change/record.json) |
+
+
+[共同时间点评分](../results/reference/practice-frozen-20261016/srrg-change/score.json) · 共同有效样本：273/601
+
+AMCL按运动阈值触发发布；上述样本数只计输出滞后≤0.15秒的共同时间点，不代表定位成功率。
 
 **分析：**
 <!-- PRACTICE_ANALYSIS:srrg-large-change-2d -->

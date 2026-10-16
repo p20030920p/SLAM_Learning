@@ -1,0 +1,74 @@
+{
+  "new_groups": [
+    {
+      "group": "3d-static",
+      "methods": [
+        "raw",
+        "dufomap",
+        "beautymap"
+      ],
+      "robot_span_xy_m": [
+        4.260809695873471,
+        3.480562984918093
+      ],
+      "common_grid_samples": 601
+    },
+    {
+      "group": "3d-dynamic",
+      "methods": [
+        "raw",
+        "dufomap",
+        "beautymap"
+      ],
+      "robot_span_xy_m": [
+        4.248350899543903,
+        3.490775287517291
+      ],
+      "common_grid_samples": 600
+    },
+    {
+      "group": "3d-corridor",
+      "methods": [
+        "raw",
+        "dufomap",
+        "beautymap"
+      ],
+      "robot_span_xy_m": [
+        3.4114232162533504,
+        0.1957007031659166
+      ],
+      "common_grid_samples": 304
+    },
+    {
+      "group": "3d-change",
+      "methods": [
+        "raw",
+        "dufomap",
+        "beautymap"
+      ],
+      "robot_span_xy_m": [
+        4.25993085192825,
+        3.4825194473328223
+      ],
+      "common_grid_samples": 474
+    },
+    {
+      "group": "srrg-change",
+      "methods": [
+        "raw",
+        "srrg"
+      ],
+      "robot_span_xy_m": [
+        4.258216090873916,
+        3.4843512946276025
+      ],
+      "common_grid_samples": 273
+    }
+  ],
+  "new_localization_videos": 14,
+  "verified_existing_videos": 8,
+  "homepage_localization_rows": 22,
+  "frozen_maps_verified_unchanged": true,
+  "physical_direction_questions_and_hypotheses_preserved": true,
+  "homepages_idempotent_and_relative_links_valid": true
+}

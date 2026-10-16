@@ -3,6 +3,7 @@
  [ValidateSet('2D','3D')][string]$Dimension='2D',
  [string]$RepoRoot='D:\workspace\be2\slam_learning_updated',
  [string]$PresentationRoot='F:\be2演讲',
+ [string]$RunRoot='',
  [double]$Duration=90,
  [switch]$Hypotheses,
  [switch]$Calibrated,
@@ -26,6 +27,7 @@ if($OwnMaps){
 }
 $id=(Get-Date -Format 'yyyyMMdd-HHmmss')+'-'+$flow+'-method-live-'+([guid]::NewGuid().ToString('N').Substring(0,6))
 $run=Join-Path $RepoRoot ('results\runs\presentation\'+$id)
+if($RunRoot){$run=Join-Path $RunRoot $id}
 if($Hypotheses -and $Calibrated){$run=Join-Path $PresentationRoot ('原始会话\hypotheses-calibrated\'+$id)}
 New-Item -ItemType Directory -Path (Join-Path $run 'executions') -Force | Out-Null
 $rw='/mnt/'+$run.Substring(0,1).ToLower()+'/'+$run.Substring(3).Replace('\','/')

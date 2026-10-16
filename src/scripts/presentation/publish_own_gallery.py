@@ -35,10 +35,12 @@ def publish():
     for scene in ("static", "dynamic", "corridor"):
         clips.append((f"{PAPER_SUITE}/2d-A-{scene}/execution.mp4", "SRRG · " + scene + " · A"))
         clips += [(p.relative_to(ROOT).as_posix(), "SRRG · " + scene + " · B · " + p.stem) for p in sorted((ROOT / PAPER_SUITE / ("2d-" + scene) / "executions").glob("*.mp4"))]
+    clips.append(("results/reference/srrg-2d-large-change/execution.mp4", "SRRG · 持久变化 · A"))
+    clips += [(f"results/reference/practice-frozen-20261016/srrg-change/executions/{method}.mp4", "SRRG · 持久变化 · 新B · " + method + " map / AMCL") for method in ("raw", "srrg")]
     paper.append(("srrg", "P1 · SRRG", clips))
     paper.append(("fastlio", "P2 · FAST-LIO", [(f"{PAPER_SUITE}/fastlio-motion/execution.mp4", "FAST-LIO · A · 运动阶段"), *[(p.relative_to(ROOT).as_posix(), "FAST-LIO · B · " + p.stem) for p in sorted((ROOT / PAPER_SUITE / "fastlio-B/executions").glob("*.mp4"))]]))
     clips = [(f"results/reference/desktop-live-{method}/execution.mp4", "KITTI-00 · " + method) for method in ("dufomap", "beautymap")]
-    clips += [(f"results/reference/robot-3d-{scene}/executions/{method}.mp4", scene + " · " + method + " / GICP") for scene in ("static", "dynamic", "corridor", "large-change") for method in ("raw", "dufomap", "beautymap")]
+    clips += [(f"results/reference/practice-frozen-20261016/3d-{scene}/executions/{method}.mp4", scene + " · 新B · " + method + " map / GICP") for scene in ("static", "dynamic", "corridor", "change") for method in ("raw", "dufomap", "beautymap")]
     paper.append(("3d", "P3 · DUFOMap / BeautyMap · 3D", clips))
     paper.append(("irmcl", "P4 · IR-MCL", [("results/reference/desktop-live-ir-mcl/execution.mp4", "Bonn · 原生执行")]))
     paper.append(("adam", "P5 · AdaM-MCL", [("results/reference/desktop-adam-mcl/result.mp4", "保存结果回放")]))

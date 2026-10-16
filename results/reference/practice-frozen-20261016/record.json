@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "kind": "practice_frozen_map_localization_suite",
+  "status": "executed",
+  "exit_code": 0,
+  "scope": "Five fresh Gazebo B sessions, 14 native Gazebo/RViz MP4 recordings and full-duration GIFs. Retain mapping A; no map updating in B. Eight existing 2D/FAST-LIO B videos independently audited and reused.",
+  "new_B_sessions": 5,
+  "new_B_videos": 14,
+  "reused_verified_B_videos": 8,
+  "truth_input_to_localizers": false,
+  "complete_navigation_goal_success_tested": false,
+  "groups": {
+    "3d-static": {
+      "record": "3d-static/record.json",
+      "sha256": "08e2a80a136fa727ed566b98f8039ee994ed9c0dded499954972174b78e9c418"
+    },
+    "3d-dynamic": {
+      "record": "3d-dynamic/record.json",
+      "sha256": "c3905aa975db343d8f537cbe11776bf9932bda460a9f087c5742fa9360845ec9"
+    },
+    "3d-corridor": {
+      "record": "3d-corridor/record.json",
+      "sha256": "41f7fd235caca284c5682ff4ea2ee016c8aee5aa596aed840fde30acab7d1adb"
+    },
+    "3d-change": {
+      "record": "3d-change/record.json",
+      "sha256": "7a7eda06ad0816a158e68b6f9f72cafc19498ccfc49bcc9dbdaede2a3359bae4"
+    },
+    "srrg-change": {
+      "record": "srrg-change/record.json",
+      "sha256": "ca82391bc23c15b0fb134738e977d1296040f1052127e67bdab60fd70053b516"
+    }
+  },
+  "validation_files": {
+    "validation.json": "0162359bedaf09d60d31d68c5609cfa5a7d8a77f2c5f31f78b2b6509119c9aa3",
+    "existing-B-audit.json": "133c81f98ff3df1301fd11b511588c335bf5feb6c5a46a48823591ed0f504a40",
+    "video-catalog.json": "2d3a50d3b016bd94f01bf9928a319755fec3e75c53e584297820e6cf3068ac7c"
+  },
+  "protocol_sources": {
+    "demo/record-methods.ps1": "f9f940ca9204a3a6637d33e9c5655f10e9c09e976c6f9b0475bc7bf85bcaa0da",
+    "demo/record-frozen-practice.ps1": "73bd34c58127aca5a2ee88ebf27246137fce40ec284faf574e6c4a46a60eefdd",
+    "src/scripts/presentation/package_frozen_practice.py": "40ce0eb23c21e8946c3afbb4f18f25809c1b88ca7aada5466e95f3949d40abb0",
+    "src/scripts/presentation/run_live.sh": "70e4b918cdc6d831c577e84516ad55f562f4622d92016c3faf1342f05b3d21a2",
+    "src/scripts/presentation/registration.launch.py": "41061edcf0657425c8711db96d762efca993e4495a92c4c1fada0ee43ae9c47a",
+    "src/scripts/presentation/localization.launch.py": "7c68ca137e90c6d3c4da5c47e9dc67559cdd4aae24526f828eae6c9595db5b43",
+    "src/scripts/presentation/prepare_3d.py": "3e6f67c2693f53ff15a9c32eabbf556d6d05e567b730d0c4847478b779d435d7",
+    "src/scripts/presentation/observe_session.py": "2a36961f13bff8ee4f8ae03c266ae2f1689150a0a4ad4074054e393ac984267e"
+  }
+}

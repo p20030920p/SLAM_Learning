@@ -410,14 +410,14 @@ This section practices methods in Related works. A = mapping; B = a separate loc
 | P1.1 | SRRG · Static | [A](#h1-static-a) / [B](#h1-static-b) |
 | P1.2 | SRRG · Dynamic | [A](#h1-dynamic-a) / [B](#h1-dynamic-b) |
 | P1.3 | SRRG · Original corridor | [A](#h3-original-a) / [B](#h3-original-b) |
-| P1.4 | SRRG · Persistent change | [A](#supp-srrg) |
+| P1.4 | SRRG · Persistent change | [A](#supp-srrg) / [B](#supp-srrg-b) |
 | P2.1 | FAST-LIO · Mapping and motion phases | [A](#h2-a) / [Stationary](#h2-stationary) / [Slow turn](#h2-slow) / [Fast turn](#h2-fast) / [Translation](#h2-translation) |
 | P2.2 | FAST-LIO · Frozen-map localization | [B](#h2-b) |
 | P3.0 | DUFOMap / BeautyMap · KITTI-00 | [Map-cleaning practice](#practice-kitti) |
-| P3.1 | DUFOMap / BeautyMap · 3D · Static | [A/B](#scene-static-3d) |
-| P3.2 | DUFOMap / BeautyMap · 3D · Dynamic | [A/B](#scene-dynamic-3d) |
-| P3.3 | DUFOMap / BeautyMap · 3D · Corridor | [A/B](#scene-corridor-3d) |
-| P3.4 | DUFOMap / BeautyMap · 3D · Changed world | [A/B](#scene-change-3d) |
+| P3.1 | DUFOMap / BeautyMap · 3D · Static | [A](#scene-static-3d) / [B](#scene-static-3d-b) |
+| P3.2 | DUFOMap / BeautyMap · 3D · Dynamic | [A](#scene-dynamic-3d) / [B](#scene-dynamic-3d-b) |
+| P3.3 | DUFOMap / BeautyMap · 3D · Corridor | [A](#scene-corridor-3d) / [B](#scene-corridor-3d-b) |
+| P3.4 | DUFOMap / BeautyMap · 3D · Changed world | [A](#scene-change-3d) / [B](#scene-change-3d-b) |
 | P4 | IR-MCL · Bonn | [Open experiment](#practice-irmcl) |
 | P5 | AdaM-MCL | [Open experiment](#practice-adam) |
 | P6.1 | NDT / GICP | [Open experiment](#supp-registrations) |
@@ -501,18 +501,13 @@ These Raw maps and pose sources differ between experiments; compare within the m
 
 #### Static · B
 
-| Map | XY RMSE / cm | yaw / ° |
-| --- | --- | --- |
-| Raw | 5.03 | 2.88 |
-| SRRG | 5.84 | 2.91 |
+| Map | XY RMSE / cm | yaw / ° | Localization B (click for MP4) |
+| --- | --- | --- | --- |
+| Raw | 5.03 | 2.88 | <a href="results/reference/direction-20261016-v2/2d-static/executions/raw.mp4"><img src="results/reference/direction-20261016-v2/2d-static/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> |
+| SRRG | 5.84 | 2.91 | <a href="results/reference/direction-20261016-v2/2d-static/executions/srrg.mp4"><img src="results/reference/direction-20261016-v2/2d-static/executions/srrg.gif" width="320" loading="lazy" alt="SRRG · localization B"></a> |
 
 
 [Scores](results/reference/direction-20261016-v2/2d-static/time-grid-score.json)
-
-| Raw | SRRG |
-| --- | --- |
-| <a href="results/reference/direction-20261016-v2/2d-static/executions/raw.mp4"><img src="results/reference/direction-20261016-v2/2d-static/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="results/reference/direction-20261016-v2/2d-static/executions/srrg.mp4"><img src="results/reference/direction-20261016-v2/2d-static/executions/srrg.gif" width="340" loading="lazy" alt="SRRG"></a> |
-
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:h1-static-b -->
@@ -549,18 +544,13 @@ These Raw maps and pose sources differ between experiments; compare within the m
 
 #### Dynamic · B
 
-| Map | XY RMSE / cm | yaw / ° |
-| --- | --- | --- |
-| Raw | 5.53 | 0.76 |
-| SRRG | 5.13 | 0.70 |
+| Map | XY RMSE / cm | yaw / ° | Localization B (click for MP4) |
+| --- | --- | --- | --- |
+| Raw | 5.53 | 0.76 | <a href="results/reference/direction-20261016-v2/2d-dynamic/executions/raw.mp4"><img src="results/reference/direction-20261016-v2/2d-dynamic/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> |
+| SRRG | 5.13 | 0.70 | <a href="results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.mp4"><img src="results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.gif" width="320" loading="lazy" alt="SRRG · localization B"></a> |
 
 
 [Scores](results/reference/direction-20261016-v2/2d-dynamic/time-grid-score.json)
-
-| Raw | SRRG |
-| --- | --- |
-| <a href="results/reference/direction-20261016-v2/2d-dynamic/executions/raw.mp4"><img src="results/reference/direction-20261016-v2/2d-dynamic/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.mp4"><img src="results/reference/direction-20261016-v2/2d-dynamic/executions/srrg.gif" width="340" loading="lazy" alt="SRRG"></a> |
-
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:h1-dynamic-b -->
@@ -601,18 +591,13 @@ These Raw maps and pose sources differ between experiments; compare within the m
 
 #### Original corridor · B
 
-| Map | XY RMSE / cm | yaw / ° |
-| --- | --- | --- |
-| Raw | 113.30 | 1.38 |
-| SRRG | 102.72 | 1.08 |
+| Map | XY RMSE / cm | yaw / ° | Localization B (click for MP4) |
+| --- | --- | --- | --- |
+| Raw | 113.30 | 1.38 | <a href="results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.mp4"><img src="results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> |
+| SRRG | 102.72 | 1.08 | <a href="results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.mp4"><img src="results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.gif" width="320" loading="lazy" alt="SRRG · localization B"></a> |
 
 
 [Scores](results/reference/direction-20261016-v2/2d-corridor/time-grid-score.json)
-
-| Raw | SRRG |
-| --- | --- |
-| <a href="results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.mp4"><img src="results/reference/direction-20261016-v2/2d-corridor/executions/degraded_raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.mp4"><img src="results/reference/direction-20261016-v2/2d-corridor/executions/degraded_srrg.gif" width="340" loading="lazy" alt="SRRG"></a> |
-
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:h3-original-b -->
@@ -700,18 +685,13 @@ Three measured 120° sectors form a 0.2 s scan; this is controlled grouped sampl
 
 #### B · GICP on frozen maps
 
-| A compensation | XYZ RMSE / cm | Rotation / ° |
-| --- | --- | --- |
-| Off | 14.03 | 3.62 |
-| On | 2.04 | 0.87 |
+| A compensation | XYZ RMSE / cm | Rotation / ° | Localization B (click for MP4) |
+| --- | --- | --- | --- |
+| Off | 14.03 | 3.62 | <a href="results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.mp4"><img src="results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.gif" width="320" loading="lazy" alt="Off map · localization B"></a> |
+| On | 2.04 | 0.87 | <a href="results/reference/direction-20261016-v2/fastlio-B/executions/deskew.mp4"><img src="results/reference/direction-20261016-v2/fastlio-B/executions/deskew.gif" width="320" loading="lazy" alt="On map · localization B"></a> |
 
 
 [Scores](results/reference/direction-20261016-v2/fastlio-B/score-3d.json)
-
-| Off map | On map |
-| --- | --- |
-| <a href="results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.mp4"><img src="results/reference/direction-20261016-v2/fastlio-B/executions/no_deskew.gif" width="340" loading="lazy" alt="Off map"></a> | <a href="results/reference/direction-20261016-v2/fastlio-B/executions/deskew.mp4"><img src="results/reference/direction-20261016-v2/fastlio-B/executions/deskew.gif" width="340" loading="lazy" alt="On map"></a> |
-
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:h2-b -->
@@ -733,9 +713,9 @@ KITTI-00, 141 scans; this experiment evaluates map cleaning only.
 
 <a id="baseline-3d"></a>
 
-### Existing 3D tests
+### 3D maps and held-out localization
 
-Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for scoring windows.
+Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use identical GICP settings and B scans on the three frozen maps. Videos capture live Gazebo + RViz windows; maps are not updated in B.
 
 <a id="scene-static-3d"></a>
 
@@ -750,22 +730,21 @@ Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for sc
 | BeautyMap | 83.33% |
 
 
+[Mapping A processing record](results/reference/practice-frozen-20261016/3d-static/mapping-A-processing.json)
+
+<a id="scene-static-3d-b"></a>
+
 **B · Localization on frozen maps**
 
 <!-- HOME_EXPERIMENT_TABLE -->
-| Map | XYZ RMSE / cm | Rotation RMSE / ° |
-| --- | --- | --- |
-| Raw | 0.95 | 0.15 |
-| DUFOMap | 0.99 | 0.16 |
-| BeautyMap | 1.07 | 0.17 |
+| Frozen map | XYZ RMSE / cm ↓ | Rotation RMSE / ° | Localization B (click for MP4) | Evidence |
+| --- | --- | --- | --- | --- |
+| Raw | 1.60 | 1.63 | <a href="results/reference/practice-frozen-20261016/3d-static/executions/raw.mp4"><img src="results/reference/practice-frozen-20261016/3d-static/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-static/record.json) |
+| DUFOMap | 1.62 | 1.51 | <a href="results/reference/practice-frozen-20261016/3d-static/executions/dufomap.mp4"><img src="results/reference/practice-frozen-20261016/3d-static/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-static/record.json) |
+| BeautyMap | 1.45 | 1.29 | <a href="results/reference/practice-frozen-20261016/3d-static/executions/beautymap.mp4"><img src="results/reference/practice-frozen-20261016/3d-static/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-static/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[Record](results/reference/robot-3d-static/record.json)
-
-| Raw | DUFOMap | BeautyMap |
-| --- | --- | --- |
-| <a href="results/reference/robot-3d-static/executions/raw.mp4"><img src="results/reference/robot-3d-static/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="results/reference/robot-3d-static/executions/dufomap.mp4"><img src="results/reference/robot-3d-static/executions/dufomap.gif" width="340" loading="lazy" alt="DUFOMap"></a> | <a href="results/reference/robot-3d-static/executions/beautymap.mp4"><img src="results/reference/robot-3d-static/executions/beautymap.gif" width="340" loading="lazy" alt="BeautyMap"></a> |
-
+[Common-time scores](results/reference/practice-frozen-20261016/3d-static/score.json) · Common valid samples: 601/601
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:scene-static-3d -->
@@ -787,22 +766,21 @@ Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for sc
 | BeautyMap | 74.36% | 81.15% |
 
 
+[Mapping A processing record](results/reference/practice-frozen-20261016/3d-dynamic/mapping-A-processing.json)
+
+<a id="scene-dynamic-3d-b"></a>
+
 **B · Localization on frozen maps**
 
 <!-- HOME_EXPERIMENT_TABLE -->
-| Map | XYZ RMSE / cm | Rotation RMSE / ° |
-| --- | --- | --- |
-| Raw | 0.98 | 0.17 |
-| DUFOMap | 0.98 | 0.18 |
-| BeautyMap | 1.04 | 0.17 |
+| Frozen map | XYZ RMSE / cm ↓ | Rotation RMSE / ° | Localization B (click for MP4) | Evidence |
+| --- | --- | --- | --- | --- |
+| Raw | 1.33 | 0.99 | <a href="results/reference/practice-frozen-20261016/3d-dynamic/executions/raw.mp4"><img src="results/reference/practice-frozen-20261016/3d-dynamic/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
+| DUFOMap | 1.34 | 1.18 | <a href="results/reference/practice-frozen-20261016/3d-dynamic/executions/dufomap.mp4"><img src="results/reference/practice-frozen-20261016/3d-dynamic/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
+| BeautyMap | 1.29 | 0.99 | <a href="results/reference/practice-frozen-20261016/3d-dynamic/executions/beautymap.mp4"><img src="results/reference/practice-frozen-20261016/3d-dynamic/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-dynamic/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[Record](results/reference/robot-3d-dynamic/record.json)
-
-| Raw | DUFOMap | BeautyMap |
-| --- | --- | --- |
-| <a href="results/reference/robot-3d-dynamic/executions/raw.mp4"><img src="results/reference/robot-3d-dynamic/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="results/reference/robot-3d-dynamic/executions/dufomap.mp4"><img src="results/reference/robot-3d-dynamic/executions/dufomap.gif" width="340" loading="lazy" alt="DUFOMap"></a> | <a href="results/reference/robot-3d-dynamic/executions/beautymap.mp4"><img src="results/reference/robot-3d-dynamic/executions/beautymap.gif" width="340" loading="lazy" alt="BeautyMap"></a> |
-
+[Common-time scores](results/reference/practice-frozen-20261016/3d-dynamic/score.json) · Common valid samples: 600/601
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:scene-dynamic-3d -->
@@ -824,24 +802,25 @@ Original Raw/DUFOMap/BeautyMap and GICP results are retained; see records for sc
 | BeautyMap | 99.9% |
 
 
+[Mapping A processing record](results/reference/practice-frozen-20261016/3d-corridor/mapping-A-processing.json)
+
+<a id="scene-corridor-3d-b"></a>
+
 **B · Localization on frozen maps**
 
 <!-- HOME_EXPERIMENT_TABLE -->
-| Map | XYZ RMSE / cm | Rotation RMSE / ° |
-| --- | --- | --- |
-| Raw | 474.38 | 0.53 |
-| DUFOMap | 497.05 | 0.48 |
-| BeautyMap | 592.00 | 49.16 |
+| Frozen map | XYZ RMSE / cm ↓ | Rotation RMSE / ° | Localization B (click for MP4) | Evidence |
+| --- | --- | --- | --- | --- |
+| Raw | 582.43 | 1.77 | <a href="results/reference/practice-frozen-20261016/3d-corridor/executions/raw.mp4"><img src="results/reference/practice-frozen-20261016/3d-corridor/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-corridor/record.json) |
+| DUFOMap | 423.89 | 1.74 | <a href="results/reference/practice-frozen-20261016/3d-corridor/executions/dufomap.mp4"><img src="results/reference/practice-frozen-20261016/3d-corridor/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-corridor/record.json) |
+| BeautyMap | 526.67 | 1.69 | <a href="results/reference/practice-frozen-20261016/3d-corridor/executions/beautymap.mp4"><img src="results/reference/practice-frozen-20261016/3d-corridor/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-corridor/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[Record](results/reference/robot-3d-corridor/record.json)
+[Common-time scores](results/reference/practice-frozen-20261016/3d-corridor/score.json) · Common valid samples: 304/601
 
-Valid localization intervals differ in this group; RMSE covers available outputs only and cannot rank stability. See records for missing outputs.
+Observations are restricted for 50 s, then restored. RMSE uses common times with fresh outputs and cannot rank overall stability.
 
-| Raw | DUFOMap | BeautyMap |
-| --- | --- | --- |
-| <a href="results/reference/robot-3d-corridor/executions/raw.mp4"><img src="results/reference/robot-3d-corridor/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="results/reference/robot-3d-corridor/executions/dufomap.mp4"><img src="results/reference/robot-3d-corridor/executions/dufomap.gif" width="340" loading="lazy" alt="DUFOMap"></a> | <a href="results/reference/robot-3d-corridor/executions/beautymap.mp4"><img src="results/reference/robot-3d-corridor/executions/beautymap.gif" width="340" loading="lazy" alt="BeautyMap"></a> |
-
+Fresh-output coverage: Raw 65.72%, DUFOMap 84.53%, BeautyMap 85.86%. This measures output freshness, not localization success.
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:scene-corridor-3d -->
@@ -854,6 +833,8 @@ Valid localization intervals differ in this group; RMSE covers available outputs
 
 #### Changed world · 3D
 
+This group freezes static-A maps and acquires B in the changed world; the A table retains cleaning scores for those static maps.
+
 **A · Map cleaning**
 
 | Map | SA ↑ |
@@ -863,22 +844,23 @@ Valid localization intervals differ in this group; RMSE covers available outputs
 | BeautyMap | 83.33% |
 
 
+[Mapping A processing record](results/reference/practice-frozen-20261016/3d-change/mapping-A-processing.json)
+
+<a id="scene-change-3d-b"></a>
+
 **B · Localization on frozen maps**
 
 <!-- HOME_EXPERIMENT_TABLE -->
-| Map | XYZ RMSE / cm | Rotation RMSE / ° |
-| --- | --- | --- |
-| Raw | 0.93 | 0.17 |
-| DUFOMap | 1.01 | 0.19 |
-| BeautyMap | 1.04 | 0.17 |
+| Frozen map | XYZ RMSE / cm ↓ | Rotation RMSE / ° | Localization B (click for MP4) | Evidence |
+| --- | --- | --- | --- | --- |
+| Raw | 2.03 | 1.93 | <a href="results/reference/practice-frozen-20261016/3d-change/executions/raw.mp4"><img src="results/reference/practice-frozen-20261016/3d-change/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-change/record.json) |
+| DUFOMap | 2.02 | 1.93 | <a href="results/reference/practice-frozen-20261016/3d-change/executions/dufomap.mp4"><img src="results/reference/practice-frozen-20261016/3d-change/executions/dufomap.gif" width="320" loading="lazy" alt="DUFOMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-change/record.json) |
+| BeautyMap | 2.15 | 1.94 | <a href="results/reference/practice-frozen-20261016/3d-change/executions/beautymap.mp4"><img src="results/reference/practice-frozen-20261016/3d-change/executions/beautymap.gif" width="320" loading="lazy" alt="BeautyMap · localization B"></a> | [Record](results/reference/practice-frozen-20261016/3d-change/record.json) |
 <!-- /HOME_EXPERIMENT_TABLE -->
 
-[Record](results/reference/robot-3d-large-change/record.json)
+[Common-time scores](results/reference/practice-frozen-20261016/3d-change/score.json) · Common valid samples: 474/601
 
-| Raw | DUFOMap | BeautyMap |
-| --- | --- | --- |
-| <a href="results/reference/robot-3d-large-change/executions/raw.mp4"><img src="results/reference/robot-3d-large-change/executions/raw.gif" width="340" loading="lazy" alt="Raw"></a> | <a href="results/reference/robot-3d-large-change/executions/dufomap.mp4"><img src="results/reference/robot-3d-large-change/executions/dufomap.gif" width="340" loading="lazy" alt="DUFOMap"></a> | <a href="results/reference/robot-3d-large-change/executions/beautymap.mp4"><img src="results/reference/robot-3d-large-change/executions/beautymap.gif" width="340" loading="lazy" alt="BeautyMap"></a> |
-
+Fresh-output coverage: Raw 88.85%, DUFOMap 89.52%, BeautyMap 98.17%; RMSE covers common valid times and does not describe stability over the full interval.
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:scene-change-3d -->
@@ -895,10 +877,10 @@ Valid localization intervals differ in this group; RMSE covers available outputs
 
 #### SRRG · Persistent change
 
-| Method | SA | New structure coverage | Separate B |
-| --- | --- | --- | --- |
-| Raw | 100.00% | 100.00% | Not tested |
-| SRRG | 99.71% | 98.90% | Not tested |
+| Method | SA | New structure coverage |
+| --- | --- | --- |
+| Raw | 100.00% | 100.00% |
+| SRRG | 99.71% | 98.90% |
 
 
 [Record](results/reference/srrg-2d-large-change/record.json)
@@ -907,6 +889,22 @@ Valid localization intervals differ in this group; RMSE covers available outputs
 | --- |
 | <a href="results/reference/srrg-2d-large-change/execution.mp4"><img src="results/reference/srrg-2d-large-change/execution.gif" width="340" loading="lazy" alt="SRRG changed-world A"></a> |
 
+
+<a id="supp-srrg-b"></a>
+
+**B · Localization on frozen maps**
+
+Freeze both maps from persistent-change mapping A; acquire fresh B in the changed world and localize with identical AMCL settings.
+
+| Frozen map | XY RMSE / cm ↓ | yaw RMSE / ° | Localization B (click for MP4) | Evidence |
+| --- | --- | --- | --- | --- |
+| Raw | 5.40 | 2.86 | <a href="results/reference/practice-frozen-20261016/srrg-change/executions/raw.mp4"><img src="results/reference/practice-frozen-20261016/srrg-change/executions/raw.gif" width="320" loading="lazy" alt="Raw · localization B"></a> | [Record](results/reference/practice-frozen-20261016/srrg-change/record.json) |
+| SRRG | 4.36 | 2.65 | <a href="results/reference/practice-frozen-20261016/srrg-change/executions/srrg.mp4"><img src="results/reference/practice-frozen-20261016/srrg-change/executions/srrg.gif" width="320" loading="lazy" alt="SRRG · localization B"></a> | [Record](results/reference/practice-frozen-20261016/srrg-change/record.json) |
+
+
+[Common-time scores](results/reference/practice-frozen-20261016/srrg-change/score.json) · Common valid samples: 273/601
+
+AMCL publishes after motion thresholds are met; the count includes only common times with pose age ≤0.15 s and is not a localization success rate.
 
 **Analysis:**
 <!-- PRACTICE_ANALYSIS:srrg-large-change-2d -->
