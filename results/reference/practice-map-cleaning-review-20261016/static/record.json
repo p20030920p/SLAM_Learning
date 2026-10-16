@@ -1,0 +1,48 @@
+{
+  "kind": "saved_map_cleaning_result_visualization",
+  "status": "rendered",
+  "new_inference": false,
+  "source_frozen_B_record": "results/reference/practice-frozen-20261016/3d-static/record.json",
+  "scope": "Camera orbit over exactly the stored A map outputs. Retention colors use a 1e-5 m membership query on a display-only sample; no new DA/SA score or cleaner execution.",
+  "source_maps": {
+    "raw": {
+      "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-163140-mapping-static-24597a\\author-maps-20261014-165909\\raw\\points.npy",
+      "sha256": "1aefa3045e23b6e494452b96c9e58e314cb120b7f19378fa1b99f6bd65a7baeb"
+    },
+    "dufomap": {
+      "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-163140-mapping-static-24597a\\author-maps-20261014-165909\\dufomap\\points.npy",
+      "sha256": "3abff140e2c6ba3d29c4b72d008face8e4b04dace75ef909b67ea41465d31188"
+    },
+    "beautymap": {
+      "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-163140-mapping-static-24597a\\author-maps-20261014-165909\\beautymap\\points.npy",
+      "sha256": "543074039c2e18dcc7b016a73f1d32cd17706610218e264e6085294bc7cd3a47"
+    }
+  },
+  "full_map_points": {
+    "raw": 684940,
+    "dufomap": 684934,
+    "beautymap": 570744
+  },
+  "display_raw_points": 8000,
+  "timing": {
+    "duration_s": 8.000000000000004,
+    "frames": 40,
+    "fps": 5,
+    "video_duration_s": 8.0,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "55872c386ee562f4e952fe2cb185a01e6da618296d22c98738741799c6440036",
+      "bytes": 102479
+    },
+    "result.gif": {
+      "sha256": "fd7b308d58e62b1382f26b86d1a718cea2e29a7c21f3f85c6d0d762627d27c21",
+      "bytes": 1015950
+    },
+    "result.mp4": {
+      "sha256": "2d775e380d25c07d400d33a93852a6f3abc94832fa2e4a789410073884d355b2",
+      "bytes": 1116996
+    }
+  }
+}

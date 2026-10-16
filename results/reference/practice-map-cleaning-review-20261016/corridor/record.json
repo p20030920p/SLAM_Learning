@@ -1,0 +1,48 @@
+{
+  "kind": "saved_map_cleaning_result_visualization",
+  "status": "rendered",
+  "new_inference": false,
+  "source_frozen_B_record": "results/reference/practice-frozen-20261016/3d-corridor/record.json",
+  "scope": "Camera orbit over exactly the stored A map outputs. Retention colors use a 1e-5 m membership query on a display-only sample; no new DA/SA score or cleaner execution.",
+  "source_maps": {
+    "raw": {
+      "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\raw\\points.npy",
+      "sha256": "2a84a65ed68ea7e9183771fb88d7d0406edaa4207062e043b2595ae9b5d0b725"
+    },
+    "dufomap": {
+      "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\dufomap\\points.npy",
+      "sha256": "2a84a65ed68ea7e9183771fb88d7d0406edaa4207062e043b2595ae9b5d0b725"
+    },
+    "beautymap": {
+      "path": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b\\author-maps-20261014-213412\\beautymap\\points.npy",
+      "sha256": "b002c77653c0751309200cc658da64788e813484277d9e86ad4899893e744225"
+    }
+  },
+  "full_map_points": {
+    "raw": 656842,
+    "dufomap": 656842,
+    "beautymap": 656199
+  },
+  "display_raw_points": 8000,
+  "timing": {
+    "duration_s": 8.000000000000004,
+    "frames": 40,
+    "fps": 5,
+    "video_duration_s": 8.0,
+    "scope": "full interval sampled at 5fps; no speed change; GIF 10ms delay precision"
+  },
+  "artifacts": {
+    "frame-mid.png": {
+      "sha256": "8a8cf713b2c259ca034d3baa6c95c5c6a6400618bba5eb30b7f913d9e5cc6991",
+      "bytes": 68616
+    },
+    "result.gif": {
+      "sha256": "5d5509220e722d4c446d083041009d23d9e90f07d33455d7092560b0353a9b50",
+      "bytes": 739661
+    },
+    "result.mp4": {
+      "sha256": "1600743ab188bbfbf819bcd3e607049810e21e89809a3b0dbf705fe5e18400f0",
+      "bytes": 629877
+    }
+  }
+}

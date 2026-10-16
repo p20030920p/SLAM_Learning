@@ -751,11 +751,28 @@ def practice(doc, zh, previous):
             mapping_rows.append([name] + ([old_pct(map_metrics[key]["dynamic_removal"])] if scene == "dynamic" else []) + [old_pct(map_metrics[key]["static_retention"])])
         b_folder = "results/reference/practice-frozen-20261016/3d-" + scene
         b_table, b_score = frozen_b(b_folder, [("raw", "Raw"), ("dufomap", "DUFOMap"), ("beautymap", "BeautyMap")])
+        a_scene = "static" if scene == "change" else scene
+        acquisition = {"static":"robot-static-mapping", "dynamic":"robot-3d-dynamic-mapping", "corridor":"robot-corridor-v2-mapping"}[a_scene]
+        acquisition_folder = "results/reference/" + acquisition
+        processing = read(b_folder + "/mapping-A-processing.json")
+        assert read(acquisition_folder + "/record.json")["source_run"].replace("\\", "/").split("/presentation/")[-1] == processing["source_recording"].split("/presentation/")[-1]
+        review_folder = "results/reference/robot-3d-map-review-v2" if a_scene == "dynamic" else "results/reference/practice-map-cleaning-review-20261016/" + a_scene
+        review_file = "execution" if a_scene == "dynamic" else "result"
+        def a_video(folder, filename, caption):
+            path = folder + "/" + filename
+            return f'<a href="{href(path + ".mp4")}"><img src="{href(path + ".gif")}" width="420" loading="lazy" alt="{caption}"></a>'
+        a_media = table([label("A · 原始采集实录", "A · Original acquisition"), label("A · 清图结果回放（Raw / DUFOMap / BeautyMap）", "A · Saved cleaning results (Raw / DUFOMap / BeautyMap)")],
+                        [[a_video(acquisition_folder, "execution", "mapping A acquisition"), a_video(review_folder, review_file, "saved map cleaning results")]])
         if scene == "change":
             lines += [label("本组冻结静态A地图，在结构变化场景重新采集B；A表沿用这三张静态地图的清理评分。", "This group freezes static-A maps and acquires B in the changed world; the A table retains cleaning scores for those static maps."), ""]
         lines += [
             "**" + label("A · 地图清理", "A · Map cleaning") + "**\n",
             table([label("地图", "Map")] + (["DA ↑"] if scene == "dynamic" else []) + ["SA ↑"], mapping_rows),
+            a_media,
+            label("右侧展示已保存的清图结果，不是新推理；点击GIF可看完整MP4。", "The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4."),
+            "",
+            ref(acquisition_folder + "/record.json", label("A采集记录", "A acquisition record")) + " · " + ref(review_folder + "/record.json", label("清图展示记录", "Cleaning review record")),
+            "",
             ref(b_folder + "/mapping-A-processing.json", label("建图A处理记录", "Mapping A processing record")),
             "",
             f'<a id="scene-{scene}-3d-b"></a>',

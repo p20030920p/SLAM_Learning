@@ -730,6 +730,15 @@ Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use 
 | BeautyMap | 83.33% |
 
 
+| A · Original acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| --- | --- |
+| <a href="results/reference/robot-static-mapping/execution.mp4"><img src="results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+
+
+The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
+
+[A acquisition record](results/reference/robot-static-mapping/record.json) · [Cleaning review record](results/reference/practice-map-cleaning-review-20261016/static/record.json)
+
 [Mapping A processing record](results/reference/practice-frozen-20261016/3d-static/mapping-A-processing.json)
 
 <a id="scene-static-3d-b"></a>
@@ -766,6 +775,15 @@ Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use 
 | BeautyMap | 74.36% | 81.15% |
 
 
+| A · Original acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| --- | --- |
+| <a href="results/reference/robot-3d-dynamic-mapping/execution.mp4"><img src="results/reference/robot-3d-dynamic-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="results/reference/robot-3d-map-review-v2/execution.mp4"><img src="results/reference/robot-3d-map-review-v2/execution.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+
+
+The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
+
+[A acquisition record](results/reference/robot-3d-dynamic-mapping/record.json) · [Cleaning review record](results/reference/robot-3d-map-review-v2/record.json)
+
 [Mapping A processing record](results/reference/practice-frozen-20261016/3d-dynamic/mapping-A-processing.json)
 
 <a id="scene-dynamic-3d-b"></a>
@@ -801,6 +819,15 @@ Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use 
 | DUFOMap | 100% |
 | BeautyMap | 99.9% |
 
+
+| A · Original acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| --- | --- |
+| <a href="results/reference/robot-corridor-v2-mapping/execution.mp4"><img src="results/reference/robot-corridor-v2-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/corridor/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/corridor/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+
+
+The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
+
+[A acquisition record](results/reference/robot-corridor-v2-mapping/record.json) · [Cleaning review record](results/reference/practice-map-cleaning-review-20261016/corridor/record.json)
 
 [Mapping A processing record](results/reference/practice-frozen-20261016/3d-corridor/mapping-A-processing.json)
 
@@ -843,6 +870,15 @@ This group freezes static-A maps and acquires B in the changed world; the A tabl
 | DUFOMap | 99.999% |
 | BeautyMap | 83.33% |
 
+
+| A · Original acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| --- | --- |
+| <a href="results/reference/robot-static-mapping/execution.mp4"><img src="results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+
+
+The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
+
+[A acquisition record](results/reference/robot-static-mapping/record.json) · [Cleaning review record](results/reference/practice-map-cleaning-review-20261016/static/record.json)
 
 [Mapping A processing record](results/reference/practice-frozen-20261016/3d-change/mapping-A-processing.json)
 

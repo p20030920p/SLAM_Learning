@@ -40,6 +40,10 @@ def publish():
     paper.append(("srrg", "P1 · SRRG", clips))
     paper.append(("fastlio", "P2 · FAST-LIO", [(f"{PAPER_SUITE}/fastlio-motion/execution.mp4", "FAST-LIO · A · 运动阶段"), *[(p.relative_to(ROOT).as_posix(), "FAST-LIO · B · " + p.stem) for p in sorted((ROOT / PAPER_SUITE / "fastlio-B/executions").glob("*.mp4"))]]))
     clips = [(f"results/reference/desktop-live-{method}/execution.mp4", "KITTI-00 · " + method) for method in ("dufomap", "beautymap")]
+    for scene, acquisition in [("static", "robot-static-mapping"), ("dynamic", "robot-3d-dynamic-mapping"), ("corridor", "robot-corridor-v2-mapping")]:
+        clips.append((f"results/reference/{acquisition}/execution.mp4", scene + " · A · 原始采集实录"))
+        review = "results/reference/robot-3d-map-review-v2/execution.mp4" if scene == "dynamic" else f"results/reference/practice-map-cleaning-review-20261016/{scene}/result.mp4"
+        clips.append((review, scene + " · A · 已保存清图结果回放，无新推理"))
     clips += [(f"results/reference/practice-frozen-20261016/3d-{scene}/executions/{method}.mp4", scene + " · 新B · " + method + " map / GICP") for scene in ("static", "dynamic", "corridor", "change") for method in ("raw", "dufomap", "beautymap")]
     paper.append(("3d", "P3 · DUFOMap / BeautyMap · 3D", clips))
     paper.append(("irmcl", "P4 · IR-MCL", [("results/reference/desktop-live-ir-mcl/execution.mp4", "Bonn · 原生执行")]))

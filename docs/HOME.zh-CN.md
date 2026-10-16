@@ -732,6 +732,15 @@ KITTI-00，141帧；本项只评价地图清理。
 | BeautyMap | 83.33% |
 
 
+| A · 原始采集实录 | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
+| --- | --- |
+| <a href="../results/reference/robot-static-mapping/execution.mp4"><img src="../results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="../results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="../results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+
+
+右侧展示已保存的清图结果，不是新推理；点击GIF可看完整MP4。
+
+[A采集记录](../results/reference/robot-static-mapping/record.json) · [清图展示记录](../results/reference/practice-map-cleaning-review-20261016/static/record.json)
+
 [建图A处理记录](../results/reference/practice-frozen-20261016/3d-static/mapping-A-processing.json)
 
 <a id="scene-static-3d-b"></a>
@@ -768,6 +777,15 @@ KITTI-00，141帧；本项只评价地图清理。
 | BeautyMap | 74.36% | 81.15% |
 
 
+| A · 原始采集实录 | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
+| --- | --- |
+| <a href="../results/reference/robot-3d-dynamic-mapping/execution.mp4"><img src="../results/reference/robot-3d-dynamic-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="../results/reference/robot-3d-map-review-v2/execution.mp4"><img src="../results/reference/robot-3d-map-review-v2/execution.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+
+
+右侧展示已保存的清图结果，不是新推理；点击GIF可看完整MP4。
+
+[A采集记录](../results/reference/robot-3d-dynamic-mapping/record.json) · [清图展示记录](../results/reference/robot-3d-map-review-v2/record.json)
+
 [建图A处理记录](../results/reference/practice-frozen-20261016/3d-dynamic/mapping-A-processing.json)
 
 <a id="scene-dynamic-3d-b"></a>
@@ -803,6 +821,15 @@ KITTI-00，141帧；本项只评价地图清理。
 | DUFOMap | 100% |
 | BeautyMap | 99.9% |
 
+
+| A · 原始采集实录 | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
+| --- | --- |
+| <a href="../results/reference/robot-corridor-v2-mapping/execution.mp4"><img src="../results/reference/robot-corridor-v2-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="../results/reference/practice-map-cleaning-review-20261016/corridor/result.mp4"><img src="../results/reference/practice-map-cleaning-review-20261016/corridor/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+
+
+右侧展示已保存的清图结果，不是新推理；点击GIF可看完整MP4。
+
+[A采集记录](../results/reference/robot-corridor-v2-mapping/record.json) · [清图展示记录](../results/reference/practice-map-cleaning-review-20261016/corridor/record.json)
 
 [建图A处理记录](../results/reference/practice-frozen-20261016/3d-corridor/mapping-A-processing.json)
 
@@ -845,6 +872,15 @@ KITTI-00，141帧；本项只评价地图清理。
 | DUFOMap | 99.999% |
 | BeautyMap | 83.33% |
 
+
+| A · 原始采集实录 | A · 清图结果回放（Raw / DUFOMap / BeautyMap） |
+| --- | --- |
+| <a href="../results/reference/robot-static-mapping/execution.mp4"><img src="../results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="../results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="../results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+
+
+右侧展示已保存的清图结果，不是新推理；点击GIF可看完整MP4。
+
+[A采集记录](../results/reference/robot-static-mapping/record.json) · [清图展示记录](../results/reference/practice-map-cleaning-review-20261016/static/record.json)
 
 [建图A处理记录](../results/reference/practice-frozen-20261016/3d-change/mapping-A-processing.json)
 
