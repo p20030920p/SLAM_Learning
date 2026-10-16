@@ -717,6 +717,9 @@ KITTI-00, 141 scans; this experiment evaluates map cleaning only.
 
 Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use identical GICP settings and B scans on the three frozen maps. Videos capture live Gazebo + RViz windows; maps are not updated in B.
 
+A records both 2D /scan and 3D /points. The original TopDownOrtho recording primarily shows the slam_toolbox 2D occupancy grid. Cleaning uses 16-channel XYZ clouds assembled with supplied simulation ground-truth poses; this is not a full 3D SLAM evaluation. B receives no truth input.
+[Acquisition dimension audit](results/reference/practice-map-cleaning-review-20261016/acquisition-dimension-audit.json)
+
 <a id="scene-static-3d"></a>
 
 #### Static · 3D
@@ -730,9 +733,9 @@ Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use 
 | BeautyMap | 83.33% |
 
 
-| A · Original acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| A · Acquisition recording (2D display) | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
 | --- | --- |
-| <a href="results/reference/robot-static-mapping/execution.mp4"><img src="results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="results/reference/robot-static-mapping/execution.mp4"><img src="results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
@@ -775,9 +778,9 @@ The right panel reviews saved cleaning outputs without new inference; click a GI
 | BeautyMap | 74.36% | 81.15% |
 
 
-| A · Original acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| A · Acquisition recording (2D display) | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
 | --- | --- |
-| <a href="results/reference/robot-3d-dynamic-mapping/execution.mp4"><img src="results/reference/robot-3d-dynamic-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="results/reference/robot-3d-map-review-v2/execution.mp4"><img src="results/reference/robot-3d-map-review-v2/execution.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="results/reference/robot-3d-dynamic-mapping/execution.mp4"><img src="results/reference/robot-3d-dynamic-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="results/reference/robot-3d-map-review-v2/execution.mp4"><img src="results/reference/robot-3d-map-review-v2/execution.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
@@ -820,9 +823,9 @@ The right panel reviews saved cleaning outputs without new inference; click a GI
 | BeautyMap | 99.9% |
 
 
-| A · Original acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| A · Acquisition recording (2D display) | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
 | --- | --- |
-| <a href="results/reference/robot-corridor-v2-mapping/execution.mp4"><img src="results/reference/robot-corridor-v2-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/corridor/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/corridor/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="results/reference/robot-corridor-v2-mapping/execution.mp4"><img src="results/reference/robot-corridor-v2-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/corridor/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/corridor/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.
@@ -871,9 +874,9 @@ This group freezes static-A maps and acquires B in the changed world; the A tabl
 | BeautyMap | 83.33% |
 
 
-| A · Original acquisition | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
+| A · Acquisition recording (2D display) | A · Saved cleaning results (Raw / DUFOMap / BeautyMap) |
 | --- | --- |
-| <a href="results/reference/robot-static-mapping/execution.mp4"><img src="results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
+| <a href="results/reference/robot-static-mapping/execution.mp4"><img src="results/reference/robot-static-mapping/execution.gif" width="420" loading="lazy" alt="mapping A acquisition (2D display)"></a> | <a href="results/reference/practice-map-cleaning-review-20261016/static/result.mp4"><img src="results/reference/practice-map-cleaning-review-20261016/static/result.gif" width="420" loading="lazy" alt="saved map cleaning results"></a> |
 
 
 The right panel reviews saved cleaning outputs without new inference; click a GIF for the full MP4.

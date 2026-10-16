@@ -1,0 +1,251 @@
+{
+  "status": "verified",
+  "scope": "Verify immutable A archives used by the frozen maps; first/middle/last selected scans have 16 vertical channels. The original recording uses a top-down 2D grid view.",
+  "mapping_A_pose_source": "provided simulation ground-truth poses; not full 3D SLAM pose estimation",
+  "truth_input_to_localization_B": false,
+  "groups": [
+    {
+      "scene": "static",
+      "source_mapping_A": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-163140-mapping-static-24597a",
+      "archive_sha256": "3c722e9aae7ae12e66a4901d3e1e46eb32810547f1069b82468004e09380d402",
+      "archived_cloud_frames": 97,
+      "selected_cloud_frames": 60,
+      "sampled_scans": [
+        {
+          "scan": 0,
+          "points": 11279,
+          "vertical_angle_levels_deg": [
+            -15.0,
+            -13.0,
+            -11.0,
+            -9.0,
+            -7.0,
+            -5.0,
+            -3.0,
+            -1.0,
+            1.0,
+            3.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0,
+            13.0,
+            15.0
+          ],
+          "sensor_z_span_m": 2.016404151916504
+        },
+        {
+          "scan": 48,
+          "points": 11414,
+          "vertical_angle_levels_deg": [
+            -15.0,
+            -13.0,
+            -11.0,
+            -9.0,
+            -7.0,
+            -5.0,
+            -3.0,
+            -1.0,
+            1.0,
+            3.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0,
+            13.0,
+            15.0
+          ],
+          "sensor_z_span_m": 2.0228052139282227
+        },
+        {
+          "scan": 96,
+          "points": 11430,
+          "vertical_angle_levels_deg": [
+            -15.0,
+            -13.0,
+            -11.0,
+            -9.0,
+            -7.0,
+            -5.0,
+            -3.0,
+            -1.0,
+            1.0,
+            3.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0,
+            13.0,
+            15.0
+          ],
+          "sensor_z_span_m": 2.0080320835113525
+        }
+      ],
+      "recorded_view": "rviz_default_plugins/TopDownOrtho",
+      "visible_2D_map_topic": "/map",
+      "stored_3D_cloud_topic": "/points"
+    },
+    {
+      "scene": "dynamic",
+      "source_mapping_A": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-233545-mapping-dynamic-a37043",
+      "archive_sha256": "559d9ae0d26e1dffa379a7602003b111853a770bee50fd73e3beafdc5dc7b2e4",
+      "archived_cloud_frames": 128,
+      "selected_cloud_frames": 60,
+      "sampled_scans": [
+        {
+          "scan": 0,
+          "points": 11279,
+          "vertical_angle_levels_deg": [
+            -15.0,
+            -13.0,
+            -11.0,
+            -9.0,
+            -7.0,
+            -5.0,
+            -3.0,
+            -1.0,
+            1.0,
+            3.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0,
+            13.0,
+            15.0
+          ],
+          "sensor_z_span_m": 2.016404151916504
+        },
+        {
+          "scan": 64,
+          "points": 11499,
+          "vertical_angle_levels_deg": [
+            -15.0,
+            -13.0,
+            -11.0,
+            -9.0,
+            -7.0,
+            -5.0,
+            -3.0,
+            -1.0,
+            1.0,
+            3.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0,
+            13.0,
+            15.0
+          ],
+          "sensor_z_span_m": 2.0166749954223633
+        },
+        {
+          "scan": 127,
+          "points": 11430,
+          "vertical_angle_levels_deg": [
+            -15.0,
+            -13.0,
+            -11.0,
+            -9.0,
+            -7.0,
+            -5.0,
+            -3.0,
+            -1.0,
+            1.0,
+            3.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0,
+            13.0,
+            15.0
+          ],
+          "sensor_z_span_m": 2.0086114406585693
+        }
+      ],
+      "recorded_view": "rviz_default_plugins/TopDownOrtho",
+      "visible_2D_map_topic": "/map",
+      "stored_3D_cloud_topic": "/points"
+    },
+    {
+      "scene": "corridor",
+      "source_mapping_A": "D:\\workspace\\be2\\slam_learning_updated\\results\\runs\\presentation\\20261014-213219-mapping-corridor-73cb7b",
+      "archive_sha256": "d331785114e272ec5223fda23ef341b58a33eddbc7eb74d8273cb8c0244db451",
+      "archived_cloud_frames": 75,
+      "selected_cloud_frames": 60,
+      "sampled_scans": [
+        {
+          "scan": 0,
+          "points": 10751,
+          "vertical_angle_levels_deg": [
+            -15.0,
+            -13.0,
+            -11.0,
+            -9.0,
+            -7.0,
+            -5.0,
+            -3.0,
+            -1.0,
+            1.0,
+            3.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0,
+            13.0,
+            15.0
+          ],
+          "sensor_z_span_m": 2.2051212787628174
+        },
+        {
+          "scan": 37,
+          "points": 11040,
+          "vertical_angle_levels_deg": [
+            -15.0,
+            -13.0,
+            -11.0,
+            -9.0,
+            -7.0,
+            -5.0,
+            -3.0,
+            -1.0,
+            1.0,
+            3.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0,
+            13.0,
+            15.0
+          ],
+          "sensor_z_span_m": 2.232696056365967
+        },
+        {
+          "scan": 74,
+          "points": 10986,
+          "vertical_angle_levels_deg": [
+            -15.0,
+            -13.0,
+            -11.0,
+            -9.0,
+            -7.0,
+            -5.0,
+            -3.0,
+            -1.0,
+            1.0,
+            3.0,
+            5.0,
+            7.0,
+            9.0,
+            11.0,
+            13.0,
+            15.0
+          ],
+          "sensor_z_span_m": 2.2182421684265137
+        }
+      ],
+      "recorded_view": "rviz_default_plugins/TopDownOrtho",
+      "visible_2D_map_topic": "/map",
+      "stored_3D_cloud_topic": "/points"
+    }
+  ]
+}

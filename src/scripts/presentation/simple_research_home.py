@@ -736,6 +736,12 @@ def practice(doc, zh, previous):
             "Keep Raw/DUFOMap/BeautyMap from the original mapping A; acquire fresh B and use identical GICP settings and B scans on the three frozen maps. Videos capture live Gazebo + RViz windows; maps are not updated in B.",
         ),
         "",
+        label(
+            "A同时记录二维/scan与三维/points；旧录屏使用TopDownOrtho，主要显示slam_toolbox二维栅格。三维清图输入来自16线XYZ点云，用给定仿真真值位姿拼接；本项未验证完整三维SLAM。B不输入真值。",
+            "A records both 2D /scan and 3D /points. The original TopDownOrtho recording primarily shows the slam_toolbox 2D occupancy grid. Cleaning uses 16-channel XYZ clouds assembled with supplied simulation ground-truth poses; this is not a full 3D SLAM evaluation. B receives no truth input.",
+        ),
+        ref("results/reference/practice-map-cleaning-review-20261016/acquisition-dimension-audit.json", label("采集维度核查", "Acquisition dimension audit")),
+        "",
     ]
     for scene, title in [
         ("static", label("静态", "Static")),
@@ -761,8 +767,8 @@ def practice(doc, zh, previous):
         def a_video(folder, filename, caption):
             path = folder + "/" + filename
             return f'<a href="{href(path + ".mp4")}"><img src="{href(path + ".gif")}" width="420" loading="lazy" alt="{caption}"></a>'
-        a_media = table([label("A · 原始采集实录", "A · Original acquisition"), label("A · 清图结果回放（Raw / DUFOMap / BeautyMap）", "A · Saved cleaning results (Raw / DUFOMap / BeautyMap)")],
-                        [[a_video(acquisition_folder, "execution", "mapping A acquisition"), a_video(review_folder, review_file, "saved map cleaning results")]])
+        a_media = table([label("A · 采集现场录屏（二维显示）", "A · Acquisition recording (2D display)"), label("A · 清图结果回放（Raw / DUFOMap / BeautyMap）", "A · Saved cleaning results (Raw / DUFOMap / BeautyMap)")],
+                        [[a_video(acquisition_folder, "execution", "mapping A acquisition (2D display)"), a_video(review_folder, review_file, "saved map cleaning results")]])
         if scene == "change":
             lines += [label("本组冻结静态A地图，在结构变化场景重新采集B；A表沿用这三张静态地图的清理评分。", "This group freezes static-A maps and acquires B in the changed world; the A table retains cleaning scores for those static maps."), ""]
         lines += [
