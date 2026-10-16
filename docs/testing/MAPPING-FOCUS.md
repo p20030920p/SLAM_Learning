@@ -7,7 +7,7 @@
 
 | Question | Hypothesis and method | Controls | Metrics |
 | --- | --- | --- | --- |
-| H1 / Q1 | Correct wheel-predicted scan poses using structure supported in at least three bins; count neighborhood hits and free crossings in 0.5 s bins, deleting occupancy when crossings reach three bins and at least 1.5 times hit support; test increased trace removal, static coverage loss ≤1 percentage point and lower independent-B localization error. | M₀: wheel-pose accumulation / M₁: own alignment + cleaning | A: DA, SA; B: XY RMSE |
+| H1 / Q1 | Align scans to repeatedly observed structure and filter traces using hit support and free-space evidence to improve subsequent localization. | M₀: wheel-pose accumulation / M₁: own alignment + cleaning | A: DA, SA; B: XY RMSE |
 | H2 / Q2 | Wheel-odometry compensation for point timestamps reduces map and held-out localization error. | M₀: compensation off / M₁: on | A: map RMSE; B: XY RMSE |
 
 Both interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.
@@ -34,7 +34,7 @@ E_{{\rm loc},m}=\sqrt{\frac{1}{|\mathcal T|}\sum_{k\in\mathcal T}\|\hat{\mathbf 
 
 $`\hat{\mathbf p}_{m,k},\mathbf p_k^*`$ are estimated and true positions. $`\mathcal T`$ contains common valid times: 10 Hz after 5 s warmup, output age at most 0.15 s. Pool common samples across trials; this is not output success rate or navigation arrival rate.
 
-**H1: scan-pose correction and dynamic-trace cleaning.** Raw accumulates wheel poses only; the intervention adds the following alignment and filtering.
+**H1: align scans to repeatedly observed structure and filter traces using hit support and free-space evidence to improve subsequent localization.**
 
 Wheel increments initialize the pose; let $`\mathbf p=T_k\mathbf z`$, where $`\mathbf z`$ is a scan point and $`\mathbf q`$ its nearest point in the prior reference:
 

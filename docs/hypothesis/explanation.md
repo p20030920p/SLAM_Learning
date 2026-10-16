@@ -19,7 +19,7 @@ $\hat{\mathbf p}_{m,k},\mathbf p_k^*$ are estimated and true positions. $\mathca
 <!-- /HYPOTHESIS_PART:common -->
 
 <!-- HYPOTHESIS_PART:h1 -->
-**H1: scan-pose correction and dynamic-trace cleaning.** Raw accumulates wheel poses only; the intervention adds the following alignment and filtering.
+**H1: align scans to repeatedly observed structure and filter traces using hit support and free-space evidence to improve subsequent localization.**
 
 Wheel increments initialize the pose; let $\mathbf p=T_k\mathbf z$, where $\mathbf z$ is a scan point and $\mathbf q$ its nearest point in the prior reference:
 

@@ -19,7 +19,7 @@ $\hat{\mathbf p}_{m,k},\mathbf p_k^*$为估计与真值位置；$\mathcal T$为�
 <!-- /HYPOTHESIS_PART:common -->
 
 <!-- HYPOTHESIS_PART:h1 -->
-**H1：扫描位姿修正与动态残影清理。** Raw只按轮速位姿累积；干预增加以下对齐与过滤。
+**H1：利用重复观测结构对齐扫描，结合回波支持与空闲穿越证据清除残影，以改善后续定位。**
 
 轮速增量提供初值；令$\mathbf p=T_k\mathbf z$，$\mathbf z$为扫描点，$\mathbf q$为前序参照中的最近点：
 

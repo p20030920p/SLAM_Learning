@@ -19,7 +19,7 @@ def definitions(zh):
         return cn if zh else en
     text = '<a id="mapping-hypothesis-tests"></a>\n\n## ' + s("假设", "Hypothesis") + "\n\n<!-- SIMPLE_HYPOTHESES_V2 -->\n" + MARKER + "\n\n"
     text += table([s("问题", "Question"), s("假设与具体做法", "Hypothesis and method"), s("对照方法", "Controls"), s("指标", "Metrics")], [
-        ["H1 / Q1", s("轮速预测后，用至少3个时间箱支持的结构修正扫描位姿；按0.5秒时间箱统计邻域命中与空闲穿越，后者达到3箱且不少于前者1.5倍时删除占据；检验残影清除增加、静态覆盖损失≤1个百分点及独立B定位误差下降。", "Correct wheel-predicted scan poses using structure supported in at least three bins; count neighborhood hits and free crossings in 0.5 s bins, deleting occupancy when crossings reach three bins and at least 1.5 times hit support; test increased trace removal, static coverage loss ≤1 percentage point and lower independent-B localization error."), s("M₀：轮速累积图 / M₁：自写对齐＋清理", "M₀: wheel-pose accumulation / M₁: own alignment + cleaning"), s("A：DA、SA；B：XY RMSE", "A: DA, SA; B: XY RMSE")],
+        ["H1 / Q1", s("利用重复观测结构对齐扫描，结合回波支持与空闲穿越证据清除残影，以改善后续定位。", "Align scans to repeatedly observed structure and filter traces using hit support and free-space evidence to improve subsequent localization."), s("M₀：轮速累积图 / M₁：自写对齐＋清理", "M₀: wheel-pose accumulation / M₁: own alignment + cleaning"), s("A：DA、SA；B：XY RMSE", "A: DA, SA; B: XY RMSE")],
         ["H2 / Q2", s("用轮式里程计补偿点的采样时间差，能降低地图和独立定位误差。", "Wheel-odometry compensation for point timestamps reduces map and held-out localization error."), s("M₀：补偿关 / M₁：补偿开", "M₀: compensation off / M₁: on"), s("A：地图RMSE；B：XY RMSE", "A: map RMSE; B: XY RMSE")],
     ])
     text += s("两项干预均由本库实现；AMCL只作为统一的下游评分定位器。镜面识别仍待实物验证。", "Both interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.") + "\n\n"
