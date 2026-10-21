@@ -172,6 +172,7 @@ The core question is:
 | --- | --- | --- | --- |
 | H1 / Q1 | Align scans to repeatedly observed structure and filter traces using hit support and free-space evidence to improve subsequent localization. | M₀: wheel-pose accumulation / M₁: own alignment + cleaning | A: DA, SA; B: XY RMSE |
 | H2 / Q2 | Wheel-odometry compensation for point timestamps reduces map and held-out localization error. | M₀: compensation off / M₁: on | A: map RMSE; B: XY RMSE |
+* H3/Q3: After interview: we can use multy-sensor fusion to have more constrains on it, so that when Lidar or depth camera is invalid, we can use odometry or IMU. For example, LiDAR-Visual-Inertial Odometry. And we can even use RTK to fixed it. It is only a hypothesis, I will design experiment in the near future.
 
 Both interventions are implemented in this repository; AMCL is the common downstream localizer. Mirror identification still needs physical validation.
 
